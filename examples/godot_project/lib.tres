@@ -1,0 +1,17 @@
+[gd_resource type="GDNativeLibrary" format=2]
+
+[resource]
+
+platform/unix = ""
+platform/x11 = "res://lib/libgodot.so"
+platform/server = ""
+platform/android = ""
+platform/blackberry = ""
+platform/haiku = ""
+platform/mac = ""
+platform/ios = ""
+platform/osx = ""
+platform/html5 = ""
+platform/windows = ""
+platform/uwp = ""
+
