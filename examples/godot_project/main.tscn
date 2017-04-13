@@ -3,7 +3,7 @@
 [ext_resource path="res://lib.tres" type="GDNativeLibrary" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
-[sub_resource type="GDNativeScript" id=2]
+[sub_resource type="GDNativeScript" id=1]
 
 resource_name = "Player"
 library = ExtResource( 1 )
@@ -17,7 +17,7 @@ input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/margin = 0.08
-script = SubResource( 2 )
+script = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D"]
 
