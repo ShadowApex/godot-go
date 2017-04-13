@@ -1,6 +1,8 @@
 # Go-Godot
 Go language bindings for the [Godot Engine](https://godotengine.org/)'s [GDNative API](https://github.com/GodotNativeTools/godot_headers).
 
+NOTE: These bindings are currently a work in progress. Any help is welcome!
+
 # Usage
 The Godot Engine can interface with code written in Go using the GDNative module. 
 
