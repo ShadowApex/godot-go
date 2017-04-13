@@ -11,8 +11,11 @@ The Godot Engine can interface with code written in Go using the GDNative module
 ## Linux
 To properly compile your code, you'll need to follow these steps:
 
-* Clone the Godot Headers into a path where the compiler can find them:    
-`sudo git clone https://github.com/GodotNativeTools/godot_headers.git /usr/local/include`
+* Clone the most current Godot Headers into a temporary directory:    
+`git clone https://github.com/GodotNativeTools/godot_headers.git`
+
+* Move the header files into a location where the compiler can find them:    
+`sudo cp -r godot_headers/* /usr/local/include`    
 
 # Build
 When you're ready to build your code as a dynamic library that can be imported into
