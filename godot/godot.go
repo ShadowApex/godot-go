@@ -68,6 +68,20 @@ const (
 	GODOT_ERR_WTF                        = GODOT_ERR_OMFG_THIS_IS_VERY_VERY_BAD ///< short version of the above
 )
 
+//void GDAPI godot_object_destroy(godot_object *p_o);
+//export godot_object_destroy
+func godot_object_destroy(object *C.godot_object) {
+	fmt.Println("Destroying object:", object)
+}
+
+//godot_object GDAPI *godot_global_get_singleton(char *p_name); // result shouldn't be freed
+//export godot_global_get_singleton
+func godot_global_get_singleton(name *C.char) *C.godot_object {
+	fmt.Println("godot_global_get_singleton")
+	var obj C.godot_object
+	return &obj
+}
+
 // godot_error handles Godot error enums.
 func godotError(err int) interface{} {
 	return C.godot_error(err)
@@ -119,8 +133,7 @@ func godot_native_terminate() {
 
 // void GDAPI godot_script_register_class(const char *p_name, const char *p_base, godot_instance_create_func p_create_func, godot_instance_destroy_func p_destroy_func);
 // TODO: From Go, we can't expose a `const char*`. Might need to write a wrapper in C in header.
-//export go_godot_script_register_class
-func go_godot_script_register_class(name string, base string, createFunc C.godot_instance_create_func, destroyFunc C.godot_instance_destroy_func) {
+func godot_script_register_class(name *C.char, base *C.char, createFunc C.godot_instance_create_func, destroyFunc C.godot_instance_destroy_func) {
 	fmt.Println("GO: godot_script_register_class")
 }
 
