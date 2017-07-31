@@ -2,7 +2,8 @@
 package godot
 
 /*
-#cgo CXXFLAGS: -I/usr/local/include -std=c11
+#cgo linux CXXFLAGS: -I/usr/local/include -std=c11
+#cgo darwin CFLAGS: -I/usr/local/include
 #include <stddef.h>
 #include <godot/gdnative.h>
 #include <godot_nativescript.h>
