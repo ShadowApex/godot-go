@@ -18,9 +18,15 @@ import (
 // upon library initialization.
 type GodotGDNativeInit func(options *GodotGDNativeInitOptions)
 
+// godotGDNativeInit is a user defined function that will be set by SetGodotGDNativeInit.
+var godotGDNativeInit GodotGDNativeInit
+
 // SetGodotGDNativeInit takes an initialization function that will be called
-// when Godot loads the Go library.
-func SetGodotGDNativeInit(init GodotGDNativeInit) {
+// when Godot loads the Go library. This can only work if it is run by
+// setting a variable. E.g. var myinit = godot.SetGodotGDNativeInit(myfunc)
+func SetGodotGDNativeInit(init GodotGDNativeInit) GodotGDNativeInit {
+	godotGDNativeInit = init
+	return init
 }
 
 /** Library entry point **/
@@ -29,6 +35,19 @@ func SetGodotGDNativeInit(init GodotGDNativeInit) {
 //export godot_gdnative_init
 func godot_gdnative_init(options *C.godot_gdnative_init_options) {
 	fmt.Println("Initializing Go library.")
+
+	// Translate the C struct into a Go struct.
+	goOptions := &GodotGDNativeInitOptions{
+		InEditor:      bool(options.in_editor),
+		CoreAPIHash:   uint64(options.core_api_hash),
+		EditorAPIHash: uint64(options.editor_api_hash),
+		NoAPIHash:     uint64(options.no_api_hash),
+	}
+
+	// Call user defined init if it was set.
+	if godotGDNativeInit != nil {
+		godotGDNativeInit(goOptions)
+	}
 }
 
 /** Library de-initialization **/
@@ -46,4 +65,7 @@ func godot_gdnative_terminate(options *C.godot_gdnative_terminate_options) {
 //export godot_nativescript_init
 func godot_nativescript_init(desc unsafe.Pointer) {
 	fmt.Println("Initializing script")
+
+	//C.godot_nativescript_register_class(desc, "SimpleClass", "Node", create_func, destroy_func)
+	//godot_nativescript_register_class(desc, "SimpleClass", "Node", create_func, destroy_func);
 }
