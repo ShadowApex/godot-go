@@ -20,7 +20,7 @@ To properly compile your code, you'll need to follow these steps:
 # Build
 When you're ready to build your code as a dynamic library that can be imported into
 Godot, use the following command:    
-`go build -buildmode=c-shared -o libgodot.so godot.go`    
+`go build -v -buildmode=c-shared -o libgodot.so example.go && cp libgodot.so ~/Projects/godot-projects/go-gdnative/ && godot`    
 
 ## How do I use native scripts from the editor?
 
