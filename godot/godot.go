@@ -7,11 +7,13 @@ package godot
 #include <stddef.h>
 #include <godot_nativescript.h>
 
-// Type definitions
+// Type definitions for any function pointers.
 typedef void (*create_func)(godot_object *, void *);
+typedef void (*free_func)(void *);
 
 // Forward declarations of gateway functions defined in cfuncs.go.
 void *go_godot_instance_create_func_cgo(godot_object *, void *); // Forward declaration.
+void *go_godot_instance_free_func_cgo(void *); // Forward declaration.
 */
 import "C"
 
@@ -40,7 +42,7 @@ func SetGodotGDNativeInit(init GodotGDNativeInit) GodotGDNativeInit {
 // this method will be called by Godot.
 //export godot_gdnative_init
 func godot_gdnative_init(options *C.godot_gdnative_init_options) {
-	fmt.Println("Initializing Go library.")
+	fmt.Println("GO: Initializing Go library.")
 
 	// Translate the C struct into a Go struct.
 	goOptions := &GodotGDNativeInitOptions{
@@ -61,7 +63,7 @@ func godot_gdnative_init(options *C.godot_gdnative_init_options) {
 // Godot unloads the library, this method will be called.
 //export godot_gdnative_terminate
 func godot_gdnative_terminate(options *C.godot_gdnative_terminate_options) {
-	fmt.Println("De-initializing Go library.")
+	fmt.Println("GO: De-initializing Go library.")
 }
 
 /** Script entry (Registering all the classes and stuff) **/
@@ -70,7 +72,7 @@ func godot_gdnative_terminate(options *C.godot_gdnative_terminate_options) {
 // and stuff. The `unsafe.Pointer` type is used to represent a null C pointer.
 //export godot_nativescript_init
 func godot_nativescript_init(desc unsafe.Pointer) {
-	fmt.Println("Initializing script")
+	fmt.Println("GO: Initializing script")
 	// Set up our create function C struct
 	var createFunc C.godot_instance_create_func
 	var destroyFunc C.godot_instance_destroy_func
@@ -81,9 +83,9 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 	// void *method_data;
 	createFunc.method_data = unsafe.Pointer(C.CString("Some data"))
 	// GDCALLINGCONV void (*free_func)(void *);
-	//createFunc.free_func = C.CString("hello")
+	createFunc.free_func = (C.free_func)(unsafe.Pointer(C.go_godot_instance_free_func_cgo))
 
-	fmt.Println(createFunc)
+	fmt.Println("GO:", createFunc)
 
 	C.godot_nativescript_register_class(desc, C.CString("SimpleClass"), C.CString("Node"), createFunc, destroyFunc)
 
@@ -108,5 +110,10 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 // gateway functions defined in cfuncs.go.
 //export go_godot_instance_create_func
 func go_godot_instance_create_func(godotObject *C.godot_object, param unsafe.Pointer) {
-	fmt.Println("Native Go code is being executed here!")
+	fmt.Println("GO: Create function called!")
+}
+
+//export go_godot_instance_free_func
+func go_godot_instance_free_func(param unsafe.Pointer) {
+	fmt.Println("GO: Free function called!")
 }
