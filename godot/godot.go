@@ -11,7 +11,7 @@ package godot
 typedef void (*create_func)(godot_object *, void *);
 typedef void (*free_func)(void *);
 
-// Forward declarations of gateway functions defined in cfuncs.go.
+// Forward declarations of gateway functions defined in cgateway.go.
 void *go_godot_instance_create_func_cgo(godot_object *, void *); // Forward declaration.
 void *go_godot_instance_free_func_cgo(void *); // Forward declaration.
 */
@@ -107,7 +107,7 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 }
 
 // This is a native Go function that is callable from C. It is called by the
-// gateway functions defined in cfuncs.go.
+// gateway functions defined in cgateway.go.
 //export go_godot_instance_create_func
 func go_godot_instance_create_func(godotObject *C.godot_object, param unsafe.Pointer) {
 	fmt.Println("GO: Create function called!")
