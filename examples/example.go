@@ -1,16 +1,28 @@
 package main
 
 import (
-	"fmt"
 	"github.com/shadowapex/go-godot/godot"
+	"log"
 )
 
-type SimpleClass struct {
-	Name string
+// NewSimpleClass is a constructor that we can pass to godot.
+func NewSimpleClass() interface{} {
+	simpleClass := &SimpleClass{
+		Name: "MySimpleClass",
+		Base: "Node2D",
+	}
+	simpleClass.Ready = func() {
+		log.Println("SimpleClass is ready!")
+	}
+
+	return simpleClass
 }
 
-func (s *SimpleClass) Ready() {
-	fmt.Println("GO: SimpleClass is ready!")
+// SimpleClass is a simple Godot class that can be registered.
+type SimpleClass struct {
+	Name  string
+	Base  string `godot:"_inherits"`
+	Ready func() `godot:"_ready"`
 }
 
 // The "init()" function is a special Go function that will be called when this library
@@ -18,14 +30,13 @@ func (s *SimpleClass) Ready() {
 func init() {
 	// SetGodotGDNativeInit will set the given function to run on library initialization.
 	godot.SetGodotGDNativeInit(func(options *godot.GodotGDNativeInitOptions) {
-		fmt.Println("GO: This is being called from example.go!")
+		log.Println("This is being called from example.go!")
 	})
 
-	// RegisterClass will register the given class with Godot.
-	simpleClass := &SimpleClass{Name: "MySimpleClass"}
-	godot.RegisterClass(simpleClass)
+	// Expose will register the given class constructor with Godot.
+	godot.Expose(NewSimpleClass)
 }
 
-// This never gets called.
+// This never gets called, but it necessary to export as a shared library.
 func main() {
 }
