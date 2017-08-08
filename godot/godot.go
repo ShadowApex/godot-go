@@ -31,13 +31,15 @@ import (
 )
 
 const (
-	tagPrefix = "godot"
+	tagPrefix        = "godot"
+	defaultBaseClass = "Node"
 )
 
 // Exposed is a base structure for any structure that will be exposed to Godot.
 // You should embed this structure in your own custom structs.
 type Exposed struct {
-	Ready Method `godot:_ready`
+	Base  string `godot:"_inherits"`
+	Ready func() `godot:"_ready"`
 }
 
 // ClassConstructor is any function that will build and return a class to be registered
@@ -98,10 +100,11 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 
 		// Add the type to our internal type registry. This is used so the constructor
 		// function can create the correct kind of struct.
-		typeRegistry[classString] = constructor
+		constructorRegistry[classString] = constructor
+		typeRegistry[classString] = classType
 
-		// TODO: Look at the struct tags for "inherits" to get the base class.
-		baseClass := "Node"
+		// Look at the struct tags for "_inherits" to get the base class.
+		baseClass := defaultBaseClass
 		classValuePtr := reflect.ValueOf(class)
 		classValue := classValuePtr.Elem()
 		log.Println("  Found", classValue.NumField(), "struct fields.")
@@ -151,33 +154,6 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 
 		// Register our class.
 		C.godot_nativescript_register_class(desc, classCString, C.CString(baseClass), createFunc, destroyFunc)
-
-		// Loop through our class's methods that are attached to it.
-		log.Println("  Looking at methods:")
-		log.Println("    Found", classType.NumMethod(), "methods")
-		for i := 0; i < classType.NumMethod(); i++ {
-			classMethod := classType.Method(i)
-			log.Println("  Found method:", classMethod.Name)
-
-			// Set up registering a method
-			var method C.godot_instance_method
-
-			// *** METHOD STRUCTURE ***
-			// GDCALLINGCONV godot_variant (*method)(godot_object *, void *, void *, int, godot_variant **);
-			method.method = (C.method)(unsafe.Pointer(C.go_method_func_cgo))
-			// void *method_data;
-			method.method_data = unsafe.Pointer(classCString)
-			// GDCALLINGCONV void (*free_func)(void *);
-			method.free_func = (C.free_func)(unsafe.Pointer(C.go_free_func_cgo))
-
-			// Set up the method attributes.
-			var attr C.godot_method_attributes
-			attr.rpc_type = C.GODOT_METHOD_RPC_MODE_DISABLED
-
-			// Register a method.
-			C.godot_nativescript_register_method(desc, classCString, C.CString("_ready"), attr, method)
-
-		}
 	}
 }
 
@@ -191,13 +167,43 @@ func go_create_func(godotObject *C.godot_object, methodData unsafe.Pointer) {
 	log.Println("Create function called for:", className)
 
 	// Look up our class constructor by its class name in the registry.
-	constructor := typeRegistry[className]
+	constructor := constructorRegistry[className]
 
 	// Create a new instance of the object.
 	class := constructor()
 	log.Println("Created new object instance:", class)
 
 	// TODO: Register the methods of the class.
+	// Loop through our class's methods that are attached to it.
+	classType := typeRegistry[className]
+	classString := strings.Replace(classType.String(), "*main.", "", 1) // TODO: Just remove * instead.
+	classCString := C.CString(classString)
+	log.Println("  Looking at methods:")
+	log.Println("    Found", classType.NumMethod(), "methods")
+	for i := 0; i < classType.NumMethod(); i++ {
+		classMethod := classType.Method(i)
+		log.Println("  Found method:", classMethod.Name)
+
+		// Set up registering a method
+		var method C.godot_instance_method
+
+		// *** METHOD STRUCTURE ***
+		// GDCALLINGCONV godot_variant (*method)(godot_object *, void *, void *, int, godot_variant **);
+		method.method = (C.method)(unsafe.Pointer(C.go_method_func_cgo))
+		// void *method_data;
+		method.method_data = unsafe.Pointer(classCString)
+		// GDCALLINGCONV void (*free_func)(void *);
+		method.free_func = (C.free_func)(unsafe.Pointer(C.go_free_func_cgo))
+
+		// Set up the method attributes.
+		var attr C.godot_method_attributes
+		attr.rpc_type = C.GODOT_METHOD_RPC_MODE_DISABLED
+
+		// Register a method.
+		// TODO: We need to call this somehow. Maybe we register in init, instead of creation?
+		//C.godot_nativescript_register_method(desc, classCString, C.CString("_ready"), attr, method)
+
+	}
 
 	// Free up our string.
 	// TODO: free this?

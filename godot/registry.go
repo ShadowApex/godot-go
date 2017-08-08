@@ -1,6 +1,8 @@
 package godot
 
-import ()
+import (
+	"reflect"
+)
 
 // godotClassesToRegister is a slice of objects that will be registered as a Godot class
 // upon library initialization.
@@ -12,5 +14,8 @@ func Expose(constructor ClassConstructor) {
 	godotConstructorsToRegister = append(godotConstructorsToRegister, constructor)
 }
 
-// typeRegistry is a mapping of all Godot class constructors that have been registered.
-var typeRegistry = map[string]ClassConstructor{}
+// constructorRegistry is a mapping of all Godot class constructors that have been registered.
+var constructorRegistry = map[string]ClassConstructor{}
+
+// typeRegistry is a mapping of all Godot class types that have been registered.
+var typeRegistry = map[string]reflect.Type{}
