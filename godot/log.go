@@ -104,7 +104,7 @@ func godotString(str string) C.godot_string {
 	C.godot_string_new_data(&gdString, cString, C.int(len(str)))
 
 	// Free the CString
-	C.free(unsafe.Pointer(cString))
+	C.godot_free(unsafe.Pointer(cString))
 
 	return gdString
 }

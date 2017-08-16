@@ -38,8 +38,7 @@ const (
 // Exposed is a base structure for any structure that will be exposed to Godot.
 // You should embed this structure in your own custom structs.
 type Exposed struct {
-	Base  string `godot:"_inherits"`
-	Ready func() `godot:"_ready"`
+	GDParent string `godot:"_inherits"`
 }
 
 // ClassConstructor is any function that will build and return a class to be registered
@@ -47,7 +46,9 @@ type Exposed struct {
 type ClassConstructor func() interface{}
 
 // function signature for Godot classes
-type Method func(godotObject *C.godot_object, methodData unsafe.Pointer, userData unsafe.Pointer, numArgs C.int, args **C.godot_variant)
+type gdMethod func(godotObject *C.godot_object, methodData unsafe.Pointer, userData unsafe.Pointer, numArgs C.int, args **C.godot_variant)
+
+type Method func(godotObject *Object, methodData, userData interface{}, numArgs int, args []*Variant)
 
 /** Library entry point **/
 // godot_gdnative_init is the library entry point. When the library is loaded
@@ -97,6 +98,7 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 		classType := reflect.TypeOf(class)
 		classString := strings.Replace(classType.String(), "*main.", "", 1) // TODO: Just remove * instead.
 		classCString := C.CString(classString)
+		defer C.godot_free(unsafe.Pointer(classCString))
 		log.Println("Registering class:", classString)
 
 		// Add the type to our internal type registry. This is used so the constructor
@@ -127,6 +129,8 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 			baseClass = field.Interface().(string)
 			log.Println("  Found inheritance in struct:", baseClass)
 		}
+		baseClassCString := C.CString(baseClass)
+		defer C.godot_free(unsafe.Pointer(baseClassCString))
 		log.Println("  Using Base Class:", baseClass)
 
 		// TODO: Look at the struct tags for methods to register.
@@ -154,7 +158,7 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 		destroyFunc.free_func = (C.free_func)(unsafe.Pointer(C.go_free_func_cgo))
 
 		// Register our class.
-		C.godot_nativescript_register_class(desc, classCString, C.CString(baseClass), createFunc, destroyFunc)
+		C.godot_nativescript_register_class(desc, classCString, baseClassCString, createFunc, destroyFunc)
 	}
 }
 
@@ -179,6 +183,7 @@ func go_create_func(godotObject *C.godot_object, methodData unsafe.Pointer) {
 	classType := typeRegistry[className]
 	classString := strings.Replace(classType.String(), "*main.", "", 1) // TODO: Just remove * instead.
 	classCString := C.CString(classString)
+	defer C.godot_free(unsafe.Pointer(classCString))
 	log.Println("  Looking at methods:")
 	log.Println("    Found", classType.NumMethod(), "methods")
 	for i := 0; i < classType.NumMethod(); i++ {

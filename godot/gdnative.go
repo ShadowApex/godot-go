@@ -1,5 +1,13 @@
 package godot
 
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <godot/gdnative.h>
+#include <godot_nativescript.h>
+*/
+import "C"
+
 // GodotGDNativeInitOptions is a wrapper for the `godot_gdnative_init_options`
 // structure defined in gdnative.h.
 type GodotGDNativeInitOptions struct {
@@ -21,4 +29,10 @@ var godotGDNativeInit GodotGDNativeInit
 func SetGodotGDNativeInit(init GodotGDNativeInit) GodotGDNativeInit {
 	godotGDNativeInit = init
 	return init
+}
+
+// Object is a native Go object that wraps godot_object.
+type Object struct{}
+
+func (o *Object) Value() {
 }
