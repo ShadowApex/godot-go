@@ -55,6 +55,7 @@ type Method func(godotObject *C.godot_object, methodData unsafe.Pointer, userDat
 //export godot_gdnative_init
 func godot_gdnative_init(options *C.godot_gdnative_init_options) {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
+	log.SetOutput(Log)
 	log.Println("Initializing Go library.")
 
 	// Translate the C struct into a Go struct.
