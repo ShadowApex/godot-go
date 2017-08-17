@@ -26,6 +26,10 @@ func (p *PongClass) Ready() {
 	godot.Log.Println("Pong is ready!")
 }
 
+func (p *PongClass) Process() {
+	godot.Log.Println("Processing!")
+}
+
 // The "init()" function is a special Go function that will be called when this library
 // is initialized. Here we can register our Godot classes.
 func init() {

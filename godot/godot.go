@@ -260,6 +260,10 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 			// of the next argument.
 			arg := (*C.godot_variant)(unsafe.Pointer(arrayPtr + size))
 
+			// Check to see what type this variant is
+			variantType := C.godot_variant_get_type(arg)
+			log.Println("Argument variant type:", variantType)
+
 			// Append the argument to our slice.
 			argsSlice = append(argsSlice, arg)
 		}
