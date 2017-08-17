@@ -13,7 +13,6 @@ import (
 	"fmt"
 	"runtime"
 	"strings"
-	"unsafe"
 )
 
 // Log is used to log messages to Godot, and makes them viewable inside the
@@ -79,14 +78,8 @@ func (l *logger) log(isError bool, message ...interface{}) {
 
 	// Convert the go string into a C string
 	cDescription := C.CString(goDescription)
-	//defer C.godot_free(unsafe.Pointer(cDescription))
-
 	cFuncName := C.CString(funcName)
-	//defer C.godot_free(unsafe.Pointer(cFuncName))
-
 	cFile := C.CString(file)
-	//defer C.godot_free(unsafe.Pointer(cFile))
-
 	cLine := C.int(no)
 
 	if isError {
@@ -102,9 +95,6 @@ func godotString(str string) C.godot_string {
 	var gdString C.godot_string
 	cString := C.CString(str)
 	C.godot_string_new_data(&gdString, cString, C.int(len(str)))
-
-	// Free the CString
-	C.godot_free(unsafe.Pointer(cString))
 
 	return gdString
 }
