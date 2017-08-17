@@ -24,6 +24,7 @@ godot_variant go_method_func_cgo(godot_object *obj, void *method_data, void *use
 import "C"
 
 import (
+	"fmt"
 	"log"
 	"reflect"
 	"strings"
@@ -212,7 +213,12 @@ func go_create_func(godotObject *C.godot_object, methodData unsafe.Pointer) {
 
 	// Create a new instance of the object.
 	class := constructor()
-	log.Println("Created new object instance:", class)
+	instanceString := fmt.Sprintf("%p", &class)
+	//instanceCString := C.CString(instanceString)
+	log.Println("Created new object instance:", class, "with instance address:", instanceString)
+
+	// TODO: Do we modify godotObject to point to our newly constructed class?
+	//godotObject = (*C.godot_object)(unsafe.Pointer(instanceCString))
 }
 
 // This is a native Go function that is callable from C. It is called by the
@@ -237,15 +243,20 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 	log.Println("  numArgs:", int(numArgs))
 	log.Println("  args:", args)
 
-	if int(numArgs) > 500 {
-		panic("Wtf, 500+ arguments?")
-	}
+	// TODO: Try and get the object instance?
+	//goGodotObject := (*C.char)(unsafe.Pointer(godotObject))
+	//log.Println("  Called from instance:", C.GoString(goGodotObject))
 
 	// Create a slice of godot_variant arguments
 	argsSlice := []*C.godot_variant{}
 
 	// Get the size of each godot_variant object pointer.
 	size := unsafe.Sizeof(*args)
+
+	// Panic if something's wrong.
+	if int(numArgs) > 500 {
+		panic("Wtf, 500+ arguments?")
+	}
 
 	// If we have arguments, append the first argument.
 	if int(numArgs) > 0 {
