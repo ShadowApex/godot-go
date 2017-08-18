@@ -19,3 +19,7 @@ var constructorRegistry = map[string]ClassConstructor{}
 
 // typeRegistry is a mapping of all Godot class types that have been registered.
 var typeRegistry = map[string]reflect.Type{}
+
+// instanceRegistry is a mapping of all instances that have currently been created. This map
+// allows instance methods to find which instance they belong to.
+var instanceRegistry = map[string]interface{}{}

@@ -9,27 +9,30 @@ package godot
 void *go_create_func_cgo(godot_object *obj, void *method_data)
 {
 	printf("CGO: C.go_create_func_cgo()\n");
-	void go_create_func(godot_object *, void *);
-	go_create_func(obj, method_data); // Execute our Go function.
-	return 0;
+	void *ret;
+	void *go_create_func(godot_object *, void *);
+	ret = go_create_func(obj, method_data); // Execute our Go function.
+	return ret;
 }
 
 // This is a gateway function for the destroy method.
 void *go_destroy_func_cgo(godot_object *obj, void *method_data, void *user_data)
 {
 	printf("CGO: C.go_destroy_func_cgo()\n");
-	void go_destroy_func(godot_object *, void *, void *);
-	go_destroy_func(obj, method_data, user_data); // Execute our Go function.
-	return 0;
+	void *ret;
+	void *go_destroy_func(godot_object *, void *, void *);
+	ret = go_destroy_func(obj, method_data, user_data); // Execute our Go function.
+	return ret;
 }
 
 // This is a gateway function for the free method.
 void *go_free_func_cgo(void *method_data)
 {
 	printf("CGO: C.go_free_func_cgo()\n");
-	void go_free_func(void *);
-	go_free_func(method_data); // Execute our Go function.
-	return 0;
+	void *ret;
+	void *go_free_func(void *);
+	ret = go_free_func(method_data); // Execute our Go function.
+	return ret;
 }
 
 // This is a gateway function for the method

@@ -202,7 +202,7 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 // This is a native Go function that is callable from C. It is called by the
 // gateway functions defined in cgateway.go.
 //export go_create_func
-func go_create_func(godotObject *C.godot_object, methodData unsafe.Pointer) {
+func go_create_func(godotObject *C.godot_object, methodData unsafe.Pointer) unsafe.Pointer {
 	// Cast our pointer to a *char, so we can cast it to a Go string.
 	str := (*C.char)(methodData)
 	className := C.GoString(str)
@@ -214,11 +214,17 @@ func go_create_func(godotObject *C.godot_object, methodData unsafe.Pointer) {
 	// Create a new instance of the object.
 	class := constructor()
 	instanceString := fmt.Sprintf("%p", &class)
-	//instanceCString := C.CString(instanceString)
+	instanceCString := C.CString(instanceString)
 	log.Println("Created new object instance:", class, "with instance address:", instanceString)
 
-	// TODO: Do we modify godotObject to point to our newly constructed class?
-	//godotObject = (*C.godot_object)(unsafe.Pointer(instanceCString))
+	// Add the instance to our instance registry.
+	instanceRegistry[instanceString] = class
+
+	// Return the instance string. This will be passed to the method function as userData, so we
+	// can look up the instance in our registry. Normally you would pass a pointer to the instance
+	// itself, but we should never pass Go structures to C, as the Go garbage collector might
+	// reap the object prematurely.
+	return unsafe.Pointer(instanceCString)
 }
 
 // This is a native Go function that is callable from C. It is called by the
@@ -226,6 +232,14 @@ func go_create_func(godotObject *C.godot_object, methodData unsafe.Pointer) {
 //export go_destroy_func
 func go_destroy_func(godotObject *C.godot_object, methodData unsafe.Pointer, userData unsafe.Pointer) {
 	log.Println("Destroy function called!")
+
+	// Look up the instance based on the userData string.
+	instanceCString := (*C.char)(userData)
+	instanceString := C.GoString(instanceCString)
+
+	// Remove it from our instanceRegistry so it can be garbage collected.
+	log.Println("Destroying instance:", instanceString)
+	delete(instanceRegistry, instanceString)
 }
 
 //export go_free_func
@@ -243,9 +257,12 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 	log.Println("  numArgs:", int(numArgs))
 	log.Println("  args:", args)
 
-	// TODO: Try and get the object instance?
-	//goGodotObject := (*C.char)(unsafe.Pointer(godotObject))
-	//log.Println("  Called from instance:", C.GoString(goGodotObject))
+	// Get the object instance based on the instance string given in userData.
+	instanceCString := (*C.char)(userData)
+	instanceString := C.GoString(instanceCString)
+	class := instanceRegistry[instanceString]
+	log.Println("  instance:", class)
+	log.Println("  instanceString:", instanceString)
 
 	// Create a slice of godot_variant arguments
 	argsSlice := []*C.godot_variant{}
