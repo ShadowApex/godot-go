@@ -104,7 +104,6 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 		// Add the type to our internal type registry. This is used so the constructor
 		// function can create the correct kind of struct.
 		constructorRegistry[classString] = constructor
-		//typeRegistry[classString] = classType
 
 		// Create a registered class structure that will hold information about the
 		// cass and its methods.
@@ -316,7 +315,7 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 
 			// TODO: Handle all variant types.
 			switch variantType {
-			case C.godot_variant_type(3):
+			case C.godot_variant_type(VariantTypeReal):
 				log.Println("  This is a godot REAL!")
 				realArg := C.godot_variant_as_real(arg)
 				log.Println("  Arg:", realArg)
