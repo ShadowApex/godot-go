@@ -104,7 +104,11 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 		// Add the type to our internal type registry. This is used so the constructor
 		// function can create the correct kind of struct.
 		constructorRegistry[classString] = constructor
-		typeRegistry[classString] = classType
+		//typeRegistry[classString] = classType
+
+		// Create a registered class structure that will hold information about the
+		// cass and its methods.
+		regClass := newRegisteredClass(classType)
 
 		// Look at the struct tags for "_inherits" to get the base class.
 		baseClass := defaultBaseClass
@@ -167,12 +171,28 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 			classMethod := classType.Method(i)
 			log.Println("  Found method:", classMethod.Name)
 
+			// Construct a registered method structure that inspects all of the
+			// arguments and return types.
+			regMethod := newRegisteredMethod(classMethod)
+			regClass.addMethod(classMethod.Name, regMethod)
+			log.Println("    Method Arguments:", len(regMethod.arguments))
+			log.Println("    Method Arguments:", regMethod.arguments)
+			log.Println("    Method Returns:", len(regMethod.returns))
+			log.Println("    Method Returns:", regMethod.returns)
+
 			// Check to see if the method's name is a special Godot method.
-			methodString := classMethod.Name
+			unmappedMethodString := classMethod.Name
+			methodString := unmappedMethodString
 			if methodName, ok := methodMap[classMethod.Name]; ok {
 				log.Println("    Mapped method to:", methodName)
 				methodString = methodName
 			}
+
+			// Set up the method name
+			methodCString := C.CString(methodString)
+
+			// Set up the method data, which will include the Go type name and Go method name.
+			classMethodCString := C.CString(classString + "." + unmappedMethodString)
 
 			// Set up registering a method
 			var method C.godot_instance_method
@@ -181,7 +201,7 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 			// GDCALLINGCONV godot_variant (*method)(godot_object *, void *, void *, int, godot_variant **);
 			method.method = (C.method)(unsafe.Pointer(C.go_method_func_cgo))
 			// void *method_data;
-			method.method_data = unsafe.Pointer(classCString)
+			method.method_data = unsafe.Pointer(classMethodCString)
 			// GDCALLINGCONV void (*free_func)(void *);
 			method.free_func = (C.free_func)(unsafe.Pointer(C.go_free_func_cgo))
 
@@ -189,12 +209,12 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 			var attr C.godot_method_attributes
 			attr.rpc_type = C.GODOT_METHOD_RPC_MODE_DISABLED
 
-			// Set up the method name
-			methodCString := C.CString(methodString)
-
 			// Register a method.
 			C.godot_nativescript_register_method(desc, classCString, methodCString, attr, method)
 		}
+
+		// Register our class in our Go registry.
+		classRegistry[classString] = regClass
 
 	}
 }
@@ -204,8 +224,7 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 //export go_create_func
 func go_create_func(godotObject *C.godot_object, methodData unsafe.Pointer) unsafe.Pointer {
 	// Cast our pointer to a *char, so we can cast it to a Go string.
-	str := (*C.char)(methodData)
-	className := C.GoString(str)
+	className := unsafeToGoString(methodData)
 	log.Println("Create function called for:", className)
 
 	// Look up our class constructor by its class name in the registry.
@@ -228,14 +247,16 @@ func go_create_func(godotObject *C.godot_object, methodData unsafe.Pointer) unsa
 }
 
 // This is a native Go function that is callable from C. It is called by the
-// gateway functions defined in cgateway.go.
+// gateway functions defined in cgateway.go. It will use the userData passed to it,
+// which is a CString of the instance id, which we can use to delete the instance
+// from the instance registry. This will make the instance available to be garbage
+// collected.
 //export go_destroy_func
 func go_destroy_func(godotObject *C.godot_object, methodData unsafe.Pointer, userData unsafe.Pointer) {
 	log.Println("Destroy function called!")
 
 	// Look up the instance based on the userData string.
-	instanceCString := (*C.char)(userData)
-	instanceString := C.GoString(instanceCString)
+	instanceString := unsafeToGoString(userData)
 
 	// Remove it from our instanceRegistry so it can be garbage collected.
 	log.Println("Destroying instance:", instanceString)
@@ -250,22 +271,23 @@ func go_free_func(methodData unsafe.Pointer) {
 //godot_variant go_method_func_cgo(godot_object *obj, void *method_data, void *user_data, int num_args, godot_variant **args)
 //export go_method_func
 func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, userData unsafe.Pointer, numArgs C.int, args **C.godot_variant) C.godot_variant {
+	// Get the object instance based on the instance string given in userData.
+	methodString := unsafeToGoString(methodData)
+	instanceString := unsafeToGoString(userData)
+	class := instanceRegistry[instanceString]
+	classValue := reflect.ValueOf(class)
+
 	log.Println("Method was called!")
 	log.Println("  godotObject:", godotObject)
-	log.Println("  methodData:", methodData)
-	log.Println("  userData:", userData)
 	log.Println("  numArgs:", int(numArgs))
 	log.Println("  args:", args)
-
-	// Get the object instance based on the instance string given in userData.
-	instanceCString := (*C.char)(userData)
-	instanceString := C.GoString(instanceCString)
-	class := instanceRegistry[instanceString]
 	log.Println("  instance:", class)
-	log.Println("  instanceString:", instanceString)
+	log.Println("  instanceString (userData):", instanceString)
+	log.Println("  methodString (methodData):", methodString)
 
 	// Create a slice of godot_variant arguments
 	argsSlice := []*C.godot_variant{}
+	goArgsSlice := []reflect.Value{}
 
 	// Get the size of each godot_variant object pointer.
 	size := unsafe.Sizeof(*args)
@@ -292,10 +314,51 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 			variantType := C.godot_variant_get_type(arg)
 			log.Println("Argument variant type:", variantType)
 
+			// TODO: Handle all variant types.
+			switch variantType {
+			case C.godot_variant_type(3):
+				log.Println("  This is a godot REAL!")
+				realArg := C.godot_variant_as_real(arg)
+				log.Println("  Arg:", realArg)
+
+				// Convert the godot_real into a Go Float64.
+				goRealArg := float64(realArg)
+
+				// Add it to our Go arguments slice.
+				goArgsSlice = append(goArgsSlice, reflect.ValueOf(goRealArg))
+			default:
+				log.Fatal("Unknown type of argument")
+			}
+
 			// Append the argument to our slice.
 			argsSlice = append(argsSlice, arg)
 		}
 	}
+
+	// Use the method string to get the class name and method name.
+	classMethodSlice := strings.Split(methodString, ".")
+	className := classMethodSlice[0]
+	methodName := classMethodSlice[1]
+
+	// Look up the registered class so we can find out how many methods and their
+	// types we should call.
+	regClass := classRegistry[className]
+	regMethod := regClass.methods[methodName]
+
+	log.Println("  Arguments given by Godot:", argsSlice)
+	log.Println("  Registered method arguments:", regMethod.arguments)
+	log.Println("  Arguments to pass:", goArgsSlice)
+
+	// Check to ensure the method has the same number of arguments we expect
+	if len(regMethod.arguments)-1 != int(numArgs) {
+		Log.Error("Invalid number of arguments. Expected ", numArgs, " arguments. (Got ", len(regMethod.arguments), ")")
+		panic("Invalid number of arguments.")
+	}
+
+	// Get the value of the class, so we can call methods on it.
+	method := classValue.MethodByName(methodName)
+	method.Call(goArgsSlice)
+	log.Println(method)
 
 	var ret C.godot_variant
 	C.godot_variant_new_nil(&ret)

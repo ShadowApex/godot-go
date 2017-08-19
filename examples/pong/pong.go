@@ -26,8 +26,9 @@ func (p *PongClass) Ready() {
 	godot.Log.Println("Pong is ready!")
 }
 
-func (p *PongClass) Process() {
-	godot.Log.Println("Processing!")
+func (p *PongClass) Process(delta float64) {
+	godot.Log.Println("Processing in pong.go!")
+	godot.Log.Println("  Delta:", delta)
 }
 
 // The "init()" function is a special Go function that will be called when this library
