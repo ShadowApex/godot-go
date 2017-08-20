@@ -6,13 +6,9 @@ import (
 )
 
 // NewSimpleClass is a constructor that we can pass to godot.
-func NewSimpleClass() interface{} {
+func NewSimpleClass() godot.Class {
 	simpleClass := &SimpleClass{
 		Name: "MySimpleClass",
-		Base: "Node2D",
-	}
-	simpleClass.Ready = func() {
-		log.Println("SimpleClass is ready!")
 	}
 
 	return simpleClass
@@ -20,9 +16,12 @@ func NewSimpleClass() interface{} {
 
 // SimpleClass is a simple Godot class that can be registered.
 type SimpleClass struct {
-	Name  string
-	Base  string `godot:"_inherits"`
-	Ready func() `godot:"_ready"`
+	godot.Node
+	Name string
+}
+
+func (s *SimpleClass) Xready() {
+	godot.Log.Warning("Simple class is ready!")
 }
 
 // The "init()" function is a special Go function that will be called when this library
@@ -33,8 +32,8 @@ func init() {
 		log.Println("This is being called from example.go!")
 	})
 
-	// Expose will register the given class constructor with Godot.
-	godot.Expose(NewSimpleClass)
+	// Register will register the given class constructor with Godot.
+	godot.Register(NewSimpleClass)
 }
 
 // This never gets called, but it necessary to export as a shared library.

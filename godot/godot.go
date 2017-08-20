@@ -36,20 +36,9 @@ const (
 	defaultBaseClass = "Node"
 )
 
-// Exposed is a base structure for any structure that will be exposed to Godot.
-// You should embed this structure in your own custom structs.
-type Exposed struct {
-	GDParent string `godot:"_inherits"`
-}
-
 // ClassConstructor is any function that will build and return a class to be registered
 // with Godot.
-type ClassConstructor func() interface{}
-
-// function signature for Godot classes
-type gdMethod func(godotObject *C.godot_object, methodData unsafe.Pointer, userData unsafe.Pointer, numArgs C.int, args **C.godot_variant)
-
-type Method func(godotObject *Object, methodData, userData interface{}, numArgs int, args []*Variant)
+type ClassConstructor func() Class
 
 /** Library entry point **/
 // godot_gdnative_init is the library entry point. When the library is loaded
@@ -109,34 +98,10 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 		// cass and its methods.
 		regClass := newRegisteredClass(classType)
 
-		// Look at the struct tags for "_inherits" to get the base class.
-		baseClass := defaultBaseClass
-		classValuePtr := reflect.ValueOf(class)
-		classValue := classValuePtr.Elem()
-		log.Println("  Found", classValue.NumField(), "struct fields.")
-		for i := 0; i < classValue.NumField(); i++ {
-			// Get the struct field.
-			field := classValue.Field(i)
-
-			// Ignore fields that don't have the same type as a string
-			if field.Type() != reflect.TypeOf("") {
-				continue
-			}
-
-			// Check if the struct field tag is "inherits"
-			fieldTag, _ := classValue.Type().Field(i).Tag.Lookup(tagPrefix)
-			if fieldTag != "_inherits" {
-				continue
-			}
-
-			baseClass = field.Interface().(string)
-			log.Println("  Found inheritance in struct:", baseClass)
-		}
+		// Call the "Inherits" method on the class to get the base class.
+		baseClass := class.(Class).Inherits()
 		baseClassCString := C.CString(baseClass)
 		log.Println("  Using Base Class:", baseClass)
-
-		// TODO: Look at the struct tags for methods to register.
-		// TODO: OR look for methods that follow the GodotMethod type.
 
 		// Set up our create function C struct
 		var createFunc C.godot_instance_create_func
@@ -179,19 +144,25 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 			log.Println("    Method Returns:", len(regMethod.returns))
 			log.Println("    Method Returns:", regMethod.returns)
 
-			// Check to see if the method's name is a special Godot method.
-			unmappedMethodString := classMethod.Name
-			methodString := unmappedMethodString
-			if methodName, ok := methodMap[classMethod.Name]; ok {
-				log.Println("    Mapped method to:", methodName)
-				methodString = methodName
+			// Look at the method name to see if it starts with "X". If it does, we need to
+			// replace it with an underscore. This is required because Go method visibility
+			// is done through case sensitivity. Since Godot private methods start with an
+			// "_" character.
+			origMethodName := classMethod.Name
+			methodString := origMethodName
+			if strings.HasPrefix(methodString, "X") {
+				methodString = strings.Replace(methodString, "X", "_", 1)
 			}
+			methodString = camelToSnake(methodString)
+			methodString = strings.Replace(methodString, "__", "_", 1) // NOTE: Hack to prevent double underscore.
+			log.Println("    Original method name:", origMethodName)
+			log.Println("    Godot mapped method name:", methodString)
 
 			// Set up the method name
 			methodCString := C.CString(methodString)
 
 			// Set up the method data, which will include the Go type name and Go method name.
-			classMethodCString := C.CString(classString + "." + unmappedMethodString)
+			classMethodCString := C.CString(classString + "." + origMethodName)
 
 			// Set up registering a method
 			var method C.godot_instance_method
@@ -315,16 +286,14 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 
 			// TODO: Handle all variant types.
 			switch variantType {
+			case C.godot_variant_type(VariantTypeBool):
+				goArgsSlice = append(goArgsSlice, reflect.ValueOf(variantAsBool(arg)))
+			case C.godot_variant_type(VariantTypeInt):
+				goArgsSlice = append(goArgsSlice, reflect.ValueOf(variantAsInt(arg)))
 			case C.godot_variant_type(VariantTypeReal):
-				log.Println("  This is a godot REAL!")
-				realArg := C.godot_variant_as_real(arg)
-				log.Println("  Arg:", realArg)
-
-				// Convert the godot_real into a Go Float64.
-				goRealArg := float64(realArg)
-
-				// Add it to our Go arguments slice.
-				goArgsSlice = append(goArgsSlice, reflect.ValueOf(goRealArg))
+				goArgsSlice = append(goArgsSlice, reflect.ValueOf(variantAsReal(arg)))
+			case C.godot_variant_type(VariantTypeString):
+				goArgsSlice = append(goArgsSlice, reflect.ValueOf(variantAsString(arg)))
 			default:
 				log.Fatal("Unknown type of argument")
 			}

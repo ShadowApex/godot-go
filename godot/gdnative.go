@@ -30,9 +30,3 @@ func SetGodotGDNativeInit(init GodotGDNativeInit) GodotGDNativeInit {
 	godotGDNativeInit = init
 	return init
 }
-
-// Object is a native Go object that wraps godot_object.
-type Object struct{}
-
-func (o *Object) Value() {
-}

@@ -4,6 +4,12 @@ import (
 	"reflect"
 )
 
+// Register will register the given object as a Godot class. It will be available
+// inside Godot.
+func Register(constructor ClassConstructor) {
+	godotConstructorsToRegister = append(godotConstructorsToRegister, constructor)
+}
+
 // registeredClass is a structure for holding on to the reflected details of a Go
 // struct that has been registered as a Godot class. It has the struct's name,
 // methods, the arguments that method takes, and the value types it returns.
@@ -72,12 +78,6 @@ func newRegisteredMethod(classMethod reflect.Method) *registeredMethod {
 // godotClassesToRegister is a slice of objects that will be registered as a Godot class
 // upon library initialization.
 var godotConstructorsToRegister = []ClassConstructor{}
-
-// Expose will register the given object as a Godot class. It will be available
-// inside Godot.
-func Expose(constructor ClassConstructor) {
-	godotConstructorsToRegister = append(godotConstructorsToRegister, constructor)
-}
 
 // constructorRegistry is a mapping of all Godot class constructors that have been registered.
 var constructorRegistry = map[string]ClassConstructor{}
