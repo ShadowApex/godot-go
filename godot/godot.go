@@ -86,7 +86,7 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 
 		// Get the type of the given struct, and get its name as a string and C string.
 		classType := reflect.TypeOf(class)
-		classString := strings.Replace(classType.String(), "*main.", "", 1) // TODO: Just remove * instead.
+		classString := strings.Replace(classType.String(), "*", "", 1)
 		classCString := C.CString(classString)
 		log.Println("Registering class:", classString)
 
@@ -98,8 +98,8 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 		// cass and its methods.
 		regClass := newRegisteredClass(classType)
 
-		// Call the "Inherits" method on the class to get the base class.
-		baseClass := class.(Class).Inherits()
+		// Call the "BaseClass" method on the class to get the base class.
+		baseClass := class.(Class).BaseClass()
 		baseClassCString := C.CString(baseClass)
 		log.Println("  Using Base Class:", baseClass)
 
@@ -205,6 +205,9 @@ func go_create_func(godotObject *C.godot_object, methodData unsafe.Pointer) unsa
 	instanceCString := C.CString(instanceString)
 	log.Println("Created new object instance:", class, "with instance address:", instanceString)
 
+	// Add the Godot object pointer to the class structure.
+	class.SetOwner(godotObject)
+
 	// Add the instance to our instance registry.
 	instanceRegistry[instanceString] = class
 
@@ -255,7 +258,6 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 	log.Println("  methodString (methodData):", methodString)
 
 	// Create a slice of godot_variant arguments
-	argsSlice := []*C.godot_variant{}
 	goArgsSlice := []reflect.Value{}
 
 	// Get the size of each godot_variant object pointer.
@@ -268,8 +270,6 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 
 	// If we have arguments, append the first argument.
 	if int(numArgs) > 0 {
-		//argsSlice = append(argsSlice, *args)
-
 		arg := *args
 		// Loop through all our arguments.
 		for i := 0; i < int(numArgs); i++ {
@@ -291,9 +291,6 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 				log.Fatal("Unknown type of argument")
 			}
 
-			// Append the argument to our slice.
-			//argsSlice = append(argsSlice, arg)
-
 			// Convert the pointer into a uintptr so we can perform artithmetic on it.
 			arrayPtr := uintptr(unsafe.Pointer(args))
 
@@ -313,7 +310,6 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 	regClass := classRegistry[className]
 	regMethod := regClass.methods[methodName]
 
-	log.Println("  Arguments given by Godot:", argsSlice)
 	log.Println("  Registered method arguments:", regMethod.arguments)
 	log.Println("  Arguments to pass:", goArgsSlice)
 

@@ -51,9 +51,25 @@ func variantAsBool(variant *C.godot_variant) bool {
 	return bool(godotBool)
 }
 
+func boolAsVariant(value bool) *C.godot_variant {
+	var variant C.godot_variant
+	godotBool := C.godot_bool(value)
+	C.godot_variant_new_bool(&variant, godotBool)
+
+	return &variant
+}
+
 func variantAsUInt(variant *C.godot_variant) uint64 {
 	godotUInt := C.godot_variant_as_uint(variant)
 	return uint64(godotUInt)
+}
+
+func uIntAsVariant(value uint64) *C.godot_variant {
+	var variant C.godot_variant
+	cUInt64 := C.uint64_t(value)
+	C.godot_variant_new_uint(&variant, cUInt64)
+
+	return &variant
 }
 
 func variantAsInt(variant *C.godot_variant) int64 {
@@ -61,15 +77,41 @@ func variantAsInt(variant *C.godot_variant) int64 {
 	return int64(godotInt)
 }
 
+func intAsVariant(value int64) *C.godot_variant {
+	var variant C.godot_variant
+	cInt64 := C.int64_t(value)
+	C.godot_variant_new_int(&variant, cInt64)
+
+	return &variant
+}
+
 func variantAsReal(variant *C.godot_variant) float64 {
 	godotFloat := C.godot_variant_as_real(variant)
 	return float64(godotFloat)
+}
+
+func realAsVariant(value float64) *C.godot_variant {
+	var variant C.godot_variant
+	cDouble := C.double(value)
+	C.godot_variant_new_real(&variant, cDouble)
+
+	return &variant
 }
 
 func variantAsString(variant *C.godot_variant) string {
 	godotString := C.godot_variant_as_string(variant)
 	godotCString := C.godot_string_c_str(&godotString)
 	return C.GoString(godotCString)
+}
+
+func stringAsVariant(value string) *C.godot_variant {
+	var variant C.godot_variant
+	var godotString C.godot_string
+	cString := C.CString(value)
+	C.godot_string_new_data(&godotString, cString, C.int(len(value)))
+	C.godot_variant_new_string(&variant, &godotString)
+
+	return &variant
 }
 
 /*
