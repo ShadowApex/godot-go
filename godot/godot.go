@@ -74,7 +74,7 @@ func godot_gdnative_terminate(options *C.godot_gdnative_terminate_options) {
 /** Script entry (Registering all the classes and stuff) **/
 // godot_nativescript_init is the script's entrypoint. It is called by Godot
 // when a script is loaded. It is responsible for registering all the classes
-// and stuff. The `unsafe.Pointer` type is used to represent a null C pointer.
+// and stuff. The `unsafe.Pointer` type is used to represent a void C pointer.
 //export godot_nativescript_init
 func godot_nativescript_init(desc unsafe.Pointer) {
 	log.Println("Initializing script")
@@ -127,7 +127,6 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 		// Register our class.
 		C.godot_nativescript_register_class(desc, classCString, baseClassCString, createFunc, destroyFunc)
 
-		// TODO: Register the methods of the class.
 		// Loop through our class's methods that are attached to it.
 		log.Println("  Looking at methods:")
 		log.Println("    Found", classType.NumMethod(), "methods")
@@ -144,17 +143,17 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 			log.Println("    Method Returns:", len(regMethod.returns))
 			log.Println("    Method Returns:", regMethod.returns)
 
-			// Look at the method name to see if it starts with "X". If it does, we need to
+			// Look at the method name to see if it starts with "X_". If it does, we need to
 			// replace it with an underscore. This is required because Go method visibility
 			// is done through case sensitivity. Since Godot private methods start with an
 			// "_" character.
 			origMethodName := classMethod.Name
 			methodString := origMethodName
-			if strings.HasPrefix(methodString, "X") {
-				methodString = strings.Replace(methodString, "X", "_", 1)
+			if strings.HasPrefix(methodString, "X_") {
+				methodString = strings.Replace(methodString, "X_", "_", 1)
 			}
 			methodString = camelToSnake(methodString)
-			methodString = strings.Replace(methodString, "__", "_", 1) // NOTE: Hack to prevent double underscore.
+			methodString = strings.Replace(methodString, "__", "_", 1) // NOTE: Prevent double underscore from camelToSnake lib.
 			log.Println("    Original method name:", origMethodName)
 			log.Println("    Godot mapped method name:", methodString)
 
@@ -269,17 +268,11 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 
 	// If we have arguments, append the first argument.
 	if int(numArgs) > 0 {
-		argsSlice = append(argsSlice, *args)
+		//argsSlice = append(argsSlice, *args)
 
+		arg := *args
 		// Loop through all our arguments.
 		for i := 0; i < int(numArgs); i++ {
-			// Convert the pointer into a uintptr so we can perform artithmetic on it.
-			arrayPtr := uintptr(unsafe.Pointer(args))
-
-			// Add the size of the godot_variant pointer to our array pointer to get the position
-			// of the next argument.
-			arg := (*C.godot_variant)(unsafe.Pointer(arrayPtr + size))
-
 			// Check to see what type this variant is
 			variantType := C.godot_variant_get_type(arg)
 			log.Println("Argument variant type:", variantType)
@@ -299,7 +292,14 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 			}
 
 			// Append the argument to our slice.
-			argsSlice = append(argsSlice, arg)
+			//argsSlice = append(argsSlice, arg)
+
+			// Convert the pointer into a uintptr so we can perform artithmetic on it.
+			arrayPtr := uintptr(unsafe.Pointer(args))
+
+			// Add the size of the godot_variant pointer to our array pointer to get the position
+			// of the next argument.
+			arg = (*C.godot_variant)(unsafe.Pointer(arrayPtr + size))
 		}
 	}
 

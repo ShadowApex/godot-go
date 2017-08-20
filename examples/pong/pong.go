@@ -18,13 +18,17 @@ type PongClass struct {
 }
 
 // Xready is called as soon as the node enters the scene.
-func (p *PongClass) Xready() {
+func (p *PongClass) X_ready() {
 	godot.Log.Println("Pong is ready!")
 }
 
-func (p *PongClass) Xprocess(delta float64) {
+func (p *PongClass) X_process(delta float64) {
 	godot.Log.Println("Processing in pong.go!")
 	godot.Log.Println("  Delta:", delta)
+}
+
+func (p *PongClass) CustomFunc(myPhrase string) {
+	godot.Log.Println(myPhrase)
 }
 
 // The "init()" function is a special Go function that will be called when this library
