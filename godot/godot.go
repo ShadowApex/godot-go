@@ -161,7 +161,7 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 			methodCString := C.CString(methodString)
 
 			// Set up the method data, which will include the Go type name and Go method name.
-			classMethodCString := C.CString(classString + "." + origMethodName)
+			classMethodCString := C.CString(classString + "::" + origMethodName)
 
 			// Set up registering a method
 			var method C.godot_instance_method
@@ -261,6 +261,7 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 	goArgsSlice := []reflect.Value{}
 
 	// Get the size of each godot_variant object pointer.
+	log.Println("  Getting size of argument pointer")
 	size := unsafe.Sizeof(*args)
 
 	// Panic if something's wrong.
@@ -269,7 +270,9 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 	}
 
 	// If we have arguments, append the first argument.
+	log.Println("  Checking if method had arguments")
 	if int(numArgs) > 0 {
+		log.Println("    It does!")
 		arg := *args
 		// Loop through all our arguments.
 		for i := 0; i < int(numArgs); i++ {
@@ -301,13 +304,20 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 	}
 
 	// Use the method string to get the class name and method name.
-	classMethodSlice := strings.Split(methodString, ".")
+	log.Println("  Getting class name and method name...")
+	classMethodSlice := strings.Split(methodString, "::")
 	className := classMethodSlice[0]
 	methodName := classMethodSlice[1]
+	log.Println("    Class Name: ", className)
+	log.Println("    Method Name: ", methodName)
 
 	// Look up the registered class so we can find out how many methods and their
 	// types we should call.
+	log.Println("  Look up the registered class and its method")
 	regClass := classRegistry[className]
+	if regClass == nil {
+		log.Fatal("  This class has not been registered! Class name: ", className, " Method name: ", methodName)
+	}
 	regMethod := regClass.methods[methodName]
 
 	log.Println("  Registered method arguments:", regMethod.arguments)

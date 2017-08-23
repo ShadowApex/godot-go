@@ -5,6 +5,19 @@ package godot
 #include <stdlib.h>
 #include <godot/gdnative.h>
 #include <godot_nativescript.h>
+
+void **allocate_array(int);
+void **allocate_array(int length) {
+    void** array;
+    array = (void**)malloc(length * sizeof(void*));
+
+    return array;
+}
+
+void add_element(void**, void*, int);
+void add_element(void **array, void* element, int index) {
+    array[index] = element;
+}
 */
 import "C"
 
@@ -39,13 +52,20 @@ func (o *Object) SetOwner(object *C.godot_object) {
 }
 
 // callParentMethod will call this object's method with the given method name.
-func (o *Object) callParentMethod(methodName string, args []reflect.Value) reflect.Value {
+func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.Value, returns string) reflect.Value {
+	log.Println("Calling parent method!")
+
 	// Convert the base class and method names to C strings.
-	classCString := C.CString(o.BaseClass())
+	log.Println("  Using base class: ", baseClass)
+	classCString := C.CString(baseClass)
+	log.Println("  Using method name: ", methodName)
 	methodCString := C.CString(methodName)
 
 	// Get the Godot method bind pointer so we can pass it to godot_method_bind_ptrcall.
-	methodBind := C.godot_method_bind_get_method(classCString, methodCString)
+	log.Println("  Using godot object:", o.owner)
+	var methodBind *C.godot_method_bind
+	methodBind = C.godot_method_bind_get_method(classCString, methodCString)
+	log.Println("  Using method bind pointer: ", methodBind)
 
 	// Loop through the given arguments and see what type they are. When we know what
 	// type it is, we need to convert them to godot_variant objects.
@@ -69,64 +89,51 @@ func (o *Object) callParentMethod(methodName string, args []reflect.Value) refle
 		}
 		variantArgs = append(variantArgs, argValue)
 	}
+	log.Println("  Built variant arguments: ", variantArgs)
 
 	// Construct a C array that will contain pointers to our arguments.
-	//size := uintptr(len(variantArgs))
+	log.Println("  Allocating argument array in C.")
+	//cArgsArray := C.allocate_array(C.int(len(variantArgs)))
 	cArgsArray := C.malloc(C.size_t(len(variantArgs)) * C.size_t(unsafe.Sizeof(uintptr(0)))) // pointer to allocated memory
-	//if len(variantArgs) > 0 {
-	//	arg := unsafe.Pointer(cArgsArray)
-	//	for i := 0; i < len(variantArgs); i++ {
-	//		// Write our argument
-	//		arg = unsafe.Pointer(&variantArgs[i])
 
-	//		// Convert the pointer into a uintptr so we can perform artithmetic on it.
-	//		arrayPtr := uintptr(unsafe.Pointer(cArgsArray))
-
-	//		// Add the size of the godot_variant pointer to our array pointer to get the position
-	//		// of the next argument.
-	//		arg = (*C.godot_variant)(unsafe.Pointer(arrayPtr + size))
-
-	//	}
-	//}
+	// Loop through and add each argument to our C args array.
+	for i, arg := range variantArgs {
+		C.add_element(&cArgsArray, unsafe.Pointer(arg), C.int(i))
+	}
+	log.Println("  Built argument array from variant arguments: ", cArgsArray)
 
 	// Construct our return object that will be populated by the method call.
-	var ret C.godot_variant
+	// TODO: We need to have the return type passed to us so we know how to convert
+	// the return value to its correct type.
+	log.Println("  Building return value.")
+	var ret unsafe.Pointer
+	switch returns {
+	case "string":
+		ret = unsafe.Pointer(C.CString(""))
+	default:
+		log.Fatal("Unknown return type specified.")
+	}
 
 	// Call the parent method. "ret" will be populated with the return value.
+	log.Println("  Calling bind_ptrcall...")
 	C.godot_method_bind_ptrcall(
 		methodBind,
-		unsafe.Pointer(&o.owner),
+		unsafe.Pointer(o.owner),
 		&cArgsArray,
-		unsafe.Pointer(&ret),
+		ret,
 	)
+	log.Println("  Finished calling method")
 
-	// Get the return value type
-	retType := C.godot_variant_get_type(&ret)
-
-	// Convert the return value to a godot variant of some type.
-	// Then convert the variant to a Go structure or builtin.
-	// TODO: This is duplicated in godot.go. We should pull this out into its
-	// own function.
+	// Convert the return value based on the type.
 	var retValue reflect.Value
-	switch retType {
-	case C.godot_variant_type(VariantTypeBool):
-		retValue = reflect.ValueOf(variantAsBool(&ret))
-	case C.godot_variant_type(VariantTypeInt):
-		retValue = reflect.ValueOf(variantAsInt(&ret))
-	case C.godot_variant_type(VariantTypeReal):
-		retValue = reflect.ValueOf(variantAsReal(&ret))
-	case C.godot_variant_type(VariantTypeString):
-		retValue = reflect.ValueOf(variantAsString(&ret))
-	default:
-		log.Fatal("Unknown type of return value")
+	switch returns {
+	case "string":
+		gdString := (*C.godot_string)(ret)
+		retValue = reflect.ValueOf(C.GoString(C.godot_string_c_str(gdString)))
 	}
 
 	// Return the converted variant.
 	return retValue
-
-	// TODO: Does *p_ret give us back a godot_variant?
-	//godot_method_bind GDAPI *godot_method_bind_get_method(const char *p_classname, const char *p_methodname);
-	//void GDAPI godot_method_bind_ptrcall(godot_method_bind *p_method_bind, godot_object *p_instance, const void **p_args, void *p_ret);
 }
 
 type Node struct {
@@ -138,8 +145,11 @@ func (n *Node) BaseClass() string {
 }
 
 func (n *Node) GetName() string {
-	ret := n.callParentMethod("get_name", []reflect.Value{})
+	log.Println("Calling Node.GetName()!")
+	ret := n.callParentMethod(n.BaseClass(), "get_name", []reflect.Value{}, "string")
+	log.Println("Got return value!")
 	value := ret.Interface().(string)
+	log.Println("Converted return value into string: ", value)
 
 	return value
 }

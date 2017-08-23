@@ -20,6 +20,8 @@ type PongClass struct {
 // Xready is called as soon as the node enters the scene.
 func (p *PongClass) X_ready() {
 	godot.Log.Println("Pong is ready!")
+	name := p.GetName()
+	godot.Log.Warning("Got name from parent method!: ", name)
 }
 
 func (p *PongClass) X_process(delta float64) {
