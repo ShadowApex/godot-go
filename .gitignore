@@ -33,3 +33,4 @@
 *.su
 
 libgodot.h
+xmlclass.go
