@@ -126,13 +126,27 @@ func godotStringAsString(gdString *C.godot_string) string {
 	return C.GoString(godotCString)
 }
 
+func variantAsNodePath(variant *C.godot_variant) *NodePath {
+	nodePath := C.godot_variant_as_node_path(variant)
+
+	return &NodePath{
+		nodePath: &nodePath,
+	}
+}
+
+func nodePathAsVariant(nodePath *NodePath) *C.godot_variant {
+	var variant C.godot_variant
+	C.godot_variant_new_node_path(&variant, nodePath.nodePath)
+
+	return &variant
+}
+
 /*
 TODO:
 godot_array GDAPI godot_variant_as_array(const godot_variant *p_self);
 godot_basis GDAPI godot_variant_as_basis(const godot_variant *p_self);
 godot_color GDAPI godot_variant_as_color(const godot_variant *p_self);
 godot_dictionary GDAPI godot_variant_as_dictionary(const godot_variant *p_self);
-godot_node_path GDAPI godot_variant_as_node_path(const godot_variant *p_self);
 godot_object GDAPI *godot_variant_as_object(const godot_variant *p_self);
 godot_plane GDAPI godot_variant_as_plane(const godot_variant *p_self);
 godot_pool_byte_array GDAPI godot_variant_as_pool_byte_array(const godot_variant *p_self);
