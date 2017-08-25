@@ -8,7 +8,7 @@ objects.
 import (
 	"encoding/xml"
 	"fmt"
-	"github.com/shadowapex/go-godot/templates"
+	"github.com/shadowapex/godot-go/templates"
 	"io/ioutil"
 	"net/http"
 )

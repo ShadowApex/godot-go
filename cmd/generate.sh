@@ -1,5 +1,5 @@
 #!/bin/bash
-PKG_PATH="$GOPATH/src/github.com/shadowapex/go-godot"
+PKG_PATH="$GOPATH/src/github.com/shadowapex/godot-go"
 TMPLT_PATH="$PKG_PATH/templates"
 
 # Get XML Parser
