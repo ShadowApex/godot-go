@@ -154,6 +154,16 @@ func (n *Node) GetName() string {
 	return value
 }
 
+// TODO: Get this working
+func (n *Node) GetNode(path *NodePath) Class {
+	log.Println("Calling Node.GetNode()!")
+	ret := n.callParentMethod(n.BaseClass(), "_get_node", []reflect.Value{}, "string")
+	value := ret.Interface().(Class)
+	log.Println("Converted return value into: ", value)
+
+	return value
+}
+
 type Node2D struct {
 	Node
 }
