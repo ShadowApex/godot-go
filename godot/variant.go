@@ -100,18 +100,30 @@ func realAsVariant(value float64) *C.godot_variant {
 
 func variantAsString(variant *C.godot_variant) string {
 	godotString := C.godot_variant_as_string(variant)
-	godotCString := C.godot_string_c_str(&godotString)
-	return C.GoString(godotCString)
+
+	return godotStringAsString(&godotString)
 }
 
 func stringAsVariant(value string) *C.godot_variant {
 	var variant C.godot_variant
+	godotString := stringAsGodotString(value)
+	C.godot_variant_new_string(&variant, godotString)
+
+	return &variant
+}
+
+func stringAsGodotString(value string) *C.godot_string {
 	var godotString C.godot_string
 	cString := C.CString(value)
 	C.godot_string_new_data(&godotString, cString, C.int(len(value)))
-	C.godot_variant_new_string(&variant, &godotString)
 
-	return &variant
+	return &godotString
+}
+
+func godotStringAsString(gdString *C.godot_string) string {
+	godotCString := C.godot_string_c_str(gdString)
+
+	return C.GoString(godotCString)
 }
 
 /*
