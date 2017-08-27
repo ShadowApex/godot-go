@@ -18,6 +18,9 @@ func NewNodePath(path string) *NodePath {
 	// Create our node path from the godotstring
 	C.godot_node_path_new(&godotNodePath, gdString)
 
+	// Set the internal Godot NodePath
+	nodePath.nodePath = &godotNodePath
+
 	return nodePath
 }
 

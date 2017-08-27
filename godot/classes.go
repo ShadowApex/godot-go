@@ -6,17 +6,23 @@ package godot
 #include <godot/gdnative.h>
 #include <godot_nativescript.h>
 
-void **allocate_array(int);
-void **allocate_array(int length) {
-    void** array;
-    array = (void**)malloc(length * sizeof(void*));
+void **build_array(int length);
+void **build_array(int length) {
+	void *ptr;
+	void **arr = malloc(sizeof(void *) * length);
+	for (int i = 0; i < length; i++) {
+	    arr[i] = ptr;
+	}
 
-    return array;
+	return arr;
 }
 
 void add_element(void**, void*, int);
-void add_element(void **array, void* element, int index) {
+void add_element(void **array, void *element, int index) {
+	printf("CGO: Array %p %p %p %p %p\n", &array, array, &array[index], *array, array[index]);
     array[index] = element;
+	printf("CGO: Index %i %p\n", index, element);
+	printf("CGO: Array %p %p %p %p %p\n", &array, array, &array[index], *array, array[index]);
 }
 */
 import "C"
@@ -70,20 +76,28 @@ func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.V
 	// Loop through the given arguments and see what type they are. When we know what
 	// type it is, we need to convert them to godot_variant objects.
 	// TODO: Probably pull this out into its own function?
-	variantArgs := []*C.godot_variant{}
+	variantArgs := []unsafe.Pointer{} // void*
 	for _, arg := range args {
-		var argValue *C.godot_variant
+		log.Println("  Argument type: ", arg.Type().String())
+		var argValue unsafe.Pointer
 		switch arg.Type().String() {
 		case "bool":
-			argValue = boolAsVariant(arg.Interface().(bool))
+			boolArg := C.godot_bool(arg.Interface().(bool))
+			argValue = unsafe.Pointer(&boolArg)
 		case "int64":
-			argValue = intAsVariant(arg.Interface().(int64))
+			var intArg C.int64_t
+			intArg = C.int64_t(arg.Interface().(int64))
+			argValue = unsafe.Pointer(&intArg)
 		case "uint64":
-			argValue = uIntAsVariant(arg.Interface().(uint64))
+			var intArg C.uint64_t
+			intArg = C.uint64_t(arg.Interface().(uint64))
+			argValue = unsafe.Pointer(&intArg)
 		case "float64":
-			argValue = realAsVariant(arg.Interface().(float64))
+			floatArg := C.double(arg.Interface().(float64))
+			argValue = unsafe.Pointer(&floatArg)
 		case "string":
-			argValue = stringAsVariant(arg.Interface().(string))
+			stringArg := stringAsGodotString(arg.Interface().(string))
+			argValue = unsafe.Pointer(stringArg)
 		default:
 			log.Fatal("Unknown type of argument value")
 		}
@@ -93,12 +107,12 @@ func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.V
 
 	// Construct a C array that will contain pointers to our arguments.
 	log.Println("  Allocating argument array in C.")
-	//cArgsArray := C.allocate_array(C.int(len(variantArgs)))
-	cArgsArray := C.malloc(C.size_t(len(variantArgs)) * C.size_t(unsafe.Sizeof(uintptr(0)))) // pointer to allocated memory
+	cArgsArray := C.build_array(C.int(len(variantArgs)))
+	log.Println("    C Array: ", cArgsArray)
 
 	// Loop through and add each argument to our C args array.
 	for i, arg := range variantArgs {
-		C.add_element(&cArgsArray, unsafe.Pointer(arg), C.int(i))
+		C.add_element(cArgsArray, arg, C.int(i))
 	}
 	log.Println("  Built argument array from variant arguments: ", cArgsArray)
 
@@ -110,6 +124,8 @@ func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.V
 	switch returns {
 	case "string":
 		ret = unsafe.Pointer(C.CString(""))
+	case "Node":
+		ret = unsafe.Pointer(C.CString("")) // TODO: Make this correct?
 	default:
 		log.Fatal("Unknown return type specified.")
 	}
@@ -119,8 +135,8 @@ func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.V
 	C.godot_method_bind_ptrcall(
 		methodBind,
 		unsafe.Pointer(o.owner),
-		&cArgsArray,
-		ret,
+		cArgsArray, // void**
+		ret,        // void*
 	)
 	log.Println("  Finished calling method")
 
@@ -130,6 +146,15 @@ func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.V
 	case "string":
 		gdString := (*C.godot_string)(ret)
 		retValue = reflect.ValueOf(C.GoString(C.godot_string_c_str(gdString)))
+	case "Node":
+		// TODO: What the fuck is going to be returned here?
+		gdObject := (*C.godot_object)(ret)
+		nodeObject := &Node{
+			Object: Object{
+				owner: gdObject,
+			},
+		}
+		retValue = reflect.ValueOf(nodeObject)
 	}
 
 	// Return the converted variant.
@@ -142,6 +167,16 @@ type Node struct {
 
 func (n *Node) BaseClass() string {
 	return "Node"
+}
+
+func (n *Node) GetChild(index int64) *Node {
+	log.Println("Calling Node.GetChild()!")
+	ret := n.callParentMethod(n.BaseClass(), "get_child", []reflect.Value{reflect.ValueOf(index)}, "Node")
+	log.Println("Got return value!")
+	value := ret.Interface().(*Node)
+	log.Println("Converted return value into string: ", value)
+
+	return value
 }
 
 func (n *Node) GetName() string {
@@ -157,7 +192,7 @@ func (n *Node) GetName() string {
 // TODO: Get this working
 func (n *Node) GetNode(path *NodePath) Class {
 	log.Println("Calling Node.GetNode()!")
-	ret := n.callParentMethod(n.BaseClass(), "_get_node", []reflect.Value{}, "string")
+	ret := n.callParentMethod(n.BaseClass(), "_get_node", []reflect.Value{}, "NodePath")
 	value := ret.Interface().(Class)
 	log.Println("Converted return value into: ", value)
 

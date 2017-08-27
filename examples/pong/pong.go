@@ -22,12 +22,18 @@ func (p *PongClass) X_ready() {
 	godot.Log.Println("Pong is ready!")
 	name := p.GetName()
 	godot.Log.Warning("Got name from parent method!: ", name)
+
+	child := p.GetChild(0)
+	godot.Log.Warning("Got child!: ", child)
+
+	//childName := child.GetName()
+	//godot.Log.Warning("Got child name: ", childName)
 }
 
-func (p *PongClass) X_process(delta float64) {
-	godot.Log.Println("Processing in pong.go!")
-	godot.Log.Println("  Delta:", delta)
-}
+//func (p *PongClass) X_process(delta float64) {
+//	godot.Log.Println("Processing in pong.go!")
+//	godot.Log.Println("  Delta:", delta)
+//}
 
 func (p *PongClass) CustomFunc(myPhrase string) {
 	godot.Log.Println(myPhrase)
