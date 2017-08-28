@@ -20,12 +20,12 @@ type PongClass struct {
 // Xready is called as soon as the node enters the scene.
 func (p *PongClass) X_ready() {
 	godot.Log.Println("Pong is ready!")
-	name := p.GetName()
+	/*name := p.GetName()
 	godot.Log.Warning("Got name from parent method!: ", name)
 
 	child := p.GetChild(0)
 	godot.Log.Warning("Got child!: ", child)
-
+	*/
 	//childName := child.GetName()
 	//godot.Log.Warning("Got child name: ", childName)
 }
@@ -35,8 +35,9 @@ func (p *PongClass) X_ready() {
 //	godot.Log.Println("  Delta:", delta)
 //}
 
-func (p *PongClass) CustomFunc(myPhrase string) {
+func (p *PongClass) CustomThing(myPhrase string) string {
 	godot.Log.Println(myPhrase)
+	return myPhrase + " BALLS."
 }
 
 // The "init()" function is a special Go function that will be called when this library

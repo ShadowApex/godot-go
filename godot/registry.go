@@ -87,4 +87,4 @@ var classRegistry = map[string]*registeredClass{}
 
 // instanceRegistry is a mapping of all instances that have currently been created. This map
 // allows instance methods to find which instance they belong to.
-var instanceRegistry = map[string]interface{}{}
+var instanceRegistry = map[string]interface{}{} //TODO: change this to class interface

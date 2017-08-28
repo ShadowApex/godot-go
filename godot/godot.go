@@ -243,6 +243,7 @@ func go_free_func(methodData unsafe.Pointer) {
 //godot_variant go_method_func_cgo(godot_object *obj, void *method_data, void *user_data, int num_args, godot_variant **args)
 //export go_method_func
 func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, userData unsafe.Pointer, numArgs C.int, args **C.godot_variant) C.godot_variant {
+
 	// Get the object instance based on the instance string given in userData.
 	methodString := unsafeToGoString(methodData)
 	instanceString := unsafeToGoString(userData)
@@ -265,8 +266,8 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 	size := unsafe.Sizeof(*args)
 
 	// Panic if something's wrong.
-	if int(numArgs) > 500 {
-		panic("Wtf, 500+ arguments?")
+	if int(numArgs) > 50 {
+		panic("Too many arguments. Invalid method.")
 	}
 
 	// If we have arguments, append the first argument.
@@ -311,8 +312,8 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 	log.Println("    Class Name: ", className)
 	log.Println("    Method Name: ", methodName)
 
-	// Look up the registered class so we can find out how many methods and their
-	// types we should call.
+	// Look up the registered class so we can find out how many arguments it takes
+	// and their types.
 	log.Println("  Look up the registered class and its method")
 	regClass := classRegistry[className]
 	if regClass == nil {
@@ -331,11 +332,53 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 
 	// Get the value of the class, so we can call methods on it.
 	method := classValue.MethodByName(methodName)
-	method.Call(goArgsSlice)
+	rawRet := method.Call(goArgsSlice)
 	log.Println(method)
 
-	var ret C.godot_variant
-	C.godot_variant_new_nil(&ret)
+	var ret *C.godot_variant
+	var nonptrrtn C.godot_variant
 
-	return ret
+	if len(regMethod.returns) == 0 {
+		C.godot_variant_new_nil(&nonptrrtn)
+		return nonptrrtn
+	} else if len(regMethod.returns) > 1 {
+		Log.Warning("Too many return values from method! Defaulting to first returned value.")
+	}
+
+	rawRetInterface := rawRet[0].Interface()
+	switch regMethod.returns[0].String() {
+
+	case "bool":
+		ret = boolAsVariant(rawRetInterface.(bool))
+
+	case "int64":
+		ret = intAsVariant(rawRetInterface.(int64))
+
+	case "int32":
+		ret = intAsVariant(int64(rawRetInterface.(int32)))
+
+	case "int":
+		ret = intAsVariant(int64(rawRetInterface.(int)))
+
+	case "uint64":
+		ret = uIntAsVariant(rawRetInterface.(uint64))
+
+	case "uint32":
+		ret = uIntAsVariant(uint64(rawRetInterface.(uint32)))
+
+	case "uint":
+		ret = uIntAsVariant(uint64(rawRetInterface.(uint)))
+
+	case "float64":
+		ret = realAsVariant(rawRetInterface.(float64))
+
+	case "string":
+		ret = stringAsVariant(rawRetInterface.(string))
+
+	default:
+		panic("The return was not valid. Should be GoDot Variant or built in Go type")
+
+	}
+
+	return *ret
 }
