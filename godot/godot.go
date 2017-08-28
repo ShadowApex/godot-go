@@ -342,9 +342,10 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 		C.godot_variant_new_nil(&nonptrrtn)
 		return nonptrrtn
 	} else if len(regMethod.returns) > 1 {
-		Log.Warning("Too many return values from method! Defaulting to first returned value.")
+		panic("Too many return values from method! Methods called from within Godot should only return a single value.")
 	}
 
+	// Convert our returned value into a Godot Variant.
 	rawRetInterface := rawRet[0].Interface()
 	switch regMethod.returns[0].String() {
 
@@ -376,8 +377,7 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 		ret = stringAsVariant(rawRetInterface.(string))
 
 	default:
-		panic("The return was not valid. Should be GoDot Variant or built in Go type")
-
+		panic("The return was not valid. Should be Godot Variant or built-in Go type. Received: " + regMethod.returns[0].String())
 	}
 
 	return *ret
