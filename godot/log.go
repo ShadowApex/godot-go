@@ -28,13 +28,13 @@ func (l *logger) Println(message ...interface{}) {
 	goString := fmt.Sprint(message...)
 
 	// Convert the go string into a godot string
-	gdString := godotString(goString)
+	gdString := stringAsGodotString(goString)
 
 	// Print our string.
-	C.godot_print(&gdString)
+	C.godot_print(gdString)
 
 	// Free the string from memory.
-	C.godot_string_destroy(&gdString)
+	C.godot_string_destroy(gdString)
 }
 
 // Warning will print a warning message to the Godot debugger and console.
@@ -87,14 +87,4 @@ func (l *logger) log(isError bool, message ...interface{}) {
 		return
 	}
 	C.godot_print_warning(cDescription, cFuncName, cFile, cLine)
-}
-
-// godotString will convert the given string to a Godot string.
-func godotString(str string) C.godot_string {
-	// Create a Godot String and convert the Go string into a C string.
-	var gdString C.godot_string
-	cString := C.CString(str)
-	C.godot_string_new_data(&gdString, cString, C.int(len(str)))
-
-	return gdString
 }

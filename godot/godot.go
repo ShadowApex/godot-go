@@ -99,7 +99,7 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 		regClass := newRegisteredClass(classType)
 
 		// Call the "BaseClass" method on the class to get the base class.
-		baseClass := class.(Class).BaseClass()
+		baseClass := class.(Class).baseClass()
 		baseClassCString := C.CString(baseClass)
 		log.Println("  Using Base Class:", baseClass)
 
@@ -206,7 +206,7 @@ func go_create_func(godotObject *C.godot_object, methodData unsafe.Pointer) unsa
 	log.Println("Created new object instance:", class, "with instance address:", instanceString)
 
 	// Add the Godot object pointer to the class structure.
-	class.SetOwner(godotObject)
+	class.setOwner(godotObject)
 
 	// Add the instance to our instance registry.
 	instanceRegistry[instanceString] = class

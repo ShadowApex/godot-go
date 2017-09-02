@@ -36,8 +36,41 @@ import (
 // Class is an interface for any objects that can have Godot
 // inheritance.
 type Class interface {
-	BaseClass() string
-	SetOwner(object *C.godot_object)
+	baseClass() string
+	setOwner(object *C.godot_object)
+	getOwner() *C.godot_object
+}
+
+//
+type goToGodotConverter func(goObject interface{}) unsafe.Pointer
+
+// goToGodotConversionMap is an internal mapping of Go types to functions that can
+// convert to Godot types. This mapping is essentially a more optimal case/switch
+// system for converting Go types to Godot types that can be used as arguments to
+// a Godot function.
+var goToGodotConversionMap = map[string]goToGodotConverter{
+	"bool": func(goObject interface{}) unsafe.Pointer {
+		boolArg := C.godot_bool(goObject.(bool))
+		return unsafe.Pointer(&boolArg)
+	},
+	"int64": func(goObject interface{}) unsafe.Pointer {
+		var intArg C.int64_t
+		intArg = C.int64_t(goObject.(int64))
+		return unsafe.Pointer(&intArg)
+	},
+	"uint64": func(goObject interface{}) unsafe.Pointer {
+		var intArg C.uint64_t
+		intArg = C.uint64_t(goObject.(uint64))
+		return unsafe.Pointer(&intArg)
+	},
+	"float64": func(goObject interface{}) unsafe.Pointer {
+		floatArg := C.double(goObject.(float64))
+		return unsafe.Pointer(&floatArg)
+	},
+	"string": func(goObject interface{}) unsafe.Pointer {
+		stringArg := stringAsGodotString(goObject.(string))
+		return unsafe.Pointer(stringArg)
+	},
 }
 
 // Object is the base structure for any Godot object.
@@ -45,16 +78,20 @@ type Object struct {
 	owner *C.godot_object
 }
 
-// BaseClass will return a string of the Godot object's base class. This
+// baseClass will return a string of the Godot object's base class. This
 // is used during class registration to register the correct base class.
-func (o *Object) BaseClass() string {
+func (o *Object) baseClass() string {
 	return "Object"
 }
 
 // SetOwner will internally set the Godot object inside the struct.
 // This is used to call parent methods.
-func (o *Object) SetOwner(object *C.godot_object) {
+func (o *Object) setOwner(object *C.godot_object) {
 	o.owner = object
+}
+
+func (o *Object) getOwner() *C.godot_object {
+	return o.owner
 }
 
 // callParentMethod will call this object's method with the given method name.
@@ -74,34 +111,22 @@ func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.V
 	log.Println("  Using method bind pointer: ", methodBind)
 
 	// Loop through the given arguments and see what type they are. When we know what
-	// type it is, we need to convert them to godot_variant objects.
+	// type it is, we need to convert them to the correct godot objects.
 	// TODO: Probably pull this out into its own function?
-	variantArgs := []unsafe.Pointer{} // void*
+	variantArgs := []unsafe.Pointer{}
 	for _, arg := range args {
 		log.Println("  Argument type: ", arg.Type().String())
-		var argValue unsafe.Pointer
-		switch arg.Type().String() {
-		case "bool":
-			boolArg := C.godot_bool(arg.Interface().(bool))
-			argValue = unsafe.Pointer(&boolArg)
-		case "int64":
-			var intArg C.int64_t
-			intArg = C.int64_t(arg.Interface().(int64))
-			argValue = unsafe.Pointer(&intArg)
-		case "uint64":
-			var intArg C.uint64_t
-			intArg = C.uint64_t(arg.Interface().(uint64))
-			argValue = unsafe.Pointer(&intArg)
-		case "float64":
-			floatArg := C.double(arg.Interface().(float64))
-			argValue = unsafe.Pointer(&floatArg)
-		case "string":
-			stringArg := stringAsGodotString(arg.Interface().(string))
-			argValue = unsafe.Pointer(stringArg)
-		default:
+
+		// Look up our conversion function in our map of conversion functions
+		// based on the Go type. This is essentially a more optimal case/switch
+		// statement on the type of Go object, so we can know how to convert it
+		// to a Godot object.
+		if convert, ok := goToGodotConversionMap[arg.Type().String()]; ok {
+			argValue := convert(arg.Interface())
+			variantArgs = append(variantArgs, argValue)
+		} else {
 			log.Fatal("Unknown type of argument value")
 		}
-		variantArgs = append(variantArgs, argValue)
 	}
 	log.Println("  Built variant arguments: ", variantArgs)
 
@@ -125,7 +150,9 @@ func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.V
 	case "string":
 		ret = unsafe.Pointer(C.CString(""))
 	case "Node":
-		ret = unsafe.Pointer(C.CString("")) // TODO: Make this correct?
+		// Create a pointer to a pointer to a godot_object
+		var gdObject *C.godot_object
+		ret = unsafe.Pointer(gdObject)
 	default:
 		log.Fatal("Unknown return type specified.")
 	}
@@ -147,14 +174,36 @@ func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.V
 		gdString := (*C.godot_string)(ret)
 		retValue = reflect.ValueOf(C.GoString(C.godot_string_c_str(gdString)))
 	case "Node":
-		// TODO: What the fuck is going to be returned here?
+		// TODO: We might be able to optimize this better.
 		gdObject := (*C.godot_object)(ret)
 		nodeObject := &Node{
 			Object: Object{
 				owner: gdObject,
 			},
 		}
-		retValue = reflect.ValueOf(nodeObject)
+
+		// Find out exactly what type of Node object this is. It's possible
+		// that it is actually a child class of Node that we need to downcast to.
+		typeValue := nodeObject.callParentMethod("Object", "get_type", []reflect.Value{}, "string")
+		objectType := typeValue.Interface().(string)
+
+		switch objectType {
+		case "Node":
+			retValue = reflect.ValueOf(nodeObject)
+		case "Node2D":
+			object := &Node2D{
+				Node: Node{
+					Object: Object{
+						owner: gdObject,
+					},
+				},
+			}
+			retValue = reflect.ValueOf(object)
+		default:
+			log.Fatal("Unhandled type of object found when trying to downcast Node into its child type: ", objectType)
+		}
+
+		// TODO: We need to look up and see if this instance already exists in our instance registry.
 	}
 
 	// Return the converted variant.
@@ -165,13 +214,13 @@ type Node struct {
 	Object
 }
 
-func (n *Node) BaseClass() string {
+func (n *Node) baseClass() string {
 	return "Node"
 }
 
 func (n *Node) GetChild(index int64) *Node {
 	log.Println("Calling Node.GetChild()!")
-	ret := n.callParentMethod(n.BaseClass(), "get_child", []reflect.Value{reflect.ValueOf(index)}, "Node")
+	ret := n.callParentMethod(n.baseClass(), "get_child", []reflect.Value{reflect.ValueOf(index)}, "Node")
 	log.Println("Got return value!")
 	value := ret.Interface().(*Node)
 	log.Println("Converted return value into string: ", value)
@@ -181,7 +230,7 @@ func (n *Node) GetChild(index int64) *Node {
 
 func (n *Node) GetName() string {
 	log.Println("Calling Node.GetName()!")
-	ret := n.callParentMethod(n.BaseClass(), "get_name", []reflect.Value{}, "string")
+	ret := n.callParentMethod(n.baseClass(), "get_name", []reflect.Value{}, "string")
 	log.Println("Got return value!")
 	value := ret.Interface().(string)
 	log.Println("Converted return value into string: ", value)
@@ -192,7 +241,7 @@ func (n *Node) GetName() string {
 // TODO: Get this working
 func (n *Node) GetNode(path *NodePath) Class {
 	log.Println("Calling Node.GetNode()!")
-	ret := n.callParentMethod(n.BaseClass(), "_get_node", []reflect.Value{}, "NodePath")
+	ret := n.callParentMethod(n.baseClass(), "_get_node", []reflect.Value{}, "NodePath")
 	value := ret.Interface().(Class)
 	log.Println("Converted return value into: ", value)
 
@@ -203,6 +252,6 @@ type Node2D struct {
 	Node
 }
 
-func (n *Node2D) BaseClass() string {
+func (n *Node2D) baseClass() string {
 	return "Node2D"
 }
