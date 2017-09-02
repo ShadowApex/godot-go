@@ -51,9 +51,13 @@ func variantAsBool(variant *C.godot_variant) bool {
 	return bool(godotBool)
 }
 
+func boolAsGodotBool(value bool) C.godot_bool {
+	return C.godot_bool(value)
+}
+
 func boolAsVariant(value bool) *C.godot_variant {
 	var variant C.godot_variant
-	godotBool := C.godot_bool(value)
+	godotBool := boolAsGodotBool(value)
 	C.godot_variant_new_bool(&variant, godotBool)
 
 	return &variant
@@ -64,9 +68,13 @@ func variantAsUInt(variant *C.godot_variant) uint64 {
 	return uint64(godotUInt)
 }
 
+func uIntAsCUInt64(value uint64) C.uint64_t {
+	return C.uint64_t(value)
+}
+
 func uIntAsVariant(value uint64) *C.godot_variant {
 	var variant C.godot_variant
-	cUInt64 := C.uint64_t(value)
+	cUInt64 := uIntAsCUInt64(value)
 	C.godot_variant_new_uint(&variant, cUInt64)
 
 	return &variant
@@ -77,9 +85,17 @@ func variantAsInt(variant *C.godot_variant) int64 {
 	return int64(godotInt)
 }
 
+func intAsCInt64(value int64) C.int64_t {
+	return C.int64_t(value)
+}
+
+func intAsGodotInt(value int64) C.godot_int {
+	return C.godot_int(value)
+}
+
 func intAsVariant(value int64) *C.godot_variant {
 	var variant C.godot_variant
-	cInt64 := C.int64_t(value)
+	cInt64 := intAsCInt64(value)
 	C.godot_variant_new_int(&variant, cInt64)
 
 	return &variant
@@ -90,9 +106,17 @@ func variantAsReal(variant *C.godot_variant) float64 {
 	return float64(godotFloat)
 }
 
+func realAsCReal(value float64) C.double {
+	return C.double(value)
+}
+
+func realAsGodotReal(value float64) C.godot_real {
+	return C.godot_real(value)
+}
+
 func realAsVariant(value float64) *C.godot_variant {
 	var variant C.godot_variant
-	cDouble := C.double(value)
+	cDouble := realAsCReal(value)
 	C.godot_variant_new_real(&variant, cDouble)
 
 	return &variant

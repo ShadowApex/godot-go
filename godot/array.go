@@ -23,6 +23,7 @@ func NewArray() *Array {
 	return array
 }
 
+// TODO: Finish implementing this
 type Array struct {
 	array *C.godot_array
 }
