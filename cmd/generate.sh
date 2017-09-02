@@ -8,3 +8,6 @@ go get github.com/gnewton/chidley
 echo "Generating structs based on XML in classes.xml..."
 echo "package templates" > $TMPLT_PATH/xmlclass.go
 $GOPATH/bin/chidley -e GD -u https://raw.githubusercontent.com/godotengine/godot/master/doc/base/classes.xml >> $TMPLT_PATH/xmlclass.go
+
+# Run our generator
+go run $GOPATH/src/github.com/shadowapex/godot-go/cmd/generate/generate.go | gofmt
