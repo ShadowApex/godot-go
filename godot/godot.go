@@ -130,7 +130,6 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 
 		// Loop through our class's struct fields. We do this to register properties as well
 		// as find the embedded parent struct to ensure we don't register those methods.
-		embeddedTypes := []reflect.Type{}
 		log.Println("  Looking at struct fields:")
 		log.Println("    Found", classType.Elem().NumField(), "struct fields.")
 		for i := 0; i < classType.Elem().NumField(); i++ {
@@ -140,10 +139,9 @@ func godot_nativescript_init(desc unsafe.Pointer) {
 			log.Println("    Anonymous:", classField.Anonymous)
 			log.Println("    Package Path:", classField.PkgPath)
 
-			// NOTE: We need to look up our embedded types to ensure that we don't register
-			// those methods. We should only register methods that we override.
-			if classField.Anonymous {
-				embeddedTypes = append(embeddedTypes, classField.Type)
+			// Look only at anonymously embedded fields
+			if !classField.Anonymous {
+				continue
 			}
 		}
 

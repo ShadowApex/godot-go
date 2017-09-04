@@ -10,4 +10,5 @@ echo "package templates" > $TMPLT_PATH/xmlclass.go
 $GOPATH/bin/chidley -e GD -u https://raw.githubusercontent.com/godotengine/godot/master/doc/base/classes.xml >> $TMPLT_PATH/xmlclass.go
 
 # Run our generator
-go run $GOPATH/src/github.com/shadowapex/godot-go/cmd/generate/generate.go | gofmt
+echo "Generating Godot classes..."
+go run $GOPATH/src/github.com/shadowapex/godot-go/cmd/generate/generate.go | gofmt > $PKG_PATH/godot/classes.go
