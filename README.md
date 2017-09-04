@@ -1,4 +1,4 @@
-# Go-Godot
+# Godot-Go
 Go language bindings for the [Godot Engine](https://godotengine.org/)'s [GDNative API](https://github.com/GodotNativeTools/godot_headers).
 
 **NOTE: These bindings are currently a work in progress. Any help is welcome!**
