@@ -8,6 +8,7 @@ package godot
 */
 import "C"
 
+//DEPENDS: Color, Vector2, Vector3, Real, Array
 // TODO: Finish implementing these
 type PoolByteArray struct {
 	array *C.godot_pool_byte_array

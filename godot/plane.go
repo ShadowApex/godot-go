@@ -8,6 +8,7 @@ package godot
 */
 import "C"
 
+//DEPENDS: Vector3
 func NewPlane(a, b, c, d float64) *Plane {
 	plane := &Plane{}
 

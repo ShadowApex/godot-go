@@ -8,6 +8,7 @@ package godot
 */
 import "C"
 
+//DEPENDS: Transform, Vector2
 //func NewTransform2D() *Transform2D {
 //	transform2d := &Transform2D{}
 //

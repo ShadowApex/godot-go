@@ -8,6 +8,7 @@ package godot
 */
 import "C"
 
+//DEPENDS: Quat, Vector3
 func NewBasis() *Basis {
 	basis := &Basis{}
 

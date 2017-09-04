@@ -8,6 +8,7 @@ package godot
 */
 import "C"
 
+//DEPENDS: Matrix3, Vector3
 //func NewTransform() *Transform {
 //	transform := &Transform{}
 //

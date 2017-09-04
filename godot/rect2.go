@@ -8,6 +8,7 @@ package godot
 */
 import "C"
 
+//DEPENDS: Vector2
 //func NewRect2() *Rect2 {
 //	rect2 := &Rect2{}
 //

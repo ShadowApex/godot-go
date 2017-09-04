@@ -8,6 +8,7 @@ package godot
 */
 import "C"
 
+//DEPENDS: Built-In types
 func NewColorRGB(r, g, b float64) *Color {
 	color := &Color{}
 

@@ -8,6 +8,7 @@ package godot
 */
 import "C"
 
+//DEPENDS: Vector3
 //func NewQuat() *Quat {
 //	quat := &Quat{}
 //

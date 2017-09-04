@@ -8,6 +8,7 @@ package godot
 */
 import "C"
 
+//DEPENDS: Built-In types
 //func NewVector2() *Vector2 {
 //	vector2 := &Vector2{}
 //
