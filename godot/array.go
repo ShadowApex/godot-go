@@ -8,6 +8,7 @@ package godot
 */
 import "C"
 
+//DEPENDS: Vector2, Vector3, Object, Color, Real,
 func NewArray() *Array {
 	array := &Array{}
 

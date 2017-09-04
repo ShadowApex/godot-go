@@ -8,6 +8,7 @@ package godot
 */
 import "C"
 
+//DEPENDS: Array, JSON string
 func NewDictionary() *Dictionary {
 	dictionary := &Dictionary{}
 

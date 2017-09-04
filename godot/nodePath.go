@@ -8,6 +8,7 @@ package godot
 */
 import "C"
 
+//DEPENDS: Built-In types
 func NewNodePath(path string) *NodePath {
 	nodePath := &NodePath{}
 	gdString := stringAsGodotString(path)
