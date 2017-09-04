@@ -44,7 +44,8 @@ type Class interface {
 	getOwner() *C.godot_object
 }
 
-//
+// goToGodotConverter is a function that will convert a Go object into
+// a Godot object.
 type goToGodotConverter func(goObject interface{}) unsafe.Pointer
 
 // goToGodotConversionMap is an internal mapping of Go types to functions that can
@@ -76,7 +77,7 @@ var goToGodotConversionMap = map[string]goToGodotConverter{
 	},
 }
 
-{{ range $i, $class := .GDClass -}}
+{{ range $i, $class := $view.GDClass -}}
     {{ if $view.IsValidClass $class.AttrName $class.AttrInherits -}}
         /*
         {{ $view.Trim $class.GDDescription.Text }}
@@ -84,7 +85,7 @@ var goToGodotConversionMap = map[string]goToGodotConverter{
         type {{ $class.AttrName }} struct {
             {{ $class.AttrInherits }}
             {{ if eq $class.AttrName "Object" }}
-	            owner *C.godot_object
+                owner *C.godot_object
             {{ end }}
         }
 
@@ -107,13 +108,19 @@ var goToGodotConversionMap = map[string]goToGodotConverter{
                     {{ end }}
 
                     // Call the parent method.
-                    goRet := o.callParentMethod(o.baseClass(), "{{ $method.AttrName }}", goArguments, "{{ if $method.GDReturn }}{{ $view.GoValue $method.GDReturn.AttrType }}{{ end }}")
+                    {{ if $method.GDReturn }}
+                        {{ $returnType := $view.GoValue $method.GDReturn.AttrType }}{{ if ne $returnType "" }}
+                            goRet := o.callParentMethod(o.baseClass(), "{{ $method.AttrName }}", goArguments, "{{ if $method.GDReturn }}{{ $view.GoValue $method.GDReturn.AttrType }}{{ end }}")
+                        {{ else }}
+                            o.callParentMethod(o.baseClass(), "{{ $method.AttrName }}", goArguments, "{{ if $method.GDReturn }}{{ $view.GoValue $method.GDReturn.AttrType }}{{ end }}")
+                        {{ end }}
+                    {{ end -}}
                     log.Println("Got return value!")
                     {{ if $method.GDReturn }}
                         {{ $returnType := $view.GoValue $method.GDReturn.AttrType }}{{ if ne $returnType "" }}
-                            value := goRet.Interface().({{ $view.GoValue $method.GDReturn.AttrType }})
+                            returnValue := goRet.Interface().({{ $view.GoValue $method.GDReturn.AttrType }})
 
-                            return value
+                            return returnValue
                         {{ end }}
                     {{ end }}
                 }
@@ -124,13 +131,13 @@ var goToGodotConversionMap = map[string]goToGodotConverter{
             // SetOwner will internally set the Godot object inside the struct.
             // This is used to call parent methods.
             func (o *Object) setOwner(object *C.godot_object) {
-            	o.owner = object
+                o.owner = object
             }
             
             func (o *Object) getOwner() *C.godot_object {
-            	return o.owner
+                return o.owner
             }
-            
+
             // callParentMethod will call this object's method with the given method name.
             func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.Value, returns string) reflect.Value {
             	log.Println("Calling parent method!")
@@ -210,37 +217,28 @@ var goToGodotConversionMap = map[string]goToGodotConverter{
             	case "string":
             		gdString := (*C.godot_string)(ret)
             		retValue = reflect.ValueOf(C.GoString(C.godot_string_c_str(gdString)))
-            	case "Node":
-            		// TODO: We might be able to optimize this better.
-            		gdObject := (*C.godot_object)(ret)
-            		nodeObject := &Node{
-            			Object: Object{
-            				owner: gdObject,
-            			},
-            		}
+            	//case "Node":
+            	//	// TODO: We might be able to optimize this better.
+            	//	gdObject := (*C.godot_object)(ret)
+            	//	nodeObject := &Node{
+            	//		Object: Object{
+            	//			owner: gdObject,
+            	//		},
+            	//	}
             
-            		// Find out exactly what type of Node object this is. It's possible
-            		// that it is actually a child class of Node that we need to downcast to.
-            		typeValue := nodeObject.callParentMethod("Object", "get_type", []reflect.Value{}, "string")
-            		objectType := typeValue.Interface().(string)
+            	//	// Find out exactly what type of Node object this is. It's possible
+            	//	// that it is actually a child class of Node that we need to downcast to.
+            	//	typeValue := nodeObject.callParentMethod("Object", "get_type", []reflect.Value{}, "string")
+            	//	objectType := typeValue.Interface().(string)
             
-            		switch objectType {
-            		case "Node":
-            			retValue = reflect.ValueOf(nodeObject)
-            		case "Node2D":
-            			object := &Node2D{
-            				Node: Node{
-            					Object: Object{
-            						owner: gdObject,
-            					},
-            				},
-            			}
-            			retValue = reflect.ValueOf(object)
-            		default:
-            			log.Fatal("Unhandled type of object found when trying to downcast Node into its child type: ", objectType)
-            		}
+            	//	switch objectType {
+            	//	case "Node":
+            	//		retValue = reflect.ValueOf(nodeObject)
+            	//	default:
+            	//		log.Fatal("Unhandled type of object found when trying to downcast Node into its child type: ", objectType)
+            	//	}
             
-            		// TODO: We need to look up and see if this instance already exists in our instance registry.
+            	//	// TODO: We need to look up and see if this instance already exists in our instance registry.
             	}
             
             	// Return the converted variant.

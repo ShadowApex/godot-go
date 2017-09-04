@@ -46,6 +46,10 @@ const (
 	VariantTypePoolColorArray
 )
 
+type Variant struct {
+	variant *C.godot_variant
+}
+
 func variantAsBool(variant *C.godot_variant) bool {
 	godotBool := C.godot_variant_as_bool(variant)
 	return bool(godotBool)
