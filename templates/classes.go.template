@@ -220,16 +220,7 @@ type Class interface {
         {{ $view.Trim $class.GDDescription.Text }}
         */
         type {{ $class.AttrName }}Implementer interface {
-            {{ if ne $class.AttrName "Object" }}
-                {{ $class.AttrInherits }}Implementer
-            {{ else }}
                 Class
-            {{ end }}
-            {{ if $class.GDMethods }}
-                {{ range $j, $method := $class.GDMethods.GDMethod }}
-                    {{ $view.GoMethodName $method.AttrName }}({{ range $k, $arg := $method.GDArgument }}{{ $view.GoArgName $arg.AttrName }} {{ $view.GoValue $arg.AttrType }},{{ end }}) {{ if $method.GDReturn }}{{ $view.GoValue $method.GDReturn.AttrType }}{{ end }} 
-                {{ end }}
-            {{ end }}
         }
 
     {{ end -}}

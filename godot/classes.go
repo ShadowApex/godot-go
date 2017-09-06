@@ -106,7 +106,7 @@ func (o *ARVRAnchor) GetAnchorName() string {
 /*
 
  */
-func (o *ARVRAnchor) GetIsActive() *bool {
+func (o *ARVRAnchor) GetIsActive() bool {
 	log.Println("Calling ARVRAnchor.GetIsActive()")
 
 	// Build out the method's arguments
@@ -114,11 +114,11 @@ func (o *ARVRAnchor) GetIsActive() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_is_active", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_is_active", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -168,17 +168,7 @@ func (o *ARVRAnchor) SetAnchorId(anchorId int64) {
 
 */
 type ARVRAnchorImplementer interface {
-	SpatialImplementer
-
-	GetAnchorId() int64
-
-	GetAnchorName() string
-
-	GetIsActive() *bool
-
-	GetSize() *Vector3
-
-	SetAnchorId(anchorId int64)
+	Class
 }
 
 /*
@@ -197,7 +187,7 @@ func (o *ARVRCamera) baseClass() string {
 
 */
 type ARVRCameraImplementer interface {
-	CameraImplementer
+	Class
 }
 
 /*
@@ -256,7 +246,7 @@ func (o *ARVRController) GetControllerName() string {
 /*
 
  */
-func (o *ARVRController) GetIsActive() *bool {
+func (o *ARVRController) GetIsActive() bool {
 	log.Println("Calling ARVRController.GetIsActive()")
 
 	// Build out the method's arguments
@@ -264,11 +254,11 @@ func (o *ARVRController) GetIsActive() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_is_active", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_is_active", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -362,21 +352,7 @@ func (o *ARVRController) SetControllerId(controllerId int64) {
 
 */
 type ARVRControllerImplementer interface {
-	SpatialImplementer
-
-	GetControllerId() int64
-
-	GetControllerName() string
-
-	GetIsActive() *bool
-
-	GetJoystickAxis(axis int64) float64
-
-	GetJoystickId() int64
-
-	IsButtonPressed(button int64) int64
-
-	SetControllerId(controllerId int64)
+	Class
 }
 
 /*
@@ -435,7 +411,7 @@ func (o *ARVRInterface) GetRecommendedRenderTargetsize() *Vector2 {
 /*
 
  */
-func (o *ARVRInterface) HmdIsPresent() *bool {
+func (o *ARVRInterface) HmdIsPresent() bool {
 	log.Println("Calling ARVRInterface.HmdIsPresent()")
 
 	// Build out the method's arguments
@@ -443,11 +419,11 @@ func (o *ARVRInterface) HmdIsPresent() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "hmd_is_present", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "hmd_is_present", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -456,7 +432,7 @@ func (o *ARVRInterface) HmdIsPresent() *bool {
 /*
 
  */
-func (o *ARVRInterface) Initialize() *bool {
+func (o *ARVRInterface) Initialize() bool {
 	log.Println("Calling ARVRInterface.Initialize()")
 
 	// Build out the method's arguments
@@ -464,11 +440,11 @@ func (o *ARVRInterface) Initialize() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "initialize", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "initialize", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -477,7 +453,7 @@ func (o *ARVRInterface) Initialize() *bool {
 /*
 
  */
-func (o *ARVRInterface) IsInitialized() *bool {
+func (o *ARVRInterface) IsInitialized() bool {
 	log.Println("Calling ARVRInterface.IsInitialized()")
 
 	// Build out the method's arguments
@@ -485,11 +461,11 @@ func (o *ARVRInterface) IsInitialized() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_initialized", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_initialized", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -498,7 +474,7 @@ func (o *ARVRInterface) IsInitialized() *bool {
 /*
 
  */
-func (o *ARVRInterface) IsInstalled() *bool {
+func (o *ARVRInterface) IsInstalled() bool {
 	log.Println("Calling ARVRInterface.IsInstalled()")
 
 	// Build out the method's arguments
@@ -506,11 +482,11 @@ func (o *ARVRInterface) IsInstalled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_installed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_installed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -519,7 +495,7 @@ func (o *ARVRInterface) IsInstalled() *bool {
 /*
 
  */
-func (o *ARVRInterface) IsPrimary() *bool {
+func (o *ARVRInterface) IsPrimary() bool {
 	log.Println("Calling ARVRInterface.IsPrimary()")
 
 	// Build out the method's arguments
@@ -527,11 +503,11 @@ func (o *ARVRInterface) IsPrimary() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_primary", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_primary", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -540,7 +516,7 @@ func (o *ARVRInterface) IsPrimary() *bool {
 /*
 
  */
-func (o *ARVRInterface) SetIsPrimary(enable *bool) {
+func (o *ARVRInterface) SetIsPrimary(enable bool) {
 	log.Println("Calling ARVRInterface.SetIsPrimary()")
 
 	// Build out the method's arguments
@@ -558,7 +534,7 @@ func (o *ARVRInterface) SetIsPrimary(enable *bool) {
 /*
 
  */
-func (o *ARVRInterface) SupportsHmd() *bool {
+func (o *ARVRInterface) SupportsHmd() bool {
 	log.Println("Calling ARVRInterface.SupportsHmd()")
 
 	// Build out the method's arguments
@@ -566,11 +542,11 @@ func (o *ARVRInterface) SupportsHmd() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "supports_hmd", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "supports_hmd", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -598,27 +574,7 @@ func (o *ARVRInterface) Uninitialize() {
 
 */
 type ARVRInterfaceImplementer interface {
-	ReferenceImplementer
-
-	GetName() string
-
-	GetRecommendedRenderTargetsize() *Vector2
-
-	HmdIsPresent() *bool
-
-	Initialize() *bool
-
-	IsInitialized() *bool
-
-	IsInstalled() *bool
-
-	IsPrimary() *bool
-
-	SetIsPrimary(enable *bool)
-
-	SupportsHmd() *bool
-
-	Uninitialize()
+	Class
 }
 
 /*
@@ -676,11 +632,7 @@ func (o *ARVROrigin) SetWorldScale(worldScale float64) {
 
 */
 type ARVROriginImplementer interface {
-	SpatialImplementer
-
-	GetWorldScale() float64
-
-	SetWorldScale(worldScale float64)
+	Class
 }
 
 /*
@@ -781,7 +733,7 @@ func (o *ARVRPositionalTracker) GetPosition() *Vector3 {
 /*
 
  */
-func (o *ARVRPositionalTracker) GetTracksOrientation() *bool {
+func (o *ARVRPositionalTracker) GetTracksOrientation() bool {
 	log.Println("Calling ARVRPositionalTracker.GetTracksOrientation()")
 
 	// Build out the method's arguments
@@ -789,11 +741,11 @@ func (o *ARVRPositionalTracker) GetTracksOrientation() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_tracks_orientation", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_tracks_orientation", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -802,7 +754,7 @@ func (o *ARVRPositionalTracker) GetTracksOrientation() *bool {
 /*
 
  */
-func (o *ARVRPositionalTracker) GetTracksPosition() *bool {
+func (o *ARVRPositionalTracker) GetTracksPosition() bool {
 	log.Println("Calling ARVRPositionalTracker.GetTracksPosition()")
 
 	// Build out the method's arguments
@@ -810,11 +762,11 @@ func (o *ARVRPositionalTracker) GetTracksPosition() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_tracks_position", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_tracks_position", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -823,7 +775,7 @@ func (o *ARVRPositionalTracker) GetTracksPosition() *bool {
 /*
 
  */
-func (o *ARVRPositionalTracker) GetTransform(adjustByReferenceFrame *bool) *Transform {
+func (o *ARVRPositionalTracker) GetTransform(adjustByReferenceFrame bool) *Transform {
 	log.Println("Calling ARVRPositionalTracker.GetTransform()")
 
 	// Build out the method's arguments
@@ -868,23 +820,7 @@ func (o *ARVRPositionalTracker) GetType() int64 {
 
 */
 type ARVRPositionalTrackerImplementer interface {
-	ObjectImplementer
-
-	GetJoyId() int64
-
-	GetName() string
-
-	GetOrientation() *Basis
-
-	GetPosition() *Vector3
-
-	GetTracksOrientation() *bool
-
-	GetTracksPosition() *bool
-
-	GetTransform(adjustByReferenceFrame *bool) *Transform
-
-	GetType() int64
+	Class
 }
 
 /*
@@ -981,7 +917,7 @@ func (o *ARVRScriptInterface) GetTransformForEye(eye int64, camTransform *Transf
 /*
 
  */
-func (o *ARVRScriptInterface) HmdIsPresent() *bool {
+func (o *ARVRScriptInterface) HmdIsPresent() bool {
 	log.Println("Calling ARVRScriptInterface.HmdIsPresent()")
 
 	// Build out the method's arguments
@@ -989,11 +925,11 @@ func (o *ARVRScriptInterface) HmdIsPresent() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "hmd_is_present", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "hmd_is_present", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -1002,7 +938,7 @@ func (o *ARVRScriptInterface) HmdIsPresent() *bool {
 /*
 
  */
-func (o *ARVRScriptInterface) Initialize() *bool {
+func (o *ARVRScriptInterface) Initialize() bool {
 	log.Println("Calling ARVRScriptInterface.Initialize()")
 
 	// Build out the method's arguments
@@ -1010,11 +946,11 @@ func (o *ARVRScriptInterface) Initialize() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "initialize", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "initialize", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -1023,7 +959,7 @@ func (o *ARVRScriptInterface) Initialize() *bool {
 /*
 
  */
-func (o *ARVRScriptInterface) IsInitialized() *bool {
+func (o *ARVRScriptInterface) IsInitialized() bool {
 	log.Println("Calling ARVRScriptInterface.IsInitialized()")
 
 	// Build out the method's arguments
@@ -1031,11 +967,11 @@ func (o *ARVRScriptInterface) IsInitialized() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_initialized", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_initialized", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -1044,7 +980,7 @@ func (o *ARVRScriptInterface) IsInitialized() *bool {
 /*
 
  */
-func (o *ARVRScriptInterface) IsInstalled() *bool {
+func (o *ARVRScriptInterface) IsInstalled() bool {
 	log.Println("Calling ARVRScriptInterface.IsInstalled()")
 
 	// Build out the method's arguments
@@ -1052,11 +988,11 @@ func (o *ARVRScriptInterface) IsInstalled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_installed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_installed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -1065,7 +1001,7 @@ func (o *ARVRScriptInterface) IsInstalled() *bool {
 /*
 
  */
-func (o *ARVRScriptInterface) IsStereo() *bool {
+func (o *ARVRScriptInterface) IsStereo() bool {
 	log.Println("Calling ARVRScriptInterface.IsStereo()")
 
 	// Build out the method's arguments
@@ -1073,11 +1009,11 @@ func (o *ARVRScriptInterface) IsStereo() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_stereo", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_stereo", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -1103,7 +1039,7 @@ func (o *ARVRScriptInterface) Process() {
 /*
 
  */
-func (o *ARVRScriptInterface) SupportsHmd() *bool {
+func (o *ARVRScriptInterface) SupportsHmd() bool {
 	log.Println("Calling ARVRScriptInterface.SupportsHmd()")
 
 	// Build out the method's arguments
@@ -1111,11 +1047,11 @@ func (o *ARVRScriptInterface) SupportsHmd() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "supports_hmd", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "supports_hmd", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -1143,31 +1079,7 @@ func (o *ARVRScriptInterface) Uninitialize() {
 
 */
 type ARVRScriptInterfaceImplementer interface {
-	ARVRInterfaceImplementer
-
-	X_GetProjectionForEye()
-
-	CommitForEye(eye int64, renderTarget *RID)
-
-	GetRecommendedRenderTargetsize() *Vector2
-
-	GetTransformForEye(eye int64, camTransform *Transform) *Transform
-
-	HmdIsPresent() *bool
-
-	Initialize() *bool
-
-	IsInitialized() *bool
-
-	IsInstalled() *bool
-
-	IsStereo() *bool
-
-	Process()
-
-	SupportsHmd() *bool
-
-	Uninitialize()
+	Class
 }
 
 /*
@@ -1370,7 +1282,7 @@ func (o *ARVRServer) RemoveInterface(arg0 *ARVRInterface) {
 /*
 
  */
-func (o *ARVRServer) RequestReferenceFrame(ignoreTilt *bool, keepHeight *bool) {
+func (o *ARVRServer) RequestReferenceFrame(ignoreTilt bool, keepHeight bool) {
 	log.Println("Calling ARVRServer.RequestReferenceFrame()")
 
 	// Build out the method's arguments
@@ -1427,31 +1339,7 @@ func (o *ARVRServer) SetWorldScale(arg0 float64) {
 
 */
 type ARVRServerImplementer interface {
-	ObjectImplementer
-
-	AddInterface(arg0 *ARVRInterface)
-
-	FindInterface(name string) *ARVRInterface
-
-	GetInterface(idx int64) *ARVRInterface
-
-	GetInterfaceCount() int64
-
-	GetReferenceFrame() *Transform
-
-	GetTracker(idx int64) *ARVRPositionalTracker
-
-	GetTrackerCount() int64
-
-	GetWorldScale() float64
-
-	RemoveInterface(arg0 *ARVRInterface)
-
-	RequestReferenceFrame(ignoreTilt *bool, keepHeight *bool)
-
-	SetPrimaryInterface(arg0 *ARVRInterface)
-
-	SetWorldScale(arg0 float64)
+	Class
 }
 
 /*
@@ -1527,7 +1415,7 @@ func (o *AStar) AddPoint(id int64, pos *Vector3, weightScale float64) {
 /*
    Returns if there is a connection/segment between points [code]id[/code] and [code]from_id[/code]
 */
-func (o *AStar) ArePointsConnected(id int64, toId int64) *bool {
+func (o *AStar) ArePointsConnected(id int64, toId int64) bool {
 	log.Println("Calling AStar.ArePointsConnected()")
 
 	// Build out the method's arguments
@@ -1537,11 +1425,11 @@ func (o *AStar) ArePointsConnected(id int64, toId int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "are_points_connected", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "are_points_connected", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -1567,7 +1455,7 @@ func (o *AStar) Clear() {
 /*
    Create a segment between points [code]id[/code] and [code]to_id[/code].
 */
-func (o *AStar) ConnectPoints(id int64, toId int64, bidirectional *bool) {
+func (o *AStar) ConnectPoints(id int64, toId int64, bidirectional bool) {
 	log.Println("Calling AStar.ConnectPoints()")
 
 	// Build out the method's arguments
@@ -1761,7 +1649,7 @@ func (o *AStar) GetPointWeightScale(id int64) float64 {
 /*
    Returns if the point with given id exists on AStar;
 */
-func (o *AStar) HasPoint(id int64) *bool {
+func (o *AStar) HasPoint(id int64) bool {
 	log.Println("Calling AStar.HasPoint()")
 
 	// Build out the method's arguments
@@ -1770,11 +1658,11 @@ func (o *AStar) HasPoint(id int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_point", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_point", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -1804,39 +1692,7 @@ func (o *AStar) RemovePoint(id int64) {
 		You must add points manually with [method AStar.add_point] and create segments manually with [method AStar.connect_points]. So you can test if there is a path between two points with the [method AStar.are_points_connected] function, get the list of existing ids in the found path with [method AStar.get_id_path], or the points list with [method AStar.get_point_path].
 */
 type AStarImplementer interface {
-	ReferenceImplementer
-
-	X_ComputeCost(fromId int64, toId int64)
-
-	X_EstimateCost(fromId int64, toId int64)
-
-	AddPoint(id int64, pos *Vector3, weightScale float64)
-
-	ArePointsConnected(id int64, toId int64) *bool
-
-	Clear()
-
-	ConnectPoints(id int64, toId int64, bidirectional *bool)
-
-	DisconnectPoints(id int64, toId int64)
-
-	GetAvailablePointId() int64
-
-	GetClosestPoint(toPos *Vector3) int64
-
-	GetClosestPosInSegment(toPos *Vector3) *Vector3
-
-	GetIdPath(fromId int64, toId int64) *PoolIntArray
-
-	GetPointPath(fromId int64, toId int64) *PoolVector3Array
-
-	GetPointPos(id int64) *Vector3
-
-	GetPointWeightScale(id int64) float64
-
-	HasPoint(id int64) *bool
-
-	RemovePoint(id int64)
+	Class
 }
 
 /*
@@ -1854,7 +1710,7 @@ func (o *AcceptDialog) baseClass() string {
                 Add custom button to the dialog and return the created button.
 				The button titled with [i]text[/i] and the [i]action[/i] will be passed to [custom_action] signal when it is pressed.
 */
-func (o *AcceptDialog) AddButton(text string, right *bool, action string) *Button {
+func (o *AcceptDialog) AddButton(text string, right bool, action string) *Button {
 	log.Println("Calling AcceptDialog.AddButton()")
 
 	// Build out the method's arguments
@@ -1900,7 +1756,7 @@ func (o *AcceptDialog) AddCancel(name string) *Button {
 /*
    Return true if the dialog will be hidden when accepted (default true).
 */
-func (o *AcceptDialog) GetHideOnOk() *bool {
+func (o *AcceptDialog) GetHideOnOk() bool {
 	log.Println("Calling AcceptDialog.GetHideOnOk()")
 
 	// Build out the method's arguments
@@ -1908,11 +1764,11 @@ func (o *AcceptDialog) GetHideOnOk() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_hide_on_ok", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_hide_on_ok", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -2002,7 +1858,7 @@ func (o *AcceptDialog) RegisterTextEnter(lineEdit *Node) {
 /*
    Set whether the dialog is hidden when accepted (default true).
 */
-func (o *AcceptDialog) SetHideOnOk(enabled *bool) {
+func (o *AcceptDialog) SetHideOnOk(enabled bool) {
 	log.Println("Calling AcceptDialog.SetHideOnOk()")
 
 	// Build out the method's arguments
@@ -2040,25 +1896,7 @@ func (o *AcceptDialog) SetText(text string) {
    This dialog is useful for small notifications to the user about an event. It can only be accepted or closed, with the same result.
 */
 type AcceptDialogImplementer interface {
-	WindowDialogImplementer
-
-	AddButton(text string, right *bool, action string) *Button
-
-	AddCancel(name string) *Button
-
-	GetHideOnOk() *bool
-
-	GetLabel() *Label
-
-	GetOk() *Button
-
-	GetText() string
-
-	RegisterTextEnter(lineEdit *Node)
-
-	SetHideOnOk(enabled *bool)
-
-	SetText(text string)
+	Class
 }
 
 /*
@@ -2159,7 +1997,7 @@ func (o *AnimatedSprite) GetSpriteFrames() *SpriteFrames {
 /*
    Return true when centered. See [method set_centered].
 */
-func (o *AnimatedSprite) IsCentered() *bool {
+func (o *AnimatedSprite) IsCentered() bool {
 	log.Println("Calling AnimatedSprite.IsCentered()")
 
 	// Build out the method's arguments
@@ -2167,11 +2005,11 @@ func (o *AnimatedSprite) IsCentered() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_centered", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_centered", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -2180,7 +2018,7 @@ func (o *AnimatedSprite) IsCentered() *bool {
 /*
    Return true if sprite is flipped horizontally.
 */
-func (o *AnimatedSprite) IsFlippedH() *bool {
+func (o *AnimatedSprite) IsFlippedH() bool {
 	log.Println("Calling AnimatedSprite.IsFlippedH()")
 
 	// Build out the method's arguments
@@ -2188,11 +2026,11 @@ func (o *AnimatedSprite) IsFlippedH() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_flipped_h", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_flipped_h", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -2201,7 +2039,7 @@ func (o *AnimatedSprite) IsFlippedH() *bool {
 /*
    Return true if sprite is flipped vertically.
 */
-func (o *AnimatedSprite) IsFlippedV() *bool {
+func (o *AnimatedSprite) IsFlippedV() bool {
 	log.Println("Calling AnimatedSprite.IsFlippedV()")
 
 	// Build out the method's arguments
@@ -2209,11 +2047,11 @@ func (o *AnimatedSprite) IsFlippedV() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_flipped_v", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_flipped_v", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -2222,7 +2060,7 @@ func (o *AnimatedSprite) IsFlippedV() *bool {
 /*
    Return true if an animation if currently being played.
 */
-func (o *AnimatedSprite) IsPlaying() *bool {
+func (o *AnimatedSprite) IsPlaying() bool {
 	log.Println("Calling AnimatedSprite.IsPlaying()")
 
 	// Build out the method's arguments
@@ -2230,11 +2068,11 @@ func (o *AnimatedSprite) IsPlaying() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_playing", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_playing", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -2279,7 +2117,7 @@ func (o *AnimatedSprite) SetAnimation(animation string) {
 /*
    When turned on, offset at (0,0) is the center of the sprite, when off, the top-left corner is.
 */
-func (o *AnimatedSprite) SetCentered(centered *bool) {
+func (o *AnimatedSprite) SetCentered(centered bool) {
 	log.Println("Calling AnimatedSprite.SetCentered()")
 
 	// Build out the method's arguments
@@ -2297,7 +2135,7 @@ func (o *AnimatedSprite) SetCentered(centered *bool) {
 /*
    If true, sprite is flipped horizontally.
 */
-func (o *AnimatedSprite) SetFlipH(flipH *bool) {
+func (o *AnimatedSprite) SetFlipH(flipH bool) {
 	log.Println("Calling AnimatedSprite.SetFlipH()")
 
 	// Build out the method's arguments
@@ -2315,7 +2153,7 @@ func (o *AnimatedSprite) SetFlipH(flipH *bool) {
 /*
    If true, sprite is flipped vertically.
 */
-func (o *AnimatedSprite) SetFlipV(flipV *bool) {
+func (o *AnimatedSprite) SetFlipV(flipV bool) {
 	log.Println("Calling AnimatedSprite.SetFlipV()")
 
 	// Build out the method's arguments
@@ -2406,41 +2244,7 @@ func (o *AnimatedSprite) Stop() {
    Sprite node that can use multiple textures for animation.
 */
 type AnimatedSpriteImplementer interface {
-	Node2DImplementer
-
-	GetAnimation() string
-
-	GetFrame() int64
-
-	GetOffset() *Vector2
-
-	GetSpriteFrames() *SpriteFrames
-
-	IsCentered() *bool
-
-	IsFlippedH() *bool
-
-	IsFlippedV() *bool
-
-	IsPlaying() *bool
-
-	Play(anim string)
-
-	SetAnimation(animation string)
-
-	SetCentered(centered *bool)
-
-	SetFlipH(flipH *bool)
-
-	SetFlipV(flipV *bool)
-
-	SetFrame(frame int64)
-
-	SetOffset(offset *Vector2)
-
-	SetSpriteFrames(spriteFrames *SpriteFrames)
-
-	Stop()
+	Class
 }
 
 /*
@@ -2520,7 +2324,7 @@ func (o *AnimatedSprite3D) GetSpriteFrames() *SpriteFrames {
 /*
    Return true if an animation if currently being played.
 */
-func (o *AnimatedSprite3D) IsPlaying() *bool {
+func (o *AnimatedSprite3D) IsPlaying() bool {
 	log.Println("Calling AnimatedSprite3D.IsPlaying()")
 
 	// Build out the method's arguments
@@ -2528,11 +2332,11 @@ func (o *AnimatedSprite3D) IsPlaying() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_playing", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_playing", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -2632,25 +2436,7 @@ func (o *AnimatedSprite3D) Stop() {
 
 */
 type AnimatedSprite3DImplementer interface {
-	SpriteBase3DImplementer
-
-	GetAnimation() string
-
-	GetFrame() int64
-
-	GetSpriteFrames() *SpriteFrames
-
-	IsPlaying() *bool
-
-	Play(anim string)
-
-	SetAnimation(animation string)
-
-	SetFrame(frame int64)
-
-	SetSpriteFrames(spriteFrames *SpriteFrames)
-
-	Stop()
+	Class
 }
 
 /*
@@ -2793,7 +2579,7 @@ func (o *Animation) GetTrackCount() int64 {
 /*
    Return whether the animation has the loop flag set.
 */
-func (o *Animation) HasLoop() *bool {
+func (o *Animation) HasLoop() bool {
 	log.Println("Calling Animation.HasLoop()")
 
 	// Build out the method's arguments
@@ -2801,11 +2587,11 @@ func (o *Animation) HasLoop() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_loop", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_loop", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -2920,7 +2706,7 @@ func (o *Animation) SetLength(timeSec float64) {
 /*
    Set a flag indicating that the animation must loop. This is uses for correct interpolation of animation cycles, and for hinting the player that it must restart the animation.
 */
-func (o *Animation) SetLoop(enabled *bool) {
+func (o *Animation) SetLoop(enabled bool) {
 	log.Println("Calling Animation.SetLoop()")
 
 	// Build out the method's arguments
@@ -2956,7 +2742,7 @@ func (o *Animation) SetStep(sizeSec float64) {
 /*
    Find the key index by time in a given track. Optionally, only find it if the exact time is given.
 */
-func (o *Animation) TrackFindKey(idx int64, time float64, exact *bool) int64 {
+func (o *Animation) TrackFindKey(idx int64, time float64, exact bool) int64 {
 	log.Println("Calling Animation.TrackFindKey()")
 
 	// Build out the method's arguments
@@ -2980,7 +2766,7 @@ func (o *Animation) TrackFindKey(idx int64, time float64, exact *bool) int64 {
 /*
 
  */
-func (o *Animation) TrackGetInterpolationLoopWrap(idx int64) *bool {
+func (o *Animation) TrackGetInterpolationLoopWrap(idx int64) bool {
 	log.Println("Calling Animation.TrackGetInterpolationLoopWrap()")
 
 	// Build out the method's arguments
@@ -2989,11 +2775,11 @@ func (o *Animation) TrackGetInterpolationLoopWrap(idx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "track_get_interpolation_loop_wrap", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "track_get_interpolation_loop_wrap", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -3180,7 +2966,7 @@ func (o *Animation) TrackInsertKey(idx int64, time float64, key *Variant, transi
 /*
    Return true if the given track is imported. Else, return false.
 */
-func (o *Animation) TrackIsImported(idx int64) *bool {
+func (o *Animation) TrackIsImported(idx int64) bool {
 	log.Println("Calling Animation.TrackIsImported()")
 
 	// Build out the method's arguments
@@ -3189,11 +2975,11 @@ func (o *Animation) TrackIsImported(idx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "track_is_imported", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "track_is_imported", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -3276,7 +3062,7 @@ func (o *Animation) TrackRemoveKeyAtPos(idx int64, pos float64) {
 /*
    Set the given track as imported or not.
 */
-func (o *Animation) TrackSetImported(idx int64, imported *bool) {
+func (o *Animation) TrackSetImported(idx int64, imported bool) {
 	log.Println("Calling Animation.TrackSetImported()")
 
 	// Build out the method's arguments
@@ -3295,7 +3081,7 @@ func (o *Animation) TrackSetImported(idx int64, imported *bool) {
 /*
 
  */
-func (o *Animation) TrackSetInterpolationLoopWrap(idx int64, interpolation *bool) {
+func (o *Animation) TrackSetInterpolationLoopWrap(idx int64, interpolation bool) {
 	log.Println("Calling Animation.TrackSetInterpolationLoopWrap()")
 
 	// Build out the method's arguments
@@ -3509,87 +3295,7 @@ func (o *Animation) ValueTrackSetUpdateMode(idx int64, mode int64) {
 		Animations are just data containers, and must be added to odes such as an [AnimationPlayer] or [AnimationTreePlayer] to be played back.
 */
 type AnimationImplementer interface {
-	ResourceImplementer
-
-	AddTrack(aType int64, atPos int64) int64
-
-	Clear()
-
-	FindTrack(path *NodePath) int64
-
-	GetLength() float64
-
-	GetStep() float64
-
-	GetTrackCount() int64
-
-	HasLoop() *bool
-
-	MethodTrackGetKeyIndices(idx int64, timeSec float64, delta float64) *PoolIntArray
-
-	MethodTrackGetName(idx int64, keyIdx int64) string
-
-	MethodTrackGetParams(idx int64, keyIdx int64) *Array
-
-	RemoveTrack(idx int64)
-
-	SetLength(timeSec float64)
-
-	SetLoop(enabled *bool)
-
-	SetStep(sizeSec float64)
-
-	TrackFindKey(idx int64, time float64, exact *bool) int64
-
-	TrackGetInterpolationLoopWrap(idx int64) *bool
-
-	TrackGetInterpolationType(idx int64) int64
-
-	TrackGetKeyCount(idx int64) int64
-
-	TrackGetKeyTime(idx int64, keyIdx int64) float64
-
-	TrackGetKeyTransition(idx int64, keyIdx int64) float64
-
-	TrackGetKeyValue(idx int64, keyIdx int64) *Variant
-
-	TrackGetPath(idx int64) *NodePath
-
-	TrackGetType(idx int64) int64
-
-	TrackInsertKey(idx int64, time float64, key *Variant, transition float64)
-
-	TrackIsImported(idx int64) *bool
-
-	TrackMoveDown(idx int64)
-
-	TrackMoveUp(idx int64)
-
-	TrackRemoveKey(idx int64, keyIdx int64)
-
-	TrackRemoveKeyAtPos(idx int64, pos float64)
-
-	TrackSetImported(idx int64, imported *bool)
-
-	TrackSetInterpolationLoopWrap(idx int64, interpolation *bool)
-
-	TrackSetInterpolationType(idx int64, interpolation int64)
-
-	TrackSetKeyTransition(idx int64, keyIdx int64, transition float64)
-
-	TrackSetKeyValue(idx int64, key int64, value *Variant)
-
-	TrackSetPath(idx int64, path *NodePath)
-
-	TransformTrackInsertKey(idx int64, time float64, loc *Vector3, rot *Quat, scale *Vector3) int64
-
-	TransformTrackInterpolate(idx int64, timeSec float64) *Array
-
-	ValueTrackGetKeyIndices(idx int64, timeSec float64, delta float64) *PoolIntArray
-
-	ValueTrackGetUpdateMode(idx int64) int64
-
-	ValueTrackSetUpdateMode(idx int64, mode int64)
+	Class
 }
 
 /*
@@ -3999,7 +3705,7 @@ func (o *AnimationPlayer) GetSpeedScale() float64 {
 /*
    Request whether an [Animation] name exist within the player.
 */
-func (o *AnimationPlayer) HasAnimation(name string) *bool {
+func (o *AnimationPlayer) HasAnimation(name string) bool {
 	log.Println("Calling AnimationPlayer.HasAnimation()")
 
 	// Build out the method's arguments
@@ -4008,11 +3714,11 @@ func (o *AnimationPlayer) HasAnimation(name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_animation", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_animation", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -4021,7 +3727,7 @@ func (o *AnimationPlayer) HasAnimation(name string) *bool {
 /*
    Return true if the player is active.
 */
-func (o *AnimationPlayer) IsActive() *bool {
+func (o *AnimationPlayer) IsActive() bool {
 	log.Println("Calling AnimationPlayer.IsActive()")
 
 	// Build out the method's arguments
@@ -4029,11 +3735,11 @@ func (o *AnimationPlayer) IsActive() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_active", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_active", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -4042,7 +3748,7 @@ func (o *AnimationPlayer) IsActive() *bool {
 /*
    Return whether an animation is playing.
 */
-func (o *AnimationPlayer) IsPlaying() *bool {
+func (o *AnimationPlayer) IsPlaying() bool {
 	log.Println("Calling AnimationPlayer.IsPlaying()")
 
 	// Build out the method's arguments
@@ -4050,11 +3756,11 @@ func (o *AnimationPlayer) IsPlaying() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_playing", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_playing", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -4063,7 +3769,7 @@ func (o *AnimationPlayer) IsPlaying() *bool {
 /*
    Play a given animation by the animation name. Custom speed and blend times can be set. If custom speed is negative (-1), 'from_end' being true can play the animation backwards.
 */
-func (o *AnimationPlayer) Play(name string, customBlend float64, customSpeed float64, fromEnd *bool) {
+func (o *AnimationPlayer) Play(name string, customBlend float64, customSpeed float64, fromEnd bool) {
 	log.Println("Calling AnimationPlayer.Play()")
 
 	// Build out the method's arguments
@@ -4158,7 +3864,7 @@ func (o *AnimationPlayer) RenameAnimation(name string, newname string) {
 /*
    Seek the animation to a given position in time (in seconds). If 'update' is true, the animation will be updated too, otherwise it will be updated at process time.
 */
-func (o *AnimationPlayer) Seek(posSec float64, update *bool) {
+func (o *AnimationPlayer) Seek(posSec float64, update bool) {
 	log.Println("Calling AnimationPlayer.Seek()")
 
 	// Build out the method's arguments
@@ -4177,7 +3883,7 @@ func (o *AnimationPlayer) Seek(posSec float64, update *bool) {
 /*
    Set the player as active (playing). If false, it will do nothing.
 */
-func (o *AnimationPlayer) SetActive(active *bool) {
+func (o *AnimationPlayer) SetActive(active bool) {
 	log.Println("Calling AnimationPlayer.SetActive()")
 
 	// Build out the method's arguments
@@ -4323,7 +4029,7 @@ func (o *AnimationPlayer) SetSpeedScale(speed float64) {
 /*
    Stop the currently playing animation.
 */
-func (o *AnimationPlayer) Stop(reset *bool) {
+func (o *AnimationPlayer) Stop(reset bool) {
 	log.Println("Calling AnimationPlayer.Stop()")
 
 	// Build out the method's arguments
@@ -4360,83 +4066,7 @@ func (o *AnimationPlayer) StopAll() {
    An animation player is used for general purpose playback of [Animation] resources. It contains a dictionary of animations (referenced by name) and custom blend times between their transitions. Additionally, animations can be played and blended in different channels.
 */
 type AnimationPlayerImplementer interface {
-	NodeImplementer
-
-	AddAnimation(name string, animation *Animation) int64
-
-	Advance(delta float64)
-
-	AnimationGetNext(animFrom string) string
-
-	AnimationSetNext(animFrom string, animTo string)
-
-	ClearCaches()
-
-	ClearQueue()
-
-	FindAnimation(animation *Animation) string
-
-	GetAnimation(name string) *Animation
-
-	GetAnimationList() *PoolStringArray
-
-	GetAnimationProcessMode() int64
-
-	GetAutoplay() string
-
-	GetBlendTime(animFrom string, animTo string) float64
-
-	GetCurrentAnimation() string
-
-	GetCurrentAnimationLength() float64
-
-	GetCurrentAnimationPos() float64
-
-	GetDefaultBlendTime() float64
-
-	GetPos() float64
-
-	GetRoot() *NodePath
-
-	GetSpeedScale() float64
-
-	HasAnimation(name string) *bool
-
-	IsActive() *bool
-
-	IsPlaying() *bool
-
-	Play(name string, customBlend float64, customSpeed float64, fromEnd *bool)
-
-	PlayBackwards(name string, customBlend float64)
-
-	Queue(name string)
-
-	RemoveAnimation(name string)
-
-	RenameAnimation(name string, newname string)
-
-	Seek(posSec float64, update *bool)
-
-	SetActive(active *bool)
-
-	SetAnimationProcessMode(mode int64)
-
-	SetAutoplay(name string)
-
-	SetBlendTime(animFrom string, animTo string, sec float64)
-
-	SetCurrentAnimation(anim string)
-
-	SetDefaultBlendTime(sec float64)
-
-	SetRoot(path *NodePath)
-
-	SetSpeedScale(speed float64)
-
-	Stop(reset *bool)
-
-	StopAll()
+	Class
 }
 
 /*
@@ -4553,7 +4183,7 @@ func (o *AnimationTreePlayer) AnimationNodeSetAnimation(id string, animation *An
 /*
 
  */
-func (o *AnimationTreePlayer) AnimationNodeSetFilterPath(id string, path *NodePath, enable *bool) {
+func (o *AnimationTreePlayer) AnimationNodeSetFilterPath(id string, path *NodePath, enable bool) {
 	log.Println("Calling AnimationTreePlayer.AnimationNodeSetFilterPath()")
 
 	// Build out the method's arguments
@@ -4592,7 +4222,7 @@ func (o *AnimationTreePlayer) AnimationNodeSetMasterAnimation(id string, source 
 /*
 
  */
-func (o *AnimationTreePlayer) AreNodesConnected(id string, dstId string, dstInputIdx int64) *bool {
+func (o *AnimationTreePlayer) AreNodesConnected(id string, dstId string, dstInputIdx int64) bool {
 	log.Println("Calling AnimationTreePlayer.AreNodesConnected()")
 
 	// Build out the method's arguments
@@ -4603,11 +4233,11 @@ func (o *AnimationTreePlayer) AreNodesConnected(id string, dstId string, dstInpu
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "are_nodes_connected", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "are_nodes_connected", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -4657,7 +4287,7 @@ func (o *AnimationTreePlayer) Blend2NodeSetAmount(id string, blend float64) {
 /*
 
  */
-func (o *AnimationTreePlayer) Blend2NodeSetFilterPath(id string, path *NodePath, enable *bool) {
+func (o *AnimationTreePlayer) Blend2NodeSetFilterPath(id string, path *NodePath, enable bool) {
 	log.Println("Calling AnimationTreePlayer.Blend2NodeSetFilterPath()")
 
 	// Build out the method's arguments
@@ -4886,7 +4516,7 @@ func (o *AnimationTreePlayer) GetNodeList() *PoolStringArray {
 /*
 
  */
-func (o *AnimationTreePlayer) IsActive() *bool {
+func (o *AnimationTreePlayer) IsActive() bool {
 	log.Println("Calling AnimationTreePlayer.IsActive()")
 
 	// Build out the method's arguments
@@ -4894,11 +4524,11 @@ func (o *AnimationTreePlayer) IsActive() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_active", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_active", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -4948,7 +4578,7 @@ func (o *AnimationTreePlayer) MixNodeSetAmount(id string, ratio float64) {
 /*
    Check if a node exists (by name).
 */
-func (o *AnimationTreePlayer) NodeExists(node string) *bool {
+func (o *AnimationTreePlayer) NodeExists(node string) bool {
 	log.Println("Calling AnimationTreePlayer.NodeExists()")
 
 	// Build out the method's arguments
@@ -4957,11 +4587,11 @@ func (o *AnimationTreePlayer) NodeExists(node string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "node_exists", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "node_exists", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -5189,7 +4819,7 @@ func (o *AnimationTreePlayer) OneshotNodeGetFadeoutTime(id string) float64 {
 /*
 
  */
-func (o *AnimationTreePlayer) OneshotNodeHasAutorestart(id string) *bool {
+func (o *AnimationTreePlayer) OneshotNodeHasAutorestart(id string) bool {
 	log.Println("Calling AnimationTreePlayer.OneshotNodeHasAutorestart()")
 
 	// Build out the method's arguments
@@ -5198,11 +4828,11 @@ func (o *AnimationTreePlayer) OneshotNodeHasAutorestart(id string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "oneshot_node_has_autorestart", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "oneshot_node_has_autorestart", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -5211,7 +4841,7 @@ func (o *AnimationTreePlayer) OneshotNodeHasAutorestart(id string) *bool {
 /*
 
  */
-func (o *AnimationTreePlayer) OneshotNodeIsActive(id string) *bool {
+func (o *AnimationTreePlayer) OneshotNodeIsActive(id string) bool {
 	log.Println("Calling AnimationTreePlayer.OneshotNodeIsActive()")
 
 	// Build out the method's arguments
@@ -5220,11 +4850,11 @@ func (o *AnimationTreePlayer) OneshotNodeIsActive(id string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "oneshot_node_is_active", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "oneshot_node_is_active", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -5233,7 +4863,7 @@ func (o *AnimationTreePlayer) OneshotNodeIsActive(id string) *bool {
 /*
 
  */
-func (o *AnimationTreePlayer) OneshotNodeSetAutorestart(id string, enable *bool) {
+func (o *AnimationTreePlayer) OneshotNodeSetAutorestart(id string, enable bool) {
 	log.Println("Calling AnimationTreePlayer.OneshotNodeSetAutorestart()")
 
 	// Build out the method's arguments
@@ -5328,7 +4958,7 @@ func (o *AnimationTreePlayer) OneshotNodeSetFadeoutTime(id string, timeSec float
 /*
 
  */
-func (o *AnimationTreePlayer) OneshotNodeSetFilterPath(id string, path *NodePath, enable *bool) {
+func (o *AnimationTreePlayer) OneshotNodeSetFilterPath(id string, path *NodePath, enable bool) {
 	log.Println("Calling AnimationTreePlayer.OneshotNodeSetFilterPath()")
 
 	// Build out the method's arguments
@@ -5436,7 +5066,7 @@ func (o *AnimationTreePlayer) Reset() {
 /*
 
  */
-func (o *AnimationTreePlayer) SetActive(enabled *bool) {
+func (o *AnimationTreePlayer) SetActive(enabled bool) {
 	log.Println("Calling AnimationTreePlayer.SetActive()")
 
 	// Build out the method's arguments
@@ -5653,7 +5283,7 @@ func (o *AnimationTreePlayer) TransitionNodeGetXfadeTime(id string) float64 {
 /*
 
  */
-func (o *AnimationTreePlayer) TransitionNodeHasInputAutoAdvance(id string, inputIdx int64) *bool {
+func (o *AnimationTreePlayer) TransitionNodeHasInputAutoAdvance(id string, inputIdx int64) bool {
 	log.Println("Calling AnimationTreePlayer.TransitionNodeHasInputAutoAdvance()")
 
 	// Build out the method's arguments
@@ -5663,11 +5293,11 @@ func (o *AnimationTreePlayer) TransitionNodeHasInputAutoAdvance(id string, input
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "transition_node_has_input_auto_advance", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "transition_node_has_input_auto_advance", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -5695,7 +5325,7 @@ func (o *AnimationTreePlayer) TransitionNodeSetCurrent(id string, inputIdx int64
 /*
 
  */
-func (o *AnimationTreePlayer) TransitionNodeSetInputAutoAdvance(id string, inputIdx int64, enable *bool) {
+func (o *AnimationTreePlayer) TransitionNodeSetInputAutoAdvance(id string, inputIdx int64, enable bool) {
 	log.Println("Calling AnimationTreePlayer.TransitionNodeSetInputAutoAdvance()")
 
 	// Build out the method's arguments
@@ -5755,135 +5385,7 @@ func (o *AnimationTreePlayer) TransitionNodeSetXfadeTime(id string, timeSec floa
    Animation Player that uses a node graph for the blending. This kind of player is very useful when animating character or other skeleton based rigs, because it can combine several animations to form a desired pose.
 */
 type AnimationTreePlayerImplementer interface {
-	NodeImplementer
-
-	AddNode(aType int64, id string)
-
-	Advance(delta float64)
-
-	AnimationNodeGetAnimation(id string) *Animation
-
-	AnimationNodeGetMasterAnimation(id string) string
-
-	AnimationNodeSetAnimation(id string, animation *Animation)
-
-	AnimationNodeSetFilterPath(id string, path *NodePath, enable *bool)
-
-	AnimationNodeSetMasterAnimation(id string, source string)
-
-	AreNodesConnected(id string, dstId string, dstInputIdx int64) *bool
-
-	Blend2NodeGetAmount(id string) float64
-
-	Blend2NodeSetAmount(id string, blend float64)
-
-	Blend2NodeSetFilterPath(id string, path *NodePath, enable *bool)
-
-	Blend3NodeGetAmount(id string) float64
-
-	Blend3NodeSetAmount(id string, blend float64)
-
-	Blend4NodeGetAmount(id string) *Vector2
-
-	Blend4NodeSetAmount(id string, blend *Vector2)
-
-	ConnectNodes(id string, dstId string, dstInputIdx int64) int64
-
-	DisconnectNodes(id string, dstInputIdx int64)
-
-	GetAnimationProcessMode() int64
-
-	GetBasePath() *NodePath
-
-	GetMasterPlayer() *NodePath
-
-	GetNodeList() *PoolStringArray
-
-	IsActive() *bool
-
-	MixNodeGetAmount(id string) float64
-
-	MixNodeSetAmount(id string, ratio float64)
-
-	NodeExists(node string) *bool
-
-	NodeGetInputCount(id string) int64
-
-	NodeGetInputSource(id string, idx int64) string
-
-	NodeGetPos(id string) *Vector2
-
-	NodeGetType(id string) int64
-
-	NodeRename(node string, newName string) int64
-
-	NodeSetPos(id string, screenPos *Vector2)
-
-	OneshotNodeGetAutorestartDelay(id string) float64
-
-	OneshotNodeGetAutorestartRandomDelay(id string) float64
-
-	OneshotNodeGetFadeinTime(id string) float64
-
-	OneshotNodeGetFadeoutTime(id string) float64
-
-	OneshotNodeHasAutorestart(id string) *bool
-
-	OneshotNodeIsActive(id string) *bool
-
-	OneshotNodeSetAutorestart(id string, enable *bool)
-
-	OneshotNodeSetAutorestartDelay(id string, delaySec float64)
-
-	OneshotNodeSetAutorestartRandomDelay(id string, randSec float64)
-
-	OneshotNodeSetFadeinTime(id string, timeSec float64)
-
-	OneshotNodeSetFadeoutTime(id string, timeSec float64)
-
-	OneshotNodeSetFilterPath(id string, path *NodePath, enable *bool)
-
-	OneshotNodeStart(id string)
-
-	OneshotNodeStop(id string)
-
-	RecomputeCaches()
-
-	RemoveNode(id string)
-
-	Reset()
-
-	SetActive(enabled *bool)
-
-	SetAnimationProcessMode(mode int64)
-
-	SetBasePath(path *NodePath)
-
-	SetMasterPlayer(nodepath *NodePath)
-
-	TimescaleNodeGetScale(id string) float64
-
-	TimescaleNodeSetScale(id string, scale float64)
-
-	TimeseekNodeSeek(id string, posSec float64)
-
-	TransitionNodeDeleteInput(id string, inputIdx int64)
-
-	TransitionNodeGetCurrent(id string) int64
-
-	TransitionNodeGetInputCount(id string) int64
-
-	TransitionNodeGetXfadeTime(id string) float64
-
-	TransitionNodeHasInputAutoAdvance(id string, inputIdx int64) *bool
-
-	TransitionNodeSetCurrent(id string, inputIdx int64)
-
-	TransitionNodeSetInputAutoAdvance(id string, inputIdx int64, enable *bool)
-
-	TransitionNodeSetInputCount(id string, count int64)
-
-	TransitionNodeSetXfadeTime(id string, timeSec float64)
+	Class
 }
 
 /*
@@ -5963,7 +5465,7 @@ func (o *Area) GetCollisionLayer() int64 {
 /*
    Return an individual bit on the layer mask.
 */
-func (o *Area) GetCollisionLayerBit(bit int64) *bool {
+func (o *Area) GetCollisionLayerBit(bit int64) bool {
 	log.Println("Calling Area.GetCollisionLayerBit()")
 
 	// Build out the method's arguments
@@ -5972,11 +5474,11 @@ func (o *Area) GetCollisionLayerBit(bit int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_layer_bit", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_collision_layer_bit", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -6006,7 +5508,7 @@ func (o *Area) GetCollisionMask() int64 {
 /*
    Return an individual bit on the collision mask.
 */
-func (o *Area) GetCollisionMaskBit(bit int64) *bool {
+func (o *Area) GetCollisionMaskBit(bit int64) bool {
 	log.Println("Calling Area.GetCollisionMaskBit()")
 
 	// Build out the method's arguments
@@ -6015,11 +5517,11 @@ func (o *Area) GetCollisionMaskBit(bit int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_mask_bit", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_collision_mask_bit", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -6259,7 +5761,7 @@ func (o *Area) GetSpaceOverrideMode() int64 {
 /*
    Return whether gravity is a point. A point gravity will attract objects towards it, as opposed to a gravity vector, which moves them in a given direction.
 */
-func (o *Area) IsGravityAPoint() *bool {
+func (o *Area) IsGravityAPoint() bool {
 	log.Println("Calling Area.IsGravityAPoint()")
 
 	// Build out the method's arguments
@@ -6267,11 +5769,11 @@ func (o *Area) IsGravityAPoint() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_gravity_a_point", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_gravity_a_point", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -6280,7 +5782,7 @@ func (o *Area) IsGravityAPoint() *bool {
 /*
    Return whether this area can be detected by other, monitoring, areas.
 */
-func (o *Area) IsMonitorable() *bool {
+func (o *Area) IsMonitorable() bool {
 	log.Println("Calling Area.IsMonitorable()")
 
 	// Build out the method's arguments
@@ -6288,11 +5790,11 @@ func (o *Area) IsMonitorable() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_monitorable", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_monitorable", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -6301,7 +5803,7 @@ func (o *Area) IsMonitorable() *bool {
 /*
    Return whether this area detects bodies/areas entering/exiting it.
 */
-func (o *Area) IsMonitoring() *bool {
+func (o *Area) IsMonitoring() bool {
 	log.Println("Calling Area.IsMonitoring()")
 
 	// Build out the method's arguments
@@ -6309,11 +5811,11 @@ func (o *Area) IsMonitoring() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_monitoring", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_monitoring", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -6322,7 +5824,7 @@ func (o *Area) IsMonitoring() *bool {
 /*
 
  */
-func (o *Area) IsOverridingAudioBus() *bool {
+func (o *Area) IsOverridingAudioBus() bool {
 	log.Println("Calling Area.IsOverridingAudioBus()")
 
 	// Build out the method's arguments
@@ -6330,11 +5832,11 @@ func (o *Area) IsOverridingAudioBus() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_overriding_audio_bus", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_overriding_audio_bus", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -6343,7 +5845,7 @@ func (o *Area) IsOverridingAudioBus() *bool {
 /*
 
  */
-func (o *Area) IsUsingReverbBus() *bool {
+func (o *Area) IsUsingReverbBus() bool {
 	log.Println("Calling Area.IsUsingReverbBus()")
 
 	// Build out the method's arguments
@@ -6351,11 +5853,11 @@ func (o *Area) IsUsingReverbBus() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_using_reverb_bus", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_using_reverb_bus", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -6364,7 +5866,7 @@ func (o *Area) IsUsingReverbBus() *bool {
 /*
    Return whether the area passed is totally or partially inside this area.
 */
-func (o *Area) OverlapsArea(area *Node) *bool {
+func (o *Area) OverlapsArea(area *Node) bool {
 	log.Println("Calling Area.OverlapsArea()")
 
 	// Build out the method's arguments
@@ -6373,11 +5875,11 @@ func (o *Area) OverlapsArea(area *Node) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "overlaps_area", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "overlaps_area", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -6386,7 +5888,7 @@ func (o *Area) OverlapsArea(area *Node) *bool {
 /*
    Return whether the body passed is totally or partially inside this area.
 */
-func (o *Area) OverlapsBody(body *Node) *bool {
+func (o *Area) OverlapsBody(body *Node) bool {
 	log.Println("Calling Area.OverlapsBody()")
 
 	// Build out the method's arguments
@@ -6395,11 +5897,11 @@ func (o *Area) OverlapsBody(body *Node) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "overlaps_body", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "overlaps_body", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -6445,7 +5947,7 @@ func (o *Area) SetAudioBus(name string) {
 /*
 
  */
-func (o *Area) SetAudioBusOverride(enable *bool) {
+func (o *Area) SetAudioBusOverride(enable bool) {
 	log.Println("Calling Area.SetAudioBusOverride()")
 
 	// Build out the method's arguments
@@ -6483,7 +5985,7 @@ func (o *Area) SetCollisionLayer(collisionLayer int64) {
 /*
    Set/clear individual bits on the layer mask. This makes getting an area in/out of only one layer easier.
 */
-func (o *Area) SetCollisionLayerBit(bit int64, value *bool) {
+func (o *Area) SetCollisionLayerBit(bit int64, value bool) {
 	log.Println("Calling Area.SetCollisionLayerBit()")
 
 	// Build out the method's arguments
@@ -6520,7 +6022,7 @@ func (o *Area) SetCollisionMask(collisionMask int64) {
 /*
    Set/clear individual bits on the collision mask. This makes selecting the areas scanned easier.
 */
-func (o *Area) SetCollisionMaskBit(bit int64, value *bool) {
+func (o *Area) SetCollisionMaskBit(bit int64, value bool) {
 	log.Println("Calling Area.SetCollisionMaskBit()")
 
 	// Build out the method's arguments
@@ -6576,7 +6078,7 @@ func (o *Area) SetGravityDistanceScale(distanceScale float64) {
 /*
    When overriding space parameters, this method sets whether this area has a center of gravity. To set/get the location of the center of gravity, use [method set_gravity_vector]/[method get_gravity_vector].
 */
-func (o *Area) SetGravityIsPoint(enable *bool) {
+func (o *Area) SetGravityIsPoint(enable bool) {
 	log.Println("Calling Area.SetGravityIsPoint()")
 
 	// Build out the method's arguments
@@ -6632,7 +6134,7 @@ func (o *Area) SetLinearDamp(linearDamp float64) {
 /*
    Set whether this area can be detected by other, monitoring, areas. Only areas need to be marked as monitorable. Bodies are always so.
 */
-func (o *Area) SetMonitorable(enable *bool) {
+func (o *Area) SetMonitorable(enable bool) {
 	log.Println("Calling Area.SetMonitorable()")
 
 	// Build out the method's arguments
@@ -6650,7 +6152,7 @@ func (o *Area) SetMonitorable(enable *bool) {
 /*
    Set whether this area can detect bodies/areas entering/exiting it.
 */
-func (o *Area) SetMonitoring(enable *bool) {
+func (o *Area) SetMonitoring(enable bool) {
 	log.Println("Calling Area.SetMonitoring()")
 
 	// Build out the method's arguments
@@ -6764,7 +6266,7 @@ func (o *Area) SetSpaceOverrideMode(enable int64) {
 /*
 
  */
-func (o *Area) SetUseReverbBus(enable *bool) {
+func (o *Area) SetUseReverbBus(enable bool) {
 	log.Println("Calling Area.SetUseReverbBus()")
 
 	// Build out the method's arguments
@@ -6784,95 +6286,7 @@ func (o *Area) SetUseReverbBus(enable *bool) {
    General purpose area detection for 3D physics. Areas can be used for detection of objects that enter/exit them, as well as overriding space parameters (changing gravity, damping, etc). For this, use any space override different from AREA_SPACE_OVERRIDE_DISABLE and point gravity at the center of mass.
 */
 type AreaImplementer interface {
-	CollisionObjectImplementer
-
-	GetAngularDamp() float64
-
-	GetAudioBus() string
-
-	GetCollisionLayer() int64
-
-	GetCollisionLayerBit(bit int64) *bool
-
-	GetCollisionMask() int64
-
-	GetCollisionMaskBit(bit int64) *bool
-
-	GetGravity() float64
-
-	GetGravityDistanceScale() float64
-
-	GetGravityVector() *Vector3
-
-	GetLinearDamp() float64
-
-	GetOverlappingAreas() *Array
-
-	GetOverlappingBodies() *Array
-
-	GetPriority() float64
-
-	GetReverbAmount() float64
-
-	GetReverbBus() string
-
-	GetReverbUniformity() float64
-
-	GetSpaceOverrideMode() int64
-
-	IsGravityAPoint() *bool
-
-	IsMonitorable() *bool
-
-	IsMonitoring() *bool
-
-	IsOverridingAudioBus() *bool
-
-	IsUsingReverbBus() *bool
-
-	OverlapsArea(area *Node) *bool
-
-	OverlapsBody(body *Node) *bool
-
-	SetAngularDamp(angularDamp float64)
-
-	SetAudioBus(name string)
-
-	SetAudioBusOverride(enable *bool)
-
-	SetCollisionLayer(collisionLayer int64)
-
-	SetCollisionLayerBit(bit int64, value *bool)
-
-	SetCollisionMask(collisionMask int64)
-
-	SetCollisionMaskBit(bit int64, value *bool)
-
-	SetGravity(gravity float64)
-
-	SetGravityDistanceScale(distanceScale float64)
-
-	SetGravityIsPoint(enable *bool)
-
-	SetGravityVector(vector *Vector3)
-
-	SetLinearDamp(linearDamp float64)
-
-	SetMonitorable(enable *bool)
-
-	SetMonitoring(enable *bool)
-
-	SetPriority(priority float64)
-
-	SetReverbAmount(amount float64)
-
-	SetReverbBus(name string)
-
-	SetReverbUniformity(amount float64)
-
-	SetSpaceOverrideMode(enable int64)
-
-	SetUseReverbBus(enable *bool)
+	Class
 }
 
 /*
@@ -6952,7 +6366,7 @@ func (o *Area2D) GetCollisionLayer() int64 {
 /*
    Return an individual bit on the layer mask.
 */
-func (o *Area2D) GetCollisionLayerBit(bit int64) *bool {
+func (o *Area2D) GetCollisionLayerBit(bit int64) bool {
 	log.Println("Calling Area2D.GetCollisionLayerBit()")
 
 	// Build out the method's arguments
@@ -6961,11 +6375,11 @@ func (o *Area2D) GetCollisionLayerBit(bit int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_layer_bit", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_collision_layer_bit", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -6995,7 +6409,7 @@ func (o *Area2D) GetCollisionMask() int64 {
 /*
    Return an individual bit on the collision mask.
 */
-func (o *Area2D) GetCollisionMaskBit(bit int64) *bool {
+func (o *Area2D) GetCollisionMaskBit(bit int64) bool {
 	log.Println("Calling Area2D.GetCollisionMaskBit()")
 
 	// Build out the method's arguments
@@ -7004,11 +6418,11 @@ func (o *Area2D) GetCollisionMaskBit(bit int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_mask_bit", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_collision_mask_bit", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -7185,7 +6599,7 @@ func (o *Area2D) GetSpaceOverrideMode() int64 {
 /*
    Return whether gravity is a point. A point gravity will attract objects towards it, as opposed to a gravity vector, which moves them in a given direction.
 */
-func (o *Area2D) IsGravityAPoint() *bool {
+func (o *Area2D) IsGravityAPoint() bool {
 	log.Println("Calling Area2D.IsGravityAPoint()")
 
 	// Build out the method's arguments
@@ -7193,11 +6607,11 @@ func (o *Area2D) IsGravityAPoint() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_gravity_a_point", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_gravity_a_point", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -7206,7 +6620,7 @@ func (o *Area2D) IsGravityAPoint() *bool {
 /*
    Return whether this area can be detected by other, monitoring, areas.
 */
-func (o *Area2D) IsMonitorable() *bool {
+func (o *Area2D) IsMonitorable() bool {
 	log.Println("Calling Area2D.IsMonitorable()")
 
 	// Build out the method's arguments
@@ -7214,11 +6628,11 @@ func (o *Area2D) IsMonitorable() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_monitorable", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_monitorable", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -7227,7 +6641,7 @@ func (o *Area2D) IsMonitorable() *bool {
 /*
    Return whether this area detects bodies/areas entering/exiting it.
 */
-func (o *Area2D) IsMonitoring() *bool {
+func (o *Area2D) IsMonitoring() bool {
 	log.Println("Calling Area2D.IsMonitoring()")
 
 	// Build out the method's arguments
@@ -7235,11 +6649,11 @@ func (o *Area2D) IsMonitoring() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_monitoring", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_monitoring", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -7248,7 +6662,7 @@ func (o *Area2D) IsMonitoring() *bool {
 /*
 
  */
-func (o *Area2D) IsOverridingAudioBus() *bool {
+func (o *Area2D) IsOverridingAudioBus() bool {
 	log.Println("Calling Area2D.IsOverridingAudioBus()")
 
 	// Build out the method's arguments
@@ -7256,11 +6670,11 @@ func (o *Area2D) IsOverridingAudioBus() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_overriding_audio_bus", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_overriding_audio_bus", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -7269,7 +6683,7 @@ func (o *Area2D) IsOverridingAudioBus() *bool {
 /*
    Return whether the area passed is totally or partially inside this area.
 */
-func (o *Area2D) OverlapsArea(area *Node) *bool {
+func (o *Area2D) OverlapsArea(area *Node) bool {
 	log.Println("Calling Area2D.OverlapsArea()")
 
 	// Build out the method's arguments
@@ -7278,11 +6692,11 @@ func (o *Area2D) OverlapsArea(area *Node) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "overlaps_area", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "overlaps_area", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -7291,7 +6705,7 @@ func (o *Area2D) OverlapsArea(area *Node) *bool {
 /*
    Return whether the body passed is totally or partially inside this area.
 */
-func (o *Area2D) OverlapsBody(body *Node) *bool {
+func (o *Area2D) OverlapsBody(body *Node) bool {
 	log.Println("Calling Area2D.OverlapsBody()")
 
 	// Build out the method's arguments
@@ -7300,11 +6714,11 @@ func (o *Area2D) OverlapsBody(body *Node) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "overlaps_body", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "overlaps_body", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -7350,7 +6764,7 @@ func (o *Area2D) SetAudioBus(name string) {
 /*
 
  */
-func (o *Area2D) SetAudioBusOverride(enable *bool) {
+func (o *Area2D) SetAudioBusOverride(enable bool) {
 	log.Println("Calling Area2D.SetAudioBusOverride()")
 
 	// Build out the method's arguments
@@ -7388,7 +6802,7 @@ func (o *Area2D) SetCollisionLayer(collisionLayer int64) {
 /*
    Set/clear individual bits on the layer mask. This makes getting an area in/out of only one layer easier.
 */
-func (o *Area2D) SetCollisionLayerBit(bit int64, value *bool) {
+func (o *Area2D) SetCollisionLayerBit(bit int64, value bool) {
 	log.Println("Calling Area2D.SetCollisionLayerBit()")
 
 	// Build out the method's arguments
@@ -7425,7 +6839,7 @@ func (o *Area2D) SetCollisionMask(collisionMask int64) {
 /*
    Set/clear individual bits on the collision mask. This makes selecting the areas scanned easier.
 */
-func (o *Area2D) SetCollisionMaskBit(bit int64, value *bool) {
+func (o *Area2D) SetCollisionMaskBit(bit int64, value bool) {
 	log.Println("Calling Area2D.SetCollisionMaskBit()")
 
 	// Build out the method's arguments
@@ -7481,7 +6895,7 @@ func (o *Area2D) SetGravityDistanceScale(distanceScale float64) {
 /*
    When overriding space parameters, this method sets whether this area has a center of gravity. To set/get the location of the center of gravity, use [method set_gravity_vector]/[method get_gravity_vector].
 */
-func (o *Area2D) SetGravityIsPoint(enable *bool) {
+func (o *Area2D) SetGravityIsPoint(enable bool) {
 	log.Println("Calling Area2D.SetGravityIsPoint()")
 
 	// Build out the method's arguments
@@ -7537,7 +6951,7 @@ func (o *Area2D) SetLinearDamp(linearDamp float64) {
 /*
    Set whether this area can be detected by other, monitoring, areas. Only areas need to be marked as monitorable. Bodies are always so.
 */
-func (o *Area2D) SetMonitorable(enable *bool) {
+func (o *Area2D) SetMonitorable(enable bool) {
 	log.Println("Calling Area2D.SetMonitorable()")
 
 	// Build out the method's arguments
@@ -7555,7 +6969,7 @@ func (o *Area2D) SetMonitorable(enable *bool) {
 /*
    Set whether this area can detect bodies/areas entering/exiting it.
 */
-func (o *Area2D) SetMonitoring(enable *bool) {
+func (o *Area2D) SetMonitoring(enable bool) {
 	log.Println("Calling Area2D.SetMonitoring()")
 
 	// Build out the method's arguments
@@ -7617,79 +7031,7 @@ func (o *Area2D) SetSpaceOverrideMode(enable int64) {
    General purpose area detection for 2D physics. Areas can be used for detection of objects that enter/exit them, as well as overriding space parameters (changing gravity, damping, etc). For this, use any space override different from AREA_SPACE_OVERRIDE_DISABLE and point gravity at the center of mass.
 */
 type Area2DImplementer interface {
-	CollisionObject2DImplementer
-
-	GetAngularDamp() float64
-
-	GetAudioBus() string
-
-	GetCollisionLayer() int64
-
-	GetCollisionLayerBit(bit int64) *bool
-
-	GetCollisionMask() int64
-
-	GetCollisionMaskBit(bit int64) *bool
-
-	GetGravity() float64
-
-	GetGravityDistanceScale() float64
-
-	GetGravityVector() *Vector2
-
-	GetLinearDamp() float64
-
-	GetOverlappingAreas() *Array
-
-	GetOverlappingBodies() *Array
-
-	GetPriority() float64
-
-	GetSpaceOverrideMode() int64
-
-	IsGravityAPoint() *bool
-
-	IsMonitorable() *bool
-
-	IsMonitoring() *bool
-
-	IsOverridingAudioBus() *bool
-
-	OverlapsArea(area *Node) *bool
-
-	OverlapsBody(body *Node) *bool
-
-	SetAngularDamp(angularDamp float64)
-
-	SetAudioBus(name string)
-
-	SetAudioBusOverride(enable *bool)
-
-	SetCollisionLayer(collisionLayer int64)
-
-	SetCollisionLayerBit(bit int64, value *bool)
-
-	SetCollisionMask(collisionMask int64)
-
-	SetCollisionMaskBit(bit int64, value *bool)
-
-	SetGravity(gravity float64)
-
-	SetGravityDistanceScale(distanceScale float64)
-
-	SetGravityIsPoint(enable *bool)
-
-	SetGravityVector(vector *Vector2)
-
-	SetLinearDamp(linearDamp float64)
-
-	SetMonitorable(enable *bool)
-
-	SetMonitoring(enable *bool)
-
-	SetPriority(priority float64)
-
-	SetSpaceOverrideMode(enable int64)
+	Class
 }
 
 /*
@@ -8129,49 +7471,7 @@ func (o *ArrayMesh) SurfaceSetName(surfIdx int64, name string) {
 
 */
 type ArrayMeshImplementer interface {
-	MeshImplementer
-
-	AddBlendShape(name string)
-
-	AddSurfaceFromArrays(primitive int64, arrays *Array, blendShapes *Array, compressFlags int64)
-
-	CenterGeometry()
-
-	ClearBlendShapes()
-
-	GetBlendShapeCount() int64
-
-	GetBlendShapeMode() int64
-
-	GetBlendShapeName(index int64) string
-
-	GetCustomAabb() *Rect3
-
-	GetSurfaceCount() int64
-
-	RegenNormalmaps()
-
-	SetBlendShapeMode(mode int64)
-
-	SetCustomAabb(aabb *Rect3)
-
-	SurfaceGetArrayIndexLen(surfIdx int64) int64
-
-	SurfaceGetArrayLen(surfIdx int64) int64
-
-	SurfaceGetFormat(surfIdx int64) int64
-
-	SurfaceGetMaterial(surfIdx int64) *Material
-
-	SurfaceGetName(surfIdx int64) string
-
-	SurfaceGetPrimitiveType(surfIdx int64) int64
-
-	SurfaceRemove(surfIdx int64)
-
-	SurfaceSetMaterial(surfIdx int64, material *Material)
-
-	SurfaceSetName(surfIdx int64, name string)
+	Class
 }
 
 /*
@@ -8307,19 +7607,7 @@ func (o *AtlasTexture) SetRegion(region *Rect2) {
 
 */
 type AtlasTextureImplementer interface {
-	TextureImplementer
-
-	GetAtlas() *Texture
-
-	GetMargin() *Rect2
-
-	GetRegion() *Rect2
-
-	SetAtlas(atlas *Texture)
-
-	SetMargin(margin *Rect2)
-
-	SetRegion(region *Rect2)
+	Class
 }
 
 /*
@@ -8338,7 +7626,7 @@ func (o *AudioBusLayout) baseClass() string {
 
 */
 type AudioBusLayoutImplementer interface {
-	ResourceImplementer
+	Class
 }
 
 /*
@@ -8357,7 +7645,7 @@ func (o *AudioEffect) baseClass() string {
 
 */
 type AudioEffectImplementer interface {
-	ResourceImplementer
+	Class
 }
 
 /*
@@ -8415,11 +7703,7 @@ func (o *AudioEffectAmplify) SetVolumeDb(volume float64) {
 
 */
 type AudioEffectAmplifyImplementer interface {
-	AudioEffectImplementer
-
-	GetVolumeDb() float64
-
-	SetVolumeDb(volume float64)
+	Class
 }
 
 /*
@@ -8438,7 +7722,7 @@ func (o *AudioEffectBandLimitFilter) baseClass() string {
 
 */
 type AudioEffectBandLimitFilterImplementer interface {
-	AudioEffectFilterImplementer
+	Class
 }
 
 /*
@@ -8457,7 +7741,7 @@ func (o *AudioEffectBandPassFilter) baseClass() string {
 
 */
 type AudioEffectBandPassFilterImplementer interface {
-	AudioEffectFilterImplementer
+	Class
 }
 
 /*
@@ -8839,43 +8123,7 @@ func (o *AudioEffectChorus) SetWet(amount float64) {
 
 */
 type AudioEffectChorusImplementer interface {
-	AudioEffectImplementer
-
-	GetDry() float64
-
-	GetVoiceCount() int64
-
-	GetVoiceCutoffHz(voiceIdx int64) float64
-
-	GetVoiceDelayMs(voiceIdx int64) float64
-
-	GetVoiceDepthMs(voiceIdx int64) float64
-
-	GetVoiceLevelDb(voiceIdx int64) float64
-
-	GetVoicePan(voiceIdx int64) float64
-
-	GetVoiceRateHz(voiceIdx int64) float64
-
-	GetWet() float64
-
-	SetDry(amount float64)
-
-	SetVoiceCount(voices int64)
-
-	SetVoiceCutoffHz(voiceIdx int64, cutoffHz float64)
-
-	SetVoiceDelayMs(voiceIdx int64, delayMs float64)
-
-	SetVoiceDepthMs(voiceIdx int64, depthMs float64)
-
-	SetVoiceLevelDb(voiceIdx int64, levelDb float64)
-
-	SetVoicePan(voiceIdx int64, pan float64)
-
-	SetVoiceRateHz(voiceIdx int64, rateHz float64)
-
-	SetWet(amount float64)
+	Class
 }
 
 /*
@@ -9167,35 +8415,7 @@ func (o *AudioEffectCompressor) SetThreshold(threshold float64) {
 
 */
 type AudioEffectCompressorImplementer interface {
-	AudioEffectImplementer
-
-	GetAttackUs() float64
-
-	GetGain() float64
-
-	GetMix() float64
-
-	GetRatio() float64
-
-	GetReleaseMs() float64
-
-	GetSidechain() string
-
-	GetThreshold() float64
-
-	SetAttackUs(attackUs float64)
-
-	SetGain(gain float64)
-
-	SetMix(mix float64)
-
-	SetRatio(ratio float64)
-
-	SetReleaseMs(releaseMs float64)
-
-	SetSidechain(sidechain string)
-
-	SetThreshold(threshold float64)
+	Class
 }
 
 /*
@@ -9422,7 +8642,7 @@ func (o *AudioEffectDelay) GetTap2Pan() float64 {
 /*
 
  */
-func (o *AudioEffectDelay) IsFeedbackActive() *bool {
+func (o *AudioEffectDelay) IsFeedbackActive() bool {
 	log.Println("Calling AudioEffectDelay.IsFeedbackActive()")
 
 	// Build out the method's arguments
@@ -9430,11 +8650,11 @@ func (o *AudioEffectDelay) IsFeedbackActive() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_feedback_active", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_feedback_active", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -9443,7 +8663,7 @@ func (o *AudioEffectDelay) IsFeedbackActive() *bool {
 /*
 
  */
-func (o *AudioEffectDelay) IsTap1Active() *bool {
+func (o *AudioEffectDelay) IsTap1Active() bool {
 	log.Println("Calling AudioEffectDelay.IsTap1Active()")
 
 	// Build out the method's arguments
@@ -9451,11 +8671,11 @@ func (o *AudioEffectDelay) IsTap1Active() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_tap1_active", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_tap1_active", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -9464,7 +8684,7 @@ func (o *AudioEffectDelay) IsTap1Active() *bool {
 /*
 
  */
-func (o *AudioEffectDelay) IsTap2Active() *bool {
+func (o *AudioEffectDelay) IsTap2Active() bool {
 	log.Println("Calling AudioEffectDelay.IsTap2Active()")
 
 	// Build out the method's arguments
@@ -9472,11 +8692,11 @@ func (o *AudioEffectDelay) IsTap2Active() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_tap2_active", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_tap2_active", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -9503,7 +8723,7 @@ func (o *AudioEffectDelay) SetDry(amount float64) {
 /*
 
  */
-func (o *AudioEffectDelay) SetFeedbackActive(amount *bool) {
+func (o *AudioEffectDelay) SetFeedbackActive(amount bool) {
 	log.Println("Calling AudioEffectDelay.SetFeedbackActive()")
 
 	// Build out the method's arguments
@@ -9575,7 +8795,7 @@ func (o *AudioEffectDelay) SetFeedbackLowpass(amount float64) {
 /*
 
  */
-func (o *AudioEffectDelay) SetTap1Active(amount *bool) {
+func (o *AudioEffectDelay) SetTap1Active(amount bool) {
 	log.Println("Calling AudioEffectDelay.SetTap1Active()")
 
 	// Build out the method's arguments
@@ -9647,7 +8867,7 @@ func (o *AudioEffectDelay) SetTap1Pan(amount float64) {
 /*
 
  */
-func (o *AudioEffectDelay) SetTap2Active(amount *bool) {
+func (o *AudioEffectDelay) SetTap2Active(amount bool) {
 	log.Println("Calling AudioEffectDelay.SetTap2Active()")
 
 	// Build out the method's arguments
@@ -9721,59 +8941,7 @@ func (o *AudioEffectDelay) SetTap2Pan(amount float64) {
 
 */
 type AudioEffectDelayImplementer interface {
-	AudioEffectImplementer
-
-	GetDry() float64
-
-	GetFeedbackDelayMs() float64
-
-	GetFeedbackLevelDb() float64
-
-	GetFeedbackLowpass() float64
-
-	GetTap1DelayMs() float64
-
-	GetTap1LevelDb() float64
-
-	GetTap1Pan() float64
-
-	GetTap2DelayMs() float64
-
-	GetTap2LevelDb() float64
-
-	GetTap2Pan() float64
-
-	IsFeedbackActive() *bool
-
-	IsTap1Active() *bool
-
-	IsTap2Active() *bool
-
-	SetDry(amount float64)
-
-	SetFeedbackActive(amount *bool)
-
-	SetFeedbackDelayMs(amount float64)
-
-	SetFeedbackLevelDb(amount float64)
-
-	SetFeedbackLowpass(amount float64)
-
-	SetTap1Active(amount *bool)
-
-	SetTap1DelayMs(amount float64)
-
-	SetTap1LevelDb(amount float64)
-
-	SetTap1Pan(amount float64)
-
-	SetTap2Active(amount *bool)
-
-	SetTap2DelayMs(amount float64)
-
-	SetTap2LevelDb(amount float64)
-
-	SetTap2Pan(amount float64)
+	Class
 }
 
 /*
@@ -9987,27 +9155,7 @@ func (o *AudioEffectDistortion) SetPreGain(preGain float64) {
 
 */
 type AudioEffectDistortionImplementer interface {
-	AudioEffectImplementer
-
-	GetDrive() float64
-
-	GetKeepHfHz() float64
-
-	GetMode() int64
-
-	GetPostGain() float64
-
-	GetPreGain() float64
-
-	SetDrive(drive float64)
-
-	SetKeepHfHz(keepHfHz float64)
-
-	SetMode(mode int64)
-
-	SetPostGain(postGain float64)
-
-	SetPreGain(preGain float64)
+	Class
 }
 
 /*
@@ -10088,13 +9236,7 @@ func (o *AudioEffectEQ) SetBandGainDb(bandIdx int64, volumeDb float64) {
 
 */
 type AudioEffectEQImplementer interface {
-	AudioEffectImplementer
-
-	GetBandCount() int64
-
-	GetBandGainDb(bandIdx int64) float64
-
-	SetBandGainDb(bandIdx int64, volumeDb float64)
+	Class
 }
 
 /*
@@ -10113,7 +9255,7 @@ func (o *AudioEffectEQ10) baseClass() string {
 
 */
 type AudioEffectEQ10Implementer interface {
-	AudioEffectEQImplementer
+	Class
 }
 
 /*
@@ -10132,7 +9274,7 @@ func (o *AudioEffectEQ21) baseClass() string {
 
 */
 type AudioEffectEQ21Implementer interface {
-	AudioEffectEQImplementer
+	Class
 }
 
 /*
@@ -10151,7 +9293,7 @@ func (o *AudioEffectEQ6) baseClass() string {
 
 */
 type AudioEffectEQ6Implementer interface {
-	AudioEffectEQImplementer
+	Class
 }
 
 /*
@@ -10326,23 +9468,7 @@ func (o *AudioEffectFilter) SetResonance(amount float64) {
 
 */
 type AudioEffectFilterImplementer interface {
-	AudioEffectImplementer
-
-	GetCutoff() float64
-
-	GetDb() int64
-
-	GetGain() float64
-
-	GetResonance() float64
-
-	SetCutoff(freq float64)
-
-	SetDb(amount int64)
-
-	SetGain(amount float64)
-
-	SetResonance(amount float64)
+	Class
 }
 
 /*
@@ -10361,7 +9487,7 @@ func (o *AudioEffectHighPassFilter) baseClass() string {
 
 */
 type AudioEffectHighPassFilterImplementer interface {
-	AudioEffectFilterImplementer
+	Class
 }
 
 /*
@@ -10380,7 +9506,7 @@ func (o *AudioEffectHighShelfFilter) baseClass() string {
 
 */
 type AudioEffectHighShelfFilterImplementer interface {
-	AudioEffectFilterImplementer
+	Class
 }
 
 /*
@@ -10555,23 +9681,7 @@ func (o *AudioEffectLimiter) SetThresholdDb(threshold float64) {
 
 */
 type AudioEffectLimiterImplementer interface {
-	AudioEffectImplementer
-
-	GetCeilingDb() float64
-
-	GetSoftClipDb() float64
-
-	GetSoftClipRatio() float64
-
-	GetThresholdDb() float64
-
-	SetCeilingDb(ceiling float64)
-
-	SetSoftClipDb(softClip float64)
-
-	SetSoftClipRatio(softClip float64)
-
-	SetThresholdDb(threshold float64)
+	Class
 }
 
 /*
@@ -10590,7 +9700,7 @@ func (o *AudioEffectLowPassFilter) baseClass() string {
 
 */
 type AudioEffectLowPassFilterImplementer interface {
-	AudioEffectFilterImplementer
+	Class
 }
 
 /*
@@ -10609,7 +9719,7 @@ func (o *AudioEffectLowShelfFilter) baseClass() string {
 
 */
 type AudioEffectLowShelfFilterImplementer interface {
-	AudioEffectFilterImplementer
+	Class
 }
 
 /*
@@ -10628,7 +9738,7 @@ func (o *AudioEffectNotchFilter) baseClass() string {
 
 */
 type AudioEffectNotchFilterImplementer interface {
-	AudioEffectFilterImplementer
+	Class
 }
 
 /*
@@ -10686,11 +9796,7 @@ func (o *AudioEffectPanner) SetPan(cpanume float64) {
 
 */
 type AudioEffectPannerImplementer interface {
-	AudioEffectImplementer
-
-	GetPan() float64
-
-	SetPan(cpanume float64)
+	Class
 }
 
 /*
@@ -10904,27 +10010,7 @@ func (o *AudioEffectPhaser) SetRateHz(hz float64) {
 
 */
 type AudioEffectPhaserImplementer interface {
-	AudioEffectImplementer
-
-	GetDepth() float64
-
-	GetFeedback() float64
-
-	GetRangeMaxHz() float64
-
-	GetRangeMinHz() float64
-
-	GetRateHz() float64
-
-	SetDepth(depth float64)
-
-	SetFeedback(fbk float64)
-
-	SetRangeMaxHz(hz float64)
-
-	SetRangeMinHz(hz float64)
-
-	SetRateHz(hz float64)
+	Class
 }
 
 /*
@@ -10982,11 +10068,7 @@ func (o *AudioEffectPitchShift) SetPitchScale(rate float64) {
 
 */
 type AudioEffectPitchShiftImplementer interface {
-	AudioEffectImplementer
-
-	GetPitchScale() float64
-
-	SetPitchScale(rate float64)
+	Class
 }
 
 /*
@@ -11317,39 +10399,7 @@ func (o *AudioEffectReverb) SetWet(amount float64) {
 
 */
 type AudioEffectReverbImplementer interface {
-	AudioEffectImplementer
-
-	GetDamping() float64
-
-	GetDry() float64
-
-	GetHpf() float64
-
-	GetPredelayFeedback() float64
-
-	GetPredelayMsec() float64
-
-	GetRoomSize() float64
-
-	GetSpread() float64
-
-	GetWet() float64
-
-	SetDamping(amount float64)
-
-	SetDry(amount float64)
-
-	SetHpf(amount float64)
-
-	SetPredelayFeedback(feedback float64)
-
-	SetPredelayMsec(msec float64)
-
-	SetRoomSize(size float64)
-
-	SetSpread(amount float64)
-
-	SetWet(amount float64)
+	Class
 }
 
 /*
@@ -11485,19 +10535,7 @@ func (o *AudioEffectStereoEnhance) SetTimePullout(amount float64) {
 
 */
 type AudioEffectStereoEnhanceImplementer interface {
-	AudioEffectImplementer
-
-	GetPanPullout() float64
-
-	GetSurround() float64
-
-	GetTimePullout() float64
-
-	SetPanPullout(amount float64)
-
-	SetSurround(amount float64)
-
-	SetTimePullout(amount float64)
+	Class
 }
 
 /*
@@ -11815,7 +10853,7 @@ func (o *AudioServer) GetSpeakerMode() int64 {
 /*
 
  */
-func (o *AudioServer) IsBusBypassingEffects(busIdx int64) *bool {
+func (o *AudioServer) IsBusBypassingEffects(busIdx int64) bool {
 	log.Println("Calling AudioServer.IsBusBypassingEffects()")
 
 	// Build out the method's arguments
@@ -11824,11 +10862,11 @@ func (o *AudioServer) IsBusBypassingEffects(busIdx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_bus_bypassing_effects", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_bus_bypassing_effects", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -11837,7 +10875,7 @@ func (o *AudioServer) IsBusBypassingEffects(busIdx int64) *bool {
 /*
 
  */
-func (o *AudioServer) IsBusEffectEnabled(busIdx int64, effectIdx int64) *bool {
+func (o *AudioServer) IsBusEffectEnabled(busIdx int64, effectIdx int64) bool {
 	log.Println("Calling AudioServer.IsBusEffectEnabled()")
 
 	// Build out the method's arguments
@@ -11847,11 +10885,11 @@ func (o *AudioServer) IsBusEffectEnabled(busIdx int64, effectIdx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_bus_effect_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_bus_effect_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -11860,7 +10898,7 @@ func (o *AudioServer) IsBusEffectEnabled(busIdx int64, effectIdx int64) *bool {
 /*
 
  */
-func (o *AudioServer) IsBusMute(busIdx int64) *bool {
+func (o *AudioServer) IsBusMute(busIdx int64) bool {
 	log.Println("Calling AudioServer.IsBusMute()")
 
 	// Build out the method's arguments
@@ -11869,11 +10907,11 @@ func (o *AudioServer) IsBusMute(busIdx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_bus_mute", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_bus_mute", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -11882,7 +10920,7 @@ func (o *AudioServer) IsBusMute(busIdx int64) *bool {
 /*
 
  */
-func (o *AudioServer) IsBusSolo(busIdx int64) *bool {
+func (o *AudioServer) IsBusSolo(busIdx int64) bool {
 	log.Println("Calling AudioServer.IsBusSolo()")
 
 	// Build out the method's arguments
@@ -11891,11 +10929,11 @@ func (o *AudioServer) IsBusSolo(busIdx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_bus_solo", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_bus_solo", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -11977,7 +11015,7 @@ func (o *AudioServer) RemoveBusEffect(busIdx int64, effectIdx int64) {
 /*
 
  */
-func (o *AudioServer) SetBusBypassEffects(busIdx int64, enable *bool) {
+func (o *AudioServer) SetBusBypassEffects(busIdx int64, enable bool) {
 	log.Println("Calling AudioServer.SetBusBypassEffects()")
 
 	// Build out the method's arguments
@@ -12014,7 +11052,7 @@ func (o *AudioServer) SetBusCount(amount int64) {
 /*
 
  */
-func (o *AudioServer) SetBusEffectEnabled(busIdx int64, effectIdx int64, enabled *bool) {
+func (o *AudioServer) SetBusEffectEnabled(busIdx int64, effectIdx int64, enabled bool) {
 	log.Println("Calling AudioServer.SetBusEffectEnabled()")
 
 	// Build out the method's arguments
@@ -12052,7 +11090,7 @@ func (o *AudioServer) SetBusLayout(busLayout *AudioBusLayout) {
 /*
 
  */
-func (o *AudioServer) SetBusMute(busIdx int64, enable *bool) {
+func (o *AudioServer) SetBusMute(busIdx int64, enable bool) {
 	log.Println("Calling AudioServer.SetBusMute()")
 
 	// Build out the method's arguments
@@ -12109,7 +11147,7 @@ func (o *AudioServer) SetBusSend(busIdx int64, send string) {
 /*
 
  */
-func (o *AudioServer) SetBusSolo(busIdx int64, enable *bool) {
+func (o *AudioServer) SetBusSolo(busIdx int64, enable bool) {
 	log.Println("Calling AudioServer.SetBusSolo()")
 
 	// Build out the method's arguments
@@ -12186,73 +11224,7 @@ func (o *AudioServer) Unlock() {
    AudioServer is a low level server interface for audio access. It is in charge of creating sample data (playable audio) as well as its playback via a voice interface.
 */
 type AudioServerImplementer interface {
-	ObjectImplementer
-
-	AddBus(atPos int64)
-
-	AddBusEffect(busIdx int64, effect *AudioEffect, atPos int64)
-
-	GenerateBusLayout() *AudioBusLayout
-
-	GetBusCount() int64
-
-	GetBusEffect(busIdx int64, effectIdx int64) *AudioEffect
-
-	GetBusEffectCount(busIdx int64) int64
-
-	GetBusIndex(busName string) int64
-
-	GetBusName(busIdx int64) string
-
-	GetBusPeakVolumeLeftDb(busIdx int64, channel int64) float64
-
-	GetBusPeakVolumeRightDb(busIdx int64, channel int64) float64
-
-	GetBusSend(busIdx int64) string
-
-	GetBusVolumeDb(busIdx int64) float64
-
-	GetMixRate() float64
-
-	GetSpeakerMode() int64
-
-	IsBusBypassingEffects(busIdx int64) *bool
-
-	IsBusEffectEnabled(busIdx int64, effectIdx int64) *bool
-
-	IsBusMute(busIdx int64) *bool
-
-	IsBusSolo(busIdx int64) *bool
-
-	Lock()
-
-	MoveBus(index int64, toIndex int64)
-
-	RemoveBus(index int64)
-
-	RemoveBusEffect(busIdx int64, effectIdx int64)
-
-	SetBusBypassEffects(busIdx int64, enable *bool)
-
-	SetBusCount(amount int64)
-
-	SetBusEffectEnabled(busIdx int64, effectIdx int64, enabled *bool)
-
-	SetBusLayout(busLayout *AudioBusLayout)
-
-	SetBusMute(busIdx int64, enable *bool)
-
-	SetBusName(busIdx int64, name string)
-
-	SetBusSend(busIdx int64, send string)
-
-	SetBusSolo(busIdx int64, enable *bool)
-
-	SetBusVolumeDb(busIdx int64, volumeDb float64)
-
-	SwapBusEffects(busIdx int64, effectIdx int64, byEffectIdx int64)
-
-	Unlock()
+	Class
 }
 
 /*
@@ -12271,7 +11243,7 @@ func (o *AudioStream) baseClass() string {
    Base class for audio streams. Audio streams are used for music playback, or other types of streamed sounds that don't fit or require more flexibility than a [Sample].
 */
 type AudioStreamImplementer interface {
-	ResourceImplementer
+	Class
 }
 
 /*
@@ -12330,7 +11302,7 @@ func (o *AudioStreamOGGVorbis) GetLoopOffset() float64 {
 /*
 
  */
-func (o *AudioStreamOGGVorbis) HasLoop() *bool {
+func (o *AudioStreamOGGVorbis) HasLoop() bool {
 	log.Println("Calling AudioStreamOGGVorbis.HasLoop()")
 
 	// Build out the method's arguments
@@ -12338,11 +11310,11 @@ func (o *AudioStreamOGGVorbis) HasLoop() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_loop", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_loop", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -12369,7 +11341,7 @@ func (o *AudioStreamOGGVorbis) SetData(data *PoolByteArray) {
 /*
 
  */
-func (o *AudioStreamOGGVorbis) SetLoop(enable *bool) {
+func (o *AudioStreamOGGVorbis) SetLoop(enable bool) {
 	log.Println("Calling AudioStreamOGGVorbis.SetLoop()")
 
 	// Build out the method's arguments
@@ -12407,19 +11379,7 @@ func (o *AudioStreamOGGVorbis) SetLoopOffset(seconds float64) {
    OGG Vorbis audio stream driver.
 */
 type AudioStreamOGGVorbisImplementer interface {
-	AudioStreamImplementer
-
-	GetData() *PoolByteArray
-
-	GetLoopOffset() float64
-
-	HasLoop() *bool
-
-	SetData(data *PoolByteArray)
-
-	SetLoop(enable *bool)
-
-	SetLoopOffset(seconds float64)
+	Class
 }
 
 /*
@@ -12438,7 +11398,7 @@ func (o *AudioStreamPlayback) baseClass() string {
 
 */
 type AudioStreamPlaybackImplementer interface {
-	ReferenceImplementer
+	Class
 }
 
 /*
@@ -12560,7 +11520,7 @@ func (o *AudioStreamPlayer) GetVolumeDb() float64 {
 /*
 
  */
-func (o *AudioStreamPlayer) IsAutoplayEnabled() *bool {
+func (o *AudioStreamPlayer) IsAutoplayEnabled() bool {
 	log.Println("Calling AudioStreamPlayer.IsAutoplayEnabled()")
 
 	// Build out the method's arguments
@@ -12568,11 +11528,11 @@ func (o *AudioStreamPlayer) IsAutoplayEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_autoplay_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_autoplay_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -12581,7 +11541,7 @@ func (o *AudioStreamPlayer) IsAutoplayEnabled() *bool {
 /*
 
  */
-func (o *AudioStreamPlayer) IsPlaying() *bool {
+func (o *AudioStreamPlayer) IsPlaying() bool {
 	log.Println("Calling AudioStreamPlayer.IsPlaying()")
 
 	// Build out the method's arguments
@@ -12589,11 +11549,11 @@ func (o *AudioStreamPlayer) IsPlaying() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_playing", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_playing", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -12638,7 +11598,7 @@ func (o *AudioStreamPlayer) Seek(toPos float64) {
 /*
 
  */
-func (o *AudioStreamPlayer) SetAutoplay(enable *bool) {
+func (o *AudioStreamPlayer) SetAutoplay(enable bool) {
 	log.Println("Calling AudioStreamPlayer.SetAutoplay()")
 
 	// Build out the method's arguments
@@ -12747,37 +11707,7 @@ func (o *AudioStreamPlayer) Stop() {
 
 */
 type AudioStreamPlayerImplementer interface {
-	NodeImplementer
-
-	GetBus() string
-
-	GetMixTarget() int64
-
-	GetPos() float64
-
-	GetStream() *AudioStream
-
-	GetVolumeDb() float64
-
-	IsAutoplayEnabled() *bool
-
-	IsPlaying() *bool
-
-	Play(fromPos float64)
-
-	Seek(toPos float64)
-
-	SetAutoplay(enable *bool)
-
-	SetBus(bus string)
-
-	SetMixTarget(mixTarget int64)
-
-	SetStream(stream *AudioStream)
-
-	SetVolumeDb(volumeDb float64)
-
-	Stop()
+	Class
 }
 
 /*
@@ -12941,7 +11871,7 @@ func (o *AudioStreamPlayer2D) GetVolumeDb() float64 {
 /*
 
  */
-func (o *AudioStreamPlayer2D) IsAutoplayEnabled() *bool {
+func (o *AudioStreamPlayer2D) IsAutoplayEnabled() bool {
 	log.Println("Calling AudioStreamPlayer2D.IsAutoplayEnabled()")
 
 	// Build out the method's arguments
@@ -12949,11 +11879,11 @@ func (o *AudioStreamPlayer2D) IsAutoplayEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_autoplay_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_autoplay_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -12962,7 +11892,7 @@ func (o *AudioStreamPlayer2D) IsAutoplayEnabled() *bool {
 /*
 
  */
-func (o *AudioStreamPlayer2D) IsPlaying() *bool {
+func (o *AudioStreamPlayer2D) IsPlaying() bool {
 	log.Println("Calling AudioStreamPlayer2D.IsPlaying()")
 
 	// Build out the method's arguments
@@ -12970,11 +11900,11 @@ func (o *AudioStreamPlayer2D) IsPlaying() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_playing", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_playing", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -13055,7 +11985,7 @@ func (o *AudioStreamPlayer2D) SetAttenuation(curve float64) {
 /*
 
  */
-func (o *AudioStreamPlayer2D) SetAutoplay(enable *bool) {
+func (o *AudioStreamPlayer2D) SetAutoplay(enable bool) {
 	log.Println("Calling AudioStreamPlayer2D.SetAutoplay()")
 
 	// Build out the method's arguments
@@ -13164,45 +12094,7 @@ func (o *AudioStreamPlayer2D) Stop() {
 
 */
 type AudioStreamPlayer2DImplementer interface {
-	Node2DImplementer
-
-	GetAreaMask() int64
-
-	GetAttenuation() float64
-
-	GetBus() string
-
-	GetMaxDistance() float64
-
-	GetPos() float64
-
-	GetStream() *AudioStream
-
-	GetVolumeDb() float64
-
-	IsAutoplayEnabled() *bool
-
-	IsPlaying() *bool
-
-	Play(fromPos float64)
-
-	Seek(toPos float64)
-
-	SetAreaMask(mask int64)
-
-	SetAttenuation(curve float64)
-
-	SetAutoplay(enable *bool)
-
-	SetBus(bus string)
-
-	SetMaxDistance(pixels float64)
-
-	SetStream(stream *AudioStream)
-
-	SetVolumeDb(volumeDb float64)
-
-	Stop()
+	Class
 }
 
 /*
@@ -13534,7 +12426,7 @@ func (o *AudioStreamPlayer3D) GetUnitSize() float64 {
 /*
 
  */
-func (o *AudioStreamPlayer3D) IsAutoplayEnabled() *bool {
+func (o *AudioStreamPlayer3D) IsAutoplayEnabled() bool {
 	log.Println("Calling AudioStreamPlayer3D.IsAutoplayEnabled()")
 
 	// Build out the method's arguments
@@ -13542,11 +12434,11 @@ func (o *AudioStreamPlayer3D) IsAutoplayEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_autoplay_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_autoplay_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -13555,7 +12447,7 @@ func (o *AudioStreamPlayer3D) IsAutoplayEnabled() *bool {
 /*
 
  */
-func (o *AudioStreamPlayer3D) IsEmissionAngleEnabled() *bool {
+func (o *AudioStreamPlayer3D) IsEmissionAngleEnabled() bool {
 	log.Println("Calling AudioStreamPlayer3D.IsEmissionAngleEnabled()")
 
 	// Build out the method's arguments
@@ -13563,11 +12455,11 @@ func (o *AudioStreamPlayer3D) IsEmissionAngleEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_emission_angle_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_emission_angle_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -13576,7 +12468,7 @@ func (o *AudioStreamPlayer3D) IsEmissionAngleEnabled() *bool {
 /*
 
  */
-func (o *AudioStreamPlayer3D) IsPlaying() *bool {
+func (o *AudioStreamPlayer3D) IsPlaying() bool {
 	log.Println("Calling AudioStreamPlayer3D.IsPlaying()")
 
 	// Build out the method's arguments
@@ -13584,11 +12476,11 @@ func (o *AudioStreamPlayer3D) IsPlaying() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_playing", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_playing", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -13705,7 +12597,7 @@ func (o *AudioStreamPlayer3D) SetAttenuationModel(model int64) {
 /*
 
  */
-func (o *AudioStreamPlayer3D) SetAutoplay(enable *bool) {
+func (o *AudioStreamPlayer3D) SetAutoplay(enable bool) {
 	log.Println("Calling AudioStreamPlayer3D.SetAutoplay()")
 
 	// Build out the method's arguments
@@ -13777,7 +12669,7 @@ func (o *AudioStreamPlayer3D) SetEmissionAngle(degrees float64) {
 /*
 
  */
-func (o *AudioStreamPlayer3D) SetEmissionAngleEnabled(enabled *bool) {
+func (o *AudioStreamPlayer3D) SetEmissionAngleEnabled(enabled bool) {
 	log.Println("Calling AudioStreamPlayer3D.SetEmissionAngleEnabled()")
 
 	// Build out the method's arguments
@@ -13940,81 +12832,7 @@ func (o *AudioStreamPlayer3D) Stop() {
 
 */
 type AudioStreamPlayer3DImplementer interface {
-	SpatialImplementer
-
-	GetAreaMask() int64
-
-	GetAttenuationFilterCutoffHz() float64
-
-	GetAttenuationFilterDb() float64
-
-	GetAttenuationModel() int64
-
-	GetBus() string
-
-	GetDopplerTracking() int64
-
-	GetEmissionAngle() float64
-
-	GetEmissionAngleFilterAttenuationDb() float64
-
-	GetMaxDb() float64
-
-	GetMaxDistance() float64
-
-	GetOutOfRangeMode() int64
-
-	GetPos() float64
-
-	GetStream() *AudioStream
-
-	GetUnitDb() float64
-
-	GetUnitSize() float64
-
-	IsAutoplayEnabled() *bool
-
-	IsEmissionAngleEnabled() *bool
-
-	IsPlaying() *bool
-
-	Play(fromPos float64)
-
-	Seek(toPos float64)
-
-	SetAreaMask(mask int64)
-
-	SetAttenuationFilterCutoffHz(degrees float64)
-
-	SetAttenuationFilterDb(db float64)
-
-	SetAttenuationModel(model int64)
-
-	SetAutoplay(enable *bool)
-
-	SetBus(bus string)
-
-	SetDopplerTracking(mode int64)
-
-	SetEmissionAngle(degrees float64)
-
-	SetEmissionAngleEnabled(enabled *bool)
-
-	SetEmissionAngleFilterAttenuationDb(db float64)
-
-	SetMaxDb(maxDb float64)
-
-	SetMaxDistance(metres float64)
-
-	SetOutOfRangeMode(mode int64)
-
-	SetStream(stream *AudioStream)
-
-	SetUnitDb(unitDb float64)
-
-	SetUnitSize(unitSize float64)
-
-	Stop()
+	Class
 }
 
 /*
@@ -14111,15 +12929,7 @@ func (o *AudioStreamRandomPitch) SetRandomPitch(scale float64) {
 
 */
 type AudioStreamRandomPitchImplementer interface {
-	AudioStreamImplementer
-
-	GetAudioStream() *AudioStream
-
-	GetRandomPitch() float64
-
-	SetAudioStream(stream *AudioStream)
-
-	SetRandomPitch(scale float64)
+	Class
 }
 
 /*
@@ -14262,7 +13072,7 @@ func (o *AudioStreamSample) GetMixRate() int64 {
 /*
 
  */
-func (o *AudioStreamSample) IsStereo() *bool {
+func (o *AudioStreamSample) IsStereo() bool {
 	log.Println("Calling AudioStreamSample.IsStereo()")
 
 	// Build out the method's arguments
@@ -14270,11 +13080,11 @@ func (o *AudioStreamSample) IsStereo() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_stereo", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_stereo", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -14391,7 +13201,7 @@ func (o *AudioStreamSample) SetMixRate(mixRate int64) {
 /*
 
  */
-func (o *AudioStreamSample) SetStereo(stereo *bool) {
+func (o *AudioStreamSample) SetStereo(stereo bool) {
 	log.Println("Calling AudioStreamSample.SetStereo()")
 
 	// Build out the method's arguments
@@ -14411,35 +13221,7 @@ func (o *AudioStreamSample) SetStereo(stereo *bool) {
 
 */
 type AudioStreamSampleImplementer interface {
-	AudioStreamImplementer
-
-	GetData() *PoolByteArray
-
-	GetFormat() int64
-
-	GetLoopBegin() int64
-
-	GetLoopEnd() int64
-
-	GetLoopMode() int64
-
-	GetMixRate() int64
-
-	IsStereo() *bool
-
-	SetData(data *PoolByteArray)
-
-	SetFormat(format int64)
-
-	SetLoopBegin(loopBegin int64)
-
-	SetLoopEnd(loopEnd int64)
-
-	SetLoopMode(loopMode int64)
-
-	SetMixRate(mixRate int64)
-
-	SetStereo(stereo *bool)
+	Class
 }
 
 /*
@@ -14536,15 +13318,7 @@ func (o *BackBufferCopy) SetRect(rect *Rect2) {
    Node for back-buffering the currently displayed screen. The region defined in the BackBufferCopy node is bufferized with the content of the screen it covers, or the entire screen according to the copy mode set. Accessing this buffer is done with the texscreen() shader instruction.
 */
 type BackBufferCopyImplementer interface {
-	Node2DImplementer
-
-	GetCopyMode() int64
-
-	GetRect() *Rect2
-
-	SetCopyMode(copyMode int64)
-
-	SetRect(rect *Rect2)
+	Class
 }
 
 /*
@@ -14578,7 +13352,7 @@ func (o *BaseButton) X_Pressed() {
 /*
    Called when button is toggled (only if toggle_mode is active).
 */
-func (o *BaseButton) X_Toggled(pressed *bool) {
+func (o *BaseButton) X_Toggled(pressed bool) {
 	log.Println("Calling BaseButton.X_Toggled()")
 
 	// Build out the method's arguments
@@ -14701,7 +13475,7 @@ func (o *BaseButton) GetShortcut() *ShortCut {
 /*
    Return whether the button is in disabled state (see [method set_disabled]).
 */
-func (o *BaseButton) IsDisabled() *bool {
+func (o *BaseButton) IsDisabled() bool {
 	log.Println("Calling BaseButton.IsDisabled()")
 
 	// Build out the method's arguments
@@ -14709,11 +13483,11 @@ func (o *BaseButton) IsDisabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_disabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_disabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -14722,7 +13496,7 @@ func (o *BaseButton) IsDisabled() *bool {
 /*
    Return true if mouse entered the button before it exit.
 */
-func (o *BaseButton) IsHovered() *bool {
+func (o *BaseButton) IsHovered() bool {
 	log.Println("Calling BaseButton.IsHovered()")
 
 	// Build out the method's arguments
@@ -14730,11 +13504,11 @@ func (o *BaseButton) IsHovered() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_hovered", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_hovered", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -14743,7 +13517,7 @@ func (o *BaseButton) IsHovered() *bool {
 /*
    If toggle_mode is active, return whether the button is toggled. If toggle_mode is not active, return whether the button is pressed down.
 */
-func (o *BaseButton) IsPressed() *bool {
+func (o *BaseButton) IsPressed() bool {
 	log.Println("Calling BaseButton.IsPressed()")
 
 	// Build out the method's arguments
@@ -14751,11 +13525,11 @@ func (o *BaseButton) IsPressed() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_pressed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_pressed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -14764,7 +13538,7 @@ func (o *BaseButton) IsPressed() *bool {
 /*
    Return the toggle_mode property (see [method set_toggle_mode]).
 */
-func (o *BaseButton) IsToggleMode() *bool {
+func (o *BaseButton) IsToggleMode() bool {
 	log.Println("Calling BaseButton.IsToggleMode()")
 
 	// Build out the method's arguments
@@ -14772,11 +13546,11 @@ func (o *BaseButton) IsToggleMode() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_toggle_mode", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_toggle_mode", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -14821,7 +13595,7 @@ func (o *BaseButton) SetButtonGroup(buttonGroup *ButtonGroup) {
 /*
    Set the button into disabled state. When a button is disabled, it can't be clicked or toggled.
 */
-func (o *BaseButton) SetDisabled(disabled *bool) {
+func (o *BaseButton) SetDisabled(disabled bool) {
 	log.Println("Calling BaseButton.SetDisabled()")
 
 	// Build out the method's arguments
@@ -14857,7 +13631,7 @@ func (o *BaseButton) SetEnabledFocusMode(mode int64) {
 /*
    Set the button to pressed state (only if toggle_mode is active).
 */
-func (o *BaseButton) SetPressed(pressed *bool) {
+func (o *BaseButton) SetPressed(pressed bool) {
 	log.Println("Calling BaseButton.SetPressed()")
 
 	// Build out the method's arguments
@@ -14893,7 +13667,7 @@ func (o *BaseButton) SetShortcut(shortcut *ShortCut) {
 /*
    Set the button toggle_mode property. Toggle mode makes the button flip state between pressed and unpressed each time its area is clicked.
 */
-func (o *BaseButton) SetToggleMode(enabled *bool) {
+func (o *BaseButton) SetToggleMode(enabled bool) {
 	log.Println("Calling BaseButton.SetToggleMode()")
 
 	// Build out the method's arguments
@@ -14913,43 +13687,7 @@ func (o *BaseButton) SetToggleMode(enabled *bool) {
    BaseButton is the abstract base class for buttons, so it shouldn't be used directly (It doesn't display anything). Other types of buttons inherit from it.
 */
 type BaseButtonImplementer interface {
-	ControlImplementer
-
-	X_Pressed()
-
-	X_Toggled(pressed *bool)
-
-	GetActionMode() int64
-
-	GetButtonGroup() *ButtonGroup
-
-	GetDrawMode() int64
-
-	GetEnabledFocusMode() int64
-
-	GetShortcut() *ShortCut
-
-	IsDisabled() *bool
-
-	IsHovered() *bool
-
-	IsPressed() *bool
-
-	IsToggleMode() *bool
-
-	SetActionMode(mode int64)
-
-	SetButtonGroup(buttonGroup *ButtonGroup)
-
-	SetDisabled(disabled *bool)
-
-	SetEnabledFocusMode(mode int64)
-
-	SetPressed(pressed *bool)
-
-	SetShortcut(shortcut *ShortCut)
-
-	SetToggleMode(enabled *bool)
+	Class
 }
 
 /*
@@ -15002,7 +13740,7 @@ func (o *BitMap) CreateFromImageAlpha(image *Image) {
 /*
 
  */
-func (o *BitMap) GetBit(pos *Vector2) *bool {
+func (o *BitMap) GetBit(pos *Vector2) bool {
 	log.Println("Calling BitMap.GetBit()")
 
 	// Build out the method's arguments
@@ -15011,11 +13749,11 @@ func (o *BitMap) GetBit(pos *Vector2) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_bit", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_bit", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -15066,7 +13804,7 @@ func (o *BitMap) GetTrueBitCount() int64 {
 /*
 
  */
-func (o *BitMap) SetBit(pos *Vector2, bit *bool) {
+func (o *BitMap) SetBit(pos *Vector2, bit bool) {
 	log.Println("Calling BitMap.SetBit()")
 
 	// Build out the method's arguments
@@ -15085,7 +13823,7 @@ func (o *BitMap) SetBit(pos *Vector2, bit *bool) {
 /*
 
  */
-func (o *BitMap) SetBitRect(pRect *Rect2, bit *bool) {
+func (o *BitMap) SetBitRect(pRect *Rect2, bit bool) {
 	log.Println("Calling BitMap.SetBitRect()")
 
 	// Build out the method's arguments
@@ -15106,21 +13844,7 @@ func (o *BitMap) SetBitRect(pRect *Rect2, bit *bool) {
 
 */
 type BitMapImplementer interface {
-	ResourceImplementer
-
-	Create(size *Vector2)
-
-	CreateFromImageAlpha(image *Image)
-
-	GetBit(pos *Vector2) *bool
-
-	GetSize() *Vector2
-
-	GetTrueBitCount() int64
-
-	SetBit(pos *Vector2, bit *bool)
-
-	SetBitRect(pRect *Rect2, bit *bool)
+	Class
 }
 
 /*
@@ -15364,7 +14088,7 @@ func (o *BitmapFont) SetAscent(px float64) {
 /*
 
  */
-func (o *BitmapFont) SetDistanceFieldHint(enable *bool) {
+func (o *BitmapFont) SetDistanceFieldHint(enable bool) {
 	log.Println("Calling BitmapFont.SetDistanceFieldHint()")
 
 	// Build out the method's arguments
@@ -15420,35 +14144,7 @@ func (o *BitmapFont) SetHeight(px float64) {
 
 */
 type BitmapFontImplementer interface {
-	FontImplementer
-
-	AddChar(character int64, texture int64, rect *Rect2, align *Vector2, advance float64)
-
-	AddKerningPair(charA int64, charB int64, kerning int64)
-
-	AddTexture(texture *Texture)
-
-	Clear()
-
-	CreateFromFnt(path string) int64
-
-	GetCharSize(char int64, next int64) *Vector2
-
-	GetFallback() *BitmapFont
-
-	GetKerningPair(charA int64, charB int64) int64
-
-	GetTexture(idx int64) *Texture
-
-	GetTextureCount() int64
-
-	SetAscent(px float64)
-
-	SetDistanceFieldHint(enable *bool)
-
-	SetFallback(fallback *BitmapFont)
-
-	SetHeight(px float64)
+	Class
 }
 
 /*
@@ -15506,11 +14202,7 @@ func (o *BoneAttachment) SetBoneName(boneName string) {
    This node must be the child of a [Skeleton] node. You can then select a bone for this node to attach to. The BoneAttachment node will copy the transform of the selected bone.
 */
 type BoneAttachmentImplementer interface {
-	SpatialImplementer
-
-	GetBoneName() string
-
-	SetBoneName(boneName string)
+	Class
 }
 
 /*
@@ -15528,7 +14220,7 @@ func (o *BoxContainer) baseClass() string {
                 Add a control to the box as a spacer.
 				If [i]begin[/i] is true the spacer control will be inserted in front of other children.
 */
-func (o *BoxContainer) AddSpacer(begin *bool) {
+func (o *BoxContainer) AddSpacer(begin bool) {
 	log.Println("Calling BoxContainer.AddSpacer()")
 
 	// Build out the method's arguments
@@ -15587,13 +14279,7 @@ func (o *BoxContainer) SetAlignment(alignment int64) {
    Base class for Box containers. It arranges children controls vertically or horizontally, and rearranges them automatically when their minimum size changes.
 */
 type BoxContainerImplementer interface {
-	ContainerImplementer
-
-	AddSpacer(begin *bool)
-
-	GetAlignment() int64
-
-	SetAlignment(alignment int64)
+	Class
 }
 
 /*
@@ -15651,11 +14337,7 @@ func (o *BoxShape) SetExtents(extents *Vector3) {
    Box shape resource, which can be set into a [PhysicsBody] or area.
 */
 type BoxShapeImplementer interface {
-	ShapeImplementer
-
-	GetExtents() *Vector3
-
-	SetExtents(extents *Vector3)
+	Class
 }
 
 /*
@@ -15693,7 +14375,7 @@ func (o *Button) GetButtonIcon() *Texture {
 /*
    Return the state of the [i]clip_text[/i] property (see [method set_clip_text])
 */
-func (o *Button) GetClipText() *bool {
+func (o *Button) GetClipText() bool {
 	log.Println("Calling Button.GetClipText()")
 
 	// Build out the method's arguments
@@ -15701,11 +14383,11 @@ func (o *Button) GetClipText() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_clip_text", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_clip_text", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -15756,7 +14438,7 @@ func (o *Button) GetTextAlign() int64 {
 /*
    Return the state of the [i]flat[/i] property (see [method set_flat]).
 */
-func (o *Button) IsFlat() *bool {
+func (o *Button) IsFlat() bool {
 	log.Println("Calling Button.IsFlat()")
 
 	// Build out the method's arguments
@@ -15764,11 +14446,11 @@ func (o *Button) IsFlat() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_flat", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_flat", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -15795,7 +14477,7 @@ func (o *Button) SetButtonIcon(texture *Texture) {
 /*
    Set the [i]clip_text[/i] property of a Button. When this property is enabled, text that is too large to fit the button is clipped, when disabled (default) the Button will always be wide enough to hold the text.
 */
-func (o *Button) SetClipText(enabled *bool) {
+func (o *Button) SetClipText(enabled bool) {
 	log.Println("Calling Button.SetClipText()")
 
 	// Build out the method's arguments
@@ -15813,7 +14495,7 @@ func (o *Button) SetClipText(enabled *bool) {
 /*
    Set the [i]flat[/i] property of a Button. Flat buttons don't display decoration unless hovered or pressed.
 */
-func (o *Button) SetFlat(enabled *bool) {
+func (o *Button) SetFlat(enabled bool) {
 	log.Println("Calling Button.SetFlat()")
 
 	// Build out the method's arguments
@@ -15869,27 +14551,7 @@ func (o *Button) SetTextAlign(align int64) {
    Button is the standard themed button. It can contain text and an icon, and will display them according to the current [Theme].
 */
 type ButtonImplementer interface {
-	BaseButtonImplementer
-
-	GetButtonIcon() *Texture
-
-	GetClipText() *bool
-
-	GetText() string
-
-	GetTextAlign() int64
-
-	IsFlat() *bool
-
-	SetButtonIcon(texture *Texture)
-
-	SetClipText(enabled *bool)
-
-	SetFlat(enabled *bool)
-
-	SetText(text string)
-
-	SetTextAlign(align int64)
+	Class
 }
 
 /*
@@ -15929,9 +14591,7 @@ func (o *ButtonGroup) GetPressedButton() *BaseButton {
    Group of [Button]. All direct and indirect children buttons become radios. Only one allows being pressed.
 */
 type ButtonGroupImplementer interface {
-	ResourceImplementer
-
-	GetPressedButton() *BaseButton
+	Class
 }
 
 /*
@@ -16217,7 +14877,7 @@ func (o *Camera) GetZnear() float64 {
 /*
    Return whether the Camera is the current one in the [Viewport], or plans to become current (if outside the scene tree).
 */
-func (o *Camera) IsCurrent() *bool {
+func (o *Camera) IsCurrent() bool {
 	log.Println("Calling Camera.IsCurrent()")
 
 	// Build out the method's arguments
@@ -16225,11 +14885,11 @@ func (o *Camera) IsCurrent() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_current", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_current", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -16238,7 +14898,7 @@ func (o *Camera) IsCurrent() *bool {
 /*
 
  */
-func (o *Camera) IsPositionBehind(worldPoint *Vector3) *bool {
+func (o *Camera) IsPositionBehind(worldPoint *Vector3) bool {
 	log.Println("Calling Camera.IsPositionBehind()")
 
 	// Build out the method's arguments
@@ -16247,11 +14907,11 @@ func (o *Camera) IsPositionBehind(worldPoint *Vector3) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_position_behind", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_position_behind", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -16537,65 +15197,7 @@ func (o *Camera) UnprojectPosition(worldPoint *Vector3) *Vector2 {
    Camera is a special node that displays what is visible from its current location. Cameras register themselves in the nearest [Viewport] node (when ascending the tree). Only one camera can be active per viewport. If no viewport is available ascending the tree, the Camera will register in the global viewport. In other words, a Camera just provides [i]3D[/i] display capabilities to a [Viewport], and, without one, a scene registered in that [Viewport] (or higher viewports) can't be displayed.
 */
 type CameraImplementer interface {
-	SpatialImplementer
-
-	ClearCurrent()
-
-	GetCameraTransform() *Transform
-
-	GetCullMask() int64
-
-	GetDopplerTracking() int64
-
-	GetEnvironment() *Environment
-
-	GetFov() float64
-
-	GetHOffset() float64
-
-	GetKeepAspectMode() int64
-
-	GetProjection() int64
-
-	GetSize() float64
-
-	GetVOffset() float64
-
-	GetZfar() float64
-
-	GetZnear() float64
-
-	IsCurrent() *bool
-
-	IsPositionBehind(worldPoint *Vector3) *bool
-
-	MakeCurrent()
-
-	ProjectLocalRayNormal(screenPoint *Vector2) *Vector3
-
-	ProjectPosition(screenPoint *Vector2) *Vector3
-
-	ProjectRayNormal(screenPoint *Vector2) *Vector3
-
-	ProjectRayOrigin(screenPoint *Vector2) *Vector3
-
-	SetCullMask(mask int64)
-
-	SetDopplerTracking(mode int64)
-
-	SetEnvironment(env *Environment)
-
-	SetHOffset(ofs float64)
-
-	SetKeepAspectMode(mode int64)
-
-	SetOrthogonal(size float64, zNear float64, zFar float64)
-
-	SetPerspective(fov float64, zNear float64, zFar float64)
-
-	SetVOffset(ofs float64)
-
-	UnprojectPosition(worldPoint *Vector3) *Vector2
+	Class
 }
 
 /*
@@ -16897,7 +15499,7 @@ func (o *Camera2D) GetZoom() *Vector2 {
 /*
    Return true of this is the current camera (see [method make_current]).
 */
-func (o *Camera2D) IsCurrent() *bool {
+func (o *Camera2D) IsCurrent() bool {
 	log.Println("Calling Camera2D.IsCurrent()")
 
 	// Build out the method's arguments
@@ -16905,11 +15507,11 @@ func (o *Camera2D) IsCurrent() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_current", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_current", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -16918,7 +15520,7 @@ func (o *Camera2D) IsCurrent() *bool {
 /*
 
  */
-func (o *Camera2D) IsFollowSmoothingEnabled() *bool {
+func (o *Camera2D) IsFollowSmoothingEnabled() bool {
 	log.Println("Calling Camera2D.IsFollowSmoothingEnabled()")
 
 	// Build out the method's arguments
@@ -16926,11 +15528,11 @@ func (o *Camera2D) IsFollowSmoothingEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_follow_smoothing_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_follow_smoothing_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -16939,7 +15541,7 @@ func (o *Camera2D) IsFollowSmoothingEnabled() *bool {
 /*
 
  */
-func (o *Camera2D) IsHDragEnabled() *bool {
+func (o *Camera2D) IsHDragEnabled() bool {
 	log.Println("Calling Camera2D.IsHDragEnabled()")
 
 	// Build out the method's arguments
@@ -16947,11 +15549,11 @@ func (o *Camera2D) IsHDragEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_h_drag_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_h_drag_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -16960,7 +15562,7 @@ func (o *Camera2D) IsHDragEnabled() *bool {
 /*
 
  */
-func (o *Camera2D) IsLimitDrawingEnabled() *bool {
+func (o *Camera2D) IsLimitDrawingEnabled() bool {
 	log.Println("Calling Camera2D.IsLimitDrawingEnabled()")
 
 	// Build out the method's arguments
@@ -16968,11 +15570,11 @@ func (o *Camera2D) IsLimitDrawingEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_limit_drawing_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_limit_drawing_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -16981,7 +15583,7 @@ func (o *Camera2D) IsLimitDrawingEnabled() *bool {
 /*
 
  */
-func (o *Camera2D) IsLimitSmoothingEnabled() *bool {
+func (o *Camera2D) IsLimitSmoothingEnabled() bool {
 	log.Println("Calling Camera2D.IsLimitSmoothingEnabled()")
 
 	// Build out the method's arguments
@@ -16989,11 +15591,11 @@ func (o *Camera2D) IsLimitSmoothingEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_limit_smoothing_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_limit_smoothing_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -17002,7 +15604,7 @@ func (o *Camera2D) IsLimitSmoothingEnabled() *bool {
 /*
 
  */
-func (o *Camera2D) IsMarginDrawingEnabled() *bool {
+func (o *Camera2D) IsMarginDrawingEnabled() bool {
 	log.Println("Calling Camera2D.IsMarginDrawingEnabled()")
 
 	// Build out the method's arguments
@@ -17010,11 +15612,11 @@ func (o *Camera2D) IsMarginDrawingEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_margin_drawing_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_margin_drawing_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -17023,7 +15625,7 @@ func (o *Camera2D) IsMarginDrawingEnabled() *bool {
 /*
 
  */
-func (o *Camera2D) IsRotating() *bool {
+func (o *Camera2D) IsRotating() bool {
 	log.Println("Calling Camera2D.IsRotating()")
 
 	// Build out the method's arguments
@@ -17031,11 +15633,11 @@ func (o *Camera2D) IsRotating() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_rotating", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_rotating", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -17044,7 +15646,7 @@ func (o *Camera2D) IsRotating() *bool {
 /*
 
  */
-func (o *Camera2D) IsScreenDrawingEnabled() *bool {
+func (o *Camera2D) IsScreenDrawingEnabled() bool {
 	log.Println("Calling Camera2D.IsScreenDrawingEnabled()")
 
 	// Build out the method's arguments
@@ -17052,11 +15654,11 @@ func (o *Camera2D) IsScreenDrawingEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_screen_drawing_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_screen_drawing_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -17065,7 +15667,7 @@ func (o *Camera2D) IsScreenDrawingEnabled() *bool {
 /*
 
  */
-func (o *Camera2D) IsVDragEnabled() *bool {
+func (o *Camera2D) IsVDragEnabled() bool {
 	log.Println("Calling Camera2D.IsVDragEnabled()")
 
 	// Build out the method's arguments
@@ -17073,11 +15675,11 @@ func (o *Camera2D) IsVDragEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_v_drag_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_v_drag_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -17176,7 +15778,7 @@ func (o *Camera2D) SetDragMargin(margin int64, dragMargin float64) {
 /*
 
  */
-func (o *Camera2D) SetEnableFollowSmoothing(followSmoothing *bool) {
+func (o *Camera2D) SetEnableFollowSmoothing(followSmoothing bool) {
 	log.Println("Calling Camera2D.SetEnableFollowSmoothing()")
 
 	// Build out the method's arguments
@@ -17212,7 +15814,7 @@ func (o *Camera2D) SetFollowSmoothing(followSmoothing float64) {
 /*
 
  */
-func (o *Camera2D) SetHDragEnabled(enabled *bool) {
+func (o *Camera2D) SetHDragEnabled(enabled bool) {
 	log.Println("Calling Camera2D.SetHDragEnabled()")
 
 	// Build out the method's arguments
@@ -17267,7 +15869,7 @@ func (o *Camera2D) SetLimit(margin int64, limit int64) {
 /*
 
  */
-func (o *Camera2D) SetLimitDrawingEnabled(limitDrawingEnabled *bool) {
+func (o *Camera2D) SetLimitDrawingEnabled(limitDrawingEnabled bool) {
 	log.Println("Calling Camera2D.SetLimitDrawingEnabled()")
 
 	// Build out the method's arguments
@@ -17286,7 +15888,7 @@ func (o *Camera2D) SetLimitDrawingEnabled(limitDrawingEnabled *bool) {
                 Smooth camera when reaching camera limits.
 				This requires camera smoothing being enabled to have a noticeable effect.
 */
-func (o *Camera2D) SetLimitSmoothingEnabled(limitSmoothingEnabled *bool) {
+func (o *Camera2D) SetLimitSmoothingEnabled(limitSmoothingEnabled bool) {
 	log.Println("Calling Camera2D.SetLimitSmoothingEnabled()")
 
 	// Build out the method's arguments
@@ -17304,7 +15906,7 @@ func (o *Camera2D) SetLimitSmoothingEnabled(limitSmoothingEnabled *bool) {
 /*
 
  */
-func (o *Camera2D) SetMarginDrawingEnabled(marginDrawingEnabled *bool) {
+func (o *Camera2D) SetMarginDrawingEnabled(marginDrawingEnabled bool) {
 	log.Println("Calling Camera2D.SetMarginDrawingEnabled()")
 
 	// Build out the method's arguments
@@ -17340,7 +15942,7 @@ func (o *Camera2D) SetOffset(offset *Vector2) {
 /*
 
  */
-func (o *Camera2D) SetRotating(rotating *bool) {
+func (o *Camera2D) SetRotating(rotating bool) {
 	log.Println("Calling Camera2D.SetRotating()")
 
 	// Build out the method's arguments
@@ -17358,7 +15960,7 @@ func (o *Camera2D) SetRotating(rotating *bool) {
 /*
 
  */
-func (o *Camera2D) SetScreenDrawingEnabled(screenDrawingEnabled *bool) {
+func (o *Camera2D) SetScreenDrawingEnabled(screenDrawingEnabled bool) {
 	log.Println("Calling Camera2D.SetScreenDrawingEnabled()")
 
 	// Build out the method's arguments
@@ -17376,7 +15978,7 @@ func (o *Camera2D) SetScreenDrawingEnabled(screenDrawingEnabled *bool) {
 /*
 
  */
-func (o *Camera2D) SetVDragEnabled(enabled *bool) {
+func (o *Camera2D) SetVDragEnabled(enabled bool) {
 	log.Println("Calling Camera2D.SetVDragEnabled()")
 
 	// Build out the method's arguments
@@ -17433,91 +16035,7 @@ func (o *Camera2D) SetZoom(zoom *Vector2) {
 		This node is intended to be a simple helper get get things going quickly and it may happen often that more functionality is desired to change how the camera works. To make your own custom camera node, simply inherit from [Node2D] and change the transform of the canvas by calling get_viewport().set_canvas_transform(m) in [Viewport].
 */
 type Camera2DImplementer interface {
-	Node2DImplementer
-
-	Align()
-
-	ClearCurrent()
-
-	ForceUpdateScroll()
-
-	GetAnchorMode() int64
-
-	GetCameraPos() *Vector2
-
-	GetCameraScreenCenter() *Vector2
-
-	GetCustomViewport() *Node
-
-	GetDragMargin(margin int64) float64
-
-	GetFollowSmoothing() float64
-
-	GetHOffset() float64
-
-	GetLimit(margin int64) int64
-
-	GetOffset() *Vector2
-
-	GetVOffset() float64
-
-	GetZoom() *Vector2
-
-	IsCurrent() *bool
-
-	IsFollowSmoothingEnabled() *bool
-
-	IsHDragEnabled() *bool
-
-	IsLimitDrawingEnabled() *bool
-
-	IsLimitSmoothingEnabled() *bool
-
-	IsMarginDrawingEnabled() *bool
-
-	IsRotating() *bool
-
-	IsScreenDrawingEnabled() *bool
-
-	IsVDragEnabled() *bool
-
-	MakeCurrent()
-
-	ResetSmoothing()
-
-	SetAnchorMode(anchorMode int64)
-
-	SetCustomViewport(viewport *Node)
-
-	SetDragMargin(margin int64, dragMargin float64)
-
-	SetEnableFollowSmoothing(followSmoothing *bool)
-
-	SetFollowSmoothing(followSmoothing float64)
-
-	SetHDragEnabled(enabled *bool)
-
-	SetHOffset(ofs float64)
-
-	SetLimit(margin int64, limit int64)
-
-	SetLimitDrawingEnabled(limitDrawingEnabled *bool)
-
-	SetLimitSmoothingEnabled(limitSmoothingEnabled *bool)
-
-	SetMarginDrawingEnabled(marginDrawingEnabled *bool)
-
-	SetOffset(offset *Vector2)
-
-	SetRotating(rotating *bool)
-
-	SetScreenDrawingEnabled(screenDrawingEnabled *bool)
-
-	SetVDragEnabled(enabled *bool)
-
-	SetVOffset(ofs float64)
-
-	SetZoom(zoom *Vector2)
+	Class
 }
 
 /*
@@ -17601,7 +16119,7 @@ func (o *CanvasItem) DrawCircle(pos *Vector2, radius float64, color *Color) {
 /*
    Draw a colored polygon of any amount of points, convex or concave.
 */
-func (o *CanvasItem) DrawColoredPolygon(points *PoolVector2Array, color *Color, uvs *PoolVector2Array, texture *Texture, normalMap *Texture, antialiased *bool) {
+func (o *CanvasItem) DrawColoredPolygon(points *PoolVector2Array, color *Color, uvs *PoolVector2Array, texture *Texture, normalMap *Texture, antialiased bool) {
 	log.Println("Calling CanvasItem.DrawColoredPolygon()")
 
 	// Build out the method's arguments
@@ -17624,7 +16142,7 @@ func (o *CanvasItem) DrawColoredPolygon(points *PoolVector2Array, color *Color, 
 /*
    Draw a line from a 2D point to another, with a given color and width. It can be optionally antialiased.
 */
-func (o *CanvasItem) DrawLine(from *Vector2, to *Vector2, color *Color, width float64, antialiased *bool) {
+func (o *CanvasItem) DrawLine(from *Vector2, to *Vector2, color *Color, width float64, antialiased bool) {
 	log.Println("Calling CanvasItem.DrawLine()")
 
 	// Build out the method's arguments
@@ -17646,7 +16164,7 @@ func (o *CanvasItem) DrawLine(from *Vector2, to *Vector2, color *Color, width fl
 /*
    Draw a polygon of any amount of points, convex or concave.
 */
-func (o *CanvasItem) DrawPolygon(points *PoolVector2Array, colors *PoolColorArray, uvs *PoolVector2Array, texture *Texture, normalMap *Texture, antialiased *bool) {
+func (o *CanvasItem) DrawPolygon(points *PoolVector2Array, colors *PoolColorArray, uvs *PoolVector2Array, texture *Texture, normalMap *Texture, antialiased bool) {
 	log.Println("Calling CanvasItem.DrawPolygon()")
 
 	// Build out the method's arguments
@@ -17669,7 +16187,7 @@ func (o *CanvasItem) DrawPolygon(points *PoolVector2Array, colors *PoolColorArra
 /*
 
  */
-func (o *CanvasItem) DrawPolyline(points *PoolVector2Array, color *Color, width float64, antialiased *bool) {
+func (o *CanvasItem) DrawPolyline(points *PoolVector2Array, color *Color, width float64, antialiased bool) {
 	log.Println("Calling CanvasItem.DrawPolyline()")
 
 	// Build out the method's arguments
@@ -17690,7 +16208,7 @@ func (o *CanvasItem) DrawPolyline(points *PoolVector2Array, color *Color, width 
 /*
 
  */
-func (o *CanvasItem) DrawPolylineColors(points *PoolVector2Array, colors *PoolColorArray, width float64, antialiased *bool) {
+func (o *CanvasItem) DrawPolylineColors(points *PoolVector2Array, colors *PoolColorArray, width float64, antialiased bool) {
 	log.Println("Calling CanvasItem.DrawPolylineColors()")
 
 	// Build out the method's arguments
@@ -17734,7 +16252,7 @@ func (o *CanvasItem) DrawPrimitive(points *PoolVector2Array, colors *PoolColorAr
 /*
    Draw a colored rectangle.
 */
-func (o *CanvasItem) DrawRect(rect *Rect2, color *Color, filled *bool) {
+func (o *CanvasItem) DrawRect(rect *Rect2, color *Color, filled bool) {
 	log.Println("Calling CanvasItem.DrawRect()")
 
 	// Build out the method's arguments
@@ -17854,7 +16372,7 @@ func (o *CanvasItem) DrawTexture(texture *Texture, pos *Vector2, modulate *Color
 /*
    Draw a textured rectangle at a given position, optionally modulated by a color. Transpose swaps the x and y coordinates when reading the texture.
 */
-func (o *CanvasItem) DrawTextureRect(texture *Texture, rect *Rect2, tile *bool, modulate *Color, transpose *bool, normalMap *Texture) {
+func (o *CanvasItem) DrawTextureRect(texture *Texture, rect *Rect2, tile bool, modulate *Color, transpose bool, normalMap *Texture) {
 	log.Println("Calling CanvasItem.DrawTextureRect()")
 
 	// Build out the method's arguments
@@ -17877,7 +16395,7 @@ func (o *CanvasItem) DrawTextureRect(texture *Texture, rect *Rect2, tile *bool, 
 /*
    Draw a textured rectangle region at a given position, optionally modulated by a color. Transpose swaps the x and y coordinates when reading the texture.
 */
-func (o *CanvasItem) DrawTextureRectRegion(texture *Texture, rect *Rect2, srcRect *Rect2, modulate *Color, transpose *bool, normalMap *Texture, clipUv *bool) {
+func (o *CanvasItem) DrawTextureRectRegion(texture *Texture, rect *Rect2, srcRect *Rect2, modulate *Color, transpose bool, normalMap *Texture, clipUv bool) {
 	log.Println("Calling CanvasItem.DrawTextureRectRegion()")
 
 	// Build out the method's arguments
@@ -18270,7 +16788,7 @@ func (o *CanvasItem) GetTransform() *Transform2D {
 /*
    Get whether this item uses its parent's material.
 */
-func (o *CanvasItem) GetUseParentMaterial() *bool {
+func (o *CanvasItem) GetUseParentMaterial() bool {
 	log.Println("Calling CanvasItem.GetUseParentMaterial()")
 
 	// Build out the method's arguments
@@ -18278,11 +16796,11 @@ func (o *CanvasItem) GetUseParentMaterial() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_use_parent_material", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_use_parent_material", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -18371,7 +16889,7 @@ func (o *CanvasItem) Hide() {
 /*
    Return whether the item is drawn behind its parent.
 */
-func (o *CanvasItem) IsDrawBehindParentEnabled() *bool {
+func (o *CanvasItem) IsDrawBehindParentEnabled() bool {
 	log.Println("Calling CanvasItem.IsDrawBehindParentEnabled()")
 
 	// Build out the method's arguments
@@ -18379,11 +16897,11 @@ func (o *CanvasItem) IsDrawBehindParentEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_draw_behind_parent_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_draw_behind_parent_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -18392,7 +16910,7 @@ func (o *CanvasItem) IsDrawBehindParentEnabled() *bool {
 /*
 
  */
-func (o *CanvasItem) IsLocalTransformNotificationEnabled() *bool {
+func (o *CanvasItem) IsLocalTransformNotificationEnabled() bool {
 	log.Println("Calling CanvasItem.IsLocalTransformNotificationEnabled()")
 
 	// Build out the method's arguments
@@ -18400,11 +16918,11 @@ func (o *CanvasItem) IsLocalTransformNotificationEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_local_transform_notification_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_local_transform_notification_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -18413,7 +16931,7 @@ func (o *CanvasItem) IsLocalTransformNotificationEnabled() *bool {
 /*
    Return if set as toplevel. See [method set_as_toplevel].
 */
-func (o *CanvasItem) IsSetAsToplevel() *bool {
+func (o *CanvasItem) IsSetAsToplevel() bool {
 	log.Println("Calling CanvasItem.IsSetAsToplevel()")
 
 	// Build out the method's arguments
@@ -18421,11 +16939,11 @@ func (o *CanvasItem) IsSetAsToplevel() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_set_as_toplevel", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_set_as_toplevel", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -18434,7 +16952,7 @@ func (o *CanvasItem) IsSetAsToplevel() *bool {
 /*
 
  */
-func (o *CanvasItem) IsTransformNotificationEnabled() *bool {
+func (o *CanvasItem) IsTransformNotificationEnabled() bool {
 	log.Println("Calling CanvasItem.IsTransformNotificationEnabled()")
 
 	// Build out the method's arguments
@@ -18442,11 +16960,11 @@ func (o *CanvasItem) IsTransformNotificationEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_transform_notification_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_transform_notification_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -18455,7 +16973,7 @@ func (o *CanvasItem) IsTransformNotificationEnabled() *bool {
 /*
    Return true if this CanvasItem is visible. It may be invisible because itself or a parent canvas item is hidden.
 */
-func (o *CanvasItem) IsVisible() *bool {
+func (o *CanvasItem) IsVisible() bool {
 	log.Println("Calling CanvasItem.IsVisible()")
 
 	// Build out the method's arguments
@@ -18463,11 +16981,11 @@ func (o *CanvasItem) IsVisible() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_visible", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_visible", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -18476,7 +16994,7 @@ func (o *CanvasItem) IsVisible() *bool {
 /*
 
  */
-func (o *CanvasItem) IsVisibleInTree() *bool {
+func (o *CanvasItem) IsVisibleInTree() bool {
 	log.Println("Calling CanvasItem.IsVisibleInTree()")
 
 	// Build out the method's arguments
@@ -18484,11 +17002,11 @@ func (o *CanvasItem) IsVisibleInTree() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_visible_in_tree", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_visible_in_tree", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -18541,7 +17059,7 @@ func (o *CanvasItem) MakeInputLocal(event *InputEvent) *InputEvent {
 /*
    Set as top level. This means that it will not inherit transform from parent canvas items.
 */
-func (o *CanvasItem) SetAsToplevel(enable *bool) {
+func (o *CanvasItem) SetAsToplevel(enable bool) {
 	log.Println("Calling CanvasItem.SetAsToplevel()")
 
 	// Build out the method's arguments
@@ -18559,7 +17077,7 @@ func (o *CanvasItem) SetAsToplevel(enable *bool) {
 /*
    Set whether the canvas item is drawn behind its parent.
 */
-func (o *CanvasItem) SetDrawBehindParent(enable *bool) {
+func (o *CanvasItem) SetDrawBehindParent(enable bool) {
 	log.Println("Calling CanvasItem.SetDrawBehindParent()")
 
 	// Build out the method's arguments
@@ -18631,7 +17149,7 @@ func (o *CanvasItem) SetModulate(modulate *Color) {
 /*
 
  */
-func (o *CanvasItem) SetNotifyLocalTransform(enable *bool) {
+func (o *CanvasItem) SetNotifyLocalTransform(enable bool) {
 	log.Println("Calling CanvasItem.SetNotifyLocalTransform()")
 
 	// Build out the method's arguments
@@ -18649,7 +17167,7 @@ func (o *CanvasItem) SetNotifyLocalTransform(enable *bool) {
 /*
 
  */
-func (o *CanvasItem) SetNotifyTransform(enable *bool) {
+func (o *CanvasItem) SetNotifyTransform(enable bool) {
 	log.Println("Calling CanvasItem.SetNotifyTransform()")
 
 	// Build out the method's arguments
@@ -18685,7 +17203,7 @@ func (o *CanvasItem) SetSelfModulate(selfModulate *Color) {
 /*
    Set whether or not this item should use its parent's material.
 */
-func (o *CanvasItem) SetUseParentMaterial(enable *bool) {
+func (o *CanvasItem) SetUseParentMaterial(enable bool) {
 	log.Println("Calling CanvasItem.SetUseParentMaterial()")
 
 	// Build out the method's arguments
@@ -18704,7 +17222,7 @@ func (o *CanvasItem) SetUseParentMaterial(enable *bool) {
                 Set whether this item should be visible or not.
 				Note that a hidden CanvasItem will make all children hidden too, so no matter what is set here this item won't be shown if its parent or grandparents nodes are hidden.
 */
-func (o *CanvasItem) SetVisible(visible *bool) {
+func (o *CanvasItem) SetVisible(visible bool) {
 	log.Println("Calling CanvasItem.SetVisible()")
 
 	// Build out the method's arguments
@@ -18762,127 +17280,7 @@ func (o *CanvasItem) Update() {
 		Ultimately, a transform notification can be requested, which will notify the node that its global position changed in case the parent tree changed.
 */
 type CanvasItemImplementer interface {
-	NodeImplementer
-
-	X_Draw()
-
-	DrawChar(font *Font, pos *Vector2, char string, next string, modulate *Color) float64
-
-	DrawCircle(pos *Vector2, radius float64, color *Color)
-
-	DrawColoredPolygon(points *PoolVector2Array, color *Color, uvs *PoolVector2Array, texture *Texture, normalMap *Texture, antialiased *bool)
-
-	DrawLine(from *Vector2, to *Vector2, color *Color, width float64, antialiased *bool)
-
-	DrawPolygon(points *PoolVector2Array, colors *PoolColorArray, uvs *PoolVector2Array, texture *Texture, normalMap *Texture, antialiased *bool)
-
-	DrawPolyline(points *PoolVector2Array, color *Color, width float64, antialiased *bool)
-
-	DrawPolylineColors(points *PoolVector2Array, colors *PoolColorArray, width float64, antialiased *bool)
-
-	DrawPrimitive(points *PoolVector2Array, colors *PoolColorArray, uvs *PoolVector2Array, texture *Texture, width float64, normalMap *Texture)
-
-	DrawRect(rect *Rect2, color *Color, filled *bool)
-
-	DrawSetTransform(pos *Vector2, rot float64, scale *Vector2)
-
-	DrawSetTransformMatrix(xform *Transform2D)
-
-	DrawString(font *Font, pos *Vector2, text string, modulate *Color, clipW int64)
-
-	DrawStyleBox(styleBox *StyleBox, rect *Rect2)
-
-	DrawTexture(texture *Texture, pos *Vector2, modulate *Color, normalMap *Texture)
-
-	DrawTextureRect(texture *Texture, rect *Rect2, tile *bool, modulate *Color, transpose *bool, normalMap *Texture)
-
-	DrawTextureRectRegion(texture *Texture, rect *Rect2, srcRect *Rect2, modulate *Color, transpose *bool, normalMap *Texture, clipUv *bool)
-
-	EditGetState() *Variant
-
-	EditRotate(degrees float64)
-
-	EditSetRect(rect *Rect2)
-
-	EditSetState(state *Variant)
-
-	GetCanvas() *RID
-
-	GetCanvasItem() *RID
-
-	GetCanvasTransform() *Transform2D
-
-	GetGlobalMousePosition() *Vector2
-
-	GetGlobalTransform() *Transform2D
-
-	GetGlobalTransformWithCanvas() *Transform2D
-
-	GetItemAndChildrenRect() *Rect2
-
-	GetItemRect() *Rect2
-
-	GetLightMask() int64
-
-	GetLocalMousePos() *Vector2
-
-	GetMaterial() *Material
-
-	GetModulate() *Color
-
-	GetSelfModulate() *Color
-
-	GetTransform() *Transform2D
-
-	GetUseParentMaterial() *bool
-
-	GetViewportRect() *Rect2
-
-	GetViewportTransform() *Transform2D
-
-	GetWorld2D() *World2D
-
-	Hide()
-
-	IsDrawBehindParentEnabled() *bool
-
-	IsLocalTransformNotificationEnabled() *bool
-
-	IsSetAsToplevel() *bool
-
-	IsTransformNotificationEnabled() *bool
-
-	IsVisible() *bool
-
-	IsVisibleInTree() *bool
-
-	MakeCanvasPosLocal(screenPoint *Vector2) *Vector2
-
-	MakeInputLocal(event *InputEvent) *InputEvent
-
-	SetAsToplevel(enable *bool)
-
-	SetDrawBehindParent(enable *bool)
-
-	SetLightMask(lightMask int64)
-
-	SetMaterial(material *Material)
-
-	SetModulate(modulate *Color)
-
-	SetNotifyLocalTransform(enable *bool)
-
-	SetNotifyTransform(enable *bool)
-
-	SetSelfModulate(selfModulate *Color)
-
-	SetUseParentMaterial(enable *bool)
-
-	SetVisible(visible *bool)
-
-	Show()
-
-	Update()
+	Class
 }
 
 /*
@@ -18979,15 +17377,7 @@ func (o *CanvasItemMaterial) SetLightMode(lightMode int64) {
 
 */
 type CanvasItemMaterialImplementer interface {
-	MaterialImplementer
-
-	GetBlendMode() int64
-
-	GetLightMode() int64
-
-	SetBlendMode(blendMode int64)
-
-	SetLightMode(lightMode int64)
+	Class
 }
 
 /*
@@ -19300,37 +17690,7 @@ func (o *CanvasLayer) SetTransform(transform *Transform2D) {
    Canvas Item layer. [CanvasItem] nodes that are direct or indirect children of a [CanvasLayer] will be drawn in that layer. The layer is a numeric index that defines the draw order. The default 2D scene renders with index 0, so a [CanvasLayer] with index -1 will be drawn below, and one with index 1 will be drawn above. This is very useful for HUDs (in layer 1+ or above), or backgrounds (in layer -1 or below).
 */
 type CanvasLayerImplementer interface {
-	NodeImplementer
-
-	GetCustomViewport() *Node
-
-	GetLayer() int64
-
-	GetOffset() *Vector2
-
-	GetRotation() float64
-
-	GetRotationd() float64
-
-	GetScale() *Vector2
-
-	GetTransform() *Transform2D
-
-	GetWorld2D() *World2D
-
-	SetCustomViewport(viewport *Node)
-
-	SetLayer(layer int64)
-
-	SetOffset(offset *Vector2)
-
-	SetRotation(radians float64)
-
-	SetRotationd(degrees float64)
-
-	SetScale(scale *Vector2)
-
-	SetTransform(transform *Transform2D)
+	Class
 }
 
 /*
@@ -19388,11 +17748,7 @@ func (o *CanvasModulate) SetColor(color *Color) {
    CanvasModulate tints the canvas elements using its assigned color
 */
 type CanvasModulateImplementer interface {
-	Node2DImplementer
-
-	GetColor() *Color
-
-	SetColor(color *Color)
+	Class
 }
 
 /*
@@ -19567,23 +17923,7 @@ func (o *CapsuleMesh) SetRings(rings int64) {
 
 */
 type CapsuleMeshImplementer interface {
-	PrimitiveMeshImplementer
-
-	GetMidHeight() float64
-
-	GetRadialSegments() int64
-
-	GetRadius() float64
-
-	GetRings() int64
-
-	SetMidHeight(midHeight float64)
-
-	SetRadialSegments(segments int64)
-
-	SetRadius(radius float64)
-
-	SetRings(rings int64)
+	Class
 }
 
 /*
@@ -19680,15 +18020,7 @@ func (o *CapsuleShape) SetRadius(radius float64) {
    Capsule shape resource, which can be set into a [PhysicsBody] or area.
 */
 type CapsuleShapeImplementer interface {
-	ShapeImplementer
-
-	GetHeight() float64
-
-	GetRadius() float64
-
-	SetHeight(height float64)
-
-	SetRadius(radius float64)
+	Class
 }
 
 /*
@@ -19785,15 +18117,7 @@ func (o *CapsuleShape2D) SetRadius(radius float64) {
    Capsule 2D shape resource for physics. A capsule (or sometimes called "pill") is like a line grown in all directions. It has a radius and a height, and is often useful for modeling biped characters.
 */
 type CapsuleShape2DImplementer interface {
-	Shape2DImplementer
-
-	GetHeight() float64
-
-	GetRadius() float64
-
-	SetHeight(height float64)
-
-	SetRadius(radius float64)
+	Class
 }
 
 /*
@@ -19810,7 +18134,7 @@ func (o *CenterContainer) baseClass() string {
 /*
    Should put children to the top left corner instead of center of the container.
 */
-func (o *CenterContainer) IsUsingTopLeft() *bool {
+func (o *CenterContainer) IsUsingTopLeft() bool {
 	log.Println("Calling CenterContainer.IsUsingTopLeft()")
 
 	// Build out the method's arguments
@@ -19818,11 +18142,11 @@ func (o *CenterContainer) IsUsingTopLeft() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_using_top_left", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_using_top_left", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -19831,7 +18155,7 @@ func (o *CenterContainer) IsUsingTopLeft() *bool {
 /*
    This function will anchor the container children to the top left corner of the the container boundaries, moving all its children to that position, (the children new center will be the top left corner of the container).
 */
-func (o *CenterContainer) SetUseTopLeft(enable *bool) {
+func (o *CenterContainer) SetUseTopLeft(enable bool) {
 	log.Println("Calling CenterContainer.SetUseTopLeft()")
 
 	// Build out the method's arguments
@@ -19851,11 +18175,7 @@ func (o *CenterContainer) SetUseTopLeft(enable *bool) {
    CenterContainer Keeps children controls centered. This container keeps all children to their minimum size, in the center.
 */
 type CenterContainerImplementer interface {
-	ContainerImplementer
-
-	IsUsingTopLeft() *bool
-
-	SetUseTopLeft(enable *bool)
+	Class
 }
 
 /*
@@ -19874,7 +18194,7 @@ func (o *CheckBox) baseClass() string {
    A checkbox allows the user to make a binary choice (choosing only one of two posible options), for example Answer 'yes' or 'no'.
 */
 type CheckBoxImplementer interface {
-	ButtonImplementer
+	Class
 }
 
 /*
@@ -19893,7 +18213,7 @@ func (o *CheckButton) baseClass() string {
    CheckButton is a toggle button displayed as a check field.
 */
 type CheckButtonImplementer interface {
-	ButtonImplementer
+	Class
 }
 
 /*
@@ -19951,11 +18271,7 @@ func (o *CircleShape2D) SetRadius(radius float64) {
    Circular Shape for 2D Physics. This shape is useful for modeling balls or small characters and its collision detection with everything else is very fast.
 */
 type CircleShape2DImplementer interface {
-	Shape2DImplementer
-
-	GetRadius() float64
-
-	SetRadius(radius float64)
+	Class
 }
 
 /*
@@ -19972,7 +18288,7 @@ func (o *ClassDB) baseClass() string {
 /*
 
  */
-func (o *ClassDB) CanInstance(class string) *bool {
+func (o *ClassDB) CanInstance(class string) bool {
 	log.Println("Calling ClassDB.CanInstance()")
 
 	// Build out the method's arguments
@@ -19981,11 +18297,11 @@ func (o *ClassDB) CanInstance(class string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "can_instance", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "can_instance", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -19994,7 +18310,7 @@ func (o *ClassDB) CanInstance(class string) *bool {
 /*
 
  */
-func (o *ClassDB) ClassExists(class string) *bool {
+func (o *ClassDB) ClassExists(class string) bool {
 	log.Println("Calling ClassDB.ClassExists()")
 
 	// Build out the method's arguments
@@ -20003,11 +18319,11 @@ func (o *ClassDB) ClassExists(class string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "class_exists", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "class_exists", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -20061,7 +18377,7 @@ func (o *ClassDB) ClassGetIntegerConstant(class string, name string) int64 {
 /*
 
  */
-func (o *ClassDB) ClassGetIntegerConstantList(class string, noInheritance *bool) *PoolStringArray {
+func (o *ClassDB) ClassGetIntegerConstantList(class string, noInheritance bool) *PoolStringArray {
 	log.Println("Calling ClassDB.ClassGetIntegerConstantList()")
 
 	// Build out the method's arguments
@@ -20084,7 +18400,7 @@ func (o *ClassDB) ClassGetIntegerConstantList(class string, noInheritance *bool)
 /*
 
  */
-func (o *ClassDB) ClassGetMethodList(class string, noInheritance *bool) *Array {
+func (o *ClassDB) ClassGetMethodList(class string, noInheritance bool) *Array {
 	log.Println("Calling ClassDB.ClassGetMethodList()")
 
 	// Build out the method's arguments
@@ -20130,7 +18446,7 @@ func (o *ClassDB) ClassGetProperty(object *Object, property string) *Variant {
 /*
 
  */
-func (o *ClassDB) ClassGetPropertyList(class string, noInheritance *bool) *Array {
+func (o *ClassDB) ClassGetPropertyList(class string, noInheritance bool) *Array {
 	log.Println("Calling ClassDB.ClassGetPropertyList()")
 
 	// Build out the method's arguments
@@ -20176,7 +18492,7 @@ func (o *ClassDB) ClassGetSignal(class string, signal string) *Dictionary {
 /*
 
  */
-func (o *ClassDB) ClassGetSignalList(class string, noInheritance *bool) *Array {
+func (o *ClassDB) ClassGetSignalList(class string, noInheritance bool) *Array {
 	log.Println("Calling ClassDB.ClassGetSignalList()")
 
 	// Build out the method's arguments
@@ -20199,7 +18515,7 @@ func (o *ClassDB) ClassGetSignalList(class string, noInheritance *bool) *Array {
 /*
 
  */
-func (o *ClassDB) ClassHasIntegerConstant(class string, name string) *bool {
+func (o *ClassDB) ClassHasIntegerConstant(class string, name string) bool {
 	log.Println("Calling ClassDB.ClassHasIntegerConstant()")
 
 	// Build out the method's arguments
@@ -20209,11 +18525,11 @@ func (o *ClassDB) ClassHasIntegerConstant(class string, name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "class_has_integer_constant", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "class_has_integer_constant", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -20222,7 +18538,7 @@ func (o *ClassDB) ClassHasIntegerConstant(class string, name string) *bool {
 /*
 
  */
-func (o *ClassDB) ClassHasMethod(class string, method string, noInheritance *bool) *bool {
+func (o *ClassDB) ClassHasMethod(class string, method string, noInheritance bool) bool {
 	log.Println("Calling ClassDB.ClassHasMethod()")
 
 	// Build out the method's arguments
@@ -20233,11 +18549,11 @@ func (o *ClassDB) ClassHasMethod(class string, method string, noInheritance *boo
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "class_has_method", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "class_has_method", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -20246,7 +18562,7 @@ func (o *ClassDB) ClassHasMethod(class string, method string, noInheritance *boo
 /*
 
  */
-func (o *ClassDB) ClassHasSignal(class string, signal string) *bool {
+func (o *ClassDB) ClassHasSignal(class string, signal string) bool {
 	log.Println("Calling ClassDB.ClassHasSignal()")
 
 	// Build out the method's arguments
@@ -20256,11 +18572,11 @@ func (o *ClassDB) ClassHasSignal(class string, signal string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "class_has_signal", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "class_has_signal", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -20380,7 +18696,7 @@ func (o *ClassDB) Instance(class string) *Variant {
 /*
 
  */
-func (o *ClassDB) IsClassEnabled(class string) *bool {
+func (o *ClassDB) IsClassEnabled(class string) bool {
 	log.Println("Calling ClassDB.IsClassEnabled()")
 
 	// Build out the method's arguments
@@ -20389,11 +18705,11 @@ func (o *ClassDB) IsClassEnabled(class string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_class_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_class_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -20402,7 +18718,7 @@ func (o *ClassDB) IsClassEnabled(class string) *bool {
 /*
 
  */
-func (o *ClassDB) IsParentClass(class string, inherits string) *bool {
+func (o *ClassDB) IsParentClass(class string, inherits string) bool {
 	log.Println("Calling ClassDB.IsParentClass()")
 
 	// Build out the method's arguments
@@ -20412,11 +18728,11 @@ func (o *ClassDB) IsParentClass(class string, inherits string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_parent_class", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_parent_class", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -20427,47 +18743,7 @@ func (o *ClassDB) IsParentClass(class string, inherits string) *bool {
 
 */
 type ClassDBImplementer interface {
-	ObjectImplementer
-
-	CanInstance(class string) *bool
-
-	ClassExists(class string) *bool
-
-	ClassGetCategory(class string) string
-
-	ClassGetIntegerConstant(class string, name string) int64
-
-	ClassGetIntegerConstantList(class string, noInheritance *bool) *PoolStringArray
-
-	ClassGetMethodList(class string, noInheritance *bool) *Array
-
-	ClassGetProperty(object *Object, property string) *Variant
-
-	ClassGetPropertyList(class string, noInheritance *bool) *Array
-
-	ClassGetSignal(class string, signal string) *Dictionary
-
-	ClassGetSignalList(class string, noInheritance *bool) *Array
-
-	ClassHasIntegerConstant(class string, name string) *bool
-
-	ClassHasMethod(class string, method string, noInheritance *bool) *bool
-
-	ClassHasSignal(class string, signal string) *bool
-
-	ClassSetProperty(object *Object, property string, value *Variant) int64
-
-	GetClassList() *PoolStringArray
-
-	GetInheritersFromClass(class string) *PoolStringArray
-
-	GetParentClass(class string) string
-
-	Instance(class string) *Variant
-
-	IsClassEnabled(class string) *bool
-
-	IsParentClass(class string, inherits string) *bool
+	Class
 }
 
 /*
@@ -20528,7 +18804,7 @@ func (o *CollisionObject) CreateShapeOwner(owner *Object) int64 {
 /*
 
  */
-func (o *CollisionObject) GetCaptureInputOnDrag() *bool {
+func (o *CollisionObject) GetCaptureInputOnDrag() bool {
 	log.Println("Calling CollisionObject.GetCaptureInputOnDrag()")
 
 	// Build out the method's arguments
@@ -20536,11 +18812,11 @@ func (o *CollisionObject) GetCaptureInputOnDrag() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_capture_input_on_drag", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_capture_input_on_drag", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -20591,7 +18867,7 @@ func (o *CollisionObject) GetShapeOwners() *Array {
 /*
 
  */
-func (o *CollisionObject) IsRayPickable() *bool {
+func (o *CollisionObject) IsRayPickable() bool {
 	log.Println("Calling CollisionObject.IsRayPickable()")
 
 	// Build out the method's arguments
@@ -20599,11 +18875,11 @@ func (o *CollisionObject) IsRayPickable() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_ray_pickable", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_ray_pickable", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -20612,7 +18888,7 @@ func (o *CollisionObject) IsRayPickable() *bool {
 /*
 
  */
-func (o *CollisionObject) IsShapeOwnerDisabled(ownerId int64) *bool {
+func (o *CollisionObject) IsShapeOwnerDisabled(ownerId int64) bool {
 	log.Println("Calling CollisionObject.IsShapeOwnerDisabled()")
 
 	// Build out the method's arguments
@@ -20621,11 +18897,11 @@ func (o *CollisionObject) IsShapeOwnerDisabled(ownerId int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_shape_owner_disabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_shape_owner_disabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -20652,7 +18928,7 @@ func (o *CollisionObject) RemoveShapeOwner(ownerId int64) {
 /*
 
  */
-func (o *CollisionObject) SetCaptureInputOnDrag(enable *bool) {
+func (o *CollisionObject) SetCaptureInputOnDrag(enable bool) {
 	log.Println("Calling CollisionObject.SetCaptureInputOnDrag()")
 
 	// Build out the method's arguments
@@ -20670,7 +18946,7 @@ func (o *CollisionObject) SetCaptureInputOnDrag(enable *bool) {
 /*
 
  */
-func (o *CollisionObject) SetRayPickable(rayPickable *bool) {
+func (o *CollisionObject) SetRayPickable(rayPickable bool) {
 	log.Println("Calling CollisionObject.SetRayPickable()")
 
 	// Build out the method's arguments
@@ -20878,7 +19154,7 @@ func (o *CollisionObject) ShapeOwnerRemoveShape(ownerId int64, shapeId int64) {
 /*
 
  */
-func (o *CollisionObject) ShapeOwnerSetDisabled(ownerId int64, disabled *bool) {
+func (o *CollisionObject) ShapeOwnerSetDisabled(ownerId int64, disabled bool) {
 	log.Println("Calling CollisionObject.ShapeOwnerSetDisabled()")
 
 	// Build out the method's arguments
@@ -20918,49 +19194,7 @@ func (o *CollisionObject) ShapeOwnerSetTransform(ownerId int64, transform *Trans
 
 */
 type CollisionObjectImplementer interface {
-	SpatialImplementer
-
-	X_InputEvent(camera *Object, event *InputEvent, clickPos *Vector3, clickNormal *Vector3, shapeIdx int64)
-
-	CreateShapeOwner(owner *Object) int64
-
-	GetCaptureInputOnDrag() *bool
-
-	GetRid() *RID
-
-	GetShapeOwners() *Array
-
-	IsRayPickable() *bool
-
-	IsShapeOwnerDisabled(ownerId int64) *bool
-
-	RemoveShapeOwner(ownerId int64)
-
-	SetCaptureInputOnDrag(enable *bool)
-
-	SetRayPickable(rayPickable *bool)
-
-	ShapeFindOwner(shapeIndex int64) int64
-
-	ShapeOwnerAddShape(ownerId int64, shape *Shape)
-
-	ShapeOwnerClearShapes(ownerId int64)
-
-	ShapeOwnerGetOwner(ownerId int64) *Object
-
-	ShapeOwnerGetShape(ownerId int64, shapeId int64) *Shape
-
-	ShapeOwnerGetShapeCount(ownerId int64) int64
-
-	ShapeOwnerGetShapeIndex(ownerId int64, shapeId int64) int64
-
-	ShapeOwnerGetTransform(ownerId int64) *Transform
-
-	ShapeOwnerRemoveShape(ownerId int64, shapeId int64)
-
-	ShapeOwnerSetDisabled(ownerId int64, disabled *bool)
-
-	ShapeOwnerSetTransform(ownerId int64, transform *Transform)
+	Class
 }
 
 /*
@@ -21061,7 +19295,7 @@ func (o *CollisionObject2D) GetShapeOwners() *Array {
 /*
    Return whether this object is pickable.
 */
-func (o *CollisionObject2D) IsPickable() *bool {
+func (o *CollisionObject2D) IsPickable() bool {
 	log.Println("Calling CollisionObject2D.IsPickable()")
 
 	// Build out the method's arguments
@@ -21069,11 +19303,11 @@ func (o *CollisionObject2D) IsPickable() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_pickable", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_pickable", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -21082,7 +19316,7 @@ func (o *CollisionObject2D) IsPickable() *bool {
 /*
 
  */
-func (o *CollisionObject2D) IsShapeOwnerDisabled(ownerId int64) *bool {
+func (o *CollisionObject2D) IsShapeOwnerDisabled(ownerId int64) bool {
 	log.Println("Calling CollisionObject2D.IsShapeOwnerDisabled()")
 
 	// Build out the method's arguments
@@ -21091,11 +19325,11 @@ func (o *CollisionObject2D) IsShapeOwnerDisabled(ownerId int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_shape_owner_disabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_shape_owner_disabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -21104,7 +19338,7 @@ func (o *CollisionObject2D) IsShapeOwnerDisabled(ownerId int64) *bool {
 /*
 
  */
-func (o *CollisionObject2D) IsShapeOwnerOneWayCollisionEnabled(ownerId int64) *bool {
+func (o *CollisionObject2D) IsShapeOwnerOneWayCollisionEnabled(ownerId int64) bool {
 	log.Println("Calling CollisionObject2D.IsShapeOwnerOneWayCollisionEnabled()")
 
 	// Build out the method's arguments
@@ -21113,11 +19347,11 @@ func (o *CollisionObject2D) IsShapeOwnerOneWayCollisionEnabled(ownerId int64) *b
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_shape_owner_one_way_collision_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_shape_owner_one_way_collision_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -21144,7 +19378,7 @@ func (o *CollisionObject2D) RemoveShapeOwner(ownerId int64) {
 /*
    Set whether this object is pickable. A pickable object can detect the mouse pointer enter/leave it and, if the mouse is inside it, report input events.
 */
-func (o *CollisionObject2D) SetPickable(enabled *bool) {
+func (o *CollisionObject2D) SetPickable(enabled bool) {
 	log.Println("Calling CollisionObject2D.SetPickable()")
 
 	// Build out the method's arguments
@@ -21352,7 +19586,7 @@ func (o *CollisionObject2D) ShapeOwnerRemoveShape(ownerId int64, shapeId int64) 
 /*
 
  */
-func (o *CollisionObject2D) ShapeOwnerSetDisabled(ownerId int64, disabled *bool) {
+func (o *CollisionObject2D) ShapeOwnerSetDisabled(ownerId int64, disabled bool) {
 	log.Println("Calling CollisionObject2D.ShapeOwnerSetDisabled()")
 
 	// Build out the method's arguments
@@ -21371,7 +19605,7 @@ func (o *CollisionObject2D) ShapeOwnerSetDisabled(ownerId int64, disabled *bool)
 /*
 
  */
-func (o *CollisionObject2D) ShapeOwnerSetOneWayCollision(ownerId int64, enable *bool) {
+func (o *CollisionObject2D) ShapeOwnerSetOneWayCollision(ownerId int64, enable bool) {
 	log.Println("Calling CollisionObject2D.ShapeOwnerSetOneWayCollision()")
 
 	// Build out the method's arguments
@@ -21411,49 +19645,7 @@ func (o *CollisionObject2D) ShapeOwnerSetTransform(ownerId int64, transform *Tra
    CollisionObject2D is the base class for 2D physics collisionables. They can hold any number of 2D collision shapes. Usually, they are edited by placing [CollisionShape2D] and/or [CollisionPolygon2D] nodes as children. Such nodes are for reference and not present outside the editor, so code should use the regular shape API.
 */
 type CollisionObject2DImplementer interface {
-	Node2DImplementer
-
-	X_InputEvent(viewport *Object, event *InputEvent, shapeIdx int64)
-
-	CreateShapeOwner(owner *Object) int64
-
-	GetRid() *RID
-
-	GetShapeOwners() *Array
-
-	IsPickable() *bool
-
-	IsShapeOwnerDisabled(ownerId int64) *bool
-
-	IsShapeOwnerOneWayCollisionEnabled(ownerId int64) *bool
-
-	RemoveShapeOwner(ownerId int64)
-
-	SetPickable(enabled *bool)
-
-	ShapeFindOwner(shapeIndex int64) int64
-
-	ShapeOwnerAddShape(ownerId int64, shape *Shape2D)
-
-	ShapeOwnerClearShapes(ownerId int64)
-
-	ShapeOwnerGetOwner(ownerId int64) *Object
-
-	ShapeOwnerGetShape(ownerId int64, shapeId int64) *Shape2D
-
-	ShapeOwnerGetShapeCount(ownerId int64) int64
-
-	ShapeOwnerGetShapeIndex(ownerId int64, shapeId int64) int64
-
-	ShapeOwnerGetTransform(ownerId int64) *Transform2D
-
-	ShapeOwnerRemoveShape(ownerId int64, shapeId int64)
-
-	ShapeOwnerSetDisabled(ownerId int64, disabled *bool)
-
-	ShapeOwnerSetOneWayCollision(ownerId int64, enable *bool)
-
-	ShapeOwnerSetTransform(ownerId int64, transform *Transform2D)
+	Class
 }
 
 /*
@@ -21512,7 +19704,7 @@ func (o *CollisionPolygon) GetPolygon() *PoolVector2Array {
 /*
 
  */
-func (o *CollisionPolygon) IsDisabled() *bool {
+func (o *CollisionPolygon) IsDisabled() bool {
 	log.Println("Calling CollisionPolygon.IsDisabled()")
 
 	// Build out the method's arguments
@@ -21520,11 +19712,11 @@ func (o *CollisionPolygon) IsDisabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_disabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_disabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -21551,7 +19743,7 @@ func (o *CollisionPolygon) SetDepth(depth float64) {
 /*
 
  */
-func (o *CollisionPolygon) SetDisabled(disabled *bool) {
+func (o *CollisionPolygon) SetDisabled(disabled bool) {
 	log.Println("Calling CollisionPolygon.SetDisabled()")
 
 	// Build out the method's arguments
@@ -21589,19 +19781,7 @@ func (o *CollisionPolygon) SetPolygon(polygon *PoolVector2Array) {
 
 */
 type CollisionPolygonImplementer interface {
-	SpatialImplementer
-
-	GetDepth() float64
-
-	GetPolygon() *PoolVector2Array
-
-	IsDisabled() *bool
-
-	SetDepth(depth float64)
-
-	SetDisabled(disabled *bool)
-
-	SetPolygon(polygon *PoolVector2Array)
+	Class
 }
 
 /*
@@ -21660,7 +19840,7 @@ func (o *CollisionPolygon2D) GetPolygon() *PoolVector2Array {
 /*
 
  */
-func (o *CollisionPolygon2D) IsDisabled() *bool {
+func (o *CollisionPolygon2D) IsDisabled() bool {
 	log.Println("Calling CollisionPolygon2D.IsDisabled()")
 
 	// Build out the method's arguments
@@ -21668,11 +19848,11 @@ func (o *CollisionPolygon2D) IsDisabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_disabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_disabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -21681,7 +19861,7 @@ func (o *CollisionPolygon2D) IsDisabled() *bool {
 /*
 
  */
-func (o *CollisionPolygon2D) IsOneWayCollisionEnabled() *bool {
+func (o *CollisionPolygon2D) IsOneWayCollisionEnabled() bool {
 	log.Println("Calling CollisionPolygon2D.IsOneWayCollisionEnabled()")
 
 	// Build out the method's arguments
@@ -21689,11 +19869,11 @@ func (o *CollisionPolygon2D) IsOneWayCollisionEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_one_way_collision_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_one_way_collision_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -21720,7 +19900,7 @@ func (o *CollisionPolygon2D) SetBuildMode(buildMode int64) {
 /*
 
  */
-func (o *CollisionPolygon2D) SetDisabled(disabled *bool) {
+func (o *CollisionPolygon2D) SetDisabled(disabled bool) {
 	log.Println("Calling CollisionPolygon2D.SetDisabled()")
 
 	// Build out the method's arguments
@@ -21738,7 +19918,7 @@ func (o *CollisionPolygon2D) SetDisabled(disabled *bool) {
 /*
 
  */
-func (o *CollisionPolygon2D) SetOneWayCollision(enabled *bool) {
+func (o *CollisionPolygon2D) SetOneWayCollision(enabled bool) {
 	log.Println("Calling CollisionPolygon2D.SetOneWayCollision()")
 
 	// Build out the method's arguments
@@ -21777,23 +19957,7 @@ func (o *CollisionPolygon2D) SetPolygon(polygon *PoolVector2Array) {
    Editor-only class. This is not present when running the game. It's used in the editor to properly edit and position collision shapes in [CollisionObject2D]. This is not accessible from regular code. This class is for editing custom shape polygons.
 */
 type CollisionPolygon2DImplementer interface {
-	Node2DImplementer
-
-	GetBuildMode() int64
-
-	GetPolygon() *PoolVector2Array
-
-	IsDisabled() *bool
-
-	IsOneWayCollisionEnabled() *bool
-
-	SetBuildMode(buildMode int64)
-
-	SetDisabled(disabled *bool)
-
-	SetOneWayCollision(enabled *bool)
-
-	SetPolygon(polygon *PoolVector2Array)
+	Class
 }
 
 /*
@@ -21831,7 +19995,7 @@ func (o *CollisionShape) GetShape() *Shape {
 /*
 
  */
-func (o *CollisionShape) IsDisabled() *bool {
+func (o *CollisionShape) IsDisabled() bool {
 	log.Println("Calling CollisionShape.IsDisabled()")
 
 	// Build out the method's arguments
@@ -21839,11 +20003,11 @@ func (o *CollisionShape) IsDisabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_disabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_disabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -21887,7 +20051,7 @@ func (o *CollisionShape) ResourceChanged(resource *Resource) {
 /*
 
  */
-func (o *CollisionShape) SetDisabled(enable *bool) {
+func (o *CollisionShape) SetDisabled(enable bool) {
 	log.Println("Calling CollisionShape.SetDisabled()")
 
 	// Build out the method's arguments
@@ -21925,19 +20089,7 @@ func (o *CollisionShape) SetShape(shape *Shape) {
 
 */
 type CollisionShapeImplementer interface {
-	SpatialImplementer
-
-	GetShape() *Shape
-
-	IsDisabled() *bool
-
-	MakeConvexFromBrothers()
-
-	ResourceChanged(resource *Resource)
-
-	SetDisabled(enable *bool)
-
-	SetShape(shape *Shape)
+	Class
 }
 
 /*
@@ -21975,7 +20127,7 @@ func (o *CollisionShape2D) GetShape() *Shape2D {
 /*
 
  */
-func (o *CollisionShape2D) IsDisabled() *bool {
+func (o *CollisionShape2D) IsDisabled() bool {
 	log.Println("Calling CollisionShape2D.IsDisabled()")
 
 	// Build out the method's arguments
@@ -21983,11 +20135,11 @@ func (o *CollisionShape2D) IsDisabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_disabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_disabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -21996,7 +20148,7 @@ func (o *CollisionShape2D) IsDisabled() *bool {
 /*
 
  */
-func (o *CollisionShape2D) IsOneWayCollisionEnabled() *bool {
+func (o *CollisionShape2D) IsOneWayCollisionEnabled() bool {
 	log.Println("Calling CollisionShape2D.IsOneWayCollisionEnabled()")
 
 	// Build out the method's arguments
@@ -22004,11 +20156,11 @@ func (o *CollisionShape2D) IsOneWayCollisionEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_one_way_collision_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_one_way_collision_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -22017,7 +20169,7 @@ func (o *CollisionShape2D) IsOneWayCollisionEnabled() *bool {
 /*
 
  */
-func (o *CollisionShape2D) SetDisabled(disabled *bool) {
+func (o *CollisionShape2D) SetDisabled(disabled bool) {
 	log.Println("Calling CollisionShape2D.SetDisabled()")
 
 	// Build out the method's arguments
@@ -22035,7 +20187,7 @@ func (o *CollisionShape2D) SetDisabled(disabled *bool) {
 /*
 
  */
-func (o *CollisionShape2D) SetOneWayCollision(enabled *bool) {
+func (o *CollisionShape2D) SetOneWayCollision(enabled bool) {
 	log.Println("Calling CollisionShape2D.SetOneWayCollision()")
 
 	// Build out the method's arguments
@@ -22073,19 +20225,7 @@ func (o *CollisionShape2D) SetShape(shape *Shape2D) {
    Editor-only class. This is not present when running the game. It's used in the editor to properly edit and position collision shapes in [CollisionObject2D]. This is not accessible from regular code.
 */
 type CollisionShape2DImplementer interface {
-	Node2DImplementer
-
-	GetShape() *Shape2D
-
-	IsDisabled() *bool
-
-	IsOneWayCollisionEnabled() *bool
-
-	SetDisabled(disabled *bool)
-
-	SetOneWayCollision(enabled *bool)
-
-	SetShape(shape *Shape2D)
+	Class
 }
 
 /*
@@ -22141,7 +20281,7 @@ func (o *ColorPicker) GetPickColor() *Color {
 /*
    Returns whether the color has transparency or not.
 */
-func (o *ColorPicker) IsEditingAlpha() *bool {
+func (o *ColorPicker) IsEditingAlpha() bool {
 	log.Println("Calling ColorPicker.IsEditingAlpha()")
 
 	// Build out the method's arguments
@@ -22149,11 +20289,11 @@ func (o *ColorPicker) IsEditingAlpha() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_editing_alpha", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_editing_alpha", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -22162,7 +20302,7 @@ func (o *ColorPicker) IsEditingAlpha() *bool {
 /*
    Returns whether this color picker is in raw mode or not, raw mode will allow the color R, G, B component values to go beyond 1, you have to consider that the max value for color components is 1, going beyond that value will not have effect in the color, but can be used for special operations that require it (like tinting without darkening or rendering sprites in HDR).
 */
-func (o *ColorPicker) IsRawMode() *bool {
+func (o *ColorPicker) IsRawMode() bool {
 	log.Println("Calling ColorPicker.IsRawMode()")
 
 	// Build out the method's arguments
@@ -22170,11 +20310,11 @@ func (o *ColorPicker) IsRawMode() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_raw_mode", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_raw_mode", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -22183,7 +20323,7 @@ func (o *ColorPicker) IsRawMode() *bool {
 /*
    Set true if you want the color to have an alpha channel (transparency), or false if you want a solid color.
 */
-func (o *ColorPicker) SetEditAlpha(show *bool) {
+func (o *ColorPicker) SetEditAlpha(show bool) {
 	log.Println("Calling ColorPicker.SetEditAlpha()")
 
 	// Build out the method's arguments
@@ -22219,7 +20359,7 @@ func (o *ColorPicker) SetPickColor(color *Color) {
 /*
    Set whether this color picker is using raw mode or not, see [method is_raw_mode].
 */
-func (o *ColorPicker) SetRawMode(mode *bool) {
+func (o *ColorPicker) SetRawMode(mode bool) {
 	log.Println("Calling ColorPicker.SetRawMode()")
 
 	// Build out the method's arguments
@@ -22239,21 +20379,7 @@ func (o *ColorPicker) SetRawMode(mode *bool) {
    This is a simple color picker [Control]. It's useful for selecting a color from an RGB/RGBA colorspace.
 */
 type ColorPickerImplementer interface {
-	BoxContainerImplementer
-
-	AddPreset(color *Color)
-
-	GetPickColor() *Color
-
-	IsEditingAlpha() *bool
-
-	IsRawMode() *bool
-
-	SetEditAlpha(show *bool)
-
-	SetPickColor(color *Color)
-
-	SetRawMode(mode *bool)
+	Class
 }
 
 /*
@@ -22312,7 +20438,7 @@ func (o *ColorPickerButton) GetPicker() *ColorPicker {
 /*
    See [method ColorPicker.is_edit_alpha]
 */
-func (o *ColorPickerButton) IsEditingAlpha() *bool {
+func (o *ColorPickerButton) IsEditingAlpha() bool {
 	log.Println("Calling ColorPickerButton.IsEditingAlpha()")
 
 	// Build out the method's arguments
@@ -22320,11 +20446,11 @@ func (o *ColorPickerButton) IsEditingAlpha() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_editing_alpha", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_editing_alpha", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -22333,7 +20459,7 @@ func (o *ColorPickerButton) IsEditingAlpha() *bool {
 /*
    See [method ColorPicker.set_edit_alpha]
 */
-func (o *ColorPickerButton) SetEditAlpha(show *bool) {
+func (o *ColorPickerButton) SetEditAlpha(show bool) {
 	log.Println("Calling ColorPickerButton.SetEditAlpha()")
 
 	// Build out the method's arguments
@@ -22371,17 +20497,7 @@ func (o *ColorPickerButton) SetPickColor(color *Color) {
    Encapsulates a [ColorPicker] making it accesible by pressing a button, pressing the button will toggle the [ColorPicker] visibility
 */
 type ColorPickerButtonImplementer interface {
-	ButtonImplementer
-
-	GetPickColor() *Color
-
-	GetPicker() *ColorPicker
-
-	IsEditingAlpha() *bool
-
-	SetEditAlpha(show *bool)
-
-	SetPickColor(color *Color)
+	Class
 }
 
 /*
@@ -22439,11 +20555,7 @@ func (o *ColorRect) SetFrameColor(color *Color) {
 
 */
 type ColorRectImplementer interface {
-	ControlImplementer
-
-	GetFrameColor() *Color
-
-	SetFrameColor(color *Color)
+	Class
 }
 
 /*
@@ -22501,11 +20613,7 @@ func (o *ConcavePolygonShape) SetFaces(faces *PoolVector3Array) {
    Concave polygon shape resource, which can be set into a [PhysicsBody] or area. This shape is created by feeding a list of triangles.
 */
 type ConcavePolygonShapeImplementer interface {
-	ShapeImplementer
-
-	GetFaces() *PoolVector3Array
-
-	SetFaces(faces *PoolVector3Array)
+	Class
 }
 
 /*
@@ -22565,11 +20673,7 @@ func (o *ConcavePolygonShape2D) SetSegments(segments *PoolVector2Array) {
 		The main difference between a [ConvexPolygonShape2D] and a [ConcavePolygonShape2D] is that a concave polygon assumes it is concave and uses a more complex method of collision detection, and a convex one forces itself to be convex in order to speed up collision detection.
 */
 type ConcavePolygonShape2DImplementer interface {
-	Shape2DImplementer
-
-	GetSegments() *PoolVector2Array
-
-	SetSegments(segments *PoolVector2Array)
+	Class
 }
 
 /*
@@ -22629,11 +20733,7 @@ func (o *ConeTwistJoint) SetParam(param int64, value float64) {
 
 */
 type ConeTwistJointImplementer interface {
-	JointImplementer
-
-	GetParam(param int64) float64
-
-	SetParam(param int64, value float64)
+	Class
 }
 
 /*
@@ -22748,7 +20848,7 @@ func (o *ConfigFile) GetValue(section string, key string, aDefault *Variant) *Va
 /*
    Check if the specified section exists.
 */
-func (o *ConfigFile) HasSection(section string) *bool {
+func (o *ConfigFile) HasSection(section string) bool {
 	log.Println("Calling ConfigFile.HasSection()")
 
 	// Build out the method's arguments
@@ -22757,11 +20857,11 @@ func (o *ConfigFile) HasSection(section string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_section", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_section", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -22770,7 +20870,7 @@ func (o *ConfigFile) HasSection(section string) *bool {
 /*
    Check if the specified section-key pair exists.
 */
-func (o *ConfigFile) HasSectionKey(section string, key string) *bool {
+func (o *ConfigFile) HasSectionKey(section string, key string) bool {
 	log.Println("Calling ConfigFile.HasSectionKey()")
 
 	// Build out the method's arguments
@@ -22780,11 +20880,11 @@ func (o *ConfigFile) HasSectionKey(section string, key string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_section_key", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_section_key", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -22873,25 +20973,7 @@ func (o *ConfigFile) SetValue(section string, key string, value *Variant) {
 		[/codeblock]
 */
 type ConfigFileImplementer interface {
-	ReferenceImplementer
-
-	EraseSection(section string)
-
-	GetSectionKeys(section string) *PoolStringArray
-
-	GetSections() *PoolStringArray
-
-	GetValue(section string, key string, aDefault *Variant) *Variant
-
-	HasSection(section string) *bool
-
-	HasSectionKey(section string, key string) *bool
-
-	Load(path string) int64
-
-	Save(path string) int64
-
-	SetValue(section string, key string, value *Variant)
+	Class
 }
 
 /*
@@ -22931,9 +21013,7 @@ func (o *ConfirmationDialog) GetCancel() *Button {
    Dialog for confirmation of actions. This dialog inherits from [AcceptDialog], but has by default an OK and Cancel button (in host OS order).
 */
 type ConfirmationDialogImplementer interface {
-	AcceptDialogImplementer
-
-	GetCancel() *Button
+	Class
 }
 
 /*
@@ -22990,11 +21070,7 @@ func (o *Container) QueueSort() {
 		A Control can inherit this to create custom container classes.
 */
 type ContainerImplementer interface {
-	ControlImplementer
-
-	FitChildInRect(child *Control, rect *Rect2)
-
-	QueueSort()
+	Class
 }
 
 /*
@@ -23187,7 +21263,7 @@ func (o *Control) AddStyleOverride(name string, stylebox *StyleBox) {
 /*
 
  */
-func (o *Control) CanDropData(pos *Vector2, data *Variant) *bool {
+func (o *Control) CanDropData(pos *Vector2, data *Variant) bool {
 	log.Println("Calling Control.CanDropData()")
 
 	// Build out the method's arguments
@@ -23197,11 +21273,11 @@ func (o *Control) CanDropData(pos *Vector2, data *Variant) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "can_drop_data", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "can_drop_data", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -24075,7 +22151,7 @@ func (o *Control) GrabFocus() {
 /*
 
  */
-func (o *Control) HasColor(name string, aType string) *bool {
+func (o *Control) HasColor(name string, aType string) bool {
 	log.Println("Calling Control.HasColor()")
 
 	// Build out the method's arguments
@@ -24085,11 +22161,11 @@ func (o *Control) HasColor(name string, aType string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_color", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_color", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -24098,7 +22174,7 @@ func (o *Control) HasColor(name string, aType string) *bool {
 /*
 
  */
-func (o *Control) HasColorOverride(name string) *bool {
+func (o *Control) HasColorOverride(name string) bool {
 	log.Println("Calling Control.HasColorOverride()")
 
 	// Build out the method's arguments
@@ -24107,11 +22183,11 @@ func (o *Control) HasColorOverride(name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_color_override", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_color_override", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -24120,7 +22196,7 @@ func (o *Control) HasColorOverride(name string) *bool {
 /*
 
  */
-func (o *Control) HasConstant(name string, aType string) *bool {
+func (o *Control) HasConstant(name string, aType string) bool {
 	log.Println("Calling Control.HasConstant()")
 
 	// Build out the method's arguments
@@ -24130,11 +22206,11 @@ func (o *Control) HasConstant(name string, aType string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_constant", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_constant", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -24143,7 +22219,7 @@ func (o *Control) HasConstant(name string, aType string) *bool {
 /*
 
  */
-func (o *Control) HasConstantOverride(name string) *bool {
+func (o *Control) HasConstantOverride(name string) bool {
 	log.Println("Calling Control.HasConstantOverride()")
 
 	// Build out the method's arguments
@@ -24152,11 +22228,11 @@ func (o *Control) HasConstantOverride(name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_constant_override", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_constant_override", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -24165,7 +22241,7 @@ func (o *Control) HasConstantOverride(name string) *bool {
 /*
    Return whether the Control is the current focused control (see [method set_focus_mode]).
 */
-func (o *Control) HasFocus() *bool {
+func (o *Control) HasFocus() bool {
 	log.Println("Calling Control.HasFocus()")
 
 	// Build out the method's arguments
@@ -24173,11 +22249,11 @@ func (o *Control) HasFocus() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_focus", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_focus", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -24186,7 +22262,7 @@ func (o *Control) HasFocus() *bool {
 /*
 
  */
-func (o *Control) HasFont(name string, aType string) *bool {
+func (o *Control) HasFont(name string, aType string) bool {
 	log.Println("Calling Control.HasFont()")
 
 	// Build out the method's arguments
@@ -24196,11 +22272,11 @@ func (o *Control) HasFont(name string, aType string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_font", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_font", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -24209,7 +22285,7 @@ func (o *Control) HasFont(name string, aType string) *bool {
 /*
 
  */
-func (o *Control) HasFontOverride(name string) *bool {
+func (o *Control) HasFontOverride(name string) bool {
 	log.Println("Calling Control.HasFontOverride()")
 
 	// Build out the method's arguments
@@ -24218,11 +22294,11 @@ func (o *Control) HasFontOverride(name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_font_override", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_font_override", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -24231,7 +22307,7 @@ func (o *Control) HasFontOverride(name string) *bool {
 /*
 
  */
-func (o *Control) HasIcon(name string, aType string) *bool {
+func (o *Control) HasIcon(name string, aType string) bool {
 	log.Println("Calling Control.HasIcon()")
 
 	// Build out the method's arguments
@@ -24241,11 +22317,11 @@ func (o *Control) HasIcon(name string, aType string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_icon", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_icon", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -24254,7 +22330,7 @@ func (o *Control) HasIcon(name string, aType string) *bool {
 /*
 
  */
-func (o *Control) HasIconOverride(name string) *bool {
+func (o *Control) HasIconOverride(name string) bool {
 	log.Println("Calling Control.HasIconOverride()")
 
 	// Build out the method's arguments
@@ -24263,11 +22339,11 @@ func (o *Control) HasIconOverride(name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_icon_override", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_icon_override", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -24276,7 +22352,7 @@ func (o *Control) HasIconOverride(name string) *bool {
 /*
 
  */
-func (o *Control) HasPoint(point *Vector2) *bool {
+func (o *Control) HasPoint(point *Vector2) bool {
 	log.Println("Calling Control.HasPoint()")
 
 	// Build out the method's arguments
@@ -24285,11 +22361,11 @@ func (o *Control) HasPoint(point *Vector2) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_point", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_point", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -24298,7 +22374,7 @@ func (o *Control) HasPoint(point *Vector2) *bool {
 /*
 
  */
-func (o *Control) HasStylebox(name string, aType string) *bool {
+func (o *Control) HasStylebox(name string, aType string) bool {
 	log.Println("Calling Control.HasStylebox()")
 
 	// Build out the method's arguments
@@ -24308,11 +22384,11 @@ func (o *Control) HasStylebox(name string, aType string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_stylebox", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_stylebox", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -24321,7 +22397,7 @@ func (o *Control) HasStylebox(name string, aType string) *bool {
 /*
 
  */
-func (o *Control) HasStyleboxOverride(name string) *bool {
+func (o *Control) HasStyleboxOverride(name string) bool {
 	log.Println("Calling Control.HasStyleboxOverride()")
 
 	// Build out the method's arguments
@@ -24330,11 +22406,11 @@ func (o *Control) HasStyleboxOverride(name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_stylebox_override", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_stylebox_override", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -24343,7 +22419,7 @@ func (o *Control) HasStyleboxOverride(name string) *bool {
 /*
 
  */
-func (o *Control) IsClippingContents() *bool {
+func (o *Control) IsClippingContents() bool {
 	log.Println("Calling Control.IsClippingContents()")
 
 	// Build out the method's arguments
@@ -24351,11 +22427,11 @@ func (o *Control) IsClippingContents() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_clipping_contents", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_clipping_contents", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -24398,7 +22474,7 @@ func (o *Control) ReleaseFocus() {
 /*
 
  */
-func (o *Control) SetAnchor(margin int64, anchor float64, keepMargin *bool, pushOppositeAnchor *bool) {
+func (o *Control) SetAnchor(margin int64, anchor float64, keepMargin bool, pushOppositeAnchor bool) {
 	log.Println("Calling Control.SetAnchor()")
 
 	// Build out the method's arguments
@@ -24419,7 +22495,7 @@ func (o *Control) SetAnchor(margin int64, anchor float64, keepMargin *bool, push
 /*
 
  */
-func (o *Control) SetAnchorAndMargin(margin int64, anchor float64, offset float64, pushOppositeAnchor *bool) {
+func (o *Control) SetAnchorAndMargin(margin int64, anchor float64, offset float64, pushOppositeAnchor bool) {
 	log.Println("Calling Control.SetAnchorAndMargin()")
 
 	// Build out the method's arguments
@@ -24440,7 +22516,7 @@ func (o *Control) SetAnchorAndMargin(margin int64, anchor float64, offset float6
 /*
 
  */
-func (o *Control) SetAnchorsPreset(preset int64, keepMargin *bool) {
+func (o *Control) SetAnchorsPreset(preset int64, keepMargin bool) {
 	log.Println("Calling Control.SetAnchorsPreset()")
 
 	// Build out the method's arguments
@@ -24495,7 +22571,7 @@ func (o *Control) SetBegin(pos *Vector2) {
 /*
 
  */
-func (o *Control) SetClipContents(enable *bool) {
+func (o *Control) SetClipContents(enable bool) {
 	log.Println("Calling Control.SetClipContents()")
 
 	// Build out the method's arguments
@@ -24929,7 +23005,7 @@ func (o *Control) SetVSizeFlags(flags int64) {
 /*
    Display a Control as modal. Control must be a subwindow. Modal controls capture the input signals until closed or the area outside them is accessed. When a modal control loses focus, or the ESC key is pressed, they automatically hide. Modal controls are used extensively for popup dialogs and menus.
 */
-func (o *Control) ShowModal(exclusive *bool) {
+func (o *Control) ShowModal(exclusive bool) {
 	log.Println("Calling Control.ShowModal()")
 
 	// Build out the method's arguments
@@ -24973,201 +23049,7 @@ func (o *Control) WarpMouse(toPos *Vector2) {
 		Finally, controls are skinned according to a [Theme]. Setting a [Theme] on a control will propagate all the skinning down the tree. Optionally, skinning can be overridden per each control by calling the add_*_override functions, or from the editor.
 */
 type ControlImplementer interface {
-	CanvasItemImplementer
-
-	X_GetMinimumSize() *Vector2
-
-	X_GuiInput(event *InputEvent)
-
-	AcceptEvent()
-
-	AddColorOverride(name string, color *Color)
-
-	AddConstantOverride(name string, constant int64)
-
-	AddFontOverride(name string, font *Font)
-
-	AddIconOverride(name string, texture *Texture)
-
-	AddShaderOverride(name string, shader *Shader)
-
-	AddStyleOverride(name string, stylebox *StyleBox)
-
-	CanDropData(pos *Vector2, data *Variant) *bool
-
-	DropData(pos *Vector2, data *Variant)
-
-	ForceDrag(data *Variant, preview *Control)
-
-	GetAnchor(margin int64) float64
-
-	GetBegin() *Vector2
-
-	GetColor(name string, aType string) *Color
-
-	GetCombinedMinimumSize() *Vector2
-
-	GetConstant(name string, aType string) int64
-
-	GetCursorShape(pos *Vector2) int64
-
-	GetCustomMinimumSize() *Vector2
-
-	GetDefaultCursorShape() int64
-
-	GetDragData(pos *Vector2) *Object
-
-	GetEnd() *Vector2
-
-	GetFocusMode() int64
-
-	GetFocusNeighbour(margin int64) *NodePath
-
-	GetFocusOwner() *Control
-
-	GetFont(name string, aType string) *Font
-
-	GetGlobalPosition() *Vector2
-
-	GetGlobalRect() *Rect2
-
-	GetHGrowDirection() int64
-
-	GetHSizeFlags() int64
-
-	GetIcon(name string, aType string) *Texture
-
-	GetMargin(margin int64) float64
-
-	GetMinimumSize() *Vector2
-
-	GetMouseFilter() int64
-
-	GetParentAreaSize() *Vector2
-
-	GetParentControl() *Control
-
-	GetPivotOffset() *Vector2
-
-	GetPosition() *Vector2
-
-	GetRect() *Rect2
-
-	GetRotation() float64
-
-	GetRotationDeg() float64
-
-	GetScale() *Vector2
-
-	GetSize() *Vector2
-
-	GetStretchRatio() float64
-
-	GetStylebox(name string, aType string) *StyleBox
-
-	GetTheme() *Theme
-
-	GetTooltip(atpos *Vector2) string
-
-	GetVGrowDirection() int64
-
-	GetVSizeFlags() int64
-
-	GrabClickFocus()
-
-	GrabFocus()
-
-	HasColor(name string, aType string) *bool
-
-	HasColorOverride(name string) *bool
-
-	HasConstant(name string, aType string) *bool
-
-	HasConstantOverride(name string) *bool
-
-	HasFocus() *bool
-
-	HasFont(name string, aType string) *bool
-
-	HasFontOverride(name string) *bool
-
-	HasIcon(name string, aType string) *bool
-
-	HasIconOverride(name string) *bool
-
-	HasPoint(point *Vector2) *bool
-
-	HasStylebox(name string, aType string) *bool
-
-	HasStyleboxOverride(name string) *bool
-
-	IsClippingContents() *bool
-
-	MinimumSizeChanged()
-
-	ReleaseFocus()
-
-	SetAnchor(margin int64, anchor float64, keepMargin *bool, pushOppositeAnchor *bool)
-
-	SetAnchorAndMargin(margin int64, anchor float64, offset float64, pushOppositeAnchor *bool)
-
-	SetAnchorsPreset(preset int64, keepMargin *bool)
-
-	SetAreaAsParentRect(margin int64)
-
-	SetBegin(pos *Vector2)
-
-	SetClipContents(enable *bool)
-
-	SetCustomMinimumSize(size *Vector2)
-
-	SetDefaultCursorShape(shape int64)
-
-	SetDragForwarding(target *Control)
-
-	SetDragPreview(control *Control)
-
-	SetEnd(pos *Vector2)
-
-	SetFocusMode(mode int64)
-
-	SetFocusNeighbour(margin int64, neighbour *NodePath)
-
-	SetGlobalPosition(pos *Vector2)
-
-	SetHGrowDirection(direction int64)
-
-	SetHSizeFlags(flags int64)
-
-	SetMargin(margin int64, offset float64)
-
-	SetMouseFilter(filter int64)
-
-	SetPivotOffset(pivotOffset *Vector2)
-
-	SetPosition(pos *Vector2)
-
-	SetRotation(radians float64)
-
-	SetRotationDeg(degrees float64)
-
-	SetScale(scale *Vector2)
-
-	SetSize(size *Vector2)
-
-	SetStretchRatio(ratio float64)
-
-	SetTheme(theme *Theme)
-
-	SetTooltip(tooltip string)
-
-	SetVGrowDirection(direction int64)
-
-	SetVSizeFlags(flags int64)
-
-	ShowModal(exclusive *bool)
-
-	WarpMouse(toPos *Vector2)
+	Class
 }
 
 /*
@@ -25225,11 +23107,7 @@ func (o *ConvexPolygonShape) SetPoints(points *PoolVector3Array) {
    Convex polygon shape resource, which can be set into a [PhysicsBody] or area.
 */
 type ConvexPolygonShapeImplementer interface {
-	ShapeImplementer
-
-	GetPoints() *PoolVector3Array
-
-	SetPoints(points *PoolVector3Array)
+	Class
 }
 
 /*
@@ -25307,13 +23185,7 @@ func (o *ConvexPolygonShape2D) SetPoints(points *PoolVector2Array) {
 		The main difference between a [ConvexPolygonShape2D] and a [ConcavePolygonShape2D] is that a concave polygon assumes it is concave and uses a more complex method of collision detection, and a convex one forces itself to be convex in order to speed up collision detection.
 */
 type ConvexPolygonShape2DImplementer interface {
-	Shape2DImplementer
-
-	GetPoints() *PoolVector2Array
-
-	SetPointCloud(pointCloud *PoolVector2Array)
-
-	SetPoints(points *PoolVector2Array)
+	Class
 }
 
 /*
@@ -25532,27 +23404,7 @@ func (o *CubeMap) SetStorage(mode int64) {
 
 */
 type CubeMapImplementer interface {
-	ResourceImplementer
-
-	GetFlags() int64
-
-	GetHeight() int64
-
-	GetLossyStorageQuality() float64
-
-	GetSide(side int64) *Image
-
-	GetStorage() int64
-
-	GetWidth() int64
-
-	SetFlags(flags int64)
-
-	SetLossyStorageQuality(quality float64)
-
-	SetSide(side int64, image *Image)
-
-	SetStorage(mode int64)
+	Class
 }
 
 /*
@@ -25727,23 +23579,7 @@ func (o *CubeMesh) SetSubdivideWidth(subdivide int64) {
 
 */
 type CubeMeshImplementer interface {
-	PrimitiveMeshImplementer
-
-	GetSize() *Vector3
-
-	GetSubdivideDepth() int64
-
-	GetSubdivideHeight() int64
-
-	GetSubdivideWidth() int64
-
-	SetSize(size *Vector3)
-
-	SetSubdivideDepth(divisions int64)
-
-	SetSubdivideHeight(divisions int64)
-
-	SetSubdivideWidth(subdivide int64)
+	Class
 }
 
 /*
@@ -26242,55 +24078,7 @@ func (o *Curve) SetPointValue(index int64, y float64) {
 
 */
 type CurveImplementer interface {
-	ResourceImplementer
-
-	AddPoint(pos *Vector2, leftTangent float64, rightTangent float64, leftMode int64, rightMode int64) int64
-
-	Bake()
-
-	CleanDupes()
-
-	ClearPoints()
-
-	GetBakeResolution() int64
-
-	GetMaxValue() float64
-
-	GetMinValue() float64
-
-	GetPointLeftMode(index int64) int64
-
-	GetPointLeftTangent(index int64) float64
-
-	GetPointPos(index int64) *Vector2
-
-	GetPointRightMode(index int64) int64
-
-	GetPointRightTangent(index int64) float64
-
-	Interpolate(offset float64) float64
-
-	InterpolateBaked(offset float64) float64
-
-	RemovePoint(index int64)
-
-	SetBakeResolution(resolution int64)
-
-	SetMaxValue(max float64)
-
-	SetMinValue(min float64)
-
-	SetPointLeftMode(index int64, mode int64)
-
-	SetPointLeftTangent(index int64, tangent float64)
-
-	SetPointOffset(index int64, offset float64)
-
-	SetPointRightMode(index int64, mode int64)
-
-	SetPointRightTangent(index int64, tangent float64)
-
-	SetPointValue(index int64, y float64)
+	Class
 }
 
 /*
@@ -26523,7 +24311,7 @@ func (o *Curve2D) Interpolate(idx int64, t float64) *Vector2 {
 				To do that, it finds the two cached points where the "offset" lies between, then interpolates the values. This interpolation is cubic if "cubic" is set to true, or linear if set to false.
 				Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise enough).
 */
-func (o *Curve2D) InterpolateBaked(offset float64, cubic *bool) *Vector2 {
+func (o *Curve2D) InterpolateBaked(offset float64, cubic bool) *Vector2 {
 	log.Println("Calling Curve2D.InterpolateBaked()")
 
 	// Build out the method's arguments
@@ -26690,43 +24478,7 @@ func (o *Curve2D) Tessellate(maxStages int64, toleranceDegrees float64) *PoolVec
 		It keeps a cache of precalculated points along the curve, to speed further calculations up.
 */
 type Curve2DImplementer interface {
-	ResourceImplementer
-
-	AddPoint(pos *Vector2, in *Vector2, out *Vector2, atpos int64)
-
-	ClearPoints()
-
-	GetBakeInterval() float64
-
-	GetBakedLength() float64
-
-	GetBakedPoints() *PoolVector2Array
-
-	GetPointCount() int64
-
-	GetPointIn(idx int64) *Vector2
-
-	GetPointOut(idx int64) *Vector2
-
-	GetPointPos(idx int64) *Vector2
-
-	Interpolate(idx int64, t float64) *Vector2
-
-	InterpolateBaked(offset float64, cubic *bool) *Vector2
-
-	Interpolatef(fofs float64) *Vector2
-
-	RemovePoint(idx int64)
-
-	SetBakeInterval(distance float64)
-
-	SetPointIn(idx int64, pos *Vector2)
-
-	SetPointOut(idx int64, pos *Vector2)
-
-	SetPointPos(idx int64, pos *Vector2)
-
-	Tessellate(maxStages int64, toleranceDegrees float64) *PoolVector2Array
+	Class
 }
 
 /*
@@ -27002,7 +24754,7 @@ func (o *Curve3D) Interpolate(idx int64, t float64) *Vector3 {
 				To do that, it finds the two cached points where the "offset" lies between, then interpolates the values. This interpolation is cubic if "cubic" is set to true, or linear if set to false.
 				Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise enough).
 */
-func (o *Curve3D) InterpolateBaked(offset float64, cubic *bool) *Vector3 {
+func (o *Curve3D) InterpolateBaked(offset float64, cubic bool) *Vector3 {
 	log.Println("Calling Curve3D.InterpolateBaked()")
 
 	// Build out the method's arguments
@@ -27189,49 +24941,7 @@ func (o *Curve3D) Tessellate(maxStages int64, toleranceDegrees float64) *PoolVec
 		It keeps a cache of precalculated points along the curve, to speed further calculations up.
 */
 type Curve3DImplementer interface {
-	ResourceImplementer
-
-	AddPoint(pos *Vector3, in *Vector3, out *Vector3, atpos int64)
-
-	ClearPoints()
-
-	GetBakeInterval() float64
-
-	GetBakedLength() float64
-
-	GetBakedPoints() *PoolVector3Array
-
-	GetBakedTilts() *PoolRealArray
-
-	GetPointCount() int64
-
-	GetPointIn(idx int64) *Vector3
-
-	GetPointOut(idx int64) *Vector3
-
-	GetPointPos(idx int64) *Vector3
-
-	GetPointTilt(idx int64) float64
-
-	Interpolate(idx int64, t float64) *Vector3
-
-	InterpolateBaked(offset float64, cubic *bool) *Vector3
-
-	Interpolatef(fofs float64) *Vector3
-
-	RemovePoint(idx int64)
-
-	SetBakeInterval(distance float64)
-
-	SetPointIn(idx int64, pos *Vector3)
-
-	SetPointOut(idx int64, pos *Vector3)
-
-	SetPointPos(idx int64, pos *Vector3)
-
-	SetPointTilt(idx int64, tilt float64)
-
-	Tessellate(maxStages int64, toleranceDegrees float64) *PoolVector3Array
+	Class
 }
 
 /*
@@ -27307,13 +25017,7 @@ func (o *CurveTexture) SetWidth(width int64) {
 
 */
 type CurveTextureImplementer interface {
-	TextureImplementer
-
-	GetCurve() *Curve
-
-	SetCurve(curve *Curve)
-
-	SetWidth(width int64)
+	Class
 }
 
 /*
@@ -27527,27 +25231,7 @@ func (o *CylinderMesh) SetTopRadius(radius float64) {
 
 */
 type CylinderMeshImplementer interface {
-	PrimitiveMeshImplementer
-
-	GetBottomRadius() float64
-
-	GetHeight() float64
-
-	GetRadialSegments() int64
-
-	GetRings() int64
-
-	GetTopRadius() float64
-
-	SetBottomRadius(radius float64)
-
-	SetHeight(height float64)
-
-	SetRadialSegments(segments int64)
-
-	SetRings(rings int64)
-
-	SetTopRadius(radius float64)
+	Class
 }
 
 /*
@@ -27722,23 +25406,7 @@ func (o *DampedSpringJoint2D) SetStiffness(stiffness float64) {
    Damped spring constraint for 2D physics. This resembles a spring joint that always wants to go back to a given length.
 */
 type DampedSpringJoint2DImplementer interface {
-	Joint2DImplementer
-
-	GetDamping() float64
-
-	GetLength() float64
-
-	GetRestLength() float64
-
-	GetStiffness() float64
-
-	SetDamping(damping float64)
-
-	SetLength(length float64)
-
-	SetRestLength(restLength float64)
-
-	SetStiffness(stiffness float64)
+	Class
 }
 
 /*
@@ -27776,7 +25444,7 @@ func (o *DirectionalLight) GetShadowMode() int64 {
 /*
 
  */
-func (o *DirectionalLight) IsBlendSplitsEnabled() *bool {
+func (o *DirectionalLight) IsBlendSplitsEnabled() bool {
 	log.Println("Calling DirectionalLight.IsBlendSplitsEnabled()")
 
 	// Build out the method's arguments
@@ -27784,11 +25452,11 @@ func (o *DirectionalLight) IsBlendSplitsEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_blend_splits_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_blend_splits_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -27797,7 +25465,7 @@ func (o *DirectionalLight) IsBlendSplitsEnabled() *bool {
 /*
 
  */
-func (o *DirectionalLight) SetBlendSplits(enabled *bool) {
+func (o *DirectionalLight) SetBlendSplits(enabled bool) {
 	log.Println("Calling DirectionalLight.SetBlendSplits()")
 
 	// Build out the method's arguments
@@ -27835,15 +25503,7 @@ func (o *DirectionalLight) SetShadowMode(mode int64) {
    A DirectionalLight is a type of [Light] node that emits light constantly in one direction (the negative z axis of the node). It is used lights with strong intensity that are located far away from the scene to model sunlight or moonlight. The worldspace location of the DirectionalLight transform (origin) is ignored, only the basis is used do determine light direction.
 */
 type DirectionalLightImplementer interface {
-	LightImplementer
-
-	GetShadowMode() int64
-
-	IsBlendSplitsEnabled() *bool
-
-	SetBlendSplits(enabled *bool)
-
-	SetShadowMode(mode int64)
+	Class
 }
 
 /*
@@ -27923,7 +25583,7 @@ func (o *Directory) Copy(from string, to string) int64 {
 /*
    Return whether the current item processed with the last [method get_next] call is a directory ([code].[/code] and [code]..[/code] are considered directories).
 */
-func (o *Directory) CurrentIsDir() *bool {
+func (o *Directory) CurrentIsDir() bool {
 	log.Println("Calling Directory.CurrentIsDir()")
 
 	// Build out the method's arguments
@@ -27931,11 +25591,11 @@ func (o *Directory) CurrentIsDir() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "current_is_dir", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "current_is_dir", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -27944,7 +25604,7 @@ func (o *Directory) CurrentIsDir() *bool {
 /*
    Return whether the target directory exists. The argument can be relative to the current directory, or an absolute path.
 */
-func (o *Directory) DirExists(path string) *bool {
+func (o *Directory) DirExists(path string) bool {
 	log.Println("Calling Directory.DirExists()")
 
 	// Build out the method's arguments
@@ -27953,11 +25613,11 @@ func (o *Directory) DirExists(path string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "dir_exists", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "dir_exists", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -27966,7 +25626,7 @@ func (o *Directory) DirExists(path string) *bool {
 /*
    Return whether the target file exists. The argument can be relative to the current directory, or an absolute path.
 */
-func (o *Directory) FileExists(path string) *bool {
+func (o *Directory) FileExists(path string) bool {
 	log.Println("Calling Directory.FileExists()")
 
 	// Build out the method's arguments
@@ -27975,11 +25635,11 @@ func (o *Directory) FileExists(path string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "file_exists", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "file_exists", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -28118,7 +25778,7 @@ func (o *Directory) GetSpaceLeft() int64 {
 				If you pass [code]skip_navigational[/code], then [code].[/code] and [code]..[/code] would be filtered out.
 				If you pass [code]skip_hidden[/code], then hidden files would be filtered out.
 */
-func (o *Directory) ListDirBegin(skipNavigational *bool, skipHidden *bool) int64 {
+func (o *Directory) ListDirBegin(skipNavigational bool, skipHidden bool) int64 {
 	log.Println("Calling Directory.ListDirBegin()")
 
 	// Build out the method's arguments
@@ -28292,43 +25952,7 @@ func (o *Directory) Rename(from string, to string) int64 {
 		[/codeblock]
 */
 type DirectoryImplementer interface {
-	ReferenceImplementer
-
-	ChangeDir(todir string) int64
-
-	Copy(from string, to string) int64
-
-	CurrentIsDir() *bool
-
-	DirExists(path string) *bool
-
-	FileExists(path string) *bool
-
-	GetCurrentDir() string
-
-	GetCurrentDrive() int64
-
-	GetDrive(idx int64) string
-
-	GetDriveCount() int64
-
-	GetNext() string
-
-	GetSpaceLeft() int64
-
-	ListDirBegin(skipNavigational *bool, skipHidden *bool) int64
-
-	ListDirEnd()
-
-	MakeDir(path string) int64
-
-	MakeDirRecursive(path string) int64
-
-	Open(path string) int64
-
-	Remove(path string) int64
-
-	Rename(from string, to string) int64
+	Class
 }
 
 /*
@@ -28470,7 +26094,7 @@ func (o *DynamicFont) GetSpacing(aType int64) int64 {
 /*
 
  */
-func (o *DynamicFont) GetUseFilter() *bool {
+func (o *DynamicFont) GetUseFilter() bool {
 	log.Println("Calling DynamicFont.GetUseFilter()")
 
 	// Build out the method's arguments
@@ -28478,11 +26102,11 @@ func (o *DynamicFont) GetUseFilter() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_use_filter", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_use_filter", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -28491,7 +26115,7 @@ func (o *DynamicFont) GetUseFilter() *bool {
 /*
 
  */
-func (o *DynamicFont) GetUseMipmaps() *bool {
+func (o *DynamicFont) GetUseMipmaps() bool {
 	log.Println("Calling DynamicFont.GetUseMipmaps()")
 
 	// Build out the method's arguments
@@ -28499,11 +26123,11 @@ func (o *DynamicFont) GetUseMipmaps() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_use_mipmaps", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_use_mipmaps", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -28604,7 +26228,7 @@ func (o *DynamicFont) SetSpacing(aType int64, value int64) {
 /*
 
  */
-func (o *DynamicFont) SetUseFilter(enable *bool) {
+func (o *DynamicFont) SetUseFilter(enable bool) {
 	log.Println("Calling DynamicFont.SetUseFilter()")
 
 	// Build out the method's arguments
@@ -28622,7 +26246,7 @@ func (o *DynamicFont) SetUseFilter(enable *bool) {
 /*
 
  */
-func (o *DynamicFont) SetUseMipmaps(enable *bool) {
+func (o *DynamicFont) SetUseMipmaps(enable bool) {
 	log.Println("Calling DynamicFont.SetUseMipmaps()")
 
 	// Build out the method's arguments
@@ -28642,37 +26266,7 @@ func (o *DynamicFont) SetUseMipmaps(enable *bool) {
 
 */
 type DynamicFontImplementer interface {
-	FontImplementer
-
-	AddFallback(data *DynamicFontData)
-
-	GetFallback(idx int64) *DynamicFontData
-
-	GetFallbackCount() int64
-
-	GetFontData() *DynamicFontData
-
-	GetSize() int64
-
-	GetSpacing(aType int64) int64
-
-	GetUseFilter() *bool
-
-	GetUseMipmaps() *bool
-
-	RemoveFallback(idx int64)
-
-	SetFallback(idx int64, data *DynamicFontData)
-
-	SetFontData(data *DynamicFontData)
-
-	SetSize(data int64)
-
-	SetSpacing(aType int64, value int64)
-
-	SetUseFilter(enable *bool)
-
-	SetUseMipmaps(enable *bool)
+	Class
 }
 
 /*
@@ -28730,11 +26324,7 @@ func (o *DynamicFontData) SetFontPath(path string) {
 
 */
 type DynamicFontDataImplementer interface {
-	ResourceImplementer
-
-	GetFontPath() string
-
-	SetFontPath(path string)
+	Class
 }
 
 /*
@@ -28950,7 +26540,7 @@ func (o *EditorFileDialog) Invalidate() {
 /*
 
  */
-func (o *EditorFileDialog) IsOverwriteWarningDisabled() *bool {
+func (o *EditorFileDialog) IsOverwriteWarningDisabled() bool {
 	log.Println("Calling EditorFileDialog.IsOverwriteWarningDisabled()")
 
 	// Build out the method's arguments
@@ -28958,11 +26548,11 @@ func (o *EditorFileDialog) IsOverwriteWarningDisabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_overwrite_warning_disabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_overwrite_warning_disabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -28971,7 +26561,7 @@ func (o *EditorFileDialog) IsOverwriteWarningDisabled() *bool {
 /*
 
  */
-func (o *EditorFileDialog) IsShowingHiddenFiles() *bool {
+func (o *EditorFileDialog) IsShowingHiddenFiles() bool {
 	log.Println("Calling EditorFileDialog.IsShowingHiddenFiles()")
 
 	// Build out the method's arguments
@@ -28979,11 +26569,11 @@ func (o *EditorFileDialog) IsShowingHiddenFiles() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_showing_hidden_files", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_showing_hidden_files", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -29064,7 +26654,7 @@ func (o *EditorFileDialog) SetCurrentPath(path string) {
 /*
 
  */
-func (o *EditorFileDialog) SetDisableOverwriteWarning(disable *bool) {
+func (o *EditorFileDialog) SetDisableOverwriteWarning(disable bool) {
 	log.Println("Calling EditorFileDialog.SetDisableOverwriteWarning()")
 
 	// Build out the method's arguments
@@ -29118,7 +26708,7 @@ func (o *EditorFileDialog) SetMode(mode int64) {
 /*
 
  */
-func (o *EditorFileDialog) SetShowHiddenFiles(show *bool) {
+func (o *EditorFileDialog) SetShowHiddenFiles(show bool) {
 	log.Println("Calling EditorFileDialog.SetShowHiddenFiles()")
 
 	// Build out the method's arguments
@@ -29138,47 +26728,7 @@ func (o *EditorFileDialog) SetShowHiddenFiles(show *bool) {
 
 */
 type EditorFileDialogImplementer interface {
-	ConfirmationDialogImplementer
-
-	AddFilter(filter string)
-
-	ClearFilters()
-
-	GetAccess() int64
-
-	GetCurrentDir() string
-
-	GetCurrentFile() string
-
-	GetCurrentPath() string
-
-	GetDisplayMode() int64
-
-	GetMode() int64
-
-	GetVbox() *VBoxContainer
-
-	Invalidate()
-
-	IsOverwriteWarningDisabled() *bool
-
-	IsShowingHiddenFiles() *bool
-
-	SetAccess(access int64)
-
-	SetCurrentDir(dir string)
-
-	SetCurrentFile(file string)
-
-	SetCurrentPath(path string)
-
-	SetDisableOverwriteWarning(disable *bool)
-
-	SetDisplayMode(mode int64)
-
-	SetMode(mode int64)
-
-	SetShowHiddenFiles(show *bool)
+	Class
 }
 
 /*
@@ -29281,7 +26831,7 @@ func (o *EditorFileSystem) GetScanningProgress() float64 {
 /*
    Return true of the filesystem is being scanned.
 */
-func (o *EditorFileSystem) IsScanning() *bool {
+func (o *EditorFileSystem) IsScanning() bool {
 	log.Println("Calling EditorFileSystem.IsScanning()")
 
 	// Build out the method's arguments
@@ -29289,11 +26839,11 @@ func (o *EditorFileSystem) IsScanning() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_scanning", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_scanning", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -29356,23 +26906,7 @@ func (o *EditorFileSystem) UpdateFile(path string) {
    This object holds information of all resources in the filesystem, their types, etc.
 */
 type EditorFileSystemImplementer interface {
-	NodeImplementer
-
-	GetFileType(path string) string
-
-	GetFilesystem() *EditorFileSystemDirectory
-
-	GetFilesystemPath(path string) *EditorFileSystemDirectory
-
-	GetScanningProgress() float64
-
-	IsScanning() *bool
-
-	Scan()
-
-	ScanSources()
-
-	UpdateFile(path string)
+	Class
 }
 
 /*
@@ -29476,7 +27010,7 @@ func (o *EditorFileSystemDirectory) GetFileCount() int64 {
 /*
 
  */
-func (o *EditorFileSystemDirectory) GetFileImportIsValid(idx int64) *bool {
+func (o *EditorFileSystemDirectory) GetFileImportIsValid(idx int64) bool {
 	log.Println("Calling EditorFileSystemDirectory.GetFileImportIsValid()")
 
 	// Build out the method's arguments
@@ -29485,11 +27019,11 @@ func (o *EditorFileSystemDirectory) GetFileImportIsValid(idx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_file_import_is_valid", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_file_import_is_valid", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -29650,31 +27184,7 @@ func (o *EditorFileSystemDirectory) GetSubdirCount() int64 {
 
 */
 type EditorFileSystemDirectoryImplementer interface {
-	ObjectImplementer
-
-	FindDirIndex(name string) int64
-
-	FindFileIndex(name string) int64
-
-	GetFile(idx int64) string
-
-	GetFileCount() int64
-
-	GetFileImportIsValid(idx int64) *bool
-
-	GetFilePath(idx int64) string
-
-	GetFileType(idx int64) string
-
-	GetName() string
-
-	GetParent() *EditorFileSystemDirectory
-
-	GetPath() string
-
-	GetSubdir(idx int64) *EditorFileSystemDirectory
-
-	GetSubdirCount() int64
+	Class
 }
 
 /*
@@ -29734,7 +27244,7 @@ func (o *EditorImportPlugin) GetImporterName() string {
 /*
 
  */
-func (o *EditorImportPlugin) GetOptionVisibility(option string, options *Dictionary) *bool {
+func (o *EditorImportPlugin) GetOptionVisibility(option string, options *Dictionary) bool {
 	log.Println("Calling EditorImportPlugin.GetOptionVisibility()")
 
 	// Build out the method's arguments
@@ -29744,11 +27254,11 @@ func (o *EditorImportPlugin) GetOptionVisibility(option string, options *Diction
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_option_visibility", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_option_visibility", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -29912,27 +27422,7 @@ func (o *EditorImportPlugin) Import(sourceFile string, savePath string, options 
 
 */
 type EditorImportPluginImplementer interface {
-	ReferenceImplementer
-
-	GetImportOptions(preset int64) *Array
-
-	GetImporterName() string
-
-	GetOptionVisibility(option string, options *Dictionary) *bool
-
-	GetPresetCount() int64
-
-	GetPresetName(preset int64) string
-
-	GetRecognizedExtensions() *Array
-
-	GetResourceType() string
-
-	GetSaveExtension() string
-
-	GetVisibleName() string
-
-	Import(sourceFile string, savePath string, options *Dictionary, rPlatformVariants *Array, rGenFiles *Array) int64
+	Class
 }
 
 /*
@@ -30255,7 +27745,7 @@ func (o *EditorInterface) SaveScene() int64 {
 /*
 
  */
-func (o *EditorInterface) SaveSceneAs(path string, withPreview *bool) {
+func (o *EditorInterface) SaveSceneAs(path string, withPreview bool) {
 	log.Println("Calling EditorInterface.SaveSceneAs()")
 
 	// Build out the method's arguments
@@ -30276,39 +27766,7 @@ func (o *EditorInterface) SaveSceneAs(path string, withPreview *bool) {
 
 */
 type EditorInterfaceImplementer interface {
-	NodeImplementer
-
-	EditResource(resource *Resource)
-
-	GetBaseControl() *Control
-
-	GetEditedSceneRoot() *Node
-
-	GetEditorSettings() *EditorSettings
-
-	GetEditorViewport() *Control
-
-	GetOpenScenes() *Array
-
-	GetResourceFilesystem() *EditorFileSystem
-
-	GetResourcePreviewer() *EditorResourcePreview
-
-	GetScriptEditor() *ScriptEditor
-
-	GetSelection() *EditorSelection
-
-	InspectObject(object *Object, forProperty string)
-
-	MakeMeshPreviews(arg0 *Array, arg1 int64) *Array
-
-	OpenSceneFromPath(sceneFilepath string)
-
-	ReloadSceneFromPath(sceneFilepath string)
-
-	SaveScene() int64
-
-	SaveSceneAs(path string, withPreview *bool)
+	Class
 }
 
 /*
@@ -30526,7 +27984,7 @@ func (o *EditorPlugin) Edit(object *Object) {
 /*
 
  */
-func (o *EditorPlugin) ForwardCanvasGuiInput(canvasXform *Transform2D, event *InputEvent) *bool {
+func (o *EditorPlugin) ForwardCanvasGuiInput(canvasXform *Transform2D, event *InputEvent) bool {
 	log.Println("Calling EditorPlugin.ForwardCanvasGuiInput()")
 
 	// Build out the method's arguments
@@ -30536,11 +27994,11 @@ func (o *EditorPlugin) ForwardCanvasGuiInput(canvasXform *Transform2D, event *In
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "forward_canvas_gui_input", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "forward_canvas_gui_input", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -30569,7 +28027,7 @@ func (o *EditorPlugin) ForwardDrawOverCanvas(canvasXform *Transform2D, canvas *C
                 Implement this function if you are interested in 3D view screen input events. It will be called only if currently selected node is handled by your plugin.
 				If you would like to always gets those input events then additionally use [method set_input_forwarding_always_enabled].
 */
-func (o *EditorPlugin) ForwardSpatialGuiInput(camera *Camera, event *InputEvent) *bool {
+func (o *EditorPlugin) ForwardSpatialGuiInput(camera *Camera, event *InputEvent) bool {
 	log.Println("Calling EditorPlugin.ForwardSpatialGuiInput()")
 
 	// Build out the method's arguments
@@ -30579,11 +28037,11 @@ func (o *EditorPlugin) ForwardSpatialGuiInput(camera *Camera, event *InputEvent)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "forward_spatial_gui_input", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "forward_spatial_gui_input", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -30715,7 +28173,7 @@ func (o *EditorPlugin) GetWindowLayout(layout *ConfigFile) {
 /*
    Implement this function if your plugin edits a specific type of object (Resource or Node). If you return true, then you will get the functions [method EditorPlugin.edit] and [method EditorPlugin.make_visible] called when the editor requests them.
 */
-func (o *EditorPlugin) Handles(object *Object) *bool {
+func (o *EditorPlugin) Handles(object *Object) bool {
 	log.Println("Calling EditorPlugin.Handles()")
 
 	// Build out the method's arguments
@@ -30724,11 +28182,11 @@ func (o *EditorPlugin) Handles(object *Object) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "handles", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "handles", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -30737,7 +28195,7 @@ func (o *EditorPlugin) Handles(object *Object) *bool {
 /*
    Return true if this is a main screen editor plugin (it goes in the main screen selector together with 2D, 3D, Script).
 */
-func (o *EditorPlugin) HasMainScreen() *bool {
+func (o *EditorPlugin) HasMainScreen() bool {
 	log.Println("Calling EditorPlugin.HasMainScreen()")
 
 	// Build out the method's arguments
@@ -30745,11 +28203,11 @@ func (o *EditorPlugin) HasMainScreen() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_main_screen", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_main_screen", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -30794,7 +28252,7 @@ func (o *EditorPlugin) MakeBottomPanelItemVisible(item *Control) {
                 This function will be called when the editor is requested to become visible. It is used for plugins that edit a specific object type.
 				Remember that you have to manage the visibility of all your editor controls manually.
 */
-func (o *EditorPlugin) MakeVisible(visible *bool) {
+func (o *EditorPlugin) MakeVisible(visible bool) {
 	log.Println("Calling EditorPlugin.MakeVisible()")
 
 	// Build out the method's arguments
@@ -30990,75 +28448,7 @@ func (o *EditorPlugin) UpdateCanvas() {
    Plugins are used by the editor to extend functionality. The most common types of plugins are those which edit a given node or resource type, import plugins and export plugins.
 */
 type EditorPluginImplementer interface {
-	NodeImplementer
-
-	AddControlToBottomPanel(control *Control, title string) *ToolButton
-
-	AddControlToContainer(container int64, control *Control)
-
-	AddControlToDock(slot int64, control *Control)
-
-	AddCustomType(aType string, base string, script *Script, icon *Texture)
-
-	AddImportPlugin(importer *EditorImportPlugin)
-
-	AddToolSubmenuItem(name string, submenu *Object)
-
-	ApplyChanges()
-
-	Clear()
-
-	CreateSpatialGizmo(forSpatial *Spatial) *EditorSpatialGizmo
-
-	Edit(object *Object)
-
-	ForwardCanvasGuiInput(canvasXform *Transform2D, event *InputEvent) *bool
-
-	ForwardDrawOverCanvas(canvasXform *Transform2D, canvas *Control)
-
-	ForwardSpatialGuiInput(camera *Camera, event *InputEvent) *bool
-
-	GetBreakpoints() *PoolStringArray
-
-	GetEditorInterface() *EditorInterface
-
-	GetPluginName() string
-
-	GetState() *Dictionary
-
-	GetUndoRedo() *UndoRedo
-
-	GetWindowLayout(layout *ConfigFile)
-
-	Handles(object *Object) *bool
-
-	HasMainScreen() *bool
-
-	HideBottomPanel()
-
-	MakeBottomPanelItemVisible(item *Control)
-
-	MakeVisible(visible *bool)
-
-	QueueSaveLayout()
-
-	RemoveControlFromBottomPanel(control *Control)
-
-	RemoveControlFromDocks(control *Control)
-
-	RemoveCustomType(aType string)
-
-	RemoveImportPlugin(importer *EditorImportPlugin)
-
-	SaveExternalData()
-
-	SetInputEventForwardingAlwaysEnabled()
-
-	SetState(state *Dictionary)
-
-	SetWindowLayout(layout *ConfigFile)
-
-	UpdateCanvas()
+	Class
 }
 
 /*
@@ -31173,17 +28563,7 @@ func (o *EditorResourcePreview) RemovePreviewGenerator(generator *EditorResource
    This object is used to generate previews for resources of files.
 */
 type EditorResourcePreviewImplementer interface {
-	NodeImplementer
-
-	AddPreviewGenerator(generator *EditorResourcePreviewGenerator)
-
-	CheckForInvalidation(path string)
-
-	QueueEditedResourcePreview(resource *Resource, receiver *Object, receiverFunc string, userdata *Variant)
-
-	QueueResourcePreview(path string, receiver *Object, receiverFunc string, userdata *Variant)
-
-	RemovePreviewGenerator(generator *EditorResourcePreviewGenerator)
+	Class
 }
 
 /*
@@ -31248,7 +28628,7 @@ func (o *EditorResourcePreviewGenerator) GenerateFromPath(path string) *Texture 
 /*
    Return if your generator supports this resource type.
 */
-func (o *EditorResourcePreviewGenerator) Handles(aType string) *bool {
+func (o *EditorResourcePreviewGenerator) Handles(aType string) bool {
 	log.Println("Calling EditorResourcePreviewGenerator.Handles()")
 
 	// Build out the method's arguments
@@ -31257,11 +28637,11 @@ func (o *EditorResourcePreviewGenerator) Handles(aType string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "handles", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "handles", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -31272,13 +28652,7 @@ func (o *EditorResourcePreviewGenerator) Handles(aType string) *bool {
    Custom code to generate previews. Please check "file_dialog/thumbnail_size" in EditorSettings to find out the right size to do previews at.
 */
 type EditorResourcePreviewGeneratorImplementer interface {
-	ReferenceImplementer
-
-	Generate(from *Resource) *Texture
-
-	GenerateFromPath(path string) *Texture
-
-	Handles(aType string) *bool
+	Class
 }
 
 /*
@@ -31374,15 +28748,7 @@ func (o *EditorScript) GetScene() *Node {
    This script can be run from the Scene -> Run Script menu option.
 */
 type EditorScriptImplementer interface {
-	ReferenceImplementer
-
-	X_Run()
-
-	AddRootNode(node *Node)
-
-	GetEditorInterface() *EditorInterface
-
-	GetScene() *Node
+	Class
 }
 
 /*
@@ -31496,17 +28862,7 @@ func (o *EditorSelection) RemoveNode(node *Node) {
    This object manages the SceneTree selection in the editor.
 */
 type EditorSelectionImplementer interface {
-	ObjectImplementer
-
-	AddNode(node *Node)
-
-	Clear()
-
-	GetSelectedNodes() *Array
-
-	GetTransformableSelectedNodes() *Array
-
-	RemoveNode(node *Node)
+	Class
 }
 
 /*
@@ -31708,23 +29064,7 @@ func (o *EditorSettings) SetRecentDirs(dirs *PoolStringArray) {
 		[/codeblock]
 */
 type EditorSettingsImplementer interface {
-	ResourceImplementer
-
-	AddPropertyInfo(info *Dictionary)
-
-	Erase(property string)
-
-	GetFavoriteDirs() *PoolStringArray
-
-	GetProjectSettingsPath() string
-
-	GetRecentDirs() *PoolStringArray
-
-	GetSettingsPath() string
-
-	SetFavoriteDirs(dirs *PoolStringArray)
-
-	SetRecentDirs(dirs *PoolStringArray)
+	Class
 }
 
 /*
@@ -31778,7 +29118,7 @@ func (o *EditorSpatialGizmo) AddCollisionTriangles(triangles *TriangleMesh) {
                 Add a list of handles (points) which can be used to deform the object being edited.
 				There are virtual functions which will be called upon editing of these handles. Call this function during [method redraw].
 */
-func (o *EditorSpatialGizmo) AddHandles(handles *PoolVector3Array, billboard *bool, secondary *bool) {
+func (o *EditorSpatialGizmo) AddHandles(handles *PoolVector3Array, billboard bool, secondary bool) {
 	log.Println("Calling EditorSpatialGizmo.AddHandles()")
 
 	// Build out the method's arguments
@@ -31798,7 +29138,7 @@ func (o *EditorSpatialGizmo) AddHandles(handles *PoolVector3Array, billboard *bo
 /*
    Add lines to the gizmo (as sets of 2 points), with a given material. The lines are used for visualizing the gizmo. Call this function during [method redraw].
 */
-func (o *EditorSpatialGizmo) AddLines(lines *PoolVector3Array, material *Material, billboard *bool) {
+func (o *EditorSpatialGizmo) AddLines(lines *PoolVector3Array, material *Material, billboard bool) {
 	log.Println("Calling EditorSpatialGizmo.AddLines()")
 
 	// Build out the method's arguments
@@ -31818,7 +29158,7 @@ func (o *EditorSpatialGizmo) AddLines(lines *PoolVector3Array, material *Materia
 /*
 
  */
-func (o *EditorSpatialGizmo) AddMesh(mesh *ArrayMesh, billboard *bool, skeleton *RID) {
+func (o *EditorSpatialGizmo) AddMesh(mesh *ArrayMesh, billboard bool, skeleton *RID) {
 	log.Println("Calling EditorSpatialGizmo.AddMesh()")
 
 	// Build out the method's arguments
@@ -31875,7 +29215,7 @@ func (o *EditorSpatialGizmo) Clear() {
                 Commit a handle being edited (handles must have been prevously added by [method add_handles]).
 				If the cancel parameter is true, an option to restore the edited value to the original is provided.
 */
-func (o *EditorSpatialGizmo) CommitHandle(index int64, restore *Variant, cancel *bool) {
+func (o *EditorSpatialGizmo) CommitHandle(index int64, restore *Variant, cancel bool) {
 	log.Println("Calling EditorSpatialGizmo.CommitHandle()")
 
 	// Build out the method's arguments
@@ -31998,33 +29338,7 @@ func (o *EditorSpatialGizmo) SetSpatialNode(node *Node) {
    Custom gizmo that is used for providing custom visualization and editing (handles) for 3D Spatial objects. These are created by [method EditorPlugin.create_spatial_gizmo].
 */
 type EditorSpatialGizmoImplementer interface {
-	SpatialGizmoImplementer
-
-	AddCollisionSegments(segments *PoolVector3Array)
-
-	AddCollisionTriangles(triangles *TriangleMesh)
-
-	AddHandles(handles *PoolVector3Array, billboard *bool, secondary *bool)
-
-	AddLines(lines *PoolVector3Array, material *Material, billboard *bool)
-
-	AddMesh(mesh *ArrayMesh, billboard *bool, skeleton *RID)
-
-	AddUnscaledBillboard(material *Material, defaultScale float64)
-
-	Clear()
-
-	CommitHandle(index int64, restore *Variant, cancel *bool)
-
-	GetHandleName(index int64) string
-
-	GetHandleValue(index int64) *Variant
-
-	Redraw()
-
-	SetHandle(index int64, camera *Camera, point *Vector2)
-
-	SetSpatialNode(node *Node)
+	Class
 }
 
 /*
@@ -32082,11 +29396,7 @@ func (o *EncodedObjectAsID) SetObjectId(id int64) {
 
 */
 type EncodedObjectAsIDImplementer interface {
-	ReferenceImplementer
-
-	GetObjectId() int64
-
-	SetObjectId(id int64)
+	Class
 }
 
 /*
@@ -32257,7 +29567,7 @@ func (o *Engine) GetVersionInfo() *Dictionary {
 /*
 
  */
-func (o *Engine) IsEditorHint() *bool {
+func (o *Engine) IsEditorHint() bool {
 	log.Println("Calling Engine.IsEditorHint()")
 
 	// Build out the method's arguments
@@ -32265,11 +29575,11 @@ func (o *Engine) IsEditorHint() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_editor_hint", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_editor_hint", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -32278,7 +29588,7 @@ func (o *Engine) IsEditorHint() *bool {
 /*
 
  */
-func (o *Engine) IsInFixedFrame() *bool {
+func (o *Engine) IsInFixedFrame() bool {
 	log.Println("Calling Engine.IsInFixedFrame()")
 
 	// Build out the method's arguments
@@ -32286,11 +29596,11 @@ func (o *Engine) IsInFixedFrame() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_in_fixed_frame", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_in_fixed_frame", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -32299,7 +29609,7 @@ func (o *Engine) IsInFixedFrame() *bool {
 /*
 
  */
-func (o *Engine) SetEditorHint(enabled *bool) {
+func (o *Engine) SetEditorHint(enabled bool) {
 	log.Println("Calling Engine.SetEditorHint()")
 
 	// Build out the method's arguments
@@ -32373,33 +29683,7 @@ func (o *Engine) SetTimeScale(timeScale float64) {
 
 */
 type EngineImplementer interface {
-	ObjectImplementer
-
-	GetFramesDrawn() int64
-
-	GetFramesPerSecond() float64
-
-	GetIterationsPerSecond() int64
-
-	GetMainLoop() *MainLoop
-
-	GetTargetFps() float64
-
-	GetTimeScale() float64
-
-	GetVersionInfo() *Dictionary
-
-	IsEditorHint() *bool
-
-	IsInFixedFrame() *bool
-
-	SetEditorHint(enabled *bool)
-
-	SetIterationsPerSecond(iterationsPerSecond int64)
-
-	SetTargetFps(targetFps int64)
-
-	SetTimeScale(timeScale float64)
+	Class
 }
 
 /*
@@ -33403,7 +30687,7 @@ func (o *Environment) GetSsrMaxSteps() int64 {
 /*
 
  */
-func (o *Environment) GetTonemapAutoExposure() *bool {
+func (o *Environment) GetTonemapAutoExposure() bool {
 	log.Println("Calling Environment.GetTonemapAutoExposure()")
 
 	// Build out the method's arguments
@@ -33411,11 +30695,11 @@ func (o *Environment) GetTonemapAutoExposure() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_tonemap_auto_exposure", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_tonemap_auto_exposure", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -33571,7 +30855,7 @@ func (o *Environment) GetTonemapper() int64 {
 /*
 
  */
-func (o *Environment) IsAdjustmentEnabled() *bool {
+func (o *Environment) IsAdjustmentEnabled() bool {
 	log.Println("Calling Environment.IsAdjustmentEnabled()")
 
 	// Build out the method's arguments
@@ -33579,11 +30863,11 @@ func (o *Environment) IsAdjustmentEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_adjustment_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_adjustment_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -33592,7 +30876,7 @@ func (o *Environment) IsAdjustmentEnabled() *bool {
 /*
 
  */
-func (o *Environment) IsDofBlurFarEnabled() *bool {
+func (o *Environment) IsDofBlurFarEnabled() bool {
 	log.Println("Calling Environment.IsDofBlurFarEnabled()")
 
 	// Build out the method's arguments
@@ -33600,11 +30884,11 @@ func (o *Environment) IsDofBlurFarEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_dof_blur_far_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_dof_blur_far_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -33613,7 +30897,7 @@ func (o *Environment) IsDofBlurFarEnabled() *bool {
 /*
 
  */
-func (o *Environment) IsDofBlurNearEnabled() *bool {
+func (o *Environment) IsDofBlurNearEnabled() bool {
 	log.Println("Calling Environment.IsDofBlurNearEnabled()")
 
 	// Build out the method's arguments
@@ -33621,11 +30905,11 @@ func (o *Environment) IsDofBlurNearEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_dof_blur_near_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_dof_blur_near_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -33634,7 +30918,7 @@ func (o *Environment) IsDofBlurNearEnabled() *bool {
 /*
 
  */
-func (o *Environment) IsFogDepthEnabled() *bool {
+func (o *Environment) IsFogDepthEnabled() bool {
 	log.Println("Calling Environment.IsFogDepthEnabled()")
 
 	// Build out the method's arguments
@@ -33642,11 +30926,11 @@ func (o *Environment) IsFogDepthEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_fog_depth_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_fog_depth_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -33655,7 +30939,7 @@ func (o *Environment) IsFogDepthEnabled() *bool {
 /*
 
  */
-func (o *Environment) IsFogEnabled() *bool {
+func (o *Environment) IsFogEnabled() bool {
 	log.Println("Calling Environment.IsFogEnabled()")
 
 	// Build out the method's arguments
@@ -33663,11 +30947,11 @@ func (o *Environment) IsFogEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_fog_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_fog_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -33676,7 +30960,7 @@ func (o *Environment) IsFogEnabled() *bool {
 /*
 
  */
-func (o *Environment) IsFogHeightEnabled() *bool {
+func (o *Environment) IsFogHeightEnabled() bool {
 	log.Println("Calling Environment.IsFogHeightEnabled()")
 
 	// Build out the method's arguments
@@ -33684,11 +30968,11 @@ func (o *Environment) IsFogHeightEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_fog_height_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_fog_height_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -33697,7 +30981,7 @@ func (o *Environment) IsFogHeightEnabled() *bool {
 /*
 
  */
-func (o *Environment) IsFogTransmitEnabled() *bool {
+func (o *Environment) IsFogTransmitEnabled() bool {
 	log.Println("Calling Environment.IsFogTransmitEnabled()")
 
 	// Build out the method's arguments
@@ -33705,11 +30989,11 @@ func (o *Environment) IsFogTransmitEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_fog_transmit_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_fog_transmit_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -33718,7 +31002,7 @@ func (o *Environment) IsFogTransmitEnabled() *bool {
 /*
 
  */
-func (o *Environment) IsGlowBicubicUpscaleEnabled() *bool {
+func (o *Environment) IsGlowBicubicUpscaleEnabled() bool {
 	log.Println("Calling Environment.IsGlowBicubicUpscaleEnabled()")
 
 	// Build out the method's arguments
@@ -33726,11 +31010,11 @@ func (o *Environment) IsGlowBicubicUpscaleEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_glow_bicubic_upscale_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_glow_bicubic_upscale_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -33739,7 +31023,7 @@ func (o *Environment) IsGlowBicubicUpscaleEnabled() *bool {
 /*
 
  */
-func (o *Environment) IsGlowEnabled() *bool {
+func (o *Environment) IsGlowEnabled() bool {
 	log.Println("Calling Environment.IsGlowEnabled()")
 
 	// Build out the method's arguments
@@ -33747,11 +31031,11 @@ func (o *Environment) IsGlowEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_glow_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_glow_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -33760,7 +31044,7 @@ func (o *Environment) IsGlowEnabled() *bool {
 /*
 
  */
-func (o *Environment) IsGlowLevelEnabled(idx int64) *bool {
+func (o *Environment) IsGlowLevelEnabled(idx int64) bool {
 	log.Println("Calling Environment.IsGlowLevelEnabled()")
 
 	// Build out the method's arguments
@@ -33769,11 +31053,11 @@ func (o *Environment) IsGlowLevelEnabled(idx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_glow_level_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_glow_level_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -33782,7 +31066,7 @@ func (o *Environment) IsGlowLevelEnabled(idx int64) *bool {
 /*
 
  */
-func (o *Environment) IsSsaoBlurEnabled() *bool {
+func (o *Environment) IsSsaoBlurEnabled() bool {
 	log.Println("Calling Environment.IsSsaoBlurEnabled()")
 
 	// Build out the method's arguments
@@ -33790,11 +31074,11 @@ func (o *Environment) IsSsaoBlurEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_ssao_blur_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_ssao_blur_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -33803,7 +31087,7 @@ func (o *Environment) IsSsaoBlurEnabled() *bool {
 /*
 
  */
-func (o *Environment) IsSsaoEnabled() *bool {
+func (o *Environment) IsSsaoEnabled() bool {
 	log.Println("Calling Environment.IsSsaoEnabled()")
 
 	// Build out the method's arguments
@@ -33811,11 +31095,11 @@ func (o *Environment) IsSsaoEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_ssao_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_ssao_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -33824,7 +31108,7 @@ func (o *Environment) IsSsaoEnabled() *bool {
 /*
 
  */
-func (o *Environment) IsSsrEnabled() *bool {
+func (o *Environment) IsSsrEnabled() bool {
 	log.Println("Calling Environment.IsSsrEnabled()")
 
 	// Build out the method's arguments
@@ -33832,11 +31116,11 @@ func (o *Environment) IsSsrEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_ssr_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_ssr_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -33845,7 +31129,7 @@ func (o *Environment) IsSsrEnabled() *bool {
 /*
 
  */
-func (o *Environment) IsSsrRough() *bool {
+func (o *Environment) IsSsrRough() bool {
 	log.Println("Calling Environment.IsSsrRough()")
 
 	// Build out the method's arguments
@@ -33853,11 +31137,11 @@ func (o *Environment) IsSsrRough() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_ssr_rough", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_ssr_rough", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -33920,7 +31204,7 @@ func (o *Environment) SetAdjustmentContrast(contrast float64) {
 /*
 
  */
-func (o *Environment) SetAdjustmentEnable(enabled *bool) {
+func (o *Environment) SetAdjustmentEnable(enabled bool) {
 	log.Println("Calling Environment.SetAdjustmentEnable()")
 
 	// Build out the method's arguments
@@ -34118,7 +31402,7 @@ func (o *Environment) SetDofBlurFarDistance(intensity float64) {
 /*
 
  */
-func (o *Environment) SetDofBlurFarEnabled(enabled *bool) {
+func (o *Environment) SetDofBlurFarEnabled(enabled bool) {
 	log.Println("Calling Environment.SetDofBlurFarEnabled()")
 
 	// Build out the method's arguments
@@ -34208,7 +31492,7 @@ func (o *Environment) SetDofBlurNearDistance(intensity float64) {
 /*
 
  */
-func (o *Environment) SetDofBlurNearEnabled(enabled *bool) {
+func (o *Environment) SetDofBlurNearEnabled(enabled bool) {
 	log.Println("Calling Environment.SetDofBlurNearEnabled()")
 
 	// Build out the method's arguments
@@ -34316,7 +31600,7 @@ func (o *Environment) SetFogDepthCurve(curve float64) {
 /*
 
  */
-func (o *Environment) SetFogDepthEnabled(enabled *bool) {
+func (o *Environment) SetFogDepthEnabled(enabled bool) {
 	log.Println("Calling Environment.SetFogDepthEnabled()")
 
 	// Build out the method's arguments
@@ -34334,7 +31618,7 @@ func (o *Environment) SetFogDepthEnabled(enabled *bool) {
 /*
 
  */
-func (o *Environment) SetFogEnabled(enabled *bool) {
+func (o *Environment) SetFogEnabled(enabled bool) {
 	log.Println("Calling Environment.SetFogEnabled()")
 
 	// Build out the method's arguments
@@ -34370,7 +31654,7 @@ func (o *Environment) SetFogHeightCurve(curve float64) {
 /*
 
  */
-func (o *Environment) SetFogHeightEnabled(enabled *bool) {
+func (o *Environment) SetFogHeightEnabled(enabled bool) {
 	log.Println("Calling Environment.SetFogHeightEnabled()")
 
 	// Build out the method's arguments
@@ -34478,7 +31762,7 @@ func (o *Environment) SetFogTransmitCurve(curve float64) {
 /*
 
  */
-func (o *Environment) SetFogTransmitEnabled(enabled *bool) {
+func (o *Environment) SetFogTransmitEnabled(enabled bool) {
 	log.Println("Calling Environment.SetFogTransmitEnabled()")
 
 	// Build out the method's arguments
@@ -34496,7 +31780,7 @@ func (o *Environment) SetFogTransmitEnabled(enabled *bool) {
 /*
 
  */
-func (o *Environment) SetGlowBicubicUpscale(enabled *bool) {
+func (o *Environment) SetGlowBicubicUpscale(enabled bool) {
 	log.Println("Calling Environment.SetGlowBicubicUpscale()")
 
 	// Build out the method's arguments
@@ -34550,7 +31834,7 @@ func (o *Environment) SetGlowBloom(amount float64) {
 /*
 
  */
-func (o *Environment) SetGlowEnabled(enabled *bool) {
+func (o *Environment) SetGlowEnabled(enabled bool) {
 	log.Println("Calling Environment.SetGlowEnabled()")
 
 	// Build out the method's arguments
@@ -34622,7 +31906,7 @@ func (o *Environment) SetGlowIntensity(intensity float64) {
 /*
 
  */
-func (o *Environment) SetGlowLevel(idx int64, enabled *bool) {
+func (o *Environment) SetGlowLevel(idx int64, enabled bool) {
 	log.Println("Calling Environment.SetGlowLevel()")
 
 	// Build out the method's arguments
@@ -34713,7 +31997,7 @@ func (o *Environment) SetSsaoBias(bias float64) {
 /*
 
  */
-func (o *Environment) SetSsaoBlur(enabled *bool) {
+func (o *Environment) SetSsaoBlur(enabled bool) {
 	log.Println("Calling Environment.SetSsaoBlur()")
 
 	// Build out the method's arguments
@@ -34767,7 +32051,7 @@ func (o *Environment) SetSsaoDirectLightAffect(amount float64) {
 /*
 
  */
-func (o *Environment) SetSsaoEnabled(enabled *bool) {
+func (o *Environment) SetSsaoEnabled(enabled bool) {
 	log.Println("Calling Environment.SetSsaoEnabled()")
 
 	// Build out the method's arguments
@@ -34875,7 +32159,7 @@ func (o *Environment) SetSsrDepthTolerance(depthTolerance float64) {
 /*
 
  */
-func (o *Environment) SetSsrEnabled(enabled *bool) {
+func (o *Environment) SetSsrEnabled(enabled bool) {
 	log.Println("Calling Environment.SetSsrEnabled()")
 
 	// Build out the method's arguments
@@ -34947,7 +32231,7 @@ func (o *Environment) SetSsrMaxSteps(maxSteps int64) {
 /*
 
  */
-func (o *Environment) SetSsrRough(rough *bool) {
+func (o *Environment) SetSsrRough(rough bool) {
 	log.Println("Calling Environment.SetSsrRough()")
 
 	// Build out the method's arguments
@@ -34965,7 +32249,7 @@ func (o *Environment) SetSsrRough(rough *bool) {
 /*
 
  */
-func (o *Environment) SetTonemapAutoExposure(autoExposure *bool) {
+func (o *Environment) SetTonemapAutoExposure(autoExposure bool) {
 	log.Println("Calling Environment.SetTonemapAutoExposure()")
 
 	// Build out the method's arguments
@@ -35111,283 +32395,7 @@ func (o *Environment) SetTonemapper(mode int64) {
 
 */
 type EnvironmentImplementer interface {
-	ResourceImplementer
-
-	GetAdjustmentBrightness() float64
-
-	GetAdjustmentColorCorrection() *Texture
-
-	GetAdjustmentContrast() float64
-
-	GetAdjustmentSaturation() float64
-
-	GetAmbientLightColor() *Color
-
-	GetAmbientLightEnergy() float64
-
-	GetAmbientLightSkyContribution() float64
-
-	GetBackground() int64
-
-	GetBgColor() *Color
-
-	GetBgEnergy() float64
-
-	GetCanvasMaxLayer() int64
-
-	GetDofBlurFarAmount() float64
-
-	GetDofBlurFarDistance() float64
-
-	GetDofBlurFarQuality() int64
-
-	GetDofBlurFarTransition() float64
-
-	GetDofBlurNearAmount() float64
-
-	GetDofBlurNearDistance() float64
-
-	GetDofBlurNearQuality() int64
-
-	GetDofBlurNearTransition() float64
-
-	GetFogColor() *Color
-
-	GetFogDepthBegin() float64
-
-	GetFogDepthCurve() float64
-
-	GetFogHeightCurve() float64
-
-	GetFogHeightMax() float64
-
-	GetFogHeightMin() float64
-
-	GetFogSunAmount() float64
-
-	GetFogSunColor() *Color
-
-	GetFogTransmitCurve() float64
-
-	GetGlowBlendMode() int64
-
-	GetGlowBloom() float64
-
-	GetGlowHdrBleedScale() float64
-
-	GetGlowHdrBleedThreshold() float64
-
-	GetGlowIntensity() float64
-
-	GetGlowStrength() float64
-
-	GetSky() *Sky
-
-	GetSkyScale() float64
-
-	GetSsaoBias() float64
-
-	GetSsaoColor() *Color
-
-	GetSsaoDirectLightAffect() float64
-
-	GetSsaoIntensity() float64
-
-	GetSsaoIntensity2() float64
-
-	GetSsaoRadius() float64
-
-	GetSsaoRadius2() float64
-
-	GetSsrDepthTolerance() float64
-
-	GetSsrFadeIn() float64
-
-	GetSsrFadeOut() float64
-
-	GetSsrMaxSteps() int64
-
-	GetTonemapAutoExposure() *bool
-
-	GetTonemapAutoExposureGrey() float64
-
-	GetTonemapAutoExposureMax() float64
-
-	GetTonemapAutoExposureMin() float64
-
-	GetTonemapAutoExposureSpeed() float64
-
-	GetTonemapExposure() float64
-
-	GetTonemapWhite() float64
-
-	GetTonemapper() int64
-
-	IsAdjustmentEnabled() *bool
-
-	IsDofBlurFarEnabled() *bool
-
-	IsDofBlurNearEnabled() *bool
-
-	IsFogDepthEnabled() *bool
-
-	IsFogEnabled() *bool
-
-	IsFogHeightEnabled() *bool
-
-	IsFogTransmitEnabled() *bool
-
-	IsGlowBicubicUpscaleEnabled() *bool
-
-	IsGlowEnabled() *bool
-
-	IsGlowLevelEnabled(idx int64) *bool
-
-	IsSsaoBlurEnabled() *bool
-
-	IsSsaoEnabled() *bool
-
-	IsSsrEnabled() *bool
-
-	IsSsrRough() *bool
-
-	SetAdjustmentBrightness(brightness float64)
-
-	SetAdjustmentColorCorrection(colorCorrection *Texture)
-
-	SetAdjustmentContrast(contrast float64)
-
-	SetAdjustmentEnable(enabled *bool)
-
-	SetAdjustmentSaturation(saturation float64)
-
-	SetAmbientLightColor(color *Color)
-
-	SetAmbientLightEnergy(energy float64)
-
-	SetAmbientLightSkyContribution(energy float64)
-
-	SetBackground(mode int64)
-
-	SetBgColor(color *Color)
-
-	SetBgEnergy(energy float64)
-
-	SetCanvasMaxLayer(layer int64)
-
-	SetDofBlurFarAmount(intensity float64)
-
-	SetDofBlurFarDistance(intensity float64)
-
-	SetDofBlurFarEnabled(enabled *bool)
-
-	SetDofBlurFarQuality(intensity int64)
-
-	SetDofBlurFarTransition(intensity float64)
-
-	SetDofBlurNearAmount(intensity float64)
-
-	SetDofBlurNearDistance(intensity float64)
-
-	SetDofBlurNearEnabled(enabled *bool)
-
-	SetDofBlurNearQuality(level int64)
-
-	SetDofBlurNearTransition(intensity float64)
-
-	SetFogColor(color *Color)
-
-	SetFogDepthBegin(distance float64)
-
-	SetFogDepthCurve(curve float64)
-
-	SetFogDepthEnabled(enabled *bool)
-
-	SetFogEnabled(enabled *bool)
-
-	SetFogHeightCurve(curve float64)
-
-	SetFogHeightEnabled(enabled *bool)
-
-	SetFogHeightMax(height float64)
-
-	SetFogHeightMin(height float64)
-
-	SetFogSunAmount(amount float64)
-
-	SetFogSunColor(color *Color)
-
-	SetFogTransmitCurve(curve float64)
-
-	SetFogTransmitEnabled(enabled *bool)
-
-	SetGlowBicubicUpscale(enabled *bool)
-
-	SetGlowBlendMode(mode int64)
-
-	SetGlowBloom(amount float64)
-
-	SetGlowEnabled(enabled *bool)
-
-	SetGlowHdrBleedScale(scale float64)
-
-	SetGlowHdrBleedThreshold(threshold float64)
-
-	SetGlowIntensity(intensity float64)
-
-	SetGlowLevel(idx int64, enabled *bool)
-
-	SetGlowStrength(strength float64)
-
-	SetSky(sky *Sky)
-
-	SetSkyScale(scale float64)
-
-	SetSsaoBias(bias float64)
-
-	SetSsaoBlur(enabled *bool)
-
-	SetSsaoColor(color *Color)
-
-	SetSsaoDirectLightAffect(amount float64)
-
-	SetSsaoEnabled(enabled *bool)
-
-	SetSsaoIntensity(intensity float64)
-
-	SetSsaoIntensity2(intensity float64)
-
-	SetSsaoRadius(radius float64)
-
-	SetSsaoRadius2(radius float64)
-
-	SetSsrDepthTolerance(depthTolerance float64)
-
-	SetSsrEnabled(enabled *bool)
-
-	SetSsrFadeIn(fadeIn float64)
-
-	SetSsrFadeOut(fadeOut float64)
-
-	SetSsrMaxSteps(maxSteps int64)
-
-	SetSsrRough(rough *bool)
-
-	SetTonemapAutoExposure(autoExposure *bool)
-
-	SetTonemapAutoExposureGrey(exposureGrey float64)
-
-	SetTonemapAutoExposureMax(exposureMax float64)
-
-	SetTonemapAutoExposureMin(exposureMin float64)
-
-	SetTonemapAutoExposureSpeed(exposureSpeed float64)
-
-	SetTonemapExposure(exposure float64)
-
-	SetTonemapWhite(white float64)
-
-	SetTonemapper(mode int64)
+	Class
 }
 
 /*
@@ -35436,7 +32444,7 @@ func (o *File) Close() {
 /*
    Return whether the file cursor reached the end of the file.
 */
-func (o *File) EofReached() *bool {
+func (o *File) EofReached() bool {
 	log.Println("Calling File.EofReached()")
 
 	// Build out the method's arguments
@@ -35444,11 +32452,11 @@ func (o *File) EofReached() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "eof_reached", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "eof_reached", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -35457,7 +32465,7 @@ func (o *File) EofReached() *bool {
 /*
    Get whether or not the file in the specified path exists.
 */
-func (o *File) FileExists(path string) *bool {
+func (o *File) FileExists(path string) bool {
 	log.Println("Calling File.FileExists()")
 
 	// Build out the method's arguments
@@ -35466,11 +32474,11 @@ func (o *File) FileExists(path string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "file_exists", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "file_exists", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -35649,7 +32657,7 @@ func (o *File) GetDouble() float64 {
 /*
    Get whether endian swap is enabled for this file.
 */
-func (o *File) GetEndianSwap() *bool {
+func (o *File) GetEndianSwap() bool {
 	log.Println("Calling File.GetEndianSwap()")
 
 	// Build out the method's arguments
@@ -35657,11 +32665,11 @@ func (o *File) GetEndianSwap() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_endian_swap", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_endian_swap", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -35904,7 +32912,7 @@ func (o *File) GetVar() *Variant {
 /*
    Return whether the file is currently opened.
 */
-func (o *File) IsOpen() *bool {
+func (o *File) IsOpen() bool {
 	log.Println("Calling File.IsOpen()")
 
 	// Build out the method's arguments
@@ -35912,11 +32920,11 @@ func (o *File) IsOpen() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_open", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_open", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -36057,7 +33065,7 @@ func (o *File) SeekEnd(pos int64) {
                 Set whether to swap the endianness of the file. Enable this if you're dealing with files written in big endian machines.
 				Note that this is about the file format, not CPU type. This is always reseted to [code]false[/code] whenever you open the file.
 */
-func (o *File) SetEndianSwap(enable *bool) {
+func (o *File) SetEndianSwap(enable bool) {
 	log.Println("Calling File.SetEndianSwap()")
 
 	// Build out the method's arguments
@@ -36308,93 +33316,7 @@ func (o *File) StoreVar(value *Variant) {
 		[/codeblock]
 */
 type FileImplementer interface {
-	ReferenceImplementer
-
-	Close()
-
-	EofReached() *bool
-
-	FileExists(path string) *bool
-
-	Get16() int64
-
-	Get32() int64
-
-	Get64() int64
-
-	Get8() int64
-
-	GetAsText() string
-
-	GetBuffer(len int64) *PoolByteArray
-
-	GetCsvLine(delim string) *PoolStringArray
-
-	GetDouble() float64
-
-	GetEndianSwap() *bool
-
-	GetError() int64
-
-	GetFloat() float64
-
-	GetLen() int64
-
-	GetLine() string
-
-	GetMd5(path string) string
-
-	GetModifiedTime(file string) int64
-
-	GetPascalString() string
-
-	GetPos() int64
-
-	GetReal() float64
-
-	GetSha256(path string) string
-
-	GetVar() *Variant
-
-	IsOpen() *bool
-
-	Open(path string, flags int64) int64
-
-	OpenCompressed(path string, modeFlags int64, compressionMode int64) int64
-
-	OpenEncrypted(path string, modeFlags int64, key *PoolByteArray) int64
-
-	OpenEncryptedWithPass(path string, modeFlags int64, pass string) int64
-
-	Seek(pos int64)
-
-	SeekEnd(pos int64)
-
-	SetEndianSwap(enable *bool)
-
-	Store16(value int64)
-
-	Store32(value int64)
-
-	Store64(value int64)
-
-	Store8(value int64)
-
-	StoreBuffer(buffer *PoolByteArray)
-
-	StoreDouble(value float64)
-
-	StoreFloat(value float64)
-
-	StoreLine(line string)
-
-	StorePascalString(string string)
-
-	StoreReal(value float64)
-
-	StoreString(string string)
-
-	StoreVar(value *Variant)
+	Class
 }
 
 /*
@@ -36610,7 +33532,7 @@ func (o *FileDialog) Invalidate() {
 /*
    Return true if the diaog allows show hidden files.
 */
-func (o *FileDialog) IsShowingHiddenFiles() *bool {
+func (o *FileDialog) IsShowingHiddenFiles() bool {
 	log.Println("Calling FileDialog.IsShowingHiddenFiles()")
 
 	// Build out the method's arguments
@@ -36618,11 +33540,11 @@ func (o *FileDialog) IsShowingHiddenFiles() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_showing_hidden_files", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_showing_hidden_files", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -36739,7 +33661,7 @@ func (o *FileDialog) SetMode(mode int64) {
 /*
    Set the dialog should show hidden files.
 */
-func (o *FileDialog) SetShowHiddenFiles(show *bool) {
+func (o *FileDialog) SetShowHiddenFiles(show bool) {
 	log.Println("Calling FileDialog.SetShowHiddenFiles()")
 
 	// Build out the method's arguments
@@ -36759,43 +33681,7 @@ func (o *FileDialog) SetShowHiddenFiles(show *bool) {
    FileDialog is a preset dialog used to choose files and directories in the filesystem. It supports filter masks.
 */
 type FileDialogImplementer interface {
-	ConfirmationDialogImplementer
-
-	AddFilter(filter string)
-
-	ClearFilters()
-
-	GetAccess() int64
-
-	GetCurrentDir() string
-
-	GetCurrentFile() string
-
-	GetCurrentPath() string
-
-	GetFilters() *PoolStringArray
-
-	GetMode() int64
-
-	GetVbox() *VBoxContainer
-
-	Invalidate()
-
-	IsShowingHiddenFiles() *bool
-
-	SetAccess(access int64)
-
-	SetCurrentDir(dir string)
-
-	SetCurrentFile(file string)
-
-	SetCurrentPath(path string)
-
-	SetFilters(filters *PoolStringArray)
-
-	SetMode(mode int64)
-
-	SetShowHiddenFiles(show *bool)
+	Class
 }
 
 /*
@@ -36945,7 +33831,7 @@ func (o *Font) GetStringSize(string string) *Vector2 {
 /*
 
  */
-func (o *Font) IsDistanceFieldHint() *bool {
+func (o *Font) IsDistanceFieldHint() bool {
 	log.Println("Calling Font.IsDistanceFieldHint()")
 
 	// Build out the method's arguments
@@ -36953,11 +33839,11 @@ func (o *Font) IsDistanceFieldHint() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_distance_field_hint", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_distance_field_hint", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -36985,23 +33871,7 @@ func (o *Font) UpdateChanges() {
    Font contains a unicode compatible character set, as well as the ability to draw it with variable width, ascent, descent and kerning. For creating fonts from TTF files (or other font formats), see the editor support for fonts. TODO check wikipedia for graph of ascent/baseline/descent/height/etc.
 */
 type FontImplementer interface {
-	ResourceImplementer
-
-	Draw(canvasItem *RID, pos *Vector2, string string, modulate *Color, clipW int64)
-
-	DrawChar(canvasItem *RID, pos *Vector2, char int64, next int64, modulate *Color) float64
-
-	GetAscent() float64
-
-	GetDescent() float64
-
-	GetHeight() float64
-
-	GetStringSize(string string) *Vector2
-
-	IsDistanceFieldHint() *bool
-
-	UpdateChanges()
+	Class
 }
 
 /*
@@ -37079,13 +33949,7 @@ func (o *FuncRef) SetInstance(instance *Object) {
 		However, by creating a [FuncRef] using the [method @GDScript.funcref] function, a reference to a function in a given object can be created, passed around and called.
 */
 type FuncRefImplementer interface {
-	ReferenceImplementer
-
-	CallFunc() *Variant
-
-	SetFunction(name string)
-
-	SetInstance(instance *Object)
+	Class
 }
 
 /*
@@ -37103,7 +33967,7 @@ func (o *GDFunctionState) baseClass() string {
                 Check whether the function call may be resumed. This is not the case if the function state was already resumed.
 				If [code]extended_check[/code] is enabled, it also checks if the associated script and object still exist. The extended check is done in debug mode as part of [method GDFunctionState.resume], but you can use this if you know you may be trying to resume without knowing for sure the object and/or script have survived up to that point.
 */
-func (o *GDFunctionState) IsValid(extendedCheck *bool) *bool {
+func (o *GDFunctionState) IsValid(extendedCheck bool) bool {
 	log.Println("Calling GDFunctionState.IsValid()")
 
 	// Build out the method's arguments
@@ -37112,11 +33976,11 @@ func (o *GDFunctionState) IsValid(extendedCheck *bool) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_valid", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_valid", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -37151,11 +34015,7 @@ func (o *GDFunctionState) Resume(arg *Variant) *Variant {
    Calling [method @GDScript.yield] within a function will cause that function to yield and return its current state as an object of this type. The yielded function call can then be resumed later by calling [method resume] on this state object.
 */
 type GDFunctionStateImplementer interface {
-	ReferenceImplementer
-
-	IsValid(extendedCheck *bool) *bool
-
-	Resume(arg *Variant) *Variant
+	Class
 }
 
 /*
@@ -37217,7 +34077,7 @@ func (o *GDNative) GetLibrary() *GDNativeLibrary {
 /*
 
  */
-func (o *GDNative) Initialize() *bool {
+func (o *GDNative) Initialize() bool {
 	log.Println("Calling GDNative.Initialize()")
 
 	// Build out the method's arguments
@@ -37225,11 +34085,11 @@ func (o *GDNative) Initialize() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "initialize", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "initialize", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -37256,7 +34116,7 @@ func (o *GDNative) SetLibrary(library *GDNativeLibrary) {
 /*
 
  */
-func (o *GDNative) Terminate() *bool {
+func (o *GDNative) Terminate() bool {
 	log.Println("Calling GDNative.Terminate()")
 
 	// Build out the method's arguments
@@ -37264,11 +34124,11 @@ func (o *GDNative) Terminate() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "terminate", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "terminate", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -37279,17 +34139,7 @@ func (o *GDNative) Terminate() *bool {
 
 */
 type GDNativeImplementer interface {
-	ReferenceImplementer
-
-	CallNative(procedureName string, arguments string, arg2 *Array) *Variant
-
-	GetLibrary() *GDNativeLibrary
-
-	Initialize() *bool
-
-	SetLibrary(library *GDNativeLibrary)
-
-	Terminate() *bool
+	Class
 }
 
 /*
@@ -37329,9 +34179,7 @@ func (o *GDNativeClass) New() *Variant {
 
 */
 type GDNativeClassImplementer interface {
-	ReferenceImplementer
-
-	New() *Variant
+	Class
 }
 
 /*
@@ -37391,11 +34239,7 @@ func (o *GDNativeLibrary) SetLibraryPath(platform string, path string) {
 
 */
 type GDNativeLibraryImplementer interface {
-	ResourceImplementer
-
-	GetLibraryPath(platform string) string
-
-	SetLibraryPath(platform string, path string)
+	Class
 }
 
 /*
@@ -37456,11 +34300,7 @@ func (o *GDScript) New() *Object {
 
 */
 type GDScriptImplementer interface {
-	ScriptImplementer
-
-	GetAsByteCode() *PoolByteArray
-
-	New() *Object
+	Class
 }
 
 /*
@@ -37477,7 +34317,7 @@ func (o *GIProbe) baseClass() string {
 /*
 
  */
-func (o *GIProbe) Bake(fromNode *Node, createVisualDebug *bool) {
+func (o *GIProbe) Bake(fromNode *Node, createVisualDebug bool) {
 	log.Println("Calling GIProbe.Bake()")
 
 	// Build out the method's arguments
@@ -37681,7 +34521,7 @@ func (o *GIProbe) GetSubdiv() int64 {
 /*
 
  */
-func (o *GIProbe) IsCompressed() *bool {
+func (o *GIProbe) IsCompressed() bool {
 	log.Println("Calling GIProbe.IsCompressed()")
 
 	// Build out the method's arguments
@@ -37689,11 +34529,11 @@ func (o *GIProbe) IsCompressed() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_compressed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_compressed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -37702,7 +34542,7 @@ func (o *GIProbe) IsCompressed() *bool {
 /*
 
  */
-func (o *GIProbe) IsInterior() *bool {
+func (o *GIProbe) IsInterior() bool {
 	log.Println("Calling GIProbe.IsInterior()")
 
 	// Build out the method's arguments
@@ -37710,11 +34550,11 @@ func (o *GIProbe) IsInterior() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_interior", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_interior", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -37741,7 +34581,7 @@ func (o *GIProbe) SetBias(max float64) {
 /*
 
  */
-func (o *GIProbe) SetCompress(enable *bool) {
+func (o *GIProbe) SetCompress(enable bool) {
 	log.Println("Calling GIProbe.SetCompress()")
 
 	// Build out the method's arguments
@@ -37813,7 +34653,7 @@ func (o *GIProbe) SetExtents(extents *Vector3) {
 /*
 
  */
-func (o *GIProbe) SetInterior(enable *bool) {
+func (o *GIProbe) SetInterior(enable bool) {
 	log.Println("Calling GIProbe.SetInterior()")
 
 	// Build out the method's arguments
@@ -37905,51 +34745,7 @@ func (o *GIProbe) SetSubdiv(subdiv int64) {
 
 */
 type GIProbeImplementer interface {
-	VisualInstanceImplementer
-
-	Bake(fromNode *Node, createVisualDebug *bool)
-
-	DebugBake()
-
-	GetBias() float64
-
-	GetDynamicRange() int64
-
-	GetEnergy() float64
-
-	GetExtents() *Vector3
-
-	GetNormalBias() float64
-
-	GetProbeData() *GIProbeData
-
-	GetPropagation() float64
-
-	GetSubdiv() int64
-
-	IsCompressed() *bool
-
-	IsInterior() *bool
-
-	SetBias(max float64)
-
-	SetCompress(enable *bool)
-
-	SetDynamicRange(max int64)
-
-	SetEnergy(max float64)
-
-	SetExtents(extents *Vector3)
-
-	SetInterior(enable *bool)
-
-	SetNormalBias(max float64)
-
-	SetProbeData(data *GIProbeData)
-
-	SetPropagation(max float64)
-
-	SetSubdiv(subdiv int64)
+	Class
 }
 
 /*
@@ -38155,7 +34951,7 @@ func (o *GIProbeData) GetToCellXform() *Transform {
 /*
 
  */
-func (o *GIProbeData) IsCompressed() *bool {
+func (o *GIProbeData) IsCompressed() bool {
 	log.Println("Calling GIProbeData.IsCompressed()")
 
 	// Build out the method's arguments
@@ -38163,11 +34959,11 @@ func (o *GIProbeData) IsCompressed() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_compressed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_compressed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -38176,7 +34972,7 @@ func (o *GIProbeData) IsCompressed() *bool {
 /*
 
  */
-func (o *GIProbeData) IsInterior() *bool {
+func (o *GIProbeData) IsInterior() bool {
 	log.Println("Calling GIProbeData.IsInterior()")
 
 	// Build out the method's arguments
@@ -38184,11 +34980,11 @@ func (o *GIProbeData) IsInterior() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_interior", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_interior", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -38251,7 +35047,7 @@ func (o *GIProbeData) SetCellSize(cellSize float64) {
 /*
 
  */
-func (o *GIProbeData) SetCompress(compress *bool) {
+func (o *GIProbeData) SetCompress(compress bool) {
 	log.Println("Calling GIProbeData.SetCompress()")
 
 	// Build out the method's arguments
@@ -38323,7 +35119,7 @@ func (o *GIProbeData) SetEnergy(energy float64) {
 /*
 
  */
-func (o *GIProbeData) SetInterior(interior *bool) {
+func (o *GIProbeData) SetInterior(interior bool) {
 	log.Println("Calling GIProbeData.SetInterior()")
 
 	// Build out the method's arguments
@@ -38397,51 +35193,7 @@ func (o *GIProbeData) SetToCellXform(toCellXform *Transform) {
 
 */
 type GIProbeDataImplementer interface {
-	ResourceImplementer
-
-	GetBias() float64
-
-	GetBounds() *Rect3
-
-	GetCellSize() float64
-
-	GetDynamicData() *PoolIntArray
-
-	GetDynamicRange() int64
-
-	GetEnergy() float64
-
-	GetNormalBias() float64
-
-	GetPropagation() float64
-
-	GetToCellXform() *Transform
-
-	IsCompressed() *bool
-
-	IsInterior() *bool
-
-	SetBias(bias float64)
-
-	SetBounds(bounds *Rect3)
-
-	SetCellSize(cellSize float64)
-
-	SetCompress(compress *bool)
-
-	SetDynamicData(dynamicData *PoolIntArray)
-
-	SetDynamicRange(dynamicRange int64)
-
-	SetEnergy(energy float64)
-
-	SetInterior(interior *bool)
-
-	SetNormalBias(bias float64)
-
-	SetPropagation(propagation float64)
-
-	SetToCellXform(toCellXform *Transform)
+	Class
 }
 
 /*
@@ -38458,7 +35210,7 @@ func (o *Generic6DOFJoint) baseClass() string {
 /*
 
  */
-func (o *Generic6DOFJoint) GetFlagX(flag int64) *bool {
+func (o *Generic6DOFJoint) GetFlagX(flag int64) bool {
 	log.Println("Calling Generic6DOFJoint.GetFlagX()")
 
 	// Build out the method's arguments
@@ -38467,11 +35219,11 @@ func (o *Generic6DOFJoint) GetFlagX(flag int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_flag_x", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_flag_x", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -38480,7 +35232,7 @@ func (o *Generic6DOFJoint) GetFlagX(flag int64) *bool {
 /*
 
  */
-func (o *Generic6DOFJoint) GetFlagY(flag int64) *bool {
+func (o *Generic6DOFJoint) GetFlagY(flag int64) bool {
 	log.Println("Calling Generic6DOFJoint.GetFlagY()")
 
 	// Build out the method's arguments
@@ -38489,11 +35241,11 @@ func (o *Generic6DOFJoint) GetFlagY(flag int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_flag_y", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_flag_y", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -38502,7 +35254,7 @@ func (o *Generic6DOFJoint) GetFlagY(flag int64) *bool {
 /*
 
  */
-func (o *Generic6DOFJoint) GetFlagZ(flag int64) *bool {
+func (o *Generic6DOFJoint) GetFlagZ(flag int64) bool {
 	log.Println("Calling Generic6DOFJoint.GetFlagZ()")
 
 	// Build out the method's arguments
@@ -38511,11 +35263,11 @@ func (o *Generic6DOFJoint) GetFlagZ(flag int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_flag_z", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_flag_z", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -38590,7 +35342,7 @@ func (o *Generic6DOFJoint) GetParamZ(param int64) float64 {
 /*
 
  */
-func (o *Generic6DOFJoint) SetFlagX(flag int64, value *bool) {
+func (o *Generic6DOFJoint) SetFlagX(flag int64, value bool) {
 	log.Println("Calling Generic6DOFJoint.SetFlagX()")
 
 	// Build out the method's arguments
@@ -38609,7 +35361,7 @@ func (o *Generic6DOFJoint) SetFlagX(flag int64, value *bool) {
 /*
 
  */
-func (o *Generic6DOFJoint) SetFlagY(flag int64, value *bool) {
+func (o *Generic6DOFJoint) SetFlagY(flag int64, value bool) {
 	log.Println("Calling Generic6DOFJoint.SetFlagY()")
 
 	// Build out the method's arguments
@@ -38628,7 +35380,7 @@ func (o *Generic6DOFJoint) SetFlagY(flag int64, value *bool) {
 /*
 
  */
-func (o *Generic6DOFJoint) SetFlagZ(flag int64, value *bool) {
+func (o *Generic6DOFJoint) SetFlagZ(flag int64, value bool) {
 	log.Println("Calling Generic6DOFJoint.SetFlagZ()")
 
 	// Build out the method's arguments
@@ -38706,31 +35458,7 @@ func (o *Generic6DOFJoint) SetParamZ(param int64, value float64) {
 
 */
 type Generic6DOFJointImplementer interface {
-	JointImplementer
-
-	GetFlagX(flag int64) *bool
-
-	GetFlagY(flag int64) *bool
-
-	GetFlagZ(flag int64) *bool
-
-	GetParamX(param int64) float64
-
-	GetParamY(param int64) float64
-
-	GetParamZ(param int64) float64
-
-	SetFlagX(flag int64, value *bool)
-
-	SetFlagY(flag int64, value *bool)
-
-	SetFlagZ(flag int64, value *bool)
-
-	SetParamX(param int64, value float64)
-
-	SetParamY(param int64, value float64)
-
-	SetParamZ(param int64, value float64)
+	Class
 }
 
 /*
@@ -39010,7 +35738,7 @@ func (o *Geometry) MakeAtlas(sizes *PoolVector2Array) *Dictionary {
 /*
 
  */
-func (o *Geometry) PointIsInsideTriangle(point *Vector2, a *Vector2, b *Vector2, c *Vector2) *bool {
+func (o *Geometry) PointIsInsideTriangle(point *Vector2, a *Vector2, b *Vector2, c *Vector2) bool {
 	log.Println("Calling Geometry.PointIsInsideTriangle()")
 
 	// Build out the method's arguments
@@ -39022,11 +35750,11 @@ func (o *Geometry) PointIsInsideTriangle(point *Vector2, a *Vector2, b *Vector2,
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "point_is_inside_triangle", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "point_is_inside_triangle", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -39235,47 +35963,7 @@ func (o *Geometry) TriangulatePolygon(polygon *PoolVector2Array) *PoolIntArray {
 
 */
 type GeometryImplementer interface {
-	ObjectImplementer
-
-	BuildBoxPlanes(extents *Vector3) *Array
-
-	BuildCapsulePlanes(radius float64, height float64, sides int64, lats int64, axis int64) *Array
-
-	BuildCylinderPlanes(radius float64, height float64, sides int64, axis int64) *Array
-
-	GetClosestPointToSegment(point *Vector3, s1 *Vector3, s2 *Vector3) *Vector3
-
-	GetClosestPointToSegment2D(point *Vector2, s1 *Vector2, s2 *Vector2) *Vector2
-
-	GetClosestPointToSegmentUncapped(point *Vector3, s1 *Vector3, s2 *Vector3) *Vector3
-
-	GetClosestPointToSegmentUncapped2D(point *Vector2, s1 *Vector2, s2 *Vector2) *Vector2
-
-	GetClosestPointsBetweenSegments(p1 *Vector3, p2 *Vector3, q1 *Vector3, q2 *Vector3) *PoolVector3Array
-
-	GetClosestPointsBetweenSegments2D(p1 *Vector2, q1 *Vector2, p2 *Vector2, q2 *Vector2) *PoolVector2Array
-
-	GetUv84NormalBit(normal *Vector3) int64
-
-	MakeAtlas(sizes *PoolVector2Array) *Dictionary
-
-	PointIsInsideTriangle(point *Vector2, a *Vector2, b *Vector2, c *Vector2) *bool
-
-	RayIntersectsTriangle(from *Vector3, dir *Vector3, a *Vector3, b *Vector3, c *Vector3) *Variant
-
-	SegmentIntersectsCircle(segmentFrom *Vector2, segmentTo *Vector2, circlePos *Vector2, circleRadius float64) float64
-
-	SegmentIntersectsConvex(from *Vector3, to *Vector3, planes *Array) *PoolVector3Array
-
-	SegmentIntersectsCylinder(from *Vector3, to *Vector3, height float64, radius float64) *PoolVector3Array
-
-	SegmentIntersectsSegment2D(fromA *Vector2, toA *Vector2, fromB *Vector2, toB *Vector2) *Variant
-
-	SegmentIntersectsSphere(from *Vector3, to *Vector3, spos *Vector3, sradius float64) *PoolVector3Array
-
-	SegmentIntersectsTriangle(from *Vector3, to *Vector3, a *Vector3, b *Vector3, c *Vector3) *Variant
-
-	TriangulatePolygon(polygon *PoolVector2Array) *PoolIntArray
+	Class
 }
 
 /*
@@ -39334,7 +36022,7 @@ func (o *GeometryInstance) GetExtraCullMargin() float64 {
 /*
 
  */
-func (o *GeometryInstance) GetFlag(flag int64) *bool {
+func (o *GeometryInstance) GetFlag(flag int64) bool {
 	log.Println("Calling GeometryInstance.GetFlag()")
 
 	// Build out the method's arguments
@@ -39343,11 +36031,11 @@ func (o *GeometryInstance) GetFlag(flag int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_flag", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_flag", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -39497,7 +36185,7 @@ func (o *GeometryInstance) SetExtraCullMargin(margin float64) {
 /*
 
  */
-func (o *GeometryInstance) SetFlag(flag int64, value *bool) {
+func (o *GeometryInstance) SetFlag(flag int64, value bool) {
 	log.Println("Calling GeometryInstance.SetFlag()")
 
 	// Build out the method's arguments
@@ -39608,39 +36296,7 @@ func (o *GeometryInstance) SetMaterialOverride(material *Material) {
    Base node for geometry based visual instances. Shares some common functionality like visibility and custom materials.
 */
 type GeometryInstanceImplementer interface {
-	VisualInstanceImplementer
-
-	GetCastShadowsSetting() int64
-
-	GetExtraCullMargin() float64
-
-	GetFlag(flag int64) *bool
-
-	GetLodMaxDistance() float64
-
-	GetLodMaxHysteresis() float64
-
-	GetLodMinDistance() float64
-
-	GetLodMinHysteresis() float64
-
-	GetMaterialOverride() *Material
-
-	SetCastShadowsSetting(shadowCastingSetting int64)
-
-	SetExtraCullMargin(margin float64)
-
-	SetFlag(flag int64, value *bool)
-
-	SetLodMaxDistance(mode float64)
-
-	SetLodMaxHysteresis(mode float64)
-
-	SetLodMinDistance(mode float64)
-
-	SetLodMinHysteresis(mode float64)
-
-	SetMaterialOverride(material *Material)
+	Class
 }
 
 /*
@@ -39899,31 +36555,7 @@ func (o *Gradient) SetOffsets(offsets *PoolRealArray) {
    Given a set of colors, this node will interpolate them in order, meaning, that if you have color 1, color 2 and color3, the ramp will interpolate (generate the colors between two colors) from color 1 to color 2 and from color 2 to color 3. Initially the ramp will have 2 colors (black and white), one (black) at ramp lower offset offset 0 and the other (white) at the ramp higher offset 1.
 */
 type GradientImplementer interface {
-	ResourceImplementer
-
-	AddPoint(offset float64, color *Color)
-
-	GetColor(point int64) *Color
-
-	GetColors() *PoolColorArray
-
-	GetOffset(point int64) float64
-
-	GetOffsets() *PoolRealArray
-
-	GetPointCount() int64
-
-	Interpolate(offset float64) *Color
-
-	RemovePoint(offset int64)
-
-	SetColor(point int64, color *Color)
-
-	SetColors(colors *PoolColorArray)
-
-	SetOffset(point int64, offset float64)
-
-	SetOffsets(offsets *PoolRealArray)
+	Class
 }
 
 /*
@@ -39999,13 +36631,7 @@ func (o *GradientTexture) SetWidth(width int64) {
 
 */
 type GradientTextureImplementer interface {
-	TextureImplementer
-
-	GetGradient() *Gradient
-
-	SetGradient(gradient *Gradient)
-
-	SetWidth(width int64)
+	Class
 }
 
 /*
@@ -40153,7 +36779,7 @@ func (o *GraphEdit) GetZoom() float64 {
 /*
    Return true if the 'from_port' slot of 'from' GraphNode is connected to the 'to_port' slot of 'to' GraphNode.
 */
-func (o *GraphEdit) IsNodeConnected(from string, fromPort int64, to string, toPort int64) *bool {
+func (o *GraphEdit) IsNodeConnected(from string, fromPort int64, to string, toPort int64) bool {
 	log.Println("Calling GraphEdit.IsNodeConnected()")
 
 	// Build out the method's arguments
@@ -40165,11 +36791,11 @@ func (o *GraphEdit) IsNodeConnected(from string, fromPort int64, to string, toPo
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_node_connected", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_node_connected", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -40178,7 +36804,7 @@ func (o *GraphEdit) IsNodeConnected(from string, fromPort int64, to string, toPo
 /*
    Return true is the disconnection of connections is enable in the visual GraphEdit. False otherwise.
 */
-func (o *GraphEdit) IsRightDisconnectsEnabled() *bool {
+func (o *GraphEdit) IsRightDisconnectsEnabled() bool {
 	log.Println("Calling GraphEdit.IsRightDisconnectsEnabled()")
 
 	// Build out the method's arguments
@@ -40186,11 +36812,11 @@ func (o *GraphEdit) IsRightDisconnectsEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_right_disconnects_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_right_disconnects_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -40199,7 +36825,7 @@ func (o *GraphEdit) IsRightDisconnectsEnabled() *bool {
 /*
 
  */
-func (o *GraphEdit) IsUsingSnap() *bool {
+func (o *GraphEdit) IsUsingSnap() bool {
 	log.Println("Calling GraphEdit.IsUsingSnap()")
 
 	// Build out the method's arguments
@@ -40207,11 +36833,11 @@ func (o *GraphEdit) IsUsingSnap() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_using_snap", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_using_snap", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -40220,7 +36846,7 @@ func (o *GraphEdit) IsUsingSnap() *bool {
 /*
    Enable the disconnection of existing connections in the visual GraphEdit by left-clicking a connection and releasing into the void.
 */
-func (o *GraphEdit) SetRightDisconnects(enable *bool) {
+func (o *GraphEdit) SetRightDisconnects(enable bool) {
 	log.Println("Calling GraphEdit.SetRightDisconnects()")
 
 	// Build out the method's arguments
@@ -40292,7 +36918,7 @@ func (o *GraphEdit) SetSnap(pixels int64) {
 /*
 
  */
-func (o *GraphEdit) SetUseSnap(enable *bool) {
+func (o *GraphEdit) SetUseSnap(enable bool) {
 	log.Println("Calling GraphEdit.SetUseSnap()")
 
 	// Build out the method's arguments
@@ -40331,37 +36957,7 @@ func (o *GraphEdit) SetZoom(pZoom float64) {
 		It is greatly advised to enable low processor usage mode (see [method OS.set_low_processor_usage_mode]) when using GraphEdits.
 */
 type GraphEditImplementer interface {
-	ControlImplementer
-
-	ConnectNode(from string, fromPort int64, to string, toPort int64) int64
-
-	DisconnectNode(from string, fromPort int64, to string, toPort int64)
-
-	GetConnectionList() *Array
-
-	GetScrollOfs() *Vector2
-
-	GetSnap() int64
-
-	GetZoom() float64
-
-	IsNodeConnected(from string, fromPort int64, to string, toPort int64) *bool
-
-	IsRightDisconnectsEnabled() *bool
-
-	IsUsingSnap() *bool
-
-	SetRightDisconnects(enable *bool)
-
-	SetScrollOfs(ofs *Vector2)
-
-	SetSelected(node *Node)
-
-	SetSnap(pixels int64)
-
-	SetUseSnap(enable *bool)
-
-	SetZoom(pZoom float64)
+	Class
 }
 
 /*
@@ -40738,7 +37334,7 @@ func (o *GraphNode) GetTitle() string {
 /*
    Returns true if the close button is shown. False otherwise.
 */
-func (o *GraphNode) IsCloseButtonVisible() *bool {
+func (o *GraphNode) IsCloseButtonVisible() bool {
 	log.Println("Calling GraphNode.IsCloseButtonVisible()")
 
 	// Build out the method's arguments
@@ -40746,11 +37342,11 @@ func (o *GraphNode) IsCloseButtonVisible() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_close_button_visible", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_close_button_visible", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -40759,7 +37355,7 @@ func (o *GraphNode) IsCloseButtonVisible() *bool {
 /*
 
  */
-func (o *GraphNode) IsComment() *bool {
+func (o *GraphNode) IsComment() bool {
 	log.Println("Calling GraphNode.IsComment()")
 
 	// Build out the method's arguments
@@ -40767,11 +37363,11 @@ func (o *GraphNode) IsComment() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_comment", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_comment", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -40780,7 +37376,7 @@ func (o *GraphNode) IsComment() *bool {
 /*
 
  */
-func (o *GraphNode) IsResizeable() *bool {
+func (o *GraphNode) IsResizeable() bool {
 	log.Println("Calling GraphNode.IsResizeable()")
 
 	// Build out the method's arguments
@@ -40788,11 +37384,11 @@ func (o *GraphNode) IsResizeable() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_resizeable", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_resizeable", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -40801,7 +37397,7 @@ func (o *GraphNode) IsResizeable() *bool {
 /*
 
  */
-func (o *GraphNode) IsSelected() *bool {
+func (o *GraphNode) IsSelected() bool {
 	log.Println("Calling GraphNode.IsSelected()")
 
 	// Build out the method's arguments
@@ -40809,11 +37405,11 @@ func (o *GraphNode) IsSelected() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_selected", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_selected", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -40822,7 +37418,7 @@ func (o *GraphNode) IsSelected() *bool {
 /*
    Return true if left (input) slot 'idx' is enabled. False otherwise.
 */
-func (o *GraphNode) IsSlotEnabledLeft(idx int64) *bool {
+func (o *GraphNode) IsSlotEnabledLeft(idx int64) bool {
 	log.Println("Calling GraphNode.IsSlotEnabledLeft()")
 
 	// Build out the method's arguments
@@ -40831,11 +37427,11 @@ func (o *GraphNode) IsSlotEnabledLeft(idx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_slot_enabled_left", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_slot_enabled_left", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -40844,7 +37440,7 @@ func (o *GraphNode) IsSlotEnabledLeft(idx int64) *bool {
 /*
    Return true if right (output) slot 'idx' is enabled. False otherwise.
 */
-func (o *GraphNode) IsSlotEnabledRight(idx int64) *bool {
+func (o *GraphNode) IsSlotEnabledRight(idx int64) bool {
 	log.Println("Calling GraphNode.IsSlotEnabledRight()")
 
 	// Build out the method's arguments
@@ -40853,11 +37449,11 @@ func (o *GraphNode) IsSlotEnabledRight(idx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_slot_enabled_right", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_slot_enabled_right", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -40866,7 +37462,7 @@ func (o *GraphNode) IsSlotEnabledRight(idx int64) *bool {
 /*
 
  */
-func (o *GraphNode) SetComment(comment *bool) {
+func (o *GraphNode) SetComment(comment bool) {
 	log.Println("Calling GraphNode.SetComment()")
 
 	// Build out the method's arguments
@@ -40920,7 +37516,7 @@ func (o *GraphNode) SetOverlay(overlay int64) {
 /*
 
  */
-func (o *GraphNode) SetResizeable(resizeable *bool) {
+func (o *GraphNode) SetResizeable(resizeable bool) {
 	log.Println("Calling GraphNode.SetResizeable()")
 
 	// Build out the method's arguments
@@ -40938,7 +37534,7 @@ func (o *GraphNode) SetResizeable(resizeable *bool) {
 /*
 
  */
-func (o *GraphNode) SetSelected(selected *bool) {
+func (o *GraphNode) SetSelected(selected bool) {
 	log.Println("Calling GraphNode.SetSelected()")
 
 	// Build out the method's arguments
@@ -40956,7 +37552,7 @@ func (o *GraphNode) SetSelected(selected *bool) {
 /*
    Show the close button on the GraphNode if 'show' is true (disabled by default). If enabled, a connection on the signal close_request is needed for the close button to work.
 */
-func (o *GraphNode) SetShowCloseButton(show *bool) {
+func (o *GraphNode) SetShowCloseButton(show bool) {
 	log.Println("Calling GraphNode.SetShowCloseButton()")
 
 	// Build out the method's arguments
@@ -40974,7 +37570,7 @@ func (o *GraphNode) SetShowCloseButton(show *bool) {
 /*
 
  */
-func (o *GraphNode) SetSlot(idx int64, enableLeft *bool, typeLeft int64, colorLeft *Color, enableRight *bool, typeRight int64, colorRight *Color, customLeft *Texture, customRight *Texture) {
+func (o *GraphNode) SetSlot(idx int64, enableLeft bool, typeLeft int64, colorLeft *Color, enableRight bool, typeRight int64, colorRight *Color, customLeft *Texture, customRight *Texture) {
 	log.Println("Calling GraphNode.SetSlot()")
 
 	// Build out the method's arguments
@@ -41020,69 +37616,7 @@ func (o *GraphNode) SetTitle(title string) {
    A GraphNode is a container defined by a title. It can have 1 or more input and output slots, which can be enabled (shown) or disabled (not shown) and have different (incompatible) types. Colors can also be assigned to slots. A tuple of input and output slots is defined for each GUI element included in the GraphNode. Input and output connections are left and right slots, but only enabled slots are counted as connections.
 */
 type GraphNodeImplementer interface {
-	ContainerImplementer
-
-	ClearAllSlots()
-
-	ClearSlot(idx int64)
-
-	GetConnectionInputColor(idx int64) *Color
-
-	GetConnectionInputCount() int64
-
-	GetConnectionInputPos(idx int64) *Vector2
-
-	GetConnectionInputType(idx int64) int64
-
-	GetConnectionOutputColor(idx int64) *Color
-
-	GetConnectionOutputCount() int64
-
-	GetConnectionOutputPos(idx int64) *Vector2
-
-	GetConnectionOutputType(idx int64) int64
-
-	GetOffset() *Vector2
-
-	GetOverlay() int64
-
-	GetSlotColorLeft(idx int64) *Color
-
-	GetSlotColorRight(idx int64) *Color
-
-	GetSlotTypeLeft(idx int64) int64
-
-	GetSlotTypeRight(idx int64) int64
-
-	GetTitle() string
-
-	IsCloseButtonVisible() *bool
-
-	IsComment() *bool
-
-	IsResizeable() *bool
-
-	IsSelected() *bool
-
-	IsSlotEnabledLeft(idx int64) *bool
-
-	IsSlotEnabledRight(idx int64) *bool
-
-	SetComment(comment *bool)
-
-	SetOffset(offset *Vector2)
-
-	SetOverlay(overlay int64)
-
-	SetResizeable(resizeable *bool)
-
-	SetSelected(selected *bool)
-
-	SetShowCloseButton(show *bool)
-
-	SetSlot(idx int64, enableLeft *bool, typeLeft int64, colorLeft *Color, enableRight *bool, typeRight int64, colorRight *Color, customLeft *Texture, customRight *Texture)
-
-	SetTitle(title string)
+	Class
 }
 
 /*
@@ -41140,11 +37674,7 @@ func (o *GridContainer) SetColumns(columns int64) {
    Grid container will arrange its children in a grid like structure, the grid columns are specified using the [method set_columns] method and the number of rows will be equal to the number of children in the container divided by the number of columns, for example: if the container has 5 children, and 2 columns, there will be 3 rows in the container. Notice that grid layout will preserve the columns and rows for every size of the container.
 */
 type GridContainerImplementer interface {
-	ContainerImplementer
-
-	GetColumns() int64
-
-	SetColumns(columns int64)
+	Class
 }
 
 /*
@@ -41247,7 +37777,7 @@ func (o *GridMap) GetCellSize() *Vector3 {
 /*
 
  */
-func (o *GridMap) GetCenterX() *bool {
+func (o *GridMap) GetCenterX() bool {
 	log.Println("Calling GridMap.GetCenterX()")
 
 	// Build out the method's arguments
@@ -41255,11 +37785,11 @@ func (o *GridMap) GetCenterX() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_center_x", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_center_x", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -41268,7 +37798,7 @@ func (o *GridMap) GetCenterX() *bool {
 /*
 
  */
-func (o *GridMap) GetCenterY() *bool {
+func (o *GridMap) GetCenterY() bool {
 	log.Println("Calling GridMap.GetCenterY()")
 
 	// Build out the method's arguments
@@ -41276,11 +37806,11 @@ func (o *GridMap) GetCenterY() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_center_y", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_center_y", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -41289,7 +37819,7 @@ func (o *GridMap) GetCenterY() *bool {
 /*
 
  */
-func (o *GridMap) GetCenterZ() *bool {
+func (o *GridMap) GetCenterZ() bool {
 	log.Println("Calling GridMap.GetCenterZ()")
 
 	// Build out the method's arguments
@@ -41297,11 +37827,11 @@ func (o *GridMap) GetCenterZ() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_center_z", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_center_z", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -41431,7 +37961,7 @@ func (o *GridMap) SetCellSize(size *Vector3) {
 /*
 
  */
-func (o *GridMap) SetCenterX(enable *bool) {
+func (o *GridMap) SetCenterX(enable bool) {
 	log.Println("Calling GridMap.SetCenterX()")
 
 	// Build out the method's arguments
@@ -41449,7 +37979,7 @@ func (o *GridMap) SetCenterX(enable *bool) {
 /*
 
  */
-func (o *GridMap) SetCenterY(enable *bool) {
+func (o *GridMap) SetCenterY(enable bool) {
 	log.Println("Calling GridMap.SetCenterY()")
 
 	// Build out the method's arguments
@@ -41467,7 +37997,7 @@ func (o *GridMap) SetCenterY(enable *bool) {
 /*
 
  */
-func (o *GridMap) SetCenterZ(enable *bool) {
+func (o *GridMap) SetCenterZ(enable bool) {
 	log.Println("Calling GridMap.SetCenterZ()")
 
 	// Build out the method's arguments
@@ -41485,7 +38015,7 @@ func (o *GridMap) SetCenterZ(enable *bool) {
 /*
 
  */
-func (o *GridMap) SetClip(enabled *bool, clipabove *bool, floor int64, axis int64) {
+func (o *GridMap) SetClip(enabled bool, clipabove bool, floor int64, axis int64) {
 	log.Println("Calling GridMap.SetClip()")
 
 	// Build out the method's arguments
@@ -41544,45 +38074,7 @@ func (o *GridMap) SetTheme(theme *MeshLibrary) {
 
 */
 type GridMapImplementer interface {
-	SpatialImplementer
-
-	Clear()
-
-	GetCellItem(x int64, y int64, z int64) int64
-
-	GetCellItemOrientation(x int64, y int64, z int64) int64
-
-	GetCellSize() *Vector3
-
-	GetCenterX() *bool
-
-	GetCenterY() *bool
-
-	GetCenterZ() *bool
-
-	GetMeshes() *Array
-
-	GetOctantSize() int64
-
-	GetTheme() *MeshLibrary
-
-	ResourceChanged(resource *Resource)
-
-	SetCellItem(x int64, y int64, z int64, item int64, orientation int64)
-
-	SetCellSize(size *Vector3)
-
-	SetCenterX(enable *bool)
-
-	SetCenterY(enable *bool)
-
-	SetCenterZ(enable *bool)
-
-	SetClip(enabled *bool, clipabove *bool, floor int64, axis int64)
-
-	SetOctantSize(size int64)
-
-	SetTheme(theme *MeshLibrary)
+	Class
 }
 
 /*
@@ -41679,15 +38171,7 @@ func (o *GrooveJoint2D) SetLength(length float64) {
    Groove constraint for 2D physics. This is useful for making a body "slide" through a segment placed in another.
 */
 type GrooveJoint2DImplementer interface {
-	Joint2DImplementer
-
-	GetInitialOffset() float64
-
-	GetLength() float64
-
-	SetInitialOffset(offset float64)
-
-	SetLength(length float64)
+	Class
 }
 
 /*
@@ -41706,7 +38190,7 @@ func (o *HBoxContainer) baseClass() string {
    Horizontal box container. See [BoxContainer].
 */
 type HBoxContainerImplementer interface {
-	BoxContainerImplementer
+	Class
 }
 
 /*
@@ -41725,7 +38209,7 @@ func (o *HScrollBar) baseClass() string {
    Horizontal scroll bar. See [ScrollBar]. This one goes from left (min) to right (max).
 */
 type HScrollBarImplementer interface {
-	ScrollBarImplementer
+	Class
 }
 
 /*
@@ -41744,7 +38228,7 @@ func (o *HSeparator) baseClass() string {
    Horizontal separator. See [Separator]. It is used to separate objects vertically, though (but it looks horizontal!).
 */
 type HSeparatorImplementer interface {
-	SeparatorImplementer
+	Class
 }
 
 /*
@@ -41763,7 +38247,7 @@ func (o *HSlider) baseClass() string {
    Horizontal slider. See [Slider]. This one goes from left (min) to right (max).
 */
 type HSliderImplementer interface {
-	SliderImplementer
+	Class
 }
 
 /*
@@ -41782,7 +38266,7 @@ func (o *HSplitContainer) baseClass() string {
    Horizontal split container. See [SplitContainer]. This goes from left to right.
 */
 type HSplitContainerImplementer interface {
-	SplitContainerImplementer
+	Class
 }
 
 /*
@@ -41819,7 +38303,7 @@ func (o *HTTPClient) Close() {
 				The host should not have http:// prepended but will strip the protocol identifier if provided.
 				verify_host will check the SSL identity of the host if set to true.
 */
-func (o *HTTPClient) ConnectToHost(host string, port int64, useSsl *bool, verifyHost *bool) int64 {
+func (o *HTTPClient) ConnectToHost(host string, port int64, useSsl bool, verifyHost bool) int64 {
 	log.Println("Calling HTTPClient.ConnectToHost()")
 
 	// Build out the method's arguments
@@ -41972,7 +38456,7 @@ func (o *HTTPClient) GetStatus() int64 {
 /*
    Return whether this [HTTPClient] has a response available.
 */
-func (o *HTTPClient) HasResponse() *bool {
+func (o *HTTPClient) HasResponse() bool {
 	log.Println("Calling HTTPClient.HasResponse()")
 
 	// Build out the method's arguments
@@ -41980,11 +38464,11 @@ func (o *HTTPClient) HasResponse() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_response", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_response", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -41993,7 +38477,7 @@ func (o *HTTPClient) HasResponse() *bool {
 /*
    Return whether blocking mode is enabled.
 */
-func (o *HTTPClient) IsBlockingModeEnabled() *bool {
+func (o *HTTPClient) IsBlockingModeEnabled() bool {
 	log.Println("Calling HTTPClient.IsBlockingModeEnabled()")
 
 	// Build out the method's arguments
@@ -42001,11 +38485,11 @@ func (o *HTTPClient) IsBlockingModeEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_blocking_mode_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_blocking_mode_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -42014,7 +38498,7 @@ func (o *HTTPClient) IsBlockingModeEnabled() *bool {
 /*
    Return whether this [HTTPClient] has a response that is chunked.
 */
-func (o *HTTPClient) IsResponseChunked() *bool {
+func (o *HTTPClient) IsResponseChunked() bool {
 	log.Println("Calling HTTPClient.IsResponseChunked()")
 
 	// Build out the method's arguments
@@ -42022,11 +38506,11 @@ func (o *HTTPClient) IsResponseChunked() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_response_chunked", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_response_chunked", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -42208,7 +38692,7 @@ func (o *HTTPClient) SendBodyText(body string) int64 {
 /*
    If set to true, execution will block until all data is read from the response.
 */
-func (o *HTTPClient) SetBlockingMode(enabled *bool) {
+func (o *HTTPClient) SetBlockingMode(enabled bool) {
 	log.Println("Calling HTTPClient.SetBlockingMode()")
 
 	// Build out the method's arguments
@@ -42265,49 +38749,7 @@ func (o *HTTPClient) SetReadChunkSize(bytes int64) {
 		Can be reused to connect to different hosts and make many requests.
 */
 type HTTPClientImplementer interface {
-	ReferenceImplementer
-
-	Close()
-
-	ConnectToHost(host string, port int64, useSsl *bool, verifyHost *bool) int64
-
-	GetConnection() *StreamPeer
-
-	GetResponseBodyLength() int64
-
-	GetResponseCode() int64
-
-	GetResponseHeaders() *PoolStringArray
-
-	GetResponseHeadersAsDictionary() *Dictionary
-
-	GetStatus() int64
-
-	HasResponse() *bool
-
-	IsBlockingModeEnabled() *bool
-
-	IsResponseChunked() *bool
-
-	Poll() int64
-
-	QueryStringFromDict(fields *Dictionary) string
-
-	ReadResponseBodyChunk() *PoolByteArray
-
-	Request(method int64, url string, headers *PoolStringArray, body string) int64
-
-	RequestRaw(method int64, url string, headers *PoolStringArray, body *PoolByteArray) int64
-
-	SendBodyData(body *PoolByteArray) int64
-
-	SendBodyText(body string) int64
-
-	SetBlockingMode(enabled *bool)
-
-	SetConnection(connection *StreamPeer)
-
-	SetReadChunkSize(bytes int64)
+	Class
 }
 
 /*
@@ -42468,7 +38910,7 @@ func (o *HTTPRequest) GetMaxRedirects() int64 {
 /*
    Whether this request is using threads.
 */
-func (o *HTTPRequest) IsUsingThreads() *bool {
+func (o *HTTPRequest) IsUsingThreads() bool {
 	log.Println("Calling HTTPRequest.IsUsingThreads()")
 
 	// Build out the method's arguments
@@ -42476,11 +38918,11 @@ func (o *HTTPRequest) IsUsingThreads() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_using_threads", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_using_threads", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -42489,7 +38931,7 @@ func (o *HTTPRequest) IsUsingThreads() *bool {
 /*
 
  */
-func (o *HTTPRequest) Request(url string, customHeaders *PoolStringArray, sslValidateDomain *bool, method int64, requestData string) int64 {
+func (o *HTTPRequest) Request(url string, customHeaders *PoolStringArray, sslValidateDomain bool, method int64, requestData string) int64 {
 	log.Println("Calling HTTPRequest.Request()")
 
 	// Build out the method's arguments
@@ -42569,7 +39011,7 @@ func (o *HTTPRequest) SetMaxRedirects(amount int64) {
 /*
    Make this HTTPRequest use threads.
 */
-func (o *HTTPRequest) SetUseThreads(enable *bool) {
+func (o *HTTPRequest) SetUseThreads(enable bool) {
 	log.Println("Calling HTTPRequest.SetUseThreads()")
 
 	// Build out the method's arguments
@@ -42590,33 +39032,7 @@ func (o *HTTPRequest) SetUseThreads(enable *bool) {
 		Can be used to make HTTP requests or download files via HTTP.
 */
 type HTTPRequestImplementer interface {
-	NodeImplementer
-
-	CancelRequest()
-
-	GetBodySize() int64
-
-	GetBodySizeLimit() int64
-
-	GetDownloadFile() string
-
-	GetDownloadedBytes() int64
-
-	GetHttpClientStatus() int64
-
-	GetMaxRedirects() int64
-
-	IsUsingThreads() *bool
-
-	Request(url string, customHeaders *PoolStringArray, sslValidateDomain *bool, method int64, requestData string) int64
-
-	SetBodySizeLimit(bytes int64)
-
-	SetDownloadFile(path string)
-
-	SetMaxRedirects(amount int64)
-
-	SetUseThreads(enable *bool)
+	Class
 }
 
 /*
@@ -42633,7 +39049,7 @@ func (o *HingeJoint) baseClass() string {
 /*
 
  */
-func (o *HingeJoint) GetFlag(flag int64) *bool {
+func (o *HingeJoint) GetFlag(flag int64) bool {
 	log.Println("Calling HingeJoint.GetFlag()")
 
 	// Build out the method's arguments
@@ -42642,11 +39058,11 @@ func (o *HingeJoint) GetFlag(flag int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_flag", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_flag", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -42677,7 +39093,7 @@ func (o *HingeJoint) GetParam(param int64) float64 {
 /*
 
  */
-func (o *HingeJoint) SetFlag(flag int64, enabled *bool) {
+func (o *HingeJoint) SetFlag(flag int64, enabled bool) {
 	log.Println("Calling HingeJoint.SetFlag()")
 
 	// Build out the method's arguments
@@ -42717,15 +39133,7 @@ func (o *HingeJoint) SetParam(param int64, value float64) {
 
 */
 type HingeJointImplementer interface {
-	JointImplementer
-
-	GetFlag(flag int64) *bool
-
-	GetParam(param int64) float64
-
-	SetFlag(flag int64, enabled *bool)
-
-	SetParam(param int64, value float64)
+	Class
 }
 
 /*
@@ -42891,21 +39299,7 @@ func (o *IP) ResolveHostnameQueueItem(host string, ipType int64) int64 {
    IP contains some support functions for the IPv4 protocol. TCP/IP support is in different classes (see [StreamPeerTCP] and [TCP_Server]). IP provides hostname resolution support, both blocking and threaded.
 */
 type IPImplementer interface {
-	ObjectImplementer
-
-	ClearCache(hostname string)
-
-	EraseResolveItem(id int64)
-
-	GetLocalAddresses() *Array
-
-	GetResolveItemAddress(id int64) string
-
-	GetResolveItemStatus(id int64) int64
-
-	ResolveHostname(host string, ipType int64) string
-
-	ResolveHostnameQueueItem(host string, ipType int64) int64
+	Class
 }
 
 /*
@@ -42924,7 +39318,7 @@ func (o *IP_Unix) baseClass() string {
 
 */
 type IP_UnixImplementer interface {
-	IPImplementer
+	Class
 }
 
 /*
@@ -43100,7 +39494,7 @@ func (o *Image) CopyFrom(src *Image) {
 /*
    Create an empty image of a specific size and format.
 */
-func (o *Image) Create(width int64, height int64, useMipmaps *bool, format int64) {
+func (o *Image) Create(width int64, height int64, useMipmaps bool, format int64) {
 	log.Println("Calling Image.Create()")
 
 	// Build out the method's arguments
@@ -43121,7 +39515,7 @@ func (o *Image) Create(width int64, height int64, useMipmaps *bool, format int64
 /*
 
  */
-func (o *Image) CreateFromData(width int64, height int64, useMipmaps *bool, format int64, data *PoolByteArray) {
+func (o *Image) CreateFromData(width int64, height int64, useMipmaps bool, format int64, data *PoolByteArray) {
 	log.Println("Calling Image.CreateFromData()")
 
 	// Build out the method's arguments
@@ -43504,7 +39898,7 @@ func (o *Image) GetWidth() int64 {
 /*
 
  */
-func (o *Image) HasMipmaps() *bool {
+func (o *Image) HasMipmaps() bool {
 	log.Println("Calling Image.HasMipmaps()")
 
 	// Build out the method's arguments
@@ -43512,11 +39906,11 @@ func (o *Image) HasMipmaps() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_mipmaps", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_mipmaps", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -43525,7 +39919,7 @@ func (o *Image) HasMipmaps() *bool {
 /*
 
  */
-func (o *Image) IsCompressed() *bool {
+func (o *Image) IsCompressed() bool {
 	log.Println("Calling Image.IsCompressed()")
 
 	// Build out the method's arguments
@@ -43533,11 +39927,11 @@ func (o *Image) IsCompressed() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_compressed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_compressed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -43546,7 +39940,7 @@ func (o *Image) IsCompressed() *bool {
 /*
 
  */
-func (o *Image) IsEmpty() *bool {
+func (o *Image) IsEmpty() bool {
 	log.Println("Calling Image.IsEmpty()")
 
 	// Build out the method's arguments
@@ -43554,11 +39948,11 @@ func (o *Image) IsEmpty() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_empty", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_empty", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -43567,7 +39961,7 @@ func (o *Image) IsEmpty() *bool {
 /*
 
  */
-func (o *Image) IsInvisible() *bool {
+func (o *Image) IsInvisible() bool {
 	log.Println("Calling Image.IsInvisible()")
 
 	// Build out the method's arguments
@@ -43575,11 +39969,11 @@ func (o *Image) IsInvisible() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_invisible", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_invisible", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -43681,7 +40075,7 @@ func (o *Image) Resize(width int64, height int64, interpolation int64) {
 /*
 
  */
-func (o *Image) ResizeToPo2(square *bool) {
+func (o *Image) ResizeToPo2(square bool) {
 	log.Println("Calling Image.ResizeToPo2()")
 
 	// Build out the method's arguments
@@ -43794,93 +40188,7 @@ func (o *Image) Unlock() {
    Native image datatype. Contains image data, which can be converted to a texture, and several functions to interact with it.
 */
 type ImageImplementer interface {
-	ResourceImplementer
-
-	BlendRect(src *Image, srcRect *Rect2, dst *Vector2)
-
-	BlendRectMask(src *Image, mask *Image, srcRect *Rect2, dst *Vector2)
-
-	BlitRect(src *Image, srcRect *Rect2, dst *Vector2)
-
-	BlitRectMask(src *Image, mask *Image, srcRect *Rect2, dst *Vector2)
-
-	ClearMipmaps()
-
-	Compress(mode int64, source int64, lossyQuality float64) int64
-
-	Convert(format int64)
-
-	CopyFrom(src *Image)
-
-	Create(width int64, height int64, useMipmaps *bool, format int64)
-
-	CreateFromData(width int64, height int64, useMipmaps *bool, format int64, data *PoolByteArray)
-
-	Crop(width int64, height int64)
-
-	Decompress() int64
-
-	DetectAlpha() int64
-
-	ExpandX2Hq2X()
-
-	Fill(color *Color)
-
-	FixAlphaEdges()
-
-	FlipX()
-
-	FlipY()
-
-	GenerateMipmaps() int64
-
-	GetData() *PoolByteArray
-
-	GetFormat() int64
-
-	GetHeight() int64
-
-	GetMipmapOffset(mipmap int64) int64
-
-	GetPixel(x int64, y int64) *Color
-
-	GetRect(rect *Rect2) *Image
-
-	GetSize() *Vector2
-
-	GetUsedRect() *Rect2
-
-	GetWidth() int64
-
-	HasMipmaps() *bool
-
-	IsCompressed() *bool
-
-	IsEmpty() *bool
-
-	IsInvisible() *bool
-
-	Load(path string) int64
-
-	Lock()
-
-	NormalmapToXy()
-
-	PremultiplyAlpha()
-
-	Resize(width int64, height int64, interpolation int64)
-
-	ResizeToPo2(square *bool)
-
-	SavePng(path string) int64
-
-	SetPixel(x int64, y int64, color *Color)
-
-	ShrinkX2()
-
-	SrgbToLinear()
-
-	Unlock()
+	Class
 }
 
 /*
@@ -44094,27 +40402,7 @@ func (o *ImageTexture) SetStorage(mode int64) {
    A [Texture] based on an [Image]. Can be created from an [Image].
 */
 type ImageTextureImplementer interface {
-	TextureImplementer
-
-	Create(width int64, height int64, format int64, flags int64)
-
-	CreateFromImage(image *Image, flags int64)
-
-	GetFormat() int64
-
-	GetLossyStorageQuality() float64
-
-	GetStorage() int64
-
-	Load(path string)
-
-	SetData(image *Image)
-
-	SetLossyStorageQuality(quality float64)
-
-	SetSizeOverride(size *Vector2)
-
-	SetStorage(mode int64)
+	Class
 }
 
 /*
@@ -44131,7 +40419,7 @@ func (o *ImmediateGeometry) baseClass() string {
 /*
    Simple helper to draw a uvsphere, with given latitudes, longitude and radius.
 */
-func (o *ImmediateGeometry) AddSphere(lats int64, lons int64, radius float64, addUv *bool) {
+func (o *ImmediateGeometry) AddSphere(lats int64, lons int64, radius float64, addUv bool) {
 	log.Println("Calling ImmediateGeometry.AddSphere()")
 
 	// Build out the method's arguments
@@ -44316,27 +40604,7 @@ func (o *ImmediateGeometry) SetUv2(uv *Vector2) {
 
 */
 type ImmediateGeometryImplementer interface {
-	GeometryInstanceImplementer
-
-	AddSphere(lats int64, lons int64, radius float64, addUv *bool)
-
-	AddVertex(pos *Vector3)
-
-	Begin(primitive int64, texture *Texture)
-
-	Clear()
-
-	End()
-
-	SetColor(color *Color)
-
-	SetNormal(normal *Vector3)
-
-	SetTangent(tangent *Plane)
-
-	SetUv(uv *Vector2)
-
-	SetUv2(uv *Vector2)
+	Class
 }
 
 /*
@@ -44389,7 +40657,7 @@ func (o *Input) ActionRelease(action string) {
 /*
    Add a new mapping entry (in SDL2 format) to the mapping database. Optionally update already connected devices.
 */
-func (o *Input) AddJoyMapping(mapping string, updateExisting *bool) {
+func (o *Input) AddJoyMapping(mapping string, updateExisting bool) {
 	log.Println("Calling Input.AddJoyMapping()")
 
 	// Build out the method's arguments
@@ -44775,7 +41043,7 @@ func (o *Input) GetMouseMode() int64 {
 /*
 
  */
-func (o *Input) IsActionJustPressed(action string) *bool {
+func (o *Input) IsActionJustPressed(action string) bool {
 	log.Println("Calling Input.IsActionJustPressed()")
 
 	// Build out the method's arguments
@@ -44784,11 +41052,11 @@ func (o *Input) IsActionJustPressed(action string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_action_just_pressed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_action_just_pressed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -44797,7 +41065,7 @@ func (o *Input) IsActionJustPressed(action string) *bool {
 /*
 
  */
-func (o *Input) IsActionJustReleased(action string) *bool {
+func (o *Input) IsActionJustReleased(action string) bool {
 	log.Println("Calling Input.IsActionJustReleased()")
 
 	// Build out the method's arguments
@@ -44806,11 +41074,11 @@ func (o *Input) IsActionJustReleased(action string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_action_just_released", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_action_just_released", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -44819,7 +41087,7 @@ func (o *Input) IsActionJustReleased(action string) *bool {
 /*
    Returns true or false depending on whether the action event is pressed. Actions and their events can be set in the Project Settings / Input Map tab. Or be set with [InputMap].
 */
-func (o *Input) IsActionPressed(action string) *bool {
+func (o *Input) IsActionPressed(action string) bool {
 	log.Println("Calling Input.IsActionPressed()")
 
 	// Build out the method's arguments
@@ -44828,11 +41096,11 @@ func (o *Input) IsActionPressed(action string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_action_pressed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_action_pressed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -44841,7 +41109,7 @@ func (o *Input) IsActionPressed(action string) *bool {
 /*
    Returns if the joypad button at the given index is currently pressed. (see JOY_* constants in [@Global Scope])
 */
-func (o *Input) IsJoyButtonPressed(device int64, button int64) *bool {
+func (o *Input) IsJoyButtonPressed(device int64, button int64) bool {
 	log.Println("Calling Input.IsJoyButtonPressed()")
 
 	// Build out the method's arguments
@@ -44851,11 +41119,11 @@ func (o *Input) IsJoyButtonPressed(device int64, button int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_joy_button_pressed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_joy_button_pressed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -44864,7 +41132,7 @@ func (o *Input) IsJoyButtonPressed(device int64, button int64) *bool {
 /*
    Returns if the specified device is known by the system. This means that it sets all button and axis indices exactly as defined in the JOY_* constants (see [@Global Scope]). Unknown joypads are not expected to match these constants, but you can still retrieve events from them.
 */
-func (o *Input) IsJoyKnown(device int64) *bool {
+func (o *Input) IsJoyKnown(device int64) bool {
 	log.Println("Calling Input.IsJoyKnown()")
 
 	// Build out the method's arguments
@@ -44873,11 +41141,11 @@ func (o *Input) IsJoyKnown(device int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_joy_known", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_joy_known", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -44886,7 +41154,7 @@ func (o *Input) IsJoyKnown(device int64) *bool {
 /*
    Returns true or false depending on whether the key is pressed or not. You can pass KEY_*, which are pre-defined constants listed in [@Global Scope].
 */
-func (o *Input) IsKeyPressed(scancode int64) *bool {
+func (o *Input) IsKeyPressed(scancode int64) bool {
 	log.Println("Calling Input.IsKeyPressed()")
 
 	// Build out the method's arguments
@@ -44895,11 +41163,11 @@ func (o *Input) IsKeyPressed(scancode int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_key_pressed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_key_pressed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -44908,7 +41176,7 @@ func (o *Input) IsKeyPressed(scancode int64) *bool {
 /*
    Returns true or false depending on whether mouse button is pressed or not. You can pass BUTTON_*, which are pre-defined constants listed in [@Global Scope].
 */
-func (o *Input) IsMouseButtonPressed(button int64) *bool {
+func (o *Input) IsMouseButtonPressed(button int64) bool {
 	log.Println("Calling Input.IsMouseButtonPressed()")
 
 	// Build out the method's arguments
@@ -44917,11 +41185,11 @@ func (o *Input) IsMouseButtonPressed(button int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_mouse_button_pressed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_mouse_button_pressed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -45063,75 +41331,7 @@ func (o *Input) WarpMousePos(to *Vector2) {
    A Singleton that deals with inputs. This includes key presses, mouse buttons and movement, joypads, and input actions.
 */
 type InputImplementer interface {
-	ObjectImplementer
-
-	ActionPress(action string)
-
-	ActionRelease(action string)
-
-	AddJoyMapping(mapping string, updateExisting *bool)
-
-	GetAccelerometer() *Vector3
-
-	GetConnectedJoypads() *Array
-
-	GetGravity() *Vector3
-
-	GetGyroscope() *Vector3
-
-	GetJoyAxis(device int64, axis int64) float64
-
-	GetJoyAxisIndexFromString(axis string) int64
-
-	GetJoyAxisString(axisIndex int64) string
-
-	GetJoyButtonIndexFromString(button string) int64
-
-	GetJoyButtonString(buttonIndex int64) string
-
-	GetJoyGuid(device int64) string
-
-	GetJoyName(device int64) string
-
-	GetJoyVibrationDuration(device int64) float64
-
-	GetJoyVibrationStrength(device int64) *Vector2
-
-	GetLastMouseSpeed() *Vector2
-
-	GetMagnetometer() *Vector3
-
-	GetMouseButtonMask() int64
-
-	GetMouseMode() int64
-
-	IsActionJustPressed(action string) *bool
-
-	IsActionJustReleased(action string) *bool
-
-	IsActionPressed(action string) *bool
-
-	IsJoyButtonPressed(device int64, button int64) *bool
-
-	IsJoyKnown(device int64) *bool
-
-	IsKeyPressed(scancode int64) *bool
-
-	IsMouseButtonPressed(button int64) *bool
-
-	ParseInputEvent(event *InputEvent)
-
-	RemoveJoyMapping(guid string)
-
-	SetCustomMouseCursor(image *Resource, hotspot *Vector2)
-
-	SetMouseMode(mode int64)
-
-	StartJoyVibration(device int64, weakMagnitude float64, strongMagnitude float64, duration float64)
-
-	StopJoyVibration(device int64)
-
-	WarpMousePos(to *Vector2)
+	Class
 }
 
 /*
@@ -45150,7 +41350,7 @@ func (o *InputDefault) baseClass() string {
    Default implementation of the [Input] class, used internally by the editor and games for default input management.
 */
 type InputDefaultImplementer interface {
-	InputImplementer
+	Class
 }
 
 /*
@@ -45167,7 +41367,7 @@ func (o *InputEvent) baseClass() string {
 /*
 
  */
-func (o *InputEvent) ActionMatch(event *InputEvent) *bool {
+func (o *InputEvent) ActionMatch(event *InputEvent) bool {
 	log.Println("Calling InputEvent.ActionMatch()")
 
 	// Build out the method's arguments
@@ -45176,11 +41376,11 @@ func (o *InputEvent) ActionMatch(event *InputEvent) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "action_match", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "action_match", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -45252,7 +41452,7 @@ func (o *InputEvent) GetId() int64 {
 /*
    Return if this input event matches a pre-defined action, no matter the type.
 */
-func (o *InputEvent) IsAction(action string) *bool {
+func (o *InputEvent) IsAction(action string) bool {
 	log.Println("Calling InputEvent.IsAction()")
 
 	// Build out the method's arguments
@@ -45261,11 +41461,11 @@ func (o *InputEvent) IsAction(action string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_action", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_action", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -45274,7 +41474,7 @@ func (o *InputEvent) IsAction(action string) *bool {
 /*
    Return whether the given action is being pressed (and is not an echo event for KEY events). Not relevant for the event types MOUSE_MOTION, SCREEN_DRAG and NONE.
 */
-func (o *InputEvent) IsActionPressed(action string) *bool {
+func (o *InputEvent) IsActionPressed(action string) bool {
 	log.Println("Calling InputEvent.IsActionPressed()")
 
 	// Build out the method's arguments
@@ -45283,11 +41483,11 @@ func (o *InputEvent) IsActionPressed(action string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_action_pressed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_action_pressed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -45296,7 +41496,7 @@ func (o *InputEvent) IsActionPressed(action string) *bool {
 /*
    Return whether the given action is released (i.e. not pressed). Not relevant for the event types MOUSE_MOTION, SCREEN_DRAG and NONE.
 */
-func (o *InputEvent) IsActionReleased(action string) *bool {
+func (o *InputEvent) IsActionReleased(action string) bool {
 	log.Println("Calling InputEvent.IsActionReleased()")
 
 	// Build out the method's arguments
@@ -45305,11 +41505,11 @@ func (o *InputEvent) IsActionReleased(action string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_action_released", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_action_released", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -45318,7 +41518,7 @@ func (o *InputEvent) IsActionReleased(action string) *bool {
 /*
 
  */
-func (o *InputEvent) IsActionType() *bool {
+func (o *InputEvent) IsActionType() bool {
 	log.Println("Calling InputEvent.IsActionType()")
 
 	// Build out the method's arguments
@@ -45326,11 +41526,11 @@ func (o *InputEvent) IsActionType() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_action_type", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_action_type", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -45339,7 +41539,7 @@ func (o *InputEvent) IsActionType() *bool {
 /*
    Return if this input event is an echo event (only for events of type KEY, it will return false for other types).
 */
-func (o *InputEvent) IsEcho() *bool {
+func (o *InputEvent) IsEcho() bool {
 	log.Println("Calling InputEvent.IsEcho()")
 
 	// Build out the method's arguments
@@ -45347,11 +41547,11 @@ func (o *InputEvent) IsEcho() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_echo", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_echo", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -45360,7 +41560,7 @@ func (o *InputEvent) IsEcho() *bool {
 /*
    Return if this input event is pressed. Not relevant for the event types MOUSE_MOTION, SCREEN_DRAG and NONE.
 */
-func (o *InputEvent) IsPressed() *bool {
+func (o *InputEvent) IsPressed() bool {
 	log.Println("Calling InputEvent.IsPressed()")
 
 	// Build out the method's arguments
@@ -45368,11 +41568,11 @@ func (o *InputEvent) IsPressed() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_pressed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_pressed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -45417,7 +41617,7 @@ func (o *InputEvent) SetId(id int64) {
 /*
 
  */
-func (o *InputEvent) ShortcutMatch(event *InputEvent) *bool {
+func (o *InputEvent) ShortcutMatch(event *InputEvent) bool {
 	log.Println("Calling InputEvent.ShortcutMatch()")
 
 	// Build out the method's arguments
@@ -45426,11 +41626,11 @@ func (o *InputEvent) ShortcutMatch(event *InputEvent) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "shortcut_match", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "shortcut_match", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -45464,35 +41664,7 @@ func (o *InputEvent) XformedBy(xform *Transform2D, localOfs *Vector2) *InputEven
 
 */
 type InputEventImplementer interface {
-	ResourceImplementer
-
-	ActionMatch(event *InputEvent) *bool
-
-	AsText() string
-
-	GetDevice() int64
-
-	GetId() int64
-
-	IsAction(action string) *bool
-
-	IsActionPressed(action string) *bool
-
-	IsActionReleased(action string) *bool
-
-	IsActionType() *bool
-
-	IsEcho() *bool
-
-	IsPressed() *bool
-
-	SetDevice(device int64)
-
-	SetId(id int64)
-
-	ShortcutMatch(event *InputEvent) *bool
-
-	XformedBy(xform *Transform2D, localOfs *Vector2) *InputEvent
+	Class
 }
 
 /*
@@ -45548,7 +41720,7 @@ func (o *InputEventAction) SetAction(action string) {
 /*
 
  */
-func (o *InputEventAction) SetPressed(pressed *bool) {
+func (o *InputEventAction) SetPressed(pressed bool) {
 	log.Println("Calling InputEventAction.SetPressed()")
 
 	// Build out the method's arguments
@@ -45568,13 +41740,7 @@ func (o *InputEventAction) SetPressed(pressed *bool) {
 
 */
 type InputEventActionImplementer interface {
-	InputEventImplementer
-
-	GetAction() string
-
-	SetAction(action string)
-
-	SetPressed(pressed *bool)
+	Class
 }
 
 /*
@@ -45651,7 +41817,7 @@ func (o *InputEventJoypadButton) SetButtonIndex(buttonIndex int64) {
 /*
 
  */
-func (o *InputEventJoypadButton) SetPressed(pressed *bool) {
+func (o *InputEventJoypadButton) SetPressed(pressed bool) {
 	log.Println("Calling InputEventJoypadButton.SetPressed()")
 
 	// Build out the method's arguments
@@ -45689,17 +41855,7 @@ func (o *InputEventJoypadButton) SetPressure(pressure float64) {
 
 */
 type InputEventJoypadButtonImplementer interface {
-	InputEventImplementer
-
-	GetButtonIndex() int64
-
-	GetPressure() float64
-
-	SetButtonIndex(buttonIndex int64)
-
-	SetPressed(pressed *bool)
-
-	SetPressure(pressure float64)
+	Class
 }
 
 /*
@@ -45796,15 +41952,7 @@ func (o *InputEventJoypadMotion) SetAxisValue(axisValue float64) {
 
 */
 type InputEventJoypadMotionImplementer interface {
-	InputEventImplementer
-
-	GetAxis() int64
-
-	GetAxisValue() float64
-
-	SetAxis(axis int64)
-
-	SetAxisValue(axisValue float64)
+	Class
 }
 
 /*
@@ -45884,7 +42032,7 @@ func (o *InputEventKey) GetUnicode() int64 {
 /*
 
  */
-func (o *InputEventKey) SetEcho(echo *bool) {
+func (o *InputEventKey) SetEcho(echo bool) {
 	log.Println("Calling InputEventKey.SetEcho()")
 
 	// Build out the method's arguments
@@ -45902,7 +42050,7 @@ func (o *InputEventKey) SetEcho(echo *bool) {
 /*
 
  */
-func (o *InputEventKey) SetPressed(pressed *bool) {
+func (o *InputEventKey) SetPressed(pressed bool) {
 	log.Println("Calling InputEventKey.SetPressed()")
 
 	// Build out the method's arguments
@@ -45958,21 +42106,7 @@ func (o *InputEventKey) SetUnicode(unicode int64) {
 
 */
 type InputEventKeyImplementer interface {
-	InputEventWithModifiersImplementer
-
-	GetScancode() int64
-
-	GetScancodeWithModifiers() int64
-
-	GetUnicode() int64
-
-	SetEcho(echo *bool)
-
-	SetPressed(pressed *bool)
-
-	SetScancode(scancode int64)
-
-	SetUnicode(unicode int64)
+	Class
 }
 
 /*
@@ -46108,19 +42242,7 @@ func (o *InputEventMouse) SetPosition(position *Vector2) {
 
 */
 type InputEventMouseImplementer interface {
-	InputEventWithModifiersImplementer
-
-	GetButtonMask() int64
-
-	GetGlobalPosition() *Vector2
-
-	GetPosition() *Vector2
-
-	SetButtonMask(buttonMask int64)
-
-	SetGlobalPosition(globalPosition *Vector2)
-
-	SetPosition(position *Vector2)
+	Class
 }
 
 /*
@@ -46179,7 +42301,7 @@ func (o *InputEventMouseButton) GetFactor() float64 {
 /*
 
  */
-func (o *InputEventMouseButton) IsDoubleclick() *bool {
+func (o *InputEventMouseButton) IsDoubleclick() bool {
 	log.Println("Calling InputEventMouseButton.IsDoubleclick()")
 
 	// Build out the method's arguments
@@ -46187,11 +42309,11 @@ func (o *InputEventMouseButton) IsDoubleclick() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_doubleclick", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_doubleclick", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -46218,7 +42340,7 @@ func (o *InputEventMouseButton) SetButtonIndex(buttonIndex int64) {
 /*
 
  */
-func (o *InputEventMouseButton) SetDoubleclick(doubleclick *bool) {
+func (o *InputEventMouseButton) SetDoubleclick(doubleclick bool) {
 	log.Println("Calling InputEventMouseButton.SetDoubleclick()")
 
 	// Build out the method's arguments
@@ -46254,7 +42376,7 @@ func (o *InputEventMouseButton) SetFactor(factor float64) {
 /*
 
  */
-func (o *InputEventMouseButton) SetPressed(pressed *bool) {
+func (o *InputEventMouseButton) SetPressed(pressed bool) {
 	log.Println("Calling InputEventMouseButton.SetPressed()")
 
 	// Build out the method's arguments
@@ -46274,21 +42396,7 @@ func (o *InputEventMouseButton) SetPressed(pressed *bool) {
 
 */
 type InputEventMouseButtonImplementer interface {
-	InputEventMouseImplementer
-
-	GetButtonIndex() int64
-
-	GetFactor() float64
-
-	IsDoubleclick() *bool
-
-	SetButtonIndex(buttonIndex int64)
-
-	SetDoubleclick(doubleclick *bool)
-
-	SetFactor(factor float64)
-
-	SetPressed(pressed *bool)
+	Class
 }
 
 /*
@@ -46385,15 +42493,7 @@ func (o *InputEventMouseMotion) SetSpeed(speed *Vector2) {
 
 */
 type InputEventMouseMotionImplementer interface {
-	InputEventMouseImplementer
-
-	GetRelative() *Vector2
-
-	GetSpeed() *Vector2
-
-	SetRelative(relative *Vector2)
-
-	SetSpeed(speed *Vector2)
+	Class
 }
 
 /*
@@ -46568,23 +42668,7 @@ func (o *InputEventScreenDrag) SetSpeed(speed *Vector2) {
 
 */
 type InputEventScreenDragImplementer interface {
-	InputEventImplementer
-
-	GetIndex() int64
-
-	GetPosition() *Vector2
-
-	GetRelative() *Vector2
-
-	GetSpeed() *Vector2
-
-	SetIndex(index int64)
-
-	SetPosition(position *Vector2)
-
-	SetRelative(relative *Vector2)
-
-	SetSpeed(speed *Vector2)
+	Class
 }
 
 /*
@@ -46679,7 +42763,7 @@ func (o *InputEventScreenTouch) SetPosition(pos *Vector2) {
 /*
 
  */
-func (o *InputEventScreenTouch) SetPressed(pressed *bool) {
+func (o *InputEventScreenTouch) SetPressed(pressed bool) {
 	log.Println("Calling InputEventScreenTouch.SetPressed()")
 
 	// Build out the method's arguments
@@ -46699,17 +42783,7 @@ func (o *InputEventScreenTouch) SetPressed(pressed *bool) {
 
 */
 type InputEventScreenTouchImplementer interface {
-	InputEventImplementer
-
-	GetIndex() int64
-
-	GetPosition() *Vector2
-
-	SetIndex(index int64)
-
-	SetPosition(pos *Vector2)
-
-	SetPressed(pressed *bool)
+	Class
 }
 
 /*
@@ -46726,7 +42800,7 @@ func (o *InputEventWithModifiers) baseClass() string {
 /*
 
  */
-func (o *InputEventWithModifiers) GetAlt() *bool {
+func (o *InputEventWithModifiers) GetAlt() bool {
 	log.Println("Calling InputEventWithModifiers.GetAlt()")
 
 	// Build out the method's arguments
@@ -46734,11 +42808,11 @@ func (o *InputEventWithModifiers) GetAlt() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_alt", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_alt", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -46747,7 +42821,7 @@ func (o *InputEventWithModifiers) GetAlt() *bool {
 /*
 
  */
-func (o *InputEventWithModifiers) GetCommand() *bool {
+func (o *InputEventWithModifiers) GetCommand() bool {
 	log.Println("Calling InputEventWithModifiers.GetCommand()")
 
 	// Build out the method's arguments
@@ -46755,11 +42829,11 @@ func (o *InputEventWithModifiers) GetCommand() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_command", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_command", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -46768,7 +42842,7 @@ func (o *InputEventWithModifiers) GetCommand() *bool {
 /*
 
  */
-func (o *InputEventWithModifiers) GetControl() *bool {
+func (o *InputEventWithModifiers) GetControl() bool {
 	log.Println("Calling InputEventWithModifiers.GetControl()")
 
 	// Build out the method's arguments
@@ -46776,11 +42850,11 @@ func (o *InputEventWithModifiers) GetControl() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_control", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_control", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -46789,7 +42863,7 @@ func (o *InputEventWithModifiers) GetControl() *bool {
 /*
 
  */
-func (o *InputEventWithModifiers) GetMetakey() *bool {
+func (o *InputEventWithModifiers) GetMetakey() bool {
 	log.Println("Calling InputEventWithModifiers.GetMetakey()")
 
 	// Build out the method's arguments
@@ -46797,11 +42871,11 @@ func (o *InputEventWithModifiers) GetMetakey() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_metakey", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_metakey", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -46810,7 +42884,7 @@ func (o *InputEventWithModifiers) GetMetakey() *bool {
 /*
 
  */
-func (o *InputEventWithModifiers) GetShift() *bool {
+func (o *InputEventWithModifiers) GetShift() bool {
 	log.Println("Calling InputEventWithModifiers.GetShift()")
 
 	// Build out the method's arguments
@@ -46818,11 +42892,11 @@ func (o *InputEventWithModifiers) GetShift() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_shift", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_shift", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -46831,7 +42905,7 @@ func (o *InputEventWithModifiers) GetShift() *bool {
 /*
 
  */
-func (o *InputEventWithModifiers) SetAlt(enable *bool) {
+func (o *InputEventWithModifiers) SetAlt(enable bool) {
 	log.Println("Calling InputEventWithModifiers.SetAlt()")
 
 	// Build out the method's arguments
@@ -46849,7 +42923,7 @@ func (o *InputEventWithModifiers) SetAlt(enable *bool) {
 /*
 
  */
-func (o *InputEventWithModifiers) SetCommand(enable *bool) {
+func (o *InputEventWithModifiers) SetCommand(enable bool) {
 	log.Println("Calling InputEventWithModifiers.SetCommand()")
 
 	// Build out the method's arguments
@@ -46867,7 +42941,7 @@ func (o *InputEventWithModifiers) SetCommand(enable *bool) {
 /*
 
  */
-func (o *InputEventWithModifiers) SetControl(enable *bool) {
+func (o *InputEventWithModifiers) SetControl(enable bool) {
 	log.Println("Calling InputEventWithModifiers.SetControl()")
 
 	// Build out the method's arguments
@@ -46885,7 +42959,7 @@ func (o *InputEventWithModifiers) SetControl(enable *bool) {
 /*
 
  */
-func (o *InputEventWithModifiers) SetMetakey(enable *bool) {
+func (o *InputEventWithModifiers) SetMetakey(enable bool) {
 	log.Println("Calling InputEventWithModifiers.SetMetakey()")
 
 	// Build out the method's arguments
@@ -46903,7 +42977,7 @@ func (o *InputEventWithModifiers) SetMetakey(enable *bool) {
 /*
 
  */
-func (o *InputEventWithModifiers) SetShift(enable *bool) {
+func (o *InputEventWithModifiers) SetShift(enable bool) {
 	log.Println("Calling InputEventWithModifiers.SetShift()")
 
 	// Build out the method's arguments
@@ -46923,27 +42997,7 @@ func (o *InputEventWithModifiers) SetShift(enable *bool) {
 
 */
 type InputEventWithModifiersImplementer interface {
-	InputEventImplementer
-
-	GetAlt() *bool
-
-	GetCommand() *bool
-
-	GetControl() *bool
-
-	GetMetakey() *bool
-
-	GetShift() *bool
-
-	SetAlt(enable *bool)
-
-	SetCommand(enable *bool)
-
-	SetControl(enable *bool)
-
-	SetMetakey(enable *bool)
-
-	SetShift(enable *bool)
+	Class
 }
 
 /*
@@ -46998,7 +43052,7 @@ func (o *InputMap) ActionEraseEvent(action string, event *InputEvent) {
 /*
    Whether an action has an [InputEvent] associated with it.
 */
-func (o *InputMap) ActionHasEvent(action string, event *InputEvent) *bool {
+func (o *InputMap) ActionHasEvent(action string, event *InputEvent) bool {
 	log.Println("Calling InputMap.ActionHasEvent()")
 
 	// Build out the method's arguments
@@ -47008,11 +43062,11 @@ func (o *InputMap) ActionHasEvent(action string, event *InputEvent) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "action_has_event", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "action_has_event", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -47057,7 +43111,7 @@ func (o *InputMap) EraseAction(action string) {
 /*
    Return whether the given event is part of an existing action. This method ignores keyboard modifiers if the given [InputEvent] is not pressed (for proper release detection). See [method action_has_event] if you don't want this behavior.
 */
-func (o *InputMap) EventIsAction(event *InputEvent, action string) *bool {
+func (o *InputMap) EventIsAction(event *InputEvent, action string) bool {
 	log.Println("Calling InputMap.EventIsAction()")
 
 	// Build out the method's arguments
@@ -47067,11 +43121,11 @@ func (o *InputMap) EventIsAction(event *InputEvent, action string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "event_is_action", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "event_is_action", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -47123,7 +43177,7 @@ func (o *InputMap) GetActions() *Array {
 /*
    Whether this InputMap has a registered action with the given name.
 */
-func (o *InputMap) HasAction(action string) *bool {
+func (o *InputMap) HasAction(action string) bool {
 	log.Println("Calling InputMap.HasAction()")
 
 	// Build out the method's arguments
@@ -47132,11 +43186,11 @@ func (o *InputMap) HasAction(action string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_action", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_action", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -47164,27 +43218,7 @@ func (o *InputMap) LoadFromGlobals() {
 
 */
 type InputMapImplementer interface {
-	ObjectImplementer
-
-	ActionAddEvent(action string, event *InputEvent)
-
-	ActionEraseEvent(action string, event *InputEvent)
-
-	ActionHasEvent(action string, event *InputEvent) *bool
-
-	AddAction(action string)
-
-	EraseAction(action string)
-
-	EventIsAction(event *InputEvent, action string) *bool
-
-	GetActionList(action string) *Array
-
-	GetActions() *Array
-
-	HasAction(action string) *bool
-
-	LoadFromGlobals()
+	Class
 }
 
 /*
@@ -47223,7 +43257,7 @@ func (o *InstancePlaceholder) GetInstancePath() string {
 /*
 
  */
-func (o *InstancePlaceholder) GetStoredValues(withOrder *bool) *Dictionary {
+func (o *InstancePlaceholder) GetStoredValues(withOrder bool) *Dictionary {
 	log.Println("Calling InstancePlaceholder.GetStoredValues()")
 
 	// Build out the method's arguments
@@ -47266,13 +43300,7 @@ func (o *InstancePlaceholder) ReplaceByInstance(customScene *PackedScene) {
 		The InstancePlaceholder does not have a transform. This causes any child nodes to be positioned relatively to the Viewport from point (0,0), rather than their parent as displayed in the editor. Replacing the placeholder with a scene with a transform will transform children relatively to their parent again.
 */
 type InstancePlaceholderImplementer interface {
-	NodeImplementer
-
-	GetInstancePath() string
-
-	GetStoredValues(withOrder *bool) *Dictionary
-
-	ReplaceByInstance(customScene *PackedScene)
+	Class
 }
 
 /*
@@ -47331,7 +43359,7 @@ func (o *InterpolatedCamera) GetTargetPath() *NodePath {
 /*
 
  */
-func (o *InterpolatedCamera) IsInterpolationEnabled() *bool {
+func (o *InterpolatedCamera) IsInterpolationEnabled() bool {
 	log.Println("Calling InterpolatedCamera.IsInterpolationEnabled()")
 
 	// Build out the method's arguments
@@ -47339,11 +43367,11 @@ func (o *InterpolatedCamera) IsInterpolationEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_interpolation_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_interpolation_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -47352,7 +43380,7 @@ func (o *InterpolatedCamera) IsInterpolationEnabled() *bool {
 /*
 
  */
-func (o *InterpolatedCamera) SetInterpolationEnabled(targetPath *bool) {
+func (o *InterpolatedCamera) SetInterpolationEnabled(targetPath bool) {
 	log.Println("Calling InterpolatedCamera.SetInterpolationEnabled()")
 
 	// Build out the method's arguments
@@ -47426,21 +43454,7 @@ func (o *InterpolatedCamera) SetTargetPath(targetPath *NodePath) {
 
 */
 type InterpolatedCameraImplementer interface {
-	CameraImplementer
-
-	GetSpeed() float64
-
-	GetTargetPath() *NodePath
-
-	IsInterpolationEnabled() *bool
-
-	SetInterpolationEnabled(targetPath *bool)
-
-	SetSpeed(speed float64)
-
-	SetTarget(target *Object)
-
-	SetTargetPath(targetPath *NodePath)
+	Class
 }
 
 /*
@@ -47460,7 +43474,7 @@ func (o *ItemList) baseClass() string {
 /*
    Adds an item to the item list with no text, only an icon.
 */
-func (o *ItemList) AddIconItem(icon *Texture, selectable *bool) {
+func (o *ItemList) AddIconItem(icon *Texture, selectable bool) {
 	log.Println("Calling ItemList.AddIconItem()")
 
 	// Build out the method's arguments
@@ -47480,7 +43494,7 @@ func (o *ItemList) AddIconItem(icon *Texture, selectable *bool) {
                 Adds an item to the item list with specified text.  Specify an icon of null for a list item with no icon.
 				If selectable is true the list item will be selectable.
 */
-func (o *ItemList) AddItem(text string, icon *Texture, selectable *bool) {
+func (o *ItemList) AddItem(text string, icon *Texture, selectable bool) {
 	log.Println("Calling ItemList.AddItem()")
 
 	// Build out the method's arguments
@@ -47534,7 +43548,7 @@ func (o *ItemList) EnsureCurrentIsVisible() {
 /*
    Return whether or not items may be selected via right mouse clicking.
 */
-func (o *ItemList) GetAllowRmbSelect() *bool {
+func (o *ItemList) GetAllowRmbSelect() bool {
 	log.Println("Calling ItemList.GetAllowRmbSelect()")
 
 	// Build out the method's arguments
@@ -47542,11 +43556,11 @@ func (o *ItemList) GetAllowRmbSelect() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_allow_rmb_select", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_allow_rmb_select", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -47639,7 +43653,7 @@ func (o *ItemList) GetIconScale() float64 {
 /*
    Given a position within the control return the item (if any) at that point.
 */
-func (o *ItemList) GetItemAtPos(pos *Vector2, exact *bool) int64 {
+func (o *ItemList) GetItemAtPos(pos *Vector2, exact bool) int64 {
 	log.Println("Calling ItemList.GetItemAtPos()")
 
 	// Build out the method's arguments
@@ -47920,7 +43934,7 @@ func (o *ItemList) GetVScroll() *VScrollBar {
 /*
 
  */
-func (o *ItemList) HasAutoHeight() *bool {
+func (o *ItemList) HasAutoHeight() bool {
 	log.Println("Calling ItemList.HasAutoHeight()")
 
 	// Build out the method's arguments
@@ -47928,11 +43942,11 @@ func (o *ItemList) HasAutoHeight() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_auto_height", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_auto_height", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -47941,7 +43955,7 @@ func (o *ItemList) HasAutoHeight() *bool {
 /*
    Returns whether or not the item at the specified index is disabled
 */
-func (o *ItemList) IsItemDisabled(idx int64) *bool {
+func (o *ItemList) IsItemDisabled(idx int64) bool {
 	log.Println("Calling ItemList.IsItemDisabled()")
 
 	// Build out the method's arguments
@@ -47950,11 +43964,11 @@ func (o *ItemList) IsItemDisabled(idx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_item_disabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_item_disabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -47963,7 +43977,7 @@ func (o *ItemList) IsItemDisabled(idx int64) *bool {
 /*
    Returns whether or not the item at the specified index is selectable.
 */
-func (o *ItemList) IsItemSelectable(idx int64) *bool {
+func (o *ItemList) IsItemSelectable(idx int64) bool {
 	log.Println("Calling ItemList.IsItemSelectable()")
 
 	// Build out the method's arguments
@@ -47972,11 +43986,11 @@ func (o *ItemList) IsItemSelectable(idx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_item_selectable", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_item_selectable", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -47985,7 +43999,7 @@ func (o *ItemList) IsItemSelectable(idx int64) *bool {
 /*
    Returns whether the tooptip is enabled for specified item index.
 */
-func (o *ItemList) IsItemTooltipEnabled(idx int64) *bool {
+func (o *ItemList) IsItemTooltipEnabled(idx int64) bool {
 	log.Println("Calling ItemList.IsItemTooltipEnabled()")
 
 	// Build out the method's arguments
@@ -47994,11 +44008,11 @@ func (o *ItemList) IsItemTooltipEnabled(idx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_item_tooltip_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_item_tooltip_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -48007,7 +44021,7 @@ func (o *ItemList) IsItemTooltipEnabled(idx int64) *bool {
 /*
    Returns whether or not all columns of the list are of the same size.
 */
-func (o *ItemList) IsSameColumnWidth() *bool {
+func (o *ItemList) IsSameColumnWidth() bool {
 	log.Println("Calling ItemList.IsSameColumnWidth()")
 
 	// Build out the method's arguments
@@ -48015,11 +44029,11 @@ func (o *ItemList) IsSameColumnWidth() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_same_column_width", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_same_column_width", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -48028,7 +44042,7 @@ func (o *ItemList) IsSameColumnWidth() *bool {
 /*
    Returns whether or not item at the specified index is currently selected.
 */
-func (o *ItemList) IsSelected(idx int64) *bool {
+func (o *ItemList) IsSelected(idx int64) bool {
 	log.Println("Calling ItemList.IsSelected()")
 
 	// Build out the method's arguments
@@ -48037,11 +44051,11 @@ func (o *ItemList) IsSelected(idx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_selected", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_selected", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -48069,7 +44083,7 @@ func (o *ItemList) RemoveItem(idx int64) {
                 Select the item at the specified index.
 				Note:  This method does not trigger the item selection signal.
 */
-func (o *ItemList) Select(idx int64, single *bool) {
+func (o *ItemList) Select(idx int64, single bool) {
 	log.Println("Calling ItemList.Select()")
 
 	// Build out the method's arguments
@@ -48088,7 +44102,7 @@ func (o *ItemList) Select(idx int64, single *bool) {
 /*
    Allow (or disallow) selection of (selectable) items in the list using right mouse button.
 */
-func (o *ItemList) SetAllowRmbSelect(allow *bool) {
+func (o *ItemList) SetAllowRmbSelect(allow bool) {
 	log.Println("Calling ItemList.SetAllowRmbSelect()")
 
 	// Build out the method's arguments
@@ -48106,7 +44120,7 @@ func (o *ItemList) SetAllowRmbSelect(allow *bool) {
 /*
 
  */
-func (o *ItemList) SetAutoHeight(enable *bool) {
+func (o *ItemList) SetAutoHeight(enable bool) {
 	log.Println("Calling ItemList.SetAutoHeight()")
 
 	// Build out the method's arguments
@@ -48216,7 +44230,7 @@ func (o *ItemList) SetItemCustomBgColor(idx int64, customBgColor *Color) {
                 Disable (or enable) item at specified index.
 				Disabled items are not be selectable and do not fire activation (Enter or double-click) signals.
 */
-func (o *ItemList) SetItemDisabled(idx int64, disabled *bool) {
+func (o *ItemList) SetItemDisabled(idx int64, disabled bool) {
 	log.Println("Calling ItemList.SetItemDisabled()")
 
 	// Build out the method's arguments
@@ -48292,7 +44306,7 @@ func (o *ItemList) SetItemMetadata(idx int64, metadata *Variant) {
 /*
    Allow or disallow selection of the item at the specified index.
 */
-func (o *ItemList) SetItemSelectable(idx int64, selectable *bool) {
+func (o *ItemList) SetItemSelectable(idx int64, selectable bool) {
 	log.Println("Calling ItemList.SetItemSelectable()")
 
 	// Build out the method's arguments
@@ -48349,7 +44363,7 @@ func (o *ItemList) SetItemTooltip(idx int64, tooltip string) {
 /*
    Sets whether the tooltip is enabled for specified item index.
 */
-func (o *ItemList) SetItemTooltipEnabled(idx int64, enable *bool) {
+func (o *ItemList) SetItemTooltipEnabled(idx int64, enable bool) {
 	log.Println("Calling ItemList.SetItemTooltipEnabled()")
 
 	// Build out the method's arguments
@@ -48404,7 +44418,7 @@ func (o *ItemList) SetMaxTextLines(lines int64) {
 /*
    Sets a fixed size (width) to use for all columns of the list.
 */
-func (o *ItemList) SetSameColumnWidth(enable *bool) {
+func (o *ItemList) SetSameColumnWidth(enable bool) {
 	log.Println("Calling ItemList.SetSameColumnWidth()")
 
 	// Build out the method's arguments
@@ -48480,109 +44494,7 @@ func (o *ItemList) Unselect(idx int64) {
 		to allow use of popup context menus.  Items may also be 'activated' with a double click (or Enter key).
 */
 type ItemListImplementer interface {
-	ControlImplementer
-
-	AddIconItem(icon *Texture, selectable *bool)
-
-	AddItem(text string, icon *Texture, selectable *bool)
-
-	Clear()
-
-	EnsureCurrentIsVisible()
-
-	GetAllowRmbSelect() *bool
-
-	GetFixedColumnWidth() int64
-
-	GetFixedIconSize() *Vector2
-
-	GetIconMode() int64
-
-	GetIconScale() float64
-
-	GetItemAtPos(pos *Vector2, exact *bool) int64
-
-	GetItemCount() int64
-
-	GetItemCustomBgColor(idx int64) *Color
-
-	GetItemIcon(idx int64) *Texture
-
-	GetItemIconRegion(idx int64) *Rect2
-
-	GetItemMetadata(idx int64) *Variant
-
-	GetItemText(idx int64) string
-
-	GetItemTooltip(idx int64) string
-
-	GetMaxColumns() int64
-
-	GetMaxTextLines() int64
-
-	GetSelectMode() int64
-
-	GetSelectedItems() *PoolIntArray
-
-	GetVScroll() *VScrollBar
-
-	HasAutoHeight() *bool
-
-	IsItemDisabled(idx int64) *bool
-
-	IsItemSelectable(idx int64) *bool
-
-	IsItemTooltipEnabled(idx int64) *bool
-
-	IsSameColumnWidth() *bool
-
-	IsSelected(idx int64) *bool
-
-	RemoveItem(idx int64)
-
-	Select(idx int64, single *bool)
-
-	SetAllowRmbSelect(allow *bool)
-
-	SetAutoHeight(enable *bool)
-
-	SetFixedColumnWidth(width int64)
-
-	SetFixedIconSize(size *Vector2)
-
-	SetIconMode(mode int64)
-
-	SetIconScale(scale float64)
-
-	SetItemCustomBgColor(idx int64, customBgColor *Color)
-
-	SetItemDisabled(idx int64, disabled *bool)
-
-	SetItemIcon(idx int64, icon *Texture)
-
-	SetItemIconRegion(idx int64, rect *Rect2)
-
-	SetItemMetadata(idx int64, metadata *Variant)
-
-	SetItemSelectable(idx int64, selectable *bool)
-
-	SetItemText(idx int64, text string)
-
-	SetItemTooltip(idx int64, tooltip string)
-
-	SetItemTooltipEnabled(idx int64, enable *bool)
-
-	SetMaxColumns(amount int64)
-
-	SetMaxTextLines(lines int64)
-
-	SetSameColumnWidth(enable *bool)
-
-	SetSelectMode(mode int64)
-
-	SortItemsByText()
-
-	Unselect(idx int64)
+	Class
 }
 
 /*
@@ -48599,7 +44511,7 @@ func (o *Joint) baseClass() string {
 /*
 
  */
-func (o *Joint) GetExcludeNodesFromCollision() *bool {
+func (o *Joint) GetExcludeNodesFromCollision() bool {
 	log.Println("Calling Joint.GetExcludeNodesFromCollision()")
 
 	// Build out the method's arguments
@@ -48607,11 +44519,11 @@ func (o *Joint) GetExcludeNodesFromCollision() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_exclude_nodes_from_collision", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_exclude_nodes_from_collision", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -48683,7 +44595,7 @@ func (o *Joint) GetSolverPriority() int64 {
 /*
 
  */
-func (o *Joint) SetExcludeNodesFromCollision(enable *bool) {
+func (o *Joint) SetExcludeNodesFromCollision(enable bool) {
 	log.Println("Calling Joint.SetExcludeNodesFromCollision()")
 
 	// Build out the method's arguments
@@ -48757,23 +44669,7 @@ func (o *Joint) SetSolverPriority(priority int64) {
 
 */
 type JointImplementer interface {
-	SpatialImplementer
-
-	GetExcludeNodesFromCollision() *bool
-
-	GetNodeA() *NodePath
-
-	GetNodeB() *NodePath
-
-	GetSolverPriority() int64
-
-	SetExcludeNodesFromCollision(enable *bool)
-
-	SetNodeA(node *NodePath)
-
-	SetNodeB(node *NodePath)
-
-	SetSolverPriority(priority int64)
+	Class
 }
 
 /*
@@ -48811,7 +44707,7 @@ func (o *Joint2D) GetBias() float64 {
 /*
 
  */
-func (o *Joint2D) GetExcludeNodesFromCollision() *bool {
+func (o *Joint2D) GetExcludeNodesFromCollision() bool {
 	log.Println("Calling Joint2D.GetExcludeNodesFromCollision()")
 
 	// Build out the method's arguments
@@ -48819,11 +44715,11 @@ func (o *Joint2D) GetExcludeNodesFromCollision() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_exclude_nodes_from_collision", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_exclude_nodes_from_collision", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -48892,7 +44788,7 @@ func (o *Joint2D) SetBias(bias float64) {
 /*
 
  */
-func (o *Joint2D) SetExcludeNodesFromCollision(enable *bool) {
+func (o *Joint2D) SetExcludeNodesFromCollision(enable bool) {
 	log.Println("Calling Joint2D.SetExcludeNodesFromCollision()")
 
 	// Build out the method's arguments
@@ -48948,23 +44844,7 @@ func (o *Joint2D) SetNodeB(node *NodePath) {
    Base node for all joint constraints in 2D physics. Joints take 2 bodies and apply a custom constraint.
 */
 type Joint2DImplementer interface {
-	Node2DImplementer
-
-	GetBias() float64
-
-	GetExcludeNodesFromCollision() *bool
-
-	GetNodeA() *NodePath
-
-	GetNodeB() *NodePath
-
-	SetBias(bias float64)
-
-	SetExcludeNodesFromCollision(enable *bool)
-
-	SetNodeA(node *NodePath)
-
-	SetNodeB(node *NodePath)
+	Class
 }
 
 /*
@@ -49288,7 +45168,7 @@ func (o *KinematicBody) GetSafeMargin() float64 {
 /*
 
  */
-func (o *KinematicBody) IsOnCeiling() *bool {
+func (o *KinematicBody) IsOnCeiling() bool {
 	log.Println("Calling KinematicBody.IsOnCeiling()")
 
 	// Build out the method's arguments
@@ -49296,11 +45176,11 @@ func (o *KinematicBody) IsOnCeiling() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_on_ceiling", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_on_ceiling", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -49309,7 +45189,7 @@ func (o *KinematicBody) IsOnCeiling() *bool {
 /*
 
  */
-func (o *KinematicBody) IsOnFloor() *bool {
+func (o *KinematicBody) IsOnFloor() bool {
 	log.Println("Calling KinematicBody.IsOnFloor()")
 
 	// Build out the method's arguments
@@ -49317,11 +45197,11 @@ func (o *KinematicBody) IsOnFloor() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_on_floor", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_on_floor", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -49330,7 +45210,7 @@ func (o *KinematicBody) IsOnFloor() *bool {
 /*
 
  */
-func (o *KinematicBody) IsOnWall() *bool {
+func (o *KinematicBody) IsOnWall() bool {
 	log.Println("Calling KinematicBody.IsOnWall()")
 
 	// Build out the method's arguments
@@ -49338,11 +45218,11 @@ func (o *KinematicBody) IsOnWall() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_on_wall", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_on_wall", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -49426,7 +45306,7 @@ func (o *KinematicBody) SetSafeMargin(pixels float64) {
 /*
 
  */
-func (o *KinematicBody) TestMove(from *Transform, relVec *Vector3) *bool {
+func (o *KinematicBody) TestMove(from *Transform, relVec *Vector3) bool {
 	log.Println("Calling KinematicBody.TestMove()")
 
 	// Build out the method's arguments
@@ -49436,11 +45316,11 @@ func (o *KinematicBody) TestMove(from *Transform, relVec *Vector3) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "test_move", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "test_move", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -49453,49 +45333,7 @@ func (o *KinematicBody) TestMove(from *Transform, relVec *Vector3) *bool {
 		Kinematic Characters: KinematicBody also has an api for moving objects (the [method move] method) while performing collision tests. This makes them really useful to implement characters that collide against a world, but that don't require advanced physics.
 */
 type KinematicBodyImplementer interface {
-	PhysicsBodyImplementer
-
-	GetCollisionCollider(collision int64) *Object
-
-	GetCollisionColliderId(collision int64) int64
-
-	GetCollisionColliderMetadata(collision int64) *Variant
-
-	GetCollisionColliderShape(collision int64) *Object
-
-	GetCollisionColliderShapeIndex(collision int64) int64
-
-	GetCollisionColliderVelocity(collision int64) *Vector3
-
-	GetCollisionCount() int64
-
-	GetCollisionLocalShape(collision int64) *Object
-
-	GetCollisionNormal(collision int64) *Vector3
-
-	GetCollisionPosition(collision int64) *Vector3
-
-	GetCollisionRemainder(collision int64) *Vector3
-
-	GetCollisionTravel(collision int64) *Vector3
-
-	GetFloorVelocity() *Vector3
-
-	GetSafeMargin() float64
-
-	IsOnCeiling() *bool
-
-	IsOnFloor() *bool
-
-	IsOnWall() *bool
-
-	Move(relVec *Vector3) *Dictionary
-
-	MoveAndSlide(linearVelocity *Vector3, floorNormal *Vector3, slopeStopMinVelocity float64, maxBounces int64, floorMaxAngle float64) *Vector3
-
-	SetSafeMargin(pixels float64)
-
-	TestMove(from *Transform, relVec *Vector3) *bool
+	Class
 }
 
 /*
@@ -49819,7 +45657,7 @@ func (o *KinematicBody2D) GetSafeMargin() float64 {
 /*
 
  */
-func (o *KinematicBody2D) IsOnCeiling() *bool {
+func (o *KinematicBody2D) IsOnCeiling() bool {
 	log.Println("Calling KinematicBody2D.IsOnCeiling()")
 
 	// Build out the method's arguments
@@ -49827,11 +45665,11 @@ func (o *KinematicBody2D) IsOnCeiling() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_on_ceiling", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_on_ceiling", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -49840,7 +45678,7 @@ func (o *KinematicBody2D) IsOnCeiling() *bool {
 /*
 
  */
-func (o *KinematicBody2D) IsOnFloor() *bool {
+func (o *KinematicBody2D) IsOnFloor() bool {
 	log.Println("Calling KinematicBody2D.IsOnFloor()")
 
 	// Build out the method's arguments
@@ -49848,11 +45686,11 @@ func (o *KinematicBody2D) IsOnFloor() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_on_floor", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_on_floor", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -49861,7 +45699,7 @@ func (o *KinematicBody2D) IsOnFloor() *bool {
 /*
 
  */
-func (o *KinematicBody2D) IsOnWall() *bool {
+func (o *KinematicBody2D) IsOnWall() bool {
 	log.Println("Calling KinematicBody2D.IsOnWall()")
 
 	// Build out the method's arguments
@@ -49869,11 +45707,11 @@ func (o *KinematicBody2D) IsOnWall() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_on_wall", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_on_wall", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -49957,7 +45795,7 @@ func (o *KinematicBody2D) SetSafeMargin(pixels float64) {
 /*
    Return true if there would be a collision if the body moved from the given point in the given direction.
 */
-func (o *KinematicBody2D) TestMove(from *Transform2D, relVec *Vector2) *bool {
+func (o *KinematicBody2D) TestMove(from *Transform2D, relVec *Vector2) bool {
 	log.Println("Calling KinematicBody2D.TestMove()")
 
 	// Build out the method's arguments
@@ -49967,11 +45805,11 @@ func (o *KinematicBody2D) TestMove(from *Transform2D, relVec *Vector2) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "test_move", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "test_move", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -49984,49 +45822,7 @@ func (o *KinematicBody2D) TestMove(from *Transform2D, relVec *Vector2) *bool {
 		Kinematic Characters: KinematicBody2D also has an api for moving objects (the [method move] method) while performing collision tests. This makes them really useful to implement characters that collide against a world, but that don't require advanced physics.
 */
 type KinematicBody2DImplementer interface {
-	PhysicsBody2DImplementer
-
-	GetCollisionCollider(collision int64) *Object
-
-	GetCollisionColliderId(collision int64) int64
-
-	GetCollisionColliderMetadata(collision int64) *Variant
-
-	GetCollisionColliderShape(collision int64) *Object
-
-	GetCollisionColliderShapeIndex(collision int64) int64
-
-	GetCollisionColliderVelocity(collision int64) *Vector2
-
-	GetCollisionCount() int64
-
-	GetCollisionLocalShape(collision int64) *Object
-
-	GetCollisionNormal(collision int64) *Vector2
-
-	GetCollisionPosition(collision int64) *Vector2
-
-	GetCollisionRemainder(collision int64) *Vector2
-
-	GetCollisionTravel(collision int64) *Vector2
-
-	GetFloorVelocity() *Vector2
-
-	GetSafeMargin() float64
-
-	IsOnCeiling() *bool
-
-	IsOnFloor() *bool
-
-	IsOnWall() *bool
-
-	Move(relVec *Vector2) *Dictionary
-
-	MoveAndSlide(linearVelocity *Vector2, floorNormal *Vector2, slopeStopMinVelocity float64, maxBounces int64, floorMaxAngle float64) *Vector2
-
-	SetSafeMargin(pixels float64)
-
-	TestMove(from *Transform2D, relVec *Vector2) *bool
+	Class
 }
 
 /*
@@ -50274,7 +46070,7 @@ func (o *Label) GetVisibleLineCount() int64 {
 /*
    Return the state of the [i]autowrap[/i] mode (see [method set_autowrap]).
 */
-func (o *Label) HasAutowrap() *bool {
+func (o *Label) HasAutowrap() bool {
 	log.Println("Calling Label.HasAutowrap()")
 
 	// Build out the method's arguments
@@ -50282,11 +46078,11 @@ func (o *Label) HasAutowrap() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_autowrap", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_autowrap", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -50295,7 +46091,7 @@ func (o *Label) HasAutowrap() *bool {
 /*
    Return true if text would be cut off if it is too wide.
 */
-func (o *Label) IsClippingText() *bool {
+func (o *Label) IsClippingText() bool {
 	log.Println("Calling Label.IsClippingText()")
 
 	// Build out the method's arguments
@@ -50303,11 +46099,11 @@ func (o *Label) IsClippingText() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_clipping_text", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_clipping_text", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -50316,7 +46112,7 @@ func (o *Label) IsClippingText() *bool {
 /*
    Return true if text is displayed in all capitals.
 */
-func (o *Label) IsUppercase() *bool {
+func (o *Label) IsUppercase() bool {
 	log.Println("Calling Label.IsUppercase()")
 
 	// Build out the method's arguments
@@ -50324,11 +46120,11 @@ func (o *Label) IsUppercase() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_uppercase", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_uppercase", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -50355,7 +46151,7 @@ func (o *Label) SetAlign(align int64) {
 /*
    Set [i]autowrap[/i] mode. When enabled, autowrap will fit text to the control width, breaking sentences when they exceed the available horizontal space. When disabled, the label minimum width becomes the width of the longest row, and the minimum height large enough to fit all rows.
 */
-func (o *Label) SetAutowrap(enable *bool) {
+func (o *Label) SetAutowrap(enable bool) {
 	log.Println("Calling Label.SetAutowrap()")
 
 	// Build out the method's arguments
@@ -50373,7 +46169,7 @@ func (o *Label) SetAutowrap(enable *bool) {
 /*
    Cuts off the rest of the text if it is too wide.
 */
-func (o *Label) SetClipText(enable *bool) {
+func (o *Label) SetClipText(enable bool) {
 	log.Println("Calling Label.SetClipText()")
 
 	// Build out the method's arguments
@@ -50463,7 +46259,7 @@ func (o *Label) SetText(text string) {
 /*
    Display text in all capitals.
 */
-func (o *Label) SetUppercase(enable *bool) {
+func (o *Label) SetUppercase(enable bool) {
 	log.Println("Calling Label.SetUppercase()")
 
 	// Build out the method's arguments
@@ -50519,55 +46315,7 @@ func (o *Label) SetVisibleCharacters(amount int64) {
    Label is a control that displays formatted text, optionally autowrapping it to the [Control] area. It inherits from range to be able to scroll wrapped text vertically.
 */
 type LabelImplementer interface {
-	ControlImplementer
-
-	GetAlign() int64
-
-	GetLineCount() int64
-
-	GetLineHeight() int64
-
-	GetLinesSkipped() int64
-
-	GetMaxLinesVisible() int64
-
-	GetPercentVisible() float64
-
-	GetText() string
-
-	GetTotalCharacterCount() int64
-
-	GetValign() int64
-
-	GetVisibleCharacters() int64
-
-	GetVisibleLineCount() int64
-
-	HasAutowrap() *bool
-
-	IsClippingText() *bool
-
-	IsUppercase() *bool
-
-	SetAlign(align int64)
-
-	SetAutowrap(enable *bool)
-
-	SetClipText(enable *bool)
-
-	SetLinesSkipped(linesSkipped int64)
-
-	SetMaxLinesVisible(linesVisible int64)
-
-	SetPercentVisible(percentVisible float64)
-
-	SetText(text string)
-
-	SetUppercase(enable *bool)
-
-	SetValign(valign int64)
-
-	SetVisibleCharacters(amount int64)
+	Class
 }
 
 /*
@@ -50749,23 +46497,7 @@ func (o *LargeTexture) SetSize(size *Vector2) {
 		You can dynamically add pieces(Textures) to this fLargeTexture] using different offsets.
 */
 type LargeTextureImplementer interface {
-	TextureImplementer
-
-	AddPiece(ofs *Vector2, texture *Texture) int64
-
-	Clear()
-
-	GetPieceCount() int64
-
-	GetPieceOffset(idx int64) *Vector2
-
-	GetPieceTexture(idx int64) *Texture
-
-	SetPieceOffset(idx int64, ofs *Vector2)
-
-	SetPieceTexture(idx int64, texture *Texture)
-
-	SetSize(size *Vector2)
+	Class
 }
 
 /*
@@ -50867,7 +46599,7 @@ func (o *Light) GetShadowColor() *Color {
 /*
 
  */
-func (o *Light) GetShadowReverseCullFace() *bool {
+func (o *Light) GetShadowReverseCullFace() bool {
 	log.Println("Calling Light.GetShadowReverseCullFace()")
 
 	// Build out the method's arguments
@@ -50875,11 +46607,11 @@ func (o *Light) GetShadowReverseCullFace() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_shadow_reverse_cull_face", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_shadow_reverse_cull_face", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -50888,7 +46620,7 @@ func (o *Light) GetShadowReverseCullFace() *bool {
 /*
 
  */
-func (o *Light) HasShadow() *bool {
+func (o *Light) HasShadow() bool {
 	log.Println("Calling Light.HasShadow()")
 
 	// Build out the method's arguments
@@ -50896,11 +46628,11 @@ func (o *Light) HasShadow() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_shadow", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_shadow", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -50909,7 +46641,7 @@ func (o *Light) HasShadow() *bool {
 /*
 
  */
-func (o *Light) IsEditorOnly() *bool {
+func (o *Light) IsEditorOnly() bool {
 	log.Println("Calling Light.IsEditorOnly()")
 
 	// Build out the method's arguments
@@ -50917,11 +46649,11 @@ func (o *Light) IsEditorOnly() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_editor_only", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_editor_only", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -50930,7 +46662,7 @@ func (o *Light) IsEditorOnly() *bool {
 /*
 
  */
-func (o *Light) IsNegative() *bool {
+func (o *Light) IsNegative() bool {
 	log.Println("Calling Light.IsNegative()")
 
 	// Build out the method's arguments
@@ -50938,11 +46670,11 @@ func (o *Light) IsNegative() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_negative", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_negative", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -50987,7 +46719,7 @@ func (o *Light) SetCullMask(cullMask int64) {
 /*
 
  */
-func (o *Light) SetEditorOnly(editorOnly *bool) {
+func (o *Light) SetEditorOnly(editorOnly bool) {
 	log.Println("Calling Light.SetEditorOnly()")
 
 	// Build out the method's arguments
@@ -51005,7 +46737,7 @@ func (o *Light) SetEditorOnly(editorOnly *bool) {
 /*
 
  */
-func (o *Light) SetNegative(enabled *bool) {
+func (o *Light) SetNegative(enabled bool) {
 	log.Println("Calling Light.SetNegative()")
 
 	// Build out the method's arguments
@@ -51042,7 +46774,7 @@ func (o *Light) SetParam(param int64, value float64) {
 /*
 
  */
-func (o *Light) SetShadow(enabled *bool) {
+func (o *Light) SetShadow(enabled bool) {
 	log.Println("Calling Light.SetShadow()")
 
 	// Build out the method's arguments
@@ -51078,7 +46810,7 @@ func (o *Light) SetShadowColor(shadowColor *Color) {
 /*
 
  */
-func (o *Light) SetShadowReverseCullFace(enable *bool) {
+func (o *Light) SetShadowReverseCullFace(enable bool) {
 	log.Println("Calling Light.SetShadowReverseCullFace()")
 
 	// Build out the method's arguments
@@ -51098,39 +46830,7 @@ func (o *Light) SetShadowReverseCullFace(enable *bool) {
    Light is the abstract base class for light nodes, so it shouldn't be used directly (It can't be instanced). Other types of light nodes inherit from it. Light contains the common variables and parameters used for lighting.
 */
 type LightImplementer interface {
-	VisualInstanceImplementer
-
-	GetColor() *Color
-
-	GetCullMask() int64
-
-	GetParam(param int64) float64
-
-	GetShadowColor() *Color
-
-	GetShadowReverseCullFace() *bool
-
-	HasShadow() *bool
-
-	IsEditorOnly() *bool
-
-	IsNegative() *bool
-
-	SetColor(color *Color)
-
-	SetCullMask(cullMask int64)
-
-	SetEditorOnly(editorOnly *bool)
-
-	SetNegative(enabled *bool)
-
-	SetParam(param int64, value float64)
-
-	SetShadow(enabled *bool)
-
-	SetShadowColor(shadowColor *Color)
-
-	SetShadowReverseCullFace(enable *bool)
+	Class
 }
 
 /*
@@ -51525,7 +47225,7 @@ func (o *Light2D) GetZRangeMin() int64 {
 /*
 
  */
-func (o *Light2D) IsEditorOnly() *bool {
+func (o *Light2D) IsEditorOnly() bool {
 	log.Println("Calling Light2D.IsEditorOnly()")
 
 	// Build out the method's arguments
@@ -51533,11 +47233,11 @@ func (o *Light2D) IsEditorOnly() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_editor_only", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_editor_only", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -51546,7 +47246,7 @@ func (o *Light2D) IsEditorOnly() *bool {
 /*
    Return true if the Light2D is enabled, false if it is not.
 */
-func (o *Light2D) IsEnabled() *bool {
+func (o *Light2D) IsEnabled() bool {
 	log.Println("Calling Light2D.IsEnabled()")
 
 	// Build out the method's arguments
@@ -51554,11 +47254,11 @@ func (o *Light2D) IsEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -51567,7 +47267,7 @@ func (o *Light2D) IsEnabled() *bool {
 /*
    Return true if shadow casting is enabled for this Light2D, else return false.
 */
-func (o *Light2D) IsShadowEnabled() *bool {
+func (o *Light2D) IsShadowEnabled() bool {
 	log.Println("Calling Light2D.IsShadowEnabled()")
 
 	// Build out the method's arguments
@@ -51575,11 +47275,11 @@ func (o *Light2D) IsShadowEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_shadow_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_shadow_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -51606,7 +47306,7 @@ func (o *Light2D) SetColor(color *Color) {
 /*
 
  */
-func (o *Light2D) SetEditorOnly(editorOnly *bool) {
+func (o *Light2D) SetEditorOnly(editorOnly bool) {
 	log.Println("Calling Light2D.SetEditorOnly()")
 
 	// Build out the method's arguments
@@ -51624,7 +47324,7 @@ func (o *Light2D) SetEditorOnly(editorOnly *bool) {
 /*
    Switches the Light2D on or off, depending on the 'enabled' parameter.
 */
-func (o *Light2D) SetEnabled(enabled *bool) {
+func (o *Light2D) SetEnabled(enabled bool) {
 	log.Println("Calling Light2D.SetEnabled()")
 
 	// Build out the method's arguments
@@ -51804,7 +47504,7 @@ func (o *Light2D) SetShadowColor(shadowColor *Color) {
 /*
    Enable or disable shadows casting from this Light2D according to the 'enabled' parameter.
 */
-func (o *Light2D) SetShadowEnabled(enabled *bool) {
+func (o *Light2D) SetShadowEnabled(enabled bool) {
 	log.Println("Calling Light2D.SetShadowEnabled()")
 
 	// Build out the method's arguments
@@ -51968,91 +47668,7 @@ func (o *Light2D) SetZRangeMin(z int64) {
    Node that casts light in a 2D environment. Light is defined by a (usually grayscale) texture, a color, an energy value, a mode (see constants), and various other parameters (range and shadows-related). Note that Light2D can be used as a mask.
 */
 type Light2DImplementer interface {
-	Node2DImplementer
-
-	GetColor() *Color
-
-	GetEnergy() float64
-
-	GetHeight() float64
-
-	GetItemCullMask() int64
-
-	GetItemShadowCullMask() int64
-
-	GetLayerRangeMax() int64
-
-	GetLayerRangeMin() int64
-
-	GetMode() int64
-
-	GetShadowBufferSize() int64
-
-	GetShadowColor() *Color
-
-	GetShadowFilter() int64
-
-	GetShadowGradientLength() float64
-
-	GetShadowSmooth() float64
-
-	GetTexture() *Texture
-
-	GetTextureOffset() *Vector2
-
-	GetTextureScale() float64
-
-	GetZRangeMax() int64
-
-	GetZRangeMin() int64
-
-	IsEditorOnly() *bool
-
-	IsEnabled() *bool
-
-	IsShadowEnabled() *bool
-
-	SetColor(color *Color)
-
-	SetEditorOnly(editorOnly *bool)
-
-	SetEnabled(enabled *bool)
-
-	SetEnergy(energy float64)
-
-	SetHeight(height float64)
-
-	SetItemCullMask(itemCullMask int64)
-
-	SetItemShadowCullMask(itemShadowCullMask int64)
-
-	SetLayerRangeMax(layer int64)
-
-	SetLayerRangeMin(layer int64)
-
-	SetMode(mode int64)
-
-	SetShadowBufferSize(size int64)
-
-	SetShadowColor(shadowColor *Color)
-
-	SetShadowEnabled(enabled *bool)
-
-	SetShadowFilter(filter int64)
-
-	SetShadowGradientLength(multiplier float64)
-
-	SetShadowSmooth(smooth float64)
-
-	SetTexture(texture *Texture)
-
-	SetTextureOffset(textureOffset *Vector2)
-
-	SetTextureScale(textureScale float64)
-
-	SetZRangeMax(z int64)
-
-	SetZRangeMin(z int64)
+	Class
 }
 
 /*
@@ -52149,15 +47765,7 @@ func (o *LightOccluder2D) SetOccluderPolygon(polygon *OccluderPolygon2D) {
    Occludes light cast by a Light2D, thus casting shadows. The LightOccluder2D must be provided with a shape (see OccluderPolygon2D) that allows the shadow to be computed. This shape affects the resulting shadow, while the shape of the representating asset shadowed does not actually affect shadows.
 */
 type LightOccluder2DImplementer interface {
-	Node2DImplementer
-
-	GetOccluderLightMask() int64
-
-	GetOccluderPolygon() *OccluderPolygon2D
-
-	SetOccluderLightMask(mask int64)
-
-	SetOccluderPolygon(polygon *OccluderPolygon2D)
+	Class
 }
 
 /*
@@ -52703,61 +48311,7 @@ func (o *Line2D) SetWidth(width float64) {
 
 */
 type Line2DImplementer interface {
-	Node2DImplementer
-
-	AddPoint(pos *Vector2)
-
-	GetBeginCapMode() int64
-
-	GetDefaultColor() *Color
-
-	GetEndCapMode() int64
-
-	GetGradient() *Gradient
-
-	GetJointMode() int64
-
-	GetPointCount() int64
-
-	GetPointPos(i int64) *Vector2
-
-	GetPoints() *PoolVector2Array
-
-	GetRoundPrecision() int64
-
-	GetSharpLimit() float64
-
-	GetTexture() *Texture
-
-	GetTextureMode() int64
-
-	GetWidth() float64
-
-	RemovePoint(i int64)
-
-	SetBeginCapMode(mode int64)
-
-	SetDefaultColor(color *Color)
-
-	SetEndCapMode(mode int64)
-
-	SetGradient(color *Gradient)
-
-	SetJointMode(mode int64)
-
-	SetPointPos(i int64, pos *Vector2)
-
-	SetPoints(points *PoolVector2Array)
-
-	SetRoundPrecision(precision int64)
-
-	SetSharpLimit(limit float64)
-
-	SetTexture(texture *Texture)
-
-	SetTextureMode(mode int64)
-
-	SetWidth(width float64)
+	Class
 }
 
 /*
@@ -52809,7 +48363,7 @@ func (o *LineEdit) Clear() {
 /*
    Gets whether the line edit caret is blinking.
 */
-func (o *LineEdit) CursorGetBlinkEnabled() *bool {
+func (o *LineEdit) CursorGetBlinkEnabled() bool {
 	log.Println("Calling LineEdit.CursorGetBlinkEnabled()")
 
 	// Build out the method's arguments
@@ -52817,11 +48371,11 @@ func (o *LineEdit) CursorGetBlinkEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "cursor_get_blink_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "cursor_get_blink_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -52851,7 +48405,7 @@ func (o *LineEdit) CursorGetBlinkSpeed() float64 {
 /*
    Set the line edit caret to blink.
 */
-func (o *LineEdit) CursorSetBlinkEnabled(enabled *bool) {
+func (o *LineEdit) CursorSetBlinkEnabled(enabled bool) {
 	log.Println("Calling LineEdit.CursorSetBlinkEnabled()")
 
 	// Build out the method's arguments
@@ -52929,7 +48483,7 @@ func (o *LineEdit) GetCursorPos() int64 {
 /*
 
  */
-func (o *LineEdit) GetExpandToTextLength() *bool {
+func (o *LineEdit) GetExpandToTextLength() bool {
 	log.Println("Calling LineEdit.GetExpandToTextLength()")
 
 	// Build out the method's arguments
@@ -52937,11 +48491,11 @@ func (o *LineEdit) GetExpandToTextLength() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_expand_to_text_length", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_expand_to_text_length", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -53055,7 +48609,7 @@ func (o *LineEdit) GetText() string {
 /*
    Return the [i]editable[/i] status of the [LineEdit] (see [method set_editable]).
 */
-func (o *LineEdit) IsEditable() *bool {
+func (o *LineEdit) IsEditable() bool {
 	log.Println("Calling LineEdit.IsEditable()")
 
 	// Build out the method's arguments
@@ -53063,11 +48617,11 @@ func (o *LineEdit) IsEditable() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_editable", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_editable", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -53076,7 +48630,7 @@ func (o *LineEdit) IsEditable() *bool {
 /*
    Return the [i]secret[/i] status of the [LineEdit] (see [method set_secret]).
 */
-func (o *LineEdit) IsSecret() *bool {
+func (o *LineEdit) IsSecret() bool {
 	log.Println("Calling LineEdit.IsSecret()")
 
 	// Build out the method's arguments
@@ -53084,11 +48638,11 @@ func (o *LineEdit) IsSecret() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_secret", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_secret", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -53187,7 +48741,7 @@ func (o *LineEdit) SetCursorPos(pos int64) {
 /*
    Set the [i]editable[/i] status of the [LineEdit]. When disabled, existing text can't be modified and new text can't be added.
 */
-func (o *LineEdit) SetEditable(enabled *bool) {
+func (o *LineEdit) SetEditable(enabled bool) {
 	log.Println("Calling LineEdit.SetEditable()")
 
 	// Build out the method's arguments
@@ -53205,7 +48759,7 @@ func (o *LineEdit) SetEditable(enabled *bool) {
 /*
 
  */
-func (o *LineEdit) SetExpandToTextLength(enabled *bool) {
+func (o *LineEdit) SetExpandToTextLength(enabled bool) {
 	log.Println("Calling LineEdit.SetExpandToTextLength()")
 
 	// Build out the method's arguments
@@ -53277,7 +48831,7 @@ func (o *LineEdit) SetPlaceholderAlpha(alpha float64) {
 /*
    Set the [i]secret[/i] status of the [LineEdit]. When enabled, every character is displayed as "*".
 */
-func (o *LineEdit) SetSecret(enabled *bool) {
+func (o *LineEdit) SetSecret(enabled bool) {
 	log.Println("Calling LineEdit.SetSecret()")
 
 	// Build out the method's arguments
@@ -53315,63 +48869,7 @@ func (o *LineEdit) SetText(text string) {
    LineEdit provides a single line string editor, used for text fields.
 */
 type LineEditImplementer interface {
-	ControlImplementer
-
-	AppendAtCursor(text string)
-
-	Clear()
-
-	CursorGetBlinkEnabled() *bool
-
-	CursorGetBlinkSpeed() float64
-
-	CursorSetBlinkEnabled(enabled *bool)
-
-	CursorSetBlinkSpeed(blinkSpeed float64)
-
-	GetAlign() int64
-
-	GetCursorPos() int64
-
-	GetExpandToTextLength() *bool
-
-	GetMaxLength() int64
-
-	GetMenu() *PopupMenu
-
-	GetPlaceholder() string
-
-	GetPlaceholderAlpha() float64
-
-	GetText() string
-
-	IsEditable() *bool
-
-	IsSecret() *bool
-
-	MenuOption(option int64)
-
-	Select(from int64, to int64)
-
-	SelectAll()
-
-	SetAlign(align int64)
-
-	SetCursorPos(pos int64)
-
-	SetEditable(enabled *bool)
-
-	SetExpandToTextLength(enabled *bool)
-
-	SetMaxLength(chars int64)
-
-	SetPlaceholder(text string)
-
-	SetPlaceholderAlpha(alpha float64)
-
-	SetSecret(enabled *bool)
-
-	SetText(text string)
+	Class
 }
 
 /*
@@ -53468,15 +48966,7 @@ func (o *LineShape2D) SetNormal(normal *Vector2) {
    Line shape for 2D collision objects. It works like a 2D plane and will not allow any body to go to the negative side. Not recommended for rigid bodies, and usually not recommended for static bodies either because it forces checks against it on every frame.
 */
 type LineShape2DImplementer interface {
-	Shape2DImplementer
-
-	GetD() float64
-
-	GetNormal() *Vector2
-
-	SetD(d float64)
-
-	SetNormal(normal *Vector2)
+	Class
 }
 
 /*
@@ -53573,15 +49063,7 @@ func (o *LinkButton) SetUnderlineMode(underlineMode int64) {
    This kind of buttons are primarily used when the interaction with the button causes a context change (like linking to a web page).
 */
 type LinkButtonImplementer interface {
-	BaseButtonImplementer
-
-	GetText() string
-
-	GetUnderlineMode() int64
-
-	SetText(text string)
-
-	SetUnderlineMode(underlineMode int64)
+	Class
 }
 
 /*
@@ -53636,7 +49118,7 @@ func (o *Listener) GetListenerTransform() *Transform {
 /*
 
  */
-func (o *Listener) IsCurrent() *bool {
+func (o *Listener) IsCurrent() bool {
 	log.Println("Calling Listener.IsCurrent()")
 
 	// Build out the method's arguments
@@ -53644,11 +49126,11 @@ func (o *Listener) IsCurrent() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_current", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_current", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -53676,15 +49158,7 @@ func (o *Listener) MakeCurrent() {
 
 */
 type ListenerImplementer interface {
-	SpatialImplementer
-
-	ClearCurrent()
-
-	GetListenerTransform() *Transform
-
-	IsCurrent() *bool
-
-	MakeCurrent()
+	Class
 }
 
 /*
@@ -53843,7 +49317,7 @@ func (o *MainLoop) Finish() {
 /*
 
  */
-func (o *MainLoop) Idle(delta float64) *bool {
+func (o *MainLoop) Idle(delta float64) bool {
 	log.Println("Calling MainLoop.Idle()")
 
 	// Build out the method's arguments
@@ -53852,11 +49326,11 @@ func (o *MainLoop) Idle(delta float64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "idle", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "idle", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -53918,7 +49392,7 @@ func (o *MainLoop) InputText(text string) {
 /*
 
  */
-func (o *MainLoop) Iteration(delta float64) *bool {
+func (o *MainLoop) Iteration(delta float64) bool {
 	log.Println("Calling MainLoop.Iteration()")
 
 	// Build out the method's arguments
@@ -53927,11 +49401,11 @@ func (o *MainLoop) Iteration(delta float64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "iteration", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "iteration", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -53942,33 +49416,7 @@ func (o *MainLoop) Iteration(delta float64) *bool {
    Main loop is the abstract main loop base class. All other main loop classes are derived from it. Upon application start, a [MainLoop] has to be provided to OS, else the application will exit. This happens automatically (and a [SceneTree] is created), unless a main [Script] is supplied, which may or not create and return a [MainLoop].
 */
 type MainLoopImplementer interface {
-	ObjectImplementer
-
-	X_DropFiles(files *PoolStringArray, screen int64)
-
-	X_Finalize()
-
-	X_Idle(delta float64)
-
-	X_Initialize()
-
-	X_InputEvent(ev *InputEvent)
-
-	X_InputText(text string)
-
-	X_Iteration(delta float64)
-
-	Finish()
-
-	Idle(delta float64) *bool
-
-	Init()
-
-	InputEvent(ev *InputEvent)
-
-	InputText(text string)
-
-	Iteration(delta float64) *bool
+	Class
 }
 
 /*
@@ -53987,7 +49435,7 @@ func (o *MarginContainer) baseClass() string {
    Simple margin container. Adds a left margin to anything contained.
 */
 type MarginContainerImplementer interface {
-	ContainerImplementer
+	Class
 }
 
 /*
@@ -54138,19 +49586,7 @@ func (o *Marshalls) VariantToBase64(variant *Variant) string {
 
 */
 type MarshallsImplementer interface {
-	ReferenceImplementer
-
-	Base64ToRaw(base64Str string) *PoolByteArray
-
-	Base64ToUtf8(base64Str string) string
-
-	Base64ToVariant(base64Str string) *Variant
-
-	RawToBase64(array *PoolByteArray) string
-
-	Utf8ToBase64(utf8Str string) string
-
-	VariantToBase64(variant *Variant) string
+	Class
 }
 
 /*
@@ -54247,15 +49683,7 @@ func (o *Material) SetRenderPriority(priority int64) {
    Material is a base [Resource] used for coloring and shading geometry. All materials inherit from it and almost all [VisualInstance] derived nodes carry a Material. A few flags and parameters are shared between all material types and are configured here.
 */
 type MaterialImplementer interface {
-	ResourceImplementer
-
-	GetNextPass() *Material
-
-	GetRenderPriority() int64
-
-	SetNextPass(nextPass *Material)
-
-	SetRenderPriority(priority int64)
+	Class
 }
 
 /*
@@ -54295,9 +49723,7 @@ func (o *MenuButton) GetPopup() *PopupMenu {
    Special button that brings up a [PopupMenu] when clicked. That's pretty much all it does, as it's just a helper class when building GUIs.
 */
 type MenuButtonImplementer interface {
-	ButtonImplementer
-
-	GetPopup() *PopupMenu
+	Class
 }
 
 /*
@@ -54422,17 +49848,7 @@ func (o *Mesh) GetFaces() *PoolVector3Array {
    Mesh is a type of [Resource] that contains vertex-array based geometry, divided in [i]surfaces[/i]. Each surface contains a completely separate array and a material used to draw it. Design wise, a mesh with multiple surfaces is preferred to a single surface, because objects created in 3D editing software commonly contain multiple materials.
 */
 type MeshImplementer interface {
-	ResourceImplementer
-
-	CreateConvexShape() *Shape
-
-	CreateOutline(margin float64) *Mesh
-
-	CreateTrimeshShape() *Shape
-
-	GenerateTriangleMesh() *TriangleMesh
-
-	GetFaces() *PoolVector3Array
+	Class
 }
 
 /*
@@ -55244,83 +50660,7 @@ func (o *MeshDataTool) SetVertexWeights(idx int64, weights *PoolRealArray) {
 
 */
 type MeshDataToolImplementer interface {
-	ReferenceImplementer
-
-	Clear()
-
-	CommitToSurface(mesh *ArrayMesh) int64
-
-	CreateFromSurface(mesh *ArrayMesh, surface int64) int64
-
-	GetEdgeCount() int64
-
-	GetEdgeFaces(idx int64) *PoolIntArray
-
-	GetEdgeMeta(idx int64) *Variant
-
-	GetEdgeVertex(idx int64, vertex int64) int64
-
-	GetFaceCount() int64
-
-	GetFaceEdge(idx int64, edge int64) int64
-
-	GetFaceMeta(idx int64) *Variant
-
-	GetFaceNormal(idx int64) *Vector3
-
-	GetFaceVertex(idx int64, vertex int64) int64
-
-	GetFormat() int64
-
-	GetMaterial() *Material
-
-	GetVertex(idx int64) *Vector3
-
-	GetVertexBones(idx int64) *PoolIntArray
-
-	GetVertexColor(idx int64) *Color
-
-	GetVertexCount() int64
-
-	GetVertexEdges(idx int64) *PoolIntArray
-
-	GetVertexFaces(idx int64) *PoolIntArray
-
-	GetVertexMeta(idx int64) *Variant
-
-	GetVertexNormal(idx int64) *Vector3
-
-	GetVertexTangent(idx int64) *Plane
-
-	GetVertexUv(idx int64) *Vector2
-
-	GetVertexUv2(idx int64) *Vector2
-
-	GetVertexWeights(idx int64) *PoolRealArray
-
-	SetEdgeMeta(idx int64, meta *Variant)
-
-	SetFaceMeta(idx int64, meta *Variant)
-
-	SetMaterial(material *Material)
-
-	SetVertex(idx int64, vertex *Vector3)
-
-	SetVertexBones(idx int64, bones *PoolIntArray)
-
-	SetVertexColor(idx int64, color *Color)
-
-	SetVertexMeta(idx int64, meta *Variant)
-
-	SetVertexNormal(idx int64, normal *Vector3)
-
-	SetVertexTangent(idx int64, tangent *Plane)
-
-	SetVertexUv(idx int64, uv *Vector2)
-
-	SetVertexUv2(idx int64, uv2 *Vector2)
-
-	SetVertexWeights(idx int64, weights *PoolRealArray)
+	Class
 }
 
 /*
@@ -55509,25 +50849,7 @@ func (o *MeshInstance) SetSurfaceMaterial(surface int64, material *Material) {
    MeshInstance is a [Node] that takes a [Mesh] resource and adds it to the current scenario by creating an instance of it. This is the class most often used to get 3D geometry rendered and can be used to instance a single [Mesh] in many places. This allows to reuse geometry and save on resources. When a [Mesh] has to be instanced more than thousands of times at close proximity, consider using a [MultiMesh] in a [MultiMeshInstance] instead.
 */
 type MeshInstanceImplementer interface {
-	GeometryInstanceImplementer
-
-	CreateConvexCollision()
-
-	CreateDebugTangents()
-
-	CreateTrimeshCollision()
-
-	GetMesh() *Mesh
-
-	GetSkeletonPath() *NodePath
-
-	GetSurfaceMaterial(surface int64) *Material
-
-	SetMesh(mesh *Mesh)
-
-	SetSkeletonPath(skeletonPath *NodePath)
-
-	SetSurfaceMaterial(surface int64, material *Material)
+	Class
 }
 
 /*
@@ -55846,37 +51168,7 @@ func (o *MeshLibrary) SetItemShapes(id int64, shapes *Array) {
    Library of meshes. Contains a list of [Mesh] resources, each with name and ID. Useful for GridMap or painting Terrain.
 */
 type MeshLibraryImplementer interface {
-	ResourceImplementer
-
-	Clear()
-
-	CreateItem(id int64)
-
-	GetItemList() *PoolIntArray
-
-	GetItemMesh(id int64) *Mesh
-
-	GetItemName(id int64) string
-
-	GetItemNavmesh(id int64) *NavigationMesh
-
-	GetItemPreview(id int64) *Texture
-
-	GetItemShapes(id int64) *Array
-
-	GetLastUnusedItemId() int64
-
-	RemoveItem(id int64)
-
-	SetItemMesh(id int64, mesh *Mesh)
-
-	SetItemName(id int64, name string)
-
-	SetItemNavmesh(id int64, navmesh *NavigationMesh)
-
-	SetItemPreview(id int64, texture *Texture)
-
-	SetItemShapes(id int64, shapes *Array)
+	Class
 }
 
 /*
@@ -56160,33 +51452,7 @@ func (o *MultiMesh) SetTransformFormat(format int64) {
 		Since instances may have any behavior, the Rect3 used for visibility must be provided by the user.
 */
 type MultiMeshImplementer interface {
-	ResourceImplementer
-
-	GetAabb() *Rect3
-
-	GetColorFormat() int64
-
-	GetInstanceColor(instance int64) *Color
-
-	GetInstanceCount() int64
-
-	GetInstanceTransform(instance int64) *Transform
-
-	GetMesh() *Mesh
-
-	GetTransformFormat() int64
-
-	SetColorFormat(format int64)
-
-	SetInstanceColor(instance int64, color *Color)
-
-	SetInstanceCount(count int64)
-
-	SetInstanceTransform(instance int64, transform *Transform)
-
-	SetMesh(mesh *Mesh)
-
-	SetTransformFormat(format int64)
+	Class
 }
 
 /*
@@ -56244,11 +51510,7 @@ func (o *MultiMeshInstance) SetMultimesh(multimesh *MultiMesh) {
    MultiMeshInstance is a [Node] that takes a [MultiMesh] resource and adds it to the current scenario by creating an instance of it (yes, this is an instance of instances).
 */
 type MultiMeshInstanceImplementer interface {
-	GeometryInstanceImplementer
-
-	GetMultimesh() *MultiMesh
-
-	SetMultimesh(multimesh *MultiMesh)
+	Class
 }
 
 /*
@@ -56322,13 +51584,7 @@ func (o *Mutex) Unlock() {
    A synchronization Mutex. Element used in multi-threadding. Basically a binary [Semaphore]. Guarantees that only one thread has this lock, can be used to protect a critical section.
 */
 type MutexImplementer interface {
-	ReferenceImplementer
-
-	Lock()
-
-	TryLock() int64
-
-	Unlock()
+	Class
 }
 
 /*
@@ -56446,17 +51702,7 @@ func (o *NativeScript) SetLibrary(library *GDNativeLibrary) {
 
 */
 type NativeScriptImplementer interface {
-	ScriptImplementer
-
-	GetClassName() string
-
-	GetLibrary() *GDNativeLibrary
-
-	New() *Object
-
-	SetClassName(className string)
-
-	SetLibrary(library *GDNativeLibrary)
+	Class
 }
 
 /*
@@ -56539,7 +51785,7 @@ func (o *Navigation) GetClosestPointOwner(toPoint *Vector3) *Object {
 /*
 
  */
-func (o *Navigation) GetClosestPointToSegment(start *Vector3, end *Vector3, useCollision *bool) *Vector3 {
+func (o *Navigation) GetClosestPointToSegment(start *Vector3, end *Vector3, useCollision bool) *Vector3 {
 	log.Println("Calling Navigation.GetClosestPointToSegment()")
 
 	// Build out the method's arguments
@@ -56563,7 +51809,7 @@ func (o *Navigation) GetClosestPointToSegment(start *Vector3, end *Vector3, useC
 /*
 
  */
-func (o *Navigation) GetSimplePath(start *Vector3, end *Vector3, optimize *bool) *PoolVector3Array {
+func (o *Navigation) GetSimplePath(start *Vector3, end *Vector3, optimize bool) *PoolVector3Array {
 	log.Println("Calling Navigation.GetSimplePath()")
 
 	// Build out the method's arguments
@@ -56689,27 +51935,7 @@ func (o *Navigation) SetUpVector(up *Vector3) {
 
 */
 type NavigationImplementer interface {
-	SpatialImplementer
-
-	GetClosestPoint(toPoint *Vector3) *Vector3
-
-	GetClosestPointNormal(toPoint *Vector3) *Vector3
-
-	GetClosestPointOwner(toPoint *Vector3) *Object
-
-	GetClosestPointToSegment(start *Vector3, end *Vector3, useCollision *bool) *Vector3
-
-	GetSimplePath(start *Vector3, end *Vector3, optimize *bool) *PoolVector3Array
-
-	GetUpVector() *Vector3
-
-	NavmeshCreate(mesh *NavigationMesh, xform *Transform, owner *Object) int64
-
-	NavmeshRemove(id int64)
-
-	NavmeshSetTransform(id int64, xform *Transform)
-
-	SetUpVector(up *Vector3)
+	Class
 }
 
 /*
@@ -56770,7 +51996,7 @@ func (o *Navigation2D) GetClosestPointOwner(toPoint *Vector2) *Object {
 /*
 
  */
-func (o *Navigation2D) GetSimplePath(start *Vector2, end *Vector2, optimize *bool) *PoolVector2Array {
+func (o *Navigation2D) GetSimplePath(start *Vector2, end *Vector2, optimize bool) *PoolVector2Array {
 	log.Println("Calling Navigation2D.GetSimplePath()")
 
 	// Build out the method's arguments
@@ -56857,19 +52083,7 @@ func (o *Navigation2D) NavpolySetTransform(id int64, xform *Transform2D) {
 
 */
 type Navigation2DImplementer interface {
-	Node2DImplementer
-
-	GetClosestPoint(toPoint *Vector2) *Vector2
-
-	GetClosestPointOwner(toPoint *Vector2) *Object
-
-	GetSimplePath(start *Vector2, end *Vector2, optimize *bool) *PoolVector2Array
-
-	NavpolyCreate(mesh *NavigationPolygon, xform *Transform2D, owner *Object) int64
-
-	NavpolyRemove(id int64)
-
-	NavpolySetTransform(id int64, xform *Transform2D)
+	Class
 }
 
 /*
@@ -57023,21 +52237,7 @@ func (o *NavigationMesh) SetVertices(vertices *PoolVector3Array) {
 
 */
 type NavigationMeshImplementer interface {
-	ResourceImplementer
-
-	AddPolygon(polygon *PoolIntArray)
-
-	ClearPolygons()
-
-	CreateFromMesh(mesh *Mesh)
-
-	GetPolygon(idx int64) *PoolIntArray
-
-	GetPolygonCount() int64
-
-	GetVertices() *PoolVector3Array
-
-	SetVertices(vertices *PoolVector3Array)
+	Class
 }
 
 /*
@@ -57075,7 +52275,7 @@ func (o *NavigationMeshInstance) GetNavigationMesh() *NavigationMesh {
 /*
 
  */
-func (o *NavigationMeshInstance) IsEnabled() *bool {
+func (o *NavigationMeshInstance) IsEnabled() bool {
 	log.Println("Calling NavigationMeshInstance.IsEnabled()")
 
 	// Build out the method's arguments
@@ -57083,11 +52283,11 @@ func (o *NavigationMeshInstance) IsEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -57096,7 +52296,7 @@ func (o *NavigationMeshInstance) IsEnabled() *bool {
 /*
 
  */
-func (o *NavigationMeshInstance) SetEnabled(enabled *bool) {
+func (o *NavigationMeshInstance) SetEnabled(enabled bool) {
 	log.Println("Calling NavigationMeshInstance.SetEnabled()")
 
 	// Build out the method's arguments
@@ -57134,15 +52334,7 @@ func (o *NavigationMeshInstance) SetNavigationMesh(navmesh *NavigationMesh) {
 
 */
 type NavigationMeshInstanceImplementer interface {
-	SpatialImplementer
-
-	GetNavigationMesh() *NavigationMesh
-
-	IsEnabled() *bool
-
-	SetEnabled(enabled *bool)
-
-	SetNavigationMesh(navmesh *NavigationMesh)
+	Class
 }
 
 /*
@@ -57429,35 +52621,7 @@ func (o *NavigationPolygon) SetVertices(vertices *PoolVector2Array) {
 
 */
 type NavigationPolygonImplementer interface {
-	ResourceImplementer
-
-	AddOutline(outline *PoolVector2Array)
-
-	AddOutlineAtIndex(outline *PoolVector2Array, index int64)
-
-	AddPolygon(polygon *PoolIntArray)
-
-	ClearOutlines()
-
-	ClearPolygons()
-
-	GetOutline(idx int64) *PoolVector2Array
-
-	GetOutlineCount() int64
-
-	GetPolygon(idx int64) *PoolIntArray
-
-	GetPolygonCount() int64
-
-	GetVertices() *PoolVector2Array
-
-	MakePolygonsFromOutlines()
-
-	RemoveOutline(idx int64)
-
-	SetOutline(idx int64, outline *PoolVector2Array)
-
-	SetVertices(vertices *PoolVector2Array)
+	Class
 }
 
 /*
@@ -57495,7 +52659,7 @@ func (o *NavigationPolygonInstance) GetNavigationPolygon() *NavigationPolygon {
 /*
 
  */
-func (o *NavigationPolygonInstance) IsEnabled() *bool {
+func (o *NavigationPolygonInstance) IsEnabled() bool {
 	log.Println("Calling NavigationPolygonInstance.IsEnabled()")
 
 	// Build out the method's arguments
@@ -57503,11 +52667,11 @@ func (o *NavigationPolygonInstance) IsEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -57516,7 +52680,7 @@ func (o *NavigationPolygonInstance) IsEnabled() *bool {
 /*
 
  */
-func (o *NavigationPolygonInstance) SetEnabled(enabled *bool) {
+func (o *NavigationPolygonInstance) SetEnabled(enabled bool) {
 	log.Println("Calling NavigationPolygonInstance.SetEnabled()")
 
 	// Build out the method's arguments
@@ -57554,15 +52718,7 @@ func (o *NavigationPolygonInstance) SetNavigationPolygon(navpoly *NavigationPoly
 
 */
 type NavigationPolygonInstanceImplementer interface {
-	Node2DImplementer
-
-	GetNavigationPolygon() *NavigationPolygon
-
-	IsEnabled() *bool
-
-	SetEnabled(enabled *bool)
-
-	SetNavigationPolygon(navpoly *NavigationPolygon)
+	Class
 }
 
 /*
@@ -57705,19 +52861,7 @@ func (o *NetworkedMultiplayerENet) SetCompressionMode(mode int64) {
    A connection (or a listening server) that should be passed to [method SceneTree.set_network_peer]. Socket events can be handled by connecting to [SceneTree] signals.
 */
 type NetworkedMultiplayerENetImplementer interface {
-	NetworkedMultiplayerPeerImplementer
-
-	CloseConnection()
-
-	CreateClient(ip string, port int64, inBandwidth int64, outBandwidth int64) int64
-
-	CreateServer(port int64, maxClients int64, inBandwidth int64, outBandwidth int64) int64
-
-	GetCompressionMode() int64
-
-	SetBindIp(ip string)
-
-	SetCompressionMode(mode int64)
+	Class
 }
 
 /*
@@ -57797,7 +52941,7 @@ func (o *NetworkedMultiplayerPeer) GetUniqueId() int64 {
 /*
 
  */
-func (o *NetworkedMultiplayerPeer) IsRefusingNewConnections() *bool {
+func (o *NetworkedMultiplayerPeer) IsRefusingNewConnections() bool {
 	log.Println("Calling NetworkedMultiplayerPeer.IsRefusingNewConnections()")
 
 	// Build out the method's arguments
@@ -57805,11 +52949,11 @@ func (o *NetworkedMultiplayerPeer) IsRefusingNewConnections() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_refusing_new_connections", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_refusing_new_connections", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -57835,7 +52979,7 @@ func (o *NetworkedMultiplayerPeer) Poll() {
 /*
 
  */
-func (o *NetworkedMultiplayerPeer) SetRefuseNewConnections(enable *bool) {
+func (o *NetworkedMultiplayerPeer) SetRefuseNewConnections(enable bool) {
 	log.Println("Calling NetworkedMultiplayerPeer.SetRefuseNewConnections()")
 
 	// Build out the method's arguments
@@ -57891,23 +53035,7 @@ func (o *NetworkedMultiplayerPeer) SetTransferMode(mode int64) {
 
 */
 type NetworkedMultiplayerPeerImplementer interface {
-	PacketPeerImplementer
-
-	GetConnectionStatus() int64
-
-	GetPacketPeer() int64
-
-	GetUniqueId() int64
-
-	IsRefusingNewConnections() *bool
-
-	Poll()
-
-	SetRefuseNewConnections(enable *bool)
-
-	SetTargetPeer(id int64)
-
-	SetTransferMode(mode int64)
+	Class
 }
 
 /*
@@ -58030,7 +53158,7 @@ func (o *NinePatchRect) GetVAxisStretchMode() int64 {
 /*
 
  */
-func (o *NinePatchRect) IsDrawCenterEnabled() *bool {
+func (o *NinePatchRect) IsDrawCenterEnabled() bool {
 	log.Println("Calling NinePatchRect.IsDrawCenterEnabled()")
 
 	// Build out the method's arguments
@@ -58038,11 +53166,11 @@ func (o *NinePatchRect) IsDrawCenterEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_draw_center_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_draw_center_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -58051,7 +53179,7 @@ func (o *NinePatchRect) IsDrawCenterEnabled() *bool {
 /*
 
  */
-func (o *NinePatchRect) SetDrawCenter(drawCenter *bool) {
+func (o *NinePatchRect) SetDrawCenter(drawCenter bool) {
 	log.Println("Calling NinePatchRect.SetDrawCenter()")
 
 	// Build out the method's arguments
@@ -58162,31 +53290,7 @@ func (o *NinePatchRect) SetVAxisStretchMode(mode int64) {
 
 */
 type NinePatchRectImplementer interface {
-	ControlImplementer
-
-	GetHAxisStretchMode() int64
-
-	GetPatchMargin(margin int64) int64
-
-	GetRegionRect() *Rect2
-
-	GetTexture() *Texture
-
-	GetVAxisStretchMode() int64
-
-	IsDrawCenterEnabled() *bool
-
-	SetDrawCenter(drawCenter *bool)
-
-	SetHAxisStretchMode(mode int64)
-
-	SetPatchMargin(margin int64, value int64)
-
-	SetRegionRect(rect *Rect2)
-
-	SetTexture(texture *Texture)
-
-	SetVAxisStretchMode(mode int64)
+	Class
 }
 
 /*
@@ -58361,7 +53465,7 @@ func (o *Node) X_UnhandledKeyInput(event *InputEventKey) {
                 Add a child [Node]. Nodes can have as many children as they want, but every child must have a unique name. Children nodes are automatically deleted when the parent node is deleted, so deleting a whole scene is performed by deleting its topmost node.
 				The optional boolean argument enforces creating child nodes with human-readable names, based on the name of the node being instanced instead of its type only.
 */
-func (o *Node) AddChild(node *Node, legibleUniqueName *bool) {
+func (o *Node) AddChild(node *Node, legibleUniqueName bool) {
 	log.Println("Calling Node.AddChild()")
 
 	// Build out the method's arguments
@@ -58380,7 +53484,7 @@ func (o *Node) AddChild(node *Node, legibleUniqueName *bool) {
 /*
    Add a node to a group. Groups are helpers to name and organize a subset of nodes, like for example "enemies" or "collectables". A [Node] can be in any number of groups. Nodes can be assigned a group at any time, but will not be added to it until they are inside the scene tree (see [method is_inside_tree]).
 */
-func (o *Node) AddToGroup(group string, persistent *bool) {
+func (o *Node) AddToGroup(group string, persistent bool) {
 	log.Println("Calling Node.AddToGroup()")
 
 	// Build out the method's arguments
@@ -58399,7 +53503,7 @@ func (o *Node) AddToGroup(group string, persistent *bool) {
 /*
    Return true if the node can process, i.e. whether its pause mode allows processing while the scene tree is paused (see [method set_pause_mode]). Always returns true if the scene tree is not paused, and false if the node is not in the tree. FIXME: Why FAIL_COND?
 */
-func (o *Node) CanProcess() *bool {
+func (o *Node) CanProcess() bool {
 	log.Println("Calling Node.CanProcess()")
 
 	// Build out the method's arguments
@@ -58407,11 +53511,11 @@ func (o *Node) CanProcess() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "can_process", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "can_process", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -58443,7 +53547,7 @@ func (o *Node) Duplicate(flags int64) *Node {
 /*
    Find a descendant of this node whose name matches [code]mask[/code] as in [method String.match] (i.e. case sensitive, but '*' matches zero or more characters and '?' matches any single character except '.'). Note that it does not match against the full path, just against individual node names.
 */
-func (o *Node) FindNode(mask string, recursive *bool, owned *bool) *Node {
+func (o *Node) FindNode(mask string, recursive bool, owned bool) *Node {
 	log.Println("Calling Node.FindNode()")
 
 	// Build out the method's arguments
@@ -58868,7 +53972,7 @@ func (o *Node) GetProcessDeltaTime() float64 {
 /*
 
  */
-func (o *Node) GetSceneInstanceLoadPlaceholder() *bool {
+func (o *Node) GetSceneInstanceLoadPlaceholder() bool {
 	log.Println("Calling Node.GetSceneInstanceLoadPlaceholder()")
 
 	// Build out the method's arguments
@@ -58876,11 +53980,11 @@ func (o *Node) GetSceneInstanceLoadPlaceholder() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_scene_instance_load_placeholder", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_scene_instance_load_placeholder", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -58931,7 +54035,7 @@ func (o *Node) GetViewport() *Viewport {
 /*
 
  */
-func (o *Node) HasNode(path *NodePath) *bool {
+func (o *Node) HasNode(path *NodePath) bool {
 	log.Println("Calling Node.HasNode()")
 
 	// Build out the method's arguments
@@ -58940,11 +54044,11 @@ func (o *Node) HasNode(path *NodePath) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_node", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_node", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -58953,7 +54057,7 @@ func (o *Node) HasNode(path *NodePath) *bool {
 /*
 
  */
-func (o *Node) HasNodeAndResource(path *NodePath) *bool {
+func (o *Node) HasNodeAndResource(path *NodePath) bool {
 	log.Println("Calling Node.HasNodeAndResource()")
 
 	// Build out the method's arguments
@@ -58962,11 +54066,11 @@ func (o *Node) HasNodeAndResource(path *NodePath) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_node_and_resource", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_node_and_resource", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -58975,7 +54079,7 @@ func (o *Node) HasNodeAndResource(path *NodePath) *bool {
 /*
    Return [i]true[/i] if the "node" argument is a direct or indirect child of the current node, otherwise return [i]false[/i].
 */
-func (o *Node) IsAParentOf(node *Node) *bool {
+func (o *Node) IsAParentOf(node *Node) bool {
 	log.Println("Calling Node.IsAParentOf()")
 
 	// Build out the method's arguments
@@ -58984,11 +54088,11 @@ func (o *Node) IsAParentOf(node *Node) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_a_parent_of", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_a_parent_of", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -58997,7 +54101,7 @@ func (o *Node) IsAParentOf(node *Node) *bool {
 /*
 
  */
-func (o *Node) IsDisplayedFolded() *bool {
+func (o *Node) IsDisplayedFolded() bool {
 	log.Println("Calling Node.IsDisplayedFolded()")
 
 	// Build out the method's arguments
@@ -59005,11 +54109,11 @@ func (o *Node) IsDisplayedFolded() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_displayed_folded", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_displayed_folded", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -59018,7 +54122,7 @@ func (o *Node) IsDisplayedFolded() *bool {
 /*
    Return true if fixed processing is enabled (see [method set_fixed_process]).
 */
-func (o *Node) IsFixedProcessing() *bool {
+func (o *Node) IsFixedProcessing() bool {
 	log.Println("Calling Node.IsFixedProcessing()")
 
 	// Build out the method's arguments
@@ -59026,11 +54130,11 @@ func (o *Node) IsFixedProcessing() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_fixed_processing", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_fixed_processing", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -59039,7 +54143,7 @@ func (o *Node) IsFixedProcessing() *bool {
 /*
 
  */
-func (o *Node) IsFixedProcessingInternal() *bool {
+func (o *Node) IsFixedProcessingInternal() bool {
 	log.Println("Calling Node.IsFixedProcessingInternal()")
 
 	// Build out the method's arguments
@@ -59047,11 +54151,11 @@ func (o *Node) IsFixedProcessingInternal() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_fixed_processing_internal", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_fixed_processing_internal", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -59060,7 +54164,7 @@ func (o *Node) IsFixedProcessingInternal() *bool {
 /*
    Return [i]true[/i] if "node" occurs later in the scene hierarchy than the current node, otherwise return [i]false[/i].
 */
-func (o *Node) IsGreaterThan(node *Node) *bool {
+func (o *Node) IsGreaterThan(node *Node) bool {
 	log.Println("Calling Node.IsGreaterThan()")
 
 	// Build out the method's arguments
@@ -59069,11 +54173,11 @@ func (o *Node) IsGreaterThan(node *Node) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_greater_than", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_greater_than", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -59082,7 +54186,7 @@ func (o *Node) IsGreaterThan(node *Node) *bool {
 /*
 
  */
-func (o *Node) IsInGroup(group string) *bool {
+func (o *Node) IsInGroup(group string) bool {
 	log.Println("Calling Node.IsInGroup()")
 
 	// Build out the method's arguments
@@ -59091,11 +54195,11 @@ func (o *Node) IsInGroup(group string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_in_group", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_in_group", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -59104,7 +54208,7 @@ func (o *Node) IsInGroup(group string) *bool {
 /*
 
  */
-func (o *Node) IsInsideTree() *bool {
+func (o *Node) IsInsideTree() bool {
 	log.Println("Calling Node.IsInsideTree()")
 
 	// Build out the method's arguments
@@ -59112,11 +54216,11 @@ func (o *Node) IsInsideTree() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_inside_tree", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_inside_tree", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -59125,7 +54229,7 @@ func (o *Node) IsInsideTree() *bool {
 /*
 
  */
-func (o *Node) IsNetworkMaster() *bool {
+func (o *Node) IsNetworkMaster() bool {
 	log.Println("Calling Node.IsNetworkMaster()")
 
 	// Build out the method's arguments
@@ -59133,11 +54237,11 @@ func (o *Node) IsNetworkMaster() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_network_master", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_network_master", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -59146,7 +54250,7 @@ func (o *Node) IsNetworkMaster() *bool {
 /*
    Return whether processing is enabled in the current node (see [method set_process]).
 */
-func (o *Node) IsProcessing() *bool {
+func (o *Node) IsProcessing() bool {
 	log.Println("Calling Node.IsProcessing()")
 
 	// Build out the method's arguments
@@ -59154,11 +54258,11 @@ func (o *Node) IsProcessing() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_processing", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_processing", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -59167,7 +54271,7 @@ func (o *Node) IsProcessing() *bool {
 /*
    Return true if the node is processing input (see [method set_process_input]).
 */
-func (o *Node) IsProcessingInput() *bool {
+func (o *Node) IsProcessingInput() bool {
 	log.Println("Calling Node.IsProcessingInput()")
 
 	// Build out the method's arguments
@@ -59175,11 +54279,11 @@ func (o *Node) IsProcessingInput() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_processing_input", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_processing_input", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -59188,7 +54292,7 @@ func (o *Node) IsProcessingInput() *bool {
 /*
 
  */
-func (o *Node) IsProcessingInternal() *bool {
+func (o *Node) IsProcessingInternal() bool {
 	log.Println("Calling Node.IsProcessingInternal()")
 
 	// Build out the method's arguments
@@ -59196,11 +54300,11 @@ func (o *Node) IsProcessingInternal() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_processing_internal", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_processing_internal", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -59209,7 +54313,7 @@ func (o *Node) IsProcessingInternal() *bool {
 /*
    Return true if the node is processing unhandled input (see [method set_process_unhandled_input]).
 */
-func (o *Node) IsProcessingUnhandledInput() *bool {
+func (o *Node) IsProcessingUnhandledInput() bool {
 	log.Println("Calling Node.IsProcessingUnhandledInput()")
 
 	// Build out the method's arguments
@@ -59217,11 +54321,11 @@ func (o *Node) IsProcessingUnhandledInput() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_processing_unhandled_input", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_processing_unhandled_input", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -59230,7 +54334,7 @@ func (o *Node) IsProcessingUnhandledInput() *bool {
 /*
 
  */
-func (o *Node) IsProcessingUnhandledKeyInput() *bool {
+func (o *Node) IsProcessingUnhandledKeyInput() bool {
 	log.Println("Calling Node.IsProcessingUnhandledKeyInput()")
 
 	// Build out the method's arguments
@@ -59238,11 +54342,11 @@ func (o *Node) IsProcessingUnhandledKeyInput() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_processing_unhandled_key_input", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_processing_unhandled_key_input", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -59304,7 +54408,7 @@ func (o *Node) PrintTree() {
 /*
    Calls the method (if present) with the arguments given in "args" on this Node and recursively on all children. If the parent_first argument is true then the method will be called on the current [Node] first, then on all children. If it is false then the children will get called first.
 */
-func (o *Node) PropagateCall(method string, args *Array, parentFirst *bool) {
+func (o *Node) PropagateCall(method string, args *Array, parentFirst bool) {
 	log.Println("Calling Node.PropagateCall()")
 
 	// Build out the method's arguments
@@ -59429,7 +54533,7 @@ func (o *Node) RemoveFromGroup(group string) {
 /*
    Replace a node in a scene by a given one. Subscriptions that pass through this node will be lost.
 */
-func (o *Node) ReplaceBy(node *Node, keepData *bool) {
+func (o *Node) ReplaceBy(node *Node, keepData bool) {
 	log.Println("Calling Node.ReplaceBy()")
 
 	// Build out the method's arguments
@@ -59671,7 +54775,7 @@ func (o *Node) RsetUnreliableId(peerId int64, property string, value *Variant) {
 /*
 
  */
-func (o *Node) SetDisplayFolded(fold *bool) {
+func (o *Node) SetDisplayFolded(fold bool) {
 	log.Println("Calling Node.SetDisplayFolded()")
 
 	// Build out the method's arguments
@@ -59707,7 +54811,7 @@ func (o *Node) SetFilename(filename string) {
 /*
    Enables or disables node fixed framerate processing. When a node is being processed, it will receive a NOTIFICATION_PROCESS at a fixed (usually 60 fps, check [OS] to change that) interval (and the [method _fixed_process] callback will be called if exists). It is common to check how much time was elapsed since the previous frame by calling [method get_fixed_process_delta_time].
 */
-func (o *Node) SetFixedProcess(enable *bool) {
+func (o *Node) SetFixedProcess(enable bool) {
 	log.Println("Calling Node.SetFixedProcess()")
 
 	// Build out the method's arguments
@@ -59725,7 +54829,7 @@ func (o *Node) SetFixedProcess(enable *bool) {
 /*
 
  */
-func (o *Node) SetFixedProcessInternal(enable *bool) {
+func (o *Node) SetFixedProcessInternal(enable bool) {
 	log.Println("Calling Node.SetFixedProcessInternal()")
 
 	// Build out the method's arguments
@@ -59761,7 +54865,7 @@ func (o *Node) SetName(name string) {
 /*
 
  */
-func (o *Node) SetNetworkMaster(id int64, recursive *bool) {
+func (o *Node) SetNetworkMaster(id int64, recursive bool) {
 	log.Println("Calling Node.SetNetworkMaster()")
 
 	// Build out the method's arguments
@@ -59816,7 +54920,7 @@ func (o *Node) SetPauseMode(mode int64) {
 /*
    Enables or disables node processing. When a node is being processed, it will receive a NOTIFICATION_PROCESS on every drawn frame (and the [method _process] callback will be called if exists). It is common to check how much time was elapsed since the previous frame by calling [method get_process_delta_time].
 */
-func (o *Node) SetProcess(enable *bool) {
+func (o *Node) SetProcess(enable bool) {
 	log.Println("Calling Node.SetProcess()")
 
 	// Build out the method's arguments
@@ -59834,7 +54938,7 @@ func (o *Node) SetProcess(enable *bool) {
 /*
    Enable input processing for node. This is not required for GUI controls! It hooks up the node to receive all input (see [method _input]).
 */
-func (o *Node) SetProcessInput(enable *bool) {
+func (o *Node) SetProcessInput(enable bool) {
 	log.Println("Calling Node.SetProcessInput()")
 
 	// Build out the method's arguments
@@ -59852,7 +54956,7 @@ func (o *Node) SetProcessInput(enable *bool) {
 /*
 
  */
-func (o *Node) SetProcessInternal(enable *bool) {
+func (o *Node) SetProcessInternal(enable bool) {
 	log.Println("Calling Node.SetProcessInternal()")
 
 	// Build out the method's arguments
@@ -59870,7 +54974,7 @@ func (o *Node) SetProcessInternal(enable *bool) {
 /*
    Enable unhandled input processing for node. This is not required for GUI controls! It hooks up the node to receive all input that was not previously handled before (usually by a [Control]). (see [method _unhandled_input]).
 */
-func (o *Node) SetProcessUnhandledInput(enable *bool) {
+func (o *Node) SetProcessUnhandledInput(enable bool) {
 	log.Println("Calling Node.SetProcessUnhandledInput()")
 
 	// Build out the method's arguments
@@ -59888,7 +54992,7 @@ func (o *Node) SetProcessUnhandledInput(enable *bool) {
 /*
 
  */
-func (o *Node) SetProcessUnhandledKeyInput(enable *bool) {
+func (o *Node) SetProcessUnhandledKeyInput(enable bool) {
 	log.Println("Calling Node.SetProcessUnhandledKeyInput()")
 
 	// Build out the method's arguments
@@ -59906,7 +55010,7 @@ func (o *Node) SetProcessUnhandledKeyInput(enable *bool) {
 /*
 
  */
-func (o *Node) SetSceneInstanceLoadPlaceholder(loadPlaceholder *bool) {
+func (o *Node) SetSceneInstanceLoadPlaceholder(loadPlaceholder bool) {
 	log.Println("Calling Node.SetSceneInstanceLoadPlaceholder()")
 
 	// Build out the method's arguments
@@ -59935,177 +55039,7 @@ func (o *Node) SetSceneInstanceLoadPlaceholder(loadPlaceholder *bool) {
 		[b]Networking with nodes:[/b] After connecting to a server (or making one, see [NetworkedMultiplayerENet]) it is possible to use the built-in RPC (remote procedure call) system to easily communicate over the network. By calling [method rpc] with a method name, it will be called locally, and in all connected peers (peers = clients and the server that accepts connections), with behaviour varying depending on the network mode ([method set_network_mode]) on the receiving peer. To identify which [Node] receives the RPC call Godot will use its [NodePath] (make sure node names are the same on all peers).
 */
 type NodeImplementer interface {
-	ObjectImplementer
-
-	X_EnterTree()
-
-	X_ExitTree()
-
-	X_FixedProcess(delta float64)
-
-	X_Input(event *InputEvent)
-
-	X_Process(delta float64)
-
-	X_Ready()
-
-	X_UnhandledInput(event *InputEvent)
-
-	X_UnhandledKeyInput(event *InputEventKey)
-
-	AddChild(node *Node, legibleUniqueName *bool)
-
-	AddToGroup(group string, persistent *bool)
-
-	CanProcess() *bool
-
-	Duplicate(flags int64) *Node
-
-	FindNode(mask string, recursive *bool, owned *bool) *Node
-
-	GetChild(idx int64) *Node
-
-	GetChildCount() int64
-
-	GetChildren() *Array
-
-	GetFilename() string
-
-	GetFixedProcessDeltaTime() float64
-
-	GetGroups() *Array
-
-	GetIndex() int64
-
-	GetName() string
-
-	GetNetworkMaster() int64
-
-	GetNode(path *NodePath) *Node
-
-	GetNodeAndResource(path *NodePath) *Array
-
-	GetOwner() *Node
-
-	GetParent() *Node
-
-	GetPath() *NodePath
-
-	GetPathTo(node *Node) *NodePath
-
-	GetPauseMode() int64
-
-	GetPositionInParent() int64
-
-	GetProcessDeltaTime() float64
-
-	GetSceneInstanceLoadPlaceholder() *bool
-
-	GetTree() *SceneTree
-
-	GetViewport() *Viewport
-
-	HasNode(path *NodePath) *bool
-
-	HasNodeAndResource(path *NodePath) *bool
-
-	IsAParentOf(node *Node) *bool
-
-	IsDisplayedFolded() *bool
-
-	IsFixedProcessing() *bool
-
-	IsFixedProcessingInternal() *bool
-
-	IsGreaterThan(node *Node) *bool
-
-	IsInGroup(group string) *bool
-
-	IsInsideTree() *bool
-
-	IsNetworkMaster() *bool
-
-	IsProcessing() *bool
-
-	IsProcessingInput() *bool
-
-	IsProcessingInternal() *bool
-
-	IsProcessingUnhandledInput() *bool
-
-	IsProcessingUnhandledKeyInput() *bool
-
-	MoveChild(childNode *Node, toPos int64)
-
-	PrintStrayNodes()
-
-	PrintTree()
-
-	PropagateCall(method string, args *Array, parentFirst *bool)
-
-	PropagateNotification(what int64)
-
-	QueueFree()
-
-	Raise()
-
-	RemoveAndSkip()
-
-	RemoveChild(node *Node)
-
-	RemoveFromGroup(group string)
-
-	ReplaceBy(node *Node, keepData *bool)
-
-	RequestReady()
-
-	Rpc(method string) *Variant
-
-	RpcConfig(method string, mode int64)
-
-	RpcId(peerId int64, method string) *Variant
-
-	RpcUnreliable(method string) *Variant
-
-	RpcUnreliableId(peerId int64, method string) *Variant
-
-	Rset(property string, value *Variant)
-
-	RsetConfig(property string, mode int64)
-
-	RsetId(peerId int64, property string, value *Variant)
-
-	RsetUnreliable(property string, value *Variant)
-
-	RsetUnreliableId(peerId int64, property string, value *Variant)
-
-	SetDisplayFolded(fold *bool)
-
-	SetFilename(filename string)
-
-	SetFixedProcess(enable *bool)
-
-	SetFixedProcessInternal(enable *bool)
-
-	SetName(name string)
-
-	SetNetworkMaster(id int64, recursive *bool)
-
-	SetOwner(owner *Node)
-
-	SetPauseMode(mode int64)
-
-	SetProcess(enable *bool)
-
-	SetProcessInput(enable *bool)
-
-	SetProcessInternal(enable *bool)
-
-	SetProcessUnhandledInput(enable *bool)
-
-	SetProcessUnhandledKeyInput(enable *bool)
-
-	SetSceneInstanceLoadPlaceholder(loadPlaceholder *bool)
+	Class
 }
 
 /*
@@ -60409,7 +55343,7 @@ func (o *Node2D) GlobalTranslate(offset *Vector2) {
 /*
    Return true if the Z-index value of this 2D node is relative to its parent's. Else, return false.
 */
-func (o *Node2D) IsZRelative() *bool {
+func (o *Node2D) IsZRelative() bool {
 	log.Println("Calling Node2D.IsZRelative()")
 
 	// Build out the method's arguments
@@ -60417,11 +55351,11 @@ func (o *Node2D) IsZRelative() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_z_relative", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_z_relative", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -60448,7 +55382,7 @@ func (o *Node2D) LookAt(point *Vector2) {
 /*
    Apply a local translation on X axis to the 2D node according to the 'delta' of the process. If 'scaled' is false, the movement is normalized.
 */
-func (o *Node2D) MoveLocalX(delta float64, scaled *bool) {
+func (o *Node2D) MoveLocalX(delta float64, scaled bool) {
 	log.Println("Calling Node2D.MoveLocalX()")
 
 	// Build out the method's arguments
@@ -60467,7 +55401,7 @@ func (o *Node2D) MoveLocalX(delta float64, scaled *bool) {
 /*
    Apply a local translation on Y axis to the 2D node according to the 'delta' of the process. If 'scaled' is false, the movement is normalized.
 */
-func (o *Node2D) MoveLocalY(delta float64, scaled *bool) {
+func (o *Node2D) MoveLocalY(delta float64, scaled bool) {
 	log.Println("Calling Node2D.MoveLocalY()")
 
 	// Build out the method's arguments
@@ -60702,7 +55636,7 @@ func (o *Node2D) SetZ(z int64) {
 /*
    Set the Z-index value as relative to the parent node of this 2D node. Thus, if this 2D node's Z-index value is 2 and its parent's effective Z-index is 3, then the effective Z-index value of this 2D node would be 3 + 2 = 5.
 */
-func (o *Node2D) SetZAsRelative(enable *bool) {
+func (o *Node2D) SetZAsRelative(enable bool) {
 	log.Println("Calling Node2D.SetZAsRelative()")
 
 	// Build out the method's arguments
@@ -60784,75 +55718,7 @@ func (o *Node2D) Translate(offset *Vector2) {
    Base node for 2D system. Node2D contains a position, rotation and scale, which is used to position and animate. It can alternatively be used with a custom 2D transform ([Transform2D]). A tree of Node2Ds allows complex hierarchies for animation and positioning.
 */
 type Node2DImplementer interface {
-	CanvasItemImplementer
-
-	ApplyScale(ratio *Vector2)
-
-	EditSetPivot(pivot *Vector2)
-
-	GetAngleTo(point *Vector2) float64
-
-	GetGlobalPosition() *Vector2
-
-	GetGlobalRotation() float64
-
-	GetGlobalRotationInDegrees() float64
-
-	GetGlobalScale() *Vector2
-
-	GetPosition() *Vector2
-
-	GetRelativeTransformToParent(parent *Node) *Transform2D
-
-	GetRotation() float64
-
-	GetRotationInDegrees() float64
-
-	GetScale() *Vector2
-
-	GetZ() int64
-
-	GlobalTranslate(offset *Vector2)
-
-	IsZRelative() *bool
-
-	LookAt(point *Vector2)
-
-	MoveLocalX(delta float64, scaled *bool)
-
-	MoveLocalY(delta float64, scaled *bool)
-
-	Rotate(radians float64)
-
-	SetGlobalPosition(pos *Vector2)
-
-	SetGlobalRotation(radians float64)
-
-	SetGlobalRotationInDegrees(degrees float64)
-
-	SetGlobalScale(scale *Vector2)
-
-	SetGlobalTransform(xform *Transform2D)
-
-	SetPosition(pos *Vector2)
-
-	SetRotation(radians float64)
-
-	SetRotationInDegrees(degrees float64)
-
-	SetScale(scale *Vector2)
-
-	SetTransform(xform *Transform2D)
-
-	SetZ(z int64)
-
-	SetZAsRelative(enable *bool)
-
-	ToGlobal(localPoint *Vector2) *Vector2
-
-	ToLocal(globalPoint *Vector2) *Vector2
-
-	Translate(offset *Vector2)
+	Class
 }
 
 /*
@@ -60888,7 +55754,7 @@ func (o *OS) Alert(text string, title string) {
 /*
    Return true if the host OS allows drawing.
 */
-func (o *OS) CanDraw() *bool {
+func (o *OS) CanDraw() bool {
 	log.Println("Calling OS.CanDraw()")
 
 	// Build out the method's arguments
@@ -60896,11 +55762,11 @@ func (o *OS) CanDraw() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "can_draw", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "can_draw", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -60909,7 +55775,7 @@ func (o *OS) CanDraw() *bool {
 /*
    Returns if the current host platform is using multiple threads.
 */
-func (o *OS) CanUseThreads() *bool {
+func (o *OS) CanUseThreads() bool {
 	log.Println("Calling OS.CanUseThreads()")
 
 	// Build out the method's arguments
@@ -60917,11 +55783,11 @@ func (o *OS) CanUseThreads() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "can_use_threads", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "can_use_threads", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -61005,7 +55871,7 @@ func (o *OS) DumpResourcesToFile(file string) {
 /*
    Execute the binary file in given path, optionally blocking until it returns. A process ID is returned.
 */
-func (o *OS) Execute(path string, arguments *PoolStringArray, blocking *bool, output *Array) int64 {
+func (o *OS) Execute(path string, arguments *PoolStringArray, blocking bool, output *Array) int64 {
 	log.Println("Calling OS.Execute()")
 
 	// Build out the method's arguments
@@ -61052,7 +55918,7 @@ func (o *OS) FindScancodeFromString(string string) int64 {
 /*
    Returns true if the current window is borderless.
 */
-func (o *OS) GetBorderlessWindow() *bool {
+func (o *OS) GetBorderlessWindow() bool {
 	log.Println("Calling OS.GetBorderlessWindow()")
 
 	// Build out the method's arguments
@@ -61060,11 +55926,11 @@ func (o *OS) GetBorderlessWindow() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_borderless_window", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_borderless_window", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -61157,7 +56023,7 @@ func (o *OS) GetDataDir() string {
 /*
    Returns current date as a dictionary of keys: year, month, day, weekday, dst (daylight savings time).
 */
-func (o *OS) GetDate(utc *bool) *Dictionary {
+func (o *OS) GetDate(utc bool) *Dictionary {
 	log.Println("Calling OS.GetDate()")
 
 	// Build out the method's arguments
@@ -61179,7 +56045,7 @@ func (o *OS) GetDate(utc *bool) *Dictionary {
 /*
    Returns current datetime as a dictionary of keys: year, month, day, weekday, dst (daylight savings time), hour, minute, second.
 */
-func (o *OS) GetDatetime(utc *bool) *Dictionary {
+func (o *OS) GetDatetime(utc bool) *Dictionary {
 	log.Println("Calling OS.GetDatetime()")
 
 	// Build out the method's arguments
@@ -61764,7 +56630,7 @@ func (o *OS) GetTicksMsec() int64 {
 /*
    Returns current time as a dictionary of keys: hour, minute, second
 */
-func (o *OS) GetTime(utc *bool) *Dictionary {
+func (o *OS) GetTime(utc bool) *Dictionary {
 	log.Println("Calling OS.GetTime()")
 
 	// Build out the method's arguments
@@ -61915,7 +56781,7 @@ func (o *OS) GetWindowSize() *Vector2 {
 /*
    Return true if an environment variable exists.
 */
-func (o *OS) HasEnvironment(environment string) *bool {
+func (o *OS) HasEnvironment(environment string) bool {
 	log.Println("Calling OS.HasEnvironment()")
 
 	// Build out the method's arguments
@@ -61924,11 +56790,11 @@ func (o *OS) HasEnvironment(environment string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_environment", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_environment", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -61937,7 +56803,7 @@ func (o *OS) HasEnvironment(environment string) *bool {
 /*
 
  */
-func (o *OS) HasTouchscreenUiHint() *bool {
+func (o *OS) HasTouchscreenUiHint() bool {
 	log.Println("Calling OS.HasTouchscreenUiHint()")
 
 	// Build out the method's arguments
@@ -61945,11 +56811,11 @@ func (o *OS) HasTouchscreenUiHint() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_touchscreen_ui_hint", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_touchscreen_ui_hint", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -61958,7 +56824,7 @@ func (o *OS) HasTouchscreenUiHint() *bool {
 /*
    Returns true if the platform has a virtual keyboard, false otherwise.
 */
-func (o *OS) HasVirtualKeyboard() *bool {
+func (o *OS) HasVirtualKeyboard() bool {
 	log.Println("Calling OS.HasVirtualKeyboard()")
 
 	// Build out the method's arguments
@@ -61966,11 +56832,11 @@ func (o *OS) HasVirtualKeyboard() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_virtual_keyboard", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_virtual_keyboard", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -61996,7 +56862,7 @@ func (o *OS) HideVirtualKeyboard() {
 /*
 
  */
-func (o *OS) IsDebugBuild() *bool {
+func (o *OS) IsDebugBuild() bool {
 	log.Println("Calling OS.IsDebugBuild()")
 
 	// Build out the method's arguments
@@ -62004,11 +56870,11 @@ func (o *OS) IsDebugBuild() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_debug_build", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_debug_build", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -62017,7 +56883,7 @@ func (o *OS) IsDebugBuild() *bool {
 /*
    Return true if low cpu usage mode is enabled.
 */
-func (o *OS) IsInLowProcessorUsageMode() *bool {
+func (o *OS) IsInLowProcessorUsageMode() bool {
 	log.Println("Calling OS.IsInLowProcessorUsageMode()")
 
 	// Build out the method's arguments
@@ -62025,11 +56891,11 @@ func (o *OS) IsInLowProcessorUsageMode() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_in_low_processor_usage_mode", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_in_low_processor_usage_mode", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -62038,7 +56904,7 @@ func (o *OS) IsInLowProcessorUsageMode() *bool {
 /*
    Returns whether the screen is being kept on or not.
 */
-func (o *OS) IsKeepScreenOn() *bool {
+func (o *OS) IsKeepScreenOn() bool {
 	log.Println("Calling OS.IsKeepScreenOn()")
 
 	// Build out the method's arguments
@@ -62046,11 +56912,11 @@ func (o *OS) IsKeepScreenOn() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_keep_screen_on", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_keep_screen_on", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -62059,7 +56925,7 @@ func (o *OS) IsKeepScreenOn() *bool {
 /*
 
  */
-func (o *OS) IsOkLeftAndCancelRight() *bool {
+func (o *OS) IsOkLeftAndCancelRight() bool {
 	log.Println("Calling OS.IsOkLeftAndCancelRight()")
 
 	// Build out the method's arguments
@@ -62067,11 +56933,11 @@ func (o *OS) IsOkLeftAndCancelRight() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_ok_left_and_cancel_right", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_ok_left_and_cancel_right", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -62080,7 +56946,7 @@ func (o *OS) IsOkLeftAndCancelRight() *bool {
 /*
 
  */
-func (o *OS) IsScancodeUnicode(code int64) *bool {
+func (o *OS) IsScancodeUnicode(code int64) bool {
 	log.Println("Calling OS.IsScancodeUnicode()")
 
 	// Build out the method's arguments
@@ -62089,11 +56955,11 @@ func (o *OS) IsScancodeUnicode(code int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_scancode_unicode", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_scancode_unicode", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -62102,7 +56968,7 @@ func (o *OS) IsScancodeUnicode(code int64) *bool {
 /*
    Return true if the engine was executed with -v (verbose stdout).
 */
-func (o *OS) IsStdoutVerbose() *bool {
+func (o *OS) IsStdoutVerbose() bool {
 	log.Println("Calling OS.IsStdoutVerbose()")
 
 	// Build out the method's arguments
@@ -62110,11 +56976,11 @@ func (o *OS) IsStdoutVerbose() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_stdout_verbose", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_stdout_verbose", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -62123,7 +56989,7 @@ func (o *OS) IsStdoutVerbose() *bool {
 /*
 
  */
-func (o *OS) IsVsyncEnabled() *bool {
+func (o *OS) IsVsyncEnabled() bool {
 	log.Println("Calling OS.IsVsyncEnabled()")
 
 	// Build out the method's arguments
@@ -62131,11 +56997,11 @@ func (o *OS) IsVsyncEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_vsync_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_vsync_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -62144,7 +57010,7 @@ func (o *OS) IsVsyncEnabled() *bool {
 /*
    Returns whether the window is in fullscreen mode or not.
 */
-func (o *OS) IsWindowFullscreen() *bool {
+func (o *OS) IsWindowFullscreen() bool {
 	log.Println("Calling OS.IsWindowFullscreen()")
 
 	// Build out the method's arguments
@@ -62152,11 +57018,11 @@ func (o *OS) IsWindowFullscreen() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_window_fullscreen", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_window_fullscreen", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -62165,7 +57031,7 @@ func (o *OS) IsWindowFullscreen() *bool {
 /*
    Return true if the window is maximized.
 */
-func (o *OS) IsWindowMaximized() *bool {
+func (o *OS) IsWindowMaximized() bool {
 	log.Println("Calling OS.IsWindowMaximized()")
 
 	// Build out the method's arguments
@@ -62173,11 +57039,11 @@ func (o *OS) IsWindowMaximized() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_window_maximized", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_window_maximized", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -62186,7 +57052,7 @@ func (o *OS) IsWindowMaximized() *bool {
 /*
    Return true if the window is minimized.
 */
-func (o *OS) IsWindowMinimized() *bool {
+func (o *OS) IsWindowMinimized() bool {
 	log.Println("Calling OS.IsWindowMinimized()")
 
 	// Build out the method's arguments
@@ -62194,11 +57060,11 @@ func (o *OS) IsWindowMinimized() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_window_minimized", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_window_minimized", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -62207,7 +57073,7 @@ func (o *OS) IsWindowMinimized() *bool {
 /*
    Returns whether the window is resizable or not.
 */
-func (o *OS) IsWindowResizable() *bool {
+func (o *OS) IsWindowResizable() bool {
 	log.Println("Calling OS.IsWindowResizable()")
 
 	// Build out the method's arguments
@@ -62215,11 +57081,11 @@ func (o *OS) IsWindowResizable() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_window_resizable", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_window_resizable", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -62250,7 +57116,7 @@ func (o *OS) Kill(pid int64) int64 {
 /*
 
  */
-func (o *OS) NativeVideoIsPlaying() *bool {
+func (o *OS) NativeVideoIsPlaying() bool {
 	log.Println("Calling OS.NativeVideoIsPlaying()")
 
 	// Build out the method's arguments
@@ -62258,11 +57124,11 @@ func (o *OS) NativeVideoIsPlaying() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "native_video_is_playing", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "native_video_is_playing", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -62400,7 +57266,7 @@ func (o *OS) PrintResourcesByType(types *PoolStringArray) {
 /*
 
  */
-func (o *OS) PrintResourcesInUse(short *bool) {
+func (o *OS) PrintResourcesInUse(short bool) {
 	log.Println("Calling OS.PrintResourcesInUse()")
 
 	// Build out the method's arguments
@@ -62435,7 +57301,7 @@ func (o *OS) RequestAttention() {
 /*
 
  */
-func (o *OS) SetBorderlessWindow(borderless *bool) {
+func (o *OS) SetBorderlessWindow(borderless bool) {
 	log.Println("Calling OS.SetBorderlessWindow()")
 
 	// Build out the method's arguments
@@ -62543,7 +57409,7 @@ func (o *OS) SetImePosition(position *Vector2) {
 /*
    Set keep screen on if true, or goes to sleep by device setting if false. (for Android/iOS)
 */
-func (o *OS) SetKeepScreenOn(enabled *bool) {
+func (o *OS) SetKeepScreenOn(enabled bool) {
 	log.Println("Calling OS.SetKeepScreenOn()")
 
 	// Build out the method's arguments
@@ -62561,7 +57427,7 @@ func (o *OS) SetKeepScreenOn(enabled *bool) {
 /*
    Set to true to enable the low cpu usage mode. In this mode, the screen only redraws when there are changes, and a considerable sleep time is inserted between frames. This way, editors using the engine UI only use very little cpu.
 */
-func (o *OS) SetLowProcessorUsageMode(enable *bool) {
+func (o *OS) SetLowProcessorUsageMode(enable bool) {
 	log.Println("Calling OS.SetLowProcessorUsageMode()")
 
 	// Build out the method's arguments
@@ -62619,7 +57485,7 @@ func (o *OS) SetThreadName(name string) int64 {
 /*
 
  */
-func (o *OS) SetUseFileAccessSaveAndSwap(enabled *bool) {
+func (o *OS) SetUseFileAccessSaveAndSwap(enabled bool) {
 	log.Println("Calling OS.SetUseFileAccessSaveAndSwap()")
 
 	// Build out the method's arguments
@@ -62637,7 +57503,7 @@ func (o *OS) SetUseFileAccessSaveAndSwap(enabled *bool) {
 /*
 
  */
-func (o *OS) SetUseVsync(enable *bool) {
+func (o *OS) SetUseVsync(enable bool) {
 	log.Println("Calling OS.SetUseVsync()")
 
 	// Build out the method's arguments
@@ -62655,7 +57521,7 @@ func (o *OS) SetUseVsync(enable *bool) {
 /*
    Sets window fullscreen mode to the [i]enabled[/i] argument, [i]enabled[/i] is a toggle for the fullscreen mode, calling the function with [i]enabled[/i] true when the screen is not on fullscreen mode will cause the screen to go to fullscreen mode, calling the function with [i]enabled[/i] false when the screen is in fullscreen mode will cause the window to exit the fullscreen mode.
 */
-func (o *OS) SetWindowFullscreen(enabled *bool) {
+func (o *OS) SetWindowFullscreen(enabled bool) {
 	log.Println("Calling OS.SetWindowFullscreen()")
 
 	// Build out the method's arguments
@@ -62673,7 +57539,7 @@ func (o *OS) SetWindowFullscreen(enabled *bool) {
 /*
    Set the window size to maximized.
 */
-func (o *OS) SetWindowMaximized(enabled *bool) {
+func (o *OS) SetWindowMaximized(enabled bool) {
 	log.Println("Calling OS.SetWindowMaximized()")
 
 	// Build out the method's arguments
@@ -62691,7 +57557,7 @@ func (o *OS) SetWindowMaximized(enabled *bool) {
 /*
    Set whether the window is minimized.
 */
-func (o *OS) SetWindowMinimized(enabled *bool) {
+func (o *OS) SetWindowMinimized(enabled bool) {
 	log.Println("Calling OS.SetWindowMinimized()")
 
 	// Build out the method's arguments
@@ -62727,7 +57593,7 @@ func (o *OS) SetWindowPosition(position *Vector2) {
 /*
    Set the window resizable state, if the window is not resizable it will preserve the dimensions specified in the project settings.
 */
-func (o *OS) SetWindowResizable(enabled *bool) {
+func (o *OS) SetWindowResizable(enabled bool) {
 	log.Println("Calling OS.SetWindowResizable()")
 
 	// Build out the method's arguments
@@ -62823,199 +57689,7 @@ func (o *OS) ShowVirtualKeyboard(existingText string) {
    Operating System functions. OS Wraps the most common functionality to communicate with the host Operating System, such as: mouse grabbing, mouse cursors, clipboard, video mode, date and time, timers, environment variables, execution of binaries, command line, etc.
 */
 type OSImplementer interface {
-	ObjectImplementer
-
-	Alert(text string, title string)
-
-	CanDraw() *bool
-
-	CanUseThreads() *bool
-
-	DelayMsec(msec int64)
-
-	DelayUsec(usec int64)
-
-	DumpMemoryToFile(file string)
-
-	DumpResourcesToFile(file string)
-
-	Execute(path string, arguments *PoolStringArray, blocking *bool, output *Array) int64
-
-	FindScancodeFromString(string string) int64
-
-	GetBorderlessWindow() *bool
-
-	GetClipboard() string
-
-	GetCmdlineArgs() *PoolStringArray
-
-	GetCurrentScreen() int64
-
-	GetDataDir() string
-
-	GetDate(utc *bool) *Dictionary
-
-	GetDatetime(utc *bool) *Dictionary
-
-	GetDatetimeFromUnixTime(unixTimeVal int64) *Dictionary
-
-	GetDynamicMemoryUsage() int64
-
-	GetEnvironment(environment string) string
-
-	GetExecutablePath() string
-
-	GetExitCode() int64
-
-	GetLatinKeyboardVariant() string
-
-	GetLocale() string
-
-	GetModelName() string
-
-	GetName() string
-
-	GetPowerPercentLeft() int64
-
-	GetPowerSecondsLeft() int64
-
-	GetPowerState() int64
-
-	GetProcessId() int64
-
-	GetProcessorCount() int64
-
-	GetScancodeString(code int64) string
-
-	GetScreenCount() int64
-
-	GetScreenDpi(screen int64) int64
-
-	GetScreenOrientation() int64
-
-	GetScreenPosition(screen int64) *Vector2
-
-	GetScreenSize(screen int64) *Vector2
-
-	GetSplashTickMsec() int64
-
-	GetStaticMemoryPeakUsage() int64
-
-	GetStaticMemoryUsage() int64
-
-	GetSystemDir(dir int64) string
-
-	GetSystemTimeSecs() int64
-
-	GetTicksMsec() int64
-
-	GetTime(utc *bool) *Dictionary
-
-	GetTimeZoneInfo() *Dictionary
-
-	GetUniqueId() string
-
-	GetUnixTime() int64
-
-	GetUnixTimeFromDatetime(datetime *Dictionary) int64
-
-	GetWindowPosition() *Vector2
-
-	GetWindowSize() *Vector2
-
-	HasEnvironment(environment string) *bool
-
-	HasTouchscreenUiHint() *bool
-
-	HasVirtualKeyboard() *bool
-
-	HideVirtualKeyboard()
-
-	IsDebugBuild() *bool
-
-	IsInLowProcessorUsageMode() *bool
-
-	IsKeepScreenOn() *bool
-
-	IsOkLeftAndCancelRight() *bool
-
-	IsScancodeUnicode(code int64) *bool
-
-	IsStdoutVerbose() *bool
-
-	IsVsyncEnabled() *bool
-
-	IsWindowFullscreen() *bool
-
-	IsWindowMaximized() *bool
-
-	IsWindowMinimized() *bool
-
-	IsWindowResizable() *bool
-
-	Kill(pid int64) int64
-
-	NativeVideoIsPlaying() *bool
-
-	NativeVideoPause()
-
-	NativeVideoPlay(path string, volume float64, audioTrack string, subtitleTrack string) int64
-
-	NativeVideoStop()
-
-	NativeVideoUnpause()
-
-	PrintAllResources(tofile string)
-
-	PrintAllTexturesBySize()
-
-	PrintResourcesByType(types *PoolStringArray)
-
-	PrintResourcesInUse(short *bool)
-
-	RequestAttention()
-
-	SetBorderlessWindow(borderless *bool)
-
-	SetClipboard(clipboard string)
-
-	SetCurrentScreen(screen int64)
-
-	SetExitCode(code int64)
-
-	SetIcon(icon *Image)
-
-	SetImePosition(position *Vector2)
-
-	SetKeepScreenOn(enabled *bool)
-
-	SetLowProcessorUsageMode(enable *bool)
-
-	SetScreenOrientation(orientation int64)
-
-	SetThreadName(name string) int64
-
-	SetUseFileAccessSaveAndSwap(enabled *bool)
-
-	SetUseVsync(enable *bool)
-
-	SetWindowFullscreen(enabled *bool)
-
-	SetWindowMaximized(enabled *bool)
-
-	SetWindowMinimized(enabled *bool)
-
-	SetWindowPosition(position *Vector2)
-
-	SetWindowResizable(enabled *bool)
-
-	SetWindowSize(size *Vector2)
-
-	SetWindowTitle(title string)
-
-	ShellOpen(uri string) int64
-
-	ShowVirtualKeyboard(existingText string)
+	Class
 }
 
 /*
@@ -63110,7 +57784,7 @@ func (o *Object) X_Notification(what int64) {
 /*
    Set a property. Return true if the property was found.
 */
-func (o *Object) X_Set(property string, value *Variant) *bool {
+func (o *Object) X_Set(property string, value *Variant) bool {
 	log.Println("Calling Object.X_Set()")
 
 	// Build out the method's arguments
@@ -63120,11 +57794,11 @@ func (o *Object) X_Set(property string, value *Variant) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "_set", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "_set", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -63219,7 +57893,7 @@ func (o *Object) Callv(method string, argArray *Array) *Variant {
 /*
    Return true if this object can translate strings.
 */
-func (o *Object) CanTranslateMessages() *bool {
+func (o *Object) CanTranslateMessages() bool {
 	log.Println("Calling Object.CanTranslateMessages()")
 
 	// Build out the method's arguments
@@ -63227,11 +57901,11 @@ func (o *Object) CanTranslateMessages() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "can_translate_messages", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "can_translate_messages", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -63563,7 +58237,7 @@ func (o *Object) GetSignalList() *Array {
 /*
    Return true if a metadata is found with the requested name.
 */
-func (o *Object) HasMeta(name string) *bool {
+func (o *Object) HasMeta(name string) bool {
 	log.Println("Calling Object.HasMeta()")
 
 	// Build out the method's arguments
@@ -63572,11 +58246,11 @@ func (o *Object) HasMeta(name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_meta", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_meta", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -63585,7 +58259,7 @@ func (o *Object) HasMeta(name string) *bool {
 /*
 
  */
-func (o *Object) HasMethod(method string) *bool {
+func (o *Object) HasMethod(method string) bool {
 	log.Println("Calling Object.HasMethod()")
 
 	// Build out the method's arguments
@@ -63594,11 +58268,11 @@ func (o *Object) HasMethod(method string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_method", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_method", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -63607,7 +58281,7 @@ func (o *Object) HasMethod(method string) *bool {
 /*
 
  */
-func (o *Object) HasUserSignal(signal string) *bool {
+func (o *Object) HasUserSignal(signal string) bool {
 	log.Println("Calling Object.HasUserSignal()")
 
 	// Build out the method's arguments
@@ -63616,11 +58290,11 @@ func (o *Object) HasUserSignal(signal string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_user_signal", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_user_signal", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -63629,7 +58303,7 @@ func (o *Object) HasUserSignal(signal string) *bool {
 /*
    Return true if signal emission blocking is enabled.
 */
-func (o *Object) IsBlockingSignals() *bool {
+func (o *Object) IsBlockingSignals() bool {
 	log.Println("Calling Object.IsBlockingSignals()")
 
 	// Build out the method's arguments
@@ -63637,11 +58311,11 @@ func (o *Object) IsBlockingSignals() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_blocking_signals", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_blocking_signals", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -63650,7 +58324,7 @@ func (o *Object) IsBlockingSignals() *bool {
 /*
    Check the class of the object against a string (including inheritance).
 */
-func (o *Object) IsClass(aType string) *bool {
+func (o *Object) IsClass(aType string) bool {
 	log.Println("Calling Object.IsClass()")
 
 	// Build out the method's arguments
@@ -63659,11 +58333,11 @@ func (o *Object) IsClass(aType string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_class", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_class", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -63672,7 +58346,7 @@ func (o *Object) IsClass(aType string) *bool {
 /*
    Return true if a connection exists for a given signal and target/method.
 */
-func (o *Object) IsConnected(signal string, target *Object, method string) *bool {
+func (o *Object) IsConnected(signal string, target *Object, method string) bool {
 	log.Println("Calling Object.IsConnected()")
 
 	// Build out the method's arguments
@@ -63683,11 +58357,11 @@ func (o *Object) IsConnected(signal string, target *Object, method string) *bool
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_connected", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_connected", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -63696,7 +58370,7 @@ func (o *Object) IsConnected(signal string, target *Object, method string) *bool
 /*
 
  */
-func (o *Object) IsQueuedForDeletion() *bool {
+func (o *Object) IsQueuedForDeletion() bool {
 	log.Println("Calling Object.IsQueuedForDeletion()")
 
 	// Build out the method's arguments
@@ -63704,11 +58378,11 @@ func (o *Object) IsQueuedForDeletion() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_queued_for_deletion", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_queued_for_deletion", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -63717,7 +58391,7 @@ func (o *Object) IsQueuedForDeletion() *bool {
 /*
    Notify the object of something.
 */
-func (o *Object) Notification(what int64, reversed *bool) {
+func (o *Object) Notification(what int64, reversed bool) {
 	log.Println("Calling Object.Notification()")
 
 	// Build out the method's arguments
@@ -63772,7 +58446,7 @@ func (o *Object) Set(property string, value *Variant) {
 /*
    If set to true, signal emission is blocked.
 */
-func (o *Object) SetBlockSignals(enable *bool) {
+func (o *Object) SetBlockSignals(enable bool) {
 	log.Println("Calling Object.SetBlockSignals()")
 
 	// Build out the method's arguments
@@ -63790,7 +58464,7 @@ func (o *Object) SetBlockSignals(enable *bool) {
 /*
    Define whether this object can translate strings (with calls to [method tr]). Default is true.
 */
-func (o *Object) SetMessageTranslation(enable *bool) {
+func (o *Object) SetMessageTranslation(enable bool) {
 	log.Println("Calling Object.SetMessageTranslation()")
 
 	// Build out the method's arguments
@@ -63991,86 +58665,6 @@ func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.V
 */
 type ObjectImplementer interface {
 	Class
-
-	X_Get(property string)
-
-	X_GetPropertyList() *Array
-
-	X_Init()
-
-	X_Notification(what int64)
-
-	X_Set(property string, value *Variant) *bool
-
-	AddUserSignal(signal string, arguments *Array)
-
-	Call(method string) *Variant
-
-	CallDeferred(method string) *Variant
-
-	Callv(method string, argArray *Array) *Variant
-
-	CanTranslateMessages() *bool
-
-	Connect(signal string, target *Object, method string, binds *Array, flags int64) int64
-
-	Disconnect(signal string, target *Object, method string)
-
-	EmitSignal(signal string) *Variant
-
-	Free()
-
-	Get(property string) *Variant
-
-	GetClass() string
-
-	GetIncomingConnections() *Array
-
-	GetInstanceId() int64
-
-	GetMeta(name string) *Variant
-
-	GetMetaList() *PoolStringArray
-
-	GetMethodList() *Array
-
-	GetPropertyList() *Array
-
-	GetScript() *Reference
-
-	GetSignalConnectionList(signal string) *Array
-
-	GetSignalList() *Array
-
-	HasMeta(name string) *bool
-
-	HasMethod(method string) *bool
-
-	HasUserSignal(signal string) *bool
-
-	IsBlockingSignals() *bool
-
-	IsClass(aType string) *bool
-
-	IsConnected(signal string, target *Object, method string) *bool
-
-	IsQueuedForDeletion() *bool
-
-	Notification(what int64, reversed *bool)
-
-	PropertyListChangedNotify()
-
-	Set(property string, value *Variant)
-
-	SetBlockSignals(enable *bool)
-
-	SetMessageTranslation(enable *bool)
-
-	SetMeta(name string, value *Variant)
-
-	SetScript(script *Reference)
-
-	Tr(message string) string
 }
 
 /*
@@ -64129,7 +58723,7 @@ func (o *OccluderPolygon2D) GetPolygon() *PoolVector2Array {
 /*
 
  */
-func (o *OccluderPolygon2D) IsClosed() *bool {
+func (o *OccluderPolygon2D) IsClosed() bool {
 	log.Println("Calling OccluderPolygon2D.IsClosed()")
 
 	// Build out the method's arguments
@@ -64137,11 +58731,11 @@ func (o *OccluderPolygon2D) IsClosed() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_closed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_closed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -64150,7 +58744,7 @@ func (o *OccluderPolygon2D) IsClosed() *bool {
 /*
 
  */
-func (o *OccluderPolygon2D) SetClosed(closed *bool) {
+func (o *OccluderPolygon2D) SetClosed(closed bool) {
 	log.Println("Calling OccluderPolygon2D.SetClosed()")
 
 	// Build out the method's arguments
@@ -64206,19 +58800,7 @@ func (o *OccluderPolygon2D) SetPolygon(polygon *PoolVector2Array) {
 
 */
 type OccluderPolygon2DImplementer interface {
-	ResourceImplementer
-
-	GetCullMode() int64
-
-	GetPolygon() *PoolVector2Array
-
-	IsClosed() *bool
-
-	SetClosed(closed *bool)
-
-	SetCullMode(cullMode int64)
-
-	SetPolygon(polygon *PoolVector2Array)
+	Class
 }
 
 /*
@@ -64315,15 +58897,7 @@ func (o *OmniLight) SetShadowMode(mode int64) {
    An OmniDirectional light is a type of [Light] node that emits lights in all directions. The light is attenuated through the distance and this attenuation can be configured by changing the energy, radius and attenuation parameters of [Light].
 */
 type OmniLightImplementer interface {
-	LightImplementer
-
-	GetShadowDetail() int64
-
-	GetShadowMode() int64
-
-	SetShadowDetail(detail int64)
-
-	SetShadowMode(mode int64)
+	Class
 }
 
 /*
@@ -64585,7 +59159,7 @@ func (o *OptionButton) GetSelectedMetadata() *Variant {
 /*
 
  */
-func (o *OptionButton) IsItemDisabled(idx int64) *bool {
+func (o *OptionButton) IsItemDisabled(idx int64) bool {
 	log.Println("Calling OptionButton.IsItemDisabled()")
 
 	// Build out the method's arguments
@@ -64594,11 +59168,11 @@ func (o *OptionButton) IsItemDisabled(idx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_item_disabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_item_disabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -64643,7 +59217,7 @@ func (o *OptionButton) Select(idx int64) {
 /*
 
  */
-func (o *OptionButton) SetItemDisabled(idx int64, disabled *bool) {
+func (o *OptionButton) SetItemDisabled(idx int64, disabled bool) {
 	log.Println("Calling OptionButton.SetItemDisabled()")
 
 	// Build out the method's arguments
@@ -64740,47 +59314,7 @@ func (o *OptionButton) SetItemText(idx int64, text string) {
    OptionButton is a type button that provides a selectable list of items when pressed. The item selected becomes the "current" item and is displayed as the button text.
 */
 type OptionButtonImplementer interface {
-	ButtonImplementer
-
-	AddIconItem(texture *Texture, label string, id int64)
-
-	AddItem(label string, id int64)
-
-	AddSeparator()
-
-	Clear()
-
-	GetItemCount() int64
-
-	GetItemIcon(idx int64) *Texture
-
-	GetItemId(idx int64) int64
-
-	GetItemMetadata(idx int64) *Variant
-
-	GetItemText(idx int64) string
-
-	GetSelected() int64
-
-	GetSelectedId() int64
-
-	GetSelectedMetadata() *Variant
-
-	IsItemDisabled(idx int64) *bool
-
-	RemoveItem(idx int64)
-
-	Select(idx int64)
-
-	SetItemDisabled(idx int64, disabled *bool)
-
-	SetItemIcon(idx int64, texture *Texture)
-
-	SetItemId(idx int64, id int64)
-
-	SetItemMetadata(idx int64, metadata *Variant)
-
-	SetItemText(idx int64, text string)
+	Class
 }
 
 /*
@@ -64820,7 +59354,7 @@ func (o *PCKPacker) AddFile(pckPath string, sourcePath string) int64 {
 /*
 
  */
-func (o *PCKPacker) Flush(verbose *bool) int64 {
+func (o *PCKPacker) Flush(verbose bool) int64 {
 	log.Println("Calling PCKPacker.Flush()")
 
 	// Build out the method's arguments
@@ -64867,13 +59401,7 @@ func (o *PCKPacker) PckStart(pckName string, alignment int64) int64 {
 
 */
 type PCKPackerImplementer interface {
-	ReferenceImplementer
-
-	AddFile(pckPath string, sourcePath string) int64
-
-	Flush(verbose *bool) int64
-
-	PckStart(pckName string, alignment int64) int64
+	Class
 }
 
 /*
@@ -64910,9 +59438,7 @@ func (o *PHashTranslation) Generate(from *Translation) {
    Optimized translation. Uses real-time compressed translations, which results in very small dictionaries.
 */
 type PHashTranslationImplementer interface {
-	TranslationImplementer
-
-	Generate(from *Translation)
+	Class
 }
 
 /*
@@ -64974,11 +59500,7 @@ func (o *PackedDataContainer) Size() int64 {
 
 */
 type PackedDataContainerImplementer interface {
-	ResourceImplementer
-
-	Pack(value *Variant) int64
-
-	Size() int64
+	Class
 }
 
 /*
@@ -65018,9 +59540,7 @@ func (o *PackedDataContainerRef) Size() int64 {
 
 */
 type PackedDataContainerRefImplementer interface {
-	ReferenceImplementer
-
-	Size() int64
+	Class
 }
 
 /*
@@ -65037,7 +59557,7 @@ func (o *PackedScene) baseClass() string {
 /*
 
  */
-func (o *PackedScene) CanInstance() *bool {
+func (o *PackedScene) CanInstance() bool {
 	log.Println("Calling PackedScene.CanInstance()")
 
 	// Build out the method's arguments
@@ -65045,11 +59565,11 @@ func (o *PackedScene) CanInstance() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "can_instance", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "can_instance", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -65125,15 +59645,7 @@ func (o *PackedScene) Pack(path *Node) int64 {
    TODO: explain ownership, and that node does not need to own itself
 */
 type PackedSceneImplementer interface {
-	ResourceImplementer
-
-	CanInstance() *bool
-
-	GetState() *SceneState
-
-	Instance(editState int64) *Node
-
-	Pack(path *Node) int64
+	Class
 }
 
 /*
@@ -65234,7 +59746,7 @@ func (o *PacketPeer) GetVar() *Variant {
 /*
 
  */
-func (o *PacketPeer) IsObjectDecodingAllowed() *bool {
+func (o *PacketPeer) IsObjectDecodingAllowed() bool {
 	log.Println("Calling PacketPeer.IsObjectDecodingAllowed()")
 
 	// Build out the method's arguments
@@ -65242,11 +59754,11 @@ func (o *PacketPeer) IsObjectDecodingAllowed() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_object_decoding_allowed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_object_decoding_allowed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -65299,7 +59811,7 @@ func (o *PacketPeer) PutVar(variable *Variant) int64 {
 /*
 
  */
-func (o *PacketPeer) SetAllowObjectDecoding(enable *bool) {
+func (o *PacketPeer) SetAllowObjectDecoding(enable bool) {
 	log.Println("Calling PacketPeer.SetAllowObjectDecoding()")
 
 	// Build out the method's arguments
@@ -65319,23 +59831,7 @@ func (o *PacketPeer) SetAllowObjectDecoding(enable *bool) {
    PacketPeer is an abstraction and base class for packet-based protocols (such as UDP). It provides an API for sending and receiving packets both as raw data or variables. This makes it easy to transfer data over a protocol, without having to encode data as low level bytes or having to worry about network ordering.
 */
 type PacketPeerImplementer interface {
-	ReferenceImplementer
-
-	GetAvailablePacketCount() int64
-
-	GetPacket() *PoolByteArray
-
-	GetPacketError() int64
-
-	GetVar() *Variant
-
-	IsObjectDecodingAllowed() *bool
-
-	PutPacket(buffer *PoolByteArray) int64
-
-	PutVar(variable *Variant) int64
-
-	SetAllowObjectDecoding(enable *bool)
+	Class
 }
 
 /*
@@ -65450,17 +59946,7 @@ func (o *PacketPeerStream) SetStreamPeer(peer *Reference) {
    PacketStreamPeer provides a wrapper for working using packets over a stream. This allows for using packet based code with StreamPeers. PacketPeerStream implements a custom protocol over the StreamPeer, so the user should not read or write to the wrapped StreamPeer directly.
 */
 type PacketPeerStreamImplementer interface {
-	PacketPeerImplementer
-
-	GetInputBufferMaxSize() int64
-
-	GetOutputBufferMaxSize() int64
-
-	SetInputBufferMaxSize(maxSizeBytes int64)
-
-	SetOutputBufferMaxSize(maxSizeBytes int64)
-
-	SetStreamPeer(peer *Reference)
+	Class
 }
 
 /*
@@ -65536,7 +60022,7 @@ func (o *PacketPeerUDP) GetPacketPort() int64 {
 /*
    Return whether this [PacketPeerUDP] is listening.
 */
-func (o *PacketPeerUDP) IsListening() *bool {
+func (o *PacketPeerUDP) IsListening() bool {
 	log.Println("Calling PacketPeerUDP.IsListening()")
 
 	// Build out the method's arguments
@@ -65544,11 +60030,11 @@ func (o *PacketPeerUDP) IsListening() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_listening", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_listening", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -65630,21 +60116,7 @@ func (o *PacketPeerUDP) Wait() int64 {
    UDP packet peer. Can be used to send raw UDP packets as well as [Variant]\ s.
 */
 type PacketPeerUDPImplementer interface {
-	PacketPeerImplementer
-
-	Close()
-
-	GetPacketIp() string
-
-	GetPacketPort() int64
-
-	IsListening() *bool
-
-	Listen(port int64, bindAddress string, recvBufSize int64) int64
-
-	SetDestAddress(host string, port int64) int64
-
-	Wait() int64
+	Class
 }
 
 /*
@@ -65663,7 +60135,7 @@ func (o *Panel) baseClass() string {
    Panel is a [Control] that displays an opaque background. It's commonly used as a parent and container for other types of [Control] nodes.
 */
 type PanelImplementer interface {
-	ControlImplementer
+	Class
 }
 
 /*
@@ -65682,7 +60154,7 @@ func (o *PanelContainer) baseClass() string {
    Panel container type. This container fits controls inside of the delimited area of a stylebox. It's useful for giving controls an outline.
 */
 type PanelContainerImplementer interface {
-	ContainerImplementer
+	Class
 }
 
 /*
@@ -65740,11 +60212,7 @@ func (o *PanoramaSky) SetPanorama(texture *Texture) {
 
 */
 type PanoramaSkyImplementer interface {
-	SkyImplementer
-
-	GetPanorama() *Texture
-
-	SetPanorama(texture *Texture)
+	Class
 }
 
 /*
@@ -65866,7 +60334,7 @@ func (o *ParallaxBackground) GetScrollOffset() *Vector2 {
 /*
    Return ignoring camera zoom.
 */
-func (o *ParallaxBackground) IsIgnoreCameraZoom() *bool {
+func (o *ParallaxBackground) IsIgnoreCameraZoom() bool {
 	log.Println("Calling ParallaxBackground.IsIgnoreCameraZoom()")
 
 	// Build out the method's arguments
@@ -65874,11 +60342,11 @@ func (o *ParallaxBackground) IsIgnoreCameraZoom() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_ignore_camera_zoom", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_ignore_camera_zoom", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -65887,7 +60355,7 @@ func (o *ParallaxBackground) IsIgnoreCameraZoom() *bool {
 /*
    Set to true for all child [ParallaxLayer] nodes to not be affected by the zoom level of the camera.
 */
-func (o *ParallaxBackground) SetIgnoreCameraZoom(ignore *bool) {
+func (o *ParallaxBackground) SetIgnoreCameraZoom(ignore bool) {
 	log.Println("Calling ParallaxBackground.SetIgnoreCameraZoom()")
 
 	// Build out the method's arguments
@@ -65997,31 +60465,7 @@ func (o *ParallaxBackground) SetScrollOffset(ofs *Vector2) {
    A ParallaxBackground will use one or more [ParallaxLayer] nodes to create a parallax scrolling background. Each [ParallaxLayer] can be set to move at different speeds relative to the camera movement, this can be used to create an illusion of depth in a 2D game.
 */
 type ParallaxBackgroundImplementer interface {
-	CanvasLayerImplementer
-
-	GetLimitBegin() *Vector2
-
-	GetLimitEnd() *Vector2
-
-	GetScrollBaseOffset() *Vector2
-
-	GetScrollBaseScale() *Vector2
-
-	GetScrollOffset() *Vector2
-
-	IsIgnoreCameraZoom() *bool
-
-	SetIgnoreCameraZoom(ignore *bool)
-
-	SetLimitBegin(ofs *Vector2)
-
-	SetLimitEnd(ofs *Vector2)
-
-	SetScrollBaseOffset(ofs *Vector2)
-
-	SetScrollBaseScale(scale *Vector2)
-
-	SetScrollOffset(ofs *Vector2)
+	Class
 }
 
 /*
@@ -66157,19 +60601,7 @@ func (o *ParallaxLayer) SetMotionScale(scale *Vector2) {
    A ParallaxLayer must be the child of a [ParallaxBackground] node. All child nodes will be affected by the parallax scrolling of this layer.
 */
 type ParallaxLayerImplementer interface {
-	Node2DImplementer
-
-	GetMirroring() *Vector2
-
-	GetMotionOffset() *Vector2
-
-	GetMotionScale() *Vector2
-
-	SetMirroring(mirror *Vector2)
-
-	SetMotionOffset(offset *Vector2)
-
-	SetMotionScale(scale *Vector2)
+	Class
 }
 
 /*
@@ -66334,7 +60766,7 @@ func (o *Particles) GetFixedFps() int64 {
 /*
 
  */
-func (o *Particles) GetFractionalDelta() *bool {
+func (o *Particles) GetFractionalDelta() bool {
 	log.Println("Calling Particles.GetFractionalDelta()")
 
 	// Build out the method's arguments
@@ -66342,11 +60774,11 @@ func (o *Particles) GetFractionalDelta() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_fractional_delta", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_fractional_delta", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -66376,7 +60808,7 @@ func (o *Particles) GetLifetime() float64 {
 /*
 
  */
-func (o *Particles) GetOneShot() *bool {
+func (o *Particles) GetOneShot() bool {
 	log.Println("Calling Particles.GetOneShot()")
 
 	// Build out the method's arguments
@@ -66384,11 +60816,11 @@ func (o *Particles) GetOneShot() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_one_shot", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_one_shot", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -66481,7 +60913,7 @@ func (o *Particles) GetSpeedScale() float64 {
 /*
 
  */
-func (o *Particles) GetUseLocalCoordinates() *bool {
+func (o *Particles) GetUseLocalCoordinates() bool {
 	log.Println("Calling Particles.GetUseLocalCoordinates()")
 
 	// Build out the method's arguments
@@ -66489,11 +60921,11 @@ func (o *Particles) GetUseLocalCoordinates() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_use_local_coordinates", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_use_local_coordinates", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -66523,7 +60955,7 @@ func (o *Particles) GetVisibilityAabb() *Rect3 {
 /*
 
  */
-func (o *Particles) IsEmitting() *bool {
+func (o *Particles) IsEmitting() bool {
 	log.Println("Calling Particles.IsEmitting()")
 
 	// Build out the method's arguments
@@ -66531,11 +60963,11 @@ func (o *Particles) IsEmitting() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_emitting", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_emitting", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -66634,7 +61066,7 @@ func (o *Particles) SetDrawPasses(passes int64) {
 /*
 
  */
-func (o *Particles) SetEmitting(emitting *bool) {
+func (o *Particles) SetEmitting(emitting bool) {
 	log.Println("Calling Particles.SetEmitting()")
 
 	// Build out the method's arguments
@@ -66688,7 +61120,7 @@ func (o *Particles) SetFixedFps(fps int64) {
 /*
 
  */
-func (o *Particles) SetFractionalDelta(enable *bool) {
+func (o *Particles) SetFractionalDelta(enable bool) {
 	log.Println("Calling Particles.SetFractionalDelta()")
 
 	// Build out the method's arguments
@@ -66724,7 +61156,7 @@ func (o *Particles) SetLifetime(secs float64) {
 /*
 
  */
-func (o *Particles) SetOneShot(enable *bool) {
+func (o *Particles) SetOneShot(enable bool) {
 	log.Println("Calling Particles.SetOneShot()")
 
 	// Build out the method's arguments
@@ -66814,7 +61246,7 @@ func (o *Particles) SetSpeedScale(scale float64) {
 /*
 
  */
-func (o *Particles) SetUseLocalCoordinates(enable *bool) {
+func (o *Particles) SetUseLocalCoordinates(enable bool) {
 	log.Println("Calling Particles.SetUseLocalCoordinates()")
 
 	// Build out the method's arguments
@@ -66852,75 +61284,7 @@ func (o *Particles) SetVisibilityAabb(aabb *Rect3) {
 
 */
 type ParticlesImplementer interface {
-	GeometryInstanceImplementer
-
-	CaptureAabb() *Rect3
-
-	GetAmount() int64
-
-	GetDrawOrder() int64
-
-	GetDrawPassMesh(pass int64) *Mesh
-
-	GetDrawPasses() int64
-
-	GetExplosivenessRatio() float64
-
-	GetFixedFps() int64
-
-	GetFractionalDelta() *bool
-
-	GetLifetime() float64
-
-	GetOneShot() *bool
-
-	GetPreProcessTime() float64
-
-	GetProcessMaterial() *Material
-
-	GetRandomnessRatio() float64
-
-	GetSpeedScale() float64
-
-	GetUseLocalCoordinates() *bool
-
-	GetVisibilityAabb() *Rect3
-
-	IsEmitting() *bool
-
-	Restart()
-
-	SetAmount(amount int64)
-
-	SetDrawOrder(order int64)
-
-	SetDrawPassMesh(pass int64, mesh *Mesh)
-
-	SetDrawPasses(passes int64)
-
-	SetEmitting(emitting *bool)
-
-	SetExplosivenessRatio(ratio float64)
-
-	SetFixedFps(fps int64)
-
-	SetFractionalDelta(enable *bool)
-
-	SetLifetime(secs float64)
-
-	SetOneShot(enable *bool)
-
-	SetPreProcessTime(secs float64)
-
-	SetProcessMaterial(material *Material)
-
-	SetRandomnessRatio(ratio float64)
-
-	SetSpeedScale(scale float64)
-
-	SetUseLocalCoordinates(enable *bool)
-
-	SetVisibilityAabb(aabb *Rect3)
+	Class
 }
 
 /*
@@ -67042,7 +61406,7 @@ func (o *Particles2D) GetFixedFps() int64 {
 /*
 
  */
-func (o *Particles2D) GetFractionalDelta() *bool {
+func (o *Particles2D) GetFractionalDelta() bool {
 	log.Println("Calling Particles2D.GetFractionalDelta()")
 
 	// Build out the method's arguments
@@ -67050,11 +61414,11 @@ func (o *Particles2D) GetFractionalDelta() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_fractional_delta", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_fractional_delta", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -67126,7 +61490,7 @@ func (o *Particles2D) GetNormalMap() *Texture {
 /*
 
  */
-func (o *Particles2D) GetOneShot() *bool {
+func (o *Particles2D) GetOneShot() bool {
 	log.Println("Calling Particles2D.GetOneShot()")
 
 	// Build out the method's arguments
@@ -67134,11 +61498,11 @@ func (o *Particles2D) GetOneShot() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_one_shot", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_one_shot", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -67252,7 +61616,7 @@ func (o *Particles2D) GetTexture() *Texture {
 /*
 
  */
-func (o *Particles2D) GetUseLocalCoordinates() *bool {
+func (o *Particles2D) GetUseLocalCoordinates() bool {
 	log.Println("Calling Particles2D.GetUseLocalCoordinates()")
 
 	// Build out the method's arguments
@@ -67260,11 +61624,11 @@ func (o *Particles2D) GetUseLocalCoordinates() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_use_local_coordinates", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_use_local_coordinates", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -67315,7 +61679,7 @@ func (o *Particles2D) GetVisibilityRect() *Rect2 {
 /*
    Returns whether this emitter is currently emitting or not
 */
-func (o *Particles2D) IsEmitting() *bool {
+func (o *Particles2D) IsEmitting() bool {
 	log.Println("Calling Particles2D.IsEmitting()")
 
 	// Build out the method's arguments
@@ -67323,11 +61687,11 @@ func (o *Particles2D) IsEmitting() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_emitting", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_emitting", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -67389,7 +61753,7 @@ func (o *Particles2D) SetDrawOrder(order int64) {
 /*
    If this is set to true then the particle emitter will emit particles, if its false it will not.
 */
-func (o *Particles2D) SetEmitting(emitting *bool) {
+func (o *Particles2D) SetEmitting(emitting bool) {
 	log.Println("Calling Particles2D.SetEmitting()")
 
 	// Build out the method's arguments
@@ -67443,7 +61807,7 @@ func (o *Particles2D) SetFixedFps(fps int64) {
 /*
 
  */
-func (o *Particles2D) SetFractionalDelta(enable *bool) {
+func (o *Particles2D) SetFractionalDelta(enable bool) {
 	log.Println("Calling Particles2D.SetFractionalDelta()")
 
 	// Build out the method's arguments
@@ -67515,7 +61879,7 @@ func (o *Particles2D) SetNormalMap(texture *Texture) {
 /*
 
  */
-func (o *Particles2D) SetOneShot(secs *bool) {
+func (o *Particles2D) SetOneShot(secs bool) {
 	log.Println("Calling Particles2D.SetOneShot()")
 
 	// Build out the method's arguments
@@ -67623,7 +61987,7 @@ func (o *Particles2D) SetTexture(texture *Texture) {
 /*
 
  */
-func (o *Particles2D) SetUseLocalCoordinates(enable *bool) {
+func (o *Particles2D) SetUseLocalCoordinates(enable bool) {
 	log.Println("Calling Particles2D.SetUseLocalCoordinates()")
 
 	// Build out the method's arguments
@@ -67679,83 +62043,7 @@ func (o *Particles2D) SetVisibilityRect(aabb *Rect2) {
    Particles2D is a particle system 2D [Node] that is used to simulate several types of particle effects, such as explosions, rain, snow, fireflies, or other magical-like shinny sparkles. Particles are drawn using impostors, and given their dynamic behavior, the user must provide a visibility bounding box (although helpers to create one automatically exist).
 */
 type Particles2DImplementer interface {
-	Node2DImplementer
-
-	CaptureRect() *Rect2
-
-	GetAmount() int64
-
-	GetDrawOrder() int64
-
-	GetExplosivenessRatio() float64
-
-	GetFixedFps() int64
-
-	GetFractionalDelta() *bool
-
-	GetHFrames() int64
-
-	GetLifetime() float64
-
-	GetNormalMap() *Texture
-
-	GetOneShot() *bool
-
-	GetPreProcessTime() float64
-
-	GetProcessMaterial() *Material
-
-	GetRandomnessRatio() float64
-
-	GetSpeedScale() float64
-
-	GetTexture() *Texture
-
-	GetUseLocalCoordinates() *bool
-
-	GetVFrames() int64
-
-	GetVisibilityRect() *Rect2
-
-	IsEmitting() *bool
-
-	Restart()
-
-	SetAmount(amount int64)
-
-	SetDrawOrder(order int64)
-
-	SetEmitting(emitting *bool)
-
-	SetExplosivenessRatio(ratio float64)
-
-	SetFixedFps(fps int64)
-
-	SetFractionalDelta(enable *bool)
-
-	SetHFrames(frames int64)
-
-	SetLifetime(secs float64)
-
-	SetNormalMap(texture *Texture)
-
-	SetOneShot(secs *bool)
-
-	SetPreProcessTime(secs float64)
-
-	SetProcessMaterial(material *Material)
-
-	SetRandomnessRatio(ratio float64)
-
-	SetSpeedScale(scale float64)
-
-	SetTexture(texture *Texture)
-
-	SetUseLocalCoordinates(enable *bool)
-
-	SetVFrames(frames int64)
-
-	SetVisibilityRect(aabb *Rect2)
+	Class
 }
 
 /*
@@ -67961,7 +62249,7 @@ func (o *ParticlesMaterial) GetEmissionSphereRadius() float64 {
 /*
 
  */
-func (o *ParticlesMaterial) GetFlag(flag int64) *bool {
+func (o *ParticlesMaterial) GetFlag(flag int64) bool {
 	log.Println("Calling ParticlesMaterial.GetFlag()")
 
 	// Build out the method's arguments
@@ -67970,11 +62258,11 @@ func (o *ParticlesMaterial) GetFlag(flag int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_flag", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_flag", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -68337,7 +62625,7 @@ func (o *ParticlesMaterial) SetEmissionSphereRadius(radius float64) {
 /*
 
  */
-func (o *ParticlesMaterial) SetFlag(flag int64, enable *bool) {
+func (o *ParticlesMaterial) SetFlag(flag int64, enable bool) {
 	log.Println("Calling ParticlesMaterial.SetFlag()")
 
 	// Build out the method's arguments
@@ -68523,83 +62811,7 @@ func (o *ParticlesMaterial) SetTrailSizeModifier(texture *CurveTexture) {
 
 */
 type ParticlesMaterialImplementer interface {
-	MaterialImplementer
-
-	GetColor() *Color
-
-	GetColorRamp() *Texture
-
-	GetEmissionBoxExtents() *Vector3
-
-	GetEmissionColorTexture() *Texture
-
-	GetEmissionNormalTexture() *Texture
-
-	GetEmissionPointCount() int64
-
-	GetEmissionPointTexture() *Texture
-
-	GetEmissionShape() int64
-
-	GetEmissionSphereRadius() float64
-
-	GetFlag(flag int64) *bool
-
-	GetFlatness() float64
-
-	GetGravity() *Vector3
-
-	GetParam(param int64) float64
-
-	GetParamRandomness(param int64) float64
-
-	GetParamTexture(param int64) *Texture
-
-	GetSpread() float64
-
-	GetTrailColorModifier() *GradientTexture
-
-	GetTrailDivisor() int64
-
-	GetTrailSizeModifier() *CurveTexture
-
-	SetColor(color *Color)
-
-	SetColorRamp(ramp *Texture)
-
-	SetEmissionBoxExtents(extents *Vector3)
-
-	SetEmissionColorTexture(texture *Texture)
-
-	SetEmissionNormalTexture(texture *Texture)
-
-	SetEmissionPointCount(pointCount int64)
-
-	SetEmissionPointTexture(texture *Texture)
-
-	SetEmissionShape(shape int64)
-
-	SetEmissionSphereRadius(radius float64)
-
-	SetFlag(flag int64, enable *bool)
-
-	SetFlatness(amount float64)
-
-	SetGravity(accelVec *Vector3)
-
-	SetParam(param int64, value float64)
-
-	SetParamRandomness(param int64, randomness float64)
-
-	SetParamTexture(param int64, texture *Texture)
-
-	SetSpread(degrees float64)
-
-	SetTrailColorModifier(texture *GradientTexture)
-
-	SetTrailDivisor(divisor int64)
-
-	SetTrailSizeModifier(texture *CurveTexture)
+	Class
 }
 
 /*
@@ -68657,11 +62869,7 @@ func (o *Path) SetCurve(curve *Curve3D) {
    This class is a container/Node-ification of a [Curve3D], so it can have [Spatial] properties and [Node] info.
 */
 type PathImplementer interface {
-	SpatialImplementer
-
-	GetCurve() *Curve3D
-
-	SetCurve(curve *Curve3D)
+	Class
 }
 
 /*
@@ -68719,11 +62927,7 @@ func (o *Path2D) SetCurve(curve *Curve2D) {
    This class is a container/Node-ification of a [Curve2D], so it can have [Node2D] properties and [Node] info.
 */
 type Path2DImplementer interface {
-	Node2DImplementer
-
-	GetCurve() *Curve2D
-
-	SetCurve(curve *Curve2D)
+	Class
 }
 
 /*
@@ -68741,7 +62945,7 @@ func (o *PathFollow) baseClass() string {
 /*
    This method returns whether the position between two cached points (see [method set_cubic_interpolation]) is interpolated linearly, or cubicly.
 */
-func (o *PathFollow) GetCubicInterpolation() *bool {
+func (o *PathFollow) GetCubicInterpolation() bool {
 	log.Println("Calling PathFollow.GetCubicInterpolation()")
 
 	// Build out the method's arguments
@@ -68749,11 +62953,11 @@ func (o *PathFollow) GetCubicInterpolation() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_cubic_interpolation", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_cubic_interpolation", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -68867,7 +63071,7 @@ func (o *PathFollow) GetVOffset() float64 {
 /*
    Returns whether this node wraps its offsets around, or truncates them to the path ends.
 */
-func (o *PathFollow) HasLoop() *bool {
+func (o *PathFollow) HasLoop() bool {
 	log.Println("Calling PathFollow.HasLoop()")
 
 	// Build out the method's arguments
@@ -68875,11 +63079,11 @@ func (o *PathFollow) HasLoop() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_loop", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_loop", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -68890,7 +63094,7 @@ func (o *PathFollow) HasLoop() *bool {
 				There are two answers to this problem: Either increase the number of cached points and increase memory consumption, or make a cubic interpolation between two points at the cost of (slightly) slower calculations.
 				This method controls whether the position between two cached points is interpolated linearly, or cubicly.
 */
-func (o *PathFollow) SetCubicInterpolation(enable *bool) {
+func (o *PathFollow) SetCubicInterpolation(enable bool) {
 	log.Println("Calling PathFollow.SetCubicInterpolation()")
 
 	// Build out the method's arguments
@@ -68927,7 +63131,7 @@ func (o *PathFollow) SetHOffset(hOffset float64) {
 /*
    If set, any offset outside the path's length (whether set by [method set_offset] or [method set_unit_offset] will wrap around, instead of stopping at the ends. Set it for cyclic paths.
 */
-func (o *PathFollow) SetLoop(loop *bool) {
+func (o *PathFollow) SetLoop(loop bool) {
 	log.Println("Calling PathFollow.SetLoop()")
 
 	// Build out the method's arguments
@@ -69020,35 +63224,7 @@ func (o *PathFollow) SetVOffset(vOffset float64) {
 		It is useful for making other nodes follow a path, without coding the movement pattern. For that, the nodes must be descendants of this node. Then, when setting an offset in this node, the descendant nodes will move accordingly.
 */
 type PathFollowImplementer interface {
-	SpatialImplementer
-
-	GetCubicInterpolation() *bool
-
-	GetHOffset() float64
-
-	GetOffset() float64
-
-	GetRotationMode() int64
-
-	GetUnitOffset() float64
-
-	GetVOffset() float64
-
-	HasLoop() *bool
-
-	SetCubicInterpolation(enable *bool)
-
-	SetHOffset(hOffset float64)
-
-	SetLoop(loop *bool)
-
-	SetOffset(offset float64)
-
-	SetRotationMode(rotationMode int64)
-
-	SetUnitOffset(unitOffset float64)
-
-	SetVOffset(vOffset float64)
+	Class
 }
 
 /*
@@ -69066,7 +63242,7 @@ func (o *PathFollow2D) baseClass() string {
 /*
    This method returns whether the position between two cached points (see [method set_cubic_interpolation]) is interpolated linearly, or cubicly.
 */
-func (o *PathFollow2D) GetCubicInterpolation() *bool {
+func (o *PathFollow2D) GetCubicInterpolation() bool {
 	log.Println("Calling PathFollow2D.GetCubicInterpolation()")
 
 	// Build out the method's arguments
@@ -69074,11 +63250,11 @@ func (o *PathFollow2D) GetCubicInterpolation() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_cubic_interpolation", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_cubic_interpolation", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -69171,7 +63347,7 @@ func (o *PathFollow2D) GetVOffset() float64 {
 /*
    Returns whether this node wraps its offsets around, or truncates them to the path ends.
 */
-func (o *PathFollow2D) HasLoop() *bool {
+func (o *PathFollow2D) HasLoop() bool {
 	log.Println("Calling PathFollow2D.HasLoop()")
 
 	// Build out the method's arguments
@@ -69179,11 +63355,11 @@ func (o *PathFollow2D) HasLoop() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_loop", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_loop", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -69192,7 +63368,7 @@ func (o *PathFollow2D) HasLoop() *bool {
 /*
    Returns whether this node rotates to follow the path.
 */
-func (o *PathFollow2D) IsRotating() *bool {
+func (o *PathFollow2D) IsRotating() bool {
 	log.Println("Calling PathFollow2D.IsRotating()")
 
 	// Build out the method's arguments
@@ -69200,11 +63376,11 @@ func (o *PathFollow2D) IsRotating() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_rotating", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_rotating", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -69215,7 +63391,7 @@ func (o *PathFollow2D) IsRotating() *bool {
 				There are two answers to this problem: Either increase the number of cached points and increase memory consumption, or make a cubic interpolation between two points at the cost of (slightly) slower calculations.
 				This method controls whether the position between two cached points is interpolated linearly, or cubicly.
 */
-func (o *PathFollow2D) SetCubicInterpolation(enable *bool) {
+func (o *PathFollow2D) SetCubicInterpolation(enable bool) {
 	log.Println("Calling PathFollow2D.SetCubicInterpolation()")
 
 	// Build out the method's arguments
@@ -69252,7 +63428,7 @@ func (o *PathFollow2D) SetHOffset(hOffset float64) {
 /*
    If set, any offset outside the path's length (whether set by [method set_offset] or [method set_unit_offset] will wrap around, instead of stopping at the ends. Set it for cyclic paths.
 */
-func (o *PathFollow2D) SetLoop(loop *bool) {
+func (o *PathFollow2D) SetLoop(loop bool) {
 	log.Println("Calling PathFollow2D.SetLoop()")
 
 	// Build out the method's arguments
@@ -69288,7 +63464,7 @@ func (o *PathFollow2D) SetOffset(offset float64) {
 /*
    If set, this node rotates to follow the path, making its descendants rotate.
 */
-func (o *PathFollow2D) SetRotate(enable *bool) {
+func (o *PathFollow2D) SetRotate(enable bool) {
 	log.Println("Calling PathFollow2D.SetRotate()")
 
 	// Build out the method's arguments
@@ -69345,35 +63521,7 @@ func (o *PathFollow2D) SetVOffset(vOffset float64) {
 		It is useful for making other nodes follow a path, without coding the movement pattern. For that, the nodes must be descendants of this node. Then, when setting an offset in this node, the descendant nodes will move accordingly.
 */
 type PathFollow2DImplementer interface {
-	Node2DImplementer
-
-	GetCubicInterpolation() *bool
-
-	GetHOffset() float64
-
-	GetOffset() float64
-
-	GetUnitOffset() float64
-
-	GetVOffset() float64
-
-	HasLoop() *bool
-
-	IsRotating() *bool
-
-	SetCubicInterpolation(enable *bool)
-
-	SetHOffset(hOffset float64)
-
-	SetLoop(loop *bool)
-
-	SetOffset(offset float64)
-
-	SetRotate(enable *bool)
-
-	SetUnitOffset(unitOffset float64)
-
-	SetVOffset(vOffset float64)
+	Class
 }
 
 /*
@@ -69414,9 +63562,7 @@ func (o *Performance) GetMonitor(monitor int64) float64 {
 
 */
 type PerformanceImplementer interface {
-	ObjectImplementer
-
-	GetMonitor(monitor int64) float64
+	Class
 }
 
 /*
@@ -69901,7 +64047,7 @@ func (o *Physics2DDirectBodyState) IntegrateForces() {
 /*
    Return true if this body is currently sleeping (not active).
 */
-func (o *Physics2DDirectBodyState) IsSleeping() *bool {
+func (o *Physics2DDirectBodyState) IsSleeping() bool {
 	log.Println("Calling Physics2DDirectBodyState.IsSleeping()")
 
 	// Build out the method's arguments
@@ -69909,11 +64055,11 @@ func (o *Physics2DDirectBodyState) IsSleeping() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_sleeping", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_sleeping", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -69958,7 +64104,7 @@ func (o *Physics2DDirectBodyState) SetLinearVelocity(velocity *Vector2) {
 /*
    Set the sleeping state of the body, only affects character/rigid bodies.
 */
-func (o *Physics2DDirectBodyState) SetSleepState(enabled *bool) {
+func (o *Physics2DDirectBodyState) SetSleepState(enabled bool) {
 	log.Println("Calling Physics2DDirectBodyState.SetSleepState()")
 
 	// Build out the method's arguments
@@ -69996,61 +64142,7 @@ func (o *Physics2DDirectBodyState) SetTransform(transform *Transform2D) {
    Direct access object to a physics body in the [Physics2DServer]. This object is passed via the direct state callback of rigid/character bodies, and is intended for changing the direct state of that body.
 */
 type Physics2DDirectBodyStateImplementer interface {
-	ObjectImplementer
-
-	GetAngularVelocity() float64
-
-	GetContactCollider(contactIdx int64) *RID
-
-	GetContactColliderId(contactIdx int64) int64
-
-	GetContactColliderObject(contactIdx int64) *Object
-
-	GetContactColliderPos(contactIdx int64) *Vector2
-
-	GetContactColliderShape(contactIdx int64) int64
-
-	GetContactColliderShapeMetadata(contactIdx int64) *Variant
-
-	GetContactColliderVelocityAtPos(contactIdx int64) *Vector2
-
-	GetContactCount() int64
-
-	GetContactLocalNormal(contactIdx int64) *Vector2
-
-	GetContactLocalPos(contactIdx int64) *Vector2
-
-	GetContactLocalShape(contactIdx int64) int64
-
-	GetInverseInertia() float64
-
-	GetInverseMass() float64
-
-	GetLinearVelocity() *Vector2
-
-	GetSpaceState() *Physics2DDirectSpaceState
-
-	GetStep() float64
-
-	GetTotalAngularDamp() float64
-
-	GetTotalGravity() *Vector2
-
-	GetTotalLinearDamp() float64
-
-	GetTransform() *Transform2D
-
-	IntegrateForces()
-
-	IsSleeping() *bool
-
-	SetAngularVelocity(velocity float64)
-
-	SetLinearVelocity(velocity *Vector2)
-
-	SetSleepState(enabled *bool)
-
-	SetTransform(transform *Transform2D)
+	Class
 }
 
 /*
@@ -70069,7 +64161,7 @@ func (o *Physics2DDirectBodyStateSW) baseClass() string {
    Software implementation of [Physics2DDirectBodyState]. This object exposes no new methods or properties and should not be used, as [Physics2DDirectBodyState] selects the best implementation available.
 */
 type Physics2DDirectBodyStateSWImplementer interface {
-	Physics2DDirectBodyStateImplementer
+	Class
 }
 
 /*
@@ -70261,19 +64353,7 @@ func (o *Physics2DDirectSpaceState) IntersectShape(shape *Physics2DShapeQueryPar
    Direct access object to a space in the [Physics2DServer]. It's used mainly to do queries against objects and areas residing in a given space.
 */
 type Physics2DDirectSpaceStateImplementer interface {
-	ObjectImplementer
-
-	CastMotion(shape *Physics2DShapeQueryParameters) *Array
-
-	CollideShape(shape *Physics2DShapeQueryParameters, maxResults int64) *Array
-
-	GetRestInfo(shape *Physics2DShapeQueryParameters) *Dictionary
-
-	IntersectPoint(point *Vector2, maxResults int64, exclude *Array, collisionLayer int64, typeMask int64) *Array
-
-	IntersectRay(from *Vector2, to *Vector2, exclude *Array, collisionLayer int64, typeMask int64) *Dictionary
-
-	IntersectShape(shape *Physics2DShapeQueryParameters, maxResults int64) *Array
+	Class
 }
 
 /*
@@ -70669,7 +64749,7 @@ func (o *Physics2DServer) AreaSetShape(area *RID, shapeIdx int64, shape *RID) {
 /*
 
  */
-func (o *Physics2DServer) AreaSetShapeDisabled(area *RID, shapeIdx int64, disable *bool) {
+func (o *Physics2DServer) AreaSetShapeDisabled(area *RID, shapeIdx int64, disable bool) {
 	log.Println("Calling Physics2DServer.AreaSetShapeDisabled()")
 
 	// Build out the method's arguments
@@ -70882,7 +64962,7 @@ func (o *Physics2DServer) BodyClearShapes(body *RID) {
 /*
    Create a physics body. The first parameter can be any value from constants BODY_MODE*, for the type of body created. Additionally, the body can be created in sleeping state to save processing time.
 */
-func (o *Physics2DServer) BodyCreate(mode int64, initSleeping *bool) *RID {
+func (o *Physics2DServer) BodyCreate(mode int64, initSleeping bool) *RID {
 	log.Println("Calling Physics2DServer.BodyCreate()")
 
 	// Build out the method's arguments
@@ -71196,7 +65276,7 @@ func (o *Physics2DServer) BodyGetState(body *RID, state int64) *Variant {
 /*
    Return whether a body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]).
 */
-func (o *Physics2DServer) BodyIsOmittingForceIntegration(body *RID) *bool {
+func (o *Physics2DServer) BodyIsOmittingForceIntegration(body *RID) bool {
 	log.Println("Calling Physics2DServer.BodyIsOmittingForceIntegration()")
 
 	// Build out the method's arguments
@@ -71205,11 +65285,11 @@ func (o *Physics2DServer) BodyIsOmittingForceIntegration(body *RID) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "body_is_omitting_force_integration", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "body_is_omitting_force_integration", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -71392,7 +65472,7 @@ func (o *Physics2DServer) BodySetMode(body *RID, mode int64) {
 /*
    Set whether a body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]).
 */
-func (o *Physics2DServer) BodySetOmitForceIntegration(body *RID, enable *bool) {
+func (o *Physics2DServer) BodySetOmitForceIntegration(body *RID, enable bool) {
 	log.Println("Calling Physics2DServer.BodySetOmitForceIntegration()")
 
 	// Build out the method's arguments
@@ -71451,7 +65531,7 @@ func (o *Physics2DServer) BodySetShape(body *RID, shapeIdx int64, shape *RID) {
 /*
 
  */
-func (o *Physics2DServer) BodySetShapeAsOneWayCollision(body *RID, shapeIdx int64, enable *bool) {
+func (o *Physics2DServer) BodySetShapeAsOneWayCollision(body *RID, shapeIdx int64, enable bool) {
 	log.Println("Calling Physics2DServer.BodySetShapeAsOneWayCollision()")
 
 	// Build out the method's arguments
@@ -71471,7 +65551,7 @@ func (o *Physics2DServer) BodySetShapeAsOneWayCollision(body *RID, shapeIdx int6
 /*
 
  */
-func (o *Physics2DServer) BodySetShapeDisabled(body *RID, shapeIdx int64, disable *bool) {
+func (o *Physics2DServer) BodySetShapeDisabled(body *RID, shapeIdx int64, disable bool) {
 	log.Println("Calling Physics2DServer.BodySetShapeDisabled()")
 
 	// Build out the method's arguments
@@ -71570,7 +65650,7 @@ func (o *Physics2DServer) BodySetState(body *RID, state int64, value *Variant) {
 /*
    Return whether a body can move from a given point in a given direction. Apart from the boolean return value, a [Physics2DTestMotionResult] can be passed to return additional information in.
 */
-func (o *Physics2DServer) BodyTestMotion(body *RID, from *Transform2D, motion *Vector2, margin float64, result *Physics2DTestMotionResult) *bool {
+func (o *Physics2DServer) BodyTestMotion(body *RID, from *Transform2D, motion *Vector2, margin float64, result *Physics2DTestMotionResult) bool {
 	log.Println("Calling Physics2DServer.BodyTestMotion()")
 
 	// Build out the method's arguments
@@ -71583,11 +65663,11 @@ func (o *Physics2DServer) BodyTestMotion(body *RID, from *Transform2D, motion *V
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "body_test_motion", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "body_test_motion", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -71819,7 +65899,7 @@ func (o *Physics2DServer) PinJointCreate(anchor *Vector2, bodyA *RID, bodyB *RID
 /*
    Activate or deactivate the 2D physics engine.
 */
-func (o *Physics2DServer) SetActive(active *bool) {
+func (o *Physics2DServer) SetActive(active bool) {
 	log.Println("Calling Physics2DServer.SetActive()")
 
 	// Build out the method's arguments
@@ -71988,7 +66068,7 @@ func (o *Physics2DServer) SpaceGetParam(space *RID, param int64) float64 {
 /*
    Return whether the space is active.
 */
-func (o *Physics2DServer) SpaceIsActive(space *RID) *bool {
+func (o *Physics2DServer) SpaceIsActive(space *RID) bool {
 	log.Println("Calling Physics2DServer.SpaceIsActive()")
 
 	// Build out the method's arguments
@@ -71997,11 +66077,11 @@ func (o *Physics2DServer) SpaceIsActive(space *RID) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "space_is_active", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "space_is_active", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -72010,7 +66090,7 @@ func (o *Physics2DServer) SpaceIsActive(space *RID) *bool {
 /*
    Mark a space as active. It will not have an effect, unless it is assigned to an area or body.
 */
-func (o *Physics2DServer) SpaceSetActive(space *RID, active *bool) {
+func (o *Physics2DServer) SpaceSetActive(space *RID, active bool) {
 	log.Println("Calling Physics2DServer.SpaceSetActive()")
 
 	// Build out the method's arguments
@@ -72051,175 +66131,7 @@ func (o *Physics2DServer) SpaceSetParam(space *RID, param int64, value float64) 
    Physics 2D Server is the server responsible for all 2D physics. It can create many kinds of physics objects, but does not insert them on the node tree.
 */
 type Physics2DServerImplementer interface {
-	ObjectImplementer
-
-	AreaAddShape(area *RID, shape *RID, transform *Transform2D)
-
-	AreaAttachObjectInstanceId(area *RID, id int64)
-
-	AreaClearShapes(area *RID)
-
-	AreaCreate() *RID
-
-	AreaGetObjectInstanceId(area *RID) int64
-
-	AreaGetParam(area *RID, param int64) *Variant
-
-	AreaGetShape(area *RID, shapeIdx int64) *RID
-
-	AreaGetShapeCount(area *RID) int64
-
-	AreaGetShapeTransform(area *RID, shapeIdx int64) *Transform2D
-
-	AreaGetSpace(area *RID) *RID
-
-	AreaGetSpaceOverrideMode(area *RID) int64
-
-	AreaGetTransform(area *RID) *Transform2D
-
-	AreaRemoveShape(area *RID, shapeIdx int64)
-
-	AreaSetCollisionLayer(area *RID, layer int64)
-
-	AreaSetCollisionMask(area *RID, mask int64)
-
-	AreaSetMonitorCallback(area *RID, receiver *Object, method string)
-
-	AreaSetParam(area *RID, param int64, value *Variant)
-
-	AreaSetShape(area *RID, shapeIdx int64, shape *RID)
-
-	AreaSetShapeDisabled(area *RID, shapeIdx int64, disable *bool)
-
-	AreaSetShapeTransform(area *RID, shapeIdx int64, transform *Transform2D)
-
-	AreaSetSpace(area *RID, space *RID)
-
-	AreaSetSpaceOverrideMode(area *RID, mode int64)
-
-	AreaSetTransform(area *RID, transform *Transform2D)
-
-	BodyAddCollisionException(body *RID, exceptedBody *RID)
-
-	BodyAddForce(body *RID, offset *Vector2, force *Vector2)
-
-	BodyAddShape(body *RID, shape *RID, transform *Transform2D)
-
-	BodyApplyImpulse(body *RID, pos *Vector2, impulse *Vector2)
-
-	BodyAttachObjectInstanceId(body *RID, id int64)
-
-	BodyClearShapes(body *RID)
-
-	BodyCreate(mode int64, initSleeping *bool) *RID
-
-	BodyGetCollisionLayer(body *RID) int64
-
-	BodyGetCollisionMask(body *RID) int64
-
-	BodyGetContinuousCollisionDetectionMode(body *RID) int64
-
-	BodyGetMaxContactsReported(body *RID) int64
-
-	BodyGetMode(body *RID) int64
-
-	BodyGetObjectInstanceId(body *RID) int64
-
-	BodyGetParam(body *RID, param int64) float64
-
-	BodyGetShape(body *RID, shapeIdx int64) *RID
-
-	BodyGetShapeCount(body *RID) int64
-
-	BodyGetShapeMetadata(body *RID, shapeIdx int64) *Variant
-
-	BodyGetShapeTransform(body *RID, shapeIdx int64) *Transform2D
-
-	BodyGetSpace(body *RID) *RID
-
-	BodyGetState(body *RID, state int64) *Variant
-
-	BodyIsOmittingForceIntegration(body *RID) *bool
-
-	BodyRemoveCollisionException(body *RID, exceptedBody *RID)
-
-	BodyRemoveShape(body *RID, shapeIdx int64)
-
-	BodySetAxisVelocity(body *RID, axisVelocity *Vector2)
-
-	BodySetCollisionLayer(body *RID, layer int64)
-
-	BodySetCollisionMask(body *RID, mask int64)
-
-	BodySetContinuousCollisionDetectionMode(body *RID, mode int64)
-
-	BodySetForceIntegrationCallback(body *RID, receiver *Object, method string, userdata *Variant)
-
-	BodySetMaxContactsReported(body *RID, amount int64)
-
-	BodySetMode(body *RID, mode int64)
-
-	BodySetOmitForceIntegration(body *RID, enable *bool)
-
-	BodySetParam(body *RID, param int64, value float64)
-
-	BodySetShape(body *RID, shapeIdx int64, shape *RID)
-
-	BodySetShapeAsOneWayCollision(body *RID, shapeIdx int64, enable *bool)
-
-	BodySetShapeDisabled(body *RID, shapeIdx int64, disable *bool)
-
-	BodySetShapeMetadata(body *RID, shapeIdx int64, metadata *Variant)
-
-	BodySetShapeTransform(body *RID, shapeIdx int64, transform *Transform2D)
-
-	BodySetSpace(body *RID, space *RID)
-
-	BodySetState(body *RID, state int64, value *Variant)
-
-	BodyTestMotion(body *RID, from *Transform2D, motion *Vector2, margin float64, result *Physics2DTestMotionResult) *bool
-
-	DampedSpringJointCreate(anchorA *Vector2, anchorB *Vector2, bodyA *RID, bodyB *RID) *RID
-
-	DampedStringJointGetParam(joint *RID, param int64) float64
-
-	DampedStringJointSetParam(joint *RID, param int64, value float64)
-
-	FreeRid(rid *RID)
-
-	GetProcessInfo(processInfo int64) int64
-
-	GrooveJointCreate(groove1A *Vector2, groove2A *Vector2, anchorB *Vector2, bodyA *RID, bodyB *RID) *RID
-
-	JointGetParam(joint *RID, param int64) float64
-
-	JointGetType(joint *RID) int64
-
-	JointSetParam(joint *RID, param int64, value float64)
-
-	PinJointCreate(anchor *Vector2, bodyA *RID, bodyB *RID) *RID
-
-	SetActive(active *bool)
-
-	ShapeCreate(aType int64) *RID
-
-	ShapeGetData(shape *RID) *Variant
-
-	ShapeGetType(shape *RID) int64
-
-	ShapeSetData(shape *RID, data *Variant)
-
-	SpaceCreate() *RID
-
-	SpaceGetDirectState(space *RID) *Physics2DDirectSpaceState
-
-	SpaceGetParam(space *RID, param int64) float64
-
-	SpaceIsActive(space *RID) *bool
-
-	SpaceSetActive(space *RID, active *bool)
-
-	SpaceSetParam(space *RID, param int64, value float64)
+	Class
 }
 
 /*
@@ -72238,7 +66150,7 @@ func (o *Physics2DServerSW) baseClass() string {
    Software implementation of [Physics2DServer]. This class exposes no new methods or properties and should not be used, as [Physics2DServer] automatically selects the best implementation available.
 */
 type Physics2DServerSWImplementer interface {
-	Physics2DServerImplementer
+	Class
 }
 
 /*
@@ -72548,37 +66460,7 @@ func (o *Physics2DShapeQueryParameters) SetTransform(transform *Transform2D) {
    This class contains the shape and other parameters for intersection/collision queries.
 */
 type Physics2DShapeQueryParametersImplementer interface {
-	ReferenceImplementer
-
-	GetCollisionLayer() int64
-
-	GetExclude() *Array
-
-	GetMargin() float64
-
-	GetMotion() *Vector2
-
-	GetObjectTypeMask() int64
-
-	GetShapeRid() *RID
-
-	GetTransform() *Transform2D
-
-	SetCollisionLayer(collisionLayer int64)
-
-	SetExclude(exclude *Array)
-
-	SetMargin(margin float64)
-
-	SetMotion(motion *Vector2)
-
-	SetObjectTypeMask(objectTypeMask int64)
-
-	SetShape(shape *Resource)
-
-	SetShapeRid(shape *RID)
-
-	SetTransform(transform *Transform2D)
+	Class
 }
 
 /*
@@ -72706,17 +66588,7 @@ func (o *Physics2DShapeQueryResult) GetResultRid(idx int64) *RID {
 
 */
 type Physics2DShapeQueryResultImplementer interface {
-	ReferenceImplementer
-
-	GetResultCount() int64
-
-	GetResultObject(idx int64) *Object
-
-	GetResultObjectId(idx int64) int64
-
-	GetResultObjectShape(idx int64) int64
-
-	GetResultRid(idx int64) *RID
+	Class
 }
 
 /*
@@ -72924,25 +66796,7 @@ func (o *Physics2DTestMotionResult) GetMotionRemainder() *Vector2 {
 
 */
 type Physics2DTestMotionResultImplementer interface {
-	ReferenceImplementer
-
-	GetCollider() *Object
-
-	GetColliderId() int64
-
-	GetColliderRid() *RID
-
-	GetColliderShape() int64
-
-	GetColliderVelocity() *Vector2
-
-	GetCollisionNormal() *Vector2
-
-	GetCollisionPoint() *Vector2
-
-	GetMotion() *Vector2
-
-	GetMotionRemainder() *Vector2
+	Class
 }
 
 /*
@@ -72998,7 +66852,7 @@ func (o *PhysicsBody) GetCollisionLayer() int64 {
 /*
 
  */
-func (o *PhysicsBody) GetCollisionLayerBit(bit int64) *bool {
+func (o *PhysicsBody) GetCollisionLayerBit(bit int64) bool {
 	log.Println("Calling PhysicsBody.GetCollisionLayerBit()")
 
 	// Build out the method's arguments
@@ -73007,11 +66861,11 @@ func (o *PhysicsBody) GetCollisionLayerBit(bit int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_layer_bit", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_collision_layer_bit", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -73041,7 +66895,7 @@ func (o *PhysicsBody) GetCollisionMask() int64 {
 /*
 
  */
-func (o *PhysicsBody) GetCollisionMaskBit(bit int64) *bool {
+func (o *PhysicsBody) GetCollisionMaskBit(bit int64) bool {
 	log.Println("Calling PhysicsBody.GetCollisionMaskBit()")
 
 	// Build out the method's arguments
@@ -73050,11 +66904,11 @@ func (o *PhysicsBody) GetCollisionMaskBit(bit int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_mask_bit", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_collision_mask_bit", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -73099,7 +66953,7 @@ func (o *PhysicsBody) SetCollisionLayer(layer int64) {
 /*
 
  */
-func (o *PhysicsBody) SetCollisionLayerBit(bit int64, value *bool) {
+func (o *PhysicsBody) SetCollisionLayerBit(bit int64, value bool) {
 	log.Println("Calling PhysicsBody.SetCollisionLayerBit()")
 
 	// Build out the method's arguments
@@ -73136,7 +66990,7 @@ func (o *PhysicsBody) SetCollisionMask(mask int64) {
 /*
 
  */
-func (o *PhysicsBody) SetCollisionMaskBit(bit int64, value *bool) {
+func (o *PhysicsBody) SetCollisionMaskBit(bit int64, value bool) {
 	log.Println("Calling PhysicsBody.SetCollisionMaskBit()")
 
 	// Build out the method's arguments
@@ -73157,27 +67011,7 @@ func (o *PhysicsBody) SetCollisionMaskBit(bit int64, value *bool) {
    PhysicsBody is an abstract base class for implementing a physics body. All PhysicsBody types inherit from it.
 */
 type PhysicsBodyImplementer interface {
-	CollisionObjectImplementer
-
-	AddCollisionExceptionWith(body *Node)
-
-	GetCollisionLayer() int64
-
-	GetCollisionLayerBit(bit int64) *bool
-
-	GetCollisionMask() int64
-
-	GetCollisionMaskBit(bit int64) *bool
-
-	RemoveCollisionExceptionWith(body *Node)
-
-	SetCollisionLayer(layer int64)
-
-	SetCollisionLayerBit(bit int64, value *bool)
-
-	SetCollisionMask(mask int64)
-
-	SetCollisionMaskBit(bit int64, value *bool)
+	Class
 }
 
 /*
@@ -73233,7 +67067,7 @@ func (o *PhysicsBody2D) GetCollisionLayer() int64 {
 /*
    Return an individual bit on the collision mask.
 */
-func (o *PhysicsBody2D) GetCollisionLayerBit(bit int64) *bool {
+func (o *PhysicsBody2D) GetCollisionLayerBit(bit int64) bool {
 	log.Println("Calling PhysicsBody2D.GetCollisionLayerBit()")
 
 	// Build out the method's arguments
@@ -73242,11 +67076,11 @@ func (o *PhysicsBody2D) GetCollisionLayerBit(bit int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_layer_bit", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_collision_layer_bit", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -73276,7 +67110,7 @@ func (o *PhysicsBody2D) GetCollisionMask() int64 {
 /*
    Return an individual bit on the collision mask.
 */
-func (o *PhysicsBody2D) GetCollisionMaskBit(bit int64) *bool {
+func (o *PhysicsBody2D) GetCollisionMaskBit(bit int64) bool {
 	log.Println("Calling PhysicsBody2D.GetCollisionMaskBit()")
 
 	// Build out the method's arguments
@@ -73285,11 +67119,11 @@ func (o *PhysicsBody2D) GetCollisionMaskBit(bit int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_mask_bit", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_collision_mask_bit", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -73336,7 +67170,7 @@ func (o *PhysicsBody2D) SetCollisionLayer(layer int64) {
 /*
    Set/clear individual bits on the layer mask. This makes getting a body in/out of only one layer easier.
 */
-func (o *PhysicsBody2D) SetCollisionLayerBit(bit int64, value *bool) {
+func (o *PhysicsBody2D) SetCollisionLayerBit(bit int64, value bool) {
 	log.Println("Calling PhysicsBody2D.SetCollisionLayerBit()")
 
 	// Build out the method's arguments
@@ -73373,7 +67207,7 @@ func (o *PhysicsBody2D) SetCollisionMask(mask int64) {
 /*
    Set/clear individual bits on the collision mask. This makes selecting the areas scanned easier.
 */
-func (o *PhysicsBody2D) SetCollisionMaskBit(bit int64, value *bool) {
+func (o *PhysicsBody2D) SetCollisionMaskBit(bit int64, value bool) {
 	log.Println("Calling PhysicsBody2D.SetCollisionMaskBit()")
 
 	// Build out the method's arguments
@@ -73394,27 +67228,7 @@ func (o *PhysicsBody2D) SetCollisionMaskBit(bit int64, value *bool) {
    PhysicsBody2D is an abstract base class for implementing a physics body. All *Body2D types inherit from it.
 */
 type PhysicsBody2DImplementer interface {
-	CollisionObject2DImplementer
-
-	AddCollisionExceptionWith(body *Node)
-
-	GetCollisionLayer() int64
-
-	GetCollisionLayerBit(bit int64) *bool
-
-	GetCollisionMask() int64
-
-	GetCollisionMaskBit(bit int64) *bool
-
-	RemoveCollisionExceptionWith(body *Node)
-
-	SetCollisionLayer(layer int64)
-
-	SetCollisionLayerBit(bit int64, value *bool)
-
-	SetCollisionMask(mask int64)
-
-	SetCollisionMaskBit(bit int64, value *bool)
+	Class
 }
 
 /*
@@ -73975,7 +67789,7 @@ func (o *PhysicsDirectBodyState) IntegrateForces() {
 /*
 
  */
-func (o *PhysicsDirectBodyState) IsSleeping() *bool {
+func (o *PhysicsDirectBodyState) IsSleeping() bool {
 	log.Println("Calling PhysicsDirectBodyState.IsSleeping()")
 
 	// Build out the method's arguments
@@ -73983,11 +67797,11 @@ func (o *PhysicsDirectBodyState) IsSleeping() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_sleeping", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_sleeping", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -74032,7 +67846,7 @@ func (o *PhysicsDirectBodyState) SetLinearVelocity(velocity *Vector3) {
 /*
 
  */
-func (o *PhysicsDirectBodyState) SetSleepState(enabled *bool) {
+func (o *PhysicsDirectBodyState) SetSleepState(enabled bool) {
 	log.Println("Calling PhysicsDirectBodyState.SetSleepState()")
 
 	// Build out the method's arguments
@@ -74070,69 +67884,7 @@ func (o *PhysicsDirectBodyState) SetTransform(transform *Transform) {
 
 */
 type PhysicsDirectBodyStateImplementer interface {
-	ObjectImplementer
-
-	AddForce(force *Vector3, pos *Vector3)
-
-	ApplyImpulse(pos *Vector3, j *Vector3)
-
-	ApplyTorqeImpulse(j *Vector3)
-
-	GetAngularVelocity() *Vector3
-
-	GetCenterOfMass() *Vector3
-
-	GetContactCollider(contactIdx int64) *RID
-
-	GetContactColliderId(contactIdx int64) int64
-
-	GetContactColliderObject(contactIdx int64) *Object
-
-	GetContactColliderPos(contactIdx int64) *Vector3
-
-	GetContactColliderShape(contactIdx int64) int64
-
-	GetContactColliderVelocityAtPos(contactIdx int64) *Vector3
-
-	GetContactCount() int64
-
-	GetContactLocalNormal(contactIdx int64) *Vector3
-
-	GetContactLocalPos(contactIdx int64) *Vector3
-
-	GetContactLocalShape(contactIdx int64) int64
-
-	GetInverseInertia() *Vector3
-
-	GetInverseMass() float64
-
-	GetLinearVelocity() *Vector3
-
-	GetPrincipalInertiaAxes() *Basis
-
-	GetSpaceState() *PhysicsDirectSpaceState
-
-	GetStep() float64
-
-	GetTotalAngularDamp() float64
-
-	GetTotalGravity() *Vector3
-
-	GetTotalLinearDamp() float64
-
-	GetTransform() *Transform
-
-	IntegrateForces()
-
-	IsSleeping() *bool
-
-	SetAngularVelocity(velocity *Vector3)
-
-	SetLinearVelocity(velocity *Vector3)
-
-	SetSleepState(enabled *bool)
-
-	SetTransform(transform *Transform)
+	Class
 }
 
 /*
@@ -74151,7 +67903,7 @@ func (o *PhysicsDirectBodyStateSW) baseClass() string {
 
 */
 type PhysicsDirectBodyStateSWImplementer interface {
-	PhysicsDirectBodyStateImplementer
+	Class
 }
 
 /*
@@ -74287,17 +68039,7 @@ func (o *PhysicsDirectSpaceState) IntersectShape(shape *PhysicsShapeQueryParamet
 
 */
 type PhysicsDirectSpaceStateImplementer interface {
-	ObjectImplementer
-
-	CastMotion(shape *PhysicsShapeQueryParameters, motion *Vector3) *Array
-
-	CollideShape(shape *PhysicsShapeQueryParameters, maxResults int64) *Array
-
-	GetRestInfo(shape *PhysicsShapeQueryParameters) *Dictionary
-
-	IntersectRay(from *Vector3, to *Vector3, exclude *Array, collisionLayer int64, typeMask int64) *Dictionary
-
-	IntersectShape(shape *PhysicsShapeQueryParameters, maxResults int64) *Array
+	Class
 }
 
 /*
@@ -74571,7 +68313,7 @@ func (o *PhysicsServer) AreaGetTransform(area *RID) *Transform {
 /*
 
  */
-func (o *PhysicsServer) AreaIsRayPickable(area *RID) *bool {
+func (o *PhysicsServer) AreaIsRayPickable(area *RID) bool {
 	log.Println("Calling PhysicsServer.AreaIsRayPickable()")
 
 	// Build out the method's arguments
@@ -74580,11 +68322,11 @@ func (o *PhysicsServer) AreaIsRayPickable(area *RID) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "area_is_ray_pickable", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "area_is_ray_pickable", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -74690,7 +68432,7 @@ func (o *PhysicsServer) AreaSetParam(area *RID, param int64, value *Variant) {
 /*
 
  */
-func (o *PhysicsServer) AreaSetRayPickable(area *RID, enable *bool) {
+func (o *PhysicsServer) AreaSetRayPickable(area *RID, enable bool) {
 	log.Println("Calling PhysicsServer.AreaSetRayPickable()")
 
 	// Build out the method's arguments
@@ -74921,7 +68663,7 @@ func (o *PhysicsServer) BodyClearShapes(body *RID) {
 /*
 
  */
-func (o *PhysicsServer) BodyCreate(mode int64, initSleeping *bool) *RID {
+func (o *PhysicsServer) BodyCreate(mode int64, initSleeping bool) *RID {
 	log.Println("Calling PhysicsServer.BodyCreate()")
 
 	// Build out the method's arguments
@@ -75212,7 +68954,7 @@ func (o *PhysicsServer) BodyGetState(body *RID, state int64) *Variant {
 /*
 
  */
-func (o *PhysicsServer) BodyIsContinuousCollisionDetectionEnabled(body *RID) *bool {
+func (o *PhysicsServer) BodyIsContinuousCollisionDetectionEnabled(body *RID) bool {
 	log.Println("Calling PhysicsServer.BodyIsContinuousCollisionDetectionEnabled()")
 
 	// Build out the method's arguments
@@ -75221,11 +68963,11 @@ func (o *PhysicsServer) BodyIsContinuousCollisionDetectionEnabled(body *RID) *bo
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "body_is_continuous_collision_detection_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "body_is_continuous_collision_detection_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -75234,7 +68976,7 @@ func (o *PhysicsServer) BodyIsContinuousCollisionDetectionEnabled(body *RID) *bo
 /*
 
  */
-func (o *PhysicsServer) BodyIsOmittingForceIntegration(body *RID) *bool {
+func (o *PhysicsServer) BodyIsOmittingForceIntegration(body *RID) bool {
 	log.Println("Calling PhysicsServer.BodyIsOmittingForceIntegration()")
 
 	// Build out the method's arguments
@@ -75243,11 +68985,11 @@ func (o *PhysicsServer) BodyIsOmittingForceIntegration(body *RID) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "body_is_omitting_force_integration", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "body_is_omitting_force_integration", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -75256,7 +68998,7 @@ func (o *PhysicsServer) BodyIsOmittingForceIntegration(body *RID) *bool {
 /*
 
  */
-func (o *PhysicsServer) BodyIsRayPickable(body *RID) *bool {
+func (o *PhysicsServer) BodyIsRayPickable(body *RID) bool {
 	log.Println("Calling PhysicsServer.BodyIsRayPickable()")
 
 	// Build out the method's arguments
@@ -75265,11 +69007,11 @@ func (o *PhysicsServer) BodyIsRayPickable(body *RID) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "body_is_ray_pickable", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "body_is_ray_pickable", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -75392,7 +69134,7 @@ func (o *PhysicsServer) BodySetCollisionMask(body *RID, mask int64) {
 /*
 
  */
-func (o *PhysicsServer) BodySetEnableContinuousCollisionDetection(body *RID, enable *bool) {
+func (o *PhysicsServer) BodySetEnableContinuousCollisionDetection(body *RID, enable bool) {
 	log.Println("Calling PhysicsServer.BodySetEnableContinuousCollisionDetection()")
 
 	// Build out the method's arguments
@@ -75470,7 +69212,7 @@ func (o *PhysicsServer) BodySetMode(body *RID, mode int64) {
 /*
 
  */
-func (o *PhysicsServer) BodySetOmitForceIntegration(body *RID, enable *bool) {
+func (o *PhysicsServer) BodySetOmitForceIntegration(body *RID, enable bool) {
 	log.Println("Calling PhysicsServer.BodySetOmitForceIntegration()")
 
 	// Build out the method's arguments
@@ -75509,7 +69251,7 @@ func (o *PhysicsServer) BodySetParam(body *RID, param int64, value float64) {
 /*
 
  */
-func (o *PhysicsServer) BodySetRayPickable(body *RID, enable *bool) {
+func (o *PhysicsServer) BodySetRayPickable(body *RID, enable bool) {
 	log.Println("Calling PhysicsServer.BodySetRayPickable()")
 
 	// Build out the method's arguments
@@ -75668,7 +69410,7 @@ func (o *PhysicsServer) FreeRid(rid *RID) {
 /*
 
  */
-func (o *PhysicsServer) Generic6DofJointGetFlag(joint *RID, axis int64, flag int64) *bool {
+func (o *PhysicsServer) Generic6DofJointGetFlag(joint *RID, axis int64, flag int64) bool {
 	log.Println("Calling PhysicsServer.Generic6DofJointGetFlag()")
 
 	// Build out the method's arguments
@@ -75679,11 +69421,11 @@ func (o *PhysicsServer) Generic6DofJointGetFlag(joint *RID, axis int64, flag int
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "generic_6dof_joint_get_flag", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "generic_6dof_joint_get_flag", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -75716,7 +69458,7 @@ func (o *PhysicsServer) Generic6DofJointGetParam(joint *RID, axis int64, param i
 /*
 
  */
-func (o *PhysicsServer) Generic6DofJointSetFlag(joint *RID, axis int64, flag int64, enable *bool) {
+func (o *PhysicsServer) Generic6DofJointSetFlag(joint *RID, axis int64, flag int64, enable bool) {
 	log.Println("Calling PhysicsServer.Generic6DofJointSetFlag()")
 
 	// Build out the method's arguments
@@ -75780,7 +69522,7 @@ func (o *PhysicsServer) GetProcessInfo(processInfo int64) int64 {
 /*
 
  */
-func (o *PhysicsServer) HingeJointGetFlag(joint *RID, flag int64) *bool {
+func (o *PhysicsServer) HingeJointGetFlag(joint *RID, flag int64) bool {
 	log.Println("Calling PhysicsServer.HingeJointGetFlag()")
 
 	// Build out the method's arguments
@@ -75790,11 +69532,11 @@ func (o *PhysicsServer) HingeJointGetFlag(joint *RID, flag int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "hinge_joint_get_flag", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "hinge_joint_get_flag", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -75826,7 +69568,7 @@ func (o *PhysicsServer) HingeJointGetParam(joint *RID, param int64) float64 {
 /*
 
  */
-func (o *PhysicsServer) HingeJointSetFlag(joint *RID, flag int64, enabled *bool) {
+func (o *PhysicsServer) HingeJointSetFlag(joint *RID, flag int64, enabled bool) {
 	log.Println("Calling PhysicsServer.HingeJointSetFlag()")
 
 	// Build out the method's arguments
@@ -76179,7 +69921,7 @@ func (o *PhysicsServer) PinJointSetParam(joint *RID, param int64, value float64)
 /*
 
  */
-func (o *PhysicsServer) SetActive(active *bool) {
+func (o *PhysicsServer) SetActive(active bool) {
 	log.Println("Calling PhysicsServer.SetActive()")
 
 	// Build out the method's arguments
@@ -76391,7 +70133,7 @@ func (o *PhysicsServer) SpaceGetParam(space *RID, param int64) float64 {
 /*
 
  */
-func (o *PhysicsServer) SpaceIsActive(space *RID) *bool {
+func (o *PhysicsServer) SpaceIsActive(space *RID) bool {
 	log.Println("Calling PhysicsServer.SpaceIsActive()")
 
 	// Build out the method's arguments
@@ -76400,11 +70142,11 @@ func (o *PhysicsServer) SpaceIsActive(space *RID) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "space_is_active", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "space_is_active", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -76413,7 +70155,7 @@ func (o *PhysicsServer) SpaceIsActive(space *RID) *bool {
 /*
 
  */
-func (o *PhysicsServer) SpaceSetActive(space *RID, active *bool) {
+func (o *PhysicsServer) SpaceSetActive(space *RID, active bool) {
 	log.Println("Calling PhysicsServer.SpaceSetActive()")
 
 	// Build out the method's arguments
@@ -76454,211 +70196,7 @@ func (o *PhysicsServer) SpaceSetParam(space *RID, param int64, value float64) {
 
 */
 type PhysicsServerImplementer interface {
-	ObjectImplementer
-
-	AreaAddShape(area *RID, shape *RID, transform *Transform)
-
-	AreaAttachObjectInstanceId(area *RID, id int64)
-
-	AreaClearShapes(area *RID)
-
-	AreaCreate() *RID
-
-	AreaGetObjectInstanceId(area *RID) int64
-
-	AreaGetParam(area *RID, param int64) *Variant
-
-	AreaGetShape(area *RID, shapeIdx int64) *RID
-
-	AreaGetShapeCount(area *RID) int64
-
-	AreaGetShapeTransform(area *RID, shapeIdx int64) *Transform
-
-	AreaGetSpace(area *RID) *RID
-
-	AreaGetSpaceOverrideMode(area *RID) int64
-
-	AreaGetTransform(area *RID) *Transform
-
-	AreaIsRayPickable(area *RID) *bool
-
-	AreaRemoveShape(area *RID, shapeIdx int64)
-
-	AreaSetCollisionLayer(area *RID, layer int64)
-
-	AreaSetCollisionMask(area *RID, mask int64)
-
-	AreaSetMonitorCallback(area *RID, receiver *Object, method string)
-
-	AreaSetParam(area *RID, param int64, value *Variant)
-
-	AreaSetRayPickable(area *RID, enable *bool)
-
-	AreaSetShape(area *RID, shapeIdx int64, shape *RID)
-
-	AreaSetShapeTransform(area *RID, shapeIdx int64, transform *Transform)
-
-	AreaSetSpace(area *RID, space *RID)
-
-	AreaSetSpaceOverrideMode(area *RID, mode int64)
-
-	AreaSetTransform(area *RID, transform *Transform)
-
-	BodyAddCollisionException(body *RID, exceptedBody *RID)
-
-	BodyAddShape(body *RID, shape *RID, transform *Transform)
-
-	BodyApplyImpulse(body *RID, pos *Vector3, impulse *Vector3)
-
-	BodyApplyTorqueImpulse(body *RID, impulse *Vector3)
-
-	BodyAttachObjectInstanceId(body *RID, id int64)
-
-	BodyClearShapes(body *RID)
-
-	BodyCreate(mode int64, initSleeping *bool) *RID
-
-	BodyGetAxisLock(body *RID) int64
-
-	BodyGetCollisionLayer(body *RID) int64
-
-	BodyGetCollisionMask(body *RID) int64
-
-	BodyGetMaxContactsReported(body *RID) int64
-
-	BodyGetMode(body *RID) int64
-
-	BodyGetObjectInstanceId(body *RID) int64
-
-	BodyGetParam(body *RID, param int64) float64
-
-	BodyGetShape(body *RID, shapeIdx int64) *RID
-
-	BodyGetShapeCount(body *RID) int64
-
-	BodyGetShapeTransform(body *RID, shapeIdx int64) *Transform
-
-	BodyGetSpace(body *RID) *RID
-
-	BodyGetState(body *RID, state int64) *Variant
-
-	BodyIsContinuousCollisionDetectionEnabled(body *RID) *bool
-
-	BodyIsOmittingForceIntegration(body *RID) *bool
-
-	BodyIsRayPickable(body *RID) *bool
-
-	BodyRemoveCollisionException(body *RID, exceptedBody *RID)
-
-	BodyRemoveShape(body *RID, shapeIdx int64)
-
-	BodySetAxisLock(body *RID, axis int64)
-
-	BodySetAxisVelocity(body *RID, axisVelocity *Vector3)
-
-	BodySetCollisionLayer(body *RID, layer int64)
-
-	BodySetCollisionMask(body *RID, mask int64)
-
-	BodySetEnableContinuousCollisionDetection(body *RID, enable *bool)
-
-	BodySetForceIntegrationCallback(body *RID, receiver *Object, method string, userdata *Variant)
-
-	BodySetMaxContactsReported(body *RID, amount int64)
-
-	BodySetMode(body *RID, mode int64)
-
-	BodySetOmitForceIntegration(body *RID, enable *bool)
-
-	BodySetParam(body *RID, param int64, value float64)
-
-	BodySetRayPickable(body *RID, enable *bool)
-
-	BodySetShape(body *RID, shapeIdx int64, shape *RID)
-
-	BodySetShapeTransform(body *RID, shapeIdx int64, transform *Transform)
-
-	BodySetSpace(body *RID, space *RID)
-
-	BodySetState(body *RID, state int64, value *Variant)
-
-	ConeTwistJointGetParam(joint *RID, param int64) float64
-
-	ConeTwistJointSetParam(joint *RID, param int64, value float64)
-
-	FreeRid(rid *RID)
-
-	Generic6DofJointGetFlag(joint *RID, axis int64, flag int64) *bool
-
-	Generic6DofJointGetParam(joint *RID, axis int64, param int64) float64
-
-	Generic6DofJointSetFlag(joint *RID, axis int64, flag int64, enable *bool)
-
-	Generic6DofJointSetParam(joint *RID, axis int64, param int64, value float64)
-
-	GetProcessInfo(processInfo int64) int64
-
-	HingeJointGetFlag(joint *RID, flag int64) *bool
-
-	HingeJointGetParam(joint *RID, param int64) float64
-
-	HingeJointSetFlag(joint *RID, flag int64, enabled *bool)
-
-	HingeJointSetParam(joint *RID, param int64, value float64)
-
-	JointCreateConeTwist(bodyA *RID, localRefA *Transform, bodyB *RID, localRefB *Transform) *RID
-
-	JointCreateGeneric6Dof(bodyA *RID, localRefA *Transform, bodyB *RID, localRefB *Transform) *RID
-
-	JointCreateHinge(bodyA *RID, hingeA *Transform, bodyB *RID, hingeB *Transform) *RID
-
-	JointCreatePin(bodyA *RID, localA *Vector3, bodyB *RID, localB *Vector3) *RID
-
-	JointCreateSlider(bodyA *RID, localRefA *Transform, bodyB *RID, localRefB *Transform) *RID
-
-	JointGetSolverPriority(joint *RID) int64
-
-	JointGetType(joint *RID) int64
-
-	JointSetSolverPriority(joint *RID, priority int64)
-
-	PinJointGetLocalA(joint *RID) *Vector3
-
-	PinJointGetLocalB(joint *RID) *Vector3
-
-	PinJointGetParam(joint *RID, param int64) float64
-
-	PinJointSetLocalA(joint *RID, localA *Vector3)
-
-	PinJointSetLocalB(joint *RID, localB *Vector3)
-
-	PinJointSetParam(joint *RID, param int64, value float64)
-
-	SetActive(active *bool)
-
-	ShapeCreate(aType int64) *RID
-
-	ShapeGetData(shape *RID) *Variant
-
-	ShapeGetType(shape *RID) int64
-
-	ShapeSetData(shape *RID, data *Variant)
-
-	SliderJointGetParam(joint *RID, param int64) float64
-
-	SliderJointSetParam(joint *RID, param int64, value float64)
-
-	SpaceCreate() *RID
-
-	SpaceGetDirectState(space *RID) *PhysicsDirectSpaceState
-
-	SpaceGetParam(space *RID, param int64) float64
-
-	SpaceIsActive(space *RID) *bool
-
-	SpaceSetActive(space *RID, active *bool)
-
-	SpaceSetParam(space *RID, param int64, value float64)
+	Class
 }
 
 /*
@@ -76677,7 +70215,7 @@ func (o *PhysicsServerSW) baseClass() string {
 
 */
 type PhysicsServerSWImplementer interface {
-	PhysicsServerImplementer
+	Class
 }
 
 /*
@@ -76948,33 +70486,7 @@ func (o *PhysicsShapeQueryParameters) SetTransform(transform *Transform) {
 
 */
 type PhysicsShapeQueryParametersImplementer interface {
-	ReferenceImplementer
-
-	GetCollisionLayer() int64
-
-	GetExclude() *Array
-
-	GetMargin() float64
-
-	GetObjectTypeMask() int64
-
-	GetShapeRid() *RID
-
-	GetTransform() *Transform
-
-	SetCollisionLayer(collisionLayer int64)
-
-	SetExclude(exclude *Array)
-
-	SetMargin(margin float64)
-
-	SetObjectTypeMask(objectTypeMask int64)
-
-	SetShape(shape *Resource)
-
-	SetShapeRid(shape *RID)
-
-	SetTransform(transform *Transform)
+	Class
 }
 
 /*
@@ -77102,17 +70614,7 @@ func (o *PhysicsShapeQueryResult) GetResultRid(idx int64) *RID {
 
 */
 type PhysicsShapeQueryResultImplementer interface {
-	ReferenceImplementer
-
-	GetResultCount() int64
-
-	GetResultObject(idx int64) *Object
-
-	GetResultObjectId(idx int64) int64
-
-	GetResultObjectShape(idx int64) int64
-
-	GetResultRid(idx int64) *RID
+	Class
 }
 
 /*
@@ -77172,11 +70674,7 @@ func (o *PinJoint) SetParam(param int64, value float64) {
 
 */
 type PinJointImplementer interface {
-	JointImplementer
-
-	GetParam(param int64) float64
-
-	SetParam(param int64, value float64)
+	Class
 }
 
 /*
@@ -77234,11 +70732,7 @@ func (o *PinJoint2D) SetSoftness(softness float64) {
    Pin Joint for 2D Rigid Bodies. It pins 2 bodies (rigid or static) together, or a single body to a fixed position in space.
 */
 type PinJoint2DImplementer interface {
-	Joint2DImplementer
-
-	GetSoftness() float64
-
-	SetSoftness(softness float64)
+	Class
 }
 
 /*
@@ -77374,19 +70868,7 @@ func (o *PlaneMesh) SetSubdivideWidth(subdivide int64) {
 
 */
 type PlaneMeshImplementer interface {
-	PrimitiveMeshImplementer
-
-	GetSize() *Vector2
-
-	GetSubdivideDepth() int64
-
-	GetSubdivideWidth() int64
-
-	SetSize(size *Vector2)
-
-	SetSubdivideDepth(subdivide int64)
-
-	SetSubdivideWidth(subdivide int64)
+	Class
 }
 
 /*
@@ -77444,11 +70926,7 @@ func (o *PlaneShape) SetPlane(plane *Plane) {
 
 */
 type PlaneShapeImplementer interface {
-	ShapeImplementer
-
-	GetPlane() *Plane
-
-	SetPlane(plane *Plane)
+	Class
 }
 
 /*
@@ -77465,7 +70943,7 @@ func (o *Polygon2D) baseClass() string {
 /*
 
  */
-func (o *Polygon2D) GetAntialiased() *bool {
+func (o *Polygon2D) GetAntialiased() bool {
 	log.Println("Calling Polygon2D.GetAntialiased()")
 
 	// Build out the method's arguments
@@ -77473,11 +70951,11 @@ func (o *Polygon2D) GetAntialiased() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_antialiased", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_antialiased", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -77507,7 +70985,7 @@ func (o *Polygon2D) GetColor() *Color {
 /*
    Return whether this polygon is inverted or not.
 */
-func (o *Polygon2D) GetInvert() *bool {
+func (o *Polygon2D) GetInvert() bool {
 	log.Println("Calling Polygon2D.GetInvert()")
 
 	// Build out the method's arguments
@@ -77515,11 +70993,11 @@ func (o *Polygon2D) GetInvert() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_invert", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_invert", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -77717,7 +71195,7 @@ func (o *Polygon2D) GetVertexColors() *PoolColorArray {
 /*
 
  */
-func (o *Polygon2D) SetAntialiased(antialiased *bool) {
+func (o *Polygon2D) SetAntialiased(antialiased bool) {
 	log.Println("Calling Polygon2D.SetAntialiased()")
 
 	// Build out the method's arguments
@@ -77753,7 +71231,7 @@ func (o *Polygon2D) SetColor(color *Color) {
 /*
    Set the polygon as the defined polygon bounding box minus the defined polygon (the defined polygon will appear as a hole on the square that contains the defined polygon).
 */
-func (o *Polygon2D) SetInvert(invert *bool) {
+func (o *Polygon2D) SetInvert(invert bool) {
 	log.Println("Calling Polygon2D.SetInvert()")
 
 	// Build out the method's arguments
@@ -77936,55 +71414,7 @@ func (o *Polygon2D) SetVertexColors(vertexColors *PoolColorArray) {
    A Polygon2D is defined by a set of n vertices connected together by line segments, meaning that the vertex 1 will be connected with vertex 2, vertex 2 with vertex 3 ..., vertex n-1 with vertex n and vertex n with vertex 1 in order to close the loop and define a polygon.
 */
 type Polygon2DImplementer interface {
-	Node2DImplementer
-
-	GetAntialiased() *bool
-
-	GetColor() *Color
-
-	GetInvert() *bool
-
-	GetInvertBorder() float64
-
-	GetOffset() *Vector2
-
-	GetPolygon() *PoolVector2Array
-
-	GetTexture() *Texture
-
-	GetTextureOffset() *Vector2
-
-	GetTextureRotation() float64
-
-	GetTextureScale() *Vector2
-
-	GetUv() *PoolVector2Array
-
-	GetVertexColors() *PoolColorArray
-
-	SetAntialiased(antialiased *bool)
-
-	SetColor(color *Color)
-
-	SetInvert(invert *bool)
-
-	SetInvertBorder(invertBorder float64)
-
-	SetOffset(offset *Vector2)
-
-	SetPolygon(polygon *PoolVector2Array)
-
-	SetTexture(texture *Texture)
-
-	SetTextureOffset(textureOffset *Vector2)
-
-	SetTextureRotation(textureRotation float64)
-
-	SetTextureScale(textureScale *Vector2)
-
-	SetUv(uv *PoolVector2Array)
-
-	SetVertexColors(vertexColors *PoolColorArray)
+	Class
 }
 
 /*
@@ -78112,7 +71542,7 @@ func (o *PolygonPathFinder) GetPointPenalty(idx int64) float64 {
 /*
 
  */
-func (o *PolygonPathFinder) IsPointInside(point *Vector2) *bool {
+func (o *PolygonPathFinder) IsPointInside(point *Vector2) bool {
 	log.Println("Calling PolygonPathFinder.IsPointInside()")
 
 	// Build out the method's arguments
@@ -78121,11 +71551,11 @@ func (o *PolygonPathFinder) IsPointInside(point *Vector2) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_point_inside", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_point_inside", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -78174,23 +71604,7 @@ func (o *PolygonPathFinder) Setup(points *PoolVector2Array, connections *PoolInt
 
 */
 type PolygonPathFinderImplementer interface {
-	ResourceImplementer
-
-	FindPath(from *Vector2, to *Vector2) *PoolVector2Array
-
-	GetBounds() *Rect2
-
-	GetClosestPoint(point *Vector2) *Vector2
-
-	GetIntersections(from *Vector2, to *Vector2) *PoolVector2Array
-
-	GetPointPenalty(idx int64) float64
-
-	IsPointInside(point *Vector2) *bool
-
-	SetPointPenalty(idx int64, penalty float64)
-
-	Setup(points *PoolVector2Array, connections *PoolIntArray)
+	Class
 }
 
 /*
@@ -78207,7 +71621,7 @@ func (o *Popup) baseClass() string {
 /*
    Returns whether the popup will hide other popups when shown on the screen.
 */
-func (o *Popup) IsExclusive() *bool {
+func (o *Popup) IsExclusive() bool {
 	log.Println("Calling Popup.IsExclusive()")
 
 	// Build out the method's arguments
@@ -78215,11 +71629,11 @@ func (o *Popup) IsExclusive() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_exclusive", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_exclusive", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -78300,7 +71714,7 @@ func (o *Popup) PopupCenteredRatio(ratio float64) {
 /*
    Make the popup hide other popups when shown on the screen.
 */
-func (o *Popup) SetExclusive(enable *bool) {
+func (o *Popup) SetExclusive(enable bool) {
 	log.Println("Calling Popup.SetExclusive()")
 
 	// Build out the method's arguments
@@ -78320,19 +71734,7 @@ func (o *Popup) SetExclusive(enable *bool) {
    Popup is a base [Control] used to show dialogs and popups. It's a subwindow and modal by default (see [Control]) and has helpers for custom popup behavior.
 */
 type PopupImplementer interface {
-	ControlImplementer
-
-	IsExclusive() *bool
-
-	Popup(bounds *Rect2)
-
-	PopupCentered(size *Vector2)
-
-	PopupCenteredMinsize(minsize *Vector2)
-
-	PopupCenteredRatio(ratio float64)
-
-	SetExclusive(enable *bool)
+	Class
 }
 
 /*
@@ -78351,7 +71753,7 @@ func (o *PopupDialog) baseClass() string {
    PopupDialog is a base class for popup dialogs, along with [WindowDialog].
 */
 type PopupDialogImplementer interface {
-	PopupImplementer
+	Class
 }
 
 /*
@@ -78388,7 +71790,7 @@ func (o *PopupMenu) AddCheckItem(label string, id int64, accel int64) {
 /*
 
  */
-func (o *PopupMenu) AddCheckShortcut(shortcut *ShortCut, id int64, global *bool) {
+func (o *PopupMenu) AddCheckShortcut(shortcut *ShortCut, id int64, global bool) {
 	log.Println("Calling PopupMenu.AddCheckShortcut()")
 
 	// Build out the method's arguments
@@ -78430,7 +71832,7 @@ func (o *PopupMenu) AddIconCheckItem(texture *Texture, label string, id int64, a
 /*
 
  */
-func (o *PopupMenu) AddIconCheckShortcut(texture *Texture, shortcut *ShortCut, id int64, global *bool) {
+func (o *PopupMenu) AddIconCheckShortcut(texture *Texture, shortcut *ShortCut, id int64, global bool) {
 	log.Println("Calling PopupMenu.AddIconCheckShortcut()")
 
 	// Build out the method's arguments
@@ -78472,7 +71874,7 @@ func (o *PopupMenu) AddIconItem(texture *Texture, label string, id int64, accel 
 /*
 
  */
-func (o *PopupMenu) AddIconShortcut(texture *Texture, shortcut *ShortCut, id int64, global *bool) {
+func (o *PopupMenu) AddIconShortcut(texture *Texture, shortcut *ShortCut, id int64, global bool) {
 	log.Println("Calling PopupMenu.AddIconShortcut()")
 
 	// Build out the method's arguments
@@ -78530,7 +71932,7 @@ func (o *PopupMenu) AddSeparator() {
 /*
 
  */
-func (o *PopupMenu) AddShortcut(shortcut *ShortCut, id int64, global *bool) {
+func (o *PopupMenu) AddShortcut(shortcut *ShortCut, id int64, global bool) {
 	log.Println("Calling PopupMenu.AddShortcut()")
 
 	// Build out the method's arguments
@@ -78806,7 +72208,7 @@ func (o *PopupMenu) GetItemTooltip(idx int64) string {
 /*
    Returns a boolean that indicates whether or not the PopupMenu will hide on checkable item selection.
 */
-func (o *PopupMenu) IsHideOnCheckableItemSelection() *bool {
+func (o *PopupMenu) IsHideOnCheckableItemSelection() bool {
 	log.Println("Calling PopupMenu.IsHideOnCheckableItemSelection()")
 
 	// Build out the method's arguments
@@ -78814,11 +72216,11 @@ func (o *PopupMenu) IsHideOnCheckableItemSelection() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_hide_on_checkable_item_selection", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_hide_on_checkable_item_selection", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -78827,7 +72229,7 @@ func (o *PopupMenu) IsHideOnCheckableItemSelection() *bool {
 /*
    Returns a boolean that indicates whether or not the PopupMenu will hide on item selection.
 */
-func (o *PopupMenu) IsHideOnItemSelection() *bool {
+func (o *PopupMenu) IsHideOnItemSelection() bool {
 	log.Println("Calling PopupMenu.IsHideOnItemSelection()")
 
 	// Build out the method's arguments
@@ -78835,11 +72237,11 @@ func (o *PopupMenu) IsHideOnItemSelection() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_hide_on_item_selection", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_hide_on_item_selection", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -78848,7 +72250,7 @@ func (o *PopupMenu) IsHideOnItemSelection() *bool {
 /*
    Return whether the item at index "idx" has a checkbox. Note that checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually.
 */
-func (o *PopupMenu) IsItemCheckable(idx int64) *bool {
+func (o *PopupMenu) IsItemCheckable(idx int64) bool {
 	log.Println("Calling PopupMenu.IsItemCheckable()")
 
 	// Build out the method's arguments
@@ -78857,11 +72259,11 @@ func (o *PopupMenu) IsItemCheckable(idx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_item_checkable", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_item_checkable", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -78870,7 +72272,7 @@ func (o *PopupMenu) IsItemCheckable(idx int64) *bool {
 /*
    Return the checkstate status of the item at index "idx".
 */
-func (o *PopupMenu) IsItemChecked(idx int64) *bool {
+func (o *PopupMenu) IsItemChecked(idx int64) bool {
 	log.Println("Calling PopupMenu.IsItemChecked()")
 
 	// Build out the method's arguments
@@ -78879,11 +72281,11 @@ func (o *PopupMenu) IsItemChecked(idx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_item_checked", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_item_checked", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -78892,7 +72294,7 @@ func (o *PopupMenu) IsItemChecked(idx int64) *bool {
 /*
    Return whether the item at index "idx" is disabled. When it is disabled it can't be selected, or its action invoked.
 */
-func (o *PopupMenu) IsItemDisabled(idx int64) *bool {
+func (o *PopupMenu) IsItemDisabled(idx int64) bool {
 	log.Println("Calling PopupMenu.IsItemDisabled()")
 
 	// Build out the method's arguments
@@ -78901,11 +72303,11 @@ func (o *PopupMenu) IsItemDisabled(idx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_item_disabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_item_disabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -78914,7 +72316,7 @@ func (o *PopupMenu) IsItemDisabled(idx int64) *bool {
 /*
    Return whether the item is a seperator. If it is, it would be displayed as a line.
 */
-func (o *PopupMenu) IsItemSeparator(idx int64) *bool {
+func (o *PopupMenu) IsItemSeparator(idx int64) bool {
 	log.Println("Calling PopupMenu.IsItemSeparator()")
 
 	// Build out the method's arguments
@@ -78923,11 +72325,11 @@ func (o *PopupMenu) IsItemSeparator(idx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_item_separator", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_item_separator", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -78954,7 +72356,7 @@ func (o *PopupMenu) RemoveItem(idx int64) {
 /*
    Sets whether or not the PopupMenu will hide on checkable item selection.
 */
-func (o *PopupMenu) SetHideOnCheckableItemSelection(enable *bool) {
+func (o *PopupMenu) SetHideOnCheckableItemSelection(enable bool) {
 	log.Println("Calling PopupMenu.SetHideOnCheckableItemSelection()")
 
 	// Build out the method's arguments
@@ -78972,7 +72374,7 @@ func (o *PopupMenu) SetHideOnCheckableItemSelection(enable *bool) {
 /*
    Sets whether or not the PopupMenu will hide on item selection.
 */
-func (o *PopupMenu) SetHideOnItemSelection(enable *bool) {
+func (o *PopupMenu) SetHideOnItemSelection(enable bool) {
 	log.Println("Calling PopupMenu.SetHideOnItemSelection()")
 
 	// Build out the method's arguments
@@ -79009,7 +72411,7 @@ func (o *PopupMenu) SetItemAccelerator(idx int64, accel int64) {
 /*
    Set whether the item at index "idx" has a checkbox. Note that checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually.
 */
-func (o *PopupMenu) SetItemAsCheckable(idx int64, enable *bool) {
+func (o *PopupMenu) SetItemAsCheckable(idx int64, enable bool) {
 	log.Println("Calling PopupMenu.SetItemAsCheckable()")
 
 	// Build out the method's arguments
@@ -79028,7 +72430,7 @@ func (o *PopupMenu) SetItemAsCheckable(idx int64, enable *bool) {
 /*
    Mark the item at index "idx" as a seperator, which means that it would be displayed as a mere line.
 */
-func (o *PopupMenu) SetItemAsSeparator(idx int64, enable *bool) {
+func (o *PopupMenu) SetItemAsSeparator(idx int64, enable bool) {
 	log.Println("Calling PopupMenu.SetItemAsSeparator()")
 
 	// Build out the method's arguments
@@ -79047,7 +72449,7 @@ func (o *PopupMenu) SetItemAsSeparator(idx int64, enable *bool) {
 /*
    Set the checkstate status of the item at index "idx".
 */
-func (o *PopupMenu) SetItemChecked(idx int64, checked *bool) {
+func (o *PopupMenu) SetItemChecked(idx int64, checked bool) {
 	log.Println("Calling PopupMenu.SetItemChecked()")
 
 	// Build out the method's arguments
@@ -79066,7 +72468,7 @@ func (o *PopupMenu) SetItemChecked(idx int64, checked *bool) {
 /*
    Sets whether the item at index "idx" is disabled or not. When it is disabled it can't be selected, or its action invoked.
 */
-func (o *PopupMenu) SetItemDisabled(idx int64, disabled *bool) {
+func (o *PopupMenu) SetItemDisabled(idx int64, disabled bool) {
 	log.Println("Calling PopupMenu.SetItemDisabled()")
 
 	// Build out the method's arguments
@@ -79142,7 +72544,7 @@ func (o *PopupMenu) SetItemMetadata(idx int64, metadata *Variant) {
 /*
 
  */
-func (o *PopupMenu) SetItemShortcut(idx int64, shortcut *ShortCut, global *bool) {
+func (o *PopupMenu) SetItemShortcut(idx int64, shortcut *ShortCut, global bool) {
 	log.Println("Calling PopupMenu.SetItemShortcut()")
 
 	// Build out the method's arguments
@@ -79239,93 +72641,7 @@ func (o *PopupMenu) ToggleItemChecked(idx int64) {
    PopupMenu is the typical Control that displays a list of options. They are popular in toolbars or context menus.
 */
 type PopupMenuImplementer interface {
-	PopupImplementer
-
-	AddCheckItem(label string, id int64, accel int64)
-
-	AddCheckShortcut(shortcut *ShortCut, id int64, global *bool)
-
-	AddIconCheckItem(texture *Texture, label string, id int64, accel int64)
-
-	AddIconCheckShortcut(texture *Texture, shortcut *ShortCut, id int64, global *bool)
-
-	AddIconItem(texture *Texture, label string, id int64, accel int64)
-
-	AddIconShortcut(texture *Texture, shortcut *ShortCut, id int64, global *bool)
-
-	AddItem(label string, id int64, accel int64)
-
-	AddSeparator()
-
-	AddShortcut(shortcut *ShortCut, id int64, global *bool)
-
-	AddSubmenuItem(label string, submenu string, id int64)
-
-	Clear()
-
-	GetItemAccelerator(idx int64) int64
-
-	GetItemCount() int64
-
-	GetItemIcon(idx int64) *Texture
-
-	GetItemId(idx int64) int64
-
-	GetItemIndex(id int64) int64
-
-	GetItemMetadata(idx int64) *Variant
-
-	GetItemShortcut(idx int64) *ShortCut
-
-	GetItemSubmenu(idx int64) string
-
-	GetItemText(idx int64) string
-
-	GetItemTooltip(idx int64) string
-
-	IsHideOnCheckableItemSelection() *bool
-
-	IsHideOnItemSelection() *bool
-
-	IsItemCheckable(idx int64) *bool
-
-	IsItemChecked(idx int64) *bool
-
-	IsItemDisabled(idx int64) *bool
-
-	IsItemSeparator(idx int64) *bool
-
-	RemoveItem(idx int64)
-
-	SetHideOnCheckableItemSelection(enable *bool)
-
-	SetHideOnItemSelection(enable *bool)
-
-	SetItemAccelerator(idx int64, accel int64)
-
-	SetItemAsCheckable(idx int64, enable *bool)
-
-	SetItemAsSeparator(idx int64, enable *bool)
-
-	SetItemChecked(idx int64, checked *bool)
-
-	SetItemDisabled(idx int64, disabled *bool)
-
-	SetItemIcon(idx int64, icon *Texture)
-
-	SetItemId(idx int64, id int64)
-
-	SetItemMetadata(idx int64, metadata *Variant)
-
-	SetItemShortcut(idx int64, shortcut *ShortCut, global *bool)
-
-	SetItemSubmenu(idx int64, submenu string)
-
-	SetItemText(idx int64, text string)
-
-	SetItemTooltip(idx int64, tooltip string)
-
-	ToggleItemChecked(idx int64)
+	Class
 }
 
 /*
@@ -79344,7 +72660,7 @@ func (o *PopupPanel) baseClass() string {
    Class for displaying popups with a panel background. In some cases it might be simpler to use than [Popup], since it provides a configurable background. If you are making windows, better check [WindowDialog].
 */
 type PopupPanelImplementer interface {
-	PopupImplementer
+	Class
 }
 
 /*
@@ -79363,7 +72679,7 @@ func (o *Position2D) baseClass() string {
    Generic 2D Position hint for editing. It's just like a plain [Node2D] but displays as a cross in the 2D-Editor at all times.
 */
 type Position2DImplementer interface {
-	Node2DImplementer
+	Class
 }
 
 /*
@@ -79382,7 +72698,7 @@ func (o *Position3D) baseClass() string {
    Generic 3D Position hint for editing. It's just like a plain [Spatial] but displays as a cross in the 3D-Editor at all times.
 */
 type Position3DImplementer interface {
-	SpatialImplementer
+	Class
 }
 
 /*
@@ -79440,11 +72756,7 @@ func (o *PrimitiveMesh) SetMaterial(material *Material) {
 
 */
 type PrimitiveMeshImplementer interface {
-	MeshImplementer
-
-	GetMaterial() *Material
-
-	SetMaterial(material *Material)
+	Class
 }
 
 /*
@@ -79658,27 +72970,7 @@ func (o *PrismMesh) SetSubdivideWidth(segments int64) {
 
 */
 type PrismMeshImplementer interface {
-	PrimitiveMeshImplementer
-
-	GetLeftToRight() float64
-
-	GetSize() *Vector3
-
-	GetSubdivideDepth() int64
-
-	GetSubdivideHeight() int64
-
-	GetSubdivideWidth() int64
-
-	SetLeftToRight(leftToRight float64)
-
-	SetSize(size *Vector3)
-
-	SetSubdivideDepth(segments int64)
-
-	SetSubdivideHeight(segments int64)
-
-	SetSubdivideWidth(segments int64)
+	Class
 }
 
 /*
@@ -80321,71 +73613,7 @@ func (o *ProceduralSky) SetTextureSize(size int64) {
 
 */
 type ProceduralSkyImplementer interface {
-	SkyImplementer
-
-	GetGroundBottomColor() *Color
-
-	GetGroundCurve() float64
-
-	GetGroundEnergy() float64
-
-	GetGroundHorizonColor() *Color
-
-	GetSkyCurve() float64
-
-	GetSkyEnergy() float64
-
-	GetSkyHorizonColor() *Color
-
-	GetSkyTopColor() *Color
-
-	GetSunAngleMax() float64
-
-	GetSunAngleMin() float64
-
-	GetSunColor() *Color
-
-	GetSunCurve() float64
-
-	GetSunEnergy() float64
-
-	GetSunLatitude() float64
-
-	GetSunLongitude() float64
-
-	GetTextureSize() int64
-
-	SetGroundBottomColor(color *Color)
-
-	SetGroundCurve(curve float64)
-
-	SetGroundEnergy(energy float64)
-
-	SetGroundHorizonColor(color *Color)
-
-	SetSkyCurve(curve float64)
-
-	SetSkyEnergy(energy float64)
-
-	SetSkyHorizonColor(color *Color)
-
-	SetSkyTopColor(color *Color)
-
-	SetSunAngleMax(degrees float64)
-
-	SetSunAngleMin(degrees float64)
-
-	SetSunColor(color *Color)
-
-	SetSunCurve(curve float64)
-
-	SetSunEnergy(energy float64)
-
-	SetSunLatitude(degrees float64)
-
-	SetSunLongitude(degrees float64)
-
-	SetTextureSize(size int64)
+	Class
 }
 
 /*
@@ -80402,7 +73630,7 @@ func (o *ProgressBar) baseClass() string {
 /*
 
  */
-func (o *ProgressBar) IsPercentVisible() *bool {
+func (o *ProgressBar) IsPercentVisible() bool {
 	log.Println("Calling ProgressBar.IsPercentVisible()")
 
 	// Build out the method's arguments
@@ -80410,11 +73638,11 @@ func (o *ProgressBar) IsPercentVisible() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_percent_visible", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_percent_visible", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -80423,7 +73651,7 @@ func (o *ProgressBar) IsPercentVisible() *bool {
 /*
 
  */
-func (o *ProgressBar) SetPercentVisible(visible *bool) {
+func (o *ProgressBar) SetPercentVisible(visible bool) {
 	log.Println("Calling ProgressBar.SetPercentVisible()")
 
 	// Build out the method's arguments
@@ -80443,11 +73671,7 @@ func (o *ProgressBar) SetPercentVisible(visible *bool) {
    General purpose progress bar. Shows fill percentage from right to left.
 */
 type ProgressBarImplementer interface {
-	RangeImplementer
-
-	IsPercentVisible() *bool
-
-	SetPercentVisible(visible *bool)
+	Class
 }
 
 /*
@@ -80579,7 +73803,7 @@ func (o *ProjectSettings) GlobalizePath(path string) string {
 /*
    Return true if a configuration value is present.
 */
-func (o *ProjectSettings) Has(name string) *bool {
+func (o *ProjectSettings) Has(name string) bool {
 	log.Println("Calling ProjectSettings.Has()")
 
 	// Build out the method's arguments
@@ -80588,11 +73812,11 @@ func (o *ProjectSettings) Has(name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -80601,7 +73825,7 @@ func (o *ProjectSettings) Has(name string) *bool {
 /*
 
  */
-func (o *ProjectSettings) HasSingleton(name string) *bool {
+func (o *ProjectSettings) HasSingleton(name string) bool {
 	log.Println("Calling ProjectSettings.HasSingleton()")
 
 	// Build out the method's arguments
@@ -80610,11 +73834,11 @@ func (o *ProjectSettings) HasSingleton(name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_singleton", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_singleton", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -80623,7 +73847,7 @@ func (o *ProjectSettings) HasSingleton(name string) *bool {
 /*
 
  */
-func (o *ProjectSettings) LoadResourcePack(pack string) *bool {
+func (o *ProjectSettings) LoadResourcePack(pack string) bool {
 	log.Println("Calling ProjectSettings.LoadResourcePack()")
 
 	// Build out the method's arguments
@@ -80632,11 +73856,11 @@ func (o *ProjectSettings) LoadResourcePack(pack string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "load_resource_pack", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "load_resource_pack", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -80667,7 +73891,7 @@ func (o *ProjectSettings) LocalizePath(path string) string {
 /*
 
  */
-func (o *ProjectSettings) PropertyCanRevert(name string) *bool {
+func (o *ProjectSettings) PropertyCanRevert(name string) bool {
 	log.Println("Calling ProjectSettings.PropertyCanRevert()")
 
 	// Build out the method's arguments
@@ -80676,11 +73900,11 @@ func (o *ProjectSettings) PropertyCanRevert(name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "property_can_revert", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "property_can_revert", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -80794,37 +74018,7 @@ func (o *ProjectSettings) SetOrder(name string, pos int64) {
    Contains global variables accessible from everywhere. Use the normal [Object] API, such as "ProjectSettings.get(variable)", "ProjectSettings.set(variable,value)" or "ProjectSettings.has(variable)" to access them. Variables stored in project.godot are also loaded into ProjectSettings, making this object very useful for reading custom game configuration options.
 */
 type ProjectSettingsImplementer interface {
-	ObjectImplementer
-
-	AddPropertyInfo(hint *Dictionary)
-
-	Clear(name string)
-
-	GetOrder(name string) int64
-
-	GetSingleton(name string) *Object
-
-	GlobalizePath(path string) string
-
-	Has(name string) *bool
-
-	HasSingleton(name string) *bool
-
-	LoadResourcePack(pack string) *bool
-
-	LocalizePath(path string) string
-
-	PropertyCanRevert(name string) *bool
-
-	PropertyGetRevert(name string) *Variant
-
-	Save() int64
-
-	SaveCustom(file string) int64
-
-	SetInitialValue(name string, value *Variant)
-
-	SetOrder(name string, pos int64)
+	Class
 }
 
 /*
@@ -80937,17 +74131,7 @@ func (o *ProximityGroup) SetGroupName(name string) {
    General purpose proximity-detection node.
 */
 type ProximityGroupImplementer interface {
-	SpatialImplementer
-
-	Broadcast(name string, parameters *Variant)
-
-	GetGridRadius() *Vector3
-
-	SetDispatchMode(mode int64)
-
-	SetGridRadius(radius *Vector3)
-
-	SetGroupName(name string)
+	Class
 }
 
 /*
@@ -80966,7 +74150,7 @@ func (o *QuadMesh) baseClass() string {
 
 */
 type QuadMeshImplementer interface {
-	PrimitiveMeshImplementer
+	Class
 }
 
 /*
@@ -81109,7 +74293,7 @@ func (o *Range) GetValue() float64 {
 /*
 
  */
-func (o *Range) IsRatioExp() *bool {
+func (o *Range) IsRatioExp() bool {
 	log.Println("Calling Range.IsRatioExp()")
 
 	// Build out the method's arguments
@@ -81117,11 +74301,11 @@ func (o *Range) IsRatioExp() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_ratio_exp", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_ratio_exp", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -81130,7 +74314,7 @@ func (o *Range) IsRatioExp() *bool {
 /*
 
  */
-func (o *Range) IsUsingRoundedValues() *bool {
+func (o *Range) IsUsingRoundedValues() bool {
 	log.Println("Calling Range.IsUsingRoundedValues()")
 
 	// Build out the method's arguments
@@ -81138,11 +74322,11 @@ func (o *Range) IsUsingRoundedValues() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_using_rounded_values", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_using_rounded_values", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -81169,7 +74353,7 @@ func (o *Range) SetAsRatio(value float64) {
 /*
 
  */
-func (o *Range) SetExpRatio(enabled *bool) {
+func (o *Range) SetExpRatio(enabled bool) {
 	log.Println("Calling Range.SetExpRatio()")
 
 	// Build out the method's arguments
@@ -81259,7 +74443,7 @@ func (o *Range) SetStep(step float64) {
 /*
 
  */
-func (o *Range) SetUseRoundedValues(enabled *bool) {
+func (o *Range) SetUseRoundedValues(enabled bool) {
 	log.Println("Calling Range.SetUseRoundedValues()")
 
 	// Build out the method's arguments
@@ -81332,43 +74516,7 @@ func (o *Range) Unshare() {
    Range is a base class for [Control] nodes that change a floating point [i]value[/i] between a [i]minimum[/i] and a [i]maximum[/i], using [i]step[/i] and [i]page[/i], for example a [ScrollBar].
 */
 type RangeImplementer interface {
-	ControlImplementer
-
-	GetAsRatio() float64
-
-	GetMax() float64
-
-	GetMin() float64
-
-	GetPage() float64
-
-	GetStep() float64
-
-	GetValue() float64
-
-	IsRatioExp() *bool
-
-	IsUsingRoundedValues() *bool
-
-	SetAsRatio(value float64)
-
-	SetExpRatio(enabled *bool)
-
-	SetMax(maximum float64)
-
-	SetMin(minimum float64)
-
-	SetPage(pagesize float64)
-
-	SetStep(step float64)
-
-	SetUseRoundedValues(enabled *bool)
-
-	SetValue(value float64)
-
-	Share(with *Node)
-
-	Unshare()
+	Class
 }
 
 /*
@@ -81608,7 +74756,7 @@ func (o *RayCast) GetTypeMask() int64 {
 /*
    Return whether the closest object the ray is pointing to is colliding with the vector (considering the vector length).
 */
-func (o *RayCast) IsColliding() *bool {
+func (o *RayCast) IsColliding() bool {
 	log.Println("Calling RayCast.IsColliding()")
 
 	// Build out the method's arguments
@@ -81616,11 +74764,11 @@ func (o *RayCast) IsColliding() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_colliding", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_colliding", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -81629,7 +74777,7 @@ func (o *RayCast) IsColliding() *bool {
 /*
    Returns whether this raycast is enabled or not.
 */
-func (o *RayCast) IsEnabled() *bool {
+func (o *RayCast) IsEnabled() bool {
 	log.Println("Calling RayCast.IsEnabled()")
 
 	// Build out the method's arguments
@@ -81637,11 +74785,11 @@ func (o *RayCast) IsEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -81722,7 +74870,7 @@ func (o *RayCast) SetCollisionLayer(layer int64) {
 /*
    Enables the RayCast2D. Only enabled raycasts will be able to query the space and report collisions.
 */
-func (o *RayCast) SetEnabled(enabled *bool) {
+func (o *RayCast) SetEnabled(enabled bool) {
 	log.Println("Calling RayCast.SetEnabled()")
 
 	// Build out the method's arguments
@@ -81766,45 +74914,7 @@ func (o *RayCast) SetTypeMask(mask int64) {
 		RayCast calculates intersection every fixed frame (see [Node]), and the result is cached so it can be used later until the next frame. If multiple queries are required between fixed frames (or during the same frame) use [method force_raycast_update] after adjusting the raycast.
 */
 type RayCastImplementer interface {
-	SpatialImplementer
-
-	AddException(node *Object)
-
-	AddExceptionRid(rid *RID)
-
-	ClearExceptions()
-
-	ForceRaycastUpdate()
-
-	GetCastTo() *Vector3
-
-	GetCollider() *Object
-
-	GetColliderShape() int64
-
-	GetCollisionLayer() int64
-
-	GetCollisionNormal() *Vector3
-
-	GetCollisionPoint() *Vector3
-
-	GetTypeMask() int64
-
-	IsColliding() *bool
-
-	IsEnabled() *bool
-
-	RemoveException(node *Object)
-
-	RemoveExceptionRid(rid *RID)
-
-	SetCastTo(localPoint *Vector3)
-
-	SetCollisionLayer(layer int64)
-
-	SetEnabled(enabled *bool)
-
-	SetTypeMask(mask int64)
+	Class
 }
 
 /*
@@ -82023,7 +75133,7 @@ func (o *RayCast2D) GetCollisionPoint() *Vector2 {
 /*
    Returns whether this ray should hit your parent node, if it's a body.
 */
-func (o *RayCast2D) GetExcludeParentBody() *bool {
+func (o *RayCast2D) GetExcludeParentBody() bool {
 	log.Println("Calling RayCast2D.GetExcludeParentBody()")
 
 	// Build out the method's arguments
@@ -82031,11 +75141,11 @@ func (o *RayCast2D) GetExcludeParentBody() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_exclude_parent_body", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_exclude_parent_body", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -82065,7 +75175,7 @@ func (o *RayCast2D) GetTypeMask() int64 {
 /*
    Return whether the closest object the ray is pointing to is colliding with the vector (considering the vector length).
 */
-func (o *RayCast2D) IsColliding() *bool {
+func (o *RayCast2D) IsColliding() bool {
 	log.Println("Calling RayCast2D.IsColliding()")
 
 	// Build out the method's arguments
@@ -82073,11 +75183,11 @@ func (o *RayCast2D) IsColliding() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_colliding", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_colliding", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -82086,7 +75196,7 @@ func (o *RayCast2D) IsColliding() *bool {
 /*
    Returns whether this raycast is enabled or not.
 */
-func (o *RayCast2D) IsEnabled() *bool {
+func (o *RayCast2D) IsEnabled() bool {
 	log.Println("Calling RayCast2D.IsEnabled()")
 
 	// Build out the method's arguments
@@ -82094,11 +75204,11 @@ func (o *RayCast2D) IsEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -82179,7 +75289,7 @@ func (o *RayCast2D) SetCollisionLayer(layer int64) {
 /*
    Enables the RayCast2D. Only enabled raycasts will be able to query the space and report collisions.
 */
-func (o *RayCast2D) SetEnabled(enabled *bool) {
+func (o *RayCast2D) SetEnabled(enabled bool) {
 	log.Println("Calling RayCast2D.SetEnabled()")
 
 	// Build out the method's arguments
@@ -82197,7 +75307,7 @@ func (o *RayCast2D) SetEnabled(enabled *bool) {
 /*
    Toggle whether this ray should hit your parent node, if it's a body.
 */
-func (o *RayCast2D) SetExcludeParentBody(mask *bool) {
+func (o *RayCast2D) SetExcludeParentBody(mask bool) {
 	log.Println("Calling RayCast2D.SetExcludeParentBody()")
 
 	// Build out the method's arguments
@@ -82241,49 +75351,7 @@ func (o *RayCast2D) SetTypeMask(mask int64) {
 		RayCast2D calculates intersection every fixed frame (see [Node]), and the result is cached so it can be used later until the next frame. If multiple queries are required between fixed frames (or during the same frame) use [method force_raycast_update] after adjusting the raycast.
 */
 type RayCast2DImplementer interface {
-	Node2DImplementer
-
-	AddException(node *Object)
-
-	AddExceptionRid(rid *RID)
-
-	ClearExceptions()
-
-	ForceRaycastUpdate()
-
-	GetCastTo() *Vector2
-
-	GetCollider() *Object
-
-	GetColliderShape() int64
-
-	GetCollisionLayer() int64
-
-	GetCollisionNormal() *Vector2
-
-	GetCollisionPoint() *Vector2
-
-	GetExcludeParentBody() *bool
-
-	GetTypeMask() int64
-
-	IsColliding() *bool
-
-	IsEnabled() *bool
-
-	RemoveException(node *Object)
-
-	RemoveExceptionRid(rid *RID)
-
-	SetCastTo(localPoint *Vector2)
-
-	SetCollisionLayer(layer int64)
-
-	SetEnabled(enabled *bool)
-
-	SetExcludeParentBody(mask *bool)
-
-	SetTypeMask(mask int64)
+	Class
 }
 
 /*
@@ -82341,11 +75409,7 @@ func (o *RayShape) SetLength(length float64) {
 
 */
 type RayShapeImplementer interface {
-	ShapeImplementer
-
-	GetLength() float64
-
-	SetLength(length float64)
+	Class
 }
 
 /*
@@ -82403,11 +75467,7 @@ func (o *RayShape2D) SetLength(length float64) {
    Ray 2D shape resource for physics. A ray is not really a collision body, instead it tries to separate itself from whatever is touching its far endpoint. It's often useful for characters.
 */
 type RayShape2DImplementer interface {
-	Shape2DImplementer
-
-	GetLength() float64
-
-	SetLength(length float64)
+	Class
 }
 
 /*
@@ -82465,11 +75525,7 @@ func (o *RectangleShape2D) SetExtents(extents *Vector2) {
    Rectangle Shape for 2D Physics. This shape is useful for modeling box-like 2D objects.
 */
 type RectangleShape2DImplementer interface {
-	Shape2DImplementer
-
-	GetExtents() *Vector2
-
-	SetExtents(extents *Vector2)
+	Class
 }
 
 /*
@@ -82486,7 +75542,7 @@ func (o *Reference) baseClass() string {
 /*
 
  */
-func (o *Reference) InitRef() *bool {
+func (o *Reference) InitRef() bool {
 	log.Println("Calling Reference.InitRef()")
 
 	// Build out the method's arguments
@@ -82494,11 +75550,11 @@ func (o *Reference) InitRef() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "init_ref", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "init_ref", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -82524,7 +75580,7 @@ func (o *Reference) Reference() {
 /*
    Decrease the internal reference counter. Use this only if you really know what you are doing.
 */
-func (o *Reference) Unreference() *bool {
+func (o *Reference) Unreference() bool {
 	log.Println("Calling Reference.Unreference()")
 
 	// Build out the method's arguments
@@ -82532,11 +75588,11 @@ func (o *Reference) Unreference() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "unreference", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "unreference", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -82547,13 +75603,7 @@ func (o *Reference) Unreference() *bool {
    Base class for anything that keeps a reference count. Resource and many other helper objects inherit this. References keep an internal reference counter so they are only released when no longer in use.
 */
 type ReferenceImplementer interface {
-	ObjectImplementer
-
-	InitRef() *bool
-
-	Reference()
-
-	Unreference() *bool
+	Class
 }
 
 /*
@@ -82572,7 +75622,7 @@ func (o *ReferenceRect) baseClass() string {
    Reference frame for GUI. It's just like an empty control, except a red box is displayed while editing around its size at all times.
 */
 type ReferenceRectImplementer interface {
-	ControlImplementer
+	Class
 }
 
 /*
@@ -82589,7 +75639,7 @@ func (o *ReflectionProbe) baseClass() string {
 /*
 
  */
-func (o *ReflectionProbe) AreShadowsEnabled() *bool {
+func (o *ReflectionProbe) AreShadowsEnabled() bool {
 	log.Println("Calling ReflectionProbe.AreShadowsEnabled()")
 
 	// Build out the method's arguments
@@ -82597,11 +75647,11 @@ func (o *ReflectionProbe) AreShadowsEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "are_shadows_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "are_shadows_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -82799,7 +75849,7 @@ func (o *ReflectionProbe) GetUpdateMode() int64 {
 /*
 
  */
-func (o *ReflectionProbe) IsBoxProjectionEnabled() *bool {
+func (o *ReflectionProbe) IsBoxProjectionEnabled() bool {
 	log.Println("Calling ReflectionProbe.IsBoxProjectionEnabled()")
 
 	// Build out the method's arguments
@@ -82807,11 +75857,11 @@ func (o *ReflectionProbe) IsBoxProjectionEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_box_projection_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_box_projection_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -82820,7 +75870,7 @@ func (o *ReflectionProbe) IsBoxProjectionEnabled() *bool {
 /*
 
  */
-func (o *ReflectionProbe) IsSetAsInterior() *bool {
+func (o *ReflectionProbe) IsSetAsInterior() bool {
 	log.Println("Calling ReflectionProbe.IsSetAsInterior()")
 
 	// Build out the method's arguments
@@ -82828,11 +75878,11 @@ func (o *ReflectionProbe) IsSetAsInterior() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_set_as_interior", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_set_as_interior", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -82841,7 +75891,7 @@ func (o *ReflectionProbe) IsSetAsInterior() *bool {
 /*
 
  */
-func (o *ReflectionProbe) SetAsInterior(enable *bool) {
+func (o *ReflectionProbe) SetAsInterior(enable bool) {
 	log.Println("Calling ReflectionProbe.SetAsInterior()")
 
 	// Build out the method's arguments
@@ -82877,7 +75927,7 @@ func (o *ReflectionProbe) SetCullMask(layers int64) {
 /*
 
  */
-func (o *ReflectionProbe) SetEnableBoxProjection(enable *bool) {
+func (o *ReflectionProbe) SetEnableBoxProjection(enable bool) {
 	log.Println("Calling ReflectionProbe.SetEnableBoxProjection()")
 
 	// Build out the method's arguments
@@ -82895,7 +75945,7 @@ func (o *ReflectionProbe) SetEnableBoxProjection(enable *bool) {
 /*
 
  */
-func (o *ReflectionProbe) SetEnableShadows(enable *bool) {
+func (o *ReflectionProbe) SetEnableShadows(enable bool) {
 	log.Println("Calling ReflectionProbe.SetEnableShadows()")
 
 	// Build out the method's arguments
@@ -83059,55 +76109,7 @@ func (o *ReflectionProbe) SetUpdateMode(mode int64) {
 
 */
 type ReflectionProbeImplementer interface {
-	VisualInstanceImplementer
-
-	AreShadowsEnabled() *bool
-
-	GetCullMask() int64
-
-	GetExtents() *Vector3
-
-	GetIntensity() float64
-
-	GetInteriorAmbient() *Color
-
-	GetInteriorAmbientEnergy() float64
-
-	GetInteriorAmbientProbeContribution() float64
-
-	GetMaxDistance() float64
-
-	GetOriginOffset() *Vector3
-
-	GetUpdateMode() int64
-
-	IsBoxProjectionEnabled() *bool
-
-	IsSetAsInterior() *bool
-
-	SetAsInterior(enable *bool)
-
-	SetCullMask(layers int64)
-
-	SetEnableBoxProjection(enable *bool)
-
-	SetEnableShadows(enable *bool)
-
-	SetExtents(extents *Vector3)
-
-	SetIntensity(intensity float64)
-
-	SetInteriorAmbient(ambient *Color)
-
-	SetInteriorAmbientEnergy(ambientEnergy float64)
-
-	SetInteriorAmbientProbeContribution(ambientProbeContribution float64)
-
-	SetMaxDistance(maxDistance float64)
-
-	SetOriginOffset(originOffset *Vector3)
-
-	SetUpdateMode(mode int64)
+	Class
 }
 
 /*
@@ -83249,7 +76251,7 @@ func (o *RegEx) GetPattern() string {
 /*
    Returns whether this object has a valid regular expression assigned.
 */
-func (o *RegEx) IsValid() *bool {
+func (o *RegEx) IsValid() bool {
 	log.Println("Calling RegEx.IsValid()")
 
 	// Build out the method's arguments
@@ -83257,11 +76259,11 @@ func (o *RegEx) IsValid() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_valid", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_valid", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -83294,7 +76296,7 @@ func (o *RegEx) Search(subject string, offset int64, end int64) *RegExMatch {
 /*
    Searches the text for the compiled pattern and replaces it with the specified string. Escapes and backreferences such as [code]\1[/code] and [code]\g<name>[/code] expanded and resolved. By default only the first instance is replaced but it can be changed for all instances (global replacement). The region to search within can be specified without modifying where the start and end anchor would be.
 */
-func (o *RegEx) Sub(subject string, replacement string, all *bool, offset int64, end int64) string {
+func (o *RegEx) Sub(subject string, replacement string, all bool, offset int64, end int64) string {
 	log.Println("Calling RegEx.Sub()")
 
 	// Build out the method's arguments
@@ -83345,23 +76347,7 @@ func (o *RegEx) Sub(subject string, replacement string, all *bool, offset int64,
 		* Word boundaries [code]\b[/code], [code]\B[/code]
 */
 type RegExImplementer interface {
-	ReferenceImplementer
-
-	Clear()
-
-	Compile(pattern string) int64
-
-	GetGroupCount() int64
-
-	GetNames() *Array
-
-	GetPattern() string
-
-	IsValid() *bool
-
-	Search(subject string, offset int64, end int64) *RegExMatch
-
-	Sub(subject string, replacement string, all *bool, offset int64, end int64) string
+	Class
 }
 
 /*
@@ -83530,21 +76516,7 @@ func (o *RegExMatch) GetSubject() string {
 
 */
 type RegExMatchImplementer interface {
-	ReferenceImplementer
-
-	GetEnd(name *Variant) int64
-
-	GetGroupCount() int64
-
-	GetNames() *Dictionary
-
-	GetStart(name *Variant) int64
-
-	GetString(name *Variant) string
-
-	GetStrings() *Array
-
-	GetSubject() string
+	Class
 }
 
 /*
@@ -83582,7 +76554,7 @@ func (o *RemoteTransform) GetRemoteNode() *NodePath {
 /*
 
  */
-func (o *RemoteTransform) GetUpdatePosition() *bool {
+func (o *RemoteTransform) GetUpdatePosition() bool {
 	log.Println("Calling RemoteTransform.GetUpdatePosition()")
 
 	// Build out the method's arguments
@@ -83590,11 +76562,11 @@ func (o *RemoteTransform) GetUpdatePosition() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_update_position", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_update_position", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -83603,7 +76575,7 @@ func (o *RemoteTransform) GetUpdatePosition() *bool {
 /*
 
  */
-func (o *RemoteTransform) GetUpdateRotation() *bool {
+func (o *RemoteTransform) GetUpdateRotation() bool {
 	log.Println("Calling RemoteTransform.GetUpdateRotation()")
 
 	// Build out the method's arguments
@@ -83611,11 +76583,11 @@ func (o *RemoteTransform) GetUpdateRotation() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_update_rotation", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_update_rotation", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -83624,7 +76596,7 @@ func (o *RemoteTransform) GetUpdateRotation() *bool {
 /*
 
  */
-func (o *RemoteTransform) GetUpdateScale() *bool {
+func (o *RemoteTransform) GetUpdateScale() bool {
 	log.Println("Calling RemoteTransform.GetUpdateScale()")
 
 	// Build out the method's arguments
@@ -83632,11 +76604,11 @@ func (o *RemoteTransform) GetUpdateScale() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_update_scale", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_update_scale", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -83645,7 +76617,7 @@ func (o *RemoteTransform) GetUpdateScale() *bool {
 /*
 
  */
-func (o *RemoteTransform) GetUseGlobalCoordinates() *bool {
+func (o *RemoteTransform) GetUseGlobalCoordinates() bool {
 	log.Println("Calling RemoteTransform.GetUseGlobalCoordinates()")
 
 	// Build out the method's arguments
@@ -83653,11 +76625,11 @@ func (o *RemoteTransform) GetUseGlobalCoordinates() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_use_global_coordinates", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_use_global_coordinates", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -83684,7 +76656,7 @@ func (o *RemoteTransform) SetRemoteNode(path *NodePath) {
 /*
 
  */
-func (o *RemoteTransform) SetUpdatePosition(updateRemotePosition *bool) {
+func (o *RemoteTransform) SetUpdatePosition(updateRemotePosition bool) {
 	log.Println("Calling RemoteTransform.SetUpdatePosition()")
 
 	// Build out the method's arguments
@@ -83702,7 +76674,7 @@ func (o *RemoteTransform) SetUpdatePosition(updateRemotePosition *bool) {
 /*
 
  */
-func (o *RemoteTransform) SetUpdateRotation(updateRemoteRotation *bool) {
+func (o *RemoteTransform) SetUpdateRotation(updateRemoteRotation bool) {
 	log.Println("Calling RemoteTransform.SetUpdateRotation()")
 
 	// Build out the method's arguments
@@ -83720,7 +76692,7 @@ func (o *RemoteTransform) SetUpdateRotation(updateRemoteRotation *bool) {
 /*
 
  */
-func (o *RemoteTransform) SetUpdateScale(updateRemoteScale *bool) {
+func (o *RemoteTransform) SetUpdateScale(updateRemoteScale bool) {
 	log.Println("Calling RemoteTransform.SetUpdateScale()")
 
 	// Build out the method's arguments
@@ -83738,7 +76710,7 @@ func (o *RemoteTransform) SetUpdateScale(updateRemoteScale *bool) {
 /*
 
  */
-func (o *RemoteTransform) SetUseGlobalCoordinates(useGlobalCoordinates *bool) {
+func (o *RemoteTransform) SetUseGlobalCoordinates(useGlobalCoordinates bool) {
 	log.Println("Calling RemoteTransform.SetUseGlobalCoordinates()")
 
 	// Build out the method's arguments
@@ -83758,27 +76730,7 @@ func (o *RemoteTransform) SetUseGlobalCoordinates(useGlobalCoordinates *bool) {
 
 */
 type RemoteTransformImplementer interface {
-	SpatialImplementer
-
-	GetRemoteNode() *NodePath
-
-	GetUpdatePosition() *bool
-
-	GetUpdateRotation() *bool
-
-	GetUpdateScale() *bool
-
-	GetUseGlobalCoordinates() *bool
-
-	SetRemoteNode(path *NodePath)
-
-	SetUpdatePosition(updateRemotePosition *bool)
-
-	SetUpdateRotation(updateRemoteRotation *bool)
-
-	SetUpdateScale(updateRemoteScale *bool)
-
-	SetUseGlobalCoordinates(useGlobalCoordinates *bool)
+	Class
 }
 
 /*
@@ -83816,7 +76768,7 @@ func (o *RemoteTransform2D) GetRemoteNode() *NodePath {
 /*
 
  */
-func (o *RemoteTransform2D) GetUpdatePosition() *bool {
+func (o *RemoteTransform2D) GetUpdatePosition() bool {
 	log.Println("Calling RemoteTransform2D.GetUpdatePosition()")
 
 	// Build out the method's arguments
@@ -83824,11 +76776,11 @@ func (o *RemoteTransform2D) GetUpdatePosition() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_update_position", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_update_position", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -83837,7 +76789,7 @@ func (o *RemoteTransform2D) GetUpdatePosition() *bool {
 /*
 
  */
-func (o *RemoteTransform2D) GetUpdateRotation() *bool {
+func (o *RemoteTransform2D) GetUpdateRotation() bool {
 	log.Println("Calling RemoteTransform2D.GetUpdateRotation()")
 
 	// Build out the method's arguments
@@ -83845,11 +76797,11 @@ func (o *RemoteTransform2D) GetUpdateRotation() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_update_rotation", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_update_rotation", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -83858,7 +76810,7 @@ func (o *RemoteTransform2D) GetUpdateRotation() *bool {
 /*
 
  */
-func (o *RemoteTransform2D) GetUpdateScale() *bool {
+func (o *RemoteTransform2D) GetUpdateScale() bool {
 	log.Println("Calling RemoteTransform2D.GetUpdateScale()")
 
 	// Build out the method's arguments
@@ -83866,11 +76818,11 @@ func (o *RemoteTransform2D) GetUpdateScale() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_update_scale", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_update_scale", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -83879,7 +76831,7 @@ func (o *RemoteTransform2D) GetUpdateScale() *bool {
 /*
 
  */
-func (o *RemoteTransform2D) GetUseGlobalCoordinates() *bool {
+func (o *RemoteTransform2D) GetUseGlobalCoordinates() bool {
 	log.Println("Calling RemoteTransform2D.GetUseGlobalCoordinates()")
 
 	// Build out the method's arguments
@@ -83887,11 +76839,11 @@ func (o *RemoteTransform2D) GetUseGlobalCoordinates() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_use_global_coordinates", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_use_global_coordinates", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -83918,7 +76870,7 @@ func (o *RemoteTransform2D) SetRemoteNode(path *NodePath) {
 /*
 
  */
-func (o *RemoteTransform2D) SetUpdatePosition(updateRemotePosition *bool) {
+func (o *RemoteTransform2D) SetUpdatePosition(updateRemotePosition bool) {
 	log.Println("Calling RemoteTransform2D.SetUpdatePosition()")
 
 	// Build out the method's arguments
@@ -83936,7 +76888,7 @@ func (o *RemoteTransform2D) SetUpdatePosition(updateRemotePosition *bool) {
 /*
 
  */
-func (o *RemoteTransform2D) SetUpdateRotation(updateRemoteRotation *bool) {
+func (o *RemoteTransform2D) SetUpdateRotation(updateRemoteRotation bool) {
 	log.Println("Calling RemoteTransform2D.SetUpdateRotation()")
 
 	// Build out the method's arguments
@@ -83954,7 +76906,7 @@ func (o *RemoteTransform2D) SetUpdateRotation(updateRemoteRotation *bool) {
 /*
 
  */
-func (o *RemoteTransform2D) SetUpdateScale(updateRemoteScale *bool) {
+func (o *RemoteTransform2D) SetUpdateScale(updateRemoteScale bool) {
 	log.Println("Calling RemoteTransform2D.SetUpdateScale()")
 
 	// Build out the method's arguments
@@ -83972,7 +76924,7 @@ func (o *RemoteTransform2D) SetUpdateScale(updateRemoteScale *bool) {
 /*
 
  */
-func (o *RemoteTransform2D) SetUseGlobalCoordinates(useGlobalCoordinates *bool) {
+func (o *RemoteTransform2D) SetUseGlobalCoordinates(useGlobalCoordinates bool) {
 	log.Println("Calling RemoteTransform2D.SetUseGlobalCoordinates()")
 
 	// Build out the method's arguments
@@ -83992,27 +76944,7 @@ func (o *RemoteTransform2D) SetUseGlobalCoordinates(useGlobalCoordinates *bool) 
 
 */
 type RemoteTransform2DImplementer interface {
-	Node2DImplementer
-
-	GetRemoteNode() *NodePath
-
-	GetUpdatePosition() *bool
-
-	GetUpdateRotation() *bool
-
-	GetUpdateScale() *bool
-
-	GetUseGlobalCoordinates() *bool
-
-	SetRemoteNode(path *NodePath)
-
-	SetUpdatePosition(updateRemotePosition *bool)
-
-	SetUpdateRotation(updateRemoteRotation *bool)
-
-	SetUpdateScale(updateRemoteScale *bool)
-
-	SetUseGlobalCoordinates(useGlobalCoordinates *bool)
+	Class
 }
 
 /*
@@ -84046,7 +76978,7 @@ func (o *Resource) X_SetupLocalToScene() {
 /*
 
  */
-func (o *Resource) Duplicate(subresources *bool) *Resource {
+func (o *Resource) Duplicate(subresources bool) *Resource {
 	log.Println("Calling Resource.Duplicate()")
 
 	// Build out the method's arguments
@@ -84152,7 +77084,7 @@ func (o *Resource) GetRid() *RID {
 /*
 
  */
-func (o *Resource) IsLocalToScene() *bool {
+func (o *Resource) IsLocalToScene() bool {
 	log.Println("Calling Resource.IsLocalToScene()")
 
 	// Build out the method's arguments
@@ -84160,11 +77092,11 @@ func (o *Resource) IsLocalToScene() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_local_to_scene", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_local_to_scene", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -84173,7 +77105,7 @@ func (o *Resource) IsLocalToScene() *bool {
 /*
 
  */
-func (o *Resource) SetLocalToScene(enable *bool) {
+func (o *Resource) SetLocalToScene(enable bool) {
 	log.Println("Calling Resource.SetLocalToScene()")
 
 	// Build out the method's arguments
@@ -84264,31 +77196,7 @@ func (o *Resource) TakeOverPath(path string) {
    Resource is the base class for all resource types. Resources are primarily data containers. They are reference counted and freed when no longer in use. They are also loaded only once from disk, and further attempts to load the resource will return the same reference (all this in contrast to a [Node], which is not reference counted and can be instanced from disk as many times as desired). Resources can be saved externally on disk or bundled into another object, such as a [Node] or another resource.
 */
 type ResourceImplementer interface {
-	ReferenceImplementer
-
-	X_SetupLocalToScene()
-
-	Duplicate(subresources *bool) *Resource
-
-	GetLocalScene() *Node
-
-	GetName() string
-
-	GetPath() string
-
-	GetRid() *RID
-
-	IsLocalToScene() *bool
-
-	SetLocalToScene(enable *bool)
-
-	SetName(name string)
-
-	SetPath(path string)
-
-	SetupLocalToScene()
-
-	TakeOverPath(path string)
+	Class
 }
 
 /*
@@ -84307,7 +77215,7 @@ func (o *ResourceImporter) baseClass() string {
 
 */
 type ResourceImporterImplementer interface {
-	ReferenceImplementer
+	Class
 }
 
 /*
@@ -84326,7 +77234,7 @@ func (o *ResourceImporterOGGVorbis) baseClass() string {
 
 */
 type ResourceImporterOGGVorbisImplementer interface {
-	ResourceImporterImplementer
+	Class
 }
 
 /*
@@ -84450,17 +77358,7 @@ func (o *ResourceInteractiveLoader) Wait() int64 {
    Interactive Resource Loader. This object is returned by ResourceLoader when performing an interactive load. It allows to load with high granularity, so this is mainly useful for displaying load bars/percentages.
 */
 type ResourceInteractiveLoaderImplementer interface {
-	ReferenceImplementer
-
-	GetResource() *Resource
-
-	GetStage() int64
-
-	GetStageCount() int64
-
-	Poll() int64
-
-	Wait() int64
+	Class
 }
 
 /*
@@ -84521,7 +77419,7 @@ func (o *ResourceLoader) GetRecognizedExtensionsForType(aType string) *PoolStrin
 /*
 
  */
-func (o *ResourceLoader) Has(path string) *bool {
+func (o *ResourceLoader) Has(path string) bool {
 	log.Println("Calling ResourceLoader.Has()")
 
 	// Build out the method's arguments
@@ -84530,11 +77428,11 @@ func (o *ResourceLoader) Has(path string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -84543,7 +77441,7 @@ func (o *ResourceLoader) Has(path string) *bool {
 /*
 
  */
-func (o *ResourceLoader) Load(path string, typeHint string, pNoCache *bool) *Resource {
+func (o *ResourceLoader) Load(path string, typeHint string, pNoCache bool) *Resource {
 	log.Println("Calling ResourceLoader.Load()")
 
 	// Build out the method's arguments
@@ -84590,7 +77488,7 @@ func (o *ResourceLoader) LoadInteractive(path string, typeHint string) *Resource
 /*
    Change the behavior on missing sub-resources. Default is to abort load.
 */
-func (o *ResourceLoader) SetAbortOnMissingResources(abort *bool) {
+func (o *ResourceLoader) SetAbortOnMissingResources(abort bool) {
 	log.Println("Calling ResourceLoader.SetAbortOnMissingResources()")
 
 	// Build out the method's arguments
@@ -84610,19 +77508,7 @@ func (o *ResourceLoader) SetAbortOnMissingResources(abort *bool) {
    Resource Loader. This is a static object accessible as [ResourceLoader]. GDScript has a simplified load() function, though.
 */
 type ResourceLoaderImplementer interface {
-	ObjectImplementer
-
-	GetDependencies(path string) *PoolStringArray
-
-	GetRecognizedExtensionsForType(aType string) *PoolStringArray
-
-	Has(path string) *bool
-
-	Load(path string, typeHint string, pNoCache *bool) *Resource
-
-	LoadInteractive(path string, typeHint string) *ResourceInteractiveLoader
-
-	SetAbortOnMissingResources(abort *bool)
+	Class
 }
 
 /*
@@ -84701,7 +77587,7 @@ func (o *ResourcePreloader) GetResourceList() *PoolStringArray {
 /*
    Return true if the preloader has a given resource.
 */
-func (o *ResourcePreloader) HasResource(name string) *bool {
+func (o *ResourcePreloader) HasResource(name string) bool {
 	log.Println("Calling ResourcePreloader.HasResource()")
 
 	// Build out the method's arguments
@@ -84710,11 +77596,11 @@ func (o *ResourcePreloader) HasResource(name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_resource", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_resource", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -84762,19 +77648,7 @@ func (o *ResourcePreloader) RenameResource(name string, newname string) {
    Resource Preloader Node. This node is used to preload sub-resources inside a scene, so when the scene is loaded all the resources are ready to use and be retrieved from here.
 */
 type ResourcePreloaderImplementer interface {
-	NodeImplementer
-
-	AddResource(name string, resource *Resource)
-
-	GetResource(name string) *Resource
-
-	GetResourceList() *PoolStringArray
-
-	HasResource(name string) *bool
-
-	RemoveResource(name string)
-
-	RenameResource(name string, newname string)
+	Class
 }
 
 /*
@@ -84839,11 +77713,7 @@ func (o *ResourceSaver) Save(path string, resource *Resource, flags int64) int64
    Resource Saving Interface. This interface is used for saving resources to disk.
 */
 type ResourceSaverImplementer interface {
-	ObjectImplementer
-
-	GetRecognizedExtensions(aType *Resource) *PoolStringArray
-
-	Save(path string, resource *Resource, flags int64) int64
+	Class
 }
 
 /*
@@ -85082,7 +77952,7 @@ func (o *RichTextLabel) GetVisibleCharacters() int64 {
 /*
 
  */
-func (o *RichTextLabel) IsMetaUnderlined() *bool {
+func (o *RichTextLabel) IsMetaUnderlined() bool {
 	log.Println("Calling RichTextLabel.IsMetaUnderlined()")
 
 	// Build out the method's arguments
@@ -85090,11 +77960,11 @@ func (o *RichTextLabel) IsMetaUnderlined() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_meta_underlined", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_meta_underlined", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -85103,7 +77973,7 @@ func (o *RichTextLabel) IsMetaUnderlined() *bool {
 /*
 
  */
-func (o *RichTextLabel) IsScrollActive() *bool {
+func (o *RichTextLabel) IsScrollActive() bool {
 	log.Println("Calling RichTextLabel.IsScrollActive()")
 
 	// Build out the method's arguments
@@ -85111,11 +77981,11 @@ func (o *RichTextLabel) IsScrollActive() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_scroll_active", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_scroll_active", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -85124,7 +77994,7 @@ func (o *RichTextLabel) IsScrollActive() *bool {
 /*
 
  */
-func (o *RichTextLabel) IsScrollFollowing() *bool {
+func (o *RichTextLabel) IsScrollFollowing() bool {
 	log.Println("Calling RichTextLabel.IsScrollFollowing()")
 
 	// Build out the method's arguments
@@ -85132,11 +78002,11 @@ func (o *RichTextLabel) IsScrollFollowing() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_scroll_following", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_scroll_following", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -85145,7 +78015,7 @@ func (o *RichTextLabel) IsScrollFollowing() *bool {
 /*
    Return true if selecting the text inside this richtext is allowed.
 */
-func (o *RichTextLabel) IsSelectionEnabled() *bool {
+func (o *RichTextLabel) IsSelectionEnabled() bool {
 	log.Println("Calling RichTextLabel.IsSelectionEnabled()")
 
 	// Build out the method's arguments
@@ -85153,11 +78023,11 @@ func (o *RichTextLabel) IsSelectionEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_selection_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_selection_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -85166,7 +78036,7 @@ func (o *RichTextLabel) IsSelectionEnabled() *bool {
 /*
 
  */
-func (o *RichTextLabel) IsUsingBbcode() *bool {
+func (o *RichTextLabel) IsUsingBbcode() bool {
 	log.Println("Calling RichTextLabel.IsUsingBbcode()")
 
 	// Build out the method's arguments
@@ -85174,11 +78044,11 @@ func (o *RichTextLabel) IsUsingBbcode() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_using_bbcode", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_using_bbcode", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -85403,7 +78273,7 @@ func (o *RichTextLabel) PushUnderline() {
 /*
 
  */
-func (o *RichTextLabel) RemoveLine(line int64) *bool {
+func (o *RichTextLabel) RemoveLine(line int64) bool {
 	log.Println("Calling RichTextLabel.RemoveLine()")
 
 	// Build out the method's arguments
@@ -85412,11 +78282,11 @@ func (o *RichTextLabel) RemoveLine(line int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "remove_line", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "remove_line", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -85461,7 +78331,7 @@ func (o *RichTextLabel) SetBbcode(text string) {
 /*
 
  */
-func (o *RichTextLabel) SetMetaUnderline(enable *bool) {
+func (o *RichTextLabel) SetMetaUnderline(enable bool) {
 	log.Println("Calling RichTextLabel.SetMetaUnderline()")
 
 	// Build out the method's arguments
@@ -85497,7 +78367,7 @@ func (o *RichTextLabel) SetPercentVisible(percentVisible float64) {
 /*
 
  */
-func (o *RichTextLabel) SetScrollActive(active *bool) {
+func (o *RichTextLabel) SetScrollActive(active bool) {
 	log.Println("Calling RichTextLabel.SetScrollActive()")
 
 	// Build out the method's arguments
@@ -85515,7 +78385,7 @@ func (o *RichTextLabel) SetScrollActive(active *bool) {
 /*
 
  */
-func (o *RichTextLabel) SetScrollFollow(follow *bool) {
+func (o *RichTextLabel) SetScrollFollow(follow bool) {
 	log.Println("Calling RichTextLabel.SetScrollFollow()")
 
 	// Build out the method's arguments
@@ -85533,7 +78403,7 @@ func (o *RichTextLabel) SetScrollFollow(follow *bool) {
 /*
    Set to true if selecting the text inside this richtext is allowed.
 */
-func (o *RichTextLabel) SetSelectionEnabled(enabled *bool) {
+func (o *RichTextLabel) SetSelectionEnabled(enabled bool) {
 	log.Println("Calling RichTextLabel.SetSelectionEnabled()")
 
 	// Build out the method's arguments
@@ -85569,7 +78439,7 @@ func (o *RichTextLabel) SetTabSize(spaces int64) {
 /*
 
  */
-func (o *RichTextLabel) SetTableColumnExpand(column int64, expand *bool, ratio int64) {
+func (o *RichTextLabel) SetTableColumnExpand(column int64, expand bool, ratio int64) {
 	log.Println("Calling RichTextLabel.SetTableColumnExpand()")
 
 	// Build out the method's arguments
@@ -85607,7 +78477,7 @@ func (o *RichTextLabel) SetText(text string) {
 /*
 
  */
-func (o *RichTextLabel) SetUseBbcode(enable *bool) {
+func (o *RichTextLabel) SetUseBbcode(enable bool) {
 	log.Println("Calling RichTextLabel.SetUseBbcode()")
 
 	// Build out the method's arguments
@@ -85645,89 +78515,7 @@ func (o *RichTextLabel) SetVisibleCharacters(amount int64) {
    Label that displays rich text. Rich text can contain custom text, fonts, images and some basic formatting. It also adapts itself to given width/heights.
 */
 type RichTextLabelImplementer interface {
-	ControlImplementer
-
-	AddImage(image *Texture)
-
-	AddText(text string)
-
-	AppendBbcode(bbcode string) int64
-
-	Clear()
-
-	GetBbcode() string
-
-	GetPercentVisible() float64
-
-	GetTabSize() int64
-
-	GetText() string
-
-	GetTotalCharacterCount() int64
-
-	GetVScroll() *VScrollBar
-
-	GetVisibleCharacters() int64
-
-	IsMetaUnderlined() *bool
-
-	IsScrollActive() *bool
-
-	IsScrollFollowing() *bool
-
-	IsSelectionEnabled() *bool
-
-	IsUsingBbcode() *bool
-
-	Newline()
-
-	ParseBbcode(bbcode string) int64
-
-	Pop()
-
-	PushAlign(align int64)
-
-	PushCell()
-
-	PushColor(color *Color)
-
-	PushFont(font *Font)
-
-	PushIndent(level int64)
-
-	PushList(aType int64)
-
-	PushMeta(data *Variant)
-
-	PushTable(columns int64)
-
-	PushUnderline()
-
-	RemoveLine(line int64) *bool
-
-	ScrollToLine(line int64)
-
-	SetBbcode(text string)
-
-	SetMetaUnderline(enable *bool)
-
-	SetPercentVisible(percentVisible float64)
-
-	SetScrollActive(active *bool)
-
-	SetScrollFollow(follow *bool)
-
-	SetSelectionEnabled(enabled *bool)
-
-	SetTabSize(spaces int64)
-
-	SetTableColumnExpand(column int64, expand *bool, ratio int64)
-
-	SetText(text string)
-
-	SetUseBbcode(enable *bool)
-
-	SetVisibleCharacters(amount int64)
+	Class
 }
 
 /*
@@ -86054,7 +78842,7 @@ func (o *RigidBody) GetWeight() float64 {
 /*
    Return whether the body has the ability to fall asleep when not moving. See [method set_can_sleep].
 */
-func (o *RigidBody) IsAbleToSleep() *bool {
+func (o *RigidBody) IsAbleToSleep() bool {
 	log.Println("Calling RigidBody.IsAbleToSleep()")
 
 	// Build out the method's arguments
@@ -86062,11 +78850,11 @@ func (o *RigidBody) IsAbleToSleep() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_able_to_sleep", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_able_to_sleep", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -86075,7 +78863,7 @@ func (o *RigidBody) IsAbleToSleep() *bool {
 /*
    Return whether contact monitoring is enabled.
 */
-func (o *RigidBody) IsContactMonitorEnabled() *bool {
+func (o *RigidBody) IsContactMonitorEnabled() bool {
 	log.Println("Calling RigidBody.IsContactMonitorEnabled()")
 
 	// Build out the method's arguments
@@ -86083,11 +78871,11 @@ func (o *RigidBody) IsContactMonitorEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_contact_monitor_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_contact_monitor_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -86096,7 +78884,7 @@ func (o *RigidBody) IsContactMonitorEnabled() *bool {
 /*
    Return whether the body is sleeping.
 */
-func (o *RigidBody) IsSleeping() *bool {
+func (o *RigidBody) IsSleeping() bool {
 	log.Println("Calling RigidBody.IsSleeping()")
 
 	// Build out the method's arguments
@@ -86104,11 +78892,11 @@ func (o *RigidBody) IsSleeping() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_sleeping", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_sleeping", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -86117,7 +78905,7 @@ func (o *RigidBody) IsSleeping() *bool {
 /*
    Return whether this body is using continuous collision detection.
 */
-func (o *RigidBody) IsUsingContinuousCollisionDetection() *bool {
+func (o *RigidBody) IsUsingContinuousCollisionDetection() bool {
 	log.Println("Calling RigidBody.IsUsingContinuousCollisionDetection()")
 
 	// Build out the method's arguments
@@ -86125,11 +78913,11 @@ func (o *RigidBody) IsUsingContinuousCollisionDetection() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_using_continuous_collision_detection", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_using_continuous_collision_detection", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -86138,7 +78926,7 @@ func (o *RigidBody) IsUsingContinuousCollisionDetection() *bool {
 /*
    Return whether the body is using a custom integrator.
 */
-func (o *RigidBody) IsUsingCustomIntegrator() *bool {
+func (o *RigidBody) IsUsingCustomIntegrator() bool {
 	log.Println("Calling RigidBody.IsUsingCustomIntegrator()")
 
 	// Build out the method's arguments
@@ -86146,11 +78934,11 @@ func (o *RigidBody) IsUsingCustomIntegrator() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_using_custom_integrator", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_using_custom_integrator", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -86250,7 +79038,7 @@ func (o *RigidBody) SetBounce(bounce float64) {
                 Set the body ability to fall asleep when not moving. This saves an enormous amount of processor time when there are plenty of rigid bodies (non static) in a scene.
 				Sleeping bodies are not affected by forces until a collision or an [method apply_impulse] / [method set_applied_force] wakes them up. Until then, they behave like a static body.
 */
-func (o *RigidBody) SetCanSleep(ableToSleep *bool) {
+func (o *RigidBody) SetCanSleep(ableToSleep bool) {
 	log.Println("Calling RigidBody.SetCanSleep()")
 
 	// Build out the method's arguments
@@ -86268,7 +79056,7 @@ func (o *RigidBody) SetCanSleep(ableToSleep *bool) {
 /*
    Enable contact monitoring. This allows the body to emit signals when it collides with another.
 */
-func (o *RigidBody) SetContactMonitor(enabled *bool) {
+func (o *RigidBody) SetContactMonitor(enabled bool) {
 	log.Println("Calling RigidBody.SetContactMonitor()")
 
 	// Build out the method's arguments
@@ -86412,7 +79200,7 @@ func (o *RigidBody) SetMode(mode int64) {
 /*
    Set whether a body is sleeping or not. Sleeping bodies are not affected by forces until a collision or an [method apply_impulse] wakes them up. Until then, they behave like a static body.
 */
-func (o *RigidBody) SetSleeping(sleeping *bool) {
+func (o *RigidBody) SetSleeping(sleeping bool) {
 	log.Println("Calling RigidBody.SetSleeping()")
 
 	// Build out the method's arguments
@@ -86431,7 +79219,7 @@ func (o *RigidBody) SetSleeping(sleeping *bool) {
                 Set the continuous collision detection mode from the enum CCD_MODE_*.
 				Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided. The first is more precise, and misses less impacts by small, fast-moving objects. The second is faster to compute, but can miss small, fast-moving objects.
 */
-func (o *RigidBody) SetUseContinuousCollisionDetection(enable *bool) {
+func (o *RigidBody) SetUseContinuousCollisionDetection(enable bool) {
 	log.Println("Calling RigidBody.SetUseContinuousCollisionDetection()")
 
 	// Build out the method's arguments
@@ -86449,7 +79237,7 @@ func (o *RigidBody) SetUseContinuousCollisionDetection(enable *bool) {
 /*
    Pass true to disable the internal force integration (like gravity or air friction) for this body. Other than collision response, the body will only move as determined by the [method _integrate_forces] function, if defined.
 */
-func (o *RigidBody) SetUseCustomIntegrator(enable *bool) {
+func (o *RigidBody) SetUseCustomIntegrator(enable bool) {
 	log.Println("Calling RigidBody.SetUseCustomIntegrator()")
 
 	// Build out the method's arguments
@@ -86487,83 +79275,7 @@ func (o *RigidBody) SetWeight(weight float64) {
    Rigid body node. This node is used for placing rigid bodies in the scene. It can contain a number of shapes, and also shift mode between regular Rigid body, Kinematic, Character or Static.
 */
 type RigidBodyImplementer interface {
-	PhysicsBodyImplementer
-
-	X_IntegrateForces(state *PhysicsDirectBodyState)
-
-	ApplyImpulse(pos *Vector3, impulse *Vector3)
-
-	GetAngularDamp() float64
-
-	GetAngularVelocity() *Vector3
-
-	GetAxisLock() int64
-
-	GetBounce() float64
-
-	GetCollidingBodies() *Array
-
-	GetFriction() float64
-
-	GetGravityScale() float64
-
-	GetLinearDamp() float64
-
-	GetLinearVelocity() *Vector3
-
-	GetMass() float64
-
-	GetMaxContactsReported() int64
-
-	GetMode() int64
-
-	GetWeight() float64
-
-	IsAbleToSleep() *bool
-
-	IsContactMonitorEnabled() *bool
-
-	IsSleeping() *bool
-
-	IsUsingContinuousCollisionDetection() *bool
-
-	IsUsingCustomIntegrator() *bool
-
-	SetAngularDamp(angularDamp float64)
-
-	SetAngularVelocity(angularVelocity *Vector3)
-
-	SetAxisLock(axisLock int64)
-
-	SetAxisVelocity(axisVelocity *Vector3)
-
-	SetBounce(bounce float64)
-
-	SetCanSleep(ableToSleep *bool)
-
-	SetContactMonitor(enabled *bool)
-
-	SetFriction(friction float64)
-
-	SetGravityScale(gravityScale float64)
-
-	SetLinearDamp(linearDamp float64)
-
-	SetLinearVelocity(linearVelocity *Vector3)
-
-	SetMass(mass float64)
-
-	SetMaxContactsReported(amount int64)
-
-	SetMode(mode int64)
-
-	SetSleeping(sleeping *bool)
-
-	SetUseContinuousCollisionDetection(enable *bool)
-
-	SetUseCustomIntegrator(enable *bool)
-
-	SetWeight(weight float64)
+	Class
 }
 
 /*
@@ -86974,7 +79686,7 @@ func (o *RigidBody2D) GetWeight() float64 {
 /*
    Return true if the body has the ability to fall asleep when not moving. See [method set_can_sleep].
 */
-func (o *RigidBody2D) IsAbleToSleep() *bool {
+func (o *RigidBody2D) IsAbleToSleep() bool {
 	log.Println("Calling RigidBody2D.IsAbleToSleep()")
 
 	// Build out the method's arguments
@@ -86982,11 +79694,11 @@ func (o *RigidBody2D) IsAbleToSleep() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_able_to_sleep", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_able_to_sleep", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -86995,7 +79707,7 @@ func (o *RigidBody2D) IsAbleToSleep() *bool {
 /*
    Return whether contact monitoring is enabled.
 */
-func (o *RigidBody2D) IsContactMonitorEnabled() *bool {
+func (o *RigidBody2D) IsContactMonitorEnabled() bool {
 	log.Println("Calling RigidBody2D.IsContactMonitorEnabled()")
 
 	// Build out the method's arguments
@@ -87003,11 +79715,11 @@ func (o *RigidBody2D) IsContactMonitorEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_contact_monitor_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_contact_monitor_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -87016,7 +79728,7 @@ func (o *RigidBody2D) IsContactMonitorEnabled() *bool {
 /*
    Return whether the body is sleeping.
 */
-func (o *RigidBody2D) IsSleeping() *bool {
+func (o *RigidBody2D) IsSleeping() bool {
 	log.Println("Calling RigidBody2D.IsSleeping()")
 
 	// Build out the method's arguments
@@ -87024,11 +79736,11 @@ func (o *RigidBody2D) IsSleeping() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_sleeping", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_sleeping", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -87037,7 +79749,7 @@ func (o *RigidBody2D) IsSleeping() *bool {
 /*
    Return true if the body is not doing any built-in force integration.
 */
-func (o *RigidBody2D) IsUsingCustomIntegrator() *bool {
+func (o *RigidBody2D) IsUsingCustomIntegrator() bool {
 	log.Println("Calling RigidBody2D.IsUsingCustomIntegrator()")
 
 	// Build out the method's arguments
@@ -87045,11 +79757,11 @@ func (o *RigidBody2D) IsUsingCustomIntegrator() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_using_custom_integrator", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_using_custom_integrator", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -87167,7 +79879,7 @@ func (o *RigidBody2D) SetBounce(bounce float64) {
                 Set the body ability to fall asleep when not moving. This saves an enormous amount of processor time when there are plenty of rigid bodies (non static) in a scene.
 				Sleeping bodies are not affected by forces until a collision or an [method apply_impulse] / [method set_applied_force] wakes them up. Until then, they behave like a static body.
 */
-func (o *RigidBody2D) SetCanSleep(ableToSleep *bool) {
+func (o *RigidBody2D) SetCanSleep(ableToSleep bool) {
 	log.Println("Calling RigidBody2D.SetCanSleep()")
 
 	// Build out the method's arguments
@@ -87185,7 +79897,7 @@ func (o *RigidBody2D) SetCanSleep(ableToSleep *bool) {
 /*
    Enable contact monitoring. This allows the body to emit signals when it collides with another.
 */
-func (o *RigidBody2D) SetContactMonitor(enabled *bool) {
+func (o *RigidBody2D) SetContactMonitor(enabled bool) {
 	log.Println("Calling RigidBody2D.SetContactMonitor()")
 
 	// Build out the method's arguments
@@ -87366,7 +80078,7 @@ func (o *RigidBody2D) SetMode(mode int64) {
 /*
    Set whether a body is sleeping or not. Sleeping bodies are not affected by forces until a collision or an [method apply_impulse] / [method set_applied_force] wakes them up. Until then, they behave like a static body.
 */
-func (o *RigidBody2D) SetSleeping(sleeping *bool) {
+func (o *RigidBody2D) SetSleeping(sleeping bool) {
 	log.Println("Calling RigidBody2D.SetSleeping()")
 
 	// Build out the method's arguments
@@ -87384,7 +80096,7 @@ func (o *RigidBody2D) SetSleeping(sleeping *bool) {
 /*
    Pass true to disable the internal force integration (like gravity or air friction) for this body. Other than collision response, the body will only move as determined by the [method _integrate_forces] function, if defined.
 */
-func (o *RigidBody2D) SetUseCustomIntegrator(enable *bool) {
+func (o *RigidBody2D) SetUseCustomIntegrator(enable bool) {
 	log.Println("Calling RigidBody2D.SetUseCustomIntegrator()")
 
 	// Build out the method's arguments
@@ -87420,7 +80132,7 @@ func (o *RigidBody2D) SetWeight(weight float64) {
 /*
    Return whether the body would collide, if it tried to move in the given vector. This method allows two extra parameters: A margin, which increases slightly the size of the shapes involved in the collision detection, and an object of type [Physics2DTestMotionResult], which will store additional information about the collision (should there be one).
 */
-func (o *RigidBody2D) TestMotion(motion *Vector2, margin float64, result *Physics2DTestMotionResult) *bool {
+func (o *RigidBody2D) TestMotion(motion *Vector2, margin float64, result *Physics2DTestMotionResult) bool {
 	log.Println("Calling RigidBody2D.TestMotion()")
 
 	// Build out the method's arguments
@@ -87431,11 +80143,11 @@ func (o *RigidBody2D) TestMotion(motion *Vector2, margin float64, result *Physic
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "test_motion", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "test_motion", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -87448,95 +80160,7 @@ func (o *RigidBody2D) TestMotion(motion *Vector2, margin float64, result *Physic
 		As a warning, don't change this node position every frame or very often. Sporadic changes work fine, but physics runs at a different granularity (fixed hz) than usual rendering (process callback) and maybe even in a separate thread, so changing this from a process loop will yield strange behavior.
 */
 type RigidBody2DImplementer interface {
-	PhysicsBody2DImplementer
-
-	X_IntegrateForces(state *Physics2DDirectBodyState)
-
-	AddForce(offset *Vector2, force *Vector2)
-
-	ApplyImpulse(offset *Vector2, impulse *Vector2)
-
-	GetAngularDamp() float64
-
-	GetAngularVelocity() float64
-
-	GetAppliedForce() *Vector2
-
-	GetAppliedTorque() float64
-
-	GetBounce() float64
-
-	GetCollidingBodies() *Array
-
-	GetContinuousCollisionDetectionMode() int64
-
-	GetFriction() float64
-
-	GetGravityScale() float64
-
-	GetInertia() float64
-
-	GetLinearDamp() float64
-
-	GetLinearVelocity() *Vector2
-
-	GetMass() float64
-
-	GetMaxContactsReported() int64
-
-	GetMode() int64
-
-	GetWeight() float64
-
-	IsAbleToSleep() *bool
-
-	IsContactMonitorEnabled() *bool
-
-	IsSleeping() *bool
-
-	IsUsingCustomIntegrator() *bool
-
-	SetAngularDamp(angularDamp float64)
-
-	SetAngularVelocity(angularVelocity float64)
-
-	SetAppliedForce(force *Vector2)
-
-	SetAppliedTorque(torque float64)
-
-	SetAxisVelocity(axisVelocity *Vector2)
-
-	SetBounce(bounce float64)
-
-	SetCanSleep(ableToSleep *bool)
-
-	SetContactMonitor(enabled *bool)
-
-	SetContinuousCollisionDetectionMode(mode int64)
-
-	SetFriction(friction float64)
-
-	SetGravityScale(gravityScale float64)
-
-	SetInertia(inertia float64)
-
-	SetLinearDamp(linearDamp float64)
-
-	SetLinearVelocity(linearVelocity *Vector2)
-
-	SetMass(mass float64)
-
-	SetMaxContactsReported(amount int64)
-
-	SetMode(mode int64)
-
-	SetSleeping(sleeping *bool)
-
-	SetUseCustomIntegrator(enable *bool)
-
-	SetWeight(weight float64)
-
-	TestMotion(motion *Vector2, margin float64, result *Physics2DTestMotionResult) *bool
+	Class
 }
 
 /*
@@ -87837,7 +80461,7 @@ func (o *SceneState) GetNodeOwnerPath(idx int64) *NodePath {
 /*
 
  */
-func (o *SceneState) GetNodePath(idx int64, forParent *bool) *NodePath {
+func (o *SceneState) GetNodePath(idx int64, forParent bool) *NodePath {
 	log.Println("Calling SceneState.GetNodePath()")
 
 	// Build out the method's arguments
@@ -87950,7 +80574,7 @@ func (o *SceneState) GetNodeType(idx int64) string {
 /*
 
  */
-func (o *SceneState) IsNodeInstancePlaceholder(idx int64) *bool {
+func (o *SceneState) IsNodeInstancePlaceholder(idx int64) bool {
 	log.Println("Calling SceneState.IsNodeInstancePlaceholder()")
 
 	// Build out the method's arguments
@@ -87959,11 +80583,11 @@ func (o *SceneState) IsNodeInstancePlaceholder(idx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_node_instance_placeholder", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_node_instance_placeholder", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -87974,45 +80598,7 @@ func (o *SceneState) IsNodeInstancePlaceholder(idx int64) *bool {
 
 */
 type SceneStateImplementer interface {
-	ReferenceImplementer
-
-	GetConnectionBinds(idx int64) *Array
-
-	GetConnectionCount() int64
-
-	GetConnectionFlags(idx int64) int64
-
-	GetConnectionMethod(idx int64) string
-
-	GetConnectionSignal(idx int64) string
-
-	GetConnectionSource(idx int64) *NodePath
-
-	GetConnectionTarget(idx int64) *NodePath
-
-	GetNodeCount() int64
-
-	GetNodeGroups(idx int64) *PoolStringArray
-
-	GetNodeInstance(idx int64) *PackedScene
-
-	GetNodeInstancePlaceholder(idx int64) string
-
-	GetNodeName(idx int64) string
-
-	GetNodeOwnerPath(idx int64) *NodePath
-
-	GetNodePath(idx int64, forParent *bool) *NodePath
-
-	GetNodePropertyCount(idx int64) int64
-
-	GetNodePropertyName(idx int64, propIdx int64) string
-
-	GetNodePropertyValue(idx int64, propIdx int64) *Variant
-
-	GetNodeType(idx int64) string
-
-	IsNodeInstancePlaceholder(idx int64) *bool
+	Class
 }
 
 /*
@@ -88120,7 +80706,7 @@ func (o *SceneTree) ChangeSceneTo(packedScene *PackedScene) int64 {
 /*
 
  */
-func (o *SceneTree) CreateTimer(timeSec float64, pauseModeProcess *bool) *SceneTreeTimer {
+func (o *SceneTree) CreateTimer(timeSec float64, pauseModeProcess bool) *SceneTreeTimer {
 	log.Println("Calling SceneTree.CreateTimer()")
 
 	// Build out the method's arguments
@@ -88333,7 +80919,7 @@ func (o *SceneTree) GetRpcSenderId() int64 {
 /*
 
  */
-func (o *SceneTree) HasGroup(name string) *bool {
+func (o *SceneTree) HasGroup(name string) bool {
 	log.Println("Calling SceneTree.HasGroup()")
 
 	// Build out the method's arguments
@@ -88342,11 +80928,11 @@ func (o *SceneTree) HasGroup(name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_group", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_group", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -88355,7 +80941,7 @@ func (o *SceneTree) HasGroup(name string) *bool {
 /*
    Returns true if there is a [NetworkedMultiplayerPeer] set (with [method SceneTree.set_network_peer]).
 */
-func (o *SceneTree) HasNetworkPeer() *bool {
+func (o *SceneTree) HasNetworkPeer() bool {
 	log.Println("Calling SceneTree.HasNetworkPeer()")
 
 	// Build out the method's arguments
@@ -88363,11 +80949,11 @@ func (o *SceneTree) HasNetworkPeer() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_network_peer", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_network_peer", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -88376,7 +80962,7 @@ func (o *SceneTree) HasNetworkPeer() *bool {
 /*
 
  */
-func (o *SceneTree) IsDebuggingCollisionsHint() *bool {
+func (o *SceneTree) IsDebuggingCollisionsHint() bool {
 	log.Println("Calling SceneTree.IsDebuggingCollisionsHint()")
 
 	// Build out the method's arguments
@@ -88384,11 +80970,11 @@ func (o *SceneTree) IsDebuggingCollisionsHint() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_debugging_collisions_hint", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_debugging_collisions_hint", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -88397,7 +80983,7 @@ func (o *SceneTree) IsDebuggingCollisionsHint() *bool {
 /*
 
  */
-func (o *SceneTree) IsDebuggingNavigationHint() *bool {
+func (o *SceneTree) IsDebuggingNavigationHint() bool {
 	log.Println("Calling SceneTree.IsDebuggingNavigationHint()")
 
 	// Build out the method's arguments
@@ -88405,11 +80991,11 @@ func (o *SceneTree) IsDebuggingNavigationHint() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_debugging_navigation_hint", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_debugging_navigation_hint", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -88418,7 +81004,7 @@ func (o *SceneTree) IsDebuggingNavigationHint() *bool {
 /*
 
  */
-func (o *SceneTree) IsInputHandled() *bool {
+func (o *SceneTree) IsInputHandled() bool {
 	log.Println("Calling SceneTree.IsInputHandled()")
 
 	// Build out the method's arguments
@@ -88426,11 +81012,11 @@ func (o *SceneTree) IsInputHandled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_input_handled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_input_handled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -88439,7 +81025,7 @@ func (o *SceneTree) IsInputHandled() *bool {
 /*
    Returns true if this SceneTree's [NetworkedMultiplayerPeer] is in server mode (listening for connections).
 */
-func (o *SceneTree) IsNetworkServer() *bool {
+func (o *SceneTree) IsNetworkServer() bool {
 	log.Println("Calling SceneTree.IsNetworkServer()")
 
 	// Build out the method's arguments
@@ -88447,11 +81033,11 @@ func (o *SceneTree) IsNetworkServer() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_network_server", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_network_server", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -88460,7 +81046,7 @@ func (o *SceneTree) IsNetworkServer() *bool {
 /*
 
  */
-func (o *SceneTree) IsPaused() *bool {
+func (o *SceneTree) IsPaused() bool {
 	log.Println("Calling SceneTree.IsPaused()")
 
 	// Build out the method's arguments
@@ -88468,11 +81054,11 @@ func (o *SceneTree) IsPaused() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_paused", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_paused", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -88481,7 +81067,7 @@ func (o *SceneTree) IsPaused() *bool {
 /*
 
  */
-func (o *SceneTree) IsRefusingNewNetworkConnections() *bool {
+func (o *SceneTree) IsRefusingNewNetworkConnections() bool {
 	log.Println("Calling SceneTree.IsRefusingNewNetworkConnections()")
 
 	// Build out the method's arguments
@@ -88489,11 +81075,11 @@ func (o *SceneTree) IsRefusingNewNetworkConnections() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_refusing_new_network_connections", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_refusing_new_network_connections", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -88597,7 +81183,7 @@ func (o *SceneTree) ReloadCurrentScene() int64 {
 /*
 
  */
-func (o *SceneTree) SetAutoAcceptQuit(enabled *bool) {
+func (o *SceneTree) SetAutoAcceptQuit(enabled bool) {
 	log.Println("Calling SceneTree.SetAutoAcceptQuit()")
 
 	// Build out the method's arguments
@@ -88633,7 +81219,7 @@ func (o *SceneTree) SetCurrentScene(childNode *Node) {
 /*
 
  */
-func (o *SceneTree) SetDebugCollisionsHint(enable *bool) {
+func (o *SceneTree) SetDebugCollisionsHint(enable bool) {
 	log.Println("Calling SceneTree.SetDebugCollisionsHint()")
 
 	// Build out the method's arguments
@@ -88651,7 +81237,7 @@ func (o *SceneTree) SetDebugCollisionsHint(enable *bool) {
 /*
 
  */
-func (o *SceneTree) SetDebugNavigationHint(enable *bool) {
+func (o *SceneTree) SetDebugNavigationHint(enable bool) {
 	log.Println("Calling SceneTree.SetDebugNavigationHint()")
 
 	// Build out the method's arguments
@@ -88763,7 +81349,7 @@ func (o *SceneTree) SetNetworkPeer(peer *NetworkedMultiplayerPeer) {
 /*
 
  */
-func (o *SceneTree) SetPause(enable *bool) {
+func (o *SceneTree) SetPause(enable bool) {
 	log.Println("Calling SceneTree.SetPause()")
 
 	// Build out the method's arguments
@@ -88781,7 +81367,7 @@ func (o *SceneTree) SetPause(enable *bool) {
 /*
 
  */
-func (o *SceneTree) SetRefuseNewNetworkConnections(refuse *bool) {
+func (o *SceneTree) SetRefuseNewNetworkConnections(refuse bool) {
 	log.Println("Calling SceneTree.SetRefuseNewNetworkConnections()")
 
 	// Build out the method's arguments
@@ -88822,85 +81408,7 @@ func (o *SceneTree) SetScreenStretch(mode int64, aspect int64, minsize *Vector2,
 
 */
 type SceneTreeImplementer interface {
-	MainLoopImplementer
-
-	CallGroup(group string, method string) *Variant
-
-	CallGroupFlags(flags int64, group string, method string) *Variant
-
-	ChangeScene(path string) int64
-
-	ChangeSceneTo(packedScene *PackedScene) int64
-
-	CreateTimer(timeSec float64, pauseModeProcess *bool) *SceneTreeTimer
-
-	GetCurrentScene() *Node
-
-	GetEditedSceneRoot() *Node
-
-	GetFrame() int64
-
-	GetNetworkConnectedPeers() *PoolIntArray
-
-	GetNetworkUniqueId() int64
-
-	GetNodeCount() int64
-
-	GetNodesInGroup(group string) *Array
-
-	GetRoot() *Viewport
-
-	GetRpcSenderId() int64
-
-	HasGroup(name string) *bool
-
-	HasNetworkPeer() *bool
-
-	IsDebuggingCollisionsHint() *bool
-
-	IsDebuggingNavigationHint() *bool
-
-	IsInputHandled() *bool
-
-	IsNetworkServer() *bool
-
-	IsPaused() *bool
-
-	IsRefusingNewNetworkConnections() *bool
-
-	NotifyGroup(group string, notification int64)
-
-	NotifyGroupFlags(callFlags int64, group string, notification int64)
-
-	QueueDelete(obj *Object)
-
-	Quit()
-
-	ReloadCurrentScene() int64
-
-	SetAutoAcceptQuit(enabled *bool)
-
-	SetCurrentScene(childNode *Node)
-
-	SetDebugCollisionsHint(enable *bool)
-
-	SetDebugNavigationHint(enable *bool)
-
-	SetEditedSceneRoot(scene *Node)
-
-	SetGroup(group string, property string, value *Variant)
-
-	SetGroupFlags(callFlags int64, group string, property string, value *Variant)
-
-	SetInputAsHandled()
-
-	SetNetworkPeer(peer *NetworkedMultiplayerPeer)
-
-	SetPause(enable *bool)
-
-	SetRefuseNewNetworkConnections(refuse *bool)
-
-	SetScreenStretch(mode int64, aspect int64, minsize *Vector2, shrink int64)
+	Class
 }
 
 /*
@@ -88958,11 +81466,7 @@ func (o *SceneTreeTimer) SetTimeLeft(time float64) {
 
 */
 type SceneTreeTimerImplementer interface {
-	ReferenceImplementer
-
-	GetTimeLeft() float64
-
-	SetTimeLeft(time float64)
+	Class
 }
 
 /*
@@ -88979,7 +81483,7 @@ func (o *Script) baseClass() string {
 /*
    Return true if this script can be instance (ie not a library).
 */
-func (o *Script) CanInstance() *bool {
+func (o *Script) CanInstance() bool {
 	log.Println("Calling Script.CanInstance()")
 
 	// Build out the method's arguments
@@ -88987,11 +81491,11 @@ func (o *Script) CanInstance() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "can_instance", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "can_instance", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -89042,7 +81546,7 @@ func (o *Script) GetSourceCode() string {
 /*
 
  */
-func (o *Script) HasScriptSignal(signalName string) *bool {
+func (o *Script) HasScriptSignal(signalName string) bool {
 	log.Println("Calling Script.HasScriptSignal()")
 
 	// Build out the method's arguments
@@ -89051,11 +81555,11 @@ func (o *Script) HasScriptSignal(signalName string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_script_signal", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_script_signal", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -89064,7 +81568,7 @@ func (o *Script) HasScriptSignal(signalName string) *bool {
 /*
    Return true if the script contains source code.
 */
-func (o *Script) HasSourceCode() *bool {
+func (o *Script) HasSourceCode() bool {
 	log.Println("Calling Script.HasSourceCode()")
 
 	// Build out the method's arguments
@@ -89072,11 +81576,11 @@ func (o *Script) HasSourceCode() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_source_code", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_source_code", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -89085,7 +81589,7 @@ func (o *Script) HasSourceCode() *bool {
 /*
    Return true if a given object uses an instance of this script.
 */
-func (o *Script) InstanceHas(baseObject *Object) *bool {
+func (o *Script) InstanceHas(baseObject *Object) bool {
 	log.Println("Calling Script.InstanceHas()")
 
 	// Build out the method's arguments
@@ -89094,11 +81598,11 @@ func (o *Script) InstanceHas(baseObject *Object) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "instance_has", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "instance_has", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -89107,7 +81611,7 @@ func (o *Script) InstanceHas(baseObject *Object) *bool {
 /*
 
  */
-func (o *Script) IsTool() *bool {
+func (o *Script) IsTool() bool {
 	log.Println("Calling Script.IsTool()")
 
 	// Build out the method's arguments
@@ -89115,11 +81619,11 @@ func (o *Script) IsTool() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_tool", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_tool", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -89128,7 +81632,7 @@ func (o *Script) IsTool() *bool {
 /*
 
  */
-func (o *Script) Reload(keepState *bool) int64 {
+func (o *Script) Reload(keepState bool) int64 {
 	log.Println("Calling Script.Reload()")
 
 	// Build out the method's arguments
@@ -89170,25 +81674,7 @@ func (o *Script) SetSourceCode(source string) {
    Base class for scripts. Any script that is loaded becomes one of these resources, which can then create instances.
 */
 type ScriptImplementer interface {
-	ResourceImplementer
-
-	CanInstance() *bool
-
-	GetNodeType() string
-
-	GetSourceCode() string
-
-	HasScriptSignal(signalName string) *bool
-
-	HasSourceCode() *bool
-
-	InstanceHas(baseObject *Object) *bool
-
-	IsTool() *bool
-
-	Reload(keepState *bool) int64
-
-	SetSourceCode(source string)
+	Class
 }
 
 /*
@@ -89249,11 +81735,7 @@ func (o *ScriptEditor) GetOpenScripts() *Array {
 
 */
 type ScriptEditorImplementer interface {
-	PanelContainerImplementer
-
-	GetCurrentScript() *Script
-
-	GetOpenScripts() *Array
+	Class
 }
 
 /*
@@ -89311,11 +81793,7 @@ func (o *ScrollBar) SetCustomStep(step float64) {
    Scrollbars are a [Range] based [Control], that display a draggable area (the size of the page). Horizontal ([HScrollBar]) and Vertical ([VScrollBar]) versions are available.
 */
 type ScrollBarImplementer interface {
-	RangeImplementer
-
-	GetCustomStep() float64
-
-	SetCustomStep(step float64)
+	Class
 }
 
 /*
@@ -89374,7 +81852,7 @@ func (o *ScrollContainer) GetVScroll() int64 {
 /*
    Return true if horizontal scroll is allowed.
 */
-func (o *ScrollContainer) IsHScrollEnabled() *bool {
+func (o *ScrollContainer) IsHScrollEnabled() bool {
 	log.Println("Calling ScrollContainer.IsHScrollEnabled()")
 
 	// Build out the method's arguments
@@ -89382,11 +81860,11 @@ func (o *ScrollContainer) IsHScrollEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_h_scroll_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_h_scroll_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -89395,7 +81873,7 @@ func (o *ScrollContainer) IsHScrollEnabled() *bool {
 /*
    Return true if vertical scroll is allowed.
 */
-func (o *ScrollContainer) IsVScrollEnabled() *bool {
+func (o *ScrollContainer) IsVScrollEnabled() bool {
 	log.Println("Calling ScrollContainer.IsVScrollEnabled()")
 
 	// Build out the method's arguments
@@ -89403,11 +81881,11 @@ func (o *ScrollContainer) IsVScrollEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_v_scroll_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_v_scroll_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -89416,7 +81894,7 @@ func (o *ScrollContainer) IsVScrollEnabled() *bool {
 /*
    Set allows horizontal scroll.
 */
-func (o *ScrollContainer) SetEnableHScroll(enable *bool) {
+func (o *ScrollContainer) SetEnableHScroll(enable bool) {
 	log.Println("Calling ScrollContainer.SetEnableHScroll()")
 
 	// Build out the method's arguments
@@ -89434,7 +81912,7 @@ func (o *ScrollContainer) SetEnableHScroll(enable *bool) {
 /*
    Set allows vertical scroll.
 */
-func (o *ScrollContainer) SetEnableVScroll(enable *bool) {
+func (o *ScrollContainer) SetEnableVScroll(enable bool) {
 	log.Println("Calling ScrollContainer.SetEnableVScroll()")
 
 	// Build out the method's arguments
@@ -89490,23 +81968,7 @@ func (o *ScrollContainer) SetVScroll(val int64) {
    A ScrollContainer node with a [Control] child and scrollbar child ([HScrollbar], [VScrollBar], or both) will only draw the Control within the ScrollContainer area.  Scrollbars will automatically be drawn at the right (for vertical) or bottom (for horizontal) and will enable dragging to move the viewable Control (and its children) within the ScrollContainer.  Scrollbars will also automatically resize the grabber based on the minimum_size of the Control relative to the ScrollContainer.  Works great with a [Panel] control.  You can set EXPAND on children size flags, so they will upscale to ScrollContainer size if ScrollContainer size is bigger (scroll is invisible for chosen dimension).
 */
 type ScrollContainerImplementer interface {
-	ContainerImplementer
-
-	GetHScroll() int64
-
-	GetVScroll() int64
-
-	IsHScrollEnabled() *bool
-
-	IsVScrollEnabled() *bool
-
-	SetEnableHScroll(enable *bool)
-
-	SetEnableVScroll(enable *bool)
-
-	SetHScroll(val int64)
-
-	SetVScroll(val int64)
+	Class
 }
 
 /*
@@ -89603,15 +82065,7 @@ func (o *SegmentShape2D) SetB(b *Vector2) {
    Segment Shape for 2D Collision Detection, consists of two points, 'a' and 'b'.
 */
 type SegmentShape2DImplementer interface {
-	Shape2DImplementer
-
-	GetA() *Vector2
-
-	GetB() *Vector2
-
-	SetA(a *Vector2)
-
-	SetB(b *Vector2)
+	Class
 }
 
 /*
@@ -89672,11 +82126,7 @@ func (o *Semaphore) Wait() int64 {
    A synchronization Semaphore. Element used in multi-threadding. Initialized to zero on creation.
 */
 type SemaphoreImplementer interface {
-	ReferenceImplementer
-
-	Post() int64
-
-	Wait() int64
+	Class
 }
 
 /*
@@ -89695,7 +82145,7 @@ func (o *Separator) baseClass() string {
    Separator is a [Control] used for separating other controls. It's purely a visual decoration. Horizontal ([HSeparator]) and Vertical ([VSeparator]) versions are available.
 */
 type SeparatorImplementer interface {
-	ControlImplementer
+	Class
 }
 
 /*
@@ -89776,7 +82226,7 @@ func (o *Shader) GetMode() int64 {
 /*
 
  */
-func (o *Shader) HasParam(name string) *bool {
+func (o *Shader) HasParam(name string) bool {
 	log.Println("Calling Shader.HasParam()")
 
 	// Build out the method's arguments
@@ -89785,11 +82235,11 @@ func (o *Shader) HasParam(name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_param", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_param", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -89837,19 +82287,7 @@ func (o *Shader) SetDefaultTextureParam(param string, texture *Texture) {
    To be changed, ignore.
 */
 type ShaderImplementer interface {
-	ResourceImplementer
-
-	GetCode() string
-
-	GetDefaultTextureParam(param string) *Texture
-
-	GetMode() int64
-
-	HasParam(name string) *bool
-
-	SetCode(code string)
-
-	SetDefaultTextureParam(param string, texture *Texture)
+	Class
 }
 
 /*
@@ -89948,15 +82386,7 @@ func (o *ShaderMaterial) SetShaderParam(param string, value *Variant) {
 
 */
 type ShaderMaterialImplementer interface {
-	MaterialImplementer
-
-	GetShader() *Shader
-
-	GetShaderParam(param string) *Variant
-
-	SetShader(shader *Shader)
-
-	SetShaderParam(param string, value *Variant)
+	Class
 }
 
 /*
@@ -89975,7 +82405,7 @@ func (o *Shape) baseClass() string {
 
 */
 type ShapeImplementer interface {
-	ResourceImplementer
+	Class
 }
 
 /*
@@ -89993,7 +82423,7 @@ func (o *Shape2D) baseClass() string {
                 Return whether this shape is colliding with another.
 				This method needs the transformation matrix for this shape ([code]local_xform[/code]), the shape to check collisions with ([code]with_shape[/code]), and the transformation matrix of that shape ([code]shape_xform[/code]).
 */
-func (o *Shape2D) Collide(localXform *Transform2D, withShape *Shape2D, shapeXform *Transform2D) *bool {
+func (o *Shape2D) Collide(localXform *Transform2D, withShape *Shape2D, shapeXform *Transform2D) bool {
 	log.Println("Calling Shape2D.Collide()")
 
 	// Build out the method's arguments
@@ -90004,11 +82434,11 @@ func (o *Shape2D) Collide(localXform *Transform2D, withShape *Shape2D, shapeXfor
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "collide", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "collide", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -90043,7 +82473,7 @@ func (o *Shape2D) CollideAndGetContacts(localXform *Transform2D, withShape *Shap
                 Return whether this shape would collide with another, if a given movement was applied.
 				This method needs the transformation matrix for this shape ([code]local_xform[/code]), the movement to test on this shape ([code]local_motion[/code]), the shape to check collisions with ([code]with_shape[/code]), the transformation matrix of that shape ([code]shape_xform[/code]), and the movement to test onto the other object ([code]shape_motion[/code]).
 */
-func (o *Shape2D) CollideWithMotion(localXform *Transform2D, localMotion *Vector2, withShape *Shape2D, shapeXform *Transform2D, shapeMotion *Vector2) *bool {
+func (o *Shape2D) CollideWithMotion(localXform *Transform2D, localMotion *Vector2, withShape *Shape2D, shapeXform *Transform2D, shapeMotion *Vector2) bool {
 	log.Println("Calling Shape2D.CollideWithMotion()")
 
 	// Build out the method's arguments
@@ -90056,11 +82486,11 @@ func (o *Shape2D) CollideWithMotion(localXform *Transform2D, localMotion *Vector
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "collide_with_motion", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "collide_with_motion", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -90138,19 +82568,7 @@ func (o *Shape2D) SetCustomSolverBias(bias float64) {
    Base class for all 2D Shapes. All 2D shape types inherit from this.
 */
 type Shape2DImplementer interface {
-	ResourceImplementer
-
-	Collide(localXform *Transform2D, withShape *Shape2D, shapeXform *Transform2D) *bool
-
-	CollideAndGetContacts(localXform *Transform2D, withShape *Shape2D, shapeXform *Transform2D) *Variant
-
-	CollideWithMotion(localXform *Transform2D, localMotion *Vector2, withShape *Shape2D, shapeXform *Transform2D, shapeMotion *Vector2) *bool
-
-	CollideWithMotionAndGetContacts(localXform *Transform2D, localMotion *Vector2, withShape *Shape2D, shapeXform *Transform2D, shapeMotion *Vector2) *Variant
-
-	GetCustomSolverBias() float64
-
-	SetCustomSolverBias(bias float64)
+	Class
 }
 
 /*
@@ -90209,7 +82627,7 @@ func (o *ShortCut) GetShortcut() *InputEvent {
 /*
 
  */
-func (o *ShortCut) IsShortcut(event *InputEvent) *bool {
+func (o *ShortCut) IsShortcut(event *InputEvent) bool {
 	log.Println("Calling ShortCut.IsShortcut()")
 
 	// Build out the method's arguments
@@ -90218,11 +82636,11 @@ func (o *ShortCut) IsShortcut(event *InputEvent) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_shortcut", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_shortcut", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -90231,7 +82649,7 @@ func (o *ShortCut) IsShortcut(event *InputEvent) *bool {
 /*
 
  */
-func (o *ShortCut) IsValid() *bool {
+func (o *ShortCut) IsValid() bool {
 	log.Println("Calling ShortCut.IsValid()")
 
 	// Build out the method's arguments
@@ -90239,11 +82657,11 @@ func (o *ShortCut) IsValid() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_valid", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_valid", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -90272,17 +82690,7 @@ func (o *ShortCut) SetShortcut(event *InputEvent) {
 
 */
 type ShortCutImplementer interface {
-	ResourceImplementer
-
-	GetAsText() string
-
-	GetShortcut() *InputEvent
-
-	IsShortcut(event *InputEvent) *bool
-
-	IsValid() *bool
-
-	SetShortcut(event *InputEvent)
+	Class
 }
 
 /*
@@ -90572,7 +82980,7 @@ func (o *Skeleton) GetBoundChildNodesToBone(boneIdx int64) *Array {
 /*
 
  */
-func (o *Skeleton) IsBoneRestDisabled(boneIdx int64) *bool {
+func (o *Skeleton) IsBoneRestDisabled(boneIdx int64) bool {
 	log.Println("Calling Skeleton.IsBoneRestDisabled()")
 
 	// Build out the method's arguments
@@ -90581,11 +82989,11 @@ func (o *Skeleton) IsBoneRestDisabled(boneIdx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_bone_rest_disabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_bone_rest_disabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -90613,7 +83021,7 @@ func (o *Skeleton) SetBoneCustomPose(boneIdx int64, customPose *Transform) {
 /*
 
  */
-func (o *Skeleton) SetBoneDisableRest(boneIdx int64, disable *bool) {
+func (o *Skeleton) SetBoneDisableRest(boneIdx int64, disable bool) {
 	log.Println("Calling Skeleton.SetBoneDisableRest()")
 
 	// Build out the method's arguments
@@ -90747,51 +83155,7 @@ func (o *Skeleton) UnparentBoneAndRest(boneIdx int64) {
    Skeleton provides a hierarchical interface for managing bones, including pose, rest and animation (see [Animation]). Skeleton will support rag doll dynamics in the future.
 */
 type SkeletonImplementer interface {
-	SpatialImplementer
-
-	AddBone(name string)
-
-	BindChildNodeToBone(boneIdx int64, node *Node)
-
-	ClearBones()
-
-	FindBone(name string) int64
-
-	GetBoneCount() int64
-
-	GetBoneCustomPose(boneIdx int64) *Transform
-
-	GetBoneGlobalPose(boneIdx int64) *Transform
-
-	GetBoneName(boneIdx int64) string
-
-	GetBoneParent(boneIdx int64) int64
-
-	GetBonePose(boneIdx int64) *Transform
-
-	GetBoneRest(boneIdx int64) *Transform
-
-	GetBoneTransform(boneIdx int64) *Transform
-
-	GetBoundChildNodesToBone(boneIdx int64) *Array
-
-	IsBoneRestDisabled(boneIdx int64) *bool
-
-	SetBoneCustomPose(boneIdx int64, customPose *Transform)
-
-	SetBoneDisableRest(boneIdx int64, disable *bool)
-
-	SetBoneGlobalPose(boneIdx int64, pose *Transform)
-
-	SetBoneParent(boneIdx int64, parentIdx int64)
-
-	SetBonePose(boneIdx int64, pose *Transform)
-
-	SetBoneRest(boneIdx int64, rest *Transform)
-
-	UnbindChildNodeFromBone(boneIdx int64, node *Node)
-
-	UnparentBoneAndRest(boneIdx int64)
+	Class
 }
 
 /*
@@ -90849,11 +83213,7 @@ func (o *Sky) SetRadianceSize(size int64) {
 
 */
 type SkyImplementer interface {
-	ResourceImplementer
-
-	GetRadianceSize() int64
-
-	SetRadianceSize(size int64)
+	Class
 }
 
 /*
@@ -90891,7 +83251,7 @@ func (o *Slider) GetTicks() int64 {
 /*
    Return true if ticks are visible on borders.
 */
-func (o *Slider) GetTicksOnBorders() *bool {
+func (o *Slider) GetTicksOnBorders() bool {
 	log.Println("Calling Slider.GetTicksOnBorders()")
 
 	// Build out the method's arguments
@@ -90899,11 +83259,11 @@ func (o *Slider) GetTicksOnBorders() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_ticks_on_borders", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_ticks_on_borders", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -90912,7 +83272,7 @@ func (o *Slider) GetTicksOnBorders() *bool {
 /*
 
  */
-func (o *Slider) IsEditable() *bool {
+func (o *Slider) IsEditable() bool {
 	log.Println("Calling Slider.IsEditable()")
 
 	// Build out the method's arguments
@@ -90920,11 +83280,11 @@ func (o *Slider) IsEditable() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_editable", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_editable", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -90933,7 +83293,7 @@ func (o *Slider) IsEditable() *bool {
 /*
 
  */
-func (o *Slider) SetEditable(editable *bool) {
+func (o *Slider) SetEditable(editable bool) {
 	log.Println("Calling Slider.SetEditable()")
 
 	// Build out the method's arguments
@@ -90969,7 +83329,7 @@ func (o *Slider) SetTicks(count int64) {
 /*
    Set true if ticks are visible on borders.
 */
-func (o *Slider) SetTicksOnBorders(ticksOnBorder *bool) {
+func (o *Slider) SetTicksOnBorders(ticksOnBorder bool) {
 	log.Println("Calling Slider.SetTicksOnBorders()")
 
 	// Build out the method's arguments
@@ -90989,19 +83349,7 @@ func (o *Slider) SetTicksOnBorders(ticksOnBorder *bool) {
    Base class for GUI Sliders.
 */
 type SliderImplementer interface {
-	RangeImplementer
-
-	GetTicks() int64
-
-	GetTicksOnBorders() *bool
-
-	IsEditable() *bool
-
-	SetEditable(editable *bool)
-
-	SetTicks(count int64)
-
-	SetTicksOnBorders(ticksOnBorder *bool)
+	Class
 }
 
 /*
@@ -91061,11 +83409,7 @@ func (o *SliderJoint) SetParam(param int64, value float64) {
 
 */
 type SliderJointImplementer interface {
-	JointImplementer
-
-	GetParam(param int64) float64
-
-	SetParam(param int64, value float64)
+	Class
 }
 
 /*
@@ -91325,7 +83669,7 @@ func (o *Spatial) Hide() {
 /*
 
  */
-func (o *Spatial) IsLocalTransformNotificationEnabled() *bool {
+func (o *Spatial) IsLocalTransformNotificationEnabled() bool {
 	log.Println("Calling Spatial.IsLocalTransformNotificationEnabled()")
 
 	// Build out the method's arguments
@@ -91333,11 +83677,11 @@ func (o *Spatial) IsLocalTransformNotificationEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_local_transform_notification_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_local_transform_notification_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -91346,7 +83690,7 @@ func (o *Spatial) IsLocalTransformNotificationEnabled() *bool {
 /*
 
  */
-func (o *Spatial) IsSetAsToplevel() *bool {
+func (o *Spatial) IsSetAsToplevel() bool {
 	log.Println("Calling Spatial.IsSetAsToplevel()")
 
 	// Build out the method's arguments
@@ -91354,11 +83698,11 @@ func (o *Spatial) IsSetAsToplevel() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_set_as_toplevel", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_set_as_toplevel", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -91367,7 +83711,7 @@ func (o *Spatial) IsSetAsToplevel() *bool {
 /*
 
  */
-func (o *Spatial) IsTransformNotificationEnabled() *bool {
+func (o *Spatial) IsTransformNotificationEnabled() bool {
 	log.Println("Calling Spatial.IsTransformNotificationEnabled()")
 
 	// Build out the method's arguments
@@ -91375,11 +83719,11 @@ func (o *Spatial) IsTransformNotificationEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_transform_notification_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_transform_notification_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -91388,7 +83732,7 @@ func (o *Spatial) IsTransformNotificationEnabled() *bool {
 /*
 
  */
-func (o *Spatial) IsVisible() *bool {
+func (o *Spatial) IsVisible() bool {
 	log.Println("Calling Spatial.IsVisible()")
 
 	// Build out the method's arguments
@@ -91396,11 +83740,11 @@ func (o *Spatial) IsVisible() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_visible", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_visible", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -91409,7 +83753,7 @@ func (o *Spatial) IsVisible() *bool {
 /*
 
  */
-func (o *Spatial) IsVisibleInTree() *bool {
+func (o *Spatial) IsVisibleInTree() bool {
 	log.Println("Calling Spatial.IsVisibleInTree()")
 
 	// Build out the method's arguments
@@ -91417,11 +83761,11 @@ func (o *Spatial) IsVisibleInTree() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_visible_in_tree", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_visible_in_tree", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -91559,7 +83903,7 @@ func (o *Spatial) RotateZ(radians float64) {
 /*
 
  */
-func (o *Spatial) SetAsToplevel(enable *bool) {
+func (o *Spatial) SetAsToplevel(enable bool) {
 	log.Println("Calling Spatial.SetAsToplevel()")
 
 	// Build out the method's arguments
@@ -91630,7 +83974,7 @@ func (o *Spatial) SetIdentity() {
 /*
 
  */
-func (o *Spatial) SetIgnoreTransformNotification(enabled *bool) {
+func (o *Spatial) SetIgnoreTransformNotification(enabled bool) {
 	log.Println("Calling Spatial.SetIgnoreTransformNotification()")
 
 	// Build out the method's arguments
@@ -91648,7 +83992,7 @@ func (o *Spatial) SetIgnoreTransformNotification(enabled *bool) {
 /*
 
  */
-func (o *Spatial) SetNotifyLocalTransform(enable *bool) {
+func (o *Spatial) SetNotifyLocalTransform(enable bool) {
 	log.Println("Calling Spatial.SetNotifyLocalTransform()")
 
 	// Build out the method's arguments
@@ -91666,7 +84010,7 @@ func (o *Spatial) SetNotifyLocalTransform(enable *bool) {
 /*
 
  */
-func (o *Spatial) SetNotifyTransform(enable *bool) {
+func (o *Spatial) SetNotifyTransform(enable bool) {
 	log.Println("Calling Spatial.SetNotifyTransform()")
 
 	// Build out the method's arguments
@@ -91774,7 +84118,7 @@ func (o *Spatial) SetTranslation(translation *Vector3) {
 /*
 
  */
-func (o *Spatial) SetVisible(visible *bool) {
+func (o *Spatial) SetVisible(visible bool) {
 	log.Println("Calling Spatial.SetVisible()")
 
 	// Build out the method's arguments
@@ -91890,91 +84234,7 @@ func (o *Spatial) UpdateGizmo() {
    Spatial is the base for every type of 3D [Node]. It contains a 3D [Transform] which can be set or get as local or global. If a Spatial [Node] has Spatial children, their transforms will be relative to the parent.
 */
 type SpatialImplementer interface {
-	NodeImplementer
-
-	GetGizmo() *SpatialGizmo
-
-	GetGlobalTransform() *Transform
-
-	GetParentSpatial() *Spatial
-
-	GetRotation() *Vector3
-
-	GetRotationDeg() *Vector3
-
-	GetScale() *Vector3
-
-	GetTransform() *Transform
-
-	GetTranslation() *Vector3
-
-	GetWorld() *World
-
-	GlobalRotate(normal *Vector3, radians float64)
-
-	GlobalTranslate(offset *Vector3)
-
-	Hide()
-
-	IsLocalTransformNotificationEnabled() *bool
-
-	IsSetAsToplevel() *bool
-
-	IsTransformNotificationEnabled() *bool
-
-	IsVisible() *bool
-
-	IsVisibleInTree() *bool
-
-	LookAt(target *Vector3, up *Vector3)
-
-	LookAtFromPos(pos *Vector3, target *Vector3, up *Vector3)
-
-	Orthonormalize()
-
-	Rotate(normal *Vector3, radians float64)
-
-	RotateX(radians float64)
-
-	RotateY(radians float64)
-
-	RotateZ(radians float64)
-
-	SetAsToplevel(enable *bool)
-
-	SetGizmo(gizmo *SpatialGizmo)
-
-	SetGlobalTransform(global *Transform)
-
-	SetIdentity()
-
-	SetIgnoreTransformNotification(enabled *bool)
-
-	SetNotifyLocalTransform(enable *bool)
-
-	SetNotifyTransform(enable *bool)
-
-	SetRotation(rotationRad *Vector3)
-
-	SetRotationDeg(rotationDeg *Vector3)
-
-	SetScale(scale *Vector3)
-
-	SetTransform(local *Transform)
-
-	SetTranslation(translation *Vector3)
-
-	SetVisible(visible *bool)
-
-	Show()
-
-	ToGlobal(localPoint *Vector3) *Vector3
-
-	ToLocal(globalPoint *Vector3) *Vector3
-
-	Translate(offset *Vector3)
-
-	UpdateGizmo()
+	Class
 }
 
 /*
@@ -91993,7 +84253,7 @@ func (o *SpatialGizmo) baseClass() string {
 
 */
 type SpatialGizmoImplementer interface {
-	ReferenceImplementer
+	Class
 }
 
 /*
@@ -92388,7 +84648,7 @@ func (o *SpatialMaterial) GetEmissionEnergy() float64 {
 /*
 
  */
-func (o *SpatialMaterial) GetFeature(feature int64) *bool {
+func (o *SpatialMaterial) GetFeature(feature int64) bool {
 	log.Println("Calling SpatialMaterial.GetFeature()")
 
 	// Build out the method's arguments
@@ -92397,11 +84657,11 @@ func (o *SpatialMaterial) GetFeature(feature int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_feature", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_feature", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -92410,7 +84670,7 @@ func (o *SpatialMaterial) GetFeature(feature int64) *bool {
 /*
 
  */
-func (o *SpatialMaterial) GetFlag(flag int64) *bool {
+func (o *SpatialMaterial) GetFlag(flag int64) bool {
 	log.Println("Calling SpatialMaterial.GetFlag()")
 
 	// Build out the method's arguments
@@ -92419,11 +84679,11 @@ func (o *SpatialMaterial) GetFlag(flag int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_flag", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_flag", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -92958,7 +85218,7 @@ func (o *SpatialMaterial) GetUv2TriplanarBlendSharpness() float64 {
 /*
 
  */
-func (o *SpatialMaterial) IsDepthDeepParallaxEnabled() *bool {
+func (o *SpatialMaterial) IsDepthDeepParallaxEnabled() bool {
 	log.Println("Calling SpatialMaterial.IsDepthDeepParallaxEnabled()")
 
 	// Build out the method's arguments
@@ -92966,11 +85226,11 @@ func (o *SpatialMaterial) IsDepthDeepParallaxEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_depth_deep_parallax_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_depth_deep_parallax_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -92979,7 +85239,7 @@ func (o *SpatialMaterial) IsDepthDeepParallaxEnabled() *bool {
 /*
 
  */
-func (o *SpatialMaterial) IsGrowEnabled() *bool {
+func (o *SpatialMaterial) IsGrowEnabled() bool {
 	log.Println("Calling SpatialMaterial.IsGrowEnabled()")
 
 	// Build out the method's arguments
@@ -92987,11 +85247,11 @@ func (o *SpatialMaterial) IsGrowEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_grow_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_grow_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -93162,7 +85422,7 @@ func (o *SpatialMaterial) SetCullMode(cullMode int64) {
 /*
 
  */
-func (o *SpatialMaterial) SetDepthDeepParallax(enable *bool) {
+func (o *SpatialMaterial) SetDepthDeepParallax(enable bool) {
 	log.Println("Calling SpatialMaterial.SetDepthDeepParallax()")
 
 	// Build out the method's arguments
@@ -93342,7 +85602,7 @@ func (o *SpatialMaterial) SetEmissionEnergy(emissionEnergy float64) {
 /*
 
  */
-func (o *SpatialMaterial) SetFeature(feature int64, enable *bool) {
+func (o *SpatialMaterial) SetFeature(feature int64, enable bool) {
 	log.Println("Calling SpatialMaterial.SetFeature()")
 
 	// Build out the method's arguments
@@ -93361,7 +85621,7 @@ func (o *SpatialMaterial) SetFeature(feature int64, enable *bool) {
 /*
 
  */
-func (o *SpatialMaterial) SetFlag(flag int64, enable *bool) {
+func (o *SpatialMaterial) SetFlag(flag int64, enable bool) {
 	log.Println("Calling SpatialMaterial.SetFlag()")
 
 	// Build out the method's arguments
@@ -93398,7 +85658,7 @@ func (o *SpatialMaterial) SetGrow(amount float64) {
 /*
 
  */
-func (o *SpatialMaterial) SetGrowEnabled(enable *bool) {
+func (o *SpatialMaterial) SetGrowEnabled(enable bool) {
 	log.Println("Calling SpatialMaterial.SetGrowEnabled()")
 
 	// Build out the method's arguments
@@ -93851,195 +86111,7 @@ func (o *SpatialMaterial) SetUv2TriplanarBlendSharpness(sharpness float64) {
 
 */
 type SpatialMaterialImplementer interface {
-	MaterialImplementer
-
-	GetAlbedo() *Color
-
-	GetAlphaScissorThreshold() float64
-
-	GetAnisotropy() float64
-
-	GetAoTextureChannel() int64
-
-	GetBillboardMode() int64
-
-	GetBlendMode() int64
-
-	GetClearcoat() float64
-
-	GetClearcoatGloss() float64
-
-	GetCullMode() int64
-
-	GetDepthDeepParallaxMaxLayers() int64
-
-	GetDepthDeepParallaxMinLayers() int64
-
-	GetDepthDrawMode() int64
-
-	GetDepthScale() float64
-
-	GetDetailBlendMode() int64
-
-	GetDetailUv() int64
-
-	GetDiffuseMode() int64
-
-	GetEmission() *Color
-
-	GetEmissionEnergy() float64
-
-	GetFeature(feature int64) *bool
-
-	GetFlag(flag int64) *bool
-
-	GetGrow() float64
-
-	GetLineWidth() float64
-
-	GetMetallic() float64
-
-	GetMetallicTextureChannel() int64
-
-	GetNormalScale() float64
-
-	GetParticlesAnimHFrames() int64
-
-	GetParticlesAnimLoop() int64
-
-	GetParticlesAnimVFrames() int64
-
-	GetPointSize() float64
-
-	GetRefraction() float64
-
-	GetRefractionTextureChannel() int64
-
-	GetRim() float64
-
-	GetRimTint() float64
-
-	GetRoughness() float64
-
-	GetRoughnessTextureChannel() int64
-
-	GetSpecular() float64
-
-	GetSpecularMode() int64
-
-	GetSubsurfaceScatteringStrength() float64
-
-	GetTexture(param int64) *Texture
-
-	GetUv1Offset() *Vector3
-
-	GetUv1Scale() *Vector3
-
-	GetUv1TriplanarBlendSharpness() float64
-
-	GetUv2Offset() *Vector3
-
-	GetUv2Scale() *Vector3
-
-	GetUv2TriplanarBlendSharpness() float64
-
-	IsDepthDeepParallaxEnabled() *bool
-
-	IsGrowEnabled() *bool
-
-	SetAlbedo(albedo *Color)
-
-	SetAlphaScissorThreshold(threshold float64)
-
-	SetAnisotropy(anisotropy float64)
-
-	SetAoTextureChannel(channel int64)
-
-	SetBillboardMode(mode int64)
-
-	SetBlendMode(blendMode int64)
-
-	SetClearcoat(clearcoat float64)
-
-	SetClearcoatGloss(clearcoatGloss float64)
-
-	SetCullMode(cullMode int64)
-
-	SetDepthDeepParallax(enable *bool)
-
-	SetDepthDeepParallaxMaxLayers(layer int64)
-
-	SetDepthDeepParallaxMinLayers(layer int64)
-
-	SetDepthDrawMode(depthDrawMode int64)
-
-	SetDepthScale(depthScale float64)
-
-	SetDetailBlendMode(detailBlendMode int64)
-
-	SetDetailUv(detailUv int64)
-
-	SetDiffuseMode(diffuseMode int64)
-
-	SetEmission(emission *Color)
-
-	SetEmissionEnergy(emissionEnergy float64)
-
-	SetFeature(feature int64, enable *bool)
-
-	SetFlag(flag int64, enable *bool)
-
-	SetGrow(amount float64)
-
-	SetGrowEnabled(enable *bool)
-
-	SetLineWidth(lineWidth float64)
-
-	SetMetallic(metallic float64)
-
-	SetMetallicTextureChannel(channel int64)
-
-	SetNormalScale(normalScale float64)
-
-	SetParticlesAnimHFrames(frames int64)
-
-	SetParticlesAnimLoop(frames int64)
-
-	SetParticlesAnimVFrames(frames int64)
-
-	SetPointSize(pointSize float64)
-
-	SetRefraction(refraction float64)
-
-	SetRefractionTextureChannel(channel int64)
-
-	SetRim(rim float64)
-
-	SetRimTint(rimTint float64)
-
-	SetRoughness(roughness float64)
-
-	SetRoughnessTextureChannel(channel int64)
-
-	SetSpecular(specular float64)
-
-	SetSpecularMode(specularMode int64)
-
-	SetSubsurfaceScatteringStrength(strength float64)
-
-	SetTexture(param int64, texture *Texture)
-
-	SetUv1Offset(offset *Vector3)
-
-	SetUv1Scale(scale *Vector3)
-
-	SetUv1TriplanarBlendSharpness(sharpness float64)
-
-	SetUv2Offset(offset *Vector3)
-
-	SetUv2Scale(scale *Vector3)
-
-	SetUv2TriplanarBlendSharpness(sharpness float64)
+	Class
 }
 
 /*
@@ -94077,7 +86149,7 @@ func (o *SpatialVelocityTracker) GetTrackedLinearVelocity() *Vector3 {
 /*
 
  */
-func (o *SpatialVelocityTracker) IsTrackingFixedStep() *bool {
+func (o *SpatialVelocityTracker) IsTrackingFixedStep() bool {
 	log.Println("Calling SpatialVelocityTracker.IsTrackingFixedStep()")
 
 	// Build out the method's arguments
@@ -94085,11 +86157,11 @@ func (o *SpatialVelocityTracker) IsTrackingFixedStep() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_tracking_fixed_step", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_tracking_fixed_step", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -94116,7 +86188,7 @@ func (o *SpatialVelocityTracker) Reset(position *Vector3) {
 /*
 
  */
-func (o *SpatialVelocityTracker) SetTrackFixedStep(enable *bool) {
+func (o *SpatialVelocityTracker) SetTrackFixedStep(enable bool) {
 	log.Println("Calling SpatialVelocityTracker.SetTrackFixedStep()")
 
 	// Build out the method's arguments
@@ -94154,17 +86226,7 @@ func (o *SpatialVelocityTracker) UpdatePosition(position *Vector3) {
 
 */
 type SpatialVelocityTrackerImplementer interface {
-	ReferenceImplementer
-
-	GetTrackedLinearVelocity() *Vector3
-
-	IsTrackingFixedStep() *bool
-
-	Reset(position *Vector3)
-
-	SetTrackFixedStep(enable *bool)
-
-	UpdatePosition(position *Vector3)
+	Class
 }
 
 /*
@@ -94202,7 +86264,7 @@ func (o *SphereMesh) GetHeight() float64 {
 /*
 
  */
-func (o *SphereMesh) GetIsHemisphere() *bool {
+func (o *SphereMesh) GetIsHemisphere() bool {
 	log.Println("Calling SphereMesh.GetIsHemisphere()")
 
 	// Build out the method's arguments
@@ -94210,11 +86272,11 @@ func (o *SphereMesh) GetIsHemisphere() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_is_hemisphere", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_is_hemisphere", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -94304,7 +86366,7 @@ func (o *SphereMesh) SetHeight(height float64) {
 /*
 
  */
-func (o *SphereMesh) SetIsHemisphere(isHemisphere *bool) {
+func (o *SphereMesh) SetIsHemisphere(isHemisphere bool) {
 	log.Println("Calling SphereMesh.SetIsHemisphere()")
 
 	// Build out the method's arguments
@@ -94378,27 +86440,7 @@ func (o *SphereMesh) SetRings(rings int64) {
 
 */
 type SphereMeshImplementer interface {
-	PrimitiveMeshImplementer
-
-	GetHeight() float64
-
-	GetIsHemisphere() *bool
-
-	GetRadialSegments() int64
-
-	GetRadius() float64
-
-	GetRings() int64
-
-	SetHeight(height float64)
-
-	SetIsHemisphere(isHemisphere *bool)
-
-	SetRadialSegments(radialSegments int64)
-
-	SetRadius(radius float64)
-
-	SetRings(rings int64)
+	Class
 }
 
 /*
@@ -94456,11 +86498,7 @@ func (o *SphereShape) SetRadius(radius float64) {
 
 */
 type SphereShapeImplementer interface {
-	ShapeImplementer
-
-	GetRadius() float64
-
-	SetRadius(radius float64)
+	Class
 }
 
 /*
@@ -94540,7 +86578,7 @@ func (o *SpinBox) GetSuffix() string {
 /*
    Return if the spinbox is editable.
 */
-func (o *SpinBox) IsEditable() *bool {
+func (o *SpinBox) IsEditable() bool {
 	log.Println("Calling SpinBox.IsEditable()")
 
 	// Build out the method's arguments
@@ -94548,11 +86586,11 @@ func (o *SpinBox) IsEditable() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_editable", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_editable", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -94561,7 +86599,7 @@ func (o *SpinBox) IsEditable() *bool {
 /*
    Set whether the spinbox is editable.
 */
-func (o *SpinBox) SetEditable(editable *bool) {
+func (o *SpinBox) SetEditable(editable bool) {
 	log.Println("Calling SpinBox.SetEditable()")
 
 	// Build out the method's arguments
@@ -94617,21 +86655,7 @@ func (o *SpinBox) SetSuffix(suffix string) {
    SpinBox is a numerical input text field. It allows entering integers and floats.
 */
 type SpinBoxImplementer interface {
-	RangeImplementer
-
-	GetLineEdit() *LineEdit
-
-	GetPrefix() string
-
-	GetSuffix() string
-
-	IsEditable() *bool
-
-	SetEditable(editable *bool)
-
-	SetPrefix(prefix string)
-
-	SetSuffix(suffix string)
+	Class
 }
 
 /*
@@ -94690,7 +86714,7 @@ func (o *SplitContainer) GetSplitOffset() int64 {
 /*
    Return true if the split is collapsed.
 */
-func (o *SplitContainer) IsCollapsed() *bool {
+func (o *SplitContainer) IsCollapsed() bool {
 	log.Println("Calling SplitContainer.IsCollapsed()")
 
 	// Build out the method's arguments
@@ -94698,11 +86722,11 @@ func (o *SplitContainer) IsCollapsed() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_collapsed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_collapsed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -94711,7 +86735,7 @@ func (o *SplitContainer) IsCollapsed() *bool {
 /*
    Set if the split must be collapsed.
 */
-func (o *SplitContainer) SetCollapsed(collapsed *bool) {
+func (o *SplitContainer) SetCollapsed(collapsed bool) {
 	log.Println("Calling SplitContainer.SetCollapsed()")
 
 	// Build out the method's arguments
@@ -94767,19 +86791,7 @@ func (o *SplitContainer) SetSplitOffset(offset int64) {
    Container for splitting two controls vertically or horizontally, with a grabber that allows adjusting the split offset or ratio.
 */
 type SplitContainerImplementer interface {
-	ContainerImplementer
-
-	GetDraggerVisibility() int64
-
-	GetSplitOffset() int64
-
-	IsCollapsed() *bool
-
-	SetCollapsed(collapsed *bool)
-
-	SetDraggerVisibility(mode int64)
-
-	SetSplitOffset(offset int64)
+	Class
 }
 
 /*
@@ -94798,7 +86810,7 @@ func (o *SpotLight) baseClass() string {
    A SpotLight light is a type of [Light] node that emits lights in a specific direction, in the shape of a cone. The light is attenuated through the distance and this attenuation can be configured by changing the energy, radius and attenuation parameters of [Light]. TODO: Image of a spotlight.
 */
 type SpotLightImplementer interface {
-	LightImplementer
+	Class
 }
 
 /*
@@ -94962,7 +86974,7 @@ func (o *Sprite) GetVframes() int64 {
 /*
    Return if the sprite is centered at the local origin.
 */
-func (o *Sprite) IsCentered() *bool {
+func (o *Sprite) IsCentered() bool {
 	log.Println("Calling Sprite.IsCentered()")
 
 	// Build out the method's arguments
@@ -94970,11 +86982,11 @@ func (o *Sprite) IsCentered() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_centered", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_centered", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -94983,7 +86995,7 @@ func (o *Sprite) IsCentered() *bool {
 /*
    Return true if the sprite is flipped horizontally.
 */
-func (o *Sprite) IsFlippedH() *bool {
+func (o *Sprite) IsFlippedH() bool {
 	log.Println("Calling Sprite.IsFlippedH()")
 
 	// Build out the method's arguments
@@ -94991,11 +87003,11 @@ func (o *Sprite) IsFlippedH() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_flipped_h", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_flipped_h", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -95004,7 +87016,7 @@ func (o *Sprite) IsFlippedH() *bool {
 /*
    Return true if the sprite is flipped vertically.
 */
-func (o *Sprite) IsFlippedV() *bool {
+func (o *Sprite) IsFlippedV() bool {
 	log.Println("Calling Sprite.IsFlippedV()")
 
 	// Build out the method's arguments
@@ -95012,11 +87024,11 @@ func (o *Sprite) IsFlippedV() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_flipped_v", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_flipped_v", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -95025,7 +87037,7 @@ func (o *Sprite) IsFlippedV() *bool {
 /*
    Return if the sprite reads from a region.
 */
-func (o *Sprite) IsRegion() *bool {
+func (o *Sprite) IsRegion() bool {
 	log.Println("Calling Sprite.IsRegion()")
 
 	// Build out the method's arguments
@@ -95033,11 +87045,11 @@ func (o *Sprite) IsRegion() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_region", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_region", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -95046,7 +87058,7 @@ func (o *Sprite) IsRegion() *bool {
 /*
 
  */
-func (o *Sprite) IsRegionFilterClipEnabled() *bool {
+func (o *Sprite) IsRegionFilterClipEnabled() bool {
 	log.Println("Calling Sprite.IsRegionFilterClipEnabled()")
 
 	// Build out the method's arguments
@@ -95054,11 +87066,11 @@ func (o *Sprite) IsRegionFilterClipEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_region_filter_clip_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_region_filter_clip_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -95067,7 +87079,7 @@ func (o *Sprite) IsRegionFilterClipEnabled() *bool {
 /*
    Set whether the sprite should be centered on the origin.
 */
-func (o *Sprite) SetCentered(centered *bool) {
+func (o *Sprite) SetCentered(centered bool) {
 	log.Println("Calling Sprite.SetCentered()")
 
 	// Build out the method's arguments
@@ -95085,7 +87097,7 @@ func (o *Sprite) SetCentered(centered *bool) {
 /*
    Set true to flip the sprite horizontally.
 */
-func (o *Sprite) SetFlipH(flipH *bool) {
+func (o *Sprite) SetFlipH(flipH bool) {
 	log.Println("Calling Sprite.SetFlipH()")
 
 	// Build out the method's arguments
@@ -95103,7 +87115,7 @@ func (o *Sprite) SetFlipH(flipH *bool) {
 /*
    Set true to flip the sprite vertically.
 */
-func (o *Sprite) SetFlipV(flipV *bool) {
+func (o *Sprite) SetFlipV(flipV bool) {
 	log.Println("Calling Sprite.SetFlipV()")
 
 	// Build out the method's arguments
@@ -95193,7 +87205,7 @@ func (o *Sprite) SetOffset(offset *Vector2) {
 /*
    Set the sprite as a sub-region of a bigger texture. Useful for texture-atlases.
 */
-func (o *Sprite) SetRegion(enabled *bool) {
+func (o *Sprite) SetRegion(enabled bool) {
 	log.Println("Calling Sprite.SetRegion()")
 
 	// Build out the method's arguments
@@ -95211,7 +87223,7 @@ func (o *Sprite) SetRegion(enabled *bool) {
 /*
 
  */
-func (o *Sprite) SetRegionFilterClip(enabled *bool) {
+func (o *Sprite) SetRegionFilterClip(enabled bool) {
 	log.Println("Calling Sprite.SetRegionFilterClip()")
 
 	// Build out the method's arguments
@@ -95285,55 +87297,7 @@ func (o *Sprite) SetVframes(vframes int64) {
    General purpose Sprite node. This Sprite node can show any texture as a sprite. The texture can be used as a spritesheet for animation, or only a region from a bigger texture can referenced, like an atlas.
 */
 type SpriteImplementer interface {
-	Node2DImplementer
-
-	GetFrame() int64
-
-	GetHframes() int64
-
-	GetNormalMap() *Texture
-
-	GetOffset() *Vector2
-
-	GetRegionRect() *Rect2
-
-	GetTexture() *Texture
-
-	GetVframes() int64
-
-	IsCentered() *bool
-
-	IsFlippedH() *bool
-
-	IsFlippedV() *bool
-
-	IsRegion() *bool
-
-	IsRegionFilterClipEnabled() *bool
-
-	SetCentered(centered *bool)
-
-	SetFlipH(flipH *bool)
-
-	SetFlipV(flipV *bool)
-
-	SetFrame(frame int64)
-
-	SetHframes(hframes int64)
-
-	SetNormalMap(normalMap *Texture)
-
-	SetOffset(offset *Vector2)
-
-	SetRegion(enabled *bool)
-
-	SetRegionFilterClip(enabled *bool)
-
-	SetRegionRect(rect *Rect2)
-
-	SetTexture(texture *Texture)
-
-	SetVframes(vframes int64)
+	Class
 }
 
 /*
@@ -95455,7 +87419,7 @@ func (o *Sprite3D) GetVframes() int64 {
 /*
 
  */
-func (o *Sprite3D) IsRegion() *bool {
+func (o *Sprite3D) IsRegion() bool {
 	log.Println("Calling Sprite3D.IsRegion()")
 
 	// Build out the method's arguments
@@ -95463,11 +87427,11 @@ func (o *Sprite3D) IsRegion() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_region", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_region", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -95512,7 +87476,7 @@ func (o *Sprite3D) SetHframes(hframes int64) {
 /*
 
  */
-func (o *Sprite3D) SetRegion(enabled *bool) {
+func (o *Sprite3D) SetRegion(enabled bool) {
 	log.Println("Calling Sprite3D.SetRegion()")
 
 	// Build out the method's arguments
@@ -95586,31 +87550,7 @@ func (o *Sprite3D) SetVframes(vframes int64) {
 
 */
 type Sprite3DImplementer interface {
-	SpriteBase3DImplementer
-
-	GetFrame() int64
-
-	GetHframes() int64
-
-	GetRegionRect() *Rect2
-
-	GetTexture() *Texture
-
-	GetVframes() int64
-
-	IsRegion() *bool
-
-	SetFrame(frame int64)
-
-	SetHframes(hframes int64)
-
-	SetRegion(enabled *bool)
-
-	SetRegionRect(rect *Rect2)
-
-	SetTexture(texture *Texture)
-
-	SetVframes(vframes int64)
+	Class
 }
 
 /*
@@ -95669,7 +87609,7 @@ func (o *SpriteBase3D) GetAxis() int64 {
 /*
 
  */
-func (o *SpriteBase3D) GetDrawFlag(flag int64) *bool {
+func (o *SpriteBase3D) GetDrawFlag(flag int64) bool {
 	log.Println("Calling SpriteBase3D.GetDrawFlag()")
 
 	// Build out the method's arguments
@@ -95678,11 +87618,11 @@ func (o *SpriteBase3D) GetDrawFlag(flag int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_draw_flag", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_draw_flag", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -95796,7 +87736,7 @@ func (o *SpriteBase3D) GetPixelSize() float64 {
 /*
 
  */
-func (o *SpriteBase3D) IsCentered() *bool {
+func (o *SpriteBase3D) IsCentered() bool {
 	log.Println("Calling SpriteBase3D.IsCentered()")
 
 	// Build out the method's arguments
@@ -95804,11 +87744,11 @@ func (o *SpriteBase3D) IsCentered() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_centered", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_centered", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -95817,7 +87757,7 @@ func (o *SpriteBase3D) IsCentered() *bool {
 /*
 
  */
-func (o *SpriteBase3D) IsFlippedH() *bool {
+func (o *SpriteBase3D) IsFlippedH() bool {
 	log.Println("Calling SpriteBase3D.IsFlippedH()")
 
 	// Build out the method's arguments
@@ -95825,11 +87765,11 @@ func (o *SpriteBase3D) IsFlippedH() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_flipped_h", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_flipped_h", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -95838,7 +87778,7 @@ func (o *SpriteBase3D) IsFlippedH() *bool {
 /*
 
  */
-func (o *SpriteBase3D) IsFlippedV() *bool {
+func (o *SpriteBase3D) IsFlippedV() bool {
 	log.Println("Calling SpriteBase3D.IsFlippedV()")
 
 	// Build out the method's arguments
@@ -95846,11 +87786,11 @@ func (o *SpriteBase3D) IsFlippedV() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_flipped_v", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_flipped_v", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -95895,7 +87835,7 @@ func (o *SpriteBase3D) SetAxis(axis int64) {
 /*
 
  */
-func (o *SpriteBase3D) SetCentered(centered *bool) {
+func (o *SpriteBase3D) SetCentered(centered bool) {
 	log.Println("Calling SpriteBase3D.SetCentered()")
 
 	// Build out the method's arguments
@@ -95913,7 +87853,7 @@ func (o *SpriteBase3D) SetCentered(centered *bool) {
 /*
 
  */
-func (o *SpriteBase3D) SetDrawFlag(flag int64, enabled *bool) {
+func (o *SpriteBase3D) SetDrawFlag(flag int64, enabled bool) {
 	log.Println("Calling SpriteBase3D.SetDrawFlag()")
 
 	// Build out the method's arguments
@@ -95932,7 +87872,7 @@ func (o *SpriteBase3D) SetDrawFlag(flag int64, enabled *bool) {
 /*
 
  */
-func (o *SpriteBase3D) SetFlipH(flipH *bool) {
+func (o *SpriteBase3D) SetFlipH(flipH bool) {
 	log.Println("Calling SpriteBase3D.SetFlipH()")
 
 	// Build out the method's arguments
@@ -95950,7 +87890,7 @@ func (o *SpriteBase3D) SetFlipH(flipH *bool) {
 /*
 
  */
-func (o *SpriteBase3D) SetFlipV(flipV *bool) {
+func (o *SpriteBase3D) SetFlipV(flipV bool) {
 	log.Println("Calling SpriteBase3D.SetFlipV()")
 
 	// Build out the method's arguments
@@ -96042,49 +87982,7 @@ func (o *SpriteBase3D) SetPixelSize(pixelSize float64) {
 
 */
 type SpriteBase3DImplementer interface {
-	GeometryInstanceImplementer
-
-	GetAlphaCutMode() int64
-
-	GetAxis() int64
-
-	GetDrawFlag(flag int64) *bool
-
-	GetItemRect() *Rect2
-
-	GetModulate() *Color
-
-	GetOffset() *Vector2
-
-	GetOpacity() float64
-
-	GetPixelSize() float64
-
-	IsCentered() *bool
-
-	IsFlippedH() *bool
-
-	IsFlippedV() *bool
-
-	SetAlphaCutMode(mode int64)
-
-	SetAxis(axis int64)
-
-	SetCentered(centered *bool)
-
-	SetDrawFlag(flag int64, enabled *bool)
-
-	SetFlipH(flipH *bool)
-
-	SetFlipV(flipV *bool)
-
-	SetModulate(modulate *Color)
-
-	SetOffset(offset *Vector2)
-
-	SetOpacity(opacity float64)
-
-	SetPixelSize(pixelSize float64)
+	Class
 }
 
 /*
@@ -96174,7 +88072,7 @@ func (o *SpriteFrames) ClearAll() {
 /*
 
  */
-func (o *SpriteFrames) GetAnimationLoop(anim string) *bool {
+func (o *SpriteFrames) GetAnimationLoop(anim string) bool {
 	log.Println("Calling SpriteFrames.GetAnimationLoop()")
 
 	// Build out the method's arguments
@@ -96183,11 +88081,11 @@ func (o *SpriteFrames) GetAnimationLoop(anim string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_animation_loop", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_animation_loop", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -96263,7 +88161,7 @@ func (o *SpriteFrames) GetFrameCount(anim string) int64 {
 /*
 
  */
-func (o *SpriteFrames) HasAnimation(anim string) *bool {
+func (o *SpriteFrames) HasAnimation(anim string) bool {
 	log.Println("Calling SpriteFrames.HasAnimation()")
 
 	// Build out the method's arguments
@@ -96272,11 +88170,11 @@ func (o *SpriteFrames) HasAnimation(anim string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_animation", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_animation", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -96341,7 +88239,7 @@ func (o *SpriteFrames) RenameAnimation(anim string, newname string) {
 /*
 
  */
-func (o *SpriteFrames) SetAnimationLoop(anim string, loop *bool) {
+func (o *SpriteFrames) SetAnimationLoop(anim string, loop bool) {
 	log.Println("Calling SpriteFrames.SetAnimationLoop()")
 
 	// Build out the method's arguments
@@ -96401,37 +88299,7 @@ func (o *SpriteFrames) SetFrame(anim string, idx int64, txt *Texture) {
    Sprite frame library for [AnimatedSprite].
 */
 type SpriteFramesImplementer interface {
-	ResourceImplementer
-
-	AddAnimation(anim string)
-
-	AddFrame(anim string, frame *Texture, atpos int64)
-
-	Clear(anim string)
-
-	ClearAll()
-
-	GetAnimationLoop(anim string) *bool
-
-	GetAnimationSpeed(anim string) float64
-
-	GetFrame(anim string, idx int64) *Texture
-
-	GetFrameCount(anim string) int64
-
-	HasAnimation(anim string) *bool
-
-	RemoveAnimation(anim string)
-
-	RemoveFrame(anim string, idx int64)
-
-	RenameAnimation(anim string, newname string)
-
-	SetAnimationLoop(anim string, loop *bool)
-
-	SetAnimationSpeed(anim string, speed float64)
-
-	SetFrame(anim string, idx int64, txt *Texture)
+	Class
 }
 
 /*
@@ -96610,23 +88478,7 @@ func (o *StaticBody) SetFriction(friction float64) {
 		Alternatively, a constant linear or angular velocity can be set for the static body, so even if it doesn't move, it affects other bodies as if it was moving (this is useful for simulating conveyor belts or conveyor wheels).
 */
 type StaticBodyImplementer interface {
-	PhysicsBodyImplementer
-
-	GetBounce() float64
-
-	GetConstantAngularVelocity() *Vector3
-
-	GetConstantLinearVelocity() *Vector3
-
-	GetFriction() float64
-
-	SetBounce(bounce float64)
-
-	SetConstantAngularVelocity(vel *Vector3)
-
-	SetConstantLinearVelocity(vel *Vector3)
-
-	SetFriction(friction float64)
+	Class
 }
 
 /*
@@ -96805,23 +88657,7 @@ func (o *StaticBody2D) SetFriction(friction float64) {
 		Alternatively, a constant linear or angular velocity can be set for the static body, so even if it doesn't move, it affects other bodies as if it was moving (this is useful for simulating conveyor belts or conveyor wheels).
 */
 type StaticBody2DImplementer interface {
-	PhysicsBody2DImplementer
-
-	GetBounce() float64
-
-	GetConstantAngularVelocity() float64
-
-	GetConstantLinearVelocity() *Vector2
-
-	GetFriction() float64
-
-	SetBounce(bounce float64)
-
-	SetConstantAngularVelocity(vel float64)
-
-	SetConstantLinearVelocity(vel *Vector2)
-
-	SetFriction(friction float64)
+	Class
 }
 
 /*
@@ -97178,7 +89014,7 @@ func (o *StreamPeer) GetVar() *Variant {
 /*
    Return whether this [StreamPeer] is using big-endian format.
 */
-func (o *StreamPeer) IsBigEndianEnabled() *bool {
+func (o *StreamPeer) IsBigEndianEnabled() bool {
 	log.Println("Calling StreamPeer.IsBigEndianEnabled()")
 
 	// Build out the method's arguments
@@ -97186,11 +89022,11 @@ func (o *StreamPeer) IsBigEndianEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_big_endian_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_big_endian_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -97459,7 +89295,7 @@ func (o *StreamPeer) PutVar(val *Variant) {
 /*
    Set this [StreamPeer] to use big-endian format. Default is false.
 */
-func (o *StreamPeer) SetBigEndian(enable *bool) {
+func (o *StreamPeer) SetBigEndian(enable bool) {
 	log.Println("Calling StreamPeer.SetBigEndian()")
 
 	// Build out the method's arguments
@@ -97479,71 +89315,7 @@ func (o *StreamPeer) SetBigEndian(enable *bool) {
    StreamPeer is an abstraction and base class for stream-based protocols (such as TCP or Unix Sockets). It provides an API for sending and receiving data through streams as raw data or strings.
 */
 type StreamPeerImplementer interface {
-	ReferenceImplementer
-
-	Get16() int64
-
-	Get32() int64
-
-	Get64() int64
-
-	Get8() int64
-
-	GetAvailableBytes() int64
-
-	GetData(bytes int64) *Array
-
-	GetDouble() float64
-
-	GetFloat() float64
-
-	GetPartialData(bytes int64) *Array
-
-	GetString(bytes int64) string
-
-	GetU16() int64
-
-	GetU32() int64
-
-	GetU64() int64
-
-	GetU8() int64
-
-	GetUtf8String(bytes int64) string
-
-	GetVar() *Variant
-
-	IsBigEndianEnabled() *bool
-
-	Put16(val int64)
-
-	Put32(val int64)
-
-	Put64(val int64)
-
-	Put8(val int64)
-
-	PutData(data *PoolByteArray) int64
-
-	PutDouble(val float64)
-
-	PutFloat(val float64)
-
-	PutPartialData(data *PoolByteArray) *Array
-
-	PutU16(val int64)
-
-	PutU32(val int64)
-
-	PutU64(val int64)
-
-	PutU8(val int64)
-
-	PutUtf8String(val string)
-
-	PutVar(val *Variant)
-
-	SetBigEndian(enable *bool)
+	Class
 }
 
 /*
@@ -97717,23 +89489,7 @@ func (o *StreamPeerBuffer) SetDataArray(data *PoolByteArray) {
 
 */
 type StreamPeerBufferImplementer interface {
-	StreamPeerImplementer
-
-	Clear()
-
-	Duplicate() *StreamPeerBuffer
-
-	GetDataArray() *PoolByteArray
-
-	GetPos() int64
-
-	GetSize() int64
-
-	Resize(size int64)
-
-	Seek(pos int64)
-
-	SetDataArray(data *PoolByteArray)
+	Class
 }
 
 /*
@@ -97772,7 +89528,7 @@ func (o *StreamPeerSSL) AcceptStream(stream *StreamPeer) int64 {
 /*
    Connect to a peer using an underlying [StreamPeer] "stream", when "validate_certs" is true, [StreamPeerSSL] will validate that the certificate presented by the peer matches the "for_hostname".
 */
-func (o *StreamPeerSSL) ConnectToStream(stream *StreamPeer, validateCerts *bool, forHostname string) int64 {
+func (o *StreamPeerSSL) ConnectToStream(stream *StreamPeer, validateCerts bool, forHostname string) int64 {
 	log.Println("Calling StreamPeerSSL.ConnectToStream()")
 
 	// Build out the method's arguments
@@ -97836,15 +89592,7 @@ func (o *StreamPeerSSL) GetStatus() int64 {
    SSL Stream peer. This object can be used to connect to SSL servers.
 */
 type StreamPeerSSLImplementer interface {
-	StreamPeerImplementer
-
-	AcceptStream(stream *StreamPeer) int64
-
-	ConnectToStream(stream *StreamPeer, validateCerts *bool, forHostname string) int64
-
-	DisconnectFromStream()
-
-	GetStatus() int64
+	Class
 }
 
 /*
@@ -97964,7 +89712,7 @@ func (o *StreamPeerTCP) GetStatus() int64 {
 /*
 
  */
-func (o *StreamPeerTCP) IsConnectedToHost() *bool {
+func (o *StreamPeerTCP) IsConnectedToHost() bool {
 	log.Println("Calling StreamPeerTCP.IsConnectedToHost()")
 
 	// Build out the method's arguments
@@ -97972,11 +89720,11 @@ func (o *StreamPeerTCP) IsConnectedToHost() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_connected_to_host", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_connected_to_host", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -97987,19 +89735,7 @@ func (o *StreamPeerTCP) IsConnectedToHost() *bool {
    TCP Stream peer. This object can be used to connect to TCP servers, or also is returned by a tcp server.
 */
 type StreamPeerTCPImplementer interface {
-	StreamPeerImplementer
-
-	ConnectToHost(host string, port int64) int64
-
-	DisconnectFromHost()
-
-	GetConnectedHost() string
-
-	GetConnectedPort() int64
-
-	GetStatus() int64
-
-	IsConnectedToHost() *bool
+	Class
 }
 
 /*
@@ -98061,11 +89797,7 @@ func (o *StreamTexture) Load(path string) int64 {
 
 */
 type StreamTextureImplementer interface {
-	TextureImplementer
-
-	GetLoadPath() string
-
-	Load(path string) int64
+	Class
 }
 
 /*
@@ -98227,7 +89959,7 @@ func (o *StyleBox) SetDefaultMargin(margin int64, offset float64) {
 /*
    Test a position in a rectangle, return whether it passes the mask test.
 */
-func (o *StyleBox) TestMask(point *Vector2, rect *Rect2) *bool {
+func (o *StyleBox) TestMask(point *Vector2, rect *Rect2) bool {
 	log.Println("Calling StyleBox.TestMask()")
 
 	// Build out the method's arguments
@@ -98237,11 +89969,11 @@ func (o *StyleBox) TestMask(point *Vector2, rect *Rect2) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "test_mask", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "test_mask", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -98252,23 +89984,7 @@ func (o *StyleBox) TestMask(point *Vector2, rect *Rect2) *bool {
    StyleBox is [Resource] that provides an abstract base class for drawing stylized boxes for the UI. StyleBoxes are used for drawing the styles of buttons, line edit backgrounds, tree backgrounds, etc. and also for testing a transparency mask for pointer signals. If mask test fails on a StyleBox assigned as mask to a control, clicks and motion signals will go through it to the one below.
 */
 type StyleBoxImplementer interface {
-	ResourceImplementer
-
-	Draw(canvasItem *RID, rect *Rect2)
-
-	GetCenterSize() *Vector2
-
-	GetDefaultMargin(margin int64) float64
-
-	GetMargin(margin int64) float64
-
-	GetMinimumSize() *Vector2
-
-	GetOffset() *Vector2
-
-	SetDefaultMargin(margin int64, offset float64)
-
-	TestMask(point *Vector2, rect *Rect2) *bool
+	Class
 }
 
 /*
@@ -98287,7 +90003,7 @@ func (o *StyleBoxEmpty) baseClass() string {
    Empty stylebox (really does not display anything).
 */
 type StyleBoxEmptyImplementer interface {
-	StyleBoxImplementer
+	Class
 }
 
 /*
@@ -98362,7 +90078,7 @@ func (o *StyleBoxFlat) GetBgColor() *Color {
 /*
 
  */
-func (o *StyleBoxFlat) GetBorderBlend() *bool {
+func (o *StyleBoxFlat) GetBorderBlend() bool {
 	log.Println("Calling StyleBoxFlat.GetBorderBlend()")
 
 	// Build out the method's arguments
@@ -98370,11 +90086,11 @@ func (o *StyleBoxFlat) GetBorderBlend() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_border_blend", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_border_blend", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -98554,7 +90270,7 @@ func (o *StyleBoxFlat) GetShadowSize() int64 {
 /*
 
  */
-func (o *StyleBoxFlat) IsAntiAliased() *bool {
+func (o *StyleBoxFlat) IsAntiAliased() bool {
 	log.Println("Calling StyleBoxFlat.IsAntiAliased()")
 
 	// Build out the method's arguments
@@ -98562,11 +90278,11 @@ func (o *StyleBoxFlat) IsAntiAliased() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_anti_aliased", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_anti_aliased", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -98575,7 +90291,7 @@ func (o *StyleBoxFlat) IsAntiAliased() *bool {
 /*
 
  */
-func (o *StyleBoxFlat) IsDrawCenterEnabled() *bool {
+func (o *StyleBoxFlat) IsDrawCenterEnabled() bool {
 	log.Println("Calling StyleBoxFlat.IsDrawCenterEnabled()")
 
 	// Build out the method's arguments
@@ -98583,11 +90299,11 @@ func (o *StyleBoxFlat) IsDrawCenterEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_draw_center_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_draw_center_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -98614,7 +90330,7 @@ func (o *StyleBoxFlat) SetAaSize(size int64) {
 /*
 
  */
-func (o *StyleBoxFlat) SetAntiAliased(antiAliased *bool) {
+func (o *StyleBoxFlat) SetAntiAliased(antiAliased bool) {
 	log.Println("Calling StyleBoxFlat.SetAntiAliased()")
 
 	// Build out the method's arguments
@@ -98650,7 +90366,7 @@ func (o *StyleBoxFlat) SetBgColor(color *Color) {
 /*
 
  */
-func (o *StyleBoxFlat) SetBorderBlend(blend *bool) {
+func (o *StyleBoxFlat) SetBorderBlend(blend bool) {
 	log.Println("Calling StyleBoxFlat.SetBorderBlend()")
 
 	// Build out the method's arguments
@@ -98799,7 +90515,7 @@ func (o *StyleBoxFlat) SetCornerRadiusIndividual(radiusTopLeft int64, radiusTopR
 /*
 
  */
-func (o *StyleBoxFlat) SetDrawCenter(drawCenter *bool) {
+func (o *StyleBoxFlat) SetDrawCenter(drawCenter bool) {
 	log.Println("Calling StyleBoxFlat.SetDrawCenter()")
 
 	// Build out the method's arguments
@@ -98929,67 +90645,7 @@ func (o *StyleBoxFlat) SetShadowSize(size int64) {
 			[/codeblock]
 */
 type StyleBoxFlatImplementer interface {
-	StyleBoxImplementer
-
-	GetAaSize() int64
-
-	GetBgColor() *Color
-
-	GetBorderBlend() *bool
-
-	GetBorderColor() *Color
-
-	GetBorderWidth(margin int64) int64
-
-	GetBorderWidthMin() int64
-
-	GetCornerDetail() int64
-
-	GetCornerRadius(corner int64) int64
-
-	GetExpandMargin(margin int64) float64
-
-	GetShadowColor() *Color
-
-	GetShadowSize() int64
-
-	IsAntiAliased() *bool
-
-	IsDrawCenterEnabled() *bool
-
-	SetAaSize(size int64)
-
-	SetAntiAliased(antiAliased *bool)
-
-	SetBgColor(color *Color)
-
-	SetBorderBlend(blend *bool)
-
-	SetBorderColor(color *Color)
-
-	SetBorderWidth(margin int64, width int64)
-
-	SetBorderWidthAll(width int64)
-
-	SetCornerDetail(detail int64)
-
-	SetCornerRadius(corner int64, radius int64)
-
-	SetCornerRadiusAll(radius int64)
-
-	SetCornerRadiusIndividual(radiusTopLeft int64, radiusTopRight int64, radiusBottonRight int64, radiusBottomLeft int64)
-
-	SetDrawCenter(drawCenter *bool)
-
-	SetExpandMargin(margin int64, size float64)
-
-	SetExpandMarginAll(size float64)
-
-	SetExpandMarginIndividual(sizeLeft float64, sizeTop float64, sizeRight float64, sizeBottom float64)
-
-	SetShadowColor(color *Color)
-
-	SetShadowSize(size int64)
+	Class
 }
 
 /*
@@ -99176,7 +90832,7 @@ func (o *StyleBoxTexture) GetVAxisStretchMode() int64 {
 /*
 
  */
-func (o *StyleBoxTexture) IsDrawCenterEnabled() *bool {
+func (o *StyleBoxTexture) IsDrawCenterEnabled() bool {
 	log.Println("Calling StyleBoxTexture.IsDrawCenterEnabled()")
 
 	// Build out the method's arguments
@@ -99184,11 +90840,11 @@ func (o *StyleBoxTexture) IsDrawCenterEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_draw_center_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_draw_center_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -99197,7 +90853,7 @@ func (o *StyleBoxTexture) IsDrawCenterEnabled() *bool {
 /*
 
  */
-func (o *StyleBoxTexture) SetDrawCenter(enable *bool) {
+func (o *StyleBoxTexture) SetDrawCenter(enable bool) {
 	log.Println("Calling StyleBoxTexture.SetDrawCenter()")
 
 	// Build out the method's arguments
@@ -99402,47 +91058,7 @@ func (o *StyleBoxTexture) SetVAxisStretchMode(mode int64) {
    Texture Based 3x3 scale style. This stylebox performs a 3x3 scaling of a texture, where only the center cell is fully stretched. This allows for the easy creation of bordered styles.
 */
 type StyleBoxTextureImplementer interface {
-	StyleBoxImplementer
-
-	GetExpandMarginSize(margin int64) float64
-
-	GetHAxisStretchMode() int64
-
-	GetMarginSize(margin int64) float64
-
-	GetModulate() *Color
-
-	GetNormalMap() *Resource
-
-	GetRegionRect() *Rect2
-
-	GetTexture() *Resource
-
-	GetVAxisStretchMode() int64
-
-	IsDrawCenterEnabled() *bool
-
-	SetDrawCenter(enable *bool)
-
-	SetExpandMarginAll(size float64)
-
-	SetExpandMarginIndividual(sizeLeft float64, sizeTop float64, sizeRight float64, sizeBottom float64)
-
-	SetExpandMarginSize(margin int64, size float64)
-
-	SetHAxisStretchMode(mode int64)
-
-	SetMarginSize(margin int64, size float64)
-
-	SetModulate(color *Color)
-
-	SetNormalMap(normalMap *Resource)
-
-	SetRegionRect(region *Rect2)
-
-	SetTexture(texture *Resource)
-
-	SetVAxisStretchMode(mode int64)
+	Class
 }
 
 /*
@@ -99540,7 +91156,7 @@ func (o *SurfaceTool) AddNormal(normal *Vector3) {
 /*
    Specify whether current Vertex (if using only Vertex arrays) or current index (if also using index arrays) should utilize smooth normals for normal calculation.
 */
-func (o *SurfaceTool) AddSmoothGroup(smooth *bool) {
+func (o *SurfaceTool) AddSmoothGroup(smooth bool) {
 	log.Println("Calling SurfaceTool.AddSmoothGroup()")
 
 	// Build out the method's arguments
@@ -99882,51 +91498,7 @@ func (o *SurfaceTool) SetMaterial(material *Material) {
 		It is very important that vertex attributes are passed [b]before[/b] the call to [method add_vertex], failure to do this will result in an error when committing the vertex information to a mesh.
 */
 type SurfaceToolImplementer interface {
-	ReferenceImplementer
-
-	AddBones(bones *PoolIntArray)
-
-	AddColor(color *Color)
-
-	AddIndex(index int64)
-
-	AddNormal(normal *Vector3)
-
-	AddSmoothGroup(smooth *bool)
-
-	AddTangent(tangent *Plane)
-
-	AddToFormat(flags int64)
-
-	AddTriangleFan(vertexes *PoolVector3Array, uvs *PoolVector2Array, colors *PoolColorArray, uv2S *PoolVector2Array, normals *PoolVector3Array, tangents *Array)
-
-	AddUv(uv *Vector2)
-
-	AddUv2(uv2 *Vector2)
-
-	AddVertex(vertex *Vector3)
-
-	AddWeights(weights *PoolRealArray)
-
-	AppendFrom(existing *Mesh, surface int64, transform *Transform)
-
-	Begin(primitive int64)
-
-	Clear()
-
-	Commit(existing *ArrayMesh) *ArrayMesh
-
-	CreateFrom(existing *Mesh, surface int64)
-
-	Deindex()
-
-	GenerateNormals()
-
-	GenerateTangents()
-
-	Index()
-
-	SetMaterial(material *Material)
+	Class
 }
 
 /*
@@ -99943,7 +91515,7 @@ func (o *TCP_Server) baseClass() string {
 /*
    Return true if a connection is available for taking.
 */
-func (o *TCP_Server) IsConnectionAvailable() *bool {
+func (o *TCP_Server) IsConnectionAvailable() bool {
 	log.Println("Calling TCP_Server.IsConnectionAvailable()")
 
 	// Build out the method's arguments
@@ -99951,11 +91523,11 @@ func (o *TCP_Server) IsConnectionAvailable() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_connection_available", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_connection_available", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -100030,15 +91602,7 @@ func (o *TCP_Server) TakeConnection() *StreamPeerTCP {
    TCP Server class. Listens to connections on a port and returns a [StreamPeerTCP] when got a connection.
 */
 type TCP_ServerImplementer interface {
-	ReferenceImplementer
-
-	IsConnectionAvailable() *bool
-
-	Listen(port int64, bindAddress string) int64
-
-	Stop()
-
-	TakeConnection() *StreamPeerTCP
+	Class
 }
 
 /*
@@ -100056,7 +91620,7 @@ func (o *TabContainer) baseClass() string {
 /*
    Return whether the tabs should be visible or hidden.
 */
-func (o *TabContainer) AreTabsVisible() *bool {
+func (o *TabContainer) AreTabsVisible() bool {
 	log.Println("Calling TabContainer.AreTabsVisible()")
 
 	// Build out the method's arguments
@@ -100064,11 +91628,11 @@ func (o *TabContainer) AreTabsVisible() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "are_tabs_visible", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "are_tabs_visible", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -100225,7 +91789,7 @@ func (o *TabContainer) GetTabCount() int64 {
 /*
 
  */
-func (o *TabContainer) GetTabDisabled(tabIdx int64) *bool {
+func (o *TabContainer) GetTabDisabled(tabIdx int64) bool {
 	log.Println("Calling TabContainer.GetTabDisabled()")
 
 	// Build out the method's arguments
@@ -100234,11 +91798,11 @@ func (o *TabContainer) GetTabDisabled(tabIdx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_tab_disabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_tab_disabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -100345,7 +91909,7 @@ func (o *TabContainer) SetTabAlign(align int64) {
 /*
 
  */
-func (o *TabContainer) SetTabDisabled(tabIdx int64, disabled *bool) {
+func (o *TabContainer) SetTabDisabled(tabIdx int64, disabled bool) {
 	log.Println("Calling TabContainer.SetTabDisabled()")
 
 	// Build out the method's arguments
@@ -100402,7 +91966,7 @@ func (o *TabContainer) SetTabTitle(tabIdx int64, title string) {
 /*
    Set whether the tabs should be visible or hidden.
 */
-func (o *TabContainer) SetTabsVisible(visible *bool) {
+func (o *TabContainer) SetTabsVisible(visible bool) {
 	log.Println("Calling TabContainer.SetTabsVisible()")
 
 	// Build out the method's arguments
@@ -100423,43 +91987,7 @@ func (o *TabContainer) SetTabsVisible(visible *bool) {
 		Children controls of this one automatically.
 */
 type TabContainerImplementer interface {
-	ControlImplementer
-
-	AreTabsVisible() *bool
-
-	GetCurrentTab() int64
-
-	GetCurrentTabControl() *Control
-
-	GetPopup() *Popup
-
-	GetPreviousTab() int64
-
-	GetTabAlign() int64
-
-	GetTabControl(idx int64) *Control
-
-	GetTabCount() int64
-
-	GetTabDisabled(tabIdx int64) *bool
-
-	GetTabIcon(tabIdx int64) *Texture
-
-	GetTabTitle(tabIdx int64) string
-
-	SetCurrentTab(tabIdx int64)
-
-	SetPopup(popup *Node)
-
-	SetTabAlign(align int64)
-
-	SetTabDisabled(tabIdx int64, disabled *bool)
-
-	SetTabIcon(tabIdx int64, icon *Texture)
-
-	SetTabTitle(tabIdx int64, title string)
-
-	SetTabsVisible(visible *bool)
+	Class
 }
 
 /*
@@ -100597,7 +92125,7 @@ func (o *Tabs) GetTabCount() int64 {
 /*
 
  */
-func (o *Tabs) GetTabDisabled(tabIdx int64) *bool {
+func (o *Tabs) GetTabDisabled(tabIdx int64) bool {
 	log.Println("Calling Tabs.GetTabDisabled()")
 
 	// Build out the method's arguments
@@ -100606,11 +92134,11 @@ func (o *Tabs) GetTabDisabled(tabIdx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_tab_disabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_tab_disabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -100776,7 +92304,7 @@ func (o *Tabs) SetTabCloseDisplayPolicy(policy int64) {
 /*
 
  */
-func (o *Tabs) SetTabDisabled(tabIdx int64, disabled *bool) {
+func (o *Tabs) SetTabDisabled(tabIdx int64, disabled bool) {
 	log.Println("Calling Tabs.SetTabDisabled()")
 
 	// Build out the method's arguments
@@ -100835,43 +92363,7 @@ func (o *Tabs) SetTabTitle(tabIdx int64, title string) {
    Simple tabs control, similar to [TabContainer] but is only in charge of drawing tabs, not interact with children.
 */
 type TabsImplementer interface {
-	ControlImplementer
-
-	AddTab(title string, icon *Texture)
-
-	EnsureTabVisible(idx int64)
-
-	GetCurrentTab() int64
-
-	GetTabAlign() int64
-
-	GetTabCloseDisplayPolicy() int64
-
-	GetTabCount() int64
-
-	GetTabDisabled(tabIdx int64) *bool
-
-	GetTabIcon(tabIdx int64) *Texture
-
-	GetTabRect(tabIdx int64) *Rect2
-
-	GetTabTitle(tabIdx int64) string
-
-	MoveTab(from int64, to int64)
-
-	RemoveTab(tabIdx int64)
-
-	SetCurrentTab(tabIdx int64)
-
-	SetTabAlign(align int64)
-
-	SetTabCloseDisplayPolicy(policy int64)
-
-	SetTabDisabled(tabIdx int64, disabled *bool)
-
-	SetTabIcon(tabIdx int64, icon *Texture)
-
-	SetTabTitle(tabIdx int64, title string)
+	Class
 }
 
 /*
@@ -100888,7 +92380,7 @@ func (o *TextEdit) baseClass() string {
 /*
    Add color region (given the delimiters) and its colors.
 */
-func (o *TextEdit) AddColorRegion(beginKey string, endKey string, color *Color, lineOnly *bool) {
+func (o *TextEdit) AddColorRegion(beginKey string, endKey string, color *Color, lineOnly bool) {
 	log.Println("Calling TextEdit.AddColorRegion()")
 
 	// Build out the method's arguments
@@ -100979,7 +92471,7 @@ func (o *TextEdit) Copy() {
 /*
    Gets whether the text editor caret is blinking.
 */
-func (o *TextEdit) CursorGetBlinkEnabled() *bool {
+func (o *TextEdit) CursorGetBlinkEnabled() bool {
 	log.Println("Calling TextEdit.CursorGetBlinkEnabled()")
 
 	// Build out the method's arguments
@@ -100987,11 +92479,11 @@ func (o *TextEdit) CursorGetBlinkEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "cursor_get_blink_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "cursor_get_blink_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -101063,7 +92555,7 @@ func (o *TextEdit) CursorGetLine() int64 {
 /*
    Gets whether the text editor caret is in block mode.
 */
-func (o *TextEdit) CursorIsBlockMode() *bool {
+func (o *TextEdit) CursorIsBlockMode() bool {
 	log.Println("Calling TextEdit.CursorIsBlockMode()")
 
 	// Build out the method's arguments
@@ -101071,11 +92563,11 @@ func (o *TextEdit) CursorIsBlockMode() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "cursor_is_block_mode", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "cursor_is_block_mode", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -101084,7 +92576,7 @@ func (o *TextEdit) CursorIsBlockMode() *bool {
 /*
    Set the text editor caret to blink.
 */
-func (o *TextEdit) CursorSetBlinkEnabled(enable *bool) {
+func (o *TextEdit) CursorSetBlinkEnabled(enable bool) {
 	log.Println("Calling TextEdit.CursorSetBlinkEnabled()")
 
 	// Build out the method's arguments
@@ -101120,7 +92612,7 @@ func (o *TextEdit) CursorSetBlinkSpeed(blinkSpeed float64) {
 /*
    Set the text editor caret to block mode.
 */
-func (o *TextEdit) CursorSetBlockMode(enable *bool) {
+func (o *TextEdit) CursorSetBlockMode(enable bool) {
 	log.Println("Calling TextEdit.CursorSetBlockMode()")
 
 	// Build out the method's arguments
@@ -101138,7 +92630,7 @@ func (o *TextEdit) CursorSetBlockMode(enable *bool) {
 /*
 
  */
-func (o *TextEdit) CursorSetColumn(column int64, adjustViewport *bool) {
+func (o *TextEdit) CursorSetColumn(column int64, adjustViewport bool) {
 	log.Println("Calling TextEdit.CursorSetColumn()")
 
 	// Build out the method's arguments
@@ -101157,7 +92649,7 @@ func (o *TextEdit) CursorSetColumn(column int64, adjustViewport *bool) {
 /*
 
  */
-func (o *TextEdit) CursorSetLine(line int64, adjustViewport *bool) {
+func (o *TextEdit) CursorSetLine(line int64, adjustViewport bool) {
 	log.Println("Calling TextEdit.CursorSetLine()")
 
 	// Build out the method's arguments
@@ -101443,7 +92935,7 @@ func (o *TextEdit) InsertTextAtCursor(text string) {
 /*
    Returns true if highlight all occurrences is enabled.
 */
-func (o *TextEdit) IsHighlightAllOccurrencesEnabled() *bool {
+func (o *TextEdit) IsHighlightAllOccurrencesEnabled() bool {
 	log.Println("Calling TextEdit.IsHighlightAllOccurrencesEnabled()")
 
 	// Build out the method's arguments
@@ -101451,11 +92943,11 @@ func (o *TextEdit) IsHighlightAllOccurrencesEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_highlight_all_occurrences_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_highlight_all_occurrences_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -101464,7 +92956,7 @@ func (o *TextEdit) IsHighlightAllOccurrencesEnabled() *bool {
 /*
    Return true if the selection is active.
 */
-func (o *TextEdit) IsSelectionActive() *bool {
+func (o *TextEdit) IsSelectionActive() bool {
 	log.Println("Calling TextEdit.IsSelectionActive()")
 
 	// Build out the method's arguments
@@ -101472,11 +92964,11 @@ func (o *TextEdit) IsSelectionActive() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_selection_active", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_selection_active", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -101485,7 +92977,7 @@ func (o *TextEdit) IsSelectionActive() *bool {
 /*
    Returns true if line numbers are enabled.
 */
-func (o *TextEdit) IsShowLineNumbersEnabled() *bool {
+func (o *TextEdit) IsShowLineNumbersEnabled() bool {
 	log.Println("Calling TextEdit.IsShowLineNumbersEnabled()")
 
 	// Build out the method's arguments
@@ -101493,11 +92985,11 @@ func (o *TextEdit) IsShowLineNumbersEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_show_line_numbers_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_show_line_numbers_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -101506,7 +92998,7 @@ func (o *TextEdit) IsShowLineNumbersEnabled() *bool {
 /*
 
  */
-func (o *TextEdit) IsSmoothScrollEnabled() *bool {
+func (o *TextEdit) IsSmoothScrollEnabled() bool {
 	log.Println("Calling TextEdit.IsSmoothScrollEnabled()")
 
 	// Build out the method's arguments
@@ -101514,11 +93006,11 @@ func (o *TextEdit) IsSmoothScrollEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_smooth_scroll_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_smooth_scroll_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -101527,7 +93019,7 @@ func (o *TextEdit) IsSmoothScrollEnabled() *bool {
 /*
    Return true if the syntax coloring is enabled.
 */
-func (o *TextEdit) IsSyntaxColoringEnabled() *bool {
+func (o *TextEdit) IsSyntaxColoringEnabled() bool {
 	log.Println("Calling TextEdit.IsSyntaxColoringEnabled()")
 
 	// Build out the method's arguments
@@ -101535,11 +93027,11 @@ func (o *TextEdit) IsSyntaxColoringEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_syntax_coloring_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_syntax_coloring_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -101663,7 +93155,7 @@ func (o *TextEdit) SelectAll() {
 /*
    Set to enable highlighting all occurrences of the current selection.
 */
-func (o *TextEdit) SetHighlightAllOccurrences(enable *bool) {
+func (o *TextEdit) SetHighlightAllOccurrences(enable bool) {
 	log.Println("Calling TextEdit.SetHighlightAllOccurrences()")
 
 	// Build out the method's arguments
@@ -101699,7 +93191,7 @@ func (o *TextEdit) SetMaxChars(amount int64) {
 /*
    Set the text editor as read-only. Text can be displayed but not edited.
 */
-func (o *TextEdit) SetReadonly(enable *bool) {
+func (o *TextEdit) SetReadonly(enable bool) {
 	log.Println("Calling TextEdit.SetReadonly()")
 
 	// Build out the method's arguments
@@ -101717,7 +93209,7 @@ func (o *TextEdit) SetReadonly(enable *bool) {
 /*
    Set to enable showing line numbers.
 */
-func (o *TextEdit) SetShowLineNumbers(enable *bool) {
+func (o *TextEdit) SetShowLineNumbers(enable bool) {
 	log.Println("Calling TextEdit.SetShowLineNumbers()")
 
 	// Build out the method's arguments
@@ -101735,7 +93227,7 @@ func (o *TextEdit) SetShowLineNumbers(enable *bool) {
 /*
 
  */
-func (o *TextEdit) SetSmoothScrollEnable(enable *bool) {
+func (o *TextEdit) SetSmoothScrollEnable(enable bool) {
 	log.Println("Calling TextEdit.SetSmoothScrollEnable()")
 
 	// Build out the method's arguments
@@ -101753,7 +93245,7 @@ func (o *TextEdit) SetSmoothScrollEnable(enable *bool) {
 /*
    Set to enable the syntax coloring.
 */
-func (o *TextEdit) SetSyntaxColoring(enable *bool) {
+func (o *TextEdit) SetSyntaxColoring(enable bool) {
 	log.Println("Calling TextEdit.SetSyntaxColoring()")
 
 	// Build out the method's arguments
@@ -101807,7 +93299,7 @@ func (o *TextEdit) SetVScrollSpeed(speed float64) {
 /*
    Enable text wrapping when it goes beyond he edge of what is visible.
 */
-func (o *TextEdit) SetWrap(enable *bool) {
+func (o *TextEdit) SetWrap(enable bool) {
 	log.Println("Calling TextEdit.SetWrap()")
 
 	// Build out the method's arguments
@@ -101844,105 +93336,7 @@ func (o *TextEdit) Undo() {
    TextEdit is meant for editing large, multiline text. It also has facilities for editing code, such as syntax highlighting support and multiple levels of undo/redo.
 */
 type TextEditImplementer interface {
-	ControlImplementer
-
-	AddColorRegion(beginKey string, endKey string, color *Color, lineOnly *bool)
-
-	AddKeywordColor(keyword string, color *Color)
-
-	ClearColors()
-
-	ClearUndoHistory()
-
-	Copy()
-
-	CursorGetBlinkEnabled() *bool
-
-	CursorGetBlinkSpeed() float64
-
-	CursorGetColumn() int64
-
-	CursorGetLine() int64
-
-	CursorIsBlockMode() *bool
-
-	CursorSetBlinkEnabled(enable *bool)
-
-	CursorSetBlinkSpeed(blinkSpeed float64)
-
-	CursorSetBlockMode(enable *bool)
-
-	CursorSetColumn(column int64, adjustViewport *bool)
-
-	CursorSetLine(line int64, adjustViewport *bool)
-
-	Cut()
-
-	GetLine(line int64) string
-
-	GetLineCount() int64
-
-	GetMenu() *PopupMenu
-
-	GetSelectionFromColumn() int64
-
-	GetSelectionFromLine() int64
-
-	GetSelectionText() string
-
-	GetSelectionToColumn() int64
-
-	GetSelectionToLine() int64
-
-	GetText() string
-
-	GetVScrollSpeed() float64
-
-	GetWordUnderCursor() string
-
-	InsertTextAtCursor(text string)
-
-	IsHighlightAllOccurrencesEnabled() *bool
-
-	IsSelectionActive() *bool
-
-	IsShowLineNumbersEnabled() *bool
-
-	IsSmoothScrollEnabled() *bool
-
-	IsSyntaxColoringEnabled() *bool
-
-	MenuOption(option int64)
-
-	Paste()
-
-	Redo()
-
-	Search(key string, flags int64, fromLine int64, fromColumn int64) *PoolIntArray
-
-	Select(fromLine int64, fromColumn int64, toLine int64, toColumn int64)
-
-	SelectAll()
-
-	SetHighlightAllOccurrences(enable *bool)
-
-	SetMaxChars(amount int64)
-
-	SetReadonly(enable *bool)
-
-	SetShowLineNumbers(enable *bool)
-
-	SetSmoothScrollEnable(enable *bool)
-
-	SetSyntaxColoring(enable *bool)
-
-	SetText(text string)
-
-	SetVScrollSpeed(speed float64)
-
-	SetWrap(enable *bool)
-
-	Undo()
+	Class
 }
 
 /*
@@ -101959,7 +93353,7 @@ func (o *Texture) baseClass() string {
 /*
 
  */
-func (o *Texture) Draw(canvasItem *RID, pos *Vector2, modulate *Color, transpose *bool, normalMap *Texture) {
+func (o *Texture) Draw(canvasItem *RID, pos *Vector2, modulate *Color, transpose bool, normalMap *Texture) {
 	log.Println("Calling Texture.Draw()")
 
 	// Build out the method's arguments
@@ -101981,7 +93375,7 @@ func (o *Texture) Draw(canvasItem *RID, pos *Vector2, modulate *Color, transpose
 /*
 
  */
-func (o *Texture) DrawRect(canvasItem *RID, rect *Rect2, tile *bool, modulate *Color, transpose *bool, normalMap *Texture) {
+func (o *Texture) DrawRect(canvasItem *RID, rect *Rect2, tile bool, modulate *Color, transpose bool, normalMap *Texture) {
 	log.Println("Calling Texture.DrawRect()")
 
 	// Build out the method's arguments
@@ -102004,7 +93398,7 @@ func (o *Texture) DrawRect(canvasItem *RID, rect *Rect2, tile *bool, modulate *C
 /*
 
  */
-func (o *Texture) DrawRectRegion(canvasItem *RID, rect *Rect2, srcRect *Rect2, modulate *Color, transpose *bool, normalMap *Texture, clipUv *bool) {
+func (o *Texture) DrawRectRegion(canvasItem *RID, rect *Rect2, srcRect *Rect2, modulate *Color, transpose bool, normalMap *Texture, clipUv bool) {
 	log.Println("Calling Texture.DrawRectRegion()")
 
 	// Build out the method's arguments
@@ -102133,7 +93527,7 @@ func (o *Texture) GetWidth() int64 {
 /*
 
  */
-func (o *Texture) HasAlpha() *bool {
+func (o *Texture) HasAlpha() bool {
 	log.Println("Calling Texture.HasAlpha()")
 
 	// Build out the method's arguments
@@ -102141,11 +93535,11 @@ func (o *Texture) HasAlpha() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_alpha", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_alpha", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -102174,27 +93568,7 @@ func (o *Texture) SetFlags(flags int64) {
    A texture works by registering an image in the video hardware, which then can be used in 3D models or 2D [Sprite] or GUI [Control].
 */
 type TextureImplementer interface {
-	ResourceImplementer
-
-	Draw(canvasItem *RID, pos *Vector2, modulate *Color, transpose *bool, normalMap *Texture)
-
-	DrawRect(canvasItem *RID, rect *Rect2, tile *bool, modulate *Color, transpose *bool, normalMap *Texture)
-
-	DrawRectRegion(canvasItem *RID, rect *Rect2, srcRect *Rect2, modulate *Color, transpose *bool, normalMap *Texture, clipUv *bool)
-
-	GetData() *Image
-
-	GetFlags() int64
-
-	GetHeight() int64
-
-	GetSize() *Vector2
-
-	GetWidth() int64
-
-	HasAlpha() *bool
-
-	SetFlags(flags int64)
+	Class
 }
 
 /*
@@ -102254,7 +93628,7 @@ func (o *TextureButton) GetDisabledTexture() *Texture {
 /*
 
  */
-func (o *TextureButton) GetExpand() *bool {
+func (o *TextureButton) GetExpand() bool {
 	log.Println("Calling TextureButton.GetExpand()")
 
 	// Build out the method's arguments
@@ -102262,11 +93636,11 @@ func (o *TextureButton) GetExpand() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_expand", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_expand", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -102416,7 +93790,7 @@ func (o *TextureButton) SetDisabledTexture(texture *Texture) {
 /*
 
  */
-func (o *TextureButton) SetExpand(pExpand *bool) {
+func (o *TextureButton) SetExpand(pExpand bool) {
 	log.Println("Calling TextureButton.SetExpand()")
 
 	// Build out the method's arguments
@@ -102527,39 +93901,7 @@ func (o *TextureButton) SetStretchMode(pMode int64) {
 		Only the normal texture is required, the others are optional.
 */
 type TextureButtonImplementer interface {
-	BaseButtonImplementer
-
-	GetClickMask() *BitMap
-
-	GetDisabledTexture() *Texture
-
-	GetExpand() *bool
-
-	GetFocusedTexture() *Texture
-
-	GetHoverTexture() *Texture
-
-	GetNormalTexture() *Texture
-
-	GetPressedTexture() *Texture
-
-	GetStretchMode() int64
-
-	SetClickMask(mask *BitMap)
-
-	SetDisabledTexture(texture *Texture)
-
-	SetExpand(pExpand *bool)
-
-	SetFocusedTexture(texture *Texture)
-
-	SetHoverTexture(texture *Texture)
-
-	SetNormalTexture(texture *Texture)
-
-	SetPressedTexture(texture *Texture)
-
-	SetStretchMode(pMode int64)
+	Class
 }
 
 /*
@@ -102618,7 +93960,7 @@ func (o *TextureProgress) GetFillMode() int64 {
 /*
    Returns true if textures are stretched as nine-patches or false otherwise.
 */
-func (o *TextureProgress) GetNinePatchStretch() *bool {
+func (o *TextureProgress) GetNinePatchStretch() bool {
 	log.Println("Calling TextureProgress.GetNinePatchStretch()")
 
 	// Build out the method's arguments
@@ -102626,11 +93968,11 @@ func (o *TextureProgress) GetNinePatchStretch() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_nine_patch_stretch", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_nine_patch_stretch", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -102802,7 +94144,7 @@ func (o *TextureProgress) SetFillMode(mode int64) {
 /*
    Set if textures should be stretched as nine-patches.
 */
-func (o *TextureProgress) SetNinePatchStretch(stretch *bool) {
+func (o *TextureProgress) SetNinePatchStretch(stretch bool) {
 	log.Println("Calling TextureProgress.SetNinePatchStretch()")
 
 	// Build out the method's arguments
@@ -102931,43 +94273,7 @@ func (o *TextureProgress) SetUnderTexture(tex *Texture) {
    [ProgressBar] implementation that is easier to theme (by just passing a few textures).
 */
 type TextureProgressImplementer interface {
-	RangeImplementer
-
-	GetFillDegrees() float64
-
-	GetFillMode() int64
-
-	GetNinePatchStretch() *bool
-
-	GetOverTexture() *Texture
-
-	GetProgressTexture() *Texture
-
-	GetRadialCenterOffset() *Vector2
-
-	GetRadialInitialAngle() float64
-
-	GetStretchMargin(margin int64) int64
-
-	GetUnderTexture() *Texture
-
-	SetFillDegrees(mode float64)
-
-	SetFillMode(mode int64)
-
-	SetNinePatchStretch(stretch *bool)
-
-	SetOverTexture(tex *Texture)
-
-	SetProgressTexture(tex *Texture)
-
-	SetRadialCenterOffset(mode *Vector2)
-
-	SetRadialInitialAngle(mode float64)
-
-	SetStretchMargin(margin int64, value int64)
-
-	SetUnderTexture(tex *Texture)
+	Class
 }
 
 /*
@@ -103026,7 +94332,7 @@ func (o *TextureRect) GetTexture() *Texture {
 /*
 
  */
-func (o *TextureRect) HasExpand() *bool {
+func (o *TextureRect) HasExpand() bool {
 	log.Println("Calling TextureRect.HasExpand()")
 
 	// Build out the method's arguments
@@ -103034,11 +94340,11 @@ func (o *TextureRect) HasExpand() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_expand", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_expand", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -103047,7 +94353,7 @@ func (o *TextureRect) HasExpand() *bool {
 /*
 
  */
-func (o *TextureRect) SetExpand(enable *bool) {
+func (o *TextureRect) SetExpand(enable bool) {
 	log.Println("Calling TextureRect.SetExpand()")
 
 	// Build out the method's arguments
@@ -103103,19 +94409,7 @@ func (o *TextureRect) SetTexture(texture *Texture) {
    Control frame that simply draws an assigned texture. It can stretch or not. It's a simple way to just show an image in a UI.
 */
 type TextureRectImplementer interface {
-	ControlImplementer
-
-	GetStretchMode() int64
-
-	GetTexture() *Texture
-
-	HasExpand() *bool
-
-	SetExpand(enable *bool)
-
-	SetStretchMode(stretchMode int64)
-
-	SetTexture(texture *Texture)
+	Class
 }
 
 /*
@@ -103534,7 +94828,7 @@ func (o *Theme) GetTypeList(aType string) *PoolStringArray {
 /*
 
  */
-func (o *Theme) HasColor(name string, aType string) *bool {
+func (o *Theme) HasColor(name string, aType string) bool {
 	log.Println("Calling Theme.HasColor()")
 
 	// Build out the method's arguments
@@ -103544,11 +94838,11 @@ func (o *Theme) HasColor(name string, aType string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_color", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_color", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -103557,7 +94851,7 @@ func (o *Theme) HasColor(name string, aType string) *bool {
 /*
 
  */
-func (o *Theme) HasConstant(name string, aType string) *bool {
+func (o *Theme) HasConstant(name string, aType string) bool {
 	log.Println("Calling Theme.HasConstant()")
 
 	// Build out the method's arguments
@@ -103567,11 +94861,11 @@ func (o *Theme) HasConstant(name string, aType string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_constant", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_constant", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -103580,7 +94874,7 @@ func (o *Theme) HasConstant(name string, aType string) *bool {
 /*
 
  */
-func (o *Theme) HasFont(name string, aType string) *bool {
+func (o *Theme) HasFont(name string, aType string) bool {
 	log.Println("Calling Theme.HasFont()")
 
 	// Build out the method's arguments
@@ -103590,11 +94884,11 @@ func (o *Theme) HasFont(name string, aType string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_font", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_font", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -103603,7 +94897,7 @@ func (o *Theme) HasFont(name string, aType string) *bool {
 /*
 
  */
-func (o *Theme) HasIcon(name string, aType string) *bool {
+func (o *Theme) HasIcon(name string, aType string) bool {
 	log.Println("Calling Theme.HasIcon()")
 
 	// Build out the method's arguments
@@ -103613,11 +94907,11 @@ func (o *Theme) HasIcon(name string, aType string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_icon", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_icon", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -103626,7 +94920,7 @@ func (o *Theme) HasIcon(name string, aType string) *bool {
 /*
 
  */
-func (o *Theme) HasStylebox(name string, aType string) *bool {
+func (o *Theme) HasStylebox(name string, aType string) bool {
 	log.Println("Calling Theme.HasStylebox()")
 
 	// Build out the method's arguments
@@ -103636,11 +94930,11 @@ func (o *Theme) HasStylebox(name string, aType string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_stylebox", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_stylebox", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -103770,67 +95064,7 @@ func (o *Theme) SetStylebox(name string, aType string, texture *StyleBox) {
 		Theme resources can be alternatively loaded by writing them in a .theme file, see docs for more info.
 */
 type ThemeImplementer interface {
-	ResourceImplementer
-
-	ClearColor(name string, aType string)
-
-	ClearConstant(name string, aType string)
-
-	ClearFont(name string, aType string)
-
-	ClearIcon(name string, aType string)
-
-	ClearStylebox(name string, aType string)
-
-	CopyDefaultTheme()
-
-	GetColor(name string, aType string) *Color
-
-	GetColorList(aType string) *PoolStringArray
-
-	GetConstant(name string, aType string) int64
-
-	GetConstantList(aType string) *PoolStringArray
-
-	GetDefaultFont() *Font
-
-	GetFont(name string, aType string) *Font
-
-	GetFontList(aType string) *PoolStringArray
-
-	GetIcon(name string, aType string) *Texture
-
-	GetIconList(aType string) *PoolStringArray
-
-	GetStylebox(name string, aType string) *StyleBox
-
-	GetStyleboxList(aType string) *PoolStringArray
-
-	GetStyleboxTypes() *PoolStringArray
-
-	GetTypeList(aType string) *PoolStringArray
-
-	HasColor(name string, aType string) *bool
-
-	HasConstant(name string, aType string) *bool
-
-	HasFont(name string, aType string) *bool
-
-	HasIcon(name string, aType string) *bool
-
-	HasStylebox(name string, aType string) *bool
-
-	SetColor(name string, aType string, color *Color)
-
-	SetConstant(name string, aType string, constant int64)
-
-	SetDefaultFont(font *Font)
-
-	SetFont(name string, aType string, font *Font)
-
-	SetIcon(name string, aType string, texture *Texture)
-
-	SetStylebox(name string, aType string, texture *StyleBox)
+	Class
 }
 
 /*
@@ -103868,7 +95102,7 @@ func (o *Thread) GetId() string {
 /*
    Whether this thread is currently active, an active Thread cannot start work on a new method but can be joined with [method wait_to_finish].
 */
-func (o *Thread) IsActive() *bool {
+func (o *Thread) IsActive() bool {
 	log.Println("Calling Thread.IsActive()")
 
 	// Build out the method's arguments
@@ -103876,11 +95110,11 @@ func (o *Thread) IsActive() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_active", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_active", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -103938,15 +95172,7 @@ func (o *Thread) WaitToFinish() *Variant {
    A unit of execution in a process. Can run methods on [Object]\ s simultaneously. The use of synchronization via [Mutex], [Semaphore] is advised if working with shared objects.
 */
 type ThreadImplementer interface {
-	ReferenceImplementer
-
-	GetId() string
-
-	IsActive() *bool
-
-	Start(instance *Object, method string, userdata *Variant, priority int64) int64
-
-	WaitToFinish() *Variant
+	Class
 }
 
 /*
@@ -104047,7 +95273,7 @@ func (o *TileMap) GetCellv(pos *Vector2) int64 {
 /*
    Return true if tiles are to be centered in x coordinate (by default this is false and they are drawn from upper left cell corner).
 */
-func (o *TileMap) GetCenterX() *bool {
+func (o *TileMap) GetCenterX() bool {
 	log.Println("Calling TileMap.GetCenterX()")
 
 	// Build out the method's arguments
@@ -104055,11 +95281,11 @@ func (o *TileMap) GetCenterX() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_center_x", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_center_x", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -104068,7 +95294,7 @@ func (o *TileMap) GetCenterX() *bool {
 /*
    Return true if tiles are to be centered in y coordinate (by default this is false and they are drawn from upper left cell corner).
 */
-func (o *TileMap) GetCenterY() *bool {
+func (o *TileMap) GetCenterY() bool {
 	log.Println("Calling TileMap.GetCenterY()")
 
 	// Build out the method's arguments
@@ -104076,11 +95302,11 @@ func (o *TileMap) GetCenterY() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_center_y", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_center_y", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -104152,7 +95378,7 @@ func (o *TileMap) GetCollisionLayer() int64 {
 /*
 
  */
-func (o *TileMap) GetCollisionLayerBit(bit int64) *bool {
+func (o *TileMap) GetCollisionLayerBit(bit int64) bool {
 	log.Println("Calling TileMap.GetCollisionLayerBit()")
 
 	// Build out the method's arguments
@@ -104161,11 +95387,11 @@ func (o *TileMap) GetCollisionLayerBit(bit int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_layer_bit", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_collision_layer_bit", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -104195,7 +95421,7 @@ func (o *TileMap) GetCollisionMask() int64 {
 /*
 
  */
-func (o *TileMap) GetCollisionMaskBit(bit int64) *bool {
+func (o *TileMap) GetCollisionMaskBit(bit int64) bool {
 	log.Println("Calling TileMap.GetCollisionMaskBit()")
 
 	// Build out the method's arguments
@@ -104204,11 +95430,11 @@ func (o *TileMap) GetCollisionMaskBit(bit int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_mask_bit", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_collision_mask_bit", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -104217,7 +95443,7 @@ func (o *TileMap) GetCollisionMaskBit(bit int64) *bool {
 /*
    Return whether the tilemap handles collisions as a kinematic body.
 */
-func (o *TileMap) GetCollisionUseKinematic() *bool {
+func (o *TileMap) GetCollisionUseKinematic() bool {
 	log.Println("Calling TileMap.GetCollisionUseKinematic()")
 
 	// Build out the method's arguments
@@ -104225,11 +95451,11 @@ func (o *TileMap) GetCollisionUseKinematic() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_use_kinematic", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_collision_use_kinematic", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -104449,7 +95675,7 @@ func (o *TileMap) GetUsedRect() *Rect2 {
 /*
    Return whether the referenced cell is transposed, i.e. the X and Y axes are swapped (mirroring with regard to the (1,1) vector).
 */
-func (o *TileMap) IsCellTransposed(x int64, y int64) *bool {
+func (o *TileMap) IsCellTransposed(x int64, y int64) bool {
 	log.Println("Calling TileMap.IsCellTransposed()")
 
 	// Build out the method's arguments
@@ -104459,11 +95685,11 @@ func (o *TileMap) IsCellTransposed(x int64, y int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_cell_transposed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_cell_transposed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -104472,7 +95698,7 @@ func (o *TileMap) IsCellTransposed(x int64, y int64) *bool {
 /*
    Return whether the referenced cell is flipped over the X axis.
 */
-func (o *TileMap) IsCellXFlipped(x int64, y int64) *bool {
+func (o *TileMap) IsCellXFlipped(x int64, y int64) bool {
 	log.Println("Calling TileMap.IsCellXFlipped()")
 
 	// Build out the method's arguments
@@ -104482,11 +95708,11 @@ func (o *TileMap) IsCellXFlipped(x int64, y int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_cell_x_flipped", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_cell_x_flipped", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -104495,7 +95721,7 @@ func (o *TileMap) IsCellXFlipped(x int64, y int64) *bool {
 /*
    Return whether the referenced cell is flipped over the Y axis.
 */
-func (o *TileMap) IsCellYFlipped(x int64, y int64) *bool {
+func (o *TileMap) IsCellYFlipped(x int64, y int64) bool {
 	log.Println("Calling TileMap.IsCellYFlipped()")
 
 	// Build out the method's arguments
@@ -104505,11 +95731,11 @@ func (o *TileMap) IsCellYFlipped(x int64, y int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_cell_y_flipped", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_cell_y_flipped", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -104518,7 +95744,7 @@ func (o *TileMap) IsCellYFlipped(x int64, y int64) *bool {
 /*
    Return the Y sort mode.
 */
-func (o *TileMap) IsYSortModeEnabled() *bool {
+func (o *TileMap) IsYSortModeEnabled() bool {
 	log.Println("Calling TileMap.IsYSortModeEnabled()")
 
 	// Build out the method's arguments
@@ -104526,11 +95752,11 @@ func (o *TileMap) IsYSortModeEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_y_sort_mode_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_y_sort_mode_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -104540,7 +95766,7 @@ func (o *TileMap) IsYSortModeEnabled() *bool {
                 Return the absolute world position corresponding to the tilemap (grid-based) coordinates given as an argument.
 				Optionally, the tilemap's potential half offset can be ignored.
 */
-func (o *TileMap) MapToWorld(mappos *Vector2, ignoreHalfOfs *bool) *Vector2 {
+func (o *TileMap) MapToWorld(mappos *Vector2, ignoreHalfOfs bool) *Vector2 {
 	log.Println("Calling TileMap.MapToWorld()")
 
 	// Build out the method's arguments
@@ -104565,7 +95791,7 @@ func (o *TileMap) MapToWorld(mappos *Vector2, ignoreHalfOfs *bool) *Vector2 {
 				A tile index of -1 clears the cell.
 				Optionally, the tile can also be flipped over the X and Y coordinates or transposed.
 */
-func (o *TileMap) SetCell(x int64, y int64, tile int64, flipX *bool, flipY *bool, transpose *bool) {
+func (o *TileMap) SetCell(x int64, y int64, tile int64, flipX bool, flipY bool, transpose bool) {
 	log.Println("Calling TileMap.SetCell()")
 
 	// Build out the method's arguments
@@ -104608,7 +95834,7 @@ func (o *TileMap) SetCellSize(size *Vector2) {
 				A tile index of -1 clears the cell.
 				Optionally, the tile can also be flipped over the X and Y axes or transposed.
 */
-func (o *TileMap) SetCellv(pos *Vector2, tile int64, flipX *bool, flipY *bool, transpose *bool) {
+func (o *TileMap) SetCellv(pos *Vector2, tile int64, flipX bool, flipY bool, transpose bool) {
 	log.Println("Calling TileMap.SetCellv()")
 
 	// Build out the method's arguments
@@ -104630,7 +95856,7 @@ func (o *TileMap) SetCellv(pos *Vector2, tile int64, flipX *bool, flipY *bool, t
 /*
    Set tiles to be centered in x coordinate. (by default this is false and they are drawn from upper left cell corner).
 */
-func (o *TileMap) SetCenterX(enable *bool) {
+func (o *TileMap) SetCenterX(enable bool) {
 	log.Println("Calling TileMap.SetCenterX()")
 
 	// Build out the method's arguments
@@ -104648,7 +95874,7 @@ func (o *TileMap) SetCenterX(enable *bool) {
 /*
    Set tiles to be centered in y coordinate. (by default this is false and they are drawn from upper left cell corner).
 */
-func (o *TileMap) SetCenterY(enable *bool) {
+func (o *TileMap) SetCenterY(enable bool) {
 	log.Println("Calling TileMap.SetCenterY()")
 
 	// Build out the method's arguments
@@ -104721,7 +95947,7 @@ func (o *TileMap) SetCollisionLayer(layer int64) {
 /*
 
  */
-func (o *TileMap) SetCollisionLayerBit(bit int64, value *bool) {
+func (o *TileMap) SetCollisionLayerBit(bit int64, value bool) {
 	log.Println("Calling TileMap.SetCollisionLayerBit()")
 
 	// Build out the method's arguments
@@ -104759,7 +95985,7 @@ func (o *TileMap) SetCollisionMask(mask int64) {
 /*
 
  */
-func (o *TileMap) SetCollisionMaskBit(bit int64, value *bool) {
+func (o *TileMap) SetCollisionMaskBit(bit int64, value bool) {
 	log.Println("Calling TileMap.SetCollisionMaskBit()")
 
 	// Build out the method's arguments
@@ -104778,7 +96004,7 @@ func (o *TileMap) SetCollisionMaskBit(bit int64, value *bool) {
 /*
    Set the tilemap to handle collisions as a kinematic body (enabled) or a static body (disabled).
 */
-func (o *TileMap) SetCollisionUseKinematic(useKinematic *bool) {
+func (o *TileMap) SetCollisionUseKinematic(useKinematic bool) {
 	log.Println("Calling TileMap.SetCollisionUseKinematic()")
 
 	// Build out the method's arguments
@@ -104925,7 +96151,7 @@ func (o *TileMap) SetTileset(tileset *TileSet) {
                 Set the Y sort mode. Enabled Y sort mode means that children of the tilemap will be drawn in the order defined by their Y coordinate.
 				A tile with a higher Y coordinate will therefore be drawn later, potentially covering up the tile(s) above it if its sprite is higher than its cell size.
 */
-func (o *TileMap) SetYSortMode(enable *bool) {
+func (o *TileMap) SetYSortMode(enable bool) {
 	log.Println("Calling TileMap.SetYSortMode()")
 
 	// Build out the method's arguments
@@ -104968,105 +96194,7 @@ func (o *TileMap) WorldToMap(worldpos *Vector2) *Vector2 {
 		To optimize drawing and culling (sort of like [GridMap]), you can specify a quadrant size, so chunks of the map will be batched together at drawing time.
 */
 type TileMapImplementer interface {
-	Node2DImplementer
-
-	Clear()
-
-	GetCell(x int64, y int64) int64
-
-	GetCellSize() *Vector2
-
-	GetCellv(pos *Vector2) int64
-
-	GetCenterX() *bool
-
-	GetCenterY() *bool
-
-	GetCollisionBounce() float64
-
-	GetCollisionFriction() float64
-
-	GetCollisionLayer() int64
-
-	GetCollisionLayerBit(bit int64) *bool
-
-	GetCollisionMask() int64
-
-	GetCollisionMaskBit(bit int64) *bool
-
-	GetCollisionUseKinematic() *bool
-
-	GetCustomTransform() *Transform2D
-
-	GetHalfOffset() int64
-
-	GetMode() int64
-
-	GetOccluderLightMask() int64
-
-	GetQuadrantSize() int64
-
-	GetTileOrigin() int64
-
-	GetTileset() *TileSet
-
-	GetUsedCells() *Array
-
-	GetUsedCellsById(id int64) *Array
-
-	GetUsedRect() *Rect2
-
-	IsCellTransposed(x int64, y int64) *bool
-
-	IsCellXFlipped(x int64, y int64) *bool
-
-	IsCellYFlipped(x int64, y int64) *bool
-
-	IsYSortModeEnabled() *bool
-
-	MapToWorld(mappos *Vector2, ignoreHalfOfs *bool) *Vector2
-
-	SetCell(x int64, y int64, tile int64, flipX *bool, flipY *bool, transpose *bool)
-
-	SetCellSize(size *Vector2)
-
-	SetCellv(pos *Vector2, tile int64, flipX *bool, flipY *bool, transpose *bool)
-
-	SetCenterX(enable *bool)
-
-	SetCenterY(enable *bool)
-
-	SetCollisionBounce(value float64)
-
-	SetCollisionFriction(value float64)
-
-	SetCollisionLayer(layer int64)
-
-	SetCollisionLayerBit(bit int64, value *bool)
-
-	SetCollisionMask(mask int64)
-
-	SetCollisionMaskBit(bit int64, value *bool)
-
-	SetCollisionUseKinematic(useKinematic *bool)
-
-	SetCustomTransform(customTransform *Transform2D)
-
-	SetHalfOffset(halfOffset int64)
-
-	SetMode(mode int64)
-
-	SetOccluderLightMask(mask int64)
-
-	SetQuadrantSize(size int64)
-
-	SetTileOrigin(origin int64)
-
-	SetTileset(tileset *TileSet)
-
-	SetYSortMode(enable *bool)
-
-	WorldToMap(worldpos *Vector2) *Vector2
+	Class
 }
 
 /*
@@ -105201,7 +96329,7 @@ func (o *TileSet) RemoveTile(id int64) {
 /*
 
  */
-func (o *TileSet) TileAddShape(id int64, shape *Shape2D, shapeTransform *Transform2D, oneWay *bool) {
+func (o *TileSet) TileAddShape(id int64, shape *Shape2D, shapeTransform *Transform2D, oneWay bool) {
 	log.Println("Calling TileSet.TileAddShape()")
 
 	// Build out the method's arguments
@@ -105443,7 +96571,7 @@ func (o *TileSet) TileGetShapeCount(id int64) int64 {
 /*
 
  */
-func (o *TileSet) TileGetShapeOneWay(id int64, shapeId int64) *bool {
+func (o *TileSet) TileGetShapeOneWay(id int64, shapeId int64) bool {
 	log.Println("Calling TileSet.TileGetShapeOneWay()")
 
 	// Build out the method's arguments
@@ -105453,11 +96581,11 @@ func (o *TileSet) TileGetShapeOneWay(id int64, shapeId int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "tile_get_shape_one_way", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "tile_get_shape_one_way", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -105727,7 +96855,7 @@ func (o *TileSet) TileSetShape(id int64, shapeId int64, shape *Shape2D) {
 /*
 
  */
-func (o *TileSet) TileSetShapeOneWay(id int64, shapeId int64, oneWay *bool) {
+func (o *TileSet) TileSetShapeOneWay(id int64, shapeId int64, oneWay bool) {
 	log.Println("Calling TileSet.TileSetShapeOneWay()")
 
 	// Build out the method's arguments
@@ -105827,79 +96955,7 @@ func (o *TileSet) TileSetTextureOffset(id int64, textureOffset *Vector2) {
 		Tiles are referenced by a unique integer ID.
 */
 type TileSetImplementer interface {
-	ResourceImplementer
-
-	Clear()
-
-	CreateTile(id int64)
-
-	FindTileByName(name string) int64
-
-	GetLastUnusedTileId() int64
-
-	GetTilesIds() *Array
-
-	RemoveTile(id int64)
-
-	TileAddShape(id int64, shape *Shape2D, shapeTransform *Transform2D, oneWay *bool)
-
-	TileGetLightOccluder(id int64) *OccluderPolygon2D
-
-	TileGetMaterial(id int64) *ShaderMaterial
-
-	TileGetName(id int64) string
-
-	TileGetNavigationPolygon(id int64) *NavigationPolygon
-
-	TileGetNavigationPolygonOffset(id int64) *Vector2
-
-	TileGetNormalMap(id int64) *Texture
-
-	TileGetOccluderOffset(id int64) *Vector2
-
-	TileGetRegion(id int64) *Rect2
-
-	TileGetShape(id int64, shapeId int64) *Shape2D
-
-	TileGetShapeCount(id int64) int64
-
-	TileGetShapeOneWay(id int64, shapeId int64) *bool
-
-	TileGetShapeTransform(id int64, shapeId int64) *Transform2D
-
-	TileGetShapes(id int64) *Array
-
-	TileGetTexture(id int64) *Texture
-
-	TileGetTextureOffset(id int64) *Vector2
-
-	TileSetLightOccluder(id int64, lightOccluder *OccluderPolygon2D)
-
-	TileSetMaterial(id int64, material *ShaderMaterial)
-
-	TileSetName(id int64, name string)
-
-	TileSetNavigationPolygon(id int64, navigationPolygon *NavigationPolygon)
-
-	TileSetNavigationPolygonOffset(id int64, navigationPolygonOffset *Vector2)
-
-	TileSetNormalMap(id int64, normalMap *Texture)
-
-	TileSetOccluderOffset(id int64, occluderOffset *Vector2)
-
-	TileSetRegion(id int64, region *Rect2)
-
-	TileSetShape(id int64, shapeId int64, shape *Shape2D)
-
-	TileSetShapeOneWay(id int64, shapeId int64, oneWay *bool)
-
-	TileSetShapeTransform(id int64, shapeId int64, shapeTransform *Transform2D)
-
-	TileSetShapes(id int64, shapes *Array)
-
-	TileSetTexture(id int64, texture *Texture)
-
-	TileSetTextureOffset(id int64, textureOffset *Vector2)
+	Class
 }
 
 /*
@@ -105979,7 +97035,7 @@ func (o *Timer) GetWaitTime() float64 {
 /*
    Return true if set to automatically start when entering the scene.
 */
-func (o *Timer) HasAutostart() *bool {
+func (o *Timer) HasAutostart() bool {
 	log.Println("Calling Timer.HasAutostart()")
 
 	// Build out the method's arguments
@@ -105987,11 +97043,11 @@ func (o *Timer) HasAutostart() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_autostart", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_autostart", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -106000,7 +97056,7 @@ func (o *Timer) HasAutostart() *bool {
 /*
    Return true if configured as one-shot.
 */
-func (o *Timer) IsOneShot() *bool {
+func (o *Timer) IsOneShot() bool {
 	log.Println("Calling Timer.IsOneShot()")
 
 	// Build out the method's arguments
@@ -106008,11 +97064,11 @@ func (o *Timer) IsOneShot() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_one_shot", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_one_shot", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -106021,7 +97077,7 @@ func (o *Timer) IsOneShot() *bool {
 /*
    Return if the timer is paused or not.
 */
-func (o *Timer) IsPaused() *bool {
+func (o *Timer) IsPaused() bool {
 	log.Println("Calling Timer.IsPaused()")
 
 	// Build out the method's arguments
@@ -106029,11 +97085,11 @@ func (o *Timer) IsPaused() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_paused", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_paused", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -106042,7 +97098,7 @@ func (o *Timer) IsPaused() *bool {
 /*
 
  */
-func (o *Timer) IsStopped() *bool {
+func (o *Timer) IsStopped() bool {
 	log.Println("Calling Timer.IsStopped()")
 
 	// Build out the method's arguments
@@ -106050,11 +97106,11 @@ func (o *Timer) IsStopped() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_stopped", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_stopped", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -106063,7 +97119,7 @@ func (o *Timer) IsStopped() *bool {
 /*
    Set to automatically start when entering the scene.
 */
-func (o *Timer) SetAutostart(enable *bool) {
+func (o *Timer) SetAutostart(enable bool) {
 	log.Println("Calling Timer.SetAutostart()")
 
 	// Build out the method's arguments
@@ -106081,7 +97137,7 @@ func (o *Timer) SetAutostart(enable *bool) {
 /*
    Set as one-shot. If enabled, the timer will stop after timeout, otherwise it will automatically restart.
 */
-func (o *Timer) SetOneShot(enable *bool) {
+func (o *Timer) SetOneShot(enable bool) {
 	log.Println("Calling Timer.SetOneShot()")
 
 	// Build out the method's arguments
@@ -106099,7 +97155,7 @@ func (o *Timer) SetOneShot(enable *bool) {
 /*
    Set whether the timer is paused or not. A paused timer will be inactive until it is unpaused again.
 */
-func (o *Timer) SetPaused(paused *bool) {
+func (o *Timer) SetPaused(paused bool) {
 	log.Println("Calling Timer.SetPaused()")
 
 	// Build out the method's arguments
@@ -106189,35 +97245,7 @@ func (o *Timer) Stop() {
    Timer node. This is a simple node that will emit a timeout callback when the timer runs out. It can optionally be set to loop.
 */
 type TimerImplementer interface {
-	NodeImplementer
-
-	GetTimeLeft() float64
-
-	GetTimerProcessMode() int64
-
-	GetWaitTime() float64
-
-	HasAutostart() *bool
-
-	IsOneShot() *bool
-
-	IsPaused() *bool
-
-	IsStopped() *bool
-
-	SetAutostart(enable *bool)
-
-	SetOneShot(enable *bool)
-
-	SetPaused(paused *bool)
-
-	SetTimerProcessMode(mode int64)
-
-	SetWaitTime(timeSec float64)
-
-	Start()
-
-	Stop()
+	Class
 }
 
 /*
@@ -106236,7 +97264,7 @@ func (o *ToolButton) baseClass() string {
 
 */
 type ToolButtonImplementer interface {
-	ButtonImplementer
+	Class
 }
 
 /*
@@ -106379,7 +97407,7 @@ func (o *TouchScreenButton) GetVisibilityMode() int64 {
 /*
 
  */
-func (o *TouchScreenButton) IsPassbyPressEnabled() *bool {
+func (o *TouchScreenButton) IsPassbyPressEnabled() bool {
 	log.Println("Calling TouchScreenButton.IsPassbyPressEnabled()")
 
 	// Build out the method's arguments
@@ -106387,11 +97415,11 @@ func (o *TouchScreenButton) IsPassbyPressEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_passby_press_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_passby_press_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -106400,7 +97428,7 @@ func (o *TouchScreenButton) IsPassbyPressEnabled() *bool {
 /*
 
  */
-func (o *TouchScreenButton) IsPressed() *bool {
+func (o *TouchScreenButton) IsPressed() bool {
 	log.Println("Calling TouchScreenButton.IsPressed()")
 
 	// Build out the method's arguments
@@ -106408,11 +97436,11 @@ func (o *TouchScreenButton) IsPressed() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_pressed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_pressed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -106421,7 +97449,7 @@ func (o *TouchScreenButton) IsPressed() *bool {
 /*
 
  */
-func (o *TouchScreenButton) IsShapeCentered() *bool {
+func (o *TouchScreenButton) IsShapeCentered() bool {
 	log.Println("Calling TouchScreenButton.IsShapeCentered()")
 
 	// Build out the method's arguments
@@ -106429,11 +97457,11 @@ func (o *TouchScreenButton) IsShapeCentered() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_shape_centered", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_shape_centered", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -106442,7 +97470,7 @@ func (o *TouchScreenButton) IsShapeCentered() *bool {
 /*
 
  */
-func (o *TouchScreenButton) IsShapeVisible() *bool {
+func (o *TouchScreenButton) IsShapeVisible() bool {
 	log.Println("Calling TouchScreenButton.IsShapeVisible()")
 
 	// Build out the method's arguments
@@ -106450,11 +97478,11 @@ func (o *TouchScreenButton) IsShapeVisible() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_shape_visible", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_shape_visible", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -106499,7 +97527,7 @@ func (o *TouchScreenButton) SetBitmask(bitmask *BitMap) {
 /*
 
  */
-func (o *TouchScreenButton) SetPassbyPress(enabled *bool) {
+func (o *TouchScreenButton) SetPassbyPress(enabled bool) {
 	log.Println("Calling TouchScreenButton.SetPassbyPress()")
 
 	// Build out the method's arguments
@@ -106535,7 +97563,7 @@ func (o *TouchScreenButton) SetShape(shape *Shape2D) {
 /*
 
  */
-func (o *TouchScreenButton) SetShapeCentered(bool *bool) {
+func (o *TouchScreenButton) SetShapeCentered(bool bool) {
 	log.Println("Calling TouchScreenButton.SetShapeCentered()")
 
 	// Build out the method's arguments
@@ -106553,7 +97581,7 @@ func (o *TouchScreenButton) SetShapeCentered(bool *bool) {
 /*
 
  */
-func (o *TouchScreenButton) SetShapeVisible(bool *bool) {
+func (o *TouchScreenButton) SetShapeVisible(bool bool) {
 	log.Println("Calling TouchScreenButton.SetShapeVisible()")
 
 	// Build out the method's arguments
@@ -106627,45 +97655,7 @@ func (o *TouchScreenButton) SetVisibilityMode(mode int64) {
 
 */
 type TouchScreenButtonImplementer interface {
-	Node2DImplementer
-
-	GetAction() string
-
-	GetBitmask() *BitMap
-
-	GetShape() *Shape2D
-
-	GetTexture() *Texture
-
-	GetTexturePressed() *Texture
-
-	GetVisibilityMode() int64
-
-	IsPassbyPressEnabled() *bool
-
-	IsPressed() *bool
-
-	IsShapeCentered() *bool
-
-	IsShapeVisible() *bool
-
-	SetAction(action string)
-
-	SetBitmask(bitmask *BitMap)
-
-	SetPassbyPress(enabled *bool)
-
-	SetShape(shape *Shape2D)
-
-	SetShapeCentered(bool *bool)
-
-	SetShapeVisible(bool *bool)
-
-	SetTexture(texture *Texture)
-
-	SetTexturePressed(texturePressed *Texture)
-
-	SetVisibilityMode(mode int64)
+	Class
 }
 
 /*
@@ -106824,21 +97814,7 @@ func (o *Translation) SetLocale(locale string) {
    Translations are resources that can be loaded/unloaded on demand. They map a string to another string.
 */
 type TranslationImplementer interface {
-	ResourceImplementer
-
-	AddMessage(srcMessage string, xlatedMessage string)
-
-	EraseMessage(srcMessage string)
-
-	GetLocale() string
-
-	GetMessage(srcMessage string) string
-
-	GetMessageCount() int64
-
-	GetMessageList() *PoolStringArray
-
-	SetLocale(locale string)
+	Class
 }
 
 /*
@@ -106971,19 +97947,7 @@ func (o *TranslationServer) Translate(message string) string {
 
 */
 type TranslationServerImplementer interface {
-	ObjectImplementer
-
-	AddTranslation(translation *Translation)
-
-	Clear()
-
-	GetLocale() string
-
-	RemoveTranslation(translation *Translation)
-
-	SetLocale(locale string)
-
-	Translate(message string) string
+	Class
 }
 
 /*
@@ -107011,7 +97975,7 @@ func (o *Tree) baseClass() string {
 /*
    Get whether the column titles are being shown.
 */
-func (o *Tree) AreColumnTitlesVisible() *bool {
+func (o *Tree) AreColumnTitlesVisible() bool {
 	log.Println("Calling Tree.AreColumnTitlesVisible()")
 
 	// Build out the method's arguments
@@ -107019,11 +97983,11 @@ func (o *Tree) AreColumnTitlesVisible() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "are_column_titles_visible", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "are_column_titles_visible", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -107088,7 +98052,7 @@ func (o *Tree) EnsureCursorIsVisible() {
 /*
 
  */
-func (o *Tree) GetAllowReselect() *bool {
+func (o *Tree) GetAllowReselect() bool {
 	log.Println("Calling Tree.GetAllowReselect()")
 
 	// Build out the method's arguments
@@ -107096,11 +98060,11 @@ func (o *Tree) GetAllowReselect() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_allow_reselect", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_allow_reselect", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -107109,7 +98073,7 @@ func (o *Tree) GetAllowReselect() *bool {
 /*
    Get whether a right click can select items.
 */
-func (o *Tree) GetAllowRmbSelect() *bool {
+func (o *Tree) GetAllowRmbSelect() bool {
 	log.Println("Calling Tree.GetAllowRmbSelect()")
 
 	// Build out the method's arguments
@@ -107117,11 +98081,11 @@ func (o *Tree) GetAllowRmbSelect() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_allow_rmb_select", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_allow_rmb_select", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -107473,7 +98437,7 @@ func (o *Tree) GetSelectedColumn() int64 {
 /*
    Get whether the folding arrow is hidden.
 */
-func (o *Tree) IsFoldingHidden() *bool {
+func (o *Tree) IsFoldingHidden() bool {
 	log.Println("Calling Tree.IsFoldingHidden()")
 
 	// Build out the method's arguments
@@ -107481,11 +98445,11 @@ func (o *Tree) IsFoldingHidden() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_folding_hidden", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_folding_hidden", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -107494,7 +98458,7 @@ func (o *Tree) IsFoldingHidden() *bool {
 /*
 
  */
-func (o *Tree) SetAllowReselect(allow *bool) {
+func (o *Tree) SetAllowReselect(allow bool) {
 	log.Println("Calling Tree.SetAllowReselect()")
 
 	// Build out the method's arguments
@@ -107512,7 +98476,7 @@ func (o *Tree) SetAllowReselect(allow *bool) {
 /*
    Set whether or not a right mouse button click can select items.
 */
-func (o *Tree) SetAllowRmbSelect(allow *bool) {
+func (o *Tree) SetAllowRmbSelect(allow bool) {
 	log.Println("Calling Tree.SetAllowRmbSelect()")
 
 	// Build out the method's arguments
@@ -107530,7 +98494,7 @@ func (o *Tree) SetAllowRmbSelect(allow *bool) {
 /*
    Set whether a column will have the "Expand" flag of [Control].
 */
-func (o *Tree) SetColumnExpand(column int64, expand *bool) {
+func (o *Tree) SetColumnExpand(column int64, expand bool) {
 	log.Println("Calling Tree.SetColumnExpand()")
 
 	// Build out the method's arguments
@@ -107587,7 +98551,7 @@ func (o *Tree) SetColumnTitle(column int64, title string) {
 /*
    Set whether the column titles visibility.
 */
-func (o *Tree) SetColumnTitlesVisible(visible *bool) {
+func (o *Tree) SetColumnTitlesVisible(visible bool) {
 	log.Println("Calling Tree.SetColumnTitlesVisible()")
 
 	// Build out the method's arguments
@@ -107641,7 +98605,7 @@ func (o *Tree) SetDropModeFlags(flags int64) {
 /*
    Set whether the folding arrow should be hidden.
 */
-func (o *Tree) SetHideFolding(hide *bool) {
+func (o *Tree) SetHideFolding(hide bool) {
 	log.Println("Calling Tree.SetHideFolding()")
 
 	// Build out the method's arguments
@@ -107659,7 +98623,7 @@ func (o *Tree) SetHideFolding(hide *bool) {
 /*
    Set whether the root of the tree should be hidden.
 */
-func (o *Tree) SetHideRoot(enable *bool) {
+func (o *Tree) SetHideRoot(enable bool) {
 	log.Println("Calling Tree.SetHideRoot()")
 
 	// Build out the method's arguments
@@ -107708,75 +98672,7 @@ func (o *Tree) SetSelectMode(mode int64) {
 		[/codeblock]
 */
 type TreeImplementer interface {
-	ControlImplementer
-
-	AreColumnTitlesVisible() *bool
-
-	Clear()
-
-	CreateItem(parent *Object) *Object
-
-	EnsureCursorIsVisible()
-
-	GetAllowReselect() *bool
-
-	GetAllowRmbSelect() *bool
-
-	GetColumnAtPos(pos *Vector2) int64
-
-	GetColumnTitle(column int64) string
-
-	GetColumnWidth(column int64) int64
-
-	GetColumns() int64
-
-	GetCustomPopupRect() *Rect2
-
-	GetDropModeFlags() int64
-
-	GetEdited() *TreeItem
-
-	GetEditedColumn() int64
-
-	GetItemAreaRect(item *Object, column int64) *Rect2
-
-	GetItemAtPos(pos *Vector2) *TreeItem
-
-	GetNextSelected(from *Object) *TreeItem
-
-	GetPressedButton() int64
-
-	GetRoot() *TreeItem
-
-	GetScroll() *Vector2
-
-	GetSelected() *TreeItem
-
-	GetSelectedColumn() int64
-
-	IsFoldingHidden() *bool
-
-	SetAllowReselect(allow *bool)
-
-	SetAllowRmbSelect(allow *bool)
-
-	SetColumnExpand(column int64, expand *bool)
-
-	SetColumnMinWidth(column int64, minWidth int64)
-
-	SetColumnTitle(column int64, title string)
-
-	SetColumnTitlesVisible(visible *bool)
-
-	SetColumns(amount int64)
-
-	SetDropModeFlags(flags int64)
-
-	SetHideFolding(hide *bool)
-
-	SetHideRoot(enable *bool)
-
-	SetSelectMode(mode int64)
+	Class
 }
 
 /*
@@ -107793,7 +98689,7 @@ func (o *TreeItem) baseClass() string {
 /*
 
  */
-func (o *TreeItem) AddButton(column int64, button *Texture, buttonIdx int64, disabled *bool, tooltip string) {
+func (o *TreeItem) AddButton(column int64, button *Texture, buttonIdx int64, disabled bool, tooltip string) {
 	log.Println("Calling TreeItem.AddButton()")
 
 	// Build out the method's arguments
@@ -107998,7 +98894,7 @@ func (o *TreeItem) GetCustomBgColor(column int64) *Color {
 /*
 
  */
-func (o *TreeItem) GetExpandRight(column int64) *bool {
+func (o *TreeItem) GetExpandRight(column int64) bool {
 	log.Println("Calling TreeItem.GetExpandRight()")
 
 	// Build out the method's arguments
@@ -108007,11 +98903,11 @@ func (o *TreeItem) GetExpandRight(column int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_expand_right", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_expand_right", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -108323,7 +99219,7 @@ func (o *TreeItem) GetTooltip(column int64) string {
 /*
 
  */
-func (o *TreeItem) IsButtonDisabled(column int64, buttonIdx int64) *bool {
+func (o *TreeItem) IsButtonDisabled(column int64, buttonIdx int64) bool {
 	log.Println("Calling TreeItem.IsButtonDisabled()")
 
 	// Build out the method's arguments
@@ -108333,11 +99229,11 @@ func (o *TreeItem) IsButtonDisabled(column int64, buttonIdx int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_button_disabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_button_disabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -108346,7 +99242,7 @@ func (o *TreeItem) IsButtonDisabled(column int64, buttonIdx int64) *bool {
 /*
 
  */
-func (o *TreeItem) IsChecked(column int64) *bool {
+func (o *TreeItem) IsChecked(column int64) bool {
 	log.Println("Calling TreeItem.IsChecked()")
 
 	// Build out the method's arguments
@@ -108355,11 +99251,11 @@ func (o *TreeItem) IsChecked(column int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_checked", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_checked", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -108368,7 +99264,7 @@ func (o *TreeItem) IsChecked(column int64) *bool {
 /*
 
  */
-func (o *TreeItem) IsCollapsed() *bool {
+func (o *TreeItem) IsCollapsed() bool {
 	log.Println("Calling TreeItem.IsCollapsed()")
 
 	// Build out the method's arguments
@@ -108376,11 +99272,11 @@ func (o *TreeItem) IsCollapsed() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_collapsed", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_collapsed", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -108389,7 +99285,7 @@ func (o *TreeItem) IsCollapsed() *bool {
 /*
 
  */
-func (o *TreeItem) IsCustomSetAsButton(column int64) *bool {
+func (o *TreeItem) IsCustomSetAsButton(column int64) bool {
 	log.Println("Calling TreeItem.IsCustomSetAsButton()")
 
 	// Build out the method's arguments
@@ -108398,11 +99294,11 @@ func (o *TreeItem) IsCustomSetAsButton(column int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_custom_set_as_button", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_custom_set_as_button", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -108411,7 +99307,7 @@ func (o *TreeItem) IsCustomSetAsButton(column int64) *bool {
 /*
 
  */
-func (o *TreeItem) IsEditable(column int64) *bool {
+func (o *TreeItem) IsEditable(column int64) bool {
 	log.Println("Calling TreeItem.IsEditable()")
 
 	// Build out the method's arguments
@@ -108420,11 +99316,11 @@ func (o *TreeItem) IsEditable(column int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_editable", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_editable", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -108433,7 +99329,7 @@ func (o *TreeItem) IsEditable(column int64) *bool {
 /*
 
  */
-func (o *TreeItem) IsFoldingDisabled() *bool {
+func (o *TreeItem) IsFoldingDisabled() bool {
 	log.Println("Calling TreeItem.IsFoldingDisabled()")
 
 	// Build out the method's arguments
@@ -108441,11 +99337,11 @@ func (o *TreeItem) IsFoldingDisabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_folding_disabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_folding_disabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -108454,7 +99350,7 @@ func (o *TreeItem) IsFoldingDisabled() *bool {
 /*
 
  */
-func (o *TreeItem) IsSelectable(column int64) *bool {
+func (o *TreeItem) IsSelectable(column int64) bool {
 	log.Println("Calling TreeItem.IsSelectable()")
 
 	// Build out the method's arguments
@@ -108463,11 +99359,11 @@ func (o *TreeItem) IsSelectable(column int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_selectable", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_selectable", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -108476,7 +99372,7 @@ func (o *TreeItem) IsSelectable(column int64) *bool {
 /*
 
  */
-func (o *TreeItem) IsSelected(column int64) *bool {
+func (o *TreeItem) IsSelected(column int64) bool {
 	log.Println("Calling TreeItem.IsSelected()")
 
 	// Build out the method's arguments
@@ -108485,11 +99381,11 @@ func (o *TreeItem) IsSelected(column int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_selected", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_selected", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -108607,7 +99503,7 @@ func (o *TreeItem) SetCellMode(column int64, mode int64) {
 /*
 
  */
-func (o *TreeItem) SetChecked(column int64, checked *bool) {
+func (o *TreeItem) SetChecked(column int64, checked bool) {
 	log.Println("Calling TreeItem.SetChecked()")
 
 	// Build out the method's arguments
@@ -108626,7 +99522,7 @@ func (o *TreeItem) SetChecked(column int64, checked *bool) {
 /*
 
  */
-func (o *TreeItem) SetCollapsed(enable *bool) {
+func (o *TreeItem) SetCollapsed(enable bool) {
 	log.Println("Calling TreeItem.SetCollapsed()")
 
 	// Build out the method's arguments
@@ -108644,7 +99540,7 @@ func (o *TreeItem) SetCollapsed(enable *bool) {
 /*
 
  */
-func (o *TreeItem) SetCustomAsButton(column int64, enable *bool) {
+func (o *TreeItem) SetCustomAsButton(column int64, enable bool) {
 	log.Println("Calling TreeItem.SetCustomAsButton()")
 
 	// Build out the method's arguments
@@ -108663,7 +99559,7 @@ func (o *TreeItem) SetCustomAsButton(column int64, enable *bool) {
 /*
 
  */
-func (o *TreeItem) SetCustomBgColor(column int64, color *Color, justOutline *bool) {
+func (o *TreeItem) SetCustomBgColor(column int64, color *Color, justOutline bool) {
 	log.Println("Calling TreeItem.SetCustomBgColor()")
 
 	// Build out the method's arguments
@@ -108722,7 +99618,7 @@ func (o *TreeItem) SetCustomDraw(column int64, object *Object, callback string) 
 /*
 
  */
-func (o *TreeItem) SetDisableFolding(disable *bool) {
+func (o *TreeItem) SetDisableFolding(disable bool) {
 	log.Println("Calling TreeItem.SetDisableFolding()")
 
 	// Build out the method's arguments
@@ -108740,7 +99636,7 @@ func (o *TreeItem) SetDisableFolding(disable *bool) {
 /*
 
  */
-func (o *TreeItem) SetEditable(column int64, enabled *bool) {
+func (o *TreeItem) SetEditable(column int64, enabled bool) {
 	log.Println("Calling TreeItem.SetEditable()")
 
 	// Build out the method's arguments
@@ -108759,7 +99655,7 @@ func (o *TreeItem) SetEditable(column int64, enabled *bool) {
 /*
 
  */
-func (o *TreeItem) SetExpandRight(column int64, enable *bool) {
+func (o *TreeItem) SetExpandRight(column int64, enable bool) {
 	log.Println("Calling TreeItem.SetExpandRight()")
 
 	// Build out the method's arguments
@@ -108873,7 +99769,7 @@ func (o *TreeItem) SetRange(column int64, value float64) {
 /*
 
  */
-func (o *TreeItem) SetRangeConfig(column int64, min float64, max float64, step float64, expr *bool) {
+func (o *TreeItem) SetRangeConfig(column int64, min float64, max float64, step float64, expr bool) {
 	log.Println("Calling TreeItem.SetRangeConfig()")
 
 	// Build out the method's arguments
@@ -108895,7 +99791,7 @@ func (o *TreeItem) SetRangeConfig(column int64, min float64, max float64, step f
 /*
 
  */
-func (o *TreeItem) SetSelectable(column int64, selectable *bool) {
+func (o *TreeItem) SetSelectable(column int64, selectable bool) {
 	log.Println("Calling TreeItem.SetSelectable()")
 
 	// Build out the method's arguments
@@ -108973,123 +99869,7 @@ func (o *TreeItem) SetTooltip(column int64, tooltip string) {
 
 */
 type TreeItemImplementer interface {
-	ObjectImplementer
-
-	AddButton(column int64, button *Texture, buttonIdx int64, disabled *bool, tooltip string)
-
-	ClearCustomBgColor(column int64)
-
-	ClearCustomColor(column int64)
-
-	Deselect(column int64)
-
-	EraseButton(column int64, buttonIdx int64)
-
-	GetButton(column int64, buttonIdx int64) *Texture
-
-	GetButtonCount(column int64) int64
-
-	GetCellMode(column int64) int64
-
-	GetChildren() *TreeItem
-
-	GetCustomBgColor(column int64) *Color
-
-	GetExpandRight(column int64) *bool
-
-	GetIcon(column int64) *Texture
-
-	GetIconMaxWidth(column int64) int64
-
-	GetIconRegion(column int64) *Rect2
-
-	GetMetadata(column int64) *Variant
-
-	GetNext() *TreeItem
-
-	GetNextVisible() *TreeItem
-
-	GetParent() *TreeItem
-
-	GetPrev() *TreeItem
-
-	GetPrevVisible() *TreeItem
-
-	GetRange(column int64) float64
-
-	GetRangeConfig(column int64) *Dictionary
-
-	GetText(column int64) string
-
-	GetTextAlign(column int64) int64
-
-	GetTooltip(column int64) string
-
-	IsButtonDisabled(column int64, buttonIdx int64) *bool
-
-	IsChecked(column int64) *bool
-
-	IsCollapsed() *bool
-
-	IsCustomSetAsButton(column int64) *bool
-
-	IsEditable(column int64) *bool
-
-	IsFoldingDisabled() *bool
-
-	IsSelectable(column int64) *bool
-
-	IsSelected(column int64) *bool
-
-	MoveToBottom()
-
-	MoveToTop()
-
-	RemoveChild(child *Object)
-
-	Select(column int64)
-
-	SetButton(column int64, buttonIdx int64, button *Texture)
-
-	SetCellMode(column int64, mode int64)
-
-	SetChecked(column int64, checked *bool)
-
-	SetCollapsed(enable *bool)
-
-	SetCustomAsButton(column int64, enable *bool)
-
-	SetCustomBgColor(column int64, color *Color, justOutline *bool)
-
-	SetCustomColor(column int64, color *Color)
-
-	SetCustomDraw(column int64, object *Object, callback string)
-
-	SetDisableFolding(disable *bool)
-
-	SetEditable(column int64, enabled *bool)
-
-	SetExpandRight(column int64, enable *bool)
-
-	SetIcon(column int64, texture *Texture)
-
-	SetIconMaxWidth(column int64, width int64)
-
-	SetIconRegion(column int64, region *Rect2)
-
-	SetMetadata(column int64, meta *Variant)
-
-	SetRange(column int64, value float64)
-
-	SetRangeConfig(column int64, min float64, max float64, step float64, expr *bool)
-
-	SetSelectable(column int64, selectable *bool)
-
-	SetText(column int64, text string)
-
-	SetTextAlign(column int64, textAlign int64)
-
-	SetTooltip(column int64, tooltip string)
+	Class
 }
 
 /*
@@ -109108,7 +99888,7 @@ func (o *TriangleMesh) baseClass() string {
 
 */
 type TriangleMeshImplementer interface {
-	ReferenceImplementer
+	Class
 }
 
 /*
@@ -109134,7 +99914,7 @@ func (o *Tween) baseClass() string {
                 Follow [code]method[/code] of [code]object[/code] and apply the returned value on [code]target_method[/code] of [code]target[/code], beginning from [code]initial_val[/code] for [code]duration[/code] seconds, [code]delay[/code] later. Methods are animated by calling them with consequitive values.
 				[code]trans_type[/code] accepts TRANS_* constants, and is the way the animation is interpolated, while [code]ease_type[/code] accepts EASE_* constants, and controls the place of the interpolation (the beginning, the end, or both). You can read more about them in the class description.
 */
-func (o *Tween) FollowMethod(object *Object, method string, initialVal *Variant, target *Object, targetMethod string, duration float64, transType int64, easeType int64, delay float64) *bool {
+func (o *Tween) FollowMethod(object *Object, method string, initialVal *Variant, target *Object, targetMethod string, duration float64, transType int64, easeType int64, delay float64) bool {
 	log.Println("Calling Tween.FollowMethod()")
 
 	// Build out the method's arguments
@@ -109151,11 +99931,11 @@ func (o *Tween) FollowMethod(object *Object, method string, initialVal *Variant,
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "follow_method", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "follow_method", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109165,7 +99945,7 @@ func (o *Tween) FollowMethod(object *Object, method string, initialVal *Variant,
                 Follow [code]property[/code] of [code]object[/code] and apply it on [code]target_property[/code] of [code]target[/code], beginning from [code]initial_val[/code] for [code]duration[/code] seconds, [code]delay[/code] seconds later. Note that [code]target:target_property[/code] would equal [code]object:property[/code] at the end of the tween.
 				[code]trans_type[/code] accepts TRANS_* constants, and is the way the animation is interpolated, while [code]ease_type[/code] accepts EASE_* constants, and controls the place of the interpolation (the beginning, the end, or both). You can read more about them in the class description.
 */
-func (o *Tween) FollowProperty(object *Object, property string, initialVal *Variant, target *Object, targetProperty string, duration float64, transType int64, easeType int64, delay float64) *bool {
+func (o *Tween) FollowProperty(object *Object, property string, initialVal *Variant, target *Object, targetProperty string, duration float64, transType int64, easeType int64, delay float64) bool {
 	log.Println("Calling Tween.FollowProperty()")
 
 	// Build out the method's arguments
@@ -109182,11 +99962,11 @@ func (o *Tween) FollowProperty(object *Object, property string, initialVal *Vari
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "follow_property", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "follow_property", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109258,7 +100038,7 @@ func (o *Tween) GetTweenProcessMode() int64 {
 /*
    Call [code]callback[/code] of [code]object[/code] after [code]duration[/code]. [code]arg1[/code]-[code]arg5[/code] are arguments to be passed to the callback.
 */
-func (o *Tween) InterpolateCallback(object *Object, duration float64, callback string, arg1 *Variant, arg2 *Variant, arg3 *Variant, arg4 *Variant, arg5 *Variant) *bool {
+func (o *Tween) InterpolateCallback(object *Object, duration float64, callback string, arg1 *Variant, arg2 *Variant, arg3 *Variant, arg4 *Variant, arg5 *Variant) bool {
 	log.Println("Calling Tween.InterpolateCallback()")
 
 	// Build out the method's arguments
@@ -109274,11 +100054,11 @@ func (o *Tween) InterpolateCallback(object *Object, duration float64, callback s
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "interpolate_callback", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "interpolate_callback", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109287,7 +100067,7 @@ func (o *Tween) InterpolateCallback(object *Object, duration float64, callback s
 /*
    Call [code]callback[/code] of [code]object[/code] after [code]duration[/code] on the main thread (similar to [methog Object.call_deferred). [code]arg1[/code]-[code]arg5[/code] are arguments to be passed to the callback.
 */
-func (o *Tween) InterpolateDeferredCallback(object *Object, duration float64, callback string, arg1 *Variant, arg2 *Variant, arg3 *Variant, arg4 *Variant, arg5 *Variant) *bool {
+func (o *Tween) InterpolateDeferredCallback(object *Object, duration float64, callback string, arg1 *Variant, arg2 *Variant, arg3 *Variant, arg4 *Variant, arg5 *Variant) bool {
 	log.Println("Calling Tween.InterpolateDeferredCallback()")
 
 	// Build out the method's arguments
@@ -109303,11 +100083,11 @@ func (o *Tween) InterpolateDeferredCallback(object *Object, duration float64, ca
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "interpolate_deferred_callback", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "interpolate_deferred_callback", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109317,7 +100097,7 @@ func (o *Tween) InterpolateDeferredCallback(object *Object, duration float64, ca
                 Animate [code]method[/code] of [code]object[/code] from [code]initial_val[/code] to [code]final_val[/code] for [code]duration[/code] seconds, [code]delay[/code] seconds later. Methods are animated by calling them with consecuitive values.
 				[code]trans_type[/code] accepts TRANS_* constants, and is the way the animation is interpolated, while [code]ease_type[/code] accepts EASE_* constants, and controls the place of the interpolation (the beginning, the end, or both). You can read more about them in the class description.
 */
-func (o *Tween) InterpolateMethod(object *Object, method string, initialVal *Variant, finalVal *Variant, duration float64, transType int64, easeType int64, delay float64) *bool {
+func (o *Tween) InterpolateMethod(object *Object, method string, initialVal *Variant, finalVal *Variant, duration float64, transType int64, easeType int64, delay float64) bool {
 	log.Println("Calling Tween.InterpolateMethod()")
 
 	// Build out the method's arguments
@@ -109333,11 +100113,11 @@ func (o *Tween) InterpolateMethod(object *Object, method string, initialVal *Var
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "interpolate_method", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "interpolate_method", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109347,7 +100127,7 @@ func (o *Tween) InterpolateMethod(object *Object, method string, initialVal *Var
                 Animate [code]property[/code] of [code]object[/code] from [code]initial_val[/code] to [code]final_val[/code] for [code]duration[/code] seconds, [code]delay[/code] seconds later.
 				[code]trans_type[/code] accepts TRANS_* constants, and is the way the animation is interpolated, while [code]ease_type[/code] accepts EASE_* constants, and controls the place of the interpolation (the beginning, the end, or both). You can read more about them in the class description.
 */
-func (o *Tween) InterpolateProperty(object *Object, property string, initialVal *Variant, finalVal *Variant, duration float64, transType int64, easeType int64, delay float64) *bool {
+func (o *Tween) InterpolateProperty(object *Object, property string, initialVal *Variant, finalVal *Variant, duration float64, transType int64, easeType int64, delay float64) bool {
 	log.Println("Calling Tween.InterpolateProperty()")
 
 	// Build out the method's arguments
@@ -109363,11 +100143,11 @@ func (o *Tween) InterpolateProperty(object *Object, property string, initialVal 
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "interpolate_property", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "interpolate_property", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109376,7 +100156,7 @@ func (o *Tween) InterpolateProperty(object *Object, property string, initialVal 
 /*
    Returns true if any tweens are currently running, and false otherwise. Note that this method doesn't consider tweens that have ended.
 */
-func (o *Tween) IsActive() *bool {
+func (o *Tween) IsActive() bool {
 	log.Println("Calling Tween.IsActive()")
 
 	// Build out the method's arguments
@@ -109384,11 +100164,11 @@ func (o *Tween) IsActive() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_active", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_active", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109397,7 +100177,7 @@ func (o *Tween) IsActive() *bool {
 /*
    Returns true if repeat has been set from editor GUI or [method set_repeat].
 */
-func (o *Tween) IsRepeat() *bool {
+func (o *Tween) IsRepeat() bool {
 	log.Println("Calling Tween.IsRepeat()")
 
 	// Build out the method's arguments
@@ -109405,11 +100185,11 @@ func (o *Tween) IsRepeat() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_repeat", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_repeat", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109418,7 +100198,7 @@ func (o *Tween) IsRepeat() *bool {
 /*
    Stop animating and completely remove a tween, given its object and property/method pair. Passing empty String as key will remove all tweens for given object.
 */
-func (o *Tween) Remove(object *Object, key string) *bool {
+func (o *Tween) Remove(object *Object, key string) bool {
 	log.Println("Calling Tween.Remove()")
 
 	// Build out the method's arguments
@@ -109428,11 +100208,11 @@ func (o *Tween) Remove(object *Object, key string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "remove", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "remove", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109441,7 +100221,7 @@ func (o *Tween) Remove(object *Object, key string) *bool {
 /*
    Stop animating and completely remove all tweens.
 */
-func (o *Tween) RemoveAll() *bool {
+func (o *Tween) RemoveAll() bool {
 	log.Println("Calling Tween.RemoveAll()")
 
 	// Build out the method's arguments
@@ -109449,11 +100229,11 @@ func (o *Tween) RemoveAll() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "remove_all", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "remove_all", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109462,7 +100242,7 @@ func (o *Tween) RemoveAll() *bool {
 /*
    Resets a tween to the initial value (the one given, not the one before the tween), given its object and property/method pair. Passing empty String as key will reset all tweens for given object.
 */
-func (o *Tween) Reset(object *Object, key string) *bool {
+func (o *Tween) Reset(object *Object, key string) bool {
 	log.Println("Calling Tween.Reset()")
 
 	// Build out the method's arguments
@@ -109472,11 +100252,11 @@ func (o *Tween) Reset(object *Object, key string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "reset", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "reset", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109485,7 +100265,7 @@ func (o *Tween) Reset(object *Object, key string) *bool {
 /*
    Resets all tweens to their initial values (the ones given, not those before the tween).
 */
-func (o *Tween) ResetAll() *bool {
+func (o *Tween) ResetAll() bool {
 	log.Println("Calling Tween.ResetAll()")
 
 	// Build out the method's arguments
@@ -109493,11 +100273,11 @@ func (o *Tween) ResetAll() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "reset_all", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "reset_all", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109506,7 +100286,7 @@ func (o *Tween) ResetAll() *bool {
 /*
    Continue animating a stopped tween, given its object and property/method pair. Passing empty String as key will resume all tweens for given object.
 */
-func (o *Tween) Resume(object *Object, key string) *bool {
+func (o *Tween) Resume(object *Object, key string) bool {
 	log.Println("Calling Tween.Resume()")
 
 	// Build out the method's arguments
@@ -109516,11 +100296,11 @@ func (o *Tween) Resume(object *Object, key string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "resume", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "resume", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109529,7 +100309,7 @@ func (o *Tween) Resume(object *Object, key string) *bool {
 /*
    Continue animating all stopped tweens.
 */
-func (o *Tween) ResumeAll() *bool {
+func (o *Tween) ResumeAll() bool {
 	log.Println("Calling Tween.ResumeAll()")
 
 	// Build out the method's arguments
@@ -109537,11 +100317,11 @@ func (o *Tween) ResumeAll() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "resume_all", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "resume_all", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109550,7 +100330,7 @@ func (o *Tween) ResumeAll() *bool {
 /*
    Seek the animation to the given [code]time[/code] in seconds.
 */
-func (o *Tween) Seek(time float64) *bool {
+func (o *Tween) Seek(time float64) bool {
 	log.Println("Calling Tween.Seek()")
 
 	// Build out the method's arguments
@@ -109559,11 +100339,11 @@ func (o *Tween) Seek(time float64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "seek", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "seek", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109572,7 +100352,7 @@ func (o *Tween) Seek(time float64) *bool {
 /*
    Activate/deactivate the tween. You can use this for pausing animations, though [method stop_all] and [method resume_all] might be more fit for this.
 */
-func (o *Tween) SetActive(active *bool) {
+func (o *Tween) SetActive(active bool) {
 	log.Println("Calling Tween.SetActive()")
 
 	// Build out the method's arguments
@@ -109590,7 +100370,7 @@ func (o *Tween) SetActive(active *bool) {
 /*
    Make the tween repeat after all tweens have finished.
 */
-func (o *Tween) SetRepeat(repeat *bool) {
+func (o *Tween) SetRepeat(repeat bool) {
 	log.Println("Calling Tween.SetRepeat()")
 
 	// Build out the method's arguments
@@ -109644,7 +100424,7 @@ func (o *Tween) SetTweenProcessMode(mode int64) {
 /*
    Start the tween node. You can define tweens both before and after this.
 */
-func (o *Tween) Start() *bool {
+func (o *Tween) Start() bool {
 	log.Println("Calling Tween.Start()")
 
 	// Build out the method's arguments
@@ -109652,11 +100432,11 @@ func (o *Tween) Start() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "start", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "start", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109665,7 +100445,7 @@ func (o *Tween) Start() *bool {
 /*
    Stop animating a tween, given its object and property/method pair. Passing empty String as key will stop all tweens for given object.
 */
-func (o *Tween) Stop(object *Object, key string) *bool {
+func (o *Tween) Stop(object *Object, key string) bool {
 	log.Println("Calling Tween.Stop()")
 
 	// Build out the method's arguments
@@ -109675,11 +100455,11 @@ func (o *Tween) Stop(object *Object, key string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "stop", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "stop", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109688,7 +100468,7 @@ func (o *Tween) Stop(object *Object, key string) *bool {
 /*
    Stop animating all tweens.
 */
-func (o *Tween) StopAll() *bool {
+func (o *Tween) StopAll() bool {
 	log.Println("Calling Tween.StopAll()")
 
 	// Build out the method's arguments
@@ -109696,11 +100476,11 @@ func (o *Tween) StopAll() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "stop_all", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "stop_all", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109710,7 +100490,7 @@ func (o *Tween) StopAll() *bool {
                 Animate [code]method[/code] of [code]object[/code] from the value returned by [code]initial.initial_method[/code] to [code]final_val[/code] for [code]duration[/code] seconds, [code]delay[/code] seconds later. Methods are animated by calling them with consecuitive values.
 				[code]trans_type[/code] accepts TRANS_* constants, and is the way the animation is interpolated, while [code]ease_type[/code] accepts EASE_* constants, and controls the place of the interpolation (the beginning, the end, or both). You can read more about them in the class description.
 */
-func (o *Tween) TargetingMethod(object *Object, method string, initial *Object, initialMethod string, finalVal *Variant, duration float64, transType int64, easeType int64, delay float64) *bool {
+func (o *Tween) TargetingMethod(object *Object, method string, initial *Object, initialMethod string, finalVal *Variant, duration float64, transType int64, easeType int64, delay float64) bool {
 	log.Println("Calling Tween.TargetingMethod()")
 
 	// Build out the method's arguments
@@ -109727,11 +100507,11 @@ func (o *Tween) TargetingMethod(object *Object, method string, initial *Object, 
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "targeting_method", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "targeting_method", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109741,7 +100521,7 @@ func (o *Tween) TargetingMethod(object *Object, method string, initial *Object, 
                 Animate [code]property[/code] of [code]object[/code] from the current value of the [code]initial_val[/code] property of [code]initial[/code] to [code]final_val[/code] for [code]duration[/code] seconds, [code]delay[/code] seconds later.
 				[code]trans_type[/code] accepts TRANS_* constants, and is the way the animation is interpolated, while [code]ease_type[/code] accepts EASE_* constants, and controls the place of the interpolation (the beginning, the end, or both). You can read more about them in the class description.
 */
-func (o *Tween) TargetingProperty(object *Object, property string, initial *Object, initialVal string, finalVal *Variant, duration float64, transType int64, easeType int64, delay float64) *bool {
+func (o *Tween) TargetingProperty(object *Object, property string, initial *Object, initialVal string, finalVal *Variant, duration float64, transType int64, easeType int64, delay float64) bool {
 	log.Println("Calling Tween.TargetingProperty()")
 
 	// Build out the method's arguments
@@ -109758,11 +100538,11 @@ func (o *Tween) TargetingProperty(object *Object, property string, initial *Obje
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "targeting_property", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "targeting_property", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -109802,63 +100582,7 @@ func (o *Tween) Tell() float64 {
 		Many of the methods accept [code]trans_type[/code] and [code]ease_type[/code]. The first accepts an TRANS_* constant, and refers to the way the timing of the animation is handled (you might want to see [code]http://easings.net/[/code] for some examples). The second accepts an EASE_* constant, and controls the where [code]trans_type[/code] is applied to the interpolation (in the beginning, the end, or both). If you don't know which transision and easing to pick, you can try different TRANS_* constants with EASE_IN_OUT, and use the one that looks best.
 */
 type TweenImplementer interface {
-	NodeImplementer
-
-	FollowMethod(object *Object, method string, initialVal *Variant, target *Object, targetMethod string, duration float64, transType int64, easeType int64, delay float64) *bool
-
-	FollowProperty(object *Object, property string, initialVal *Variant, target *Object, targetProperty string, duration float64, transType int64, easeType int64, delay float64) *bool
-
-	GetRuntime() float64
-
-	GetSpeedScale() float64
-
-	GetTweenProcessMode() int64
-
-	InterpolateCallback(object *Object, duration float64, callback string, arg1 *Variant, arg2 *Variant, arg3 *Variant, arg4 *Variant, arg5 *Variant) *bool
-
-	InterpolateDeferredCallback(object *Object, duration float64, callback string, arg1 *Variant, arg2 *Variant, arg3 *Variant, arg4 *Variant, arg5 *Variant) *bool
-
-	InterpolateMethod(object *Object, method string, initialVal *Variant, finalVal *Variant, duration float64, transType int64, easeType int64, delay float64) *bool
-
-	InterpolateProperty(object *Object, property string, initialVal *Variant, finalVal *Variant, duration float64, transType int64, easeType int64, delay float64) *bool
-
-	IsActive() *bool
-
-	IsRepeat() *bool
-
-	Remove(object *Object, key string) *bool
-
-	RemoveAll() *bool
-
-	Reset(object *Object, key string) *bool
-
-	ResetAll() *bool
-
-	Resume(object *Object, key string) *bool
-
-	ResumeAll() *bool
-
-	Seek(time float64) *bool
-
-	SetActive(active *bool)
-
-	SetRepeat(repeat *bool)
-
-	SetSpeedScale(speed float64)
-
-	SetTweenProcessMode(mode int64)
-
-	Start() *bool
-
-	Stop(object *Object, key string) *bool
-
-	StopAll() *bool
-
-	TargetingMethod(object *Object, method string, initial *Object, initialMethod string, finalVal *Variant, duration float64, transType int64, easeType int64, delay float64) *bool
-
-	TargetingProperty(object *Object, property string, initial *Object, initialVal string, finalVal *Variant, duration float64, transType int64, easeType int64, delay float64) *bool
-
-	Tell() float64
+	Class
 }
 
 /*
@@ -110097,29 +100821,7 @@ func (o *UndoRedo) GetVersion() int64 {
 		Common behavior is to create an action, then add do/undo calls to functions or property changes, then committing the action.
 */
 type UndoRedoImplementer interface {
-	ObjectImplementer
-
-	AddDoMethod(object *Object, method string) *Variant
-
-	AddDoProperty(object *Object, property string, value *Variant)
-
-	AddDoReference(object *Object)
-
-	AddUndoMethod(object *Object, method string) *Variant
-
-	AddUndoProperty(object *Object, property string, value *Variant)
-
-	AddUndoReference(object *Object)
-
-	ClearHistory()
-
-	CommitAction()
-
-	CreateAction(name string, mergeMode int64)
-
-	GetCurrentActionName() string
-
-	GetVersion() int64
+	Class
 }
 
 /*
@@ -110138,7 +100840,7 @@ func (o *VBoxContainer) baseClass() string {
    Vertical box container. See [BoxContainer].
 */
 type VBoxContainerImplementer interface {
-	BoxContainerImplementer
+	Class
 }
 
 /*
@@ -110157,7 +100859,7 @@ func (o *VScrollBar) baseClass() string {
 
 */
 type VScrollBarImplementer interface {
-	ScrollBarImplementer
+	Class
 }
 
 /*
@@ -110176,7 +100878,7 @@ func (o *VSeparator) baseClass() string {
    Vertical version of [Separator]. It is used to separate objects horizontally, though (but it looks vertical!).
 */
 type VSeparatorImplementer interface {
-	SeparatorImplementer
+	Class
 }
 
 /*
@@ -110195,7 +100897,7 @@ func (o *VSlider) baseClass() string {
    Vertical slider. See [Slider]. This one goes from left (min) to right (max).
 */
 type VSliderImplementer interface {
-	SliderImplementer
+	Class
 }
 
 /*
@@ -110214,7 +100916,7 @@ func (o *VSplitContainer) baseClass() string {
    Vertical split container. See [SplitContainer]. This goes from left to right.
 */
 type VSplitContainerImplementer interface {
-	SplitContainerImplementer
+	Class
 }
 
 /*
@@ -110453,29 +101155,7 @@ func (o *VehicleBody) SetSteering(steering float64) {
 
 */
 type VehicleBodyImplementer interface {
-	PhysicsBodyImplementer
-
-	GetBrake() float64
-
-	GetEngineForce() float64
-
-	GetFriction() float64
-
-	GetLinearVelocity() *Vector3
-
-	GetMass() float64
-
-	GetSteering() float64
-
-	SetBrake(brake float64)
-
-	SetEngineForce(engineForce float64)
-
-	SetFriction(friction float64)
-
-	SetMass(mass float64)
-
-	SetSteering(steering float64)
+	Class
 }
 
 /*
@@ -110681,7 +101361,7 @@ func (o *VehicleWheel) GetSuspensionTravel() float64 {
 /*
 
  */
-func (o *VehicleWheel) IsInContact() *bool {
+func (o *VehicleWheel) IsInContact() bool {
 	log.Println("Calling VehicleWheel.IsInContact()")
 
 	// Build out the method's arguments
@@ -110689,11 +101369,11 @@ func (o *VehicleWheel) IsInContact() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_in_contact", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_in_contact", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -110702,7 +101382,7 @@ func (o *VehicleWheel) IsInContact() *bool {
 /*
 
  */
-func (o *VehicleWheel) IsUsedAsSteering() *bool {
+func (o *VehicleWheel) IsUsedAsSteering() bool {
 	log.Println("Calling VehicleWheel.IsUsedAsSteering()")
 
 	// Build out the method's arguments
@@ -110710,11 +101390,11 @@ func (o *VehicleWheel) IsUsedAsSteering() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_used_as_steering", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_used_as_steering", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -110723,7 +101403,7 @@ func (o *VehicleWheel) IsUsedAsSteering() *bool {
 /*
 
  */
-func (o *VehicleWheel) IsUsedAsTraction() *bool {
+func (o *VehicleWheel) IsUsedAsTraction() bool {
 	log.Println("Calling VehicleWheel.IsUsedAsTraction()")
 
 	// Build out the method's arguments
@@ -110731,11 +101411,11 @@ func (o *VehicleWheel) IsUsedAsTraction() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_used_as_traction", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_used_as_traction", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -110906,7 +101586,7 @@ func (o *VehicleWheel) SetSuspensionTravel(length float64) {
 /*
 
  */
-func (o *VehicleWheel) SetUseAsSteering(enable *bool) {
+func (o *VehicleWheel) SetUseAsSteering(enable bool) {
 	log.Println("Calling VehicleWheel.SetUseAsSteering()")
 
 	// Build out the method's arguments
@@ -110924,7 +101604,7 @@ func (o *VehicleWheel) SetUseAsSteering(enable *bool) {
 /*
 
  */
-func (o *VehicleWheel) SetUseAsTraction(enable *bool) {
+func (o *VehicleWheel) SetUseAsTraction(enable bool) {
 	log.Println("Calling VehicleWheel.SetUseAsTraction()")
 
 	// Build out the method's arguments
@@ -110944,53 +101624,7 @@ func (o *VehicleWheel) SetUseAsTraction(enable *bool) {
 
 */
 type VehicleWheelImplementer interface {
-	SpatialImplementer
-
-	GetDampingCompression() float64
-
-	GetDampingRelaxation() float64
-
-	GetFrictionSlip() float64
-
-	GetRadius() float64
-
-	GetRollInfluence() float64
-
-	GetSuspensionMaxForce() float64
-
-	GetSuspensionRestLength() float64
-
-	GetSuspensionStiffness() float64
-
-	GetSuspensionTravel() float64
-
-	IsInContact() *bool
-
-	IsUsedAsSteering() *bool
-
-	IsUsedAsTraction() *bool
-
-	SetDampingCompression(length float64)
-
-	SetDampingRelaxation(length float64)
-
-	SetFrictionSlip(length float64)
-
-	SetRadius(length float64)
-
-	SetRollInfluence(rollInfluence float64)
-
-	SetSuspensionMaxForce(length float64)
-
-	SetSuspensionRestLength(length float64)
-
-	SetSuspensionStiffness(length float64)
-
-	SetSuspensionTravel(length float64)
-
-	SetUseAsSteering(enable *bool)
-
-	SetUseAsTraction(enable *bool)
+	Class
 }
 
 /*
@@ -111175,7 +101809,7 @@ func (o *VideoPlayer) GetVolumeDb() float64 {
 /*
    Get whether or not the video is set as autoplay.
 */
-func (o *VideoPlayer) HasAutoplay() *bool {
+func (o *VideoPlayer) HasAutoplay() bool {
 	log.Println("Calling VideoPlayer.HasAutoplay()")
 
 	// Build out the method's arguments
@@ -111183,11 +101817,11 @@ func (o *VideoPlayer) HasAutoplay() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_autoplay", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_autoplay", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -111196,7 +101830,7 @@ func (o *VideoPlayer) HasAutoplay() *bool {
 /*
    Get whether or not the expand property is set.
 */
-func (o *VideoPlayer) HasExpand() *bool {
+func (o *VideoPlayer) HasExpand() bool {
 	log.Println("Calling VideoPlayer.HasExpand()")
 
 	// Build out the method's arguments
@@ -111204,11 +101838,11 @@ func (o *VideoPlayer) HasExpand() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_expand", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_expand", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -111217,7 +101851,7 @@ func (o *VideoPlayer) HasExpand() *bool {
 /*
    Get whether or not the video is paused.
 */
-func (o *VideoPlayer) IsPaused() *bool {
+func (o *VideoPlayer) IsPaused() bool {
 	log.Println("Calling VideoPlayer.IsPaused()")
 
 	// Build out the method's arguments
@@ -111225,11 +101859,11 @@ func (o *VideoPlayer) IsPaused() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_paused", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_paused", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -111238,7 +101872,7 @@ func (o *VideoPlayer) IsPaused() *bool {
 /*
    Get whether or not the video is playing.
 */
-func (o *VideoPlayer) IsPlaying() *bool {
+func (o *VideoPlayer) IsPlaying() bool {
 	log.Println("Calling VideoPlayer.IsPlaying()")
 
 	// Build out the method's arguments
@@ -111246,11 +101880,11 @@ func (o *VideoPlayer) IsPlaying() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_playing", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_playing", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -111294,7 +101928,7 @@ func (o *VideoPlayer) SetAudioTrack(track int64) {
 /*
    Set whether this node should start playing automatically.
 */
-func (o *VideoPlayer) SetAutoplay(enabled *bool) {
+func (o *VideoPlayer) SetAutoplay(enabled bool) {
 	log.Println("Calling VideoPlayer.SetAutoplay()")
 
 	// Build out the method's arguments
@@ -111330,7 +101964,7 @@ func (o *VideoPlayer) SetBufferingMsec(msec int64) {
 /*
    Set the expand property. If enabled, the video will grow or shrink to fit the player size, otherwise it will play at the stream resolution.
 */
-func (o *VideoPlayer) SetExpand(enable *bool) {
+func (o *VideoPlayer) SetExpand(enable bool) {
 	log.Println("Calling VideoPlayer.SetExpand()")
 
 	// Build out the method's arguments
@@ -111348,7 +101982,7 @@ func (o *VideoPlayer) SetExpand(enable *bool) {
 /*
    Set whether the video should pause the playback.
 */
-func (o *VideoPlayer) SetPaused(paused *bool) {
+func (o *VideoPlayer) SetPaused(paused bool) {
 	log.Println("Calling VideoPlayer.SetPaused()")
 
 	// Build out the method's arguments
@@ -111439,51 +102073,7 @@ func (o *VideoPlayer) Stop() {
    This control has the ability to play video streams. The only format accepted is the OGV Theora, so any other format must be converted before using in a project.
 */
 type VideoPlayerImplementer interface {
-	ControlImplementer
-
-	GetAudioTrack() int64
-
-	GetBufferingMsec() int64
-
-	GetStream() *VideoStream
-
-	GetStreamName() string
-
-	GetStreamPos() float64
-
-	GetVideoTexture() *Texture
-
-	GetVolume() float64
-
-	GetVolumeDb() float64
-
-	HasAutoplay() *bool
-
-	HasExpand() *bool
-
-	IsPaused() *bool
-
-	IsPlaying() *bool
-
-	Play()
-
-	SetAudioTrack(track int64)
-
-	SetAutoplay(enabled *bool)
-
-	SetBufferingMsec(msec int64)
-
-	SetExpand(enable *bool)
-
-	SetPaused(paused *bool)
-
-	SetStream(stream *VideoStream)
-
-	SetVolume(volume float64)
-
-	SetVolumeDb(db float64)
-
-	Stop()
+	Class
 }
 
 /*
@@ -111502,7 +102092,7 @@ func (o *VideoStream) baseClass() string {
 
 */
 type VideoStreamImplementer interface {
-	ResourceImplementer
+	Class
 }
 
 /*
@@ -111692,7 +102282,7 @@ func (o *Viewport) GetGlobalCanvasTransform() *Transform2D {
 /*
    Get whether the rendered texture has filters enabled.
 */
-func (o *Viewport) GetHdr() *bool {
+func (o *Viewport) GetHdr() bool {
 	log.Println("Calling Viewport.GetHdr()")
 
 	// Build out the method's arguments
@@ -111700,11 +102290,11 @@ func (o *Viewport) GetHdr() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_hdr", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_hdr", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -111755,7 +102345,7 @@ func (o *Viewport) GetMsaa() int64 {
 /*
    Get whether picking for all physics objects inside the viewport is enabled.
 */
-func (o *Viewport) GetPhysicsObjectPicking() *bool {
+func (o *Viewport) GetPhysicsObjectPicking() bool {
 	log.Println("Calling Viewport.GetPhysicsObjectPicking()")
 
 	// Build out the method's arguments
@@ -111763,11 +102353,11 @@ func (o *Viewport) GetPhysicsObjectPicking() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_physics_object_picking", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_physics_object_picking", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -111946,7 +102536,7 @@ func (o *Viewport) GetUsage() int64 {
 /*
    Set whether the render target is flipped on the Y axis.
 */
-func (o *Viewport) GetVflip() *bool {
+func (o *Viewport) GetVflip() bool {
 	log.Println("Calling Viewport.GetVflip()")
 
 	// Build out the method's arguments
@@ -111954,11 +102544,11 @@ func (o *Viewport) GetVflip() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_vflip", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_vflip", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -112072,7 +102662,7 @@ func (o *Viewport) GuiGetDragData() *Variant {
 /*
    Returs whether there are shown modals on-screen.
 */
-func (o *Viewport) GuiHasModalStack() *bool {
+func (o *Viewport) GuiHasModalStack() bool {
 	log.Println("Calling Viewport.GuiHasModalStack()")
 
 	// Build out the method's arguments
@@ -112080,11 +102670,11 @@ func (o *Viewport) GuiHasModalStack() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "gui_has_modal_stack", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "gui_has_modal_stack", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -112093,7 +102683,7 @@ func (o *Viewport) GuiHasModalStack() *bool {
 /*
    Return whether the viewport lets whatever is behind it to show.
 */
-func (o *Viewport) HasTransparentBackground() *bool {
+func (o *Viewport) HasTransparentBackground() bool {
 	log.Println("Calling Viewport.HasTransparentBackground()")
 
 	// Build out the method's arguments
@@ -112101,11 +102691,11 @@ func (o *Viewport) HasTransparentBackground() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_transparent_background", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_transparent_background", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -112132,7 +102722,7 @@ func (o *Viewport) Input(localEvent *InputEvent) {
 /*
 
  */
-func (o *Viewport) Is3DDisabled() *bool {
+func (o *Viewport) Is3DDisabled() bool {
 	log.Println("Calling Viewport.Is3DDisabled()")
 
 	// Build out the method's arguments
@@ -112140,11 +102730,11 @@ func (o *Viewport) Is3DDisabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_3d_disabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_3d_disabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -112153,7 +102743,7 @@ func (o *Viewport) Is3DDisabled() *bool {
 /*
    Returns whether the viewport sends sounds to the speakers.
 */
-func (o *Viewport) IsAudioListener() *bool {
+func (o *Viewport) IsAudioListener() bool {
 	log.Println("Calling Viewport.IsAudioListener()")
 
 	// Build out the method's arguments
@@ -112161,11 +102751,11 @@ func (o *Viewport) IsAudioListener() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_audio_listener", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_audio_listener", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -112174,7 +102764,7 @@ func (o *Viewport) IsAudioListener() *bool {
 /*
    Returns whether the viewport sends soundsfrom 2D emitters to the speakers.
 */
-func (o *Viewport) IsAudioListener2D() *bool {
+func (o *Viewport) IsAudioListener2D() bool {
 	log.Println("Calling Viewport.IsAudioListener2D()")
 
 	// Build out the method's arguments
@@ -112182,11 +102772,11 @@ func (o *Viewport) IsAudioListener2D() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_audio_listener_2d", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_audio_listener_2d", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -112195,7 +102785,7 @@ func (o *Viewport) IsAudioListener2D() *bool {
 /*
    Return whether input to the viewport is disabled.
 */
-func (o *Viewport) IsInputDisabled() *bool {
+func (o *Viewport) IsInputDisabled() bool {
 	log.Println("Calling Viewport.IsInputDisabled()")
 
 	// Build out the method's arguments
@@ -112203,11 +102793,11 @@ func (o *Viewport) IsInputDisabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_input_disabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_input_disabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -112216,7 +102806,7 @@ func (o *Viewport) IsInputDisabled() *bool {
 /*
    Get the enabled status of the size override set with [method set_size_override].
 */
-func (o *Viewport) IsSizeOverrideEnabled() *bool {
+func (o *Viewport) IsSizeOverrideEnabled() bool {
 	log.Println("Calling Viewport.IsSizeOverrideEnabled()")
 
 	// Build out the method's arguments
@@ -112224,11 +102814,11 @@ func (o *Viewport) IsSizeOverrideEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_size_override_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_size_override_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -112237,7 +102827,7 @@ func (o *Viewport) IsSizeOverrideEnabled() *bool {
 /*
    Get the enabled status of the size strech override set with [method set_size_override_stretch].
 */
-func (o *Viewport) IsSizeOverrideStretchEnabled() *bool {
+func (o *Viewport) IsSizeOverrideStretchEnabled() bool {
 	log.Println("Calling Viewport.IsSizeOverrideStretchEnabled()")
 
 	// Build out the method's arguments
@@ -112245,11 +102835,11 @@ func (o *Viewport) IsSizeOverrideStretchEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_size_override_stretch_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_size_override_stretch_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -112258,7 +102848,7 @@ func (o *Viewport) IsSizeOverrideStretchEnabled() *bool {
 /*
    Return whether the viewport is using a world separate from the parent viewport's world.
 */
-func (o *Viewport) IsUsingOwnWorld() *bool {
+func (o *Viewport) IsUsingOwnWorld() bool {
 	log.Println("Calling Viewport.IsUsingOwnWorld()")
 
 	// Build out the method's arguments
@@ -112266,11 +102856,11 @@ func (o *Viewport) IsUsingOwnWorld() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_using_own_world", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_using_own_world", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -112279,7 +102869,7 @@ func (o *Viewport) IsUsingOwnWorld() *bool {
 /*
    Makes the viewport send sounds to the speakers.
 */
-func (o *Viewport) SetAsAudioListener(enable *bool) {
+func (o *Viewport) SetAsAudioListener(enable bool) {
 	log.Println("Calling Viewport.SetAsAudioListener()")
 
 	// Build out the method's arguments
@@ -112297,7 +102887,7 @@ func (o *Viewport) SetAsAudioListener(enable *bool) {
 /*
    Makes the viewport send sounds from 2D emitters to the speakers.
 */
-func (o *Viewport) SetAsAudioListener2D(enable *bool) {
+func (o *Viewport) SetAsAudioListener2D(enable bool) {
 	log.Println("Calling Viewport.SetAsAudioListener2D()")
 
 	// Build out the method's arguments
@@ -112387,7 +102977,7 @@ func (o *Viewport) SetDebugDraw(debugDraw int64) {
 /*
 
  */
-func (o *Viewport) SetDisable3D(disable *bool) {
+func (o *Viewport) SetDisable3D(disable bool) {
 	log.Println("Calling Viewport.SetDisable3D()")
 
 	// Build out the method's arguments
@@ -112405,7 +102995,7 @@ func (o *Viewport) SetDisable3D(disable *bool) {
 /*
    Set whether input to the viewport is disabled.
 */
-func (o *Viewport) SetDisableInput(disable *bool) {
+func (o *Viewport) SetDisableInput(disable bool) {
 	log.Println("Calling Viewport.SetDisableInput()")
 
 	// Build out the method's arguments
@@ -112441,7 +103031,7 @@ func (o *Viewport) SetGlobalCanvasTransform(xform *Transform2D) {
 /*
 
  */
-func (o *Viewport) SetHdr(enable *bool) {
+func (o *Viewport) SetHdr(enable bool) {
 	log.Println("Calling Viewport.SetHdr()")
 
 	// Build out the method's arguments
@@ -112477,7 +103067,7 @@ func (o *Viewport) SetMsaa(msaa int64) {
 /*
    Enable/disable picking for all physics objects inside the viewport.
 */
-func (o *Viewport) SetPhysicsObjectPicking(enable *bool) {
+func (o *Viewport) SetPhysicsObjectPicking(enable bool) {
 	log.Println("Calling Viewport.SetPhysicsObjectPicking()")
 
 	// Build out the method's arguments
@@ -112550,7 +103140,7 @@ func (o *Viewport) SetSize(size *Vector2) {
 /*
    Set the size override of the viewport. If the enable parameter is true, it would use the override, otherwise it would use the default size. If the size parameter is equal to [code](-1, -1)[/code], it won't update the size.
 */
-func (o *Viewport) SetSizeOverride(enable *bool, size *Vector2, margin *Vector2) {
+func (o *Viewport) SetSizeOverride(enable bool, size *Vector2, margin *Vector2) {
 	log.Println("Calling Viewport.SetSizeOverride()")
 
 	// Build out the method's arguments
@@ -112570,7 +103160,7 @@ func (o *Viewport) SetSizeOverride(enable *bool, size *Vector2, margin *Vector2)
 /*
    Set whether the size override affects stretch as well.
 */
-func (o *Viewport) SetSizeOverrideStretch(enabled *bool) {
+func (o *Viewport) SetSizeOverrideStretch(enabled bool) {
 	log.Println("Calling Viewport.SetSizeOverrideStretch()")
 
 	// Build out the method's arguments
@@ -112588,7 +103178,7 @@ func (o *Viewport) SetSizeOverrideStretch(enabled *bool) {
 /*
    If this viewport is a child of another viewport, keep the previously drawn background visible.
 */
-func (o *Viewport) SetTransparentBackground(enable *bool) {
+func (o *Viewport) SetTransparentBackground(enable bool) {
 	log.Println("Calling Viewport.SetTransparentBackground()")
 
 	// Build out the method's arguments
@@ -112642,7 +103232,7 @@ func (o *Viewport) SetUsage(usage int64) {
 /*
 
  */
-func (o *Viewport) SetUseArvr(use *bool) {
+func (o *Viewport) SetUseArvr(use bool) {
 	log.Println("Calling Viewport.SetUseArvr()")
 
 	// Build out the method's arguments
@@ -112660,7 +103250,7 @@ func (o *Viewport) SetUseArvr(use *bool) {
 /*
    Make the viewport use a world separate from the parent viewport's world.
 */
-func (o *Viewport) SetUseOwnWorld(enable *bool) {
+func (o *Viewport) SetUseOwnWorld(enable bool) {
 	log.Println("Calling Viewport.SetUseOwnWorld()")
 
 	// Build out the method's arguments
@@ -112678,7 +103268,7 @@ func (o *Viewport) SetUseOwnWorld(enable *bool) {
 /*
    Set whether the viewport is flipped on the Y axis.
 */
-func (o *Viewport) SetVflip(enable *bool) {
+func (o *Viewport) SetVflip(enable bool) {
 	log.Println("Calling Viewport.SetVflip()")
 
 	// Build out the method's arguments
@@ -112767,7 +103357,7 @@ func (o *Viewport) UpdateWorlds() {
 /*
 
  */
-func (o *Viewport) UseArvr() *bool {
+func (o *Viewport) UseArvr() bool {
 	log.Println("Calling Viewport.UseArvr()")
 
 	// Build out the method's arguments
@@ -112775,11 +103365,11 @@ func (o *Viewport) UseArvr() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "use_arvr", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "use_arvr", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -112813,137 +103403,7 @@ func (o *Viewport) WarpMouse(toPos *Vector2) {
 		Finally, viewports can also behave as render targets, in which case they will not be visible unless the associated texture is used to draw.
 */
 type ViewportImplementer interface {
-	NodeImplementer
-
-	FindWorld() *World
-
-	FindWorld2D() *World2D
-
-	GetCamera() *Camera
-
-	GetCanvasTransform() *Transform2D
-
-	GetClearMode() int64
-
-	GetDebugDraw() int64
-
-	GetFinalTransform() *Transform2D
-
-	GetGlobalCanvasTransform() *Transform2D
-
-	GetHdr() *bool
-
-	GetMousePosition() *Vector2
-
-	GetMsaa() int64
-
-	GetPhysicsObjectPicking() *bool
-
-	GetRenderInfo(info int64) int64
-
-	GetShadowAtlasQuadrantSubdiv(quadrant int64) int64
-
-	GetShadowAtlasSize() int64
-
-	GetSize() *Vector2
-
-	GetSizeOverride() *Vector2
-
-	GetTexture() *ViewportTexture
-
-	GetUpdateMode() int64
-
-	GetUsage() int64
-
-	GetVflip() *bool
-
-	GetViewportRid() *RID
-
-	GetVisibleRect() *Rect2
-
-	GetWorld() *World
-
-	GetWorld2D() *World2D
-
-	GuiGetDragData() *Variant
-
-	GuiHasModalStack() *bool
-
-	HasTransparentBackground() *bool
-
-	Input(localEvent *InputEvent)
-
-	Is3DDisabled() *bool
-
-	IsAudioListener() *bool
-
-	IsAudioListener2D() *bool
-
-	IsInputDisabled() *bool
-
-	IsSizeOverrideEnabled() *bool
-
-	IsSizeOverrideStretchEnabled() *bool
-
-	IsUsingOwnWorld() *bool
-
-	SetAsAudioListener(enable *bool)
-
-	SetAsAudioListener2D(enable *bool)
-
-	SetAttachToScreenRect(rect *Rect2)
-
-	SetCanvasTransform(xform *Transform2D)
-
-	SetClearMode(mode int64)
-
-	SetDebugDraw(debugDraw int64)
-
-	SetDisable3D(disable *bool)
-
-	SetDisableInput(disable *bool)
-
-	SetGlobalCanvasTransform(xform *Transform2D)
-
-	SetHdr(enable *bool)
-
-	SetMsaa(msaa int64)
-
-	SetPhysicsObjectPicking(enable *bool)
-
-	SetShadowAtlasQuadrantSubdiv(quadrant int64, subdiv int64)
-
-	SetShadowAtlasSize(size int64)
-
-	SetSize(size *Vector2)
-
-	SetSizeOverride(enable *bool, size *Vector2, margin *Vector2)
-
-	SetSizeOverrideStretch(enabled *bool)
-
-	SetTransparentBackground(enable *bool)
-
-	SetUpdateMode(mode int64)
-
-	SetUsage(usage int64)
-
-	SetUseArvr(use *bool)
-
-	SetUseOwnWorld(enable *bool)
-
-	SetVflip(enable *bool)
-
-	SetWorld(world *World)
-
-	SetWorld2D(world2D *World2D)
-
-	UnhandledInput(localEvent *InputEvent)
-
-	UpdateWorlds()
-
-	UseArvr() *bool
-
-	WarpMouse(toPos *Vector2)
+	Class
 }
 
 /*
@@ -112960,7 +103420,7 @@ func (o *ViewportContainer) baseClass() string {
 /*
 
  */
-func (o *ViewportContainer) IsStretchEnabled() *bool {
+func (o *ViewportContainer) IsStretchEnabled() bool {
 	log.Println("Calling ViewportContainer.IsStretchEnabled()")
 
 	// Build out the method's arguments
@@ -112968,11 +103428,11 @@ func (o *ViewportContainer) IsStretchEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_stretch_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_stretch_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -112981,7 +103441,7 @@ func (o *ViewportContainer) IsStretchEnabled() *bool {
 /*
 
  */
-func (o *ViewportContainer) SetStretch(enable *bool) {
+func (o *ViewportContainer) SetStretch(enable bool) {
 	log.Println("Calling ViewportContainer.SetStretch()")
 
 	// Build out the method's arguments
@@ -113001,11 +103461,7 @@ func (o *ViewportContainer) SetStretch(enable *bool) {
 
 */
 type ViewportContainerImplementer interface {
-	ContainerImplementer
-
-	IsStretchEnabled() *bool
-
-	SetStretch(enable *bool)
+	Class
 }
 
 /*
@@ -113063,11 +103519,7 @@ func (o *ViewportTexture) SetViewportPathInScene(path *NodePath) {
 
 */
 type ViewportTextureImplementer interface {
-	TextureImplementer
-
-	GetViewportPathInScene() *NodePath
-
-	SetViewportPathInScene(path *NodePath)
+	Class
 }
 
 /*
@@ -113084,7 +103536,7 @@ func (o *VisibilityEnabler) baseClass() string {
 /*
    Returns whether the specified enabler was set to true or not.
 */
-func (o *VisibilityEnabler) IsEnablerEnabled(enabler int64) *bool {
+func (o *VisibilityEnabler) IsEnablerEnabled(enabler int64) bool {
 	log.Println("Calling VisibilityEnabler.IsEnablerEnabled()")
 
 	// Build out the method's arguments
@@ -113093,11 +103545,11 @@ func (o *VisibilityEnabler) IsEnablerEnabled(enabler int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_enabler_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_enabler_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -113106,7 +103558,7 @@ func (o *VisibilityEnabler) IsEnablerEnabled(enabler int64) *bool {
 /*
    Set an enabler to true for all nodes of its type to be disabled when the VisibilityEnabler is not in view. See the constants for enablers and what they affect.
 */
-func (o *VisibilityEnabler) SetEnabler(enabler int64, enabled *bool) {
+func (o *VisibilityEnabler) SetEnabler(enabler int64, enabled bool) {
 	log.Println("Calling VisibilityEnabler.SetEnabler()")
 
 	// Build out the method's arguments
@@ -113127,11 +103579,7 @@ func (o *VisibilityEnabler) SetEnabler(enabler int64, enabled *bool) {
    The VisibilityEnabler will disable [RigidBody] and [AnimationPlayer] nodes when they are not visible. It will only affect other nodes within the same scene as the VisibilityEnabler itself.
 */
 type VisibilityEnablerImplementer interface {
-	VisibilityNotifierImplementer
-
-	IsEnablerEnabled(enabler int64) *bool
-
-	SetEnabler(enabler int64, enabled *bool)
+	Class
 }
 
 /*
@@ -113148,7 +103596,7 @@ func (o *VisibilityEnabler2D) baseClass() string {
 /*
    Returns whether the specified enabler was set to true or not.
 */
-func (o *VisibilityEnabler2D) IsEnablerEnabled(enabler int64) *bool {
+func (o *VisibilityEnabler2D) IsEnablerEnabled(enabler int64) bool {
 	log.Println("Calling VisibilityEnabler2D.IsEnablerEnabled()")
 
 	// Build out the method's arguments
@@ -113157,11 +103605,11 @@ func (o *VisibilityEnabler2D) IsEnablerEnabled(enabler int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_enabler_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_enabler_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -113170,7 +103618,7 @@ func (o *VisibilityEnabler2D) IsEnablerEnabled(enabler int64) *bool {
 /*
    Set an enabler to true for all nodes of its type to be disabled when the VisibilityEnabler2D is not in view. See the constants for enablers and what they affect.
 */
-func (o *VisibilityEnabler2D) SetEnabler(enabler int64, enabled *bool) {
+func (o *VisibilityEnabler2D) SetEnabler(enabler int64, enabled bool) {
 	log.Println("Calling VisibilityEnabler2D.SetEnabler()")
 
 	// Build out the method's arguments
@@ -113191,11 +103639,7 @@ func (o *VisibilityEnabler2D) SetEnabler(enabler int64, enabled *bool) {
    The VisibilityEnabler2D will disable [RigidBody2D], [AnimationPlayer], and other nodes when they are not visible. It will only affect other nodes within the same scene as the VisibilityEnabler2D itself.
 */
 type VisibilityEnabler2DImplementer interface {
-	VisibilityNotifier2DImplementer
-
-	IsEnablerEnabled(enabler int64) *bool
-
-	SetEnabler(enabler int64, enabled *bool)
+	Class
 }
 
 /*
@@ -113233,7 +103677,7 @@ func (o *VisibilityNotifier) GetAabb() *Rect3 {
 /*
    Return true if any part of the bounding box is on the screen.
 */
-func (o *VisibilityNotifier) IsOnScreen() *bool {
+func (o *VisibilityNotifier) IsOnScreen() bool {
 	log.Println("Calling VisibilityNotifier.IsOnScreen()")
 
 	// Build out the method's arguments
@@ -113241,11 +103685,11 @@ func (o *VisibilityNotifier) IsOnScreen() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_on_screen", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_on_screen", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -113274,13 +103718,7 @@ func (o *VisibilityNotifier) SetAabb(rect *Rect3) {
    The VisibilityNotifier is used to notify when its bounding box enters the screen, is visible on the screen, or when it exits the screen.
 */
 type VisibilityNotifierImplementer interface {
-	SpatialImplementer
-
-	GetAabb() *Rect3
-
-	IsOnScreen() *bool
-
-	SetAabb(rect *Rect3)
+	Class
 }
 
 /*
@@ -113318,7 +103756,7 @@ func (o *VisibilityNotifier2D) GetRect() *Rect2 {
 /*
    Return true if any part of the bounding rectangle is on the screen.
 */
-func (o *VisibilityNotifier2D) IsOnScreen() *bool {
+func (o *VisibilityNotifier2D) IsOnScreen() bool {
 	log.Println("Calling VisibilityNotifier2D.IsOnScreen()")
 
 	// Build out the method's arguments
@@ -113326,11 +103764,11 @@ func (o *VisibilityNotifier2D) IsOnScreen() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_on_screen", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_on_screen", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -113359,13 +103797,7 @@ func (o *VisibilityNotifier2D) SetRect(rect *Rect2) {
    The VisibilityNotifier2D is used to notify when its bounding rectangle enters the screen, is visible on the screen, or when it exits the screen.
 */
 type VisibilityNotifier2DImplementer interface {
-	Node2DImplementer
-
-	GetRect() *Rect2
-
-	IsOnScreen() *bool
-
-	SetRect(rect *Rect2)
+	Class
 }
 
 /*
@@ -113483,17 +103915,7 @@ func (o *VisualInstance) SetLayerMask(mask int64) {
 
 */
 type VisualInstanceImplementer interface {
-	SpatialImplementer
-
-	GetAabb() *Rect3
-
-	GetLayerMask() int64
-
-	GetTransformedAabb() *Rect3
-
-	SetBase(base *RID)
-
-	SetLayerMask(mask int64)
+	Class
 }
 
 /*
@@ -113567,7 +103989,7 @@ func (o *VisualScript) AddNode(function string, id int64, node *VisualScriptNode
 /*
 
  */
-func (o *VisualScript) AddVariable(name string, defaultValue *Variant, export *bool) {
+func (o *VisualScript) AddVariable(name string, defaultValue *Variant, export bool) {
 	log.Println("Calling VisualScript.AddVariable()")
 
 	// Build out the method's arguments
@@ -113911,7 +104333,7 @@ func (o *VisualScript) GetVariableDefaultValue(name string) *Variant {
 /*
 
  */
-func (o *VisualScript) GetVariableExport(name string) *bool {
+func (o *VisualScript) GetVariableExport(name string) bool {
 	log.Println("Calling VisualScript.GetVariableExport()")
 
 	// Build out the method's arguments
@@ -113920,11 +104342,11 @@ func (o *VisualScript) GetVariableExport(name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_variable_export", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_variable_export", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -113955,7 +104377,7 @@ func (o *VisualScript) GetVariableInfo(name string) *Dictionary {
 /*
 
  */
-func (o *VisualScript) HasCustomSignal(name string) *bool {
+func (o *VisualScript) HasCustomSignal(name string) bool {
 	log.Println("Calling VisualScript.HasCustomSignal()")
 
 	// Build out the method's arguments
@@ -113964,11 +104386,11 @@ func (o *VisualScript) HasCustomSignal(name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_custom_signal", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_custom_signal", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -113977,7 +104399,7 @@ func (o *VisualScript) HasCustomSignal(name string) *bool {
 /*
 
  */
-func (o *VisualScript) HasDataConnection(function string, fromNode int64, fromPort int64, toNode int64, toPort int64) *bool {
+func (o *VisualScript) HasDataConnection(function string, fromNode int64, fromPort int64, toNode int64, toPort int64) bool {
 	log.Println("Calling VisualScript.HasDataConnection()")
 
 	// Build out the method's arguments
@@ -113990,11 +104412,11 @@ func (o *VisualScript) HasDataConnection(function string, fromNode int64, fromPo
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_data_connection", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_data_connection", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -114003,7 +104425,7 @@ func (o *VisualScript) HasDataConnection(function string, fromNode int64, fromPo
 /*
 
  */
-func (o *VisualScript) HasFunction(name string) *bool {
+func (o *VisualScript) HasFunction(name string) bool {
 	log.Println("Calling VisualScript.HasFunction()")
 
 	// Build out the method's arguments
@@ -114012,11 +104434,11 @@ func (o *VisualScript) HasFunction(name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_function", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_function", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -114025,7 +104447,7 @@ func (o *VisualScript) HasFunction(name string) *bool {
 /*
 
  */
-func (o *VisualScript) HasNode(function string, id int64) *bool {
+func (o *VisualScript) HasNode(function string, id int64) bool {
 	log.Println("Calling VisualScript.HasNode()")
 
 	// Build out the method's arguments
@@ -114035,11 +104457,11 @@ func (o *VisualScript) HasNode(function string, id int64) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_node", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_node", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -114048,7 +104470,7 @@ func (o *VisualScript) HasNode(function string, id int64) *bool {
 /*
 
  */
-func (o *VisualScript) HasSequenceConnection(function string, fromNode int64, fromOutput int64, toNode int64) *bool {
+func (o *VisualScript) HasSequenceConnection(function string, fromNode int64, fromOutput int64, toNode int64) bool {
 	log.Println("Calling VisualScript.HasSequenceConnection()")
 
 	// Build out the method's arguments
@@ -114060,11 +104482,11 @@ func (o *VisualScript) HasSequenceConnection(function string, fromNode int64, fr
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_sequence_connection", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_sequence_connection", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -114073,7 +104495,7 @@ func (o *VisualScript) HasSequenceConnection(function string, fromNode int64, fr
 /*
 
  */
-func (o *VisualScript) HasVariable(name string) *bool {
+func (o *VisualScript) HasVariable(name string) bool {
 	log.Println("Calling VisualScript.HasVariable()")
 
 	// Build out the method's arguments
@@ -114082,11 +104504,11 @@ func (o *VisualScript) HasVariable(name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_variable", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_variable", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -114343,7 +104765,7 @@ func (o *VisualScript) SetVariableDefaultValue(name string, value *Variant) {
 /*
 
  */
-func (o *VisualScript) SetVariableExport(name string, enable *bool) {
+func (o *VisualScript) SetVariableExport(name string, enable bool) {
 	log.Println("Calling VisualScript.SetVariableExport()")
 
 	// Build out the method's arguments
@@ -114383,91 +104805,7 @@ func (o *VisualScript) SetVariableInfo(name string, value *Dictionary) {
 
 */
 type VisualScriptImplementer interface {
-	ScriptImplementer
-
-	AddCustomSignal(name string)
-
-	AddFunction(name string)
-
-	AddNode(function string, id int64, node *VisualScriptNode, pos *Vector2)
-
-	AddVariable(name string, defaultValue *Variant, export *bool)
-
-	CustomSignalAddArgument(name string, aType int64, argname string, index int64)
-
-	CustomSignalGetArgumentCount(name string) int64
-
-	CustomSignalGetArgumentName(name string, argidx int64) string
-
-	CustomSignalGetArgumentType(name string, argidx int64) int64
-
-	CustomSignalRemoveArgument(name string, argidx int64)
-
-	CustomSignalSetArgumentName(name string, argidx int64, argname string)
-
-	CustomSignalSetArgumentType(name string, argidx int64, aType int64)
-
-	CustomSignalSwapArgument(name string, argidx int64, withidx int64)
-
-	DataConnect(function string, fromNode int64, fromPort int64, toNode int64, toPort int64)
-
-	DataDisconnect(function string, fromNode int64, fromPort int64, toNode int64, toPort int64)
-
-	GetFunctionNodeId(name string) int64
-
-	GetFunctionScroll(name string) *Vector2
-
-	GetNode(function string, id int64) *VisualScriptNode
-
-	GetNodePos(function string, id int64) *Vector2
-
-	GetVariableDefaultValue(name string) *Variant
-
-	GetVariableExport(name string) *bool
-
-	GetVariableInfo(name string) *Dictionary
-
-	HasCustomSignal(name string) *bool
-
-	HasDataConnection(function string, fromNode int64, fromPort int64, toNode int64, toPort int64) *bool
-
-	HasFunction(name string) *bool
-
-	HasNode(function string, id int64) *bool
-
-	HasSequenceConnection(function string, fromNode int64, fromOutput int64, toNode int64) *bool
-
-	HasVariable(name string) *bool
-
-	RemoveCustomSignal(name string)
-
-	RemoveFunction(name string)
-
-	RemoveNode(function string, id int64)
-
-	RemoveVariable(name string)
-
-	RenameCustomSignal(name string, newName string)
-
-	RenameFunction(name string, newName string)
-
-	RenameVariable(name string, newName string)
-
-	SequenceConnect(function string, fromNode int64, fromOutput int64, toNode int64)
-
-	SequenceDisconnect(function string, fromNode int64, fromOutput int64, toNode int64)
-
-	SetFunctionScroll(name string, ofs *Vector2)
-
-	SetInstanceBaseType(aType string)
-
-	SetNodePos(function string, id int64, pos *Vector2)
-
-	SetVariableDefaultValue(name string, value *Variant)
-
-	SetVariableExport(name string, enable *bool)
-
-	SetVariableInfo(name string, value *Dictionary)
+	Class
 }
 
 /*
@@ -114564,15 +104902,7 @@ func (o *VisualScriptBasicTypeConstant) SetBasicTypeConstant(name string) {
 
 */
 type VisualScriptBasicTypeConstantImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetBasicType() int64
-
-	GetBasicTypeConstant() string
-
-	SetBasicType(name int64)
-
-	SetBasicTypeConstant(name string)
+	Class
 }
 
 /*
@@ -114630,11 +104960,7 @@ func (o *VisualScriptBuiltinFunc) SetFunc(which int64) {
 
 */
 type VisualScriptBuiltinFuncImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetFunc() int64
-
-	SetFunc(which int64)
+	Class
 }
 
 /*
@@ -114731,15 +105057,7 @@ func (o *VisualScriptClassConstant) SetClassConstant(name string) {
 
 */
 type VisualScriptClassConstantImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetBaseType() string
-
-	GetClassConstant() string
-
-	SetBaseType(name string)
-
-	SetClassConstant(name string)
+	Class
 }
 
 /*
@@ -114875,19 +105193,7 @@ func (o *VisualScriptComment) SetTitle(title string) {
 
 */
 type VisualScriptCommentImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetDescription() string
-
-	GetSize() *Vector2
-
-	GetTitle() string
-
-	SetDescription(description string)
-
-	SetSize(size *Vector2)
-
-	SetTitle(title string)
+	Class
 }
 
 /*
@@ -114906,7 +105212,7 @@ func (o *VisualScriptCondition) baseClass() string {
 
 */
 type VisualScriptConditionImplementer interface {
-	VisualScriptNodeImplementer
+	Class
 }
 
 /*
@@ -115003,15 +105309,7 @@ func (o *VisualScriptConstant) SetConstantValue(value *Variant) {
 
 */
 type VisualScriptConstantImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetConstantType() int64
-
-	GetConstantValue() *Variant
-
-	SetConstantType(aType int64)
-
-	SetConstantValue(value *Variant)
+	Class
 }
 
 /*
@@ -115108,15 +105406,7 @@ func (o *VisualScriptConstructor) SetConstructorType(aType int64) {
 
 */
 type VisualScriptConstructorImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetConstructor() *Dictionary
-
-	GetConstructorType() int64
-
-	SetConstructor(constructor *Dictionary)
-
-	SetConstructorType(aType int64)
+	Class
 }
 
 /*
@@ -115390,7 +105680,7 @@ func (o *VisualScriptCustomNode) X_GetWorkingMemorySize() int64 {
 /*
 
  */
-func (o *VisualScriptCustomNode) X_HasInputSequencePort() *bool {
+func (o *VisualScriptCustomNode) X_HasInputSequencePort() bool {
 	log.Println("Calling VisualScriptCustomNode.X_HasInputSequencePort()")
 
 	// Build out the method's arguments
@@ -115398,11 +105688,11 @@ func (o *VisualScriptCustomNode) X_HasInputSequencePort() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "_has_input_sequence_port", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "_has_input_sequence_port", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -115438,35 +105728,7 @@ func (o *VisualScriptCustomNode) X_Step(inputs *Array, outputs *Array, startMode
 
 */
 type VisualScriptCustomNodeImplementer interface {
-	VisualScriptNodeImplementer
-
-	X_GetCaption() string
-
-	X_GetCategory() string
-
-	X_GetInputValuePortCount() int64
-
-	X_GetInputValuePortName(idx int64) string
-
-	X_GetInputValuePortType(idx int64) int64
-
-	X_GetOutputSequencePortCount() int64
-
-	X_GetOutputSequencePortText(idx int64) string
-
-	X_GetOutputValuePortCount() int64
-
-	X_GetOutputValuePortName(idx int64) string
-
-	X_GetOutputValuePortType(idx int64) int64
-
-	X_GetText() string
-
-	X_GetWorkingMemorySize() int64
-
-	X_HasInputSequencePort() *bool
-
-	X_Step(inputs *Array, outputs *Array, startMode int64, workingMem *Array) *Variant
+	Class
 }
 
 /*
@@ -115524,11 +105786,7 @@ func (o *VisualScriptDeconstruct) SetDeconstructType(aType int64) {
 
 */
 type VisualScriptDeconstructImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetDeconstructType() int64
-
-	SetDeconstructType(aType int64)
+	Class
 }
 
 /*
@@ -115586,11 +105844,7 @@ func (o *VisualScriptEmitSignal) SetSignal(name string) {
 
 */
 type VisualScriptEmitSignalImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetSignal() string
-
-	SetSignal(name string)
+	Class
 }
 
 /*
@@ -115648,11 +105902,7 @@ func (o *VisualScriptEngineSingleton) SetSingleton(name string) {
 
 */
 type VisualScriptEngineSingletonImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetSingleton() string
-
-	SetSingleton(name string)
+	Class
 }
 
 /*
@@ -115671,7 +105921,7 @@ func (o *VisualScriptExpression) baseClass() string {
 
 */
 type VisualScriptExpressionImplementer interface {
-	VisualScriptNodeImplementer
+	Class
 }
 
 /*
@@ -115690,7 +105940,7 @@ func (o *VisualScriptFunction) baseClass() string {
 
 */
 type VisualScriptFunctionImplementer interface {
-	VisualScriptNodeImplementer
+	Class
 }
 
 /*
@@ -115896,7 +106146,7 @@ func (o *VisualScriptFunctionCall) GetUseDefaultArgs() int64 {
 /*
 
  */
-func (o *VisualScriptFunctionCall) GetValidate() *bool {
+func (o *VisualScriptFunctionCall) GetValidate() bool {
 	log.Println("Calling VisualScriptFunctionCall.GetValidate()")
 
 	// Build out the method's arguments
@@ -115904,11 +106154,11 @@ func (o *VisualScriptFunctionCall) GetValidate() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_validate", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_validate", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -116079,7 +106329,7 @@ func (o *VisualScriptFunctionCall) SetUseDefaultArgs(amount int64) {
 /*
 
  */
-func (o *VisualScriptFunctionCall) SetValidate(enable *bool) {
+func (o *VisualScriptFunctionCall) SetValidate(enable bool) {
 	log.Println("Calling VisualScriptFunctionCall.SetValidate()")
 
 	// Build out the method's arguments
@@ -116099,47 +106349,7 @@ func (o *VisualScriptFunctionCall) SetValidate(enable *bool) {
 
 */
 type VisualScriptFunctionCallImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetBasePath() *NodePath
-
-	GetBaseScript() string
-
-	GetBaseType() string
-
-	GetBasicType() int64
-
-	GetCallMode() int64
-
-	GetFunction() string
-
-	GetRpcCallMode() int64
-
-	GetSingleton() string
-
-	GetUseDefaultArgs() int64
-
-	GetValidate() *bool
-
-	SetBasePath(basePath *NodePath)
-
-	SetBaseScript(baseScript string)
-
-	SetBaseType(baseType string)
-
-	SetBasicType(basicType int64)
-
-	SetCallMode(mode int64)
-
-	SetFunction(function string)
-
-	SetRpcCallMode(mode int64)
-
-	SetSingleton(singleton string)
-
-	SetUseDefaultArgs(amount int64)
-
-	SetValidate(enable *bool)
+	Class
 }
 
 /*
@@ -116176,7 +106386,7 @@ func (o *VisualScriptFunctionState) ConnectToSignal(obj *Object, signals string,
 /*
 
  */
-func (o *VisualScriptFunctionState) IsValid() *bool {
+func (o *VisualScriptFunctionState) IsValid() bool {
 	log.Println("Calling VisualScriptFunctionState.IsValid()")
 
 	// Build out the method's arguments
@@ -116184,11 +106394,11 @@ func (o *VisualScriptFunctionState) IsValid() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_valid", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_valid", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -116221,13 +106431,7 @@ func (o *VisualScriptFunctionState) Resume(args *Array) *Variant {
 
 */
 type VisualScriptFunctionStateImplementer interface {
-	ReferenceImplementer
-
-	ConnectToSignal(obj *Object, signals string, args *Array)
-
-	IsValid() *bool
-
-	Resume(args *Array) *Variant
+	Class
 }
 
 /*
@@ -116285,11 +106489,7 @@ func (o *VisualScriptGlobalConstant) SetGlobalConstant(index int64) {
 
 */
 type VisualScriptGlobalConstantImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetGlobalConstant() int64
-
-	SetGlobalConstant(index int64)
+	Class
 }
 
 /*
@@ -116308,7 +106508,7 @@ func (o *VisualScriptIndexGet) baseClass() string {
 
 */
 type VisualScriptIndexGetImplementer interface {
-	VisualScriptNodeImplementer
+	Class
 }
 
 /*
@@ -116327,7 +106527,7 @@ func (o *VisualScriptIndexSet) baseClass() string {
 
 */
 type VisualScriptIndexSetImplementer interface {
-	VisualScriptNodeImplementer
+	Class
 }
 
 /*
@@ -116424,15 +106624,7 @@ func (o *VisualScriptInputAction) SetActionName(name string) {
 
 */
 type VisualScriptInputActionImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetActionMode() int64
-
-	GetActionName() string
-
-	SetActionMode(mode int64)
-
-	SetActionName(name string)
+	Class
 }
 
 /*
@@ -116451,7 +106643,7 @@ func (o *VisualScriptIterator) baseClass() string {
 
 */
 type VisualScriptIteratorImplementer interface {
-	VisualScriptNodeImplementer
+	Class
 }
 
 /*
@@ -116548,15 +106740,7 @@ func (o *VisualScriptLocalVar) SetVarType(aType int64) {
 
 */
 type VisualScriptLocalVarImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetVarName() string
-
-	GetVarType() int64
-
-	SetVarName(name string)
-
-	SetVarType(aType int64)
+	Class
 }
 
 /*
@@ -116653,15 +106837,7 @@ func (o *VisualScriptLocalVarSet) SetVarType(aType int64) {
 
 */
 type VisualScriptLocalVarSetImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetVarName() string
-
-	GetVarType() int64
-
-	SetVarName(name string)
-
-	SetVarType(aType int64)
+	Class
 }
 
 /*
@@ -116719,11 +106895,7 @@ func (o *VisualScriptMathConstant) SetMathConstant(which int64) {
 
 */
 type VisualScriptMathConstantImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetMathConstant() int64
-
-	SetMathConstant(which int64)
+	Class
 }
 
 /*
@@ -116804,13 +106976,7 @@ func (o *VisualScriptNode) SetDefaultInputValue(portIdx int64, value *Variant) {
 
 */
 type VisualScriptNodeImplementer interface {
-	ResourceImplementer
-
-	GetDefaultInputValue(portIdx int64) *Variant
-
-	GetVisualScript() *VisualScript
-
-	SetDefaultInputValue(portIdx int64, value *Variant)
+	Class
 }
 
 /*
@@ -116907,15 +107073,7 @@ func (o *VisualScriptOperator) SetTyped(aType int64) {
 
 */
 type VisualScriptOperatorImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetOperator() int64
-
-	GetTyped() int64
-
-	SetOperator(op int64)
-
-	SetTyped(aType int64)
+	Class
 }
 
 /*
@@ -116973,11 +107131,7 @@ func (o *VisualScriptPreload) SetPreload(resource *Resource) {
 
 */
 type VisualScriptPreloadImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetPreload() *Resource
-
-	SetPreload(resource *Resource)
+	Class
 }
 
 /*
@@ -117269,35 +107423,7 @@ func (o *VisualScriptPropertyGet) SetProperty(property string) {
 
 */
 type VisualScriptPropertyGetImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetBasePath() *NodePath
-
-	GetBaseScript() string
-
-	GetBaseType() string
-
-	GetBasicType() int64
-
-	GetCallMode() int64
-
-	GetIndex() string
-
-	GetProperty() string
-
-	SetBasePath(basePath *NodePath)
-
-	SetBaseScript(baseScript string)
-
-	SetBaseType(baseType string)
-
-	SetBasicType(basicType int64)
-
-	SetCallMode(mode int64)
-
-	SetIndex(index string)
-
-	SetProperty(property string)
+	Class
 }
 
 /*
@@ -117628,39 +107754,7 @@ func (o *VisualScriptPropertySet) SetProperty(property string) {
 
 */
 type VisualScriptPropertySetImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetAssignOp() int64
-
-	GetBasePath() *NodePath
-
-	GetBaseScript() string
-
-	GetBaseType() string
-
-	GetBasicType() int64
-
-	GetCallMode() int64
-
-	GetIndex() string
-
-	GetProperty() string
-
-	SetAssignOp(assignOp int64)
-
-	SetBasePath(basePath *NodePath)
-
-	SetBaseScript(baseScript string)
-
-	SetBaseType(baseType string)
-
-	SetBasicType(basicType int64)
-
-	SetCallMode(mode int64)
-
-	SetIndex(index string)
-
-	SetProperty(property string)
+	Class
 }
 
 /*
@@ -117718,11 +107812,7 @@ func (o *VisualScriptResourcePath) SetResourcePath(path string) {
 
 */
 type VisualScriptResourcePathImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetResourcePath() string
-
-	SetResourcePath(path string)
+	Class
 }
 
 /*
@@ -117760,7 +107850,7 @@ func (o *VisualScriptReturn) GetReturnType() int64 {
 /*
 
  */
-func (o *VisualScriptReturn) IsReturnValueEnabled() *bool {
+func (o *VisualScriptReturn) IsReturnValueEnabled() bool {
 	log.Println("Calling VisualScriptReturn.IsReturnValueEnabled()")
 
 	// Build out the method's arguments
@@ -117768,11 +107858,11 @@ func (o *VisualScriptReturn) IsReturnValueEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_return_value_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_return_value_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -117781,7 +107871,7 @@ func (o *VisualScriptReturn) IsReturnValueEnabled() *bool {
 /*
 
  */
-func (o *VisualScriptReturn) SetEnableReturnValue(enable *bool) {
+func (o *VisualScriptReturn) SetEnableReturnValue(enable bool) {
 	log.Println("Calling VisualScriptReturn.SetEnableReturnValue()")
 
 	// Build out the method's arguments
@@ -117819,15 +107909,7 @@ func (o *VisualScriptReturn) SetReturnType(aType int64) {
 
 */
 type VisualScriptReturnImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetReturnType() int64
-
-	IsReturnValueEnabled() *bool
-
-	SetEnableReturnValue(enable *bool)
-
-	SetReturnType(aType int64)
+	Class
 }
 
 /*
@@ -117885,11 +107967,7 @@ func (o *VisualScriptSceneNode) SetNodePath(path *NodePath) {
 
 */
 type VisualScriptSceneNodeImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetNodePath() *NodePath
-
-	SetNodePath(path *NodePath)
+	Class
 }
 
 /*
@@ -117908,7 +107986,7 @@ func (o *VisualScriptSceneTree) baseClass() string {
 
 */
 type VisualScriptSceneTreeImplementer interface {
-	VisualScriptNodeImplementer
+	Class
 }
 
 /*
@@ -117966,11 +108044,7 @@ func (o *VisualScriptSelect) SetTyped(aType int64) {
 
 */
 type VisualScriptSelectImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetTyped() int64
-
-	SetTyped(aType int64)
+	Class
 }
 
 /*
@@ -117989,7 +108063,7 @@ func (o *VisualScriptSelf) baseClass() string {
 
 */
 type VisualScriptSelfImplementer interface {
-	VisualScriptNodeImplementer
+	Class
 }
 
 /*
@@ -118047,11 +108121,7 @@ func (o *VisualScriptSequence) SetSteps(steps int64) {
 
 */
 type VisualScriptSequenceImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetSteps() int64
-
-	SetSteps(steps int64)
+	Class
 }
 
 /*
@@ -118092,9 +108162,7 @@ func (o *VisualScriptSubCall) X_Subcall(arguments *Variant) *Variant {
 
 */
 type VisualScriptSubCallImplementer interface {
-	VisualScriptNodeImplementer
-
-	X_Subcall(arguments *Variant) *Variant
+	Class
 }
 
 /*
@@ -118113,7 +108181,7 @@ func (o *VisualScriptSwitch) baseClass() string {
 
 */
 type VisualScriptSwitchImplementer interface {
-	VisualScriptNodeImplementer
+	Class
 }
 
 /*
@@ -118210,15 +108278,7 @@ func (o *VisualScriptTypeCast) SetBaseType(aType string) {
 
 */
 type VisualScriptTypeCastImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetBaseScript() string
-
-	GetBaseType() string
-
-	SetBaseScript(path string)
-
-	SetBaseType(aType string)
+	Class
 }
 
 /*
@@ -118276,11 +108336,7 @@ func (o *VisualScriptVariableGet) SetVariable(name string) {
 
 */
 type VisualScriptVariableGetImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetVariable() string
-
-	SetVariable(name string)
+	Class
 }
 
 /*
@@ -118338,11 +108394,7 @@ func (o *VisualScriptVariableSet) SetVariable(name string) {
 
 */
 type VisualScriptVariableSetImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetVariable() string
-
-	SetVariable(name string)
+	Class
 }
 
 /*
@@ -118361,7 +108413,7 @@ func (o *VisualScriptWhile) baseClass() string {
 
 */
 type VisualScriptWhileImplementer interface {
-	VisualScriptNodeImplementer
+	Class
 }
 
 /*
@@ -118458,15 +108510,7 @@ func (o *VisualScriptYield) SetYieldMode(mode int64) {
 
 */
 type VisualScriptYieldImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetWaitTime() float64
-
-	GetYieldMode() int64
-
-	SetWaitTime(sec float64)
-
-	SetYieldMode(mode int64)
+	Class
 }
 
 /*
@@ -118641,23 +108685,7 @@ func (o *VisualScriptYieldSignal) SetSignal(signal string) {
 
 */
 type VisualScriptYieldSignalImplementer interface {
-	VisualScriptNodeImplementer
-
-	GetBasePath() *NodePath
-
-	GetBaseType() string
-
-	GetCallMode() int64
-
-	GetSignal() string
-
-	SetBasePath(basePath *NodePath)
-
-	SetBaseType(baseType string)
-
-	SetCallMode(mode int64)
-
-	SetSignal(signal string)
+	Class
 }
 
 /*
@@ -118821,7 +108849,7 @@ func (o *VisualServer) TextureSetFlags(texture *RID, flags int64) {
 /*
 
  */
-func (o *VisualServer) TextureSetShrinkAllX2OnSetData(shrink *bool) {
+func (o *VisualServer) TextureSetShrinkAllX2OnSetData(shrink bool) {
 	log.Println("Calling VisualServer.TextureSetShrinkAllX2OnSetData()")
 
 	// Build out the method's arguments
@@ -118842,23 +108870,7 @@ func (o *VisualServer) TextureSetShrinkAllX2OnSetData(shrink *bool) {
 		The visual server is completely opaque, the internals are entirely implementation specific and cannot be accessed.
 */
 type VisualServerImplementer interface {
-	ObjectImplementer
-
-	ForceDraw()
-
-	TextureCreate() *RID
-
-	TextureCreateFromImage(image *Image, flags int64) *RID
-
-	TextureGetFlags(texture *RID) int64
-
-	TextureGetHeight(texture *RID) int64
-
-	TextureGetWidth(texture *RID) int64
-
-	TextureSetFlags(texture *RID, flags int64)
-
-	TextureSetShrinkAllX2OnSetData(shrink *bool)
+	Class
 }
 
 /*
@@ -118898,9 +108910,7 @@ func (o *WeakRef) GetRef() *Variant {
    A weakref can hold a [Reference], without contributing to the reference counter. A weakref can be created from an [Object] using [method @GDScript.weakref]. If this object is not a reference, weakref still works, however, it does not have any effect on the object. Weakrefs are useful in cases where multiple classes have variables that refer to eachother. Without weakrefs, using these classes could lead to memory leaks, since both references keep eachother from being released. Making part of the variables a weakref can prevent this cyclic dependency, and allows the references to be released.
 */
 type WeakRefImplementer interface {
-	ReferenceImplementer
-
-	GetRef() *Variant
+	Class
 }
 
 /*
@@ -118938,7 +108948,7 @@ func (o *WindowDialog) GetCloseButton() *TextureButton {
 /*
 
  */
-func (o *WindowDialog) GetResizable() *bool {
+func (o *WindowDialog) GetResizable() bool {
 	log.Println("Calling WindowDialog.GetResizable()")
 
 	// Build out the method's arguments
@@ -118946,11 +108956,11 @@ func (o *WindowDialog) GetResizable() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_resizable", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_resizable", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -118980,7 +108990,7 @@ func (o *WindowDialog) GetTitle() string {
 /*
 
  */
-func (o *WindowDialog) SetResizable(resizable *bool) {
+func (o *WindowDialog) SetResizable(resizable bool) {
 	log.Println("Calling WindowDialog.SetResizable()")
 
 	// Build out the method's arguments
@@ -119018,17 +109028,7 @@ func (o *WindowDialog) SetTitle(title string) {
    Windowdialog is the base class for all window-based dialogs. It's a by-default toplevel [Control] that draws a window decoration and allows motion and resizing.
 */
 type WindowDialogImplementer interface {
-	PopupImplementer
-
-	GetCloseButton() *TextureButton
-
-	GetResizable() *bool
-
-	GetTitle() string
-
-	SetResizable(resizable *bool)
-
-	SetTitle(title string)
+	Class
 }
 
 /*
@@ -119188,21 +109188,7 @@ func (o *World) SetFallbackEnvironment(env *Environment) {
    Class that has everything pertaining to a world. A physics space, a visual scenario and a sound space. Spatial nodes register their resources into the current world.
 */
 type WorldImplementer interface {
-	ResourceImplementer
-
-	GetDirectSpaceState() *PhysicsDirectSpaceState
-
-	GetEnvironment() *Environment
-
-	GetFallbackEnvironment() *Environment
-
-	GetScenario() *RID
-
-	GetSpace() *RID
-
-	SetEnvironment(env *Environment)
-
-	SetFallbackEnvironment(env *Environment)
+	Class
 }
 
 /*
@@ -119284,13 +109270,7 @@ func (o *World2D) GetSpace() *RID {
    Class that has everything pertaining to a 2D world. A physics space, a visual scenario and a sound space. 2D nodes register their resources into the current 2D world.
 */
 type World2DImplementer interface {
-	ResourceImplementer
-
-	GetCanvas() *RID
-
-	GetDirectSpaceState() *Physics2DDirectSpaceState
-
-	GetSpace() *RID
+	Class
 }
 
 /*
@@ -119348,11 +109328,7 @@ func (o *WorldEnvironment) SetEnvironment(env *Environment) {
    The [WorldEnvironment] node can be added to a scene in order to set default [Environment] variables for the scene. The [WorldEnvironment] can be overridden by an [Environment] node set on the current [Camera]. Additionally, only one [WorldEnvironment] may be instanced in a given scene at a time. The [WorldEnvironment] allows the user to specify default lighting parameters (e.g. ambient lighting), various post-processing effects (e.g. SSAO, DOF, Tonemapping), and how to draw the background (e.g. solid color, skybox).
 */
 type WorldEnvironmentImplementer interface {
-	NodeImplementer
-
-	GetEnvironment() *Environment
-
-	SetEnvironment(env *Environment)
+	Class
 }
 
 /*
@@ -119583,7 +109559,7 @@ func (o *XMLParser) GetNodeType() int64 {
 /*
    Check whether or not the current element has a certain attribute.
 */
-func (o *XMLParser) HasAttribute(name string) *bool {
+func (o *XMLParser) HasAttribute(name string) bool {
 	log.Println("Calling XMLParser.HasAttribute()")
 
 	// Build out the method's arguments
@@ -119592,11 +109568,11 @@ func (o *XMLParser) HasAttribute(name string) *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has_attribute", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_attribute", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -119605,7 +109581,7 @@ func (o *XMLParser) HasAttribute(name string) *bool {
 /*
    Check whether the current element is empty (this only works for completely empty tags, e.g. <element \>).
 */
-func (o *XMLParser) IsEmpty() *bool {
+func (o *XMLParser) IsEmpty() bool {
 	log.Println("Calling XMLParser.IsEmpty()")
 
 	// Build out the method's arguments
@@ -119613,11 +109589,11 @@ func (o *XMLParser) IsEmpty() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_empty", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_empty", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -119732,41 +109708,7 @@ func (o *XMLParser) SkipSection() {
    This class can serve as base to make custom XML parsers. Since XML is a very flexible standard, this interface is low level so it can be applied to any possible schema.
 */
 type XMLParserImplementer interface {
-	ReferenceImplementer
-
-	GetAttributeCount() int64
-
-	GetAttributeName(idx int64) string
-
-	GetAttributeValue(idx int64) string
-
-	GetCurrentLine() int64
-
-	GetNamedAttributeValue(name string) string
-
-	GetNamedAttributeValueSafe(name string) string
-
-	GetNodeData() string
-
-	GetNodeName() string
-
-	GetNodeOffset() int64
-
-	GetNodeType() int64
-
-	HasAttribute(name string) *bool
-
-	IsEmpty() *bool
-
-	Open(file string) int64
-
-	OpenBuffer(buffer *PoolByteArray) int64
-
-	Read() int64
-
-	Seek(pos int64) int64
-
-	SkipSection()
+	Class
 }
 
 /*
@@ -119783,7 +109725,7 @@ func (o *YSort) baseClass() string {
 /*
    Returns true if the children nodes are being sorted.
 */
-func (o *YSort) IsSortEnabled() *bool {
+func (o *YSort) IsSortEnabled() bool {
 	log.Println("Calling YSort.IsSortEnabled()")
 
 	// Build out the method's arguments
@@ -119791,11 +109733,11 @@ func (o *YSort) IsSortEnabled() *bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_sort_enabled", goArguments, "*bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_sort_enabled", goArguments, "bool")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*bool)
+	returnValue := goRet.Interface().(bool)
 
 	return returnValue
 
@@ -119804,7 +109746,7 @@ func (o *YSort) IsSortEnabled() *bool {
 /*
    Set whether the children nodes are sorted or not. (default true)
 */
-func (o *YSort) SetSortEnabled(enabled *bool) {
+func (o *YSort) SetSortEnabled(enabled bool) {
 	log.Println("Calling YSort.SetSortEnabled()")
 
 	// Build out the method's arguments
@@ -119824,9 +109766,5 @@ func (o *YSort) SetSortEnabled(enabled *bool) {
    Sort all child nodes based on their Y positions. The child node must inherit from [CanvasItem] for it to be sorted. Nodes that have a higher Y position will be drawn later, so they will appear on top of nodes that have a lower Y position.
 */
 type YSortImplementer interface {
-	Node2DImplementer
-
-	IsSortEnabled() *bool
-
-	SetSortEnabled(enabled *bool)
+	Class
 }
