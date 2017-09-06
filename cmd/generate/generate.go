@@ -82,10 +82,12 @@ func (v View) GoValue(returnString string) string {
 		return "uint64"
 	case "float":
 		return "float64"
+	case "bool":
+		return "bool"
 	case "void":
 		return ""
 	default:
-		return returnString
+		return "*" + returnString
 	}
 }
 
