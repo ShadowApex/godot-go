@@ -44,41 +44,9 @@ type Class interface {
 	getOwner() *C.godot_object
 }
 
-// goToGodotConverter is a function that will convert a Go object into
-// a Godot object.
-type goToGodotConverter func(goObject interface{}) unsafe.Pointer
-
-// goToGodotConversionMap is an internal mapping of Go types to functions that can
-// convert to Godot types. This mapping is essentially a more optimal case/switch
-// system for converting Go types to Godot types that can be used as arguments to
-// a Godot function.
-var goToGodotConversionMap = map[string]goToGodotConverter{
-	"bool": func(goObject interface{}) unsafe.Pointer {
-		boolArg := C.godot_bool(goObject.(bool))
-		return unsafe.Pointer(&boolArg)
-	},
-	"int64": func(goObject interface{}) unsafe.Pointer {
-		var intArg C.int64_t
-		intArg = C.int64_t(goObject.(int64))
-		return unsafe.Pointer(&intArg)
-	},
-	"uint64": func(goObject interface{}) unsafe.Pointer {
-		var intArg C.uint64_t
-		intArg = C.uint64_t(goObject.(uint64))
-		return unsafe.Pointer(&intArg)
-	},
-	"float64": func(goObject interface{}) unsafe.Pointer {
-		floatArg := C.double(goObject.(float64))
-		return unsafe.Pointer(&floatArg)
-	},
-	"string": func(goObject interface{}) unsafe.Pointer {
-		stringArg := stringAsGodotString(goObject.(string))
-		return unsafe.Pointer(stringArg)
-	},
-}
-
 {{ range $i, $class := $view.GDClass -}}
     {{ if $view.IsValidClass $class.AttrName $class.AttrInherits -}}
+
         /*
         {{ $view.Trim $class.GDDescription.Text }}
         */
@@ -246,6 +214,23 @@ var goToGodotConversionMap = map[string]goToGodotConverter{
             }
 
         {{ end }}
+
+        /*
+        {{ $class.AttrName }}Implementer is an interface for {{ $class.AttrName }} objects.
+        {{ $view.Trim $class.GDDescription.Text }}
+        */
+        type {{ $class.AttrName }}Implementer interface {
+            {{ if ne $class.AttrName "Object" }}
+                {{ $class.AttrInherits }}Implementer
+            {{ else }}
+                Class
+            {{ end }}
+            {{ if $class.GDMethods }}
+                {{ range $j, $method := $class.GDMethods.GDMethod }}
+                    {{ $view.GoMethodName $method.AttrName }}({{ range $k, $arg := $method.GDArgument }}{{ $view.GoArgName $arg.AttrName }} {{ $view.GoValue $arg.AttrType }},{{ end }}) {{ if $method.GDReturn }}{{ $view.GoValue $method.GDReturn.AttrType }}{{ end }} 
+                {{ end }}
+            {{ end }}
+        }
 
     {{ end -}}
 {{ end }}

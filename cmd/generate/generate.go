@@ -85,7 +85,7 @@ func (v View) GoValue(returnString string) string {
 	case "void":
 		return ""
 	default:
-		return returnString
+		return "*" + returnString
 	}
 }
 

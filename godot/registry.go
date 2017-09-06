@@ -4,10 +4,12 @@ import (
 	"reflect"
 )
 
-// Register will register the given object as a Godot class. It will be available
+// Register will register the given object(s) as a Godot class. It will be available
 // inside Godot.
-func Register(constructor ClassConstructor) {
-	godotConstructorsToRegister = append(godotConstructorsToRegister, constructor)
+func Register(constructor ...ClassConstructor) {
+	for _, construct := range constructor {
+		godotConstructorsToRegister = append(godotConstructorsToRegister, construct)
+	}
 }
 
 // registeredClass is a structure for holding on to the reflected details of a Go
