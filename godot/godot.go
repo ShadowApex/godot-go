@@ -2,8 +2,10 @@
 package godot
 
 /*
-#cgo CXXFLAGS: -I/usr/local/include -std=c11
-#cgo LDFLAGS: -Wl,-unresolved-symbols=ignore-all
+#cgo linux CXXFLAGS: -I/usr/local/include -std=c11
+#cgo linux LDFLAGS: -Wl,-unresolved-symbols=ignore-all
+#cgo darwin CPPFLAGS: -I/usr/local/include -std=c11
+#cgo darwin LDFLAGS: -Wl,-undefined dynamic_lookup
 #include <stddef.h>
 #include <stdlib.h>
 #include <godot_nativescript.h>
