@@ -67,6 +67,10 @@ func boolAsVariant(value bool) *C.godot_variant {
 	return &variant
 }
 
+func godotBoolAsBool(value C.godot_bool) bool {
+	return bool(value)
+}
+
 func variantAsUInt(variant *C.godot_variant) uint64 {
 	godotUInt := C.godot_variant_as_uint(variant)
 	return uint64(godotUInt)
@@ -124,6 +128,10 @@ func realAsVariant(value float64) *C.godot_variant {
 	C.godot_variant_new_real(&variant, cDouble)
 
 	return &variant
+}
+
+func godotRealAsReal(value C.godot_real) float64 {
+	return float64(value)
 }
 
 func variantAsString(variant *C.godot_variant) string {

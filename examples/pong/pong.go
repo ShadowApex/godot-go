@@ -37,7 +37,7 @@ func (p *PongClass) X_ready() {
 
 func (p *PongClass) CustomThing(myPhrase string) string {
 	godot.Log.Println(myPhrase)
-	return myPhrase + " BALLS."
+	return "The phrase: '" + myPhrase + "' was returned ."
 }
 
 // The "init()" function is a special Go function that will be called when this library
