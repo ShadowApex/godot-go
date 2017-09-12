@@ -71,10 +71,6 @@ var goToGodotConversionMap = map[string]goToGodotConverter{
 		arg := goObject.(*Quat)
 		return unsafe.Pointer(arg.quat)
 	},
-	"*Real": func(goObject interface{}) unsafe.Pointer {
-		arg := goObject.(*Real)
-		return unsafe.Pointer(arg.real)
-	},
 	"*Rect2": func(goObject interface{}) unsafe.Pointer {
 		arg := goObject.(*Rect2)
 		return unsafe.Pointer(arg.rect2)
