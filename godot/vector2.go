@@ -10,14 +10,18 @@ import "C"
 
 //DEPENDS: Built-In types
 //NewVector2 constructs a new Vector2 from the given x and y.
-func NewVector2() *Vector2 {
+func NewVector2(x float64, y float64) *Vector2 {
 	vector2 := &Vector2{}
 
 	// Create our godot vector2 object
 	var godotVector2 C.godot_vector2
 
 	// Create our vector2
-	C.godot_vector2_new(&godotVector2)
+	C.godot_vector2_new(
+		&godotVector2,
+		realAsGodotReal(x),
+		realAsGodotReal(y),
+	)
 
 	// Internally set our vector2
 	vector2.vector2 = &godotVector2
@@ -25,17 +29,15 @@ func NewVector2() *Vector2 {
 	return vector2
 }
 
-// TODO: Finish implementing this
 type Vector2 struct {
 	vector2 *C.godot_vector2
 }
 
-func (v *Vector2) Abs() {
+func (v *Vector2) Abs() Vector2 {
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_abs(v.vector2)
 
-	/*C++
-	return Vector2( fabs(x), fabs(y) );
-	*/
-
+	return newVec2
 }
 
 //Angle returns the result of atan2 when called with the Vector’s x and y as parameters
@@ -44,212 +46,262 @@ func (v *Vector2) Abs() {
 //with regard to the (1, 0) unit vector (which would be the typical trigonometric
 //representation of the angle when calling Math::atan2(y,x))
 func (v *Vector2) Angle() float64 {
-	/*C++
-	return atan2(y, x);
-	*/
-
+	angle := C.godot_vector2_angle(v.vector2)
+	return godotRealAsReal(angle)
 }
 
 //AngleTo returns the angle in radians between the two vectors.
 func (v *Vector2) AngleTo(to Vector2) float64 {
-	/*C++
-	return atan2(cross(p_vector2), dot(p_vector2));
-	*/
+	angleTo := C.godot_vector2_angle_to(v.vector2, to.vector2)
+	return godotRealAsReal(angleTo)
 }
 
 //AngleToPoint returns the angle in radians between the line connecting the two
 //points and the x coordinate.
 func (v *Vector2) AngleToPoint(to Vector2) float64 {
-	/*C++
-	return atan2(y - p_vector2.y, x-p_vector2.x);
-	*/
+
+	angleToPoint := C.godot_vector2_angle_to_point(v.vector2, to.vector2)
+	return godotRealAsReal(angleToPoint)
 }
 
+//Bounce is not documented in the godot library yet.
+func (v *Vector2) Bounce(with Vector2) Vector2 {
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_bounce(v.vector2, with.vector2)
+
+	return newVec2
+}
+
+//Clamped replaces v.vector2 with a new vector2 that is equivelant to v.vector2 * length
 func (v *Vector2) Clamped(length float64) Vector2 {
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_clamped(realAsGodotRea(length))
 
-	/*C++
-	real_t l = length();
-	Vector2 v = *this;
-	if (l > 0 && p_len < l) {
-		v /= l;
-		v *= p_len;
-	}
-	return v;
-	*/
-
+	return newVec2
 }
 
 //CubicInterpolate Cubicly interpolates between this Vector and “b”, using “pre_a”
 //and “post_b” as handles, and returning the result at position “t”.
-func (v *Vector2) CubicInterpolate(b Vector2, preA Vector2, postB Vector2, t float64) {
+func (v *Vector2) CubicInterpolate(b Vector2, preA Vector2, postB Vector2, t float64) Vector2 {
 
-	/*C++
-	Vector2 p0=p_pre_a;
-	Vector2 p1=*this;
-	Vector2 p2=p_b;
-	Vector2 p3=p_post_b;
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_cubic_interpolate(
+		v.vector2,
+		b.vector2,
+		preA.vector2,
+		postB.vector2,
+		C.realAsGodotReal(t),
+	)
 
-	real_t t = p_t;
-	real_t t2 = t * t;
-	real_t t3 = t2 * t;
-
-	Vector2 out;
-	out = ( ( p1 * 2.0) +
-	( -p0 + p2 ) * t +
-	( p0 * 2.0 - p1 * 5.0 + p2 * 4 - p3 ) * t2 +
-	( -p0 + p1 * 3.0 - p2 * 3.0 + p3 ) * t3 ) * 0.5;
-
-	return out;
-	*/
-
+	return newVec2
 }
 
 //DistanceSquaredTo returns the squared distance to vector “b”. Prefer this
 //function over “distance_to” if you need to sort vectors or need the squared
 //distance for some formula.
 func (v *Vector2) DistanceSquaredTo(to Vector2) float64 {
-	/*C++
-	return (x - p_vector2.x) * (x - p_vector2.x) + (y - p_vector2.y) * (y - p_vector2.y);
-	*/
 
+	distSqrTo := C.godot_vector2_distance_squared_to(v.vector2, to.vector2)
+	return godotRealAsReal(distSqrTo)
 }
 
 //DistanceTo returns the distance to vector “b”.
 func (v *Vector2) DistanceTo(to Vector2) float64 {
-	/*C++
-	return sqrt((x - p_vector2.x) * (x - p_vector2.x) + (y - p_vector2.y) * (y - p_vector2.y));
-	*/
 
+	distTo := C.godot_vector2_distance_to(v.vector2, to.vector2)
+	return godotRealAsReal(distTo)
 }
 
 //Dot returns the dot product with vector “b”.
 func (v *Vector2) Dot(with Vector2) float64 {
-	/*C++
-	return x * p_other.x + y * p_other.y;
-	*/
 
+	dot := C.godot_vector2_dot(v.vector2, with.vector2)
+	return godotRealAsReal(dot)
 }
 
 //Floor removes the fractional part of x and y.
-func (v *Vector2) Floor() {
-	/*C++
-	return Vector2(::floor(x), ::floor(y));
-	*/
-}
+func (v *Vector2) Floor() Vector2 {
 
-//FloorF removes the fractional part of x and y.
-func (v *Vector2) FloorF() {
-	//?
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_floor(v.vector2)
+
+	return newVec2
 }
 
 //GetAspect returns the ratio of X to Y.
 func (v *Vector2) GetAspect() float64 {
-	//?
+	return godotRealAsReal(C.godot_vector2_aspect(v.vector2))
+}
+
+//GetX returns v.vector2.x
+func (v *Vector2) GetX() float64 {
+	return godotRealAsReal(C.godot_vector2_get_x(v.vector2))
+}
+
+//GetY returns v.vector2.x
+func (v *Vector2) GetY() float64 {
+	return godotRealAsReal(C.godot_vector2_get_y(v.vector2))
+}
+
+func (v *Vector2) IsNormalized() bool {
+	isNormalized := C.godot_vector2_is_normalized(v.vector2)
+	return godotBoolAsBool(isNormalized)
 }
 
 //Length returns the length of the vector.
 func (v *Vector2) Length() float64 {
-	/*C++
-	return sqrt(x*x + y*y);
-	*/
-
+	return godotRealAsReal(C.godot_vector2_length(v.vector2))
 }
 
 //LengthSquared returns the squared length of the vector. Prefer this function
 //over “length” if you need to sort vectors or need the squared length for some formula.
 func (v *Vector2) LengthSquared() float64 {
-	/*C++
-	return x*x + y*y;
-	*/
-
+	return godotRealAsReal(C.godot_vector2_length_squared(v.vector2))
 }
 
 //LinearInterpolate returns the result of the linear interpolation between this
 //vector and “b”, by amount “t”.
 func (v *Vector2) LinearInterpolate(b Vector2, t float64) Vector2 {
-	/*C++
-	Vector2 res=*this;
-	res.x+= (p_t * (p_b.x-x));
-	res.y+= (p_t * (p_b.y-y));
-	return res;
-	*/
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_linear_interpolate(
+		v.vector2,
+		b.vector2,
+		realAsGodotReal(t),
+	)
 
+	return newVec2
 }
 
 //Normalized returns a normalized vector to unit length.
 func (v *Vector2) Normalized() Vector2 {
-	/*C++
-		void Vector2::normalize()
-	{
-		real_t l = x*x + y*y;
-		if (l != 0) {
-			l = (l);
-			x /= l;
-			y /= l;
-		}
-	}
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_normalized(v.vector2)
 
-	Vector2 Vector2::normalized() const
-	{
-		Vector2 v = *this;
-		v.normalize();
-		return v;
-	}
-	*/
+	return newVec2
+}
 
+//OperatorAdd adds the current vector and with.
+func (v *Vector2) OperatorAdd(with Vector2) Vector2 {
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_operator_add(v.vector2, with.vector2)
+
+	return newVec2
+}
+
+//OperatorDivideScalar divides the current vector by with.
+func (v *Vector2) OperatorDivideScalar(with float64) Vector2 {
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_operator_divide_scalar(v.vector2, realAsGodotReal(with))
+
+	return newVec2
+}
+
+//OperatorDivideVector multiplys the current vector and with.
+func (v *Vector2) OperatorDivideVector(with Vector2) Vector2 {
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_operator_divide_vector(v.vector2, with.vector2)
+
+	return newVec2
+}
+
+//OperatorEqual compares the current vector and with. Returns true if v.vector2 == with.vector2
+func (v *Vector2) OperatorEqual(with Vector2) bool {
+	operatorEqual := C.godot_vector2_operator_equal(v.vector2, with.vector2)
+
+	return godotBoolAsBool(operatorEqual)
+}
+
+//OperatorLess compares the current vector and with. Returns true if v.vector2 < with.vector
+func (v *Vector2) OperatorLess(with Vector2) bool {
+	operatorEqual := C.godot_vector2_operator_less(v.vector2, with.vector2)
+
+	return godotBoolAsBool(operatorEqual)
+}
+
+//OperatorMultiplyScalar multiplys the current vector by with.
+func (v *Vector2) OperatorMultiplyScalar(with float64) Vector2 {
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_operator_multiply_scalar(v.vector2, realAsGodotReal(with))
+
+	return newVec2
+}
+
+//OperatorMultiplyVector multiplys the current vector and with.
+func (v *Vector2) OperatorMultiplyVector(with Vector2) Vector2 {
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_operator_multiply_vector(v.vector2, with.vector2)
+
+	return newVec2
+}
+
+//OperatorNeg returns -v.vector2.
+func (v *Vector2) OperatorNeg() Vector2 {
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_operator_neg(v.vector2)
+
+	return newVec2
+}
+
+//OperatorSubtract subtracts the current vector and with.
+func (v *Vector2) OperatorSubtract(with Vector2) Vector2 {
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_operator_subtract(v.vector2, with.vector2)
+
+	return newVec2
 }
 
 //Reflect is like “slide”, but reflects the Vector instead of continuing along the wall.
-func (v *Vector2) Reflect(vec Vector2) {
-	/*C++
-	return p_vec - *this * this->dot(p_vec) * 2.0;
-	*/
+func (v *Vector2) Reflect(vec Vector2) Vector2 {
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_reflect(v.vector2, vec.vector2)
 
+	return newVec2
 }
 
 //Rotated rotates the vector by “phi” radians.
 func (v *Vector2) Rotated(phi float64) {
-	/*
-		void Vector2::set_rotation(real_t p_radians) {
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_rotated(v.vector2, realAsGodotReal(phi))
 
-			x = cosf(p_radians);
-			y = sinf(p_radians);
-		}
+	return newVec2
+}
 
+//SetX changes v.vector2.x to the value specified.
+func (v *Vector2) SetX(x float64) {
+	C.godot_vector2_set_x(v.vector2, realAsGodotReal(x))
+}
 
-		Vector2 Vector2::rotated(real_t p_by) const {
-			Vector2 v;
-			v.set_rotation(angle() + p_by);
-			v *= length();
-			return v;
-
-		}
-	*/
+//SetY changes v.vector2.x to the value specified.
+func (v *Vector2) SetY(y float64) {
+	C.godot_vector2_set_x(v.vector2, realAsGodotReal(y))
 }
 
 //Slide slides the vector by the other vector.
 func (v *Vector2) Slide(vec Vector2) {
-	/*C++
-	return p_vec - *this * this->dot(p_vec);
-	*/
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_slide(v.vector2, vec.vector2)
 
+	return newVec2
 }
 
 //Snapped snaps the vector to a grid with the given size.
 func (v *Vector2) Snapped(by Vector2) {
-	/*C++
-	return Vector2(
-				p_by.x != 0 ? ::floor(x / p_by.x + 0.5) * p_by.x : x,
-				p_by.y != 0 ? ::floor(y / p_by.y + 0.5) * p_by.y : y
-	);
-	*/
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_snapped(v.vector2, by.vector2)
 
+	return newVec2
+}
+
+//AsString returns a string.
+func (v *Vector2) AsString() string {
+	asString := C.godot_vector2_as_string(v.vector2)
+	return godotStringAsString(asString)
 }
 
 //Tangent returns a perpendicular vector.
-func (v *Vector2) Tangent() {
-	/*C++
-	return Vector2(y,-x);
-	*/
+func (v *Vector2) Tangent() Vector2 {
+	var newVec2 Vector2
+	newVec2.vector2 = C.godot_vector2_tangent(v.vector2)
 
+	return newVec2
 }
