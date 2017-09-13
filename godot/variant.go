@@ -109,6 +109,10 @@ func intAsVariant(value int64) *C.godot_variant {
 	return &variant
 }
 
+func godotIntAsInt(value C.godot_int) int {
+	return int(value)
+}
+
 func variantAsReal(variant *C.godot_variant) float64 {
 	godotFloat := C.godot_variant_as_real(variant)
 	return float64(godotFloat)
@@ -177,10 +181,17 @@ func nodePathAsVariant(nodePath *NodePath) *C.godot_variant {
 	return &variant
 }
 
+func vec3AxisAsGodotVec3Axis(axis Vec3Axis) C.godot_vector3_axis {
+	return C.godot_vector3_axis(axis)
+}
+
+func godotVec3AxisAsVec3Axis(axis C.godot_vector3_axis) Vec3Axis {
+	return Vec3Axis(axis)
+}
+
 /*
 TODO:
 godot_array GDAPI godot_variant_as_array(const godot_variant *p_self);
-godot_basis GDAPI godot_variant_as_basis(const godot_variant *p_self);
 godot_color GDAPI godot_variant_as_color(const godot_variant *p_self);
 godot_dictionary GDAPI godot_variant_as_dictionary(const godot_variant *p_self);
 godot_object GDAPI *godot_variant_as_object(const godot_variant *p_self);
@@ -198,6 +209,9 @@ godot_rect3 GDAPI godot_variant_as_rect3(const godot_variant *p_self);
 godot_rid GDAPI godot_variant_as_rid(const godot_variant *p_self);
 godot_transform GDAPI godot_variant_as_transform(const godot_variant *p_self);
 godot_transform2d GDAPI godot_variant_as_transform2d(const godot_variant *p_self);
+
+PRIORITY:
+godot_basis GDAPI godot_variant_as_basis(const godot_variant *p_self);
 godot_vector2 GDAPI godot_variant_as_vector2(const godot_variant *p_self);
 godot_vector3 GDAPI godot_variant_as_vector3(const godot_variant *p_self);
 */
