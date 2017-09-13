@@ -98,7 +98,7 @@ func (v *Vector3) CubicInterpolate(b Vector3, preA Vector3, postB Vector3, t flo
 		b.vector3,
 		preA.vector3,
 		postB.vector3,
-		C.realAsGodotReal(t),
+		realAsGodotReal(t),
 	)
 
 	return newVec3
@@ -266,7 +266,7 @@ func (v *Vector3) OperatorNeg() Vector3 {
 //OperatorSubtract subtracts the current vector and with.
 func (v *Vector3) OperatorSubtract(with Vector3) Vector3 {
 	var newVec3 Vector3
-	newVec3.vector3 = C.godot_vector3_operator_subtract(v.vector3, with.vector3)
+	newVec3.vector3 = C.godot_vector3_operator_substract(v.vector3, with.vector3)
 
 	return newVec3
 }
