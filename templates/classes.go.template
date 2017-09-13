@@ -44,49 +44,49 @@ type Class interface {
 	getOwner() *C.godot_object
 }
 
-{{ range $i, $class := $view.GDClass -}}
-    {{ if $view.IsValidClass $class.AttrName $class.AttrInherits -}}
+{{ range $i, $class := $view.APIs -}}
+    {{ if $view.IsValidClass $class.Name $class.BaseClass -}}
 
         /*
-        {{ $view.Trim $class.GDDescription.Text }}
+        {{ $view.ClassDoc $class.Name }}
         */
-        type {{ $class.AttrName }} struct {
-            {{ $class.AttrInherits }}
-            {{ if eq $class.AttrName "Object" }}
+        type {{ $class.Name }} struct {
+            {{ $class.BaseClass }}
+            {{ if eq $class.Name "Object" }}
                 owner *C.godot_object
             {{ end }}
         }
 
-        func (o *{{ $class.AttrName }}) baseClass() string {
-            return "{{ $class.AttrName }}"
+        func (o *{{ $class.Name }}) baseClass() string {
+            return "{{ $class.Name }}"
         }
 
-        {{ if $class.GDMethods }}
-            {{ range $j, $method := $class.GDMethods.GDMethod }}
+        {{ if $class.Methods }}
+            {{ range $j, $method := $class.Methods }}
                 /*
-                {{ $view.Trim $method.GDDescription.Text }}
+                {{ $view.MethodDoc $class.Name $method.Name }}
                 */
-                func (o *{{ $class.AttrName }}) {{ $view.GoMethodName $method.AttrName }}({{ range $k, $arg := $method.GDArgument }}{{ $view.GoArgName $arg.AttrName }} {{ $view.GoValue $arg.AttrType }},{{ end }}) {{ if $method.GDReturn }}{{ $view.GoValue $method.GDReturn.AttrType }}{{ end }} {
-                    log.Println("Calling {{ $class.AttrName }}.{{ $view.GoMethodName $method.AttrName }}()")
+                func (o *{{ $class.Name }}) {{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $arg.Type }},{{ end }}) {{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ end }} {
+                    log.Println("Calling {{ $class.Name }}.{{ $view.GoMethodName $method.Name }}()")
 
                     // Build out the method's arguments
-                    goArguments := make([]reflect.Value, {{ len $method.GDArgument }}, {{ len $method.GDArgument }})
-                    {{ range $k, $arg := $method.GDArgument -}}
-                        goArguments[{{ $k }}] = reflect.ValueOf({{ $view.GoArgName $arg.AttrName }})
+                    goArguments := make([]reflect.Value, {{ len $method.Arguments }}, {{ len $method.Arguments }})
+                    {{ range $k, $arg := $method.Arguments -}}
+                        goArguments[{{ $k }}] = reflect.ValueOf({{ $view.GoArgName $arg.Name }})
                     {{ end }}
 
                     // Call the parent method.
-                    {{ if $method.GDReturn }}
-                        {{ $returnType := $view.GoValue $method.GDReturn.AttrType }}{{ if ne $returnType "" }}
-                            goRet := o.callParentMethod(o.baseClass(), "{{ $method.AttrName }}", goArguments, "{{ if $method.GDReturn }}{{ $view.GoValue $method.GDReturn.AttrType }}{{ end }}")
+                    {{ if $method.ReturnType }}
+                        {{ $returnType := $view.GoValue $method.ReturnType }}{{ if ne $returnType "" }}
+                            goRet := o.callParentMethod(o.baseClass(), "{{ $method.Name }}", goArguments, "{{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ end }}")
                         {{ else }}
-                            o.callParentMethod(o.baseClass(), "{{ $method.AttrName }}", goArguments, "{{ if $method.GDReturn }}{{ $view.GoValue $method.GDReturn.AttrType }}{{ end }}")
+                            o.callParentMethod(o.baseClass(), "{{ $method.Name }}", goArguments, "{{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ end }}")
                         {{ end }}
                     {{ end -}}
                     log.Println("Got return value!")
-                    {{ if $method.GDReturn }}
-                        {{ $returnType := $view.GoValue $method.GDReturn.AttrType }}{{ if ne $returnType "" }}
-                            returnValue := goRet.Interface().({{ $view.GoValue $method.GDReturn.AttrType }})
+                    {{ if $method.ReturnType }}
+                        {{ $returnType := $view.GoValue $method.ReturnType }}{{ if ne $returnType "" }}
+                            returnValue := goRet.Interface().({{ $view.GoValue $method.ReturnType }})
 
                             return returnValue
                         {{ end }}
@@ -95,7 +95,7 @@ type Class interface {
             {{ end }}
         {{ end }}
 
-        {{ if eq $class.AttrName "Object" }}
+        {{ if eq $class.Name "Object" }}
             // SetOwner will internally set the Godot object inside the struct.
             // This is used to call parent methods.
             func (o *Object) setOwner(object *C.godot_object) {
@@ -216,10 +216,9 @@ type Class interface {
         {{ end }}
 
         /*
-        {{ $class.AttrName }}Implementer is an interface for {{ $class.AttrName }} objects.
-        {{ $view.Trim $class.GDDescription.Text }}
+        {{ $class.Name }}Implementer is an interface for {{ $class.Name }} objects.
         */
-        type {{ $class.AttrName }}Implementer interface {
+        type {{ $class.Name }}Implementer interface {
                 Class
         }
 

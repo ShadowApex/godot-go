@@ -7,31 +7,121 @@ objects.
 
 import (
 	"bytes"
+	"encoding/json"
 	"encoding/xml"
 	"fmt"
 	"github.com/pinzolo/casee"
-	"github.com/shadowapex/godot-go/templates"
 	"io/ioutil"
 	"log"
-	"net/http"
 	"os"
+	"regexp"
 	"strings"
 	"text/template"
 	"unicode"
 )
 
-const classesUrl = "https://raw.githubusercontent.com/godotengine/godot/master/doc/base/classes.xml"
+// GDAPI is a structure for parsed JSON from godot_api.json.
+type GDAPI struct {
+	APIType      string           `json:"api_type"`
+	BaseClass    string           `json:"base_class"`
+	Constants    map[string]int64 `json:"constants"`
+	Enums        []GDEnums        `json:"enums"`
+	Methods      []GDMethod       `json:"methods"`
+	Name         string           `json:"name"`
+	Properties   []GDProperty     `json:"properties"`
+	Signals      []GDSignal       `json:"signals"`
+	Singleton    bool             `json:"singleton"`
+	Instanciable bool             `json:"instanciable"`
+	IsReference  bool             `json:"is_reference"`
+}
 
-// View is a structure that embeds the classes.xml struct, but has additional methods
+type GDEnums struct {
+	Name   string           `json:"name"`
+	Values map[string]int64 `json:"values"`
+}
+
+type GDMethod struct {
+	Arguments    []GDArgument `json:"arguments"`
+	HasVarargs   bool         `json:"has_varargs"`
+	IsConst      bool         `json:"is_const"`
+	IsEditor     bool         `json:"is_editor"`
+	IsFromScript bool         `json:"is_from_script"`
+	IsNoscript   bool         `json:"is_noscript"`
+	IsReverse    bool         `json:"is_reverse"`
+	IsVirtual    bool         `json:"is_virtual"`
+	Name         string       `json:"name"`
+	ReturnType   string       `json:"return_type"`
+}
+
+type GDArgument struct {
+	DefaultValue    string `json:"default_value"`
+	HasDefaultValue bool   `json:"has_default_value"`
+	Name            string `json:"name"`
+	Type            string `json:"type"`
+}
+
+type GDProperty struct {
+	Getter string `json:"getter"`
+	Name   string `json:"name"`
+	Setter string `json:"setter"`
+	Type   string `json:"type"`
+}
+
+type GDSignal struct {
+	Arguments []GDArgument `json:"arguments"`
+	Name      string       `json:"name"`
+}
+
+// GDAPIDoc is a structure for parsed documentation.
+type GDAPIDoc struct {
+	Name        string        `xml:"name,attr"`
+	Description string        `xml:"description"`
+	Methods     []GDMethodDoc `xml:"methods>method"`
+}
+
+type GDMethodDoc struct {
+	Name        string `xml:"name,attr"`
+	Description string `xml:"description"`
+}
+
+// View is a structure that holds the api classes struct, but has additional methods
 // attached to it that we can call inside our template.
 type View struct {
-	templates.GDDoc
-	Header string
+	APIs       []GDAPI
+	Header     string
+	ClassDocs  map[string]string
+	MethodDocs map[string]map[string]string
+}
+
+// ClassDoc returns the class documentation for the given class.
+func (v View) ClassDoc(class string) string {
+	if _, ok := v.ClassDocs[class]; ok {
+		return v.UltraTrim(v.ClassDocs[class])
+	}
+	return "Undocumented"
+}
+
+// MethodDoc returns the method documentation for a given class method.
+func (v View) MethodDoc(class, method string) string {
+	if _, ok := v.MethodDocs[class][method]; ok {
+		return v.UltraTrim(v.MethodDocs[class][method])
+	}
+	return "Undocumented"
 }
 
 // Trim can be used inside the template to trim starting and ending whitespace.
 func (v View) Trim(str string) string {
 	return strings.TrimSpace(str)
+}
+
+// UltraTrim will use RegEx to clean all extra whitespace.
+func (v View) UltraTrim(input string) string {
+	re_leadclose_whtsp := regexp.MustCompile(`^[\s\p{Zs}]+|[\s\p{Zs}]+$`)
+	re_inside_whtsp := regexp.MustCompile(`[\s\p{Zs}]{2,}`)
+	final := re_leadclose_whtsp.ReplaceAllString(input, "")
+	final = re_inside_whtsp.ReplaceAllString(final, " ")
+
+	return final
 }
 
 // GoMethodName will convert the snake_case'd version of the Godot method name
@@ -73,6 +163,11 @@ func (v View) GoArgName(argString string) string {
 
 // GoValue will convert the Godot value into a valid Go value.
 func (v View) GoValue(returnString string) string {
+	// TODO: Right now we're converting any enum types to int64. We should
+	// look into creating types for each of these maybe?
+	if strings.Contains(returnString, "enum.") {
+		returnString = "int64"
+	}
 	switch returnString {
 	case "String":
 		return "string"
@@ -115,22 +210,54 @@ func (v View) IsValidClass(classString, inheritsString string) bool {
 
 func main() {
 
-	// Fetch the classes XML
-	resp, err := http.Get(classesUrl)
-	if err != nil {
-		panic(err)
+	// Get the basepath so we know where to look for our JSON API and template file.
+	templatePath := os.Getenv("TMPLT_PATH")
+	if templatePath == "" {
+		panic("$TMPLT_PATH environment variable was not set. Be sure to run this from generate.sh!")
 	}
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
+	docsPath := os.Getenv("GODOT_DOC_PATH")
+	if docsPath == "" {
+		panic("$GODOT_DOC_PATH environment variable was not set. Be sure to run this from generate.sh!")
+	}
+
+	// Get our documentation that was pulled down from generate.sh.
+	docFiles, err := ioutil.ReadDir(docsPath)
 	if err != nil {
 		panic(err)
 	}
 
-	// Unmarshal the XML into a defined structure. This structure is generated by
-	// cmd/generate.sh.
-	var classes View
-	xml.Unmarshal(body, &classes)
-	classes.Header = `
+	// Loop through all of the documentation files and parse them. We will use this for
+	// populating the comment strings in classes.go.
+	classDocs := map[string]string{}
+	methodDocs := map[string]map[string]string{}
+	for _, docFile := range docFiles {
+		body, err := ioutil.ReadFile(docsPath + "/" + docFile.Name())
+		if err != nil {
+			panic(err)
+		}
+		var obj GDAPIDoc
+		xml.Unmarshal(body, &obj)
+
+		// Populate our class docs
+		classDocs[obj.Name] = obj.Description
+		methodDocs[obj.Name] = map[string]string{}
+
+		// Populate our method docs
+		for _, method := range obj.Methods {
+			methodDocs[obj.Name][method.Name] = method.Description
+		}
+	}
+
+	// Open our godot_api.json file
+	body, err := ioutil.ReadFile(templatePath + "/godot_api.json")
+	if err != nil {
+		panic(err)
+	}
+
+	// Unmarshal the JSON into a defined structure.
+	var view View
+	json.Unmarshal(body, &view.APIs)
+	view.Header = `
 //------------------------------------------------------------------------------
 //   This code was generated by a tool.
 //
@@ -140,62 +267,12 @@ func main() {
 //   code.
 //------------------------------------------------------------------------------
 `
-
-	// Loop through all classes
-	//for _, class := range classes.GDClass {
-	//	fmt.Println("Name:", class.AttrName)
-	//	fmt.Println("  Category:", class.AttrCategory)
-	//	fmt.Println("  Inherits:", class.AttrInherits)
-	//	fmt.Println("  Description:", class.GDDescription.Text)
-	//	fmt.Println("  Constants:")
-	//	if class.GDConstants != nil {
-	//		for _, constant := range class.GDConstants.GDConstant {
-	//			fmt.Println("    Constant:", constant)
-	//		}
-	//	}
-	//	fmt.Println("  Members:")
-	//	if class.GDMembers != nil {
-	//		for _, member := range class.GDMembers.GDMember {
-	//			fmt.Println("    Member:", member)
-	//		}
-	//	}
-	//	fmt.Println("  Methods:")
-	//	if class.GDMethods != nil {
-	//		for _, method := range class.GDMethods.GDMethod {
-	//			fmt.Println("    Method:")
-	//			fmt.Println("      Name:", method.AttrName)
-	//			fmt.Println("      Description:", method.GDDescription.Text)
-	//			fmt.Println("      Qualifiers:", method.AttrQualifiers)
-	//			fmt.Println("      Arguments:")
-	//			for _, arg := range method.GDArgument {
-	//				fmt.Println("        Name:", arg.AttrName)
-	//				fmt.Println("        Default:", arg.AttrDefault)
-	//				fmt.Println("        Index:", arg.AttrIndex)
-	//				fmt.Println("        Type:", arg.AttrType)
-	//			}
-	//			fmt.Println("      Returns:")
-	//			if method.GDReturn != nil {
-	//				fmt.Println("        Name:", method.GDReturn.AttrType)
-	//			}
-	//		}
-	//	}
-	//	fmt.Println("  Signals:")
-	//	if class.GDSignals != nil {
-	//		for _, signal := range class.GDSignals.GDSignal {
-	//			fmt.Println("    Signal:", signal)
-	//		}
-	//	}
-	//	fmt.Println("  Theme Items:")
-	//	if class.GDTheme_items != nil {
-	//		for _, theme := range class.GDTheme_items.GDTheme_item {
-	//			fmt.Println("    Theme:", theme)
-	//		}
-	//	}
-	//}
+	// Add our documentation to our view.
+	view.ClassDocs = classDocs
+	view.MethodDocs = methodDocs
 
 	// List out template file
-	basePath := os.Getenv("GOPATH") + "/src/github.com/shadowapex/godot-go/templates"
-	templateFile := basePath + "/classes.go.template"
+	templateFile := templatePath + "/classes.go.template"
 
 	// Create a template from our template file.
 	t, err := template.ParseFiles(templateFile)
@@ -203,7 +280,7 @@ func main() {
 		log.Fatal("Error parsing template:", err)
 	}
 	templateBuffer := bytes.NewBufferString("")
-	err = t.Execute(templateBuffer, classes)
+	err = t.Execute(templateBuffer, view)
 	if err != nil {
 		log.Fatal("Unable to apply template:", err)
 	}
