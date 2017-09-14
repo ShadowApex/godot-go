@@ -1,0 +1,12 @@
+language: go
+
+before_install:
+    - git clone https://github.com/GodotNativeTools/godot_headers.git
+    - cp -r godot_headers/* /usr/local/include
+
+install:
+    - go get github.com/pinzolo/casee
+
+script:
+    - go generate
+    - go build -v -buildmode=c-shared -o libgodot.so ./examples/pong/pong.go
