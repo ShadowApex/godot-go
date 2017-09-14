@@ -1,8 +1,14 @@
 language: go
 
+go:
+    - 1.7
+    - 1.8
+    - 1.9
+    - master
+
 before_install:
     - git clone https://github.com/GodotNativeTools/godot_headers.git
-    - cp -r godot_headers/* /usr/local/include
+    - sudo cp -r godot_headers/* /usr/local/include
 
 install:
     - go get github.com/pinzolo/casee
