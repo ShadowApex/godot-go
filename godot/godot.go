@@ -2,7 +2,7 @@
 package godot
 
 /*
-#cgo CXXFLAGS: -I/usr/local/include -std=c11
+#cgo CXXFLAGS: -I/usr/local/include -std=c99
 #cgo LDFLAGS: -Wl,-unresolved-symbols=ignore-all
 #include <stddef.h>
 #include <stdlib.h>
