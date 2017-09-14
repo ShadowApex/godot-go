@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/ShadowApex/godot-go.svg?branch=master)](https://travis-ci.org/ShadowApex/godot-go)
+[![GoDoc](https://godoc.org/github.com/ShadowApex/goquery?status.png)](https://godoc.org/github.com/ShadowApex/godot-go/godot)
+[![Go Report Card](https://goreportcard.com/badge/github.com/shadowapex/godot-go)](https://goreportcard.com/report/github.com/shadowapex/godot-go)
+
 # Godot-Go
 Go language bindings for the [Godot Engine](https://godotengine.org/)'s [GDNative API](https://github.com/GodotNativeTools/godot_headers).
 

@@ -18,4 +18,4 @@ install:
 
 script:
     - go generate
-    - go build -x -v -buildmode=c-shared -o libgodot.so ./examples/pong/pong.go
+    - CGO_CXXFLAGS="-I/usr/local/include -std=c11" go build -x -v -buildmode=c-shared -o libgodot.so ./examples/pong/pong.go
