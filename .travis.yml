@@ -1,5 +1,7 @@
 language: go
 
+sudo: true
+
 go:
     - 1.7
     - 1.8
@@ -16,4 +18,4 @@ install:
 
 script:
     - go generate
-    - go build -v -buildmode=c-shared -o libgodot.so ./examples/pong/pong.go
+    - go build -x -v -buildmode=c-shared -o libgodot.so ./examples/pong/pong.go
