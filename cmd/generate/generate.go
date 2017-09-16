@@ -164,9 +164,9 @@ func (v View) GoArgName(argString string) string {
 // GoValue will convert the Godot value into a valid Go value.
 func (v View) GoValue(returnString string) string {
 	// TODO: Right now we're converting any enum types to int64. We should
-	// look into creating types for each of these maybe?
+	// look into creating types for each of these maybe? LOL
 	if strings.Contains(returnString, "enum.") {
-		returnString = "int64"
+		returnString = "int"
 	}
 	switch returnString {
 	case "String":
