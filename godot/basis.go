@@ -113,6 +113,9 @@ type Basis struct {
 	basis *C.godot_basis
 }
 
+// TODO: These are commented out right now because these functions have not yet been implemented in
+// Godot. We can uncomment this when they are implemented in Godot.
+/*
 // AsString returns a string of the basis
 func (b *Basis) AsString() string {
 	asString := C.godot_basis_as_string(b.basis)
@@ -305,3 +308,4 @@ func (b *Basis) Xform(with Vector3) *Vector3 {
 func (b *Basis) XformInv(with Vector3) *Vector3 {
 	return godotVec3AsVec3(C.godot_basis_xform_inv(b.basis, with.vector3))
 }
+*/
