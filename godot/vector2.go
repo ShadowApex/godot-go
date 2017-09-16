@@ -73,19 +73,25 @@ func (v *Vector2) Bounce(with Vector2) *Vector2 {
 
 //Clamped replaces v.vector2 with a new vector2 that is equivelant to v.vector2 * length
 func (v *Vector2) Clamped(length float64) *Vector2 {
-	return godotVec2AsVec2(C.godot_vector2_clamped(v.vector2, realAsGodotReal(length)))
+	return godotVec2AsVec2(
+		C.godot_vector2_clamped(
+			v.vector2,
+			realAsGodotReal(length),
+		),
+	)
 }
 
 //CubicInterpolate Cubicly interpolates between this Vector and “b”, using “pre_a”
 //and “post_b” as handles, and returning the result at position “t”.
 func (v *Vector2) CubicInterpolate(b Vector2, preA Vector2, postB Vector2, t float64) *Vector2 {
-	return godotVec2AsVec2(C.godot_vector2_cubic_interpolate(
-		v.vector2,
-		b.vector2,
-		preA.vector2,
-		postB.vector2,
-		realAsGodotReal(t),
-	),
+	return godotVec2AsVec2(
+		C.godot_vector2_cubic_interpolate(
+			v.vector2,
+			b.vector2,
+			preA.vector2,
+			postB.vector2,
+			realAsGodotReal(t),
+		),
 	)
 }
 
@@ -163,17 +169,32 @@ func (v *Vector2) Normalized() *Vector2 {
 
 //OperatorAdd adds the current vector and with.
 func (v *Vector2) OperatorAdd(with Vector2) *Vector2 {
-	return godotVec2AsVec2(C.godot_vector2_operator_add(v.vector2, with.vector2))
+	return godotVec2AsVec2(
+		C.godot_vector2_operator_add(
+			v.vector2,
+			with.vector2,
+		),
+	)
 }
 
 //OperatorDivideScalar divides the current vector by with.
 func (v *Vector2) OperatorDivideScalar(with float64) *Vector2 {
-	return godotVec2AsVec2(C.godot_vector2_operator_divide_scalar(v.vector2, realAsGodotReal(with)))
+	return godotVec2AsVec2(
+		C.godot_vector2_operator_divide_scalar(
+			v.vector2,
+			realAsGodotReal(with),
+		),
+	)
 }
 
 //OperatorDivideVector multiplys the current vector and with.
 func (v *Vector2) OperatorDivideVector(with Vector2) *Vector2 {
-	return godotVec2AsVec2(C.godot_vector2_operator_divide_vector(v.vector2, with.vector2))
+	return godotVec2AsVec2(
+		C.godot_vector2_operator_divide_vector(
+			v.vector2,
+			with.vector2,
+		),
+	)
 }
 
 //OperatorEqual compares the current vector and with. Returns true if v.vector2 == with.vector2
@@ -190,12 +211,22 @@ func (v *Vector2) OperatorLess(with Vector2) bool {
 
 //OperatorMultiplyScalar multiplys the current vector by with.
 func (v *Vector2) OperatorMultiplyScalar(with float64) *Vector2 {
-	return godotVec2AsVec2(C.godot_vector2_operator_multiply_scalar(v.vector2, realAsGodotReal(with)))
+	return godotVec2AsVec2(
+		C.godot_vector2_operator_multiply_scalar(
+			v.vector2,
+			realAsGodotReal(with),
+		),
+	)
 }
 
 //OperatorMultiplyVector multiplys the current vector and with.
 func (v *Vector2) OperatorMultiplyVector(with Vector2) *Vector2 {
-	return godotVec2AsVec2(C.godot_vector2_operator_multiply_vector(v.vector2, with.vector2))
+	return godotVec2AsVec2(
+		C.godot_vector2_operator_multiply_vector(
+			v.vector2,
+			with.vector2,
+		),
+	)
 }
 
 //OperatorNeg returns -v.vector2.
@@ -205,7 +236,12 @@ func (v *Vector2) OperatorNeg() *Vector2 {
 
 //OperatorSubtract subtracts the current vector and with.
 func (v *Vector2) OperatorSubtract(with Vector2) *Vector2 {
-	return godotVec2AsVec2(C.godot_vector2_operator_substract(v.vector2, with.vector2))
+	return godotVec2AsVec2(
+		C.godot_vector2_operator_substract(
+			v.vector2,
+			with.vector2,
+		),
+	)
 }
 
 //Reflect is like “slide”, but reflects the Vector instead of continuing along the wall.
@@ -215,7 +251,12 @@ func (v *Vector2) Reflect(vec Vector2) *Vector2 {
 
 //Rotated rotates the vector by “phi” radians.
 func (v *Vector2) Rotated(phi float64) *Vector2 {
-	return godotVec2AsVec2(C.godot_vector2_rotated(v.vector2, realAsGodotReal(phi)))
+	return godotVec2AsVec2(
+		C.godot_vector2_rotated(
+			v.vector2,
+			realAsGodotReal(phi),
+		),
+	)
 }
 
 //SetX changes v.vector2.x to the value specified.
