@@ -8,6 +8,10 @@ package godot
 */
 import "C"
 
+import (
+	"unsafe"
+)
+
 //DEPENDS: Built-In types
 func NewNodePath(path string) *NodePath {
 	nodePath := &NodePath{}
@@ -53,7 +57,7 @@ func (n *NodePath) destroy() {
 func (n *NodePath) String() string {
 	n.nilCheck()
 	gdString := C.godot_node_path_as_string(n.nodePath)
-	defer C.godot_free(&gdString)
+	defer C.godot_free(unsafe.Pointer(&gdString))
 
 	return godotStringAsString(&gdString)
 }
@@ -71,7 +75,7 @@ func (n *NodePath) GetNameCount() int64 {
 func (n *NodePath) GetName(index int64) string {
 	n.nilCheck()
 	gdString := C.godot_node_path_get_name(n.nodePath, C.godot_int(index))
-	defer C.godot_free(&gdString)
+	defer C.godot_free(unsafe.Pointer(&gdString))
 
 	return godotStringAsString(&gdString)
 }
@@ -84,7 +88,7 @@ func (n *NodePath) GetSubnameCount() int64 {
 func (n *NodePath) GetSubname(index int64) string {
 	n.nilCheck()
 	gdString := C.godot_node_path_get_subname(n.nodePath, C.godot_int(index))
-	defer C.godot_free(&gdString)
+	defer C.godot_free(unsafe.Pointer(&gdString))
 
 	return godotStringAsString(&gdString)
 }
@@ -92,7 +96,7 @@ func (n *NodePath) GetSubname(index int64) string {
 func (n *NodePath) GetProperty() string {
 	n.nilCheck()
 	gdString := C.godot_node_path_get_property(n.nodePath)
-	defer C.godot_free(&gdString)
+	defer C.godot_free(unsafe.Pointer(&gdString))
 
 	return godotStringAsString(&gdString)
 }

@@ -1,0 +1,19 @@
+language: go
+
+go:
+    - 1.7
+    - 1.8
+    - 1.9
+    - master
+
+before_install:
+    - ln -s $HOME/gopath/src/github.com/ShadowApex $HOME/gopath/src/github.com/shadowapex
+    - git clone https://github.com/GodotNativeTools/godot_headers.git
+    - sudo cp -r godot_headers/* /usr/local/include
+
+install:
+    - go get github.com/pinzolo/casee
+
+script:
+    - go generate
+    - go build -v -buildmode=c-shared -o libgodot.so ./examples/pong/pong.go
