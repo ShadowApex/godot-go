@@ -150,12 +150,17 @@ func (b *Basis) GetEuler() *Vector3 {
 // of the object. It is mainly used by the grid map editor. For further details,
 // refer to Godot source code.
 func (b *Basis) GetOrthagonalIndex() int64 {
-	return godotIntAsInt(C.godot_basis_get_orthagonal_index(b.basis))
+	return godotIntAsInt(C.godot_basis_get_orthogonal_index(b.basis))
 }
 
 // GetRow returns the Vector3 at the specified row.
-func (b *Basis) GetRow(row int64) Vector3 {
-	return godotVec3AsVec3(C.godot_basis_get_row(b.basis, intAsGodotInt(row)))
+func (b *Basis) GetRow(row int64) *Vector3 {
+	return godotVec3AsVec3(
+		C.godot_basis_get_row(
+			b.basis,
+			intAsGodotInt(row),
+		),
+	)
 }
 
 // GetScale assumes that the matrix is the combination of a rotation and scaling,
@@ -198,11 +203,6 @@ func (b *Basis) OperatorMultiplyVector(with Basis) *Basis {
 			with.basis,
 		),
 	)
-}
-
-// OperatorSubtract subtracts the current basis and with.
-func (b *Basis) OperatorSubtract(with Basis) *Basis {
-	return godotBasisAsBasis(C.godot_basis_operator_subtract(b.basis, with.basis))
 }
 
 // Orthonormalized returns the orthonormalized version of the matrix (useful to

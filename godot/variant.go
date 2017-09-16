@@ -162,8 +162,8 @@ func intAsGodotInt(value int64) C.godot_int {
 	return C.godot_int(value)
 }
 
-func godotIntAsInt(value C.godot_int) int {
-	return int(value)
+func godotIntAsInt(value C.godot_int) int64 {
+	return int64(value)
 }
 
 func realAsCReal(value float64) C.double {
