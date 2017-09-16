@@ -157,13 +157,13 @@ func (v *Vector3) LinearInterpolate(b Vector3, t float64) *Vector3 {
 
 // MaxAxis returns VECTOR3_AXIS_X, VECTOR3_AXIS_Y or VECTOR3_AXIS_Z depending on
 // which axis is the largest.
-func (v *Vector3) MaxAxis() int {
+func (v *Vector3) MaxAxis() int64 {
 	return godotIntAsInt(C.godot_vector3_max_axis(v.vector3))
 }
 
 // MinAxis returns VECTOR3_AXIS_X, VECTOR3_AXIS_Y or VECTOR3_AXIS_Z depending on
 // which axis is the smallest.
-func (v *Vector3) MinAxis() int {
+func (v *Vector3) MinAxis() int64 {
 	return godotIntAsInt(C.godot_vector3_min_axis(v.vector3))
 }
 
