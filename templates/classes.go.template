@@ -47,7 +47,7 @@ type Class interface {
 {{ range $i, $class := $view.APIs -}}
     {{ if $view.IsValidClass $class.Name $class.BaseClass -}}
         {{ if $class.Singleton -}}
-            func newSingleton{{ $class.Name }}() *{{ $view.SetClassName $class.Name $class.Singleton}} {
+            func newSingleton{{ $view.GoClassName $class.Name }}() *{{ $view.SetClassName $class.Name $class.Singleton}} {
                 obj := &{{ $view.SetClassName $class.Name $class.Singleton }}{}
                 ptr := C.godot_global_get_singleton(C.CString("{{ $class.Name }}"))
                 obj.owner = (*C.godot_object)(ptr)
@@ -56,7 +56,7 @@ type Class interface {
             /*
             {{ $view.ClassDoc $class.Name }}
             */
-            var {{ $class.Name }} = newSingleton{{ $class.Name }}()
+            var {{ $view.GoClassName $class.Name }} = newSingleton{{ $view.GoClassName $class.Name }}()
         {{ end }}
         /*
         {{ $view.ClassDoc $class.Name }}

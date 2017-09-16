@@ -1282,7 +1282,7 @@
 			},
 			{
 				"name": "reference",
-				"return_type": "void",
+				"return_type": "bool",
 				"is_editor": false,
 				"is_noscript": false,
 				"is_const": false,
@@ -12313,7 +12313,7 @@
 			},
 			{
 				"name": "get_power_state",
-				"return_type": "enum.PowerState",
+				"return_type": "enum._OS::PowerState",
 				"is_editor": false,
 				"is_noscript": false,
 				"is_const": false,
@@ -14285,7 +14285,19 @@
 			"AREA_BODY_REMOVED": 1,
 			"INFO_ACTIVE_OBJECTS": 0,
 			"INFO_COLLISION_PAIRS": 1,
-			"INFO_ISLAND_COUNT": 2
+			"INFO_ISLAND_COUNT": 2,
+			"SPACE_PARAM_CONTACT_RECYCLE_RADIUS": 0,
+			"SPACE_PARAM_CONTACT_MAX_SEPARATION": 1,
+			"SPACE_PARAM_BODY_MAX_ALLOWED_PENETRATION": 2,
+			"SPACE_PARAM_BODY_LINEAR_VELOCITY_SLEEP_THRESHOLD": 3,
+			"SPACE_PARAM_BODY_ANGULAR_VELOCITY_SLEEP_THRESHOLD": 4,
+			"SPACE_PARAM_BODY_TIME_TO_SLEEP": 5,
+			"SPACE_PARAM_BODY_ANGULAR_VELOCITY_DAMP_RATIO": 6,
+			"SPACE_PARAM_CONSTRAINT_DEFAULT_BIAS": 7,
+			"BODY_AXIS_LOCK_DISABLED": 0,
+			"BODY_AXIS_LOCK_X": 1,
+			"BODY_AXIS_LOCK_Y": 2,
+			"BODY_AXIS_LOCK_Z": 3
 		},
 		"properties": [
 		],
@@ -16883,11 +16895,33 @@
 				}
 			},
 			{
+				"name": "BodyAxisLock",
+				"values": {
+					"BODY_AXIS_LOCK_DISABLED": 0,
+					"BODY_AXIS_LOCK_X": 1,
+					"BODY_AXIS_LOCK_Y": 2,
+					"BODY_AXIS_LOCK_Z": 3
+				}
+			},
+			{
 				"name": "PinJointParam",
 				"values": {
 					"PIN_JOINT_BIAS": 0,
 					"PIN_JOINT_DAMPING": 1,
 					"PIN_JOINT_IMPULSE_CLAMP": 2
+				}
+			},
+			{
+				"name": "SpaceParameter",
+				"values": {
+					"SPACE_PARAM_CONTACT_RECYCLE_RADIUS": 0,
+					"SPACE_PARAM_CONTACT_MAX_SEPARATION": 1,
+					"SPACE_PARAM_BODY_MAX_ALLOWED_PENETRATION": 2,
+					"SPACE_PARAM_BODY_LINEAR_VELOCITY_SLEEP_THRESHOLD": 3,
+					"SPACE_PARAM_BODY_ANGULAR_VELOCITY_SLEEP_THRESHOLD": 4,
+					"SPACE_PARAM_BODY_TIME_TO_SLEEP": 5,
+					"SPACE_PARAM_BODY_ANGULAR_VELOCITY_DAMP_RATIO": 6,
+					"SPACE_PARAM_CONSTRAINT_DEFAULT_BIAS": 7
 				}
 			},
 			{
@@ -20378,6 +20412,9 @@
 		"instanciable": false,
 		"is_reference": false,
 		"constants": {
+			"SPEAKER_MODE_STEREO": 0,
+			"SPEAKER_SURROUND_51": 2,
+			"SPEAKER_SURROUND_71": 3
 		},
 		"properties": [
 		],
@@ -21090,6 +21127,14 @@
 			}
 		],
 		"enums": [
+			{
+				"name": "SpeakerMode",
+				"values": {
+					"SPEAKER_MODE_STEREO": 0,
+					"SPEAKER_SURROUND_51": 2,
+					"SPEAKER_SURROUND_71": 3
+				}
+			}
 		]
 	},
 	{
@@ -23275,6 +23320,10 @@
 		"instanciable": false,
 		"is_reference": true,
 		"constants": {
+			"FILTER_6DB": 0,
+			"FILTER_12DB": 1,
+			"FILTER_18DB": 2,
+			"FILTER_24DB": 3
 		},
 		"properties": [
 			{
@@ -23435,6 +23484,90 @@
 			}
 		],
 		"enums": [
+			{
+				"name": "FilterDB",
+				"values": {
+					"FILTER_6DB": 0,
+					"FILTER_12DB": 1,
+					"FILTER_18DB": 2,
+					"FILTER_24DB": 3
+				}
+			}
+		]
+	},
+	{
+		"name": "AudioEffectEQ",
+		"base_class": "AudioEffect",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": false,
+		"is_reference": true,
+		"constants": {
+		},
+		"properties": [
+		],
+		"signals": [
+		],
+		"methods": [
+			{
+				"name": "set_band_gain_db",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "band_idx",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "volume_db",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_band_gain_db",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "band_idx",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_band_count",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			}
+		],
+		"enums": [
 		]
 	},
 	{
@@ -23564,81 +23697,6 @@
 		]
 	},
 	{
-		"name": "AudioEffectEQ",
-		"base_class": "AudioEffect",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": false,
-		"is_reference": true,
-		"constants": {
-		},
-		"properties": [
-		],
-		"signals": [
-		],
-		"methods": [
-			{
-				"name": "set_band_gain_db",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "band_idx",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "volume_db",
-						"type": "float",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_band_gain_db",
-				"return_type": "float",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "band_idx",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_band_count",
-				"return_type": "int",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			}
-		],
-		"enums": [
-		]
-	},
-	{
 		"name": "AudioEffectEQ6",
 		"base_class": "AudioEffectEQ",
 		"api_type": "core",
@@ -23700,6 +23758,11 @@
 		"instanciable": true,
 		"is_reference": true,
 		"constants": {
+			"MODE_CLIP": 0,
+			"MODE_ATAN": 1,
+			"MODE_LOFI": 2,
+			"MODE_OVERDRIVE": 3,
+			"MODE_WAVESHAPE": 4
 		},
 		"properties": [
 			{
@@ -23898,6 +23961,16 @@
 			}
 		],
 		"enums": [
+			{
+				"name": "Mode",
+				"values": {
+					"MODE_CLIP": 0,
+					"MODE_ATAN": 1,
+					"MODE_LOFI": 2,
+					"MODE_OVERDRIVE": 3,
+					"MODE_WAVESHAPE": 4
+				}
+			}
 		]
 	},
 	{
@@ -27079,194 +27152,6 @@
 		]
 	},
 	{
-		"name": "Font",
-		"base_class": "Resource",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": false,
-		"is_reference": true,
-		"constants": {
-		},
-		"properties": [
-		],
-		"signals": [
-		],
-		"methods": [
-			{
-				"name": "draw",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "canvas_item",
-						"type": "RID",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "pos",
-						"type": "Vector2",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "string",
-						"type": "String",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "modulate",
-						"type": "Color",
-						"has_default_value": true,
-						"default_value": "1,1,1,1"
-					},
-					{
-						"name": "clip_w",
-						"type": "int",
-						"has_default_value": true,
-						"default_value": "-1"
-					}
-				]
-			},
-			{
-				"name": "get_ascent",
-				"return_type": "float",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_descent",
-				"return_type": "float",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_height",
-				"return_type": "float",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "is_distance_field_hint",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_string_size",
-				"return_type": "Vector2",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "string",
-						"type": "String",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "draw_char",
-				"return_type": "float",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "canvas_item",
-						"type": "RID",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "pos",
-						"type": "Vector2",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "char",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "next",
-						"type": "int",
-						"has_default_value": true,
-						"default_value": "-1"
-					},
-					{
-						"name": "modulate",
-						"type": "Color",
-						"has_default_value": true,
-						"default_value": "1,1,1,1"
-					}
-				]
-			},
-			{
-				"name": "update_changes",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			}
-		],
-		"enums": [
-		]
-	},
-	{
 		"name": "BitmapFont",
 		"base_class": "Font",
 		"api_type": "core",
@@ -28442,6 +28327,194 @@
 			},
 			{
 				"name": "copy_default_theme",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			}
+		],
+		"enums": [
+		]
+	},
+	{
+		"name": "Font",
+		"base_class": "Resource",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": false,
+		"is_reference": true,
+		"constants": {
+		},
+		"properties": [
+		],
+		"signals": [
+		],
+		"methods": [
+			{
+				"name": "draw",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "canvas_item",
+						"type": "RID",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "pos",
+						"type": "Vector2",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "string",
+						"type": "String",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "modulate",
+						"type": "Color",
+						"has_default_value": true,
+						"default_value": "1,1,1,1"
+					},
+					{
+						"name": "clip_w",
+						"type": "int",
+						"has_default_value": true,
+						"default_value": "-1"
+					}
+				]
+			},
+			{
+				"name": "get_ascent",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_descent",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_height",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "is_distance_field_hint",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_string_size",
+				"return_type": "Vector2",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "string",
+						"type": "String",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "draw_char",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "canvas_item",
+						"type": "RID",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "pos",
+						"type": "Vector2",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "char",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "next",
+						"type": "int",
+						"has_default_value": true,
+						"default_value": "-1"
+					},
+					{
+						"name": "modulate",
+						"type": "Color",
+						"has_default_value": true,
+						"default_value": "1,1,1,1"
+					}
+				]
+			},
+			{
+				"name": "update_changes",
 				"return_type": "void",
 				"is_editor": false,
 				"is_noscript": false,
@@ -36577,6 +36650,25 @@
 				]
 			},
 			{
+				"name": "get_drop_section_at_pos",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "pos",
+						"type": "Vector2",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
 				"name": "ensure_cursor_is_visible",
 				"return_type": "void",
 				"is_editor": false,
@@ -38007,6 +38099,9 @@
 		"instanciable": true,
 		"is_reference": false,
 		"constants": {
+			"ALIGN_LEFT": 0,
+			"ALIGN_CENTER": 1,
+			"ALIGN_RIGHT": 2
 		},
 		"properties": [
 			{
@@ -38408,6 +38503,14 @@
 			}
 		],
 		"enums": [
+			{
+				"name": "TabAlign",
+				"values": {
+					"ALIGN_LEFT": 0,
+					"ALIGN_CENTER": 1,
+					"ALIGN_RIGHT": 2
+				}
+			}
 		]
 	},
 	{
@@ -42684,7 +42787,14 @@
 			"MSAA_2X": 1,
 			"MSAA_4X": 2,
 			"MSAA_8X": 3,
-			"MSAA_16X": 4
+			"MSAA_16X": 4,
+			"USAGE_2D": 0,
+			"USAGE_2D_NO_SAMPLING": 1,
+			"USAGE_3D": 2,
+			"USAGE_3D_NO_EFFECTS": 3,
+			"CLEAR_MODE_ALWAYS": 0,
+			"CLEAR_MODE_NEVER": 1,
+			"CLEAR_MODE_ONLY_NEXT_FRAME": 2
 		},
 		"properties": [
 			{
@@ -44021,6 +44131,14 @@
 		],
 		"enums": [
 			{
+				"name": "ClearMode",
+				"values": {
+					"CLEAR_MODE_ALWAYS": 0,
+					"CLEAR_MODE_NEVER": 1,
+					"CLEAR_MODE_ONLY_NEXT_FRAME": 2
+				}
+			},
+			{
 				"name": "RenderInfo",
 				"values": {
 					"RENDER_INFO_OBJECTS_IN_FRAME": 0,
@@ -44030,6 +44148,15 @@
 					"RENDER_INFO_SURFACE_CHANGES_IN_FRAME": 4,
 					"RENDER_INFO_DRAW_CALLS_IN_FRAME": 5,
 					"RENDER_INFO_MAX": 6
+				}
+			},
+			{
+				"name": "Usage",
+				"values": {
+					"USAGE_2D": 0,
+					"USAGE_2D_NO_SAMPLING": 1,
+					"USAGE_3D": 2,
+					"USAGE_3D_NO_EFFECTS": 3
 				}
 			},
 			{
@@ -53585,7 +53712,10 @@
 			"CELL_MODE_RANGE": 2,
 			"CELL_MODE_RANGE_EXPRESSION": 3,
 			"CELL_MODE_ICON": 4,
-			"CELL_MODE_CUSTOM": 5
+			"CELL_MODE_CUSTOM": 5,
+			"ALIGN_LEFT": 0,
+			"ALIGN_CENTER": 1,
+			"ALIGN_RIGHT": 2
 		},
 		"properties": [
 		],
@@ -54062,6 +54192,38 @@
 				"is_editor": false,
 				"is_noscript": false,
 				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_custom_minimum_height",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "height",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_custom_minimum_height",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
 				"is_reverse": false,
 				"is_virtual": false,
 				"has_varargs": false,
@@ -54837,6 +54999,14 @@
 					"CELL_MODE_RANGE_EXPRESSION": 3,
 					"CELL_MODE_ICON": 4,
 					"CELL_MODE_CUSTOM": 5
+				}
+			},
+			{
+				"name": "TextAlign",
+				"values": {
+					"ALIGN_LEFT": 0,
+					"ALIGN_CENTER": 1,
+					"ALIGN_RIGHT": 2
 				}
 			}
 		]
@@ -59719,11 +59889,12 @@
 		"instanciable": false,
 		"is_reference": false,
 		"constants": {
-			"FLAG_MAX": 1,
 			"SHADOW_CASTING_SETTING_OFF": 0,
 			"SHADOW_CASTING_SETTING_ON": 1,
 			"SHADOW_CASTING_SETTING_DOUBLE_SIDED": 2,
-			"SHADOW_CASTING_SETTING_SHADOWS_ONLY": 3
+			"SHADOW_CASTING_SETTING_SHADOWS_ONLY": 3,
+			"FLAG_USE_BAKED_LIGHT": 0,
+			"FLAG_MAX": 1
 		},
 		"properties": [
 			{
@@ -60048,6 +60219,22 @@
 			}
 		],
 		"enums": [
+			{
+				"name": "Flags",
+				"values": {
+					"FLAG_USE_BAKED_LIGHT": 0,
+					"FLAG_MAX": 1
+				}
+			},
+			{
+				"name": "ShadowCastingSetting",
+				"values": {
+					"SHADOW_CASTING_SETTING_OFF": 0,
+					"SHADOW_CASTING_SETTING_ON": 1,
+					"SHADOW_CASTING_SETTING_DOUBLE_SIDED": 2,
+					"SHADOW_CASTING_SETTING_SHADOWS_ONLY": 3
+				}
+			}
 		]
 	},
 	{
@@ -60254,7 +60441,41 @@
 			"PRIMITIVE_LINE_LOOP": 3,
 			"PRIMITIVE_TRIANGLES": 4,
 			"PRIMITIVE_TRIANGLE_STRIP": 5,
-			"PRIMITIVE_TRIANGLE_FAN": 6
+			"PRIMITIVE_TRIANGLE_FAN": 6,
+			"BLEND_SHAPE_MODE_NORMALIZED": 0,
+			"BLEND_SHAPE_MODE_RELATIVE": 1,
+			"ARRAY_FORMAT_VERTEX": 1,
+			"ARRAY_FORMAT_NORMAL": 2,
+			"ARRAY_FORMAT_TANGENT": 4,
+			"ARRAY_FORMAT_COLOR": 8,
+			"ARRAY_FORMAT_TEX_UV": 16,
+			"ARRAY_FORMAT_TEX_UV2": 32,
+			"ARRAY_FORMAT_BONES": 64,
+			"ARRAY_FORMAT_WEIGHTS": 128,
+			"ARRAY_FORMAT_INDEX": 256,
+			"ARRAY_COMPRESS_BASE": 9,
+			"ARRAY_COMPRESS_VERTEX": 512,
+			"ARRAY_COMPRESS_NORMAL": 1024,
+			"ARRAY_COMPRESS_TANGENT": 2048,
+			"ARRAY_COMPRESS_COLOR": 4096,
+			"ARRAY_COMPRESS_TEX_UV": 8192,
+			"ARRAY_COMPRESS_TEX_UV2": 16384,
+			"ARRAY_COMPRESS_BONES": 32768,
+			"ARRAY_COMPRESS_WEIGHTS": 65536,
+			"ARRAY_COMPRESS_INDEX": 131072,
+			"ARRAY_FLAG_USE_2D_VERTICES": 262144,
+			"ARRAY_FLAG_USE_16_BIT_BONES": 524288,
+			"ARRAY_COMPRESS_DEFAULT": 97792,
+			"ARRAY_VERTEX": 0,
+			"ARRAY_NORMAL": 1,
+			"ARRAY_TANGENT": 2,
+			"ARRAY_COLOR": 3,
+			"ARRAY_TEX_UV": 4,
+			"ARRAY_TEX_UV2": 5,
+			"ARRAY_BONES": 6,
+			"ARRAY_WEIGHTS": 7,
+			"ARRAY_INDEX": 8,
+			"ARRAY_MAX": 9
 		},
 		"properties": [
 		],
@@ -60335,6 +60556,13 @@
 		],
 		"enums": [
 			{
+				"name": "BlendShapeMode",
+				"values": {
+					"BLEND_SHAPE_MODE_NORMALIZED": 0,
+					"BLEND_SHAPE_MODE_RELATIVE": 1
+				}
+			},
+			{
 				"name": "PrimitiveType",
 				"values": {
 					"PRIMITIVE_POINTS": 0,
@@ -60344,6 +60572,48 @@
 					"PRIMITIVE_TRIANGLES": 4,
 					"PRIMITIVE_TRIANGLE_STRIP": 5,
 					"PRIMITIVE_TRIANGLE_FAN": 6
+				}
+			},
+			{
+				"name": "ArrayFormat",
+				"values": {
+					"ARRAY_FORMAT_VERTEX": 1,
+					"ARRAY_FORMAT_NORMAL": 2,
+					"ARRAY_FORMAT_TANGENT": 4,
+					"ARRAY_FORMAT_COLOR": 8,
+					"ARRAY_COMPRESS_BASE": 9,
+					"ARRAY_FORMAT_TEX_UV": 16,
+					"ARRAY_FORMAT_TEX_UV2": 32,
+					"ARRAY_FORMAT_BONES": 64,
+					"ARRAY_FORMAT_WEIGHTS": 128,
+					"ARRAY_FORMAT_INDEX": 256,
+					"ARRAY_COMPRESS_VERTEX": 512,
+					"ARRAY_COMPRESS_NORMAL": 1024,
+					"ARRAY_COMPRESS_TANGENT": 2048,
+					"ARRAY_COMPRESS_COLOR": 4096,
+					"ARRAY_COMPRESS_TEX_UV": 8192,
+					"ARRAY_COMPRESS_TEX_UV2": 16384,
+					"ARRAY_COMPRESS_BONES": 32768,
+					"ARRAY_COMPRESS_WEIGHTS": 65536,
+					"ARRAY_COMPRESS_DEFAULT": 97792,
+					"ARRAY_COMPRESS_INDEX": 131072,
+					"ARRAY_FLAG_USE_2D_VERTICES": 262144,
+					"ARRAY_FLAG_USE_16_BIT_BONES": 524288
+				}
+			},
+			{
+				"name": "ArrayType",
+				"values": {
+					"ARRAY_VERTEX": 0,
+					"ARRAY_NORMAL": 1,
+					"ARRAY_TANGENT": 2,
+					"ARRAY_COLOR": 3,
+					"ARRAY_TEX_UV": 4,
+					"ARRAY_TEX_UV2": 5,
+					"ARRAY_BONES": 6,
+					"ARRAY_WEIGHTS": 7,
+					"ARRAY_INDEX": 8,
+					"ARRAY_MAX": 9
 				}
 			}
 		]
@@ -62545,6 +62815,10 @@
 		"instanciable": true,
 		"is_reference": false,
 		"constants": {
+			"SHADOW_DUAL_PARABOLOID": 0,
+			"SHADOW_CUBE": 1,
+			"SHADOW_DETAIL_VERTICAL": 0,
+			"SHADOW_DETAIL_HORIZONTAL": 1
 		},
 		"properties": [
 			{
@@ -62641,6 +62915,20 @@
 			}
 		],
 		"enums": [
+			{
+				"name": "ShadowMode",
+				"values": {
+					"SHADOW_DUAL_PARABOLOID": 0,
+					"SHADOW_CUBE": 1
+				}
+			},
+			{
+				"name": "ShadowDetail",
+				"values": {
+					"SHADOW_DETAIL_VERTICAL": 0,
+					"SHADOW_DETAIL_HORIZONTAL": 1
+				}
+			}
 		]
 	},
 	{
@@ -64070,7 +64358,9 @@
 			"NODE_BLEND4": 6,
 			"NODE_TIMESCALE": 7,
 			"NODE_TIMESEEK": 8,
-			"NODE_TRANSITION": 9
+			"NODE_TRANSITION": 9,
+			"ANIMATION_PROCESS_FIXED": 0,
+			"ANIMATION_PROCESS_IDLE": 1
 		},
 		"properties": [
 			{
@@ -65470,6 +65760,13 @@
 		],
 		"enums": [
 			{
+				"name": "AnimationProcessMode",
+				"values": {
+					"ANIMATION_PROCESS_FIXED": 0,
+					"ANIMATION_PROCESS_IDLE": 1
+				}
+			},
+			{
 				"name": "NodeType",
 				"values": {
 					"NODE_OUTPUT": 0,
@@ -66300,6 +66597,9 @@
 		"instanciable": true,
 		"is_reference": true,
 		"constants": {
+			"SAMPLE_PARTITION_WATERSHED": 0,
+			"SAMPLE_PARTITION_MONOTONE": 1,
+			"SAMPLE_PARTITION_LAYERS": 2
 		},
 		"properties": [
 			{
@@ -66313,11 +66613,657 @@
 				"type": "Array",
 				"getter": "_get_polygons",
 				"setter": "_set_polygons"
+			},
+			{
+				"name": "sample_partition_type/sample_partition_type",
+				"type": "int",
+				"getter": "get_sample_partition_type",
+				"setter": "set_sample_partition_type"
+			},
+			{
+				"name": "cell/size",
+				"type": "float",
+				"getter": "get_cell_size",
+				"setter": "set_cell_size"
+			},
+			{
+				"name": "cell/height",
+				"type": "float",
+				"getter": "get_cell_height",
+				"setter": "set_cell_height"
+			},
+			{
+				"name": "agent/height",
+				"type": "float",
+				"getter": "get_agent_height",
+				"setter": "set_agent_height"
+			},
+			{
+				"name": "agent/radius",
+				"type": "float",
+				"getter": "get_agent_radius",
+				"setter": "set_agent_radius"
+			},
+			{
+				"name": "agent/max_climb",
+				"type": "float",
+				"getter": "get_agent_max_climb",
+				"setter": "set_agent_max_climb"
+			},
+			{
+				"name": "agent/max_slope",
+				"type": "float",
+				"getter": "get_agent_max_slope",
+				"setter": "set_agent_max_slope"
+			},
+			{
+				"name": "region/min_size",
+				"type": "float",
+				"getter": "get_region_min_size",
+				"setter": "set_region_min_size"
+			},
+			{
+				"name": "region/merge_size",
+				"type": "float",
+				"getter": "get_region_merge_size",
+				"setter": "set_region_merge_size"
+			},
+			{
+				"name": "edge/max_length",
+				"type": "float",
+				"getter": "get_edge_max_length",
+				"setter": "set_edge_max_length"
+			},
+			{
+				"name": "edge/max_error",
+				"type": "float",
+				"getter": "get_edge_max_error",
+				"setter": "set_edge_max_error"
+			},
+			{
+				"name": "polygon/verts_per_poly",
+				"type": "float",
+				"getter": "get_verts_per_poly",
+				"setter": "set_verts_per_poly"
+			},
+			{
+				"name": "detail/sample_distance",
+				"type": "float",
+				"getter": "get_detail_sample_distance",
+				"setter": "set_detail_sample_distance"
+			},
+			{
+				"name": "detail/sample_max_error",
+				"type": "float",
+				"getter": "get_detail_sample_max_error",
+				"setter": "set_detail_sample_max_error"
+			},
+			{
+				"name": "filter/low_hanging_obstacles",
+				"type": "bool",
+				"getter": "get_filter_low_hanging_obstacles",
+				"setter": "set_filter_low_hanging_obstacles"
+			},
+			{
+				"name": "filter/ledge_spans",
+				"type": "bool",
+				"getter": "get_filter_ledge_spans",
+				"setter": "set_filter_ledge_spans"
+			},
+			{
+				"name": "filter/filter_walkable_low_height_spans",
+				"type": "bool",
+				"getter": "get_filter_walkable_low_height_spans",
+				"setter": "set_filter_walkable_low_height_spans"
 			}
 		],
 		"signals": [
 		],
 		"methods": [
+			{
+				"name": "set_sample_partition_type",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "sample_partition_type",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_sample_partition_type",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_cell_size",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "cell_size",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_cell_size",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_cell_height",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "cell_height",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_cell_height",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_agent_height",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "agent_height",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_agent_height",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_agent_radius",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "agent_radius",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_agent_radius",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_agent_max_climb",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "agent_max_climb",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_agent_max_climb",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_agent_max_slope",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "agent_max_slope",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_agent_max_slope",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_region_min_size",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "region_min_size",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_region_min_size",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_region_merge_size",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "region_merge_size",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_region_merge_size",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_edge_max_length",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "edge_max_length",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_edge_max_length",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_edge_max_error",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "edge_max_error",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_edge_max_error",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_verts_per_poly",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "verts_per_poly",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_verts_per_poly",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_detail_sample_distance",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "detail_sample_dist",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_detail_sample_distance",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_detail_sample_max_error",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "detail_sample_max_error",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_detail_sample_max_error",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_filter_low_hanging_obstacles",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "filter_low_hanging_obstacles",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_filter_low_hanging_obstacles",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_filter_ledge_spans",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "filter_ledge_spans",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_filter_ledge_spans",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_filter_walkable_low_height_spans",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "filter_walkable_low_height_spans",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_filter_walkable_low_height_spans",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
 			{
 				"name": "set_vertices",
 				"return_type": "void",
@@ -67657,7 +68603,11 @@
 			"MODE_STATIC": 1,
 			"MODE_KINEMATIC": 3,
 			"MODE_RIGID": 0,
-			"MODE_CHARACTER": 2
+			"MODE_CHARACTER": 2,
+			"AXIS_LOCK_DISABLED": 0,
+			"AXIS_LOCK_X": 1,
+			"AXIS_LOCK_Y": 2,
+			"AXIS_LOCK_Z": 3
 		},
 		"properties": [
 			{
@@ -68527,6 +69477,15 @@
 					"MODE_STATIC": 1,
 					"MODE_CHARACTER": 2,
 					"MODE_KINEMATIC": 3
+				}
+			},
+			{
+				"name": "AxisLock",
+				"values": {
+					"AXIS_LOCK_DISABLED": 0,
+					"AXIS_LOCK_X": 1,
+					"AXIS_LOCK_Y": 2,
+					"AXIS_LOCK_Z": 3
 				}
 			}
 		]
@@ -69682,6 +70641,11 @@
 		"instanciable": true,
 		"is_reference": false,
 		"constants": {
+			"SPACE_OVERRIDE_DISABLED": 0,
+			"SPACE_OVERRIDE_COMBINE": 1,
+			"SPACE_OVERRIDE_COMBINE_REPLACE": 2,
+			"SPACE_OVERRIDE_REPLACE": 3,
+			"SPACE_OVERRIDE_REPLACE_COMBINE": 4
 		},
 		"properties": [
 			{
@@ -70828,6 +71792,16 @@
 			}
 		],
 		"enums": [
+			{
+				"name": "SpaceOverride",
+				"values": {
+					"SPACE_OVERRIDE_DISABLED": 0,
+					"SPACE_OVERRIDE_COMBINE": 1,
+					"SPACE_OVERRIDE_COMBINE_REPLACE": 2,
+					"SPACE_OVERRIDE_REPLACE": 3,
+					"SPACE_OVERRIDE_REPLACE_COMBINE": 4
+				}
+			}
 		]
 	},
 	{
@@ -80660,7 +81634,7 @@
 			},
 			{
 				"name": "get_texture_mode",
-				"return_type": "enum.LineTextureMode",
+				"return_type": "enum.Line2D::LineTextureMode",
 				"is_editor": false,
 				"is_noscript": false,
 				"is_const": true,
@@ -80692,7 +81666,7 @@
 			},
 			{
 				"name": "get_joint_mode",
-				"return_type": "enum.LineJointMode",
+				"return_type": "enum.Line2D::LineJointMode",
 				"is_editor": false,
 				"is_noscript": false,
 				"is_const": true,
@@ -80724,7 +81698,7 @@
 			},
 			{
 				"name": "get_begin_cap_mode",
-				"return_type": "enum.LineCapMode",
+				"return_type": "enum.Line2D::LineCapMode",
 				"is_editor": false,
 				"is_noscript": false,
 				"is_const": true,
@@ -80756,7 +81730,7 @@
 			},
 			{
 				"name": "get_end_cap_mode",
-				"return_type": "enum.LineCapMode",
+				"return_type": "enum.Line2D::LineCapMode",
 				"is_editor": false,
 				"is_noscript": false,
 				"is_const": true,
@@ -83077,8 +84051,8 @@
 		],
 		"methods": [
 			{
-				"name": "move",
-				"return_type": "Dictionary",
+				"name": "move_and_collide",
+				"return_type": "KinematicCollision2D",
 				"is_editor": false,
 				"is_noscript": false,
 				"is_const": false,
@@ -83248,7 +84222,7 @@
 				]
 			},
 			{
-				"name": "get_collision_count",
+				"name": "get_slide_count",
 				"return_type": "int",
 				"is_editor": false,
 				"is_noscript": false,
@@ -83261,7 +84235,110 @@
 				]
 			},
 			{
-				"name": "get_collision_position",
+				"name": "get_slide_collision",
+				"return_type": "KinematicCollision2D",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "slide_idx",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			}
+		],
+		"enums": [
+		]
+	},
+	{
+		"name": "KinematicCollision2D",
+		"base_class": "Reference",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": true,
+		"is_reference": true,
+		"constants": {
+		},
+		"properties": [
+			{
+				"name": "position",
+				"type": "Vector2",
+				"getter": "get_position",
+				"setter": ""
+			},
+			{
+				"name": "normal",
+				"type": "Vector2",
+				"getter": "get_normal",
+				"setter": ""
+			},
+			{
+				"name": "travel",
+				"type": "Vector2",
+				"getter": "get_travel",
+				"setter": ""
+			},
+			{
+				"name": "remainder",
+				"type": "Vector2",
+				"getter": "get_remainder",
+				"setter": ""
+			},
+			{
+				"name": "local_shape",
+				"type": "Object",
+				"getter": "get_local_shape",
+				"setter": ""
+			},
+			{
+				"name": "collider",
+				"type": "Object",
+				"getter": "get_collider",
+				"setter": ""
+			},
+			{
+				"name": "collider_id",
+				"type": "int",
+				"getter": "get_collider_id",
+				"setter": ""
+			},
+			{
+				"name": "collider_shape",
+				"type": "Object",
+				"getter": "get_collider_shape",
+				"setter": ""
+			},
+			{
+				"name": "collider_shape_index",
+				"type": "int",
+				"getter": "get_collider_shape_index",
+				"setter": ""
+			},
+			{
+				"name": "collider_velocity",
+				"type": "Vector2",
+				"getter": "get_collider_velocity",
+				"setter": ""
+			},
+			{
+				"name": "collider_metadata",
+				"type": "Variant",
+				"getter": "get_collider_metadata",
+				"setter": ""
+			}
+		],
+		"signals": [
+		],
+		"methods": [
+			{
+				"name": "get_position",
 				"return_type": "Vector2",
 				"is_editor": false,
 				"is_noscript": false,
@@ -83271,16 +84348,10 @@
 				"has_varargs": false,
 				"is_from_script": false,
 				"arguments": [
-					{
-						"name": "collision",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
 				]
 			},
 			{
-				"name": "get_collision_normal",
+				"name": "get_normal",
 				"return_type": "Vector2",
 				"is_editor": false,
 				"is_noscript": false,
@@ -83290,16 +84361,10 @@
 				"has_varargs": false,
 				"is_from_script": false,
 				"arguments": [
-					{
-						"name": "collision",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
 				]
 			},
 			{
-				"name": "get_collision_travel",
+				"name": "get_travel",
 				"return_type": "Vector2",
 				"is_editor": false,
 				"is_noscript": false,
@@ -83309,16 +84374,10 @@
 				"has_varargs": false,
 				"is_from_script": false,
 				"arguments": [
-					{
-						"name": "collision",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
 				]
 			},
 			{
-				"name": "get_collision_remainder",
+				"name": "get_remainder",
 				"return_type": "Vector2",
 				"is_editor": false,
 				"is_noscript": false,
@@ -83328,16 +84387,10 @@
 				"has_varargs": false,
 				"is_from_script": false,
 				"arguments": [
-					{
-						"name": "collision",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
 				]
 			},
 			{
-				"name": "get_collision_local_shape",
+				"name": "get_local_shape",
 				"return_type": "Object",
 				"is_editor": false,
 				"is_noscript": false,
@@ -83347,16 +84400,10 @@
 				"has_varargs": false,
 				"is_from_script": false,
 				"arguments": [
-					{
-						"name": "collision",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
 				]
 			},
 			{
-				"name": "get_collision_collider",
+				"name": "get_collider",
 				"return_type": "Object",
 				"is_editor": false,
 				"is_noscript": false,
@@ -83366,16 +84413,10 @@
 				"has_varargs": false,
 				"is_from_script": false,
 				"arguments": [
-					{
-						"name": "collision",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
 				]
 			},
 			{
-				"name": "get_collision_collider_id",
+				"name": "get_collider_id",
 				"return_type": "int",
 				"is_editor": false,
 				"is_noscript": false,
@@ -83385,16 +84426,10 @@
 				"has_varargs": false,
 				"is_from_script": false,
 				"arguments": [
-					{
-						"name": "collision",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
 				]
 			},
 			{
-				"name": "get_collision_collider_shape",
+				"name": "get_collider_shape",
 				"return_type": "Object",
 				"is_editor": false,
 				"is_noscript": false,
@@ -83404,16 +84439,10 @@
 				"has_varargs": false,
 				"is_from_script": false,
 				"arguments": [
-					{
-						"name": "collision",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
 				]
 			},
 			{
-				"name": "get_collision_collider_shape_index",
+				"name": "get_collider_shape_index",
 				"return_type": "int",
 				"is_editor": false,
 				"is_noscript": false,
@@ -83423,16 +84452,10 @@
 				"has_varargs": false,
 				"is_from_script": false,
 				"arguments": [
-					{
-						"name": "collision",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
 				]
 			},
 			{
-				"name": "get_collision_collider_velocity",
+				"name": "get_collider_velocity",
 				"return_type": "Vector2",
 				"is_editor": false,
 				"is_noscript": false,
@@ -83442,16 +84465,10 @@
 				"has_varargs": false,
 				"is_from_script": false,
 				"arguments": [
-					{
-						"name": "collision",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
 				]
 			},
 			{
-				"name": "get_collision_collider_metadata",
+				"name": "get_collider_metadata",
 				"return_type": "Variant",
 				"is_editor": false,
 				"is_noscript": false,
@@ -83461,12 +84478,6 @@
 				"has_varargs": false,
 				"is_from_script": false,
 				"arguments": [
-					{
-						"name": "collision",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
 				]
 			}
 		],
@@ -84849,6 +85860,8 @@
 		"instanciable": true,
 		"is_reference": false,
 		"constants": {
+			"BUILD_SOLIDS": 0,
+			"BUILD_SEGMENTS": 1
 		},
 		"properties": [
 			{
@@ -85009,6 +86022,13 @@
 			}
 		],
 		"enums": [
+			{
+				"name": "BuildMode",
+				"values": {
+					"BUILD_SOLIDS": 0,
+					"BUILD_SEGMENTS": 1
+				}
+			}
 		]
 	},
 	{
@@ -86138,7 +87158,13 @@
 			"MODE_ADD": 0,
 			"MODE_SUB": 1,
 			"MODE_MIX": 2,
-			"MODE_MASK": 3
+			"MODE_MASK": 3,
+			"SHADOW_FILTER_NONE": 0,
+			"SHADOW_FILTER_PCF3": 1,
+			"SHADOW_FILTER_PCF5": 2,
+			"SHADOW_FILTER_PCF7": 3,
+			"SHADOW_FILTER_PCF9": 4,
+			"SHADOW_FILTER_PCF13": 5
 		},
 		"properties": [
 			{
@@ -86945,6 +87971,17 @@
 			}
 		],
 		"enums": [
+			{
+				"name": "ShadowFilter",
+				"values": {
+					"SHADOW_FILTER_NONE": 0,
+					"SHADOW_FILTER_PCF3": 1,
+					"SHADOW_FILTER_PCF5": 2,
+					"SHADOW_FILTER_PCF7": 3,
+					"SHADOW_FILTER_PCF9": 4,
+					"SHADOW_FILTER_PCF13": 5
+				}
+			},
 			{
 				"name": "Mode",
 				"values": {
@@ -91142,6 +92179,8 @@
 		"instanciable": true,
 		"is_reference": false,
 		"constants": {
+			"VISIBILITY_ALWAYS": 0,
+			"VISIBILITY_TOUCHSCREEN_ONLY": 1
 		},
 		"properties": [
 			{
@@ -91534,6 +92573,13 @@
 			}
 		],
 		"enums": [
+			{
+				"name": "VisibilityMode",
+				"values": {
+					"VISIBILITY_ALWAYS": 0,
+					"VISIBILITY_TOUCHSCREEN_ONLY": 1
+				}
+			}
 		]
 	},
 	{
@@ -100029,6 +101075,9 @@
 		"instanciable": true,
 		"is_reference": true,
 		"constants": {
+			"TANGENT_FREE": 0,
+			"TANGENT_LINEAR": 1,
+			"TANGENT_MODE_COUNT": 2
 		},
 		"properties": [
 			{
@@ -100578,6 +101627,14 @@
 			}
 		],
 		"enums": [
+			{
+				"name": "TangentMode",
+				"values": {
+					"TANGENT_FREE": 0,
+					"TANGENT_LINEAR": 1,
+					"TANGENT_MODE_COUNT": 2
+				}
+			}
 		]
 	},
 	{
@@ -103116,6 +104173,9 @@
 		"instanciable": true,
 		"is_reference": false,
 		"constants": {
+			"MIX_TARGET_STEREO": 0,
+			"MIX_TARGET_SURROUND": 1,
+			"MIX_TARGET_CENTER": 2
 		},
 		"properties": [
 			{
@@ -103131,9 +104191,9 @@
 				"setter": "set_volume_db"
 			},
 			{
-				"name": "play",
+				"name": "playing",
 				"type": "bool",
-				"getter": "_is_active",
+				"getter": "is_playing",
 				"setter": "_set_playing"
 			},
 			{
@@ -103447,6 +104507,14 @@
 			}
 		],
 		"enums": [
+			{
+				"name": "MixTarget",
+				"values": {
+					"MIX_TARGET_STEREO": 0,
+					"MIX_TARGET_SURROUND": 1,
+					"MIX_TARGET_CENTER": 2
+				}
+			}
 		]
 	},
 	{
@@ -103472,9 +104540,9 @@
 				"setter": "set_volume_db"
 			},
 			{
-				"name": "play",
+				"name": "playing",
 				"type": "bool",
-				"getter": "_is_active",
+				"getter": "is_playing",
 				"setter": "_set_playing"
 			},
 			{
@@ -103915,9 +104983,9 @@
 				"setter": "set_max_db"
 			},
 			{
-				"name": "play",
+				"name": "playing",
 				"type": "bool",
-				"getter": "_is_active",
+				"getter": "is_playing",
 				"setter": "_set_playing"
 			},
 			{
@@ -104664,6 +105732,12 @@
 		"instanciable": true,
 		"is_reference": true,
 		"constants": {
+			"FORMAT_8_BITS": 0,
+			"FORMAT_16_BITS": 1,
+			"FORMAT_IMA_ADPCM": 2,
+			"LOOP_DISABLED": 0,
+			"LOOP_FORWARD": 1,
+			"LOOP_PING_PONG": 2
 		},
 		"properties": [
 			{
@@ -104938,6 +106012,22 @@
 			}
 		],
 		"enums": [
+			{
+				"name": "LoopMode",
+				"values": {
+					"LOOP_DISABLED": 0,
+					"LOOP_FORWARD": 1,
+					"LOOP_PING_PONG": 2
+				}
+			},
+			{
+				"name": "Format",
+				"values": {
+					"FORMAT_8_BITS": 0,
+					"FORMAT_16_BITS": 1,
+					"FORMAT_IMA_ADPCM": 2
+				}
+			}
 		]
 	},
 	{
@@ -109080,6 +110170,44 @@
 				]
 			},
 			{
+				"name": "add_export_plugin",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "exporter",
+						"type": "EditorExportPlugin",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "remove_export_plugin",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "exporter",
+						"type": "EditorExportPlugin",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
 				"name": "set_input_event_forwarding_always_enabled",
 				"return_type": "void",
 				"is_editor": false,
@@ -109547,7 +110675,9 @@
 			"MODE_SAVE_FILE": 4,
 			"ACCESS_RESOURCES": 0,
 			"ACCESS_USERDATA": 1,
-			"ACCESS_FILESYSTEM": 2
+			"ACCESS_FILESYSTEM": 2,
+			"DISPLAY_THUMBNAILS": 0,
+			"DISPLAY_LIST": 1
 		},
 		"properties": [
 		],
@@ -110308,6 +111438,13 @@
 			}
 		],
 		"enums": [
+			{
+				"name": "DisplayMode",
+				"values": {
+					"DISPLAY_THUMBNAILS": 0,
+					"DISPLAY_LIST": 1
+				}
+			},
 			{
 				"name": "Mode",
 				"values": {
@@ -111981,6 +113118,25 @@
 				]
 			},
 			{
+				"name": "_help_overview_selected",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "arg0",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
 				"name": "_script_selected",
 				"return_type": "void",
 				"is_editor": false,
@@ -112628,6 +113784,137 @@
 						"has_default_value": true,
 						"default_value": "True"
 					}
+				]
+			}
+		],
+		"enums": [
+		]
+	},
+	{
+		"name": "EditorExportPlugin",
+		"base_class": "Reference",
+		"api_type": "tools",
+		"singleton": false,
+		"instanciable": true,
+		"is_reference": true,
+		"constants": {
+		},
+		"properties": [
+		],
+		"signals": [
+		],
+		"methods": [
+			{
+				"name": "_export_file",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "path",
+						"type": "String",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "type",
+						"type": "String",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "features",
+						"type": "PoolStringArray",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "_export_begin",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "features",
+						"type": "PoolStringArray",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "add_shared_object",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "path",
+						"type": "String",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "add_file",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "path",
+						"type": "String",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "file",
+						"type": "PoolByteArray",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "remap",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "skip",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
 				]
 			}
 		],
@@ -116247,6 +117534,15 @@
 		"instanciable": true,
 		"is_reference": true,
 		"constants": {
+			"MATH_CONSTANT_ONE": 0,
+			"MATH_CONSTANT_PI": 1,
+			"MATH_CONSTANT_2PI": 2,
+			"MATH_CONSTANT_HALF_PI": 3,
+			"MATH_CONSTANT_E": 4,
+			"MATH_CONSTANT_SQRT2": 5,
+			"MATH_CONSTANT_INF": 6,
+			"MATH_CONSTANT_NAN": 7,
+			"MATH_CONSTANT_MAX": 8
 		},
 		"properties": [
 			{
@@ -116293,6 +117589,20 @@
 			}
 		],
 		"enums": [
+			{
+				"name": "MathConstant",
+				"values": {
+					"MATH_CONSTANT_ONE": 0,
+					"MATH_CONSTANT_PI": 1,
+					"MATH_CONSTANT_2PI": 2,
+					"MATH_CONSTANT_HALF_PI": 3,
+					"MATH_CONSTANT_E": 4,
+					"MATH_CONSTANT_SQRT2": 5,
+					"MATH_CONSTANT_INF": 6,
+					"MATH_CONSTANT_NAN": 7,
+					"MATH_CONSTANT_MAX": 8
+				}
+			}
 		]
 	},
 	{
@@ -116400,7 +117710,7 @@
 		},
 		"properties": [
 			{
-				"name": "/constant",
+				"name": "constant",
 				"type": "String",
 				"getter": "get_singleton",
 				"setter": "set_singleton"
@@ -116441,24 +117751,6 @@
 				"arguments": [
 				]
 			}
-		],
-		"enums": [
-		]
-	},
-	{
-		"name": "VisualScriptSceneTree",
-		"base_class": "VisualScriptNode",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": true,
-		"is_reference": true,
-		"constants": {
-		},
-		"properties": [
-		],
-		"signals": [
-		],
-		"methods": [
 		],
 		"enums": [
 		]
@@ -116515,6 +117807,24 @@
 				"arguments": [
 				]
 			}
+		],
+		"enums": [
+		]
+	},
+	{
+		"name": "VisualScriptSceneTree",
+		"base_class": "VisualScriptNode",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": true,
+		"is_reference": true,
+		"constants": {
+		},
+		"properties": [
+		],
+		"signals": [
+		],
+		"methods": [
 		],
 		"enums": [
 		]
@@ -117335,6 +118645,10 @@
 		"instanciable": true,
 		"is_reference": true,
 		"constants": {
+			"MODE_PRESSED": 0,
+			"MODE_RELEASED": 1,
+			"MODE_JUST_PRESSED": 2,
+			"MODE_JUST_RELEASED": 3
 		},
 		"properties": [
 			{
@@ -117419,6 +118733,15 @@
 			}
 		],
 		"enums": [
+			{
+				"name": "Mode",
+				"values": {
+					"MODE_PRESSED": 0,
+					"MODE_RELEASED": 1,
+					"MODE_JUST_PRESSED": 2,
+					"MODE_JUST_RELEASED": 3
+				}
+			}
 		]
 	},
 	{
@@ -117676,7 +118999,13 @@
 			"CALL_MODE_SELF": 0,
 			"CALL_MODE_NODE_PATH": 1,
 			"CALL_MODE_INSTANCE": 2,
-			"CALL_MODE_BASIC_TYPE": 3
+			"CALL_MODE_BASIC_TYPE": 3,
+			"CALL_MODE_SINGLETON": 4,
+			"RPC_DISABLED": 0,
+			"RPC_RELIABLE": 1,
+			"RPC_UNRELIABLE": 2,
+			"RPC_RELIABLE_TO_ID": 3,
+			"RPC_UNRELIABLE_TO_ID": 4
 		},
 		"properties": [
 			{
@@ -118104,12 +119433,23 @@
 		],
 		"enums": [
 			{
+				"name": "RPCCallMode",
+				"values": {
+					"RPC_DISABLED": 0,
+					"RPC_RELIABLE": 1,
+					"RPC_UNRELIABLE": 2,
+					"RPC_RELIABLE_TO_ID": 3,
+					"RPC_UNRELIABLE_TO_ID": 4
+				}
+			},
+			{
 				"name": "CallMode",
 				"values": {
 					"CALL_MODE_SELF": 0,
 					"CALL_MODE_NODE_PATH": 1,
 					"CALL_MODE_INSTANCE": 2,
-					"CALL_MODE_BASIC_TYPE": 3
+					"CALL_MODE_BASIC_TYPE": 3,
+					"CALL_MODE_SINGLETON": 4
 				}
 			}
 		]
@@ -118124,7 +119464,19 @@
 		"constants": {
 			"CALL_MODE_SELF": 0,
 			"CALL_MODE_NODE_PATH": 1,
-			"CALL_MODE_INSTANCE": 2
+			"CALL_MODE_INSTANCE": 2,
+			"CALL_MODE_BASIC_TYPE": 3,
+			"ASSIGN_OP_NONE": 0,
+			"ASSIGN_OP_ADD": 1,
+			"ASSIGN_OP_SUB": 2,
+			"ASSIGN_OP_MUL": 3,
+			"ASSIGN_OP_DIV": 4,
+			"ASSIGN_OP_MOD": 5,
+			"ASSIGN_OP_SHIFT_LEFT": 6,
+			"ASSIGN_OP_SHIFT_RIGHT": 7,
+			"ASSIGN_OP_BIT_AND": 8,
+			"ASSIGN_OP_BIT_OR": 9,
+			"ASSIGN_OP_BIT_XOR": 10
 		},
 		"properties": [
 			{
@@ -118476,11 +119828,28 @@
 		],
 		"enums": [
 			{
+				"name": "AssignOp",
+				"values": {
+					"ASSIGN_OP_NONE": 0,
+					"ASSIGN_OP_ADD": 1,
+					"ASSIGN_OP_SUB": 2,
+					"ASSIGN_OP_MUL": 3,
+					"ASSIGN_OP_DIV": 4,
+					"ASSIGN_OP_MOD": 5,
+					"ASSIGN_OP_SHIFT_LEFT": 6,
+					"ASSIGN_OP_SHIFT_RIGHT": 7,
+					"ASSIGN_OP_BIT_AND": 8,
+					"ASSIGN_OP_BIT_OR": 9,
+					"ASSIGN_OP_BIT_XOR": 10
+				}
+			},
+			{
 				"name": "CallMode",
 				"values": {
 					"CALL_MODE_SELF": 0,
 					"CALL_MODE_NODE_PATH": 1,
-					"CALL_MODE_INSTANCE": 2
+					"CALL_MODE_INSTANCE": 2,
+					"CALL_MODE_BASIC_TYPE": 3
 				}
 			}
 		]
@@ -119446,6 +120815,64 @@
 		"instanciable": true,
 		"is_reference": true,
 		"constants": {
+			"MATH_SIN": 0,
+			"MATH_COS": 1,
+			"MATH_TAN": 2,
+			"MATH_SINH": 3,
+			"MATH_COSH": 4,
+			"MATH_TANH": 5,
+			"MATH_ASIN": 6,
+			"MATH_ACOS": 7,
+			"MATH_ATAN": 8,
+			"MATH_ATAN2": 9,
+			"MATH_SQRT": 10,
+			"MATH_FMOD": 11,
+			"MATH_FPOSMOD": 12,
+			"MATH_FLOOR": 13,
+			"MATH_CEIL": 14,
+			"MATH_ROUND": 15,
+			"MATH_ABS": 16,
+			"MATH_SIGN": 17,
+			"MATH_POW": 18,
+			"MATH_LOG": 19,
+			"MATH_EXP": 20,
+			"MATH_ISNAN": 21,
+			"MATH_ISINF": 22,
+			"MATH_EASE": 23,
+			"MATH_DECIMALS": 24,
+			"MATH_STEPIFY": 25,
+			"MATH_LERP": 26,
+			"MATH_DECTIME": 27,
+			"MATH_RANDOMIZE": 28,
+			"MATH_RAND": 29,
+			"MATH_RANDF": 30,
+			"MATH_RANDOM": 31,
+			"MATH_SEED": 32,
+			"MATH_RANDSEED": 33,
+			"MATH_DEG2RAD": 34,
+			"MATH_RAD2DEG": 35,
+			"MATH_LINEAR2DB": 36,
+			"MATH_DB2LINEAR": 37,
+			"LOGIC_MAX": 38,
+			"LOGIC_MIN": 39,
+			"LOGIC_CLAMP": 40,
+			"LOGIC_NEAREST_PO2": 41,
+			"OBJ_WEAKREF": 42,
+			"FUNC_FUNCREF": 43,
+			"TYPE_CONVERT": 44,
+			"TYPE_OF": 45,
+			"TYPE_EXISTS": 46,
+			"TEXT_CHAR": 47,
+			"TEXT_STR": 48,
+			"TEXT_PRINT": 49,
+			"TEXT_PRINTERR": 50,
+			"TEXT_PRINTRAW": 51,
+			"VAR_TO_STR": 52,
+			"STR_TO_VAR": 53,
+			"VAR_TO_BYTES": 54,
+			"BYTES_TO_VAR": 55,
+			"COLORN": 56,
+			"FUNC_MAX": 57
 		},
 		"properties": [
 			{
@@ -119492,6 +120919,69 @@
 			}
 		],
 		"enums": [
+			{
+				"name": "BuiltinFunc",
+				"values": {
+					"MATH_SIN": 0,
+					"MATH_COS": 1,
+					"MATH_TAN": 2,
+					"MATH_SINH": 3,
+					"MATH_COSH": 4,
+					"MATH_TANH": 5,
+					"MATH_ASIN": 6,
+					"MATH_ACOS": 7,
+					"MATH_ATAN": 8,
+					"MATH_ATAN2": 9,
+					"MATH_SQRT": 10,
+					"MATH_FMOD": 11,
+					"MATH_FPOSMOD": 12,
+					"MATH_FLOOR": 13,
+					"MATH_CEIL": 14,
+					"MATH_ROUND": 15,
+					"MATH_ABS": 16,
+					"MATH_SIGN": 17,
+					"MATH_POW": 18,
+					"MATH_LOG": 19,
+					"MATH_EXP": 20,
+					"MATH_ISNAN": 21,
+					"MATH_ISINF": 22,
+					"MATH_EASE": 23,
+					"MATH_DECIMALS": 24,
+					"MATH_STEPIFY": 25,
+					"MATH_LERP": 26,
+					"MATH_DECTIME": 27,
+					"MATH_RANDOMIZE": 28,
+					"MATH_RAND": 29,
+					"MATH_RANDF": 30,
+					"MATH_RANDOM": 31,
+					"MATH_SEED": 32,
+					"MATH_RANDSEED": 33,
+					"MATH_DEG2RAD": 34,
+					"MATH_RAD2DEG": 35,
+					"MATH_LINEAR2DB": 36,
+					"MATH_DB2LINEAR": 37,
+					"LOGIC_MAX": 38,
+					"LOGIC_MIN": 39,
+					"LOGIC_CLAMP": 40,
+					"LOGIC_NEAREST_PO2": 41,
+					"OBJ_WEAKREF": 42,
+					"FUNC_FUNCREF": 43,
+					"TYPE_CONVERT": 44,
+					"TYPE_OF": 45,
+					"TYPE_EXISTS": 46,
+					"TEXT_CHAR": 47,
+					"TEXT_STR": 48,
+					"TEXT_PRINT": 49,
+					"TEXT_PRINTERR": 50,
+					"TEXT_PRINTRAW": 51,
+					"VAR_TO_STR": 52,
+					"STR_TO_VAR": 53,
+					"VAR_TO_BYTES": 54,
+					"BYTES_TO_VAR": 55,
+					"COLORN": 56,
+					"FUNC_MAX": 57
+				}
+			}
 		]
 	},
 	{

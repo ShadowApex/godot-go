@@ -24,7 +24,8 @@ func (p *PongClass) X_ready() {
 	godot.Log.Warning("Got name from parent method!: ", name)
 
 	godot.Log.Warning(p.GetFilename())
-	godot.Log.Warning("Google's Shit: ", godot.IP.ResolveHostname("google.com", 1))
+	godot.Log.Warning("Google's IP Address: ", godot.IP.ResolveHostname("google.com", 1))
+
 	//child := p.GetChild(0)
 	//godot.Log.Warning("Got child!: ", child)
 	//childName := child.GetName()

@@ -1047,7 +1047,7 @@ func (o *Reference) InitRef() bool {
 /*
    Increase the internal reference counter. Use this only if you really know what you are doing.
 */
-func (o *Reference) Reference() {
+func (o *Reference) Reference() bool {
 	log.Println("Calling Reference.Reference()")
 
 	// Build out the method's arguments
@@ -1055,9 +1055,13 @@ func (o *Reference) Reference() {
 
 	// Call the parent method.
 
-	o.callParentMethod(o.baseClass(), "reference", goArguments, "")
+	goRet := o.callParentMethod(o.baseClass(), "reference", goArguments, "bool")
 
 	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
 
 }
 
@@ -7135,7 +7139,7 @@ type TriangleMeshImplementer interface {
 }
 
 /*
-   Undocumented
+   File type. This is used to permanently store data into the user device's file system and to read from it. This can be used to store game save data or player configuration files, for example. Here's a sample on how to write and read from a file: [codeblock] func save(content): var file = File.new() file.open("user://save_game.dat", file.WRITE) file.store_string(content) file.close() func load(): var file = File.new() file.open("user://save_game.dat", file.READ) var content = file.get_as_text() file.close() return content [/codeblock]
 */
 type _File struct {
 	Reference
@@ -8024,7 +8028,7 @@ type _FileImplementer interface {
 }
 
 /*
-   Undocumented
+   Directory type. It is used to manage directories and their content (not restricted to the project folder). Here is an example on how to iterate through the files of a directory: [codeblock] func dir_contents(path): var dir = Directory.new() if dir.open(path) == OK: dir.list_dir_begin() var file_name = dir.get_next() while (file_name != ""): if dir.current_is_dir(): print("Found directory: " + file_name) else: print("Found file: " + file_name) file_name = dir.get_next() else: print("An error occurred when trying to access the path.") [/codeblock]
 */
 type _Directory struct {
 	Reference
@@ -8430,7 +8434,7 @@ type _DirectoryImplementer interface {
 }
 
 /*
-   Undocumented
+   A unit of execution in a process. Can run methods on [Object]\ s simultaneously. The use of synchronization via [Mutex], [Semaphore] is advised if working with shared objects.
 */
 type _Thread struct {
 	Reference
@@ -8536,7 +8540,7 @@ type _ThreadImplementer interface {
 }
 
 /*
-   Undocumented
+   A synchronization Mutex. Element used in multi-threadding. Basically a binary [Semaphore]. Guarantees that only one thread has this lock, can be used to protect a critical section.
 */
 type _Mutex struct {
 	Reference
@@ -8609,7 +8613,7 @@ type _MutexImplementer interface {
 }
 
 /*
-   Undocumented
+   A synchronization Semaphore. Element used in multi-threadding. Initialized to zero on creation.
 */
 type _Semaphore struct {
 	Reference
@@ -10083,7 +10087,7 @@ type IP_UnixImplementer interface {
 	Class
 }
 
-func newSingleton_Geometry() *geometry {
+func newSingletonGeometry() *geometry {
 	obj := &geometry{}
 	ptr := C.godot_global_get_singleton(C.CString("_Geometry"))
 	obj.owner = (*C.godot_object)(ptr)
@@ -10091,13 +10095,13 @@ func newSingleton_Geometry() *geometry {
 }
 
 /*
-   Undocumented
-*/
-var _Geometry = newSingleton_Geometry()
+
+ */
+var Geometry = newSingletonGeometry()
 
 /*
-   Undocumented
-*/
+
+ */
 type geometry struct {
 	Object
 }
@@ -10592,7 +10596,7 @@ func (o *geometry) MakeAtlas(sizes *PoolVector2Array) *Dictionary {
 
 }
 
-func newSingleton_ResourceLoader() *resourceLoader {
+func newSingletonResourceLoader() *resourceLoader {
 	obj := &resourceLoader{}
 	ptr := C.godot_global_get_singleton(C.CString("_ResourceLoader"))
 	obj.owner = (*C.godot_object)(ptr)
@@ -10600,12 +10604,12 @@ func newSingleton_ResourceLoader() *resourceLoader {
 }
 
 /*
-   Undocumented
+   Resource Loader. This is a static object accessible as [ResourceLoader]. GDScript has a simplified load() function, though.
 */
-var _ResourceLoader = newSingleton_ResourceLoader()
+var ResourceLoader = newSingletonResourceLoader()
 
 /*
-   Undocumented
+   Resource Loader. This is a static object accessible as [ResourceLoader]. GDScript has a simplified load() function, though.
 */
 type resourceLoader struct {
 	Object
@@ -10746,7 +10750,7 @@ func (o *resourceLoader) Has(path string) bool {
 
 }
 
-func newSingleton_ResourceSaver() *resourceSaver {
+func newSingletonResourceSaver() *resourceSaver {
 	obj := &resourceSaver{}
 	ptr := C.godot_global_get_singleton(C.CString("_ResourceSaver"))
 	obj.owner = (*C.godot_object)(ptr)
@@ -10754,12 +10758,12 @@ func newSingleton_ResourceSaver() *resourceSaver {
 }
 
 /*
-   Undocumented
+   Resource Saving Interface. This interface is used for saving resources to disk.
 */
-var _ResourceSaver = newSingleton_ResourceSaver()
+var ResourceSaver = newSingletonResourceSaver()
 
 /*
-   Undocumented
+   Resource Saving Interface. This interface is used for saving resources to disk.
 */
 type resourceSaver struct {
 	Object
@@ -10815,7 +10819,7 @@ func (o *resourceSaver) GetRecognizedExtensions(aType *Resource) *PoolStringArra
 
 }
 
-func newSingleton_OS() *os {
+func newSingletonOS() *os {
 	obj := &os{}
 	ptr := C.godot_global_get_singleton(C.CString("_OS"))
 	obj.owner = (*C.godot_object)(ptr)
@@ -10823,12 +10827,12 @@ func newSingleton_OS() *os {
 }
 
 /*
-   Undocumented
+   Operating System functions. OS Wraps the most common functionality to communicate with the host Operating System, such as: mouse grabbing, mouse cursors, clipboard, video mode, date and time, timers, environment variables, execution of binaries, command line, etc.
 */
-var _OS = newSingleton_OS()
+var OS = newSingletonOS()
 
 /*
-   Undocumented
+   Operating System functions. OS Wraps the most common functionality to communicate with the host Operating System, such as: mouse grabbing, mouse cursors, clipboard, video mode, date and time, timers, environment variables, execution of binaries, command line, etc.
 */
 type os struct {
 	Object
@@ -12775,7 +12779,7 @@ func (o *os) GetPowerPercentLeft() int64 {
 
 }
 
-func newSingleton_Engine() *engine {
+func newSingletonEngine() *engine {
 	obj := &engine{}
 	ptr := C.godot_global_get_singleton(C.CString("_Engine"))
 	obj.owner = (*C.godot_object)(ptr)
@@ -12783,13 +12787,13 @@ func newSingleton_Engine() *engine {
 }
 
 /*
-   Undocumented
-*/
-var _Engine = newSingleton_Engine()
+
+ */
+var Engine = newSingletonEngine()
 
 /*
-   Undocumented
-*/
+
+ */
 type engine struct {
 	Object
 }
@@ -13059,7 +13063,7 @@ func (o *engine) IsEditorHint() bool {
 
 }
 
-func newSingleton_ClassDB() *classDb {
+func newSingletonClassDB() *classDb {
 	obj := &classDb{}
 	ptr := C.godot_global_get_singleton(C.CString("_ClassDB"))
 	obj.owner = (*C.godot_object)(ptr)
@@ -13067,12 +13071,12 @@ func newSingleton_ClassDB() *classDb {
 }
 
 /*
-   Undocumented
+   Provides access to metadata stored for every available class.
 */
-var _ClassDB = newSingleton_ClassDB()
+var ClassDB = newSingletonClassDB()
 
 /*
-   Undocumented
+   Provides access to metadata stored for every available class.
 */
 type classDb struct {
 	Object
@@ -13535,7 +13539,7 @@ func (o *classDb) IsClassEnabled(class string) bool {
 
 }
 
-func newSingleton_Marshalls() *marshalls {
+func newSingletonMarshalls() *marshalls {
 	obj := &marshalls{}
 	ptr := C.godot_global_get_singleton(C.CString("_Marshalls"))
 	obj.owner = (*C.godot_object)(ptr)
@@ -13543,12 +13547,12 @@ func newSingleton_Marshalls() *marshalls {
 }
 
 /*
-   Undocumented
+   Provides data transformation and encoding utility functions.
 */
-var _Marshalls = newSingleton_Marshalls()
+var Marshalls = newSingletonMarshalls()
 
 /*
-   Undocumented
+   Provides data transformation and encoding utility functions.
 */
 type marshalls struct {
 	Reference
@@ -23079,6 +23083,86 @@ type AudioEffectFilterImplementer interface {
 /*
 
  */
+type AudioEffectEQ struct {
+	AudioEffect
+}
+
+func (o *AudioEffectEQ) baseClass() string {
+	return "AudioEffectEQ"
+}
+
+/*
+
+ */
+func (o *AudioEffectEQ) SetBandGainDb(bandIdx int64, volumeDb float64) {
+	log.Println("Calling AudioEffectEQ.SetBandGainDb()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(bandIdx)
+	goArguments[1] = reflect.ValueOf(volumeDb)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_band_gain_db", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *AudioEffectEQ) GetBandGainDb(bandIdx int64) float64 {
+	log.Println("Calling AudioEffectEQ.GetBandGainDb()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(bandIdx)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_band_gain_db", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *AudioEffectEQ) GetBandCount() int64 {
+	log.Println("Calling AudioEffectEQ.GetBandCount()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_band_count", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+   AudioEffectEQImplementer is an interface for AudioEffectEQ objects.
+*/
+type AudioEffectEQImplementer interface {
+	Class
+}
+
+/*
+
+ */
 type AudioEffectLowPassFilter struct {
 	AudioEffectFilter
 }
@@ -23199,86 +23283,6 @@ func (o *AudioEffectHighShelfFilter) baseClass() string {
    AudioEffectHighShelfFilterImplementer is an interface for AudioEffectHighShelfFilter objects.
 */
 type AudioEffectHighShelfFilterImplementer interface {
-	Class
-}
-
-/*
-
- */
-type AudioEffectEQ struct {
-	AudioEffect
-}
-
-func (o *AudioEffectEQ) baseClass() string {
-	return "AudioEffectEQ"
-}
-
-/*
-
- */
-func (o *AudioEffectEQ) SetBandGainDb(bandIdx int64, volumeDb float64) {
-	log.Println("Calling AudioEffectEQ.SetBandGainDb()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(bandIdx)
-	goArguments[1] = reflect.ValueOf(volumeDb)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_band_gain_db", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-
- */
-func (o *AudioEffectEQ) GetBandGainDb(bandIdx int64) float64 {
-	log.Println("Calling AudioEffectEQ.GetBandGainDb()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bandIdx)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_band_gain_db", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *AudioEffectEQ) GetBandCount() int64 {
-	log.Println("Calling AudioEffectEQ.GetBandCount()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_band_count", goArguments, "int64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(int64)
-
-	return returnValue
-
-}
-
-/*
-   AudioEffectEQImplementer is an interface for AudioEffectEQ objects.
-*/
-type AudioEffectEQImplementer interface {
 	Class
 }
 
@@ -26718,195 +26722,6 @@ type PhysicsShapeQueryResultImplementer interface {
 }
 
 /*
-   Font contains a unicode compatible character set, as well as the ability to draw it with variable width, ascent, descent and kerning. For creating fonts from TTF files (or other font formats), see the editor support for fonts. TODO check wikipedia for graph of ascent/baseline/descent/height/etc.
-*/
-type Font struct {
-	Resource
-}
-
-func (o *Font) baseClass() string {
-	return "Font"
-}
-
-/*
-   Draw "string" into a canvas item using the font at a given "pos" position, with "modulate" color, and optionally clipping the width. "pos" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis.
-*/
-func (o *Font) Draw(canvasItem *RID, pos *Vector2, string string, modulate *Color, clipW int64) {
-	log.Println("Calling Font.Draw()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(canvasItem)
-	goArguments[1] = reflect.ValueOf(pos)
-	goArguments[2] = reflect.ValueOf(string)
-	goArguments[3] = reflect.ValueOf(modulate)
-	goArguments[4] = reflect.ValueOf(clipW)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "draw", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Return the font ascent (number of pixels above the baseline).
-*/
-func (o *Font) GetAscent() float64 {
-	log.Println("Calling Font.GetAscent()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_ascent", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-   Return the font descent (number of pixels below the baseline).
-*/
-func (o *Font) GetDescent() float64 {
-	log.Println("Calling Font.GetDescent()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_descent", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-   Return the total font height (ascent plus descent) in pixels.
-*/
-func (o *Font) GetHeight() float64 {
-	log.Println("Calling Font.GetHeight()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_height", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *Font) IsDistanceFieldHint() bool {
-	log.Println("Calling Font.IsDistanceFieldHint()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "is_distance_field_hint", goArguments, "bool")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(bool)
-
-	return returnValue
-
-}
-
-/*
-   Return the size of a string, taking kerning and advance into account.
-*/
-func (o *Font) GetStringSize(string string) *Vector2 {
-	log.Println("Calling Font.GetStringSize()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(string)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_string_size", goArguments, "*Vector2")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*Vector2)
-
-	return returnValue
-
-}
-
-/*
-   Draw character "char" into a canvas item using the font at a given "pos" position, with "modulate" color, and optionally kerning if "next" is passed. clipping the width. "pos" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis. The width used by the character is returned, making this function useful for drawing strings character by character.
-*/
-func (o *Font) DrawChar(canvasItem *RID, pos *Vector2, char int64, next int64, modulate *Color) float64 {
-	log.Println("Calling Font.DrawChar()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(canvasItem)
-	goArguments[1] = reflect.ValueOf(pos)
-	goArguments[2] = reflect.ValueOf(char)
-	goArguments[3] = reflect.ValueOf(next)
-	goArguments[4] = reflect.ValueOf(modulate)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "draw_char", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-   After editing a font (changing size, ascent, char rects, etc.). Call this function to propagate changes to controls that might use it.
-*/
-func (o *Font) UpdateChanges() {
-	log.Println("Calling Font.UpdateChanges()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "update_changes", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   FontImplementer is an interface for Font objects.
-*/
-type FontImplementer interface {
-	Class
-}
-
-/*
 
  */
 type BitmapFont struct {
@@ -27988,6 +27803,195 @@ func (o *Theme) CopyDefaultTheme() {
    ThemeImplementer is an interface for Theme objects.
 */
 type ThemeImplementer interface {
+	Class
+}
+
+/*
+   Font contains a unicode compatible character set, as well as the ability to draw it with variable width, ascent, descent and kerning. For creating fonts from TTF files (or other font formats), see the editor support for fonts. TODO check wikipedia for graph of ascent/baseline/descent/height/etc.
+*/
+type Font struct {
+	Resource
+}
+
+func (o *Font) baseClass() string {
+	return "Font"
+}
+
+/*
+   Draw "string" into a canvas item using the font at a given "pos" position, with "modulate" color, and optionally clipping the width. "pos" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis.
+*/
+func (o *Font) Draw(canvasItem *RID, pos *Vector2, string string, modulate *Color, clipW int64) {
+	log.Println("Calling Font.Draw()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 5, 5)
+	goArguments[0] = reflect.ValueOf(canvasItem)
+	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[2] = reflect.ValueOf(string)
+	goArguments[3] = reflect.ValueOf(modulate)
+	goArguments[4] = reflect.ValueOf(clipW)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "draw", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Return the font ascent (number of pixels above the baseline).
+*/
+func (o *Font) GetAscent() float64 {
+	log.Println("Calling Font.GetAscent()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_ascent", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+   Return the font descent (number of pixels below the baseline).
+*/
+func (o *Font) GetDescent() float64 {
+	log.Println("Calling Font.GetDescent()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_descent", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+   Return the total font height (ascent plus descent) in pixels.
+*/
+func (o *Font) GetHeight() float64 {
+	log.Println("Calling Font.GetHeight()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_height", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *Font) IsDistanceFieldHint() bool {
+	log.Println("Calling Font.IsDistanceFieldHint()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_distance_field_hint", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
+}
+
+/*
+   Return the size of a string, taking kerning and advance into account.
+*/
+func (o *Font) GetStringSize(string string) *Vector2 {
+	log.Println("Calling Font.GetStringSize()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(string)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_string_size", goArguments, "*Vector2")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Vector2)
+
+	return returnValue
+
+}
+
+/*
+   Draw character "char" into a canvas item using the font at a given "pos" position, with "modulate" color, and optionally kerning if "next" is passed. clipping the width. "pos" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis. The width used by the character is returned, making this function useful for drawing strings character by character.
+*/
+func (o *Font) DrawChar(canvasItem *RID, pos *Vector2, char int64, next int64, modulate *Color) float64 {
+	log.Println("Calling Font.DrawChar()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 5, 5)
+	goArguments[0] = reflect.ValueOf(canvasItem)
+	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[2] = reflect.ValueOf(char)
+	goArguments[3] = reflect.ValueOf(next)
+	goArguments[4] = reflect.ValueOf(modulate)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "draw_char", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+   After editing a font (changing size, ascent, char rects, etc.). Call this function to propagate changes to controls that might use it.
+*/
+func (o *Font) UpdateChanges() {
+	log.Println("Calling Font.UpdateChanges()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "update_changes", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   FontImplementer is an interface for Font objects.
+*/
+type FontImplementer interface {
 	Class
 }
 
@@ -35760,6 +35764,28 @@ func (o *Tree) GetColumnAtPos(pos *Vector2) int64 {
 	// Call the parent method.
 
 	goRet := o.callParentMethod(o.baseClass(), "get_column_at_pos", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *Tree) GetDropSectionAtPos(pos *Vector2) int64 {
+	log.Println("Calling Tree.GetDropSectionAtPos()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(pos)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_drop_section_at_pos", goArguments, "int64")
 
 	log.Println("Got return value!")
 
@@ -52731,6 +52757,45 @@ func (o *TreeItem) IsCollapsed() bool {
 /*
 
  */
+func (o *TreeItem) SetCustomMinimumHeight(height int64) {
+	log.Println("Calling TreeItem.SetCustomMinimumHeight()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(height)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_custom_minimum_height", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *TreeItem) GetCustomMinimumHeight() int64 {
+	log.Println("Calling TreeItem.GetCustomMinimumHeight()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_custom_minimum_height", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
 func (o *TreeItem) GetNext() *TreeItem {
 	log.Println("Calling TreeItem.GetNext()")
 
@@ -64608,6 +64673,669 @@ type NavigationMesh struct {
 
 func (o *NavigationMesh) baseClass() string {
 	return "NavigationMesh"
+}
+
+/*
+
+ */
+func (o *NavigationMesh) SetSamplePartitionType(samplePartitionType int64) {
+	log.Println("Calling NavigationMesh.SetSamplePartitionType()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(samplePartitionType)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_sample_partition_type", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) GetSamplePartitionType() int64 {
+	log.Println("Calling NavigationMesh.GetSamplePartitionType()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_sample_partition_type", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) SetCellSize(cellSize float64) {
+	log.Println("Calling NavigationMesh.SetCellSize()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(cellSize)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_cell_size", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) GetCellSize() float64 {
+	log.Println("Calling NavigationMesh.GetCellSize()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_cell_size", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) SetCellHeight(cellHeight float64) {
+	log.Println("Calling NavigationMesh.SetCellHeight()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(cellHeight)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_cell_height", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) GetCellHeight() float64 {
+	log.Println("Calling NavigationMesh.GetCellHeight()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_cell_height", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) SetAgentHeight(agentHeight float64) {
+	log.Println("Calling NavigationMesh.SetAgentHeight()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(agentHeight)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_agent_height", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) GetAgentHeight() float64 {
+	log.Println("Calling NavigationMesh.GetAgentHeight()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_agent_height", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) SetAgentRadius(agentRadius float64) {
+	log.Println("Calling NavigationMesh.SetAgentRadius()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(agentRadius)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_agent_radius", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) GetAgentRadius() float64 {
+	log.Println("Calling NavigationMesh.GetAgentRadius()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_agent_radius", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) SetAgentMaxClimb(agentMaxClimb float64) {
+	log.Println("Calling NavigationMesh.SetAgentMaxClimb()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(agentMaxClimb)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_agent_max_climb", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) GetAgentMaxClimb() float64 {
+	log.Println("Calling NavigationMesh.GetAgentMaxClimb()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_agent_max_climb", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) SetAgentMaxSlope(agentMaxSlope float64) {
+	log.Println("Calling NavigationMesh.SetAgentMaxSlope()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(agentMaxSlope)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_agent_max_slope", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) GetAgentMaxSlope() float64 {
+	log.Println("Calling NavigationMesh.GetAgentMaxSlope()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_agent_max_slope", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) SetRegionMinSize(regionMinSize float64) {
+	log.Println("Calling NavigationMesh.SetRegionMinSize()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(regionMinSize)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_region_min_size", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) GetRegionMinSize() float64 {
+	log.Println("Calling NavigationMesh.GetRegionMinSize()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_region_min_size", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) SetRegionMergeSize(regionMergeSize float64) {
+	log.Println("Calling NavigationMesh.SetRegionMergeSize()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(regionMergeSize)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_region_merge_size", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) GetRegionMergeSize() float64 {
+	log.Println("Calling NavigationMesh.GetRegionMergeSize()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_region_merge_size", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) SetEdgeMaxLength(edgeMaxLength float64) {
+	log.Println("Calling NavigationMesh.SetEdgeMaxLength()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(edgeMaxLength)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_edge_max_length", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) GetEdgeMaxLength() float64 {
+	log.Println("Calling NavigationMesh.GetEdgeMaxLength()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_edge_max_length", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) SetEdgeMaxError(edgeMaxError float64) {
+	log.Println("Calling NavigationMesh.SetEdgeMaxError()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(edgeMaxError)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_edge_max_error", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) GetEdgeMaxError() float64 {
+	log.Println("Calling NavigationMesh.GetEdgeMaxError()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_edge_max_error", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) SetVertsPerPoly(vertsPerPoly float64) {
+	log.Println("Calling NavigationMesh.SetVertsPerPoly()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(vertsPerPoly)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_verts_per_poly", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) GetVertsPerPoly() float64 {
+	log.Println("Calling NavigationMesh.GetVertsPerPoly()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_verts_per_poly", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) SetDetailSampleDistance(detailSampleDist float64) {
+	log.Println("Calling NavigationMesh.SetDetailSampleDistance()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(detailSampleDist)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_detail_sample_distance", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) GetDetailSampleDistance() float64 {
+	log.Println("Calling NavigationMesh.GetDetailSampleDistance()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_detail_sample_distance", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) SetDetailSampleMaxError(detailSampleMaxError float64) {
+	log.Println("Calling NavigationMesh.SetDetailSampleMaxError()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(detailSampleMaxError)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_detail_sample_max_error", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) GetDetailSampleMaxError() float64 {
+	log.Println("Calling NavigationMesh.GetDetailSampleMaxError()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_detail_sample_max_error", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) SetFilterLowHangingObstacles(filterLowHangingObstacles bool) {
+	log.Println("Calling NavigationMesh.SetFilterLowHangingObstacles()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(filterLowHangingObstacles)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_filter_low_hanging_obstacles", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) GetFilterLowHangingObstacles() bool {
+	log.Println("Calling NavigationMesh.GetFilterLowHangingObstacles()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_filter_low_hanging_obstacles", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) SetFilterLedgeSpans(filterLedgeSpans bool) {
+	log.Println("Calling NavigationMesh.SetFilterLedgeSpans()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(filterLedgeSpans)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_filter_ledge_spans", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) GetFilterLedgeSpans() bool {
+	log.Println("Calling NavigationMesh.GetFilterLedgeSpans()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_filter_ledge_spans", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) SetFilterWalkableLowHeightSpans(filterWalkableLowHeightSpans bool) {
+	log.Println("Calling NavigationMesh.SetFilterWalkableLowHeightSpans()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(filterWalkableLowHeightSpans)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_filter_walkable_low_height_spans", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *NavigationMesh) GetFilterWalkableLowHeightSpans() bool {
+	log.Println("Calling NavigationMesh.GetFilterWalkableLowHeightSpans()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_filter_walkable_low_height_spans", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
 }
 
 /*
@@ -80403,10 +81131,10 @@ func (o *KinematicBody2D) baseClass() string {
 }
 
 /*
-   Undocumented
-*/
-func (o *KinematicBody2D) Move(relVec *Vector2) *Dictionary {
-	log.Println("Calling KinematicBody2D.Move()")
+
+ */
+func (o *KinematicBody2D) MoveAndCollide(relVec *Vector2) *KinematicCollision2D {
+	log.Println("Calling KinematicBody2D.MoveAndCollide()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -80414,11 +81142,11 @@ func (o *KinematicBody2D) Move(relVec *Vector2) *Dictionary {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "move", goArguments, "*Dictionary")
+	goRet := o.callParentMethod(o.baseClass(), "move_and_collide", goArguments, "*KinematicCollision2D")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*Dictionary)
+	returnValue := goRet.Interface().(*KinematicCollision2D)
 
 	return returnValue
 
@@ -80597,17 +81325,17 @@ func (o *KinematicBody2D) GetSafeMargin() float64 {
 }
 
 /*
-   Undocumented
-*/
-func (o *KinematicBody2D) GetCollisionCount() int64 {
-	log.Println("Calling KinematicBody2D.GetCollisionCount()")
+
+ */
+func (o *KinematicBody2D) GetSlideCount() int64 {
+	log.Println("Calling KinematicBody2D.GetSlideCount()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_count", goArguments, "int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_slide_count", goArguments, "int64")
 
 	log.Println("Got return value!")
 
@@ -80618,18 +81346,57 @@ func (o *KinematicBody2D) GetCollisionCount() int64 {
 }
 
 /*
-   Undocumented
-*/
-func (o *KinematicBody2D) GetCollisionPosition(collision int64) *Vector2 {
-	log.Println("Calling KinematicBody2D.GetCollisionPosition()")
+
+ */
+func (o *KinematicBody2D) GetSlideCollision(slideIdx int64) *KinematicCollision2D {
+	log.Println("Calling KinematicBody2D.GetSlideCollision()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(collision)
+	goArguments[0] = reflect.ValueOf(slideIdx)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_position", goArguments, "*Vector2")
+	goRet := o.callParentMethod(o.baseClass(), "get_slide_collision", goArguments, "*KinematicCollision2D")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*KinematicCollision2D)
+
+	return returnValue
+
+}
+
+/*
+   KinematicBody2DImplementer is an interface for KinematicBody2D objects.
+*/
+type KinematicBody2DImplementer interface {
+	Class
+}
+
+/*
+
+ */
+type KinematicCollision2D struct {
+	Reference
+}
+
+func (o *KinematicCollision2D) baseClass() string {
+	return "KinematicCollision2D"
+}
+
+/*
+
+ */
+func (o *KinematicCollision2D) GetPosition() *Vector2 {
+	log.Println("Calling KinematicCollision2D.GetPosition()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_position", goArguments, "*Vector2")
 
 	log.Println("Got return value!")
 
@@ -80640,18 +81407,17 @@ func (o *KinematicBody2D) GetCollisionPosition(collision int64) *Vector2 {
 }
 
 /*
-   Undocumented
-*/
-func (o *KinematicBody2D) GetCollisionNormal(collision int64) *Vector2 {
-	log.Println("Calling KinematicBody2D.GetCollisionNormal()")
+
+ */
+func (o *KinematicCollision2D) GetNormal() *Vector2 {
+	log.Println("Calling KinematicCollision2D.GetNormal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(collision)
+	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_normal", goArguments, "*Vector2")
+	goRet := o.callParentMethod(o.baseClass(), "get_normal", goArguments, "*Vector2")
 
 	log.Println("Got return value!")
 
@@ -80662,18 +81428,17 @@ func (o *KinematicBody2D) GetCollisionNormal(collision int64) *Vector2 {
 }
 
 /*
-   Undocumented
-*/
-func (o *KinematicBody2D) GetCollisionTravel(collision int64) *Vector2 {
-	log.Println("Calling KinematicBody2D.GetCollisionTravel()")
+
+ */
+func (o *KinematicCollision2D) GetTravel() *Vector2 {
+	log.Println("Calling KinematicCollision2D.GetTravel()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(collision)
+	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_travel", goArguments, "*Vector2")
+	goRet := o.callParentMethod(o.baseClass(), "get_travel", goArguments, "*Vector2")
 
 	log.Println("Got return value!")
 
@@ -80684,18 +81449,17 @@ func (o *KinematicBody2D) GetCollisionTravel(collision int64) *Vector2 {
 }
 
 /*
-   Undocumented
-*/
-func (o *KinematicBody2D) GetCollisionRemainder(collision int64) *Vector2 {
-	log.Println("Calling KinematicBody2D.GetCollisionRemainder()")
+
+ */
+func (o *KinematicCollision2D) GetRemainder() *Vector2 {
+	log.Println("Calling KinematicCollision2D.GetRemainder()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(collision)
+	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_remainder", goArguments, "*Vector2")
+	goRet := o.callParentMethod(o.baseClass(), "get_remainder", goArguments, "*Vector2")
 
 	log.Println("Got return value!")
 
@@ -80706,18 +81470,17 @@ func (o *KinematicBody2D) GetCollisionRemainder(collision int64) *Vector2 {
 }
 
 /*
-   Undocumented
-*/
-func (o *KinematicBody2D) GetCollisionLocalShape(collision int64) *Object {
-	log.Println("Calling KinematicBody2D.GetCollisionLocalShape()")
+
+ */
+func (o *KinematicCollision2D) GetLocalShape() *Object {
+	log.Println("Calling KinematicCollision2D.GetLocalShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(collision)
+	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_local_shape", goArguments, "*Object")
+	goRet := o.callParentMethod(o.baseClass(), "get_local_shape", goArguments, "*Object")
 
 	log.Println("Got return value!")
 
@@ -80728,18 +81491,17 @@ func (o *KinematicBody2D) GetCollisionLocalShape(collision int64) *Object {
 }
 
 /*
-   Undocumented
-*/
-func (o *KinematicBody2D) GetCollisionCollider(collision int64) *Object {
-	log.Println("Calling KinematicBody2D.GetCollisionCollider()")
+
+ */
+func (o *KinematicCollision2D) GetCollider() *Object {
+	log.Println("Calling KinematicCollision2D.GetCollider()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(collision)
+	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_collider", goArguments, "*Object")
+	goRet := o.callParentMethod(o.baseClass(), "get_collider", goArguments, "*Object")
 
 	log.Println("Got return value!")
 
@@ -80750,18 +81512,17 @@ func (o *KinematicBody2D) GetCollisionCollider(collision int64) *Object {
 }
 
 /*
-   Undocumented
-*/
-func (o *KinematicBody2D) GetCollisionColliderId(collision int64) int64 {
-	log.Println("Calling KinematicBody2D.GetCollisionColliderId()")
+
+ */
+func (o *KinematicCollision2D) GetColliderId() int64 {
+	log.Println("Calling KinematicCollision2D.GetColliderId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(collision)
+	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_collider_id", goArguments, "int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_collider_id", goArguments, "int64")
 
 	log.Println("Got return value!")
 
@@ -80772,18 +81533,17 @@ func (o *KinematicBody2D) GetCollisionColliderId(collision int64) int64 {
 }
 
 /*
-   Undocumented
-*/
-func (o *KinematicBody2D) GetCollisionColliderShape(collision int64) *Object {
-	log.Println("Calling KinematicBody2D.GetCollisionColliderShape()")
+
+ */
+func (o *KinematicCollision2D) GetColliderShape() *Object {
+	log.Println("Calling KinematicCollision2D.GetColliderShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(collision)
+	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_collider_shape", goArguments, "*Object")
+	goRet := o.callParentMethod(o.baseClass(), "get_collider_shape", goArguments, "*Object")
 
 	log.Println("Got return value!")
 
@@ -80794,18 +81554,17 @@ func (o *KinematicBody2D) GetCollisionColliderShape(collision int64) *Object {
 }
 
 /*
-   Undocumented
-*/
-func (o *KinematicBody2D) GetCollisionColliderShapeIndex(collision int64) int64 {
-	log.Println("Calling KinematicBody2D.GetCollisionColliderShapeIndex()")
+
+ */
+func (o *KinematicCollision2D) GetColliderShapeIndex() int64 {
+	log.Println("Calling KinematicCollision2D.GetColliderShapeIndex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(collision)
+	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_collider_shape_index", goArguments, "int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_collider_shape_index", goArguments, "int64")
 
 	log.Println("Got return value!")
 
@@ -80816,18 +81575,17 @@ func (o *KinematicBody2D) GetCollisionColliderShapeIndex(collision int64) int64 
 }
 
 /*
-   Undocumented
-*/
-func (o *KinematicBody2D) GetCollisionColliderVelocity(collision int64) *Vector2 {
-	log.Println("Calling KinematicBody2D.GetCollisionColliderVelocity()")
+
+ */
+func (o *KinematicCollision2D) GetColliderVelocity() *Vector2 {
+	log.Println("Calling KinematicCollision2D.GetColliderVelocity()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(collision)
+	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_collider_velocity", goArguments, "*Vector2")
+	goRet := o.callParentMethod(o.baseClass(), "get_collider_velocity", goArguments, "*Vector2")
 
 	log.Println("Got return value!")
 
@@ -80838,18 +81596,17 @@ func (o *KinematicBody2D) GetCollisionColliderVelocity(collision int64) *Vector2
 }
 
 /*
-   Undocumented
-*/
-func (o *KinematicBody2D) GetCollisionColliderMetadata(collision int64) *Variant {
-	log.Println("Calling KinematicBody2D.GetCollisionColliderMetadata()")
+
+ */
+func (o *KinematicCollision2D) GetColliderMetadata() *Variant {
+	log.Println("Calling KinematicCollision2D.GetColliderMetadata()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(collision)
+	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_collider_metadata", goArguments, "*Variant")
+	goRet := o.callParentMethod(o.baseClass(), "get_collider_metadata", goArguments, "*Variant")
 
 	log.Println("Got return value!")
 
@@ -80860,9 +81617,9 @@ func (o *KinematicBody2D) GetCollisionColliderMetadata(collision int64) *Variant
 }
 
 /*
-   KinematicBody2DImplementer is an interface for KinematicBody2D objects.
+   KinematicCollision2DImplementer is an interface for KinematicCollision2D objects.
 */
-type KinematicBody2DImplementer interface {
+type KinematicCollision2DImplementer interface {
 	Class
 }
 
@@ -105395,6 +106152,42 @@ func (o *EditorPlugin) RemoveImportPlugin(importer *EditorImportPlugin) {
 }
 
 /*
+
+ */
+func (o *EditorPlugin) AddExportPlugin(exporter *EditorExportPlugin) {
+	log.Println("Calling EditorPlugin.AddExportPlugin()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(exporter)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "add_export_plugin", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *EditorPlugin) RemoveExportPlugin(exporter *EditorExportPlugin) {
+	log.Println("Calling EditorPlugin.RemoveExportPlugin()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(exporter)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "remove_export_plugin", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
    Use this method if you always want to receive inputs from 3D view screen inside [method forward_spatial_gui_input]. It might be especially usable if your plugin will want to use raycast in the scene.
 */
 func (o *EditorPlugin) SetInputEventForwardingAlwaysEnabled() {
@@ -108361,6 +109154,24 @@ func (o *ScriptEditor) X_MembersOverviewSelected(arg0 int64) {
 /*
    Undocumented
 */
+func (o *ScriptEditor) X_HelpOverviewSelected(arg0 int64) {
+	log.Println("Calling ScriptEditor.X_HelpOverviewSelected()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(arg0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_help_overview_selected", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
 func (o *ScriptEditor) X_ScriptSelected(arg0 int64) {
 	log.Println("Calling ScriptEditor.X_ScriptSelected()")
 
@@ -109148,6 +109959,117 @@ func (o *EditorInterface) SaveSceneAs(path string, withPreview bool) {
    EditorInterfaceImplementer is an interface for EditorInterface objects.
 */
 type EditorInterfaceImplementer interface {
+	Class
+}
+
+/*
+
+ */
+type EditorExportPlugin struct {
+	Reference
+}
+
+func (o *EditorExportPlugin) baseClass() string {
+	return "EditorExportPlugin"
+}
+
+/*
+
+ */
+func (o *EditorExportPlugin) X_ExportFile(path string, aType string, features *PoolStringArray) {
+	log.Println("Calling EditorExportPlugin.X_ExportFile()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(path)
+	goArguments[1] = reflect.ValueOf(aType)
+	goArguments[2] = reflect.ValueOf(features)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_export_file", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *EditorExportPlugin) X_ExportBegin(features *PoolStringArray) {
+	log.Println("Calling EditorExportPlugin.X_ExportBegin()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(features)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_export_begin", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *EditorExportPlugin) AddSharedObject(path string) {
+	log.Println("Calling EditorExportPlugin.AddSharedObject()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(path)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "add_shared_object", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *EditorExportPlugin) AddFile(path string, file *PoolByteArray, remap bool) {
+	log.Println("Calling EditorExportPlugin.AddFile()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(path)
+	goArguments[1] = reflect.ValueOf(file)
+	goArguments[2] = reflect.ValueOf(remap)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "add_file", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *EditorExportPlugin) Skip() {
+	log.Println("Calling EditorExportPlugin.Skip()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "skip", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   EditorExportPluginImplementer is an interface for EditorExportPlugin objects.
+*/
+type EditorExportPluginImplementer interface {
 	Class
 }
 
@@ -112786,24 +113708,6 @@ type VisualScriptEngineSingletonImplementer interface {
 /*
 
  */
-type VisualScriptSceneTree struct {
-	VisualScriptNode
-}
-
-func (o *VisualScriptSceneTree) baseClass() string {
-	return "VisualScriptSceneTree"
-}
-
-/*
-   VisualScriptSceneTreeImplementer is an interface for VisualScriptSceneTree objects.
-*/
-type VisualScriptSceneTreeImplementer interface {
-	Class
-}
-
-/*
-
- */
 type VisualScriptSceneNode struct {
 	VisualScriptNode
 }
@@ -112855,6 +113759,24 @@ func (o *VisualScriptSceneNode) GetNodePath() *NodePath {
    VisualScriptSceneNodeImplementer is an interface for VisualScriptSceneNode objects.
 */
 type VisualScriptSceneNodeImplementer interface {
+	Class
+}
+
+/*
+
+ */
+type VisualScriptSceneTree struct {
+	VisualScriptNode
+}
+
+func (o *VisualScriptSceneTree) baseClass() string {
+	return "VisualScriptSceneTree"
+}
+
+/*
+   VisualScriptSceneTreeImplementer is an interface for VisualScriptSceneTree objects.
+*/
+type VisualScriptSceneTreeImplementer interface {
 	Class
 }
 

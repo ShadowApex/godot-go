@@ -96,6 +96,7 @@ type View struct {
 
 // ClassDoc returns the class documentation for the given class.
 func (v View) ClassDoc(class string) string {
+	class = v.GoClassName(class)
 	if _, ok := v.ClassDocs[class]; ok {
 		return v.UltraTrim(v.ClassDocs[class])
 	}
@@ -123,6 +124,14 @@ func (v View) UltraTrim(input string) string {
 	final = re_inside_whtsp.ReplaceAllString(final, " ")
 
 	return final
+}
+
+// GoClassName will convert any _<Name> classes into normal CamelCase names.
+func (v View) GoClassName(classString string) string {
+	if strings.HasPrefix(classString, "_") {
+		return strings.Replace(classString, "_", "", 1)
+	}
+	return classString
 }
 
 // GoMethodName will convert the snake_case'd version of the Godot method name
