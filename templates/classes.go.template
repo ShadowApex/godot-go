@@ -46,18 +46,29 @@ type Class interface {
 
 {{ range $i, $class := $view.APIs -}}
     {{ if $view.IsValidClass $class.Name $class.BaseClass -}}
-
+        {{ if $class.Singleton -}}
+            func newSingleton{{ $class.Name }}() *{{ $view.SetClassName $class.Name $class.Singleton}} {
+                obj := &{{ $view.SetClassName $class.Name $class.Singleton }}{}
+                ptr := C.godot_global_get_singleton(C.CString("{{ $class.Name }}"))
+                obj.owner = (*C.godot_object)(ptr)
+                return obj
+            }
+            /*
+            {{ $view.ClassDoc $class.Name }}
+            */
+            var {{ $class.Name }} = newSingleton{{ $class.Name }}()
+        {{ end }}
         /*
         {{ $view.ClassDoc $class.Name }}
         */
-        type {{ $class.Name }} struct {
-            {{ $class.BaseClass }}
+        type {{ $view.SetClassName $class.Name $class.Singleton }} struct {
+            {{ $view.SetBaseClassName $class.BaseClass }}
             {{ if eq $class.Name "Object" }}
                 owner *C.godot_object
             {{ end }}
         }
 
-        func (o *{{ $class.Name }}) baseClass() string {
+        func (o *{{ $view.SetClassName $class.Name $class.Singleton }}) baseClass() string {
             return "{{ $class.Name }}"
         }
 
@@ -66,7 +77,7 @@ type Class interface {
                 /*
                 {{ $view.MethodDoc $class.Name $method.Name }}
                 */
-                func (o *{{ $class.Name }}) {{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $arg.Type }},{{ end }}) {{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ end }} {
+                func (o *{{ $view.SetClassName $class.Name $class.Singleton }}) {{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $arg.Type }},{{ end }}) {{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ end }} {
                     log.Println("Calling {{ $class.Name }}.{{ $view.GoMethodName $method.Name }}()")
 
                     // Build out the method's arguments
@@ -214,13 +225,13 @@ type Class interface {
             }
 
         {{ end }}
-
-        /*
-        {{ $class.Name }}Implementer is an interface for {{ $class.Name }} objects.
-        */
-        type {{ $class.Name }}Implementer interface {
-                Class
-        }
-
+        {{ if eq $class.Singleton false -}} 
+            /*
+            {{ $class.Name }}Implementer is an interface for {{ $class.Name }} objects.
+            */
+            type {{ $class.Name }}Implementer interface {
+                    Class
+            }
+        {{ end -}}
     {{ end -}}
 {{ end }}

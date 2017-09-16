@@ -87,10 +87,11 @@ type GDMethodDoc struct {
 // View is a structure that holds the api classes struct, but has additional methods
 // attached to it that we can call inside our template.
 type View struct {
-	APIs       []GDAPI
-	Header     string
-	ClassDocs  map[string]string
-	MethodDocs map[string]map[string]string
+	APIs         []GDAPI
+	Header       string
+	ClassDocs    map[string]string
+	MethodDocs   map[string]map[string]string
+	SingletonMap map[string]bool
 }
 
 // ClassDoc returns the class documentation for the given class.
@@ -208,6 +209,16 @@ func (v View) IsValidClass(classString, inheritsString string) bool {
 	return true
 }
 
+func (v View) SetClassName(classString string, singleton bool) string {
+	if singleton {
+		return casee.ToCamelCase(classString)
+	}
+	return classString
+}
+
+func (v View) SetBaseClassName(baseClass string) string {
+	return v.SetClassName(baseClass, v.SingletonMap[baseClass])
+}
 func main() {
 
 	// Get the basepath so we know where to look for our JSON API and template file.
@@ -270,6 +281,12 @@ func main() {
 	// Add our documentation to our view.
 	view.ClassDocs = classDocs
 	view.MethodDocs = methodDocs
+
+	// Store all objects singleton value so it can be looked up later.
+	view.SingletonMap = map[string]bool{}
+	for _, api := range view.APIs {
+		view.SingletonMap[api.Name] = api.Singleton
+	}
 
 	// List out template file
 	templateFile := templatePath + "/classes.go.template"
