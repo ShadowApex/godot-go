@@ -71,7 +71,7 @@ func (v *Vector2) Bounce(with Vector2) *Vector2 {
 	return godotVec2AsVec2(C.godot_vector2_bounce(v.vector2, with.vector2))
 }
 
-//Clamped replaces v.vector2 with a new vector2 that is equivelant to v.vector2 * length
+//Clamped replaces v.vector2 with a new vector2 that is equivalent to v.vector2 * length
 func (v *Vector2) Clamped(length float64) *Vector2 {
 	return godotVec2AsVec2(
 		C.godot_vector2_clamped(

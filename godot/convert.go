@@ -247,6 +247,7 @@ func godotStringAsString(value *C.godot_string) string {
 
 	return C.GoString(godotCString)
 }
+
 func vec2AsGodotVec2(value Vector2) *C.godot_vector2 {
 	return value.vector2
 }

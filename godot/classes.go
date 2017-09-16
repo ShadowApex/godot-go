@@ -5523,21 +5523,33 @@ type StreamPeerSSLImplementer interface {
 	Class
 }
 
+func newSingletonIP() *ip {
+	obj := &ip{}
+	ptr := C.godot_global_get_singleton(C.CString("IP"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
+}
+
 /*
    IP contains support functions for the IPv4 protocol. TCP/IP support is in different classes (see [StreamPeerTCP] and [TCP_Server]). IP provides hostname resolution support, both blocking and threaded.
 */
-type IP struct {
+var IP = newSingletonIP()
+
+/*
+   IP contains support functions for the IPv4 protocol. TCP/IP support is in different classes (see [StreamPeerTCP] and [TCP_Server]). IP provides hostname resolution support, both blocking and threaded.
+*/
+type ip struct {
 	Object
 }
 
-func (o *IP) baseClass() string {
+func (o *ip) baseClass() string {
 	return "IP"
 }
 
 /*
    Returns a given hostname's IPv4 or IPv6 address when resolved (blocking-type method). The address type returned depends on the TYPE_* constant given as "ip_type".
 */
-func (o *IP) ResolveHostname(host string, ipType int64) string {
+func (o *ip) ResolveHostname(host string, ipType int64) string {
 	log.Println("Calling IP.ResolveHostname()")
 
 	// Build out the method's arguments
@@ -5560,7 +5572,7 @@ func (o *IP) ResolveHostname(host string, ipType int64) string {
 /*
    Creates a queue item to resolve a hostname to an IPv4 or IPv6 address depending on the TYPE_* constant given as "ip_type". Returns the queue ID if successful, or RESOLVER_INVALID_ID on error.
 */
-func (o *IP) ResolveHostnameQueueItem(host string, ipType int64) int64 {
+func (o *ip) ResolveHostnameQueueItem(host string, ipType int64) int64 {
 	log.Println("Calling IP.ResolveHostnameQueueItem()")
 
 	// Build out the method's arguments
@@ -5583,7 +5595,7 @@ func (o *IP) ResolveHostnameQueueItem(host string, ipType int64) int64 {
 /*
    Returns a queued hostname's status as a RESOLVER_STATUS_* constant, given its queue "id".
 */
-func (o *IP) GetResolveItemStatus(id int64) int64 {
+func (o *ip) GetResolveItemStatus(id int64) int64 {
 	log.Println("Calling IP.GetResolveItemStatus()")
 
 	// Build out the method's arguments
@@ -5605,7 +5617,7 @@ func (o *IP) GetResolveItemStatus(id int64) int64 {
 /*
    Returns a queued hostname's IP address, given its queue "id". Returns an empty string on error or if resolution hasn't happened yet (see [method get_resolve_item_status]).
 */
-func (o *IP) GetResolveItemAddress(id int64) string {
+func (o *ip) GetResolveItemAddress(id int64) string {
 	log.Println("Calling IP.GetResolveItemAddress()")
 
 	// Build out the method's arguments
@@ -5627,7 +5639,7 @@ func (o *IP) GetResolveItemAddress(id int64) string {
 /*
    Removes a given item "id" from the queue. This should be used to free a queue after it has completed to enable more queries to happen.
 */
-func (o *IP) EraseResolveItem(id int64) {
+func (o *ip) EraseResolveItem(id int64) {
 	log.Println("Calling IP.EraseResolveItem()")
 
 	// Build out the method's arguments
@@ -5645,7 +5657,7 @@ func (o *IP) EraseResolveItem(id int64) {
 /*
    Returns all of the user's current IPv4 and IPv6 addresses as an array.
 */
-func (o *IP) GetLocalAddresses() *Array {
+func (o *ip) GetLocalAddresses() *Array {
 	log.Println("Calling IP.GetLocalAddresses()")
 
 	// Build out the method's arguments
@@ -5666,7 +5678,7 @@ func (o *IP) GetLocalAddresses() *Array {
 /*
    Removes all of a "hostname"'s cached references. If no "hostname" is given then all cached IP addresses are removed.
 */
-func (o *IP) ClearCache(hostname string) {
+func (o *ip) ClearCache(hostname string) {
 	log.Println("Calling IP.ClearCache()")
 
 	// Build out the method's arguments
@@ -5679,13 +5691,6 @@ func (o *IP) ClearCache(hostname string) {
 
 	log.Println("Got return value!")
 
-}
-
-/*
-   IPImplementer is an interface for IP objects.
-*/
-type IPImplementer interface {
-	Class
 }
 
 /*
@@ -10064,7 +10069,7 @@ type EncodedObjectAsIDImplementer interface {
 
  */
 type IP_Unix struct {
-	IP
+	ip
 }
 
 func (o *IP_Unix) baseClass() string {
@@ -10078,21 +10083,33 @@ type IP_UnixImplementer interface {
 	Class
 }
 
+func newSingleton_Geometry() *geometry {
+	obj := &geometry{}
+	ptr := C.godot_global_get_singleton(C.CString("_Geometry"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
+}
+
 /*
    Undocumented
 */
-type _Geometry struct {
+var _Geometry = newSingleton_Geometry()
+
+/*
+   Undocumented
+*/
+type geometry struct {
 	Object
 }
 
-func (o *_Geometry) baseClass() string {
+func (o *geometry) baseClass() string {
 	return "_Geometry"
 }
 
 /*
    Undocumented
 */
-func (o *_Geometry) BuildBoxPlanes(extents *Vector3) *Array {
+func (o *geometry) BuildBoxPlanes(extents *Vector3) *Array {
 	log.Println("Calling _Geometry.BuildBoxPlanes()")
 
 	// Build out the method's arguments
@@ -10114,7 +10131,7 @@ func (o *_Geometry) BuildBoxPlanes(extents *Vector3) *Array {
 /*
    Undocumented
 */
-func (o *_Geometry) BuildCylinderPlanes(radius float64, height float64, sides int64, axis int64) *Array {
+func (o *geometry) BuildCylinderPlanes(radius float64, height float64, sides int64, axis int64) *Array {
 	log.Println("Calling _Geometry.BuildCylinderPlanes()")
 
 	// Build out the method's arguments
@@ -10139,7 +10156,7 @@ func (o *_Geometry) BuildCylinderPlanes(radius float64, height float64, sides in
 /*
    Undocumented
 */
-func (o *_Geometry) BuildCapsulePlanes(radius float64, height float64, sides int64, lats int64, axis int64) *Array {
+func (o *geometry) BuildCapsulePlanes(radius float64, height float64, sides int64, lats int64, axis int64) *Array {
 	log.Println("Calling _Geometry.BuildCapsulePlanes()")
 
 	// Build out the method's arguments
@@ -10165,7 +10182,7 @@ func (o *_Geometry) BuildCapsulePlanes(radius float64, height float64, sides int
 /*
    Undocumented
 */
-func (o *_Geometry) SegmentIntersectsCircle(segmentFrom *Vector2, segmentTo *Vector2, circlePos *Vector2, circleRadius float64) float64 {
+func (o *geometry) SegmentIntersectsCircle(segmentFrom *Vector2, segmentTo *Vector2, circlePos *Vector2, circleRadius float64) float64 {
 	log.Println("Calling _Geometry.SegmentIntersectsCircle()")
 
 	// Build out the method's arguments
@@ -10190,7 +10207,7 @@ func (o *_Geometry) SegmentIntersectsCircle(segmentFrom *Vector2, segmentTo *Vec
 /*
    Undocumented
 */
-func (o *_Geometry) SegmentIntersectsSegment2D(fromA *Vector2, toA *Vector2, fromB *Vector2, toB *Vector2) *Variant {
+func (o *geometry) SegmentIntersectsSegment2D(fromA *Vector2, toA *Vector2, fromB *Vector2, toB *Vector2) *Variant {
 	log.Println("Calling _Geometry.SegmentIntersectsSegment2D()")
 
 	// Build out the method's arguments
@@ -10215,7 +10232,7 @@ func (o *_Geometry) SegmentIntersectsSegment2D(fromA *Vector2, toA *Vector2, fro
 /*
    Undocumented
 */
-func (o *_Geometry) GetClosestPointsBetweenSegments2D(p1 *Vector2, q1 *Vector2, p2 *Vector2, q2 *Vector2) *PoolVector2Array {
+func (o *geometry) GetClosestPointsBetweenSegments2D(p1 *Vector2, q1 *Vector2, p2 *Vector2, q2 *Vector2) *PoolVector2Array {
 	log.Println("Calling _Geometry.GetClosestPointsBetweenSegments2D()")
 
 	// Build out the method's arguments
@@ -10240,7 +10257,7 @@ func (o *_Geometry) GetClosestPointsBetweenSegments2D(p1 *Vector2, q1 *Vector2, 
 /*
    Undocumented
 */
-func (o *_Geometry) GetClosestPointsBetweenSegments(p1 *Vector3, p2 *Vector3, q1 *Vector3, q2 *Vector3) *PoolVector3Array {
+func (o *geometry) GetClosestPointsBetweenSegments(p1 *Vector3, p2 *Vector3, q1 *Vector3, q2 *Vector3) *PoolVector3Array {
 	log.Println("Calling _Geometry.GetClosestPointsBetweenSegments()")
 
 	// Build out the method's arguments
@@ -10265,7 +10282,7 @@ func (o *_Geometry) GetClosestPointsBetweenSegments(p1 *Vector3, p2 *Vector3, q1
 /*
    Undocumented
 */
-func (o *_Geometry) GetClosestPointToSegment2D(point *Vector2, s1 *Vector2, s2 *Vector2) *Vector2 {
+func (o *geometry) GetClosestPointToSegment2D(point *Vector2, s1 *Vector2, s2 *Vector2) *Vector2 {
 	log.Println("Calling _Geometry.GetClosestPointToSegment2D()")
 
 	// Build out the method's arguments
@@ -10289,7 +10306,7 @@ func (o *_Geometry) GetClosestPointToSegment2D(point *Vector2, s1 *Vector2, s2 *
 /*
    Undocumented
 */
-func (o *_Geometry) GetClosestPointToSegment(point *Vector3, s1 *Vector3, s2 *Vector3) *Vector3 {
+func (o *geometry) GetClosestPointToSegment(point *Vector3, s1 *Vector3, s2 *Vector3) *Vector3 {
 	log.Println("Calling _Geometry.GetClosestPointToSegment()")
 
 	// Build out the method's arguments
@@ -10313,7 +10330,7 @@ func (o *_Geometry) GetClosestPointToSegment(point *Vector3, s1 *Vector3, s2 *Ve
 /*
    Undocumented
 */
-func (o *_Geometry) GetClosestPointToSegmentUncapped2D(point *Vector2, s1 *Vector2, s2 *Vector2) *Vector2 {
+func (o *geometry) GetClosestPointToSegmentUncapped2D(point *Vector2, s1 *Vector2, s2 *Vector2) *Vector2 {
 	log.Println("Calling _Geometry.GetClosestPointToSegmentUncapped2D()")
 
 	// Build out the method's arguments
@@ -10337,7 +10354,7 @@ func (o *_Geometry) GetClosestPointToSegmentUncapped2D(point *Vector2, s1 *Vecto
 /*
    Undocumented
 */
-func (o *_Geometry) GetClosestPointToSegmentUncapped(point *Vector3, s1 *Vector3, s2 *Vector3) *Vector3 {
+func (o *geometry) GetClosestPointToSegmentUncapped(point *Vector3, s1 *Vector3, s2 *Vector3) *Vector3 {
 	log.Println("Calling _Geometry.GetClosestPointToSegmentUncapped()")
 
 	// Build out the method's arguments
@@ -10361,7 +10378,7 @@ func (o *_Geometry) GetClosestPointToSegmentUncapped(point *Vector3, s1 *Vector3
 /*
    Undocumented
 */
-func (o *_Geometry) GetUv84NormalBit(normal *Vector3) int64 {
+func (o *geometry) GetUv84NormalBit(normal *Vector3) int64 {
 	log.Println("Calling _Geometry.GetUv84NormalBit()")
 
 	// Build out the method's arguments
@@ -10383,7 +10400,7 @@ func (o *_Geometry) GetUv84NormalBit(normal *Vector3) int64 {
 /*
    Undocumented
 */
-func (o *_Geometry) RayIntersectsTriangle(from *Vector3, dir *Vector3, a *Vector3, b *Vector3, c *Vector3) *Variant {
+func (o *geometry) RayIntersectsTriangle(from *Vector3, dir *Vector3, a *Vector3, b *Vector3, c *Vector3) *Variant {
 	log.Println("Calling _Geometry.RayIntersectsTriangle()")
 
 	// Build out the method's arguments
@@ -10409,7 +10426,7 @@ func (o *_Geometry) RayIntersectsTriangle(from *Vector3, dir *Vector3, a *Vector
 /*
    Undocumented
 */
-func (o *_Geometry) SegmentIntersectsTriangle(from *Vector3, to *Vector3, a *Vector3, b *Vector3, c *Vector3) *Variant {
+func (o *geometry) SegmentIntersectsTriangle(from *Vector3, to *Vector3, a *Vector3, b *Vector3, c *Vector3) *Variant {
 	log.Println("Calling _Geometry.SegmentIntersectsTriangle()")
 
 	// Build out the method's arguments
@@ -10435,7 +10452,7 @@ func (o *_Geometry) SegmentIntersectsTriangle(from *Vector3, to *Vector3, a *Vec
 /*
    Undocumented
 */
-func (o *_Geometry) SegmentIntersectsSphere(from *Vector3, to *Vector3, spos *Vector3, sradius float64) *PoolVector3Array {
+func (o *geometry) SegmentIntersectsSphere(from *Vector3, to *Vector3, spos *Vector3, sradius float64) *PoolVector3Array {
 	log.Println("Calling _Geometry.SegmentIntersectsSphere()")
 
 	// Build out the method's arguments
@@ -10460,7 +10477,7 @@ func (o *_Geometry) SegmentIntersectsSphere(from *Vector3, to *Vector3, spos *Ve
 /*
    Undocumented
 */
-func (o *_Geometry) SegmentIntersectsCylinder(from *Vector3, to *Vector3, height float64, radius float64) *PoolVector3Array {
+func (o *geometry) SegmentIntersectsCylinder(from *Vector3, to *Vector3, height float64, radius float64) *PoolVector3Array {
 	log.Println("Calling _Geometry.SegmentIntersectsCylinder()")
 
 	// Build out the method's arguments
@@ -10485,7 +10502,7 @@ func (o *_Geometry) SegmentIntersectsCylinder(from *Vector3, to *Vector3, height
 /*
    Undocumented
 */
-func (o *_Geometry) SegmentIntersectsConvex(from *Vector3, to *Vector3, planes *Array) *PoolVector3Array {
+func (o *geometry) SegmentIntersectsConvex(from *Vector3, to *Vector3, planes *Array) *PoolVector3Array {
 	log.Println("Calling _Geometry.SegmentIntersectsConvex()")
 
 	// Build out the method's arguments
@@ -10509,7 +10526,7 @@ func (o *_Geometry) SegmentIntersectsConvex(from *Vector3, to *Vector3, planes *
 /*
    Undocumented
 */
-func (o *_Geometry) PointIsInsideTriangle(point *Vector2, a *Vector2, b *Vector2, c *Vector2) bool {
+func (o *geometry) PointIsInsideTriangle(point *Vector2, a *Vector2, b *Vector2, c *Vector2) bool {
 	log.Println("Calling _Geometry.PointIsInsideTriangle()")
 
 	// Build out the method's arguments
@@ -10534,7 +10551,7 @@ func (o *_Geometry) PointIsInsideTriangle(point *Vector2, a *Vector2, b *Vector2
 /*
    Undocumented
 */
-func (o *_Geometry) TriangulatePolygon(polygon *PoolVector2Array) *PoolIntArray {
+func (o *geometry) TriangulatePolygon(polygon *PoolVector2Array) *PoolIntArray {
 	log.Println("Calling _Geometry.TriangulatePolygon()")
 
 	// Build out the method's arguments
@@ -10556,7 +10573,7 @@ func (o *_Geometry) TriangulatePolygon(polygon *PoolVector2Array) *PoolIntArray 
 /*
    Undocumented
 */
-func (o *_Geometry) MakeAtlas(sizes *PoolVector2Array) *Dictionary {
+func (o *geometry) MakeAtlas(sizes *PoolVector2Array) *Dictionary {
 	log.Println("Calling _Geometry.MakeAtlas()")
 
 	// Build out the method's arguments
@@ -10575,28 +10592,33 @@ func (o *_Geometry) MakeAtlas(sizes *PoolVector2Array) *Dictionary {
 
 }
 
-/*
-   _GeometryImplementer is an interface for _Geometry objects.
-*/
-type _GeometryImplementer interface {
-	Class
+func newSingleton_ResourceLoader() *resourceLoader {
+	obj := &resourceLoader{}
+	ptr := C.godot_global_get_singleton(C.CString("_ResourceLoader"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
 }
 
 /*
    Undocumented
 */
-type _ResourceLoader struct {
+var _ResourceLoader = newSingleton_ResourceLoader()
+
+/*
+   Undocumented
+*/
+type resourceLoader struct {
 	Object
 }
 
-func (o *_ResourceLoader) baseClass() string {
+func (o *resourceLoader) baseClass() string {
 	return "_ResourceLoader"
 }
 
 /*
    Undocumented
 */
-func (o *_ResourceLoader) LoadInteractive(path string, typeHint string) *ResourceInteractiveLoader {
+func (o *resourceLoader) LoadInteractive(path string, typeHint string) *ResourceInteractiveLoader {
 	log.Println("Calling _ResourceLoader.LoadInteractive()")
 
 	// Build out the method's arguments
@@ -10619,7 +10641,7 @@ func (o *_ResourceLoader) LoadInteractive(path string, typeHint string) *Resourc
 /*
    Undocumented
 */
-func (o *_ResourceLoader) Load(path string, typeHint string, pNoCache bool) *Resource {
+func (o *resourceLoader) Load(path string, typeHint string, pNoCache bool) *Resource {
 	log.Println("Calling _ResourceLoader.Load()")
 
 	// Build out the method's arguments
@@ -10643,7 +10665,7 @@ func (o *_ResourceLoader) Load(path string, typeHint string, pNoCache bool) *Res
 /*
    Undocumented
 */
-func (o *_ResourceLoader) GetRecognizedExtensionsForType(aType string) *PoolStringArray {
+func (o *resourceLoader) GetRecognizedExtensionsForType(aType string) *PoolStringArray {
 	log.Println("Calling _ResourceLoader.GetRecognizedExtensionsForType()")
 
 	// Build out the method's arguments
@@ -10665,7 +10687,7 @@ func (o *_ResourceLoader) GetRecognizedExtensionsForType(aType string) *PoolStri
 /*
    Undocumented
 */
-func (o *_ResourceLoader) SetAbortOnMissingResources(abort bool) {
+func (o *resourceLoader) SetAbortOnMissingResources(abort bool) {
 	log.Println("Calling _ResourceLoader.SetAbortOnMissingResources()")
 
 	// Build out the method's arguments
@@ -10683,7 +10705,7 @@ func (o *_ResourceLoader) SetAbortOnMissingResources(abort bool) {
 /*
    Undocumented
 */
-func (o *_ResourceLoader) GetDependencies(path string) *PoolStringArray {
+func (o *resourceLoader) GetDependencies(path string) *PoolStringArray {
 	log.Println("Calling _ResourceLoader.GetDependencies()")
 
 	// Build out the method's arguments
@@ -10705,7 +10727,7 @@ func (o *_ResourceLoader) GetDependencies(path string) *PoolStringArray {
 /*
    Undocumented
 */
-func (o *_ResourceLoader) Has(path string) bool {
+func (o *resourceLoader) Has(path string) bool {
 	log.Println("Calling _ResourceLoader.Has()")
 
 	// Build out the method's arguments
@@ -10724,28 +10746,33 @@ func (o *_ResourceLoader) Has(path string) bool {
 
 }
 
-/*
-   _ResourceLoaderImplementer is an interface for _ResourceLoader objects.
-*/
-type _ResourceLoaderImplementer interface {
-	Class
+func newSingleton_ResourceSaver() *resourceSaver {
+	obj := &resourceSaver{}
+	ptr := C.godot_global_get_singleton(C.CString("_ResourceSaver"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
 }
 
 /*
    Undocumented
 */
-type _ResourceSaver struct {
+var _ResourceSaver = newSingleton_ResourceSaver()
+
+/*
+   Undocumented
+*/
+type resourceSaver struct {
 	Object
 }
 
-func (o *_ResourceSaver) baseClass() string {
+func (o *resourceSaver) baseClass() string {
 	return "_ResourceSaver"
 }
 
 /*
    Undocumented
 */
-func (o *_ResourceSaver) Save(path string, resource *Resource, flags int64) int64 {
+func (o *resourceSaver) Save(path string, resource *Resource, flags int64) int64 {
 	log.Println("Calling _ResourceSaver.Save()")
 
 	// Build out the method's arguments
@@ -10769,7 +10796,7 @@ func (o *_ResourceSaver) Save(path string, resource *Resource, flags int64) int6
 /*
    Undocumented
 */
-func (o *_ResourceSaver) GetRecognizedExtensions(aType *Resource) *PoolStringArray {
+func (o *resourceSaver) GetRecognizedExtensions(aType *Resource) *PoolStringArray {
 	log.Println("Calling _ResourceSaver.GetRecognizedExtensions()")
 
 	// Build out the method's arguments
@@ -10788,28 +10815,33 @@ func (o *_ResourceSaver) GetRecognizedExtensions(aType *Resource) *PoolStringArr
 
 }
 
-/*
-   _ResourceSaverImplementer is an interface for _ResourceSaver objects.
-*/
-type _ResourceSaverImplementer interface {
-	Class
+func newSingleton_OS() *os {
+	obj := &os{}
+	ptr := C.godot_global_get_singleton(C.CString("_OS"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
 }
 
 /*
    Undocumented
 */
-type _OS struct {
+var _OS = newSingleton_OS()
+
+/*
+   Undocumented
+*/
+type os struct {
 	Object
 }
 
-func (o *_OS) baseClass() string {
+func (o *os) baseClass() string {
 	return "_OS"
 }
 
 /*
    Undocumented
 */
-func (o *_OS) SetClipboard(clipboard string) {
+func (o *os) SetClipboard(clipboard string) {
 	log.Println("Calling _OS.SetClipboard()")
 
 	// Build out the method's arguments
@@ -10827,7 +10859,7 @@ func (o *_OS) SetClipboard(clipboard string) {
 /*
    Undocumented
 */
-func (o *_OS) GetClipboard() string {
+func (o *os) GetClipboard() string {
 	log.Println("Calling _OS.GetClipboard()")
 
 	// Build out the method's arguments
@@ -10848,7 +10880,7 @@ func (o *_OS) GetClipboard() string {
 /*
    Undocumented
 */
-func (o *_OS) GetScreenCount() int64 {
+func (o *os) GetScreenCount() int64 {
 	log.Println("Calling _OS.GetScreenCount()")
 
 	// Build out the method's arguments
@@ -10869,7 +10901,7 @@ func (o *_OS) GetScreenCount() int64 {
 /*
    Undocumented
 */
-func (o *_OS) GetCurrentScreen() int64 {
+func (o *os) GetCurrentScreen() int64 {
 	log.Println("Calling _OS.GetCurrentScreen()")
 
 	// Build out the method's arguments
@@ -10890,7 +10922,7 @@ func (o *_OS) GetCurrentScreen() int64 {
 /*
    Undocumented
 */
-func (o *_OS) SetCurrentScreen(screen int64) {
+func (o *os) SetCurrentScreen(screen int64) {
 	log.Println("Calling _OS.SetCurrentScreen()")
 
 	// Build out the method's arguments
@@ -10908,7 +10940,7 @@ func (o *_OS) SetCurrentScreen(screen int64) {
 /*
    Undocumented
 */
-func (o *_OS) GetScreenPosition(screen int64) *Vector2 {
+func (o *os) GetScreenPosition(screen int64) *Vector2 {
 	log.Println("Calling _OS.GetScreenPosition()")
 
 	// Build out the method's arguments
@@ -10930,7 +10962,7 @@ func (o *_OS) GetScreenPosition(screen int64) *Vector2 {
 /*
    Undocumented
 */
-func (o *_OS) GetScreenSize(screen int64) *Vector2 {
+func (o *os) GetScreenSize(screen int64) *Vector2 {
 	log.Println("Calling _OS.GetScreenSize()")
 
 	// Build out the method's arguments
@@ -10952,7 +10984,7 @@ func (o *_OS) GetScreenSize(screen int64) *Vector2 {
 /*
    Undocumented
 */
-func (o *_OS) GetScreenDpi(screen int64) int64 {
+func (o *os) GetScreenDpi(screen int64) int64 {
 	log.Println("Calling _OS.GetScreenDpi()")
 
 	// Build out the method's arguments
@@ -10974,7 +11006,7 @@ func (o *_OS) GetScreenDpi(screen int64) int64 {
 /*
    Undocumented
 */
-func (o *_OS) GetWindowPosition() *Vector2 {
+func (o *os) GetWindowPosition() *Vector2 {
 	log.Println("Calling _OS.GetWindowPosition()")
 
 	// Build out the method's arguments
@@ -10995,7 +11027,7 @@ func (o *_OS) GetWindowPosition() *Vector2 {
 /*
    Undocumented
 */
-func (o *_OS) SetWindowPosition(position *Vector2) {
+func (o *os) SetWindowPosition(position *Vector2) {
 	log.Println("Calling _OS.SetWindowPosition()")
 
 	// Build out the method's arguments
@@ -11013,7 +11045,7 @@ func (o *_OS) SetWindowPosition(position *Vector2) {
 /*
    Undocumented
 */
-func (o *_OS) GetWindowSize() *Vector2 {
+func (o *os) GetWindowSize() *Vector2 {
 	log.Println("Calling _OS.GetWindowSize()")
 
 	// Build out the method's arguments
@@ -11034,7 +11066,7 @@ func (o *_OS) GetWindowSize() *Vector2 {
 /*
    Undocumented
 */
-func (o *_OS) SetWindowSize(size *Vector2) {
+func (o *os) SetWindowSize(size *Vector2) {
 	log.Println("Calling _OS.SetWindowSize()")
 
 	// Build out the method's arguments
@@ -11052,7 +11084,7 @@ func (o *_OS) SetWindowSize(size *Vector2) {
 /*
    Undocumented
 */
-func (o *_OS) SetWindowFullscreen(enabled bool) {
+func (o *os) SetWindowFullscreen(enabled bool) {
 	log.Println("Calling _OS.SetWindowFullscreen()")
 
 	// Build out the method's arguments
@@ -11070,7 +11102,7 @@ func (o *_OS) SetWindowFullscreen(enabled bool) {
 /*
    Undocumented
 */
-func (o *_OS) IsWindowFullscreen() bool {
+func (o *os) IsWindowFullscreen() bool {
 	log.Println("Calling _OS.IsWindowFullscreen()")
 
 	// Build out the method's arguments
@@ -11091,7 +11123,7 @@ func (o *_OS) IsWindowFullscreen() bool {
 /*
    Undocumented
 */
-func (o *_OS) SetWindowResizable(enabled bool) {
+func (o *os) SetWindowResizable(enabled bool) {
 	log.Println("Calling _OS.SetWindowResizable()")
 
 	// Build out the method's arguments
@@ -11109,7 +11141,7 @@ func (o *_OS) SetWindowResizable(enabled bool) {
 /*
    Undocumented
 */
-func (o *_OS) IsWindowResizable() bool {
+func (o *os) IsWindowResizable() bool {
 	log.Println("Calling _OS.IsWindowResizable()")
 
 	// Build out the method's arguments
@@ -11130,7 +11162,7 @@ func (o *_OS) IsWindowResizable() bool {
 /*
    Undocumented
 */
-func (o *_OS) SetWindowMinimized(enabled bool) {
+func (o *os) SetWindowMinimized(enabled bool) {
 	log.Println("Calling _OS.SetWindowMinimized()")
 
 	// Build out the method's arguments
@@ -11148,7 +11180,7 @@ func (o *_OS) SetWindowMinimized(enabled bool) {
 /*
    Undocumented
 */
-func (o *_OS) IsWindowMinimized() bool {
+func (o *os) IsWindowMinimized() bool {
 	log.Println("Calling _OS.IsWindowMinimized()")
 
 	// Build out the method's arguments
@@ -11169,7 +11201,7 @@ func (o *_OS) IsWindowMinimized() bool {
 /*
    Undocumented
 */
-func (o *_OS) SetWindowMaximized(enabled bool) {
+func (o *os) SetWindowMaximized(enabled bool) {
 	log.Println("Calling _OS.SetWindowMaximized()")
 
 	// Build out the method's arguments
@@ -11187,7 +11219,7 @@ func (o *_OS) SetWindowMaximized(enabled bool) {
 /*
    Undocumented
 */
-func (o *_OS) IsWindowMaximized() bool {
+func (o *os) IsWindowMaximized() bool {
 	log.Println("Calling _OS.IsWindowMaximized()")
 
 	// Build out the method's arguments
@@ -11208,7 +11240,7 @@ func (o *_OS) IsWindowMaximized() bool {
 /*
    Undocumented
 */
-func (o *_OS) RequestAttention() {
+func (o *os) RequestAttention() {
 	log.Println("Calling _OS.RequestAttention()")
 
 	// Build out the method's arguments
@@ -11225,7 +11257,7 @@ func (o *_OS) RequestAttention() {
 /*
    Undocumented
 */
-func (o *_OS) SetBorderlessWindow(borderless bool) {
+func (o *os) SetBorderlessWindow(borderless bool) {
 	log.Println("Calling _OS.SetBorderlessWindow()")
 
 	// Build out the method's arguments
@@ -11243,7 +11275,7 @@ func (o *_OS) SetBorderlessWindow(borderless bool) {
 /*
    Undocumented
 */
-func (o *_OS) GetBorderlessWindow() bool {
+func (o *os) GetBorderlessWindow() bool {
 	log.Println("Calling _OS.GetBorderlessWindow()")
 
 	// Build out the method's arguments
@@ -11264,7 +11296,7 @@ func (o *_OS) GetBorderlessWindow() bool {
 /*
    Undocumented
 */
-func (o *_OS) SetImePosition(position *Vector2) {
+func (o *os) SetImePosition(position *Vector2) {
 	log.Println("Calling _OS.SetImePosition()")
 
 	// Build out the method's arguments
@@ -11282,7 +11314,7 @@ func (o *_OS) SetImePosition(position *Vector2) {
 /*
    Undocumented
 */
-func (o *_OS) SetScreenOrientation(orientation int64) {
+func (o *os) SetScreenOrientation(orientation int64) {
 	log.Println("Calling _OS.SetScreenOrientation()")
 
 	// Build out the method's arguments
@@ -11300,7 +11332,7 @@ func (o *_OS) SetScreenOrientation(orientation int64) {
 /*
    Undocumented
 */
-func (o *_OS) GetScreenOrientation() int64 {
+func (o *os) GetScreenOrientation() int64 {
 	log.Println("Calling _OS.GetScreenOrientation()")
 
 	// Build out the method's arguments
@@ -11321,7 +11353,7 @@ func (o *_OS) GetScreenOrientation() int64 {
 /*
    Undocumented
 */
-func (o *_OS) SetKeepScreenOn(enabled bool) {
+func (o *os) SetKeepScreenOn(enabled bool) {
 	log.Println("Calling _OS.SetKeepScreenOn()")
 
 	// Build out the method's arguments
@@ -11339,7 +11371,7 @@ func (o *_OS) SetKeepScreenOn(enabled bool) {
 /*
    Undocumented
 */
-func (o *_OS) IsKeepScreenOn() bool {
+func (o *os) IsKeepScreenOn() bool {
 	log.Println("Calling _OS.IsKeepScreenOn()")
 
 	// Build out the method's arguments
@@ -11360,7 +11392,7 @@ func (o *_OS) IsKeepScreenOn() bool {
 /*
    Undocumented
 */
-func (o *_OS) HasTouchscreenUiHint() bool {
+func (o *os) HasTouchscreenUiHint() bool {
 	log.Println("Calling _OS.HasTouchscreenUiHint()")
 
 	// Build out the method's arguments
@@ -11381,7 +11413,7 @@ func (o *_OS) HasTouchscreenUiHint() bool {
 /*
    Undocumented
 */
-func (o *_OS) SetWindowTitle(title string) {
+func (o *os) SetWindowTitle(title string) {
 	log.Println("Calling _OS.SetWindowTitle()")
 
 	// Build out the method's arguments
@@ -11399,7 +11431,7 @@ func (o *_OS) SetWindowTitle(title string) {
 /*
    Undocumented
 */
-func (o *_OS) SetLowProcessorUsageMode(enable bool) {
+func (o *os) SetLowProcessorUsageMode(enable bool) {
 	log.Println("Calling _OS.SetLowProcessorUsageMode()")
 
 	// Build out the method's arguments
@@ -11417,7 +11449,7 @@ func (o *_OS) SetLowProcessorUsageMode(enable bool) {
 /*
    Undocumented
 */
-func (o *_OS) IsInLowProcessorUsageMode() bool {
+func (o *os) IsInLowProcessorUsageMode() bool {
 	log.Println("Calling _OS.IsInLowProcessorUsageMode()")
 
 	// Build out the method's arguments
@@ -11438,7 +11470,7 @@ func (o *_OS) IsInLowProcessorUsageMode() bool {
 /*
    Undocumented
 */
-func (o *_OS) GetProcessorCount() int64 {
+func (o *os) GetProcessorCount() int64 {
 	log.Println("Calling _OS.GetProcessorCount()")
 
 	// Build out the method's arguments
@@ -11459,7 +11491,7 @@ func (o *_OS) GetProcessorCount() int64 {
 /*
    Undocumented
 */
-func (o *_OS) GetExecutablePath() string {
+func (o *os) GetExecutablePath() string {
 	log.Println("Calling _OS.GetExecutablePath()")
 
 	// Build out the method's arguments
@@ -11480,7 +11512,7 @@ func (o *_OS) GetExecutablePath() string {
 /*
    Undocumented
 */
-func (o *_OS) Execute(path string, arguments *PoolStringArray, blocking bool, output *Array) int64 {
+func (o *os) Execute(path string, arguments *PoolStringArray, blocking bool, output *Array) int64 {
 	log.Println("Calling _OS.Execute()")
 
 	// Build out the method's arguments
@@ -11505,7 +11537,7 @@ func (o *_OS) Execute(path string, arguments *PoolStringArray, blocking bool, ou
 /*
    Undocumented
 */
-func (o *_OS) Kill(pid int64) int64 {
+func (o *os) Kill(pid int64) int64 {
 	log.Println("Calling _OS.Kill()")
 
 	// Build out the method's arguments
@@ -11527,7 +11559,7 @@ func (o *_OS) Kill(pid int64) int64 {
 /*
    Undocumented
 */
-func (o *_OS) ShellOpen(uri string) int64 {
+func (o *os) ShellOpen(uri string) int64 {
 	log.Println("Calling _OS.ShellOpen()")
 
 	// Build out the method's arguments
@@ -11549,7 +11581,7 @@ func (o *_OS) ShellOpen(uri string) int64 {
 /*
    Undocumented
 */
-func (o *_OS) GetProcessId() int64 {
+func (o *os) GetProcessId() int64 {
 	log.Println("Calling _OS.GetProcessId()")
 
 	// Build out the method's arguments
@@ -11570,7 +11602,7 @@ func (o *_OS) GetProcessId() int64 {
 /*
    Undocumented
 */
-func (o *_OS) GetEnvironment(environment string) string {
+func (o *os) GetEnvironment(environment string) string {
 	log.Println("Calling _OS.GetEnvironment()")
 
 	// Build out the method's arguments
@@ -11592,7 +11624,7 @@ func (o *_OS) GetEnvironment(environment string) string {
 /*
    Undocumented
 */
-func (o *_OS) HasEnvironment(environment string) bool {
+func (o *os) HasEnvironment(environment string) bool {
 	log.Println("Calling _OS.HasEnvironment()")
 
 	// Build out the method's arguments
@@ -11614,7 +11646,7 @@ func (o *_OS) HasEnvironment(environment string) bool {
 /*
    Undocumented
 */
-func (o *_OS) GetName() string {
+func (o *os) GetName() string {
 	log.Println("Calling _OS.GetName()")
 
 	// Build out the method's arguments
@@ -11635,7 +11667,7 @@ func (o *_OS) GetName() string {
 /*
    Undocumented
 */
-func (o *_OS) GetCmdlineArgs() *PoolStringArray {
+func (o *os) GetCmdlineArgs() *PoolStringArray {
 	log.Println("Calling _OS.GetCmdlineArgs()")
 
 	// Build out the method's arguments
@@ -11656,7 +11688,7 @@ func (o *_OS) GetCmdlineArgs() *PoolStringArray {
 /*
    Undocumented
 */
-func (o *_OS) GetDatetime(utc bool) *Dictionary {
+func (o *os) GetDatetime(utc bool) *Dictionary {
 	log.Println("Calling _OS.GetDatetime()")
 
 	// Build out the method's arguments
@@ -11678,7 +11710,7 @@ func (o *_OS) GetDatetime(utc bool) *Dictionary {
 /*
    Undocumented
 */
-func (o *_OS) GetDate(utc bool) *Dictionary {
+func (o *os) GetDate(utc bool) *Dictionary {
 	log.Println("Calling _OS.GetDate()")
 
 	// Build out the method's arguments
@@ -11700,7 +11732,7 @@ func (o *_OS) GetDate(utc bool) *Dictionary {
 /*
    Undocumented
 */
-func (o *_OS) GetTime(utc bool) *Dictionary {
+func (o *os) GetTime(utc bool) *Dictionary {
 	log.Println("Calling _OS.GetTime()")
 
 	// Build out the method's arguments
@@ -11722,7 +11754,7 @@ func (o *_OS) GetTime(utc bool) *Dictionary {
 /*
    Undocumented
 */
-func (o *_OS) GetTimeZoneInfo() *Dictionary {
+func (o *os) GetTimeZoneInfo() *Dictionary {
 	log.Println("Calling _OS.GetTimeZoneInfo()")
 
 	// Build out the method's arguments
@@ -11743,7 +11775,7 @@ func (o *_OS) GetTimeZoneInfo() *Dictionary {
 /*
    Undocumented
 */
-func (o *_OS) GetUnixTime() int64 {
+func (o *os) GetUnixTime() int64 {
 	log.Println("Calling _OS.GetUnixTime()")
 
 	// Build out the method's arguments
@@ -11764,7 +11796,7 @@ func (o *_OS) GetUnixTime() int64 {
 /*
    Undocumented
 */
-func (o *_OS) GetDatetimeFromUnixTime(unixTimeVal int64) *Dictionary {
+func (o *os) GetDatetimeFromUnixTime(unixTimeVal int64) *Dictionary {
 	log.Println("Calling _OS.GetDatetimeFromUnixTime()")
 
 	// Build out the method's arguments
@@ -11786,7 +11818,7 @@ func (o *_OS) GetDatetimeFromUnixTime(unixTimeVal int64) *Dictionary {
 /*
    Undocumented
 */
-func (o *_OS) GetUnixTimeFromDatetime(datetime *Dictionary) int64 {
+func (o *os) GetUnixTimeFromDatetime(datetime *Dictionary) int64 {
 	log.Println("Calling _OS.GetUnixTimeFromDatetime()")
 
 	// Build out the method's arguments
@@ -11808,7 +11840,7 @@ func (o *_OS) GetUnixTimeFromDatetime(datetime *Dictionary) int64 {
 /*
    Undocumented
 */
-func (o *_OS) GetSystemTimeSecs() int64 {
+func (o *os) GetSystemTimeSecs() int64 {
 	log.Println("Calling _OS.GetSystemTimeSecs()")
 
 	// Build out the method's arguments
@@ -11829,7 +11861,7 @@ func (o *_OS) GetSystemTimeSecs() int64 {
 /*
    Undocumented
 */
-func (o *_OS) SetIcon(icon *Image) {
+func (o *os) SetIcon(icon *Image) {
 	log.Println("Calling _OS.SetIcon()")
 
 	// Build out the method's arguments
@@ -11847,7 +11879,7 @@ func (o *_OS) SetIcon(icon *Image) {
 /*
    Undocumented
 */
-func (o *_OS) GetExitCode() int64 {
+func (o *os) GetExitCode() int64 {
 	log.Println("Calling _OS.GetExitCode()")
 
 	// Build out the method's arguments
@@ -11868,7 +11900,7 @@ func (o *_OS) GetExitCode() int64 {
 /*
    Undocumented
 */
-func (o *_OS) SetExitCode(code int64) {
+func (o *os) SetExitCode(code int64) {
 	log.Println("Calling _OS.SetExitCode()")
 
 	// Build out the method's arguments
@@ -11886,7 +11918,7 @@ func (o *_OS) SetExitCode(code int64) {
 /*
    Undocumented
 */
-func (o *_OS) DelayUsec(usec int64) {
+func (o *os) DelayUsec(usec int64) {
 	log.Println("Calling _OS.DelayUsec()")
 
 	// Build out the method's arguments
@@ -11904,7 +11936,7 @@ func (o *_OS) DelayUsec(usec int64) {
 /*
    Undocumented
 */
-func (o *_OS) DelayMsec(msec int64) {
+func (o *os) DelayMsec(msec int64) {
 	log.Println("Calling _OS.DelayMsec()")
 
 	// Build out the method's arguments
@@ -11922,7 +11954,7 @@ func (o *_OS) DelayMsec(msec int64) {
 /*
    Undocumented
 */
-func (o *_OS) GetTicksMsec() int64 {
+func (o *os) GetTicksMsec() int64 {
 	log.Println("Calling _OS.GetTicksMsec()")
 
 	// Build out the method's arguments
@@ -11943,7 +11975,7 @@ func (o *_OS) GetTicksMsec() int64 {
 /*
    Undocumented
 */
-func (o *_OS) GetSplashTickMsec() int64 {
+func (o *os) GetSplashTickMsec() int64 {
 	log.Println("Calling _OS.GetSplashTickMsec()")
 
 	// Build out the method's arguments
@@ -11964,7 +11996,7 @@ func (o *_OS) GetSplashTickMsec() int64 {
 /*
    Undocumented
 */
-func (o *_OS) GetLocale() string {
+func (o *os) GetLocale() string {
 	log.Println("Calling _OS.GetLocale()")
 
 	// Build out the method's arguments
@@ -11985,7 +12017,7 @@ func (o *_OS) GetLocale() string {
 /*
    Undocumented
 */
-func (o *_OS) GetLatinKeyboardVariant() string {
+func (o *os) GetLatinKeyboardVariant() string {
 	log.Println("Calling _OS.GetLatinKeyboardVariant()")
 
 	// Build out the method's arguments
@@ -12006,7 +12038,7 @@ func (o *_OS) GetLatinKeyboardVariant() string {
 /*
    Undocumented
 */
-func (o *_OS) GetModelName() string {
+func (o *os) GetModelName() string {
 	log.Println("Calling _OS.GetModelName()")
 
 	// Build out the method's arguments
@@ -12027,7 +12059,7 @@ func (o *_OS) GetModelName() string {
 /*
    Undocumented
 */
-func (o *_OS) CanDraw() bool {
+func (o *os) CanDraw() bool {
 	log.Println("Calling _OS.CanDraw()")
 
 	// Build out the method's arguments
@@ -12048,7 +12080,7 @@ func (o *_OS) CanDraw() bool {
 /*
    Undocumented
 */
-func (o *_OS) IsStdoutVerbose() bool {
+func (o *os) IsStdoutVerbose() bool {
 	log.Println("Calling _OS.IsStdoutVerbose()")
 
 	// Build out the method's arguments
@@ -12069,7 +12101,7 @@ func (o *_OS) IsStdoutVerbose() bool {
 /*
    Undocumented
 */
-func (o *_OS) CanUseThreads() bool {
+func (o *os) CanUseThreads() bool {
 	log.Println("Calling _OS.CanUseThreads()")
 
 	// Build out the method's arguments
@@ -12090,7 +12122,7 @@ func (o *_OS) CanUseThreads() bool {
 /*
    Undocumented
 */
-func (o *_OS) IsDebugBuild() bool {
+func (o *os) IsDebugBuild() bool {
 	log.Println("Calling _OS.IsDebugBuild()")
 
 	// Build out the method's arguments
@@ -12111,7 +12143,7 @@ func (o *_OS) IsDebugBuild() bool {
 /*
    Undocumented
 */
-func (o *_OS) DumpMemoryToFile(file string) {
+func (o *os) DumpMemoryToFile(file string) {
 	log.Println("Calling _OS.DumpMemoryToFile()")
 
 	// Build out the method's arguments
@@ -12129,7 +12161,7 @@ func (o *_OS) DumpMemoryToFile(file string) {
 /*
    Undocumented
 */
-func (o *_OS) DumpResourcesToFile(file string) {
+func (o *os) DumpResourcesToFile(file string) {
 	log.Println("Calling _OS.DumpResourcesToFile()")
 
 	// Build out the method's arguments
@@ -12147,7 +12179,7 @@ func (o *_OS) DumpResourcesToFile(file string) {
 /*
    Undocumented
 */
-func (o *_OS) HasVirtualKeyboard() bool {
+func (o *os) HasVirtualKeyboard() bool {
 	log.Println("Calling _OS.HasVirtualKeyboard()")
 
 	// Build out the method's arguments
@@ -12168,7 +12200,7 @@ func (o *_OS) HasVirtualKeyboard() bool {
 /*
    Undocumented
 */
-func (o *_OS) ShowVirtualKeyboard(existingText string) {
+func (o *os) ShowVirtualKeyboard(existingText string) {
 	log.Println("Calling _OS.ShowVirtualKeyboard()")
 
 	// Build out the method's arguments
@@ -12186,7 +12218,7 @@ func (o *_OS) ShowVirtualKeyboard(existingText string) {
 /*
    Undocumented
 */
-func (o *_OS) HideVirtualKeyboard() {
+func (o *os) HideVirtualKeyboard() {
 	log.Println("Calling _OS.HideVirtualKeyboard()")
 
 	// Build out the method's arguments
@@ -12203,7 +12235,7 @@ func (o *_OS) HideVirtualKeyboard() {
 /*
    Undocumented
 */
-func (o *_OS) PrintResourcesInUse(short bool) {
+func (o *os) PrintResourcesInUse(short bool) {
 	log.Println("Calling _OS.PrintResourcesInUse()")
 
 	// Build out the method's arguments
@@ -12221,7 +12253,7 @@ func (o *_OS) PrintResourcesInUse(short bool) {
 /*
    Undocumented
 */
-func (o *_OS) PrintAllResources(tofile string) {
+func (o *os) PrintAllResources(tofile string) {
 	log.Println("Calling _OS.PrintAllResources()")
 
 	// Build out the method's arguments
@@ -12239,7 +12271,7 @@ func (o *_OS) PrintAllResources(tofile string) {
 /*
    Undocumented
 */
-func (o *_OS) GetStaticMemoryUsage() int64 {
+func (o *os) GetStaticMemoryUsage() int64 {
 	log.Println("Calling _OS.GetStaticMemoryUsage()")
 
 	// Build out the method's arguments
@@ -12260,7 +12292,7 @@ func (o *_OS) GetStaticMemoryUsage() int64 {
 /*
    Undocumented
 */
-func (o *_OS) GetStaticMemoryPeakUsage() int64 {
+func (o *os) GetStaticMemoryPeakUsage() int64 {
 	log.Println("Calling _OS.GetStaticMemoryPeakUsage()")
 
 	// Build out the method's arguments
@@ -12281,7 +12313,7 @@ func (o *_OS) GetStaticMemoryPeakUsage() int64 {
 /*
    Undocumented
 */
-func (o *_OS) GetDynamicMemoryUsage() int64 {
+func (o *os) GetDynamicMemoryUsage() int64 {
 	log.Println("Calling _OS.GetDynamicMemoryUsage()")
 
 	// Build out the method's arguments
@@ -12302,7 +12334,7 @@ func (o *_OS) GetDynamicMemoryUsage() int64 {
 /*
    Undocumented
 */
-func (o *_OS) GetDataDir() string {
+func (o *os) GetDataDir() string {
 	log.Println("Calling _OS.GetDataDir()")
 
 	// Build out the method's arguments
@@ -12323,7 +12355,7 @@ func (o *_OS) GetDataDir() string {
 /*
    Undocumented
 */
-func (o *_OS) GetSystemDir(dir int64) string {
+func (o *os) GetSystemDir(dir int64) string {
 	log.Println("Calling _OS.GetSystemDir()")
 
 	// Build out the method's arguments
@@ -12345,7 +12377,7 @@ func (o *_OS) GetSystemDir(dir int64) string {
 /*
    Undocumented
 */
-func (o *_OS) GetUniqueId() string {
+func (o *os) GetUniqueId() string {
 	log.Println("Calling _OS.GetUniqueId()")
 
 	// Build out the method's arguments
@@ -12366,7 +12398,7 @@ func (o *_OS) GetUniqueId() string {
 /*
    Undocumented
 */
-func (o *_OS) IsOkLeftAndCancelRight() bool {
+func (o *os) IsOkLeftAndCancelRight() bool {
 	log.Println("Calling _OS.IsOkLeftAndCancelRight()")
 
 	// Build out the method's arguments
@@ -12387,7 +12419,7 @@ func (o *_OS) IsOkLeftAndCancelRight() bool {
 /*
    Undocumented
 */
-func (o *_OS) PrintAllTexturesBySize() {
+func (o *os) PrintAllTexturesBySize() {
 	log.Println("Calling _OS.PrintAllTexturesBySize()")
 
 	// Build out the method's arguments
@@ -12404,7 +12436,7 @@ func (o *_OS) PrintAllTexturesBySize() {
 /*
    Undocumented
 */
-func (o *_OS) PrintResourcesByType(types *PoolStringArray) {
+func (o *os) PrintResourcesByType(types *PoolStringArray) {
 	log.Println("Calling _OS.PrintResourcesByType()")
 
 	// Build out the method's arguments
@@ -12422,7 +12454,7 @@ func (o *_OS) PrintResourcesByType(types *PoolStringArray) {
 /*
    Undocumented
 */
-func (o *_OS) NativeVideoPlay(path string, volume float64, audioTrack string, subtitleTrack string) int64 {
+func (o *os) NativeVideoPlay(path string, volume float64, audioTrack string, subtitleTrack string) int64 {
 	log.Println("Calling _OS.NativeVideoPlay()")
 
 	// Build out the method's arguments
@@ -12447,7 +12479,7 @@ func (o *_OS) NativeVideoPlay(path string, volume float64, audioTrack string, su
 /*
    Undocumented
 */
-func (o *_OS) NativeVideoIsPlaying() bool {
+func (o *os) NativeVideoIsPlaying() bool {
 	log.Println("Calling _OS.NativeVideoIsPlaying()")
 
 	// Build out the method's arguments
@@ -12468,7 +12500,7 @@ func (o *_OS) NativeVideoIsPlaying() bool {
 /*
    Undocumented
 */
-func (o *_OS) NativeVideoStop() {
+func (o *os) NativeVideoStop() {
 	log.Println("Calling _OS.NativeVideoStop()")
 
 	// Build out the method's arguments
@@ -12485,7 +12517,7 @@ func (o *_OS) NativeVideoStop() {
 /*
    Undocumented
 */
-func (o *_OS) NativeVideoPause() {
+func (o *os) NativeVideoPause() {
 	log.Println("Calling _OS.NativeVideoPause()")
 
 	// Build out the method's arguments
@@ -12502,7 +12534,7 @@ func (o *_OS) NativeVideoPause() {
 /*
    Undocumented
 */
-func (o *_OS) NativeVideoUnpause() {
+func (o *os) NativeVideoUnpause() {
 	log.Println("Calling _OS.NativeVideoUnpause()")
 
 	// Build out the method's arguments
@@ -12519,7 +12551,7 @@ func (o *_OS) NativeVideoUnpause() {
 /*
    Undocumented
 */
-func (o *_OS) GetScancodeString(code int64) string {
+func (o *os) GetScancodeString(code int64) string {
 	log.Println("Calling _OS.GetScancodeString()")
 
 	// Build out the method's arguments
@@ -12541,7 +12573,7 @@ func (o *_OS) GetScancodeString(code int64) string {
 /*
    Undocumented
 */
-func (o *_OS) IsScancodeUnicode(code int64) bool {
+func (o *os) IsScancodeUnicode(code int64) bool {
 	log.Println("Calling _OS.IsScancodeUnicode()")
 
 	// Build out the method's arguments
@@ -12563,7 +12595,7 @@ func (o *_OS) IsScancodeUnicode(code int64) bool {
 /*
    Undocumented
 */
-func (o *_OS) FindScancodeFromString(string string) int64 {
+func (o *os) FindScancodeFromString(string string) int64 {
 	log.Println("Calling _OS.FindScancodeFromString()")
 
 	// Build out the method's arguments
@@ -12585,7 +12617,7 @@ func (o *_OS) FindScancodeFromString(string string) int64 {
 /*
    Undocumented
 */
-func (o *_OS) SetUseFileAccessSaveAndSwap(enabled bool) {
+func (o *os) SetUseFileAccessSaveAndSwap(enabled bool) {
 	log.Println("Calling _OS.SetUseFileAccessSaveAndSwap()")
 
 	// Build out the method's arguments
@@ -12603,7 +12635,7 @@ func (o *_OS) SetUseFileAccessSaveAndSwap(enabled bool) {
 /*
    Undocumented
 */
-func (o *_OS) Alert(text string, title string) {
+func (o *os) Alert(text string, title string) {
 	log.Println("Calling _OS.Alert()")
 
 	// Build out the method's arguments
@@ -12622,7 +12654,7 @@ func (o *_OS) Alert(text string, title string) {
 /*
    Undocumented
 */
-func (o *_OS) SetThreadName(name string) int64 {
+func (o *os) SetThreadName(name string) int64 {
 	log.Println("Calling _OS.SetThreadName()")
 
 	// Build out the method's arguments
@@ -12644,7 +12676,7 @@ func (o *_OS) SetThreadName(name string) int64 {
 /*
    Undocumented
 */
-func (o *_OS) SetUseVsync(enable bool) {
+func (o *os) SetUseVsync(enable bool) {
 	log.Println("Calling _OS.SetUseVsync()")
 
 	// Build out the method's arguments
@@ -12662,7 +12694,7 @@ func (o *_OS) SetUseVsync(enable bool) {
 /*
    Undocumented
 */
-func (o *_OS) IsVsyncEnabled() bool {
+func (o *os) IsVsyncEnabled() bool {
 	log.Println("Calling _OS.IsVsyncEnabled()")
 
 	// Build out the method's arguments
@@ -12683,7 +12715,7 @@ func (o *_OS) IsVsyncEnabled() bool {
 /*
    Undocumented
 */
-func (o *_OS) GetPowerState() int64 {
+func (o *os) GetPowerState() int64 {
 	log.Println("Calling _OS.GetPowerState()")
 
 	// Build out the method's arguments
@@ -12704,7 +12736,7 @@ func (o *_OS) GetPowerState() int64 {
 /*
    Undocumented
 */
-func (o *_OS) GetPowerSecondsLeft() int64 {
+func (o *os) GetPowerSecondsLeft() int64 {
 	log.Println("Calling _OS.GetPowerSecondsLeft()")
 
 	// Build out the method's arguments
@@ -12725,7 +12757,7 @@ func (o *_OS) GetPowerSecondsLeft() int64 {
 /*
    Undocumented
 */
-func (o *_OS) GetPowerPercentLeft() int64 {
+func (o *os) GetPowerPercentLeft() int64 {
 	log.Println("Calling _OS.GetPowerPercentLeft()")
 
 	// Build out the method's arguments
@@ -12743,28 +12775,33 @@ func (o *_OS) GetPowerPercentLeft() int64 {
 
 }
 
-/*
-   _OSImplementer is an interface for _OS objects.
-*/
-type _OSImplementer interface {
-	Class
+func newSingleton_Engine() *engine {
+	obj := &engine{}
+	ptr := C.godot_global_get_singleton(C.CString("_Engine"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
 }
 
 /*
    Undocumented
 */
-type _Engine struct {
+var _Engine = newSingleton_Engine()
+
+/*
+   Undocumented
+*/
+type engine struct {
 	Object
 }
 
-func (o *_Engine) baseClass() string {
+func (o *engine) baseClass() string {
 	return "_Engine"
 }
 
 /*
    Undocumented
 */
-func (o *_Engine) SetIterationsPerSecond(iterationsPerSecond int64) {
+func (o *engine) SetIterationsPerSecond(iterationsPerSecond int64) {
 	log.Println("Calling _Engine.SetIterationsPerSecond()")
 
 	// Build out the method's arguments
@@ -12782,7 +12819,7 @@ func (o *_Engine) SetIterationsPerSecond(iterationsPerSecond int64) {
 /*
    Undocumented
 */
-func (o *_Engine) GetIterationsPerSecond() int64 {
+func (o *engine) GetIterationsPerSecond() int64 {
 	log.Println("Calling _Engine.GetIterationsPerSecond()")
 
 	// Build out the method's arguments
@@ -12803,7 +12840,7 @@ func (o *_Engine) GetIterationsPerSecond() int64 {
 /*
    Undocumented
 */
-func (o *_Engine) SetTargetFps(targetFps int64) {
+func (o *engine) SetTargetFps(targetFps int64) {
 	log.Println("Calling _Engine.SetTargetFps()")
 
 	// Build out the method's arguments
@@ -12821,7 +12858,7 @@ func (o *_Engine) SetTargetFps(targetFps int64) {
 /*
    Undocumented
 */
-func (o *_Engine) GetTargetFps() float64 {
+func (o *engine) GetTargetFps() float64 {
 	log.Println("Calling _Engine.GetTargetFps()")
 
 	// Build out the method's arguments
@@ -12842,7 +12879,7 @@ func (o *_Engine) GetTargetFps() float64 {
 /*
    Undocumented
 */
-func (o *_Engine) SetTimeScale(timeScale float64) {
+func (o *engine) SetTimeScale(timeScale float64) {
 	log.Println("Calling _Engine.SetTimeScale()")
 
 	// Build out the method's arguments
@@ -12860,7 +12897,7 @@ func (o *_Engine) SetTimeScale(timeScale float64) {
 /*
    Undocumented
 */
-func (o *_Engine) GetTimeScale() float64 {
+func (o *engine) GetTimeScale() float64 {
 	log.Println("Calling _Engine.GetTimeScale()")
 
 	// Build out the method's arguments
@@ -12881,7 +12918,7 @@ func (o *_Engine) GetTimeScale() float64 {
 /*
    Undocumented
 */
-func (o *_Engine) GetFramesDrawn() int64 {
+func (o *engine) GetFramesDrawn() int64 {
 	log.Println("Calling _Engine.GetFramesDrawn()")
 
 	// Build out the method's arguments
@@ -12902,7 +12939,7 @@ func (o *_Engine) GetFramesDrawn() int64 {
 /*
    Undocumented
 */
-func (o *_Engine) GetFramesPerSecond() float64 {
+func (o *engine) GetFramesPerSecond() float64 {
 	log.Println("Calling _Engine.GetFramesPerSecond()")
 
 	// Build out the method's arguments
@@ -12923,7 +12960,7 @@ func (o *_Engine) GetFramesPerSecond() float64 {
 /*
    Undocumented
 */
-func (o *_Engine) GetMainLoop() *MainLoop {
+func (o *engine) GetMainLoop() *MainLoop {
 	log.Println("Calling _Engine.GetMainLoop()")
 
 	// Build out the method's arguments
@@ -12944,7 +12981,7 @@ func (o *_Engine) GetMainLoop() *MainLoop {
 /*
    Undocumented
 */
-func (o *_Engine) GetVersionInfo() *Dictionary {
+func (o *engine) GetVersionInfo() *Dictionary {
 	log.Println("Calling _Engine.GetVersionInfo()")
 
 	// Build out the method's arguments
@@ -12965,7 +13002,7 @@ func (o *_Engine) GetVersionInfo() *Dictionary {
 /*
    Undocumented
 */
-func (o *_Engine) IsInFixedFrame() bool {
+func (o *engine) IsInFixedFrame() bool {
 	log.Println("Calling _Engine.IsInFixedFrame()")
 
 	// Build out the method's arguments
@@ -12986,7 +13023,7 @@ func (o *_Engine) IsInFixedFrame() bool {
 /*
    Undocumented
 */
-func (o *_Engine) SetEditorHint(enabled bool) {
+func (o *engine) SetEditorHint(enabled bool) {
 	log.Println("Calling _Engine.SetEditorHint()")
 
 	// Build out the method's arguments
@@ -13004,7 +13041,7 @@ func (o *_Engine) SetEditorHint(enabled bool) {
 /*
    Undocumented
 */
-func (o *_Engine) IsEditorHint() bool {
+func (o *engine) IsEditorHint() bool {
 	log.Println("Calling _Engine.IsEditorHint()")
 
 	// Build out the method's arguments
@@ -13022,28 +13059,33 @@ func (o *_Engine) IsEditorHint() bool {
 
 }
 
-/*
-   _EngineImplementer is an interface for _Engine objects.
-*/
-type _EngineImplementer interface {
-	Class
+func newSingleton_ClassDB() *classDb {
+	obj := &classDb{}
+	ptr := C.godot_global_get_singleton(C.CString("_ClassDB"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
 }
 
 /*
    Undocumented
 */
-type _ClassDB struct {
+var _ClassDB = newSingleton_ClassDB()
+
+/*
+   Undocumented
+*/
+type classDb struct {
 	Object
 }
 
-func (o *_ClassDB) baseClass() string {
+func (o *classDb) baseClass() string {
 	return "_ClassDB"
 }
 
 /*
    Undocumented
 */
-func (o *_ClassDB) GetClassList() *PoolStringArray {
+func (o *classDb) GetClassList() *PoolStringArray {
 	log.Println("Calling _ClassDB.GetClassList()")
 
 	// Build out the method's arguments
@@ -13064,7 +13106,7 @@ func (o *_ClassDB) GetClassList() *PoolStringArray {
 /*
    Undocumented
 */
-func (o *_ClassDB) GetInheritersFromClass(class string) *PoolStringArray {
+func (o *classDb) GetInheritersFromClass(class string) *PoolStringArray {
 	log.Println("Calling _ClassDB.GetInheritersFromClass()")
 
 	// Build out the method's arguments
@@ -13086,7 +13128,7 @@ func (o *_ClassDB) GetInheritersFromClass(class string) *PoolStringArray {
 /*
    Undocumented
 */
-func (o *_ClassDB) GetParentClass(class string) string {
+func (o *classDb) GetParentClass(class string) string {
 	log.Println("Calling _ClassDB.GetParentClass()")
 
 	// Build out the method's arguments
@@ -13108,7 +13150,7 @@ func (o *_ClassDB) GetParentClass(class string) string {
 /*
    Undocumented
 */
-func (o *_ClassDB) ClassExists(class string) bool {
+func (o *classDb) ClassExists(class string) bool {
 	log.Println("Calling _ClassDB.ClassExists()")
 
 	// Build out the method's arguments
@@ -13130,7 +13172,7 @@ func (o *_ClassDB) ClassExists(class string) bool {
 /*
    Undocumented
 */
-func (o *_ClassDB) IsParentClass(class string, inherits string) bool {
+func (o *classDb) IsParentClass(class string, inherits string) bool {
 	log.Println("Calling _ClassDB.IsParentClass()")
 
 	// Build out the method's arguments
@@ -13153,7 +13195,7 @@ func (o *_ClassDB) IsParentClass(class string, inherits string) bool {
 /*
    Undocumented
 */
-func (o *_ClassDB) CanInstance(class string) bool {
+func (o *classDb) CanInstance(class string) bool {
 	log.Println("Calling _ClassDB.CanInstance()")
 
 	// Build out the method's arguments
@@ -13175,7 +13217,7 @@ func (o *_ClassDB) CanInstance(class string) bool {
 /*
    Undocumented
 */
-func (o *_ClassDB) Instance(class string) *Variant {
+func (o *classDb) Instance(class string) *Variant {
 	log.Println("Calling _ClassDB.Instance()")
 
 	// Build out the method's arguments
@@ -13197,7 +13239,7 @@ func (o *_ClassDB) Instance(class string) *Variant {
 /*
    Undocumented
 */
-func (o *_ClassDB) ClassHasSignal(class string, signal string) bool {
+func (o *classDb) ClassHasSignal(class string, signal string) bool {
 	log.Println("Calling _ClassDB.ClassHasSignal()")
 
 	// Build out the method's arguments
@@ -13220,7 +13262,7 @@ func (o *_ClassDB) ClassHasSignal(class string, signal string) bool {
 /*
    Undocumented
 */
-func (o *_ClassDB) ClassGetSignal(class string, signal string) *Dictionary {
+func (o *classDb) ClassGetSignal(class string, signal string) *Dictionary {
 	log.Println("Calling _ClassDB.ClassGetSignal()")
 
 	// Build out the method's arguments
@@ -13243,7 +13285,7 @@ func (o *_ClassDB) ClassGetSignal(class string, signal string) *Dictionary {
 /*
    Undocumented
 */
-func (o *_ClassDB) ClassGetSignalList(class string, noInheritance bool) *Array {
+func (o *classDb) ClassGetSignalList(class string, noInheritance bool) *Array {
 	log.Println("Calling _ClassDB.ClassGetSignalList()")
 
 	// Build out the method's arguments
@@ -13266,7 +13308,7 @@ func (o *_ClassDB) ClassGetSignalList(class string, noInheritance bool) *Array {
 /*
    Undocumented
 */
-func (o *_ClassDB) ClassGetPropertyList(class string, noInheritance bool) *Array {
+func (o *classDb) ClassGetPropertyList(class string, noInheritance bool) *Array {
 	log.Println("Calling _ClassDB.ClassGetPropertyList()")
 
 	// Build out the method's arguments
@@ -13289,7 +13331,7 @@ func (o *_ClassDB) ClassGetPropertyList(class string, noInheritance bool) *Array
 /*
    Undocumented
 */
-func (o *_ClassDB) ClassGetProperty(object *Object, property string) *Variant {
+func (o *classDb) ClassGetProperty(object *Object, property string) *Variant {
 	log.Println("Calling _ClassDB.ClassGetProperty()")
 
 	// Build out the method's arguments
@@ -13312,7 +13354,7 @@ func (o *_ClassDB) ClassGetProperty(object *Object, property string) *Variant {
 /*
    Undocumented
 */
-func (o *_ClassDB) ClassSetProperty(object *Object, property string, value *Variant) int64 {
+func (o *classDb) ClassSetProperty(object *Object, property string, value *Variant) int64 {
 	log.Println("Calling _ClassDB.ClassSetProperty()")
 
 	// Build out the method's arguments
@@ -13336,7 +13378,7 @@ func (o *_ClassDB) ClassSetProperty(object *Object, property string, value *Vari
 /*
    Undocumented
 */
-func (o *_ClassDB) ClassHasMethod(class string, method string, noInheritance bool) bool {
+func (o *classDb) ClassHasMethod(class string, method string, noInheritance bool) bool {
 	log.Println("Calling _ClassDB.ClassHasMethod()")
 
 	// Build out the method's arguments
@@ -13360,7 +13402,7 @@ func (o *_ClassDB) ClassHasMethod(class string, method string, noInheritance boo
 /*
    Undocumented
 */
-func (o *_ClassDB) ClassGetMethodList(class string, noInheritance bool) *Array {
+func (o *classDb) ClassGetMethodList(class string, noInheritance bool) *Array {
 	log.Println("Calling _ClassDB.ClassGetMethodList()")
 
 	// Build out the method's arguments
@@ -13383,7 +13425,7 @@ func (o *_ClassDB) ClassGetMethodList(class string, noInheritance bool) *Array {
 /*
    Undocumented
 */
-func (o *_ClassDB) ClassGetIntegerConstantList(class string, noInheritance bool) *PoolStringArray {
+func (o *classDb) ClassGetIntegerConstantList(class string, noInheritance bool) *PoolStringArray {
 	log.Println("Calling _ClassDB.ClassGetIntegerConstantList()")
 
 	// Build out the method's arguments
@@ -13406,7 +13448,7 @@ func (o *_ClassDB) ClassGetIntegerConstantList(class string, noInheritance bool)
 /*
    Undocumented
 */
-func (o *_ClassDB) ClassHasIntegerConstant(class string, name string) bool {
+func (o *classDb) ClassHasIntegerConstant(class string, name string) bool {
 	log.Println("Calling _ClassDB.ClassHasIntegerConstant()")
 
 	// Build out the method's arguments
@@ -13429,7 +13471,7 @@ func (o *_ClassDB) ClassHasIntegerConstant(class string, name string) bool {
 /*
    Undocumented
 */
-func (o *_ClassDB) ClassGetIntegerConstant(class string, name string) int64 {
+func (o *classDb) ClassGetIntegerConstant(class string, name string) int64 {
 	log.Println("Calling _ClassDB.ClassGetIntegerConstant()")
 
 	// Build out the method's arguments
@@ -13452,7 +13494,7 @@ func (o *_ClassDB) ClassGetIntegerConstant(class string, name string) int64 {
 /*
    Undocumented
 */
-func (o *_ClassDB) ClassGetCategory(class string) string {
+func (o *classDb) ClassGetCategory(class string) string {
 	log.Println("Calling _ClassDB.ClassGetCategory()")
 
 	// Build out the method's arguments
@@ -13474,7 +13516,7 @@ func (o *_ClassDB) ClassGetCategory(class string) string {
 /*
    Undocumented
 */
-func (o *_ClassDB) IsClassEnabled(class string) bool {
+func (o *classDb) IsClassEnabled(class string) bool {
 	log.Println("Calling _ClassDB.IsClassEnabled()")
 
 	// Build out the method's arguments
@@ -13493,28 +13535,33 @@ func (o *_ClassDB) IsClassEnabled(class string) bool {
 
 }
 
-/*
-   _ClassDBImplementer is an interface for _ClassDB objects.
-*/
-type _ClassDBImplementer interface {
-	Class
+func newSingleton_Marshalls() *marshalls {
+	obj := &marshalls{}
+	ptr := C.godot_global_get_singleton(C.CString("_Marshalls"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
 }
 
 /*
    Undocumented
 */
-type _Marshalls struct {
+var _Marshalls = newSingleton_Marshalls()
+
+/*
+   Undocumented
+*/
+type marshalls struct {
 	Reference
 }
 
-func (o *_Marshalls) baseClass() string {
+func (o *marshalls) baseClass() string {
 	return "_Marshalls"
 }
 
 /*
    Undocumented
 */
-func (o *_Marshalls) VariantToBase64(variant *Variant) string {
+func (o *marshalls) VariantToBase64(variant *Variant) string {
 	log.Println("Calling _Marshalls.VariantToBase64()")
 
 	// Build out the method's arguments
@@ -13536,7 +13583,7 @@ func (o *_Marshalls) VariantToBase64(variant *Variant) string {
 /*
    Undocumented
 */
-func (o *_Marshalls) Base64ToVariant(base64Str string) *Variant {
+func (o *marshalls) Base64ToVariant(base64Str string) *Variant {
 	log.Println("Calling _Marshalls.Base64ToVariant()")
 
 	// Build out the method's arguments
@@ -13558,7 +13605,7 @@ func (o *_Marshalls) Base64ToVariant(base64Str string) *Variant {
 /*
    Undocumented
 */
-func (o *_Marshalls) RawToBase64(array *PoolByteArray) string {
+func (o *marshalls) RawToBase64(array *PoolByteArray) string {
 	log.Println("Calling _Marshalls.RawToBase64()")
 
 	// Build out the method's arguments
@@ -13580,7 +13627,7 @@ func (o *_Marshalls) RawToBase64(array *PoolByteArray) string {
 /*
    Undocumented
 */
-func (o *_Marshalls) Base64ToRaw(base64Str string) *PoolByteArray {
+func (o *marshalls) Base64ToRaw(base64Str string) *PoolByteArray {
 	log.Println("Calling _Marshalls.Base64ToRaw()")
 
 	// Build out the method's arguments
@@ -13602,7 +13649,7 @@ func (o *_Marshalls) Base64ToRaw(base64Str string) *PoolByteArray {
 /*
    Undocumented
 */
-func (o *_Marshalls) Utf8ToBase64(utf8Str string) string {
+func (o *marshalls) Utf8ToBase64(utf8Str string) string {
 	log.Println("Calling _Marshalls.Utf8ToBase64()")
 
 	// Build out the method's arguments
@@ -13624,7 +13671,7 @@ func (o *_Marshalls) Utf8ToBase64(utf8Str string) string {
 /*
    Undocumented
 */
-func (o *_Marshalls) Base64ToUtf8(base64Str string) string {
+func (o *marshalls) Base64ToUtf8(base64Str string) string {
 	log.Println("Calling _Marshalls.Base64ToUtf8()")
 
 	// Build out the method's arguments
@@ -13643,28 +13690,33 @@ func (o *_Marshalls) Base64ToUtf8(base64Str string) string {
 
 }
 
-/*
-   _MarshallsImplementer is an interface for _Marshalls objects.
-*/
-type _MarshallsImplementer interface {
-	Class
+func newSingletonProjectSettings() *projectSettings {
+	obj := &projectSettings{}
+	ptr := C.godot_global_get_singleton(C.CString("ProjectSettings"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
 }
 
 /*
    Contains global variables accessible from everywhere. Use the normal [Object] API, such as "ProjectSettings.get(variable)", "ProjectSettings.set(variable,value)" or "ProjectSettings.has(variable)" to access them. Variables stored in project.godot are also loaded into ProjectSettings, making this object very useful for reading custom game configuration options.
 */
-type ProjectSettings struct {
+var ProjectSettings = newSingletonProjectSettings()
+
+/*
+   Contains global variables accessible from everywhere. Use the normal [Object] API, such as "ProjectSettings.get(variable)", "ProjectSettings.set(variable,value)" or "ProjectSettings.has(variable)" to access them. Variables stored in project.godot are also loaded into ProjectSettings, making this object very useful for reading custom game configuration options.
+*/
+type projectSettings struct {
 	Object
 }
 
-func (o *ProjectSettings) baseClass() string {
+func (o *projectSettings) baseClass() string {
 	return "ProjectSettings"
 }
 
 /*
    Return true if a configuration value is present.
 */
-func (o *ProjectSettings) Has(name string) bool {
+func (o *projectSettings) Has(name string) bool {
 	log.Println("Calling ProjectSettings.Has()")
 
 	// Build out the method's arguments
@@ -13686,7 +13738,7 @@ func (o *ProjectSettings) Has(name string) bool {
 /*
    Set the order of a configuration value (influences when saved to the config file).
 */
-func (o *ProjectSettings) SetOrder(name string, pos int64) {
+func (o *projectSettings) SetOrder(name string, pos int64) {
 	log.Println("Calling ProjectSettings.SetOrder()")
 
 	// Build out the method's arguments
@@ -13705,7 +13757,7 @@ func (o *ProjectSettings) SetOrder(name string, pos int64) {
 /*
    Return the order of a configuration value (influences when saved to the config file).
 */
-func (o *ProjectSettings) GetOrder(name string) int64 {
+func (o *projectSettings) GetOrder(name string) int64 {
 	log.Println("Calling ProjectSettings.GetOrder()")
 
 	// Build out the method's arguments
@@ -13727,7 +13779,7 @@ func (o *ProjectSettings) GetOrder(name string) int64 {
 /*
 
  */
-func (o *ProjectSettings) SetInitialValue(name string, value *Variant) {
+func (o *projectSettings) SetInitialValue(name string, value *Variant) {
 	log.Println("Calling ProjectSettings.SetInitialValue()")
 
 	// Build out the method's arguments
@@ -13746,7 +13798,7 @@ func (o *ProjectSettings) SetInitialValue(name string, value *Variant) {
 /*
    Add a custom property info to a property. The dictionary must contain: name:[String](the name of the property) and type:[int](see TYPE_* in [@Global Scope]), and optionally hint:[int](see PROPERTY_HINT_* in [@Global Scope]), hint_string:[String]. Example: [codeblock] ProjectSettings.set("category/property_name", 0) var property_info = { "name": "category/property_name", "type": TYPE_INT, "hint": PROPERTY_HINT_ENUM, "hint_string": "one,two,three" } ProjectSettings.add_property_info(property_info) [/codeblock]
 */
-func (o *ProjectSettings) AddPropertyInfo(hint *Dictionary) {
+func (o *projectSettings) AddPropertyInfo(hint *Dictionary) {
 	log.Println("Calling ProjectSettings.AddPropertyInfo()")
 
 	// Build out the method's arguments
@@ -13764,7 +13816,7 @@ func (o *ProjectSettings) AddPropertyInfo(hint *Dictionary) {
 /*
    Clear the whole configuration (not recommended, may break things).
 */
-func (o *ProjectSettings) Clear(name string) {
+func (o *projectSettings) Clear(name string) {
 	log.Println("Calling ProjectSettings.Clear()")
 
 	// Build out the method's arguments
@@ -13782,7 +13834,7 @@ func (o *ProjectSettings) Clear(name string) {
 /*
    Convert a path to a localized path (res:// path).
 */
-func (o *ProjectSettings) LocalizePath(path string) string {
+func (o *projectSettings) LocalizePath(path string) string {
 	log.Println("Calling ProjectSettings.LocalizePath()")
 
 	// Build out the method's arguments
@@ -13804,7 +13856,7 @@ func (o *ProjectSettings) LocalizePath(path string) string {
 /*
    Convert a localized path (res://) to a full native OS path.
 */
-func (o *ProjectSettings) GlobalizePath(path string) string {
+func (o *projectSettings) GlobalizePath(path string) string {
 	log.Println("Calling ProjectSettings.GlobalizePath()")
 
 	// Build out the method's arguments
@@ -13826,7 +13878,7 @@ func (o *ProjectSettings) GlobalizePath(path string) string {
 /*
 
  */
-func (o *ProjectSettings) Save() int64 {
+func (o *projectSettings) Save() int64 {
 	log.Println("Calling ProjectSettings.Save()")
 
 	// Build out the method's arguments
@@ -13847,7 +13899,7 @@ func (o *ProjectSettings) Save() int64 {
 /*
 
  */
-func (o *ProjectSettings) HasSingleton(name string) bool {
+func (o *projectSettings) HasSingleton(name string) bool {
 	log.Println("Calling ProjectSettings.HasSingleton()")
 
 	// Build out the method's arguments
@@ -13869,7 +13921,7 @@ func (o *ProjectSettings) HasSingleton(name string) bool {
 /*
 
  */
-func (o *ProjectSettings) GetSingleton(name string) *Object {
+func (o *projectSettings) GetSingleton(name string) *Object {
 	log.Println("Calling ProjectSettings.GetSingleton()")
 
 	// Build out the method's arguments
@@ -13891,7 +13943,7 @@ func (o *ProjectSettings) GetSingleton(name string) *Object {
 /*
 
  */
-func (o *ProjectSettings) LoadResourcePack(pack string) bool {
+func (o *projectSettings) LoadResourcePack(pack string) bool {
 	log.Println("Calling ProjectSettings.LoadResourcePack()")
 
 	// Build out the method's arguments
@@ -13913,7 +13965,7 @@ func (o *ProjectSettings) LoadResourcePack(pack string) bool {
 /*
 
  */
-func (o *ProjectSettings) PropertyCanRevert(name string) bool {
+func (o *projectSettings) PropertyCanRevert(name string) bool {
 	log.Println("Calling ProjectSettings.PropertyCanRevert()")
 
 	// Build out the method's arguments
@@ -13935,7 +13987,7 @@ func (o *ProjectSettings) PropertyCanRevert(name string) bool {
 /*
 
  */
-func (o *ProjectSettings) PropertyGetRevert(name string) *Variant {
+func (o *projectSettings) PropertyGetRevert(name string) *Variant {
 	log.Println("Calling ProjectSettings.PropertyGetRevert()")
 
 	// Build out the method's arguments
@@ -13957,7 +14009,7 @@ func (o *ProjectSettings) PropertyGetRevert(name string) *Variant {
 /*
 
  */
-func (o *ProjectSettings) SaveCustom(file string) int64 {
+func (o *projectSettings) SaveCustom(file string) int64 {
 	log.Println("Calling ProjectSettings.SaveCustom()")
 
 	// Build out the method's arguments
@@ -13976,28 +14028,33 @@ func (o *ProjectSettings) SaveCustom(file string) int64 {
 
 }
 
-/*
-   ProjectSettingsImplementer is an interface for ProjectSettings objects.
-*/
-type ProjectSettingsImplementer interface {
-	Class
+func newSingletonInputMap() *inputMap {
+	obj := &inputMap{}
+	ptr := C.godot_global_get_singleton(C.CString("InputMap"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
 }
 
 /*
 
  */
-type InputMap struct {
+var InputMap = newSingletonInputMap()
+
+/*
+
+ */
+type inputMap struct {
 	Object
 }
 
-func (o *InputMap) baseClass() string {
+func (o *inputMap) baseClass() string {
 	return "InputMap"
 }
 
 /*
    Whether this InputMap has a registered action with the given name.
 */
-func (o *InputMap) HasAction(action string) bool {
+func (o *inputMap) HasAction(action string) bool {
 	log.Println("Calling InputMap.HasAction()")
 
 	// Build out the method's arguments
@@ -14019,7 +14076,7 @@ func (o *InputMap) HasAction(action string) bool {
 /*
    Return an array of all actions in the [InputMap].
 */
-func (o *InputMap) GetActions() *Array {
+func (o *inputMap) GetActions() *Array {
 	log.Println("Calling InputMap.GetActions()")
 
 	// Build out the method's arguments
@@ -14040,7 +14097,7 @@ func (o *InputMap) GetActions() *Array {
 /*
    Add an (empty) action to the [InputMap]. An [InputEvent] can then be added to this action with [method action_add_event].
 */
-func (o *InputMap) AddAction(action string) {
+func (o *inputMap) AddAction(action string) {
 	log.Println("Calling InputMap.AddAction()")
 
 	// Build out the method's arguments
@@ -14058,7 +14115,7 @@ func (o *InputMap) AddAction(action string) {
 /*
    Remove an action from the [InputMap].
 */
-func (o *InputMap) EraseAction(action string) {
+func (o *inputMap) EraseAction(action string) {
 	log.Println("Calling InputMap.EraseAction()")
 
 	// Build out the method's arguments
@@ -14076,7 +14133,7 @@ func (o *InputMap) EraseAction(action string) {
 /*
    Add an [InputEvent] to an action. This [InputEvent] will trigger the action.
 */
-func (o *InputMap) ActionAddEvent(action string, event *InputEvent) {
+func (o *inputMap) ActionAddEvent(action string, event *InputEvent) {
 	log.Println("Calling InputMap.ActionAddEvent()")
 
 	// Build out the method's arguments
@@ -14095,7 +14152,7 @@ func (o *InputMap) ActionAddEvent(action string, event *InputEvent) {
 /*
    Whether an action has an [InputEvent] associated with it.
 */
-func (o *InputMap) ActionHasEvent(action string, event *InputEvent) bool {
+func (o *inputMap) ActionHasEvent(action string, event *InputEvent) bool {
 	log.Println("Calling InputMap.ActionHasEvent()")
 
 	// Build out the method's arguments
@@ -14118,7 +14175,7 @@ func (o *InputMap) ActionHasEvent(action string, event *InputEvent) bool {
 /*
    Remove an [InputEvent] from an action.
 */
-func (o *InputMap) ActionEraseEvent(action string, event *InputEvent) {
+func (o *inputMap) ActionEraseEvent(action string, event *InputEvent) {
 	log.Println("Calling InputMap.ActionEraseEvent()")
 
 	// Build out the method's arguments
@@ -14137,7 +14194,7 @@ func (o *InputMap) ActionEraseEvent(action string, event *InputEvent) {
 /*
    Return an array of InputEvents associated with a given action.
 */
-func (o *InputMap) GetActionList(action string) *Array {
+func (o *inputMap) GetActionList(action string) *Array {
 	log.Println("Calling InputMap.GetActionList()")
 
 	// Build out the method's arguments
@@ -14159,7 +14216,7 @@ func (o *InputMap) GetActionList(action string) *Array {
 /*
    Return whether the given event is part of an existing action. This method ignores keyboard modifiers if the given [InputEvent] is not pressed (for proper release detection). See [method action_has_event] if you don't want this behavior.
 */
-func (o *InputMap) EventIsAction(event *InputEvent, action string) bool {
+func (o *inputMap) EventIsAction(event *InputEvent, action string) bool {
 	log.Println("Calling InputMap.EventIsAction()")
 
 	// Build out the method's arguments
@@ -14182,7 +14239,7 @@ func (o *InputMap) EventIsAction(event *InputEvent, action string) bool {
 /*
    Clear the [InputMap] and load it anew from [ProjectSettings].
 */
-func (o *InputMap) LoadFromGlobals() {
+func (o *inputMap) LoadFromGlobals() {
 	log.Println("Calling InputMap.LoadFromGlobals()")
 
 	// Build out the method's arguments
@@ -14196,28 +14253,33 @@ func (o *InputMap) LoadFromGlobals() {
 
 }
 
-/*
-   InputMapImplementer is an interface for InputMap objects.
-*/
-type InputMapImplementer interface {
-	Class
+func newSingletonTranslationServer() *translationServer {
+	obj := &translationServer{}
+	ptr := C.godot_global_get_singleton(C.CString("TranslationServer"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
 }
 
 /*
 
  */
-type TranslationServer struct {
+var TranslationServer = newSingletonTranslationServer()
+
+/*
+
+ */
+type translationServer struct {
 	Object
 }
 
-func (o *TranslationServer) baseClass() string {
+func (o *translationServer) baseClass() string {
 	return "TranslationServer"
 }
 
 /*
 
  */
-func (o *TranslationServer) SetLocale(locale string) {
+func (o *translationServer) SetLocale(locale string) {
 	log.Println("Calling TranslationServer.SetLocale()")
 
 	// Build out the method's arguments
@@ -14235,7 +14297,7 @@ func (o *TranslationServer) SetLocale(locale string) {
 /*
 
  */
-func (o *TranslationServer) GetLocale() string {
+func (o *translationServer) GetLocale() string {
 	log.Println("Calling TranslationServer.GetLocale()")
 
 	// Build out the method's arguments
@@ -14256,7 +14318,7 @@ func (o *TranslationServer) GetLocale() string {
 /*
 
  */
-func (o *TranslationServer) Translate(message string) string {
+func (o *translationServer) Translate(message string) string {
 	log.Println("Calling TranslationServer.Translate()")
 
 	// Build out the method's arguments
@@ -14278,7 +14340,7 @@ func (o *TranslationServer) Translate(message string) string {
 /*
 
  */
-func (o *TranslationServer) AddTranslation(translation *Translation) {
+func (o *translationServer) AddTranslation(translation *Translation) {
 	log.Println("Calling TranslationServer.AddTranslation()")
 
 	// Build out the method's arguments
@@ -14296,7 +14358,7 @@ func (o *TranslationServer) AddTranslation(translation *Translation) {
 /*
 
  */
-func (o *TranslationServer) RemoveTranslation(translation *Translation) {
+func (o *translationServer) RemoveTranslation(translation *Translation) {
 	log.Println("Calling TranslationServer.RemoveTranslation()")
 
 	// Build out the method's arguments
@@ -14314,7 +14376,7 @@ func (o *TranslationServer) RemoveTranslation(translation *Translation) {
 /*
 
  */
-func (o *TranslationServer) Clear() {
+func (o *translationServer) Clear() {
 	log.Println("Calling TranslationServer.Clear()")
 
 	// Build out the method's arguments
@@ -14328,28 +14390,33 @@ func (o *TranslationServer) Clear() {
 
 }
 
-/*
-   TranslationServerImplementer is an interface for TranslationServer objects.
-*/
-type TranslationServerImplementer interface {
-	Class
+func newSingletonPerformance() *performance {
+	obj := &performance{}
+	ptr := C.godot_global_get_singleton(C.CString("Performance"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
 }
 
 /*
 
  */
-type Performance struct {
+var Performance = newSingletonPerformance()
+
+/*
+
+ */
+type performance struct {
 	Object
 }
 
-func (o *Performance) baseClass() string {
+func (o *performance) baseClass() string {
 	return "Performance"
 }
 
 /*
 
  */
-func (o *Performance) GetMonitor(monitor int64) float64 {
+func (o *performance) GetMonitor(monitor int64) float64 {
 	log.Println("Calling Performance.GetMonitor()")
 
 	// Build out the method's arguments
@@ -14368,28 +14435,33 @@ func (o *Performance) GetMonitor(monitor int64) float64 {
 
 }
 
-/*
-   PerformanceImplementer is an interface for Performance objects.
-*/
-type PerformanceImplementer interface {
-	Class
+func newSingletonVisualServer() *visualServer {
+	obj := &visualServer{}
+	ptr := C.godot_global_get_singleton(C.CString("VisualServer"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
 }
 
 /*
    Server for anything visible. The visual server is the API backend for everything visible. The whole scene system mounts on it to display. The visual server is completely opaque, the internals are entirely implementation specific and cannot be accessed.
 */
-type VisualServer struct {
+var VisualServer = newSingletonVisualServer()
+
+/*
+   Server for anything visible. The visual server is the API backend for everything visible. The whole scene system mounts on it to display. The visual server is completely opaque, the internals are entirely implementation specific and cannot be accessed.
+*/
+type visualServer struct {
 	Object
 }
 
-func (o *VisualServer) baseClass() string {
+func (o *visualServer) baseClass() string {
 	return "VisualServer"
 }
 
 /*
 
  */
-func (o *VisualServer) ForceDraw() {
+func (o *visualServer) ForceDraw() {
 	log.Println("Calling VisualServer.ForceDraw()")
 
 	// Build out the method's arguments
@@ -14406,7 +14478,7 @@ func (o *VisualServer) ForceDraw() {
 /*
 
  */
-func (o *VisualServer) TextureCreate() *RID {
+func (o *visualServer) TextureCreate() *RID {
 	log.Println("Calling VisualServer.TextureCreate()")
 
 	// Build out the method's arguments
@@ -14427,7 +14499,7 @@ func (o *VisualServer) TextureCreate() *RID {
 /*
 
  */
-func (o *VisualServer) TextureCreateFromImage(image *Image, flags int64) *RID {
+func (o *visualServer) TextureCreateFromImage(image *Image, flags int64) *RID {
 	log.Println("Calling VisualServer.TextureCreateFromImage()")
 
 	// Build out the method's arguments
@@ -14450,7 +14522,7 @@ func (o *VisualServer) TextureCreateFromImage(image *Image, flags int64) *RID {
 /*
 
  */
-func (o *VisualServer) TextureSetFlags(texture *RID, flags int64) {
+func (o *visualServer) TextureSetFlags(texture *RID, flags int64) {
 	log.Println("Calling VisualServer.TextureSetFlags()")
 
 	// Build out the method's arguments
@@ -14469,7 +14541,7 @@ func (o *VisualServer) TextureSetFlags(texture *RID, flags int64) {
 /*
 
  */
-func (o *VisualServer) TextureGetFlags(texture *RID) int64 {
+func (o *visualServer) TextureGetFlags(texture *RID) int64 {
 	log.Println("Calling VisualServer.TextureGetFlags()")
 
 	// Build out the method's arguments
@@ -14491,7 +14563,7 @@ func (o *VisualServer) TextureGetFlags(texture *RID) int64 {
 /*
 
  */
-func (o *VisualServer) TextureGetWidth(texture *RID) int64 {
+func (o *visualServer) TextureGetWidth(texture *RID) int64 {
 	log.Println("Calling VisualServer.TextureGetWidth()")
 
 	// Build out the method's arguments
@@ -14513,7 +14585,7 @@ func (o *VisualServer) TextureGetWidth(texture *RID) int64 {
 /*
 
  */
-func (o *VisualServer) TextureGetHeight(texture *RID) int64 {
+func (o *visualServer) TextureGetHeight(texture *RID) int64 {
 	log.Println("Calling VisualServer.TextureGetHeight()")
 
 	// Build out the method's arguments
@@ -14535,7 +14607,7 @@ func (o *VisualServer) TextureGetHeight(texture *RID) int64 {
 /*
 
  */
-func (o *VisualServer) TextureSetShrinkAllX2OnSetData(shrink bool) {
+func (o *visualServer) TextureSetShrinkAllX2OnSetData(shrink bool) {
 	log.Println("Calling VisualServer.TextureSetShrinkAllX2OnSetData()")
 
 	// Build out the method's arguments
@@ -14551,17 +14623,10 @@ func (o *VisualServer) TextureSetShrinkAllX2OnSetData(shrink bool) {
 }
 
 /*
-   VisualServerImplementer is an interface for VisualServer objects.
-*/
-type VisualServerImplementer interface {
-	Class
-}
-
-/*
 
  */
 type PhysicsServerSW struct {
-	PhysicsServer
+	physicsServer
 }
 
 func (o *PhysicsServerSW) baseClass() string {
@@ -14575,21 +14640,33 @@ type PhysicsServerSWImplementer interface {
 	Class
 }
 
+func newSingletonPhysicsServer() *physicsServer {
+	obj := &physicsServer{}
+	ptr := C.godot_global_get_singleton(C.CString("PhysicsServer"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
+}
+
 /*
 
  */
-type PhysicsServer struct {
+var PhysicsServer = newSingletonPhysicsServer()
+
+/*
+
+ */
+type physicsServer struct {
 	Object
 }
 
-func (o *PhysicsServer) baseClass() string {
+func (o *physicsServer) baseClass() string {
 	return "PhysicsServer"
 }
 
 /*
 
  */
-func (o *PhysicsServer) ShapeCreate(aType int64) *RID {
+func (o *physicsServer) ShapeCreate(aType int64) *RID {
 	log.Println("Calling PhysicsServer.ShapeCreate()")
 
 	// Build out the method's arguments
@@ -14611,7 +14688,7 @@ func (o *PhysicsServer) ShapeCreate(aType int64) *RID {
 /*
 
  */
-func (o *PhysicsServer) ShapeSetData(shape *RID, data *Variant) {
+func (o *physicsServer) ShapeSetData(shape *RID, data *Variant) {
 	log.Println("Calling PhysicsServer.ShapeSetData()")
 
 	// Build out the method's arguments
@@ -14630,7 +14707,7 @@ func (o *PhysicsServer) ShapeSetData(shape *RID, data *Variant) {
 /*
 
  */
-func (o *PhysicsServer) ShapeGetType(shape *RID) int64 {
+func (o *physicsServer) ShapeGetType(shape *RID) int64 {
 	log.Println("Calling PhysicsServer.ShapeGetType()")
 
 	// Build out the method's arguments
@@ -14652,7 +14729,7 @@ func (o *PhysicsServer) ShapeGetType(shape *RID) int64 {
 /*
 
  */
-func (o *PhysicsServer) ShapeGetData(shape *RID) *Variant {
+func (o *physicsServer) ShapeGetData(shape *RID) *Variant {
 	log.Println("Calling PhysicsServer.ShapeGetData()")
 
 	// Build out the method's arguments
@@ -14674,7 +14751,7 @@ func (o *PhysicsServer) ShapeGetData(shape *RID) *Variant {
 /*
 
  */
-func (o *PhysicsServer) SpaceCreate() *RID {
+func (o *physicsServer) SpaceCreate() *RID {
 	log.Println("Calling PhysicsServer.SpaceCreate()")
 
 	// Build out the method's arguments
@@ -14695,7 +14772,7 @@ func (o *PhysicsServer) SpaceCreate() *RID {
 /*
 
  */
-func (o *PhysicsServer) SpaceSetActive(space *RID, active bool) {
+func (o *physicsServer) SpaceSetActive(space *RID, active bool) {
 	log.Println("Calling PhysicsServer.SpaceSetActive()")
 
 	// Build out the method's arguments
@@ -14714,7 +14791,7 @@ func (o *PhysicsServer) SpaceSetActive(space *RID, active bool) {
 /*
 
  */
-func (o *PhysicsServer) SpaceIsActive(space *RID) bool {
+func (o *physicsServer) SpaceIsActive(space *RID) bool {
 	log.Println("Calling PhysicsServer.SpaceIsActive()")
 
 	// Build out the method's arguments
@@ -14736,7 +14813,7 @@ func (o *PhysicsServer) SpaceIsActive(space *RID) bool {
 /*
 
  */
-func (o *PhysicsServer) SpaceSetParam(space *RID, param int64, value float64) {
+func (o *physicsServer) SpaceSetParam(space *RID, param int64, value float64) {
 	log.Println("Calling PhysicsServer.SpaceSetParam()")
 
 	// Build out the method's arguments
@@ -14756,7 +14833,7 @@ func (o *PhysicsServer) SpaceSetParam(space *RID, param int64, value float64) {
 /*
 
  */
-func (o *PhysicsServer) SpaceGetParam(space *RID, param int64) float64 {
+func (o *physicsServer) SpaceGetParam(space *RID, param int64) float64 {
 	log.Println("Calling PhysicsServer.SpaceGetParam()")
 
 	// Build out the method's arguments
@@ -14779,7 +14856,7 @@ func (o *PhysicsServer) SpaceGetParam(space *RID, param int64) float64 {
 /*
 
  */
-func (o *PhysicsServer) SpaceGetDirectState(space *RID) *PhysicsDirectSpaceState {
+func (o *physicsServer) SpaceGetDirectState(space *RID) *PhysicsDirectSpaceState {
 	log.Println("Calling PhysicsServer.SpaceGetDirectState()")
 
 	// Build out the method's arguments
@@ -14801,7 +14878,7 @@ func (o *PhysicsServer) SpaceGetDirectState(space *RID) *PhysicsDirectSpaceState
 /*
 
  */
-func (o *PhysicsServer) AreaCreate() *RID {
+func (o *physicsServer) AreaCreate() *RID {
 	log.Println("Calling PhysicsServer.AreaCreate()")
 
 	// Build out the method's arguments
@@ -14822,7 +14899,7 @@ func (o *PhysicsServer) AreaCreate() *RID {
 /*
 
  */
-func (o *PhysicsServer) AreaSetSpace(area *RID, space *RID) {
+func (o *physicsServer) AreaSetSpace(area *RID, space *RID) {
 	log.Println("Calling PhysicsServer.AreaSetSpace()")
 
 	// Build out the method's arguments
@@ -14841,7 +14918,7 @@ func (o *PhysicsServer) AreaSetSpace(area *RID, space *RID) {
 /*
 
  */
-func (o *PhysicsServer) AreaGetSpace(area *RID) *RID {
+func (o *physicsServer) AreaGetSpace(area *RID) *RID {
 	log.Println("Calling PhysicsServer.AreaGetSpace()")
 
 	// Build out the method's arguments
@@ -14863,7 +14940,7 @@ func (o *PhysicsServer) AreaGetSpace(area *RID) *RID {
 /*
 
  */
-func (o *PhysicsServer) AreaSetSpaceOverrideMode(area *RID, mode int64) {
+func (o *physicsServer) AreaSetSpaceOverrideMode(area *RID, mode int64) {
 	log.Println("Calling PhysicsServer.AreaSetSpaceOverrideMode()")
 
 	// Build out the method's arguments
@@ -14882,7 +14959,7 @@ func (o *PhysicsServer) AreaSetSpaceOverrideMode(area *RID, mode int64) {
 /*
 
  */
-func (o *PhysicsServer) AreaGetSpaceOverrideMode(area *RID) int64 {
+func (o *physicsServer) AreaGetSpaceOverrideMode(area *RID) int64 {
 	log.Println("Calling PhysicsServer.AreaGetSpaceOverrideMode()")
 
 	// Build out the method's arguments
@@ -14904,7 +14981,7 @@ func (o *PhysicsServer) AreaGetSpaceOverrideMode(area *RID) int64 {
 /*
 
  */
-func (o *PhysicsServer) AreaAddShape(area *RID, shape *RID, transform *Transform) {
+func (o *physicsServer) AreaAddShape(area *RID, shape *RID, transform *Transform) {
 	log.Println("Calling PhysicsServer.AreaAddShape()")
 
 	// Build out the method's arguments
@@ -14924,7 +15001,7 @@ func (o *PhysicsServer) AreaAddShape(area *RID, shape *RID, transform *Transform
 /*
 
  */
-func (o *PhysicsServer) AreaSetShape(area *RID, shapeIdx int64, shape *RID) {
+func (o *physicsServer) AreaSetShape(area *RID, shapeIdx int64, shape *RID) {
 	log.Println("Calling PhysicsServer.AreaSetShape()")
 
 	// Build out the method's arguments
@@ -14944,7 +15021,7 @@ func (o *PhysicsServer) AreaSetShape(area *RID, shapeIdx int64, shape *RID) {
 /*
 
  */
-func (o *PhysicsServer) AreaSetShapeTransform(area *RID, shapeIdx int64, transform *Transform) {
+func (o *physicsServer) AreaSetShapeTransform(area *RID, shapeIdx int64, transform *Transform) {
 	log.Println("Calling PhysicsServer.AreaSetShapeTransform()")
 
 	// Build out the method's arguments
@@ -14964,7 +15041,7 @@ func (o *PhysicsServer) AreaSetShapeTransform(area *RID, shapeIdx int64, transfo
 /*
 
  */
-func (o *PhysicsServer) AreaGetShapeCount(area *RID) int64 {
+func (o *physicsServer) AreaGetShapeCount(area *RID) int64 {
 	log.Println("Calling PhysicsServer.AreaGetShapeCount()")
 
 	// Build out the method's arguments
@@ -14986,7 +15063,7 @@ func (o *PhysicsServer) AreaGetShapeCount(area *RID) int64 {
 /*
 
  */
-func (o *PhysicsServer) AreaGetShape(area *RID, shapeIdx int64) *RID {
+func (o *physicsServer) AreaGetShape(area *RID, shapeIdx int64) *RID {
 	log.Println("Calling PhysicsServer.AreaGetShape()")
 
 	// Build out the method's arguments
@@ -15009,7 +15086,7 @@ func (o *PhysicsServer) AreaGetShape(area *RID, shapeIdx int64) *RID {
 /*
 
  */
-func (o *PhysicsServer) AreaGetShapeTransform(area *RID, shapeIdx int64) *Transform {
+func (o *physicsServer) AreaGetShapeTransform(area *RID, shapeIdx int64) *Transform {
 	log.Println("Calling PhysicsServer.AreaGetShapeTransform()")
 
 	// Build out the method's arguments
@@ -15032,7 +15109,7 @@ func (o *PhysicsServer) AreaGetShapeTransform(area *RID, shapeIdx int64) *Transf
 /*
 
  */
-func (o *PhysicsServer) AreaRemoveShape(area *RID, shapeIdx int64) {
+func (o *physicsServer) AreaRemoveShape(area *RID, shapeIdx int64) {
 	log.Println("Calling PhysicsServer.AreaRemoveShape()")
 
 	// Build out the method's arguments
@@ -15051,7 +15128,7 @@ func (o *PhysicsServer) AreaRemoveShape(area *RID, shapeIdx int64) {
 /*
 
  */
-func (o *PhysicsServer) AreaClearShapes(area *RID) {
+func (o *physicsServer) AreaClearShapes(area *RID) {
 	log.Println("Calling PhysicsServer.AreaClearShapes()")
 
 	// Build out the method's arguments
@@ -15069,7 +15146,7 @@ func (o *PhysicsServer) AreaClearShapes(area *RID) {
 /*
 
  */
-func (o *PhysicsServer) AreaSetCollisionLayer(area *RID, layer int64) {
+func (o *physicsServer) AreaSetCollisionLayer(area *RID, layer int64) {
 	log.Println("Calling PhysicsServer.AreaSetCollisionLayer()")
 
 	// Build out the method's arguments
@@ -15088,7 +15165,7 @@ func (o *PhysicsServer) AreaSetCollisionLayer(area *RID, layer int64) {
 /*
 
  */
-func (o *PhysicsServer) AreaSetCollisionMask(area *RID, mask int64) {
+func (o *physicsServer) AreaSetCollisionMask(area *RID, mask int64) {
 	log.Println("Calling PhysicsServer.AreaSetCollisionMask()")
 
 	// Build out the method's arguments
@@ -15107,7 +15184,7 @@ func (o *PhysicsServer) AreaSetCollisionMask(area *RID, mask int64) {
 /*
 
  */
-func (o *PhysicsServer) AreaSetParam(area *RID, param int64, value *Variant) {
+func (o *physicsServer) AreaSetParam(area *RID, param int64, value *Variant) {
 	log.Println("Calling PhysicsServer.AreaSetParam()")
 
 	// Build out the method's arguments
@@ -15127,7 +15204,7 @@ func (o *PhysicsServer) AreaSetParam(area *RID, param int64, value *Variant) {
 /*
 
  */
-func (o *PhysicsServer) AreaSetTransform(area *RID, transform *Transform) {
+func (o *physicsServer) AreaSetTransform(area *RID, transform *Transform) {
 	log.Println("Calling PhysicsServer.AreaSetTransform()")
 
 	// Build out the method's arguments
@@ -15146,7 +15223,7 @@ func (o *PhysicsServer) AreaSetTransform(area *RID, transform *Transform) {
 /*
 
  */
-func (o *PhysicsServer) AreaGetParam(area *RID, param int64) *Variant {
+func (o *physicsServer) AreaGetParam(area *RID, param int64) *Variant {
 	log.Println("Calling PhysicsServer.AreaGetParam()")
 
 	// Build out the method's arguments
@@ -15169,7 +15246,7 @@ func (o *PhysicsServer) AreaGetParam(area *RID, param int64) *Variant {
 /*
 
  */
-func (o *PhysicsServer) AreaGetTransform(area *RID) *Transform {
+func (o *physicsServer) AreaGetTransform(area *RID) *Transform {
 	log.Println("Calling PhysicsServer.AreaGetTransform()")
 
 	// Build out the method's arguments
@@ -15191,7 +15268,7 @@ func (o *PhysicsServer) AreaGetTransform(area *RID) *Transform {
 /*
 
  */
-func (o *PhysicsServer) AreaAttachObjectInstanceId(area *RID, id int64) {
+func (o *physicsServer) AreaAttachObjectInstanceId(area *RID, id int64) {
 	log.Println("Calling PhysicsServer.AreaAttachObjectInstanceId()")
 
 	// Build out the method's arguments
@@ -15210,7 +15287,7 @@ func (o *PhysicsServer) AreaAttachObjectInstanceId(area *RID, id int64) {
 /*
 
  */
-func (o *PhysicsServer) AreaGetObjectInstanceId(area *RID) int64 {
+func (o *physicsServer) AreaGetObjectInstanceId(area *RID) int64 {
 	log.Println("Calling PhysicsServer.AreaGetObjectInstanceId()")
 
 	// Build out the method's arguments
@@ -15232,7 +15309,7 @@ func (o *PhysicsServer) AreaGetObjectInstanceId(area *RID) int64 {
 /*
 
  */
-func (o *PhysicsServer) AreaSetMonitorCallback(area *RID, receiver *Object, method string) {
+func (o *physicsServer) AreaSetMonitorCallback(area *RID, receiver *Object, method string) {
 	log.Println("Calling PhysicsServer.AreaSetMonitorCallback()")
 
 	// Build out the method's arguments
@@ -15252,7 +15329,7 @@ func (o *PhysicsServer) AreaSetMonitorCallback(area *RID, receiver *Object, meth
 /*
 
  */
-func (o *PhysicsServer) AreaSetRayPickable(area *RID, enable bool) {
+func (o *physicsServer) AreaSetRayPickable(area *RID, enable bool) {
 	log.Println("Calling PhysicsServer.AreaSetRayPickable()")
 
 	// Build out the method's arguments
@@ -15271,7 +15348,7 @@ func (o *PhysicsServer) AreaSetRayPickable(area *RID, enable bool) {
 /*
 
  */
-func (o *PhysicsServer) AreaIsRayPickable(area *RID) bool {
+func (o *physicsServer) AreaIsRayPickable(area *RID) bool {
 	log.Println("Calling PhysicsServer.AreaIsRayPickable()")
 
 	// Build out the method's arguments
@@ -15293,7 +15370,7 @@ func (o *PhysicsServer) AreaIsRayPickable(area *RID) bool {
 /*
 
  */
-func (o *PhysicsServer) BodyCreate(mode int64, initSleeping bool) *RID {
+func (o *physicsServer) BodyCreate(mode int64, initSleeping bool) *RID {
 	log.Println("Calling PhysicsServer.BodyCreate()")
 
 	// Build out the method's arguments
@@ -15316,7 +15393,7 @@ func (o *PhysicsServer) BodyCreate(mode int64, initSleeping bool) *RID {
 /*
 
  */
-func (o *PhysicsServer) BodySetSpace(body *RID, space *RID) {
+func (o *physicsServer) BodySetSpace(body *RID, space *RID) {
 	log.Println("Calling PhysicsServer.BodySetSpace()")
 
 	// Build out the method's arguments
@@ -15335,7 +15412,7 @@ func (o *PhysicsServer) BodySetSpace(body *RID, space *RID) {
 /*
 
  */
-func (o *PhysicsServer) BodyGetSpace(body *RID) *RID {
+func (o *physicsServer) BodyGetSpace(body *RID) *RID {
 	log.Println("Calling PhysicsServer.BodyGetSpace()")
 
 	// Build out the method's arguments
@@ -15357,7 +15434,7 @@ func (o *PhysicsServer) BodyGetSpace(body *RID) *RID {
 /*
 
  */
-func (o *PhysicsServer) BodySetMode(body *RID, mode int64) {
+func (o *physicsServer) BodySetMode(body *RID, mode int64) {
 	log.Println("Calling PhysicsServer.BodySetMode()")
 
 	// Build out the method's arguments
@@ -15376,7 +15453,7 @@ func (o *PhysicsServer) BodySetMode(body *RID, mode int64) {
 /*
 
  */
-func (o *PhysicsServer) BodyGetMode(body *RID) int64 {
+func (o *physicsServer) BodyGetMode(body *RID) int64 {
 	log.Println("Calling PhysicsServer.BodyGetMode()")
 
 	// Build out the method's arguments
@@ -15398,7 +15475,7 @@ func (o *PhysicsServer) BodyGetMode(body *RID) int64 {
 /*
 
  */
-func (o *PhysicsServer) BodySetCollisionLayer(body *RID, layer int64) {
+func (o *physicsServer) BodySetCollisionLayer(body *RID, layer int64) {
 	log.Println("Calling PhysicsServer.BodySetCollisionLayer()")
 
 	// Build out the method's arguments
@@ -15417,7 +15494,7 @@ func (o *PhysicsServer) BodySetCollisionLayer(body *RID, layer int64) {
 /*
 
  */
-func (o *PhysicsServer) BodyGetCollisionLayer(body *RID) int64 {
+func (o *physicsServer) BodyGetCollisionLayer(body *RID) int64 {
 	log.Println("Calling PhysicsServer.BodyGetCollisionLayer()")
 
 	// Build out the method's arguments
@@ -15439,7 +15516,7 @@ func (o *PhysicsServer) BodyGetCollisionLayer(body *RID) int64 {
 /*
 
  */
-func (o *PhysicsServer) BodySetCollisionMask(body *RID, mask int64) {
+func (o *physicsServer) BodySetCollisionMask(body *RID, mask int64) {
 	log.Println("Calling PhysicsServer.BodySetCollisionMask()")
 
 	// Build out the method's arguments
@@ -15458,7 +15535,7 @@ func (o *PhysicsServer) BodySetCollisionMask(body *RID, mask int64) {
 /*
 
  */
-func (o *PhysicsServer) BodyGetCollisionMask(body *RID) int64 {
+func (o *physicsServer) BodyGetCollisionMask(body *RID) int64 {
 	log.Println("Calling PhysicsServer.BodyGetCollisionMask()")
 
 	// Build out the method's arguments
@@ -15480,7 +15557,7 @@ func (o *PhysicsServer) BodyGetCollisionMask(body *RID) int64 {
 /*
 
  */
-func (o *PhysicsServer) BodyAddShape(body *RID, shape *RID, transform *Transform) {
+func (o *physicsServer) BodyAddShape(body *RID, shape *RID, transform *Transform) {
 	log.Println("Calling PhysicsServer.BodyAddShape()")
 
 	// Build out the method's arguments
@@ -15500,7 +15577,7 @@ func (o *PhysicsServer) BodyAddShape(body *RID, shape *RID, transform *Transform
 /*
 
  */
-func (o *PhysicsServer) BodySetShape(body *RID, shapeIdx int64, shape *RID) {
+func (o *physicsServer) BodySetShape(body *RID, shapeIdx int64, shape *RID) {
 	log.Println("Calling PhysicsServer.BodySetShape()")
 
 	// Build out the method's arguments
@@ -15520,7 +15597,7 @@ func (o *PhysicsServer) BodySetShape(body *RID, shapeIdx int64, shape *RID) {
 /*
 
  */
-func (o *PhysicsServer) BodySetShapeTransform(body *RID, shapeIdx int64, transform *Transform) {
+func (o *physicsServer) BodySetShapeTransform(body *RID, shapeIdx int64, transform *Transform) {
 	log.Println("Calling PhysicsServer.BodySetShapeTransform()")
 
 	// Build out the method's arguments
@@ -15540,7 +15617,7 @@ func (o *PhysicsServer) BodySetShapeTransform(body *RID, shapeIdx int64, transfo
 /*
 
  */
-func (o *PhysicsServer) BodyGetShapeCount(body *RID) int64 {
+func (o *physicsServer) BodyGetShapeCount(body *RID) int64 {
 	log.Println("Calling PhysicsServer.BodyGetShapeCount()")
 
 	// Build out the method's arguments
@@ -15562,7 +15639,7 @@ func (o *PhysicsServer) BodyGetShapeCount(body *RID) int64 {
 /*
 
  */
-func (o *PhysicsServer) BodyGetShape(body *RID, shapeIdx int64) *RID {
+func (o *physicsServer) BodyGetShape(body *RID, shapeIdx int64) *RID {
 	log.Println("Calling PhysicsServer.BodyGetShape()")
 
 	// Build out the method's arguments
@@ -15585,7 +15662,7 @@ func (o *PhysicsServer) BodyGetShape(body *RID, shapeIdx int64) *RID {
 /*
 
  */
-func (o *PhysicsServer) BodyGetShapeTransform(body *RID, shapeIdx int64) *Transform {
+func (o *physicsServer) BodyGetShapeTransform(body *RID, shapeIdx int64) *Transform {
 	log.Println("Calling PhysicsServer.BodyGetShapeTransform()")
 
 	// Build out the method's arguments
@@ -15608,7 +15685,7 @@ func (o *PhysicsServer) BodyGetShapeTransform(body *RID, shapeIdx int64) *Transf
 /*
 
  */
-func (o *PhysicsServer) BodyRemoveShape(body *RID, shapeIdx int64) {
+func (o *physicsServer) BodyRemoveShape(body *RID, shapeIdx int64) {
 	log.Println("Calling PhysicsServer.BodyRemoveShape()")
 
 	// Build out the method's arguments
@@ -15627,7 +15704,7 @@ func (o *PhysicsServer) BodyRemoveShape(body *RID, shapeIdx int64) {
 /*
 
  */
-func (o *PhysicsServer) BodyClearShapes(body *RID) {
+func (o *physicsServer) BodyClearShapes(body *RID) {
 	log.Println("Calling PhysicsServer.BodyClearShapes()")
 
 	// Build out the method's arguments
@@ -15645,7 +15722,7 @@ func (o *PhysicsServer) BodyClearShapes(body *RID) {
 /*
 
  */
-func (o *PhysicsServer) BodyAttachObjectInstanceId(body *RID, id int64) {
+func (o *physicsServer) BodyAttachObjectInstanceId(body *RID, id int64) {
 	log.Println("Calling PhysicsServer.BodyAttachObjectInstanceId()")
 
 	// Build out the method's arguments
@@ -15664,7 +15741,7 @@ func (o *PhysicsServer) BodyAttachObjectInstanceId(body *RID, id int64) {
 /*
 
  */
-func (o *PhysicsServer) BodyGetObjectInstanceId(body *RID) int64 {
+func (o *physicsServer) BodyGetObjectInstanceId(body *RID) int64 {
 	log.Println("Calling PhysicsServer.BodyGetObjectInstanceId()")
 
 	// Build out the method's arguments
@@ -15686,7 +15763,7 @@ func (o *PhysicsServer) BodyGetObjectInstanceId(body *RID) int64 {
 /*
 
  */
-func (o *PhysicsServer) BodySetEnableContinuousCollisionDetection(body *RID, enable bool) {
+func (o *physicsServer) BodySetEnableContinuousCollisionDetection(body *RID, enable bool) {
 	log.Println("Calling PhysicsServer.BodySetEnableContinuousCollisionDetection()")
 
 	// Build out the method's arguments
@@ -15705,7 +15782,7 @@ func (o *PhysicsServer) BodySetEnableContinuousCollisionDetection(body *RID, ena
 /*
 
  */
-func (o *PhysicsServer) BodyIsContinuousCollisionDetectionEnabled(body *RID) bool {
+func (o *physicsServer) BodyIsContinuousCollisionDetectionEnabled(body *RID) bool {
 	log.Println("Calling PhysicsServer.BodyIsContinuousCollisionDetectionEnabled()")
 
 	// Build out the method's arguments
@@ -15727,7 +15804,7 @@ func (o *PhysicsServer) BodyIsContinuousCollisionDetectionEnabled(body *RID) boo
 /*
 
  */
-func (o *PhysicsServer) BodySetParam(body *RID, param int64, value float64) {
+func (o *physicsServer) BodySetParam(body *RID, param int64, value float64) {
 	log.Println("Calling PhysicsServer.BodySetParam()")
 
 	// Build out the method's arguments
@@ -15747,7 +15824,7 @@ func (o *PhysicsServer) BodySetParam(body *RID, param int64, value float64) {
 /*
 
  */
-func (o *PhysicsServer) BodyGetParam(body *RID, param int64) float64 {
+func (o *physicsServer) BodyGetParam(body *RID, param int64) float64 {
 	log.Println("Calling PhysicsServer.BodyGetParam()")
 
 	// Build out the method's arguments
@@ -15770,7 +15847,7 @@ func (o *PhysicsServer) BodyGetParam(body *RID, param int64) float64 {
 /*
 
  */
-func (o *PhysicsServer) BodySetState(body *RID, state int64, value *Variant) {
+func (o *physicsServer) BodySetState(body *RID, state int64, value *Variant) {
 	log.Println("Calling PhysicsServer.BodySetState()")
 
 	// Build out the method's arguments
@@ -15790,7 +15867,7 @@ func (o *PhysicsServer) BodySetState(body *RID, state int64, value *Variant) {
 /*
 
  */
-func (o *PhysicsServer) BodyGetState(body *RID, state int64) *Variant {
+func (o *physicsServer) BodyGetState(body *RID, state int64) *Variant {
 	log.Println("Calling PhysicsServer.BodyGetState()")
 
 	// Build out the method's arguments
@@ -15813,7 +15890,7 @@ func (o *PhysicsServer) BodyGetState(body *RID, state int64) *Variant {
 /*
 
  */
-func (o *PhysicsServer) BodyApplyImpulse(body *RID, pos *Vector3, impulse *Vector3) {
+func (o *physicsServer) BodyApplyImpulse(body *RID, pos *Vector3, impulse *Vector3) {
 	log.Println("Calling PhysicsServer.BodyApplyImpulse()")
 
 	// Build out the method's arguments
@@ -15833,7 +15910,7 @@ func (o *PhysicsServer) BodyApplyImpulse(body *RID, pos *Vector3, impulse *Vecto
 /*
 
  */
-func (o *PhysicsServer) BodyApplyTorqueImpulse(body *RID, impulse *Vector3) {
+func (o *physicsServer) BodyApplyTorqueImpulse(body *RID, impulse *Vector3) {
 	log.Println("Calling PhysicsServer.BodyApplyTorqueImpulse()")
 
 	// Build out the method's arguments
@@ -15852,7 +15929,7 @@ func (o *PhysicsServer) BodyApplyTorqueImpulse(body *RID, impulse *Vector3) {
 /*
 
  */
-func (o *PhysicsServer) BodySetAxisVelocity(body *RID, axisVelocity *Vector3) {
+func (o *physicsServer) BodySetAxisVelocity(body *RID, axisVelocity *Vector3) {
 	log.Println("Calling PhysicsServer.BodySetAxisVelocity()")
 
 	// Build out the method's arguments
@@ -15871,7 +15948,7 @@ func (o *PhysicsServer) BodySetAxisVelocity(body *RID, axisVelocity *Vector3) {
 /*
 
  */
-func (o *PhysicsServer) BodySetAxisLock(body *RID, axis int64) {
+func (o *physicsServer) BodySetAxisLock(body *RID, axis int64) {
 	log.Println("Calling PhysicsServer.BodySetAxisLock()")
 
 	// Build out the method's arguments
@@ -15890,7 +15967,7 @@ func (o *PhysicsServer) BodySetAxisLock(body *RID, axis int64) {
 /*
 
  */
-func (o *PhysicsServer) BodyGetAxisLock(body *RID) int64 {
+func (o *physicsServer) BodyGetAxisLock(body *RID) int64 {
 	log.Println("Calling PhysicsServer.BodyGetAxisLock()")
 
 	// Build out the method's arguments
@@ -15912,7 +15989,7 @@ func (o *PhysicsServer) BodyGetAxisLock(body *RID) int64 {
 /*
 
  */
-func (o *PhysicsServer) BodyAddCollisionException(body *RID, exceptedBody *RID) {
+func (o *physicsServer) BodyAddCollisionException(body *RID, exceptedBody *RID) {
 	log.Println("Calling PhysicsServer.BodyAddCollisionException()")
 
 	// Build out the method's arguments
@@ -15931,7 +16008,7 @@ func (o *PhysicsServer) BodyAddCollisionException(body *RID, exceptedBody *RID) 
 /*
 
  */
-func (o *PhysicsServer) BodyRemoveCollisionException(body *RID, exceptedBody *RID) {
+func (o *physicsServer) BodyRemoveCollisionException(body *RID, exceptedBody *RID) {
 	log.Println("Calling PhysicsServer.BodyRemoveCollisionException()")
 
 	// Build out the method's arguments
@@ -15950,7 +16027,7 @@ func (o *PhysicsServer) BodyRemoveCollisionException(body *RID, exceptedBody *RI
 /*
 
  */
-func (o *PhysicsServer) BodySetMaxContactsReported(body *RID, amount int64) {
+func (o *physicsServer) BodySetMaxContactsReported(body *RID, amount int64) {
 	log.Println("Calling PhysicsServer.BodySetMaxContactsReported()")
 
 	// Build out the method's arguments
@@ -15969,7 +16046,7 @@ func (o *PhysicsServer) BodySetMaxContactsReported(body *RID, amount int64) {
 /*
 
  */
-func (o *PhysicsServer) BodyGetMaxContactsReported(body *RID) int64 {
+func (o *physicsServer) BodyGetMaxContactsReported(body *RID) int64 {
 	log.Println("Calling PhysicsServer.BodyGetMaxContactsReported()")
 
 	// Build out the method's arguments
@@ -15991,7 +16068,7 @@ func (o *PhysicsServer) BodyGetMaxContactsReported(body *RID) int64 {
 /*
 
  */
-func (o *PhysicsServer) BodySetOmitForceIntegration(body *RID, enable bool) {
+func (o *physicsServer) BodySetOmitForceIntegration(body *RID, enable bool) {
 	log.Println("Calling PhysicsServer.BodySetOmitForceIntegration()")
 
 	// Build out the method's arguments
@@ -16010,7 +16087,7 @@ func (o *PhysicsServer) BodySetOmitForceIntegration(body *RID, enable bool) {
 /*
 
  */
-func (o *PhysicsServer) BodyIsOmittingForceIntegration(body *RID) bool {
+func (o *physicsServer) BodyIsOmittingForceIntegration(body *RID) bool {
 	log.Println("Calling PhysicsServer.BodyIsOmittingForceIntegration()")
 
 	// Build out the method's arguments
@@ -16032,7 +16109,7 @@ func (o *PhysicsServer) BodyIsOmittingForceIntegration(body *RID) bool {
 /*
 
  */
-func (o *PhysicsServer) BodySetForceIntegrationCallback(body *RID, receiver *Object, method string, userdata *Variant) {
+func (o *physicsServer) BodySetForceIntegrationCallback(body *RID, receiver *Object, method string, userdata *Variant) {
 	log.Println("Calling PhysicsServer.BodySetForceIntegrationCallback()")
 
 	// Build out the method's arguments
@@ -16053,7 +16130,7 @@ func (o *PhysicsServer) BodySetForceIntegrationCallback(body *RID, receiver *Obj
 /*
 
  */
-func (o *PhysicsServer) BodySetRayPickable(body *RID, enable bool) {
+func (o *physicsServer) BodySetRayPickable(body *RID, enable bool) {
 	log.Println("Calling PhysicsServer.BodySetRayPickable()")
 
 	// Build out the method's arguments
@@ -16072,7 +16149,7 @@ func (o *PhysicsServer) BodySetRayPickable(body *RID, enable bool) {
 /*
 
  */
-func (o *PhysicsServer) BodyIsRayPickable(body *RID) bool {
+func (o *physicsServer) BodyIsRayPickable(body *RID) bool {
 	log.Println("Calling PhysicsServer.BodyIsRayPickable()")
 
 	// Build out the method's arguments
@@ -16094,7 +16171,7 @@ func (o *PhysicsServer) BodyIsRayPickable(body *RID) bool {
 /*
 
  */
-func (o *PhysicsServer) JointCreatePin(bodyA *RID, localA *Vector3, bodyB *RID, localB *Vector3) *RID {
+func (o *physicsServer) JointCreatePin(bodyA *RID, localA *Vector3, bodyB *RID, localB *Vector3) *RID {
 	log.Println("Calling PhysicsServer.JointCreatePin()")
 
 	// Build out the method's arguments
@@ -16119,7 +16196,7 @@ func (o *PhysicsServer) JointCreatePin(bodyA *RID, localA *Vector3, bodyB *RID, 
 /*
 
  */
-func (o *PhysicsServer) PinJointSetParam(joint *RID, param int64, value float64) {
+func (o *physicsServer) PinJointSetParam(joint *RID, param int64, value float64) {
 	log.Println("Calling PhysicsServer.PinJointSetParam()")
 
 	// Build out the method's arguments
@@ -16139,7 +16216,7 @@ func (o *PhysicsServer) PinJointSetParam(joint *RID, param int64, value float64)
 /*
 
  */
-func (o *PhysicsServer) PinJointGetParam(joint *RID, param int64) float64 {
+func (o *physicsServer) PinJointGetParam(joint *RID, param int64) float64 {
 	log.Println("Calling PhysicsServer.PinJointGetParam()")
 
 	// Build out the method's arguments
@@ -16162,7 +16239,7 @@ func (o *PhysicsServer) PinJointGetParam(joint *RID, param int64) float64 {
 /*
 
  */
-func (o *PhysicsServer) PinJointSetLocalA(joint *RID, localA *Vector3) {
+func (o *physicsServer) PinJointSetLocalA(joint *RID, localA *Vector3) {
 	log.Println("Calling PhysicsServer.PinJointSetLocalA()")
 
 	// Build out the method's arguments
@@ -16181,7 +16258,7 @@ func (o *PhysicsServer) PinJointSetLocalA(joint *RID, localA *Vector3) {
 /*
 
  */
-func (o *PhysicsServer) PinJointGetLocalA(joint *RID) *Vector3 {
+func (o *physicsServer) PinJointGetLocalA(joint *RID) *Vector3 {
 	log.Println("Calling PhysicsServer.PinJointGetLocalA()")
 
 	// Build out the method's arguments
@@ -16203,7 +16280,7 @@ func (o *PhysicsServer) PinJointGetLocalA(joint *RID) *Vector3 {
 /*
 
  */
-func (o *PhysicsServer) PinJointSetLocalB(joint *RID, localB *Vector3) {
+func (o *physicsServer) PinJointSetLocalB(joint *RID, localB *Vector3) {
 	log.Println("Calling PhysicsServer.PinJointSetLocalB()")
 
 	// Build out the method's arguments
@@ -16222,7 +16299,7 @@ func (o *PhysicsServer) PinJointSetLocalB(joint *RID, localB *Vector3) {
 /*
 
  */
-func (o *PhysicsServer) PinJointGetLocalB(joint *RID) *Vector3 {
+func (o *physicsServer) PinJointGetLocalB(joint *RID) *Vector3 {
 	log.Println("Calling PhysicsServer.PinJointGetLocalB()")
 
 	// Build out the method's arguments
@@ -16244,7 +16321,7 @@ func (o *PhysicsServer) PinJointGetLocalB(joint *RID) *Vector3 {
 /*
 
  */
-func (o *PhysicsServer) JointCreateHinge(bodyA *RID, hingeA *Transform, bodyB *RID, hingeB *Transform) *RID {
+func (o *physicsServer) JointCreateHinge(bodyA *RID, hingeA *Transform, bodyB *RID, hingeB *Transform) *RID {
 	log.Println("Calling PhysicsServer.JointCreateHinge()")
 
 	// Build out the method's arguments
@@ -16269,7 +16346,7 @@ func (o *PhysicsServer) JointCreateHinge(bodyA *RID, hingeA *Transform, bodyB *R
 /*
 
  */
-func (o *PhysicsServer) HingeJointSetParam(joint *RID, param int64, value float64) {
+func (o *physicsServer) HingeJointSetParam(joint *RID, param int64, value float64) {
 	log.Println("Calling PhysicsServer.HingeJointSetParam()")
 
 	// Build out the method's arguments
@@ -16289,7 +16366,7 @@ func (o *PhysicsServer) HingeJointSetParam(joint *RID, param int64, value float6
 /*
 
  */
-func (o *PhysicsServer) HingeJointGetParam(joint *RID, param int64) float64 {
+func (o *physicsServer) HingeJointGetParam(joint *RID, param int64) float64 {
 	log.Println("Calling PhysicsServer.HingeJointGetParam()")
 
 	// Build out the method's arguments
@@ -16312,7 +16389,7 @@ func (o *PhysicsServer) HingeJointGetParam(joint *RID, param int64) float64 {
 /*
 
  */
-func (o *PhysicsServer) HingeJointSetFlag(joint *RID, flag int64, enabled bool) {
+func (o *physicsServer) HingeJointSetFlag(joint *RID, flag int64, enabled bool) {
 	log.Println("Calling PhysicsServer.HingeJointSetFlag()")
 
 	// Build out the method's arguments
@@ -16332,7 +16409,7 @@ func (o *PhysicsServer) HingeJointSetFlag(joint *RID, flag int64, enabled bool) 
 /*
 
  */
-func (o *PhysicsServer) HingeJointGetFlag(joint *RID, flag int64) bool {
+func (o *physicsServer) HingeJointGetFlag(joint *RID, flag int64) bool {
 	log.Println("Calling PhysicsServer.HingeJointGetFlag()")
 
 	// Build out the method's arguments
@@ -16355,7 +16432,7 @@ func (o *PhysicsServer) HingeJointGetFlag(joint *RID, flag int64) bool {
 /*
 
  */
-func (o *PhysicsServer) JointCreateSlider(bodyA *RID, localRefA *Transform, bodyB *RID, localRefB *Transform) *RID {
+func (o *physicsServer) JointCreateSlider(bodyA *RID, localRefA *Transform, bodyB *RID, localRefB *Transform) *RID {
 	log.Println("Calling PhysicsServer.JointCreateSlider()")
 
 	// Build out the method's arguments
@@ -16380,7 +16457,7 @@ func (o *PhysicsServer) JointCreateSlider(bodyA *RID, localRefA *Transform, body
 /*
 
  */
-func (o *PhysicsServer) SliderJointSetParam(joint *RID, param int64, value float64) {
+func (o *physicsServer) SliderJointSetParam(joint *RID, param int64, value float64) {
 	log.Println("Calling PhysicsServer.SliderJointSetParam()")
 
 	// Build out the method's arguments
@@ -16400,7 +16477,7 @@ func (o *PhysicsServer) SliderJointSetParam(joint *RID, param int64, value float
 /*
 
  */
-func (o *PhysicsServer) SliderJointGetParam(joint *RID, param int64) float64 {
+func (o *physicsServer) SliderJointGetParam(joint *RID, param int64) float64 {
 	log.Println("Calling PhysicsServer.SliderJointGetParam()")
 
 	// Build out the method's arguments
@@ -16423,7 +16500,7 @@ func (o *PhysicsServer) SliderJointGetParam(joint *RID, param int64) float64 {
 /*
 
  */
-func (o *PhysicsServer) JointCreateConeTwist(bodyA *RID, localRefA *Transform, bodyB *RID, localRefB *Transform) *RID {
+func (o *physicsServer) JointCreateConeTwist(bodyA *RID, localRefA *Transform, bodyB *RID, localRefB *Transform) *RID {
 	log.Println("Calling PhysicsServer.JointCreateConeTwist()")
 
 	// Build out the method's arguments
@@ -16448,7 +16525,7 @@ func (o *PhysicsServer) JointCreateConeTwist(bodyA *RID, localRefA *Transform, b
 /*
 
  */
-func (o *PhysicsServer) ConeTwistJointSetParam(joint *RID, param int64, value float64) {
+func (o *physicsServer) ConeTwistJointSetParam(joint *RID, param int64, value float64) {
 	log.Println("Calling PhysicsServer.ConeTwistJointSetParam()")
 
 	// Build out the method's arguments
@@ -16468,7 +16545,7 @@ func (o *PhysicsServer) ConeTwistJointSetParam(joint *RID, param int64, value fl
 /*
 
  */
-func (o *PhysicsServer) ConeTwistJointGetParam(joint *RID, param int64) float64 {
+func (o *physicsServer) ConeTwistJointGetParam(joint *RID, param int64) float64 {
 	log.Println("Calling PhysicsServer.ConeTwistJointGetParam()")
 
 	// Build out the method's arguments
@@ -16491,7 +16568,7 @@ func (o *PhysicsServer) ConeTwistJointGetParam(joint *RID, param int64) float64 
 /*
 
  */
-func (o *PhysicsServer) JointGetType(joint *RID) int64 {
+func (o *physicsServer) JointGetType(joint *RID) int64 {
 	log.Println("Calling PhysicsServer.JointGetType()")
 
 	// Build out the method's arguments
@@ -16513,7 +16590,7 @@ func (o *PhysicsServer) JointGetType(joint *RID) int64 {
 /*
 
  */
-func (o *PhysicsServer) JointSetSolverPriority(joint *RID, priority int64) {
+func (o *physicsServer) JointSetSolverPriority(joint *RID, priority int64) {
 	log.Println("Calling PhysicsServer.JointSetSolverPriority()")
 
 	// Build out the method's arguments
@@ -16532,7 +16609,7 @@ func (o *PhysicsServer) JointSetSolverPriority(joint *RID, priority int64) {
 /*
 
  */
-func (o *PhysicsServer) JointGetSolverPriority(joint *RID) int64 {
+func (o *physicsServer) JointGetSolverPriority(joint *RID) int64 {
 	log.Println("Calling PhysicsServer.JointGetSolverPriority()")
 
 	// Build out the method's arguments
@@ -16554,7 +16631,7 @@ func (o *PhysicsServer) JointGetSolverPriority(joint *RID) int64 {
 /*
 
  */
-func (o *PhysicsServer) JointCreateGeneric6Dof(bodyA *RID, localRefA *Transform, bodyB *RID, localRefB *Transform) *RID {
+func (o *physicsServer) JointCreateGeneric6Dof(bodyA *RID, localRefA *Transform, bodyB *RID, localRefB *Transform) *RID {
 	log.Println("Calling PhysicsServer.JointCreateGeneric6Dof()")
 
 	// Build out the method's arguments
@@ -16579,7 +16656,7 @@ func (o *PhysicsServer) JointCreateGeneric6Dof(bodyA *RID, localRefA *Transform,
 /*
 
  */
-func (o *PhysicsServer) Generic6DofJointSetParam(joint *RID, axis int64, param int64, value float64) {
+func (o *physicsServer) Generic6DofJointSetParam(joint *RID, axis int64, param int64, value float64) {
 	log.Println("Calling PhysicsServer.Generic6DofJointSetParam()")
 
 	// Build out the method's arguments
@@ -16600,7 +16677,7 @@ func (o *PhysicsServer) Generic6DofJointSetParam(joint *RID, axis int64, param i
 /*
 
  */
-func (o *PhysicsServer) Generic6DofJointGetParam(joint *RID, axis int64, param int64) float64 {
+func (o *physicsServer) Generic6DofJointGetParam(joint *RID, axis int64, param int64) float64 {
 	log.Println("Calling PhysicsServer.Generic6DofJointGetParam()")
 
 	// Build out the method's arguments
@@ -16624,7 +16701,7 @@ func (o *PhysicsServer) Generic6DofJointGetParam(joint *RID, axis int64, param i
 /*
 
  */
-func (o *PhysicsServer) Generic6DofJointSetFlag(joint *RID, axis int64, flag int64, enable bool) {
+func (o *physicsServer) Generic6DofJointSetFlag(joint *RID, axis int64, flag int64, enable bool) {
 	log.Println("Calling PhysicsServer.Generic6DofJointSetFlag()")
 
 	// Build out the method's arguments
@@ -16645,7 +16722,7 @@ func (o *PhysicsServer) Generic6DofJointSetFlag(joint *RID, axis int64, flag int
 /*
 
  */
-func (o *PhysicsServer) Generic6DofJointGetFlag(joint *RID, axis int64, flag int64) bool {
+func (o *physicsServer) Generic6DofJointGetFlag(joint *RID, axis int64, flag int64) bool {
 	log.Println("Calling PhysicsServer.Generic6DofJointGetFlag()")
 
 	// Build out the method's arguments
@@ -16669,7 +16746,7 @@ func (o *PhysicsServer) Generic6DofJointGetFlag(joint *RID, axis int64, flag int
 /*
 
  */
-func (o *PhysicsServer) FreeRid(rid *RID) {
+func (o *physicsServer) FreeRid(rid *RID) {
 	log.Println("Calling PhysicsServer.FreeRid()")
 
 	// Build out the method's arguments
@@ -16687,7 +16764,7 @@ func (o *PhysicsServer) FreeRid(rid *RID) {
 /*
 
  */
-func (o *PhysicsServer) SetActive(active bool) {
+func (o *physicsServer) SetActive(active bool) {
 	log.Println("Calling PhysicsServer.SetActive()")
 
 	// Build out the method's arguments
@@ -16705,7 +16782,7 @@ func (o *PhysicsServer) SetActive(active bool) {
 /*
 
  */
-func (o *PhysicsServer) GetProcessInfo(processInfo int64) int64 {
+func (o *physicsServer) GetProcessInfo(processInfo int64) int64 {
 	log.Println("Calling PhysicsServer.GetProcessInfo()")
 
 	// Build out the method's arguments
@@ -16722,13 +16799,6 @@ func (o *PhysicsServer) GetProcessInfo(processInfo int64) int64 {
 
 	return returnValue
 
-}
-
-/*
-   PhysicsServerImplementer is an interface for PhysicsServer objects.
-*/
-type PhysicsServerImplementer interface {
-	Class
 }
 
 /*
@@ -17408,7 +17478,7 @@ type PhysicsDirectBodyStateImplementer interface {
    Software implementation of [Physics2DServer]. This class exposes no new methods or properties and should not be used, as [Physics2DServer] automatically selects the best implementation available.
 */
 type Physics2DServerSW struct {
-	Physics2DServer
+	physics2DServer
 }
 
 func (o *Physics2DServerSW) baseClass() string {
@@ -17422,21 +17492,33 @@ type Physics2DServerSWImplementer interface {
 	Class
 }
 
+func newSingletonPhysics2DServer() *physics2DServer {
+	obj := &physics2DServer{}
+	ptr := C.godot_global_get_singleton(C.CString("Physics2DServer"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
+}
+
 /*
    Physics 2D Server is the server responsible for all 2D physics. It can create many kinds of physics objects, but does not insert them on the node tree.
 */
-type Physics2DServer struct {
+var Physics2DServer = newSingletonPhysics2DServer()
+
+/*
+   Physics 2D Server is the server responsible for all 2D physics. It can create many kinds of physics objects, but does not insert them on the node tree.
+*/
+type physics2DServer struct {
 	Object
 }
 
-func (o *Physics2DServer) baseClass() string {
+func (o *physics2DServer) baseClass() string {
 	return "Physics2DServer"
 }
 
 /*
    Create a shape of type SHAPE_*. Does not assign it to a body or an area. To do so, you must use [method area_set_shape] or [method body_set_shape].
 */
-func (o *Physics2DServer) ShapeCreate(aType int64) *RID {
+func (o *physics2DServer) ShapeCreate(aType int64) *RID {
 	log.Println("Calling Physics2DServer.ShapeCreate()")
 
 	// Build out the method's arguments
@@ -17458,7 +17540,7 @@ func (o *Physics2DServer) ShapeCreate(aType int64) *RID {
 /*
    Set the shape data that defines its shape and size. The data to be passed depends on the kind of shape created [method shape_get_type].
 */
-func (o *Physics2DServer) ShapeSetData(shape *RID, data *Variant) {
+func (o *physics2DServer) ShapeSetData(shape *RID, data *Variant) {
 	log.Println("Calling Physics2DServer.ShapeSetData()")
 
 	// Build out the method's arguments
@@ -17477,7 +17559,7 @@ func (o *Physics2DServer) ShapeSetData(shape *RID, data *Variant) {
 /*
    Return the type of shape (see SHAPE_* constants).
 */
-func (o *Physics2DServer) ShapeGetType(shape *RID) int64 {
+func (o *physics2DServer) ShapeGetType(shape *RID) int64 {
 	log.Println("Calling Physics2DServer.ShapeGetType()")
 
 	// Build out the method's arguments
@@ -17499,7 +17581,7 @@ func (o *Physics2DServer) ShapeGetType(shape *RID) int64 {
 /*
    Return the shape data.
 */
-func (o *Physics2DServer) ShapeGetData(shape *RID) *Variant {
+func (o *physics2DServer) ShapeGetData(shape *RID) *Variant {
 	log.Println("Calling Physics2DServer.ShapeGetData()")
 
 	// Build out the method's arguments
@@ -17521,7 +17603,7 @@ func (o *Physics2DServer) ShapeGetData(shape *RID) *Variant {
 /*
    Create a space. A space is a collection of parameters for the physics engine that can be assigned to an area or a body. It can be assigned to an area with [method area_set_space], or to a body with [method body_set_space].
 */
-func (o *Physics2DServer) SpaceCreate() *RID {
+func (o *physics2DServer) SpaceCreate() *RID {
 	log.Println("Calling Physics2DServer.SpaceCreate()")
 
 	// Build out the method's arguments
@@ -17542,7 +17624,7 @@ func (o *Physics2DServer) SpaceCreate() *RID {
 /*
    Mark a space as active. It will not have an effect, unless it is assigned to an area or body.
 */
-func (o *Physics2DServer) SpaceSetActive(space *RID, active bool) {
+func (o *physics2DServer) SpaceSetActive(space *RID, active bool) {
 	log.Println("Calling Physics2DServer.SpaceSetActive()")
 
 	// Build out the method's arguments
@@ -17561,7 +17643,7 @@ func (o *Physics2DServer) SpaceSetActive(space *RID, active bool) {
 /*
    Return whether the space is active.
 */
-func (o *Physics2DServer) SpaceIsActive(space *RID) bool {
+func (o *physics2DServer) SpaceIsActive(space *RID) bool {
 	log.Println("Calling Physics2DServer.SpaceIsActive()")
 
 	// Build out the method's arguments
@@ -17583,7 +17665,7 @@ func (o *Physics2DServer) SpaceIsActive(space *RID) bool {
 /*
    Set the value for a space parameter. A list of available parameters is on the SPACE_PARAM_* constants.
 */
-func (o *Physics2DServer) SpaceSetParam(space *RID, param int64, value float64) {
+func (o *physics2DServer) SpaceSetParam(space *RID, param int64, value float64) {
 	log.Println("Calling Physics2DServer.SpaceSetParam()")
 
 	// Build out the method's arguments
@@ -17603,7 +17685,7 @@ func (o *Physics2DServer) SpaceSetParam(space *RID, param int64, value float64) 
 /*
    Return the value of a space parameter.
 */
-func (o *Physics2DServer) SpaceGetParam(space *RID, param int64) float64 {
+func (o *physics2DServer) SpaceGetParam(space *RID, param int64) float64 {
 	log.Println("Calling Physics2DServer.SpaceGetParam()")
 
 	// Build out the method's arguments
@@ -17626,7 +17708,7 @@ func (o *Physics2DServer) SpaceGetParam(space *RID, param int64) float64 {
 /*
    Return the state of a space, a [Physics2DDirectSpaceState]. This object can be used to make collision/intersection queries.
 */
-func (o *Physics2DServer) SpaceGetDirectState(space *RID) *Physics2DDirectSpaceState {
+func (o *physics2DServer) SpaceGetDirectState(space *RID) *Physics2DDirectSpaceState {
 	log.Println("Calling Physics2DServer.SpaceGetDirectState()")
 
 	// Build out the method's arguments
@@ -17648,7 +17730,7 @@ func (o *Physics2DServer) SpaceGetDirectState(space *RID) *Physics2DDirectSpaceS
 /*
    Create an [Area2D].
 */
-func (o *Physics2DServer) AreaCreate() *RID {
+func (o *physics2DServer) AreaCreate() *RID {
 	log.Println("Calling Physics2DServer.AreaCreate()")
 
 	// Build out the method's arguments
@@ -17669,7 +17751,7 @@ func (o *Physics2DServer) AreaCreate() *RID {
 /*
    Assign a space to the area.
 */
-func (o *Physics2DServer) AreaSetSpace(area *RID, space *RID) {
+func (o *physics2DServer) AreaSetSpace(area *RID, space *RID) {
 	log.Println("Calling Physics2DServer.AreaSetSpace()")
 
 	// Build out the method's arguments
@@ -17688,7 +17770,7 @@ func (o *Physics2DServer) AreaSetSpace(area *RID, space *RID) {
 /*
    Return the space assigned to the area.
 */
-func (o *Physics2DServer) AreaGetSpace(area *RID) *RID {
+func (o *physics2DServer) AreaGetSpace(area *RID) *RID {
 	log.Println("Calling Physics2DServer.AreaGetSpace()")
 
 	// Build out the method's arguments
@@ -17710,7 +17792,7 @@ func (o *Physics2DServer) AreaGetSpace(area *RID) *RID {
 /*
    Set the space override mode for the area. The modes are described in the constants AREA_SPACE_OVERRIDE_*.
 */
-func (o *Physics2DServer) AreaSetSpaceOverrideMode(area *RID, mode int64) {
+func (o *physics2DServer) AreaSetSpaceOverrideMode(area *RID, mode int64) {
 	log.Println("Calling Physics2DServer.AreaSetSpaceOverrideMode()")
 
 	// Build out the method's arguments
@@ -17729,7 +17811,7 @@ func (o *Physics2DServer) AreaSetSpaceOverrideMode(area *RID, mode int64) {
 /*
    Return the space override mode for the area.
 */
-func (o *Physics2DServer) AreaGetSpaceOverrideMode(area *RID) int64 {
+func (o *physics2DServer) AreaGetSpaceOverrideMode(area *RID) int64 {
 	log.Println("Calling Physics2DServer.AreaGetSpaceOverrideMode()")
 
 	// Build out the method's arguments
@@ -17751,7 +17833,7 @@ func (o *Physics2DServer) AreaGetSpaceOverrideMode(area *RID) int64 {
 /*
    Add a shape to the area, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
 */
-func (o *Physics2DServer) AreaAddShape(area *RID, shape *RID, transform *Transform2D) {
+func (o *physics2DServer) AreaAddShape(area *RID, shape *RID, transform *Transform2D) {
 	log.Println("Calling Physics2DServer.AreaAddShape()")
 
 	// Build out the method's arguments
@@ -17771,7 +17853,7 @@ func (o *Physics2DServer) AreaAddShape(area *RID, shape *RID, transform *Transfo
 /*
    Substitute a given area shape by another. The old shape is selected by its index, the new one by its [RID].
 */
-func (o *Physics2DServer) AreaSetShape(area *RID, shapeIdx int64, shape *RID) {
+func (o *physics2DServer) AreaSetShape(area *RID, shapeIdx int64, shape *RID) {
 	log.Println("Calling Physics2DServer.AreaSetShape()")
 
 	// Build out the method's arguments
@@ -17791,7 +17873,7 @@ func (o *Physics2DServer) AreaSetShape(area *RID, shapeIdx int64, shape *RID) {
 /*
    Set the transform matrix for an area shape.
 */
-func (o *Physics2DServer) AreaSetShapeTransform(area *RID, shapeIdx int64, transform *Transform2D) {
+func (o *physics2DServer) AreaSetShapeTransform(area *RID, shapeIdx int64, transform *Transform2D) {
 	log.Println("Calling Physics2DServer.AreaSetShapeTransform()")
 
 	// Build out the method's arguments
@@ -17811,7 +17893,7 @@ func (o *Physics2DServer) AreaSetShapeTransform(area *RID, shapeIdx int64, trans
 /*
 
  */
-func (o *Physics2DServer) AreaSetShapeDisabled(area *RID, shapeIdx int64, disable bool) {
+func (o *physics2DServer) AreaSetShapeDisabled(area *RID, shapeIdx int64, disable bool) {
 	log.Println("Calling Physics2DServer.AreaSetShapeDisabled()")
 
 	// Build out the method's arguments
@@ -17831,7 +17913,7 @@ func (o *Physics2DServer) AreaSetShapeDisabled(area *RID, shapeIdx int64, disabl
 /*
    Return the number of shapes assigned to an area.
 */
-func (o *Physics2DServer) AreaGetShapeCount(area *RID) int64 {
+func (o *physics2DServer) AreaGetShapeCount(area *RID) int64 {
 	log.Println("Calling Physics2DServer.AreaGetShapeCount()")
 
 	// Build out the method's arguments
@@ -17853,7 +17935,7 @@ func (o *Physics2DServer) AreaGetShapeCount(area *RID) int64 {
 /*
    Return the [RID] of the nth shape of an area.
 */
-func (o *Physics2DServer) AreaGetShape(area *RID, shapeIdx int64) *RID {
+func (o *physics2DServer) AreaGetShape(area *RID, shapeIdx int64) *RID {
 	log.Println("Calling Physics2DServer.AreaGetShape()")
 
 	// Build out the method's arguments
@@ -17876,7 +17958,7 @@ func (o *Physics2DServer) AreaGetShape(area *RID, shapeIdx int64) *RID {
 /*
    Return the transform matrix of a shape within an area.
 */
-func (o *Physics2DServer) AreaGetShapeTransform(area *RID, shapeIdx int64) *Transform2D {
+func (o *physics2DServer) AreaGetShapeTransform(area *RID, shapeIdx int64) *Transform2D {
 	log.Println("Calling Physics2DServer.AreaGetShapeTransform()")
 
 	// Build out the method's arguments
@@ -17899,7 +17981,7 @@ func (o *Physics2DServer) AreaGetShapeTransform(area *RID, shapeIdx int64) *Tran
 /*
    Remove a shape from an area. It does not delete the shape, so it can be reassigned later.
 */
-func (o *Physics2DServer) AreaRemoveShape(area *RID, shapeIdx int64) {
+func (o *physics2DServer) AreaRemoveShape(area *RID, shapeIdx int64) {
 	log.Println("Calling Physics2DServer.AreaRemoveShape()")
 
 	// Build out the method's arguments
@@ -17918,7 +18000,7 @@ func (o *Physics2DServer) AreaRemoveShape(area *RID, shapeIdx int64) {
 /*
    Remove all shapes from an area. It does not delete the shapes, so they can be reassigned later.
 */
-func (o *Physics2DServer) AreaClearShapes(area *RID) {
+func (o *physics2DServer) AreaClearShapes(area *RID) {
 	log.Println("Calling Physics2DServer.AreaClearShapes()")
 
 	// Build out the method's arguments
@@ -17936,7 +18018,7 @@ func (o *Physics2DServer) AreaClearShapes(area *RID) {
 /*
    Assign the area to one or many physics layers.
 */
-func (o *Physics2DServer) AreaSetCollisionLayer(area *RID, layer int64) {
+func (o *physics2DServer) AreaSetCollisionLayer(area *RID, layer int64) {
 	log.Println("Calling Physics2DServer.AreaSetCollisionLayer()")
 
 	// Build out the method's arguments
@@ -17955,7 +18037,7 @@ func (o *Physics2DServer) AreaSetCollisionLayer(area *RID, layer int64) {
 /*
    Set which physics layers the area will monitor.
 */
-func (o *Physics2DServer) AreaSetCollisionMask(area *RID, mask int64) {
+func (o *physics2DServer) AreaSetCollisionMask(area *RID, mask int64) {
 	log.Println("Calling Physics2DServer.AreaSetCollisionMask()")
 
 	// Build out the method's arguments
@@ -17974,7 +18056,7 @@ func (o *Physics2DServer) AreaSetCollisionMask(area *RID, mask int64) {
 /*
    Set the value for an area parameter. A list of available parameters is on the AREA_PARAM_* constants.
 */
-func (o *Physics2DServer) AreaSetParam(area *RID, param int64, value *Variant) {
+func (o *physics2DServer) AreaSetParam(area *RID, param int64, value *Variant) {
 	log.Println("Calling Physics2DServer.AreaSetParam()")
 
 	// Build out the method's arguments
@@ -17994,7 +18076,7 @@ func (o *Physics2DServer) AreaSetParam(area *RID, param int64, value *Variant) {
 /*
    Set the transform matrix for an area.
 */
-func (o *Physics2DServer) AreaSetTransform(area *RID, transform *Transform2D) {
+func (o *physics2DServer) AreaSetTransform(area *RID, transform *Transform2D) {
 	log.Println("Calling Physics2DServer.AreaSetTransform()")
 
 	// Build out the method's arguments
@@ -18013,7 +18095,7 @@ func (o *Physics2DServer) AreaSetTransform(area *RID, transform *Transform2D) {
 /*
    Return an area parameter value.
 */
-func (o *Physics2DServer) AreaGetParam(area *RID, param int64) *Variant {
+func (o *physics2DServer) AreaGetParam(area *RID, param int64) *Variant {
 	log.Println("Calling Physics2DServer.AreaGetParam()")
 
 	// Build out the method's arguments
@@ -18036,7 +18118,7 @@ func (o *Physics2DServer) AreaGetParam(area *RID, param int64) *Variant {
 /*
    Return the transform matrix for an area.
 */
-func (o *Physics2DServer) AreaGetTransform(area *RID) *Transform2D {
+func (o *physics2DServer) AreaGetTransform(area *RID) *Transform2D {
 	log.Println("Calling Physics2DServer.AreaGetTransform()")
 
 	// Build out the method's arguments
@@ -18058,7 +18140,7 @@ func (o *Physics2DServer) AreaGetTransform(area *RID) *Transform2D {
 /*
    Assign the area to a descendant of [Object], so it can exist in the node tree.
 */
-func (o *Physics2DServer) AreaAttachObjectInstanceId(area *RID, id int64) {
+func (o *physics2DServer) AreaAttachObjectInstanceId(area *RID, id int64) {
 	log.Println("Calling Physics2DServer.AreaAttachObjectInstanceId()")
 
 	// Build out the method's arguments
@@ -18077,7 +18159,7 @@ func (o *Physics2DServer) AreaAttachObjectInstanceId(area *RID, id int64) {
 /*
    Get the instance ID of the object the area is assigned to.
 */
-func (o *Physics2DServer) AreaGetObjectInstanceId(area *RID) int64 {
+func (o *physics2DServer) AreaGetObjectInstanceId(area *RID) int64 {
 	log.Println("Calling Physics2DServer.AreaGetObjectInstanceId()")
 
 	// Build out the method's arguments
@@ -18099,7 +18181,7 @@ func (o *Physics2DServer) AreaGetObjectInstanceId(area *RID) int64 {
 /*
    Set the function to call when any body/area enters or exits the area. This callback will be called for any object interacting with the area, and takes five parameters: 1: AREA_BODY_ADDED or AREA_BODY_REMOVED, depending on whether the object entered or exited the area. 2: [RID] of the object that entered/exited the area. 3: Instance ID of the object that entered/exited the area. 4: The shape index of the object that entered/exited the area. 5: The shape index of the area where the object entered/exited.
 */
-func (o *Physics2DServer) AreaSetMonitorCallback(area *RID, receiver *Object, method string) {
+func (o *physics2DServer) AreaSetMonitorCallback(area *RID, receiver *Object, method string) {
 	log.Println("Calling Physics2DServer.AreaSetMonitorCallback()")
 
 	// Build out the method's arguments
@@ -18119,7 +18201,7 @@ func (o *Physics2DServer) AreaSetMonitorCallback(area *RID, receiver *Object, me
 /*
    Create a physics body. The first parameter can be any value from constants BODY_MODE*, for the type of body created. Additionally, the body can be created in sleeping state to save processing time.
 */
-func (o *Physics2DServer) BodyCreate(mode int64, initSleeping bool) *RID {
+func (o *physics2DServer) BodyCreate(mode int64, initSleeping bool) *RID {
 	log.Println("Calling Physics2DServer.BodyCreate()")
 
 	// Build out the method's arguments
@@ -18142,7 +18224,7 @@ func (o *Physics2DServer) BodyCreate(mode int64, initSleeping bool) *RID {
 /*
    Assign a space to the body (see [method create_space]).
 */
-func (o *Physics2DServer) BodySetSpace(body *RID, space *RID) {
+func (o *physics2DServer) BodySetSpace(body *RID, space *RID) {
 	log.Println("Calling Physics2DServer.BodySetSpace()")
 
 	// Build out the method's arguments
@@ -18161,7 +18243,7 @@ func (o *Physics2DServer) BodySetSpace(body *RID, space *RID) {
 /*
    Return the [RID] of the space assigned to a body.
 */
-func (o *Physics2DServer) BodyGetSpace(body *RID) *RID {
+func (o *physics2DServer) BodyGetSpace(body *RID) *RID {
 	log.Println("Calling Physics2DServer.BodyGetSpace()")
 
 	// Build out the method's arguments
@@ -18183,7 +18265,7 @@ func (o *Physics2DServer) BodyGetSpace(body *RID) *RID {
 /*
    Set the body mode, from one of the constants BODY_MODE*.
 */
-func (o *Physics2DServer) BodySetMode(body *RID, mode int64) {
+func (o *physics2DServer) BodySetMode(body *RID, mode int64) {
 	log.Println("Calling Physics2DServer.BodySetMode()")
 
 	// Build out the method's arguments
@@ -18202,7 +18284,7 @@ func (o *Physics2DServer) BodySetMode(body *RID, mode int64) {
 /*
    Return the body mode.
 */
-func (o *Physics2DServer) BodyGetMode(body *RID) int64 {
+func (o *physics2DServer) BodyGetMode(body *RID) int64 {
 	log.Println("Calling Physics2DServer.BodyGetMode()")
 
 	// Build out the method's arguments
@@ -18224,7 +18306,7 @@ func (o *Physics2DServer) BodyGetMode(body *RID) int64 {
 /*
    Add a shape to the body, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
 */
-func (o *Physics2DServer) BodyAddShape(body *RID, shape *RID, transform *Transform2D) {
+func (o *physics2DServer) BodyAddShape(body *RID, shape *RID, transform *Transform2D) {
 	log.Println("Calling Physics2DServer.BodyAddShape()")
 
 	// Build out the method's arguments
@@ -18244,7 +18326,7 @@ func (o *Physics2DServer) BodyAddShape(body *RID, shape *RID, transform *Transfo
 /*
    Substitute a given body shape by another. The old shape is selected by its index, the new one by its [RID].
 */
-func (o *Physics2DServer) BodySetShape(body *RID, shapeIdx int64, shape *RID) {
+func (o *physics2DServer) BodySetShape(body *RID, shapeIdx int64, shape *RID) {
 	log.Println("Calling Physics2DServer.BodySetShape()")
 
 	// Build out the method's arguments
@@ -18264,7 +18346,7 @@ func (o *Physics2DServer) BodySetShape(body *RID, shapeIdx int64, shape *RID) {
 /*
    Set the transform matrix for a body shape.
 */
-func (o *Physics2DServer) BodySetShapeTransform(body *RID, shapeIdx int64, transform *Transform2D) {
+func (o *physics2DServer) BodySetShapeTransform(body *RID, shapeIdx int64, transform *Transform2D) {
 	log.Println("Calling Physics2DServer.BodySetShapeTransform()")
 
 	// Build out the method's arguments
@@ -18284,7 +18366,7 @@ func (o *Physics2DServer) BodySetShapeTransform(body *RID, shapeIdx int64, trans
 /*
    Set metadata of a shape within a body. This metadata is different from [method Object.set_meta], and can be retrieved on shape queries.
 */
-func (o *Physics2DServer) BodySetShapeMetadata(body *RID, shapeIdx int64, metadata *Variant) {
+func (o *physics2DServer) BodySetShapeMetadata(body *RID, shapeIdx int64, metadata *Variant) {
 	log.Println("Calling Physics2DServer.BodySetShapeMetadata()")
 
 	// Build out the method's arguments
@@ -18304,7 +18386,7 @@ func (o *Physics2DServer) BodySetShapeMetadata(body *RID, shapeIdx int64, metada
 /*
    Return the number of shapes assigned to a body.
 */
-func (o *Physics2DServer) BodyGetShapeCount(body *RID) int64 {
+func (o *physics2DServer) BodyGetShapeCount(body *RID) int64 {
 	log.Println("Calling Physics2DServer.BodyGetShapeCount()")
 
 	// Build out the method's arguments
@@ -18326,7 +18408,7 @@ func (o *Physics2DServer) BodyGetShapeCount(body *RID) int64 {
 /*
    Return the [RID] of the nth shape of a body.
 */
-func (o *Physics2DServer) BodyGetShape(body *RID, shapeIdx int64) *RID {
+func (o *physics2DServer) BodyGetShape(body *RID, shapeIdx int64) *RID {
 	log.Println("Calling Physics2DServer.BodyGetShape()")
 
 	// Build out the method's arguments
@@ -18349,7 +18431,7 @@ func (o *Physics2DServer) BodyGetShape(body *RID, shapeIdx int64) *RID {
 /*
    Return the transform matrix of a body shape.
 */
-func (o *Physics2DServer) BodyGetShapeTransform(body *RID, shapeIdx int64) *Transform2D {
+func (o *physics2DServer) BodyGetShapeTransform(body *RID, shapeIdx int64) *Transform2D {
 	log.Println("Calling Physics2DServer.BodyGetShapeTransform()")
 
 	// Build out the method's arguments
@@ -18372,7 +18454,7 @@ func (o *Physics2DServer) BodyGetShapeTransform(body *RID, shapeIdx int64) *Tran
 /*
    Return the metadata of a shape of a body.
 */
-func (o *Physics2DServer) BodyGetShapeMetadata(body *RID, shapeIdx int64) *Variant {
+func (o *physics2DServer) BodyGetShapeMetadata(body *RID, shapeIdx int64) *Variant {
 	log.Println("Calling Physics2DServer.BodyGetShapeMetadata()")
 
 	// Build out the method's arguments
@@ -18395,7 +18477,7 @@ func (o *Physics2DServer) BodyGetShapeMetadata(body *RID, shapeIdx int64) *Varia
 /*
    Remove a shape from a body. The shape is not deleted, so it can be reused afterwards.
 */
-func (o *Physics2DServer) BodyRemoveShape(body *RID, shapeIdx int64) {
+func (o *physics2DServer) BodyRemoveShape(body *RID, shapeIdx int64) {
 	log.Println("Calling Physics2DServer.BodyRemoveShape()")
 
 	// Build out the method's arguments
@@ -18414,7 +18496,7 @@ func (o *Physics2DServer) BodyRemoveShape(body *RID, shapeIdx int64) {
 /*
    Remove all shapes from a body.
 */
-func (o *Physics2DServer) BodyClearShapes(body *RID) {
+func (o *physics2DServer) BodyClearShapes(body *RID) {
 	log.Println("Calling Physics2DServer.BodyClearShapes()")
 
 	// Build out the method's arguments
@@ -18432,7 +18514,7 @@ func (o *Physics2DServer) BodyClearShapes(body *RID) {
 /*
 
  */
-func (o *Physics2DServer) BodySetShapeDisabled(body *RID, shapeIdx int64, disable bool) {
+func (o *physics2DServer) BodySetShapeDisabled(body *RID, shapeIdx int64, disable bool) {
 	log.Println("Calling Physics2DServer.BodySetShapeDisabled()")
 
 	// Build out the method's arguments
@@ -18452,7 +18534,7 @@ func (o *Physics2DServer) BodySetShapeDisabled(body *RID, shapeIdx int64, disabl
 /*
 
  */
-func (o *Physics2DServer) BodySetShapeAsOneWayCollision(body *RID, shapeIdx int64, enable bool) {
+func (o *physics2DServer) BodySetShapeAsOneWayCollision(body *RID, shapeIdx int64, enable bool) {
 	log.Println("Calling Physics2DServer.BodySetShapeAsOneWayCollision()")
 
 	// Build out the method's arguments
@@ -18472,7 +18554,7 @@ func (o *Physics2DServer) BodySetShapeAsOneWayCollision(body *RID, shapeIdx int6
 /*
    Assign the area to a descendant of [Object], so it can exist in the node tree.
 */
-func (o *Physics2DServer) BodyAttachObjectInstanceId(body *RID, id int64) {
+func (o *physics2DServer) BodyAttachObjectInstanceId(body *RID, id int64) {
 	log.Println("Calling Physics2DServer.BodyAttachObjectInstanceId()")
 
 	// Build out the method's arguments
@@ -18491,7 +18573,7 @@ func (o *Physics2DServer) BodyAttachObjectInstanceId(body *RID, id int64) {
 /*
    Get the instance ID of the object the area is assigned to.
 */
-func (o *Physics2DServer) BodyGetObjectInstanceId(body *RID) int64 {
+func (o *physics2DServer) BodyGetObjectInstanceId(body *RID) int64 {
 	log.Println("Calling Physics2DServer.BodyGetObjectInstanceId()")
 
 	// Build out the method's arguments
@@ -18513,7 +18595,7 @@ func (o *Physics2DServer) BodyGetObjectInstanceId(body *RID) int64 {
 /*
    Set the continuous collision detection mode from any of the CCD_MODE_* constants. Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided.
 */
-func (o *Physics2DServer) BodySetContinuousCollisionDetectionMode(body *RID, mode int64) {
+func (o *physics2DServer) BodySetContinuousCollisionDetectionMode(body *RID, mode int64) {
 	log.Println("Calling Physics2DServer.BodySetContinuousCollisionDetectionMode()")
 
 	// Build out the method's arguments
@@ -18532,7 +18614,7 @@ func (o *Physics2DServer) BodySetContinuousCollisionDetectionMode(body *RID, mod
 /*
    Return the continuous collision detection mode.
 */
-func (o *Physics2DServer) BodyGetContinuousCollisionDetectionMode(body *RID) int64 {
+func (o *physics2DServer) BodyGetContinuousCollisionDetectionMode(body *RID) int64 {
 	log.Println("Calling Physics2DServer.BodyGetContinuousCollisionDetectionMode()")
 
 	// Build out the method's arguments
@@ -18554,7 +18636,7 @@ func (o *Physics2DServer) BodyGetContinuousCollisionDetectionMode(body *RID) int
 /*
    Set the physics layer or layers a body belongs to.
 */
-func (o *Physics2DServer) BodySetCollisionLayer(body *RID, layer int64) {
+func (o *physics2DServer) BodySetCollisionLayer(body *RID, layer int64) {
 	log.Println("Calling Physics2DServer.BodySetCollisionLayer()")
 
 	// Build out the method's arguments
@@ -18573,7 +18655,7 @@ func (o *Physics2DServer) BodySetCollisionLayer(body *RID, layer int64) {
 /*
    Return the physics layer or layers a body belongs to.
 */
-func (o *Physics2DServer) BodyGetCollisionLayer(body *RID) int64 {
+func (o *physics2DServer) BodyGetCollisionLayer(body *RID) int64 {
 	log.Println("Calling Physics2DServer.BodyGetCollisionLayer()")
 
 	// Build out the method's arguments
@@ -18595,7 +18677,7 @@ func (o *Physics2DServer) BodyGetCollisionLayer(body *RID) int64 {
 /*
    Set the physics layer or layers a body can collide with.
 */
-func (o *Physics2DServer) BodySetCollisionMask(body *RID, mask int64) {
+func (o *physics2DServer) BodySetCollisionMask(body *RID, mask int64) {
 	log.Println("Calling Physics2DServer.BodySetCollisionMask()")
 
 	// Build out the method's arguments
@@ -18614,7 +18696,7 @@ func (o *Physics2DServer) BodySetCollisionMask(body *RID, mask int64) {
 /*
    Return the physics layer or layers a body can collide with.
 */
-func (o *Physics2DServer) BodyGetCollisionMask(body *RID) int64 {
+func (o *physics2DServer) BodyGetCollisionMask(body *RID) int64 {
 	log.Println("Calling Physics2DServer.BodyGetCollisionMask()")
 
 	// Build out the method's arguments
@@ -18636,7 +18718,7 @@ func (o *Physics2DServer) BodyGetCollisionMask(body *RID) int64 {
 /*
    Set a body parameter (see BODY_PARAM* constants).
 */
-func (o *Physics2DServer) BodySetParam(body *RID, param int64, value float64) {
+func (o *physics2DServer) BodySetParam(body *RID, param int64, value float64) {
 	log.Println("Calling Physics2DServer.BodySetParam()")
 
 	// Build out the method's arguments
@@ -18656,7 +18738,7 @@ func (o *Physics2DServer) BodySetParam(body *RID, param int64, value float64) {
 /*
    Return the value of a body parameter.
 */
-func (o *Physics2DServer) BodyGetParam(body *RID, param int64) float64 {
+func (o *physics2DServer) BodyGetParam(body *RID, param int64) float64 {
 	log.Println("Calling Physics2DServer.BodyGetParam()")
 
 	// Build out the method's arguments
@@ -18679,7 +18761,7 @@ func (o *Physics2DServer) BodyGetParam(body *RID, param int64) float64 {
 /*
    Set a body state (see BODY_STATE* constants).
 */
-func (o *Physics2DServer) BodySetState(body *RID, state int64, value *Variant) {
+func (o *physics2DServer) BodySetState(body *RID, state int64, value *Variant) {
 	log.Println("Calling Physics2DServer.BodySetState()")
 
 	// Build out the method's arguments
@@ -18699,7 +18781,7 @@ func (o *Physics2DServer) BodySetState(body *RID, state int64, value *Variant) {
 /*
    Return a body state.
 */
-func (o *Physics2DServer) BodyGetState(body *RID, state int64) *Variant {
+func (o *physics2DServer) BodyGetState(body *RID, state int64) *Variant {
 	log.Println("Calling Physics2DServer.BodyGetState()")
 
 	// Build out the method's arguments
@@ -18722,7 +18804,7 @@ func (o *Physics2DServer) BodyGetState(body *RID, state int64) *Variant {
 /*
    Add a positioned impulse to the applied force and torque. Both the force and the offset from the body origin are in global coordinates.
 */
-func (o *Physics2DServer) BodyApplyImpulse(body *RID, pos *Vector2, impulse *Vector2) {
+func (o *physics2DServer) BodyApplyImpulse(body *RID, pos *Vector2, impulse *Vector2) {
 	log.Println("Calling Physics2DServer.BodyApplyImpulse()")
 
 	// Build out the method's arguments
@@ -18742,7 +18824,7 @@ func (o *Physics2DServer) BodyApplyImpulse(body *RID, pos *Vector2, impulse *Vec
 /*
    Add a positioned force to the applied force and torque. As with [method body_apply_impulse], both the force and the offset from the body origin are in global coordinates. A force differs from an impulse in that, while the two are forces, the impulse clears itself after being applied.
 */
-func (o *Physics2DServer) BodyAddForce(body *RID, offset *Vector2, force *Vector2) {
+func (o *physics2DServer) BodyAddForce(body *RID, offset *Vector2, force *Vector2) {
 	log.Println("Calling Physics2DServer.BodyAddForce()")
 
 	// Build out the method's arguments
@@ -18762,7 +18844,7 @@ func (o *Physics2DServer) BodyAddForce(body *RID, offset *Vector2, force *Vector
 /*
    Set an axis velocity. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior.
 */
-func (o *Physics2DServer) BodySetAxisVelocity(body *RID, axisVelocity *Vector2) {
+func (o *physics2DServer) BodySetAxisVelocity(body *RID, axisVelocity *Vector2) {
 	log.Println("Calling Physics2DServer.BodySetAxisVelocity()")
 
 	// Build out the method's arguments
@@ -18781,7 +18863,7 @@ func (o *Physics2DServer) BodySetAxisVelocity(body *RID, axisVelocity *Vector2) 
 /*
    Add a body to the list of bodies exempt from collisions.
 */
-func (o *Physics2DServer) BodyAddCollisionException(body *RID, exceptedBody *RID) {
+func (o *physics2DServer) BodyAddCollisionException(body *RID, exceptedBody *RID) {
 	log.Println("Calling Physics2DServer.BodyAddCollisionException()")
 
 	// Build out the method's arguments
@@ -18800,7 +18882,7 @@ func (o *Physics2DServer) BodyAddCollisionException(body *RID, exceptedBody *RID
 /*
    Remove a body from the list of bodies exempt from collisions.
 */
-func (o *Physics2DServer) BodyRemoveCollisionException(body *RID, exceptedBody *RID) {
+func (o *physics2DServer) BodyRemoveCollisionException(body *RID, exceptedBody *RID) {
 	log.Println("Calling Physics2DServer.BodyRemoveCollisionException()")
 
 	// Build out the method's arguments
@@ -18819,7 +18901,7 @@ func (o *Physics2DServer) BodyRemoveCollisionException(body *RID, exceptedBody *
 /*
    Set the maximum contacts to report. Bodies can keep a log of the contacts with other bodies, this is enabled by setting the maximum amount of contacts reported to a number greater than 0.
 */
-func (o *Physics2DServer) BodySetMaxContactsReported(body *RID, amount int64) {
+func (o *physics2DServer) BodySetMaxContactsReported(body *RID, amount int64) {
 	log.Println("Calling Physics2DServer.BodySetMaxContactsReported()")
 
 	// Build out the method's arguments
@@ -18838,7 +18920,7 @@ func (o *Physics2DServer) BodySetMaxContactsReported(body *RID, amount int64) {
 /*
    Return the maximum contacts that can be reported. See [method body_set_max_contacts_reported].
 */
-func (o *Physics2DServer) BodyGetMaxContactsReported(body *RID) int64 {
+func (o *physics2DServer) BodyGetMaxContactsReported(body *RID) int64 {
 	log.Println("Calling Physics2DServer.BodyGetMaxContactsReported()")
 
 	// Build out the method's arguments
@@ -18860,7 +18942,7 @@ func (o *Physics2DServer) BodyGetMaxContactsReported(body *RID) int64 {
 /*
    Set whether a body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]).
 */
-func (o *Physics2DServer) BodySetOmitForceIntegration(body *RID, enable bool) {
+func (o *physics2DServer) BodySetOmitForceIntegration(body *RID, enable bool) {
 	log.Println("Calling Physics2DServer.BodySetOmitForceIntegration()")
 
 	// Build out the method's arguments
@@ -18879,7 +18961,7 @@ func (o *Physics2DServer) BodySetOmitForceIntegration(body *RID, enable bool) {
 /*
    Return whether a body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]).
 */
-func (o *Physics2DServer) BodyIsOmittingForceIntegration(body *RID) bool {
+func (o *physics2DServer) BodyIsOmittingForceIntegration(body *RID) bool {
 	log.Println("Calling Physics2DServer.BodyIsOmittingForceIntegration()")
 
 	// Build out the method's arguments
@@ -18901,7 +18983,7 @@ func (o *Physics2DServer) BodyIsOmittingForceIntegration(body *RID) bool {
 /*
    Set the function used to calculate physics for an object, if that object allows it (see [method body_set_omit_force integration]).
 */
-func (o *Physics2DServer) BodySetForceIntegrationCallback(body *RID, receiver *Object, method string, userdata *Variant) {
+func (o *physics2DServer) BodySetForceIntegrationCallback(body *RID, receiver *Object, method string, userdata *Variant) {
 	log.Println("Calling Physics2DServer.BodySetForceIntegrationCallback()")
 
 	// Build out the method's arguments
@@ -18922,7 +19004,7 @@ func (o *Physics2DServer) BodySetForceIntegrationCallback(body *RID, receiver *O
 /*
    Return whether a body can move from a given point in a given direction. Apart from the boolean return value, a [Physics2DTestMotionResult] can be passed to return additional information in.
 */
-func (o *Physics2DServer) BodyTestMotion(body *RID, from *Transform2D, motion *Vector2, margin float64, result *Physics2DTestMotionResult) bool {
+func (o *physics2DServer) BodyTestMotion(body *RID, from *Transform2D, motion *Vector2, margin float64, result *Physics2DTestMotionResult) bool {
 	log.Println("Calling Physics2DServer.BodyTestMotion()")
 
 	// Build out the method's arguments
@@ -18948,7 +19030,7 @@ func (o *Physics2DServer) BodyTestMotion(body *RID, from *Transform2D, motion *V
 /*
    Set a joint parameter. Parameters are explained in the JOINT_PARAM* constants.
 */
-func (o *Physics2DServer) JointSetParam(joint *RID, param int64, value float64) {
+func (o *physics2DServer) JointSetParam(joint *RID, param int64, value float64) {
 	log.Println("Calling Physics2DServer.JointSetParam()")
 
 	// Build out the method's arguments
@@ -18968,7 +19050,7 @@ func (o *Physics2DServer) JointSetParam(joint *RID, param int64, value float64) 
 /*
    Return the value of a joint parameter.
 */
-func (o *Physics2DServer) JointGetParam(joint *RID, param int64) float64 {
+func (o *physics2DServer) JointGetParam(joint *RID, param int64) float64 {
 	log.Println("Calling Physics2DServer.JointGetParam()")
 
 	// Build out the method's arguments
@@ -18991,7 +19073,7 @@ func (o *Physics2DServer) JointGetParam(joint *RID, param int64) float64 {
 /*
    Create a pin joint between two bodies. If not specified, the second body is assumed to be the joint itself.
 */
-func (o *Physics2DServer) PinJointCreate(anchor *Vector2, bodyA *RID, bodyB *RID) *RID {
+func (o *physics2DServer) PinJointCreate(anchor *Vector2, bodyA *RID, bodyB *RID) *RID {
 	log.Println("Calling Physics2DServer.PinJointCreate()")
 
 	// Build out the method's arguments
@@ -19015,7 +19097,7 @@ func (o *Physics2DServer) PinJointCreate(anchor *Vector2, bodyA *RID, bodyB *RID
 /*
    Create a groove joint between two bodies. If not specified, the bodyies are assumed to be the joint itself.
 */
-func (o *Physics2DServer) GrooveJointCreate(groove1A *Vector2, groove2A *Vector2, anchorB *Vector2, bodyA *RID, bodyB *RID) *RID {
+func (o *physics2DServer) GrooveJointCreate(groove1A *Vector2, groove2A *Vector2, anchorB *Vector2, bodyA *RID, bodyB *RID) *RID {
 	log.Println("Calling Physics2DServer.GrooveJointCreate()")
 
 	// Build out the method's arguments
@@ -19041,7 +19123,7 @@ func (o *Physics2DServer) GrooveJointCreate(groove1A *Vector2, groove2A *Vector2
 /*
    Create a damped spring joint between two bodies. If not specified, the second body is assumed to be the joint itself.
 */
-func (o *Physics2DServer) DampedSpringJointCreate(anchorA *Vector2, anchorB *Vector2, bodyA *RID, bodyB *RID) *RID {
+func (o *physics2DServer) DampedSpringJointCreate(anchorA *Vector2, anchorB *Vector2, bodyA *RID, bodyB *RID) *RID {
 	log.Println("Calling Physics2DServer.DampedSpringJointCreate()")
 
 	// Build out the method's arguments
@@ -19066,7 +19148,7 @@ func (o *Physics2DServer) DampedSpringJointCreate(anchorA *Vector2, anchorB *Vec
 /*
    Set a damped spring joint parameter. Parameters are explained in the DAMPED_STRING* constants.
 */
-func (o *Physics2DServer) DampedStringJointSetParam(joint *RID, param int64, value float64) {
+func (o *physics2DServer) DampedStringJointSetParam(joint *RID, param int64, value float64) {
 	log.Println("Calling Physics2DServer.DampedStringJointSetParam()")
 
 	// Build out the method's arguments
@@ -19086,7 +19168,7 @@ func (o *Physics2DServer) DampedStringJointSetParam(joint *RID, param int64, val
 /*
    Return the value of a damped spring joint parameter.
 */
-func (o *Physics2DServer) DampedStringJointGetParam(joint *RID, param int64) float64 {
+func (o *physics2DServer) DampedStringJointGetParam(joint *RID, param int64) float64 {
 	log.Println("Calling Physics2DServer.DampedStringJointGetParam()")
 
 	// Build out the method's arguments
@@ -19109,7 +19191,7 @@ func (o *Physics2DServer) DampedStringJointGetParam(joint *RID, param int64) flo
 /*
    Return the type of a joint (see JOINT_* constants).
 */
-func (o *Physics2DServer) JointGetType(joint *RID) int64 {
+func (o *physics2DServer) JointGetType(joint *RID) int64 {
 	log.Println("Calling Physics2DServer.JointGetType()")
 
 	// Build out the method's arguments
@@ -19131,7 +19213,7 @@ func (o *Physics2DServer) JointGetType(joint *RID) int64 {
 /*
    Destroy any of the objects created by Physics2DServer. If the [RID] passed is not one of the objects that can be created by Physics2DServer, an error will be sent to the console.
 */
-func (o *Physics2DServer) FreeRid(rid *RID) {
+func (o *physics2DServer) FreeRid(rid *RID) {
 	log.Println("Calling Physics2DServer.FreeRid()")
 
 	// Build out the method's arguments
@@ -19149,7 +19231,7 @@ func (o *Physics2DServer) FreeRid(rid *RID) {
 /*
    Activate or deactivate the 2D physics engine.
 */
-func (o *Physics2DServer) SetActive(active bool) {
+func (o *physics2DServer) SetActive(active bool) {
 	log.Println("Calling Physics2DServer.SetActive()")
 
 	// Build out the method's arguments
@@ -19167,7 +19249,7 @@ func (o *Physics2DServer) SetActive(active bool) {
 /*
    Return information about the current state of the 2D physics engine. The states are listed under the INFO_* constants.
 */
-func (o *Physics2DServer) GetProcessInfo(processInfo int64) int64 {
+func (o *physics2DServer) GetProcessInfo(processInfo int64) int64 {
 	log.Println("Calling Physics2DServer.GetProcessInfo()")
 
 	// Build out the method's arguments
@@ -19184,13 +19266,6 @@ func (o *Physics2DServer) GetProcessInfo(processInfo int64) int64 {
 
 	return returnValue
 
-}
-
-/*
-   Physics2DServerImplementer is an interface for Physics2DServer objects.
-*/
-type Physics2DServerImplementer interface {
-	Class
 }
 
 /*
@@ -19790,21 +19865,33 @@ type Physics2DDirectBodyStateImplementer interface {
 	Class
 }
 
+func newSingletonAudioServer() *audioServer {
+	obj := &audioServer{}
+	ptr := C.godot_global_get_singleton(C.CString("AudioServer"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
+}
+
 /*
    AudioServer is a low level server interface for audio access. It is in charge of creating sample data (playable audio) as well as its playback via a voice interface.
 */
-type AudioServer struct {
+var AudioServer = newSingletonAudioServer()
+
+/*
+   AudioServer is a low level server interface for audio access. It is in charge of creating sample data (playable audio) as well as its playback via a voice interface.
+*/
+type audioServer struct {
 	Object
 }
 
-func (o *AudioServer) baseClass() string {
+func (o *audioServer) baseClass() string {
 	return "AudioServer"
 }
 
 /*
 
  */
-func (o *AudioServer) SetBusCount(amount int64) {
+func (o *audioServer) SetBusCount(amount int64) {
 	log.Println("Calling AudioServer.SetBusCount()")
 
 	// Build out the method's arguments
@@ -19822,7 +19909,7 @@ func (o *AudioServer) SetBusCount(amount int64) {
 /*
 
  */
-func (o *AudioServer) GetBusCount() int64 {
+func (o *audioServer) GetBusCount() int64 {
 	log.Println("Calling AudioServer.GetBusCount()")
 
 	// Build out the method's arguments
@@ -19843,7 +19930,7 @@ func (o *AudioServer) GetBusCount() int64 {
 /*
 
  */
-func (o *AudioServer) RemoveBus(index int64) {
+func (o *audioServer) RemoveBus(index int64) {
 	log.Println("Calling AudioServer.RemoveBus()")
 
 	// Build out the method's arguments
@@ -19861,7 +19948,7 @@ func (o *AudioServer) RemoveBus(index int64) {
 /*
 
  */
-func (o *AudioServer) AddBus(atPos int64) {
+func (o *audioServer) AddBus(atPos int64) {
 	log.Println("Calling AudioServer.AddBus()")
 
 	// Build out the method's arguments
@@ -19879,7 +19966,7 @@ func (o *AudioServer) AddBus(atPos int64) {
 /*
 
  */
-func (o *AudioServer) MoveBus(index int64, toIndex int64) {
+func (o *audioServer) MoveBus(index int64, toIndex int64) {
 	log.Println("Calling AudioServer.MoveBus()")
 
 	// Build out the method's arguments
@@ -19898,7 +19985,7 @@ func (o *AudioServer) MoveBus(index int64, toIndex int64) {
 /*
 
  */
-func (o *AudioServer) SetBusName(busIdx int64, name string) {
+func (o *audioServer) SetBusName(busIdx int64, name string) {
 	log.Println("Calling AudioServer.SetBusName()")
 
 	// Build out the method's arguments
@@ -19917,7 +20004,7 @@ func (o *AudioServer) SetBusName(busIdx int64, name string) {
 /*
 
  */
-func (o *AudioServer) GetBusName(busIdx int64) string {
+func (o *audioServer) GetBusName(busIdx int64) string {
 	log.Println("Calling AudioServer.GetBusName()")
 
 	// Build out the method's arguments
@@ -19939,7 +20026,7 @@ func (o *AudioServer) GetBusName(busIdx int64) string {
 /*
 
  */
-func (o *AudioServer) GetBusIndex(busName string) int64 {
+func (o *audioServer) GetBusIndex(busName string) int64 {
 	log.Println("Calling AudioServer.GetBusIndex()")
 
 	// Build out the method's arguments
@@ -19961,7 +20048,7 @@ func (o *AudioServer) GetBusIndex(busName string) int64 {
 /*
 
  */
-func (o *AudioServer) SetBusVolumeDb(busIdx int64, volumeDb float64) {
+func (o *audioServer) SetBusVolumeDb(busIdx int64, volumeDb float64) {
 	log.Println("Calling AudioServer.SetBusVolumeDb()")
 
 	// Build out the method's arguments
@@ -19980,7 +20067,7 @@ func (o *AudioServer) SetBusVolumeDb(busIdx int64, volumeDb float64) {
 /*
 
  */
-func (o *AudioServer) GetBusVolumeDb(busIdx int64) float64 {
+func (o *audioServer) GetBusVolumeDb(busIdx int64) float64 {
 	log.Println("Calling AudioServer.GetBusVolumeDb()")
 
 	// Build out the method's arguments
@@ -20002,7 +20089,7 @@ func (o *AudioServer) GetBusVolumeDb(busIdx int64) float64 {
 /*
 
  */
-func (o *AudioServer) SetBusSend(busIdx int64, send string) {
+func (o *audioServer) SetBusSend(busIdx int64, send string) {
 	log.Println("Calling AudioServer.SetBusSend()")
 
 	// Build out the method's arguments
@@ -20021,7 +20108,7 @@ func (o *AudioServer) SetBusSend(busIdx int64, send string) {
 /*
 
  */
-func (o *AudioServer) GetBusSend(busIdx int64) string {
+func (o *audioServer) GetBusSend(busIdx int64) string {
 	log.Println("Calling AudioServer.GetBusSend()")
 
 	// Build out the method's arguments
@@ -20043,7 +20130,7 @@ func (o *AudioServer) GetBusSend(busIdx int64) string {
 /*
 
  */
-func (o *AudioServer) SetBusSolo(busIdx int64, enable bool) {
+func (o *audioServer) SetBusSolo(busIdx int64, enable bool) {
 	log.Println("Calling AudioServer.SetBusSolo()")
 
 	// Build out the method's arguments
@@ -20062,7 +20149,7 @@ func (o *AudioServer) SetBusSolo(busIdx int64, enable bool) {
 /*
 
  */
-func (o *AudioServer) IsBusSolo(busIdx int64) bool {
+func (o *audioServer) IsBusSolo(busIdx int64) bool {
 	log.Println("Calling AudioServer.IsBusSolo()")
 
 	// Build out the method's arguments
@@ -20084,7 +20171,7 @@ func (o *AudioServer) IsBusSolo(busIdx int64) bool {
 /*
 
  */
-func (o *AudioServer) SetBusMute(busIdx int64, enable bool) {
+func (o *audioServer) SetBusMute(busIdx int64, enable bool) {
 	log.Println("Calling AudioServer.SetBusMute()")
 
 	// Build out the method's arguments
@@ -20103,7 +20190,7 @@ func (o *AudioServer) SetBusMute(busIdx int64, enable bool) {
 /*
 
  */
-func (o *AudioServer) IsBusMute(busIdx int64) bool {
+func (o *audioServer) IsBusMute(busIdx int64) bool {
 	log.Println("Calling AudioServer.IsBusMute()")
 
 	// Build out the method's arguments
@@ -20125,7 +20212,7 @@ func (o *AudioServer) IsBusMute(busIdx int64) bool {
 /*
 
  */
-func (o *AudioServer) SetBusBypassEffects(busIdx int64, enable bool) {
+func (o *audioServer) SetBusBypassEffects(busIdx int64, enable bool) {
 	log.Println("Calling AudioServer.SetBusBypassEffects()")
 
 	// Build out the method's arguments
@@ -20144,7 +20231,7 @@ func (o *AudioServer) SetBusBypassEffects(busIdx int64, enable bool) {
 /*
 
  */
-func (o *AudioServer) IsBusBypassingEffects(busIdx int64) bool {
+func (o *audioServer) IsBusBypassingEffects(busIdx int64) bool {
 	log.Println("Calling AudioServer.IsBusBypassingEffects()")
 
 	// Build out the method's arguments
@@ -20166,7 +20253,7 @@ func (o *AudioServer) IsBusBypassingEffects(busIdx int64) bool {
 /*
 
  */
-func (o *AudioServer) AddBusEffect(busIdx int64, effect *AudioEffect, atPos int64) {
+func (o *audioServer) AddBusEffect(busIdx int64, effect *AudioEffect, atPos int64) {
 	log.Println("Calling AudioServer.AddBusEffect()")
 
 	// Build out the method's arguments
@@ -20186,7 +20273,7 @@ func (o *AudioServer) AddBusEffect(busIdx int64, effect *AudioEffect, atPos int6
 /*
 
  */
-func (o *AudioServer) RemoveBusEffect(busIdx int64, effectIdx int64) {
+func (o *audioServer) RemoveBusEffect(busIdx int64, effectIdx int64) {
 	log.Println("Calling AudioServer.RemoveBusEffect()")
 
 	// Build out the method's arguments
@@ -20205,7 +20292,7 @@ func (o *AudioServer) RemoveBusEffect(busIdx int64, effectIdx int64) {
 /*
 
  */
-func (o *AudioServer) GetBusEffectCount(busIdx int64) int64 {
+func (o *audioServer) GetBusEffectCount(busIdx int64) int64 {
 	log.Println("Calling AudioServer.GetBusEffectCount()")
 
 	// Build out the method's arguments
@@ -20227,7 +20314,7 @@ func (o *AudioServer) GetBusEffectCount(busIdx int64) int64 {
 /*
 
  */
-func (o *AudioServer) GetBusEffect(busIdx int64, effectIdx int64) *AudioEffect {
+func (o *audioServer) GetBusEffect(busIdx int64, effectIdx int64) *AudioEffect {
 	log.Println("Calling AudioServer.GetBusEffect()")
 
 	// Build out the method's arguments
@@ -20250,7 +20337,7 @@ func (o *AudioServer) GetBusEffect(busIdx int64, effectIdx int64) *AudioEffect {
 /*
 
  */
-func (o *AudioServer) SwapBusEffects(busIdx int64, effectIdx int64, byEffectIdx int64) {
+func (o *audioServer) SwapBusEffects(busIdx int64, effectIdx int64, byEffectIdx int64) {
 	log.Println("Calling AudioServer.SwapBusEffects()")
 
 	// Build out the method's arguments
@@ -20270,7 +20357,7 @@ func (o *AudioServer) SwapBusEffects(busIdx int64, effectIdx int64, byEffectIdx 
 /*
 
  */
-func (o *AudioServer) SetBusEffectEnabled(busIdx int64, effectIdx int64, enabled bool) {
+func (o *audioServer) SetBusEffectEnabled(busIdx int64, effectIdx int64, enabled bool) {
 	log.Println("Calling AudioServer.SetBusEffectEnabled()")
 
 	// Build out the method's arguments
@@ -20290,7 +20377,7 @@ func (o *AudioServer) SetBusEffectEnabled(busIdx int64, effectIdx int64, enabled
 /*
 
  */
-func (o *AudioServer) IsBusEffectEnabled(busIdx int64, effectIdx int64) bool {
+func (o *audioServer) IsBusEffectEnabled(busIdx int64, effectIdx int64) bool {
 	log.Println("Calling AudioServer.IsBusEffectEnabled()")
 
 	// Build out the method's arguments
@@ -20313,7 +20400,7 @@ func (o *AudioServer) IsBusEffectEnabled(busIdx int64, effectIdx int64) bool {
 /*
 
  */
-func (o *AudioServer) GetBusPeakVolumeLeftDb(busIdx int64, channel int64) float64 {
+func (o *audioServer) GetBusPeakVolumeLeftDb(busIdx int64, channel int64) float64 {
 	log.Println("Calling AudioServer.GetBusPeakVolumeLeftDb()")
 
 	// Build out the method's arguments
@@ -20336,7 +20423,7 @@ func (o *AudioServer) GetBusPeakVolumeLeftDb(busIdx int64, channel int64) float6
 /*
 
  */
-func (o *AudioServer) GetBusPeakVolumeRightDb(busIdx int64, channel int64) float64 {
+func (o *audioServer) GetBusPeakVolumeRightDb(busIdx int64, channel int64) float64 {
 	log.Println("Calling AudioServer.GetBusPeakVolumeRightDb()")
 
 	// Build out the method's arguments
@@ -20359,7 +20446,7 @@ func (o *AudioServer) GetBusPeakVolumeRightDb(busIdx int64, channel int64) float
 /*
 
  */
-func (o *AudioServer) Lock() {
+func (o *audioServer) Lock() {
 	log.Println("Calling AudioServer.Lock()")
 
 	// Build out the method's arguments
@@ -20376,7 +20463,7 @@ func (o *AudioServer) Lock() {
 /*
 
  */
-func (o *AudioServer) Unlock() {
+func (o *audioServer) Unlock() {
 	log.Println("Calling AudioServer.Unlock()")
 
 	// Build out the method's arguments
@@ -20393,7 +20480,7 @@ func (o *AudioServer) Unlock() {
 /*
 
  */
-func (o *AudioServer) GetSpeakerMode() int64 {
+func (o *audioServer) GetSpeakerMode() int64 {
 	log.Println("Calling AudioServer.GetSpeakerMode()")
 
 	// Build out the method's arguments
@@ -20414,7 +20501,7 @@ func (o *AudioServer) GetSpeakerMode() int64 {
 /*
 
  */
-func (o *AudioServer) GetMixRate() float64 {
+func (o *audioServer) GetMixRate() float64 {
 	log.Println("Calling AudioServer.GetMixRate()")
 
 	// Build out the method's arguments
@@ -20435,7 +20522,7 @@ func (o *AudioServer) GetMixRate() float64 {
 /*
 
  */
-func (o *AudioServer) SetBusLayout(busLayout *AudioBusLayout) {
+func (o *audioServer) SetBusLayout(busLayout *AudioBusLayout) {
 	log.Println("Calling AudioServer.SetBusLayout()")
 
 	// Build out the method's arguments
@@ -20453,7 +20540,7 @@ func (o *AudioServer) SetBusLayout(busLayout *AudioBusLayout) {
 /*
 
  */
-func (o *AudioServer) GenerateBusLayout() *AudioBusLayout {
+func (o *audioServer) GenerateBusLayout() *AudioBusLayout {
 	log.Println("Calling AudioServer.GenerateBusLayout()")
 
 	// Build out the method's arguments
@@ -20472,17 +20559,10 @@ func (o *AudioServer) GenerateBusLayout() *AudioBusLayout {
 }
 
 /*
-   AudioServerImplementer is an interface for AudioServer objects.
-*/
-type AudioServerImplementer interface {
-	Class
-}
-
-/*
    Default implementation of the [Input] class, used internally by the editor and games for default input management.
 */
 type InputDefault struct {
-	Input
+	input
 }
 
 func (o *InputDefault) baseClass() string {
@@ -20496,21 +20576,33 @@ type InputDefaultImplementer interface {
 	Class
 }
 
+func newSingletonInput() *input {
+	obj := &input{}
+	ptr := C.godot_global_get_singleton(C.CString("Input"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
+}
+
 /*
    A Singleton that deals with inputs. This includes key presses, mouse buttons and movement, joypads, and input actions.
 */
-type Input struct {
+var Input = newSingletonInput()
+
+/*
+   A Singleton that deals with inputs. This includes key presses, mouse buttons and movement, joypads, and input actions.
+*/
+type input struct {
 	Object
 }
 
-func (o *Input) baseClass() string {
+func (o *input) baseClass() string {
 	return "Input"
 }
 
 /*
    Returns true or false depending on whether the key is pressed or not. You can pass KEY_*, which are pre-defined constants listed in [@Global Scope].
 */
-func (o *Input) IsKeyPressed(scancode int64) bool {
+func (o *input) IsKeyPressed(scancode int64) bool {
 	log.Println("Calling Input.IsKeyPressed()")
 
 	// Build out the method's arguments
@@ -20532,7 +20624,7 @@ func (o *Input) IsKeyPressed(scancode int64) bool {
 /*
    Returns true or false depending on whether mouse button is pressed or not. You can pass BUTTON_*, which are pre-defined constants listed in [@Global Scope].
 */
-func (o *Input) IsMouseButtonPressed(button int64) bool {
+func (o *input) IsMouseButtonPressed(button int64) bool {
 	log.Println("Calling Input.IsMouseButtonPressed()")
 
 	// Build out the method's arguments
@@ -20554,7 +20646,7 @@ func (o *Input) IsMouseButtonPressed(button int64) bool {
 /*
    Returns if the joypad button at the given index is currently pressed. (see JOY_* constants in [@Global Scope])
 */
-func (o *Input) IsJoyButtonPressed(device int64, button int64) bool {
+func (o *input) IsJoyButtonPressed(device int64, button int64) bool {
 	log.Println("Calling Input.IsJoyButtonPressed()")
 
 	// Build out the method's arguments
@@ -20577,7 +20669,7 @@ func (o *Input) IsJoyButtonPressed(device int64, button int64) bool {
 /*
    Returns true or false depending on whether the action event is pressed. Actions and their events can be set in the Project Settings / Input Map tab. Or be set with [InputMap].
 */
-func (o *Input) IsActionPressed(action string) bool {
+func (o *input) IsActionPressed(action string) bool {
 	log.Println("Calling Input.IsActionPressed()")
 
 	// Build out the method's arguments
@@ -20599,7 +20691,7 @@ func (o *Input) IsActionPressed(action string) bool {
 /*
 
  */
-func (o *Input) IsActionJustPressed(action string) bool {
+func (o *input) IsActionJustPressed(action string) bool {
 	log.Println("Calling Input.IsActionJustPressed()")
 
 	// Build out the method's arguments
@@ -20621,7 +20713,7 @@ func (o *Input) IsActionJustPressed(action string) bool {
 /*
 
  */
-func (o *Input) IsActionJustReleased(action string) bool {
+func (o *input) IsActionJustReleased(action string) bool {
 	log.Println("Calling Input.IsActionJustReleased()")
 
 	// Build out the method's arguments
@@ -20643,7 +20735,7 @@ func (o *Input) IsActionJustReleased(action string) bool {
 /*
    Add a new mapping entry (in SDL2 format) to the mapping database. Optionally update already connected devices.
 */
-func (o *Input) AddJoyMapping(mapping string, updateExisting bool) {
+func (o *input) AddJoyMapping(mapping string, updateExisting bool) {
 	log.Println("Calling Input.AddJoyMapping()")
 
 	// Build out the method's arguments
@@ -20662,7 +20754,7 @@ func (o *Input) AddJoyMapping(mapping string, updateExisting bool) {
 /*
    Removes all mappings from the internal db that match the given uid.
 */
-func (o *Input) RemoveJoyMapping(guid string) {
+func (o *input) RemoveJoyMapping(guid string) {
 	log.Println("Calling Input.RemoveJoyMapping()")
 
 	// Build out the method's arguments
@@ -20680,7 +20772,7 @@ func (o *Input) RemoveJoyMapping(guid string) {
 /*
    Returns if the specified device is known by the system. This means that it sets all button and axis indices exactly as defined in the JOY_* constants (see [@Global Scope]). Unknown joypads are not expected to match these constants, but you can still retrieve events from them.
 */
-func (o *Input) IsJoyKnown(device int64) bool {
+func (o *input) IsJoyKnown(device int64) bool {
 	log.Println("Calling Input.IsJoyKnown()")
 
 	// Build out the method's arguments
@@ -20702,7 +20794,7 @@ func (o *Input) IsJoyKnown(device int64) bool {
 /*
    Returns the current value of the joypad axis at given index (see JOY_* constants in [@Global Scope])
 */
-func (o *Input) GetJoyAxis(device int64, axis int64) float64 {
+func (o *input) GetJoyAxis(device int64, axis int64) float64 {
 	log.Println("Calling Input.GetJoyAxis()")
 
 	// Build out the method's arguments
@@ -20725,7 +20817,7 @@ func (o *Input) GetJoyAxis(device int64, axis int64) float64 {
 /*
    Returns the name of the joypad at the specified device index
 */
-func (o *Input) GetJoyName(device int64) string {
+func (o *input) GetJoyName(device int64) string {
 	log.Println("Calling Input.GetJoyName()")
 
 	// Build out the method's arguments
@@ -20747,7 +20839,7 @@ func (o *Input) GetJoyName(device int64) string {
 /*
    Returns a SDL2 compatible device guid on platforms that use gamepad remapping. Returns "Default Gamepad" otherwise.
 */
-func (o *Input) GetJoyGuid(device int64) string {
+func (o *input) GetJoyGuid(device int64) string {
 	log.Println("Calling Input.GetJoyGuid()")
 
 	// Build out the method's arguments
@@ -20769,7 +20861,7 @@ func (o *Input) GetJoyGuid(device int64) string {
 /*
    Returns an [Array] containing the device IDs of all currently connected joypads.
 */
-func (o *Input) GetConnectedJoypads() *Array {
+func (o *input) GetConnectedJoypads() *Array {
 	log.Println("Calling Input.GetConnectedJoypads()")
 
 	// Build out the method's arguments
@@ -20790,7 +20882,7 @@ func (o *Input) GetConnectedJoypads() *Array {
 /*
    Returns the strength of the joypad vibration: x is the strength of the weak motor, and y is the strength of the strong motor.
 */
-func (o *Input) GetJoyVibrationStrength(device int64) *Vector2 {
+func (o *input) GetJoyVibrationStrength(device int64) *Vector2 {
 	log.Println("Calling Input.GetJoyVibrationStrength()")
 
 	// Build out the method's arguments
@@ -20812,7 +20904,7 @@ func (o *Input) GetJoyVibrationStrength(device int64) *Vector2 {
 /*
    Returns the duration of the current vibration effect in seconds.
 */
-func (o *Input) GetJoyVibrationDuration(device int64) float64 {
+func (o *input) GetJoyVibrationDuration(device int64) float64 {
 	log.Println("Calling Input.GetJoyVibrationDuration()")
 
 	// Build out the method's arguments
@@ -20834,7 +20926,7 @@ func (o *Input) GetJoyVibrationDuration(device int64) float64 {
 /*
 
  */
-func (o *Input) GetJoyButtonString(buttonIndex int64) string {
+func (o *input) GetJoyButtonString(buttonIndex int64) string {
 	log.Println("Calling Input.GetJoyButtonString()")
 
 	// Build out the method's arguments
@@ -20856,7 +20948,7 @@ func (o *Input) GetJoyButtonString(buttonIndex int64) string {
 /*
 
  */
-func (o *Input) GetJoyButtonIndexFromString(button string) int64 {
+func (o *input) GetJoyButtonIndexFromString(button string) int64 {
 	log.Println("Calling Input.GetJoyButtonIndexFromString()")
 
 	// Build out the method's arguments
@@ -20878,7 +20970,7 @@ func (o *Input) GetJoyButtonIndexFromString(button string) int64 {
 /*
 
  */
-func (o *Input) GetJoyAxisString(axisIndex int64) string {
+func (o *input) GetJoyAxisString(axisIndex int64) string {
 	log.Println("Calling Input.GetJoyAxisString()")
 
 	// Build out the method's arguments
@@ -20900,7 +20992,7 @@ func (o *Input) GetJoyAxisString(axisIndex int64) string {
 /*
 
  */
-func (o *Input) GetJoyAxisIndexFromString(axis string) int64 {
+func (o *input) GetJoyAxisIndexFromString(axis string) int64 {
 	log.Println("Calling Input.GetJoyAxisIndexFromString()")
 
 	// Build out the method's arguments
@@ -20922,7 +21014,7 @@ func (o *Input) GetJoyAxisIndexFromString(axis string) int64 {
 /*
    Starts to vibrate the joypad. Joypads usually come with two rumble motors, a strong and a weak one. weak_magnitude is the strength of the weak motor (between 0 and 1) and strong_magnitude is the strength of the strong motor (between 0 and 1). duration is the duration of the effect in seconds (a duration of 0 will try to play the vibration indefinitely). Note that not every hardware is compatible with long effect durations, it is recommended to restart an effect if in need to play it for more than a few seconds.
 */
-func (o *Input) StartJoyVibration(device int64, weakMagnitude float64, strongMagnitude float64, duration float64) {
+func (o *input) StartJoyVibration(device int64, weakMagnitude float64, strongMagnitude float64, duration float64) {
 	log.Println("Calling Input.StartJoyVibration()")
 
 	// Build out the method's arguments
@@ -20943,7 +21035,7 @@ func (o *Input) StartJoyVibration(device int64, weakMagnitude float64, strongMag
 /*
    Stops the vibration of the joypad.
 */
-func (o *Input) StopJoyVibration(device int64) {
+func (o *input) StopJoyVibration(device int64) {
 	log.Println("Calling Input.StopJoyVibration()")
 
 	// Build out the method's arguments
@@ -20961,7 +21053,7 @@ func (o *Input) StopJoyVibration(device int64) {
 /*
 
  */
-func (o *Input) GetGravity() *Vector3 {
+func (o *input) GetGravity() *Vector3 {
 	log.Println("Calling Input.GetGravity()")
 
 	// Build out the method's arguments
@@ -20982,7 +21074,7 @@ func (o *Input) GetGravity() *Vector3 {
 /*
    If the device has an accelerometer, this will return the movement.
 */
-func (o *Input) GetAccelerometer() *Vector3 {
+func (o *input) GetAccelerometer() *Vector3 {
 	log.Println("Calling Input.GetAccelerometer()")
 
 	// Build out the method's arguments
@@ -21003,7 +21095,7 @@ func (o *Input) GetAccelerometer() *Vector3 {
 /*
    If the device has a magnetometer, this will return the magnetic field strength in micro-Tesla for all axes.
 */
-func (o *Input) GetMagnetometer() *Vector3 {
+func (o *input) GetMagnetometer() *Vector3 {
 	log.Println("Calling Input.GetMagnetometer()")
 
 	// Build out the method's arguments
@@ -21024,7 +21116,7 @@ func (o *Input) GetMagnetometer() *Vector3 {
 /*
    If the device has a gyroscope, this will return the rate of rotation in rad/s around a device's x, y, and z axis.
 */
-func (o *Input) GetGyroscope() *Vector3 {
+func (o *input) GetGyroscope() *Vector3 {
 	log.Println("Calling Input.GetGyroscope()")
 
 	// Build out the method's arguments
@@ -21045,7 +21137,7 @@ func (o *Input) GetGyroscope() *Vector3 {
 /*
    Returns the mouse speed for the last time the cursor was moved, and this until the next frame where the mouse moves. This means that even if the mouse is not moving, this function will still return the value of the last motion.
 */
-func (o *Input) GetLastMouseSpeed() *Vector2 {
+func (o *input) GetLastMouseSpeed() *Vector2 {
 	log.Println("Calling Input.GetLastMouseSpeed()")
 
 	// Build out the method's arguments
@@ -21066,7 +21158,7 @@ func (o *Input) GetLastMouseSpeed() *Vector2 {
 /*
    Returns mouse buttons as a bitmask. If multiple mouse buttons are pressed at the same time the bits are added together.
 */
-func (o *Input) GetMouseButtonMask() int64 {
+func (o *input) GetMouseButtonMask() int64 {
 	log.Println("Calling Input.GetMouseButtonMask()")
 
 	// Build out the method's arguments
@@ -21087,7 +21179,7 @@ func (o *Input) GetMouseButtonMask() int64 {
 /*
    Set the mouse mode. See the constants for more information.
 */
-func (o *Input) SetMouseMode(mode int64) {
+func (o *input) SetMouseMode(mode int64) {
 	log.Println("Calling Input.SetMouseMode()")
 
 	// Build out the method's arguments
@@ -21105,7 +21197,7 @@ func (o *Input) SetMouseMode(mode int64) {
 /*
    Return the mouse mode. See the constants for more information.
 */
-func (o *Input) GetMouseMode() int64 {
+func (o *input) GetMouseMode() int64 {
 	log.Println("Calling Input.GetMouseMode()")
 
 	// Build out the method's arguments
@@ -21126,7 +21218,7 @@ func (o *Input) GetMouseMode() int64 {
 /*
    Sets the mouse position to the specified vector.
 */
-func (o *Input) WarpMousePos(to *Vector2) {
+func (o *input) WarpMousePos(to *Vector2) {
 	log.Println("Calling Input.WarpMousePos()")
 
 	// Build out the method's arguments
@@ -21144,7 +21236,7 @@ func (o *Input) WarpMousePos(to *Vector2) {
 /*
    This will simulate pressing the specificed action.
 */
-func (o *Input) ActionPress(action string) {
+func (o *input) ActionPress(action string) {
 	log.Println("Calling Input.ActionPress()")
 
 	// Build out the method's arguments
@@ -21162,7 +21254,7 @@ func (o *Input) ActionPress(action string) {
 /*
    If the specified action is already pressed, this will release it.
 */
-func (o *Input) ActionRelease(action string) {
+func (o *input) ActionRelease(action string) {
 	log.Println("Calling Input.ActionRelease()")
 
 	// Build out the method's arguments
@@ -21180,7 +21272,7 @@ func (o *Input) ActionRelease(action string) {
 /*
 
  */
-func (o *Input) SetCustomMouseCursor(image *Resource, hotspot *Vector2) {
+func (o *input) SetCustomMouseCursor(image *Resource, hotspot *Vector2) {
 	log.Println("Calling Input.SetCustomMouseCursor()")
 
 	// Build out the method's arguments
@@ -21199,7 +21291,7 @@ func (o *Input) SetCustomMouseCursor(image *Resource, hotspot *Vector2) {
 /*
 
  */
-func (o *Input) ParseInputEvent(event *InputEvent) {
+func (o *input) ParseInputEvent(event *InputEvent) {
 	log.Println("Calling Input.ParseInputEvent()")
 
 	// Build out the method's arguments
@@ -21214,28 +21306,33 @@ func (o *Input) ParseInputEvent(event *InputEvent) {
 
 }
 
-/*
-   InputImplementer is an interface for Input objects.
-*/
-type InputImplementer interface {
-	Class
+func newSingletonARVRServer() *arvrServer {
+	obj := &arvrServer{}
+	ptr := C.godot_global_get_singleton(C.CString("ARVRServer"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
 }
 
 /*
    The AR/VR Server is the heart of our AR/VR solution and handles all the processing.
 */
-type ARVRServer struct {
+var ARVRServer = newSingletonARVRServer()
+
+/*
+   The AR/VR Server is the heart of our AR/VR solution and handles all the processing.
+*/
+type arvrServer struct {
 	Object
 }
 
-func (o *ARVRServer) baseClass() string {
+func (o *arvrServer) baseClass() string {
 	return "ARVRServer"
 }
 
 /*
    Returns our world scale (see ARVROrigin for more information).
 */
-func (o *ARVRServer) GetWorldScale() float64 {
+func (o *arvrServer) GetWorldScale() float64 {
 	log.Println("Calling ARVRServer.GetWorldScale()")
 
 	// Build out the method's arguments
@@ -21256,7 +21353,7 @@ func (o *ARVRServer) GetWorldScale() float64 {
 /*
    Changing the world scale, see the ARVROrigin documentation for more information.
 */
-func (o *ARVRServer) SetWorldScale(arg0 float64) {
+func (o *arvrServer) SetWorldScale(arg0 float64) {
 	log.Println("Calling ARVRServer.SetWorldScale()")
 
 	// Build out the method's arguments
@@ -21274,7 +21371,7 @@ func (o *ARVRServer) SetWorldScale(arg0 float64) {
 /*
    Gets our reference frame transform, mostly used internally and exposed for GDNative build interfaces.
 */
-func (o *ARVRServer) GetReferenceFrame() *Transform {
+func (o *arvrServer) GetReferenceFrame() *Transform {
 	log.Println("Calling ARVRServer.GetReferenceFrame()")
 
 	// Build out the method's arguments
@@ -21295,7 +21392,7 @@ func (o *ARVRServer) GetReferenceFrame() *Transform {
 /*
    This is a really important function to understand correctly. AR and VR platforms all handle positioning slightly differently. For platforms that do not offer spatial tracking our origin point (0,0,0) is the location of our HMD but you have little control over the direction the player is facing in the real world. For platforms that do offer spatial tracking our origin point depends very much on the system. For OpenVR our origin point is usually the center of the tracking space, on the ground. For other platforms its often the location of the tracking camera. This method allows you to create a reference frame, it will take the current location of the HMD and use that to adjust all our tracking data in essence realigning the real world to your players current position in your game world. For this method to produce usable results tracking information should be available and this often takes a few frames after starting your game. You should call this method after a few seconds have passed, when the user requests a realignment of the display holding a designated button on a controller for a short period of time, and when implementing a teleport mechanism.
 */
-func (o *ARVRServer) RequestReferenceFrame(ignoreTilt bool, keepHeight bool) {
+func (o *arvrServer) RequestReferenceFrame(ignoreTilt bool, keepHeight bool) {
 	log.Println("Calling ARVRServer.RequestReferenceFrame()")
 
 	// Build out the method's arguments
@@ -21314,7 +21411,7 @@ func (o *ARVRServer) RequestReferenceFrame(ignoreTilt bool, keepHeight bool) {
 /*
    Get the number of interfaces currently registered with the AR/VR server. If you're game supports multiple AR/VR platforms you can look throught the available interface and either present the user with a selection or simply try an initialize each interface and use the first one that returns true.
 */
-func (o *ARVRServer) GetInterfaceCount() int64 {
+func (o *arvrServer) GetInterfaceCount() int64 {
 	log.Println("Calling ARVRServer.GetInterfaceCount()")
 
 	// Build out the method's arguments
@@ -21335,7 +21432,7 @@ func (o *ARVRServer) GetInterfaceCount() int64 {
 /*
    Get the interface registered at a given index in our list of interfaces.
 */
-func (o *ARVRServer) GetInterface(idx int64) *ARVRInterface {
+func (o *arvrServer) GetInterface(idx int64) *ARVRInterface {
 	log.Println("Calling ARVRServer.GetInterface()")
 
 	// Build out the method's arguments
@@ -21357,7 +21454,7 @@ func (o *ARVRServer) GetInterface(idx int64) *ARVRInterface {
 /*
    Find an interface by its name. Say that you're making a game that uses specific capabilities of an AR/VR platform you can find the interface for that platform by name and initialize it.
 */
-func (o *ARVRServer) FindInterface(name string) *ARVRInterface {
+func (o *arvrServer) FindInterface(name string) *ARVRInterface {
 	log.Println("Calling ARVRServer.FindInterface()")
 
 	// Build out the method's arguments
@@ -21379,7 +21476,7 @@ func (o *ARVRServer) FindInterface(name string) *ARVRInterface {
 /*
    Get the number of trackers currently registered.
 */
-func (o *ARVRServer) GetTrackerCount() int64 {
+func (o *arvrServer) GetTrackerCount() int64 {
 	log.Println("Calling ARVRServer.GetTrackerCount()")
 
 	// Build out the method's arguments
@@ -21400,7 +21497,7 @@ func (o *ARVRServer) GetTrackerCount() int64 {
 /*
    Get the positional tracker at the given ID.
 */
-func (o *ARVRServer) GetTracker(idx int64) *ARVRPositionalTracker {
+func (o *arvrServer) GetTracker(idx int64) *ARVRPositionalTracker {
 	log.Println("Calling ARVRServer.GetTracker()")
 
 	// Build out the method's arguments
@@ -21422,7 +21519,7 @@ func (o *ARVRServer) GetTracker(idx int64) *ARVRPositionalTracker {
 /*
    Changes the primary interface to the specified interface. Again mostly exposed for GDNative interfaces.
 */
-func (o *ARVRServer) SetPrimaryInterface(arg0 *ARVRInterface) {
+func (o *arvrServer) SetPrimaryInterface(arg0 *ARVRInterface) {
 	log.Println("Calling ARVRServer.SetPrimaryInterface()")
 
 	// Build out the method's arguments
@@ -21440,7 +21537,7 @@ func (o *ARVRServer) SetPrimaryInterface(arg0 *ARVRInterface) {
 /*
    Mostly exposed for GDNative based interfaces, this is called to register an available interface with the AR/VR server.
 */
-func (o *ARVRServer) AddInterface(arg0 *ARVRInterface) {
+func (o *arvrServer) AddInterface(arg0 *ARVRInterface) {
 	log.Println("Calling ARVRServer.AddInterface()")
 
 	// Build out the method's arguments
@@ -21458,7 +21555,7 @@ func (o *ARVRServer) AddInterface(arg0 *ARVRInterface) {
 /*
    Removes a registered interface, again exposed mostly for GDNative based interfaces.
 */
-func (o *ARVRServer) RemoveInterface(arg0 *ARVRInterface) {
+func (o *arvrServer) RemoveInterface(arg0 *ARVRInterface) {
 	log.Println("Calling ARVRServer.RemoveInterface()")
 
 	// Build out the method's arguments
@@ -21471,13 +21568,6 @@ func (o *ARVRServer) RemoveInterface(arg0 *ARVRInterface) {
 
 	log.Println("Got return value!")
 
-}
-
-/*
-   ARVRServerImplementer is an interface for ARVRServer objects.
-*/
-type ARVRServerImplementer interface {
-	Class
 }
 
 /*
@@ -53934,7 +54024,7 @@ type ViewportContainerImplementer interface {
 }
 
 /*
-   Most basic 3D game object, with a 3D [Transform] and visibility settings. All 3D physics nodes and sprites inherit from Spatial. Use Spatial as a parent node to move, scale, rotate and show/hide children in a 3D project.
+   Most basic 3D game object, with a 3D [Transform] and visibility settings. All other 3D game objects inherit from Spatial. Use Spatial as a parent node to move, scale, rotate and show/hide children in a 3D project.
 */
 type Spatial struct {
 	Node
@@ -53963,7 +54053,7 @@ func (o *Spatial) SetTransform(local *Transform) {
 }
 
 /*
-   Return the local transform, relative to the bone parent.
+   Returns the local transform, relative to the bone parent.
 */
 func (o *Spatial) GetTransform() *Transform {
 	log.Println("Calling Spatial.GetTransform()")
@@ -54041,7 +54131,7 @@ func (o *Spatial) SetRotation(rotationRad *Vector3) {
 }
 
 /*
-   Return the rotation (in radians).
+   Returns the rotation (in radians).
 */
 func (o *Spatial) GetRotation() *Vector3 {
 	log.Println("Calling Spatial.GetRotation()")
@@ -54080,7 +54170,7 @@ func (o *Spatial) SetRotationDeg(rotationDeg *Vector3) {
 }
 
 /*
-   Return the rotation (in degrees).
+   Returns the rotation (in degrees).
 */
 func (o *Spatial) GetRotationDeg() *Vector3 {
 	log.Println("Calling Spatial.GetRotationDeg()")
@@ -54158,7 +54248,7 @@ func (o *Spatial) SetGlobalTransform(global *Transform) {
 }
 
 /*
-   Return the global transform, relative to worldspace.
+   Returns the global transform, relative to worldspace.
 */
 func (o *Spatial) GetGlobalTransform() *Transform {
 	log.Println("Calling Spatial.GetGlobalTransform()")
@@ -54179,7 +54269,7 @@ func (o *Spatial) GetGlobalTransform() *Transform {
 }
 
 /*
-   Return the parent [Spatial], or an empty [Object] if no parent exists or parent is not of type [Spatial].
+   Returns the parent [Spatial], or an empty [Object] if no parent exists or parent is not of type [Spatial].
 */
 func (o *Spatial) GetParentSpatial() *Spatial {
 	log.Println("Calling Spatial.GetParentSpatial()")
@@ -54200,7 +54290,7 @@ func (o *Spatial) GetParentSpatial() *Spatial {
 }
 
 /*
-   Set whether this node ignores notification that its transformation changed.
+   Set whether the node ignores notification that its transformation (global or local) changed.
 */
 func (o *Spatial) SetIgnoreTransformNotification(enabled bool) {
 	log.Println("Calling Spatial.SetIgnoreTransformNotification()")
@@ -54218,7 +54308,7 @@ func (o *Spatial) SetIgnoreTransformNotification(enabled bool) {
 }
 
 /*
-   Makes this node ignore its parents tranformations. Node tranformations are only in global space.
+   Makes the node ignore its parents tranformations. Node tranformations are only in global space.
 */
 func (o *Spatial) SetAsToplevel(enable bool) {
 	log.Println("Calling Spatial.SetAsToplevel()")
@@ -54236,7 +54326,7 @@ func (o *Spatial) SetAsToplevel(enable bool) {
 }
 
 /*
-   Returns whether this node is set as Toplevel, ignoring its parent node transformations.
+   Returns whether this node is set as Toplevel, that is whether it ignores its parent nodes transformations.
 */
 func (o *Spatial) IsSetAsToplevel() bool {
 	log.Println("Calling Spatial.IsSetAsToplevel()")
@@ -54257,7 +54347,7 @@ func (o *Spatial) IsSetAsToplevel() bool {
 }
 
 /*
-   Return current [World] resource this Spatial node is registered to.
+   Returns the current [World] resource this Spatial node is registered to.
 */
 func (o *Spatial) GetWorld() *World {
 	log.Println("Calling Spatial.GetWorld()")
@@ -54334,7 +54424,7 @@ func (o *Spatial) X_UpdateGizmo() {
 }
 
 /*
-   Update [SpatialGizmo] of this node.
+   Updates the [SpatialGizmo] of this node.
 */
 func (o *Spatial) UpdateGizmo() {
 	log.Println("Calling Spatial.UpdateGizmo()")
@@ -54369,7 +54459,7 @@ func (o *Spatial) SetGizmo(gizmo *SpatialGizmo) {
 }
 
 /*
-   Return the SpatialGizmo for this node. Used for example in [EditorSpatialGizmo] as custom visualization and editing handles in Editor.
+   Returns the SpatialGizmo for this node. Used for example in [EditorSpatialGizmo] as custom visualization and editing handles in Editor.
 */
 func (o *Spatial) GetGizmo() *SpatialGizmo {
 	log.Println("Calling Spatial.GetGizmo()")
@@ -54408,7 +54498,7 @@ func (o *Spatial) SetVisible(visible bool) {
 }
 
 /*
-   Returns whether this node is set to be visible.
+   Returns whether the node is set to be visible.
 */
 func (o *Spatial) IsVisible() bool {
 	log.Println("Calling Spatial.IsVisible()")
@@ -54429,7 +54519,7 @@ func (o *Spatial) IsVisible() bool {
 }
 
 /*
-   Returns whether this node is visible, taking into consideration that its parents visibility.
+   Returns whether the node is visible, taking into consideration that its parents visibility.
 */
 func (o *Spatial) IsVisibleInTree() bool {
 	log.Println("Calling Spatial.IsVisibleInTree()")
@@ -54450,7 +54540,7 @@ func (o *Spatial) IsVisibleInTree() bool {
 }
 
 /*
-   Enable rendering of this node. Change Spatial Visible property to false.
+   Enables rendering of this node. Change Spatial Visible property to "True".
 */
 func (o *Spatial) Show() {
 	log.Println("Calling Spatial.Show()")
@@ -54467,7 +54557,7 @@ func (o *Spatial) Show() {
 }
 
 /*
-   Disable rendering of this node. Change Spatial Visible property to false.
+   Disables rendering of this node. Change Spatial Visible property to false.
 */
 func (o *Spatial) Hide() {
 	log.Println("Calling Spatial.Hide()")
@@ -54484,7 +54574,7 @@ func (o *Spatial) Hide() {
 }
 
 /*
-   Set whether this node sends notification that its local transformation changed. Spatial will not propagate this by default.
+   Set whether the node notifies about its local transformation changes. Spatial will not propagate this by default.
 */
 func (o *Spatial) SetNotifyLocalTransform(enable bool) {
 	log.Println("Calling Spatial.SetNotifyLocalTransform()")
@@ -54502,7 +54592,7 @@ func (o *Spatial) SetNotifyLocalTransform(enable bool) {
 }
 
 /*
-   Returns whether node sends notification that its local transformation changed. Spatial will not propagate this by default.
+   Returns whether node notifies about its local transformation changes. Spatial will not propagate this by default.
 */
 func (o *Spatial) IsLocalTransformNotificationEnabled() bool {
 	log.Println("Calling Spatial.IsLocalTransformNotificationEnabled()")
@@ -54523,7 +54613,7 @@ func (o *Spatial) IsLocalTransformNotificationEnabled() bool {
 }
 
 /*
-   Set whether this node sends notification that its transformation changed. Spatial will not propagate this by default.
+   Set whether the node notifies about its global and local transformation changes. Spatial will not propagate this by default.
 */
 func (o *Spatial) SetNotifyTransform(enable bool) {
 	log.Println("Calling Spatial.SetNotifyTransform()")
@@ -54541,7 +54631,7 @@ func (o *Spatial) SetNotifyTransform(enable bool) {
 }
 
 /*
-   Returns whether node sends notification that its transformation changed. Spatial will not propagate this by default.
+   Returns whether the node notifies about its global and local transformation changes. Spatial will not propagate this by default.
 */
 func (o *Spatial) IsTransformNotificationEnabled() bool {
 	log.Println("Calling Spatial.IsTransformNotificationEnabled()")
@@ -54562,7 +54652,7 @@ func (o *Spatial) IsTransformNotificationEnabled() bool {
 }
 
 /*
-   Rotates node in local space on given normal [Vector3] by angle in radians.
+   Rotates the node in local space on given normal [Vector3] by angle in radians.
 */
 func (o *Spatial) Rotate(normal *Vector3, radians float64) {
 	log.Println("Calling Spatial.Rotate()")
@@ -54581,7 +54671,7 @@ func (o *Spatial) Rotate(normal *Vector3, radians float64) {
 }
 
 /*
-   Rotate current node along normal [Vector3] by angle in radians in Global space.
+   Rotates the current node along normal [Vector3] by angle in radians in Global space.
 */
 func (o *Spatial) GlobalRotate(normal *Vector3, radians float64) {
 	log.Println("Calling Spatial.GlobalRotate()")
@@ -54600,7 +54690,7 @@ func (o *Spatial) GlobalRotate(normal *Vector3, radians float64) {
 }
 
 /*
-   Rotates node in local space on X axis by angle in radians.
+   Rotates the node in local space on X axis by angle in radians.
 */
 func (o *Spatial) RotateX(radians float64) {
 	log.Println("Calling Spatial.RotateX()")
@@ -54618,7 +54708,7 @@ func (o *Spatial) RotateX(radians float64) {
 }
 
 /*
-   Rotates node in local space on Y axis by angle in radians.
+   Rotates the node in local space on Y axis by angle in radians.
 */
 func (o *Spatial) RotateY(radians float64) {
 	log.Println("Calling Spatial.RotateY()")
@@ -54636,7 +54726,7 @@ func (o *Spatial) RotateY(radians float64) {
 }
 
 /*
-   Rotates node in local space on Z axis by angle in radians.
+   Rotates the node in local space on Z axis by angle in radians.
 */
 func (o *Spatial) RotateZ(radians float64) {
 	log.Println("Calling Spatial.RotateZ()")
@@ -54654,7 +54744,7 @@ func (o *Spatial) RotateZ(radians float64) {
 }
 
 /*
-   Change node position by given offset [Vector3].
+   Changes the node's position by given offset [Vector3].
 */
 func (o *Spatial) Translate(offset *Vector3) {
 	log.Println("Calling Spatial.Translate()")
@@ -54672,7 +54762,7 @@ func (o *Spatial) Translate(offset *Vector3) {
 }
 
 /*
-   Move current node by [Vector3] offset in Global space.
+   Moves the node by [Vector3] offset in Global space.
 */
 func (o *Spatial) GlobalTranslate(offset *Vector3) {
 	log.Println("Calling Spatial.GlobalTranslate()")
@@ -54690,7 +54780,7 @@ func (o *Spatial) GlobalTranslate(offset *Vector3) {
 }
 
 /*
-   Reset this node transformations (like scale, skew and taper) preserving its rotation and translation. Performs orthonormalization on this node [Transform3D].
+   Resets this node's transformations (like scale, skew and taper) preserving its rotation and translation. Performs orthonormalization on this node [Transform3D].
 */
 func (o *Spatial) Orthonormalize() {
 	log.Println("Calling Spatial.Orthonormalize()")
@@ -54743,7 +54833,7 @@ func (o *Spatial) LookAt(target *Vector3, up *Vector3) {
 }
 
 /*
-   Moves itself to specified position and then rotates itself to point into direction of target position. Operations take place in global space.
+   Moves the node to specified position and then rotates itself to point into direction of target position. Operations take place in global space.
 */
 func (o *Spatial) LookAtFromPos(pos *Vector3, target *Vector3, up *Vector3) {
 	log.Println("Calling Spatial.LookAtFromPos()")
@@ -54763,7 +54853,7 @@ func (o *Spatial) LookAtFromPos(pos *Vector3, target *Vector3, up *Vector3) {
 }
 
 /*
-   Tranform [Vector3] from world space to this node local space.
+   Tranforms [Vector3] "global_point" from world space to this node's local space.
 */
 func (o *Spatial) ToLocal(globalPoint *Vector3) *Vector3 {
 	log.Println("Calling Spatial.ToLocal()")
@@ -54785,7 +54875,7 @@ func (o *Spatial) ToLocal(globalPoint *Vector3) *Vector3 {
 }
 
 /*
-   Tranform [Vector3] from this node local space to world space.
+   Tranforms [Vector3] "local_point" from this node's local space to world space.
 */
 func (o *Spatial) ToGlobal(localPoint *Vector3) *Vector3 {
 	log.Println("Calling Spatial.ToGlobal()")
