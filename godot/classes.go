@@ -683,7 +683,7 @@ func (o *Object) GetIncomingConnections() *Array {
 /*
    Connect a signal to a method at a target (member function). Binds are optional and are passed as extra arguments to the call. Flags specify optional deferred or one shot connections, see enum CONNECT_*. A signal can only be connected once to a method, and it will throw an error if already connected. If you want to avoid this, use [method is_connected] to check.
 */
-func (o *Object) Connect(signal string, target *Object, method string, binds *Array, flags int64) *int64 {
+func (o *Object) Connect(signal string, target *Object, method string, binds *Array, flags int64) int64 {
 	log.Println("Calling Object.Connect()")
 
 	// Build out the method's arguments
@@ -696,11 +696,11 @@ func (o *Object) Connect(signal string, target *Object, method string, binds *Ar
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "connect", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "connect", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -1477,7 +1477,7 @@ func (o *Image) HasMipmaps() bool {
 /*
    Return the format of the [Image], one of [Image].FORMAT_*.
 */
-func (o *Image) GetFormat() *int64 {
+func (o *Image) GetFormat() int64 {
 	log.Println("Calling Image.GetFormat()")
 
 	// Build out the method's arguments
@@ -1485,11 +1485,11 @@ func (o *Image) GetFormat() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_format", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_format", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -1684,7 +1684,7 @@ func (o *Image) FlipY() {
 /*
 
  */
-func (o *Image) GenerateMipmaps() *int64 {
+func (o *Image) GenerateMipmaps() int64 {
 	log.Println("Calling Image.GenerateMipmaps()")
 
 	// Build out the method's arguments
@@ -1692,11 +1692,11 @@ func (o *Image) GenerateMipmaps() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "generate_mipmaps", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "generate_mipmaps", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -1786,7 +1786,7 @@ func (o *Image) IsEmpty() bool {
 /*
    Load an [Image].
 */
-func (o *Image) Load(path string) *int64 {
+func (o *Image) Load(path string) int64 {
 	log.Println("Calling Image.Load()")
 
 	// Build out the method's arguments
@@ -1795,11 +1795,11 @@ func (o *Image) Load(path string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "load", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "load", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -1808,7 +1808,7 @@ func (o *Image) Load(path string) *int64 {
 /*
    Save this [Image] as a png.
 */
-func (o *Image) SavePng(path string) *int64 {
+func (o *Image) SavePng(path string) int64 {
 	log.Println("Calling Image.SavePng()")
 
 	// Build out the method's arguments
@@ -1817,11 +1817,11 @@ func (o *Image) SavePng(path string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "save_png", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "save_png", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -1830,7 +1830,7 @@ func (o *Image) SavePng(path string) *int64 {
 /*
 
  */
-func (o *Image) DetectAlpha() *int64 {
+func (o *Image) DetectAlpha() int64 {
 	log.Println("Calling Image.DetectAlpha()")
 
 	// Build out the method's arguments
@@ -1838,11 +1838,11 @@ func (o *Image) DetectAlpha() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "detect_alpha", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "detect_alpha", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -1872,7 +1872,7 @@ func (o *Image) IsInvisible() bool {
 /*
 
  */
-func (o *Image) Compress(mode int64, source int64, lossyQuality float64) *int64 {
+func (o *Image) Compress(mode int64, source int64, lossyQuality float64) int64 {
 	log.Println("Calling Image.Compress()")
 
 	// Build out the method's arguments
@@ -1883,11 +1883,11 @@ func (o *Image) Compress(mode int64, source int64, lossyQuality float64) *int64 
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "compress", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "compress", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -1896,7 +1896,7 @@ func (o *Image) Compress(mode int64, source int64, lossyQuality float64) *int64 
 /*
 
  */
-func (o *Image) Decompress() *int64 {
+func (o *Image) Decompress() int64 {
 	log.Println("Calling Image.Decompress()")
 
 	// Build out the method's arguments
@@ -1904,11 +1904,11 @@ func (o *Image) Decompress() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "decompress", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "decompress", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -4012,7 +4012,7 @@ func (o *StreamPeer) baseClass() string {
 /*
    Send a chunk of data through the connection, blocking if necessary until the data is done sending. This function returns an Error code.
 */
-func (o *StreamPeer) PutData(data *PoolByteArray) *int64 {
+func (o *StreamPeer) PutData(data *PoolByteArray) int64 {
 	log.Println("Calling StreamPeer.PutData()")
 
 	// Build out the method's arguments
@@ -4021,11 +4021,11 @@ func (o *StreamPeer) PutData(data *PoolByteArray) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "put_data", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "put_data", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -4842,7 +4842,7 @@ func (o *StreamPeerTCP) baseClass() string {
 /*
    Connect to the specified host:port pair. A hostname will be resolved if valid. Returns [OK] on success or [FAILED] on failure.
 */
-func (o *StreamPeerTCP) ConnectToHost(host string, port int64) *int64 {
+func (o *StreamPeerTCP) ConnectToHost(host string, port int64) int64 {
 	log.Println("Calling StreamPeerTCP.ConnectToHost()")
 
 	// Build out the method's arguments
@@ -4852,11 +4852,11 @@ func (o *StreamPeerTCP) ConnectToHost(host string, port int64) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "connect_to_host", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "connect_to_host", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -4886,7 +4886,7 @@ func (o *StreamPeerTCP) IsConnectedToHost() bool {
 /*
    Return the status of the connection, one of STATUS_* enum.
 */
-func (o *StreamPeerTCP) GetStatus() *int64 {
+func (o *StreamPeerTCP) GetStatus() int64 {
 	log.Println("Calling StreamPeerTCP.GetStatus()")
 
 	// Build out the method's arguments
@@ -4894,11 +4894,11 @@ func (o *StreamPeerTCP) GetStatus() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_status", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_status", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -4984,7 +4984,7 @@ func (o *TCP_Server) baseClass() string {
 /*
    Listen on the "port" binding to "bind_address". If "bind_address" is set as "*" (default), the server will listen on all available addresses (both IPv4 and IPv6). If "bind_address" is set as "0.0.0.0" (for IPv4) or "::" (for IPv6), the server will listen on all available addresses matching that IP type. If "bind_address" is set to any valid address (e.g. "192.168.1.101", "::1", etc), the server will only listen on the interface with that addresses (or fail if no interface with the given address exists).
 */
-func (o *TCP_Server) Listen(port int64, bindAddress string) *int64 {
+func (o *TCP_Server) Listen(port int64, bindAddress string) int64 {
 	log.Println("Calling TCP_Server.Listen()")
 
 	// Build out the method's arguments
@@ -4994,11 +4994,11 @@ func (o *TCP_Server) Listen(port int64, bindAddress string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "listen", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "listen", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -5105,7 +5105,7 @@ func (o *PacketPeer) GetVar() *Variant {
 /*
    Send a Variant as a packet.
 */
-func (o *PacketPeer) PutVar(variable *Variant) *int64 {
+func (o *PacketPeer) PutVar(variable *Variant) int64 {
 	log.Println("Calling PacketPeer.PutVar()")
 
 	// Build out the method's arguments
@@ -5114,11 +5114,11 @@ func (o *PacketPeer) PutVar(variable *Variant) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "put_var", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "put_var", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -5148,7 +5148,7 @@ func (o *PacketPeer) GetPacket() *PoolByteArray {
 /*
    Send a raw packet.
 */
-func (o *PacketPeer) PutPacket(buffer *PoolByteArray) *int64 {
+func (o *PacketPeer) PutPacket(buffer *PoolByteArray) int64 {
 	log.Println("Calling PacketPeer.PutPacket()")
 
 	// Build out the method's arguments
@@ -5157,11 +5157,11 @@ func (o *PacketPeer) PutPacket(buffer *PoolByteArray) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "put_packet", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "put_packet", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -5170,7 +5170,7 @@ func (o *PacketPeer) PutPacket(buffer *PoolByteArray) *int64 {
 /*
    Return the error state of the last packet received (via [method get_packet] and [method get_var]).
 */
-func (o *PacketPeer) GetPacketError() *int64 {
+func (o *PacketPeer) GetPacketError() int64 {
 	log.Println("Calling PacketPeer.GetPacketError()")
 
 	// Build out the method's arguments
@@ -5178,11 +5178,11 @@ func (o *PacketPeer) GetPacketError() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_packet_error", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_packet_error", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -5269,7 +5269,7 @@ func (o *PacketPeerUDP) baseClass() string {
 /*
    Make this [PacketPeerUDP] listen on the "port" binding to "bind_address" with a buffer size "recv_buf_size". If "bind_address" is set as "*" (default), the peer will listen on all available addresses (both IPv4 and IPv6). If "bind_address" is set as "0.0.0.0" (for IPv4) or "::" (for IPv6), the peer will listen on all available addresses matching that IP type. If "bind_address" is set to any valid address (e.g. "192.168.1.101", "::1", etc), the peer will only listen on the interface with that addresses (or fail if no interface with the given address exists).
 */
-func (o *PacketPeerUDP) Listen(port int64, bindAddress string, recvBufSize int64) *int64 {
+func (o *PacketPeerUDP) Listen(port int64, bindAddress string, recvBufSize int64) int64 {
 	log.Println("Calling PacketPeerUDP.Listen()")
 
 	// Build out the method's arguments
@@ -5280,11 +5280,11 @@ func (o *PacketPeerUDP) Listen(port int64, bindAddress string, recvBufSize int64
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "listen", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "listen", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -5310,7 +5310,7 @@ func (o *PacketPeerUDP) Close() {
 /*
    Wait for a packet to arrive on the listening port, see [method listen].
 */
-func (o *PacketPeerUDP) Wait() *int64 {
+func (o *PacketPeerUDP) Wait() int64 {
 	log.Println("Calling PacketPeerUDP.Wait()")
 
 	// Build out the method's arguments
@@ -5318,11 +5318,11 @@ func (o *PacketPeerUDP) Wait() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "wait", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "wait", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -5394,7 +5394,7 @@ func (o *PacketPeerUDP) GetPacketPort() int64 {
 /*
    Set the destination address and port for sending packets and variables, a hostname will be resolved using if valid.
 */
-func (o *PacketPeerUDP) SetDestAddress(host string, port int64) *int64 {
+func (o *PacketPeerUDP) SetDestAddress(host string, port int64) int64 {
 	log.Println("Calling PacketPeerUDP.SetDestAddress()")
 
 	// Build out the method's arguments
@@ -5404,11 +5404,11 @@ func (o *PacketPeerUDP) SetDestAddress(host string, port int64) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "set_dest_address", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "set_dest_address", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -5435,7 +5435,7 @@ func (o *StreamPeerSSL) baseClass() string {
 /*
 
  */
-func (o *StreamPeerSSL) AcceptStream(stream *StreamPeer) *int64 {
+func (o *StreamPeerSSL) AcceptStream(stream *StreamPeer) int64 {
 	log.Println("Calling StreamPeerSSL.AcceptStream()")
 
 	// Build out the method's arguments
@@ -5444,11 +5444,11 @@ func (o *StreamPeerSSL) AcceptStream(stream *StreamPeer) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "accept_stream", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "accept_stream", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -5457,7 +5457,7 @@ func (o *StreamPeerSSL) AcceptStream(stream *StreamPeer) *int64 {
 /*
    Connect to a peer using an underlying [StreamPeer] "stream", when "validate_certs" is true, [StreamPeerSSL] will validate that the certificate presented by the peer matches the "for_hostname".
 */
-func (o *StreamPeerSSL) ConnectToStream(stream *StreamPeer, validateCerts bool, forHostname string) *int64 {
+func (o *StreamPeerSSL) ConnectToStream(stream *StreamPeer, validateCerts bool, forHostname string) int64 {
 	log.Println("Calling StreamPeerSSL.ConnectToStream()")
 
 	// Build out the method's arguments
@@ -5468,11 +5468,11 @@ func (o *StreamPeerSSL) ConnectToStream(stream *StreamPeer, validateCerts bool, 
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "connect_to_stream", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "connect_to_stream", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -5481,7 +5481,7 @@ func (o *StreamPeerSSL) ConnectToStream(stream *StreamPeer, validateCerts bool, 
 /*
    Return the status of the connection, one of STATUS_* enum.
 */
-func (o *StreamPeerSSL) GetStatus() *int64 {
+func (o *StreamPeerSSL) GetStatus() int64 {
 	log.Println("Calling StreamPeerSSL.GetStatus()")
 
 	// Build out the method's arguments
@@ -5489,11 +5489,11 @@ func (o *StreamPeerSSL) GetStatus() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_status", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_status", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -5583,7 +5583,7 @@ func (o *IP) ResolveHostnameQueueItem(host string, ipType int64) int64 {
 /*
    Returns a queued hostname's status as a RESOLVER_STATUS_* constant, given its queue "id".
 */
-func (o *IP) GetResolveItemStatus(id int64) *int64 {
+func (o *IP) GetResolveItemStatus(id int64) int64 {
 	log.Println("Calling IP.GetResolveItemStatus()")
 
 	// Build out the method's arguments
@@ -5592,11 +5592,11 @@ func (o *IP) GetResolveItemStatus(id int64) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_resolve_item_status", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_resolve_item_status", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -6541,7 +6541,7 @@ func (o *HTTPClient) baseClass() string {
 /*
    Connect to a host. This needs to be done before any requests are sent. The host should not have http:// prepended but will strip the protocol identifier if provided. verify_host will check the SSL identity of the host if set to true.
 */
-func (o *HTTPClient) ConnectToHost(host string, port int64, useSsl bool, verifyHost bool) *int64 {
+func (o *HTTPClient) ConnectToHost(host string, port int64, useSsl bool, verifyHost bool) int64 {
 	log.Println("Calling HTTPClient.ConnectToHost()")
 
 	// Build out the method's arguments
@@ -6553,11 +6553,11 @@ func (o *HTTPClient) ConnectToHost(host string, port int64, useSsl bool, verifyH
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "connect_to_host", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "connect_to_host", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -6605,7 +6605,7 @@ func (o *HTTPClient) GetConnection() *StreamPeer {
 /*
    Sends a raw request to the connected host. The url is what is normally behind the hostname, i.e. in [code]http://somehost.com/index.php[/code], url would be "index.php". Headers are HTTP request headers. Sends body raw, as a byte array, does not encode it in any way.
 */
-func (o *HTTPClient) RequestRaw(method int64, url string, headers *PoolStringArray, body *PoolByteArray) *int64 {
+func (o *HTTPClient) RequestRaw(method int64, url string, headers *PoolStringArray, body *PoolByteArray) int64 {
 	log.Println("Calling HTTPClient.RequestRaw()")
 
 	// Build out the method's arguments
@@ -6617,11 +6617,11 @@ func (o *HTTPClient) RequestRaw(method int64, url string, headers *PoolStringArr
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "request_raw", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "request_raw", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -6630,7 +6630,7 @@ func (o *HTTPClient) RequestRaw(method int64, url string, headers *PoolStringArr
 /*
    Sends a request to the connected host. The url is what is normally behind the hostname, i.e. in [code]http://somehost.com/index.php[/code], url would be "index.php". Headers are HTTP request headers. To create a POST request with query strings to push to the server, do: [codeblock] var fields = {"username" : "user", "password" : "pass"} var queryString = httpClient.query_string_from_dict(fields) var headers = ["Content-Type: application/x-www-form-urlencoded", "Content-Length: " + str(queryString.length())] var result = httpClient.request(httpClient.METHOD_POST, "index.php", headers, queryString) [/codeblock]
 */
-func (o *HTTPClient) Request(method int64, url string, headers *PoolStringArray, body string) *int64 {
+func (o *HTTPClient) Request(method int64, url string, headers *PoolStringArray, body string) int64 {
 	log.Println("Calling HTTPClient.Request()")
 
 	// Build out the method's arguments
@@ -6642,11 +6642,11 @@ func (o *HTTPClient) Request(method int64, url string, headers *PoolStringArray,
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "request", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "request", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -6655,7 +6655,7 @@ func (o *HTTPClient) Request(method int64, url string, headers *PoolStringArray,
 /*
    Stub function
 */
-func (o *HTTPClient) SendBodyText(body string) *int64 {
+func (o *HTTPClient) SendBodyText(body string) int64 {
 	log.Println("Calling HTTPClient.SendBodyText()")
 
 	// Build out the method's arguments
@@ -6664,11 +6664,11 @@ func (o *HTTPClient) SendBodyText(body string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "send_body_text", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "send_body_text", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -6677,7 +6677,7 @@ func (o *HTTPClient) SendBodyText(body string) *int64 {
 /*
    Stub function
 */
-func (o *HTTPClient) SendBodyData(body *PoolByteArray) *int64 {
+func (o *HTTPClient) SendBodyData(body *PoolByteArray) int64 {
 	log.Println("Calling HTTPClient.SendBodyData()")
 
 	// Build out the method's arguments
@@ -6686,11 +6686,11 @@ func (o *HTTPClient) SendBodyData(body *PoolByteArray) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "send_body_data", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "send_body_data", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -6920,7 +6920,7 @@ func (o *HTTPClient) IsBlockingModeEnabled() bool {
 /*
    Returns a STATUS_* enum constant. Need to call [method poll] in order to get status updates.
 */
-func (o *HTTPClient) GetStatus() *int64 {
+func (o *HTTPClient) GetStatus() int64 {
 	log.Println("Calling HTTPClient.GetStatus()")
 
 	// Build out the method's arguments
@@ -6928,11 +6928,11 @@ func (o *HTTPClient) GetStatus() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_status", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_status", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -6941,7 +6941,7 @@ func (o *HTTPClient) GetStatus() *int64 {
 /*
    This needs to be called in order to have any request processed. Check results with [method get_status]
 */
-func (o *HTTPClient) Poll() *int64 {
+func (o *HTTPClient) Poll() int64 {
 	log.Println("Calling HTTPClient.Poll()")
 
 	// Build out the method's arguments
@@ -6949,11 +6949,11 @@ func (o *HTTPClient) Poll() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "poll", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "poll", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -7023,7 +7023,7 @@ func (o *ResourceInteractiveLoader) GetResource() *Resource {
 /*
    Poll the load. If OK is returned, this means poll will have to be called again. If ERR_FILE_EOF is returned, them the load has finished and the resource can be obtained by calling [method get_resource].
 */
-func (o *ResourceInteractiveLoader) Poll() *int64 {
+func (o *ResourceInteractiveLoader) Poll() int64 {
 	log.Println("Calling ResourceInteractiveLoader.Poll()")
 
 	// Build out the method's arguments
@@ -7031,11 +7031,11 @@ func (o *ResourceInteractiveLoader) Poll() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "poll", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "poll", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -7044,7 +7044,7 @@ func (o *ResourceInteractiveLoader) Poll() *int64 {
 /*
 
  */
-func (o *ResourceInteractiveLoader) Wait() *int64 {
+func (o *ResourceInteractiveLoader) Wait() int64 {
 	log.Println("Calling ResourceInteractiveLoader.Wait()")
 
 	// Build out the method's arguments
@@ -7052,11 +7052,11 @@ func (o *ResourceInteractiveLoader) Wait() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "wait", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "wait", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -7143,7 +7143,7 @@ func (o *_File) baseClass() string {
 /*
    Undocumented
 */
-func (o *_File) OpenEncrypted(path string, modeFlags int64, key *PoolByteArray) *int64 {
+func (o *_File) OpenEncrypted(path string, modeFlags int64, key *PoolByteArray) int64 {
 	log.Println("Calling _File.OpenEncrypted()")
 
 	// Build out the method's arguments
@@ -7154,11 +7154,11 @@ func (o *_File) OpenEncrypted(path string, modeFlags int64, key *PoolByteArray) 
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "open_encrypted", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "open_encrypted", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -7167,7 +7167,7 @@ func (o *_File) OpenEncrypted(path string, modeFlags int64, key *PoolByteArray) 
 /*
    Undocumented
 */
-func (o *_File) OpenEncryptedWithPass(path string, modeFlags int64, pass string) *int64 {
+func (o *_File) OpenEncryptedWithPass(path string, modeFlags int64, pass string) int64 {
 	log.Println("Calling _File.OpenEncryptedWithPass()")
 
 	// Build out the method's arguments
@@ -7178,11 +7178,11 @@ func (o *_File) OpenEncryptedWithPass(path string, modeFlags int64, pass string)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "open_encrypted_with_pass", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "open_encrypted_with_pass", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -7191,7 +7191,7 @@ func (o *_File) OpenEncryptedWithPass(path string, modeFlags int64, pass string)
 /*
    Undocumented
 */
-func (o *_File) OpenCompressed(path string, modeFlags int64, compressionMode int64) *int64 {
+func (o *_File) OpenCompressed(path string, modeFlags int64, compressionMode int64) int64 {
 	log.Println("Calling _File.OpenCompressed()")
 
 	// Build out the method's arguments
@@ -7202,11 +7202,11 @@ func (o *_File) OpenCompressed(path string, modeFlags int64, compressionMode int
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "open_compressed", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "open_compressed", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -7215,7 +7215,7 @@ func (o *_File) OpenCompressed(path string, modeFlags int64, compressionMode int
 /*
    Undocumented
 */
-func (o *_File) Open(path string, flags int64) *int64 {
+func (o *_File) Open(path string, flags int64) int64 {
 	log.Println("Calling _File.Open()")
 
 	// Build out the method's arguments
@@ -7225,11 +7225,11 @@ func (o *_File) Open(path string, flags int64) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "open", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "open", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -7669,7 +7669,7 @@ func (o *_File) SetEndianSwap(enable bool) {
 /*
    Undocumented
 */
-func (o *_File) GetError() *int64 {
+func (o *_File) GetError() int64 {
 	log.Println("Calling _File.GetError()")
 
 	// Build out the method's arguments
@@ -7677,11 +7677,11 @@ func (o *_File) GetError() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_error", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_error", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -8032,7 +8032,7 @@ func (o *_Directory) baseClass() string {
 /*
    Undocumented
 */
-func (o *_Directory) Open(path string) *int64 {
+func (o *_Directory) Open(path string) int64 {
 	log.Println("Calling _Directory.Open()")
 
 	// Build out the method's arguments
@@ -8041,11 +8041,11 @@ func (o *_Directory) Open(path string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "open", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "open", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -8054,7 +8054,7 @@ func (o *_Directory) Open(path string) *int64 {
 /*
    Undocumented
 */
-func (o *_Directory) ListDirBegin(skipNavigational bool, skipHidden bool) *int64 {
+func (o *_Directory) ListDirBegin(skipNavigational bool, skipHidden bool) int64 {
 	log.Println("Calling _Directory.ListDirBegin()")
 
 	// Build out the method's arguments
@@ -8064,11 +8064,11 @@ func (o *_Directory) ListDirBegin(skipNavigational bool, skipHidden bool) *int64
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "list_dir_begin", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "list_dir_begin", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -8200,7 +8200,7 @@ func (o *_Directory) GetCurrentDrive() int64 {
 /*
    Undocumented
 */
-func (o *_Directory) ChangeDir(todir string) *int64 {
+func (o *_Directory) ChangeDir(todir string) int64 {
 	log.Println("Calling _Directory.ChangeDir()")
 
 	// Build out the method's arguments
@@ -8209,11 +8209,11 @@ func (o *_Directory) ChangeDir(todir string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "change_dir", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "change_dir", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -8243,7 +8243,7 @@ func (o *_Directory) GetCurrentDir() string {
 /*
    Undocumented
 */
-func (o *_Directory) MakeDir(path string) *int64 {
+func (o *_Directory) MakeDir(path string) int64 {
 	log.Println("Calling _Directory.MakeDir()")
 
 	// Build out the method's arguments
@@ -8252,11 +8252,11 @@ func (o *_Directory) MakeDir(path string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "make_dir", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "make_dir", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -8265,7 +8265,7 @@ func (o *_Directory) MakeDir(path string) *int64 {
 /*
    Undocumented
 */
-func (o *_Directory) MakeDirRecursive(path string) *int64 {
+func (o *_Directory) MakeDirRecursive(path string) int64 {
 	log.Println("Calling _Directory.MakeDirRecursive()")
 
 	// Build out the method's arguments
@@ -8274,11 +8274,11 @@ func (o *_Directory) MakeDirRecursive(path string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "make_dir_recursive", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "make_dir_recursive", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -8352,7 +8352,7 @@ func (o *_Directory) GetSpaceLeft() int64 {
 /*
    Undocumented
 */
-func (o *_Directory) Copy(from string, to string) *int64 {
+func (o *_Directory) Copy(from string, to string) int64 {
 	log.Println("Calling _Directory.Copy()")
 
 	// Build out the method's arguments
@@ -8362,11 +8362,11 @@ func (o *_Directory) Copy(from string, to string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "copy", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "copy", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -8375,7 +8375,7 @@ func (o *_Directory) Copy(from string, to string) *int64 {
 /*
    Undocumented
 */
-func (o *_Directory) Rename(from string, to string) *int64 {
+func (o *_Directory) Rename(from string, to string) int64 {
 	log.Println("Calling _Directory.Rename()")
 
 	// Build out the method's arguments
@@ -8385,11 +8385,11 @@ func (o *_Directory) Rename(from string, to string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "rename", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "rename", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -8398,7 +8398,7 @@ func (o *_Directory) Rename(from string, to string) *int64 {
 /*
    Undocumented
 */
-func (o *_Directory) Remove(path string) *int64 {
+func (o *_Directory) Remove(path string) int64 {
 	log.Println("Calling _Directory.Remove()")
 
 	// Build out the method's arguments
@@ -8407,11 +8407,11 @@ func (o *_Directory) Remove(path string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "remove", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "remove", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -8438,7 +8438,7 @@ func (o *_Thread) baseClass() string {
 /*
    Undocumented
 */
-func (o *_Thread) Start(instance *Object, method string, userdata *Variant, priority int64) *int64 {
+func (o *_Thread) Start(instance *Object, method string, userdata *Variant, priority int64) int64 {
 	log.Println("Calling _Thread.Start()")
 
 	// Build out the method's arguments
@@ -8450,11 +8450,11 @@ func (o *_Thread) Start(instance *Object, method string, userdata *Variant, prio
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "start", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "start", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -8561,7 +8561,7 @@ func (o *_Mutex) Lock() {
 /*
    Undocumented
 */
-func (o *_Mutex) TryLock() *int64 {
+func (o *_Mutex) TryLock() int64 {
 	log.Println("Calling _Mutex.TryLock()")
 
 	// Build out the method's arguments
@@ -8569,11 +8569,11 @@ func (o *_Mutex) TryLock() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "try_lock", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "try_lock", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -8617,7 +8617,7 @@ func (o *_Semaphore) baseClass() string {
 /*
    Undocumented
 */
-func (o *_Semaphore) Wait() *int64 {
+func (o *_Semaphore) Wait() int64 {
 	log.Println("Calling _Semaphore.Wait()")
 
 	// Build out the method's arguments
@@ -8625,11 +8625,11 @@ func (o *_Semaphore) Wait() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "wait", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "wait", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -8638,7 +8638,7 @@ func (o *_Semaphore) Wait() *int64 {
 /*
    Undocumented
 */
-func (o *_Semaphore) Post() *int64 {
+func (o *_Semaphore) Post() int64 {
 	log.Println("Calling _Semaphore.Post()")
 
 	// Build out the method's arguments
@@ -8646,11 +8646,11 @@ func (o *_Semaphore) Post() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "post", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "post", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -8677,7 +8677,7 @@ func (o *XMLParser) baseClass() string {
 /*
    Read the next node of the file. This returns an error code.
 */
-func (o *XMLParser) Read() *int64 {
+func (o *XMLParser) Read() int64 {
 	log.Println("Calling XMLParser.Read()")
 
 	// Build out the method's arguments
@@ -8685,11 +8685,11 @@ func (o *XMLParser) Read() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "read", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "read", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -8698,7 +8698,7 @@ func (o *XMLParser) Read() *int64 {
 /*
    Get the type of the current node. Compare with [code]NODE_*[/code] constants.
 */
-func (o *XMLParser) GetNodeType() *int64 {
+func (o *XMLParser) GetNodeType() int64 {
 	log.Println("Calling XMLParser.GetNodeType()")
 
 	// Build out the method's arguments
@@ -8706,11 +8706,11 @@ func (o *XMLParser) GetNodeType() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_node_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_node_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -8972,7 +8972,7 @@ func (o *XMLParser) SkipSection() {
 /*
    Move the buffer cursor to a certain offset (since the beginning) and read the next node there. This returns an error code.
 */
-func (o *XMLParser) Seek(pos int64) *int64 {
+func (o *XMLParser) Seek(pos int64) int64 {
 	log.Println("Calling XMLParser.Seek()")
 
 	// Build out the method's arguments
@@ -8981,11 +8981,11 @@ func (o *XMLParser) Seek(pos int64) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "seek", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "seek", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -8994,7 +8994,7 @@ func (o *XMLParser) Seek(pos int64) *int64 {
 /*
    Open a XML file for parsing. This returns an error code.
 */
-func (o *XMLParser) Open(file string) *int64 {
+func (o *XMLParser) Open(file string) int64 {
 	log.Println("Calling XMLParser.Open()")
 
 	// Build out the method's arguments
@@ -9003,11 +9003,11 @@ func (o *XMLParser) Open(file string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "open", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "open", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -9016,7 +9016,7 @@ func (o *XMLParser) Open(file string) *int64 {
 /*
    Open a XML raw buffer for parsing. This returns an error code.
 */
-func (o *XMLParser) OpenBuffer(buffer *PoolByteArray) *int64 {
+func (o *XMLParser) OpenBuffer(buffer *PoolByteArray) int64 {
 	log.Println("Calling XMLParser.OpenBuffer()")
 
 	// Build out the method's arguments
@@ -9025,11 +9025,11 @@ func (o *XMLParser) OpenBuffer(buffer *PoolByteArray) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "open_buffer", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "open_buffer", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -9206,7 +9206,7 @@ func (o *ConfigFile) EraseSection(section string) {
 /*
    Load the config file specified as a parameter. The file's contents are parsed and loaded in the ConfigFile object from which the method was called. The return value is one of the OK, FAILED or ERR_* constants listed in [@Global Scope] (if the load was successful, it returns OK).
 */
-func (o *ConfigFile) Load(path string) *int64 {
+func (o *ConfigFile) Load(path string) int64 {
 	log.Println("Calling ConfigFile.Load()")
 
 	// Build out the method's arguments
@@ -9215,11 +9215,11 @@ func (o *ConfigFile) Load(path string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "load", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "load", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -9228,7 +9228,7 @@ func (o *ConfigFile) Load(path string) *int64 {
 /*
    Save the contents of the ConfigFile object to the file specified as a parameter. The output file uses an INI-style structure. The return value is one of the OK, FAILED or ERR_* constants listed in [@Global Scope] (if the save was successful, it returns OK).
 */
-func (o *ConfigFile) Save(path string) *int64 {
+func (o *ConfigFile) Save(path string) int64 {
 	log.Println("Calling ConfigFile.Save()")
 
 	// Build out the method's arguments
@@ -9237,11 +9237,11 @@ func (o *ConfigFile) Save(path string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "save", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "save", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -9268,7 +9268,7 @@ func (o *PCKPacker) baseClass() string {
 /*
 
  */
-func (o *PCKPacker) PckStart(pckName string, alignment int64) *int64 {
+func (o *PCKPacker) PckStart(pckName string, alignment int64) int64 {
 	log.Println("Calling PCKPacker.PckStart()")
 
 	// Build out the method's arguments
@@ -9278,11 +9278,11 @@ func (o *PCKPacker) PckStart(pckName string, alignment int64) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "pck_start", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "pck_start", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -9291,7 +9291,7 @@ func (o *PCKPacker) PckStart(pckName string, alignment int64) *int64 {
 /*
 
  */
-func (o *PCKPacker) AddFile(pckPath string, sourcePath string) *int64 {
+func (o *PCKPacker) AddFile(pckPath string, sourcePath string) int64 {
 	log.Println("Calling PCKPacker.AddFile()")
 
 	// Build out the method's arguments
@@ -9301,11 +9301,11 @@ func (o *PCKPacker) AddFile(pckPath string, sourcePath string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "add_file", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "add_file", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -9314,7 +9314,7 @@ func (o *PCKPacker) AddFile(pckPath string, sourcePath string) *int64 {
 /*
 
  */
-func (o *PCKPacker) Flush(verbose bool) *int64 {
+func (o *PCKPacker) Flush(verbose bool) int64 {
 	log.Println("Calling PCKPacker.Flush()")
 
 	// Build out the method's arguments
@@ -9323,11 +9323,11 @@ func (o *PCKPacker) Flush(verbose bool) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "flush", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "flush", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -9459,7 +9459,7 @@ func (o *PackedDataContainer) X_IterNext(arg0 *Array) *Variant {
 /*
 
  */
-func (o *PackedDataContainer) Pack(value *Variant) *int64 {
+func (o *PackedDataContainer) Pack(value *Variant) int64 {
 	log.Println("Calling PackedDataContainer.Pack()")
 
 	// Build out the method's arguments
@@ -9468,11 +9468,11 @@ func (o *PackedDataContainer) Pack(value *Variant) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "pack", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "pack", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -10745,7 +10745,7 @@ func (o *_ResourceSaver) baseClass() string {
 /*
    Undocumented
 */
-func (o *_ResourceSaver) Save(path string, resource *Resource, flags int64) *int64 {
+func (o *_ResourceSaver) Save(path string, resource *Resource, flags int64) int64 {
 	log.Println("Calling _ResourceSaver.Save()")
 
 	// Build out the method's arguments
@@ -10756,11 +10756,11 @@ func (o *_ResourceSaver) Save(path string, resource *Resource, flags int64) *int
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "save", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "save", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -11300,7 +11300,7 @@ func (o *_OS) SetScreenOrientation(orientation int64) {
 /*
    Undocumented
 */
-func (o *_OS) GetScreenOrientation() *int64 {
+func (o *_OS) GetScreenOrientation() int64 {
 	log.Println("Calling _OS.GetScreenOrientation()")
 
 	// Build out the method's arguments
@@ -11308,11 +11308,11 @@ func (o *_OS) GetScreenOrientation() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_screen_orientation", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_screen_orientation", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -11505,7 +11505,7 @@ func (o *_OS) Execute(path string, arguments *PoolStringArray, blocking bool, ou
 /*
    Undocumented
 */
-func (o *_OS) Kill(pid int64) *int64 {
+func (o *_OS) Kill(pid int64) int64 {
 	log.Println("Calling _OS.Kill()")
 
 	// Build out the method's arguments
@@ -11514,11 +11514,11 @@ func (o *_OS) Kill(pid int64) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "kill", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "kill", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -11527,7 +11527,7 @@ func (o *_OS) Kill(pid int64) *int64 {
 /*
    Undocumented
 */
-func (o *_OS) ShellOpen(uri string) *int64 {
+func (o *_OS) ShellOpen(uri string) int64 {
 	log.Println("Calling _OS.ShellOpen()")
 
 	// Build out the method's arguments
@@ -11536,11 +11536,11 @@ func (o *_OS) ShellOpen(uri string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "shell_open", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "shell_open", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -12422,7 +12422,7 @@ func (o *_OS) PrintResourcesByType(types *PoolStringArray) {
 /*
    Undocumented
 */
-func (o *_OS) NativeVideoPlay(path string, volume float64, audioTrack string, subtitleTrack string) *int64 {
+func (o *_OS) NativeVideoPlay(path string, volume float64, audioTrack string, subtitleTrack string) int64 {
 	log.Println("Calling _OS.NativeVideoPlay()")
 
 	// Build out the method's arguments
@@ -12434,11 +12434,11 @@ func (o *_OS) NativeVideoPlay(path string, volume float64, audioTrack string, su
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "native_video_play", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "native_video_play", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -12622,7 +12622,7 @@ func (o *_OS) Alert(text string, title string) {
 /*
    Undocumented
 */
-func (o *_OS) SetThreadName(name string) *int64 {
+func (o *_OS) SetThreadName(name string) int64 {
 	log.Println("Calling _OS.SetThreadName()")
 
 	// Build out the method's arguments
@@ -12631,11 +12631,11 @@ func (o *_OS) SetThreadName(name string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "set_thread_name", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "set_thread_name", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -12683,7 +12683,7 @@ func (o *_OS) IsVsyncEnabled() bool {
 /*
    Undocumented
 */
-func (o *_OS) GetPowerState() *int64 {
+func (o *_OS) GetPowerState() int64 {
 	log.Println("Calling _OS.GetPowerState()")
 
 	// Build out the method's arguments
@@ -12691,11 +12691,11 @@ func (o *_OS) GetPowerState() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_power_state", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_power_state", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -13312,7 +13312,7 @@ func (o *_ClassDB) ClassGetProperty(object *Object, property string) *Variant {
 /*
    Undocumented
 */
-func (o *_ClassDB) ClassSetProperty(object *Object, property string, value *Variant) *int64 {
+func (o *_ClassDB) ClassSetProperty(object *Object, property string, value *Variant) int64 {
 	log.Println("Calling _ClassDB.ClassSetProperty()")
 
 	// Build out the method's arguments
@@ -13323,11 +13323,11 @@ func (o *_ClassDB) ClassSetProperty(object *Object, property string, value *Vari
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "class_set_property", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "class_set_property", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -13826,7 +13826,7 @@ func (o *ProjectSettings) GlobalizePath(path string) string {
 /*
 
  */
-func (o *ProjectSettings) Save() *int64 {
+func (o *ProjectSettings) Save() int64 {
 	log.Println("Calling ProjectSettings.Save()")
 
 	// Build out the method's arguments
@@ -13834,11 +13834,11 @@ func (o *ProjectSettings) Save() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "save", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "save", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -13957,7 +13957,7 @@ func (o *ProjectSettings) PropertyGetRevert(name string) *Variant {
 /*
 
  */
-func (o *ProjectSettings) SaveCustom(file string) *int64 {
+func (o *ProjectSettings) SaveCustom(file string) int64 {
 	log.Println("Calling ProjectSettings.SaveCustom()")
 
 	// Build out the method's arguments
@@ -13966,11 +13966,11 @@ func (o *ProjectSettings) SaveCustom(file string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "save_custom", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "save_custom", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -14630,7 +14630,7 @@ func (o *PhysicsServer) ShapeSetData(shape *RID, data *Variant) {
 /*
 
  */
-func (o *PhysicsServer) ShapeGetType(shape *RID) *int64 {
+func (o *PhysicsServer) ShapeGetType(shape *RID) int64 {
 	log.Println("Calling PhysicsServer.ShapeGetType()")
 
 	// Build out the method's arguments
@@ -14639,11 +14639,11 @@ func (o *PhysicsServer) ShapeGetType(shape *RID) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "shape_get_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "shape_get_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -14882,7 +14882,7 @@ func (o *PhysicsServer) AreaSetSpaceOverrideMode(area *RID, mode int64) {
 /*
 
  */
-func (o *PhysicsServer) AreaGetSpaceOverrideMode(area *RID) *int64 {
+func (o *PhysicsServer) AreaGetSpaceOverrideMode(area *RID) int64 {
 	log.Println("Calling PhysicsServer.AreaGetSpaceOverrideMode()")
 
 	// Build out the method's arguments
@@ -14891,11 +14891,11 @@ func (o *PhysicsServer) AreaGetSpaceOverrideMode(area *RID) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "area_get_space_override_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "area_get_space_override_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -15376,7 +15376,7 @@ func (o *PhysicsServer) BodySetMode(body *RID, mode int64) {
 /*
 
  */
-func (o *PhysicsServer) BodyGetMode(body *RID) *int64 {
+func (o *PhysicsServer) BodyGetMode(body *RID) int64 {
 	log.Println("Calling PhysicsServer.BodyGetMode()")
 
 	// Build out the method's arguments
@@ -15385,11 +15385,11 @@ func (o *PhysicsServer) BodyGetMode(body *RID) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "body_get_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "body_get_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -15890,7 +15890,7 @@ func (o *PhysicsServer) BodySetAxisLock(body *RID, axis int64) {
 /*
 
  */
-func (o *PhysicsServer) BodyGetAxisLock(body *RID) *int64 {
+func (o *PhysicsServer) BodyGetAxisLock(body *RID) int64 {
 	log.Println("Calling PhysicsServer.BodyGetAxisLock()")
 
 	// Build out the method's arguments
@@ -15899,11 +15899,11 @@ func (o *PhysicsServer) BodyGetAxisLock(body *RID) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "body_get_axis_lock", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "body_get_axis_lock", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -16491,7 +16491,7 @@ func (o *PhysicsServer) ConeTwistJointGetParam(joint *RID, param int64) float64 
 /*
 
  */
-func (o *PhysicsServer) JointGetType(joint *RID) *int64 {
+func (o *PhysicsServer) JointGetType(joint *RID) int64 {
 	log.Println("Calling PhysicsServer.JointGetType()")
 
 	// Build out the method's arguments
@@ -16500,11 +16500,11 @@ func (o *PhysicsServer) JointGetType(joint *RID) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "joint_get_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "joint_get_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -17477,7 +17477,7 @@ func (o *Physics2DServer) ShapeSetData(shape *RID, data *Variant) {
 /*
    Return the type of shape (see SHAPE_* constants).
 */
-func (o *Physics2DServer) ShapeGetType(shape *RID) *int64 {
+func (o *Physics2DServer) ShapeGetType(shape *RID) int64 {
 	log.Println("Calling Physics2DServer.ShapeGetType()")
 
 	// Build out the method's arguments
@@ -17486,11 +17486,11 @@ func (o *Physics2DServer) ShapeGetType(shape *RID) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "shape_get_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "shape_get_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -17729,7 +17729,7 @@ func (o *Physics2DServer) AreaSetSpaceOverrideMode(area *RID, mode int64) {
 /*
    Return the space override mode for the area.
 */
-func (o *Physics2DServer) AreaGetSpaceOverrideMode(area *RID) *int64 {
+func (o *Physics2DServer) AreaGetSpaceOverrideMode(area *RID) int64 {
 	log.Println("Calling Physics2DServer.AreaGetSpaceOverrideMode()")
 
 	// Build out the method's arguments
@@ -17738,11 +17738,11 @@ func (o *Physics2DServer) AreaGetSpaceOverrideMode(area *RID) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "area_get_space_override_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "area_get_space_override_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -18202,7 +18202,7 @@ func (o *Physics2DServer) BodySetMode(body *RID, mode int64) {
 /*
    Return the body mode.
 */
-func (o *Physics2DServer) BodyGetMode(body *RID) *int64 {
+func (o *Physics2DServer) BodyGetMode(body *RID) int64 {
 	log.Println("Calling Physics2DServer.BodyGetMode()")
 
 	// Build out the method's arguments
@@ -18211,11 +18211,11 @@ func (o *Physics2DServer) BodyGetMode(body *RID) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "body_get_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "body_get_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -18532,7 +18532,7 @@ func (o *Physics2DServer) BodySetContinuousCollisionDetectionMode(body *RID, mod
 /*
    Return the continuous collision detection mode.
 */
-func (o *Physics2DServer) BodyGetContinuousCollisionDetectionMode(body *RID) *int64 {
+func (o *Physics2DServer) BodyGetContinuousCollisionDetectionMode(body *RID) int64 {
 	log.Println("Calling Physics2DServer.BodyGetContinuousCollisionDetectionMode()")
 
 	// Build out the method's arguments
@@ -18541,11 +18541,11 @@ func (o *Physics2DServer) BodyGetContinuousCollisionDetectionMode(body *RID) *in
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "body_get_continuous_collision_detection_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "body_get_continuous_collision_detection_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -19109,7 +19109,7 @@ func (o *Physics2DServer) DampedStringJointGetParam(joint *RID, param int64) flo
 /*
    Return the type of a joint (see JOINT_* constants).
 */
-func (o *Physics2DServer) JointGetType(joint *RID) *int64 {
+func (o *Physics2DServer) JointGetType(joint *RID) int64 {
 	log.Println("Calling Physics2DServer.JointGetType()")
 
 	// Build out the method's arguments
@@ -19118,11 +19118,11 @@ func (o *Physics2DServer) JointGetType(joint *RID) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "joint_get_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "joint_get_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -20393,7 +20393,7 @@ func (o *AudioServer) Unlock() {
 /*
 
  */
-func (o *AudioServer) GetSpeakerMode() *int64 {
+func (o *AudioServer) GetSpeakerMode() int64 {
 	log.Println("Calling AudioServer.GetSpeakerMode()")
 
 	// Build out the method's arguments
@@ -20401,11 +20401,11 @@ func (o *AudioServer) GetSpeakerMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_speaker_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_speaker_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -21105,7 +21105,7 @@ func (o *Input) SetMouseMode(mode int64) {
 /*
    Return the mouse mode. See the constants for more information.
 */
-func (o *Input) GetMouseMode() *int64 {
+func (o *Input) GetMouseMode() int64 {
 	log.Println("Calling Input.GetMouseMode()")
 
 	// Build out the method's arguments
@@ -21113,11 +21113,11 @@ func (o *Input) GetMouseMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_mouse_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_mouse_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -21715,7 +21715,7 @@ func (o *ARVRPositionalTracker) baseClass() string {
 /*
    Type of tracker.
 */
-func (o *ARVRPositionalTracker) GetType() *int64 {
+func (o *ARVRPositionalTracker) GetType() int64 {
 	log.Println("Calling ARVRPositionalTracker.GetType()")
 
 	// Build out the method's arguments
@@ -21723,11 +21723,11 @@ func (o *ARVRPositionalTracker) GetType() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -21862,7 +21862,7 @@ func (o *ARVRPositionalTracker) GetPosition() *Vector3 {
 /*
 
  */
-func (o *ARVRPositionalTracker) GetHand() *int64 {
+func (o *ARVRPositionalTracker) GetHand() int64 {
 	log.Println("Calling ARVRPositionalTracker.GetHand()")
 
 	// Build out the method's arguments
@@ -21870,11 +21870,11 @@ func (o *ARVRPositionalTracker) GetHand() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_hand", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_hand", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -22961,7 +22961,7 @@ func (o *AudioEffectFilter) SetDb(amount int64) {
 /*
 
  */
-func (o *AudioEffectFilter) GetDb() *int64 {
+func (o *AudioEffectFilter) GetDb() int64 {
 	log.Println("Calling AudioEffectFilter.GetDb()")
 
 	// Build out the method's arguments
@@ -22969,11 +22969,11 @@ func (o *AudioEffectFilter) GetDb() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_db", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_db", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -23278,7 +23278,7 @@ func (o *AudioEffectDistortion) SetMode(mode int64) {
 /*
 
  */
-func (o *AudioEffectDistortion) GetMode() *int64 {
+func (o *AudioEffectDistortion) GetMode() int64 {
 	log.Println("Calling AudioEffectDistortion.GetMode()")
 
 	// Build out the method's arguments
@@ -23286,11 +23286,11 @@ func (o *AudioEffectDistortion) GetMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -26830,7 +26830,7 @@ func (o *BitmapFont) baseClass() string {
 /*
 
  */
-func (o *BitmapFont) CreateFromFnt(path string) *int64 {
+func (o *BitmapFont) CreateFromFnt(path string) int64 {
 	log.Println("Calling BitmapFont.CreateFromFnt()")
 
 	// Build out the method's arguments
@@ -26839,11 +26839,11 @@ func (o *BitmapFont) CreateFromFnt(path string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "create_from_fnt", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "create_from_fnt", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -28249,7 +28249,7 @@ func (o *StyleBoxTexture) SetHAxisStretchMode(mode int64) {
 /*
 
  */
-func (o *StyleBoxTexture) GetHAxisStretchMode() *int64 {
+func (o *StyleBoxTexture) GetHAxisStretchMode() int64 {
 	log.Println("Calling StyleBoxTexture.GetHAxisStretchMode()")
 
 	// Build out the method's arguments
@@ -28257,11 +28257,11 @@ func (o *StyleBoxTexture) GetHAxisStretchMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_h_axis_stretch_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_h_axis_stretch_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -28288,7 +28288,7 @@ func (o *StyleBoxTexture) SetVAxisStretchMode(mode int64) {
 /*
 
  */
-func (o *StyleBoxTexture) GetVAxisStretchMode() *int64 {
+func (o *StyleBoxTexture) GetVAxisStretchMode() int64 {
 	log.Println("Calling StyleBoxTexture.GetVAxisStretchMode()")
 
 	// Build out the method's arguments
@@ -28296,11 +28296,11 @@ func (o *StyleBoxTexture) GetVAxisStretchMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_v_axis_stretch_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_v_axis_stretch_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -28553,7 +28553,7 @@ func (o *ImageTexture) CreateFromImage(image *Image, flags int64) {
 /*
    Return the format of the [ImageTexture], one of [Image].FORMAT_*.
 */
-func (o *ImageTexture) GetFormat() *int64 {
+func (o *ImageTexture) GetFormat() int64 {
 	log.Println("Calling ImageTexture.GetFormat()")
 
 	// Build out the method's arguments
@@ -28561,11 +28561,11 @@ func (o *ImageTexture) GetFormat() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_format", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_format", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -28628,7 +28628,7 @@ func (o *ImageTexture) SetStorage(mode int64) {
 /*
    Return the storage type. One of [ImageTexture].STORAGE_*.
 */
-func (o *ImageTexture) GetStorage() *int64 {
+func (o *ImageTexture) GetStorage() int64 {
 	log.Println("Calling ImageTexture.GetStorage()")
 
 	// Build out the method's arguments
@@ -28636,11 +28636,11 @@ func (o *ImageTexture) GetStorage() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_storage", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_storage", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -29144,7 +29144,7 @@ func (o *Button) SetTextAlign(align int64) {
 /*
 
  */
-func (o *Button) GetTextAlign() *int64 {
+func (o *Button) GetTextAlign() int64 {
 	log.Println("Calling Button.GetTextAlign()")
 
 	// Build out the method's arguments
@@ -29152,11 +29152,11 @@ func (o *Button) GetTextAlign() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_text_align", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_text_align", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -29261,7 +29261,7 @@ func (o *LinkButton) SetUnderlineMode(underlineMode int64) {
 /*
    Returns the underline mode for this button.
 */
-func (o *LinkButton) GetUnderlineMode() *int64 {
+func (o *LinkButton) GetUnderlineMode() int64 {
 	log.Println("Calling LinkButton.GetUnderlineMode()")
 
 	// Build out the method's arguments
@@ -29269,11 +29269,11 @@ func (o *LinkButton) GetUnderlineMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_underline_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_underline_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -30151,7 +30151,7 @@ func (o *Label) SetAlign(align int64) {
 /*
    Return the alignment mode (any of the ALIGN_* enumeration values).
 */
-func (o *Label) GetAlign() *int64 {
+func (o *Label) GetAlign() int64 {
 	log.Println("Calling Label.GetAlign()")
 
 	// Build out the method's arguments
@@ -30159,11 +30159,11 @@ func (o *Label) GetAlign() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_align", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_align", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -30190,7 +30190,7 @@ func (o *Label) SetValign(valign int64) {
 /*
    Return the vertical alignment mode (any of the VALIGN_* enumeration values).
 */
-func (o *Label) GetValign() *int64 {
+func (o *Label) GetValign() int64 {
 	log.Println("Calling Label.GetValign()")
 
 	// Build out the method's arguments
@@ -30198,11 +30198,11 @@ func (o *Label) GetValign() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_valign", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_valign", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -30677,7 +30677,7 @@ func (o *LineEdit) SetAlign(align int64) {
 /*
    Return the align mode of the [LineEdit].
 */
-func (o *LineEdit) GetAlign() *int64 {
+func (o *LineEdit) GetAlign() int64 {
 	log.Println("Calling LineEdit.GetAlign()")
 
 	// Build out the method's arguments
@@ -30685,11 +30685,11 @@ func (o *LineEdit) GetAlign() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_align", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_align", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -33253,7 +33253,7 @@ func (o *FileDialog) SetMode(mode int64) {
 /*
    Get the file dialog mode from the MODE_* enum.
 */
-func (o *FileDialog) GetMode() *int64 {
+func (o *FileDialog) GetMode() int64 {
 	log.Println("Calling FileDialog.GetMode()")
 
 	// Build out the method's arguments
@@ -33261,11 +33261,11 @@ func (o *FileDialog) GetMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -33313,7 +33313,7 @@ func (o *FileDialog) SetAccess(access int64) {
 /*
    Return the file access permission of the dialog.
 */
-func (o *FileDialog) GetAccess() *int64 {
+func (o *FileDialog) GetAccess() int64 {
 	log.Println("Calling FileDialog.GetAccess()")
 
 	// Build out the method's arguments
@@ -33321,11 +33321,11 @@ func (o *FileDialog) GetAccess() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_access", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_access", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -35109,7 +35109,7 @@ func (o *GraphNode) SetOverlay(overlay int64) {
 /*
 
  */
-func (o *GraphNode) GetOverlay() *int64 {
+func (o *GraphNode) GetOverlay() int64 {
 	log.Println("Calling GraphNode.GetOverlay()")
 
 	// Build out the method's arguments
@@ -35117,11 +35117,11 @@ func (o *GraphNode) GetOverlay() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_overlay", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_overlay", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -36709,7 +36709,7 @@ func (o *ItemList) SetSelectMode(mode int64) {
 /*
 
  */
-func (o *ItemList) GetSelectMode() *int64 {
+func (o *ItemList) GetSelectMode() int64 {
 	log.Println("Calling ItemList.GetSelectMode()")
 
 	// Build out the method's arguments
@@ -36717,11 +36717,11 @@ func (o *ItemList) GetSelectMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_select_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_select_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -36748,7 +36748,7 @@ func (o *ItemList) SetIconMode(mode int64) {
 /*
 
  */
-func (o *ItemList) GetIconMode() *int64 {
+func (o *ItemList) GetIconMode() int64 {
 	log.Println("Calling ItemList.GetIconMode()")
 
 	// Build out the method's arguments
@@ -36756,11 +36756,11 @@ func (o *ItemList) GetIconMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_icon_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_icon_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -37239,7 +37239,7 @@ func (o *TabContainer) SetTabAlign(align int64) {
 /*
    Return tab alignment, from the ALIGN_* enum.
 */
-func (o *TabContainer) GetTabAlign() *int64 {
+func (o *TabContainer) GetTabAlign() int64 {
 	log.Println("Calling TabContainer.GetTabAlign()")
 
 	// Build out the method's arguments
@@ -37247,11 +37247,11 @@ func (o *TabContainer) GetTabAlign() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_tab_align", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_tab_align", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -37752,7 +37752,7 @@ func (o *Tabs) SetTabAlign(align int64) {
 /*
 
  */
-func (o *Tabs) GetTabAlign() *int64 {
+func (o *Tabs) GetTabAlign() int64 {
 	log.Println("Calling Tabs.GetTabAlign()")
 
 	// Build out the method's arguments
@@ -37760,11 +37760,11 @@ func (o *Tabs) GetTabAlign() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_tab_align", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_tab_align", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -37850,7 +37850,7 @@ func (o *Tabs) SetTabCloseDisplayPolicy(policy int64) {
 /*
 
  */
-func (o *Tabs) GetTabCloseDisplayPolicy() *int64 {
+func (o *Tabs) GetTabCloseDisplayPolicy() int64 {
 	log.Println("Calling Tabs.GetTabCloseDisplayPolicy()")
 
 	// Build out the method's arguments
@@ -37858,11 +37858,11 @@ func (o *Tabs) GetTabCloseDisplayPolicy() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_tab_close_display_policy", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_tab_close_display_policy", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -38871,7 +38871,7 @@ func (o *RichTextLabel) IsSelectionEnabled() bool {
 /*
 
  */
-func (o *RichTextLabel) ParseBbcode(bbcode string) *int64 {
+func (o *RichTextLabel) ParseBbcode(bbcode string) int64 {
 	log.Println("Calling RichTextLabel.ParseBbcode()")
 
 	// Build out the method's arguments
@@ -38880,11 +38880,11 @@ func (o *RichTextLabel) ParseBbcode(bbcode string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "parse_bbcode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "parse_bbcode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -38893,7 +38893,7 @@ func (o *RichTextLabel) ParseBbcode(bbcode string) *int64 {
 /*
 
  */
-func (o *RichTextLabel) AppendBbcode(bbcode string) *int64 {
+func (o *RichTextLabel) AppendBbcode(bbcode string) int64 {
 	log.Println("Calling RichTextLabel.AppendBbcode()")
 
 	// Build out the method's arguments
@@ -38902,11 +38902,11 @@ func (o *RichTextLabel) AppendBbcode(bbcode string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "append_bbcode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "append_bbcode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -39275,7 +39275,7 @@ func (o *GraphEdit) baseClass() string {
 /*
    Create a connection between 'from_port' slot of 'from' GraphNode and 'to_port' slot of 'to' GraphNode. If the connection already exists, no connection is created.
 */
-func (o *GraphEdit) ConnectNode(from string, fromPort int64, to string, toPort int64) *int64 {
+func (o *GraphEdit) ConnectNode(from string, fromPort int64, to string, toPort int64) int64 {
 	log.Println("Calling GraphEdit.ConnectNode()")
 
 	// Build out the method's arguments
@@ -39287,11 +39287,11 @@ func (o *GraphEdit) ConnectNode(from string, fromPort int64, to string, toPort i
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "connect_node", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "connect_node", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -40909,7 +40909,7 @@ func (o *Node) SetPauseMode(mode int64) {
 /*
    Return the pause mode (PAUSE_MODE_*) of this Node.
 */
-func (o *Node) GetPauseMode() *int64 {
+func (o *Node) GetPauseMode() int64 {
 	log.Println("Calling Node.GetPauseMode()")
 
 	// Build out the method's arguments
@@ -40917,11 +40917,11 @@ func (o *Node) GetPauseMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_pause_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_pause_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -42268,7 +42268,7 @@ func (o *Viewport) SetClearMode(mode int64) {
 /*
 
  */
-func (o *Viewport) GetClearMode() *int64 {
+func (o *Viewport) GetClearMode() int64 {
 	log.Println("Calling Viewport.GetClearMode()")
 
 	// Build out the method's arguments
@@ -42276,11 +42276,11 @@ func (o *Viewport) GetClearMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_clear_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_clear_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -42307,7 +42307,7 @@ func (o *Viewport) SetUpdateMode(mode int64) {
 /*
    Get when the viewport would be updated, will be one of the [code]UPDATE_*[/code] constants.
 */
-func (o *Viewport) GetUpdateMode() *int64 {
+func (o *Viewport) GetUpdateMode() int64 {
 	log.Println("Calling Viewport.GetUpdateMode()")
 
 	// Build out the method's arguments
@@ -42315,11 +42315,11 @@ func (o *Viewport) GetUpdateMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_update_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_update_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -42346,7 +42346,7 @@ func (o *Viewport) SetMsaa(msaa int64) {
 /*
 
  */
-func (o *Viewport) GetMsaa() *int64 {
+func (o *Viewport) GetMsaa() int64 {
 	log.Println("Calling Viewport.GetMsaa()")
 
 	// Build out the method's arguments
@@ -42354,11 +42354,11 @@ func (o *Viewport) GetMsaa() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_msaa", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_msaa", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -42424,7 +42424,7 @@ func (o *Viewport) SetUsage(usage int64) {
 /*
 
  */
-func (o *Viewport) GetUsage() *int64 {
+func (o *Viewport) GetUsage() int64 {
 	log.Println("Calling Viewport.GetUsage()")
 
 	// Build out the method's arguments
@@ -42432,11 +42432,11 @@ func (o *Viewport) GetUsage() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_usage", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_usage", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -42463,7 +42463,7 @@ func (o *Viewport) SetDebugDraw(debugDraw int64) {
 /*
 
  */
-func (o *Viewport) GetDebugDraw() *int64 {
+func (o *Viewport) GetDebugDraw() int64 {
 	log.Println("Calling Viewport.GetDebugDraw()")
 
 	// Build out the method's arguments
@@ -42471,11 +42471,11 @@ func (o *Viewport) GetDebugDraw() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_debug_draw", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_debug_draw", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -43086,7 +43086,7 @@ func (o *Viewport) SetShadowAtlasQuadrantSubdiv(quadrant int64, subdiv int64) {
 /*
 
  */
-func (o *Viewport) GetShadowAtlasQuadrantSubdiv(quadrant int64) *int64 {
+func (o *Viewport) GetShadowAtlasQuadrantSubdiv(quadrant int64) int64 {
 	log.Println("Calling Viewport.GetShadowAtlasQuadrantSubdiv()")
 
 	// Build out the method's arguments
@@ -43095,11 +43095,11 @@ func (o *Viewport) GetShadowAtlasQuadrantSubdiv(quadrant int64) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_shadow_atlas_quadrant_subdiv", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_shadow_atlas_quadrant_subdiv", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -43342,7 +43342,7 @@ func (o *HTTPRequest) baseClass() string {
 /*
 
  */
-func (o *HTTPRequest) Request(url string, customHeaders *PoolStringArray, sslValidateDomain bool, method int64, requestData string) *int64 {
+func (o *HTTPRequest) Request(url string, customHeaders *PoolStringArray, sslValidateDomain bool, method int64, requestData string) int64 {
 	log.Println("Calling HTTPRequest.Request()")
 
 	// Build out the method's arguments
@@ -43355,11 +43355,11 @@ func (o *HTTPRequest) Request(url string, customHeaders *PoolStringArray, sslVal
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "request", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "request", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -43385,7 +43385,7 @@ func (o *HTTPRequest) CancelRequest() {
 /*
    Return the current status of the underlying [HTTPClient].
 */
-func (o *HTTPRequest) GetHttpClientStatus() *int64 {
+func (o *HTTPRequest) GetHttpClientStatus() int64 {
 	log.Println("Calling HTTPRequest.GetHttpClientStatus()")
 
 	// Build out the method's arguments
@@ -43393,11 +43393,11 @@ func (o *HTTPRequest) GetHttpClientStatus() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_http_client_status", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_http_client_status", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -43911,7 +43911,7 @@ func (o *Timer) SetTimerProcessMode(mode int64) {
 /*
    Return the timer's processing mode.
 */
-func (o *Timer) GetTimerProcessMode() *int64 {
+func (o *Timer) GetTimerProcessMode() int64 {
 	log.Println("Calling Timer.GetTimerProcessMode()")
 
 	// Build out the method's arguments
@@ -43919,11 +43919,11 @@ func (o *Timer) GetTimerProcessMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_timer_process_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_timer_process_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -47468,7 +47468,7 @@ func (o *Control) SetFocusMode(mode int64) {
 /*
    Returns the focus access mode for the control (FOCUS_NONE, FOCUS_CLICK, FOCUS_ALL) (see [method set_focus_mode]).
 */
-func (o *Control) GetFocusMode() *int64 {
+func (o *Control) GetFocusMode() int64 {
 	log.Println("Calling Control.GetFocusMode()")
 
 	// Build out the method's arguments
@@ -47476,11 +47476,11 @@ func (o *Control) GetFocusMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_focus_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_focus_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -48214,7 +48214,7 @@ func (o *Control) SetHGrowDirection(direction int64) {
 /*
 
  */
-func (o *Control) GetHGrowDirection() *int64 {
+func (o *Control) GetHGrowDirection() int64 {
 	log.Println("Calling Control.GetHGrowDirection()")
 
 	// Build out the method's arguments
@@ -48222,11 +48222,11 @@ func (o *Control) GetHGrowDirection() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_h_grow_direction", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_h_grow_direction", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -48253,7 +48253,7 @@ func (o *Control) SetVGrowDirection(direction int64) {
 /*
 
  */
-func (o *Control) GetVGrowDirection() *int64 {
+func (o *Control) GetVGrowDirection() int64 {
 	log.Println("Calling Control.GetVGrowDirection()")
 
 	// Build out the method's arguments
@@ -48261,11 +48261,11 @@ func (o *Control) GetVGrowDirection() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_v_grow_direction", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_v_grow_direction", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -48353,7 +48353,7 @@ func (o *Control) SetDefaultCursorShape(shape int64) {
 /*
    Return the default cursor shape for this control. See enum CURSOR_* for the list of shapes.
 */
-func (o *Control) GetDefaultCursorShape() *int64 {
+func (o *Control) GetDefaultCursorShape() int64 {
 	log.Println("Calling Control.GetDefaultCursorShape()")
 
 	// Build out the method's arguments
@@ -48361,11 +48361,11 @@ func (o *Control) GetDefaultCursorShape() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_default_cursor_shape", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_default_cursor_shape", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -48374,7 +48374,7 @@ func (o *Control) GetDefaultCursorShape() *int64 {
 /*
    Return the cursor shape at a certain position in the control.
 */
-func (o *Control) GetCursorShape(pos *Vector2) *int64 {
+func (o *Control) GetCursorShape(pos *Vector2) int64 {
 	log.Println("Calling Control.GetCursorShape()")
 
 	// Build out the method's arguments
@@ -48383,11 +48383,11 @@ func (o *Control) GetCursorShape(pos *Vector2) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_cursor_shape", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_cursor_shape", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -48474,7 +48474,7 @@ func (o *Control) SetMouseFilter(filter int64) {
 /*
    Return when the control is ignoring mouse events (even touchpad events send mouse events).
 */
-func (o *Control) GetMouseFilter() *int64 {
+func (o *Control) GetMouseFilter() int64 {
 	log.Println("Calling Control.GetMouseFilter()")
 
 	// Build out the method's arguments
@@ -48482,11 +48482,11 @@ func (o *Control) GetMouseFilter() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_mouse_filter", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_mouse_filter", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -48901,7 +48901,7 @@ func (o *BaseButton) SetActionMode(mode int64) {
 /*
    Return the current mode of action (see [method set_action_mode]) (one of the ACTION_MODE_* constants).
 */
-func (o *BaseButton) GetActionMode() *int64 {
+func (o *BaseButton) GetActionMode() int64 {
 	log.Println("Calling BaseButton.GetActionMode()")
 
 	// Build out the method's arguments
@@ -48909,11 +48909,11 @@ func (o *BaseButton) GetActionMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_action_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_action_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -48922,7 +48922,7 @@ func (o *BaseButton) GetActionMode() *int64 {
 /*
    Return the visual state used to draw the button. This is useful mainly when implementing your own draw code by either overriding _draw() or connecting to "draw" signal. The visual state of the button is defined by the DRAW_* enum.
 */
-func (o *BaseButton) GetDrawMode() *int64 {
+func (o *BaseButton) GetDrawMode() int64 {
 	log.Println("Calling BaseButton.GetDrawMode()")
 
 	// Build out the method's arguments
@@ -48930,11 +48930,11 @@ func (o *BaseButton) GetDrawMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_draw_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_draw_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -48961,7 +48961,7 @@ func (o *BaseButton) SetEnabledFocusMode(mode int64) {
 /*
    Returns focus access mode used when switching between enabled/disabled (see [method Control.set_focus_mode] and [method set_disabled]).
 */
-func (o *BaseButton) GetEnabledFocusMode() *int64 {
+func (o *BaseButton) GetEnabledFocusMode() int64 {
 	log.Println("Calling BaseButton.GetEnabledFocusMode()")
 
 	// Build out the method's arguments
@@ -48969,11 +48969,11 @@ func (o *BaseButton) GetEnabledFocusMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_enabled_focus_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_enabled_focus_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -50052,7 +50052,7 @@ func (o *TextureRect) SetStretchMode(stretchMode int64) {
 /*
 
  */
-func (o *TextureRect) GetStretchMode() *int64 {
+func (o *TextureRect) GetStretchMode() int64 {
 	log.Println("Calling TextureRect.GetStretchMode()")
 
 	// Build out the method's arguments
@@ -50060,11 +50060,11 @@ func (o *TextureRect) GetStretchMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_stretch_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_stretch_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -50324,7 +50324,7 @@ func (o *NinePatchRect) SetHAxisStretchMode(mode int64) {
 /*
 
  */
-func (o *NinePatchRect) GetHAxisStretchMode() *int64 {
+func (o *NinePatchRect) GetHAxisStretchMode() int64 {
 	log.Println("Calling NinePatchRect.GetHAxisStretchMode()")
 
 	// Build out the method's arguments
@@ -50332,11 +50332,11 @@ func (o *NinePatchRect) GetHAxisStretchMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_h_axis_stretch_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_h_axis_stretch_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -50363,7 +50363,7 @@ func (o *NinePatchRect) SetVAxisStretchMode(mode int64) {
 /*
 
  */
-func (o *NinePatchRect) GetVAxisStretchMode() *int64 {
+func (o *NinePatchRect) GetVAxisStretchMode() int64 {
 	log.Println("Calling NinePatchRect.GetVAxisStretchMode()")
 
 	// Build out the method's arguments
@@ -50371,11 +50371,11 @@ func (o *NinePatchRect) GetVAxisStretchMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_v_axis_stretch_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_v_axis_stretch_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -50693,7 +50693,7 @@ func (o *TextureButton) GetExpand() bool {
 /*
 
  */
-func (o *TextureButton) GetStretchMode() *int64 {
+func (o *TextureButton) GetStretchMode() int64 {
 	log.Println("Calling TextureButton.GetStretchMode()")
 
 	// Build out the method's arguments
@@ -50701,11 +50701,11 @@ func (o *TextureButton) GetStretchMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_stretch_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_stretch_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -51051,7 +51051,7 @@ func (o *BoxContainer) AddSpacer(begin bool) {
 /*
    Return the alignment of children in the container.
 */
-func (o *BoxContainer) GetAlignment() *int64 {
+func (o *BoxContainer) GetAlignment() int64 {
 	log.Println("Calling BoxContainer.GetAlignment()")
 
 	// Build out the method's arguments
@@ -51059,11 +51059,11 @@ func (o *BoxContainer) GetAlignment() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_alignment", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_alignment", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -51506,7 +51506,7 @@ func (o *SplitContainer) SetDraggerVisibility(mode int64) {
 /*
    Return visibility of the split dragger (one of [DRAGGER_VISIBLE], [DRAGGER_HIDDEN] or [DRAGGER_HIDDEN_COLLAPSED]).
 */
-func (o *SplitContainer) GetDraggerVisibility() *int64 {
+func (o *SplitContainer) GetDraggerVisibility() int64 {
 	log.Println("Calling SplitContainer.GetDraggerVisibility()")
 
 	// Build out the method's arguments
@@ -51514,11 +51514,11 @@ func (o *SplitContainer) GetDraggerVisibility() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_dragger_visibility", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_dragger_visibility", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -52229,7 +52229,7 @@ func (o *TreeItem) SetCellMode(column int64, mode int64) {
 /*
 
  */
-func (o *TreeItem) GetCellMode(column int64) *int64 {
+func (o *TreeItem) GetCellMode(column int64) int64 {
 	log.Println("Calling TreeItem.GetCellMode()")
 
 	// Build out the method's arguments
@@ -52238,11 +52238,11 @@ func (o *TreeItem) GetCellMode(column int64) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_cell_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_cell_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -53293,7 +53293,7 @@ func (o *TreeItem) SetTextAlign(column int64, textAlign int64) {
 /*
 
  */
-func (o *TreeItem) GetTextAlign(column int64) *int64 {
+func (o *TreeItem) GetTextAlign(column int64) int64 {
 	log.Println("Calling TreeItem.GetTextAlign()")
 
 	// Build out the method's arguments
@@ -53302,11 +53302,11 @@ func (o *TreeItem) GetTextAlign(column int64) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_text_align", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_text_align", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -55344,7 +55344,7 @@ func (o *AnimationPlayer) X_AnimationChanged() {
 /*
    Add an animation resource to the player, which will be later referenced by the "name" argument.
 */
-func (o *AnimationPlayer) AddAnimation(name string, animation *Animation) *int64 {
+func (o *AnimationPlayer) AddAnimation(name string, animation *Animation) int64 {
 	log.Println("Calling AnimationPlayer.AddAnimation()")
 
 	// Build out the method's arguments
@@ -55354,11 +55354,11 @@ func (o *AnimationPlayer) AddAnimation(name string, animation *Animation) *int64
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "add_animation", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "add_animation", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -56015,7 +56015,7 @@ func (o *AnimationPlayer) SetAnimationProcessMode(mode int64) {
 /*
    Return the mode in which the animation player processes. See [method set_animation_process_mode].
 */
-func (o *AnimationPlayer) GetAnimationProcessMode() *int64 {
+func (o *AnimationPlayer) GetAnimationProcessMode() int64 {
 	log.Println("Calling AnimationPlayer.GetAnimationProcessMode()")
 
 	// Build out the method's arguments
@@ -56023,11 +56023,11 @@ func (o *AnimationPlayer) GetAnimationProcessMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_animation_process_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_animation_process_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -56249,7 +56249,7 @@ func (o *Tween) SetTweenProcessMode(mode int64) {
 /*
    Returns the process mode that has been set from editor GUI or [method set_tween_process_mode]
 */
-func (o *Tween) GetTweenProcessMode() *int64 {
+func (o *Tween) GetTweenProcessMode() int64 {
 	log.Println("Calling Tween.GetTweenProcessMode()")
 
 	// Build out the method's arguments
@@ -56257,11 +56257,11 @@ func (o *Tween) GetTweenProcessMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_tween_process_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_tween_process_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -57332,7 +57332,7 @@ func (o *Camera) GetZnear() float64 {
 /*
 
  */
-func (o *Camera) GetProjection() *int64 {
+func (o *Camera) GetProjection() int64 {
 	log.Println("Calling Camera.GetProjection()")
 
 	// Build out the method's arguments
@@ -57340,11 +57340,11 @@ func (o *Camera) GetProjection() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_projection", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_projection", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -57527,7 +57527,7 @@ func (o *Camera) SetKeepAspectMode(mode int64) {
 /*
 
  */
-func (o *Camera) GetKeepAspectMode() *int64 {
+func (o *Camera) GetKeepAspectMode() int64 {
 	log.Println("Calling Camera.GetKeepAspectMode()")
 
 	// Build out the method's arguments
@@ -57535,11 +57535,11 @@ func (o *Camera) GetKeepAspectMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_keep_aspect_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_keep_aspect_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -57566,7 +57566,7 @@ func (o *Camera) SetDopplerTracking(mode int64) {
 /*
 
  */
-func (o *Camera) GetDopplerTracking() *int64 {
+func (o *Camera) GetDopplerTracking() int64 {
 	log.Println("Calling Camera.GetDopplerTracking()")
 
 	// Build out the method's arguments
@@ -57574,11 +57574,11 @@ func (o *Camera) GetDopplerTracking() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_doppler_tracking", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_doppler_tracking", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -57863,7 +57863,7 @@ func (o *ARVRController) GetIsActive() bool {
 /*
 
  */
-func (o *ARVRController) GetHand() *int64 {
+func (o *ARVRController) GetHand() int64 {
 	log.Println("Calling ARVRController.GetHand()")
 
 	// Build out the method's arguments
@@ -57871,11 +57871,11 @@ func (o *ARVRController) GetHand() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_hand", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_hand", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -58330,7 +58330,7 @@ func (o *GeometryInstance) SetCastShadowsSetting(shadowCastingSetting int64) {
 /*
 
  */
-func (o *GeometryInstance) GetCastShadowsSetting() *int64 {
+func (o *GeometryInstance) GetCastShadowsSetting() int64 {
 	log.Println("Calling GeometryInstance.GetCastShadowsSetting()")
 
 	// Build out the method's arguments
@@ -58338,11 +58338,11 @@ func (o *GeometryInstance) GetCastShadowsSetting() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_cast_shadows_setting", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_cast_shadows_setting", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -59384,7 +59384,7 @@ func (o *SpriteBase3D) SetAxis(axis int64) {
 /*
 
  */
-func (o *SpriteBase3D) GetAxis() *int64 {
+func (o *SpriteBase3D) GetAxis() int64 {
 	log.Println("Calling SpriteBase3D.GetAxis()")
 
 	// Build out the method's arguments
@@ -59392,11 +59392,11 @@ func (o *SpriteBase3D) GetAxis() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_axis", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_axis", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -59464,7 +59464,7 @@ func (o *SpriteBase3D) SetAlphaCutMode(mode int64) {
 /*
 
  */
-func (o *SpriteBase3D) GetAlphaCutMode() *int64 {
+func (o *SpriteBase3D) GetAlphaCutMode() int64 {
 	log.Println("Calling SpriteBase3D.GetAlphaCutMode()")
 
 	// Build out the method's arguments
@@ -59472,11 +59472,11 @@ func (o *SpriteBase3D) GetAlphaCutMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_alpha_cut_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_alpha_cut_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -60801,7 +60801,7 @@ func (o *DirectionalLight) SetShadowMode(mode int64) {
 /*
 
  */
-func (o *DirectionalLight) GetShadowMode() *int64 {
+func (o *DirectionalLight) GetShadowMode() int64 {
 	log.Println("Calling DirectionalLight.GetShadowMode()")
 
 	// Build out the method's arguments
@@ -60809,11 +60809,11 @@ func (o *DirectionalLight) GetShadowMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_shadow_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_shadow_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -60840,7 +60840,7 @@ func (o *DirectionalLight) SetShadowDepthRange(mode int64) {
 /*
 
  */
-func (o *DirectionalLight) GetShadowDepthRange() *int64 {
+func (o *DirectionalLight) GetShadowDepthRange() int64 {
 	log.Println("Calling DirectionalLight.GetShadowDepthRange()")
 
 	// Build out the method's arguments
@@ -60848,11 +60848,11 @@ func (o *DirectionalLight) GetShadowDepthRange() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_shadow_depth_range", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_shadow_depth_range", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -60936,7 +60936,7 @@ func (o *OmniLight) SetShadowMode(mode int64) {
 /*
 
  */
-func (o *OmniLight) GetShadowMode() *int64 {
+func (o *OmniLight) GetShadowMode() int64 {
 	log.Println("Calling OmniLight.GetShadowMode()")
 
 	// Build out the method's arguments
@@ -60944,11 +60944,11 @@ func (o *OmniLight) GetShadowMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_shadow_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_shadow_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -60975,7 +60975,7 @@ func (o *OmniLight) SetShadowDetail(detail int64) {
 /*
 
  */
-func (o *OmniLight) GetShadowDetail() *int64 {
+func (o *OmniLight) GetShadowDetail() int64 {
 	log.Println("Calling OmniLight.GetShadowDetail()")
 
 	// Build out the method's arguments
@@ -60983,11 +60983,11 @@ func (o *OmniLight) GetShadowDetail() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_shadow_detail", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_shadow_detail", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -61479,7 +61479,7 @@ func (o *ReflectionProbe) SetUpdateMode(mode int64) {
 /*
 
  */
-func (o *ReflectionProbe) GetUpdateMode() *int64 {
+func (o *ReflectionProbe) GetUpdateMode() int64 {
 	log.Println("Calling ReflectionProbe.GetUpdateMode()")
 
 	// Build out the method's arguments
@@ -61487,11 +61487,11 @@ func (o *ReflectionProbe) GetUpdateMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_update_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_update_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -61575,7 +61575,7 @@ func (o *GIProbe) SetSubdiv(subdiv int64) {
 /*
 
  */
-func (o *GIProbe) GetSubdiv() *int64 {
+func (o *GIProbe) GetSubdiv() int64 {
 	log.Println("Calling GIProbe.GetSubdiv()")
 
 	// Build out the method's arguments
@@ -61583,11 +61583,11 @@ func (o *GIProbe) GetSubdiv() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_subdiv", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_subdiv", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -62450,7 +62450,7 @@ func (o *AnimationTreePlayer) NodeExists(node string) bool {
 /*
    Rename a node in the graph.
 */
-func (o *AnimationTreePlayer) NodeRename(node string, newName string) *int64 {
+func (o *AnimationTreePlayer) NodeRename(node string, newName string) int64 {
 	log.Println("Calling AnimationTreePlayer.NodeRename()")
 
 	// Build out the method's arguments
@@ -62460,11 +62460,11 @@ func (o *AnimationTreePlayer) NodeRename(node string, newName string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "node_rename", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "node_rename", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -62473,7 +62473,7 @@ func (o *AnimationTreePlayer) NodeRename(node string, newName string) *int64 {
 /*
    Get the node type, will return from NODE_* enum.
 */
-func (o *AnimationTreePlayer) NodeGetType(id string) *int64 {
+func (o *AnimationTreePlayer) NodeGetType(id string) int64 {
 	log.Println("Calling AnimationTreePlayer.NodeGetType()")
 
 	// Build out the method's arguments
@@ -62482,11 +62482,11 @@ func (o *AnimationTreePlayer) NodeGetType(id string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "node_get_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "node_get_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -63413,7 +63413,7 @@ func (o *AnimationTreePlayer) RemoveNode(id string) {
 /*
    Connects node [code]id[/code] to [code]dst_id[/code] at the specified input slot.
 */
-func (o *AnimationTreePlayer) ConnectNodes(id string, dstId string, dstInputIdx int64) *int64 {
+func (o *AnimationTreePlayer) ConnectNodes(id string, dstId string, dstInputIdx int64) int64 {
 	log.Println("Calling AnimationTreePlayer.ConnectNodes()")
 
 	// Build out the method's arguments
@@ -63424,11 +63424,11 @@ func (o *AnimationTreePlayer) ConnectNodes(id string, dstId string, dstInputIdx 
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "connect_nodes", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "connect_nodes", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -63636,7 +63636,7 @@ func (o *AnimationTreePlayer) SetAnimationProcessMode(mode int64) {
 /*
    Returns playback process mode of this AnimationTreePlayer.
 */
-func (o *AnimationTreePlayer) GetAnimationProcessMode() *int64 {
+func (o *AnimationTreePlayer) GetAnimationProcessMode() int64 {
 	log.Println("Calling AnimationTreePlayer.GetAnimationProcessMode()")
 
 	// Build out the method's arguments
@@ -63644,11 +63644,11 @@ func (o *AnimationTreePlayer) GetAnimationProcessMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_animation_process_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_animation_process_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -64252,7 +64252,7 @@ func (o *Particles) SetDrawOrder(order int64) {
 /*
 
  */
-func (o *Particles) GetDrawOrder() *int64 {
+func (o *Particles) GetDrawOrder() int64 {
 	log.Println("Calling Particles.GetDrawOrder()")
 
 	// Build out the method's arguments
@@ -64260,11 +64260,11 @@ func (o *Particles) GetDrawOrder() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_draw_order", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_draw_order", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -65860,7 +65860,7 @@ func (o *RigidBody) SetMode(mode int64) {
 /*
    Return the current body mode, see [method set_mode].
 */
-func (o *RigidBody) GetMode() *int64 {
+func (o *RigidBody) GetMode() int64 {
 	log.Println("Calling RigidBody.GetMode()")
 
 	// Build out the method's arguments
@@ -65868,11 +65868,11 @@ func (o *RigidBody) GetMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -66575,7 +66575,7 @@ func (o *RigidBody) SetAxisLock(axisLock int64) {
 /*
    Return the current axis lock of the body. One of AXIS_LOCK_* enum.
 */
-func (o *RigidBody) GetAxisLock() *int64 {
+func (o *RigidBody) GetAxisLock() int64 {
 	log.Println("Calling RigidBody.GetAxisLock()")
 
 	// Build out the method's arguments
@@ -66583,11 +66583,11 @@ func (o *RigidBody) GetAxisLock() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_axis_lock", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_axis_lock", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -67949,7 +67949,7 @@ func (o *Area) SetSpaceOverrideMode(enable int64) {
 /*
    Return the space override mode.
 */
-func (o *Area) GetSpaceOverrideMode() *int64 {
+func (o *Area) GetSpaceOverrideMode() int64 {
 	log.Println("Calling Area.GetSpaceOverrideMode()")
 
 	// Build out the method's arguments
@@ -67957,11 +67957,11 @@ func (o *Area) GetSpaceOverrideMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_space_override_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_space_override_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -69777,7 +69777,7 @@ func (o *MultiMesh) SetColorFormat(format int64) {
 /*
 
  */
-func (o *MultiMesh) GetColorFormat() *int64 {
+func (o *MultiMesh) GetColorFormat() int64 {
 	log.Println("Calling MultiMesh.GetColorFormat()")
 
 	// Build out the method's arguments
@@ -69785,11 +69785,11 @@ func (o *MultiMesh) GetColorFormat() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_color_format", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_color_format", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -69816,7 +69816,7 @@ func (o *MultiMesh) SetTransformFormat(format int64) {
 /*
 
  */
-func (o *MultiMesh) GetTransformFormat() *int64 {
+func (o *MultiMesh) GetTransformFormat() int64 {
 	log.Println("Calling MultiMesh.GetTransformFormat()")
 
 	// Build out the method's arguments
@@ -69824,11 +69824,11 @@ func (o *MultiMesh) GetTransformFormat() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_transform_format", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_transform_format", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -70814,7 +70814,7 @@ func (o *PathFollow) SetRotationMode(rotationMode int64) {
 /*
    Returns the rotation mode. The constants below list which axes are allowed to rotate for each mode.
 */
-func (o *PathFollow) GetRotationMode() *int64 {
+func (o *PathFollow) GetRotationMode() int64 {
 	log.Println("Calling PathFollow.GetRotationMode()")
 
 	// Build out the method's arguments
@@ -70822,11 +70822,11 @@ func (o *PathFollow) GetRotationMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_rotation_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_rotation_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -71305,7 +71305,7 @@ func (o *Environment) SetAmbientLightSkyContribution(energy float64) {
 /*
 
  */
-func (o *Environment) GetBackground() *int64 {
+func (o *Environment) GetBackground() int64 {
 	log.Println("Calling Environment.GetBackground()")
 
 	// Build out the method's arguments
@@ -71313,11 +71313,11 @@ func (o *Environment) GetBackground() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_background", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_background", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -72019,7 +72019,7 @@ func (o *Environment) SetTonemapper(mode int64) {
 /*
 
  */
-func (o *Environment) GetTonemapper() *int64 {
+func (o *Environment) GetTonemapper() int64 {
 	log.Println("Calling Environment.GetTonemapper()")
 
 	// Build out the method's arguments
@@ -72027,11 +72027,11 @@ func (o *Environment) GetTonemapper() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_tonemapper", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_tonemapper", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -73072,7 +73072,7 @@ func (o *Environment) SetDofBlurFarQuality(intensity int64) {
 /*
 
  */
-func (o *Environment) GetDofBlurFarQuality() *int64 {
+func (o *Environment) GetDofBlurFarQuality() int64 {
 	log.Println("Calling Environment.GetDofBlurFarQuality()")
 
 	// Build out the method's arguments
@@ -73080,11 +73080,11 @@ func (o *Environment) GetDofBlurFarQuality() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_dof_blur_far_quality", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_dof_blur_far_quality", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -73267,7 +73267,7 @@ func (o *Environment) SetDofBlurNearQuality(level int64) {
 /*
 
  */
-func (o *Environment) GetDofBlurNearQuality() *int64 {
+func (o *Environment) GetDofBlurNearQuality() int64 {
 	log.Println("Calling Environment.GetDofBlurNearQuality()")
 
 	// Build out the method's arguments
@@ -73275,11 +73275,11 @@ func (o *Environment) GetDofBlurNearQuality() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_dof_blur_near_quality", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_dof_blur_near_quality", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -73503,7 +73503,7 @@ func (o *Environment) SetGlowBlendMode(mode int64) {
 /*
 
  */
-func (o *Environment) GetGlowBlendMode() *int64 {
+func (o *Environment) GetGlowBlendMode() int64 {
 	log.Println("Calling Environment.GetGlowBlendMode()")
 
 	// Build out the method's arguments
@@ -73511,11 +73511,11 @@ func (o *Environment) GetGlowBlendMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_glow_blend_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_glow_blend_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -75590,7 +75590,7 @@ func (o *Shader) baseClass() string {
 /*
 
  */
-func (o *Shader) GetMode() *int64 {
+func (o *Shader) GetMode() int64 {
 	log.Println("Calling Shader.GetMode()")
 
 	// Build out the method's arguments
@@ -75598,11 +75598,11 @@ func (o *Shader) GetMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -75943,7 +75943,7 @@ func (o *CanvasItemMaterial) SetBlendMode(blendMode int64) {
 /*
 
  */
-func (o *CanvasItemMaterial) GetBlendMode() *int64 {
+func (o *CanvasItemMaterial) GetBlendMode() int64 {
 	log.Println("Calling CanvasItemMaterial.GetBlendMode()")
 
 	// Build out the method's arguments
@@ -75951,11 +75951,11 @@ func (o *CanvasItemMaterial) GetBlendMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_blend_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_blend_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -75982,7 +75982,7 @@ func (o *CanvasItemMaterial) SetLightMode(lightMode int64) {
 /*
 
  */
-func (o *CanvasItemMaterial) GetLightMode() *int64 {
+func (o *CanvasItemMaterial) GetLightMode() int64 {
 	log.Println("Calling CanvasItemMaterial.GetLightMode()")
 
 	// Build out the method's arguments
@@ -75990,11 +75990,11 @@ func (o *CanvasItemMaterial) GetLightMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_light_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_light_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -76546,7 +76546,7 @@ func (o *Particles2D) SetDrawOrder(order int64) {
 /*
 
  */
-func (o *Particles2D) GetDrawOrder() *int64 {
+func (o *Particles2D) GetDrawOrder() int64 {
 	log.Println("Calling Particles2D.GetDrawOrder()")
 
 	// Build out the method's arguments
@@ -76554,11 +76554,11 @@ func (o *Particles2D) GetDrawOrder() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_draw_order", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_draw_order", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -77997,7 +77997,7 @@ func (o *Line2D) SetTextureMode(mode int64) {
 /*
 
  */
-func (o *Line2D) GetTextureMode() *int64 {
+func (o *Line2D) GetTextureMode() int64 {
 	log.Println("Calling Line2D.GetTextureMode()")
 
 	// Build out the method's arguments
@@ -78005,11 +78005,11 @@ func (o *Line2D) GetTextureMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_texture_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_texture_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -78036,7 +78036,7 @@ func (o *Line2D) SetJointMode(mode int64) {
 /*
 
  */
-func (o *Line2D) GetJointMode() *int64 {
+func (o *Line2D) GetJointMode() int64 {
 	log.Println("Calling Line2D.GetJointMode()")
 
 	// Build out the method's arguments
@@ -78044,11 +78044,11 @@ func (o *Line2D) GetJointMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_joint_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_joint_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -78075,7 +78075,7 @@ func (o *Line2D) SetBeginCapMode(mode int64) {
 /*
 
  */
-func (o *Line2D) GetBeginCapMode() *int64 {
+func (o *Line2D) GetBeginCapMode() int64 {
 	log.Println("Calling Line2D.GetBeginCapMode()")
 
 	// Build out the method's arguments
@@ -78083,11 +78083,11 @@ func (o *Line2D) GetBeginCapMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_begin_cap_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_begin_cap_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -78114,7 +78114,7 @@ func (o *Line2D) SetEndCapMode(mode int64) {
 /*
 
  */
-func (o *Line2D) GetEndCapMode() *int64 {
+func (o *Line2D) GetEndCapMode() int64 {
 	log.Println("Calling Line2D.GetEndCapMode()")
 
 	// Build out the method's arguments
@@ -78122,11 +78122,11 @@ func (o *Line2D) GetEndCapMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_end_cap_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_end_cap_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -79419,7 +79419,7 @@ func (o *RigidBody2D) SetMode(mode int64) {
 /*
    Return the current body mode, see [method set_mode].
 */
-func (o *RigidBody2D) GetMode() *int64 {
+func (o *RigidBody2D) GetMode() int64 {
 	log.Println("Calling RigidBody2D.GetMode()")
 
 	// Build out the method's arguments
@@ -79427,11 +79427,11 @@ func (o *RigidBody2D) GetMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -79965,7 +79965,7 @@ func (o *RigidBody2D) SetContinuousCollisionDetectionMode(mode int64) {
 /*
    Return whether this body is using continuous collision detection.
 */
-func (o *RigidBody2D) GetContinuousCollisionDetectionMode() *int64 {
+func (o *RigidBody2D) GetContinuousCollisionDetectionMode() int64 {
 	log.Println("Calling RigidBody2D.GetContinuousCollisionDetectionMode()")
 
 	// Build out the method's arguments
@@ -79973,11 +79973,11 @@ func (o *RigidBody2D) GetContinuousCollisionDetectionMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_continuous_collision_detection_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_continuous_collision_detection_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -80313,7 +80313,7 @@ func (o *KinematicBody2D) baseClass() string {
 }
 
 /*
-   Move the body in the given direction, stopping if there is an obstacle. If as a result of a movement there will be any collision then informations about this collision will be in returned dictionary.	Dictionary will contains those keys: - "position" - collision position - "normal" - collision normal - "local_shape" - id of this kinematic body shape that took part in a collision - "travel" - traveled movement before being stopped - "remainder" - remaining movement before being stopped - "collider_id" - id of the collider, it can be used when dealing with [Physics2DServer] - "collider" - colliding body - "collider_shape_index" - index of the colliding shape, inside collider body "collider_metadata" If the body did not intersect anything, then an empty dictionary (dir.empty()==true) is returned instead. Please note that this method is less user friendly than [method move_and_slide]. If you don't want to program each edge case manually, then it's recommended to use [method move_and_slide] instead.
+   Undocumented
 */
 func (o *KinematicBody2D) Move(relVec *Vector2) *Dictionary {
 	log.Println("Calling KinematicBody2D.Move()")
@@ -80507,8 +80507,8 @@ func (o *KinematicBody2D) GetSafeMargin() float64 {
 }
 
 /*
-
- */
+   Undocumented
+*/
 func (o *KinematicBody2D) GetCollisionCount() int64 {
 	log.Println("Calling KinematicBody2D.GetCollisionCount()")
 
@@ -80528,8 +80528,8 @@ func (o *KinematicBody2D) GetCollisionCount() int64 {
 }
 
 /*
-
- */
+   Undocumented
+*/
 func (o *KinematicBody2D) GetCollisionPosition(collision int64) *Vector2 {
 	log.Println("Calling KinematicBody2D.GetCollisionPosition()")
 
@@ -80550,8 +80550,8 @@ func (o *KinematicBody2D) GetCollisionPosition(collision int64) *Vector2 {
 }
 
 /*
-
- */
+   Undocumented
+*/
 func (o *KinematicBody2D) GetCollisionNormal(collision int64) *Vector2 {
 	log.Println("Calling KinematicBody2D.GetCollisionNormal()")
 
@@ -80572,8 +80572,8 @@ func (o *KinematicBody2D) GetCollisionNormal(collision int64) *Vector2 {
 }
 
 /*
-
- */
+   Undocumented
+*/
 func (o *KinematicBody2D) GetCollisionTravel(collision int64) *Vector2 {
 	log.Println("Calling KinematicBody2D.GetCollisionTravel()")
 
@@ -80594,8 +80594,8 @@ func (o *KinematicBody2D) GetCollisionTravel(collision int64) *Vector2 {
 }
 
 /*
-
- */
+   Undocumented
+*/
 func (o *KinematicBody2D) GetCollisionRemainder(collision int64) *Vector2 {
 	log.Println("Calling KinematicBody2D.GetCollisionRemainder()")
 
@@ -80616,8 +80616,8 @@ func (o *KinematicBody2D) GetCollisionRemainder(collision int64) *Vector2 {
 }
 
 /*
-
- */
+   Undocumented
+*/
 func (o *KinematicBody2D) GetCollisionLocalShape(collision int64) *Object {
 	log.Println("Calling KinematicBody2D.GetCollisionLocalShape()")
 
@@ -80638,8 +80638,8 @@ func (o *KinematicBody2D) GetCollisionLocalShape(collision int64) *Object {
 }
 
 /*
-
- */
+   Undocumented
+*/
 func (o *KinematicBody2D) GetCollisionCollider(collision int64) *Object {
 	log.Println("Calling KinematicBody2D.GetCollisionCollider()")
 
@@ -80660,8 +80660,8 @@ func (o *KinematicBody2D) GetCollisionCollider(collision int64) *Object {
 }
 
 /*
-
- */
+   Undocumented
+*/
 func (o *KinematicBody2D) GetCollisionColliderId(collision int64) int64 {
 	log.Println("Calling KinematicBody2D.GetCollisionColliderId()")
 
@@ -80682,8 +80682,8 @@ func (o *KinematicBody2D) GetCollisionColliderId(collision int64) int64 {
 }
 
 /*
-
- */
+   Undocumented
+*/
 func (o *KinematicBody2D) GetCollisionColliderShape(collision int64) *Object {
 	log.Println("Calling KinematicBody2D.GetCollisionColliderShape()")
 
@@ -80704,8 +80704,8 @@ func (o *KinematicBody2D) GetCollisionColliderShape(collision int64) *Object {
 }
 
 /*
-
- */
+   Undocumented
+*/
 func (o *KinematicBody2D) GetCollisionColliderShapeIndex(collision int64) int64 {
 	log.Println("Calling KinematicBody2D.GetCollisionColliderShapeIndex()")
 
@@ -80726,7 +80726,7 @@ func (o *KinematicBody2D) GetCollisionColliderShapeIndex(collision int64) int64 
 }
 
 /*
-   Return the velocity of the body that collided with this one.
+   Undocumented
 */
 func (o *KinematicBody2D) GetCollisionColliderVelocity(collision int64) *Vector2 {
 	log.Println("Calling KinematicBody2D.GetCollisionColliderVelocity()")
@@ -80748,8 +80748,8 @@ func (o *KinematicBody2D) GetCollisionColliderVelocity(collision int64) *Vector2
 }
 
 /*
-
- */
+   Undocumented
+*/
 func (o *KinematicBody2D) GetCollisionColliderMetadata(collision int64) *Variant {
 	log.Println("Calling KinematicBody2D.GetCollisionColliderMetadata()")
 
@@ -80880,7 +80880,7 @@ func (o *Area2D) SetSpaceOverrideMode(spaceOverrideMode int64) {
 /*
    Return the space override mode.
 */
-func (o *Area2D) GetSpaceOverrideMode() *int64 {
+func (o *Area2D) GetSpaceOverrideMode() int64 {
 	log.Println("Calling Area2D.GetSpaceOverrideMode()")
 
 	// Build out the method's arguments
@@ -80888,11 +80888,11 @@ func (o *Area2D) GetSpaceOverrideMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_space_override_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_space_override_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -82004,7 +82004,7 @@ func (o *CollisionPolygon2D) SetBuildMode(buildMode int64) {
 /*
    Return whether the polygon is a [ConvexPolygonShape2D] ([code]build_mode==0[/code]), or a [ConcavePolygonShape2D] ([code]build_mode==1[/code]).
 */
-func (o *CollisionPolygon2D) GetBuildMode() *int64 {
+func (o *CollisionPolygon2D) GetBuildMode() int64 {
 	log.Println("Calling CollisionPolygon2D.GetBuildMode()")
 
 	// Build out the method's arguments
@@ -82012,11 +82012,11 @@ func (o *CollisionPolygon2D) GetBuildMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_build_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_build_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -83789,7 +83789,7 @@ func (o *Light2D) SetMode(mode int64) {
 /*
    Return the current mode set to the Light2D.
 */
-func (o *Light2D) GetMode() *int64 {
+func (o *Light2D) GetMode() int64 {
 	log.Println("Calling Light2D.GetMode()")
 
 	// Build out the method's arguments
@@ -83797,11 +83797,11 @@ func (o *Light2D) GetMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -83984,7 +83984,7 @@ func (o *Light2D) SetShadowFilter(filter int64) {
 /*
 
  */
-func (o *Light2D) GetShadowFilter() *int64 {
+func (o *Light2D) GetShadowFilter() int64 {
 	log.Println("Calling Light2D.GetShadowFilter()")
 
 	// Build out the method's arguments
@@ -83992,11 +83992,11 @@ func (o *Light2D) GetShadowFilter() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_shadow_filter", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_shadow_filter", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -84232,7 +84232,7 @@ func (o *OccluderPolygon2D) SetCullMode(cullMode int64) {
 /*
 
  */
-func (o *OccluderPolygon2D) GetCullMode() *int64 {
+func (o *OccluderPolygon2D) GetCullMode() int64 {
 	log.Println("Calling OccluderPolygon2D.GetCullMode()")
 
 	// Build out the method's arguments
@@ -84240,11 +84240,11 @@ func (o *OccluderPolygon2D) GetCullMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_cull_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_cull_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -84424,7 +84424,7 @@ func (o *BackBufferCopy) SetCopyMode(copyMode int64) {
 /*
    Return the copy mode currently applied to the BackBufferCopy (refer to constants section).
 */
-func (o *BackBufferCopy) GetCopyMode() *int64 {
+func (o *BackBufferCopy) GetCopyMode() int64 {
 	log.Println("Calling BackBufferCopy.GetCopyMode()")
 
 	// Build out the method's arguments
@@ -84432,11 +84432,11 @@ func (o *BackBufferCopy) GetCopyMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_copy_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_copy_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -84520,7 +84520,7 @@ func (o *Camera2D) SetAnchorMode(anchorMode int64) {
 /*
 
  */
-func (o *Camera2D) GetAnchorMode() *int64 {
+func (o *Camera2D) GetAnchorMode() int64 {
 	log.Println("Calling Camera2D.GetAnchorMode()")
 
 	// Build out the method's arguments
@@ -84528,11 +84528,11 @@ func (o *Camera2D) GetAnchorMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_anchor_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_anchor_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -86683,7 +86683,7 @@ func (o *TileMap) SetMode(mode int64) {
 /*
    Return the orientation mode.
 */
-func (o *TileMap) GetMode() *int64 {
+func (o *TileMap) GetMode() int64 {
 	log.Println("Calling TileMap.GetMode()")
 
 	// Build out the method's arguments
@@ -86691,11 +86691,11 @@ func (o *TileMap) GetMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -86722,7 +86722,7 @@ func (o *TileMap) SetHalfOffset(halfOffset int64) {
 /*
    Return the current half offset configuration.
 */
-func (o *TileMap) GetHalfOffset() *int64 {
+func (o *TileMap) GetHalfOffset() int64 {
 	log.Println("Calling TileMap.GetHalfOffset()")
 
 	// Build out the method's arguments
@@ -86730,11 +86730,11 @@ func (o *TileMap) GetHalfOffset() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_half_offset", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_half_offset", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -86917,7 +86917,7 @@ func (o *TileMap) SetTileOrigin(origin int64) {
 /*
    Return the tile origin configuration.
 */
-func (o *TileMap) GetTileOrigin() *int64 {
+func (o *TileMap) GetTileOrigin() int64 {
 	log.Println("Calling TileMap.GetTileOrigin()")
 
 	// Build out the method's arguments
@@ -86925,11 +86925,11 @@ func (o *TileMap) GetTileOrigin() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_tile_origin", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_tile_origin", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -88460,7 +88460,7 @@ func (o *TouchScreenButton) SetVisibilityMode(mode int64) {
 /*
 
  */
-func (o *TouchScreenButton) GetVisibilityMode() *int64 {
+func (o *TouchScreenButton) GetVisibilityMode() int64 {
 	log.Println("Calling TouchScreenButton.GetVisibilityMode()")
 
 	// Build out the method's arguments
@@ -88468,11 +88468,11 @@ func (o *TouchScreenButton) GetVisibilityMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_visibility_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_visibility_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -88886,7 +88886,7 @@ func (o *ArrayMesh) SetBlendShapeMode(mode int64) {
 /*
 
  */
-func (o *ArrayMesh) GetBlendShapeMode() *int64 {
+func (o *ArrayMesh) GetBlendShapeMode() int64 {
 	log.Println("Calling ArrayMesh.GetBlendShapeMode()")
 
 	// Build out the method's arguments
@@ -88894,11 +88894,11 @@ func (o *ArrayMesh) GetBlendShapeMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_blend_shape_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_blend_shape_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -89033,7 +89033,7 @@ func (o *ArrayMesh) SurfaceGetFormat(surfIdx int64) int64 {
 /*
    Return the primitive type of the requested surface (see [method add_surface]).
 */
-func (o *ArrayMesh) SurfaceGetPrimitiveType(surfIdx int64) *int64 {
+func (o *ArrayMesh) SurfaceGetPrimitiveType(surfIdx int64) int64 {
 	log.Println("Calling ArrayMesh.SurfaceGetPrimitiveType()")
 
 	// Build out the method's arguments
@@ -89042,11 +89042,11 @@ func (o *ArrayMesh) SurfaceGetPrimitiveType(surfIdx int64) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "surface_get_primitive_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "surface_get_primitive_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -91227,7 +91227,7 @@ func (o *SpatialMaterial) SetDetailUv(detailUv int64) {
 /*
 
  */
-func (o *SpatialMaterial) GetDetailUv() *int64 {
+func (o *SpatialMaterial) GetDetailUv() int64 {
 	log.Println("Calling SpatialMaterial.GetDetailUv()")
 
 	// Build out the method's arguments
@@ -91235,11 +91235,11 @@ func (o *SpatialMaterial) GetDetailUv() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_detail_uv", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_detail_uv", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -91266,7 +91266,7 @@ func (o *SpatialMaterial) SetBlendMode(blendMode int64) {
 /*
 
  */
-func (o *SpatialMaterial) GetBlendMode() *int64 {
+func (o *SpatialMaterial) GetBlendMode() int64 {
 	log.Println("Calling SpatialMaterial.GetBlendMode()")
 
 	// Build out the method's arguments
@@ -91274,11 +91274,11 @@ func (o *SpatialMaterial) GetBlendMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_blend_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_blend_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -91305,7 +91305,7 @@ func (o *SpatialMaterial) SetDepthDrawMode(depthDrawMode int64) {
 /*
 
  */
-func (o *SpatialMaterial) GetDepthDrawMode() *int64 {
+func (o *SpatialMaterial) GetDepthDrawMode() int64 {
 	log.Println("Calling SpatialMaterial.GetDepthDrawMode()")
 
 	// Build out the method's arguments
@@ -91313,11 +91313,11 @@ func (o *SpatialMaterial) GetDepthDrawMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_depth_draw_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_depth_draw_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -91344,7 +91344,7 @@ func (o *SpatialMaterial) SetCullMode(cullMode int64) {
 /*
 
  */
-func (o *SpatialMaterial) GetCullMode() *int64 {
+func (o *SpatialMaterial) GetCullMode() int64 {
 	log.Println("Calling SpatialMaterial.GetCullMode()")
 
 	// Build out the method's arguments
@@ -91352,11 +91352,11 @@ func (o *SpatialMaterial) GetCullMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_cull_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_cull_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -91383,7 +91383,7 @@ func (o *SpatialMaterial) SetDiffuseMode(diffuseMode int64) {
 /*
 
  */
-func (o *SpatialMaterial) GetDiffuseMode() *int64 {
+func (o *SpatialMaterial) GetDiffuseMode() int64 {
 	log.Println("Calling SpatialMaterial.GetDiffuseMode()")
 
 	// Build out the method's arguments
@@ -91391,11 +91391,11 @@ func (o *SpatialMaterial) GetDiffuseMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_diffuse_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_diffuse_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -91422,7 +91422,7 @@ func (o *SpatialMaterial) SetSpecularMode(specularMode int64) {
 /*
 
  */
-func (o *SpatialMaterial) GetSpecularMode() *int64 {
+func (o *SpatialMaterial) GetSpecularMode() int64 {
 	log.Println("Calling SpatialMaterial.GetSpecularMode()")
 
 	// Build out the method's arguments
@@ -91430,11 +91430,11 @@ func (o *SpatialMaterial) GetSpecularMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_specular_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_specular_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -91584,7 +91584,7 @@ func (o *SpatialMaterial) SetDetailBlendMode(detailBlendMode int64) {
 /*
 
  */
-func (o *SpatialMaterial) GetDetailBlendMode() *int64 {
+func (o *SpatialMaterial) GetDetailBlendMode() int64 {
 	log.Println("Calling SpatialMaterial.GetDetailBlendMode()")
 
 	// Build out the method's arguments
@@ -91592,11 +91592,11 @@ func (o *SpatialMaterial) GetDetailBlendMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_detail_blend_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_detail_blend_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -91857,7 +91857,7 @@ func (o *SpatialMaterial) SetBillboardMode(mode int64) {
 /*
 
  */
-func (o *SpatialMaterial) GetBillboardMode() *int64 {
+func (o *SpatialMaterial) GetBillboardMode() int64 {
 	log.Println("Calling SpatialMaterial.GetBillboardMode()")
 
 	// Build out the method's arguments
@@ -91865,11 +91865,11 @@ func (o *SpatialMaterial) GetBillboardMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_billboard_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_billboard_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -92247,7 +92247,7 @@ func (o *SpatialMaterial) SetMetallicTextureChannel(channel int64) {
 /*
 
  */
-func (o *SpatialMaterial) GetMetallicTextureChannel() *int64 {
+func (o *SpatialMaterial) GetMetallicTextureChannel() int64 {
 	log.Println("Calling SpatialMaterial.GetMetallicTextureChannel()")
 
 	// Build out the method's arguments
@@ -92255,11 +92255,11 @@ func (o *SpatialMaterial) GetMetallicTextureChannel() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_metallic_texture_channel", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_metallic_texture_channel", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -92286,7 +92286,7 @@ func (o *SpatialMaterial) SetRoughnessTextureChannel(channel int64) {
 /*
 
  */
-func (o *SpatialMaterial) GetRoughnessTextureChannel() *int64 {
+func (o *SpatialMaterial) GetRoughnessTextureChannel() int64 {
 	log.Println("Calling SpatialMaterial.GetRoughnessTextureChannel()")
 
 	// Build out the method's arguments
@@ -92294,11 +92294,11 @@ func (o *SpatialMaterial) GetRoughnessTextureChannel() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_roughness_texture_channel", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_roughness_texture_channel", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -92325,7 +92325,7 @@ func (o *SpatialMaterial) SetAoTextureChannel(channel int64) {
 /*
 
  */
-func (o *SpatialMaterial) GetAoTextureChannel() *int64 {
+func (o *SpatialMaterial) GetAoTextureChannel() int64 {
 	log.Println("Calling SpatialMaterial.GetAoTextureChannel()")
 
 	// Build out the method's arguments
@@ -92333,11 +92333,11 @@ func (o *SpatialMaterial) GetAoTextureChannel() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_ao_texture_channel", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_ao_texture_channel", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -92364,7 +92364,7 @@ func (o *SpatialMaterial) SetRefractionTextureChannel(channel int64) {
 /*
 
  */
-func (o *SpatialMaterial) GetRefractionTextureChannel() *int64 {
+func (o *SpatialMaterial) GetRefractionTextureChannel() int64 {
 	log.Println("Calling SpatialMaterial.GetRefractionTextureChannel()")
 
 	// Build out the method's arguments
@@ -92372,11 +92372,11 @@ func (o *SpatialMaterial) GetRefractionTextureChannel() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_refraction_texture_channel", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_refraction_texture_channel", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -92741,7 +92741,7 @@ func (o *ParticlesMaterial) SetEmissionShape(shape int64) {
 /*
 
  */
-func (o *ParticlesMaterial) GetEmissionShape() *int64 {
+func (o *ParticlesMaterial) GetEmissionShape() int64 {
 	log.Println("Calling ParticlesMaterial.GetEmissionShape()")
 
 	// Build out the method's arguments
@@ -92749,11 +92749,11 @@ func (o *ParticlesMaterial) GetEmissionShape() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_emission_shape", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_emission_shape", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -94230,7 +94230,7 @@ func (o *MeshDataTool) Clear() {
 /*
 
  */
-func (o *MeshDataTool) CreateFromSurface(mesh *ArrayMesh, surface int64) *int64 {
+func (o *MeshDataTool) CreateFromSurface(mesh *ArrayMesh, surface int64) int64 {
 	log.Println("Calling MeshDataTool.CreateFromSurface()")
 
 	// Build out the method's arguments
@@ -94240,11 +94240,11 @@ func (o *MeshDataTool) CreateFromSurface(mesh *ArrayMesh, surface int64) *int64 
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "create_from_surface", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "create_from_surface", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -94253,7 +94253,7 @@ func (o *MeshDataTool) CreateFromSurface(mesh *ArrayMesh, surface int64) *int64 
 /*
 
  */
-func (o *MeshDataTool) CommitToSurface(mesh *ArrayMesh) *int64 {
+func (o *MeshDataTool) CommitToSurface(mesh *ArrayMesh) int64 {
 	log.Println("Calling MeshDataTool.CommitToSurface()")
 
 	// Build out the method's arguments
@@ -94262,11 +94262,11 @@ func (o *MeshDataTool) CommitToSurface(mesh *ArrayMesh) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "commit_to_surface", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "commit_to_surface", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -95156,7 +95156,7 @@ func (o *Sky) SetRadianceSize(size int64) {
 /*
 
  */
-func (o *Sky) GetRadianceSize() *int64 {
+func (o *Sky) GetRadianceSize() int64 {
 	log.Println("Calling Sky.GetRadianceSize()")
 
 	// Build out the method's arguments
@@ -95164,11 +95164,11 @@ func (o *Sky) GetRadianceSize() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_radiance_size", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_radiance_size", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -95953,7 +95953,7 @@ func (o *ProceduralSky) SetTextureSize(size int64) {
 /*
 
  */
-func (o *ProceduralSky) GetTextureSize() *int64 {
+func (o *ProceduralSky) GetTextureSize() int64 {
 	log.Println("Calling ProceduralSky.GetTextureSize()")
 
 	// Build out the method's arguments
@@ -95961,11 +95961,11 @@ func (o *ProceduralSky) GetTextureSize() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_texture_size", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_texture_size", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -96010,7 +96010,7 @@ func (o *StreamTexture) baseClass() string {
 /*
 
  */
-func (o *StreamTexture) Load(path string) *int64 {
+func (o *StreamTexture) Load(path string) int64 {
 	log.Println("Calling StreamTexture.Load()")
 
 	// Build out the method's arguments
@@ -96019,11 +96019,11 @@ func (o *StreamTexture) Load(path string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "load", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "load", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -96058,8 +96058,8 @@ type StreamTextureImplementer interface {
 }
 
 /*
-
- */
+   [Texture] resource aimed at managing big textures files that pack multiple smaller textures. Consists of a [Texture], a margin that defines the border width, and a region that defines the actual area of the AtlasTexture.
+*/
 type AtlasTexture struct {
 	Texture
 }
@@ -96633,7 +96633,7 @@ func (o *Curve) GetPointRightTangent(index int64) float64 {
 /*
 
  */
-func (o *Curve) GetPointLeftMode(index int64) *int64 {
+func (o *Curve) GetPointLeftMode(index int64) int64 {
 	log.Println("Calling Curve.GetPointLeftMode()")
 
 	// Build out the method's arguments
@@ -96642,11 +96642,11 @@ func (o *Curve) GetPointLeftMode(index int64) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_point_left_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_point_left_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -96655,7 +96655,7 @@ func (o *Curve) GetPointLeftMode(index int64) *int64 {
 /*
 
  */
-func (o *Curve) GetPointRightMode(index int64) *int64 {
+func (o *Curve) GetPointRightMode(index int64) int64 {
 	log.Println("Calling Curve.GetPointRightMode()")
 
 	// Build out the method's arguments
@@ -96664,11 +96664,11 @@ func (o *Curve) GetPointRightMode(index int64) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_point_right_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_point_right_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -97101,7 +97101,7 @@ func (o *CubeMap) SetStorage(mode int64) {
 /*
 
  */
-func (o *CubeMap) GetStorage() *int64 {
+func (o *CubeMap) GetStorage() int64 {
 	log.Println("Calling CubeMap.GetStorage()")
 
 	// Build out the method's arguments
@@ -97109,11 +97109,11 @@ func (o *CubeMap) GetStorage() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_storage", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_storage", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -97241,7 +97241,7 @@ func (o *Animation) GetTrackCount() int64 {
 /*
    Get the type of a track.
 */
-func (o *Animation) TrackGetType(idx int64) *int64 {
+func (o *Animation) TrackGetType(idx int64) int64 {
 	log.Println("Calling Animation.TrackGetType()")
 
 	// Build out the method's arguments
@@ -97250,11 +97250,11 @@ func (o *Animation) TrackGetType(idx int64) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "track_get_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "track_get_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -97662,7 +97662,7 @@ func (o *Animation) TrackSetInterpolationType(idx int64, interpolation int64) {
 /*
    Return the interpolation type of a given track, from the INTERPOLATION_* enum.
 */
-func (o *Animation) TrackGetInterpolationType(idx int64) *int64 {
+func (o *Animation) TrackGetInterpolationType(idx int64) int64 {
 	log.Println("Calling Animation.TrackGetInterpolationType()")
 
 	// Build out the method's arguments
@@ -97671,11 +97671,11 @@ func (o *Animation) TrackGetInterpolationType(idx int64) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "track_get_interpolation_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "track_get_interpolation_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -97767,7 +97767,7 @@ func (o *Animation) ValueTrackSetUpdateMode(idx int64, mode int64) {
 /*
    Return the update mode of a value track.
 */
-func (o *Animation) ValueTrackGetUpdateMode(idx int64) *int64 {
+func (o *Animation) ValueTrackGetUpdateMode(idx int64) int64 {
 	log.Println("Calling Animation.ValueTrackGetUpdateMode()")
 
 	// Build out the method's arguments
@@ -97776,11 +97776,11 @@ func (o *Animation) ValueTrackGetUpdateMode(idx int64) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "value_track_get_update_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "value_track_get_update_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -99511,7 +99511,7 @@ func (o *AudioStreamPlayer) SetMixTarget(mixTarget int64) {
 /*
 
  */
-func (o *AudioStreamPlayer) GetMixTarget() *int64 {
+func (o *AudioStreamPlayer) GetMixTarget() int64 {
 	log.Println("Calling AudioStreamPlayer.GetMixTarget()")
 
 	// Build out the method's arguments
@@ -99519,11 +99519,11 @@ func (o *AudioStreamPlayer) GetMixTarget() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_mix_target", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_mix_target", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -100707,7 +100707,7 @@ func (o *AudioStreamPlayer3D) SetAttenuationModel(model int64) {
 /*
 
  */
-func (o *AudioStreamPlayer3D) GetAttenuationModel() *int64 {
+func (o *AudioStreamPlayer3D) GetAttenuationModel() int64 {
 	log.Println("Calling AudioStreamPlayer3D.GetAttenuationModel()")
 
 	// Build out the method's arguments
@@ -100715,11 +100715,11 @@ func (o *AudioStreamPlayer3D) GetAttenuationModel() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_attenuation_model", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_attenuation_model", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -100746,7 +100746,7 @@ func (o *AudioStreamPlayer3D) SetOutOfRangeMode(mode int64) {
 /*
 
  */
-func (o *AudioStreamPlayer3D) GetOutOfRangeMode() *int64 {
+func (o *AudioStreamPlayer3D) GetOutOfRangeMode() int64 {
 	log.Println("Calling AudioStreamPlayer3D.GetOutOfRangeMode()")
 
 	// Build out the method's arguments
@@ -100754,11 +100754,11 @@ func (o *AudioStreamPlayer3D) GetOutOfRangeMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_out_of_range_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_out_of_range_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -100785,7 +100785,7 @@ func (o *AudioStreamPlayer3D) SetDopplerTracking(mode int64) {
 /*
 
  */
-func (o *AudioStreamPlayer3D) GetDopplerTracking() *int64 {
+func (o *AudioStreamPlayer3D) GetDopplerTracking() int64 {
 	log.Println("Calling AudioStreamPlayer3D.GetDopplerTracking()")
 
 	// Build out the method's arguments
@@ -100793,11 +100793,11 @@ func (o *AudioStreamPlayer3D) GetDopplerTracking() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_doppler_tracking", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_doppler_tracking", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -100859,7 +100859,7 @@ func (o *AudioStreamSample) SetFormat(format int64) {
 /*
 
  */
-func (o *AudioStreamSample) GetFormat() *int64 {
+func (o *AudioStreamSample) GetFormat() int64 {
 	log.Println("Calling AudioStreamSample.GetFormat()")
 
 	// Build out the method's arguments
@@ -100867,11 +100867,11 @@ func (o *AudioStreamSample) GetFormat() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_format", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_format", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -100898,7 +100898,7 @@ func (o *AudioStreamSample) SetLoopMode(loopMode int64) {
 /*
 
  */
-func (o *AudioStreamSample) GetLoopMode() *int64 {
+func (o *AudioStreamSample) GetLoopMode() int64 {
 	log.Println("Calling AudioStreamSample.GetLoopMode()")
 
 	// Build out the method's arguments
@@ -100906,11 +100906,11 @@ func (o *AudioStreamSample) GetLoopMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_loop_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_loop_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -103578,7 +103578,7 @@ func (o *PackedScene) baseClass() string {
 /*
    Pack will ignore any sub-nodes not owned by given node. See [method Node.set_owner].
 */
-func (o *PackedScene) Pack(path *Object) *int64 {
+func (o *PackedScene) Pack(path *Object) int64 {
 	log.Println("Calling PackedScene.Pack()")
 
 	// Build out the method's arguments
@@ -103587,11 +103587,11 @@ func (o *PackedScene) Pack(path *Object) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "pack", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "pack", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -104285,7 +104285,7 @@ func (o *SceneTree) GetCurrentScene() *Node {
 /*
 
  */
-func (o *SceneTree) ChangeScene(path string) *int64 {
+func (o *SceneTree) ChangeScene(path string) int64 {
 	log.Println("Calling SceneTree.ChangeScene()")
 
 	// Build out the method's arguments
@@ -104294,11 +104294,11 @@ func (o *SceneTree) ChangeScene(path string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "change_scene", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "change_scene", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -104307,7 +104307,7 @@ func (o *SceneTree) ChangeScene(path string) *int64 {
 /*
 
  */
-func (o *SceneTree) ChangeSceneTo(packedScene *PackedScene) *int64 {
+func (o *SceneTree) ChangeSceneTo(packedScene *PackedScene) int64 {
 	log.Println("Calling SceneTree.ChangeSceneTo()")
 
 	// Build out the method's arguments
@@ -104316,11 +104316,11 @@ func (o *SceneTree) ChangeSceneTo(packedScene *PackedScene) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "change_scene_to", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "change_scene_to", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -104329,7 +104329,7 @@ func (o *SceneTree) ChangeSceneTo(packedScene *PackedScene) *int64 {
 /*
 
  */
-func (o *SceneTree) ReloadCurrentScene() *int64 {
+func (o *SceneTree) ReloadCurrentScene() int64 {
 	log.Println("Calling SceneTree.ReloadCurrentScene()")
 
 	// Build out the method's arguments
@@ -104337,11 +104337,11 @@ func (o *SceneTree) ReloadCurrentScene() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "reload_current_scene", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "reload_current_scene", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -106155,7 +106155,7 @@ func (o *EditorFileDialog) SetMode(mode int64) {
 /*
 
  */
-func (o *EditorFileDialog) GetMode() *int64 {
+func (o *EditorFileDialog) GetMode() int64 {
 	log.Println("Calling EditorFileDialog.GetMode()")
 
 	// Build out the method's arguments
@@ -106163,11 +106163,11 @@ func (o *EditorFileDialog) GetMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -106215,7 +106215,7 @@ func (o *EditorFileDialog) SetAccess(access int64) {
 /*
 
  */
-func (o *EditorFileDialog) GetAccess() *int64 {
+func (o *EditorFileDialog) GetAccess() int64 {
 	log.Println("Calling EditorFileDialog.GetAccess()")
 
 	// Build out the method's arguments
@@ -106223,11 +106223,11 @@ func (o *EditorFileDialog) GetAccess() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_access", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_access", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -106399,7 +106399,7 @@ func (o *EditorFileDialog) SetDisplayMode(mode int64) {
 /*
 
  */
-func (o *EditorFileDialog) GetDisplayMode() *int64 {
+func (o *EditorFileDialog) GetDisplayMode() int64 {
 	log.Println("Calling EditorFileDialog.GetDisplayMode()")
 
 	// Build out the method's arguments
@@ -106407,11 +106407,11 @@ func (o *EditorFileDialog) GetDisplayMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_display_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_display_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -108628,7 +108628,7 @@ func (o *Script) SetSourceCode(source string) {
 /*
    Reloads the script's class implementation. Returns an error code.
 */
-func (o *Script) Reload(keepState bool) *int64 {
+func (o *Script) Reload(keepState bool) int64 {
 	log.Println("Calling Script.Reload()")
 
 	// Build out the method's arguments
@@ -108637,11 +108637,11 @@ func (o *Script) Reload(keepState bool) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "reload", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "reload", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -109017,7 +109017,7 @@ func (o *EditorInterface) MakeMeshPreviews(arg0 *Array, arg1 int64) *Array {
 /*
 
  */
-func (o *EditorInterface) SaveScene() *int64 {
+func (o *EditorInterface) SaveScene() int64 {
 	log.Println("Calling EditorInterface.SaveScene()")
 
 	// Build out the method's arguments
@@ -109025,11 +109025,11 @@ func (o *EditorInterface) SaveScene() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "save_scene", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "save_scene", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -109149,7 +109149,7 @@ func (o *NetworkedMultiplayerPeer) Poll() {
 /*
 
  */
-func (o *NetworkedMultiplayerPeer) GetConnectionStatus() *int64 {
+func (o *NetworkedMultiplayerPeer) GetConnectionStatus() int64 {
 	log.Println("Calling NetworkedMultiplayerPeer.GetConnectionStatus()")
 
 	// Build out the method's arguments
@@ -109157,11 +109157,11 @@ func (o *NetworkedMultiplayerPeer) GetConnectionStatus() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_connection_status", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_connection_status", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -109248,7 +109248,7 @@ func (o *NetworkedMultiplayerENet) baseClass() string {
 /*
    Create server that listens to connections via [code]port[/code].
 */
-func (o *NetworkedMultiplayerENet) CreateServer(port int64, maxClients int64, inBandwidth int64, outBandwidth int64) *int64 {
+func (o *NetworkedMultiplayerENet) CreateServer(port int64, maxClients int64, inBandwidth int64, outBandwidth int64) int64 {
 	log.Println("Calling NetworkedMultiplayerENet.CreateServer()")
 
 	// Build out the method's arguments
@@ -109260,11 +109260,11 @@ func (o *NetworkedMultiplayerENet) CreateServer(port int64, maxClients int64, in
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "create_server", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "create_server", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -109273,7 +109273,7 @@ func (o *NetworkedMultiplayerENet) CreateServer(port int64, maxClients int64, in
 /*
    Create client that connects to a server at address [code]ip[/code] using specified [code]port[/code].
 */
-func (o *NetworkedMultiplayerENet) CreateClient(ip string, port int64, inBandwidth int64, outBandwidth int64) *int64 {
+func (o *NetworkedMultiplayerENet) CreateClient(ip string, port int64, inBandwidth int64, outBandwidth int64) int64 {
 	log.Println("Calling NetworkedMultiplayerENet.CreateClient()")
 
 	// Build out the method's arguments
@@ -109285,11 +109285,11 @@ func (o *NetworkedMultiplayerENet) CreateClient(ip string, port int64, inBandwid
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "create_client", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "create_client", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -109333,7 +109333,7 @@ func (o *NetworkedMultiplayerENet) SetCompressionMode(mode int64) {
 /*
 
  */
-func (o *NetworkedMultiplayerENet) GetCompressionMode() *int64 {
+func (o *NetworkedMultiplayerENet) GetCompressionMode() int64 {
 	log.Println("Calling NetworkedMultiplayerENet.GetCompressionMode()")
 
 	// Build out the method's arguments
@@ -109341,11 +109341,11 @@ func (o *NetworkedMultiplayerENet) GetCompressionMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_compression_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_compression_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -110472,7 +110472,7 @@ func (o *RegEx) Clear() {
 /*
    Compiles and assign the regular expression pattern to use.
 */
-func (o *RegEx) Compile(pattern string) *int64 {
+func (o *RegEx) Compile(pattern string) int64 {
 	log.Println("Calling RegEx.Compile()")
 
 	// Build out the method's arguments
@@ -110481,11 +110481,11 @@ func (o *RegEx) Compile(pattern string) *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "compile", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "compile", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -111524,7 +111524,7 @@ func (o *VisualScript) CustomSignalSetArgumentType(name string, argidx int64, aT
 /*
 
  */
-func (o *VisualScript) CustomSignalGetArgumentType(name string, argidx int64) *int64 {
+func (o *VisualScript) CustomSignalGetArgumentType(name string, argidx int64) int64 {
 	log.Println("Calling VisualScript.CustomSignalGetArgumentType()")
 
 	// Build out the method's arguments
@@ -111534,11 +111534,11 @@ func (o *VisualScript) CustomSignalGetArgumentType(name string, argidx int64) *i
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "custom_signal_get_argument_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "custom_signal_get_argument_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -112020,7 +112020,7 @@ func (o *VisualScriptOperator) SetOperator(op int64) {
 /*
 
  */
-func (o *VisualScriptOperator) GetOperator() *int64 {
+func (o *VisualScriptOperator) GetOperator() int64 {
 	log.Println("Calling VisualScriptOperator.GetOperator()")
 
 	// Build out the method's arguments
@@ -112028,11 +112028,11 @@ func (o *VisualScriptOperator) GetOperator() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_operator", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_operator", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -112059,7 +112059,7 @@ func (o *VisualScriptOperator) SetTyped(aType int64) {
 /*
 
  */
-func (o *VisualScriptOperator) GetTyped() *int64 {
+func (o *VisualScriptOperator) GetTyped() int64 {
 	log.Println("Calling VisualScriptOperator.GetTyped()")
 
 	// Build out the method's arguments
@@ -112067,11 +112067,11 @@ func (o *VisualScriptOperator) GetTyped() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_typed", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_typed", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -112230,7 +112230,7 @@ func (o *VisualScriptConstant) SetConstantType(aType int64) {
 /*
 
  */
-func (o *VisualScriptConstant) GetConstantType() *int64 {
+func (o *VisualScriptConstant) GetConstantType() int64 {
 	log.Println("Calling VisualScriptConstant.GetConstantType()")
 
 	// Build out the method's arguments
@@ -112238,11 +112238,11 @@ func (o *VisualScriptConstant) GetConstantType() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_constant_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_constant_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -112515,7 +112515,7 @@ func (o *VisualScriptMathConstant) SetMathConstant(which int64) {
 /*
 
  */
-func (o *VisualScriptMathConstant) GetMathConstant() *int64 {
+func (o *VisualScriptMathConstant) GetMathConstant() int64 {
 	log.Println("Calling VisualScriptMathConstant.GetMathConstant()")
 
 	// Build out the method's arguments
@@ -112523,11 +112523,11 @@ func (o *VisualScriptMathConstant) GetMathConstant() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_math_constant", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_math_constant", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -112572,7 +112572,7 @@ func (o *VisualScriptBasicTypeConstant) SetBasicType(name int64) {
 /*
 
  */
-func (o *VisualScriptBasicTypeConstant) GetBasicType() *int64 {
+func (o *VisualScriptBasicTypeConstant) GetBasicType() int64 {
 	log.Println("Calling VisualScriptBasicTypeConstant.GetBasicType()")
 
 	// Build out the method's arguments
@@ -112580,11 +112580,11 @@ func (o *VisualScriptBasicTypeConstant) GetBasicType() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_basic_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_basic_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -113388,7 +113388,7 @@ func (o *VisualScriptConstructor) SetConstructorType(aType int64) {
 /*
 
  */
-func (o *VisualScriptConstructor) GetConstructorType() *int64 {
+func (o *VisualScriptConstructor) GetConstructorType() int64 {
 	log.Println("Calling VisualScriptConstructor.GetConstructorType()")
 
 	// Build out the method's arguments
@@ -113396,11 +113396,11 @@ func (o *VisualScriptConstructor) GetConstructorType() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_constructor_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_constructor_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -113523,7 +113523,7 @@ func (o *VisualScriptLocalVar) SetVarType(aType int64) {
 /*
 
  */
-func (o *VisualScriptLocalVar) GetVarType() *int64 {
+func (o *VisualScriptLocalVar) GetVarType() int64 {
 	log.Println("Calling VisualScriptLocalVar.GetVarType()")
 
 	// Build out the method's arguments
@@ -113531,11 +113531,11 @@ func (o *VisualScriptLocalVar) GetVarType() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_var_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_var_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -113619,7 +113619,7 @@ func (o *VisualScriptLocalVarSet) SetVarType(aType int64) {
 /*
 
  */
-func (o *VisualScriptLocalVarSet) GetVarType() *int64 {
+func (o *VisualScriptLocalVarSet) GetVarType() int64 {
 	log.Println("Calling VisualScriptLocalVarSet.GetVarType()")
 
 	// Build out the method's arguments
@@ -113627,11 +113627,11 @@ func (o *VisualScriptLocalVarSet) GetVarType() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_var_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_var_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -113715,7 +113715,7 @@ func (o *VisualScriptInputAction) SetActionMode(mode int64) {
 /*
 
  */
-func (o *VisualScriptInputAction) GetActionMode() *int64 {
+func (o *VisualScriptInputAction) GetActionMode() int64 {
 	log.Println("Calling VisualScriptInputAction.GetActionMode()")
 
 	// Build out the method's arguments
@@ -113723,11 +113723,11 @@ func (o *VisualScriptInputAction) GetActionMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_action_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_action_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -113772,7 +113772,7 @@ func (o *VisualScriptDeconstruct) SetDeconstructType(aType int64) {
 /*
 
  */
-func (o *VisualScriptDeconstruct) GetDeconstructType() *int64 {
+func (o *VisualScriptDeconstruct) GetDeconstructType() int64 {
 	log.Println("Calling VisualScriptDeconstruct.GetDeconstructType()")
 
 	// Build out the method's arguments
@@ -113780,11 +113780,11 @@ func (o *VisualScriptDeconstruct) GetDeconstructType() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_deconstruct_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_deconstruct_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -114099,7 +114099,7 @@ func (o *VisualScriptFunctionCall) SetBasicType(basicType int64) {
 /*
 
  */
-func (o *VisualScriptFunctionCall) GetBasicType() *int64 {
+func (o *VisualScriptFunctionCall) GetBasicType() int64 {
 	log.Println("Calling VisualScriptFunctionCall.GetBasicType()")
 
 	// Build out the method's arguments
@@ -114107,11 +114107,11 @@ func (o *VisualScriptFunctionCall) GetBasicType() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_basic_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_basic_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -114216,7 +114216,7 @@ func (o *VisualScriptFunctionCall) SetCallMode(mode int64) {
 /*
 
  */
-func (o *VisualScriptFunctionCall) GetCallMode() *int64 {
+func (o *VisualScriptFunctionCall) GetCallMode() int64 {
 	log.Println("Calling VisualScriptFunctionCall.GetCallMode()")
 
 	// Build out the method's arguments
@@ -114224,11 +114224,11 @@ func (o *VisualScriptFunctionCall) GetCallMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_call_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_call_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -114372,7 +114372,7 @@ func (o *VisualScriptFunctionCall) SetRpcCallMode(mode int64) {
 /*
 
  */
-func (o *VisualScriptFunctionCall) GetRpcCallMode() *int64 {
+func (o *VisualScriptFunctionCall) GetRpcCallMode() int64 {
 	log.Println("Calling VisualScriptFunctionCall.GetRpcCallMode()")
 
 	// Build out the method's arguments
@@ -114380,11 +114380,11 @@ func (o *VisualScriptFunctionCall) GetRpcCallMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_rpc_call_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_rpc_call_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -114546,7 +114546,7 @@ func (o *VisualScriptPropertySet) SetBasicType(basicType int64) {
 /*
 
  */
-func (o *VisualScriptPropertySet) GetBasicType() *int64 {
+func (o *VisualScriptPropertySet) GetBasicType() int64 {
 	log.Println("Calling VisualScriptPropertySet.GetBasicType()")
 
 	// Build out the method's arguments
@@ -114554,11 +114554,11 @@ func (o *VisualScriptPropertySet) GetBasicType() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_basic_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_basic_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -114663,7 +114663,7 @@ func (o *VisualScriptPropertySet) SetCallMode(mode int64) {
 /*
 
  */
-func (o *VisualScriptPropertySet) GetCallMode() *int64 {
+func (o *VisualScriptPropertySet) GetCallMode() int64 {
 	log.Println("Calling VisualScriptPropertySet.GetCallMode()")
 
 	// Build out the method's arguments
@@ -114671,11 +114671,11 @@ func (o *VisualScriptPropertySet) GetCallMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_call_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_call_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -114780,7 +114780,7 @@ func (o *VisualScriptPropertySet) SetAssignOp(assignOp int64) {
 /*
 
  */
-func (o *VisualScriptPropertySet) GetAssignOp() *int64 {
+func (o *VisualScriptPropertySet) GetAssignOp() int64 {
 	log.Println("Calling VisualScriptPropertySet.GetAssignOp()")
 
 	// Build out the method's arguments
@@ -114788,11 +114788,11 @@ func (o *VisualScriptPropertySet) GetAssignOp() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_assign_op", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_assign_op", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -114915,7 +114915,7 @@ func (o *VisualScriptPropertyGet) SetBasicType(basicType int64) {
 /*
 
  */
-func (o *VisualScriptPropertyGet) GetBasicType() *int64 {
+func (o *VisualScriptPropertyGet) GetBasicType() int64 {
 	log.Println("Calling VisualScriptPropertyGet.GetBasicType()")
 
 	// Build out the method's arguments
@@ -114923,11 +114923,11 @@ func (o *VisualScriptPropertyGet) GetBasicType() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_basic_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_basic_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -114954,7 +114954,7 @@ func (o *VisualScriptPropertyGet) X_SetTypeCache(typeCache int64) {
 /*
    Undocumented
 */
-func (o *VisualScriptPropertyGet) X_GetTypeCache() *int64 {
+func (o *VisualScriptPropertyGet) X_GetTypeCache() int64 {
 	log.Println("Calling VisualScriptPropertyGet.X_GetTypeCache()")
 
 	// Build out the method's arguments
@@ -114962,11 +114962,11 @@ func (o *VisualScriptPropertyGet) X_GetTypeCache() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "_get_type_cache", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "_get_type_cache", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -115032,7 +115032,7 @@ func (o *VisualScriptPropertyGet) SetCallMode(mode int64) {
 /*
 
  */
-func (o *VisualScriptPropertyGet) GetCallMode() *int64 {
+func (o *VisualScriptPropertyGet) GetCallMode() int64 {
 	log.Println("Calling VisualScriptPropertyGet.GetCallMode()")
 
 	// Build out the method's arguments
@@ -115040,11 +115040,11 @@ func (o *VisualScriptPropertyGet) GetCallMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_call_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_call_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -115224,7 +115224,7 @@ func (o *VisualScriptReturn) SetReturnType(aType int64) {
 /*
 
  */
-func (o *VisualScriptReturn) GetReturnType() *int64 {
+func (o *VisualScriptReturn) GetReturnType() int64 {
 	log.Println("Calling VisualScriptReturn.GetReturnType()")
 
 	// Build out the method's arguments
@@ -115232,11 +115232,11 @@ func (o *VisualScriptReturn) GetReturnType() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_return_type", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_return_type", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -115449,7 +115449,7 @@ func (o *VisualScriptSelect) SetTyped(aType int64) {
 /*
 
  */
-func (o *VisualScriptSelect) GetTyped() *int64 {
+func (o *VisualScriptSelect) GetTyped() int64 {
 	log.Println("Calling VisualScriptSelect.GetTyped()")
 
 	// Build out the method's arguments
@@ -115457,11 +115457,11 @@ func (o *VisualScriptSelect) GetTyped() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_typed", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_typed", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -115506,7 +115506,7 @@ func (o *VisualScriptYield) SetYieldMode(mode int64) {
 /*
 
  */
-func (o *VisualScriptYield) GetYieldMode() *int64 {
+func (o *VisualScriptYield) GetYieldMode() int64 {
 	log.Println("Calling VisualScriptYield.GetYieldMode()")
 
 	// Build out the method's arguments
@@ -115514,11 +115514,11 @@ func (o *VisualScriptYield) GetYieldMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_yield_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_yield_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -115680,7 +115680,7 @@ func (o *VisualScriptYieldSignal) SetCallMode(mode int64) {
 /*
 
  */
-func (o *VisualScriptYieldSignal) GetCallMode() *int64 {
+func (o *VisualScriptYieldSignal) GetCallMode() int64 {
 	log.Println("Calling VisualScriptYieldSignal.GetCallMode()")
 
 	// Build out the method's arguments
@@ -115688,11 +115688,11 @@ func (o *VisualScriptYieldSignal) GetCallMode() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_call_mode", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_call_mode", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
@@ -115776,7 +115776,7 @@ func (o *VisualScriptBuiltinFunc) SetFunc(which int64) {
 /*
 
  */
-func (o *VisualScriptBuiltinFunc) GetFunc() *int64 {
+func (o *VisualScriptBuiltinFunc) GetFunc() int64 {
 	log.Println("Calling VisualScriptBuiltinFunc.GetFunc()")
 
 	// Build out the method's arguments
@@ -115784,11 +115784,11 @@ func (o *VisualScriptBuiltinFunc) GetFunc() *int64 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_func", goArguments, "*int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_func", goArguments, "int64")
 
 	log.Println("Got return value!")
 
-	returnValue := goRet.Interface().(*int64)
+	returnValue := goRet.Interface().(int64)
 
 	return returnValue
 
