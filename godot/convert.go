@@ -223,7 +223,6 @@ func godotIntAsInt(value C.godot_int) int64 {
 }
 
 func quatAsGodotQuat(value *Quat) *C.godot_quat {
-
 	return value.quat
 }
 
