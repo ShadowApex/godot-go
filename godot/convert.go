@@ -243,6 +243,22 @@ func godotRealAsReal(value C.godot_real) float64 {
 	return float64(value)
 }
 
+func rect2AsGodotRect2(value Rect2) *C.godot_rect2 {
+	return value.rect2
+}
+
+func godotRect2AsRect2(value C.godot_rect2) *Rect2 {
+	return &Rect2{rect2: &value}
+}
+
+func rect3AsGodotRect3(value Rect3) *C.godot_rect3 {
+	return value.rect3
+}
+
+func godotRect3AsRect3(value C.godot_rect3) *Rect3 {
+	return &Rect3{rect3: &value}
+}
+
 func stringAsGodotString(value string) *C.godot_string {
 	var godotString C.godot_string
 	cString := C.CString(value)
