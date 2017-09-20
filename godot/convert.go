@@ -222,6 +222,15 @@ func godotIntAsInt(value C.godot_int) int64 {
 	return int64(value)
 }
 
+func quatAsGodotQuat(value *Quat) *C.godot_quat {
+
+	return value.quat
+}
+
+func godotQuatAsQuat(value C.godot_quat) *Quat {
+	return &Quat{quat: &value}
+}
+
 func realAsCReal(value float64) C.double {
 	return C.double(value)
 }

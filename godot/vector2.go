@@ -8,7 +8,6 @@ package godot
 */
 import "C"
 
-//DEPENDS: Built-In types
 //NewVector2 constructs a new Vector2 from the given x and y.
 func NewVector2(x float64, y float64) *Vector2 {
 	vector2 := &Vector2{}
