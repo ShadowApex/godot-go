@@ -42,6 +42,7 @@ type Vector3 struct {
 	vector3 *C.godot_vector3
 }
 
+// Abs returns the absolute value of the vector.
 func (v *Vector3) Abs() *Vector3 {
 	return godotVec3AsVec3(C.godot_vector3_abs(v.vector3))
 }

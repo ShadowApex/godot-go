@@ -66,7 +66,6 @@ func NewBasisWithEuler(euler Vector3) *Basis {
 	return basis
 }
 
-/* TODO: Enable when Quat is complete
 // NewBasisWithEulerQuat creates a rotation matrix from the given quaternion.
 func NewBasisWithEulerQuat(euler Quat) *Basis {
 	basis := &Basis{}
@@ -77,7 +76,7 @@ func NewBasisWithEulerQuat(euler Quat) *Basis {
 	// Create our basis with Euler Quat
 	C.godot_basis_new_with_euler_quat(
 		&godotBasis,
-		quatAsGodotQuat(euler),
+		euler.quat,
 	)
 
 	// Internally set our basis
@@ -85,7 +84,7 @@ func NewBasisWithEulerQuat(euler Quat) *Basis {
 
 	return basis
 }
-*/
+
 // NewBasisWithRows creates a rotation matrix which rotates around the given
 // axis by the specified angle. The axis must be a normalized vector.
 func NewBasisWithRows(xAxis Vector3, yAxis Vector3, zAxis Vector3) *Basis {
@@ -113,9 +112,9 @@ type Basis struct {
 	basis *C.godot_basis
 }
 
-// TODO: These are commented out right now because these functions have not yet been implemented in
-// Godot. We can uncomment this when they are implemented in Godot.
-/*
+// TODO: SetRotationAxisAngle, SetRotationEuler, and SetScale are not yet implemented
+// in the godot engine. They have been commented out until they are implemented.
+
 // AsString returns a string of the basis
 func (b *Basis) AsString() string {
 	asString := C.godot_basis_as_string(b.basis)
@@ -133,10 +132,10 @@ func (b *Basis) GetAxis(axis int64) *Vector3 {
 	return godotVec3AsVec3(C.godot_basis_get_axis(b.basis, intAsGodotInt(axis)))
 }
 
-// GetElements ?
+// GetElements copies the source Basis first three elements to the elements vector.
 // From Headers: elements is a pointer to an array of 3 (!!) vector3?
-func (b *Basis) GetElements(elements Vector3) {
-	C.godot_basis_get_elements(b.basis, elements.vector3)
+func (b *Basis) GetElements(dest Vector3) {
+	C.godot_basis_get_elements(b.basis, dest.vector3)
 }
 
 // GetEuler, assuming that the matrix is a proper rotation matrix (orthonormal
@@ -248,6 +247,8 @@ func (b *Basis) SetAxis(axis int64, value Vector3) {
 	)
 }
 
+/* C.godot_basis_set_rotation_axis_angle and C.godot_basis_set_rotation_euler
+not yet implemented in basis.cpp
 // SetRotationAxisAngle sets the specified axis and angle.
 func (b *Basis) SetRotationAxisAngle(axis Vector3, angle float64) {
 	C.godot_basis_set_rotation_axis_angle(
@@ -262,6 +263,7 @@ func (b *Basis) SetRotationAxisAngle(axis Vector3, angle float64) {
 func (b *Basis) SetRotationEuler(euler Vector3) {
 	C.godot_basis_set_rotation_euler(b.basis, euler.vector3)
 }
+*/
 
 // SetRow sets the specified row to the given value.
 func (b *Basis) SetRow(row int64, value Vector3) {
@@ -272,10 +274,12 @@ func (b *Basis) SetRow(row int64, value Vector3) {
 	)
 }
 
+/*C.godot_basis_set_scale not yet implemented in basis.cpp
 // SetScale sets the scale to the given value.
 func (b *Basis) SetScale(scale Vector3) {
 	C.godot_basis_set_scale(b.basis, scale.vector3)
 }
+*/
 
 // Tdotx transposes dot product with the x axis of the matrix.
 func (b *Basis) Tdotx(with Vector3) float64 {
@@ -308,4 +312,3 @@ func (b *Basis) Xform(with Vector3) *Vector3 {
 func (b *Basis) XformInv(with Vector3) *Vector3 {
 	return godotVec3AsVec3(C.godot_basis_xform_inv(b.basis, with.vector3))
 }
-*/
