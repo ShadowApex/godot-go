@@ -8,25 +8,25 @@ package godot
 */
 import "C"
 
-//DEPENDS: Object
 import (
 	"unsafe"
 )
 
-func NewRID(object Class) *RID {
+// NewRID returns a new resource ID.
+func NewRID() *RID {
 	rid := &RID{}
 	var gdRID C.godot_rid
-	C.godot_rid_new_with_resource(&gdRID, unsafe.Pointer(object.getOwner()))
+	C.godot_rid_new(&gdRID)
 	rid.rid = &gdRID
 
 	return rid
 }
 
-// NewEmptyRID returns a new resource ID.
-func NewEmptyRID() *RID {
+// NewRIDWithResource returns the RID of an object.
+func NewRIDWithResource(object Class) *RID {
 	rid := &RID{}
 	var gdRID C.godot_rid
-	C.godot_rid_new(&gdRID)
+	C.godot_rid_new_with_resource(&gdRID, unsafe.Pointer(object.getOwner()))
 	rid.rid = &gdRID
 
 	return rid
@@ -37,18 +37,25 @@ type RID struct {
 	rid *C.godot_rid
 }
 
-func (r *RID) ID() int64 {
+// GetID returns the godot resource ID
+func (r *RID) GetID() int64 {
 	return int64(C.godot_rid_get_id(r.rid))
 }
 
-func (r *RID) Equals(rid *RID) bool {
+// OperatorEqual returns true if r.rid == rid.rid
+func (r *RID) OperatorEqual(rid *RID) bool {
 	return bool(C.godot_rid_operator_equal(r.rid, rid.rid))
 }
 
-func (r *RID) Less(rid *RID) bool {
-	return bool(C.godot_rid_operator_less(r.rid, rid.rid))
+// OperatorGreater returns true if r.rid > rid.rid
+func (r *RID) OperatorGreater(rid *RID) bool {
+	if !r.OperatorEqual(rid) && !r.OperatorLess(rid) {
+		return true
+	}
+	return false
 }
 
-func (r *RID) Greater(rid *RID) bool {
-	return !r.Less(rid)
+// OperatorGreater returns true if r.rid < rid.rid
+func (r *RID) OperatorLess(rid *RID) bool {
+	return bool(C.godot_rid_operator_less(r.rid, rid.rid))
 }
