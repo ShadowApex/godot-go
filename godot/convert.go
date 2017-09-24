@@ -210,6 +210,14 @@ func uIntAsCUInt64(value uint64) C.uint64_t {
 	return C.uint64_t(value)
 }
 
+func colorAsGodotColor(value Color) *C.godot_color {
+	return value.color
+}
+
+func godotColorAsColor(value C.godot_color) *Color {
+	return &Color{color: &value}
+}
+
 func intAsCInt64(value int64) C.int64_t {
 	return C.int64_t(value)
 }
