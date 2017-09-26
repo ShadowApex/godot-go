@@ -909,7 +909,7 @@ func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.V
 	methodCString := C.CString(methodName)
 
 	// Get the Godot method bind pointer so we can pass it to godot_method_bind_ptrcall.
-	log.Println("  Using godot object:", o.owner)
+	log.Println("  Using godot object:", o.getOwner())
 	var methodBind *C.godot_method_bind
 	methodBind = C.godot_method_bind_get_method(classCString, methodCString)
 	log.Println("  Using method bind pointer: ", methodBind)
@@ -956,7 +956,7 @@ func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.V
 	log.Println("  Calling bind_ptrcall...")
 	C.godot_method_bind_ptrcall(
 		methodBind,
-		unsafe.Pointer(o.owner),
+		unsafe.Pointer(o.getOwner()),
 		cArgsArray, // void**
 		ret,        // void*
 	)
@@ -966,8 +966,9 @@ func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.V
 	var retValue reflect.Value
 	if _, ok := godotToGoConversionMap[returns]; ok {
 		retValue = godotToGoConversionMap[returns](ret)
+	} else {
+		panic("Return type not found when calling parent method: " + returns)
 	}
-	// TODO: Panic if type not found?
 
 	// Return the converted variant.
 	return retValue
@@ -14908,24 +14909,6 @@ func (o *visualServer) TextureSetShrinkAllX2OnSetData(shrink bool) {
 
 }
 
-/*
-
- */
-type PhysicsServerSW struct {
-	physicsServer
-}
-
-func (o *PhysicsServerSW) baseClass() string {
-	return "PhysicsServerSW"
-}
-
-/*
-   PhysicsServerSWImplementer is an interface for PhysicsServerSW objects.
-*/
-type PhysicsServerSWImplementer interface {
-	Class
-}
-
 func newSingletonPhysicsServer() *physicsServer {
 	obj := &physicsServer{}
 	ptr := C.godot_global_get_singleton(C.CString("PhysicsServer"))
@@ -17085,6 +17068,24 @@ func (o *physicsServer) GetProcessInfo(processInfo int64) int64 {
 
 	return returnValue
 
+}
+
+/*
+
+ */
+type PhysicsServerSW struct {
+	physicsServer
+}
+
+func (o *PhysicsServerSW) baseClass() string {
+	return "PhysicsServerSW"
+}
+
+/*
+   PhysicsServerSWImplementer is an interface for PhysicsServerSW objects.
+*/
+type PhysicsServerSWImplementer interface {
+	Class
 }
 
 /*
@@ -27004,422 +27005,6 @@ type PhysicsShapeQueryResultImplementer interface {
 }
 
 /*
-
- */
-type BitmapFont struct {
-	Font
-}
-
-func (o *BitmapFont) baseClass() string {
-	return "BitmapFont"
-}
-
-/*
-
- */
-func (o *BitmapFont) CreateFromFnt(path string) int64 {
-	log.Println("Calling BitmapFont.CreateFromFnt()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "create_from_fnt", goArguments, "int64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(int64)
-
-	return returnValue
-
-}
-
-/*
-   Set the total font height (ascent plus descent) in pixels.
-*/
-func (o *BitmapFont) SetHeight(px float64) {
-	log.Println("Calling BitmapFont.SetHeight()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(px)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_height", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Set the font ascent (number of pixels above the baseline).
-*/
-func (o *BitmapFont) SetAscent(px float64) {
-	log.Println("Calling BitmapFont.SetAscent()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(px)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_ascent", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Add a kerning pair to the [BitmapFont] as a difference. Kerning pairs are special cases where a typeface advance is determined by the next character.
-*/
-func (o *BitmapFont) AddKerningPair(charA int64, charB int64, kerning int64) {
-	log.Println("Calling BitmapFont.AddKerningPair()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(charA)
-	goArguments[1] = reflect.ValueOf(charB)
-	goArguments[2] = reflect.ValueOf(kerning)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "add_kerning_pair", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Return a kerning pair as a difference.
-*/
-func (o *BitmapFont) GetKerningPair(charA int64, charB int64) int64 {
-	log.Println("Calling BitmapFont.GetKerningPair()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(charA)
-	goArguments[1] = reflect.ValueOf(charB)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_kerning_pair", goArguments, "int64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(int64)
-
-	return returnValue
-
-}
-
-/*
-   Add a texture to the [BitmapFont].
-*/
-func (o *BitmapFont) AddTexture(texture *Texture) {
-	log.Println("Calling BitmapFont.AddTexture()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texture)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "add_texture", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Add a character to the font, where [i]character[/i] is the unicode value, [i]texture[/i] is the texture index, [i]rect[/i] is the region in the texture (in pixels!), [i]align[/i] is the (optional) alignment for the character and [i]advance[/i] is the (optional) advance.
-*/
-func (o *BitmapFont) AddChar(character int64, texture int64, rect *Rect2, align *Vector2, advance float64) {
-	log.Println("Calling BitmapFont.AddChar()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(character)
-	goArguments[1] = reflect.ValueOf(texture)
-	goArguments[2] = reflect.ValueOf(rect)
-	goArguments[3] = reflect.ValueOf(align)
-	goArguments[4] = reflect.ValueOf(advance)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "add_char", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-
- */
-func (o *BitmapFont) GetTextureCount() int64 {
-	log.Println("Calling BitmapFont.GetTextureCount()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_texture_count", goArguments, "int64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(int64)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *BitmapFont) GetTexture(idx int64) *Texture {
-	log.Println("Calling BitmapFont.GetTexture()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_texture", goArguments, "*Texture")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*Texture)
-
-	return returnValue
-
-}
-
-/*
-   Return the size of a character, optionally taking kerning into account if the next character is provided.
-*/
-func (o *BitmapFont) GetCharSize(char int64, next int64) *Vector2 {
-	log.Println("Calling BitmapFont.GetCharSize()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(char)
-	goArguments[1] = reflect.ValueOf(next)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_char_size", goArguments, "*Vector2")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*Vector2)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *BitmapFont) SetDistanceFieldHint(enable bool) {
-	log.Println("Calling BitmapFont.SetDistanceFieldHint()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_distance_field_hint", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Clear all the font data.
-*/
-func (o *BitmapFont) Clear() {
-	log.Println("Calling BitmapFont.Clear()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "clear", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *BitmapFont) X_SetChars(arg0 *PoolIntArray) {
-	log.Println("Calling BitmapFont.X_SetChars()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_set_chars", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *BitmapFont) X_GetChars() *PoolIntArray {
-	log.Println("Calling BitmapFont.X_GetChars()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "_get_chars", goArguments, "*PoolIntArray")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	return returnValue
-
-}
-
-/*
-   Undocumented
-*/
-func (o *BitmapFont) X_SetKernings(arg0 *PoolIntArray) {
-	log.Println("Calling BitmapFont.X_SetKernings()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_set_kernings", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *BitmapFont) X_GetKernings() *PoolIntArray {
-	log.Println("Calling BitmapFont.X_GetKernings()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "_get_kernings", goArguments, "*PoolIntArray")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	return returnValue
-
-}
-
-/*
-   Undocumented
-*/
-func (o *BitmapFont) X_SetTextures(arg0 *Array) {
-	log.Println("Calling BitmapFont.X_SetTextures()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_set_textures", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *BitmapFont) X_GetTextures() *Array {
-	log.Println("Calling BitmapFont.X_GetTextures()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "_get_textures", goArguments, "*Array")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*Array)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *BitmapFont) SetFallback(fallback *BitmapFont) {
-	log.Println("Calling BitmapFont.SetFallback()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(fallback)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_fallback", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-
- */
-func (o *BitmapFont) GetFallback() *BitmapFont {
-	log.Println("Calling BitmapFont.GetFallback()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_fallback", goArguments, "*BitmapFont")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*BitmapFont)
-
-	return returnValue
-
-}
-
-/*
-   BitmapFontImplementer is an interface for BitmapFont objects.
-*/
-type BitmapFontImplementer interface {
-	Class
-}
-
-/*
    Theme for skinning controls. Controls can be skinned individually, but for complex applications it's more efficient to just create a global theme that defines everything. This theme can be applied to any [Control], and it and its children will automatically use it. Theme resources can be alternatively loaded by writing them in a .theme file, see docs for more info.
 */
 type Theme struct {
@@ -28089,195 +27674,6 @@ type ThemeImplementer interface {
 }
 
 /*
-   Font contains a unicode compatible character set, as well as the ability to draw it with variable width, ascent, descent and kerning. For creating fonts from TTF files (or other font formats), see the editor support for fonts. TODO check wikipedia for graph of ascent/baseline/descent/height/etc.
-*/
-type Font struct {
-	Resource
-}
-
-func (o *Font) baseClass() string {
-	return "Font"
-}
-
-/*
-   Draw "string" into a canvas item using the font at a given position, with "modulate" color, and optionally clipping the width. "position" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis.
-*/
-func (o *Font) Draw(canvasItem *RID, position *Vector2, string string, modulate *Color, clipW int64) {
-	log.Println("Calling Font.Draw()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(canvasItem)
-	goArguments[1] = reflect.ValueOf(position)
-	goArguments[2] = reflect.ValueOf(string)
-	goArguments[3] = reflect.ValueOf(modulate)
-	goArguments[4] = reflect.ValueOf(clipW)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "draw", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Return the font ascent (number of pixels above the baseline).
-*/
-func (o *Font) GetAscent() float64 {
-	log.Println("Calling Font.GetAscent()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_ascent", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-   Return the font descent (number of pixels below the baseline).
-*/
-func (o *Font) GetDescent() float64 {
-	log.Println("Calling Font.GetDescent()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_descent", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-   Return the total font height (ascent plus descent) in pixels.
-*/
-func (o *Font) GetHeight() float64 {
-	log.Println("Calling Font.GetHeight()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_height", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *Font) IsDistanceFieldHint() bool {
-	log.Println("Calling Font.IsDistanceFieldHint()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "is_distance_field_hint", goArguments, "bool")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(bool)
-
-	return returnValue
-
-}
-
-/*
-   Return the size of a string, taking kerning and advance into account.
-*/
-func (o *Font) GetStringSize(string string) *Vector2 {
-	log.Println("Calling Font.GetStringSize()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(string)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_string_size", goArguments, "*Vector2")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*Vector2)
-
-	return returnValue
-
-}
-
-/*
-   Draw character "char" into a canvas item using the font at a given position, with "modulate" color, and optionally kerning if "next" is passed. clipping the width. "position" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis. The width used by the character is returned, making this function useful for drawing strings character by character.
-*/
-func (o *Font) DrawChar(canvasItem *RID, position *Vector2, char int64, next int64, modulate *Color) float64 {
-	log.Println("Calling Font.DrawChar()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(canvasItem)
-	goArguments[1] = reflect.ValueOf(position)
-	goArguments[2] = reflect.ValueOf(char)
-	goArguments[3] = reflect.ValueOf(next)
-	goArguments[4] = reflect.ValueOf(modulate)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "draw_char", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-   After editing a font (changing size, ascent, char rects, etc.). Call this function to propagate changes to controls that might use it.
-*/
-func (o *Font) UpdateChanges() {
-	log.Println("Calling Font.UpdateChanges()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "update_changes", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   FontImplementer is an interface for Font objects.
-*/
-type FontImplementer interface {
-	Class
-}
-
-/*
    A [Texture] based on an [Image]. Can be created from an [Image].
 */
 type ImageTexture struct {
@@ -28738,6 +28134,192 @@ type TextureImplementer interface {
 }
 
 /*
+   StyleBox is [Resource] that provides an abstract base class for drawing stylized boxes for the UI. StyleBoxes are used for drawing the styles of buttons, line edit backgrounds, tree backgrounds, etc. and also for testing a transparency mask for pointer signals. If mask test fails on a StyleBox assigned as mask to a control, clicks and motion signals will go through it to the one below.
+*/
+type StyleBox struct {
+	Resource
+}
+
+func (o *StyleBox) baseClass() string {
+	return "StyleBox"
+}
+
+/*
+   Test a position in a rectangle, return whether it passes the mask test.
+*/
+func (o *StyleBox) TestMask(point *Vector2, rect *Rect2) bool {
+	log.Println("Calling StyleBox.TestMask()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(point)
+	goArguments[1] = reflect.ValueOf(rect)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "test_mask", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
+}
+
+/*
+   Set the default offset "offset" of the margin "margin" (see MARGIN_* enum) for a StyleBox, Controls that draw styleboxes with context inside need to know the margin, so the border of the stylebox is not occluded.
+*/
+func (o *StyleBox) SetDefaultMargin(margin int64, offset float64) {
+	log.Println("Calling StyleBox.SetDefaultMargin()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(margin)
+	goArguments[1] = reflect.ValueOf(offset)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_default_margin", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Return the default offset of the margin "margin" (see MARGIN_* enum) of a StyleBox, Controls that draw styleboxes with context inside need to know the margin, so the border of the stylebox is not occluded.
+*/
+func (o *StyleBox) GetDefaultMargin(margin int64) float64 {
+	log.Println("Calling StyleBox.GetDefaultMargin()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(margin)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_default_margin", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+   Return the offset of margin "margin" (see MARGIN_* enum).
+*/
+func (o *StyleBox) GetMargin(margin int64) float64 {
+	log.Println("Calling StyleBox.GetMargin()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(margin)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_margin", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+   Return the minimum size that this stylebox can be shrunk to.
+*/
+func (o *StyleBox) GetMinimumSize() *Vector2 {
+	log.Println("Calling StyleBox.GetMinimumSize()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_minimum_size", goArguments, "*Vector2")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Vector2)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *StyleBox) GetCenterSize() *Vector2 {
+	log.Println("Calling StyleBox.GetCenterSize()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_center_size", goArguments, "*Vector2")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Vector2)
+
+	return returnValue
+
+}
+
+/*
+   Return the "offset" of a stylebox, this is a helper function, like writing [code]Vector2(style.get_margin(MARGIN_LEFT), style.get_margin(MARGIN_TOP))[/code].
+*/
+func (o *StyleBox) GetOffset() *Vector2 {
+	log.Println("Calling StyleBox.GetOffset()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_offset", goArguments, "*Vector2")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Vector2)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *StyleBox) Draw(canvasItem *RID, rect *Rect2) {
+	log.Println("Calling StyleBox.Draw()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(canvasItem)
+	goArguments[1] = reflect.ValueOf(rect)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "draw", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   StyleBoxImplementer is an interface for StyleBox objects.
+*/
+type StyleBoxImplementer interface {
+	Class
+}
+
+/*
    Texture Based 3x3 scale style. This stylebox performs a 3x3 scaling of a texture, where only the center cell is fully stretched. This allows for the easy creation of bordered styles.
 */
 type StyleBoxTexture struct {
@@ -29150,6 +28732,611 @@ type StyleBoxTextureImplementer interface {
 }
 
 /*
+
+ */
+type BitmapFont struct {
+	Font
+}
+
+func (o *BitmapFont) baseClass() string {
+	return "BitmapFont"
+}
+
+/*
+
+ */
+func (o *BitmapFont) CreateFromFnt(path string) int64 {
+	log.Println("Calling BitmapFont.CreateFromFnt()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(path)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "create_from_fnt", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+   Set the total font height (ascent plus descent) in pixels.
+*/
+func (o *BitmapFont) SetHeight(px float64) {
+	log.Println("Calling BitmapFont.SetHeight()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(px)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_height", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Set the font ascent (number of pixels above the baseline).
+*/
+func (o *BitmapFont) SetAscent(px float64) {
+	log.Println("Calling BitmapFont.SetAscent()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(px)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_ascent", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Add a kerning pair to the [BitmapFont] as a difference. Kerning pairs are special cases where a typeface advance is determined by the next character.
+*/
+func (o *BitmapFont) AddKerningPair(charA int64, charB int64, kerning int64) {
+	log.Println("Calling BitmapFont.AddKerningPair()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(charA)
+	goArguments[1] = reflect.ValueOf(charB)
+	goArguments[2] = reflect.ValueOf(kerning)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "add_kerning_pair", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Return a kerning pair as a difference.
+*/
+func (o *BitmapFont) GetKerningPair(charA int64, charB int64) int64 {
+	log.Println("Calling BitmapFont.GetKerningPair()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(charA)
+	goArguments[1] = reflect.ValueOf(charB)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_kerning_pair", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+   Add a texture to the [BitmapFont].
+*/
+func (o *BitmapFont) AddTexture(texture *Texture) {
+	log.Println("Calling BitmapFont.AddTexture()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(texture)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "add_texture", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Add a character to the font, where [i]character[/i] is the unicode value, [i]texture[/i] is the texture index, [i]rect[/i] is the region in the texture (in pixels!), [i]align[/i] is the (optional) alignment for the character and [i]advance[/i] is the (optional) advance.
+*/
+func (o *BitmapFont) AddChar(character int64, texture int64, rect *Rect2, align *Vector2, advance float64) {
+	log.Println("Calling BitmapFont.AddChar()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 5, 5)
+	goArguments[0] = reflect.ValueOf(character)
+	goArguments[1] = reflect.ValueOf(texture)
+	goArguments[2] = reflect.ValueOf(rect)
+	goArguments[3] = reflect.ValueOf(align)
+	goArguments[4] = reflect.ValueOf(advance)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "add_char", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *BitmapFont) GetTextureCount() int64 {
+	log.Println("Calling BitmapFont.GetTextureCount()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_texture_count", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *BitmapFont) GetTexture(idx int64) *Texture {
+	log.Println("Calling BitmapFont.GetTexture()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(idx)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_texture", goArguments, "*Texture")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Texture)
+
+	return returnValue
+
+}
+
+/*
+   Return the size of a character, optionally taking kerning into account if the next character is provided.
+*/
+func (o *BitmapFont) GetCharSize(char int64, next int64) *Vector2 {
+	log.Println("Calling BitmapFont.GetCharSize()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(char)
+	goArguments[1] = reflect.ValueOf(next)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_char_size", goArguments, "*Vector2")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Vector2)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *BitmapFont) SetDistanceFieldHint(enable bool) {
+	log.Println("Calling BitmapFont.SetDistanceFieldHint()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(enable)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_distance_field_hint", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Clear all the font data.
+*/
+func (o *BitmapFont) Clear() {
+	log.Println("Calling BitmapFont.Clear()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "clear", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *BitmapFont) X_SetChars(arg0 *PoolIntArray) {
+	log.Println("Calling BitmapFont.X_SetChars()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(arg0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_set_chars", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *BitmapFont) X_GetChars() *PoolIntArray {
+	log.Println("Calling BitmapFont.X_GetChars()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "_get_chars", goArguments, "*PoolIntArray")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*PoolIntArray)
+
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *BitmapFont) X_SetKernings(arg0 *PoolIntArray) {
+	log.Println("Calling BitmapFont.X_SetKernings()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(arg0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_set_kernings", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *BitmapFont) X_GetKernings() *PoolIntArray {
+	log.Println("Calling BitmapFont.X_GetKernings()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "_get_kernings", goArguments, "*PoolIntArray")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*PoolIntArray)
+
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *BitmapFont) X_SetTextures(arg0 *Array) {
+	log.Println("Calling BitmapFont.X_SetTextures()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(arg0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_set_textures", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *BitmapFont) X_GetTextures() *Array {
+	log.Println("Calling BitmapFont.X_GetTextures()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "_get_textures", goArguments, "*Array")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Array)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *BitmapFont) SetFallback(fallback *BitmapFont) {
+	log.Println("Calling BitmapFont.SetFallback()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(fallback)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_fallback", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *BitmapFont) GetFallback() *BitmapFont {
+	log.Println("Calling BitmapFont.GetFallback()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_fallback", goArguments, "*BitmapFont")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*BitmapFont)
+
+	return returnValue
+
+}
+
+/*
+   BitmapFontImplementer is an interface for BitmapFont objects.
+*/
+type BitmapFontImplementer interface {
+	Class
+}
+
+/*
+   Font contains a unicode compatible character set, as well as the ability to draw it with variable width, ascent, descent and kerning. For creating fonts from TTF files (or other font formats), see the editor support for fonts. TODO check wikipedia for graph of ascent/baseline/descent/height/etc.
+*/
+type Font struct {
+	Resource
+}
+
+func (o *Font) baseClass() string {
+	return "Font"
+}
+
+/*
+   Draw "string" into a canvas item using the font at a given position, with "modulate" color, and optionally clipping the width. "position" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis.
+*/
+func (o *Font) Draw(canvasItem *RID, position *Vector2, string string, modulate *Color, clipW int64) {
+	log.Println("Calling Font.Draw()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 5, 5)
+	goArguments[0] = reflect.ValueOf(canvasItem)
+	goArguments[1] = reflect.ValueOf(position)
+	goArguments[2] = reflect.ValueOf(string)
+	goArguments[3] = reflect.ValueOf(modulate)
+	goArguments[4] = reflect.ValueOf(clipW)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "draw", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Return the font ascent (number of pixels above the baseline).
+*/
+func (o *Font) GetAscent() float64 {
+	log.Println("Calling Font.GetAscent()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_ascent", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+   Return the font descent (number of pixels below the baseline).
+*/
+func (o *Font) GetDescent() float64 {
+	log.Println("Calling Font.GetDescent()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_descent", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+   Return the total font height (ascent plus descent) in pixels.
+*/
+func (o *Font) GetHeight() float64 {
+	log.Println("Calling Font.GetHeight()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_height", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *Font) IsDistanceFieldHint() bool {
+	log.Println("Calling Font.IsDistanceFieldHint()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_distance_field_hint", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
+}
+
+/*
+   Return the size of a string, taking kerning and advance into account.
+*/
+func (o *Font) GetStringSize(string string) *Vector2 {
+	log.Println("Calling Font.GetStringSize()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(string)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_string_size", goArguments, "*Vector2")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Vector2)
+
+	return returnValue
+
+}
+
+/*
+   Draw character "char" into a canvas item using the font at a given position, with "modulate" color, and optionally kerning if "next" is passed. clipping the width. "position" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis. The width used by the character is returned, making this function useful for drawing strings character by character.
+*/
+func (o *Font) DrawChar(canvasItem *RID, position *Vector2, char int64, next int64, modulate *Color) float64 {
+	log.Println("Calling Font.DrawChar()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 5, 5)
+	goArguments[0] = reflect.ValueOf(canvasItem)
+	goArguments[1] = reflect.ValueOf(position)
+	goArguments[2] = reflect.ValueOf(char)
+	goArguments[3] = reflect.ValueOf(next)
+	goArguments[4] = reflect.ValueOf(modulate)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "draw_char", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+   After editing a font (changing size, ascent, char rects, etc.). Call this function to propagate changes to controls that might use it.
+*/
+func (o *Font) UpdateChanges() {
+	log.Println("Calling Font.UpdateChanges()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "update_changes", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   FontImplementer is an interface for Font objects.
+*/
+type FontImplementer interface {
+	Class
+}
+
+/*
    Panel is a [Control] that displays an opaque background. It's commonly used as a parent and container for other types of [Control] nodes.
 */
 type Panel struct {
@@ -29377,192 +29564,6 @@ func (o *Button) IsFlat() bool {
    ButtonImplementer is an interface for Button objects.
 */
 type ButtonImplementer interface {
-	Class
-}
-
-/*
-   StyleBox is [Resource] that provides an abstract base class for drawing stylized boxes for the UI. StyleBoxes are used for drawing the styles of buttons, line edit backgrounds, tree backgrounds, etc. and also for testing a transparency mask for pointer signals. If mask test fails on a StyleBox assigned as mask to a control, clicks and motion signals will go through it to the one below.
-*/
-type StyleBox struct {
-	Resource
-}
-
-func (o *StyleBox) baseClass() string {
-	return "StyleBox"
-}
-
-/*
-   Test a position in a rectangle, return whether it passes the mask test.
-*/
-func (o *StyleBox) TestMask(point *Vector2, rect *Rect2) bool {
-	log.Println("Calling StyleBox.TestMask()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(point)
-	goArguments[1] = reflect.ValueOf(rect)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "test_mask", goArguments, "bool")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(bool)
-
-	return returnValue
-
-}
-
-/*
-   Set the default offset "offset" of the margin "margin" (see MARGIN_* enum) for a StyleBox, Controls that draw styleboxes with context inside need to know the margin, so the border of the stylebox is not occluded.
-*/
-func (o *StyleBox) SetDefaultMargin(margin int64, offset float64) {
-	log.Println("Calling StyleBox.SetDefaultMargin()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(margin)
-	goArguments[1] = reflect.ValueOf(offset)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_default_margin", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Return the default offset of the margin "margin" (see MARGIN_* enum) of a StyleBox, Controls that draw styleboxes with context inside need to know the margin, so the border of the stylebox is not occluded.
-*/
-func (o *StyleBox) GetDefaultMargin(margin int64) float64 {
-	log.Println("Calling StyleBox.GetDefaultMargin()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_default_margin", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-   Return the offset of margin "margin" (see MARGIN_* enum).
-*/
-func (o *StyleBox) GetMargin(margin int64) float64 {
-	log.Println("Calling StyleBox.GetMargin()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_margin", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-   Return the minimum size that this stylebox can be shrunk to.
-*/
-func (o *StyleBox) GetMinimumSize() *Vector2 {
-	log.Println("Calling StyleBox.GetMinimumSize()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_minimum_size", goArguments, "*Vector2")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*Vector2)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *StyleBox) GetCenterSize() *Vector2 {
-	log.Println("Calling StyleBox.GetCenterSize()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_center_size", goArguments, "*Vector2")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*Vector2)
-
-	return returnValue
-
-}
-
-/*
-   Return the "offset" of a stylebox, this is a helper function, like writing [code]Vector2(style.get_margin(MARGIN_LEFT), style.get_margin(MARGIN_TOP))[/code].
-*/
-func (o *StyleBox) GetOffset() *Vector2 {
-	log.Println("Calling StyleBox.GetOffset()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_offset", goArguments, "*Vector2")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*Vector2)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *StyleBox) Draw(canvasItem *RID, rect *Rect2) {
-	log.Println("Calling StyleBox.Draw()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(canvasItem)
-	goArguments[1] = reflect.ValueOf(rect)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "draw", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   StyleBoxImplementer is an interface for StyleBox objects.
-*/
-type StyleBoxImplementer interface {
 	Class
 }
 
@@ -30988,63 +30989,6 @@ type LabelImplementer interface {
 }
 
 /*
-   General purpose progress bar. Shows fill percentage from right to left.
-*/
-type ProgressBar struct {
-	Range
-}
-
-func (o *ProgressBar) baseClass() string {
-	return "ProgressBar"
-}
-
-/*
-
- */
-func (o *ProgressBar) SetPercentVisible(visible bool) {
-	log.Println("Calling ProgressBar.SetPercentVisible()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(visible)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_percent_visible", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-
- */
-func (o *ProgressBar) IsPercentVisible() bool {
-	log.Println("Calling ProgressBar.IsPercentVisible()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "is_percent_visible", goArguments, "bool")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(bool)
-
-	return returnValue
-
-}
-
-/*
-   ProgressBarImplementer is an interface for ProgressBar objects.
-*/
-type ProgressBarImplementer interface {
-	Class
-}
-
-/*
    LineEdit provides a single line string editor, used for text fields.
 */
 type LineEdit struct {
@@ -31650,6 +31594,63 @@ func (o *LineEdit) GetMenu() *PopupMenu {
    LineEditImplementer is an interface for LineEdit objects.
 */
 type LineEditImplementer interface {
+	Class
+}
+
+/*
+   General purpose progress bar. Shows fill percentage from right to left.
+*/
+type ProgressBar struct {
+	Range
+}
+
+func (o *ProgressBar) baseClass() string {
+	return "ProgressBar"
+}
+
+/*
+
+ */
+func (o *ProgressBar) SetPercentVisible(visible bool) {
+	log.Println("Calling ProgressBar.SetPercentVisible()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(visible)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_percent_visible", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *ProgressBar) IsPercentVisible() bool {
+	log.Println("Calling ProgressBar.IsPercentVisible()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_percent_visible", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
+}
+
+/*
+   ProgressBarImplementer is an interface for ProgressBar objects.
+*/
+type ProgressBarImplementer interface {
 	Class
 }
 
@@ -32836,552 +32837,38 @@ type VSliderImplementer interface {
 }
 
 /*
-   GraphEdit manages the showing of GraphNodes it contains, as well as connections and disconnections between them. Signals are sent for each of these two events. Disconnection between GraphNodes slots is disabled by default. It is greatly advised to enable low processor usage mode (see [method OS.set_low_processor_usage_mode]) when using GraphEdits.
+   Reference frame for GUI. It's just like an empty control, except a red box is displayed while editing around its size at all times.
 */
-type GraphEdit struct {
+type ReferenceRect struct {
 	Control
 }
 
-func (o *GraphEdit) baseClass() string {
-	return "GraphEdit"
+func (o *ReferenceRect) baseClass() string {
+	return "ReferenceRect"
 }
 
 /*
-   Create a connection between 'from_port' slot of 'from' GraphNode and 'to_port' slot of 'to' GraphNode. If the connection already exists, no connection is created.
+   ReferenceRectImplementer is an interface for ReferenceRect objects.
 */
-func (o *GraphEdit) ConnectNode(from string, fromPort int64, to string, toPort int64) int64 {
-	log.Println("Calling GraphEdit.ConnectNode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(from)
-	goArguments[1] = reflect.ValueOf(fromPort)
-	goArguments[2] = reflect.ValueOf(to)
-	goArguments[3] = reflect.ValueOf(toPort)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "connect_node", goArguments, "int64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(int64)
-
-	return returnValue
-
+type ReferenceRectImplementer interface {
+	Class
 }
 
 /*
-   Return true if the 'from_port' slot of 'from' GraphNode is connected to the 'to_port' slot of 'to' GraphNode.
+   Panel container type. This container fits controls inside of the delimited area of a stylebox. It's useful for giving controls an outline.
 */
-func (o *GraphEdit) IsNodeConnected(from string, fromPort int64, to string, toPort int64) bool {
-	log.Println("Calling GraphEdit.IsNodeConnected()")
+type PanelContainer struct {
+	Container
+}
 
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(from)
-	goArguments[1] = reflect.ValueOf(fromPort)
-	goArguments[2] = reflect.ValueOf(to)
-	goArguments[3] = reflect.ValueOf(toPort)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "is_node_connected", goArguments, "bool")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(bool)
-
-	return returnValue
-
+func (o *PanelContainer) baseClass() string {
+	return "PanelContainer"
 }
 
 /*
-   Remove the connection between 'from_port' slot of 'from' GraphNode and 'to_port' slot of 'to' GraphNode, if connection exists.
+   PanelContainerImplementer is an interface for PanelContainer objects.
 */
-func (o *GraphEdit) DisconnectNode(from string, fromPort int64, to string, toPort int64) {
-	log.Println("Calling GraphEdit.DisconnectNode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(from)
-	goArguments[1] = reflect.ValueOf(fromPort)
-	goArguments[2] = reflect.ValueOf(to)
-	goArguments[3] = reflect.ValueOf(toPort)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "disconnect_node", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Return an Array containing the list of connections. A connection consists in a structure of the form {from_slot: 0, from: "GraphNode name 0", to_slot: 1, to: "GraphNode name 1" }
-*/
-func (o *GraphEdit) GetConnectionList() *Array {
-	log.Println("Calling GraphEdit.GetConnectionList()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_connection_list", goArguments, "*Array")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*Array)
-
-	return returnValue
-
-}
-
-/*
-   Return the scroll offset.
-*/
-func (o *GraphEdit) GetScrollOfs() *Vector2 {
-	log.Println("Calling GraphEdit.GetScrollOfs()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_scroll_ofs", goArguments, "*Vector2")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*Vector2)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *GraphEdit) SetScrollOfs(ofs *Vector2) {
-	log.Println("Calling GraphEdit.SetScrollOfs()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ofs)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_scroll_ofs", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Set the zoom value of the GraphEdit. Zoom value is between [0.01; 1.728].
-*/
-func (o *GraphEdit) SetZoom(pZoom float64) {
-	log.Println("Calling GraphEdit.SetZoom()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pZoom)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_zoom", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Return the current zoom value.
-*/
-func (o *GraphEdit) GetZoom() float64 {
-	log.Println("Calling GraphEdit.GetZoom()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_zoom", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *GraphEdit) SetSnap(pixels int64) {
-	log.Println("Calling GraphEdit.SetSnap()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pixels)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_snap", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-
- */
-func (o *GraphEdit) GetSnap() int64 {
-	log.Println("Calling GraphEdit.GetSnap()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_snap", goArguments, "int64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(int64)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *GraphEdit) SetUseSnap(enable bool) {
-	log.Println("Calling GraphEdit.SetUseSnap()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_use_snap", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-
- */
-func (o *GraphEdit) IsUsingSnap() bool {
-	log.Println("Calling GraphEdit.IsUsingSnap()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "is_using_snap", goArguments, "bool")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(bool)
-
-	return returnValue
-
-}
-
-/*
-   Enable the disconnection of existing connections in the visual GraphEdit by left-clicking a connection and releasing into the void.
-*/
-func (o *GraphEdit) SetRightDisconnects(enable bool) {
-	log.Println("Calling GraphEdit.SetRightDisconnects()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_right_disconnects", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Return true is the disconnection of connections is enable in the visual GraphEdit. False otherwise.
-*/
-func (o *GraphEdit) IsRightDisconnectsEnabled() bool {
-	log.Println("Calling GraphEdit.IsRightDisconnectsEnabled()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "is_right_disconnects_enabled", goArguments, "bool")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(bool)
-
-	return returnValue
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_GraphNodeMoved(arg0 *Object) {
-	log.Println("Calling GraphEdit.X_GraphNodeMoved()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_graph_node_moved", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_GraphNodeRaised(arg0 *Object) {
-	log.Println("Calling GraphEdit.X_GraphNodeRaised()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_graph_node_raised", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_TopLayerInput(arg0 *InputEvent) {
-	log.Println("Calling GraphEdit.X_TopLayerInput()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_top_layer_input", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_TopLayerDraw() {
-	log.Println("Calling GraphEdit.X_TopLayerDraw()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_top_layer_draw", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_ScrollMoved(arg0 float64) {
-	log.Println("Calling GraphEdit.X_ScrollMoved()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_scroll_moved", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_ZoomMinus() {
-	log.Println("Calling GraphEdit.X_ZoomMinus()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_zoom_minus", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_ZoomReset() {
-	log.Println("Calling GraphEdit.X_ZoomReset()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_zoom_reset", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_ZoomPlus() {
-	log.Println("Calling GraphEdit.X_ZoomPlus()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_zoom_plus", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_SnapToggled() {
-	log.Println("Calling GraphEdit.X_SnapToggled()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_snap_toggled", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_SnapValueChanged(arg0 float64) {
-	log.Println("Calling GraphEdit.X_SnapValueChanged()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_snap_value_changed", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_GuiInput(arg0 *InputEvent) {
-	log.Println("Calling GraphEdit.X_GuiInput()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_gui_input", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_UpdateScrollOffset() {
-	log.Println("Calling GraphEdit.X_UpdateScrollOffset()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_update_scroll_offset", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_ConnectionsLayerDraw() {
-	log.Println("Calling GraphEdit.X_ConnectionsLayerDraw()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_connections_layer_draw", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-
- */
-func (o *GraphEdit) SetSelected(node *Object) {
-	log.Println("Calling GraphEdit.SetSelected()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(node)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_selected", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   GraphEditImplementer is an interface for GraphEdit objects.
-*/
-type GraphEditImplementer interface {
+type PanelContainerImplementer interface {
 	Class
 }
 
@@ -34389,6 +33876,24 @@ type FileDialogImplementer interface {
 }
 
 /*
+   Class for displaying popups with a panel background. In some cases it might be simpler to use than [Popup], since it provides a configurable background. If you are making windows, better check [WindowDialog].
+*/
+type PopupPanel struct {
+	Popup
+}
+
+func (o *PopupPanel) baseClass() string {
+	return "PopupPanel"
+}
+
+/*
+   PopupPanelImplementer is an interface for PopupPanel objects.
+*/
+type PopupPanelImplementer interface {
+	Class
+}
+
+/*
    PopupMenu is the typical Control that displays a list of options. They are popular in toolbars or context menus.
 */
 type PopupMenu struct {
@@ -35345,24 +34850,6 @@ func (o *PopupMenu) X_SubmenuTimeout() {
    PopupMenuImplementer is an interface for PopupMenu objects.
 */
 type PopupMenuImplementer interface {
-	Class
-}
-
-/*
-   Class for displaying popups with a panel background. In some cases it might be simpler to use than [Popup], since it provides a configurable background. If you are making windows, better check [WindowDialog].
-*/
-type PopupPanel struct {
-	Popup
-}
-
-func (o *PopupPanel) baseClass() string {
-	return "PopupPanel"
-}
-
-/*
-   PopupPanelImplementer is an interface for PopupPanel objects.
-*/
-type PopupPanelImplementer interface {
 	Class
 }
 
@@ -40216,38 +39703,552 @@ type GridContainerImplementer interface {
 }
 
 /*
-   Reference frame for GUI. It's just like an empty control, except a red box is displayed while editing around its size at all times.
+   GraphEdit manages the showing of GraphNodes it contains, as well as connections and disconnections between them. Signals are sent for each of these two events. Disconnection between GraphNodes slots is disabled by default. It is greatly advised to enable low processor usage mode (see [method OS.set_low_processor_usage_mode]) when using GraphEdits.
 */
-type ReferenceRect struct {
+type GraphEdit struct {
 	Control
 }
 
-func (o *ReferenceRect) baseClass() string {
-	return "ReferenceRect"
+func (o *GraphEdit) baseClass() string {
+	return "GraphEdit"
 }
 
 /*
-   ReferenceRectImplementer is an interface for ReferenceRect objects.
+   Create a connection between 'from_port' slot of 'from' GraphNode and 'to_port' slot of 'to' GraphNode. If the connection already exists, no connection is created.
 */
-type ReferenceRectImplementer interface {
-	Class
+func (o *GraphEdit) ConnectNode(from string, fromPort int64, to string, toPort int64) int64 {
+	log.Println("Calling GraphEdit.ConnectNode()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 4, 4)
+	goArguments[0] = reflect.ValueOf(from)
+	goArguments[1] = reflect.ValueOf(fromPort)
+	goArguments[2] = reflect.ValueOf(to)
+	goArguments[3] = reflect.ValueOf(toPort)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "connect_node", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
 }
 
 /*
-   Panel container type. This container fits controls inside of the delimited area of a stylebox. It's useful for giving controls an outline.
+   Return true if the 'from_port' slot of 'from' GraphNode is connected to the 'to_port' slot of 'to' GraphNode.
 */
-type PanelContainer struct {
-	Container
-}
+func (o *GraphEdit) IsNodeConnected(from string, fromPort int64, to string, toPort int64) bool {
+	log.Println("Calling GraphEdit.IsNodeConnected()")
 
-func (o *PanelContainer) baseClass() string {
-	return "PanelContainer"
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 4, 4)
+	goArguments[0] = reflect.ValueOf(from)
+	goArguments[1] = reflect.ValueOf(fromPort)
+	goArguments[2] = reflect.ValueOf(to)
+	goArguments[3] = reflect.ValueOf(toPort)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_node_connected", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
 }
 
 /*
-   PanelContainerImplementer is an interface for PanelContainer objects.
+   Remove the connection between 'from_port' slot of 'from' GraphNode and 'to_port' slot of 'to' GraphNode, if connection exists.
 */
-type PanelContainerImplementer interface {
+func (o *GraphEdit) DisconnectNode(from string, fromPort int64, to string, toPort int64) {
+	log.Println("Calling GraphEdit.DisconnectNode()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 4, 4)
+	goArguments[0] = reflect.ValueOf(from)
+	goArguments[1] = reflect.ValueOf(fromPort)
+	goArguments[2] = reflect.ValueOf(to)
+	goArguments[3] = reflect.ValueOf(toPort)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "disconnect_node", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Return an Array containing the list of connections. A connection consists in a structure of the form {from_slot: 0, from: "GraphNode name 0", to_slot: 1, to: "GraphNode name 1" }
+*/
+func (o *GraphEdit) GetConnectionList() *Array {
+	log.Println("Calling GraphEdit.GetConnectionList()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_connection_list", goArguments, "*Array")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Array)
+
+	return returnValue
+
+}
+
+/*
+   Return the scroll offset.
+*/
+func (o *GraphEdit) GetScrollOfs() *Vector2 {
+	log.Println("Calling GraphEdit.GetScrollOfs()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_scroll_ofs", goArguments, "*Vector2")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Vector2)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *GraphEdit) SetScrollOfs(ofs *Vector2) {
+	log.Println("Calling GraphEdit.SetScrollOfs()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(ofs)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_scroll_ofs", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Set the zoom value of the GraphEdit. Zoom value is between [0.01; 1.728].
+*/
+func (o *GraphEdit) SetZoom(pZoom float64) {
+	log.Println("Calling GraphEdit.SetZoom()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(pZoom)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_zoom", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Return the current zoom value.
+*/
+func (o *GraphEdit) GetZoom() float64 {
+	log.Println("Calling GraphEdit.GetZoom()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_zoom", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *GraphEdit) SetSnap(pixels int64) {
+	log.Println("Calling GraphEdit.SetSnap()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(pixels)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_snap", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *GraphEdit) GetSnap() int64 {
+	log.Println("Calling GraphEdit.GetSnap()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_snap", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *GraphEdit) SetUseSnap(enable bool) {
+	log.Println("Calling GraphEdit.SetUseSnap()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(enable)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_use_snap", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *GraphEdit) IsUsingSnap() bool {
+	log.Println("Calling GraphEdit.IsUsingSnap()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_using_snap", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
+}
+
+/*
+   Enable the disconnection of existing connections in the visual GraphEdit by left-clicking a connection and releasing into the void.
+*/
+func (o *GraphEdit) SetRightDisconnects(enable bool) {
+	log.Println("Calling GraphEdit.SetRightDisconnects()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(enable)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_right_disconnects", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Return true is the disconnection of connections is enable in the visual GraphEdit. False otherwise.
+*/
+func (o *GraphEdit) IsRightDisconnectsEnabled() bool {
+	log.Println("Calling GraphEdit.IsRightDisconnectsEnabled()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_right_disconnects_enabled", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_GraphNodeMoved(arg0 *Object) {
+	log.Println("Calling GraphEdit.X_GraphNodeMoved()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(arg0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_graph_node_moved", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_GraphNodeRaised(arg0 *Object) {
+	log.Println("Calling GraphEdit.X_GraphNodeRaised()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(arg0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_graph_node_raised", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_TopLayerInput(arg0 *InputEvent) {
+	log.Println("Calling GraphEdit.X_TopLayerInput()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(arg0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_top_layer_input", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_TopLayerDraw() {
+	log.Println("Calling GraphEdit.X_TopLayerDraw()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_top_layer_draw", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_ScrollMoved(arg0 float64) {
+	log.Println("Calling GraphEdit.X_ScrollMoved()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(arg0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_scroll_moved", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_ZoomMinus() {
+	log.Println("Calling GraphEdit.X_ZoomMinus()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_zoom_minus", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_ZoomReset() {
+	log.Println("Calling GraphEdit.X_ZoomReset()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_zoom_reset", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_ZoomPlus() {
+	log.Println("Calling GraphEdit.X_ZoomPlus()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_zoom_plus", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_SnapToggled() {
+	log.Println("Calling GraphEdit.X_SnapToggled()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_snap_toggled", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_SnapValueChanged(arg0 float64) {
+	log.Println("Calling GraphEdit.X_SnapValueChanged()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(arg0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_snap_value_changed", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_GuiInput(arg0 *InputEvent) {
+	log.Println("Calling GraphEdit.X_GuiInput()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(arg0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_gui_input", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_UpdateScrollOffset() {
+	log.Println("Calling GraphEdit.X_UpdateScrollOffset()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_update_scroll_offset", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_ConnectionsLayerDraw() {
+	log.Println("Calling GraphEdit.X_ConnectionsLayerDraw()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_connections_layer_draw", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *GraphEdit) SetSelected(node *Object) {
+	log.Println("Calling GraphEdit.SetSelected()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(node)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_selected", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   GraphEditImplementer is an interface for GraphEdit objects.
+*/
+type GraphEditImplementer interface {
 	Class
 }
 
@@ -75768,6 +75769,143 @@ type SliderJointImplementer interface {
 /*
 
  */
+type ConeTwistJoint struct {
+	Joint
+}
+
+func (o *ConeTwistJoint) baseClass() string {
+	return "ConeTwistJoint"
+}
+
+/*
+
+ */
+func (o *ConeTwistJoint) SetParam(param int64, value float64) {
+	log.Println("Calling ConeTwistJoint.SetParam()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(param)
+	goArguments[1] = reflect.ValueOf(value)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_param", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *ConeTwistJoint) GetParam(param int64) float64 {
+	log.Println("Calling ConeTwistJoint.GetParam()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(param)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_param", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *ConeTwistJoint) X_SetSwingSpan(swingSpan float64) {
+	log.Println("Calling ConeTwistJoint.X_SetSwingSpan()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(swingSpan)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_set_swing_span", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *ConeTwistJoint) X_GetSwingSpan() float64 {
+	log.Println("Calling ConeTwistJoint.X_GetSwingSpan()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "_get_swing_span", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *ConeTwistJoint) X_SetTwistSpan(twistSpan float64) {
+	log.Println("Calling ConeTwistJoint.X_SetTwistSpan()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(twistSpan)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_set_twist_span", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *ConeTwistJoint) X_GetTwistSpan() float64 {
+	log.Println("Calling ConeTwistJoint.X_GetTwistSpan()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "_get_twist_span", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+   ConeTwistJointImplementer is an interface for ConeTwistJoint objects.
+*/
+type ConeTwistJointImplementer interface {
+	Class
+}
+
+/*
+
+ */
 type Generic6DOFJoint struct {
 	Joint
 }
@@ -76260,143 +76398,6 @@ func (o *Generic6DOFJoint) GetFlagZ(flag int64) bool {
    Generic6DOFJointImplementer is an interface for Generic6DOFJoint objects.
 */
 type Generic6DOFJointImplementer interface {
-	Class
-}
-
-/*
-
- */
-type ConeTwistJoint struct {
-	Joint
-}
-
-func (o *ConeTwistJoint) baseClass() string {
-	return "ConeTwistJoint"
-}
-
-/*
-
- */
-func (o *ConeTwistJoint) SetParam(param int64, value float64) {
-	log.Println("Calling ConeTwistJoint.SetParam()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(param)
-	goArguments[1] = reflect.ValueOf(value)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_param", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-
- */
-func (o *ConeTwistJoint) GetParam(param int64) float64 {
-	log.Println("Calling ConeTwistJoint.GetParam()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(param)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_param", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ConeTwistJoint) X_SetSwingSpan(swingSpan float64) {
-	log.Println("Calling ConeTwistJoint.X_SetSwingSpan()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(swingSpan)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_set_swing_span", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ConeTwistJoint) X_GetSwingSpan() float64 {
-	log.Println("Calling ConeTwistJoint.X_GetSwingSpan()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "_get_swing_span", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ConeTwistJoint) X_SetTwistSpan(twistSpan float64) {
-	log.Println("Calling ConeTwistJoint.X_SetTwistSpan()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(twistSpan)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_set_twist_span", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ConeTwistJoint) X_GetTwistSpan() float64 {
-	log.Println("Calling ConeTwistJoint.X_GetTwistSpan()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "_get_twist_span", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-   ConeTwistJointImplementer is an interface for ConeTwistJoint objects.
-*/
-type ConeTwistJointImplementer interface {
 	Class
 }
 
@@ -117008,24 +117009,6 @@ type VisualScriptReturnImplementer interface {
 /*
 
  */
-type VisualScriptIterator struct {
-	VisualScriptNode
-}
-
-func (o *VisualScriptIterator) baseClass() string {
-	return "VisualScriptIterator"
-}
-
-/*
-   VisualScriptIteratorImplementer is an interface for VisualScriptIterator objects.
-*/
-type VisualScriptIteratorImplementer interface {
-	Class
-}
-
-/*
-
- */
 type VisualScriptCondition struct {
 	VisualScriptNode
 }
@@ -117056,6 +117039,24 @@ func (o *VisualScriptWhile) baseClass() string {
    VisualScriptWhileImplementer is an interface for VisualScriptWhile objects.
 */
 type VisualScriptWhileImplementer interface {
+	Class
+}
+
+/*
+
+ */
+type VisualScriptIterator struct {
+	VisualScriptNode
+}
+
+func (o *VisualScriptIterator) baseClass() string {
+	return "VisualScriptIterator"
+}
+
+/*
+   VisualScriptIteratorImplementer is an interface for VisualScriptIterator objects.
+*/
+type VisualScriptIteratorImplementer interface {
 	Class
 }
 
@@ -118120,17 +118121,17 @@ var godotToGoConversionMap = map[string]godotToGoConverter{
 		return reflect.ValueOf(goObject)
 	},
 
-	"*PhysicsServerSW": func(gdObject unsafe.Pointer) reflect.Value {
+	"*physicsServer": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
-		goObject := &PhysicsServerSW{}
+		goObject := &physicsServer{}
 		goObject.setOwner(owner)
 
 		return reflect.ValueOf(goObject)
 	},
 
-	"*physicsServer": func(gdObject unsafe.Pointer) reflect.Value {
+	"*PhysicsServerSW": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
-		goObject := &physicsServer{}
+		goObject := &PhysicsServerSW{}
 		goObject.setOwner(owner)
 
 		return reflect.ValueOf(goObject)
@@ -118520,25 +118521,9 @@ var godotToGoConversionMap = map[string]godotToGoConverter{
 		return reflect.ValueOf(goObject)
 	},
 
-	"*BitmapFont": func(gdObject unsafe.Pointer) reflect.Value {
-		owner := (*C.godot_object)(gdObject)
-		goObject := &BitmapFont{}
-		goObject.setOwner(owner)
-
-		return reflect.ValueOf(goObject)
-	},
-
 	"*Theme": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
 		goObject := &Theme{}
-		goObject.setOwner(owner)
-
-		return reflect.ValueOf(goObject)
-	},
-
-	"*Font": func(gdObject unsafe.Pointer) reflect.Value {
-		owner := (*C.godot_object)(gdObject)
-		goObject := &Font{}
 		goObject.setOwner(owner)
 
 		return reflect.ValueOf(goObject)
@@ -118560,9 +118545,33 @@ var godotToGoConversionMap = map[string]godotToGoConverter{
 		return reflect.ValueOf(goObject)
 	},
 
+	"*StyleBox": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &StyleBox{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
 	"*StyleBoxTexture": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
 		goObject := &StyleBoxTexture{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*BitmapFont": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &BitmapFont{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Font": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Font{}
 		goObject.setOwner(owner)
 
 		return reflect.ValueOf(goObject)
@@ -118579,14 +118588,6 @@ var godotToGoConversionMap = map[string]godotToGoConverter{
 	"*Button": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
 		goObject := &Button{}
-		goObject.setOwner(owner)
-
-		return reflect.ValueOf(goObject)
-	},
-
-	"*StyleBox": func(gdObject unsafe.Pointer) reflect.Value {
-		owner := (*C.godot_object)(gdObject)
-		goObject := &StyleBox{}
 		goObject.setOwner(owner)
 
 		return reflect.ValueOf(goObject)
@@ -118672,17 +118673,17 @@ var godotToGoConversionMap = map[string]godotToGoConverter{
 		return reflect.ValueOf(goObject)
 	},
 
-	"*ProgressBar": func(gdObject unsafe.Pointer) reflect.Value {
+	"*LineEdit": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
-		goObject := &ProgressBar{}
+		goObject := &LineEdit{}
 		goObject.setOwner(owner)
 
 		return reflect.ValueOf(goObject)
 	},
 
-	"*LineEdit": func(gdObject unsafe.Pointer) reflect.Value {
+	"*ProgressBar": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
-		goObject := &LineEdit{}
+		goObject := &ProgressBar{}
 		goObject.setOwner(owner)
 
 		return reflect.ValueOf(goObject)
@@ -118728,9 +118729,17 @@ var godotToGoConversionMap = map[string]godotToGoConverter{
 		return reflect.ValueOf(goObject)
 	},
 
-	"*GraphEdit": func(gdObject unsafe.Pointer) reflect.Value {
+	"*ReferenceRect": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
-		goObject := &GraphEdit{}
+		goObject := &ReferenceRect{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PanelContainer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PanelContainer{}
 		goObject.setOwner(owner)
 
 		return reflect.ValueOf(goObject)
@@ -118760,17 +118769,17 @@ var godotToGoConversionMap = map[string]godotToGoConverter{
 		return reflect.ValueOf(goObject)
 	},
 
-	"*PopupMenu": func(gdObject unsafe.Pointer) reflect.Value {
+	"*PopupPanel": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
-		goObject := &PopupMenu{}
+		goObject := &PopupPanel{}
 		goObject.setOwner(owner)
 
 		return reflect.ValueOf(goObject)
 	},
 
-	"*PopupPanel": func(gdObject unsafe.Pointer) reflect.Value {
+	"*PopupMenu": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
-		goObject := &PopupPanel{}
+		goObject := &PopupMenu{}
 		goObject.setOwner(owner)
 
 		return reflect.ValueOf(goObject)
@@ -118896,17 +118905,9 @@ var godotToGoConversionMap = map[string]godotToGoConverter{
 		return reflect.ValueOf(goObject)
 	},
 
-	"*ReferenceRect": func(gdObject unsafe.Pointer) reflect.Value {
+	"*GraphEdit": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
-		goObject := &ReferenceRect{}
-		goObject.setOwner(owner)
-
-		return reflect.ValueOf(goObject)
-	},
-
-	"*PanelContainer": func(gdObject unsafe.Pointer) reflect.Value {
-		owner := (*C.godot_object)(gdObject)
-		goObject := &PanelContainer{}
+		goObject := &GraphEdit{}
 		goObject.setOwner(owner)
 
 		return reflect.ValueOf(goObject)
@@ -119720,17 +119721,17 @@ var godotToGoConversionMap = map[string]godotToGoConverter{
 		return reflect.ValueOf(goObject)
 	},
 
-	"*Generic6DOFJoint": func(gdObject unsafe.Pointer) reflect.Value {
+	"*ConeTwistJoint": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
-		goObject := &Generic6DOFJoint{}
+		goObject := &ConeTwistJoint{}
 		goObject.setOwner(owner)
 
 		return reflect.ValueOf(goObject)
 	},
 
-	"*ConeTwistJoint": func(gdObject unsafe.Pointer) reflect.Value {
+	"*Generic6DOFJoint": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
-		goObject := &ConeTwistJoint{}
+		goObject := &Generic6DOFJoint{}
 		goObject.setOwner(owner)
 
 		return reflect.ValueOf(goObject)
@@ -121040,14 +121041,6 @@ var godotToGoConversionMap = map[string]godotToGoConverter{
 		return reflect.ValueOf(goObject)
 	},
 
-	"*VisualScriptIterator": func(gdObject unsafe.Pointer) reflect.Value {
-		owner := (*C.godot_object)(gdObject)
-		goObject := &VisualScriptIterator{}
-		goObject.setOwner(owner)
-
-		return reflect.ValueOf(goObject)
-	},
-
 	"*VisualScriptCondition": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
 		goObject := &VisualScriptCondition{}
@@ -121059,6 +121052,14 @@ var godotToGoConversionMap = map[string]godotToGoConverter{
 	"*VisualScriptWhile": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
 		goObject := &VisualScriptWhile{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptIterator": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptIterator{}
 		goObject.setOwner(owner)
 
 		return reflect.ValueOf(goObject)
