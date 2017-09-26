@@ -7,7 +7,9 @@ import (
 
 // NewPongClass is a constructor that we can pass to godot.
 func NewPongClass() godot.Class {
-	pongClass := &PongClass{}
+	pongClass := &PongClass{
+		direction: godot.NewVector2(1.0, 0.0),
+	}
 
 	return pongClass
 }
@@ -15,21 +17,22 @@ func NewPongClass() godot.Class {
 // PongClass is a simple Godot class that can be registered.
 type PongClass struct {
 	godot.Node2D
+	direction *godot.Vector2
 }
 
 // Xready is called as soon as the node enters the scene.
 func (p *PongClass) X_ready() {
-	godot.Log.Println("Pong is ready!")
-	name := p.GetName()
-	godot.Log.Warning("Got name from parent method!: ", name)
+	// Get the screen size.
+	screenSize := p.GetViewportRect()
+	godot.Log.Warning("Screen size: ", screenSize.AsString())
 
-	godot.Log.Warning(p.GetFilename())
-	godot.Log.Warning("Google's IP Address: ", godot.IP.ResolveHostname("google.com", 1))
+	// Resolve Google's IP for funsies
+	//godot.Log.Warning("Google's IP Address: ", godot.IP.ResolveHostname("google.com", 1))
 
-	//child := p.GetChild(0)
-	//godot.Log.Warning("Got child!: ", child)
-	//childName := child.GetName()
-	//godot.Log.Warning("Got child name: ", childName)
+	// Get the left paddle node.
+	left := p.GetNode(godot.NewNodePath("left"))
+	godot.Log.Warning("Left Pad: ", left)
+	godot.Log.Warning("  Type: ", left.GetClass())
 }
 
 //func (p *PongClass) X_process(delta float64) {

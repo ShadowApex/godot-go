@@ -31,7 +31,7 @@ void add_element(void **array, void *element, int index) {
 import "C"
 
 import (
-	"log"
+    "log"
 	"reflect"
 	"unsafe"
 )
@@ -148,7 +148,9 @@ type Class interface {
             			argValue := convert(arg.Interface())
             			variantArgs = append(variantArgs, argValue)
             		} else {
-            			log.Fatal("Unknown type of argument value")
+                        err := "Unknown type of argument value when calling parent method: " + arg.Type().String()
+            			Log.Error(err)
+                        panic(err)
             		}
             	}
             	log.Println("  Built variant arguments: ", variantArgs)
@@ -165,20 +167,9 @@ type Class interface {
             	log.Println("  Built argument array from variant arguments: ", cArgsArray)
             
             	// Construct our return object that will be populated by the method call.
-            	// TODO: We need to have the return type passed to us so we know how to convert
-            	// the return value to its correct type.
+                // Here we're just using a CString
             	log.Println("  Building return value.")
-            	var ret unsafe.Pointer
-            	switch returns {
-            	case "string":
-            		ret = unsafe.Pointer(C.CString(""))
-            	case "Node":
-            		// Create a pointer to a pointer to a godot_object
-            		var gdObject *C.godot_object
-            		ret = unsafe.Pointer(gdObject)
-            	default:
-            		log.Fatal("Unknown return type specified.")
-            	}
+            	ret := unsafe.Pointer(C.CString(""))
             
             	// Call the parent method. "ret" will be populated with the return value.
             	log.Println("  Calling bind_ptrcall...")
@@ -192,34 +183,11 @@ type Class interface {
             
             	// Convert the return value based on the type.
             	var retValue reflect.Value
-            	switch returns {
-            	case "string":
-            		gdString := (*C.godot_string)(ret)
-            		retValue = reflect.ValueOf(C.GoString(C.godot_string_c_str(gdString)))
-            	//case "Node":
-            	//	// TODO: We might be able to optimize this better.
-            	//	gdObject := (*C.godot_object)(ret)
-            	//	nodeObject := &Node{
-            	//		Object: Object{
-            	//			owner: gdObject,
-            	//		},
-            	//	}
-            
-            	//	// Find out exactly what type of Node object this is. It's possible
-            	//	// that it is actually a child class of Node that we need to downcast to.
-            	//	typeValue := nodeObject.callParentMethod("Object", "get_type", []reflect.Value{}, "string")
-            	//	objectType := typeValue.Interface().(string)
-            
-            	//	switch objectType {
-            	//	case "Node":
-            	//		retValue = reflect.ValueOf(nodeObject)
-            	//	default:
-            	//		log.Fatal("Unhandled type of object found when trying to downcast Node into its child type: ", objectType)
-            	//	}
-            
-            	//	// TODO: We need to look up and see if this instance already exists in our instance registry.
-            	}
-            
+                if _, ok := godotToGoConversionMap[returns]; ok {
+                    retValue = godotToGoConversionMap[returns](ret)
+                }
+                // TODO: Panic if type not found?
+           
             	// Return the converted variant.
             	return retValue
             }
@@ -235,3 +203,121 @@ type Class interface {
         {{ end -}}
     {{ end -}}
 {{ end }}
+
+
+// godotToGoConverter is a function that will convert a Godot object into
+// a Go object.
+type godotToGoConverter func(gdObject unsafe.Pointer) reflect.Value
+
+// godotToGoConversionMap is an internal mapping of Godot types to functions that can
+// convert to Go types. This mapping is essentially a more optimal case/switch
+// system for converting Godot types to Go types.
+var godotToGoConversionMap = map[string]godotToGoConverter{
+	"bool": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := (*C.godot_bool)(gdObject)
+		return reflect.ValueOf(godotBoolAsBool(*converted))
+	},
+	"int64": func(gdObject unsafe.Pointer) reflect.Value {
+        converted := (*C.godot_int)(gdObject)
+		return reflect.ValueOf(godotIntAsInt(*converted))
+	},
+	"uint64": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := (*C.uint64_t)(gdObject)
+		return reflect.ValueOf(uint64(*converted))
+	},
+	"float64": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := (*C.godot_real)(gdObject)
+		return reflect.ValueOf(float64(*converted))
+	},
+    "string": func(gdObject unsafe.Pointer) reflect.Value {
+        converted := (*C.godot_string)(gdObject)
+        return reflect.ValueOf(godotStringAsString(converted))
+    },
+	"*Array": func(gdObject unsafe.Pointer) reflect.Value {
+        converted := &Array{}
+        converted.array = (*C.godot_array)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Basis": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Basis{}
+        converted.basis = (*C.godot_basis)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Color": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Color{}
+        converted.color = (*C.godot_color)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Dictionary": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Dictionary{}
+        converted.dictionary = (*C.godot_dictionary)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*NodePath": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &NodePath{}
+        converted.nodePath = (*C.godot_node_path)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Plane": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Plane{}
+        converted.plane = (*C.godot_plane)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Quat": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Quat{}
+        converted.quat = (*C.godot_quat)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Rect2": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Rect2{}
+        converted.rect2 = (*C.godot_rect2)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Rect3": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Rect3{}
+        converted.rect3 = (*C.godot_rect3)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*RID": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &RID{}
+        converted.rid = (*C.godot_rid)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Transform": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Transform{}
+        converted.transform = (*C.godot_transform)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Transform2D": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Transform2D{}
+        converted.transform2d = (*C.godot_transform2d)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Variant": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Variant{}
+        converted.variant = (*C.godot_variant)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Vector2": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Vector2{}
+        converted.vector2 = (*C.godot_vector2)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Vector3": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Vector3{}
+        converted.vector3 = (*C.godot_vector3)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+
+    {{ range $i, $class := $view.APIs -}}
+        {{ if $view.IsValidClass $class.Name $class.BaseClass -}}
+            "*{{ $view.SetClassName $class.Name $class.Singleton }}": func(gdObject unsafe.Pointer) reflect.Value {
+            	owner := (*C.godot_object)(gdObject)
+                goObject := &{{ $view.SetClassName $class.Name $class.Singleton }}{}
+                goObject.setOwner(owner)
+
+                return reflect.ValueOf(goObject)
+            },
+        {{ end }}
+    {{ end }}
+}

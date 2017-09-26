@@ -178,14 +178,16 @@ func (c *Color) SetR(red float64) {
 }
 
 // To32
-func (c *Color) To32() int64 {
-	return int64(C.godot_color_to_32(c.color))
-}
+// NOTE: This appears to not yet be implemented in the Godot Engine.
+//func (c *Color) To32() int64 {
+//	return int64(C.godot_color_to_32(c.color))
+//}
 
 // ToARGB32
-func (c *Color) ToARGB32() int64 {
-	return int64(C.godot_color_to_ARGB32(c.color))
-}
+// NOTE: This appears to not yet be implemented in the Godot Engine.
+//func (c *Color) ToARGB32() int64 {
+//	return int64(C.godot_color_to_ARGB32(c.color))
+//}
 
 // ToHTML
 func (c *Color) ToHTML(withAlpha bool) string {

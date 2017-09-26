@@ -45,63 +45,63 @@ var goToGodotConversionMap = map[string]goToGodotConverter{
 		stringArg := stringAsGodotString(goObject.(string))
 		return unsafe.Pointer(stringArg)
 	},
-	"*Array": func(goObject interface{}) unsafe.Pointer {
+	"*godot.Array": func(goObject interface{}) unsafe.Pointer {
 		arg := goObject.(*Array)
 		return unsafe.Pointer(arg.array)
 	},
-	"*Basis": func(goObject interface{}) unsafe.Pointer {
+	"*godot.Basis": func(goObject interface{}) unsafe.Pointer {
 		arg := goObject.(*Basis)
 		return unsafe.Pointer(arg.basis)
 	},
-	"*Color": func(goObject interface{}) unsafe.Pointer {
+	"*godot.Color": func(goObject interface{}) unsafe.Pointer {
 		arg := goObject.(*Color)
 		return unsafe.Pointer(arg.color)
 	},
-	"*Dictionary": func(goObject interface{}) unsafe.Pointer {
+	"*godot.Dictionary": func(goObject interface{}) unsafe.Pointer {
 		arg := goObject.(*Dictionary)
 		return unsafe.Pointer(arg.dictionary)
 	},
-	"*NodePath": func(goObject interface{}) unsafe.Pointer {
+	"*godot.NodePath": func(goObject interface{}) unsafe.Pointer {
 		arg := goObject.(*NodePath)
 		return unsafe.Pointer(arg.nodePath)
 	},
-	"*Plane": func(goObject interface{}) unsafe.Pointer {
+	"*godot.Plane": func(goObject interface{}) unsafe.Pointer {
 		arg := goObject.(*Plane)
 		return unsafe.Pointer(arg.plane)
 	},
-	"*Quat": func(goObject interface{}) unsafe.Pointer {
+	"*godot.Quat": func(goObject interface{}) unsafe.Pointer {
 		arg := goObject.(*Quat)
 		return unsafe.Pointer(arg.quat)
 	},
-	"*Rect2": func(goObject interface{}) unsafe.Pointer {
+	"*godot.Rect2": func(goObject interface{}) unsafe.Pointer {
 		arg := goObject.(*Rect2)
 		return unsafe.Pointer(arg.rect2)
 	},
-	"*Rect3": func(goObject interface{}) unsafe.Pointer {
+	"*godot.Rect3": func(goObject interface{}) unsafe.Pointer {
 		arg := goObject.(*Rect3)
 		return unsafe.Pointer(arg.rect3)
 	},
-	"*RID": func(goObject interface{}) unsafe.Pointer {
+	"*godot.RID": func(goObject interface{}) unsafe.Pointer {
 		arg := goObject.(*RID)
 		return unsafe.Pointer(arg.rid)
 	},
-	"*Transform": func(goObject interface{}) unsafe.Pointer {
+	"*godot.Transform": func(goObject interface{}) unsafe.Pointer {
 		arg := goObject.(*Transform)
 		return unsafe.Pointer(arg.transform)
 	},
-	"*Transform2D": func(goObject interface{}) unsafe.Pointer {
+	"*godot.Transform2D": func(goObject interface{}) unsafe.Pointer {
 		arg := goObject.(*Transform2D)
 		return unsafe.Pointer(arg.transform2d)
 	},
-	"*Variant": func(goObject interface{}) unsafe.Pointer {
+	"*godot.Variant": func(goObject interface{}) unsafe.Pointer {
 		arg := goObject.(*Variant)
 		return unsafe.Pointer(arg.variant)
 	},
-	"*Vector2": func(goObject interface{}) unsafe.Pointer {
+	"*godot.Vector2": func(goObject interface{}) unsafe.Pointer {
 		arg := goObject.(*Vector2)
 		return unsafe.Pointer(arg.vector2)
 	},
-	"*Vector3": func(goObject interface{}) unsafe.Pointer {
+	"*godot.Vector3": func(goObject interface{}) unsafe.Pointer {
 		arg := goObject.(*Vector3)
 		return unsafe.Pointer(arg.vector3)
 	},

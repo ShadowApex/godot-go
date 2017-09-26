@@ -929,7 +929,9 @@ func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.V
 			argValue := convert(arg.Interface())
 			variantArgs = append(variantArgs, argValue)
 		} else {
-			log.Fatal("Unknown type of argument value")
+			err := "Unknown type of argument value when calling parent method: " + arg.Type().String()
+			Log.Error(err)
+			panic(err)
 		}
 	}
 	log.Println("  Built variant arguments: ", variantArgs)
@@ -946,20 +948,9 @@ func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.V
 	log.Println("  Built argument array from variant arguments: ", cArgsArray)
 
 	// Construct our return object that will be populated by the method call.
-	// TODO: We need to have the return type passed to us so we know how to convert
-	// the return value to its correct type.
+	// Here we're just using a CString
 	log.Println("  Building return value.")
-	var ret unsafe.Pointer
-	switch returns {
-	case "string":
-		ret = unsafe.Pointer(C.CString(""))
-	case "Node":
-		// Create a pointer to a pointer to a godot_object
-		var gdObject *C.godot_object
-		ret = unsafe.Pointer(gdObject)
-	default:
-		log.Fatal("Unknown return type specified.")
-	}
+	ret := unsafe.Pointer(C.CString(""))
 
 	// Call the parent method. "ret" will be populated with the return value.
 	log.Println("  Calling bind_ptrcall...")
@@ -973,33 +964,10 @@ func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.V
 
 	// Convert the return value based on the type.
 	var retValue reflect.Value
-	switch returns {
-	case "string":
-		gdString := (*C.godot_string)(ret)
-		retValue = reflect.ValueOf(C.GoString(C.godot_string_c_str(gdString)))
-		//case "Node":
-		//	// TODO: We might be able to optimize this better.
-		//	gdObject := (*C.godot_object)(ret)
-		//	nodeObject := &Node{
-		//		Object: Object{
-		//			owner: gdObject,
-		//		},
-		//	}
-
-		//	// Find out exactly what type of Node object this is. It's possible
-		//	// that it is actually a child class of Node that we need to downcast to.
-		//	typeValue := nodeObject.callParentMethod("Object", "get_type", []reflect.Value{}, "string")
-		//	objectType := typeValue.Interface().(string)
-
-		//	switch objectType {
-		//	case "Node":
-		//		retValue = reflect.ValueOf(nodeObject)
-		//	default:
-		//		log.Fatal("Unhandled type of object found when trying to downcast Node into its child type: ", objectType)
-		//	}
-
-		//	// TODO: We need to look up and see if this instance already exists in our instance registry.
+	if _, ok := godotToGoConversionMap[returns]; ok {
+		retValue = godotToGoConversionMap[returns](ret)
 	}
+	// TODO: Panic if type not found?
 
 	// Return the converted variant.
 	return retValue
@@ -3791,12 +3759,12 @@ func (o *InputEventScreenTouch) GetIndex() int64 {
 /*
 
  */
-func (o *InputEventScreenTouch) SetPosition(pos *Vector2) {
+func (o *InputEventScreenTouch) SetPosition(position *Vector2) {
 	log.Println("Calling InputEventScreenTouch.SetPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -4673,12 +4641,12 @@ func (o *StreamPeerBuffer) baseClass() string {
 /*
 
  */
-func (o *StreamPeerBuffer) Seek(pos int64) {
+func (o *StreamPeerBuffer) Seek(position int64) {
 	log.Println("Calling StreamPeerBuffer.Seek()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -4712,15 +4680,15 @@ func (o *StreamPeerBuffer) GetSize() int64 {
 /*
 
  */
-func (o *StreamPeerBuffer) GetPos() int64 {
-	log.Println("Calling StreamPeerBuffer.GetPos()")
+func (o *StreamPeerBuffer) GetPosition() int64 {
+	log.Println("Calling StreamPeerBuffer.GetPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_pos", goArguments, "int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_position", goArguments, "int64")
 
 	log.Println("Got return value!")
 
@@ -6530,6 +6498,79 @@ func (o *UndoRedo) GetVersion() int64 {
 }
 
 /*
+
+ */
+func (o *UndoRedo) SetMaxSteps(maxSteps int64) {
+	log.Println("Calling UndoRedo.SetMaxSteps()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(maxSteps)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_max_steps", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *UndoRedo) GetMaxSteps() int64 {
+	log.Println("Calling UndoRedo.GetMaxSteps()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_max_steps", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *UndoRedo) Redo() {
+	log.Println("Calling UndoRedo.Redo()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "redo", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *UndoRedo) Undo() {
+	log.Println("Calling UndoRedo.Undo()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "undo", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
    UndoRedoImplementer is an interface for UndoRedo objects.
 */
 type UndoRedoImplementer interface {
@@ -7285,12 +7326,12 @@ func (o *_File) IsOpen() bool {
 /*
    Undocumented
 */
-func (o *_File) Seek(pos int64) {
+func (o *_File) Seek(position int64) {
 	log.Println("Calling _File.Seek()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -7303,12 +7344,12 @@ func (o *_File) Seek(pos int64) {
 /*
    Undocumented
 */
-func (o *_File) SeekEnd(pos int64) {
+func (o *_File) SeekEnd(position int64) {
 	log.Println("Calling _File.SeekEnd()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -7321,15 +7362,15 @@ func (o *_File) SeekEnd(pos int64) {
 /*
    Undocumented
 */
-func (o *_File) GetPos() int64 {
-	log.Println("Calling _File.GetPos()")
+func (o *_File) GetPosition() int64 {
+	log.Println("Calling _File.GetPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_pos", goArguments, "int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_position", goArguments, "int64")
 
 	log.Println("Got return value!")
 
@@ -8981,12 +9022,12 @@ func (o *XMLParser) SkipSection() {
 /*
    Move the buffer cursor to a certain offset (since the beginning) and read the next node there. This returns an error code.
 */
-func (o *XMLParser) Seek(pos int64) int64 {
+func (o *XMLParser) Seek(position int64) int64 {
 	log.Println("Calling XMLParser.Seek()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -9714,13 +9755,13 @@ func (o *AStar) GetAvailablePointId() int64 {
 /*
    Adds a new point at the given position with the given identifier. The algorithm prefers points with lower [code]weight_scale[/code] to form a path. The [code]id[/code] must be 0 or larger, and the [code]weight_scale[/code] must be 1 or larger. [codeblock] var as = AStar.new() as.add_point(1, Vector3(1,0,0), 4) # Adds the point (1,0,0) with weight_scale=4 and id=1 [/codeblock]
 */
-func (o *AStar) AddPoint(id int64, pos *Vector3, weightScale float64) {
+func (o *AStar) AddPoint(id int64, position *Vector3, weightScale float64) {
 	log.Println("Calling AStar.AddPoint()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 3, 3)
 	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[1] = reflect.ValueOf(position)
 	goArguments[2] = reflect.ValueOf(weightScale)
 
 	// Call the parent method.
@@ -9734,8 +9775,8 @@ func (o *AStar) AddPoint(id int64, pos *Vector3, weightScale float64) {
 /*
    Returns the position of the point associated with the given id.
 */
-func (o *AStar) GetPointPos(id int64) *Vector3 {
-	log.Println("Calling AStar.GetPointPos()")
+func (o *AStar) GetPointPosition(id int64) *Vector3 {
+	log.Println("Calling AStar.GetPointPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -9743,7 +9784,7 @@ func (o *AStar) GetPointPos(id int64) *Vector3 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_point_pos", goArguments, "*Vector3")
+	goRet := o.callParentMethod(o.baseClass(), "get_point_position", goArguments, "*Vector3")
 
 	log.Println("Got return value!")
 
@@ -9916,14 +9957,14 @@ func (o *AStar) Clear() {
 }
 
 /*
-   Returns the id of the closest point to [code]to_pos[/code]. Returns -1 if there are no points in the points pool.
+   Returns the id of the closest point to [code]to_position[/code]. Returns -1 if there are no points in the points pool.
 */
-func (o *AStar) GetClosestPoint(toPos *Vector3) int64 {
+func (o *AStar) GetClosestPoint(toPosition *Vector3) int64 {
 	log.Println("Calling AStar.GetClosestPoint()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(toPos)
+	goArguments[0] = reflect.ValueOf(toPosition)
 
 	// Call the parent method.
 
@@ -9938,18 +9979,18 @@ func (o *AStar) GetClosestPoint(toPos *Vector3) int64 {
 }
 
 /*
-   Returns the closest position to [code]to_pos[/code] that resides inside a segment between two connected points. [codeblock] var as = AStar.new() as.add_point(1, Vector3(0,0,0)) as.add_point(2, Vector3(0,5,0)) as.connect_points(1, 2) var res = as.get_closest_pos_in_segment(Vector3(3,3,0)) # returns (0, 3, 0) [/codeblock] The result is in the segment that goes from [code]y=0[/code] to [code]y=5[/code]. It's the closest position in the segment to the given point.
+   Returns the closest position to [code]to_position[/code] that resides inside a segment between two connected points. [codeblock] var as = AStar.new() as.add_point(1, Vector3(0,0,0)) as.add_point(2, Vector3(0,5,0)) as.connect_points(1, 2) var res = as.get_closest_position_in_segment(Vector3(3,3,0)) # returns (0, 3, 0) [/codeblock] The result is in the segment that goes from [code]y=0[/code] to [code]y=5[/code]. It's the closest position in the segment to the given point.
 */
-func (o *AStar) GetClosestPosInSegment(toPos *Vector3) *Vector3 {
-	log.Println("Calling AStar.GetClosestPosInSegment()")
+func (o *AStar) GetClosestPositionInSegment(toPosition *Vector3) *Vector3 {
+	log.Println("Calling AStar.GetClosestPositionInSegment()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(toPos)
+	goArguments[0] = reflect.ValueOf(toPosition)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_closest_pos_in_segment", goArguments, "*Vector3")
+	goRet := o.callParentMethod(o.baseClass(), "get_closest_position_in_segment", goArguments, "*Vector3")
 
 	log.Println("Got return value!")
 
@@ -10072,6 +10113,180 @@ type EncodedObjectAsIDImplementer interface {
 /*
 
  */
+type JSONParseResult struct {
+	Reference
+}
+
+func (o *JSONParseResult) baseClass() string {
+	return "JSONParseResult"
+}
+
+/*
+
+ */
+func (o *JSONParseResult) GetError() int64 {
+	log.Println("Calling JSONParseResult.GetError()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_error", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *JSONParseResult) GetErrorString() string {
+	log.Println("Calling JSONParseResult.GetErrorString()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_error_string", goArguments, "string")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(string)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *JSONParseResult) GetErrorLine() int64 {
+	log.Println("Calling JSONParseResult.GetErrorLine()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_error_line", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *JSONParseResult) GetResult() *Variant {
+	log.Println("Calling JSONParseResult.GetResult()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_result", goArguments, "*Variant")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Variant)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *JSONParseResult) SetError(error int64) {
+	log.Println("Calling JSONParseResult.SetError()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(error)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_error", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *JSONParseResult) SetErrorString(errorString string) {
+	log.Println("Calling JSONParseResult.SetErrorString()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(errorString)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_error_string", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *JSONParseResult) SetErrorLine(errorLine int64) {
+	log.Println("Calling JSONParseResult.SetErrorLine()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(errorLine)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_error_line", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *JSONParseResult) SetResult(result *Variant) {
+	log.Println("Calling JSONParseResult.SetResult()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(result)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_result", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   JSONParseResultImplementer is an interface for JSONParseResult objects.
+*/
+type JSONParseResultImplementer interface {
+	Class
+}
+
+/*
+
+ */
 type IP_Unix struct {
 	ip
 }
@@ -10186,14 +10401,14 @@ func (o *geometry) BuildCapsulePlanes(radius float64, height float64, sides int6
 /*
    Undocumented
 */
-func (o *geometry) SegmentIntersectsCircle(segmentFrom *Vector2, segmentTo *Vector2, circlePos *Vector2, circleRadius float64) float64 {
+func (o *geometry) SegmentIntersectsCircle(segmentFrom *Vector2, segmentTo *Vector2, circlePosition *Vector2, circleRadius float64) float64 {
 	log.Println("Calling _Geometry.SegmentIntersectsCircle()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 4, 4)
 	goArguments[0] = reflect.ValueOf(segmentFrom)
 	goArguments[1] = reflect.ValueOf(segmentTo)
-	goArguments[2] = reflect.ValueOf(circlePos)
+	goArguments[2] = reflect.ValueOf(circlePosition)
 	goArguments[3] = reflect.ValueOf(circleRadius)
 
 	// Call the parent method.
@@ -10456,15 +10671,15 @@ func (o *geometry) SegmentIntersectsTriangle(from *Vector3, to *Vector3, a *Vect
 /*
    Undocumented
 */
-func (o *geometry) SegmentIntersectsSphere(from *Vector3, to *Vector3, spos *Vector3, sradius float64) *PoolVector3Array {
+func (o *geometry) SegmentIntersectsSphere(from *Vector3, to *Vector3, spherePosition *Vector3, sphereRadius float64) *PoolVector3Array {
 	log.Println("Calling _Geometry.SegmentIntersectsSphere()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 4, 4)
 	goArguments[0] = reflect.ValueOf(from)
 	goArguments[1] = reflect.ValueOf(to)
-	goArguments[2] = reflect.ValueOf(spos)
-	goArguments[3] = reflect.ValueOf(sradius)
+	goArguments[2] = reflect.ValueOf(spherePosition)
+	goArguments[3] = reflect.ValueOf(sphereRadius)
 
 	// Call the parent method.
 
@@ -13694,6 +13909,73 @@ func (o *marshalls) Base64ToUtf8(base64Str string) string {
 
 }
 
+func newSingletonJSON() *json {
+	obj := &json{}
+	ptr := C.godot_global_get_singleton(C.CString("_JSON"))
+	obj.owner = (*C.godot_object)(ptr)
+	return obj
+}
+
+/*
+
+ */
+var JSON = newSingletonJSON()
+
+/*
+
+ */
+type json struct {
+	Object
+}
+
+func (o *json) baseClass() string {
+	return "_JSON"
+}
+
+/*
+   Undocumented
+*/
+func (o *json) Print(value *Variant) string {
+	log.Println("Calling _JSON.Print()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(value)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "print", goArguments, "string")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(string)
+
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *json) Parse(json string) *JSONParseResult {
+	log.Println("Calling _JSON.Parse()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(json)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "parse", goArguments, "*JSONParseResult")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*JSONParseResult)
+
+	return returnValue
+
+}
+
 func newSingletonProjectSettings() *projectSettings {
 	obj := &projectSettings{}
 	ptr := C.godot_global_get_singleton(C.CString("ProjectSettings"))
@@ -13742,13 +14024,13 @@ func (o *projectSettings) Has(name string) bool {
 /*
    Set the order of a configuration value (influences when saved to the config file).
 */
-func (o *projectSettings) SetOrder(name string, pos int64) {
+func (o *projectSettings) SetOrder(name string, position int64) {
 	log.Println("Calling ProjectSettings.SetOrder()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
 	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[1] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -15894,13 +16176,13 @@ func (o *physicsServer) BodyGetState(body *RID, state int64) *Variant {
 /*
 
  */
-func (o *physicsServer) BodyApplyImpulse(body *RID, pos *Vector3, impulse *Vector3) {
+func (o *physicsServer) BodyApplyImpulse(body *RID, position *Vector3, impulse *Vector3) {
 	log.Println("Calling PhysicsServer.BodyApplyImpulse()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 3, 3)
 	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[1] = reflect.ValueOf(position)
 	goArguments[2] = reflect.ValueOf(impulse)
 
 	// Call the parent method.
@@ -17101,13 +17383,13 @@ func (o *PhysicsDirectBodyState) GetTransform() *Transform {
 /*
 
  */
-func (o *PhysicsDirectBodyState) AddForce(force *Vector3, pos *Vector3) {
+func (o *PhysicsDirectBodyState) AddForce(force *Vector3, position *Vector3) {
 	log.Println("Calling PhysicsDirectBodyState.AddForce()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
 	goArguments[0] = reflect.ValueOf(force)
-	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[1] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -17120,12 +17402,12 @@ func (o *PhysicsDirectBodyState) AddForce(force *Vector3, pos *Vector3) {
 /*
 
  */
-func (o *PhysicsDirectBodyState) ApplyImpulse(pos *Vector3, j *Vector3) {
+func (o *PhysicsDirectBodyState) ApplyImpulse(position *Vector3, j *Vector3) {
 	log.Println("Calling PhysicsDirectBodyState.ApplyImpulse()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 	goArguments[1] = reflect.ValueOf(j)
 
 	// Call the parent method.
@@ -17217,8 +17499,8 @@ func (o *PhysicsDirectBodyState) GetContactCount() int64 {
 /*
 
  */
-func (o *PhysicsDirectBodyState) GetContactLocalPos(contactIdx int64) *Vector3 {
-	log.Println("Calling PhysicsDirectBodyState.GetContactLocalPos()")
+func (o *PhysicsDirectBodyState) GetContactLocalPosition(contactIdx int64) *Vector3 {
+	log.Println("Calling PhysicsDirectBodyState.GetContactLocalPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -17226,7 +17508,7 @@ func (o *PhysicsDirectBodyState) GetContactLocalPos(contactIdx int64) *Vector3 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_contact_local_pos", goArguments, "*Vector3")
+	goRet := o.callParentMethod(o.baseClass(), "get_contact_local_position", goArguments, "*Vector3")
 
 	log.Println("Got return value!")
 
@@ -17305,8 +17587,8 @@ func (o *PhysicsDirectBodyState) GetContactCollider(contactIdx int64) *RID {
 /*
 
  */
-func (o *PhysicsDirectBodyState) GetContactColliderPos(contactIdx int64) *Vector3 {
-	log.Println("Calling PhysicsDirectBodyState.GetContactColliderPos()")
+func (o *PhysicsDirectBodyState) GetContactColliderPosition(contactIdx int64) *Vector3 {
+	log.Println("Calling PhysicsDirectBodyState.GetContactColliderPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -17314,7 +17596,7 @@ func (o *PhysicsDirectBodyState) GetContactColliderPos(contactIdx int64) *Vector
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_contact_collider_pos", goArguments, "*Vector3")
+	goRet := o.callParentMethod(o.baseClass(), "get_contact_collider_position", goArguments, "*Vector3")
 
 	log.Println("Got return value!")
 
@@ -17393,8 +17675,8 @@ func (o *PhysicsDirectBodyState) GetContactColliderShape(contactIdx int64) int64
 /*
 
  */
-func (o *PhysicsDirectBodyState) GetContactColliderVelocityAtPos(contactIdx int64) *Vector3 {
-	log.Println("Calling PhysicsDirectBodyState.GetContactColliderVelocityAtPos()")
+func (o *PhysicsDirectBodyState) GetContactColliderVelocityAtPosition(contactIdx int64) *Vector3 {
+	log.Println("Calling PhysicsDirectBodyState.GetContactColliderVelocityAtPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -17402,7 +17684,7 @@ func (o *PhysicsDirectBodyState) GetContactColliderVelocityAtPos(contactIdx int6
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_contact_collider_velocity_at_pos", goArguments, "*Vector3")
+	goRet := o.callParentMethod(o.baseClass(), "get_contact_collider_velocity_at_position", goArguments, "*Vector3")
 
 	log.Println("Got return value!")
 
@@ -18808,13 +19090,13 @@ func (o *physics2DServer) BodyGetState(body *RID, state int64) *Variant {
 /*
    Add a positioned impulse to the applied force and torque. Both the force and the offset from the body origin are in global coordinates.
 */
-func (o *physics2DServer) BodyApplyImpulse(body *RID, pos *Vector2, impulse *Vector2) {
+func (o *physics2DServer) BodyApplyImpulse(body *RID, position *Vector2, impulse *Vector2) {
 	log.Println("Calling Physics2DServer.BodyApplyImpulse()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 3, 3)
 	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[1] = reflect.ValueOf(position)
 	goArguments[2] = reflect.ValueOf(impulse)
 
 	// Call the parent method.
@@ -19586,8 +19868,8 @@ func (o *Physics2DDirectBodyState) GetContactCount() int64 {
 /*
    Return the local position (of this body) of the contact point.
 */
-func (o *Physics2DDirectBodyState) GetContactLocalPos(contactIdx int64) *Vector2 {
-	log.Println("Calling Physics2DDirectBodyState.GetContactLocalPos()")
+func (o *Physics2DDirectBodyState) GetContactLocalPosition(contactIdx int64) *Vector2 {
+	log.Println("Calling Physics2DDirectBodyState.GetContactLocalPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -19595,7 +19877,7 @@ func (o *Physics2DDirectBodyState) GetContactLocalPos(contactIdx int64) *Vector2
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_contact_local_pos", goArguments, "*Vector2")
+	goRet := o.callParentMethod(o.baseClass(), "get_contact_local_position", goArguments, "*Vector2")
 
 	log.Println("Got return value!")
 
@@ -19674,8 +19956,8 @@ func (o *Physics2DDirectBodyState) GetContactCollider(contactIdx int64) *RID {
 /*
    Return the contact position in the collider.
 */
-func (o *Physics2DDirectBodyState) GetContactColliderPos(contactIdx int64) *Vector2 {
-	log.Println("Calling Physics2DDirectBodyState.GetContactColliderPos()")
+func (o *Physics2DDirectBodyState) GetContactColliderPosition(contactIdx int64) *Vector2 {
+	log.Println("Calling Physics2DDirectBodyState.GetContactColliderPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -19683,7 +19965,7 @@ func (o *Physics2DDirectBodyState) GetContactColliderPos(contactIdx int64) *Vect
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_contact_collider_pos", goArguments, "*Vector2")
+	goRet := o.callParentMethod(o.baseClass(), "get_contact_collider_position", goArguments, "*Vector2")
 
 	log.Println("Got return value!")
 
@@ -19784,8 +20066,8 @@ func (o *Physics2DDirectBodyState) GetContactColliderShapeMetadata(contactIdx in
 /*
    Return the linear velocity vector at contact point of the collider.
 */
-func (o *Physics2DDirectBodyState) GetContactColliderVelocityAtPos(contactIdx int64) *Vector2 {
-	log.Println("Calling Physics2DDirectBodyState.GetContactColliderVelocityAtPos()")
+func (o *Physics2DDirectBodyState) GetContactColliderVelocityAtPosition(contactIdx int64) *Vector2 {
+	log.Println("Calling Physics2DDirectBodyState.GetContactColliderVelocityAtPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -19793,7 +20075,7 @@ func (o *Physics2DDirectBodyState) GetContactColliderVelocityAtPos(contactIdx in
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_contact_collider_velocity_at_pos", goArguments, "*Vector2")
+	goRet := o.callParentMethod(o.baseClass(), "get_contact_collider_velocity_at_position", goArguments, "*Vector2")
 
 	log.Println("Got return value!")
 
@@ -19952,12 +20234,12 @@ func (o *audioServer) RemoveBus(index int64) {
 /*
 
  */
-func (o *audioServer) AddBus(atPos int64) {
+func (o *audioServer) AddBus(atPosition int64) {
 	log.Println("Calling AudioServer.AddBus()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(atPos)
+	goArguments[0] = reflect.ValueOf(atPosition)
 
 	// Call the parent method.
 
@@ -20257,14 +20539,14 @@ func (o *audioServer) IsBusBypassingEffects(busIdx int64) bool {
 /*
 
  */
-func (o *audioServer) AddBusEffect(busIdx int64, effect *AudioEffect, atPos int64) {
+func (o *audioServer) AddBusEffect(busIdx int64, effect *AudioEffect, atPosition int64) {
 	log.Println("Calling AudioServer.AddBusEffect()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 3, 3)
 	goArguments[0] = reflect.ValueOf(busIdx)
 	goArguments[1] = reflect.ValueOf(effect)
-	goArguments[2] = reflect.ValueOf(atPos)
+	goArguments[2] = reflect.ValueOf(atPosition)
 
 	// Call the parent method.
 
@@ -21222,8 +21504,8 @@ func (o *input) GetMouseMode() int64 {
 /*
    Sets the mouse position to the specified vector.
 */
-func (o *input) WarpMousePos(to *Vector2) {
-	log.Println("Calling Input.WarpMousePos()")
+func (o *input) WarpMousePosition(to *Vector2) {
+	log.Println("Calling Input.WarpMousePosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -21231,7 +21513,7 @@ func (o *input) WarpMousePos(to *Vector2) {
 
 	// Call the parent method.
 
-	o.callParentMethod(o.baseClass(), "warp_mouse_pos", goArguments, "")
+	o.callParentMethod(o.baseClass(), "warp_mouse_position", goArguments, "")
 
 	log.Println("Got return value!")
 
@@ -22388,8 +22670,8 @@ type AudioStreamPlaybackImplementer interface {
 }
 
 /*
-
- */
+   Randomly varies pitch on each start.
+*/
 type AudioStreamRandomPitch struct {
 	AudioStream
 }
@@ -27818,15 +28100,15 @@ func (o *Font) baseClass() string {
 }
 
 /*
-   Draw "string" into a canvas item using the font at a given "pos" position, with "modulate" color, and optionally clipping the width. "pos" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis.
+   Draw "string" into a canvas item using the font at a given position, with "modulate" color, and optionally clipping the width. "position" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis.
 */
-func (o *Font) Draw(canvasItem *RID, pos *Vector2, string string, modulate *Color, clipW int64) {
+func (o *Font) Draw(canvasItem *RID, position *Vector2, string string, modulate *Color, clipW int64) {
 	log.Println("Calling Font.Draw()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 5, 5)
 	goArguments[0] = reflect.ValueOf(canvasItem)
-	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[1] = reflect.ValueOf(position)
 	goArguments[2] = reflect.ValueOf(string)
 	goArguments[3] = reflect.ValueOf(modulate)
 	goArguments[4] = reflect.ValueOf(clipW)
@@ -27946,15 +28228,15 @@ func (o *Font) GetStringSize(string string) *Vector2 {
 }
 
 /*
-   Draw character "char" into a canvas item using the font at a given "pos" position, with "modulate" color, and optionally kerning if "next" is passed. clipping the width. "pos" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis. The width used by the character is returned, making this function useful for drawing strings character by character.
+   Draw character "char" into a canvas item using the font at a given position, with "modulate" color, and optionally kerning if "next" is passed. clipping the width. "position" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis. The width used by the character is returned, making this function useful for drawing strings character by character.
 */
-func (o *Font) DrawChar(canvasItem *RID, pos *Vector2, char int64, next int64, modulate *Color) float64 {
+func (o *Font) DrawChar(canvasItem *RID, position *Vector2, char int64, next int64, modulate *Color) float64 {
 	log.Println("Calling Font.DrawChar()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 5, 5)
 	goArguments[0] = reflect.ValueOf(canvasItem)
-	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[1] = reflect.ValueOf(position)
 	goArguments[2] = reflect.ValueOf(char)
 	goArguments[3] = reflect.ValueOf(next)
 	goArguments[4] = reflect.ValueOf(modulate)
@@ -27992,6 +28274,466 @@ func (o *Font) UpdateChanges() {
    FontImplementer is an interface for Font objects.
 */
 type FontImplementer interface {
+	Class
+}
+
+/*
+   A [Texture] based on an [Image]. Can be created from an [Image].
+*/
+type ImageTexture struct {
+	Texture
+}
+
+func (o *ImageTexture) baseClass() string {
+	return "ImageTexture"
+}
+
+/*
+   Create a new [ImageTexture] with "width" and "height". "format" one of [Image].FORMAT_*. "flags" one or more of [Texture].FLAG_*.
+*/
+func (o *ImageTexture) Create(width int64, height int64, format int64, flags int64) {
+	log.Println("Calling ImageTexture.Create()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 4, 4)
+	goArguments[0] = reflect.ValueOf(width)
+	goArguments[1] = reflect.ValueOf(height)
+	goArguments[2] = reflect.ValueOf(format)
+	goArguments[3] = reflect.ValueOf(flags)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "create", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Create a new [ImageTexture] from an [Image] with "flags" from [Texture].FLAG_*.
+*/
+func (o *ImageTexture) CreateFromImage(image *Image, flags int64) {
+	log.Println("Calling ImageTexture.CreateFromImage()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(image)
+	goArguments[1] = reflect.ValueOf(flags)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "create_from_image", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Return the format of the [ImageTexture], one of [Image].FORMAT_*.
+*/
+func (o *ImageTexture) GetFormat() int64 {
+	log.Println("Calling ImageTexture.GetFormat()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_format", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+   Load an [ImageTexure].
+*/
+func (o *ImageTexture) Load(path string) {
+	log.Println("Calling ImageTexture.Load()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(path)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "load", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Set the [Image] of this [ImageTexture].
+*/
+func (o *ImageTexture) SetData(image *Image) {
+	log.Println("Calling ImageTexture.SetData()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(image)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_data", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Set the storage type. One of [ImageTexture].STORAGE_*.
+*/
+func (o *ImageTexture) SetStorage(mode int64) {
+	log.Println("Calling ImageTexture.SetStorage()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(mode)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_storage", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Return the storage type. One of [ImageTexture].STORAGE_*.
+*/
+func (o *ImageTexture) GetStorage() int64 {
+	log.Println("Calling ImageTexture.GetStorage()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_storage", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+   Set the storage quality in case of [ImageTexture].STORAGE_COMPRESS_LOSSY.
+*/
+func (o *ImageTexture) SetLossyStorageQuality(quality float64) {
+	log.Println("Calling ImageTexture.SetLossyStorageQuality()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(quality)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_lossy_storage_quality", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Return the storage quality for [ImageTexture].STORAGE_COMPRESS_LOSSY.
+*/
+func (o *ImageTexture) GetLossyStorageQuality() float64 {
+	log.Println("Calling ImageTexture.GetLossyStorageQuality()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_lossy_storage_quality", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *ImageTexture) SetSizeOverride(size *Vector2) {
+	log.Println("Calling ImageTexture.SetSizeOverride()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(size)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_size_override", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *ImageTexture) X_ReloadHook(rid *RID) {
+	log.Println("Calling ImageTexture.X_ReloadHook()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(rid)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_reload_hook", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   ImageTextureImplementer is an interface for ImageTexture objects.
+*/
+type ImageTextureImplementer interface {
+	Class
+}
+
+/*
+   A texture works by registering an image in the video hardware, which then can be used in 3D models or 2D [Sprite] or GUI [Control].
+*/
+type Texture struct {
+	Resource
+}
+
+func (o *Texture) baseClass() string {
+	return "Texture"
+}
+
+/*
+   Return the texture width.
+*/
+func (o *Texture) GetWidth() int64 {
+	log.Println("Calling Texture.GetWidth()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_width", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+   Return the texture height.
+*/
+func (o *Texture) GetHeight() int64 {
+	log.Println("Calling Texture.GetHeight()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_height", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+   Return the texture size.
+*/
+func (o *Texture) GetSize() *Vector2 {
+	log.Println("Calling Texture.GetSize()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_size", goArguments, "*Vector2")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Vector2)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *Texture) HasAlpha() bool {
+	log.Println("Calling Texture.HasAlpha()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "has_alpha", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
+}
+
+/*
+   Change the texture flags.
+*/
+func (o *Texture) SetFlags(flags int64) {
+	log.Println("Calling Texture.SetFlags()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(flags)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_flags", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Return the current texture flags.
+*/
+func (o *Texture) GetFlags() int64 {
+	log.Println("Calling Texture.GetFlags()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_flags", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *Texture) Draw(canvasItem *RID, position *Vector2, modulate *Color, transpose bool, normalMap *Texture) {
+	log.Println("Calling Texture.Draw()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 5, 5)
+	goArguments[0] = reflect.ValueOf(canvasItem)
+	goArguments[1] = reflect.ValueOf(position)
+	goArguments[2] = reflect.ValueOf(modulate)
+	goArguments[3] = reflect.ValueOf(transpose)
+	goArguments[4] = reflect.ValueOf(normalMap)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "draw", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *Texture) DrawRect(canvasItem *RID, rect *Rect2, tile bool, modulate *Color, transpose bool, normalMap *Texture) {
+	log.Println("Calling Texture.DrawRect()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 6, 6)
+	goArguments[0] = reflect.ValueOf(canvasItem)
+	goArguments[1] = reflect.ValueOf(rect)
+	goArguments[2] = reflect.ValueOf(tile)
+	goArguments[3] = reflect.ValueOf(modulate)
+	goArguments[4] = reflect.ValueOf(transpose)
+	goArguments[5] = reflect.ValueOf(normalMap)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "draw_rect", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *Texture) DrawRectRegion(canvasItem *RID, rect *Rect2, srcRect *Rect2, modulate *Color, transpose bool, normalMap *Texture, clipUv bool) {
+	log.Println("Calling Texture.DrawRectRegion()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 7, 7)
+	goArguments[0] = reflect.ValueOf(canvasItem)
+	goArguments[1] = reflect.ValueOf(rect)
+	goArguments[2] = reflect.ValueOf(srcRect)
+	goArguments[3] = reflect.ValueOf(modulate)
+	goArguments[4] = reflect.ValueOf(transpose)
+	goArguments[5] = reflect.ValueOf(normalMap)
+	goArguments[6] = reflect.ValueOf(clipUv)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "draw_rect_region", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *Texture) GetData() *Image {
+	log.Println("Calling Texture.GetData()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_data", goArguments, "*Image")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Image)
+
+	return returnValue
+
+}
+
+/*
+   TextureImplementer is an interface for Texture objects.
+*/
+type TextureImplementer interface {
 	Class
 }
 
@@ -28408,652 +29150,6 @@ type StyleBoxTextureImplementer interface {
 }
 
 /*
-   StyleBox is [Resource] that provides an abstract base class for drawing stylized boxes for the UI. StyleBoxes are used for drawing the styles of buttons, line edit backgrounds, tree backgrounds, etc. and also for testing a transparency mask for pointer signals. If mask test fails on a StyleBox assigned as mask to a control, clicks and motion signals will go through it to the one below.
-*/
-type StyleBox struct {
-	Resource
-}
-
-func (o *StyleBox) baseClass() string {
-	return "StyleBox"
-}
-
-/*
-   Test a position in a rectangle, return whether it passes the mask test.
-*/
-func (o *StyleBox) TestMask(point *Vector2, rect *Rect2) bool {
-	log.Println("Calling StyleBox.TestMask()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(point)
-	goArguments[1] = reflect.ValueOf(rect)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "test_mask", goArguments, "bool")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(bool)
-
-	return returnValue
-
-}
-
-/*
-   Set the default offset "offset" of the margin "margin" (see MARGIN_* enum) for a StyleBox, Controls that draw styleboxes with context inside need to know the margin, so the border of the stylebox is not occluded.
-*/
-func (o *StyleBox) SetDefaultMargin(margin int64, offset float64) {
-	log.Println("Calling StyleBox.SetDefaultMargin()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(margin)
-	goArguments[1] = reflect.ValueOf(offset)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_default_margin", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Return the default offset of the margin "margin" (see MARGIN_* enum) of a StyleBox, Controls that draw styleboxes with context inside need to know the margin, so the border of the stylebox is not occluded.
-*/
-func (o *StyleBox) GetDefaultMargin(margin int64) float64 {
-	log.Println("Calling StyleBox.GetDefaultMargin()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_default_margin", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-   Return the offset of margin "margin" (see MARGIN_* enum).
-*/
-func (o *StyleBox) GetMargin(margin int64) float64 {
-	log.Println("Calling StyleBox.GetMargin()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_margin", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-   Return the minimum size that this stylebox can be shrunk to.
-*/
-func (o *StyleBox) GetMinimumSize() *Vector2 {
-	log.Println("Calling StyleBox.GetMinimumSize()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_minimum_size", goArguments, "*Vector2")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*Vector2)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *StyleBox) GetCenterSize() *Vector2 {
-	log.Println("Calling StyleBox.GetCenterSize()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_center_size", goArguments, "*Vector2")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*Vector2)
-
-	return returnValue
-
-}
-
-/*
-   Return the "offset" of a stylebox, this is a helper function, like writing [code]Vector2(style.get_margin(MARGIN_LEFT), style.get_margin(MARGIN_TOP))[/code].
-*/
-func (o *StyleBox) GetOffset() *Vector2 {
-	log.Println("Calling StyleBox.GetOffset()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_offset", goArguments, "*Vector2")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*Vector2)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *StyleBox) Draw(canvasItem *RID, rect *Rect2) {
-	log.Println("Calling StyleBox.Draw()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(canvasItem)
-	goArguments[1] = reflect.ValueOf(rect)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "draw", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   StyleBoxImplementer is an interface for StyleBox objects.
-*/
-type StyleBoxImplementer interface {
-	Class
-}
-
-/*
-   A [Texture] based on an [Image]. Can be created from an [Image].
-*/
-type ImageTexture struct {
-	Texture
-}
-
-func (o *ImageTexture) baseClass() string {
-	return "ImageTexture"
-}
-
-/*
-   Create a new [ImageTexture] with "width" and "height". "format" one of [Image].FORMAT_*. "flags" one or more of [Texture].FLAG_*.
-*/
-func (o *ImageTexture) Create(width int64, height int64, format int64, flags int64) {
-	log.Println("Calling ImageTexture.Create()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(width)
-	goArguments[1] = reflect.ValueOf(height)
-	goArguments[2] = reflect.ValueOf(format)
-	goArguments[3] = reflect.ValueOf(flags)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "create", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Create a new [ImageTexture] from an [Image] with "flags" from [Texture].FLAG_*.
-*/
-func (o *ImageTexture) CreateFromImage(image *Image, flags int64) {
-	log.Println("Calling ImageTexture.CreateFromImage()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(image)
-	goArguments[1] = reflect.ValueOf(flags)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "create_from_image", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Return the format of the [ImageTexture], one of [Image].FORMAT_*.
-*/
-func (o *ImageTexture) GetFormat() int64 {
-	log.Println("Calling ImageTexture.GetFormat()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_format", goArguments, "int64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(int64)
-
-	return returnValue
-
-}
-
-/*
-   Load an [ImageTexure].
-*/
-func (o *ImageTexture) Load(path string) {
-	log.Println("Calling ImageTexture.Load()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "load", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Set the [Image] of this [ImageTexture].
-*/
-func (o *ImageTexture) SetData(image *Image) {
-	log.Println("Calling ImageTexture.SetData()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(image)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_data", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Set the storage type. One of [ImageTexture].STORAGE_*.
-*/
-func (o *ImageTexture) SetStorage(mode int64) {
-	log.Println("Calling ImageTexture.SetStorage()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_storage", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Return the storage type. One of [ImageTexture].STORAGE_*.
-*/
-func (o *ImageTexture) GetStorage() int64 {
-	log.Println("Calling ImageTexture.GetStorage()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_storage", goArguments, "int64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(int64)
-
-	return returnValue
-
-}
-
-/*
-   Set the storage quality in case of [ImageTexture].STORAGE_COMPRESS_LOSSY.
-*/
-func (o *ImageTexture) SetLossyStorageQuality(quality float64) {
-	log.Println("Calling ImageTexture.SetLossyStorageQuality()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(quality)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_lossy_storage_quality", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Return the storage quality for [ImageTexture].STORAGE_COMPRESS_LOSSY.
-*/
-func (o *ImageTexture) GetLossyStorageQuality() float64 {
-	log.Println("Calling ImageTexture.GetLossyStorageQuality()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_lossy_storage_quality", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *ImageTexture) SetSizeOverride(size *Vector2) {
-	log.Println("Calling ImageTexture.SetSizeOverride()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_size_override", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ImageTexture) X_ReloadHook(rid *RID) {
-	log.Println("Calling ImageTexture.X_ReloadHook()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(rid)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_reload_hook", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   ImageTextureImplementer is an interface for ImageTexture objects.
-*/
-type ImageTextureImplementer interface {
-	Class
-}
-
-/*
-   A texture works by registering an image in the video hardware, which then can be used in 3D models or 2D [Sprite] or GUI [Control].
-*/
-type Texture struct {
-	Resource
-}
-
-func (o *Texture) baseClass() string {
-	return "Texture"
-}
-
-/*
-   Return the texture width.
-*/
-func (o *Texture) GetWidth() int64 {
-	log.Println("Calling Texture.GetWidth()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_width", goArguments, "int64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(int64)
-
-	return returnValue
-
-}
-
-/*
-   Return the texture height.
-*/
-func (o *Texture) GetHeight() int64 {
-	log.Println("Calling Texture.GetHeight()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_height", goArguments, "int64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(int64)
-
-	return returnValue
-
-}
-
-/*
-   Return the texture size.
-*/
-func (o *Texture) GetSize() *Vector2 {
-	log.Println("Calling Texture.GetSize()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_size", goArguments, "*Vector2")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*Vector2)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *Texture) HasAlpha() bool {
-	log.Println("Calling Texture.HasAlpha()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "has_alpha", goArguments, "bool")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(bool)
-
-	return returnValue
-
-}
-
-/*
-   Change the texture flags.
-*/
-func (o *Texture) SetFlags(flags int64) {
-	log.Println("Calling Texture.SetFlags()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(flags)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_flags", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Return the current texture flags.
-*/
-func (o *Texture) GetFlags() int64 {
-	log.Println("Calling Texture.GetFlags()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_flags", goArguments, "int64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(int64)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *Texture) Draw(canvasItem *RID, pos *Vector2, modulate *Color, transpose bool, normalMap *Texture) {
-	log.Println("Calling Texture.Draw()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(canvasItem)
-	goArguments[1] = reflect.ValueOf(pos)
-	goArguments[2] = reflect.ValueOf(modulate)
-	goArguments[3] = reflect.ValueOf(transpose)
-	goArguments[4] = reflect.ValueOf(normalMap)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "draw", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-
- */
-func (o *Texture) DrawRect(canvasItem *RID, rect *Rect2, tile bool, modulate *Color, transpose bool, normalMap *Texture) {
-	log.Println("Calling Texture.DrawRect()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 6, 6)
-	goArguments[0] = reflect.ValueOf(canvasItem)
-	goArguments[1] = reflect.ValueOf(rect)
-	goArguments[2] = reflect.ValueOf(tile)
-	goArguments[3] = reflect.ValueOf(modulate)
-	goArguments[4] = reflect.ValueOf(transpose)
-	goArguments[5] = reflect.ValueOf(normalMap)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "draw_rect", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-
- */
-func (o *Texture) DrawRectRegion(canvasItem *RID, rect *Rect2, srcRect *Rect2, modulate *Color, transpose bool, normalMap *Texture, clipUv bool) {
-	log.Println("Calling Texture.DrawRectRegion()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 7, 7)
-	goArguments[0] = reflect.ValueOf(canvasItem)
-	goArguments[1] = reflect.ValueOf(rect)
-	goArguments[2] = reflect.ValueOf(srcRect)
-	goArguments[3] = reflect.ValueOf(modulate)
-	goArguments[4] = reflect.ValueOf(transpose)
-	goArguments[5] = reflect.ValueOf(normalMap)
-	goArguments[6] = reflect.ValueOf(clipUv)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "draw_rect_region", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-
- */
-func (o *Texture) GetData() *Image {
-	log.Println("Calling Texture.GetData()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_data", goArguments, "*Image")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*Image)
-
-	return returnValue
-
-}
-
-/*
-   TextureImplementer is an interface for Texture objects.
-*/
-type TextureImplementer interface {
-	Class
-}
-
-/*
    Panel is a [Control] that displays an opaque background. It's commonly used as a parent and container for other types of [Control] nodes.
 */
 type Panel struct {
@@ -29281,6 +29377,192 @@ func (o *Button) IsFlat() bool {
    ButtonImplementer is an interface for Button objects.
 */
 type ButtonImplementer interface {
+	Class
+}
+
+/*
+   StyleBox is [Resource] that provides an abstract base class for drawing stylized boxes for the UI. StyleBoxes are used for drawing the styles of buttons, line edit backgrounds, tree backgrounds, etc. and also for testing a transparency mask for pointer signals. If mask test fails on a StyleBox assigned as mask to a control, clicks and motion signals will go through it to the one below.
+*/
+type StyleBox struct {
+	Resource
+}
+
+func (o *StyleBox) baseClass() string {
+	return "StyleBox"
+}
+
+/*
+   Test a position in a rectangle, return whether it passes the mask test.
+*/
+func (o *StyleBox) TestMask(point *Vector2, rect *Rect2) bool {
+	log.Println("Calling StyleBox.TestMask()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(point)
+	goArguments[1] = reflect.ValueOf(rect)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "test_mask", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
+}
+
+/*
+   Set the default offset "offset" of the margin "margin" (see MARGIN_* enum) for a StyleBox, Controls that draw styleboxes with context inside need to know the margin, so the border of the stylebox is not occluded.
+*/
+func (o *StyleBox) SetDefaultMargin(margin int64, offset float64) {
+	log.Println("Calling StyleBox.SetDefaultMargin()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(margin)
+	goArguments[1] = reflect.ValueOf(offset)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_default_margin", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Return the default offset of the margin "margin" (see MARGIN_* enum) of a StyleBox, Controls that draw styleboxes with context inside need to know the margin, so the border of the stylebox is not occluded.
+*/
+func (o *StyleBox) GetDefaultMargin(margin int64) float64 {
+	log.Println("Calling StyleBox.GetDefaultMargin()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(margin)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_default_margin", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+   Return the offset of margin "margin" (see MARGIN_* enum).
+*/
+func (o *StyleBox) GetMargin(margin int64) float64 {
+	log.Println("Calling StyleBox.GetMargin()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(margin)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_margin", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+   Return the minimum size that this stylebox can be shrunk to.
+*/
+func (o *StyleBox) GetMinimumSize() *Vector2 {
+	log.Println("Calling StyleBox.GetMinimumSize()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_minimum_size", goArguments, "*Vector2")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Vector2)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *StyleBox) GetCenterSize() *Vector2 {
+	log.Println("Calling StyleBox.GetCenterSize()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_center_size", goArguments, "*Vector2")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Vector2)
+
+	return returnValue
+
+}
+
+/*
+   Return the "offset" of a stylebox, this is a helper function, like writing [code]Vector2(style.get_margin(MARGIN_LEFT), style.get_margin(MARGIN_TOP))[/code].
+*/
+func (o *StyleBox) GetOffset() *Vector2 {
+	log.Println("Calling StyleBox.GetOffset()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_offset", goArguments, "*Vector2")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Vector2)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *StyleBox) Draw(canvasItem *RID, rect *Rect2) {
+	log.Println("Calling StyleBox.Draw()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(canvasItem)
+	goArguments[1] = reflect.ValueOf(rect)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "draw", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   StyleBoxImplementer is an interface for StyleBox objects.
+*/
+type StyleBoxImplementer interface {
 	Class
 }
 
@@ -30214,7 +30496,7 @@ type CheckButtonImplementer interface {
 }
 
 /*
-   Label is a control that displays formatted text, optionally autowrapping it to the [Control] area. It inherits from range to be able to scroll wrapped text vertically.
+   Label displays plain text on the screen. It gives you control over the horizontal and vertical alignment, and can wrap the text inside the node's bounding rectangle. It doesn't support bold, italics or other formatting. For that, use [RichTextLabel] instead.
 */
 type Label struct {
 	Control
@@ -30399,7 +30681,7 @@ func (o *Label) SetClipText(enable bool) {
 }
 
 /*
-   Return true if text would be cut off if it is too wide.
+   Return [code]true[/code] if text would be cut off if it is too wide.
 */
 func (o *Label) IsClippingText() bool {
 	log.Println("Calling Label.IsClippingText()")
@@ -30438,7 +30720,7 @@ func (o *Label) SetUppercase(enable bool) {
 }
 
 /*
-   Return true if text is displayed in all capitals.
+   Return [code]true[/code] if text is displayed in all capitals.
 */
 func (o *Label) IsUppercase() bool {
 	log.Println("Calling Label.IsUppercase()")
@@ -30459,7 +30741,7 @@ func (o *Label) IsUppercase() bool {
 }
 
 /*
-   Return the height of a line.
+   Returns the font size in pixels.
 */
 func (o *Label) GetLineHeight() int64 {
 	log.Println("Calling Label.GetLineHeight()")
@@ -30480,7 +30762,7 @@ func (o *Label) GetLineHeight() int64 {
 }
 
 /*
-   Return the amount of lines.
+   Returns the amount of lines of text the Label has.
 */
 func (o *Label) GetLineCount() int64 {
 	log.Println("Calling Label.GetLineCount()")
@@ -30702,6 +30984,63 @@ func (o *Label) GetMaxLinesVisible() int64 {
    LabelImplementer is an interface for Label objects.
 */
 type LabelImplementer interface {
+	Class
+}
+
+/*
+   General purpose progress bar. Shows fill percentage from right to left.
+*/
+type ProgressBar struct {
+	Range
+}
+
+func (o *ProgressBar) baseClass() string {
+	return "ProgressBar"
+}
+
+/*
+
+ */
+func (o *ProgressBar) SetPercentVisible(visible bool) {
+	log.Println("Calling ProgressBar.SetPercentVisible()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(visible)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_percent_visible", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *ProgressBar) IsPercentVisible() bool {
+	log.Println("Calling ProgressBar.IsPercentVisible()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_percent_visible", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
+}
+
+/*
+   ProgressBarImplementer is an interface for ProgressBar objects.
+*/
+type ProgressBarImplementer interface {
 	Class
 }
 
@@ -30961,16 +31300,16 @@ func (o *LineEdit) GetPlaceholderAlpha() float64 {
 /*
    Set the cursor position inside the [LineEdit], causing it to scroll if needed.
 */
-func (o *LineEdit) SetCursorPos(pos int64) {
-	log.Println("Calling LineEdit.SetCursorPos()")
+func (o *LineEdit) SetCursorPosition(position int64) {
+	log.Println("Calling LineEdit.SetCursorPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
-	o.callParentMethod(o.baseClass(), "set_cursor_pos", goArguments, "")
+	o.callParentMethod(o.baseClass(), "set_cursor_position", goArguments, "")
 
 	log.Println("Got return value!")
 
@@ -30979,15 +31318,15 @@ func (o *LineEdit) SetCursorPos(pos int64) {
 /*
    Return the cursor position inside the [LineEdit].
 */
-func (o *LineEdit) GetCursorPos() int64 {
-	log.Println("Calling LineEdit.GetCursorPos()")
+func (o *LineEdit) GetCursorPosition() int64 {
+	log.Println("Calling LineEdit.GetCursorPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_cursor_pos", goArguments, "int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_cursor_position", goArguments, "int64")
 
 	log.Println("Got return value!")
 
@@ -31311,63 +31650,6 @@ func (o *LineEdit) GetMenu() *PopupMenu {
    LineEditImplementer is an interface for LineEdit objects.
 */
 type LineEditImplementer interface {
-	Class
-}
-
-/*
-   General purpose progress bar. Shows fill percentage from right to left.
-*/
-type ProgressBar struct {
-	Range
-}
-
-func (o *ProgressBar) baseClass() string {
-	return "ProgressBar"
-}
-
-/*
-
- */
-func (o *ProgressBar) SetPercentVisible(visible bool) {
-	log.Println("Calling ProgressBar.SetPercentVisible()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(visible)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_percent_visible", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-
- */
-func (o *ProgressBar) IsPercentVisible() bool {
-	log.Println("Calling ProgressBar.IsPercentVisible()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "is_percent_visible", goArguments, "bool")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(bool)
-
-	return returnValue
-
-}
-
-/*
-   ProgressBarImplementer is an interface for ProgressBar objects.
-*/
-type ProgressBarImplementer interface {
 	Class
 }
 
@@ -32554,20 +32836,552 @@ type VSliderImplementer interface {
 }
 
 /*
-   Reference frame for GUI. It's just like an empty control, except a red box is displayed while editing around its size at all times.
+   GraphEdit manages the showing of GraphNodes it contains, as well as connections and disconnections between them. Signals are sent for each of these two events. Disconnection between GraphNodes slots is disabled by default. It is greatly advised to enable low processor usage mode (see [method OS.set_low_processor_usage_mode]) when using GraphEdits.
 */
-type ReferenceRect struct {
+type GraphEdit struct {
 	Control
 }
 
-func (o *ReferenceRect) baseClass() string {
-	return "ReferenceRect"
+func (o *GraphEdit) baseClass() string {
+	return "GraphEdit"
 }
 
 /*
-   ReferenceRectImplementer is an interface for ReferenceRect objects.
+   Create a connection between 'from_port' slot of 'from' GraphNode and 'to_port' slot of 'to' GraphNode. If the connection already exists, no connection is created.
 */
-type ReferenceRectImplementer interface {
+func (o *GraphEdit) ConnectNode(from string, fromPort int64, to string, toPort int64) int64 {
+	log.Println("Calling GraphEdit.ConnectNode()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 4, 4)
+	goArguments[0] = reflect.ValueOf(from)
+	goArguments[1] = reflect.ValueOf(fromPort)
+	goArguments[2] = reflect.ValueOf(to)
+	goArguments[3] = reflect.ValueOf(toPort)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "connect_node", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+   Return true if the 'from_port' slot of 'from' GraphNode is connected to the 'to_port' slot of 'to' GraphNode.
+*/
+func (o *GraphEdit) IsNodeConnected(from string, fromPort int64, to string, toPort int64) bool {
+	log.Println("Calling GraphEdit.IsNodeConnected()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 4, 4)
+	goArguments[0] = reflect.ValueOf(from)
+	goArguments[1] = reflect.ValueOf(fromPort)
+	goArguments[2] = reflect.ValueOf(to)
+	goArguments[3] = reflect.ValueOf(toPort)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_node_connected", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
+}
+
+/*
+   Remove the connection between 'from_port' slot of 'from' GraphNode and 'to_port' slot of 'to' GraphNode, if connection exists.
+*/
+func (o *GraphEdit) DisconnectNode(from string, fromPort int64, to string, toPort int64) {
+	log.Println("Calling GraphEdit.DisconnectNode()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 4, 4)
+	goArguments[0] = reflect.ValueOf(from)
+	goArguments[1] = reflect.ValueOf(fromPort)
+	goArguments[2] = reflect.ValueOf(to)
+	goArguments[3] = reflect.ValueOf(toPort)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "disconnect_node", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Return an Array containing the list of connections. A connection consists in a structure of the form {from_slot: 0, from: "GraphNode name 0", to_slot: 1, to: "GraphNode name 1" }
+*/
+func (o *GraphEdit) GetConnectionList() *Array {
+	log.Println("Calling GraphEdit.GetConnectionList()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_connection_list", goArguments, "*Array")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Array)
+
+	return returnValue
+
+}
+
+/*
+   Return the scroll offset.
+*/
+func (o *GraphEdit) GetScrollOfs() *Vector2 {
+	log.Println("Calling GraphEdit.GetScrollOfs()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_scroll_ofs", goArguments, "*Vector2")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Vector2)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *GraphEdit) SetScrollOfs(ofs *Vector2) {
+	log.Println("Calling GraphEdit.SetScrollOfs()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(ofs)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_scroll_ofs", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Set the zoom value of the GraphEdit. Zoom value is between [0.01; 1.728].
+*/
+func (o *GraphEdit) SetZoom(pZoom float64) {
+	log.Println("Calling GraphEdit.SetZoom()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(pZoom)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_zoom", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Return the current zoom value.
+*/
+func (o *GraphEdit) GetZoom() float64 {
+	log.Println("Calling GraphEdit.GetZoom()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_zoom", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *GraphEdit) SetSnap(pixels int64) {
+	log.Println("Calling GraphEdit.SetSnap()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(pixels)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_snap", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *GraphEdit) GetSnap() int64 {
+	log.Println("Calling GraphEdit.GetSnap()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_snap", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *GraphEdit) SetUseSnap(enable bool) {
+	log.Println("Calling GraphEdit.SetUseSnap()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(enable)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_use_snap", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *GraphEdit) IsUsingSnap() bool {
+	log.Println("Calling GraphEdit.IsUsingSnap()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_using_snap", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
+}
+
+/*
+   Enable the disconnection of existing connections in the visual GraphEdit by left-clicking a connection and releasing into the void.
+*/
+func (o *GraphEdit) SetRightDisconnects(enable bool) {
+	log.Println("Calling GraphEdit.SetRightDisconnects()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(enable)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_right_disconnects", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Return true is the disconnection of connections is enable in the visual GraphEdit. False otherwise.
+*/
+func (o *GraphEdit) IsRightDisconnectsEnabled() bool {
+	log.Println("Calling GraphEdit.IsRightDisconnectsEnabled()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_right_disconnects_enabled", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_GraphNodeMoved(arg0 *Object) {
+	log.Println("Calling GraphEdit.X_GraphNodeMoved()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(arg0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_graph_node_moved", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_GraphNodeRaised(arg0 *Object) {
+	log.Println("Calling GraphEdit.X_GraphNodeRaised()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(arg0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_graph_node_raised", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_TopLayerInput(arg0 *InputEvent) {
+	log.Println("Calling GraphEdit.X_TopLayerInput()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(arg0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_top_layer_input", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_TopLayerDraw() {
+	log.Println("Calling GraphEdit.X_TopLayerDraw()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_top_layer_draw", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_ScrollMoved(arg0 float64) {
+	log.Println("Calling GraphEdit.X_ScrollMoved()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(arg0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_scroll_moved", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_ZoomMinus() {
+	log.Println("Calling GraphEdit.X_ZoomMinus()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_zoom_minus", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_ZoomReset() {
+	log.Println("Calling GraphEdit.X_ZoomReset()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_zoom_reset", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_ZoomPlus() {
+	log.Println("Calling GraphEdit.X_ZoomPlus()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_zoom_plus", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_SnapToggled() {
+	log.Println("Calling GraphEdit.X_SnapToggled()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_snap_toggled", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_SnapValueChanged(arg0 float64) {
+	log.Println("Calling GraphEdit.X_SnapValueChanged()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(arg0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_snap_value_changed", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_GuiInput(arg0 *InputEvent) {
+	log.Println("Calling GraphEdit.X_GuiInput()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(arg0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_gui_input", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_UpdateScrollOffset() {
+	log.Println("Calling GraphEdit.X_UpdateScrollOffset()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_update_scroll_offset", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GraphEdit) X_ConnectionsLayerDraw() {
+	log.Println("Calling GraphEdit.X_ConnectionsLayerDraw()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_connections_layer_draw", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *GraphEdit) SetSelected(node *Object) {
+	log.Println("Calling GraphEdit.SetSelected()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(node)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_selected", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   GraphEditImplementer is an interface for GraphEdit objects.
+*/
+type GraphEditImplementer interface {
 	Class
 }
 
@@ -33575,24 +34389,6 @@ type FileDialogImplementer interface {
 }
 
 /*
-   Class for displaying popups with a panel background. In some cases it might be simpler to use than [Popup], since it provides a configurable background. If you are making windows, better check [WindowDialog].
-*/
-type PopupPanel struct {
-	Popup
-}
-
-func (o *PopupPanel) baseClass() string {
-	return "PopupPanel"
-}
-
-/*
-   PopupPanelImplementer is an interface for PopupPanel objects.
-*/
-type PopupPanelImplementer interface {
-	Class
-}
-
-/*
    PopupMenu is the typical Control that displays a list of options. They are popular in toolbars or context menus.
 */
 type PopupMenu struct {
@@ -34553,6 +35349,24 @@ type PopupMenuImplementer interface {
 }
 
 /*
+   Class for displaying popups with a panel background. In some cases it might be simpler to use than [Popup], since it provides a configurable background. If you are making windows, better check [WindowDialog].
+*/
+type PopupPanel struct {
+	Popup
+}
+
+func (o *PopupPanel) baseClass() string {
+	return "PopupPanel"
+}
+
+/*
+   PopupPanelImplementer is an interface for PopupPanel objects.
+*/
+type PopupPanelImplementer interface {
+	Class
+}
+
+/*
    A GraphNode is a container defined by a title. It can have 1 or more input and output slots, which can be enabled (shown) or disabled (not shown) and have different (incompatible) types. Colors can also be assigned to slots. A tuple of input and output slots is defined for each GUI element included in the GraphNode. Input and output connections are left and right slots, but only enabled slots are counted as connections.
 */
 type GraphNode struct {
@@ -35014,8 +35828,8 @@ func (o *GraphNode) GetConnectionInputCount() int64 {
 /*
    Return the position of the output connection 'idx'.
 */
-func (o *GraphNode) GetConnectionOutputPos(idx int64) *Vector2 {
-	log.Println("Calling GraphNode.GetConnectionOutputPos()")
+func (o *GraphNode) GetConnectionOutputPosition(idx int64) *Vector2 {
+	log.Println("Calling GraphNode.GetConnectionOutputPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -35023,7 +35837,7 @@ func (o *GraphNode) GetConnectionOutputPos(idx int64) *Vector2 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_connection_output_pos", goArguments, "*Vector2")
+	goRet := o.callParentMethod(o.baseClass(), "get_connection_output_position", goArguments, "*Vector2")
 
 	log.Println("Got return value!")
 
@@ -35080,8 +35894,8 @@ func (o *GraphNode) GetConnectionOutputColor(idx int64) *Color {
 /*
    Return the position of the input connection 'idx'.
 */
-func (o *GraphNode) GetConnectionInputPos(idx int64) *Vector2 {
-	log.Println("Calling GraphNode.GetConnectionInputPos()")
+func (o *GraphNode) GetConnectionInputPosition(idx int64) *Vector2 {
+	log.Println("Calling GraphNode.GetConnectionInputPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -35089,7 +35903,7 @@ func (o *GraphNode) GetConnectionInputPos(idx int64) *Vector2 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_connection_input_pos", goArguments, "*Vector2")
+	goRet := o.callParentMethod(o.baseClass(), "get_connection_input_position", goArguments, "*Vector2")
 
 	log.Println("Got return value!")
 
@@ -35732,16 +36546,16 @@ func (o *Tree) GetItemAreaRect(item *Object, column int64) *Rect2 {
 /*
    Get the tree item at the specified position (relative to the tree origin position).
 */
-func (o *Tree) GetItemAtPos(pos *Vector2) *TreeItem {
-	log.Println("Calling Tree.GetItemAtPos()")
+func (o *Tree) GetItemAtPosition(position *Vector2) *TreeItem {
+	log.Println("Calling Tree.GetItemAtPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_item_at_pos", goArguments, "*TreeItem")
+	goRet := o.callParentMethod(o.baseClass(), "get_item_at_position", goArguments, "*TreeItem")
 
 	log.Println("Got return value!")
 
@@ -35754,16 +36568,16 @@ func (o *Tree) GetItemAtPos(pos *Vector2) *TreeItem {
 /*
    Get the column index under the given point.
 */
-func (o *Tree) GetColumnAtPos(pos *Vector2) int64 {
-	log.Println("Calling Tree.GetColumnAtPos()")
+func (o *Tree) GetColumnAtPosition(position *Vector2) int64 {
+	log.Println("Calling Tree.GetColumnAtPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_column_at_pos", goArguments, "int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_column_at_position", goArguments, "int64")
 
 	log.Println("Got return value!")
 
@@ -35776,16 +36590,16 @@ func (o *Tree) GetColumnAtPos(pos *Vector2) int64 {
 /*
 
  */
-func (o *Tree) GetDropSectionAtPos(pos *Vector2) int64 {
-	log.Println("Calling Tree.GetDropSectionAtPos()")
+func (o *Tree) GetDropSectionAtPosition(position *Vector2) int64 {
+	log.Println("Calling Tree.GetDropSectionAtPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_drop_section_at_pos", goArguments, "int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_drop_section_at_position", goArguments, "int64")
 
 	log.Println("Got return value!")
 
@@ -37041,17 +37855,17 @@ func (o *ItemList) HasAutoHeight() bool {
 /*
    Given a position within the control return the item (if any) at that point.
 */
-func (o *ItemList) GetItemAtPos(pos *Vector2, exact bool) int64 {
-	log.Println("Calling ItemList.GetItemAtPos()")
+func (o *ItemList) GetItemAtPosition(position *Vector2, exact bool) int64 {
+	log.Println("Calling ItemList.GetItemAtPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 	goArguments[1] = reflect.ValueOf(exact)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_item_at_pos", goArguments, "int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_item_at_position", goArguments, "int64")
 
 	log.Println("Got return value!")
 
@@ -39206,6 +40020,48 @@ func (o *RichTextLabel) IsUsingBbcode() bool {
 }
 
 /*
+
+ */
+func (o *RichTextLabel) GetLineCount() int64 {
+	log.Println("Calling RichTextLabel.GetLineCount()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_line_count", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *RichTextLabel) GetVisibleLineCount() int64 {
+	log.Println("Calling RichTextLabel.GetVisibleLineCount()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_visible_line_count", goArguments, "int64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
    RichTextLabelImplementer is an interface for RichTextLabel objects.
 */
 type RichTextLabelImplementer interface {
@@ -39360,6 +40216,24 @@ type GridContainerImplementer interface {
 }
 
 /*
+   Reference frame for GUI. It's just like an empty control, except a red box is displayed while editing around its size at all times.
+*/
+type ReferenceRect struct {
+	Control
+}
+
+func (o *ReferenceRect) baseClass() string {
+	return "ReferenceRect"
+}
+
+/*
+   ReferenceRectImplementer is an interface for ReferenceRect objects.
+*/
+type ReferenceRectImplementer interface {
+	Class
+}
+
+/*
    Panel container type. This container fits controls inside of the delimited area of a stylebox. It's useful for giving controls an outline.
 */
 type PanelContainer struct {
@@ -39374,556 +40248,6 @@ func (o *PanelContainer) baseClass() string {
    PanelContainerImplementer is an interface for PanelContainer objects.
 */
 type PanelContainerImplementer interface {
-	Class
-}
-
-/*
-   GraphEdit manages the showing of GraphNodes it contains, as well as connections and disconnections between them. Signals are sent for each of these two events. Disconnection between GraphNodes slots is disabled by default. It is greatly advised to enable low processor usage mode (see [method OS.set_low_processor_usage_mode]) when using GraphEdits.
-*/
-type GraphEdit struct {
-	Control
-}
-
-func (o *GraphEdit) baseClass() string {
-	return "GraphEdit"
-}
-
-/*
-   Create a connection between 'from_port' slot of 'from' GraphNode and 'to_port' slot of 'to' GraphNode. If the connection already exists, no connection is created.
-*/
-func (o *GraphEdit) ConnectNode(from string, fromPort int64, to string, toPort int64) int64 {
-	log.Println("Calling GraphEdit.ConnectNode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(from)
-	goArguments[1] = reflect.ValueOf(fromPort)
-	goArguments[2] = reflect.ValueOf(to)
-	goArguments[3] = reflect.ValueOf(toPort)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "connect_node", goArguments, "int64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(int64)
-
-	return returnValue
-
-}
-
-/*
-   Return true if the 'from_port' slot of 'from' GraphNode is connected to the 'to_port' slot of 'to' GraphNode.
-*/
-func (o *GraphEdit) IsNodeConnected(from string, fromPort int64, to string, toPort int64) bool {
-	log.Println("Calling GraphEdit.IsNodeConnected()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(from)
-	goArguments[1] = reflect.ValueOf(fromPort)
-	goArguments[2] = reflect.ValueOf(to)
-	goArguments[3] = reflect.ValueOf(toPort)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "is_node_connected", goArguments, "bool")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(bool)
-
-	return returnValue
-
-}
-
-/*
-   Remove the connection between 'from_port' slot of 'from' GraphNode and 'to_port' slot of 'to' GraphNode, if connection exists.
-*/
-func (o *GraphEdit) DisconnectNode(from string, fromPort int64, to string, toPort int64) {
-	log.Println("Calling GraphEdit.DisconnectNode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(from)
-	goArguments[1] = reflect.ValueOf(fromPort)
-	goArguments[2] = reflect.ValueOf(to)
-	goArguments[3] = reflect.ValueOf(toPort)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "disconnect_node", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Return an Array containing the list of connections. A connection consists in a structure of the form {from_slot: 0, from: "GraphNode name 0", to_slot: 1, to: "GraphNode name 1" }
-*/
-func (o *GraphEdit) GetConnectionList() *Array {
-	log.Println("Calling GraphEdit.GetConnectionList()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_connection_list", goArguments, "*Array")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*Array)
-
-	return returnValue
-
-}
-
-/*
-   Return the scroll offset.
-*/
-func (o *GraphEdit) GetScrollOfs() *Vector2 {
-	log.Println("Calling GraphEdit.GetScrollOfs()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_scroll_ofs", goArguments, "*Vector2")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(*Vector2)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *GraphEdit) SetScrollOfs(ofs *Vector2) {
-	log.Println("Calling GraphEdit.SetScrollOfs()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ofs)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_scroll_ofs", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Set the zoom value of the GraphEdit. Zoom value is between [0.01; 1.728].
-*/
-func (o *GraphEdit) SetZoom(pZoom float64) {
-	log.Println("Calling GraphEdit.SetZoom()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pZoom)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_zoom", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Return the current zoom value.
-*/
-func (o *GraphEdit) GetZoom() float64 {
-	log.Println("Calling GraphEdit.GetZoom()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_zoom", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *GraphEdit) SetSnap(pixels int64) {
-	log.Println("Calling GraphEdit.SetSnap()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pixels)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_snap", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-
- */
-func (o *GraphEdit) GetSnap() int64 {
-	log.Println("Calling GraphEdit.GetSnap()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_snap", goArguments, "int64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(int64)
-
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *GraphEdit) SetUseSnap(enable bool) {
-	log.Println("Calling GraphEdit.SetUseSnap()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_use_snap", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-
- */
-func (o *GraphEdit) IsUsingSnap() bool {
-	log.Println("Calling GraphEdit.IsUsingSnap()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "is_using_snap", goArguments, "bool")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(bool)
-
-	return returnValue
-
-}
-
-/*
-   Enable the disconnection of existing connections in the visual GraphEdit by left-clicking a connection and releasing into the void.
-*/
-func (o *GraphEdit) SetRightDisconnects(enable bool) {
-	log.Println("Calling GraphEdit.SetRightDisconnects()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_right_disconnects", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Return true is the disconnection of connections is enable in the visual GraphEdit. False otherwise.
-*/
-func (o *GraphEdit) IsRightDisconnectsEnabled() bool {
-	log.Println("Calling GraphEdit.IsRightDisconnectsEnabled()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "is_right_disconnects_enabled", goArguments, "bool")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(bool)
-
-	return returnValue
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_GraphNodeMoved(arg0 *Object) {
-	log.Println("Calling GraphEdit.X_GraphNodeMoved()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_graph_node_moved", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_GraphNodeRaised(arg0 *Object) {
-	log.Println("Calling GraphEdit.X_GraphNodeRaised()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_graph_node_raised", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_TopLayerInput(arg0 *InputEvent) {
-	log.Println("Calling GraphEdit.X_TopLayerInput()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_top_layer_input", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_TopLayerDraw() {
-	log.Println("Calling GraphEdit.X_TopLayerDraw()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_top_layer_draw", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_ScrollMoved(arg0 float64) {
-	log.Println("Calling GraphEdit.X_ScrollMoved()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_scroll_moved", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_ZoomMinus() {
-	log.Println("Calling GraphEdit.X_ZoomMinus()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_zoom_minus", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_ZoomReset() {
-	log.Println("Calling GraphEdit.X_ZoomReset()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_zoom_reset", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_ZoomPlus() {
-	log.Println("Calling GraphEdit.X_ZoomPlus()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_zoom_plus", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_SnapToggled() {
-	log.Println("Calling GraphEdit.X_SnapToggled()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_snap_toggled", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_SnapValueChanged(arg0 float64) {
-	log.Println("Calling GraphEdit.X_SnapValueChanged()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_snap_value_changed", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_GuiInput(arg0 *InputEvent) {
-	log.Println("Calling GraphEdit.X_GuiInput()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_gui_input", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_UpdateScrollOffset() {
-	log.Println("Calling GraphEdit.X_UpdateScrollOffset()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_update_scroll_offset", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *GraphEdit) X_ConnectionsLayerDraw() {
-	log.Println("Calling GraphEdit.X_ConnectionsLayerDraw()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_connections_layer_draw", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-
- */
-func (o *GraphEdit) SetSelected(node *Object) {
-	log.Println("Calling GraphEdit.SetSelected()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(node)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_selected", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   GraphEditImplementer is an interface for GraphEdit objects.
-*/
-type GraphEditImplementer interface {
 	Class
 }
 
@@ -40542,13 +40866,13 @@ func (o *Node) IsInGroup(group string) bool {
 /*
    Move a child node to a different position (order) amongst the other children. Since calls, signals, etc are performed by tree order, changing the order of children nodes may be useful.
 */
-func (o *Node) MoveChild(childNode *Object, toPos int64) {
+func (o *Node) MoveChild(childNode *Object, toPosition int64) {
 	log.Println("Calling Node.MoveChild()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
 	goArguments[0] = reflect.ValueOf(childNode)
-	goArguments[1] = reflect.ValueOf(toPos)
+	goArguments[1] = reflect.ValueOf(toPosition)
 
 	// Call the parent method.
 
@@ -42933,12 +43257,12 @@ func (o *Viewport) GetMousePosition() *Vector2 {
 /*
    Warp the mouse to a position, relative to the viewport.
 */
-func (o *Viewport) WarpMouse(toPos *Vector2) {
+func (o *Viewport) WarpMouse(toPosition *Vector2) {
 	log.Println("Calling Viewport.WarpMouse()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(toPos)
+	goArguments[0] = reflect.ValueOf(toPosition)
 
 	// Call the parent method.
 
@@ -44053,7 +44377,7 @@ type TimerImplementer interface {
 }
 
 /*
-   Canvas Item layer. [CanvasItem] nodes that are direct or indirect children of a [CanvasLayer] will be drawn in that layer. The layer is a numeric index that defines the draw order. The default 2D scene renders with index 0, so a [CanvasLayer] with index -1 will be drawn below, and one with index 1 will be drawn above. This is very useful for HUDs (in layer 1+ or above), or backgrounds (in layer -1 or below).
+   Canvas drawing layer. [CanvasItem] nodes that are direct or indirect children of a [CanvasLayer] will be drawn in that layer. The layer is a numeric index that defines the draw order. The default 2D scene renders with index 0, so a [CanvasLayer] with index -1 will be drawn below, and one with index 1 will be drawn above. This is very useful for HUDs (in layer 1+ or above), or backgrounds (in layer -1 or below).
 */
 type CanvasLayer struct {
 	Node
@@ -45035,12 +45359,12 @@ func (o *CanvasItem) DrawRect(rect *Rect2, color *Color, filled bool) {
 /*
    Draw a colored circle.
 */
-func (o *CanvasItem) DrawCircle(pos *Vector2, radius float64, color *Color) {
+func (o *CanvasItem) DrawCircle(position *Vector2, radius float64, color *Color) {
 	log.Println("Calling CanvasItem.DrawCircle()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 	goArguments[1] = reflect.ValueOf(radius)
 	goArguments[2] = reflect.ValueOf(color)
 
@@ -45055,13 +45379,13 @@ func (o *CanvasItem) DrawCircle(pos *Vector2, radius float64, color *Color) {
 /*
    Draw a texture at a given position.
 */
-func (o *CanvasItem) DrawTexture(texture *Texture, pos *Vector2, modulate *Color, normalMap *Texture) {
+func (o *CanvasItem) DrawTexture(texture *Texture, position *Vector2, modulate *Color, normalMap *Texture) {
 	log.Println("Calling CanvasItem.DrawTexture()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 4, 4)
 	goArguments[0] = reflect.ValueOf(texture)
-	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[1] = reflect.ValueOf(position)
 	goArguments[2] = reflect.ValueOf(modulate)
 	goArguments[3] = reflect.ValueOf(normalMap)
 
@@ -45211,13 +45535,13 @@ func (o *CanvasItem) DrawColoredPolygon(points *PoolVector2Array, color *Color, 
 /*
    Draw a string using a custom font.
 */
-func (o *CanvasItem) DrawString(font *Font, pos *Vector2, text string, modulate *Color, clipW int64) {
+func (o *CanvasItem) DrawString(font *Font, position *Vector2, text string, modulate *Color, clipW int64) {
 	log.Println("Calling CanvasItem.DrawString()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 5, 5)
 	goArguments[0] = reflect.ValueOf(font)
-	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[1] = reflect.ValueOf(position)
 	goArguments[2] = reflect.ValueOf(text)
 	goArguments[3] = reflect.ValueOf(modulate)
 	goArguments[4] = reflect.ValueOf(clipW)
@@ -45233,13 +45557,13 @@ func (o *CanvasItem) DrawString(font *Font, pos *Vector2, text string, modulate 
 /*
    Draw a string character using a custom font. Returns the advance, depending on the char width and kerning with an optional next char.
 */
-func (o *CanvasItem) DrawChar(font *Font, pos *Vector2, char string, next string, modulate *Color) float64 {
+func (o *CanvasItem) DrawChar(font *Font, position *Vector2, char string, next string, modulate *Color) float64 {
 	log.Println("Calling CanvasItem.DrawChar()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 5, 5)
 	goArguments[0] = reflect.ValueOf(font)
-	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[1] = reflect.ValueOf(position)
 	goArguments[2] = reflect.ValueOf(char)
 	goArguments[3] = reflect.ValueOf(next)
 	goArguments[4] = reflect.ValueOf(modulate)
@@ -45259,13 +45583,13 @@ func (o *CanvasItem) DrawChar(font *Font, pos *Vector2, char string, next string
 /*
    Set a custom transform for drawing. Anything drawn afterwards will be transformed by this.
 */
-func (o *CanvasItem) DrawSetTransform(pos *Vector2, rot float64, scale *Vector2) {
+func (o *CanvasItem) DrawSetTransform(position *Vector2, rotation float64, scale *Vector2) {
 	log.Println("Calling CanvasItem.DrawSetTransform()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(pos)
-	goArguments[1] = reflect.ValueOf(rot)
+	goArguments[0] = reflect.ValueOf(position)
+	goArguments[1] = reflect.ValueOf(rotation)
 	goArguments[2] = reflect.ValueOf(scale)
 
 	// Call the parent method.
@@ -45423,15 +45747,15 @@ func (o *CanvasItem) GetCanvasTransform() *Transform2D {
 /*
    Get the mouse position relative to this item's position.
 */
-func (o *CanvasItem) GetLocalMousePos() *Vector2 {
-	log.Println("Calling CanvasItem.GetLocalMousePos()")
+func (o *CanvasItem) GetLocalMousePosition() *Vector2 {
+	log.Println("Calling CanvasItem.GetLocalMousePosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_local_mouse_pos", goArguments, "*Vector2")
+	goRet := o.callParentMethod(o.baseClass(), "get_local_mouse_position", goArguments, "*Vector2")
 
 	log.Println("Got return value!")
 
@@ -45663,8 +45987,8 @@ func (o *CanvasItem) IsTransformNotificationEnabled() bool {
 /*
 
  */
-func (o *CanvasItem) MakeCanvasPosLocal(screenPoint *Vector2) *Vector2 {
-	log.Println("Calling CanvasItem.MakeCanvasPosLocal()")
+func (o *CanvasItem) MakeCanvasPositionLocal(screenPoint *Vector2) *Vector2 {
+	log.Println("Calling CanvasItem.MakeCanvasPositionLocal()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -45672,7 +45996,7 @@ func (o *CanvasItem) MakeCanvasPosLocal(screenPoint *Vector2) *Vector2 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "make_canvas_pos_local", goArguments, "*Vector2")
+	goRet := o.callParentMethod(o.baseClass(), "make_canvas_position_local", goArguments, "*Vector2")
 
 	log.Println("Got return value!")
 
@@ -45764,12 +46088,12 @@ func (o *Node2D) X_SetRotd(degrees float64) {
 /*
    Set the node's position.
 */
-func (o *Node2D) SetPosition(pos *Vector2) {
+func (o *Node2D) SetPosition(position *Vector2) {
 	log.Println("Calling Node2D.SetPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -46030,12 +46354,12 @@ func (o *Node2D) ApplyScale(ratio *Vector2) {
 /*
    Set the node's global position.
 */
-func (o *Node2D) SetGlobalPosition(pos *Vector2) {
+func (o *Node2D) SetGlobalPosition(position *Vector2) {
 	log.Println("Calling Node2D.SetGlobalPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -46716,12 +47040,12 @@ func (o *Control) X_GetMinimumSize() *Vector2 {
 /*
 
  */
-func (o *Control) GetDragData(pos *Vector2) *Object {
+func (o *Control) GetDragData(position *Vector2) *Object {
 	log.Println("Calling Control.GetDragData()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -46738,12 +47062,12 @@ func (o *Control) GetDragData(pos *Vector2) *Object {
 /*
 
  */
-func (o *Control) CanDropData(pos *Vector2, data *Variant) bool {
+func (o *Control) CanDropData(position *Vector2, data *Variant) bool {
 	log.Println("Calling Control.CanDropData()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 	goArguments[1] = reflect.ValueOf(data)
 
 	// Call the parent method.
@@ -46761,12 +47085,12 @@ func (o *Control) CanDropData(pos *Vector2, data *Variant) bool {
 /*
 
  */
-func (o *Control) DropData(pos *Vector2, data *Variant) {
+func (o *Control) DropData(position *Vector2, data *Variant) {
 	log.Println("Calling Control.DropData()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 	goArguments[1] = reflect.ValueOf(data)
 
 	// Call the parent method.
@@ -46895,6 +47219,65 @@ func (o *Control) GetCombinedMinimumSize() *Vector2 {
 /*
 
  */
+func (o *Control) SetAnchorsPreset(preset int64, keepMargin bool) {
+	log.Println("Calling Control.SetAnchorsPreset()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(preset)
+	goArguments[1] = reflect.ValueOf(keepMargin)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_anchors_preset", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *Control) SetMarginsPreset(preset int64, resizeMode int64, margin int64) {
+	log.Println("Calling Control.SetMarginsPreset()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(preset)
+	goArguments[1] = reflect.ValueOf(resizeMode)
+	goArguments[2] = reflect.ValueOf(margin)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_margins_preset", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *Control) SetAnchorsAndMarginsPreset(preset int64, resizeMode int64, margin int64) {
+	log.Println("Calling Control.SetAnchorsAndMarginsPreset()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(preset)
+	goArguments[1] = reflect.ValueOf(resizeMode)
+	goArguments[2] = reflect.ValueOf(margin)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_anchors_and_margins_preset", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
 func (o *Control) SetAnchor(margin int64, anchor float64, keepMargin bool, pushOppositeAnchor bool) {
 	log.Println("Calling Control.SetAnchor()")
 
@@ -46927,25 +47310,6 @@ func (o *Control) X_SetAnchor(margin int64, anchor float64) {
 	// Call the parent method.
 
 	o.callParentMethod(o.baseClass(), "_set_anchor", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-
- */
-func (o *Control) SetAnchorsPreset(preset int64, keepMargin bool) {
-	log.Println("Calling Control.SetAnchorsPreset()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(preset)
-	goArguments[1] = reflect.ValueOf(keepMargin)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_anchors_preset", goArguments, "")
 
 	log.Println("Got return value!")
 
@@ -47016,12 +47380,12 @@ func (o *Control) SetAnchorAndMargin(margin int64, anchor float64, offset float6
 /*
    Sets MARGIN_LEFT and MARGIN_TOP at the same time. This is a helper (see [method set_margin]).
 */
-func (o *Control) SetBegin(pos *Vector2) {
+func (o *Control) SetBegin(position *Vector2) {
 	log.Println("Calling Control.SetBegin()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -47034,12 +47398,12 @@ func (o *Control) SetBegin(pos *Vector2) {
 /*
    Sets MARGIN_RIGHT and MARGIN_BOTTOM at the same time. This is a helper (see [method set_margin]).
 */
-func (o *Control) SetEnd(pos *Vector2) {
+func (o *Control) SetEnd(position *Vector2) {
 	log.Println("Calling Control.SetEnd()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -47052,12 +47416,12 @@ func (o *Control) SetEnd(pos *Vector2) {
 /*
    Move the Control to a new position, relative to the top-left corner of the parent Control, changing all margins if needed and without changing current anchor mode. This is a helper (see [method set_margin]).
 */
-func (o *Control) SetPosition(pos *Vector2) {
+func (o *Control) SetPosition(position *Vector2) {
 	log.Println("Calling Control.SetPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -47106,12 +47470,12 @@ func (o *Control) SetCustomMinimumSize(size *Vector2) {
 /*
    Move the Control to a new position, relative to the top-left corner of the [i]window[/i] Control, and without changing current anchor mode. (see [method set_margin]).
 */
-func (o *Control) SetGlobalPosition(pos *Vector2) {
+func (o *Control) SetGlobalPosition(position *Vector2) {
 	log.Println("Calling Control.SetGlobalPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -47524,24 +47888,6 @@ func (o *Control) GetGlobalRect() *Rect2 {
 	returnValue := goRet.Interface().(*Rect2)
 
 	return returnValue
-
-}
-
-/*
-   Change all margins and anchors, so this Control always takes up the same area as the parent Control. This is a helper (see [method set_anchor], [method set_margin]).
-*/
-func (o *Control) SetAreaAsParentRect(margin int64) {
-	log.Println("Calling Control.SetAreaAsParentRect()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_area_as_parent_rect", goArguments, "")
-
-	log.Println("Got return value!")
 
 }
 
@@ -48408,12 +48754,12 @@ func (o *Control) SetTooltip(tooltip string) {
 /*
    Return the tooltip, which will appear when the cursor is resting over this control.
 */
-func (o *Control) GetTooltip(atpos *Vector2) string {
+func (o *Control) GetTooltip(atPosition *Vector2) string {
 	log.Println("Calling Control.GetTooltip()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(atpos)
+	goArguments[0] = reflect.ValueOf(atPosition)
 
 	// Call the parent method.
 
@@ -48490,12 +48836,12 @@ func (o *Control) GetDefaultCursorShape() int64 {
 /*
    Return the cursor shape at a certain position in the control.
 */
-func (o *Control) GetCursorShape(pos *Vector2) int64 {
+func (o *Control) GetCursorShape(position *Vector2) int64 {
 	log.Println("Calling Control.GetCursorShape()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -48703,12 +49049,12 @@ func (o *Control) SetDragPreview(control *Object) {
 /*
 
  */
-func (o *Control) WarpMouse(toPos *Vector2) {
+func (o *Control) WarpMouse(toPosition *Vector2) {
 	log.Println("Calling Control.WarpMouse()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(toPos)
+	goArguments[0] = reflect.ValueOf(toPosition)
 
 	// Call the parent method.
 
@@ -49625,8 +49971,8 @@ func (o *Range) IsRatioExp() bool {
 }
 
 /*
-
- */
+   Binds two Ranges together along with any Ranges previously grouped with either of them. When any of Range's member variables change, it will share the new value with all other Ranges in its group.
+*/
 func (o *Range) Share(with *Object) {
 	log.Println("Calling Range.Share()")
 
@@ -49643,8 +49989,8 @@ func (o *Range) Share(with *Object) {
 }
 
 /*
-
- */
+   Stop Range from sharing its member variables with any other Range.
+*/
 func (o *Range) Unshare() {
 	log.Println("Calling Range.Unshare()")
 
@@ -50059,7 +50405,7 @@ type PopupImplementer interface {
 }
 
 /*
-   Control that draws a texture.
+   Use TextureRect to draw icons and sprites in your User Interfaces. To create panels and menu boxes, take a look at [NinePatchFrame]. Its Stretch Mode property controls the texture's scale and placement. It can scale, tile and stay centered inside its bounding rectangle. TextureRect is one of the 5 most common nodes to create game UI.
 */
 type TextureRect struct {
 	Control
@@ -50251,8 +50597,8 @@ type ColorRectImplementer interface {
 }
 
 /*
-
- */
+   Better known as 9-slice panels, NinePatchRect produces clean panels of any size, based on a small texture. To do so, it splits the texture in a 3 by 3 grid. When you scale the node, it tiles the texture's sides horizontally or vertically, the center on both axes but it doesn't scale or tile the corners.
+*/
 type NinePatchRect struct {
 	Control
 }
@@ -50902,12 +51248,12 @@ func (o *BitMap) CreateFromImageAlpha(image *Image) {
 /*
    Sets the bitmap's element at the specified position, to the specified value.
 */
-func (o *BitMap) SetBit(pos *Vector2, bit bool) {
+func (o *BitMap) SetBit(position *Vector2, bit bool) {
 	log.Println("Calling BitMap.SetBit()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 	goArguments[1] = reflect.ValueOf(bit)
 
 	// Call the parent method.
@@ -50921,12 +51267,12 @@ func (o *BitMap) SetBit(pos *Vector2, bit bool) {
 /*
    Returns bitmap's value at the specified position.
 */
-func (o *BitMap) GetBit(pos *Vector2) bool {
+func (o *BitMap) GetBit(position *Vector2) bool {
 	log.Println("Calling BitMap.GetBit()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -51136,7 +51482,7 @@ type ContainerImplementer interface {
 }
 
 /*
-   Base class for Box containers. It arranges children controls vertically or horizontally, and rearranges them automatically when their minimum size changes.
+   Arranges child controls vertically or horizontally, and rearranges the controls automatically when their minimum size changes.
 */
 type BoxContainer struct {
 	Container
@@ -51147,7 +51493,7 @@ func (o *BoxContainer) baseClass() string {
 }
 
 /*
-   Add a control to the box as a spacer. If [i]begin[/i] is true the spacer control will be inserted in front of other children.
+   Adds a control to the box as a spacer. If [code]true[/code], [i]begin[/i] will insert the spacer control in front of other children.
 */
 func (o *BoxContainer) AddSpacer(begin bool) {
 	log.Println("Calling BoxContainer.AddSpacer()")
@@ -51395,15 +51741,15 @@ func (o *ScrollContainer) IsVScrollEnabled() bool {
 /*
    Undocumented
 */
-func (o *ScrollContainer) X_UpdateScrollbarPos() {
-	log.Println("Calling ScrollContainer.X_UpdateScrollbarPos()")
+func (o *ScrollContainer) X_UpdateScrollbarPosition() {
+	log.Println("Calling ScrollContainer.X_UpdateScrollbarPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	o.callParentMethod(o.baseClass(), "_update_scrollbar_pos", goArguments, "")
+	o.callParentMethod(o.baseClass(), "_update_scrollbar_position", goArguments, "")
 
 	log.Println("Got return value!")
 
@@ -51648,7 +51994,7 @@ type SplitContainerImplementer interface {
 }
 
 /*
-   [ProgressBar] implementation that is easier to theme (by just passing a few textures).
+   A [ProgressBar] that uses textures to display fill percentage. Can be set to linear or radial mode.
 */
 type TextureProgress struct {
 	Range
@@ -52128,7 +52474,7 @@ func (o *AcceptDialog) GetHideOnOk() bool {
 }
 
 /*
-   Add custom button to the dialog and return the created button. The button titled with [i]text[/i] and the [i]action[/i] will be passed to [custom_action] signal when it is pressed.
+   Adds a button with label [i]text[/i] and a custom [i]action[/i] to the dialog and returns the created button. [i]action[/i] will be passed to the [custom_action] signal when pressed. If [code]true[/code], [i]right[/i] will place the button to the right of any sibling buttons. Default value: [code]false[/code].
 */
 func (o *AcceptDialog) AddButton(text string, right bool, action string) *Button {
 	log.Println("Calling AcceptDialog.AddButton()")
@@ -52152,7 +52498,7 @@ func (o *AcceptDialog) AddButton(text string, right bool, action string) *Button
 }
 
 /*
-   Add custom cancel button to the dialog and return the created button.
+   Adds a button with label [i]name[/i] and a cancel action to the dialog and returns the created button.
 */
 func (o *AcceptDialog) AddCancel(name string) *Button {
 	log.Println("Calling AcceptDialog.AddCancel()")
@@ -52192,7 +52538,7 @@ func (o *AcceptDialog) X_BuiltinTextEntered(arg0 string) {
 }
 
 /*
-   Register a [LineEdit] in the dialog. When the enter key is pressed, the dialog will be accepted.
+   Registers a [LineEdit] in the dialog. When the enter key is pressed, the dialog will be accepted.
 */
 func (o *AcceptDialog) RegisterTextEnter(lineEdit *Object) {
 	log.Println("Calling AcceptDialog.RegisterTextEnter()")
@@ -53832,15 +54178,15 @@ func (o *VideoPlayer) GetStreamName() string {
 /*
    Get the current position of the stream, in seconds.
 */
-func (o *VideoPlayer) GetStreamPos() float64 {
-	log.Println("Calling VideoPlayer.GetStreamPos()")
+func (o *VideoPlayer) GetStreamPosition() float64 {
+	log.Println("Calling VideoPlayer.GetStreamPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_stream_pos", goArguments, "float64")
+	goRet := o.callParentMethod(o.baseClass(), "get_stream_position", goArguments, "float64")
 
 	log.Println("Got return value!")
 
@@ -54900,18 +55246,18 @@ func (o *Spatial) LookAt(target *Vector3, up *Vector3) {
 /*
    Moves the node to specified position and then rotates itself to point into direction of target position. Operations take place in global space.
 */
-func (o *Spatial) LookAtFromPos(pos *Vector3, target *Vector3, up *Vector3) {
-	log.Println("Calling Spatial.LookAtFromPos()")
+func (o *Spatial) LookAtFromPosition(position *Vector3, target *Vector3, up *Vector3) {
+	log.Println("Calling Spatial.LookAtFromPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 	goArguments[1] = reflect.ValueOf(target)
 	goArguments[2] = reflect.ValueOf(up)
 
 	// Call the parent method.
 
-	o.callParentMethod(o.baseClass(), "look_at_from_pos", goArguments, "")
+	o.callParentMethod(o.baseClass(), "look_at_from_position", goArguments, "")
 
 	log.Println("Got return value!")
 
@@ -56073,12 +56419,12 @@ func (o *AnimationPlayer) GetRoot() *NodePath {
 /*
    Seek the animation to a given position in time (in seconds). If 'update' is true, the animation will be updated too, otherwise it will be updated at process time.
 */
-func (o *AnimationPlayer) Seek(posSec float64, update bool) {
+func (o *AnimationPlayer) Seek(seconds float64, update bool) {
 	log.Println("Calling AnimationPlayer.Seek()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(posSec)
+	goArguments[0] = reflect.ValueOf(seconds)
 	goArguments[1] = reflect.ValueOf(update)
 
 	// Call the parent method.
@@ -56092,15 +56438,15 @@ func (o *AnimationPlayer) Seek(posSec float64, update bool) {
 /*
    Return the playback position (in seconds) in an animation channel (or channel 0 if none is provided).
 */
-func (o *AnimationPlayer) GetPos() float64 {
-	log.Println("Calling AnimationPlayer.GetPos()")
+func (o *AnimationPlayer) GetPosition() float64 {
+	log.Println("Calling AnimationPlayer.GetPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_pos", goArguments, "float64")
+	goRet := o.callParentMethod(o.baseClass(), "get_position", goArguments, "float64")
 
 	log.Println("Got return value!")
 
@@ -56191,15 +56537,15 @@ func (o *AnimationPlayer) GetAnimationProcessMode() int64 {
 /*
    Get the position (in seconds) of the currently being played animation.
 */
-func (o *AnimationPlayer) GetCurrentAnimationPos() float64 {
-	log.Println("Calling AnimationPlayer.GetCurrentAnimationPos()")
+func (o *AnimationPlayer) GetCurrentAnimationPosition() float64 {
+	log.Println("Calling AnimationPlayer.GetCurrentAnimationPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_current_animation_pos", goArguments, "float64")
+	goRet := o.callParentMethod(o.baseClass(), "get_current_animation_position", goArguments, "float64")
 
 	log.Println("Got return value!")
 
@@ -56256,7 +56602,7 @@ type AnimationPlayerImplementer interface {
 }
 
 /*
-   Node useful for animations with unknown start and end points, procedural animations, making one node follow another, and other simple behavior. Because it is easy to get it wrong, here is a quick usage example: [codeblock] var tween = get_node("Tween") tween.interpolate_property(get_node("Node2D_to_move"), "transform/pos", Vector2(0,0), Vector2(100,100), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT) tween.start() [/codeblock] Some of the methods of this class require a property name. You can get the property name by hovering over the property in the inspector of the editor. Many of the methods accept [code]trans_type[/code] and [code]ease_type[/code]. The first accepts an TRANS_* constant, and refers to the way the timing of the animation is handled (you might want to see [code]http://easings.net/[/code] for some examples). The second accepts an EASE_* constant, and controls the where [code]trans_type[/code] is applied to the interpolation (in the beginning, the end, or both). If you don't know which transision and easing to pick, you can try different TRANS_* constants with EASE_IN_OUT, and use the one that looks best.
+   Node useful for animations with unknown start and end points, procedural animations, making one node follow another, and other simple behavior. Because it is easy to get it wrong, here is a quick usage example: [codeblock] var tween = get_node("Tween") tween.interpolate_property(get_node("Node2D_to_move"), "transform/origin", Vector2(0,0), Vector2(100,100), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT) tween.start() [/codeblock] Some of the methods of this class require a property name. You can get the property name by hovering over the property in the inspector of the editor. Many of the methods accept [code]trans_type[/code] and [code]ease_type[/code]. The first accepts an TRANS_* constant, and refers to the way the timing of the animation is handled (you might want to see [code]http://easings.net/[/code] for some examples). The second accepts an EASE_* constant, and controls the where [code]trans_type[/code] is applied to the interpolation (in the beginning, the end, or both). If you don't know which transision and easing to pick, you can try different TRANS_* constants with EASE_IN_OUT, and use the one that looks best.
 */
 type Tween struct {
 	Node
@@ -59157,12 +59503,12 @@ func (o *ImmediateGeometry) SetUv2(uv *Vector2) {
 /*
    Add a vertex with the currently set color/uv/etc.
 */
-func (o *ImmediateGeometry) AddVertex(pos *Vector3) {
+func (o *ImmediateGeometry) AddVertex(position *Vector3) {
 	log.Println("Calling ImmediateGeometry.AddVertex()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -60199,7 +60545,7 @@ type AnimatedSprite3DImplementer interface {
 }
 
 /*
-   Sprite frame library for [AnimatedSprite].
+   Sprite frame library for [AnimatedSprite]. Contains frames and animation data for playback.
 */
 type SpriteFrames struct {
 	Resource
@@ -60210,8 +60556,8 @@ func (o *SpriteFrames) baseClass() string {
 }
 
 /*
-
- */
+   Adds a new animation to the the library.
+*/
 func (o *SpriteFrames) AddAnimation(anim string) {
 	log.Println("Calling SpriteFrames.AddAnimation()")
 
@@ -60228,8 +60574,8 @@ func (o *SpriteFrames) AddAnimation(anim string) {
 }
 
 /*
-
- */
+   If [code]true[/code] the named animation exists.
+*/
 func (o *SpriteFrames) HasAnimation(anim string) bool {
 	log.Println("Calling SpriteFrames.HasAnimation()")
 
@@ -60250,8 +60596,8 @@ func (o *SpriteFrames) HasAnimation(anim string) bool {
 }
 
 /*
-
- */
+   Removes the given animation.
+*/
 func (o *SpriteFrames) RemoveAnimation(anim string) {
 	log.Println("Calling SpriteFrames.RemoveAnimation()")
 
@@ -60268,8 +60614,8 @@ func (o *SpriteFrames) RemoveAnimation(anim string) {
 }
 
 /*
-
- */
+   Changes the animation's name to [code]newname[/code].
+*/
 func (o *SpriteFrames) RenameAnimation(anim string, newname string) {
 	log.Println("Calling SpriteFrames.RenameAnimation()")
 
@@ -60287,8 +60633,8 @@ func (o *SpriteFrames) RenameAnimation(anim string, newname string) {
 }
 
 /*
-
- */
+   The animation's speed in frames per second.
+*/
 func (o *SpriteFrames) SetAnimationSpeed(anim string, speed float64) {
 	log.Println("Calling SpriteFrames.SetAnimationSpeed()")
 
@@ -60306,8 +60652,8 @@ func (o *SpriteFrames) SetAnimationSpeed(anim string, speed float64) {
 }
 
 /*
-
- */
+   The animation's speed in frames per second.
+*/
 func (o *SpriteFrames) GetAnimationSpeed(anim string) float64 {
 	log.Println("Calling SpriteFrames.GetAnimationSpeed()")
 
@@ -60328,8 +60674,8 @@ func (o *SpriteFrames) GetAnimationSpeed(anim string) float64 {
 }
 
 /*
-
- */
+   If [code]true[/code] the animation will loop.
+*/
 func (o *SpriteFrames) SetAnimationLoop(anim string, loop bool) {
 	log.Println("Calling SpriteFrames.SetAnimationLoop()")
 
@@ -60347,8 +60693,8 @@ func (o *SpriteFrames) SetAnimationLoop(anim string, loop bool) {
 }
 
 /*
-
- */
+   If [code]true[/code] the given animation will loop.
+*/
 func (o *SpriteFrames) GetAnimationLoop(anim string) bool {
 	log.Println("Calling SpriteFrames.GetAnimationLoop()")
 
@@ -60369,16 +60715,16 @@ func (o *SpriteFrames) GetAnimationLoop(anim string) bool {
 }
 
 /*
-
- */
-func (o *SpriteFrames) AddFrame(anim string, frame *Texture, atpos int64) {
+   Adds a frame to the given animation.
+*/
+func (o *SpriteFrames) AddFrame(anim string, frame *Texture, atPosition int64) {
 	log.Println("Calling SpriteFrames.AddFrame()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 3, 3)
 	goArguments[0] = reflect.ValueOf(anim)
 	goArguments[1] = reflect.ValueOf(frame)
-	goArguments[2] = reflect.ValueOf(atpos)
+	goArguments[2] = reflect.ValueOf(atPosition)
 
 	// Call the parent method.
 
@@ -60389,8 +60735,8 @@ func (o *SpriteFrames) AddFrame(anim string, frame *Texture, atpos int64) {
 }
 
 /*
-
- */
+   Returns the number of frames in the animation.
+*/
 func (o *SpriteFrames) GetFrameCount(anim string) int64 {
 	log.Println("Calling SpriteFrames.GetFrameCount()")
 
@@ -60411,8 +60757,8 @@ func (o *SpriteFrames) GetFrameCount(anim string) int64 {
 }
 
 /*
-
- */
+   Returns the animation's selected frame.
+*/
 func (o *SpriteFrames) GetFrame(anim string, idx int64) *Texture {
 	log.Println("Calling SpriteFrames.GetFrame()")
 
@@ -60434,8 +60780,8 @@ func (o *SpriteFrames) GetFrame(anim string, idx int64) *Texture {
 }
 
 /*
-
- */
+   Sets the texture of the given frame.
+*/
 func (o *SpriteFrames) SetFrame(anim string, idx int64, txt *Texture) {
 	log.Println("Calling SpriteFrames.SetFrame()")
 
@@ -60454,8 +60800,8 @@ func (o *SpriteFrames) SetFrame(anim string, idx int64, txt *Texture) {
 }
 
 /*
-
- */
+   Removes the animation's selected frame.
+*/
 func (o *SpriteFrames) RemoveFrame(anim string, idx int64) {
 	log.Println("Calling SpriteFrames.RemoveFrame()")
 
@@ -60473,8 +60819,8 @@ func (o *SpriteFrames) RemoveFrame(anim string, idx int64) {
 }
 
 /*
-
- */
+   Removes all frames from the given animation.
+*/
 func (o *SpriteFrames) Clear(anim string) {
 	log.Println("Calling SpriteFrames.Clear()")
 
@@ -60491,8 +60837,8 @@ func (o *SpriteFrames) Clear(anim string) {
 }
 
 /*
-
- */
+   Removes all animations. A "default" animation will be created.
+*/
 func (o *SpriteFrames) ClearAll() {
 	log.Println("Calling SpriteFrames.ClearAll()")
 
@@ -63305,13 +63651,13 @@ func (o *AnimationTreePlayer) TimescaleNodeGetScale(id string) float64 {
 /*
    Sets time seek value of a TimeSeek node given its name and value.
 */
-func (o *AnimationTreePlayer) TimeseekNodeSeek(id string, posSec float64) {
+func (o *AnimationTreePlayer) TimeseekNodeSeek(id string, seconds float64) {
 	log.Println("Calling AnimationTreePlayer.TimeseekNodeSeek()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
 	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(posSec)
+	goArguments[1] = reflect.ValueOf(seconds)
 
 	// Call the parent method.
 
@@ -63509,17 +63855,17 @@ func (o *AnimationTreePlayer) TransitionNodeGetCurrent(id string) int64 {
 /*
    Sets position of a node in the graph given its name and position.
 */
-func (o *AnimationTreePlayer) NodeSetPos(id string, screenPos *Vector2) {
-	log.Println("Calling AnimationTreePlayer.NodeSetPos()")
+func (o *AnimationTreePlayer) NodeSetPosition(id string, screenPosition *Vector2) {
+	log.Println("Calling AnimationTreePlayer.NodeSetPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
 	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(screenPos)
+	goArguments[1] = reflect.ValueOf(screenPosition)
 
 	// Call the parent method.
 
-	o.callParentMethod(o.baseClass(), "node_set_pos", goArguments, "")
+	o.callParentMethod(o.baseClass(), "node_set_position", goArguments, "")
 
 	log.Println("Got return value!")
 
@@ -63528,8 +63874,8 @@ func (o *AnimationTreePlayer) NodeSetPos(id string, screenPos *Vector2) {
 /*
    Returns position of a node in the graph given its name.
 */
-func (o *AnimationTreePlayer) NodeGetPos(id string) *Vector2 {
-	log.Println("Calling AnimationTreePlayer.NodeGetPos()")
+func (o *AnimationTreePlayer) NodeGetPosition(id string) *Vector2 {
+	log.Println("Calling AnimationTreePlayer.NodeGetPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -63537,7 +63883,7 @@ func (o *AnimationTreePlayer) NodeGetPos(id string) *Vector2 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "node_get_pos", goArguments, "*Vector2")
+	goRet := o.callParentMethod(o.baseClass(), "node_get_position", goArguments, "*Vector2")
 
 	log.Println("Got return value!")
 
@@ -65752,8 +66098,8 @@ type NavigationImplementer interface {
 }
 
 /*
-
- */
+   CollisionObject is the base class for physics objects. It can hold any number of collision [Shape]\ s. Each shape must be assigned to a [i]shape owner[/i]. The CollisionObject can have any number of shape owners. Shape owners are not nodes and do not appear in the editor, but are accessible through code using the [code]shape_owner_*[/code] methods.
+*/
 type CollisionObject struct {
 	Spatial
 }
@@ -65765,14 +66111,14 @@ func (o *CollisionObject) baseClass() string {
 /*
 
  */
-func (o *CollisionObject) X_InputEvent(camera *Object, event *InputEvent, clickPos *Vector3, clickNormal *Vector3, shapeIdx int64) {
+func (o *CollisionObject) X_InputEvent(camera *Object, event *InputEvent, clickPosition *Vector3, clickNormal *Vector3, shapeIdx int64) {
 	log.Println("Calling CollisionObject.X_InputEvent()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 5, 5)
 	goArguments[0] = reflect.ValueOf(camera)
 	goArguments[1] = reflect.ValueOf(event)
-	goArguments[2] = reflect.ValueOf(clickPos)
+	goArguments[2] = reflect.ValueOf(clickPosition)
 	goArguments[3] = reflect.ValueOf(clickNormal)
 	goArguments[4] = reflect.ValueOf(shapeIdx)
 
@@ -65863,8 +66209,8 @@ func (o *CollisionObject) GetCaptureInputOnDrag() bool {
 }
 
 /*
-
- */
+   Returns the object's [RID].
+*/
 func (o *CollisionObject) GetRid() *RID {
 	log.Println("Calling CollisionObject.GetRid()")
 
@@ -65884,7 +66230,7 @@ func (o *CollisionObject) GetRid() *RID {
 }
 
 /*
-   Creates new holder for the shapes. Argument is a [CollisionShape] node. It will return owner_id which usually you will want to save for later use.
+   Creates a new shape owner for the given object. Returns [code]owner_id[/code] of the new owner for future reference.
 */
 func (o *CollisionObject) CreateShapeOwner(owner *Object) int64 {
 	log.Println("Calling CollisionObject.CreateShapeOwner()")
@@ -65906,8 +66252,8 @@ func (o *CollisionObject) CreateShapeOwner(owner *Object) int64 {
 }
 
 /*
-
- */
+   Removes the given shape owner.
+*/
 func (o *CollisionObject) RemoveShapeOwner(ownerId int64) {
 	log.Println("Calling CollisionObject.RemoveShapeOwner()")
 
@@ -65924,7 +66270,7 @@ func (o *CollisionObject) RemoveShapeOwner(ownerId int64) {
 }
 
 /*
-   Shape owner is a node which is holding concrete shape resources. This method will return an array which is holding an integer numbers that are representing unique ID of each owner. You can use those ids when you are using others shape_owner methods.
+   Returns an [Array] of [code]owner_id[/code] identifiers. You can use these ids in other methods that take [code]owner_id[/code] as an argument.
 */
 func (o *CollisionObject) GetShapeOwners() *Array {
 	log.Println("Calling CollisionObject.GetShapeOwners()")
@@ -65945,8 +66291,8 @@ func (o *CollisionObject) GetShapeOwners() *Array {
 }
 
 /*
-
- */
+   Sets the [Transform] of the given shape owner.
+*/
 func (o *CollisionObject) ShapeOwnerSetTransform(ownerId int64, transform *Transform) {
 	log.Println("Calling CollisionObject.ShapeOwnerSetTransform()")
 
@@ -65964,7 +66310,7 @@ func (o *CollisionObject) ShapeOwnerSetTransform(ownerId int64, transform *Trans
 }
 
 /*
-   Will return [Transform] of an owner node.
+   Returns the shape owner's [Transform].
 */
 func (o *CollisionObject) ShapeOwnerGetTransform(ownerId int64) *Transform {
 	log.Println("Calling CollisionObject.ShapeOwnerGetTransform()")
@@ -65986,8 +66332,8 @@ func (o *CollisionObject) ShapeOwnerGetTransform(ownerId int64) *Transform {
 }
 
 /*
-
- */
+   Returns the parent object of the given shape owner.
+*/
 func (o *CollisionObject) ShapeOwnerGetOwner(ownerId int64) *Object {
 	log.Println("Calling CollisionObject.ShapeOwnerGetOwner()")
 
@@ -66008,8 +66354,8 @@ func (o *CollisionObject) ShapeOwnerGetOwner(ownerId int64) *Object {
 }
 
 /*
-
- */
+   If [code]true[/code] disables the given shape owner.
+*/
 func (o *CollisionObject) ShapeOwnerSetDisabled(ownerId int64, disabled bool) {
 	log.Println("Calling CollisionObject.ShapeOwnerSetDisabled()")
 
@@ -66027,8 +66373,8 @@ func (o *CollisionObject) ShapeOwnerSetDisabled(ownerId int64, disabled bool) {
 }
 
 /*
-
- */
+   If [code]true[/code] the shape owner and its shapes are disabled.
+*/
 func (o *CollisionObject) IsShapeOwnerDisabled(ownerId int64) bool {
 	log.Println("Calling CollisionObject.IsShapeOwnerDisabled()")
 
@@ -66049,8 +66395,8 @@ func (o *CollisionObject) IsShapeOwnerDisabled(ownerId int64) bool {
 }
 
 /*
-
- */
+   Adds a [Shape] to the shape owner.
+*/
 func (o *CollisionObject) ShapeOwnerAddShape(ownerId int64, shape *Shape) {
 	log.Println("Calling CollisionObject.ShapeOwnerAddShape()")
 
@@ -66068,7 +66414,7 @@ func (o *CollisionObject) ShapeOwnerAddShape(ownerId int64, shape *Shape) {
 }
 
 /*
-   Returns number of shapes to which given owner is associated to.
+   Returns the number of shapes the given shape owner contains.
 */
 func (o *CollisionObject) ShapeOwnerGetShapeCount(ownerId int64) int64 {
 	log.Println("Calling CollisionObject.ShapeOwnerGetShapeCount()")
@@ -66090,7 +66436,7 @@ func (o *CollisionObject) ShapeOwnerGetShapeCount(ownerId int64) int64 {
 }
 
 /*
-   Will return a [Shape]. First argument owner_id is an integer that can be obtained from [method get_shape_owners]. Shape_id is a position of the shape inside owner; it's a value in range from 0 to [method shape_owner_get_shape_count].
+   Returns the [Shape] with the given id from the given shape owner.
 */
 func (o *CollisionObject) ShapeOwnerGetShape(ownerId int64, shapeId int64) *Shape {
 	log.Println("Calling CollisionObject.ShapeOwnerGetShape()")
@@ -66136,7 +66482,7 @@ func (o *CollisionObject) ShapeOwnerGetShapeIndex(ownerId int64, shapeId int64) 
 }
 
 /*
-   Removes related shape from the owner.
+   Removes a shape from the given shape owner.
 */
 func (o *CollisionObject) ShapeOwnerRemoveShape(ownerId int64, shapeId int64) {
 	log.Println("Calling CollisionObject.ShapeOwnerRemoveShape()")
@@ -66155,7 +66501,7 @@ func (o *CollisionObject) ShapeOwnerRemoveShape(ownerId int64, shapeId int64) {
 }
 
 /*
-   Will remove all the shapes associated with given owner.
+   Removes all shapes from the shape owner.
 */
 func (o *CollisionObject) ShapeOwnerClearShapes(ownerId int64) {
 	log.Println("Calling CollisionObject.ShapeOwnerClearShapes()")
@@ -66173,8 +66519,8 @@ func (o *CollisionObject) ShapeOwnerClearShapes(ownerId int64) {
 }
 
 /*
-
- */
+   Returns the [code]owner_id[/code] of the given shape.
+*/
 func (o *CollisionObject) ShapeFindOwner(shapeIndex int64) int64 {
 	log.Println("Calling CollisionObject.ShapeFindOwner()")
 
@@ -66202,7 +66548,7 @@ type CollisionObjectImplementer interface {
 }
 
 /*
-   PhysicsBody is an abstract base class for implementing a physics body. All PhysicsBody types inherit from it.
+   PhysicsBody is an abstract base class for implementing a physics body. All *Body types inherit from it.
 */
 type PhysicsBody struct {
 	CollisionObject
@@ -66412,7 +66758,7 @@ func (o *PhysicsBody) X_GetLayers() int64 {
 }
 
 /*
-   Adds a body to the collision exception list. This list contains bodies that this body will not collide with.
+   Adds a body to the list of bodies that this body can't collide with.
 */
 func (o *PhysicsBody) AddCollisionExceptionWith(body *Object) {
 	log.Println("Calling PhysicsBody.AddCollisionExceptionWith()")
@@ -66430,7 +66776,7 @@ func (o *PhysicsBody) AddCollisionExceptionWith(body *Object) {
 }
 
 /*
-   Removes a body from the collision exception list.
+   Removes a body from the list of bodies that this body can't collide with.
 */
 func (o *PhysicsBody) RemoveCollisionExceptionWith(body *Object) {
 	log.Println("Calling PhysicsBody.RemoveCollisionExceptionWith()")
@@ -66629,7 +66975,7 @@ type StaticBodyImplementer interface {
 }
 
 /*
-   Rigid body node. This node is used for placing rigid bodies in the scene. It can contain a number of shapes, and also shift mode between regular Rigid body, Kinematic, Character or Static.
+   This is the node that implements full 3D physics. This means that you do not control a RigidBody directly. Instead you can apply forces to it (gravity, impulses, etc.), and the physics simulation will calculate the resulting movement, collision, bouncing, rotating, etc. This node can use custom force integration, for writing complex physics motion behavior per node. This node can shift state between regular Rigid body, Kinematic, Character or Static. Character mode forbids this node from being rotated. As a warning, don't change RigidBody's position every frame or very often. Sporadic changes work fine, but physics runs at a different granularity (fixed hz) than usual rendering (process callback) and maybe even in a separate thread, so changing this from a process loop will yield strange behavior.
 */
 type RigidBody struct {
 	PhysicsBody
@@ -67224,12 +67570,12 @@ func (o *RigidBody) SetAxisVelocity(axisVelocity *Vector3) {
 /*
    Apply a positioned impulse (which will be affected by the body mass and shape). This is the equivalent of hitting a billiard ball with a cue: a force that is applied once, and only once. Both the impulse and the offset from the body origin are in global coordinates.
 */
-func (o *RigidBody) ApplyImpulse(pos *Vector3, impulse *Vector3) {
+func (o *RigidBody) ApplyImpulse(position *Vector3, impulse *Vector3) {
 	log.Println("Calling RigidBody.ApplyImpulse()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 	goArguments[1] = reflect.ValueOf(impulse)
 
 	// Call the parent method.
@@ -67440,8 +67786,8 @@ type RigidBodyImplementer interface {
 }
 
 /*
-
- */
+   Contains collision data for KinematicBody collisions. When a [KinematicBody] is moved using [method KinematicBody.move_and_collide], it stops if it detects a collision with another body. If a collision is detected, a KinematicCollision object is returned. This object contains information about the collision, including the colliding object, the remaining motion, and the collision position. This information can be used to calculate a collision response.
+*/
 type KinematicCollision struct {
 	Reference
 }
@@ -68664,7 +69010,7 @@ type VehicleWheelImplementer interface {
 }
 
 /*
-   General purpose area detection for 3D physics. Areas can be used for detection of objects that enter/exit them, as well as overriding space parameters (changing gravity, damping, etc). For this, use any space override different from AREA_SPACE_OVERRIDE_DISABLE and point gravity at the center of mass.
+   3D area that detects [CollisionObject] nodes overlapping, entering, or exiting. Can also alter or override local physics parameters (gravity, damping).
 */
 type Area struct {
 	CollisionObject
@@ -69297,7 +69643,7 @@ func (o *Area) IsMonitoring() bool {
 }
 
 /*
-   Return a list of the bodies ([PhysicsBody]) that are totally or partially inside this area.
+   Returns a list of intersecting [PhysicsBody]\ s.
 */
 func (o *Area) GetOverlappingBodies() *Array {
 	log.Println("Calling Area.GetOverlappingBodies()")
@@ -69318,7 +69664,7 @@ func (o *Area) GetOverlappingBodies() *Array {
 }
 
 /*
-   Return a list of the areas that are totally or partially inside this area.
+   Returns a list of intersecting [Area]\ s.
 */
 func (o *Area) GetOverlappingAreas() *Array {
 	log.Println("Calling Area.GetOverlappingAreas()")
@@ -69339,7 +69685,7 @@ func (o *Area) GetOverlappingAreas() *Array {
 }
 
 /*
-   Return whether the body passed is totally or partially inside this area.
+   If [code]true[/code] the given body overlaps the Area.
 */
 func (o *Area) OverlapsBody(body *Object) bool {
 	log.Println("Calling Area.OverlapsBody()")
@@ -69361,7 +69707,7 @@ func (o *Area) OverlapsBody(body *Object) bool {
 }
 
 /*
-   Return whether the area passed is totally or partially inside this area.
+   If [code]true[/code] the given area overlaps the Area.
 */
 func (o *Area) OverlapsArea(area *Object) bool {
 	log.Println("Calling Area.OverlapsArea()")
@@ -69930,8 +70276,8 @@ type CollisionShapeImplementer interface {
 }
 
 /*
-
- */
+   Base class for all 3D shape resources. All 3D shapes that inherit from this can be set into a [PhysicsBody] or [Area].
+*/
 type Shape struct {
 	Resource
 }
@@ -69948,8 +70294,8 @@ type ShapeImplementer interface {
 }
 
 /*
-
- */
+   Allows editing a collision polygon's vertices on a selected plane. Can also set a depth perpendicular to that plane. This class is only available in the editor. It will not appear in the scene tree at runtime. Creates a [Shape] for gameplay. Properties modified during gameplay will have no effect.
+*/
 type CollisionPolygon struct {
 	Spatial
 }
@@ -70912,17 +71258,17 @@ func (o *Curve3D) GetPointCount() int64 {
 }
 
 /*
-   Adds a point to a curve, at position "pos", with control points "in" and "out". If "atpos" is given, the point is inserted before the point number "atpos", moving that point (and every point after) after the inserted point. If "atpos" is not given, or is an illegal value (atpos <0 or atpos >= [method get_point_count]), the point will be appended at the end of the point list.
+   Adds a point to a curve, at "position", with control points "in" and "out". If "at_position" is given, the point is inserted before the point number "at_position", moving that point (and every point after) after the inserted point. If "at_position" is not given, or is an illegal value (at_position <0 or at_position >= [method get_point_count]), the point will be appended at the end of the point list.
 */
-func (o *Curve3D) AddPoint(pos *Vector3, in *Vector3, out *Vector3, atpos int64) {
+func (o *Curve3D) AddPoint(position *Vector3, in *Vector3, out *Vector3, atPosition int64) {
 	log.Println("Calling Curve3D.AddPoint()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 	goArguments[1] = reflect.ValueOf(in)
 	goArguments[2] = reflect.ValueOf(out)
-	goArguments[3] = reflect.ValueOf(atpos)
+	goArguments[3] = reflect.ValueOf(atPosition)
 
 	// Call the parent method.
 
@@ -70935,17 +71281,17 @@ func (o *Curve3D) AddPoint(pos *Vector3, in *Vector3, out *Vector3, atpos int64)
 /*
    Sets the position for the vertex "idx". If the index is out of bounds, the function sends an error to the console.
 */
-func (o *Curve3D) SetPointPos(idx int64, pos *Vector3) {
-	log.Println("Calling Curve3D.SetPointPos()")
+func (o *Curve3D) SetPointPosition(idx int64, position *Vector3) {
+	log.Println("Calling Curve3D.SetPointPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
 	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[1] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
-	o.callParentMethod(o.baseClass(), "set_point_pos", goArguments, "")
+	o.callParentMethod(o.baseClass(), "set_point_position", goArguments, "")
 
 	log.Println("Got return value!")
 
@@ -70954,8 +71300,8 @@ func (o *Curve3D) SetPointPos(idx int64, pos *Vector3) {
 /*
    Returns the position of the vertex "idx". If the index is out of bounds, the function sends an error to the console, and returns (0, 0, 0).
 */
-func (o *Curve3D) GetPointPos(idx int64) *Vector3 {
-	log.Println("Calling Curve3D.GetPointPos()")
+func (o *Curve3D) GetPointPosition(idx int64) *Vector3 {
+	log.Println("Calling Curve3D.GetPointPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -70963,7 +71309,7 @@ func (o *Curve3D) GetPointPos(idx int64) *Vector3 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_point_pos", goArguments, "*Vector3")
+	goRet := o.callParentMethod(o.baseClass(), "get_point_position", goArguments, "*Vector3")
 
 	log.Println("Got return value!")
 
@@ -71017,13 +71363,13 @@ func (o *Curve3D) GetPointTilt(idx int64) float64 {
 /*
    Sets the position of the control point leading to the vertex "idx". If the index is out of bounds, the function sends an error to the console.
 */
-func (o *Curve3D) SetPointIn(idx int64, pos *Vector3) {
+func (o *Curve3D) SetPointIn(idx int64, position *Vector3) {
 	log.Println("Calling Curve3D.SetPointIn()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
 	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[1] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -71058,13 +71404,13 @@ func (o *Curve3D) GetPointIn(idx int64) *Vector3 {
 /*
    Sets the position of the control point leading out of the vertex "idx". If the index is out of bounds, the function sends an error to the console.
 */
-func (o *Curve3D) SetPointOut(idx int64, pos *Vector3) {
+func (o *Curve3D) SetPointOut(idx int64, position *Vector3) {
 	log.Println("Calling Curve3D.SetPointOut()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
 	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[1] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -71736,7 +72082,7 @@ type PathFollowImplementer interface {
 }
 
 /*
-   The VisibilityNotifier is used to notify when its bounding box enters the screen, is visible on the screen, or when it exits the screen.
+   The VisibilityNotifier detects when it is visible on the screen. It also notifies when its bounding rectangle enters or exits the screen or a [Camera]'s view.
 */
 type VisibilityNotifier struct {
 	Spatial
@@ -71765,7 +72111,7 @@ func (o *VisibilityNotifier) SetAabb(rect *Rect3) {
 }
 
 /*
-   Return the visibility bounding box of the VisibilityNotifier.
+   Returns the bounding box of the VisibilityNotifier.
 */
 func (o *VisibilityNotifier) GetAabb() *Rect3 {
 	log.Println("Calling VisibilityNotifier.GetAabb()")
@@ -71786,7 +72132,7 @@ func (o *VisibilityNotifier) GetAabb() *Rect3 {
 }
 
 /*
-   Return true if any part of the bounding box is on the screen.
+   If [code]true[/code] the bounding box is on the screen.
 */
 func (o *VisibilityNotifier) IsOnScreen() bool {
 	log.Println("Calling VisibilityNotifier.IsOnScreen()")
@@ -71948,8 +72294,8 @@ type WorldEnvironmentImplementer interface {
 }
 
 /*
-
- */
+   Resource for environment nodes (like [WorldEnvironment]) that define multiple environment operations (such as background [Sky] or [Color], ambient light, fog, depth-of-field...).	These parameters affect the final render of the scene. The order of these operations is: - DOF Blur - Motion Blur - Bloom - Tonemap (auto exposure) - Adjustments
+*/
 type Environment struct {
 	Resource
 }
@@ -75422,143 +75768,6 @@ type SliderJointImplementer interface {
 /*
 
  */
-type ConeTwistJoint struct {
-	Joint
-}
-
-func (o *ConeTwistJoint) baseClass() string {
-	return "ConeTwistJoint"
-}
-
-/*
-
- */
-func (o *ConeTwistJoint) SetParam(param int64, value float64) {
-	log.Println("Calling ConeTwistJoint.SetParam()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(param)
-	goArguments[1] = reflect.ValueOf(value)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_param", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-
- */
-func (o *ConeTwistJoint) GetParam(param int64) float64 {
-	log.Println("Calling ConeTwistJoint.GetParam()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(param)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_param", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ConeTwistJoint) X_SetSwingSpan(swingSpan float64) {
-	log.Println("Calling ConeTwistJoint.X_SetSwingSpan()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(swingSpan)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_set_swing_span", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ConeTwistJoint) X_GetSwingSpan() float64 {
-	log.Println("Calling ConeTwistJoint.X_GetSwingSpan()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "_get_swing_span", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ConeTwistJoint) X_SetTwistSpan(twistSpan float64) {
-	log.Println("Calling ConeTwistJoint.X_SetTwistSpan()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(twistSpan)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_set_twist_span", goArguments, "")
-
-	log.Println("Got return value!")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ConeTwistJoint) X_GetTwistSpan() float64 {
-	log.Println("Calling ConeTwistJoint.X_GetTwistSpan()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "_get_twist_span", goArguments, "float64")
-
-	log.Println("Got return value!")
-
-	returnValue := goRet.Interface().(float64)
-
-	return returnValue
-
-}
-
-/*
-   ConeTwistJointImplementer is an interface for ConeTwistJoint objects.
-*/
-type ConeTwistJointImplementer interface {
-	Class
-}
-
-/*
-
- */
 type Generic6DOFJoint struct {
 	Joint
 }
@@ -76051,6 +76260,143 @@ func (o *Generic6DOFJoint) GetFlagZ(flag int64) bool {
    Generic6DOFJointImplementer is an interface for Generic6DOFJoint objects.
 */
 type Generic6DOFJointImplementer interface {
+	Class
+}
+
+/*
+
+ */
+type ConeTwistJoint struct {
+	Joint
+}
+
+func (o *ConeTwistJoint) baseClass() string {
+	return "ConeTwistJoint"
+}
+
+/*
+
+ */
+func (o *ConeTwistJoint) SetParam(param int64, value float64) {
+	log.Println("Calling ConeTwistJoint.SetParam()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(param)
+	goArguments[1] = reflect.ValueOf(value)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_param", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *ConeTwistJoint) GetParam(param int64) float64 {
+	log.Println("Calling ConeTwistJoint.GetParam()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(param)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_param", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *ConeTwistJoint) X_SetSwingSpan(swingSpan float64) {
+	log.Println("Calling ConeTwistJoint.X_SetSwingSpan()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(swingSpan)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_set_swing_span", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *ConeTwistJoint) X_GetSwingSpan() float64 {
+	log.Println("Calling ConeTwistJoint.X_GetSwingSpan()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "_get_swing_span", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *ConeTwistJoint) X_SetTwistSpan(twistSpan float64) {
+	log.Println("Calling ConeTwistJoint.X_SetTwistSpan()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(twistSpan)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_set_twist_span", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *ConeTwistJoint) X_GetTwistSpan() float64 {
+	log.Println("Calling ConeTwistJoint.X_GetTwistSpan()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "_get_twist_span", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+   ConeTwistJointImplementer is an interface for ConeTwistJoint objects.
+*/
+type ConeTwistJointImplementer interface {
 	Class
 }
 
@@ -77584,7 +77930,7 @@ type Particles2DImplementer interface {
 }
 
 /*
-   General purpose Sprite node. This Sprite node can show any texture as a sprite. The texture can be used as a spritesheet for animation, or only a region from a bigger texture can referenced, like an atlas.
+   A node that displays a 2D texture. The texture displayed can be a region from a larger atlas texture, or a frame from a sprite sheet animation.
 */
 type Sprite struct {
 	Node2D
@@ -78543,17 +78889,17 @@ func (o *Line2D) GetPoints() *PoolVector2Array {
 /*
 
  */
-func (o *Line2D) SetPointPos(i int64, pos *Vector2) {
-	log.Println("Calling Line2D.SetPointPos()")
+func (o *Line2D) SetPointPosition(i int64, position *Vector2) {
+	log.Println("Calling Line2D.SetPointPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
 	goArguments[0] = reflect.ValueOf(i)
-	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[1] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
-	o.callParentMethod(o.baseClass(), "set_point_pos", goArguments, "")
+	o.callParentMethod(o.baseClass(), "set_point_position", goArguments, "")
 
 	log.Println("Got return value!")
 
@@ -78562,8 +78908,8 @@ func (o *Line2D) SetPointPos(i int64, pos *Vector2) {
 /*
 
  */
-func (o *Line2D) GetPointPos(i int64) *Vector2 {
-	log.Println("Calling Line2D.GetPointPos()")
+func (o *Line2D) GetPointPosition(i int64) *Vector2 {
+	log.Println("Calling Line2D.GetPointPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -78571,7 +78917,7 @@ func (o *Line2D) GetPointPos(i int64) *Vector2 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_point_pos", goArguments, "*Vector2")
+	goRet := o.callParentMethod(o.baseClass(), "get_point_position", goArguments, "*Vector2")
 
 	log.Println("Got return value!")
 
@@ -78605,12 +78951,12 @@ func (o *Line2D) GetPointCount() int64 {
 /*
    Add a point at the x/y position in the supplied [Vector2]
 */
-func (o *Line2D) AddPoint(pos *Vector2) {
+func (o *Line2D) AddPoint(position *Vector2) {
 	log.Println("Calling Line2D.AddPoint()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -79311,7 +79657,7 @@ type GradientImplementer interface {
 }
 
 /*
-   CollisionObject2D is the base class for 2D physics collisionables. They can hold any number of 2D collision shapes. Usually, they are edited by placing [CollisionShape2D] and/or [CollisionPolygon2D] nodes as children. Such nodes are for reference and not present outside the editor, so code should use the regular shape API.
+   CollisionObject2D is the base class for 2D physics objects. It can hold any number of 2D collision [Shape2D]\ s. Each shape must be assigned to a [i]shape owner[/i]. The CollisionObject2D can have any number of shape owners. Shape owners are not nodes and do not appear in the editor, but are accessible through code using the [code]shape_owner_*[/code] methods.
 */
 type CollisionObject2D struct {
 	Node2D
@@ -79342,7 +79688,7 @@ func (o *CollisionObject2D) X_InputEvent(viewport *Object, event *InputEvent, sh
 }
 
 /*
-   Return the RID of this object.
+   Returns the object's [RID].
 */
 func (o *CollisionObject2D) GetRid() *RID {
 	log.Println("Calling CollisionObject2D.GetRid()")
@@ -79402,7 +79748,7 @@ func (o *CollisionObject2D) IsPickable() bool {
 }
 
 /*
-   Creates new holder for the shapes. Argument is a [CollisionShape2D] node. It will return owner_id which usually you will want to save for later use.
+   Creates a new shape owner for the given object. Returns [code]owner_id[/code] of the new owner for future reference.
 */
 func (o *CollisionObject2D) CreateShapeOwner(owner *Object) int64 {
 	log.Println("Calling CollisionObject2D.CreateShapeOwner()")
@@ -79424,8 +79770,8 @@ func (o *CollisionObject2D) CreateShapeOwner(owner *Object) int64 {
 }
 
 /*
-
- */
+   Removes the given shape owner.
+*/
 func (o *CollisionObject2D) RemoveShapeOwner(ownerId int64) {
 	log.Println("Calling CollisionObject2D.RemoveShapeOwner()")
 
@@ -79442,7 +79788,7 @@ func (o *CollisionObject2D) RemoveShapeOwner(ownerId int64) {
 }
 
 /*
-   Shape owner is a node which is holding concrete shape resources. This method will return an array which is holding an integer numbers that are representing unique ID of each owner. You can use those ids when you are using others shape_owner methods.
+   Returns an [Array] of [code]owner_id[/code] identifiers. You can use these ids in other methods that take [code]owner_id[/code] as an argument.
 */
 func (o *CollisionObject2D) GetShapeOwners() *Array {
 	log.Println("Calling CollisionObject2D.GetShapeOwners()")
@@ -79463,8 +79809,8 @@ func (o *CollisionObject2D) GetShapeOwners() *Array {
 }
 
 /*
-
- */
+   Sets the [Transform2D] of the given shape owner.
+*/
 func (o *CollisionObject2D) ShapeOwnerSetTransform(ownerId int64, transform *Transform2D) {
 	log.Println("Calling CollisionObject2D.ShapeOwnerSetTransform()")
 
@@ -79482,7 +79828,7 @@ func (o *CollisionObject2D) ShapeOwnerSetTransform(ownerId int64, transform *Tra
 }
 
 /*
-   Will return [Transform2D] of an owner node.
+   Returns the shape owner's [Transform2D].
 */
 func (o *CollisionObject2D) ShapeOwnerGetTransform(ownerId int64) *Transform2D {
 	log.Println("Calling CollisionObject2D.ShapeOwnerGetTransform()")
@@ -79504,8 +79850,8 @@ func (o *CollisionObject2D) ShapeOwnerGetTransform(ownerId int64) *Transform2D {
 }
 
 /*
-
- */
+   Returns the parent object of the given shape owner.
+*/
 func (o *CollisionObject2D) ShapeOwnerGetOwner(ownerId int64) *Object {
 	log.Println("Calling CollisionObject2D.ShapeOwnerGetOwner()")
 
@@ -79526,8 +79872,8 @@ func (o *CollisionObject2D) ShapeOwnerGetOwner(ownerId int64) *Object {
 }
 
 /*
-
- */
+   If [code]true[/code] disables the given shape owner.
+*/
 func (o *CollisionObject2D) ShapeOwnerSetDisabled(ownerId int64, disabled bool) {
 	log.Println("Calling CollisionObject2D.ShapeOwnerSetDisabled()")
 
@@ -79545,8 +79891,8 @@ func (o *CollisionObject2D) ShapeOwnerSetDisabled(ownerId int64, disabled bool) 
 }
 
 /*
-
- */
+   If [code]true[/code] the shape owner and its shapes are disabled.
+*/
 func (o *CollisionObject2D) IsShapeOwnerDisabled(ownerId int64) bool {
 	log.Println("Calling CollisionObject2D.IsShapeOwnerDisabled()")
 
@@ -79608,8 +79954,8 @@ func (o *CollisionObject2D) IsShapeOwnerOneWayCollisionEnabled(ownerId int64) bo
 }
 
 /*
-
- */
+   Adds a [Shape2D] to the shape owner.
+*/
 func (o *CollisionObject2D) ShapeOwnerAddShape(ownerId int64, shape *Shape2D) {
 	log.Println("Calling CollisionObject2D.ShapeOwnerAddShape()")
 
@@ -79627,7 +79973,7 @@ func (o *CollisionObject2D) ShapeOwnerAddShape(ownerId int64, shape *Shape2D) {
 }
 
 /*
-   Returns number of shapes to which given owner is associated to.
+   Returns the number of shapes the given shape owner contains.
 */
 func (o *CollisionObject2D) ShapeOwnerGetShapeCount(ownerId int64) int64 {
 	log.Println("Calling CollisionObject2D.ShapeOwnerGetShapeCount()")
@@ -79649,7 +79995,7 @@ func (o *CollisionObject2D) ShapeOwnerGetShapeCount(ownerId int64) int64 {
 }
 
 /*
-   Will return a [Shape2D]. First argument owner_id is an integer that can be obtained from [method get_shape_owners]. Shape_id is a position of the shape inside owner; it's a value in range from 0 to [method shape_owner_get_shape_count].
+   Returns the [Shape2D] with the given id from the given shape owner.
 */
 func (o *CollisionObject2D) ShapeOwnerGetShape(ownerId int64, shapeId int64) *Shape2D {
 	log.Println("Calling CollisionObject2D.ShapeOwnerGetShape()")
@@ -79695,7 +80041,7 @@ func (o *CollisionObject2D) ShapeOwnerGetShapeIndex(ownerId int64, shapeId int64
 }
 
 /*
-   Removes related shape from the owner.
+   Removes a shape from the given shape owner.
 */
 func (o *CollisionObject2D) ShapeOwnerRemoveShape(ownerId int64, shapeId int64) {
 	log.Println("Calling CollisionObject2D.ShapeOwnerRemoveShape()")
@@ -79714,7 +80060,7 @@ func (o *CollisionObject2D) ShapeOwnerRemoveShape(ownerId int64, shapeId int64) 
 }
 
 /*
-   Will remove all the shapes associated with given owner.
+   Removes all shapes from the shape owner.
 */
 func (o *CollisionObject2D) ShapeOwnerClearShapes(ownerId int64) {
 	log.Println("Calling CollisionObject2D.ShapeOwnerClearShapes()")
@@ -79732,8 +80078,8 @@ func (o *CollisionObject2D) ShapeOwnerClearShapes(ownerId int64) {
 }
 
 /*
-
- */
+   Returns the [code]owner_id[/code] of the given shape.
+*/
 func (o *CollisionObject2D) ShapeFindOwner(shapeIndex int64) int64 {
 	log.Println("Calling CollisionObject2D.ShapeFindOwner()")
 
@@ -79971,8 +80317,8 @@ func (o *PhysicsBody2D) X_GetLayers() int64 {
 }
 
 /*
-
- */
+   Adds a body to the list of bodies that this body can't collide with.
+*/
 func (o *PhysicsBody2D) AddCollisionExceptionWith(body *Object) {
 	log.Println("Calling PhysicsBody2D.AddCollisionExceptionWith()")
 
@@ -79989,8 +80335,8 @@ func (o *PhysicsBody2D) AddCollisionExceptionWith(body *Object) {
 }
 
 /*
-
- */
+   Removes a body from the list of bodies that this body can't collide with.
+*/
 func (o *PhysicsBody2D) RemoveCollisionExceptionWith(body *Object) {
 	log.Println("Calling PhysicsBody2D.RemoveCollisionExceptionWith()")
 
@@ -80014,7 +80360,7 @@ type PhysicsBody2DImplementer interface {
 }
 
 /*
-   Static body for 2D Physics. A static body is a simple body that is not intended to move. They don't consume any CPU resources in contrast to a [RigidBody2D] so they are great for scenario collision. A static body can also be animated by using simulated motion mode. This is useful for implementing functionalities such as moving platforms. When this mode is active the body can be animated and automatically computes linear and angular velocity to apply in that frame and to influence other bodies. Alternatively, a constant linear or angular velocity can be set for the static body, so even if it doesn't move, it affects other bodies as if it was moving (this is useful for simulating conveyor belts or conveyor wheels).
+   Static body for 2D Physics. A StaticBody2D is a body that is not intended to move. It is ideal for implementing objects in the environment, such as walls or platforms. Additionally, a constant linear or angular velocity can be set for the static body, which will affect colliding bodies as if it were moving (for example, a conveyor belt).
 */
 type StaticBody2D struct {
 	PhysicsBody2D
@@ -80188,7 +80534,7 @@ type StaticBody2DImplementer interface {
 }
 
 /*
-   Rigid body 2D node. This node is used for placing rigid bodies in the scene. It can contain a number of shapes, and also shift state between regular Rigid body, Kinematic, Character or Static. Character mode forbids the node from being rotated. This node can have a custom force integrator function, for writing complex physics motion behavior per node. As a warning, don't change this node position every frame or very often. Sporadic changes work fine, but physics runs at a different granularity (fixed hz) than usual rendering (process callback) and maybe even in a separate thread, so changing this from a process loop will yield strange behavior.
+   This is the node that implements full 2D physics. This means that you do not control a RigidBody2D directly. Instead you can apply forces to it (gravity, impulses, etc.), and the physics simulation will calculate the resulting movement, collision, bouncing, rotating, etc. This node can use custom force integration, for writing complex physics motion behavior per node. This node can shift state between regular Rigid body, Kinematic, Character or Static. Character mode forbids this node from being rotated. As a warning, don't change RigidBody2D's position every frame or very often. Sporadic changes work fine, but physics runs at a different granularity (fixed hz) than usual rendering (process callback) and maybe even in a separate thread, so changing this from a process loop will yield strange behavior.
 */
 type RigidBody2D struct {
 	PhysicsBody2D
@@ -81131,8 +81477,8 @@ func (o *KinematicBody2D) baseClass() string {
 }
 
 /*
-
- */
+   Moves the body along the given vector. The body will stop if it collides. Returns a [KinematicCollision2D], which contains information about the colliding body.
+*/
 func (o *KinematicBody2D) MoveAndCollide(relVec *Vector2) *KinematicCollision2D {
 	log.Println("Calling KinematicBody2D.MoveAndCollide()")
 
@@ -81179,7 +81525,7 @@ func (o *KinematicBody2D) MoveAndSlide(linearVelocity *Vector2, floorNormal *Vec
 }
 
 /*
-   Return true if there would be a collision if the body moved from the given point in the given direction.
+   Returns true if there would be a collision if the body moved from the given point in the given direction.
 */
 func (o *KinematicBody2D) TestMove(from *Transform2D, relVec *Vector2) bool {
 	log.Println("Calling KinematicBody2D.TestMove()")
@@ -81375,8 +81721,8 @@ type KinematicBody2DImplementer interface {
 }
 
 /*
-
- */
+   Contains collision data for KinematicBody2D collisions. When a [KinematicBody2D] is moved using [method KinematicBody2D.move_and_collide], it stops if it detects a collision with another body. If a collision is detected, a KinematicCollision2D object is returned. This object contains information about the collision, including the colliding object, the remaining motion, and the collision position. This information can be used to calculate a collision response.
+*/
 type KinematicCollision2D struct {
 	Reference
 }
@@ -81624,7 +81970,7 @@ type KinematicCollision2DImplementer interface {
 }
 
 /*
-   2D area that detects nodes that enter or exit it. Change the 'space_override' property SPACE_OVERRIDE_* to override physics parameters for nodes like [Rigidbody2D]. E.g. gravity, damping... See [CollisionObject2D] for usage.
+   2D area that detects [CollisionObject2D] nodes overlapping, entering, or exiting. Can also alter or override local physics parameters (gravity, damping).
 */
 type Area2D struct {
 	CollisionObject2D
@@ -82257,7 +82603,7 @@ func (o *Area2D) IsMonitorable() bool {
 }
 
 /*
-   Return a list of the [PhysicsBody2D]s that intersect with this area.
+   Returns a list of intersecting [PhysicsBody2D]\ s.
 */
 func (o *Area2D) GetOverlappingBodies() *Array {
 	log.Println("Calling Area2D.GetOverlappingBodies()")
@@ -82278,7 +82624,7 @@ func (o *Area2D) GetOverlappingBodies() *Array {
 }
 
 /*
-   Returns a list of the [Area2D]s that intersect with this area.
+   Returns a list of intersecting [Area2D]\ s.
 */
 func (o *Area2D) GetOverlappingAreas() *Array {
 	log.Println("Calling Area2D.GetOverlappingAreas()")
@@ -82299,7 +82645,7 @@ func (o *Area2D) GetOverlappingAreas() *Array {
 }
 
 /*
-   Return whether the body passed is totally or partially inside this area.
+   If [code]true[/code] the given body overlaps the Area2D.
 */
 func (o *Area2D) OverlapsBody(body *Object) bool {
 	log.Println("Calling Area2D.OverlapsBody()")
@@ -82321,7 +82667,7 @@ func (o *Area2D) OverlapsBody(body *Object) bool {
 }
 
 /*
-   Return whether the area passed is totally or partially inside this area.
+   If [code]true[/code] the given area overlaps the Area2D.
 */
 func (o *Area2D) OverlapsArea(area *Object) bool {
 	log.Println("Calling Area2D.OverlapsArea()")
@@ -82345,8 +82691,8 @@ func (o *Area2D) OverlapsArea(area *Object) bool {
 /*
 
  */
-func (o *Area2D) SetAudioBus(name string) {
-	log.Println("Calling Area2D.SetAudioBus()")
+func (o *Area2D) SetAudioBusName(name string) {
+	log.Println("Calling Area2D.SetAudioBusName()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -82354,7 +82700,7 @@ func (o *Area2D) SetAudioBus(name string) {
 
 	// Call the parent method.
 
-	o.callParentMethod(o.baseClass(), "set_audio_bus", goArguments, "")
+	o.callParentMethod(o.baseClass(), "set_audio_bus_name", goArguments, "")
 
 	log.Println("Got return value!")
 
@@ -82363,15 +82709,15 @@ func (o *Area2D) SetAudioBus(name string) {
 /*
 
  */
-func (o *Area2D) GetAudioBus() string {
-	log.Println("Calling Area2D.GetAudioBus()")
+func (o *Area2D) GetAudioBusName() string {
+	log.Println("Calling Area2D.GetAudioBusName()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_audio_bus", goArguments, "string")
+	goRet := o.callParentMethod(o.baseClass(), "get_audio_bus_name", goArguments, "string")
 
 	log.Println("Got return value!")
 
@@ -82781,7 +83127,7 @@ type Shape2DImplementer interface {
 }
 
 /*
-   Editor-only class. This is not present when running the game. It's used in the editor to properly edit and position collision shapes in [CollisionObject2D]. This is not accessible from regular code. This class is for editing custom shape polygons.
+   Allows editing a collision polygon's vertices. This class is only available in the editor. It will not appear in the scene tree at runtime. Creates a [Shape2D] for gameplay. Properties modified during gameplay will have no effect.
 */
 type CollisionPolygon2D struct {
 	Node2D
@@ -83379,7 +83725,7 @@ type RayCast2DImplementer interface {
 }
 
 /*
-   The VisibilityNotifier2D is used to notify when its bounding rectangle enters the screen, is visible on the screen, or when it exits the screen.
+   The VisibilityNotifier2D detects when it is visible on the screen. It also notifies when its bounding rectangle enters or exits the screen or a viewport.
 */
 type VisibilityNotifier2D struct {
 	Node2D
@@ -83408,7 +83754,7 @@ func (o *VisibilityNotifier2D) SetRect(rect *Rect2) {
 }
 
 /*
-   Return the visibility bounding rectangle of the VisibilityNotifier2D.
+   Returns the bounding rectangle of the VisibilityNotifier2D.
 */
 func (o *VisibilityNotifier2D) GetRect() *Rect2 {
 	log.Println("Calling VisibilityNotifier2D.GetRect()")
@@ -83429,7 +83775,7 @@ func (o *VisibilityNotifier2D) GetRect() *Rect2 {
 }
 
 /*
-   Return true if any part of the bounding rectangle is on the screen.
+   If [code]true[/code] the bounding rectangle is on the screen.
 */
 func (o *VisibilityNotifier2D) IsOnScreen() bool {
 	log.Println("Calling VisibilityNotifier2D.IsOnScreen()")
@@ -85812,15 +86158,15 @@ func (o *Camera2D) GetDragMargin(margin int64) float64 {
 /*
    Return the camera position.
 */
-func (o *Camera2D) GetCameraPos() *Vector2 {
-	log.Println("Calling Camera2D.GetCameraPos()")
+func (o *Camera2D) GetCameraPosition() *Vector2 {
+	log.Println("Calling Camera2D.GetCameraPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_camera_pos", goArguments, "*Vector2")
+	goRet := o.callParentMethod(o.baseClass(), "get_camera_position", goArguments, "*Vector2")
 
 	log.Println("Got return value!")
 
@@ -88241,12 +88587,12 @@ func (o *TileMap) SetCell(x int64, y int64, tile int64, flipX bool, flipY bool, 
 /*
    Set the tile index for the cell referenced by a Vector2 of grid-based coordinates. A tile index of -1 clears the cell. Optionally, the tile can also be flipped over the X and Y axes or transposed.
 */
-func (o *TileMap) SetCellv(pos *Vector2, tile int64, flipX bool, flipY bool, transpose bool) {
+func (o *TileMap) SetCellv(position *Vector2, tile int64, flipX bool, flipY bool, transpose bool) {
 	log.Println("Calling TileMap.SetCellv()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 	goArguments[1] = reflect.ValueOf(tile)
 	goArguments[2] = reflect.ValueOf(flipX)
 	goArguments[3] = reflect.ValueOf(flipY)
@@ -88286,12 +88632,12 @@ func (o *TileMap) GetCell(x int64, y int64) int64 {
 /*
    Return the tile index of the cell referenced by a Vector2.
 */
-func (o *TileMap) GetCellv(pos *Vector2) int64 {
+func (o *TileMap) GetCellv(position *Vector2) int64 {
 	log.Println("Calling TileMap.GetCellv()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -88458,12 +88804,12 @@ func (o *TileMap) GetUsedRect() *Rect2 {
 /*
    Return the absolute world position corresponding to the tilemap (grid-based) coordinates given as an argument. Optionally, the tilemap's potential half offset can be ignored.
 */
-func (o *TileMap) MapToWorld(mappos *Vector2, ignoreHalfOfs bool) *Vector2 {
+func (o *TileMap) MapToWorld(mapPosition *Vector2, ignoreHalfOfs bool) *Vector2 {
 	log.Println("Calling TileMap.MapToWorld()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(mappos)
+	goArguments[0] = reflect.ValueOf(mapPosition)
 	goArguments[1] = reflect.ValueOf(ignoreHalfOfs)
 
 	// Call the parent method.
@@ -88481,12 +88827,12 @@ func (o *TileMap) MapToWorld(mappos *Vector2, ignoreHalfOfs bool) *Vector2 {
 /*
    Return the tilemap (grid-based) coordinates corresponding to the absolute world position given as an argument.
 */
-func (o *TileMap) WorldToMap(worldpos *Vector2) *Vector2 {
+func (o *TileMap) WorldToMap(worldPosition *Vector2) *Vector2 {
 	log.Println("Calling TileMap.WorldToMap()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(worldpos)
+	goArguments[0] = reflect.ValueOf(worldPosition)
 
 	// Call the parent method.
 
@@ -92996,6 +93342,45 @@ func (o *SpatialMaterial) GetGrow() float64 {
 }
 
 /*
+   Undocumented
+*/
+func (o *SpatialMaterial) SetAoLightAffect(amount float64) {
+	log.Println("Calling SpatialMaterial.SetAoLightAffect()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(amount)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_ao_light_affect", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *SpatialMaterial) GetAoLightAffect() float64 {
+	log.Println("Calling SpatialMaterial.GetAoLightAffect()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_ao_light_affect", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
 
  */
 func (o *SpatialMaterial) SetAlphaScissorThreshold(threshold float64) {
@@ -93224,6 +93609,201 @@ func (o *SpatialMaterial) GetRefractionTextureChannel() int64 {
 	log.Println("Got return value!")
 
 	returnValue := goRet.Interface().(int64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *SpatialMaterial) SetProximityFade(enabled bool) {
+	log.Println("Calling SpatialMaterial.SetProximityFade()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(enabled)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_proximity_fade", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *SpatialMaterial) IsProximityFadeEnabled() bool {
+	log.Println("Calling SpatialMaterial.IsProximityFadeEnabled()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_proximity_fade_enabled", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *SpatialMaterial) SetProximityFadeDistance(distance float64) {
+	log.Println("Calling SpatialMaterial.SetProximityFadeDistance()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(distance)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_proximity_fade_distance", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *SpatialMaterial) GetProximityFadeDistance() float64 {
+	log.Println("Calling SpatialMaterial.GetProximityFadeDistance()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_proximity_fade_distance", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *SpatialMaterial) SetDistanceFade(enabled bool) {
+	log.Println("Calling SpatialMaterial.SetDistanceFade()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(enabled)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_distance_fade", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *SpatialMaterial) IsDistanceFadeEnabled() bool {
+	log.Println("Calling SpatialMaterial.IsDistanceFadeEnabled()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_distance_fade_enabled", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *SpatialMaterial) SetDistanceFadeMaxDistance(distance float64) {
+	log.Println("Calling SpatialMaterial.SetDistanceFadeMaxDistance()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(distance)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_distance_fade_max_distance", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *SpatialMaterial) GetDistanceFadeMaxDistance() float64 {
+	log.Println("Calling SpatialMaterial.GetDistanceFadeMaxDistance()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_distance_fade_max_distance", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *SpatialMaterial) SetDistanceFadeMinDistance(distance float64) {
+	log.Println("Calling SpatialMaterial.SetDistanceFadeMinDistance()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(distance)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_distance_fade_min_distance", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
+
+ */
+func (o *SpatialMaterial) GetDistanceFadeMinDistance() float64 {
+	log.Println("Calling SpatialMaterial.GetDistanceFadeMinDistance()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_distance_fade_min_distance", goArguments, "float64")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(float64)
 
 	return returnValue
 
@@ -94188,8 +94768,8 @@ type GradientTextureImplementer interface {
 }
 
 /*
-
- */
+   Ray shape for 3D collisions, which can be set into a [PhysicsBody] or [Area]. A ray is not really a collision body, instead it tries to separate itself from whatever is touching its far endpoint. It's often useful for characters.
+*/
 type RayShape struct {
 	Shape
 }
@@ -94245,8 +94825,8 @@ type RayShapeImplementer interface {
 }
 
 /*
-
- */
+   Sphere shape for 3D collisions, which can be set into a [PhysicsBody] or [Area]. This shape is useful for modeling sphere-like 3D objects.
+*/
 type SphereShape struct {
 	Shape
 }
@@ -94302,7 +94882,7 @@ type SphereShapeImplementer interface {
 }
 
 /*
-   Box shape resource, which can be set into a [PhysicsBody] or area.
+   3D box shape that can be a child of a [PhysicsBody] or [Area].
 */
 type BoxShape struct {
 	Shape
@@ -94359,7 +94939,7 @@ type BoxShapeImplementer interface {
 }
 
 /*
-   Capsule shape resource, which can be set into a [PhysicsBody] or area.
+   Capsule shape for collisions.
 */
 type CapsuleShape struct {
 	Shape
@@ -97271,12 +97851,12 @@ func (o *Curve) baseClass() string {
 /*
 
  */
-func (o *Curve) AddPoint(pos *Vector2, leftTangent float64, rightTangent float64, leftMode int64, rightMode int64) int64 {
+func (o *Curve) AddPoint(position *Vector2, leftTangent float64, rightTangent float64, leftMode int64, rightMode int64) int64 {
 	log.Println("Calling Curve.AddPoint()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 	goArguments[1] = reflect.ValueOf(leftTangent)
 	goArguments[2] = reflect.ValueOf(rightTangent)
 	goArguments[3] = reflect.ValueOf(leftMode)
@@ -97332,8 +97912,8 @@ func (o *Curve) ClearPoints() {
 /*
 
  */
-func (o *Curve) GetPointPos(index int64) *Vector2 {
-	log.Println("Calling Curve.GetPointPos()")
+func (o *Curve) GetPointPosition(index int64) *Vector2 {
+	log.Println("Calling Curve.GetPointPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -97341,7 +97921,7 @@ func (o *Curve) GetPointPos(index int64) *Vector2 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_point_pos", goArguments, "*Vector2")
+	goRet := o.callParentMethod(o.baseClass(), "get_point_position", goArguments, "*Vector2")
 
 	log.Println("Got return value!")
 
@@ -98026,13 +98606,13 @@ func (o *Animation) baseClass() string {
 /*
    Add a track to the Animation. The track type must be specified as any of the values in the TYPE_* enumeration.
 */
-func (o *Animation) AddTrack(aType int64, atPos int64) int64 {
+func (o *Animation) AddTrack(aType int64, atPosition int64) int64 {
 	log.Println("Calling Animation.AddTrack()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
 	goArguments[0] = reflect.ValueOf(aType)
-	goArguments[1] = reflect.ValueOf(atPos)
+	goArguments[1] = reflect.ValueOf(atPosition)
 
 	// Call the parent method.
 
@@ -98250,15 +98830,15 @@ func (o *Animation) TrackIsImported(idx int64) bool {
 /*
    Insert a transform key for a transform track.
 */
-func (o *Animation) TransformTrackInsertKey(idx int64, time float64, loc *Vector3, rot *Quat, scale *Vector3) int64 {
+func (o *Animation) TransformTrackInsertKey(idx int64, time float64, location *Vector3, rotation *Quat, scale *Vector3) int64 {
 	log.Println("Calling Animation.TransformTrackInsertKey()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 5, 5)
 	goArguments[0] = reflect.ValueOf(idx)
 	goArguments[1] = reflect.ValueOf(time)
-	goArguments[2] = reflect.ValueOf(loc)
-	goArguments[3] = reflect.ValueOf(rot)
+	goArguments[2] = reflect.ValueOf(location)
+	goArguments[3] = reflect.ValueOf(rotation)
 	goArguments[4] = reflect.ValueOf(scale)
 
 	// Call the parent method.
@@ -98316,17 +98896,17 @@ func (o *Animation) TrackRemoveKey(idx int64, keyIdx int64) {
 /*
    Remove a key by position (seconds) in a given track.
 */
-func (o *Animation) TrackRemoveKeyAtPos(idx int64, pos float64) {
-	log.Println("Calling Animation.TrackRemoveKeyAtPos()")
+func (o *Animation) TrackRemoveKeyAtPosition(idx int64, position float64) {
+	log.Println("Calling Animation.TrackRemoveKeyAtPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
 	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[1] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
-	o.callParentMethod(o.baseClass(), "track_remove_key_at_pos", goArguments, "")
+	o.callParentMethod(o.baseClass(), "track_remove_key_at_position", goArguments, "")
 
 	log.Println("Got return value!")
 
@@ -100076,8 +100656,8 @@ type PolygonPathFinderImplementer interface {
 }
 
 /*
-
- */
+   Plays background audio.
+*/
 type AudioStreamPlayer struct {
 	Node
 }
@@ -100165,14 +100745,14 @@ func (o *AudioStreamPlayer) GetVolumeDb() float64 {
 }
 
 /*
-
- */
-func (o *AudioStreamPlayer) Play(fromPos float64) {
+   Plays the audio from the given position 'from_position', in seconds.
+*/
+func (o *AudioStreamPlayer) Play(fromPosition float64) {
 	log.Println("Calling AudioStreamPlayer.Play()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(fromPos)
+	goArguments[0] = reflect.ValueOf(fromPosition)
 
 	// Call the parent method.
 
@@ -100183,14 +100763,14 @@ func (o *AudioStreamPlayer) Play(fromPos float64) {
 }
 
 /*
-
- */
-func (o *AudioStreamPlayer) Seek(toPos float64) {
+   Sets the position from which audio will be played, in seconds.
+*/
+func (o *AudioStreamPlayer) Seek(toPosition float64) {
 	log.Println("Calling AudioStreamPlayer.Seek()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(toPos)
+	goArguments[0] = reflect.ValueOf(toPosition)
 
 	// Call the parent method.
 
@@ -100201,8 +100781,8 @@ func (o *AudioStreamPlayer) Seek(toPos float64) {
 }
 
 /*
-
- */
+   Stops the audio.
+*/
 func (o *AudioStreamPlayer) Stop() {
 	log.Println("Calling AudioStreamPlayer.Stop()")
 
@@ -100241,15 +100821,15 @@ func (o *AudioStreamPlayer) IsPlaying() bool {
 /*
 
  */
-func (o *AudioStreamPlayer) GetPos() float64 {
-	log.Println("Calling AudioStreamPlayer.GetPos()")
+func (o *AudioStreamPlayer) GetPlaybackPosition() float64 {
+	log.Println("Calling AudioStreamPlayer.GetPlaybackPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_pos", goArguments, "float64")
+	goRet := o.callParentMethod(o.baseClass(), "get_playback_position", goArguments, "float64")
 
 	log.Println("Got return value!")
 
@@ -100440,8 +101020,8 @@ type AudioStreamPlayerImplementer interface {
 }
 
 /*
-
- */
+   Plays audio that dampens with distance from screen center.
+*/
 type AudioStreamPlayer2D struct {
 	Node2D
 }
@@ -100529,14 +101109,14 @@ func (o *AudioStreamPlayer2D) GetVolumeDb() float64 {
 }
 
 /*
-
- */
-func (o *AudioStreamPlayer2D) Play(fromPos float64) {
+   Plays the audio from the given position 'from_position', in seconds.
+*/
+func (o *AudioStreamPlayer2D) Play(fromPosition float64) {
 	log.Println("Calling AudioStreamPlayer2D.Play()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(fromPos)
+	goArguments[0] = reflect.ValueOf(fromPosition)
 
 	// Call the parent method.
 
@@ -100547,14 +101127,14 @@ func (o *AudioStreamPlayer2D) Play(fromPos float64) {
 }
 
 /*
-
- */
-func (o *AudioStreamPlayer2D) Seek(toPos float64) {
+   Sets the position from which audio will be played, in seconds.
+*/
+func (o *AudioStreamPlayer2D) Seek(toPosition float64) {
 	log.Println("Calling AudioStreamPlayer2D.Seek()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(toPos)
+	goArguments[0] = reflect.ValueOf(toPosition)
 
 	// Call the parent method.
 
@@ -100565,8 +101145,8 @@ func (o *AudioStreamPlayer2D) Seek(toPos float64) {
 }
 
 /*
-
- */
+   Stops the audio.
+*/
 func (o *AudioStreamPlayer2D) Stop() {
 	log.Println("Calling AudioStreamPlayer2D.Stop()")
 
@@ -100605,15 +101185,15 @@ func (o *AudioStreamPlayer2D) IsPlaying() bool {
 /*
 
  */
-func (o *AudioStreamPlayer2D) GetPos() float64 {
-	log.Println("Calling AudioStreamPlayer2D.GetPos()")
+func (o *AudioStreamPlayer2D) GetPlaybackPosition() float64 {
+	log.Println("Calling AudioStreamPlayer2D.GetPlaybackPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_pos", goArguments, "float64")
+	goRet := o.callParentMethod(o.baseClass(), "get_playback_position", goArguments, "float64")
 
 	log.Println("Got return value!")
 
@@ -100882,8 +101462,8 @@ type AudioStreamPlayer2DImplementer interface {
 }
 
 /*
-
- */
+   Plays a sound effect with directed sound effects, dampens with distance if needed, generates effect of hearable position in space.
+*/
 type AudioStreamPlayer3D struct {
 	Spatial
 }
@@ -101049,14 +101629,14 @@ func (o *AudioStreamPlayer3D) GetMaxDb() float64 {
 }
 
 /*
-
- */
-func (o *AudioStreamPlayer3D) Play(fromPos float64) {
+   Plays the audio from the given position 'from_position', in seconds.
+*/
+func (o *AudioStreamPlayer3D) Play(fromPosition float64) {
 	log.Println("Calling AudioStreamPlayer3D.Play()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(fromPos)
+	goArguments[0] = reflect.ValueOf(fromPosition)
 
 	// Call the parent method.
 
@@ -101067,14 +101647,14 @@ func (o *AudioStreamPlayer3D) Play(fromPos float64) {
 }
 
 /*
-
- */
-func (o *AudioStreamPlayer3D) Seek(toPos float64) {
+   Sets the position from which audio will be played, in seconds.
+*/
+func (o *AudioStreamPlayer3D) Seek(toPosition float64) {
 	log.Println("Calling AudioStreamPlayer3D.Seek()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(toPos)
+	goArguments[0] = reflect.ValueOf(toPosition)
 
 	// Call the parent method.
 
@@ -101085,8 +101665,8 @@ func (o *AudioStreamPlayer3D) Seek(toPos float64) {
 }
 
 /*
-
- */
+   Stops the audio.
+*/
 func (o *AudioStreamPlayer3D) Stop() {
 	log.Println("Calling AudioStreamPlayer3D.Stop()")
 
@@ -101125,15 +101705,15 @@ func (o *AudioStreamPlayer3D) IsPlaying() bool {
 /*
 
  */
-func (o *AudioStreamPlayer3D) GetPos() float64 {
-	log.Println("Calling AudioStreamPlayer3D.GetPos()")
+func (o *AudioStreamPlayer3D) GetPlaybackPosition() float64 {
+	log.Println("Calling AudioStreamPlayer3D.GetPlaybackPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_pos", goArguments, "float64")
+	goRet := o.callParentMethod(o.baseClass(), "get_playback_position", goArguments, "float64")
 
 	log.Println("Got return value!")
 
@@ -101675,8 +102255,8 @@ type AudioStreamPlayer3DImplementer interface {
 }
 
 /*
-
- */
+   Plays audio, can loop.
+*/
 type AudioStreamSample struct {
 	AudioStream
 }
@@ -101966,7 +102546,7 @@ type AudioStreamSampleImplementer interface {
 }
 
 /*
-   Line shape for 2D collision objects. It works like a 2D plane and will not allow any body to go to the negative side. Not recommended for rigid bodies, and usually not recommended for static bodies either because it forces checks against it on every frame.
+   Line shape for 2D collisions. It works like a 2D plane and will not allow any body to go to the negative side. Not recommended for rigid bodies, and usually not recommended for static bodies either because it forces checks against it on every frame.
 */
 type LineShape2D struct {
 	Shape2D
@@ -102062,7 +102642,7 @@ type LineShape2DImplementer interface {
 }
 
 /*
-   Segment Shape for 2D Collision Detection, consists of two points, 'a' and 'b'.
+   Segment shape for 2D collisions. Consists of two points, [code]a[/code] and [code]b[/code].
 */
 type SegmentShape2D struct {
 	Shape2D
@@ -102158,7 +102738,7 @@ type SegmentShape2DImplementer interface {
 }
 
 /*
-   Ray 2D shape resource for physics. A ray is not really a collision body, instead it tries to separate itself from whatever is touching its far endpoint. It's often useful for characters.
+   Ray shape for 2D collisions. A ray is not really a collision body, instead it tries to separate itself from whatever is touching its far endpoint. It's often useful for characters.
 */
 type RayShape2D struct {
 	Shape2D
@@ -102215,7 +102795,7 @@ type RayShape2DImplementer interface {
 }
 
 /*
-   Circular Shape for 2D Physics. This shape is useful for modeling balls or small characters and its collision detection with everything else is very fast.
+   Circular shape for 2D collisions. This shape is useful for modeling balls or small characters and its collision detection with everything else is very fast.
 */
 type CircleShape2D struct {
 	Shape2D
@@ -102272,7 +102852,7 @@ type CircleShape2DImplementer interface {
 }
 
 /*
-   Rectangle Shape for 2D Physics. This shape is useful for modeling box-like 2D objects.
+   Rectangle shape for 2D collisions. This shape is useful for modeling box-like 2D objects.
 */
 type RectangleShape2D struct {
 	Shape2D
@@ -102329,7 +102909,7 @@ type RectangleShape2DImplementer interface {
 }
 
 /*
-   Capsule 2D shape resource for physics. A capsule (or sometimes called "pill") is like a line grown in all directions. It has a radius and a height, and is often useful for modeling biped characters.
+   Capsule shape for 2D collisions.
 */
 type CapsuleShape2D struct {
 	Shape2D
@@ -102589,17 +103169,17 @@ func (o *Curve2D) GetPointCount() int64 {
 }
 
 /*
-   Adds a point to a curve, at position "pos", with control points "in" and "out". If "atpos" is given, the point is inserted before the point number "atpos", moving that point (and every point after) after the inserted point. If "atpos" is not given, or is an illegal value (atpos <0 or atpos >= [method get_point_count]), the point will be appended at the end of the point list.
+   Adds a point to a curve, at "position", with control points "in" and "out". If "at_position" is given, the point is inserted before the point number "at_position", moving that point (and every point after) after the inserted point. If "at_position" is not given, or is an illegal value (at_position <0 or at_position >= [method get_point_count]), the point will be appended at the end of the point list.
 */
-func (o *Curve2D) AddPoint(pos *Vector2, in *Vector2, out *Vector2, atpos int64) {
+func (o *Curve2D) AddPoint(position *Vector2, in *Vector2, out *Vector2, atPosition int64) {
 	log.Println("Calling Curve2D.AddPoint()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(pos)
+	goArguments[0] = reflect.ValueOf(position)
 	goArguments[1] = reflect.ValueOf(in)
 	goArguments[2] = reflect.ValueOf(out)
-	goArguments[3] = reflect.ValueOf(atpos)
+	goArguments[3] = reflect.ValueOf(atPosition)
 
 	// Call the parent method.
 
@@ -102612,17 +103192,17 @@ func (o *Curve2D) AddPoint(pos *Vector2, in *Vector2, out *Vector2, atpos int64)
 /*
    Sets the position for the vertex "idx". If the index is out of bounds, the function sends an error to the console.
 */
-func (o *Curve2D) SetPointPos(idx int64, pos *Vector2) {
-	log.Println("Calling Curve2D.SetPointPos()")
+func (o *Curve2D) SetPointPosition(idx int64, position *Vector2) {
+	log.Println("Calling Curve2D.SetPointPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
 	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[1] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
-	o.callParentMethod(o.baseClass(), "set_point_pos", goArguments, "")
+	o.callParentMethod(o.baseClass(), "set_point_position", goArguments, "")
 
 	log.Println("Got return value!")
 
@@ -102631,8 +103211,8 @@ func (o *Curve2D) SetPointPos(idx int64, pos *Vector2) {
 /*
    Returns the position of the vertex "idx". If the index is out of bounds, the function sends an error to the console, and returns (0, 0).
 */
-func (o *Curve2D) GetPointPos(idx int64) *Vector2 {
-	log.Println("Calling Curve2D.GetPointPos()")
+func (o *Curve2D) GetPointPosition(idx int64) *Vector2 {
+	log.Println("Calling Curve2D.GetPointPosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -102640,7 +103220,7 @@ func (o *Curve2D) GetPointPos(idx int64) *Vector2 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_point_pos", goArguments, "*Vector2")
+	goRet := o.callParentMethod(o.baseClass(), "get_point_position", goArguments, "*Vector2")
 
 	log.Println("Got return value!")
 
@@ -102653,13 +103233,13 @@ func (o *Curve2D) GetPointPos(idx int64) *Vector2 {
 /*
    Sets the position of the control point leading to the vertex "idx". If the index is out of bounds, the function sends an error to the console.
 */
-func (o *Curve2D) SetPointIn(idx int64, pos *Vector2) {
+func (o *Curve2D) SetPointIn(idx int64, position *Vector2) {
 	log.Println("Calling Curve2D.SetPointIn()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
 	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[1] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -102694,13 +103274,13 @@ func (o *Curve2D) GetPointIn(idx int64) *Vector2 {
 /*
    Sets the position of the control point leading out of the vertex "idx". If the index is out of bounds, the function sends an error to the console.
 */
-func (o *Curve2D) SetPointOut(idx int64, pos *Vector2) {
+func (o *Curve2D) SetPointOut(idx int64, position *Vector2) {
 	log.Println("Calling Curve2D.SetPointOut()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
 	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[1] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -106233,8 +106813,8 @@ type EditorPluginImplementer interface {
 }
 
 /*
-
- */
+   EditorImportPlugins provide a way to extend the editor's resource import functionality. Use them to import resources from custom files or to provide alternatives to the editor's existing importers. Register your [EditorPlugin] with [method EditorPlugin.add_import_plugin]. EditorImportPlugins work by associating with specific file extensions and a resource type. See [method get_recognized_extension] and [method get_resource_type]). They may optionally specify some import presets that affect the import process. EditorImportPlugins are responsible for creating the resources and saving them in the [code].import[/code] directory. Below is an example EditorImportPlugin that imports a [Mesh] from a file with the extension ".special" or ".spec": [codeblock] tool extends EditorImportPlugin func get_importer_name(): return "my.special.plugin" func get_visible_name(): return "Special Mesh Importer" func get_recognized_extensions(): return ["special", "spec"] func get_save_extension(): return "mesh" func get_resource_type(): return "Mesh" func get_preset_count(): return 1 func get_preset_name(i): return "Default" func get_import_optons(i): return [{"name": "my_option", "default_value": false}] func load(src, dst, opts, r_platform_variants, r_gen_files): var f = File.new() if f.open(src, File.READ) != OK: return FAILED var mesh = Mesh.new() var save = dst + "." + get_save_extension() ResourceSaver.save(file, mesh) return OK [/codeblock]
+*/
 type EditorImportPlugin struct {
 	Reference
 }
@@ -106244,8 +106824,8 @@ func (o *EditorImportPlugin) baseClass() string {
 }
 
 /*
-
- */
+   Get the unique name of the importer.
+*/
 func (o *EditorImportPlugin) GetImporterName() string {
 	log.Println("Calling EditorImportPlugin.GetImporterName()")
 
@@ -106265,8 +106845,8 @@ func (o *EditorImportPlugin) GetImporterName() string {
 }
 
 /*
-
- */
+   Get the name to display in the import window.
+*/
 func (o *EditorImportPlugin) GetVisibleName() string {
 	log.Println("Calling EditorImportPlugin.GetVisibleName()")
 
@@ -106286,8 +106866,8 @@ func (o *EditorImportPlugin) GetVisibleName() string {
 }
 
 /*
-
- */
+   Get the number of initial presets defined by the plugin. Use [method get_import_options] to get the default options for the preset and [method get_preset_name] to get the name of the preset.
+*/
 func (o *EditorImportPlugin) GetPresetCount() int64 {
 	log.Println("Calling EditorImportPlugin.GetPresetCount()")
 
@@ -106307,8 +106887,8 @@ func (o *EditorImportPlugin) GetPresetCount() int64 {
 }
 
 /*
-
- */
+   Get the name of the options preset at this index.
+*/
 func (o *EditorImportPlugin) GetPresetName(preset int64) string {
 	log.Println("Calling EditorImportPlugin.GetPresetName()")
 
@@ -106329,8 +106909,8 @@ func (o *EditorImportPlugin) GetPresetName(preset int64) string {
 }
 
 /*
-
- */
+   Get the list of file extensions to associate with this loader (case insensitive). e.g. ["obj"].
+*/
 func (o *EditorImportPlugin) GetRecognizedExtensions() *Array {
 	log.Println("Calling EditorImportPlugin.GetRecognizedExtensions()")
 
@@ -106350,8 +106930,8 @@ func (o *EditorImportPlugin) GetRecognizedExtensions() *Array {
 }
 
 /*
-
- */
+   Get the options and default values for the preset at this index. Returns an Array of Dictionaries with the following keys: "name", "default_value", "property_hint" (optional), "hint_string" (optional), "usage" (optional).
+*/
 func (o *EditorImportPlugin) GetImportOptions(preset int64) *Array {
 	log.Println("Calling EditorImportPlugin.GetImportOptions()")
 
@@ -106372,8 +106952,8 @@ func (o *EditorImportPlugin) GetImportOptions(preset int64) *Array {
 }
 
 /*
-
- */
+   Get the extension used to save this resource in the [code].import[/code] directory.
+*/
 func (o *EditorImportPlugin) GetSaveExtension() string {
 	log.Println("Calling EditorImportPlugin.GetSaveExtension()")
 
@@ -106393,8 +106973,8 @@ func (o *EditorImportPlugin) GetSaveExtension() string {
 }
 
 /*
-
- */
+   Get the godot resource type associated with this loader. e.g. "Mesh" or "Animation".
+*/
 func (o *EditorImportPlugin) GetResourceType() string {
 	log.Println("Calling EditorImportPlugin.GetResourceType()")
 
@@ -107690,6 +108270,69 @@ func (o *EditorSettings) GetRecentDirs() *PoolStringArray {
 }
 
 /*
+   Undocumented
+*/
+func (o *EditorSettings) PropertyCanRevert(name string) bool {
+	log.Println("Calling EditorSettings.PropertyCanRevert()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(name)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "property_can_revert", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *EditorSettings) PropertyGetRevert(name string) *Variant {
+	log.Println("Calling EditorSettings.PropertyGetRevert()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(name)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "property_get_revert", goArguments, "*Variant")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Variant)
+
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *EditorSettings) SetInitialValue(name string, value *Variant) {
+	log.Println("Calling EditorSettings.SetInitialValue()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(name)
+	goArguments[1] = reflect.ValueOf(value)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_initial_value", goArguments, "")
+
+	log.Println("Got return value!")
+
+}
+
+/*
    EditorSettingsImplementer is an interface for EditorSettings objects.
 */
 type EditorSettingsImplementer interface {
@@ -107869,12 +108512,13 @@ func (o *EditorSpatialGizmo) AddCollisionSegments(segments *PoolVector3Array) {
 /*
    Add collision triangles to the gizmo for picking. A [TriangleMesh] can be generated from a regular [Mesh] too. Call this function during [method redraw].
 */
-func (o *EditorSpatialGizmo) AddCollisionTriangles(triangles *TriangleMesh) {
+func (o *EditorSpatialGizmo) AddCollisionTriangles(triangles *TriangleMesh, bounds *Rect3) {
 	log.Println("Calling EditorSpatialGizmo.AddCollisionTriangles()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
+	goArguments := make([]reflect.Value, 2, 2)
 	goArguments[0] = reflect.ValueOf(triangles)
+	goArguments[1] = reflect.ValueOf(bounds)
 
 	// Call the parent method.
 
@@ -110076,6 +110720,67 @@ type EditorExportPluginImplementer interface {
 /*
 
  */
+type EditorResourceConversionPlugin struct {
+	Reference
+}
+
+func (o *EditorResourceConversionPlugin) baseClass() string {
+	return "EditorResourceConversionPlugin"
+}
+
+/*
+
+ */
+func (o *EditorResourceConversionPlugin) X_Convert(resource *Resource) *Resource {
+	log.Println("Calling EditorResourceConversionPlugin.X_Convert()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(resource)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "_convert", goArguments, "*Resource")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(*Resource)
+
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *EditorResourceConversionPlugin) X_ConvertsTo() bool {
+	log.Println("Calling EditorResourceConversionPlugin.X_ConvertsTo()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "_converts_to", goArguments, "bool")
+
+	log.Println("Got return value!")
+
+	returnValue := goRet.Interface().(bool)
+
+	return returnValue
+
+}
+
+/*
+   EditorResourceConversionPluginImplementer is an interface for EditorResourceConversionPlugin objects.
+*/
+type EditorResourceConversionPluginImplementer interface {
+	Class
+}
+
+/*
+
+ */
 type NetworkedMultiplayerPeer struct {
 	PacketPeer
 }
@@ -111965,7 +112670,7 @@ func (o *VisualScript) GetFunctionScroll(name string) *Vector2 {
 /*
 
  */
-func (o *VisualScript) AddNode(function string, id int64, node *VisualScriptNode, pos *Vector2) {
+func (o *VisualScript) AddNode(function string, id int64, node *VisualScriptNode, position *Vector2) {
 	log.Println("Calling VisualScript.AddNode()")
 
 	// Build out the method's arguments
@@ -111973,7 +112678,7 @@ func (o *VisualScript) AddNode(function string, id int64, node *VisualScriptNode
 	goArguments[0] = reflect.ValueOf(function)
 	goArguments[1] = reflect.ValueOf(id)
 	goArguments[2] = reflect.ValueOf(node)
-	goArguments[3] = reflect.ValueOf(pos)
+	goArguments[3] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
@@ -112073,18 +112778,18 @@ func (o *VisualScript) HasNode(function string, id int64) bool {
 /*
 
  */
-func (o *VisualScript) SetNodePos(function string, id int64, pos *Vector2) {
-	log.Println("Calling VisualScript.SetNodePos()")
+func (o *VisualScript) SetNodePosition(function string, id int64, position *Vector2) {
+	log.Println("Calling VisualScript.SetNodePosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 3, 3)
 	goArguments[0] = reflect.ValueOf(function)
 	goArguments[1] = reflect.ValueOf(id)
-	goArguments[2] = reflect.ValueOf(pos)
+	goArguments[2] = reflect.ValueOf(position)
 
 	// Call the parent method.
 
-	o.callParentMethod(o.baseClass(), "set_node_pos", goArguments, "")
+	o.callParentMethod(o.baseClass(), "set_node_position", goArguments, "")
 
 	log.Println("Got return value!")
 
@@ -112093,8 +112798,8 @@ func (o *VisualScript) SetNodePos(function string, id int64, pos *Vector2) {
 /*
 
  */
-func (o *VisualScript) GetNodePos(function string, id int64) *Vector2 {
-	log.Println("Calling VisualScript.GetNodePos()")
+func (o *VisualScript) GetNodePosition(function string, id int64) *Vector2 {
+	log.Println("Calling VisualScript.GetNodePosition()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
@@ -112103,7 +112808,7 @@ func (o *VisualScript) GetNodePos(function string, id int64) *Vector2 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_node_pos", goArguments, "*Vector2")
+	goRet := o.callParentMethod(o.baseClass(), "get_node_position", goArguments, "*Vector2")
 
 	log.Println("Got return value!")
 
@@ -116303,6 +117008,24 @@ type VisualScriptReturnImplementer interface {
 /*
 
  */
+type VisualScriptIterator struct {
+	VisualScriptNode
+}
+
+func (o *VisualScriptIterator) baseClass() string {
+	return "VisualScriptIterator"
+}
+
+/*
+   VisualScriptIteratorImplementer is an interface for VisualScriptIterator objects.
+*/
+type VisualScriptIteratorImplementer interface {
+	Class
+}
+
+/*
+
+ */
 type VisualScriptCondition struct {
 	VisualScriptNode
 }
@@ -116333,24 +117056,6 @@ func (o *VisualScriptWhile) baseClass() string {
    VisualScriptWhileImplementer is an interface for VisualScriptWhile objects.
 */
 type VisualScriptWhileImplementer interface {
-	Class
-}
-
-/*
-
- */
-type VisualScriptIterator struct {
-	VisualScriptNode
-}
-
-func (o *VisualScriptIterator) baseClass() string {
-	return "VisualScriptIterator"
-}
-
-/*
-   VisualScriptIteratorImplementer is an interface for VisualScriptIterator objects.
-*/
-type VisualScriptIteratorImplementer interface {
 	Class
 }
 
@@ -116829,4 +117534,3589 @@ func (o *VisualScriptExpression) baseClass() string {
 */
 type VisualScriptExpressionImplementer interface {
 	Class
+}
+
+// godotToGoConverter is a function that will convert a Godot object into
+// a Go object.
+type godotToGoConverter func(gdObject unsafe.Pointer) reflect.Value
+
+// godotToGoConversionMap is an internal mapping of Godot types to functions that can
+// convert to Go types. This mapping is essentially a more optimal case/switch
+// system for converting Godot types to Go types.
+var godotToGoConversionMap = map[string]godotToGoConverter{
+	"bool": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := (*C.godot_bool)(gdObject)
+		return reflect.ValueOf(godotBoolAsBool(*converted))
+	},
+	"int64": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := (*C.godot_int)(gdObject)
+		return reflect.ValueOf(godotIntAsInt(*converted))
+	},
+	"uint64": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := (*C.uint64_t)(gdObject)
+		return reflect.ValueOf(uint64(*converted))
+	},
+	"float64": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := (*C.godot_real)(gdObject)
+		return reflect.ValueOf(float64(*converted))
+	},
+	"string": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := (*C.godot_string)(gdObject)
+		return reflect.ValueOf(godotStringAsString(converted))
+	},
+	"*Array": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Array{}
+		converted.array = (*C.godot_array)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Basis": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Basis{}
+		converted.basis = (*C.godot_basis)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Color": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Color{}
+		converted.color = (*C.godot_color)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Dictionary": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Dictionary{}
+		converted.dictionary = (*C.godot_dictionary)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*NodePath": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &NodePath{}
+		converted.nodePath = (*C.godot_node_path)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Plane": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Plane{}
+		converted.plane = (*C.godot_plane)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Quat": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Quat{}
+		converted.quat = (*C.godot_quat)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Rect2": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Rect2{}
+		converted.rect2 = (*C.godot_rect2)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Rect3": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Rect3{}
+		converted.rect3 = (*C.godot_rect3)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*RID": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &RID{}
+		converted.rid = (*C.godot_rid)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Transform": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Transform{}
+		converted.transform = (*C.godot_transform)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Transform2D": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Transform2D{}
+		converted.transform2d = (*C.godot_transform2d)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Variant": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Variant{}
+		converted.variant = (*C.godot_variant)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Vector2": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Vector2{}
+		converted.vector2 = (*C.godot_vector2)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+	"*Vector3": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Vector3{}
+		converted.vector3 = (*C.godot_vector3)(gdObject)
+		return reflect.ValueOf(converted)
+	},
+
+	"*Object": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Object{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Reference": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Reference{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*WeakRef": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &WeakRef{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Resource": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Resource{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Image": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Image{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*InputEvent": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &InputEvent{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*InputEventWithModifiers": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &InputEventWithModifiers{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*InputEventKey": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &InputEventKey{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*InputEventMouse": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &InputEventMouse{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*InputEventMouseButton": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &InputEventMouseButton{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*InputEventMouseMotion": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &InputEventMouseMotion{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*InputEventJoypadButton": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &InputEventJoypadButton{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*InputEventJoypadMotion": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &InputEventJoypadMotion{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*InputEventScreenDrag": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &InputEventScreenDrag{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*InputEventScreenTouch": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &InputEventScreenTouch{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*InputEventAction": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &InputEventAction{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*FuncRef": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &FuncRef{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*StreamPeer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &StreamPeer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*StreamPeerBuffer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &StreamPeerBuffer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*StreamPeerTCP": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &StreamPeerTCP{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*TCP_Server": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &TCP_Server{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PacketPeer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PacketPeer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PacketPeerUDP": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PacketPeerUDP{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*StreamPeerSSL": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &StreamPeerSSL{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ip": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ip{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PacketPeerStream": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PacketPeerStream{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*MainLoop": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &MainLoop{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Translation": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Translation{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PHashTranslation": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PHashTranslation{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*UndoRedo": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &UndoRedo{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*HTTPClient": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &HTTPClient{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ResourceInteractiveLoader": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ResourceInteractiveLoader{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*TriangleMesh": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &TriangleMesh{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*_File": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &_File{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*_Directory": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &_Directory{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*_Thread": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &_Thread{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*_Mutex": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &_Mutex{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*_Semaphore": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &_Semaphore{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*XMLParser": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &XMLParser{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ConfigFile": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ConfigFile{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PCKPacker": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PCKPacker{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PackedDataContainer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PackedDataContainer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PackedDataContainerRef": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PackedDataContainerRef{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AStar": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AStar{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*EncodedObjectAsID": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &EncodedObjectAsID{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*JSONParseResult": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &JSONParseResult{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*IP_Unix": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &IP_Unix{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*geometry": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &geometry{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*resourceLoader": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &resourceLoader{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*resourceSaver": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &resourceSaver{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*os": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &os{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*engine": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &engine{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*classDb": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &classDb{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*marshalls": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &marshalls{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*json": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &json{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*projectSettings": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &projectSettings{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*inputMap": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &inputMap{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*translationServer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &translationServer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*performance": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &performance{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*visualServer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &visualServer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PhysicsServerSW": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PhysicsServerSW{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*physicsServer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &physicsServer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PhysicsDirectBodyStateSW": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PhysicsDirectBodyStateSW{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PhysicsDirectBodyState": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PhysicsDirectBodyState{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Physics2DServerSW": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Physics2DServerSW{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*physics2DServer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &physics2DServer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Physics2DDirectBodyStateSW": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Physics2DDirectBodyStateSW{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Physics2DDirectBodyState": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Physics2DDirectBodyState{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*audioServer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &audioServer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*InputDefault": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &InputDefault{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*input": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &input{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*arvrServer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &arvrServer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ARVRInterface": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ARVRInterface{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ARVRPositionalTracker": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ARVRPositionalTracker{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ARVRScriptInterface": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ARVRScriptInterface{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioStream": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioStream{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioStreamPlayback": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioStreamPlayback{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioStreamRandomPitch": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioStreamRandomPitch{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffect": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffect{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioBusLayout": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioBusLayout{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectAmplify": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectAmplify{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectReverb": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectReverb{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectFilter": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectFilter{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectEQ": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectEQ{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectLowPassFilter": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectLowPassFilter{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectHighPassFilter": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectHighPassFilter{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectBandPassFilter": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectBandPassFilter{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectNotchFilter": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectNotchFilter{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectBandLimitFilter": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectBandLimitFilter{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectLowShelfFilter": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectLowShelfFilter{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectHighShelfFilter": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectHighShelfFilter{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectEQ6": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectEQ6{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectEQ10": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectEQ10{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectEQ21": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectEQ21{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectDistortion": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectDistortion{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectStereoEnhance": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectStereoEnhance{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectPanner": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectPanner{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectChorus": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectChorus{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectDelay": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectDelay{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectCompressor": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectCompressor{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectLimiter": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectLimiter{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectPitchShift": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectPitchShift{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioEffectPhaser": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioEffectPhaser{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Physics2DDirectSpaceState": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Physics2DDirectSpaceState{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Physics2DShapeQueryResult": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Physics2DShapeQueryResult{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Physics2DTestMotionResult": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Physics2DTestMotionResult{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Physics2DShapeQueryParameters": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Physics2DShapeQueryParameters{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PhysicsShapeQueryParameters": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PhysicsShapeQueryParameters{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PhysicsDirectSpaceState": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PhysicsDirectSpaceState{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PhysicsShapeQueryResult": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PhysicsShapeQueryResult{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*BitmapFont": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &BitmapFont{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Theme": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Theme{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Font": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Font{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ImageTexture": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ImageTexture{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Texture": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Texture{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*StyleBoxTexture": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &StyleBoxTexture{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Panel": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Panel{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Button": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Button{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*StyleBox": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &StyleBox{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*LinkButton": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &LinkButton{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ColorPickerButton": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ColorPickerButton{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*StyleBoxEmpty": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &StyleBoxEmpty{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ToolButton": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ToolButton{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*OptionButton": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &OptionButton{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*MenuButton": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &MenuButton{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ButtonGroup": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ButtonGroup{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CheckBox": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CheckBox{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CheckButton": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CheckButton{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Label": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Label{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ProgressBar": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ProgressBar{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*LineEdit": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &LineEdit{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*TextEdit": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &TextEdit{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*HScrollBar": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &HScrollBar{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VScrollBar": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VScrollBar{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*HSlider": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &HSlider{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VSlider": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VSlider{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*GraphEdit": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &GraphEdit{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*SpinBox": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &SpinBox{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*WindowDialog": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &WindowDialog{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*FileDialog": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &FileDialog{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PopupMenu": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PopupMenu{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PopupPanel": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PopupPanel{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*GraphNode": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &GraphNode{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Tree": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Tree{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ItemList": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ItemList{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*TabContainer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &TabContainer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Tabs": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Tabs{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*HSeparator": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &HSeparator{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VSeparator": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VSeparator{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ColorPicker": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ColorPicker{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*RichTextLabel": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &RichTextLabel{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VSplitContainer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VSplitContainer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*HSplitContainer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &HSplitContainer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VBoxContainer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VBoxContainer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*MarginContainer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &MarginContainer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*HBoxContainer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &HBoxContainer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*GridContainer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &GridContainer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ReferenceRect": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ReferenceRect{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PanelContainer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PanelContainer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Node": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Node{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*InstancePlaceholder": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &InstancePlaceholder{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Viewport": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Viewport{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*World": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &World{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ViewportTexture": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ViewportTexture{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*HTTPRequest": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &HTTPRequest{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Timer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Timer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CanvasLayer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CanvasLayer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CanvasItem": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CanvasItem{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Node2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Node2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CanvasModulate": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CanvasModulate{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ResourcePreloader": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ResourcePreloader{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Control": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Control{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*BaseButton": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &BaseButton{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ShortCut": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ShortCut{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Range": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Range{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ScrollBar": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ScrollBar{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Slider": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Slider{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Popup": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Popup{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*TextureRect": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &TextureRect{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ColorRect": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ColorRect{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*NinePatchRect": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &NinePatchRect{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*TextureButton": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &TextureButton{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Separator": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Separator{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*BitMap": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &BitMap{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Container": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Container{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*BoxContainer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &BoxContainer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CenterContainer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CenterContainer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ScrollContainer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ScrollContainer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*SplitContainer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &SplitContainer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*TextureProgress": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &TextureProgress{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AcceptDialog": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AcceptDialog{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ConfirmationDialog": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ConfirmationDialog{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*TreeItem": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &TreeItem{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VideoPlayer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VideoPlayer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PopupDialog": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PopupDialog{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VideoStream": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VideoStream{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ViewportContainer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ViewportContainer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Spatial": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Spatial{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*SpatialGizmo": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &SpatialGizmo{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Skeleton": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Skeleton{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AnimationPlayer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AnimationPlayer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Tween": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Tween{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*BoneAttachment": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &BoneAttachment{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualInstance": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualInstance{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Camera": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Camera{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Listener": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Listener{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ARVRCamera": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ARVRCamera{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ARVRController": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ARVRController{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ARVRAnchor": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ARVRAnchor{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ARVROrigin": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ARVROrigin{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*InterpolatedCamera": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &InterpolatedCamera{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*GeometryInstance": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &GeometryInstance{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*MeshInstance": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &MeshInstance{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Mesh": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Mesh{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ImmediateGeometry": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ImmediateGeometry{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*SpriteBase3D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &SpriteBase3D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Sprite3D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Sprite3D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AnimatedSprite3D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AnimatedSprite3D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*SpriteFrames": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &SpriteFrames{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Light": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Light{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*DirectionalLight": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &DirectionalLight{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*OmniLight": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &OmniLight{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*SpotLight": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &SpotLight{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ReflectionProbe": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ReflectionProbe{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*GIProbe": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &GIProbe{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*GIProbeData": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &GIProbeData{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AnimationTreePlayer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AnimationTreePlayer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Particles": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Particles{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Position3D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Position3D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*NavigationMeshInstance": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &NavigationMeshInstance{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*NavigationMesh": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &NavigationMesh{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Navigation": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Navigation{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CollisionObject": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CollisionObject{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PhysicsBody": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PhysicsBody{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*StaticBody": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &StaticBody{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*RigidBody": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &RigidBody{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*KinematicCollision": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &KinematicCollision{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*KinematicBody": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &KinematicBody{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VehicleBody": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VehicleBody{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VehicleWheel": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VehicleWheel{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Area": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Area{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ProximityGroup": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ProximityGroup{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CollisionShape": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CollisionShape{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Shape": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Shape{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CollisionPolygon": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CollisionPolygon{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*RayCast": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &RayCast{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*MultiMeshInstance": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &MultiMeshInstance{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*MultiMesh": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &MultiMesh{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Curve3D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Curve3D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Path": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Path{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PathFollow": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PathFollow{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisibilityNotifier": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisibilityNotifier{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisibilityEnabler": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisibilityEnabler{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*WorldEnvironment": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &WorldEnvironment{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Environment": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Environment{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*RemoteTransform": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &RemoteTransform{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Joint": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Joint{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PinJoint": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PinJoint{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*HingeJoint": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &HingeJoint{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*SliderJoint": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &SliderJoint{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Generic6DOFJoint": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Generic6DOFJoint{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ConeTwistJoint": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ConeTwistJoint{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*MeshLibrary": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &MeshLibrary{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Shader": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Shader{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Material": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Material{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ShaderMaterial": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ShaderMaterial{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CanvasItemMaterial": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CanvasItemMaterial{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Particles2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Particles2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Sprite": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Sprite{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AnimatedSprite": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AnimatedSprite{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Position2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Position2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Line2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Line2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Gradient": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Gradient{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CollisionObject2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CollisionObject2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PhysicsBody2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PhysicsBody2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*StaticBody2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &StaticBody2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*RigidBody2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &RigidBody2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*KinematicBody2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &KinematicBody2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*KinematicCollision2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &KinematicCollision2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Area2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Area2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CollisionShape2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CollisionShape2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Shape2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Shape2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CollisionPolygon2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CollisionPolygon2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*RayCast2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &RayCast2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisibilityNotifier2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisibilityNotifier2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisibilityEnabler2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisibilityEnabler2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Polygon2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Polygon2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Light2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Light2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*LightOccluder2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &LightOccluder2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*OccluderPolygon2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &OccluderPolygon2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*YSort": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &YSort{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*BackBufferCopy": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &BackBufferCopy{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Camera2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Camera2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Joint2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Joint2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PinJoint2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PinJoint2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*GrooveJoint2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &GrooveJoint2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*DampedSpringJoint2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &DampedSpringJoint2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*TileSet": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &TileSet{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*TileMap": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &TileMap{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ParallaxBackground": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ParallaxBackground{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ParallaxLayer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ParallaxLayer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*TouchScreenButton": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &TouchScreenButton{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*RemoteTransform2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &RemoteTransform2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ArrayMesh": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ArrayMesh{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PrimitiveMesh": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PrimitiveMesh{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CapsuleMesh": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CapsuleMesh{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CubeMesh": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CubeMesh{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CylinderMesh": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CylinderMesh{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PlaneMesh": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PlaneMesh{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PrismMesh": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PrismMesh{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*QuadMesh": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &QuadMesh{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*SphereMesh": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &SphereMesh{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*SpatialMaterial": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &SpatialMaterial{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ParticlesMaterial": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ParticlesMaterial{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CurveTexture": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CurveTexture{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*GradientTexture": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &GradientTexture{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*RayShape": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &RayShape{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*SphereShape": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &SphereShape{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*BoxShape": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &BoxShape{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CapsuleShape": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CapsuleShape{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PlaneShape": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PlaneShape{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ConvexPolygonShape": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ConvexPolygonShape{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ConcavePolygonShape": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ConcavePolygonShape{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*SurfaceTool": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &SurfaceTool{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*MeshDataTool": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &MeshDataTool{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*SpatialVelocityTracker": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &SpatialVelocityTracker{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Sky": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Sky{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*World2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &World2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PanoramaSky": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PanoramaSky{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ProceduralSky": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ProceduralSky{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*StreamTexture": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &StreamTexture{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AtlasTexture": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AtlasTexture{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*LargeTexture": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &LargeTexture{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Curve": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Curve{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CubeMap": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CubeMap{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Animation": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Animation{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*DynamicFontData": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &DynamicFontData{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*DynamicFont": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &DynamicFont{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*StyleBoxFlat": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &StyleBoxFlat{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PolygonPathFinder": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PolygonPathFinder{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioStreamPlayer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioStreamPlayer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioStreamPlayer2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioStreamPlayer2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioStreamPlayer3D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioStreamPlayer3D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioStreamSample": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioStreamSample{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*LineShape2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &LineShape2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*SegmentShape2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &SegmentShape2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*RayShape2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &RayShape2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CircleShape2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CircleShape2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*RectangleShape2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &RectangleShape2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*CapsuleShape2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &CapsuleShape2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ConvexPolygonShape2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ConvexPolygonShape2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ConcavePolygonShape2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ConcavePolygonShape2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Curve2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Curve2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Path2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Path2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PathFollow2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PathFollow2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Navigation2D": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Navigation2D{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*NavigationPolygon": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &NavigationPolygon{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*NavigationPolygonInstance": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &NavigationPolygonInstance{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*SceneState": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &SceneState{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PackedScene": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PackedScene{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*SceneTree": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &SceneTree{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*SceneTreeTimer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &SceneTreeTimer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*EditorPlugin": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &EditorPlugin{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*EditorImportPlugin": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &EditorImportPlugin{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*EditorScript": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &EditorScript{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*EditorSelection": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &EditorSelection{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*EditorFileDialog": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &EditorFileDialog{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*EditorSettings": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &EditorSettings{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*EditorSpatialGizmo": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &EditorSpatialGizmo{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*EditorResourcePreview": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &EditorResourcePreview{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*EditorResourcePreviewGenerator": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &EditorResourcePreviewGenerator{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*EditorFileSystem": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &EditorFileSystem{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*EditorFileSystemDirectory": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &EditorFileSystemDirectory{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ScriptEditor": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ScriptEditor{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*Script": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &Script{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*EditorInterface": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &EditorInterface{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*EditorExportPlugin": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &EditorExportPlugin{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*EditorResourceConversionPlugin": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &EditorResourceConversionPlugin{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*NetworkedMultiplayerPeer": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &NetworkedMultiplayerPeer{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*NetworkedMultiplayerENet": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &NetworkedMultiplayerENet{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*GDNativeLibrary": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &GDNativeLibrary{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*GDNative": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &GDNative{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*NativeScript": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &NativeScript{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*GDScript": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &GDScript{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*GDFunctionState": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &GDFunctionState{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*GridMap": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &GridMap{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*RegExMatch": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &RegExMatch{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*RegEx": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &RegEx{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ResourceImporterOGGVorbis": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ResourceImporterOGGVorbis{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*ResourceImporter": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ResourceImporter{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*AudioStreamOGGVorbis": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &AudioStreamOGGVorbis{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScript": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScript{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptNode": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptNode{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptFunctionState": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptFunctionState{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptFunction": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptFunction{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptOperator": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptOperator{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptVariableSet": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptVariableSet{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptVariableGet": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptVariableGet{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptConstant": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptConstant{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptIndexGet": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptIndexGet{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptIndexSet": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptIndexSet{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptGlobalConstant": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptGlobalConstant{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptClassConstant": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptClassConstant{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptMathConstant": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptMathConstant{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptBasicTypeConstant": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptBasicTypeConstant{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptEngineSingleton": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptEngineSingleton{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptSceneNode": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptSceneNode{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptSceneTree": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptSceneTree{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptResourcePath": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptResourcePath{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptSelf": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptSelf{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptCustomNode": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptCustomNode{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptSubCall": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptSubCall{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptComment": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptComment{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptConstructor": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptConstructor{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptLocalVar": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptLocalVar{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptLocalVarSet": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptLocalVarSet{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptInputAction": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptInputAction{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptDeconstruct": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptDeconstruct{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptPreload": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptPreload{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptTypeCast": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptTypeCast{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptFunctionCall": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptFunctionCall{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptPropertySet": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptPropertySet{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptPropertyGet": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptPropertyGet{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptEmitSignal": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptEmitSignal{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptReturn": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptReturn{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptIterator": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptIterator{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptCondition": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptCondition{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptWhile": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptWhile{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptSequence": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptSequence{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptSwitch": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptSwitch{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptSelect": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptSelect{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptYield": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptYield{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptYieldSignal": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptYieldSignal{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptBuiltinFunc": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptBuiltinFunc{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*VisualScriptExpression": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &VisualScriptExpression{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
 }
