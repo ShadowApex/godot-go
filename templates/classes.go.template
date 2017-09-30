@@ -94,12 +94,14 @@ type Class interface {
                             o.callParentMethod(o.baseClass(), "{{ $method.Name }}", goArguments, "{{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ end }}")
                         {{ end }}
                     {{ end -}}
-                    log.Println("Got return value!")
                     {{ if $method.ReturnType }}
                         {{ $returnType := $view.GoValue $method.ReturnType }}{{ if ne $returnType "" }}
                             returnValue := goRet.Interface().({{ $view.GoValue $method.ReturnType }})
 
+                            log.Println("  Got return value: ", returnValue)
                             return returnValue
+                    {{else}}
+                        log.Println("  Function successfully completed.")
                         {{ end }}
                     {{ end }}
                 }
@@ -127,8 +129,11 @@ type Class interface {
             	log.Println("  Using method name: ", methodName)
             	methodCString := C.CString(methodName)
             
+                // Get the Godot objects owner so we can pass it to godot_method_bind_ptrcall.
+            	log.Println("  Using godot object owner:", o.getOwner())
+                objectOwner := unsafe.Pointer(o.getOwner())
+
             	// Get the Godot method bind pointer so we can pass it to godot_method_bind_ptrcall.
-            	log.Println("  Using godot object:", o.getOwner())
             	var methodBind *C.godot_method_bind
             	methodBind = C.godot_method_bind_get_method(classCString, methodCString)
             	log.Println("  Using method bind pointer: ", methodBind)
@@ -175,8 +180,8 @@ type Class interface {
             	log.Println("  Calling bind_ptrcall...")
             	C.godot_method_bind_ptrcall(
             		methodBind,
-            		unsafe.Pointer(o.getOwner()),
-            		cArgsArray, // void**
+            		objectOwner,
+                    cArgsArray, // void**
             		ret,        // void*
             	)
             	log.Println("  Finished calling method")

@@ -14,7 +14,7 @@ func NewPongClass() godot.Class {
 	return pongClass
 }
 
-// PongClass is a simple Godot class that can be registered.
+// PongClass is a simple go struct that can be attached to a Godot Node2D object.
 type PongClass struct {
 	godot.Node2D
 	direction *godot.Vector2
@@ -24,15 +24,36 @@ type PongClass struct {
 func (p *PongClass) X_ready() {
 	// Get the screen size.
 	screenSize := p.GetViewportRect()
-	godot.Log.Warning("Screen size: ", screenSize.AsString())
+	godot.Log.Warning("***Screen size***")
+	godot.Log.Warning(screenSize.AsString())
 
 	// Resolve Google's IP for funsies
 	//godot.Log.Warning("Google's IP Address: ", godot.IP.ResolveHostname("google.com", 1))
 
 	// Get the left paddle node.
+	godot.Log.Warning("***Get Left***")
 	left := p.GetNode(godot.NewNodePath("left"))
-	godot.Log.Warning("Left Pad: ", left)
-	godot.Log.Warning("  Type: ", left.GetClass())
+
+	// Troubleshooting
+	godot.Log.Warning("***pongClass***")
+	godot.Log.Warning(p)
+	godot.Log.Warning("***left***")
+	godot.Log.Warning(left)
+
+	godot.Log.Warning("***pongClass Owner***")
+	godot.Log.Warning(p.GetOwner())
+	godot.Log.Warning("***Left Owner***")
+	godot.Log.Warning(left.GetOwner())
+
+	godot.Log.Warning("***pongClass Name***")
+	godot.Log.Warning(p.GetName())
+	godot.Log.Warning("***Left Name***")
+	godot.Log.Warning(left.GetName())
+
+	godot.Log.Warning("***pongClass Class***")
+	godot.Log.Warning(p.GetClass())
+	godot.Log.Warning("***Left Class***")
+	godot.Log.Warning(left.GetClass())
 }
 
 //func (p *PongClass) X_process(delta float64) {
