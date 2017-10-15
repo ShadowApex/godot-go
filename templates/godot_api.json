@@ -363,7 +363,7 @@
 			"ERR_ALREADY_IN_USE": 22,
 			"ERR_LOCKED": 23,
 			"ERR_TIMEOUT": 24,
-			"ERR_CANT_AQUIRE_RESOURCE": 28,
+			"ERR_CANT_ACQUIRE_RESOURCE": 28,
 			"ERR_INVALID_DATA": 30,
 			"ERR_INVALID_PARAMETER": 31,
 			"ERR_ALREADY_EXISTS": 32,
@@ -4043,7 +4043,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -4810,7 +4810,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "int",
 						"has_default_value": false,
 						"default_value": ""
@@ -4831,7 +4831,7 @@
 				]
 			},
 			{
-				"name": "get_pos",
+				"name": "get_position",
 				"return_type": "int",
 				"is_editor": false,
 				"is_noscript": false,
@@ -7418,7 +7418,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "int",
 						"has_default_value": false,
 						"default_value": ""
@@ -7437,7 +7437,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "int",
 						"has_default_value": true,
 						"default_value": "0"
@@ -7445,7 +7445,7 @@
 				]
 			},
 			{
-				"name": "get_pos",
+				"name": "get_position",
 				"return_type": "int",
 				"is_editor": false,
 				"is_noscript": false,
@@ -8822,7 +8822,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "int",
 						"has_default_value": false,
 						"default_value": ""
@@ -9524,7 +9524,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector3",
 						"has_default_value": false,
 						"default_value": ""
@@ -9538,7 +9538,7 @@
 				]
 			},
 			{
-				"name": "get_point_pos",
+				"name": "get_point_position",
 				"return_type": "Vector3",
 				"is_editor": false,
 				"is_noscript": false,
@@ -9732,7 +9732,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "to_pos",
+						"name": "to_position",
 						"type": "Vector3",
 						"has_default_value": false,
 						"default_value": ""
@@ -9740,7 +9740,7 @@
 				]
 			},
 			{
-				"name": "get_closest_pos_in_segment",
+				"name": "get_closest_position_in_segment",
 				"return_type": "Vector3",
 				"is_editor": false,
 				"is_noscript": false,
@@ -9751,7 +9751,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "to_pos",
+						"name": "to_position",
 						"type": "Vector3",
 						"has_default_value": false,
 						"default_value": ""
@@ -10187,7 +10187,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "circle_pos",
+						"name": "circle_position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -10564,13 +10564,13 @@
 						"default_value": ""
 					},
 					{
-						"name": "spos",
+						"name": "sphere_position",
 						"type": "Vector3",
 						"has_default_value": false,
 						"default_value": ""
 					},
 					{
-						"name": "sradius",
+						"name": "sphere_radius",
 						"type": "float",
 						"has_default_value": false,
 						"default_value": ""
@@ -13572,7 +13572,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "int",
 						"has_default_value": false,
 						"default_value": ""
@@ -16003,7 +16003,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector3",
 						"has_default_value": false,
 						"default_value": ""
@@ -17587,7 +17587,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector3",
 						"has_default_value": false,
 						"default_value": ""
@@ -17606,7 +17606,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector3",
 						"has_default_value": false,
 						"default_value": ""
@@ -17684,7 +17684,7 @@
 				]
 			},
 			{
-				"name": "get_contact_local_pos",
+				"name": "get_contact_local_position",
 				"return_type": "Vector3",
 				"is_editor": false,
 				"is_noscript": false,
@@ -17760,7 +17760,7 @@
 				]
 			},
 			{
-				"name": "get_contact_collider_pos",
+				"name": "get_contact_collider_position",
 				"return_type": "Vector3",
 				"is_editor": false,
 				"is_noscript": false,
@@ -17836,7 +17836,7 @@
 				]
 			},
 			{
-				"name": "get_contact_collider_velocity_at_pos",
+				"name": "get_contact_collider_velocity_at_position",
 				"return_type": "Vector3",
 				"is_editor": false,
 				"is_noscript": false,
@@ -19508,7 +19508,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -20456,7 +20456,7 @@
 				]
 			},
 			{
-				"name": "get_contact_local_pos",
+				"name": "get_contact_local_position",
 				"return_type": "Vector2",
 				"is_editor": false,
 				"is_noscript": false,
@@ -20532,7 +20532,7 @@
 				]
 			},
 			{
-				"name": "get_contact_collider_pos",
+				"name": "get_contact_collider_position",
 				"return_type": "Vector2",
 				"is_editor": false,
 				"is_noscript": false,
@@ -20627,7 +20627,7 @@
 				]
 			},
 			{
-				"name": "get_contact_collider_velocity_at_pos",
+				"name": "get_contact_collider_velocity_at_position",
 				"return_type": "Vector2",
 				"is_editor": false,
 				"is_noscript": false,
@@ -20773,7 +20773,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "at_pos",
+						"name": "at_position",
 						"type": "int",
 						"has_default_value": true,
 						"default_value": "-1"
@@ -21112,7 +21112,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "at_pos",
+						"name": "at_position",
 						"type": "int",
 						"has_default_value": true,
 						"default_value": "-1"
@@ -22012,7 +22012,7 @@
 				]
 			},
 			{
-				"name": "warp_mouse_pos",
+				"name": "warp_mouse_position",
 				"return_type": "void",
 				"is_editor": false,
 				"is_noscript": false,
@@ -27436,646 +27436,6 @@
 		]
 	},
 	{
-		"name": "Font",
-		"base_class": "Resource",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": false,
-		"is_reference": true,
-		"constants": {
-		},
-		"properties": [
-		],
-		"signals": [
-		],
-		"methods": [
-			{
-				"name": "draw",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "canvas_item",
-						"type": "RID",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "pos",
-						"type": "Vector2",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "string",
-						"type": "String",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "modulate",
-						"type": "Color",
-						"has_default_value": true,
-						"default_value": "1,1,1,1"
-					},
-					{
-						"name": "clip_w",
-						"type": "int",
-						"has_default_value": true,
-						"default_value": "-1"
-					}
-				]
-			},
-			{
-				"name": "get_ascent",
-				"return_type": "float",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_descent",
-				"return_type": "float",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_height",
-				"return_type": "float",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "is_distance_field_hint",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_string_size",
-				"return_type": "Vector2",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "string",
-						"type": "String",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "draw_char",
-				"return_type": "float",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "canvas_item",
-						"type": "RID",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "pos",
-						"type": "Vector2",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "char",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "next",
-						"type": "int",
-						"has_default_value": true,
-						"default_value": "-1"
-					},
-					{
-						"name": "modulate",
-						"type": "Color",
-						"has_default_value": true,
-						"default_value": "1,1,1,1"
-					}
-				]
-			},
-			{
-				"name": "update_changes",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			}
-		],
-		"enums": [
-		]
-	},
-	{
-		"name": "BitmapFont",
-		"base_class": "Font",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": true,
-		"is_reference": true,
-		"constants": {
-		},
-		"properties": [
-			{
-				"name": "textures",
-				"type": "Array",
-				"getter": "_get_textures",
-				"setter": "_set_textures"
-			},
-			{
-				"name": "chars",
-				"type": "PoolIntArray",
-				"getter": "_get_chars",
-				"setter": "_set_chars"
-			},
-			{
-				"name": "kernings",
-				"type": "PoolIntArray",
-				"getter": "_get_kernings",
-				"setter": "_set_kernings"
-			},
-			{
-				"name": "height",
-				"type": "float",
-				"getter": "get_height",
-				"setter": "set_height"
-			},
-			{
-				"name": "ascent",
-				"type": "float",
-				"getter": "get_ascent",
-				"setter": "set_ascent"
-			},
-			{
-				"name": "distance_field",
-				"type": "bool",
-				"getter": "is_distance_field_hint",
-				"setter": "set_distance_field_hint"
-			},
-			{
-				"name": "fallback",
-				"type": "BitmapFont",
-				"getter": "get_fallback",
-				"setter": "set_fallback"
-			}
-		],
-		"signals": [
-		],
-		"methods": [
-			{
-				"name": "create_from_fnt",
-				"return_type": "enum.Error",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "path",
-						"type": "String",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "set_height",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "px",
-						"type": "float",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "set_ascent",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "px",
-						"type": "float",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "add_kerning_pair",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "char_a",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "char_b",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "kerning",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_kerning_pair",
-				"return_type": "int",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "char_a",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "char_b",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "add_texture",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "texture",
-						"type": "Texture",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "add_char",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "character",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "texture",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "rect",
-						"type": "Rect2",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "align",
-						"type": "Vector2",
-						"has_default_value": true,
-						"default_value": "(0, 0)"
-					},
-					{
-						"name": "advance",
-						"type": "float",
-						"has_default_value": true,
-						"default_value": "-1"
-					}
-				]
-			},
-			{
-				"name": "get_texture_count",
-				"return_type": "int",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_texture",
-				"return_type": "Texture",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "idx",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_char_size",
-				"return_type": "Vector2",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "char",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "next",
-						"type": "int",
-						"has_default_value": true,
-						"default_value": "0"
-					}
-				]
-			},
-			{
-				"name": "set_distance_field_hint",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "enable",
-						"type": "bool",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "clear",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "_set_chars",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": true,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "arg0",
-						"type": "PoolIntArray",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "_get_chars",
-				"return_type": "PoolIntArray",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": true,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "_set_kernings",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": true,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "arg0",
-						"type": "PoolIntArray",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "_get_kernings",
-				"return_type": "PoolIntArray",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": true,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "_set_textures",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": true,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "arg0",
-						"type": "Array",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "_get_textures",
-				"return_type": "Array",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": true,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_fallback",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "fallback",
-						"type": "BitmapFont",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_fallback",
-				"return_type": "BitmapFont",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			}
-		],
-		"enums": [
-		]
-	},
-	{
 		"name": "Theme",
 		"base_class": "Resource",
 		"api_type": "core",
@@ -28815,6 +28175,1173 @@
 		]
 	},
 	{
+		"name": "Font",
+		"base_class": "Resource",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": false,
+		"is_reference": true,
+		"constants": {
+		},
+		"properties": [
+		],
+		"signals": [
+		],
+		"methods": [
+			{
+				"name": "draw",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "canvas_item",
+						"type": "RID",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "position",
+						"type": "Vector2",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "string",
+						"type": "String",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "modulate",
+						"type": "Color",
+						"has_default_value": true,
+						"default_value": "1,1,1,1"
+					},
+					{
+						"name": "clip_w",
+						"type": "int",
+						"has_default_value": true,
+						"default_value": "-1"
+					}
+				]
+			},
+			{
+				"name": "get_ascent",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_descent",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_height",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "is_distance_field_hint",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_string_size",
+				"return_type": "Vector2",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "string",
+						"type": "String",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "draw_char",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "canvas_item",
+						"type": "RID",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "position",
+						"type": "Vector2",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "char",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "next",
+						"type": "int",
+						"has_default_value": true,
+						"default_value": "-1"
+					},
+					{
+						"name": "modulate",
+						"type": "Color",
+						"has_default_value": true,
+						"default_value": "1,1,1,1"
+					}
+				]
+			},
+			{
+				"name": "update_changes",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			}
+		],
+		"enums": [
+		]
+	},
+	{
+		"name": "BitmapFont",
+		"base_class": "Font",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": true,
+		"is_reference": true,
+		"constants": {
+		},
+		"properties": [
+			{
+				"name": "textures",
+				"type": "Array",
+				"getter": "_get_textures",
+				"setter": "_set_textures"
+			},
+			{
+				"name": "chars",
+				"type": "PoolIntArray",
+				"getter": "_get_chars",
+				"setter": "_set_chars"
+			},
+			{
+				"name": "kernings",
+				"type": "PoolIntArray",
+				"getter": "_get_kernings",
+				"setter": "_set_kernings"
+			},
+			{
+				"name": "height",
+				"type": "float",
+				"getter": "get_height",
+				"setter": "set_height"
+			},
+			{
+				"name": "ascent",
+				"type": "float",
+				"getter": "get_ascent",
+				"setter": "set_ascent"
+			},
+			{
+				"name": "distance_field",
+				"type": "bool",
+				"getter": "is_distance_field_hint",
+				"setter": "set_distance_field_hint"
+			},
+			{
+				"name": "fallback",
+				"type": "BitmapFont",
+				"getter": "get_fallback",
+				"setter": "set_fallback"
+			}
+		],
+		"signals": [
+		],
+		"methods": [
+			{
+				"name": "create_from_fnt",
+				"return_type": "enum.Error",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "path",
+						"type": "String",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "set_height",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "px",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "set_ascent",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "px",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "add_kerning_pair",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "char_a",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "char_b",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "kerning",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_kerning_pair",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "char_a",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "char_b",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "add_texture",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "texture",
+						"type": "Texture",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "add_char",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "character",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "texture",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "rect",
+						"type": "Rect2",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "align",
+						"type": "Vector2",
+						"has_default_value": true,
+						"default_value": "(0, 0)"
+					},
+					{
+						"name": "advance",
+						"type": "float",
+						"has_default_value": true,
+						"default_value": "-1"
+					}
+				]
+			},
+			{
+				"name": "get_texture_count",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_texture",
+				"return_type": "Texture",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "idx",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_char_size",
+				"return_type": "Vector2",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "char",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "next",
+						"type": "int",
+						"has_default_value": true,
+						"default_value": "0"
+					}
+				]
+			},
+			{
+				"name": "set_distance_field_hint",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "enable",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "clear",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "_set_chars",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "arg0",
+						"type": "PoolIntArray",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "_get_chars",
+				"return_type": "PoolIntArray",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "_set_kernings",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "arg0",
+						"type": "PoolIntArray",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "_get_kernings",
+				"return_type": "PoolIntArray",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "_set_textures",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "arg0",
+						"type": "Array",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "_get_textures",
+				"return_type": "Array",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_fallback",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "fallback",
+						"type": "BitmapFont",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_fallback",
+				"return_type": "BitmapFont",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			}
+		],
+		"enums": [
+		]
+	},
+	{
+		"name": "ImageTexture",
+		"base_class": "Texture",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": true,
+		"is_reference": true,
+		"constants": {
+			"STORAGE_RAW": 0,
+			"STORAGE_COMPRESS_LOSSY": 1,
+			"STORAGE_COMPRESS_LOSSLESS": 2
+		},
+		"properties": [
+		],
+		"signals": [
+		],
+		"methods": [
+			{
+				"name": "create",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "width",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "height",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "format",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "flags",
+						"type": "int",
+						"has_default_value": true,
+						"default_value": "7"
+					}
+				]
+			},
+			{
+				"name": "create_from_image",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "image",
+						"type": "Image",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "flags",
+						"type": "int",
+						"has_default_value": true,
+						"default_value": "7"
+					}
+				]
+			},
+			{
+				"name": "get_format",
+				"return_type": "enum.Image::Format",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "load",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "path",
+						"type": "String",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "set_data",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "image",
+						"type": "Image",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "set_storage",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "mode",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_storage",
+				"return_type": "enum.ImageTexture::Storage",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_lossy_storage_quality",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "quality",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_lossy_storage_quality",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_size_override",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "size",
+						"type": "Vector2",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "_reload_hook",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "rid",
+						"type": "RID",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			}
+		],
+		"enums": [
+			{
+				"name": "Storage",
+				"values": {
+					"STORAGE_RAW": 0,
+					"STORAGE_COMPRESS_LOSSY": 1,
+					"STORAGE_COMPRESS_LOSSLESS": 2
+				}
+			}
+		]
+	},
+	{
+		"name": "Texture",
+		"base_class": "Resource",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": false,
+		"is_reference": true,
+		"constants": {
+			"FLAG_MIPMAPS": 1,
+			"FLAG_REPEAT": 2,
+			"FLAG_FILTER": 4,
+			"FLAG_VIDEO_SURFACE": 4096,
+			"FLAGS_DEFAULT": 7,
+			"FLAG_ANISOTROPIC_FILTER": 8,
+			"FLAG_CONVERT_TO_LINEAR": 16,
+			"FLAG_MIRRORED_REPEAT": 32
+		},
+		"properties": [
+		],
+		"signals": [
+		],
+		"methods": [
+			{
+				"name": "get_width",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_height",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_size",
+				"return_type": "Vector2",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "has_alpha",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_flags",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "flags",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_flags",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "draw",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "canvas_item",
+						"type": "RID",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "position",
+						"type": "Vector2",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "modulate",
+						"type": "Color",
+						"has_default_value": true,
+						"default_value": "1,1,1,1"
+					},
+					{
+						"name": "transpose",
+						"type": "bool",
+						"has_default_value": true,
+						"default_value": "False"
+					},
+					{
+						"name": "normal_map",
+						"type": "Texture",
+						"has_default_value": true,
+						"default_value": "Null"
+					}
+				]
+			},
+			{
+				"name": "draw_rect",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "canvas_item",
+						"type": "RID",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "rect",
+						"type": "Rect2",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "tile",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "modulate",
+						"type": "Color",
+						"has_default_value": true,
+						"default_value": "1,1,1,1"
+					},
+					{
+						"name": "transpose",
+						"type": "bool",
+						"has_default_value": true,
+						"default_value": "False"
+					},
+					{
+						"name": "normal_map",
+						"type": "Texture",
+						"has_default_value": true,
+						"default_value": "Null"
+					}
+				]
+			},
+			{
+				"name": "draw_rect_region",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "canvas_item",
+						"type": "RID",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "rect",
+						"type": "Rect2",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "src_rect",
+						"type": "Rect2",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "modulate",
+						"type": "Color",
+						"has_default_value": true,
+						"default_value": "1,1,1,1"
+					},
+					{
+						"name": "transpose",
+						"type": "bool",
+						"has_default_value": true,
+						"default_value": "False"
+					},
+					{
+						"name": "normal_map",
+						"type": "Texture",
+						"has_default_value": true,
+						"default_value": "Null"
+					},
+					{
+						"name": "clip_uv",
+						"type": "bool",
+						"has_default_value": true,
+						"default_value": "True"
+					}
+				]
+			},
+			{
+				"name": "get_data",
+				"return_type": "Image",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			}
+		],
+		"enums": [
+			{
+				"name": "Flags",
+				"values": {
+					"FLAG_MIPMAPS": 1,
+					"FLAG_REPEAT": 2,
+					"FLAG_FILTER": 4,
+					"FLAGS_DEFAULT": 7,
+					"FLAG_ANISOTROPIC_FILTER": 8,
+					"FLAG_CONVERT_TO_LINEAR": 16,
+					"FLAG_MIRRORED_REPEAT": 32,
+					"FLAG_VIDEO_SURFACE": 4096
+				}
+			}
+		]
+	},
+	{
 		"name": "StyleBoxTexture",
 		"base_class": "StyleBox",
 		"api_type": "core",
@@ -29514,99 +30041,6 @@
 		"signals": [
 		],
 		"methods": [
-		],
-		"enums": [
-		]
-	},
-	{
-		"name": "MenuButton",
-		"base_class": "Button",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": true,
-		"is_reference": false,
-		"constants": {
-		},
-		"properties": [
-			{
-				"name": "items",
-				"type": "Array",
-				"getter": "_get_items",
-				"setter": "_set_items"
-			}
-		],
-		"signals": [
-			{
-				"name": "about_to_show",
-				"arguments": [
-				]
-			}
-		],
-		"methods": [
-			{
-				"name": "get_popup",
-				"return_type": "PopupMenu",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "_unhandled_key_input",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": true,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "arg0",
-						"type": "InputEvent",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "_set_items",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": true,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "arg0",
-						"type": "Array",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "_get_items",
-				"return_type": "Array",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": true,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			}
 		],
 		"enums": [
 		]
@@ -30610,8 +31044,8 @@
 		]
 	},
 	{
-		"name": "ProgressBar",
-		"base_class": "Range",
+		"name": "MenuButton",
+		"base_class": "Button",
 		"api_type": "core",
 		"singleton": false,
 		"instanciable": true,
@@ -30620,18 +31054,23 @@
 		},
 		"properties": [
 			{
-				"name": "percent_visible",
-				"type": "bool",
-				"getter": "is_percent_visible",
-				"setter": "set_percent_visible"
+				"name": "items",
+				"type": "Array",
+				"getter": "_get_items",
+				"setter": "_set_items"
 			}
 		],
 		"signals": [
+			{
+				"name": "about_to_show",
+				"arguments": [
+				]
+			}
 		],
 		"methods": [
 			{
-				"name": "set_percent_visible",
-				"return_type": "void",
+				"name": "get_popup",
+				"return_type": "PopupMenu",
 				"is_editor": false,
 				"is_noscript": false,
 				"is_const": false,
@@ -30640,22 +31079,54 @@
 				"has_varargs": false,
 				"is_from_script": false,
 				"arguments": [
+				]
+			},
+			{
+				"name": "_unhandled_key_input",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
 					{
-						"name": "visible",
-						"type": "bool",
+						"name": "arg0",
+						"type": "InputEvent",
 						"has_default_value": false,
 						"default_value": ""
 					}
 				]
 			},
 			{
-				"name": "is_percent_visible",
-				"return_type": "bool",
+				"name": "_set_items",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "arg0",
+						"type": "Array",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "_get_items",
+				"return_type": "Array",
 				"is_editor": false,
 				"is_noscript": false,
 				"is_const": true,
 				"is_reverse": false,
-				"is_virtual": false,
+				"is_virtual": true,
 				"has_varargs": false,
 				"is_from_script": false,
 				"arguments": [
@@ -30712,533 +31183,6 @@
 		"methods": [
 		],
 		"enums": [
-		]
-	},
-	{
-		"name": "ImageTexture",
-		"base_class": "Texture",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": true,
-		"is_reference": true,
-		"constants": {
-			"STORAGE_RAW": 0,
-			"STORAGE_COMPRESS_LOSSY": 1,
-			"STORAGE_COMPRESS_LOSSLESS": 2
-		},
-		"properties": [
-		],
-		"signals": [
-		],
-		"methods": [
-			{
-				"name": "create",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "width",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "height",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "format",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "flags",
-						"type": "int",
-						"has_default_value": true,
-						"default_value": "7"
-					}
-				]
-			},
-			{
-				"name": "create_from_image",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "image",
-						"type": "Image",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "flags",
-						"type": "int",
-						"has_default_value": true,
-						"default_value": "7"
-					}
-				]
-			},
-			{
-				"name": "get_format",
-				"return_type": "enum.Image::Format",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "load",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "path",
-						"type": "String",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "set_data",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "image",
-						"type": "Image",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "set_storage",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "mode",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_storage",
-				"return_type": "enum.ImageTexture::Storage",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_lossy_storage_quality",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "quality",
-						"type": "float",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_lossy_storage_quality",
-				"return_type": "float",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_size_override",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "size",
-						"type": "Vector2",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "_reload_hook",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": true,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "rid",
-						"type": "RID",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			}
-		],
-		"enums": [
-			{
-				"name": "Storage",
-				"values": {
-					"STORAGE_RAW": 0,
-					"STORAGE_COMPRESS_LOSSY": 1,
-					"STORAGE_COMPRESS_LOSSLESS": 2
-				}
-			}
-		]
-	},
-	{
-		"name": "Texture",
-		"base_class": "Resource",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": false,
-		"is_reference": true,
-		"constants": {
-			"FLAG_MIPMAPS": 1,
-			"FLAG_REPEAT": 2,
-			"FLAG_FILTER": 4,
-			"FLAG_VIDEO_SURFACE": 4096,
-			"FLAGS_DEFAULT": 7,
-			"FLAG_ANISOTROPIC_FILTER": 8,
-			"FLAG_CONVERT_TO_LINEAR": 16,
-			"FLAG_MIRRORED_REPEAT": 32
-		},
-		"properties": [
-		],
-		"signals": [
-		],
-		"methods": [
-			{
-				"name": "get_width",
-				"return_type": "int",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_height",
-				"return_type": "int",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_size",
-				"return_type": "Vector2",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "has_alpha",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_flags",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "flags",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_flags",
-				"return_type": "int",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "draw",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "canvas_item",
-						"type": "RID",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "pos",
-						"type": "Vector2",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "modulate",
-						"type": "Color",
-						"has_default_value": true,
-						"default_value": "1,1,1,1"
-					},
-					{
-						"name": "transpose",
-						"type": "bool",
-						"has_default_value": true,
-						"default_value": "False"
-					},
-					{
-						"name": "normal_map",
-						"type": "Texture",
-						"has_default_value": true,
-						"default_value": "Null"
-					}
-				]
-			},
-			{
-				"name": "draw_rect",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "canvas_item",
-						"type": "RID",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "rect",
-						"type": "Rect2",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "tile",
-						"type": "bool",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "modulate",
-						"type": "Color",
-						"has_default_value": true,
-						"default_value": "1,1,1,1"
-					},
-					{
-						"name": "transpose",
-						"type": "bool",
-						"has_default_value": true,
-						"default_value": "False"
-					},
-					{
-						"name": "normal_map",
-						"type": "Texture",
-						"has_default_value": true,
-						"default_value": "Null"
-					}
-				]
-			},
-			{
-				"name": "draw_rect_region",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "canvas_item",
-						"type": "RID",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "rect",
-						"type": "Rect2",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "src_rect",
-						"type": "Rect2",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "modulate",
-						"type": "Color",
-						"has_default_value": true,
-						"default_value": "1,1,1,1"
-					},
-					{
-						"name": "transpose",
-						"type": "bool",
-						"has_default_value": true,
-						"default_value": "False"
-					},
-					{
-						"name": "normal_map",
-						"type": "Texture",
-						"has_default_value": true,
-						"default_value": "Null"
-					},
-					{
-						"name": "clip_uv",
-						"type": "bool",
-						"has_default_value": true,
-						"default_value": "True"
-					}
-				]
-			},
-			{
-				"name": "get_data",
-				"return_type": "Image",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			}
-		],
-		"enums": [
-			{
-				"name": "Flags",
-				"values": {
-					"FLAG_MIPMAPS": 1,
-					"FLAG_REPEAT": 2,
-					"FLAG_FILTER": 4,
-					"FLAGS_DEFAULT": 7,
-					"FLAG_ANISOTROPIC_FILTER": 8,
-					"FLAG_CONVERT_TO_LINEAR": 16,
-					"FLAG_MIRRORED_REPEAT": 32,
-					"FLAG_VIDEO_SURFACE": 4096
-				}
-			}
 		]
 	},
 	{
@@ -32040,7 +31984,7 @@
 				]
 			},
 			{
-				"name": "set_cursor_pos",
+				"name": "set_cursor_position",
 				"return_type": "void",
 				"is_editor": false,
 				"is_noscript": false,
@@ -32051,7 +31995,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "int",
 						"has_default_value": false,
 						"default_value": ""
@@ -32059,7 +32003,7 @@
 				]
 			},
 			{
-				"name": "get_cursor_pos",
+				"name": "get_cursor_position",
 				"return_type": "int",
 				"is_editor": false,
 				"is_noscript": false,
@@ -32362,6 +32306,62 @@
 					"MENU_MAX": 6
 				}
 			}
+		]
+	},
+	{
+		"name": "ProgressBar",
+		"base_class": "Range",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": true,
+		"is_reference": false,
+		"constants": {
+		},
+		"properties": [
+			{
+				"name": "percent_visible",
+				"type": "bool",
+				"getter": "is_percent_visible",
+				"setter": "set_percent_visible"
+			}
+		],
+		"signals": [
+		],
+		"methods": [
+			{
+				"name": "set_percent_visible",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "visible",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "is_percent_visible",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			}
+		],
+		"enums": [
 		]
 	},
 	{
@@ -33513,6 +33513,24 @@
 	{
 		"name": "VSlider",
 		"base_class": "Slider",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": true,
+		"is_reference": false,
+		"constants": {
+		},
+		"properties": [
+		],
+		"signals": [
+		],
+		"methods": [
+		],
+		"enums": [
+		]
+	},
+	{
+		"name": "ReferenceRect",
+		"base_class": "Control",
 		"api_type": "core",
 		"singleton": false,
 		"instanciable": true,
@@ -36134,7 +36152,7 @@
 				]
 			},
 			{
-				"name": "get_connection_output_pos",
+				"name": "get_connection_output_position",
 				"return_type": "Vector2",
 				"is_editor": false,
 				"is_noscript": false,
@@ -36191,7 +36209,7 @@
 				]
 			},
 			{
-				"name": "get_connection_input_pos",
+				"name": "get_connection_input_position",
 				"return_type": "Vector2",
 				"is_editor": false,
 				"is_noscript": false,
@@ -36410,7 +36428,7 @@
 				"name": "empty_tree_rmb_selected",
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"default_value": ""
 					}
@@ -36425,7 +36443,7 @@
 				"name": "item_rmb_selected",
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"default_value": ""
 					}
@@ -36896,7 +36914,7 @@
 				]
 			},
 			{
-				"name": "get_item_at_pos",
+				"name": "get_item_at_position",
 				"return_type": "TreeItem",
 				"is_editor": false,
 				"is_noscript": false,
@@ -36907,7 +36925,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -36915,7 +36933,7 @@
 				]
 			},
 			{
-				"name": "get_column_at_pos",
+				"name": "get_column_at_position",
 				"return_type": "int",
 				"is_editor": false,
 				"is_noscript": false,
@@ -36926,7 +36944,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -36934,7 +36952,7 @@
 				]
 			},
 			{
-				"name": "get_drop_section_at_pos",
+				"name": "get_drop_section_at_position",
 				"return_type": "int",
 				"is_editor": false,
 				"is_noscript": false,
@@ -36945,7 +36963,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -37312,7 +37330,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "atpos",
+						"name": "at_position",
 						"type": "Vector2",
 						"default_value": ""
 					}
@@ -38237,7 +38255,7 @@
 				]
 			},
 			{
-				"name": "get_item_at_pos",
+				"name": "get_item_at_position",
 				"return_type": "int",
 				"is_editor": false,
 				"is_noscript": false,
@@ -38248,7 +38266,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -40442,6 +40460,32 @@
 				"is_from_script": false,
 				"arguments": [
 				]
+			},
+			{
+				"name": "get_line_count",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_visible_line_count",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
 			}
 		],
 		"enums": [
@@ -40535,8 +40579,8 @@
 		]
 	},
 	{
-		"name": "HBoxContainer",
-		"base_class": "BoxContainer",
+		"name": "MarginContainer",
+		"base_class": "Container",
 		"api_type": "core",
 		"singleton": false,
 		"instanciable": true,
@@ -40553,8 +40597,8 @@
 		]
 	},
 	{
-		"name": "MarginContainer",
-		"base_class": "Container",
+		"name": "HBoxContainer",
+		"base_class": "BoxContainer",
 		"api_type": "core",
 		"singleton": false,
 		"instanciable": true,
@@ -40622,24 +40666,6 @@
 				"arguments": [
 				]
 			}
-		],
-		"enums": [
-		]
-	},
-	{
-		"name": "ReferenceRect",
-		"base_class": "Control",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": true,
-		"is_reference": false,
-		"constants": {
-		},
-		"properties": [
-		],
-		"signals": [
-		],
-		"methods": [
 		],
 		"enums": [
 		]
@@ -40715,7 +40741,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "release_pos",
+						"name": "release_position",
 						"type": "Vector2",
 						"default_value": ""
 					}
@@ -41936,7 +41962,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "to_pos",
+						"name": "to_position",
 						"type": "int",
 						"has_default_value": false,
 						"default_value": ""
@@ -44181,7 +44207,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "to_pos",
+						"name": "to_position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -46299,7 +46325,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -46336,7 +46362,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -46649,7 +46675,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -46692,7 +46718,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -46729,13 +46755,13 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
 					},
 					{
-						"name": "rot",
+						"name": "rotation",
 						"type": "float",
 						"has_default_value": false,
 						"default_value": ""
@@ -46846,7 +46872,7 @@
 				]
 			},
 			{
-				"name": "get_local_mouse_pos",
+				"name": "get_local_mouse_position",
 				"return_type": "Vector2",
 				"is_editor": false,
 				"is_noscript": false,
@@ -47026,7 +47052,7 @@
 				]
 			},
 			{
-				"name": "make_canvas_pos_local",
+				"name": "make_canvas_position_local",
 				"return_type": "Vector2",
 				"is_editor": false,
 				"is_noscript": false,
@@ -47207,7 +47233,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -47461,7 +47487,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -48080,6 +48106,10 @@
 			"PRESET_VCENTER_WIDE": 13,
 			"PRESET_HCENTER_WIDE": 14,
 			"PRESET_WIDE": 15,
+			"PRESET_MODE_MINSIZE": 0,
+			"PRESET_MODE_KEEP_HEIGHT": 2,
+			"PRESET_MODE_KEEP_WIDTH": 1,
+			"PRESET_MODE_KEEP_SIZE": 3,
 			"SIZE_EXPAND": 2,
 			"SIZE_FILL": 1,
 			"SIZE_EXPAND_FILL": 3,
@@ -48354,7 +48384,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -48373,7 +48403,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -48398,7 +48428,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -48496,6 +48526,93 @@
 				]
 			},
 			{
+				"name": "set_anchors_preset",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "preset",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "keep_margin",
+						"type": "bool",
+						"has_default_value": true,
+						"default_value": "False"
+					}
+				]
+			},
+			{
+				"name": "set_margins_preset",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "preset",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "resize_mode",
+						"type": "int",
+						"has_default_value": true,
+						"default_value": "0"
+					},
+					{
+						"name": "margin",
+						"type": "int",
+						"has_default_value": true,
+						"default_value": "0"
+					}
+				]
+			},
+			{
+				"name": "set_anchors_and_margins_preset",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "preset",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "resize_mode",
+						"type": "int",
+						"has_default_value": true,
+						"default_value": "0"
+					},
+					{
+						"name": "margin",
+						"type": "int",
+						"has_default_value": true,
+						"default_value": "0"
+					}
+				]
+			},
+			{
 				"name": "set_anchor",
 				"return_type": "void",
 				"is_editor": false,
@@ -48554,31 +48671,6 @@
 						"type": "float",
 						"has_default_value": false,
 						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "set_anchors_preset",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "preset",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "keep_margin",
-						"type": "bool",
-						"has_default_value": true,
-						"default_value": "False"
 					}
 				]
 			},
@@ -48675,7 +48767,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -48694,7 +48786,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -48713,7 +48805,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -48770,7 +48862,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -49071,25 +49163,6 @@
 				"has_varargs": false,
 				"is_from_script": false,
 				"arguments": [
-				]
-			},
-			{
-				"name": "set_area_as_parent_rect",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "margin",
-						"type": "int",
-						"has_default_value": true,
-						"default_value": "0"
-					}
 				]
 			},
 			{
@@ -49926,7 +49999,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "atpos",
+						"name": "at_position",
 						"type": "Vector2",
 						"has_default_value": true,
 						"default_value": "(0, 0)"
@@ -49990,7 +50063,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": true,
 						"default_value": "(0, 0)"
@@ -50193,7 +50266,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "to_pos",
+						"name": "to_position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -50254,6 +50327,15 @@
 					"FOCUS_NONE": 0,
 					"FOCUS_CLICK": 1,
 					"FOCUS_ALL": 2
+				}
+			},
+			{
+				"name": "LayoutPresetMode",
+				"values": {
+					"PRESET_MODE_MINSIZE": 0,
+					"PRESET_MODE_KEEP_WIDTH": 1,
+					"PRESET_MODE_KEEP_HEIGHT": 2,
+					"PRESET_MODE_KEEP_SIZE": 3
 				}
 			},
 			{
@@ -52560,7 +52642,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -52585,7 +52667,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -53038,7 +53120,7 @@
 				]
 			},
 			{
-				"name": "_update_scrollbar_pos",
+				"name": "_update_scrollbar_position",
 				"return_type": "void",
 				"is_editor": false,
 				"is_noscript": false,
@@ -55558,7 +55640,7 @@
 				]
 			},
 			{
-				"name": "get_stream_pos",
+				"name": "get_stream_position",
 				"return_type": "float",
 				"is_editor": false,
 				"is_noscript": false,
@@ -56531,7 +56613,7 @@
 				]
 			},
 			{
-				"name": "look_at_from_pos",
+				"name": "look_at_from_position",
 				"return_type": "void",
 				"is_editor": false,
 				"is_noscript": false,
@@ -56542,7 +56624,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector3",
 						"has_default_value": false,
 						"default_value": ""
@@ -57758,7 +57840,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos_sec",
+						"name": "seconds",
 						"type": "float",
 						"has_default_value": false,
 						"default_value": ""
@@ -57772,7 +57854,7 @@
 				]
 			},
 			{
-				"name": "get_pos",
+				"name": "get_position",
 				"return_type": "float",
 				"is_editor": false,
 				"is_noscript": false,
@@ -57849,7 +57931,7 @@
 				]
 			},
 			{
-				"name": "get_current_animation_pos",
+				"name": "get_current_animation_position",
 				"return_type": "float",
 				"is_editor": false,
 				"is_noscript": false,
@@ -61048,7 +61130,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector3",
 						"has_default_value": false,
 						"default_value": ""
@@ -62311,7 +62393,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "atpos",
+						"name": "at_position",
 						"type": "int",
 						"has_default_value": true,
 						"default_value": "-1"
@@ -65485,7 +65567,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos_sec",
+						"name": "seconds",
 						"type": "float",
 						"has_default_value": false,
 						"default_value": ""
@@ -65706,7 +65788,7 @@
 				]
 			},
 			{
-				"name": "node_set_pos",
+				"name": "node_set_position",
 				"return_type": "void",
 				"is_editor": false,
 				"is_noscript": false,
@@ -65723,7 +65805,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "screen_pos",
+						"name": "screen_position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -65731,7 +65813,7 @@
 				]
 			},
 			{
-				"name": "node_get_pos",
+				"name": "node_get_position",
 				"return_type": "Vector2",
 				"is_editor": false,
 				"is_noscript": false,
@@ -67997,7 +68079,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "click_pos",
+						"name": "click_position",
 						"type": "Vector3",
 						"default_value": ""
 					},
@@ -68039,7 +68121,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "click_pos",
+						"name": "click_position",
 						"type": "Vector3",
 						"has_default_value": false,
 						"default_value": ""
@@ -69573,7 +69655,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector3",
 						"has_default_value": false,
 						"default_value": ""
@@ -73334,7 +73416,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector3",
 						"has_default_value": false,
 						"default_value": ""
@@ -73352,7 +73434,7 @@
 						"default_value": "(0, 0, 0)"
 					},
 					{
-						"name": "atpos",
+						"name": "at_position",
 						"type": "int",
 						"has_default_value": true,
 						"default_value": "-1"
@@ -73360,7 +73442,7 @@
 				]
 			},
 			{
-				"name": "set_point_pos",
+				"name": "set_point_position",
 				"return_type": "void",
 				"is_editor": false,
 				"is_noscript": false,
@@ -73377,7 +73459,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector3",
 						"has_default_value": false,
 						"default_value": ""
@@ -73385,7 +73467,7 @@
 				]
 			},
 			{
-				"name": "get_point_pos",
+				"name": "get_point_position",
 				"return_type": "Vector3",
 				"is_editor": false,
 				"is_noscript": false,
@@ -73465,7 +73547,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector3",
 						"has_default_value": false,
 						"default_value": ""
@@ -73509,7 +73591,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector3",
 						"has_default_value": false,
 						"default_value": ""
@@ -81675,7 +81757,7 @@
 				]
 			},
 			{
-				"name": "set_point_pos",
+				"name": "set_point_position",
 				"return_type": "void",
 				"is_editor": false,
 				"is_noscript": false,
@@ -81692,7 +81774,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -81700,7 +81782,7 @@
 				]
 			},
 			{
-				"name": "get_point_pos",
+				"name": "get_point_position",
 				"return_type": "Vector2",
 				"is_editor": false,
 				"is_noscript": false,
@@ -81743,7 +81825,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -84864,8 +84946,8 @@
 			{
 				"name": "audio_bus_name",
 				"type": "String",
-				"getter": "get_audio_bus",
-				"setter": "set_audio_bus"
+				"getter": "get_audio_bus_name",
+				"setter": "set_audio_bus_name"
 			}
 		],
 		"signals": [
@@ -85624,7 +85706,7 @@
 				]
 			},
 			{
-				"name": "set_audio_bus",
+				"name": "set_audio_bus_name",
 				"return_type": "void",
 				"is_editor": false,
 				"is_noscript": false,
@@ -85643,7 +85725,7 @@
 				]
 			},
 			{
-				"name": "get_audio_bus",
+				"name": "get_audio_bus_name",
 				"return_type": "String",
 				"is_editor": false,
 				"is_noscript": false,
@@ -89265,7 +89347,7 @@
 				]
 			},
 			{
-				"name": "get_camera_pos",
+				"name": "get_camera_position",
 				"return_type": "Vector2",
 				"is_editor": false,
 				"is_noscript": false,
@@ -91707,7 +91789,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -91775,7 +91857,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -91927,7 +92009,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "mappos",
+						"name": "map_position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -91952,7 +92034,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "worldpos",
+						"name": "world_position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -95161,6 +95243,12 @@
 				"setter": "set_feature"
 			},
 			{
+				"name": "ao_light_affect",
+				"type": "float",
+				"getter": "get_ao_light_affect",
+				"setter": "set_ao_light_affect"
+			},
+			{
 				"name": "ao_texture",
 				"type": "Texture",
 				"getter": "get_texture",
@@ -95357,6 +95445,36 @@
 				"type": "float",
 				"getter": "get_uv2_triplanar_blend_sharpness",
 				"setter": "set_uv2_triplanar_blend_sharpness"
+			},
+			{
+				"name": "proximity_fade_enable",
+				"type": "bool",
+				"getter": "is_proximity_fade_enabled",
+				"setter": "set_proximity_fade"
+			},
+			{
+				"name": "proximity_fade_distance",
+				"type": "float",
+				"getter": "get_proximity_fade_distance",
+				"setter": "set_proximity_fade_distance"
+			},
+			{
+				"name": "distance_fade_enable",
+				"type": "bool",
+				"getter": "is_distance_fade_enabled",
+				"setter": "set_distance_fade"
+			},
+			{
+				"name": "distance_fade_min_distance",
+				"type": "float",
+				"getter": "get_distance_fade_min_distance",
+				"setter": "set_distance_fade_min_distance"
+			},
+			{
+				"name": "distance_fade_max_distance",
+				"type": "float",
+				"getter": "get_distance_fade_max_distance",
+				"setter": "set_distance_fade_max_distance"
 			}
 		],
 		"signals": [
@@ -96743,6 +96861,38 @@
 				]
 			},
 			{
+				"name": "set_ao_light_affect",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "amount",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_ao_light_affect",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
 				"name": "set_alpha_scissor_threshold",
 				"return_type": "void",
 				"is_editor": false,
@@ -96924,6 +97074,166 @@
 			{
 				"name": "get_refraction_texture_channel",
 				"return_type": "enum.SpatialMaterial::TextureChannel",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_proximity_fade",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "enabled",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "is_proximity_fade_enabled",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_proximity_fade_distance",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "distance",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_proximity_fade_distance",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_distance_fade",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "enabled",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "is_distance_fade_enabled",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_distance_fade_max_distance",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "distance",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_distance_fade_max_distance",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_distance_fade_min_distance",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "distance",
+						"type": "float",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_distance_fade_min_distance",
+				"return_type": "float",
 				"is_editor": false,
 				"is_noscript": false,
 				"is_const": true,
@@ -101409,7 +101719,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -101473,7 +101783,7 @@
 				]
 			},
 			{
-				"name": "get_point_pos",
+				"name": "get_point_position",
 				"return_type": "Vector2",
 				"is_editor": false,
 				"is_noscript": false,
@@ -102187,7 +102497,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "at_pos",
+						"name": "at_position",
 						"type": "int",
 						"has_default_value": true,
 						"default_value": "-1"
@@ -102414,13 +102724,13 @@
 						"default_value": ""
 					},
 					{
-						"name": "loc",
+						"name": "location",
 						"type": "Vector3",
 						"has_default_value": false,
 						"default_value": ""
 					},
 					{
-						"name": "rot",
+						"name": "rotation",
 						"type": "Quat",
 						"has_default_value": false,
 						"default_value": ""
@@ -102496,7 +102806,7 @@
 				]
 			},
 			{
-				"name": "track_remove_key_at_pos",
+				"name": "track_remove_key_at_position",
 				"return_type": "void",
 				"is_editor": false,
 				"is_noscript": false,
@@ -102513,7 +102823,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "float",
 						"has_default_value": false,
 						"default_value": ""
@@ -104583,7 +104893,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "from_pos",
+						"name": "from_position",
 						"type": "float",
 						"has_default_value": true,
 						"default_value": "0"
@@ -104602,7 +104912,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "to_pos",
+						"name": "to_position",
 						"type": "float",
 						"has_default_value": false,
 						"default_value": ""
@@ -104636,7 +104946,7 @@
 				]
 			},
 			{
-				"name": "get_pos",
+				"name": "get_playback_position",
 				"return_type": "float",
 				"is_editor": false,
 				"is_noscript": false,
@@ -104944,7 +105254,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "from_pos",
+						"name": "from_position",
 						"type": "float",
 						"has_default_value": true,
 						"default_value": "0"
@@ -104963,7 +105273,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "to_pos",
+						"name": "to_position",
 						"type": "float",
 						"has_default_value": false,
 						"default_value": ""
@@ -104997,7 +105307,7 @@
 				]
 			},
 			{
-				"name": "get_pos",
+				"name": "get_playback_position",
 				"return_type": "float",
 				"is_editor": false,
 				"is_noscript": false,
@@ -105487,7 +105797,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "from_pos",
+						"name": "from_position",
 						"type": "float",
 						"has_default_value": true,
 						"default_value": "0"
@@ -105506,7 +105816,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "to_pos",
+						"name": "to_position",
 						"type": "float",
 						"has_default_value": false,
 						"default_value": ""
@@ -105540,7 +105850,7 @@
 				]
 			},
 			{
-				"name": "get_pos",
+				"name": "get_playback_position",
 				"return_type": "float",
 				"is_editor": false,
 				"is_noscript": false,
@@ -106946,7 +107256,7 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -106964,7 +107274,7 @@
 						"default_value": "(0, 0)"
 					},
 					{
-						"name": "atpos",
+						"name": "at_position",
 						"type": "int",
 						"has_default_value": true,
 						"default_value": "-1"
@@ -106972,7 +107282,7 @@
 				]
 			},
 			{
-				"name": "set_point_pos",
+				"name": "set_point_position",
 				"return_type": "void",
 				"is_editor": false,
 				"is_noscript": false,
@@ -106989,7 +107299,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -106997,7 +107307,7 @@
 				]
 			},
 			{
-				"name": "get_point_pos",
+				"name": "get_point_position",
 				"return_type": "Vector2",
 				"is_editor": false,
 				"is_noscript": false,
@@ -107033,7 +107343,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -107077,7 +107387,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -108790,7 +109100,8 @@
 			"STRETCH_ASPECT_IGNORE": 0,
 			"STRETCH_ASPECT_KEEP": 1,
 			"STRETCH_ASPECT_KEEP_WIDTH": 2,
-			"STRETCH_ASPECT_KEEP_HEIGHT": 3
+			"STRETCH_ASPECT_KEEP_HEIGHT": 3,
+			"STRETCH_ASPECT_EXPAND": 4
 		},
 		"properties": [
 		],
@@ -109714,7 +110025,8 @@
 					"STRETCH_ASPECT_IGNORE": 0,
 					"STRETCH_ASPECT_KEEP": 1,
 					"STRETCH_ASPECT_KEEP_WIDTH": 2,
-					"STRETCH_ASPECT_KEEP_HEIGHT": 3
+					"STRETCH_ASPECT_KEEP_HEIGHT": 3,
+					"STRETCH_ASPECT_EXPAND": 4
 				}
 			},
 			{
@@ -111895,6 +112207,69 @@
 				"is_from_script": false,
 				"arguments": [
 				]
+			},
+			{
+				"name": "property_can_revert",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "name",
+						"type": "String",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "property_get_revert",
+				"return_type": "Variant",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "name",
+						"type": "String",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "set_initial_value",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "name",
+						"type": "String",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "value",
+						"type": "Variant",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
 			}
 		],
 		"enums": [
@@ -112122,6 +112497,12 @@
 					{
 						"name": "triangles",
 						"type": "TriangleMesh",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "bounds",
+						"type": "Rect3",
 						"has_default_value": false,
 						"default_value": ""
 					}
@@ -114206,6 +114587,56 @@
 		]
 	},
 	{
+		"name": "EditorResourceConversionPlugin",
+		"base_class": "Reference",
+		"api_type": "tools",
+		"singleton": false,
+		"instanciable": true,
+		"is_reference": true,
+		"constants": {
+		},
+		"properties": [
+		],
+		"signals": [
+		],
+		"methods": [
+			{
+				"name": "_convert",
+				"return_type": "Resource",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "resource",
+						"type": "Resource",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "_converts_to",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			}
+		],
+		"enums": [
+		]
+	},
+	{
 		"name": "NetworkedMultiplayerPeer",
 		"base_class": "PacketPeer",
 		"api_type": "core",
@@ -116110,7 +116541,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": true,
 						"default_value": "(0, 0)"
@@ -116212,7 +116643,7 @@
 				]
 			},
 			{
-				"name": "set_node_pos",
+				"name": "set_node_position",
 				"return_type": "void",
 				"is_editor": false,
 				"is_noscript": false,
@@ -116235,7 +116666,7 @@
 						"default_value": ""
 					},
 					{
-						"name": "pos",
+						"name": "position",
 						"type": "Vector2",
 						"has_default_value": false,
 						"default_value": ""
@@ -116243,7 +116674,7 @@
 				]
 			},
 			{
-				"name": "get_node_pos",
+				"name": "get_node_position",
 				"return_type": "Vector2",
 				"is_editor": false,
 				"is_noscript": false,

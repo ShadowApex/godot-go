@@ -15,6 +15,7 @@ import (
 	"log"
 	"os"
 	"regexp"
+	"sort"
 	"strings"
 	"text/template"
 	"unicode"
@@ -35,10 +36,24 @@ type GDAPI struct {
 	IsReference  bool             `json:"is_reference"`
 }
 
+// ByName is used for sorting GDAPI objects by name
+type ByName []GDAPI
+
+func (c ByName) Len() int           { return len(c) }
+func (c ByName) Swap(i, j int)      { c[i], c[j] = c[j], c[i] }
+func (c ByName) Less(i, j int) bool { return c[i].Name < c[j].Name }
+
 type GDEnums struct {
 	Name   string           `json:"name"`
 	Values map[string]int64 `json:"values"`
 }
+
+// ByEnumName is used for sorting GDAPI objects by name
+type ByEnumName []GDEnums
+
+func (c ByEnumName) Len() int           { return len(c) }
+func (c ByEnumName) Swap(i, j int)      { c[i], c[j] = c[j], c[i] }
+func (c ByEnumName) Less(i, j int) bool { return c[i].Name < c[j].Name }
 
 type GDMethod struct {
 	Arguments    []GDArgument `json:"arguments"`
@@ -52,6 +67,13 @@ type GDMethod struct {
 	Name         string       `json:"name"`
 	ReturnType   string       `json:"return_type"`
 }
+
+// ByMethodName is used for sorting GDAPI objects by name
+type ByMethodName []GDMethod
+
+func (c ByMethodName) Len() int           { return len(c) }
+func (c ByMethodName) Swap(i, j int)      { c[i], c[j] = c[j], c[i] }
+func (c ByMethodName) Less(i, j int) bool { return c[i].Name < c[j].Name }
 
 type GDArgument struct {
 	DefaultValue    string `json:"default_value"`
@@ -67,10 +89,24 @@ type GDProperty struct {
 	Type   string `json:"type"`
 }
 
+// ByPropertyName is used for sorting GDAPI objects by name
+type ByPropertyName []GDProperty
+
+func (c ByPropertyName) Len() int           { return len(c) }
+func (c ByPropertyName) Swap(i, j int)      { c[i], c[j] = c[j], c[i] }
+func (c ByPropertyName) Less(i, j int) bool { return c[i].Name < c[j].Name }
+
 type GDSignal struct {
 	Arguments []GDArgument `json:"arguments"`
 	Name      string       `json:"name"`
 }
+
+// BySignalName is used for sorting GDAPI objects by name
+type BySignalName []GDSignal
+
+func (c BySignalName) Len() int           { return len(c) }
+func (c BySignalName) Swap(i, j int)      { c[i], c[j] = c[j], c[i] }
+func (c BySignalName) Less(i, j int) bool { return c[i].Name < c[j].Name }
 
 // GDAPIDoc is a structure for parsed documentation.
 type GDAPIDoc struct {
@@ -203,6 +239,9 @@ func (v View) IsValidClass(classString, inheritsString string) bool {
 	if strings.HasPrefix(classString, "@") {
 		return false
 	}
+	if strings.HasPrefix(classString, "_") {
+		return false
+	}
 	if unicode.IsLower(runeString[0]) {
 		return false
 	}
@@ -295,6 +334,15 @@ func main() {
 	view.SingletonMap = map[string]bool{}
 	for _, api := range view.APIs {
 		view.SingletonMap[api.Name] = api.Singleton
+	}
+
+	// Sort the APIs so they will be generated in order.
+	sort.Sort(ByName(view.APIs))
+	for _, api := range view.APIs {
+		sort.Sort(ByMethodName(api.Methods))
+		sort.Sort(ByEnumName(api.Enums))
+		sort.Sort(ByPropertyName(api.Properties))
+		sort.Sort(BySignalName(api.Signals))
 	}
 
 	// List out template file
