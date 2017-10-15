@@ -2,8 +2,8 @@ package godot
 
 /*
 #include <stdio.h>
-#include <godot/gdnative.h>
-#include <godot_nativescript.h>
+#include <gdnative/gdnative.h>
+#include <nativescript/godot_nativescript.h>
 
 // This is a gateway function for the create method.
 void *go_create_func_cgo(godot_object *obj, void *method_data)

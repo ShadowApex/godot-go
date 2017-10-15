@@ -6,7 +6,7 @@ package godot
 #cgo LDFLAGS: -Wl,-unresolved-symbols=ignore-all
 #include <stddef.h>
 #include <stdlib.h>
-#include <godot_nativescript.h>
+#include <nativescript/godot_nativescript.h>
 
 // Type definitions for any function pointers. Some of these are not defined in
 // the godot headers when they are part of a typedef struct.

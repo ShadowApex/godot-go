@@ -7,8 +7,8 @@ import (
 /*
 #include <stdio.h>
 #include <stdlib.h>
-#include <godot/gdnative.h>
-#include <godot_nativescript.h>
+#include <gdnative/gdnative.h>
+#include <nativescript/godot_nativescript.h>
 */
 import "C"
 
