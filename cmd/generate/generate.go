@@ -10,7 +10,6 @@ import (
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
-	"github.com/pinzolo/casee"
 	"io/ioutil"
 	"log"
 	"os"
@@ -19,6 +18,8 @@ import (
 	"strings"
 	"text/template"
 	"unicode"
+
+	"github.com/pinzolo/casee"
 )
 
 // GDAPI is a structure for parsed JSON from godot_api.json.
@@ -202,6 +203,8 @@ func (v View) GoArgName(argString string) string {
 		return "function"
 	case "return":
 		return "returns"
+	case "interface":
+		return "intrfce"
 	}
 
 	return casee.ToCamelCase(argString)

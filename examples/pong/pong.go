@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/shadowapex/godot-go/godot"
 	"log"
+
+	"github.com/shadowapex/godot-go/godot"
 )
 
 // NewPongClass is a constructor that we can pass to godot.
@@ -33,27 +34,28 @@ func (p *PongClass) X_ready() {
 	// Get the left paddle node.
 	godot.Log.Warning("***Get Left***")
 	left := p.GetNode(godot.NewNodePath("left"))
-
-	// Troubleshooting
-	godot.Log.Warning("***pongClass***")
-	godot.Log.Warning(p)
-	godot.Log.Warning("***left***")
 	godot.Log.Warning(left)
 
-	godot.Log.Warning("***pongClass Owner***")
-	godot.Log.Warning(p.GetOwner())
-	godot.Log.Warning("***Left Owner***")
-	godot.Log.Warning(left.GetOwner())
+	// Troubleshooting
+	//godot.Log.Warning("***pongClass***")
+	//godot.Log.Warning(p)
+	//godot.Log.Warning("***left***")
+	//godot.Log.Warning(left)
 
-	godot.Log.Warning("***pongClass Name***")
-	godot.Log.Warning(p.GetName())
-	godot.Log.Warning("***Left Name***")
-	godot.Log.Warning(left.GetName())
+	//godot.Log.Warning("***pongClass Owner***")
+	//godot.Log.Warning(p.GetOwner())
+	//godot.Log.Warning("***Left Owner***")
+	//godot.Log.Warning(left.GetOwner())
 
-	godot.Log.Warning("***pongClass Class***")
-	godot.Log.Warning(p.GetClass())
-	godot.Log.Warning("***Left Class***")
-	godot.Log.Warning(left.GetClass())
+	//godot.Log.Warning("***pongClass Name***")
+	//godot.Log.Warning(p.GetName())
+	//godot.Log.Warning("***Left Name***")
+	//godot.Log.Warning(left.GetName())
+
+	//godot.Log.Warning("***pongClass Class***")
+	//godot.Log.Warning(p.GetClass())
+	//godot.Log.Warning("***Left Class***")
+	//godot.Log.Warning(left.GetClass())
 }
 
 //func (p *PongClass) X_process(delta float64) {

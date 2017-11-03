@@ -122,6 +122,26 @@ func (o *ARVRAnchor) GetIsActive() bool {
 }
 
 /*
+   Returns a plane aligned with our anchor, handy for intersection testing
+*/
+func (o *ARVRAnchor) GetPlane() *Plane {
+	log.Println("Calling ARVRAnchor.GetPlane()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_plane", goArguments, "*Plane")
+
+	returnValue := goRet.Interface().(*Plane)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
    Returns the estimated size of the plane that was detected. Say when the anchor relates to a table in the real world, this is the estimated size of the surface of that table.
 */
 func (o *ARVRAnchor) GetSize() *Vector3 {
@@ -236,8 +256,8 @@ func (o *ARVRController) GetControllerName() string {
 }
 
 /*
-
- */
+   Returns the hand holding this controller, if known. See TRACKER_* constants in [ARVRPositionalTracker].
+*/
 func (o *ARVRController) GetHand() int64 {
 	log.Println("Calling ARVRController.GetHand()")
 
@@ -374,6 +394,46 @@ func (o *ARVRInterface) baseClass() string {
 }
 
 /*
+   Returns true if achor detection is enabled (AR only).
+*/
+func (o *ARVRInterface) GetAnchorDetectionIsEnabled() bool {
+	log.Println("Calling ARVRInterface.GetAnchorDetectionIsEnabled()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_anchor_detection_is_enabled", goArguments, "bool")
+
+	returnValue := goRet.Interface().(bool)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Returns a combination of flags providing information about the capabilities of this interface.
+*/
+func (o *ARVRInterface) GetCapabilities() int64 {
+	log.Println("Calling ARVRInterface.GetCapabilities()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_capabilities", goArguments, "int64")
+
+	returnValue := goRet.Interface().(int64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
    Returns the name of this interface (OpenVR, OpenHMD, ARKit, etc).
 */
 func (o *ARVRInterface) GetName() string {
@@ -414,19 +474,19 @@ func (o *ARVRInterface) GetRecommendedRenderTargetsize() *Vector2 {
 }
 
 /*
-   Undocumented
+   If supported, returns the status of our tracking. This will allow you to provide feedback to the user whether there are issues with positional tracking.
 */
-func (o *ARVRInterface) HmdIsPresent() bool {
-	log.Println("Calling ARVRInterface.HmdIsPresent()")
+func (o *ARVRInterface) GetTrackingStatus() int64 {
+	log.Println("Calling ARVRInterface.GetTrackingStatus()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "hmd_is_present", goArguments, "bool")
+	goRet := o.callParentMethod(o.baseClass(), "get_tracking_status", goArguments, "int64")
 
-	returnValue := goRet.Interface().(bool)
+	returnValue := goRet.Interface().(int64)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -474,26 +534,6 @@ func (o *ARVRInterface) IsInitialized() bool {
 }
 
 /*
-   Undocumented
-*/
-func (o *ARVRInterface) IsInstalled() bool {
-	log.Println("Calling ARVRInterface.IsInstalled()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "is_installed", goArguments, "bool")
-
-	returnValue := goRet.Interface().(bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
    Returns true if this interface is currently the primary interface (the interface responsible for showing the output).
 */
 func (o *ARVRInterface) IsPrimary() bool {
@@ -514,6 +554,62 @@ func (o *ARVRInterface) IsPrimary() bool {
 }
 
 /*
+   Returns true if the current output of this interface is in stereo.
+*/
+func (o *ARVRInterface) IsStereo() bool {
+	log.Println("Calling ARVRInterface.IsStereo()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_stereo", goArguments, "bool")
+
+	returnValue := goRet.Interface().(bool)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Enables anchor detection, this is used on AR interfaces and enables the extra logic that will detect planes, features, objects, etc. and adds/modifies anchor points.
+*/
+func (o *ARVRInterface) SetAnchorDetectionIsEnabled(enable bool) {
+	log.Println("Calling ARVRInterface.SetAnchorDetectionIsEnabled()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(enable)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_anchor_detection_is_enabled", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Initialize/uninitialize this interface (same effect as calling initialize/uninitialize).
+*/
+func (o *ARVRInterface) SetIsInitialized(initialized bool) {
+	log.Println("Calling ARVRInterface.SetIsInitialized()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(initialized)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_is_initialized", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
    Set this interface to the primary interface (unset the old one).
 */
 func (o *ARVRInterface) SetIsPrimary(enable bool) {
@@ -528,26 +624,6 @@ func (o *ARVRInterface) SetIsPrimary(enable bool) {
 	o.callParentMethod(o.baseClass(), "set_is_primary", goArguments, "")
 
 	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ARVRInterface) SupportsHmd() bool {
-	log.Println("Calling ARVRInterface.SupportsHmd()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "supports_hmd", goArguments, "bool")
-
-	returnValue := goRet.Interface().(bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
 
 }
 
@@ -572,6 +648,24 @@ func (o *ARVRInterface) Uninitialize() {
    ARVRInterfaceImplementer is an interface for ARVRInterface objects.
 */
 type ARVRInterfaceImplementer interface {
+	Class
+}
+
+/*
+   Undocumented
+*/
+type ARVRInterfaceGDNative struct {
+	ARVRInterface
+}
+
+func (o *ARVRInterfaceGDNative) baseClass() string {
+	return "ARVRInterfaceGDNative"
+}
+
+/*
+   ARVRInterfaceGDNativeImplementer is an interface for ARVRInterfaceGDNative objects.
+*/
+type ARVRInterfaceGDNativeImplementer interface {
 	Class
 }
 
@@ -733,8 +827,8 @@ func (o *ARVRPositionalTracker) X_SetType(aType int64) {
 }
 
 /*
-
- */
+   Returns the hand holding this tracker, if known. See TRACKER_* constants.
+*/
 func (o *ARVRPositionalTracker) GetHand() int64 {
 	log.Println("Calling ARVRPositionalTracker.GetHand()")
 
@@ -920,256 +1014,6 @@ type ARVRPositionalTrackerImplementer interface {
 	Class
 }
 
-/*
-   Undocumented
-*/
-type ARVRScriptInterface struct {
-	ARVRInterface
-}
-
-func (o *ARVRScriptInterface) baseClass() string {
-	return "ARVRScriptInterface"
-}
-
-/*
-   Undocumented
-*/
-func (o *ARVRScriptInterface) X_GetProjectionForEye() {
-	log.Println("Calling ARVRScriptInterface.X_GetProjectionForEye()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_get_projection_for_eye", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ARVRScriptInterface) CommitForEye(eye int64, renderTarget *RID) {
-	log.Println("Calling ARVRScriptInterface.CommitForEye()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(eye)
-	goArguments[1] = reflect.ValueOf(renderTarget)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "commit_for_eye", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ARVRScriptInterface) GetRecommendedRenderTargetsize() *Vector2 {
-	log.Println("Calling ARVRScriptInterface.GetRecommendedRenderTargetsize()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_recommended_render_targetsize", goArguments, "*Vector2")
-
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ARVRScriptInterface) GetTransformForEye(eye int64, camTransform *Transform) *Transform {
-	log.Println("Calling ARVRScriptInterface.GetTransformForEye()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(eye)
-	goArguments[1] = reflect.ValueOf(camTransform)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_transform_for_eye", goArguments, "*Transform")
-
-	returnValue := goRet.Interface().(*Transform)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ARVRScriptInterface) HmdIsPresent() bool {
-	log.Println("Calling ARVRScriptInterface.HmdIsPresent()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "hmd_is_present", goArguments, "bool")
-
-	returnValue := goRet.Interface().(bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ARVRScriptInterface) Initialize() bool {
-	log.Println("Calling ARVRScriptInterface.Initialize()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "initialize", goArguments, "bool")
-
-	returnValue := goRet.Interface().(bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ARVRScriptInterface) IsInitialized() bool {
-	log.Println("Calling ARVRScriptInterface.IsInitialized()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "is_initialized", goArguments, "bool")
-
-	returnValue := goRet.Interface().(bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ARVRScriptInterface) IsInstalled() bool {
-	log.Println("Calling ARVRScriptInterface.IsInstalled()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "is_installed", goArguments, "bool")
-
-	returnValue := goRet.Interface().(bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ARVRScriptInterface) IsStereo() bool {
-	log.Println("Calling ARVRScriptInterface.IsStereo()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "is_stereo", goArguments, "bool")
-
-	returnValue := goRet.Interface().(bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ARVRScriptInterface) Process() {
-	log.Println("Calling ARVRScriptInterface.Process()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "process", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ARVRScriptInterface) SupportsHmd() bool {
-	log.Println("Calling ARVRScriptInterface.SupportsHmd()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "supports_hmd", goArguments, "bool")
-
-	returnValue := goRet.Interface().(bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   Undocumented
-*/
-func (o *ARVRScriptInterface) Uninitialize() {
-	log.Println("Calling ARVRScriptInterface.Uninitialize()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "uninitialize", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ARVRScriptInterfaceImplementer is an interface for ARVRScriptInterface objects.
-*/
-type ARVRScriptInterfaceImplementer interface {
-	Class
-}
-
 func newSingletonARVRServer() *arvrServer {
 	obj := &arvrServer{}
 	ptr := C.godot_global_get_singleton(C.CString("ARVRServer"))
@@ -1196,16 +1040,35 @@ func (o *arvrServer) baseClass() string {
 /*
    Mostly exposed for GDNative based interfaces, this is called to register an available interface with the AR/VR server.
 */
-func (o *arvrServer) AddInterface(arg0 *ARVRInterface) {
+func (o *arvrServer) AddInterface(intrfce *ARVRInterface) {
 	log.Println("Calling ARVRServer.AddInterface()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	goArguments[0] = reflect.ValueOf(intrfce)
 
 	// Call the parent method.
 
 	o.callParentMethod(o.baseClass(), "add_interface", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   This is a really important function to understand correctly. AR and VR platforms all handle positioning slightly differently. For platforms that do not offer spatial tracking our origin point (0,0,0) is the location of our HMD but you have little control over the direction the player is facing in the real world. For platforms that do offer spatial tracking our origin point depends very much on the system. For OpenVR our origin point is usually the center of the tracking space, on the ground. For other platforms its often the location of the tracking camera. This method allows you to center our tracker on the location of the HMD, it will take the current location of the HMD and use that to adjust all our tracking data in essence realigning the real world to your players current position in your game world. For this method to produce usable results tracking information should be available and this often takes a few frames after starting your game. You should call this method after a few seconds have passed, when the user requests a realignment of the display holding a designated button on a controller for a short period of time, and when implementing a teleport mechanism.
+*/
+func (o *arvrServer) CenterOnHmd(ignoreTilt bool, keepHeight bool) {
+	log.Println("Calling ARVRServer.CenterOnHmd()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(ignoreTilt)
+	goArguments[1] = reflect.ValueOf(keepHeight)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "center_on_hmd", goArguments, "")
 
 	log.Println("  Function successfully completed.")
 
@@ -1357,12 +1220,12 @@ func (o *arvrServer) GetWorldScale() float64 {
 /*
    Removes a registered interface, again exposed mostly for GDNative based interfaces.
 */
-func (o *arvrServer) RemoveInterface(arg0 *ARVRInterface) {
+func (o *arvrServer) RemoveInterface(intrfce *ARVRInterface) {
 	log.Println("Calling ARVRServer.RemoveInterface()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	goArguments[0] = reflect.ValueOf(intrfce)
 
 	// Call the parent method.
 
@@ -1373,33 +1236,14 @@ func (o *arvrServer) RemoveInterface(arg0 *ARVRInterface) {
 }
 
 /*
-   Undocumented
-*/
-func (o *arvrServer) RequestReferenceFrame(ignoreTilt bool, keepHeight bool) {
-	log.Println("Calling ARVRServer.RequestReferenceFrame()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(ignoreTilt)
-	goArguments[1] = reflect.ValueOf(keepHeight)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "request_reference_frame", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
    Changes the primary interface to the specified interface. Again mostly exposed for GDNative interfaces.
 */
-func (o *arvrServer) SetPrimaryInterface(arg0 *ARVRInterface) {
+func (o *arvrServer) SetPrimaryInterface(intrfce *ARVRInterface) {
 	log.Println("Calling ARVRServer.SetPrimaryInterface()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	goArguments[0] = reflect.ValueOf(intrfce)
 
 	// Call the parent method.
 
@@ -1477,7 +1321,7 @@ func (o *AStar) X_EstimateCost(fromId int64, toId int64) {
 }
 
 /*
-   Adds a new point at the given position with the given identifier. The algorithm prefers points with lower [code]weight_scale[/code] to form a path. The [code]id[/code] must be 0 or larger, and the [code]weight_scale[/code] must be 1 or larger. [codeblock] var as = AStar.new() as.add_point(1, Vector3(1,0,0), 4) # Adds the point (1,0,0) with weight_scale=4 and id=1 [/codeblock]
+   Adds a new point at the given position with the given identifier. The algorithm prefers points with lower [code]weight_scale[/code] to form a path. The [code]id[/code] must be 0 or larger, and the [code]weight_scale[/code] must be 1 or larger. [codeblock] var as = AStar.new() as.add_point(1, Vector3(1,0,0), 4) # Adds the point (1,0,0) with weight_scale=4 and id=1 [/codeblock] If there already exists a point for the given id, its position and weight scale are updated to the given values.
 */
 func (o *AStar) AddPoint(id int64, position *Vector3, weightScale float64) {
 	log.Println("Calling AStar.AddPoint()")
@@ -1575,7 +1419,7 @@ func (o *AStar) DisconnectPoints(id int64, toId int64) {
 }
 
 /*
-   Returns an id with no point associated to it.
+   Returns the next available point id with no point associated to it.
 */
 func (o *AStar) GetAvailablePointId() int64 {
 	log.Println("Calling AStar.GetAvailablePointId()")
@@ -1776,6 +1620,44 @@ func (o *AStar) RemovePoint(id int64) {
 	// Call the parent method.
 
 	o.callParentMethod(o.baseClass(), "remove_point", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Sets the position for the point with the given id.
+*/
+func (o *AStar) SetPointPosition(id int64, position *Vector3) {
+	log.Println("Calling AStar.SetPointPosition()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(id)
+	goArguments[1] = reflect.ValueOf(position)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_point_position", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Sets the [code]weight_scale[/code] for the point with the given id.
+*/
+func (o *AStar) SetPointWeightScale(id int64, weightScale float64) {
+	log.Println("Calling AStar.SetPointWeightScale()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(id)
+	goArguments[1] = reflect.ValueOf(weightScale)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_point_weight_scale", goArguments, "")
 
 	log.Println("  Function successfully completed.")
 
@@ -5911,7 +5793,7 @@ func (o *Area) GetLinearDamp() float64 {
 }
 
 /*
-   Returns a list of intersecting [Area]\ s.
+   Returns a list of intersecting [code]Area[/code]s.
 */
 func (o *Area) GetOverlappingAreas() *Array {
 	log.Println("Calling Area.GetOverlappingAreas()")
@@ -5931,7 +5813,7 @@ func (o *Area) GetOverlappingAreas() *Array {
 }
 
 /*
-   Returns a list of intersecting [PhysicsBody]\ s.
+   Returns a list of intersecting [PhysicsBody]s.
 */
 func (o *Area) GetOverlappingBodies() *Array {
 	log.Println("Calling Area.GetOverlappingBodies()")
@@ -6891,7 +6773,7 @@ func (o *Area2D) GetLinearDamp() float64 {
 }
 
 /*
-   Returns a list of intersecting [Area2D]\ s.
+   Returns a list of intersecting [code]Area2D[/code]s.
 */
 func (o *Area2D) GetOverlappingAreas() *Array {
 	log.Println("Calling Area2D.GetOverlappingAreas()")
@@ -6911,7 +6793,7 @@ func (o *Area2D) GetOverlappingAreas() *Array {
 }
 
 /*
-   Returns a list of intersecting [PhysicsBody2D]\ s.
+   Returns a list of intersecting [PhysicsBody2D]s.
 */
 func (o *Area2D) GetOverlappingBodies() *Array {
 	log.Println("Calling Area2D.GetOverlappingBodies()")
@@ -7555,7 +7437,7 @@ func (o *ArrayMesh) GetCustomAabb() *Rect3 {
 }
 
 /*
-   Return the amount of surfaces that the [ArrayMesh] holds.
+   Return the amount of surfaces that the [code]ArrayMesh[/code] holds.
 */
 func (o *ArrayMesh) GetSurfaceCount() int64 {
 	log.Println("Calling ArrayMesh.GetSurfaceCount()")
@@ -8083,8 +7965,8 @@ type AudioEffectAmplifyImplementer interface {
 }
 
 /*
-
- */
+   Limits the frequencies in a range around the [member cutoff_hz] and allows frequencies outside of this range to pass.
+*/
 type AudioEffectBandLimitFilter struct {
 	AudioEffectFilter
 }
@@ -8101,8 +7983,8 @@ type AudioEffectBandLimitFilterImplementer interface {
 }
 
 /*
-
- */
+   Attenuates the frequencies inside of a range around the [member cutoff_hz] and cuts frequencies outside of this band.
+*/
 type AudioEffectBandPassFilter struct {
 	AudioEffectFilter
 }
@@ -9627,8 +9509,8 @@ type AudioEffectEQ6Implementer interface {
 }
 
 /*
-
- */
+   Allows frequencies other than the [member cutoff_hz] to pass.
+*/
 type AudioEffectFilter struct {
 	AudioEffect
 }
@@ -9797,8 +9679,8 @@ type AudioEffectFilterImplementer interface {
 }
 
 /*
-
- */
+   Cuts frequencies lower than the [member cutoff_hz] and allows higher frequencies to pass.
+*/
 type AudioEffectHighPassFilter struct {
 	AudioEffectFilter
 }
@@ -10003,8 +9885,8 @@ type AudioEffectLimiterImplementer interface {
 }
 
 /*
-
- */
+   Cuts frequencies higher than the [member cutoff_hz] and allows lower frequencies to pass.
+*/
 type AudioEffectLowPassFilter struct {
 	AudioEffectFilter
 }
@@ -10039,8 +9921,8 @@ type AudioEffectLowShelfFilterImplementer interface {
 }
 
 /*
-
- */
+   Attenuates frequencies in a narrow band around the [member cutoff_hz] and cuts frequencies outside of this range.
+*/
 type AudioEffectNotchFilter struct {
 	AudioEffectFilter
 }
@@ -13710,7 +13592,7 @@ type BackBufferCopyImplementer interface {
 }
 
 /*
-   BaseButton is the abstract base class for buttons, so it shouldn't be used directly (It doesn't display anything). Other types of buttons inherit from it.
+   BaseButton is the abstract base class for buttons, so it shouldn't be used directly (it doesn't display anything). Other types of buttons inherit from it.
 */
 type BaseButton struct {
 	Control
@@ -14443,7 +14325,7 @@ func (o *BitmapFont) AddChar(character int64, texture int64, rect *Rect2, align 
 }
 
 /*
-   Adds a kerning pair to the [BitmapFont] as a difference. Kerning pairs are special cases where a typeface advance is determined by the next character.
+   Adds a kerning pair to the [code]BitmapFont[/code] as a difference. Kerning pairs are special cases where a typeface advance is determined by the next character.
 */
 func (o *BitmapFont) AddKerningPair(charA int64, charB int64, kerning int64) {
 	log.Println("Calling BitmapFont.AddKerningPair()")
@@ -14463,7 +14345,7 @@ func (o *BitmapFont) AddKerningPair(charA int64, charB int64, kerning int64) {
 }
 
 /*
-   Adds a texture to the [BitmapFont].
+   Adds a texture to the [code]BitmapFont[/code].
 */
 func (o *BitmapFont) AddTexture(texture *Texture) {
 	log.Println("Calling BitmapFont.AddTexture()")
@@ -17978,7 +17860,7 @@ type CanvasItemMaterialImplementer interface {
 }
 
 /*
-   Canvas drawing layer. [CanvasItem] nodes that are direct or indirect children of a [CanvasLayer] will be drawn in that layer. The layer is a numeric index that defines the draw order. The default 2D scene renders with index 0, so a [CanvasLayer] with index -1 will be drawn below, and one with index 1 will be drawn above. This is very useful for HUDs (in layer 1+ or above), or backgrounds (in layer -1 or below).
+   Canvas drawing layer. [CanvasItem] nodes that are direct or indirect children of a [code]CanvasLayer[/code] will be drawn in that layer. The layer is a numeric index that defines the draw order. The default 2D scene renders with index 0, so a [code]CanvasLayer[/code] with index -1 will be drawn below, and one with index 1 will be drawn above. This is very useful for HUDs (in layer 1+ or above), or backgrounds (in layer -1 or below).
 */
 type CanvasLayer struct {
 	Node
@@ -18651,7 +18533,7 @@ func (o *CapsuleShape2D) baseClass() string {
 }
 
 /*
-   Return the height of the [CapsuleShape2D].
+   Return the height of the [code]CapsuleShape2D[/code].
 */
 func (o *CapsuleShape2D) GetHeight() float64 {
 	log.Println("Calling CapsuleShape2D.GetHeight()")
@@ -18671,7 +18553,7 @@ func (o *CapsuleShape2D) GetHeight() float64 {
 }
 
 /*
-   Return the radius of the [CapsuleShape2D].
+   Return the radius of the [code]CapsuleShape2D[/code].
 */
 func (o *CapsuleShape2D) GetRadius() float64 {
 	log.Println("Calling CapsuleShape2D.GetRadius()")
@@ -18691,7 +18573,7 @@ func (o *CapsuleShape2D) GetRadius() float64 {
 }
 
 /*
-   Set the height of the [CapsuleShape2D].
+   Set the height of the [code]CapsuleShape2D[/code].
 */
 func (o *CapsuleShape2D) SetHeight(height float64) {
 	log.Println("Calling CapsuleShape2D.SetHeight()")
@@ -18709,7 +18591,7 @@ func (o *CapsuleShape2D) SetHeight(height float64) {
 }
 
 /*
-   Set the radius of the [CapsuleShape2D].
+   Set the radius of the [code]CapsuleShape2D[/code].
 */
 func (o *CapsuleShape2D) SetRadius(radius float64) {
 	log.Println("Calling CapsuleShape2D.SetRadius()")
@@ -18882,7 +18764,7 @@ type CircleShape2DImplementer interface {
 }
 
 /*
-   CollisionObject is the base class for physics objects. It can hold any number of collision [Shape]\ s. Each shape must be assigned to a [i]shape owner[/i]. The CollisionObject can have any number of shape owners. Shape owners are not nodes and do not appear in the editor, but are accessible through code using the [code]shape_owner_*[/code] methods.
+   CollisionObject is the base class for physics objects. It can hold any number of collision [Shape]s. Each shape must be assigned to a [i]shape owner[/i]. The CollisionObject can have any number of shape owners. Shape owners are not nodes and do not appear in the editor, but are accessible through code using the [code]shape_owner_*[/code] methods.
 */
 type CollisionObject struct {
 	Spatial
@@ -19320,7 +19202,7 @@ type CollisionObjectImplementer interface {
 }
 
 /*
-   CollisionObject2D is the base class for 2D physics objects. It can hold any number of 2D collision [Shape2D]\ s. Each shape must be assigned to a [i]shape owner[/i]. The CollisionObject2D can have any number of shape owners. Shape owners are not nodes and do not appear in the editor, but are accessible through code using the [code]shape_owner_*[/code] methods.
+   CollisionObject2D is the base class for 2D physics objects. It can hold any number of 2D collision [Shape2D]s. Each shape must be assigned to a [i]shape owner[/i]. The CollisionObject2D can have any number of shape owners. Shape owners are not nodes and do not appear in the editor, but are accessible through code using the [code]shape_owner_*[/code] methods.
 */
 type CollisionObject2D struct {
 	Node2D
@@ -20492,6 +20374,23 @@ func (o *ColorPicker) X_TextTypeToggled() {
 /*
    Undocumented
 */
+func (o *ColorPicker) X_UpdatePresets() {
+	log.Println("Calling ColorPicker.X_UpdatePresets()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_update_presets", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Undocumented
+*/
 func (o *ColorPicker) X_UvInput(arg0 *InputEvent) {
 	log.Println("Calling ColorPicker.X_UvInput()")
 
@@ -20927,7 +20826,7 @@ type ConcavePolygonShapeImplementer interface {
 }
 
 /*
-   Concave polygon 2D shape resource for physics. It is made out of segments and is very optimal for complex polygonal concave collisions. It is really not advised to use for [RigidBody2D] nodes. A CollisionPolygon2D in convex decomposition mode (solids) or several convex objects are advised for that instead. Otherwise, a concave polygon 2D shape is better for static collisions. The main difference between a [ConvexPolygonShape2D] and a [ConcavePolygonShape2D] is that a concave polygon assumes it is concave and uses a more complex method of collision detection, and a convex one forces itself to be convex in order to speed up collision detection.
+   Concave polygon 2D shape resource for physics. It is made out of segments and is very optimal for complex polygonal concave collisions. It is really not advised to use for [RigidBody2D] nodes. A CollisionPolygon2D in convex decomposition mode (solids) or several convex objects are advised for that instead. Otherwise, a concave polygon 2D shape is better for static collisions. The main difference between a [ConvexPolygonShape2D] and a [code]ConcavePolygonShape2D[/code] is that a concave polygon assumes it is concave and uses a more complex method of collision detection, and a convex one forces itself to be convex in order to speed up collision detection.
 */
 type ConcavePolygonShape2D struct {
 	Shape2D
@@ -20983,8 +20882,8 @@ type ConcavePolygonShape2DImplementer interface {
 }
 
 /*
-
- */
+   The joint can rotate the bodies across an axis defined by the local x-axes of the [Joint]. The twist axis is initiated as the x-axis of the [Joint]. Once the Bodies swing, the twist axis is calculated as the middle of the x-axes of the Joint in the local space of the two Bodies.
+*/
 type ConeTwistJoint struct {
 	Joint
 }
@@ -21360,7 +21259,7 @@ type ConfirmationDialogImplementer interface {
 }
 
 /*
-   Base node for containers. A [Container] contains other controls and automatically arranges them in a certain way. A Control can inherit this to create custom container classes.
+   Base node for containers. A [code]Container[/code] contains other controls and automatically arranges them in a certain way. A Control can inherit this to create custom container classes.
 */
 type Container struct {
 	Control
@@ -23585,7 +23484,7 @@ type ConvexPolygonShapeImplementer interface {
 }
 
 /*
-   Convex Polygon Shape for 2D physics. A convex polygon, whatever its shape, is internally decomposed into as many convex polygons as needed to ensure all collision checks against it are always done on convex polygons (which are faster to check). The main difference between a [ConvexPolygonShape2D] and a [ConcavePolygonShape2D] is that a concave polygon assumes it is concave and uses a more complex method of collision detection, and a convex one forces itself to be convex in order to speed up collision detection.
+   Convex Polygon Shape for 2D physics. A convex polygon, whatever its shape, is internally decomposed into as many convex polygons as needed to ensure all collision checks against it are always done on convex polygons (which are faster to check). The main difference between a [code]ConvexPolygonShape2D[/code] and a [ConcavePolygonShape2D] is that a concave polygon assumes it is concave and uses a more complex method of collision detection, and a convex one forces itself to be convex in order to speed up collision detection.
 */
 type ConvexPolygonShape2D struct {
 	Shape2D
@@ -23659,8 +23558,8 @@ type ConvexPolygonShape2DImplementer interface {
 }
 
 /*
-
- */
+   A CubeMap is a 6 sided 3D texture typically used for faking reflections. It can be used to make an object look as if it's reflecting its surroundings. This usually delivers much better performance than other reflection methods.
+*/
 type CubeMap struct {
 	Resource
 }
@@ -23690,8 +23589,8 @@ func (o *CubeMap) GetFlags() int64 {
 }
 
 /*
-
- */
+   Returns the CubeMap's height.
+*/
 func (o *CubeMap) GetHeight() int64 {
 	log.Println("Calling CubeMap.GetHeight()")
 
@@ -23730,8 +23629,8 @@ func (o *CubeMap) GetLossyStorageQuality() float64 {
 }
 
 /*
-
- */
+   Returns an [Image] for a side of the CubeMap using one of the [code]SIDE_*[/code] constants or an integer 0-5.
+*/
 func (o *CubeMap) GetSide(side int64) *Image {
 	log.Println("Calling CubeMap.GetSide()")
 
@@ -23771,8 +23670,8 @@ func (o *CubeMap) GetStorage() int64 {
 }
 
 /*
-
- */
+   Returns the CubeMap's width.
+*/
 func (o *CubeMap) GetWidth() int64 {
 	log.Println("Calling CubeMap.GetWidth()")
 
@@ -23827,8 +23726,8 @@ func (o *CubeMap) SetLossyStorageQuality(quality float64) {
 }
 
 /*
-
- */
+   Sets an [Image] for a side of the CubeMap using one of the [code]SIDE_*[/code] constants or an integer 0-5.
+*/
 func (o *CubeMap) SetSide(side int64, image *Image) {
 	log.Println("Calling CubeMap.SetSide()")
 
@@ -24485,7 +24384,7 @@ func (o *Curve) SetPointLeftTangent(index int64, tangent float64) {
 /*
 
  */
-func (o *Curve) SetPointOffset(index int64, offset float64) {
+func (o *Curve) SetPointOffset(index int64, offset float64) int64 {
 	log.Println("Calling Curve.SetPointOffset()")
 
 	// Build out the method's arguments
@@ -24495,9 +24394,12 @@ func (o *Curve) SetPointOffset(index int64, offset float64) {
 
 	// Call the parent method.
 
-	o.callParentMethod(o.baseClass(), "set_point_offset", goArguments, "")
+	goRet := o.callParentMethod(o.baseClass(), "set_point_offset", goArguments, "int64")
 
-	log.Println("  Function successfully completed.")
+	returnValue := goRet.Interface().(int64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
 
 }
 
@@ -24636,8 +24538,8 @@ func (o *Curve2D) AddPoint(position *Vector2, in *Vector2, out *Vector2, atPosit
 }
 
 /*
-
- */
+   Removes all points from the curve.
+*/
 func (o *Curve2D) ClearPoints() {
 	log.Println("Calling Curve2D.ClearPoints()")
 
@@ -26061,7 +25963,7 @@ type DirectionalLightImplementer interface {
 }
 
 /*
-   DynamicFont renders vector font files (such as TTF or OTF) dynamically at runtime instead of using a prerendered texture atlas like [BitmapFont]. This trades the faster loading time of [BitmapFont]\ s for the ability to change font parameters like size and spacing during runtime. [DynamicFontData] is used for referencing the font file paths.
+   DynamicFont renders vector font files (such as TTF or OTF) dynamically at runtime instead of using a prerendered texture atlas like [BitmapFont]. This trades the faster loading time of [BitmapFont]s for the ability to change font parameters like size and spacing during runtime. [DynamicFontData] is used for referencing the font file paths.
 */
 type DynamicFont struct {
 	Font
@@ -27789,7 +27691,7 @@ type EditorFileSystemDirectoryImplementer interface {
 }
 
 /*
-   EditorImportPlugins provide a way to extend the editor's resource import functionality. Use them to import resources from custom files or to provide alternatives to the editor's existing importers. Register your [EditorPlugin] with [method EditorPlugin.add_import_plugin]. EditorImportPlugins work by associating with specific file extensions and a resource type. See [method get_recognized_extension] and [method get_resource_type]). They may optionally specify some import presets that affect the import process. EditorImportPlugins are responsible for creating the resources and saving them in the [code].import[/code] directory. Below is an example EditorImportPlugin that imports a [Mesh] from a file with the extension ".special" or ".spec": [codeblock] tool extends EditorImportPlugin func get_importer_name(): return "my.special.plugin" func get_visible_name(): return "Special Mesh Importer" func get_recognized_extensions(): return ["special", "spec"] func get_save_extension(): return "mesh" func get_resource_type(): return "Mesh" func get_preset_count(): return 1 func get_preset_name(i): return "Default" func get_import_options(i): return [{"name": "my_option", "default_value": false}] func load(src, dst, opts, r_platform_variants, r_gen_files): var f = File.new() if f.open(src, File.READ) != OK: return FAILED var mesh = Mesh.new() var save = dst + "." + get_save_extension() ResourceSaver.save(file, mesh) return OK [/codeblock]
+   EditorImportPlugins provide a way to extend the editor's resource import functionality. Use them to import resources from custom files or to provide alternatives to the editor's existing importers. Register your [EditorPlugin] with [method EditorPlugin.add_import_plugin]. EditorImportPlugins work by associating with specific file extensions and a resource type. See [method get_recognized_extension] and [method get_resource_type]). They may optionally specify some import presets that affect the import process. EditorImportPlugins are responsible for creating the resources and saving them in the [code].import[/code] directory. Below is an example EditorImportPlugin that imports a [Mesh] from a file with the extension ".special" or ".spec": [codeblock] tool extends EditorImportPlugin func get_importer_name(): return "my.special.plugin" func get_visible_name(): return "Special Mesh Importer" func get_recognized_extensions(): return ["special", "spec"] func get_save_extension(): return "mesh" func get_resource_type(): return "Mesh" func get_preset_count(): return 1 func get_preset_name(i): return "Default" func get_import_options(i): return [{"name": "my_option", "default_value": false}] func load(src, dst, opts, r_platform_variants, r_gen_files): var file = File.new() if file.open(src, File.READ) != OK: return FAILED var mesh = Mesh.new() var save = dst + "." + get_save_extension() ResourceSaver.save(file, mesh) return OK [/codeblock]
 */
 type EditorImportPlugin struct {
 	Reference
@@ -28016,8 +27918,8 @@ type EditorImportPluginImplementer interface {
 }
 
 /*
-
- */
+   Editor interface. Allows saving and (re-)loading scenes, rendering mesh previews, inspecting and editing resources and objects and provides access to [EditorSettings], [EditorFileSystem], [EditorResourcePreview]\ er, [ScriptEditor], the editor viewport, as well as information about scenes. Also see [EditorPlugin] and [EditorScript].
+*/
 type EditorInterface struct {
 	Node
 }
@@ -28027,8 +27929,8 @@ func (o *EditorInterface) baseClass() string {
 }
 
 /*
-
- */
+   Edits the given [Resource].
+*/
 func (o *EditorInterface) EditResource(resource *Resource) {
 	log.Println("Calling EditorInterface.EditResource()")
 
@@ -28045,8 +27947,8 @@ func (o *EditorInterface) EditResource(resource *Resource) {
 }
 
 /*
-
- */
+   Returns the base [Control].
+*/
 func (o *EditorInterface) GetBaseControl() *Control {
 	log.Println("Calling EditorInterface.GetBaseControl()")
 
@@ -28065,8 +27967,8 @@ func (o *EditorInterface) GetBaseControl() *Control {
 }
 
 /*
-
- */
+   Returns the edited scene's root [Node].
+*/
 func (o *EditorInterface) GetEditedSceneRoot() *Node {
 	log.Println("Calling EditorInterface.GetEditedSceneRoot()")
 
@@ -28085,8 +27987,8 @@ func (o *EditorInterface) GetEditedSceneRoot() *Node {
 }
 
 /*
-
- */
+   Returns the [EditorSettings].
+*/
 func (o *EditorInterface) GetEditorSettings() *EditorSettings {
 	log.Println("Calling EditorInterface.GetEditorSettings()")
 
@@ -28105,8 +28007,8 @@ func (o *EditorInterface) GetEditorSettings() *EditorSettings {
 }
 
 /*
-
- */
+   Returns the editor [Viewport].
+*/
 func (o *EditorInterface) GetEditorViewport() *Control {
 	log.Println("Calling EditorInterface.GetEditorViewport()")
 
@@ -28125,8 +28027,8 @@ func (o *EditorInterface) GetEditorViewport() *Control {
 }
 
 /*
-
- */
+   Returns an [Array] of the currently opened scenes.
+*/
 func (o *EditorInterface) GetOpenScenes() *Array {
 	log.Println("Calling EditorInterface.GetOpenScenes()")
 
@@ -28145,8 +28047,8 @@ func (o *EditorInterface) GetOpenScenes() *Array {
 }
 
 /*
-
- */
+   Returns the [EditorFileSystem].
+*/
 func (o *EditorInterface) GetResourceFilesystem() *EditorFileSystem {
 	log.Println("Calling EditorInterface.GetResourceFilesystem()")
 
@@ -28165,8 +28067,8 @@ func (o *EditorInterface) GetResourceFilesystem() *EditorFileSystem {
 }
 
 /*
-
- */
+   Returns the [EditorResourcePreview]\ er.
+*/
 func (o *EditorInterface) GetResourcePreviewer() *EditorResourcePreview {
 	log.Println("Calling EditorInterface.GetResourcePreviewer()")
 
@@ -28185,8 +28087,8 @@ func (o *EditorInterface) GetResourcePreviewer() *EditorResourcePreview {
 }
 
 /*
-
- */
+   Returns the [ScriptEditor].
+*/
 func (o *EditorInterface) GetScriptEditor() *ScriptEditor {
 	log.Println("Calling EditorInterface.GetScriptEditor()")
 
@@ -28205,8 +28107,8 @@ func (o *EditorInterface) GetScriptEditor() *ScriptEditor {
 }
 
 /*
-
- */
+   Returns the [EditorSelection].
+*/
 func (o *EditorInterface) GetSelection() *EditorSelection {
 	log.Println("Calling EditorInterface.GetSelection()")
 
@@ -28225,8 +28127,8 @@ func (o *EditorInterface) GetSelection() *EditorSelection {
 }
 
 /*
-
- */
+   Shows the given property on the given [code]object[/code] in the Editor's Inspector dock.
+*/
 func (o *EditorInterface) InspectObject(object *Object, forProperty string) {
 	log.Println("Calling EditorInterface.InspectObject()")
 
@@ -28244,15 +28146,15 @@ func (o *EditorInterface) InspectObject(object *Object, forProperty string) {
 }
 
 /*
-
- */
-func (o *EditorInterface) MakeMeshPreviews(arg0 *Array, arg1 int64) *Array {
+   Returns mesh previews rendered at the given size as an [Array] of [Texture]s.
+*/
+func (o *EditorInterface) MakeMeshPreviews(meshes *Array, previewSize int64) *Array {
 	log.Println("Calling EditorInterface.MakeMeshPreviews()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(arg0)
-	goArguments[1] = reflect.ValueOf(arg1)
+	goArguments[0] = reflect.ValueOf(meshes)
+	goArguments[1] = reflect.ValueOf(previewSize)
 
 	// Call the parent method.
 
@@ -28266,8 +28168,8 @@ func (o *EditorInterface) MakeMeshPreviews(arg0 *Array, arg1 int64) *Array {
 }
 
 /*
-
- */
+   Opens the scene at the given path.
+*/
 func (o *EditorInterface) OpenSceneFromPath(sceneFilepath string) {
 	log.Println("Calling EditorInterface.OpenSceneFromPath()")
 
@@ -28284,8 +28186,8 @@ func (o *EditorInterface) OpenSceneFromPath(sceneFilepath string) {
 }
 
 /*
-
- */
+   Reloads the scene at the given path.
+*/
 func (o *EditorInterface) ReloadSceneFromPath(sceneFilepath string) {
 	log.Println("Calling EditorInterface.ReloadSceneFromPath()")
 
@@ -28302,8 +28204,8 @@ func (o *EditorInterface) ReloadSceneFromPath(sceneFilepath string) {
 }
 
 /*
-
- */
+   Saves the scene. Returns either OK or ERR_CANT_CREATE. See [@Global Scope] constants.
+*/
 func (o *EditorInterface) SaveScene() int64 {
 	log.Println("Calling EditorInterface.SaveScene()")
 
@@ -28322,8 +28224,8 @@ func (o *EditorInterface) SaveScene() int64 {
 }
 
 /*
-
- */
+   Saves the scene as a file at [code]path[/code].
+*/
 func (o *EditorInterface) SaveSceneAs(path string, withPreview bool) {
 	log.Println("Calling EditorInterface.SaveSceneAs()")
 
@@ -29320,7 +29222,7 @@ type EditorResourcePreviewGeneratorImplementer interface {
 }
 
 /*
-   This script can be run from the Scene -> Run Script menu option.
+   Scripts extending this class and implementing its [code]_run()[/code] method can be executed from the Script Editor's [code]File -> Run[/code] menu option (or by pressing [code]CTRL+Shift+X[/code]) while the editor is running. This is useful for adding custom in-editor functionality to Godot. For more complex additions, consider using [EditorPlugin]s instead. Note that extending scripts need to have [code]tool mode[/code] enabled. Example script: [codeblock] tool extends EditorScript func _run(): print("Hello from the Godot Editor!") [/codeblock] Note that the script is run in the Editor context, which means the output is visible in the console window started with the Editor (STDOUT) instead of the usual Godot [i]Output[/i] dock.
 */
 type EditorScript struct {
 	Reference
@@ -29331,8 +29233,8 @@ func (o *EditorScript) baseClass() string {
 }
 
 /*
-
- */
+   This method is executed by the Editor when [code]File -> Run[/code] is used.
+*/
 func (o *EditorScript) X_Run() {
 	log.Println("Calling EditorScript.X_Run()")
 
@@ -29366,8 +29268,8 @@ func (o *EditorScript) AddRootNode(node *Object) {
 }
 
 /*
-
- */
+   Returns the [EditorInterface] singleton instance.
+*/
 func (o *EditorScript) GetEditorInterface() *EditorInterface {
 	log.Println("Calling EditorScript.GetEditorInterface()")
 
@@ -29386,8 +29288,8 @@ func (o *EditorScript) GetEditorInterface() *EditorInterface {
 }
 
 /*
-
- */
+   Returns the Editor's currently active scene.
+*/
 func (o *EditorScript) GetScene() *Node {
 	log.Println("Calling EditorScript.GetScene()")
 
@@ -29649,6 +29551,27 @@ func (o *EditorSettings) GetRecentDirs() *PoolStringArray {
 }
 
 /*
+
+ */
+func (o *EditorSettings) GetSetting(name string) *Variant {
+	log.Println("Calling EditorSettings.GetSetting()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(name)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_setting", goArguments, "*Variant")
+
+	returnValue := goRet.Interface().(*Variant)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
    Get the global settings path for the engine. Inside this path you can find some standard paths such as: settings/tmp - used for temporary storage of files settings/templates - where export templates are located
 */
 func (o *EditorSettings) GetSettingsPath() string {
@@ -29662,6 +29585,27 @@ func (o *EditorSettings) GetSettingsPath() string {
 	goRet := o.callParentMethod(o.baseClass(), "get_settings_path", goArguments, "string")
 
 	returnValue := goRet.Interface().(string)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *EditorSettings) HasSetting(name string) bool {
+	log.Println("Calling EditorSettings.HasSetting()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(name)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "has_setting", goArguments, "bool")
+
+	returnValue := goRet.Interface().(bool)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -29760,6 +29704,25 @@ func (o *EditorSettings) SetRecentDirs(dirs *PoolStringArray) {
 	// Call the parent method.
 
 	o.callParentMethod(o.baseClass(), "set_recent_dirs", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *EditorSettings) SetSetting(name string, value *Variant) {
+	log.Println("Calling EditorSettings.SetSetting()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(name)
+	goArguments[1] = reflect.ValueOf(value)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_setting", goArguments, "")
 
 	log.Println("  Function successfully completed.")
 
@@ -30808,17 +30771,17 @@ func (o *Environment) GetSky() *Sky {
 }
 
 /*
-   Undocumented
-*/
-func (o *Environment) GetSkyScale() float64 {
-	log.Println("Calling Environment.GetSkyScale()")
+
+ */
+func (o *Environment) GetSkyCustomFov() float64 {
+	log.Println("Calling Environment.GetSkyCustomFov()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_sky_scale", goArguments, "float64")
+	goRet := o.callParentMethod(o.baseClass(), "get_sky_custom_fov", goArguments, "float64")
 
 	returnValue := goRet.Interface().(float64)
 
@@ -30841,6 +30804,26 @@ func (o *Environment) GetSsaoBias() float64 {
 	goRet := o.callParentMethod(o.baseClass(), "get_ssao_bias", goArguments, "float64")
 
 	returnValue := goRet.Interface().(float64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *Environment) GetSsaoBlur() int64 {
+	log.Println("Calling Environment.GetSsaoBlur()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_ssao_blur", goArguments, "int64")
+
+	returnValue := goRet.Interface().(int64)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -30890,6 +30873,26 @@ func (o *Environment) GetSsaoDirectLightAffect() float64 {
 /*
 
  */
+func (o *Environment) GetSsaoEdgeSharpness() float64 {
+	log.Println("Calling Environment.GetSsaoEdgeSharpness()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_ssao_edge_sharpness", goArguments, "float64")
+
+	returnValue := goRet.Interface().(float64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
 func (o *Environment) GetSsaoIntensity() float64 {
 	log.Println("Calling Environment.GetSsaoIntensity()")
 
@@ -30921,6 +30924,26 @@ func (o *Environment) GetSsaoIntensity2() float64 {
 	goRet := o.callParentMethod(o.baseClass(), "get_ssao_intensity2", goArguments, "float64")
 
 	returnValue := goRet.Interface().(float64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *Environment) GetSsaoQuality() int64 {
+	log.Println("Calling Environment.GetSsaoQuality()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_ssao_quality", goArguments, "int64")
+
+	returnValue := goRet.Interface().(int64)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -31400,26 +31423,6 @@ func (o *Environment) IsGlowLevelEnabled(idx int64) bool {
 	// Call the parent method.
 
 	goRet := o.callParentMethod(o.baseClass(), "is_glow_level_enabled", goArguments, "bool")
-
-	returnValue := goRet.Interface().(bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *Environment) IsSsaoBlurEnabled() bool {
-	log.Println("Calling Environment.IsSsaoBlurEnabled()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "is_ssao_blur_enabled", goArguments, "bool")
 
 	returnValue := goRet.Interface().(bool)
 
@@ -32300,10 +32303,10 @@ func (o *Environment) SetSky(sky *Sky) {
 }
 
 /*
-   Undocumented
-*/
-func (o *Environment) SetSkyScale(scale float64) {
-	log.Println("Calling Environment.SetSkyScale()")
+
+ */
+func (o *Environment) SetSkyCustomFov(scale float64) {
+	log.Println("Calling Environment.SetSkyCustomFov()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -32311,7 +32314,7 @@ func (o *Environment) SetSkyScale(scale float64) {
 
 	// Call the parent method.
 
-	o.callParentMethod(o.baseClass(), "set_sky_scale", goArguments, "")
+	o.callParentMethod(o.baseClass(), "set_sky_custom_fov", goArguments, "")
 
 	log.Println("  Function successfully completed.")
 
@@ -32338,12 +32341,12 @@ func (o *Environment) SetSsaoBias(bias float64) {
 /*
 
  */
-func (o *Environment) SetSsaoBlur(enabled bool) {
+func (o *Environment) SetSsaoBlur(mode int64) {
 	log.Println("Calling Environment.SetSsaoBlur()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enabled)
+	goArguments[0] = reflect.ValueOf(mode)
 
 	// Call the parent method.
 
@@ -32384,6 +32387,24 @@ func (o *Environment) SetSsaoDirectLightAffect(amount float64) {
 	// Call the parent method.
 
 	o.callParentMethod(o.baseClass(), "set_ssao_direct_light_affect", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *Environment) SetSsaoEdgeSharpness(edgeSharpness float64) {
+	log.Println("Calling Environment.SetSsaoEdgeSharpness()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(edgeSharpness)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_ssao_edge_sharpness", goArguments, "")
 
 	log.Println("  Function successfully completed.")
 
@@ -32438,6 +32459,24 @@ func (o *Environment) SetSsaoIntensity2(intensity float64) {
 	// Call the parent method.
 
 	o.callParentMethod(o.baseClass(), "set_ssao_intensity2", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *Environment) SetSsaoQuality(quality int64) {
+	log.Println("Calling Environment.SetSsaoQuality()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(quality)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_ssao_quality", goArguments, "")
 
 	log.Println("  Function successfully completed.")
 
@@ -33521,7 +33560,7 @@ type FontImplementer interface {
 }
 
 /*
-   In GDScript, functions are not [i]first-class objects[/i]. This means it is impossible to store them directly as variables, return them from another function, or pass them as arguments. However, by creating a [FuncRef] using the [method @GDScript.funcref] function, a reference to a function in a given object can be created, passed around and called.
+   In GDScript, functions are not [i]first-class objects[/i]. This means it is impossible to store them directly as variables, return them from another function, or pass them as arguments. However, by creating a [code]FuncRef[/code] using the [method @GDScript.funcref] function, a reference to a function in a given object can be created, passed around and called.
 */
 type FuncRef struct {
 	Reference
@@ -33688,14 +33727,14 @@ func (o *GDNative) baseClass() string {
 /*
    Undocumented
 */
-func (o *GDNative) CallNative(procedureName string, arguments string, arg2 *Array) *Variant {
+func (o *GDNative) CallNative(callingType string, procedureName string, arguments *Array) *Variant {
 	log.Println("Calling GDNative.CallNative()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(procedureName)
-	goArguments[1] = reflect.ValueOf(arguments)
-	goArguments[2] = reflect.ValueOf(arg2)
+	goArguments[0] = reflect.ValueOf(callingType)
+	goArguments[1] = reflect.ValueOf(procedureName)
+	goArguments[2] = reflect.ValueOf(arguments)
 
 	// Call the parent method.
 
@@ -33802,6 +33841,26 @@ type GDNativeLibrary struct {
 
 func (o *GDNativeLibrary) baseClass() string {
 	return "GDNativeLibrary"
+}
+
+/*
+   Undocumented
+*/
+func (o *GDNativeLibrary) GetActiveLibraryPath() string {
+	log.Println("Calling GDNativeLibrary.GetActiveLibraryPath()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_active_library_path", goArguments, "string")
+
+	returnValue := goRet.Interface().(string)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
 }
 
 /*
@@ -34818,8 +34877,8 @@ type GIProbeDataImplementer interface {
 }
 
 /*
-
- */
+   The first 3 dof axes are linear axes, which represent translation of Bodies, and the latter 3 dof axes represent the angular motion. Each axis can be either locked, or limited.
+*/
 type Generic6DOFJoint struct {
 	Joint
 }
@@ -37457,6 +37516,49 @@ func (o *GridMap) GetTheme() *MeshLibrary {
 /*
    Undocumented
 */
+func (o *GridMap) GetUsedCells() *Array {
+	log.Println("Calling GridMap.GetUsedCells()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_used_cells", goArguments, "*Array")
+
+	returnValue := goRet.Interface().(*Array)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GridMap) MapToWorld(x int64, y int64, z int64) *Vector3 {
+	log.Println("Calling GridMap.MapToWorld()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(x)
+	goArguments[1] = reflect.ValueOf(y)
+	goArguments[2] = reflect.ValueOf(z)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "map_to_world", goArguments, "*Vector3")
+
+	returnValue := goRet.Interface().(*Vector3)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
 func (o *GridMap) ResourceChanged(resource *Resource) {
 	log.Println("Calling GridMap.ResourceChanged()")
 
@@ -37620,6 +37722,27 @@ func (o *GridMap) SetTheme(theme *MeshLibrary) {
 	o.callParentMethod(o.baseClass(), "set_theme", goArguments, "")
 
 	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *GridMap) WorldToMap(pos *Vector3) *Vector3 {
+	log.Println("Calling GridMap.WorldToMap()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(pos)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "world_to_map", goArguments, "*Vector3")
+
+	returnValue := goRet.Interface().(*Vector3)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
 
 }
 
@@ -37826,7 +37949,7 @@ func (o *HTTPClient) baseClass() string {
 }
 
 /*
-   Cloces the current connection, allows for reusal of [HTTPClient].
+   Cloces the current connection, allows for reusal of [code]HTTPClient[/code].
 */
 func (o *HTTPClient) Close() {
 	log.Println("Calling HTTPClient.Close()")
@@ -37987,7 +38110,7 @@ func (o *HTTPClient) GetStatus() int64 {
 }
 
 /*
-   Return whether this [HTTPClient] has a response available.
+   Return whether this [code]HTTPClient[/code] has a response available.
 */
 func (o *HTTPClient) HasResponse() bool {
 	log.Println("Calling HTTPClient.HasResponse()")
@@ -38027,7 +38150,7 @@ func (o *HTTPClient) IsBlockingModeEnabled() bool {
 }
 
 /*
-   Return whether this [HTTPClient] has a response that is chunked.
+   Return whether this [code]HTTPClient[/code] has a response that is chunked.
 */
 func (o *HTTPClient) IsResponseChunked() bool {
 	log.Println("Calling HTTPClient.IsResponseChunked()")
@@ -38147,48 +38270,6 @@ func (o *HTTPClient) RequestRaw(method int64, url string, headers *PoolStringArr
 	// Call the parent method.
 
 	goRet := o.callParentMethod(o.baseClass(), "request_raw", goArguments, "int64")
-
-	returnValue := goRet.Interface().(int64)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   Stub function
-*/
-func (o *HTTPClient) SendBodyData(body *PoolByteArray) int64 {
-	log.Println("Calling HTTPClient.SendBodyData()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(body)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "send_body_data", goArguments, "int64")
-
-	returnValue := goRet.Interface().(int64)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   Stub function
-*/
-func (o *HTTPClient) SendBodyText(body string) int64 {
-	log.Println("Calling HTTPClient.SendBodyText()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(body)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "send_body_text", goArguments, "int64")
 
 	returnValue := goRet.Interface().(int64)
 
@@ -38570,8 +38651,8 @@ type HTTPRequestImplementer interface {
 }
 
 /*
-
- */
+   Normaly uses the z-axis of body A as the hinge axis, another axis can be specified when adding it manually though.
+*/
 type HingeJoint struct {
 	Joint
 }
@@ -38927,7 +39008,7 @@ type IP_UnixImplementer interface {
 }
 
 /*
-   Native image datatype. Contains image data, which can be converted to a texture, and several functions to interact with it.
+   Native image datatype. Contains image data, which can be converted to a [Texture], and several functions to interact with it. The maximum width and height for an [code]Image[/code] is 16384 pixels.
 */
 type Image struct {
 	Resource
@@ -38976,7 +39057,7 @@ func (o *Image) X_SetData(data *Dictionary) {
 }
 
 /*
-   Alpha-blends a "src_rect" [Rect2] from "src" [Image] to this [Image] on coordinates "dest".
+   Alpha-blends [code]src_rect[/code] from [code]src[/code] image to this image at coordinates [code]dest[/code].
 */
 func (o *Image) BlendRect(src *Image, srcRect *Rect2, dst *Vector2) {
 	log.Println("Calling Image.BlendRect()")
@@ -38996,7 +39077,7 @@ func (o *Image) BlendRect(src *Image, srcRect *Rect2, dst *Vector2) {
 }
 
 /*
-   Alpha-blends a "src_rect" [Rect2] from "src" [Image] to this [Image] using a "mask" [Image] on coordinates "dest". Alpha channels are required for both "src" and "mask", dest pixels and src pixels will blend if the corresponding mask pixel's alpha value is not 0. "src" [Image] and "mask" [Image] *must* have the same size (width and height) but they can have different formats
+   Alpha-blends [code]src_rect[/code] from [code]src[/code] image to this image using [code]mask[/code] image at coordinates [code]dst[/code]. Alpha channels are required for both [code]src[/code] and [code]mask[/code]. [code]dst[/code] pixels and [code]src[/code] pixels will blend if the corresponding mask pixel's alpha value is not 0. [code]src[/code] image and [code]mask[/code] image [b]must[/b] have the same size (width and height) but they can have different formats.
 */
 func (o *Image) BlendRectMask(src *Image, mask *Image, srcRect *Rect2, dst *Vector2) {
 	log.Println("Calling Image.BlendRectMask()")
@@ -39017,7 +39098,7 @@ func (o *Image) BlendRectMask(src *Image, mask *Image, srcRect *Rect2, dst *Vect
 }
 
 /*
-   Copy a "src_rect" [Rect2] from "src" [Image] to this [Image] on coordinates "dest".
+   Copies [code]src_rect[/code] from [code]src[/code] image to this image at coordinates [code]dst[/code].
 */
 func (o *Image) BlitRect(src *Image, srcRect *Rect2, dst *Vector2) {
 	log.Println("Calling Image.BlitRect()")
@@ -39037,7 +39118,7 @@ func (o *Image) BlitRect(src *Image, srcRect *Rect2, dst *Vector2) {
 }
 
 /*
-   Blits a "src_rect" [Rect2] from "src" [Image] to this [Image] using a "mask" [Image] on coordinates "dest". Alpha channel is required for "mask", will copy src pixel onto dest if the corresponding mask pixel's alpha value is not 0. "src" [Image] and "mask" [Image] *must* have the same size (width and height) but they can have different formats
+   Blits [code]src_rect[/code] area from [code]src[/code] image to this image at the coordinates given by [code]dst[/code]. [code]src[/code] pixel is copied onto [code]dst[/code] if the corresponding [code]mask[/code] pixel's alpha value is not 0. [code]src[/code] image and [code]mask[/code] image [b]must[/b] have the same size (width and height) but they can have different formats.
 */
 func (o *Image) BlitRectMask(src *Image, mask *Image, srcRect *Rect2, dst *Vector2) {
 	log.Println("Calling Image.BlitRectMask()")
@@ -39058,8 +39139,8 @@ func (o *Image) BlitRectMask(src *Image, mask *Image, srcRect *Rect2, dst *Vecto
 }
 
 /*
-
- */
+   Removes the image's mipmaps.
+*/
 func (o *Image) ClearMipmaps() {
 	log.Println("Calling Image.ClearMipmaps()")
 
@@ -39075,8 +39156,8 @@ func (o *Image) ClearMipmaps() {
 }
 
 /*
-
- */
+   Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available. See [code]COMPRESS_*[/code] constants.
+*/
 func (o *Image) Compress(mode int64, source int64, lossyQuality float64) int64 {
 	log.Println("Calling Image.Compress()")
 
@@ -39098,8 +39179,8 @@ func (o *Image) Compress(mode int64, source int64, lossyQuality float64) int64 {
 }
 
 /*
-
- */
+   Converts the image's format. See [code]FORMAT_*[/code] constants.
+*/
 func (o *Image) Convert(format int64) {
 	log.Println("Calling Image.Convert()")
 
@@ -39116,8 +39197,8 @@ func (o *Image) Convert(format int64) {
 }
 
 /*
-
- */
+   Copies [code]src[/code] image to this image.
+*/
 func (o *Image) CopyFrom(src *Image) {
 	log.Println("Calling Image.CopyFrom()")
 
@@ -39134,7 +39215,7 @@ func (o *Image) CopyFrom(src *Image) {
 }
 
 /*
-   Create an empty image of a specific size and format.
+   Creates an empty image of given size and format. See [code]FORMAT_*[/code] constants. If [code]use_mipmaps[/code] is true then generate mipmaps for this image. See the [code]generate_mipmaps[/code] method.
 */
 func (o *Image) Create(width int64, height int64, useMipmaps bool, format int64) {
 	log.Println("Calling Image.Create()")
@@ -39155,8 +39236,8 @@ func (o *Image) Create(width int64, height int64, useMipmaps bool, format int64)
 }
 
 /*
-
- */
+   Creates a new image of given size and format. See [code]FORMAT_*[/code] constants. Fills the image with the given raw data. If [code]use_mipmaps[/code] is true then generate mipmaps for this image. See the [code]generate_mipmaps[/code] method.
+*/
 func (o *Image) CreateFromData(width int64, height int64, useMipmaps bool, format int64, data *PoolByteArray) {
 	log.Println("Calling Image.CreateFromData()")
 
@@ -39177,8 +39258,8 @@ func (o *Image) CreateFromData(width int64, height int64, useMipmaps bool, forma
 }
 
 /*
-
- */
+   Crops the image to the given [code]width[/code] and [code]height[/code]. If the specified size is larger than the current size, the extra area is filled with black pixels.
+*/
 func (o *Image) Crop(width int64, height int64) {
 	log.Println("Calling Image.Crop()")
 
@@ -39196,8 +39277,8 @@ func (o *Image) Crop(width int64, height int64) {
 }
 
 /*
-
- */
+   Decompresses the image if it is compressed. Returns an error if decompress function is not available.
+*/
 func (o *Image) Decompress() int64 {
 	log.Println("Calling Image.Decompress()")
 
@@ -39216,8 +39297,8 @@ func (o *Image) Decompress() int64 {
 }
 
 /*
-
- */
+   Returns ALPHA_BLEND if the image has data for alpha values. Returns ALPHA_BIT if all the alpha values are below a certain threshold or the maximum value. Returns ALPHA_NONE if no data for alpha values is found.
+*/
 func (o *Image) DetectAlpha() int64 {
 	log.Println("Calling Image.DetectAlpha()")
 
@@ -39236,8 +39317,8 @@ func (o *Image) DetectAlpha() int64 {
 }
 
 /*
-
- */
+   Stretches the image and enlarges it by a factor of 2. No interpolation is done.
+*/
 func (o *Image) ExpandX2Hq2X() {
 	log.Println("Calling Image.ExpandX2Hq2X()")
 
@@ -39253,7 +39334,7 @@ func (o *Image) ExpandX2Hq2X() {
 }
 
 /*
-   Fills an [Image] with a specified [Color]
+   Fills the image with a given [Color].
 */
 func (o *Image) Fill(color *Color) {
 	log.Println("Calling Image.Fill()")
@@ -39271,8 +39352,8 @@ func (o *Image) Fill(color *Color) {
 }
 
 /*
-
- */
+   Blends low-alpha pixels with nearby pixels.
+*/
 func (o *Image) FixAlphaEdges() {
 	log.Println("Calling Image.FixAlphaEdges()")
 
@@ -39288,8 +39369,8 @@ func (o *Image) FixAlphaEdges() {
 }
 
 /*
-
- */
+   Flips the image horizontally.
+*/
 func (o *Image) FlipX() {
 	log.Println("Calling Image.FlipX()")
 
@@ -39305,8 +39386,8 @@ func (o *Image) FlipX() {
 }
 
 /*
-
- */
+   Flips the image vertically.
+*/
 func (o *Image) FlipY() {
 	log.Println("Calling Image.FlipY()")
 
@@ -39322,8 +39403,8 @@ func (o *Image) FlipY() {
 }
 
 /*
-
- */
+   Generates mipmaps for the image. Mipmaps are pre-calculated and lower resolution copies of the image. Mipmaps are automatically used if the image needs to be scaled down when rendered. This improves image quality and the performance of the rendering. Returns an error if the image is compressed, in a custom format or if the image's width/height is 0.
+*/
 func (o *Image) GenerateMipmaps() int64 {
 	log.Println("Calling Image.GenerateMipmaps()")
 
@@ -39342,7 +39423,7 @@ func (o *Image) GenerateMipmaps() int64 {
 }
 
 /*
-   Return the raw data of the [Image].
+   Returns the image's raw data.
 */
 func (o *Image) GetData() *PoolByteArray {
 	log.Println("Calling Image.GetData()")
@@ -39362,7 +39443,7 @@ func (o *Image) GetData() *PoolByteArray {
 }
 
 /*
-   Return the format of the [Image], one of [Image].FORMAT_*.
+   Returns the image's raw data.
 */
 func (o *Image) GetFormat() int64 {
 	log.Println("Calling Image.GetFormat()")
@@ -39382,7 +39463,7 @@ func (o *Image) GetFormat() int64 {
 }
 
 /*
-   Return the height of the [Image].
+   Returns the image's height.
 */
 func (o *Image) GetHeight() int64 {
 	log.Println("Calling Image.GetHeight()")
@@ -39402,8 +39483,8 @@ func (o *Image) GetHeight() int64 {
 }
 
 /*
-
- */
+   Returns the offset where the image's mipmap with index [code]mipmap[/code] is stored in the [code]data[/code] dictionary.
+*/
 func (o *Image) GetMipmapOffset(mipmap int64) int64 {
 	log.Println("Calling Image.GetMipmapOffset()")
 
@@ -39423,8 +39504,8 @@ func (o *Image) GetMipmapOffset(mipmap int64) int64 {
 }
 
 /*
-
- */
+   Returns the color of the pixel at [code](x, y)[/code] if the image is locked. If the image is unlocked it always returns a [Color] with the value [code](0, 0, 0, 1.0)[/code].
+*/
 func (o *Image) GetPixel(x int64, y int64) *Color {
 	log.Println("Calling Image.GetPixel()")
 
@@ -39445,7 +39526,7 @@ func (o *Image) GetPixel(x int64, y int64) *Color {
 }
 
 /*
-   Return a new [Image] that is a copy of "area" in this [Image].
+   Returns a new image that is a copy of the image's area specified with [code]rect[/code].
 */
 func (o *Image) GetRect(rect *Rect2) *Image {
 	log.Println("Calling Image.GetRect()")
@@ -39466,8 +39547,8 @@ func (o *Image) GetRect(rect *Rect2) *Image {
 }
 
 /*
-
- */
+   Returns the image's size (width and height).
+*/
 func (o *Image) GetSize() *Vector2 {
 	log.Println("Calling Image.GetSize()")
 
@@ -39486,7 +39567,7 @@ func (o *Image) GetSize() *Vector2 {
 }
 
 /*
-   Return the area of this [Image] that is used/visibly colored/opaque.
+   Returns a [Rect2] enclosing the visible portion of the image.
 */
 func (o *Image) GetUsedRect() *Rect2 {
 	log.Println("Calling Image.GetUsedRect()")
@@ -39506,7 +39587,7 @@ func (o *Image) GetUsedRect() *Rect2 {
 }
 
 /*
-   Return the width of the [Image].
+   Returns the image's width.
 */
 func (o *Image) GetWidth() int64 {
 	log.Println("Calling Image.GetWidth()")
@@ -39526,8 +39607,8 @@ func (o *Image) GetWidth() int64 {
 }
 
 /*
-
- */
+   Returns [code]true[/code] if the image has generated mipmaps.
+*/
 func (o *Image) HasMipmaps() bool {
 	log.Println("Calling Image.HasMipmaps()")
 
@@ -39546,8 +39627,8 @@ func (o *Image) HasMipmaps() bool {
 }
 
 /*
-
- */
+   Returns [code]true[/code] if the image is compressed.
+*/
 func (o *Image) IsCompressed() bool {
 	log.Println("Calling Image.IsCompressed()")
 
@@ -39566,8 +39647,8 @@ func (o *Image) IsCompressed() bool {
 }
 
 /*
-
- */
+   Returns [code]true[/code] if the image has no data.
+*/
 func (o *Image) IsEmpty() bool {
 	log.Println("Calling Image.IsEmpty()")
 
@@ -39586,8 +39667,8 @@ func (o *Image) IsEmpty() bool {
 }
 
 /*
-
- */
+   Returns [code]true[/code] if all the image's pixels have an alpha value of 0. Returns [code]false[/code] if any pixel has an alpha value higher than 0.
+*/
 func (o *Image) IsInvisible() bool {
 	log.Println("Calling Image.IsInvisible()")
 
@@ -39606,7 +39687,7 @@ func (o *Image) IsInvisible() bool {
 }
 
 /*
-   Load an [Image].
+   Loads an image from file [code]path[/code].
 */
 func (o *Image) Load(path string) int64 {
 	log.Println("Calling Image.Load()")
@@ -39627,8 +39708,8 @@ func (o *Image) Load(path string) int64 {
 }
 
 /*
-
- */
+   Locks the data and prevents changes.
+*/
 func (o *Image) Lock() {
 	log.Println("Calling Image.Lock()")
 
@@ -39644,8 +39725,8 @@ func (o *Image) Lock() {
 }
 
 /*
-
- */
+   Converts the image's data to represent coordinates on a 3D plane. This is used when the image represents a normalmap. A normalmap can add lots of detail to a 3D surface without increasing the polygon count.
+*/
 func (o *Image) NormalmapToXy() {
 	log.Println("Calling Image.NormalmapToXy()")
 
@@ -39661,8 +39742,8 @@ func (o *Image) NormalmapToXy() {
 }
 
 /*
-
- */
+   Multiplies color values with alpha values. Resulting color values for a pixel are [code](color * alpha)/256[/code].
+*/
 func (o *Image) PremultiplyAlpha() {
 	log.Println("Calling Image.PremultiplyAlpha()")
 
@@ -39678,8 +39759,8 @@ func (o *Image) PremultiplyAlpha() {
 }
 
 /*
-
- */
+   Resizes the image to the given [code]width[/code] and [code]height[/code]. New pixels are calculated using [code]interpolation[/code]. See [code]interpolation[/code] constants.
+*/
 func (o *Image) Resize(width int64, height int64, interpolation int64) {
 	log.Println("Calling Image.Resize()")
 
@@ -39698,8 +39779,8 @@ func (o *Image) Resize(width int64, height int64, interpolation int64) {
 }
 
 /*
-
- */
+   Resizes the image to the nearest power of 2 for the width and height. If [code]square[/code] is [code]true[/code] then set width and height to be the same.
+*/
 func (o *Image) ResizeToPo2(square bool) {
 	log.Println("Calling Image.ResizeToPo2()")
 
@@ -39716,7 +39797,7 @@ func (o *Image) ResizeToPo2(square bool) {
 }
 
 /*
-   Save this [Image] as a png.
+   Saves the image as a PNG file to [code]path[/code].
 */
 func (o *Image) SavePng(path string) int64 {
 	log.Println("Calling Image.SavePng()")
@@ -39737,8 +39818,8 @@ func (o *Image) SavePng(path string) int64 {
 }
 
 /*
-
- */
+   Sets the [Color] of the pixel at [code](x, y)[/code] if the image is unlocked. Example: [code] var img = Image.new() img.lock() img.set_pixel(x, y, color) # Does not have an effect img.unlock() img.set_pixel(x, y, color) # Works [/code].
+*/
 func (o *Image) SetPixel(x int64, y int64, color *Color) {
 	log.Println("Calling Image.SetPixel()")
 
@@ -39757,8 +39838,8 @@ func (o *Image) SetPixel(x int64, y int64, color *Color) {
 }
 
 /*
-
- */
+   Shrinks the image by a factor of 2.
+*/
 func (o *Image) ShrinkX2() {
 	log.Println("Calling Image.ShrinkX2()")
 
@@ -39774,8 +39855,8 @@ func (o *Image) ShrinkX2() {
 }
 
 /*
-
- */
+   Converts the raw data from the sRGB colorspace to a linear scale.
+*/
 func (o *Image) SrgbToLinear() {
 	log.Println("Calling Image.SrgbToLinear()")
 
@@ -39791,8 +39872,8 @@ func (o *Image) SrgbToLinear() {
 }
 
 /*
-
- */
+   Unlocks the data for writing access.
+*/
 func (o *Image) Unlock() {
 	log.Println("Calling Image.Unlock()")
 
@@ -39844,7 +39925,7 @@ func (o *ImageTexture) X_ReloadHook(rid *RID) {
 }
 
 /*
-   Create a new [ImageTexture] with "width" and "height". "format" one of [Image].FORMAT_*. "flags" one or more of [Texture].FLAG_*.
+   Create a new [code]ImageTexture[/code] with "width" and "height". "format" one of [Image].FORMAT_*. "flags" one or more of [Texture].FLAG_*.
 */
 func (o *ImageTexture) Create(width int64, height int64, format int64, flags int64) {
 	log.Println("Calling ImageTexture.Create()")
@@ -39865,7 +39946,7 @@ func (o *ImageTexture) Create(width int64, height int64, format int64, flags int
 }
 
 /*
-   Create a new [ImageTexture] from an [Image] with "flags" from [Texture].FLAG_*.
+   Create a new [code]ImageTexture[/code] from an [Image] with "flags" from [Texture].FLAG_*.
 */
 func (o *ImageTexture) CreateFromImage(image *Image, flags int64) {
 	log.Println("Calling ImageTexture.CreateFromImage()")
@@ -39884,7 +39965,7 @@ func (o *ImageTexture) CreateFromImage(image *Image, flags int64) {
 }
 
 /*
-   Return the format of the [ImageTexture], one of [Image].FORMAT_*.
+   Return the format of the [code]ImageTexture[/code], one of [Image].FORMAT_*.
 */
 func (o *ImageTexture) GetFormat() int64 {
 	log.Println("Calling ImageTexture.GetFormat()")
@@ -39904,7 +39985,7 @@ func (o *ImageTexture) GetFormat() int64 {
 }
 
 /*
-   Return the storage quality for [ImageTexture].STORAGE_COMPRESS_LOSSY.
+   Return the storage quality for [code]ImageTexture[/code].STORAGE_COMPRESS_LOSSY.
 */
 func (o *ImageTexture) GetLossyStorageQuality() float64 {
 	log.Println("Calling ImageTexture.GetLossyStorageQuality()")
@@ -39924,7 +40005,7 @@ func (o *ImageTexture) GetLossyStorageQuality() float64 {
 }
 
 /*
-   Return the storage type. One of [ImageTexture].STORAGE_*.
+   Return the storage type. One of [code]ImageTexture[/code].STORAGE_*.
 */
 func (o *ImageTexture) GetStorage() int64 {
 	log.Println("Calling ImageTexture.GetStorage()")
@@ -39944,7 +40025,7 @@ func (o *ImageTexture) GetStorage() int64 {
 }
 
 /*
-   Load an [ImageTexture].
+   Load an [code]ImageTexture[/code].
 */
 func (o *ImageTexture) Load(path string) {
 	log.Println("Calling ImageTexture.Load()")
@@ -39962,7 +40043,7 @@ func (o *ImageTexture) Load(path string) {
 }
 
 /*
-   Set the [Image] of this [ImageTexture].
+   Set the [Image] of this [code]ImageTexture[/code].
 */
 func (o *ImageTexture) SetData(image *Image) {
 	log.Println("Calling ImageTexture.SetData()")
@@ -39980,7 +40061,7 @@ func (o *ImageTexture) SetData(image *Image) {
 }
 
 /*
-   Set the storage quality in case of [ImageTexture].STORAGE_COMPRESS_LOSSY.
+   Set the storage quality in case of [code]ImageTexture[/code].STORAGE_COMPRESS_LOSSY.
 */
 func (o *ImageTexture) SetLossyStorageQuality(quality float64) {
 	log.Println("Calling ImageTexture.SetLossyStorageQuality()")
@@ -40016,7 +40097,7 @@ func (o *ImageTexture) SetSizeOverride(size *Vector2) {
 }
 
 /*
-   Set the storage type. One of [ImageTexture].STORAGE_*.
+   Set the storage type. One of [code]ImageTexture[/code].STORAGE_*.
 */
 func (o *ImageTexture) SetStorage(mode int64) {
 	log.Println("Calling ImageTexture.SetStorage()")
@@ -40819,6 +40900,27 @@ func (o *input) IsMouseButtonPressed(button int64) bool {
 /*
 
  */
+func (o *input) JoyConnectionChanged(device int64, connected bool, name string, guid string) {
+	log.Println("Calling Input.JoyConnectionChanged()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 4, 4)
+	goArguments[0] = reflect.ValueOf(device)
+	goArguments[1] = reflect.ValueOf(connected)
+	goArguments[2] = reflect.ValueOf(name)
+	goArguments[3] = reflect.ValueOf(guid)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "joy_connection_changed", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
 func (o *input) ParseInputEvent(event *InputEvent) {
 	log.Println("Calling Input.ParseInputEvent()")
 
@@ -40965,8 +41067,8 @@ type InputDefaultImplementer interface {
 }
 
 /*
-
- */
+   Base class of all sort of input event. See [method Node._input].
+*/
 type InputEvent struct {
 	Resource
 }
@@ -40976,7 +41078,7 @@ func (o *InputEvent) baseClass() string {
 }
 
 /*
-   Returns true if this input event matches the event passed.
+   Returns [code]true[/code] if this event matches [code]event[event].
 */
 func (o *InputEvent) ActionMatch(event *InputEvent) bool {
 	log.Println("Calling InputEvent.ActionMatch()")
@@ -41017,7 +41119,7 @@ func (o *InputEvent) AsText() string {
 }
 
 /*
-   Returns the id of the device that generated the event.
+   Returns the device's id that generated the event.
 */
 func (o *InputEvent) GetDevice() int64 {
 	log.Println("Calling InputEvent.GetDevice()")
@@ -41037,7 +41139,7 @@ func (o *InputEvent) GetDevice() int64 {
 }
 
 /*
-   Returns the id of the event.
+   Returns the event's ID.
 */
 func (o *InputEvent) GetId() int64 {
 	log.Println("Calling InputEvent.GetId()")
@@ -41057,7 +41159,7 @@ func (o *InputEvent) GetId() int64 {
 }
 
 /*
-   Returns true if this input event matches a pre-defined action, no matter the type.
+   Returns [code]true[/code] if this input event matches a pre-defined action of any type.
 */
 func (o *InputEvent) IsAction(action string) bool {
 	log.Println("Calling InputEvent.IsAction()")
@@ -41078,7 +41180,7 @@ func (o *InputEvent) IsAction(action string) bool {
 }
 
 /*
-   Returns true if the given action is being pressed (and is not an echo event for KEY events). Not relevant for the event types MOUSE_MOTION, SCREEN_DRAG and NONE.
+   Returns [code]true[/code] if the given action is being pressed (and is not an echo event for KEY events). Not relevant for the event types [code]MOUSE_MOTION[/code], [code]SCREEN_DRAG[/code] or [code]NONE[/code].
 */
 func (o *InputEvent) IsActionPressed(action string) bool {
 	log.Println("Calling InputEvent.IsActionPressed()")
@@ -41099,7 +41201,7 @@ func (o *InputEvent) IsActionPressed(action string) bool {
 }
 
 /*
-   Returns true if the given action is released (i.e. not pressed). Not relevant for the event types MOUSE_MOTION, SCREEN_DRAG and NONE.
+   Returns [code]true[/code] if the given action is released (i.e. not pressed). Not relevant for the event types [code]MOUSE_MOTION[/code], [code]SCREEN_DRAG[/code] or [code]NONE[/code].
 */
 func (o *InputEvent) IsActionReleased(action string) bool {
 	log.Println("Calling InputEvent.IsActionReleased()")
@@ -41120,8 +41222,8 @@ func (o *InputEvent) IsActionReleased(action string) bool {
 }
 
 /*
-
- */
+   Returns [code]true[/code] if this input event's type is one of the [code]InputEvent[/code] constants.
+*/
 func (o *InputEvent) IsActionType() bool {
 	log.Println("Calling InputEvent.IsActionType()")
 
@@ -41140,7 +41242,7 @@ func (o *InputEvent) IsActionType() bool {
 }
 
 /*
-   Returns true if this input event is an echo event (only for events of type KEY, it will return false for other types).
+   Returns [code]true[/code] if this input event is an echo event (only for events of type KEY).
 */
 func (o *InputEvent) IsEcho() bool {
 	log.Println("Calling InputEvent.IsEcho()")
@@ -41160,7 +41262,7 @@ func (o *InputEvent) IsEcho() bool {
 }
 
 /*
-   Returns true if this input event is pressed. Not relevant for the event types MOUSE_MOTION, SCREEN_DRAG and NONE.
+   Returns [code]true[/code] if this input event is pressed. Not relevant for the event types [code]MOUSE_MOTION[/code], [code]SCREEN_DRAG[/code] or [code]NONE[/code].
 */
 func (o *InputEvent) IsPressed() bool {
 	log.Println("Calling InputEvent.IsPressed()")
@@ -41266,8 +41368,8 @@ type InputEventImplementer interface {
 }
 
 /*
-
- */
+   Contains a generic action which can be targeted from several type of inputs. Actions can be created from the project settings menu [code]Project > Project Settings > Input Map[/Code]. See [method Node._input].
+*/
 type InputEventAction struct {
 	InputEvent
 }
@@ -41340,8 +41442,8 @@ type InputEventActionImplementer interface {
 }
 
 /*
-
- */
+   Input event type for gamepad buttons. For joysticks see [InputEventJoypadMotion].
+*/
 type InputEventJoypadButton struct {
 	InputEvent
 }
@@ -41452,8 +41554,8 @@ type InputEventJoypadButtonImplementer interface {
 }
 
 /*
-
- */
+   Stores information about joystick motions. One [code]InputEventJoypadMotion[/code] represents one axis at a time.
+*/
 type InputEventJoypadMotion struct {
 	InputEvent
 }
@@ -41546,8 +41648,8 @@ type InputEventJoypadMotionImplementer interface {
 }
 
 /*
-
- */
+   Stores key presses on the keyboard. Supports key presses, key releases and [member echo] events.
+*/
 type InputEventKey struct {
 	InputEventWithModifiers
 }
@@ -41696,8 +41798,8 @@ type InputEventKeyImplementer interface {
 }
 
 /*
-
- */
+   Stores general mouse events informations.
+*/
 type InputEventMouse struct {
 	InputEventWithModifiers
 }
@@ -41828,8 +41930,8 @@ type InputEventMouseImplementer interface {
 }
 
 /*
-
- */
+   Contains mouse click informations. See [method Node._input].
+*/
 type InputEventMouseButton struct {
 	InputEventMouse
 }
@@ -41978,8 +42080,8 @@ type InputEventMouseButtonImplementer interface {
 }
 
 /*
-
- */
+   Contains mouse motion informations. Supports relative, absolute positions and speed. See [method Node._input].
+*/
 type InputEventMouseMotion struct {
 	InputEventMouse
 }
@@ -42072,8 +42174,8 @@ type InputEventMouseMotionImplementer interface {
 }
 
 /*
-
- */
+   Contains screen drag informations. See [method Node._input].
+*/
 type InputEventScreenDrag struct {
 	InputEvent
 }
@@ -42242,8 +42344,8 @@ type InputEventScreenDragImplementer interface {
 }
 
 /*
-
- */
+   Stores multi-touch press/release information. Supports touch press, touch release and [member index] for multi-touch count and order.
+*/
 type InputEventScreenTouch struct {
 	InputEvent
 }
@@ -42354,8 +42456,8 @@ type InputEventScreenTouchImplementer interface {
 }
 
 /*
-
- */
+   Contains keys events informations with modifiers support like [code]SHIFT[/code] or [code]ALT[/code]. See [method Node._input].
+*/
 type InputEventWithModifiers struct {
 	InputEvent
 }
@@ -42569,13 +42671,13 @@ func newSingletonInputMap() *inputMap {
 }
 
 /*
-
- */
+   Manages all [InputEventAction] which can be created/modified from the project settings menu [code]Project > Project Settings > Input Map[/Code] or in code with [method add_action] and [method action_add_event]. See [method Node._input].
+*/
 var InputMap = newSingletonInputMap()
 
 /*
-
- */
+   Manages all [InputEventAction] which can be created/modified from the project settings menu [code]Project > Project Settings > Input Map[/Code] or in code with [method add_action] and [method action_add_event]. See [method Node._input].
+*/
 type inputMap struct {
 	Object
 }
@@ -42585,7 +42687,7 @@ func (o *inputMap) baseClass() string {
 }
 
 /*
-   Add an [InputEvent] to an action. This [InputEvent] will trigger the action.
+   Adds an [InputEvent] to an action. This [InputEvent] will trigger the action.
 */
 func (o *inputMap) ActionAddEvent(action string, event *InputEvent) {
 	log.Println("Calling InputMap.ActionAddEvent()")
@@ -42604,7 +42706,7 @@ func (o *inputMap) ActionAddEvent(action string, event *InputEvent) {
 }
 
 /*
-   Remove an [InputEvent] from an action.
+   Removes an [InputEvent] from an action.
 */
 func (o *inputMap) ActionEraseEvent(action string, event *InputEvent) {
 	log.Println("Calling InputMap.ActionEraseEvent()")
@@ -42623,7 +42725,7 @@ func (o *inputMap) ActionEraseEvent(action string, event *InputEvent) {
 }
 
 /*
-   Whether an action has an [InputEvent] associated with it.
+   Returns [true] if an action has an [InputEvent] associated with it.
 */
 func (o *inputMap) ActionHasEvent(action string, event *InputEvent) bool {
 	log.Println("Calling InputMap.ActionHasEvent()")
@@ -42645,7 +42747,7 @@ func (o *inputMap) ActionHasEvent(action string, event *InputEvent) bool {
 }
 
 /*
-   Add an (empty) action to the [InputMap]. An [InputEvent] can then be added to this action with [method action_add_event].
+   Adds an (empty) action to the [code]InputMap[/code]. An [InputEvent] can then be added to this action with [method action_add_event].
 */
 func (o *inputMap) AddAction(action string) {
 	log.Println("Calling InputMap.AddAction()")
@@ -42663,7 +42765,7 @@ func (o *inputMap) AddAction(action string) {
 }
 
 /*
-   Remove an action from the [InputMap].
+   Removes an action from the [code]InputMap[/code].
 */
 func (o *inputMap) EraseAction(action string) {
 	log.Println("Calling InputMap.EraseAction()")
@@ -42681,7 +42783,7 @@ func (o *inputMap) EraseAction(action string) {
 }
 
 /*
-   Return whether the given event is part of an existing action. This method ignores keyboard modifiers if the given [InputEvent] is not pressed (for proper release detection). See [method action_has_event] if you don't want this behavior.
+   Returns [true] if the given event is part of an existing action. This method ignores keyboard modifiers if the given [InputEvent] is not pressed (for proper release detection). See [method action_has_event] if you don't want this behavior.
 */
 func (o *inputMap) EventIsAction(event *InputEvent, action string) bool {
 	log.Println("Calling InputMap.EventIsAction()")
@@ -42703,7 +42805,7 @@ func (o *inputMap) EventIsAction(event *InputEvent, action string) bool {
 }
 
 /*
-   Return an array of InputEvents associated with a given action.
+   Returns an array of [InputEvent]s associated with a given action.
 */
 func (o *inputMap) GetActionList(action string) *Array {
 	log.Println("Calling InputMap.GetActionList()")
@@ -42724,7 +42826,7 @@ func (o *inputMap) GetActionList(action string) *Array {
 }
 
 /*
-   Return an array of all actions in the [InputMap].
+   Returns an array of all actions in the [code]InputMap[/code].
 */
 func (o *inputMap) GetActions() *Array {
 	log.Println("Calling InputMap.GetActions()")
@@ -42744,7 +42846,7 @@ func (o *inputMap) GetActions() *Array {
 }
 
 /*
-   Whether this InputMap has a registered action with the given name.
+   Returns [code]true[/code] if the [code]InputMap[/code] has a registered action with the given name.
 */
 func (o *inputMap) HasAction(action string) bool {
 	log.Println("Calling InputMap.HasAction()")
@@ -42765,7 +42867,7 @@ func (o *inputMap) HasAction(action string) bool {
 }
 
 /*
-   Clear the [InputMap] and load it anew from [ProjectSettings].
+   Clears all [InputEventAction] in the [code]InputMap[/code] and load it anew from [ProjectSettings].
 */
 func (o *inputMap) LoadFromGlobals() {
 	log.Println("Calling InputMap.LoadFromGlobals()")
@@ -44089,7 +44191,7 @@ type ItemListImplementer interface {
 }
 
 /*
-   Returned by [method JSON.parse], [JSONParseResult] contains decoded JSON or error information if JSON source not successfully parsed. You can check if JSON source was successfully parsed with [code]if json_result.error == 0[/code].
+   Returned by [method JSON.parse], [code]JSONParseResult[/code] contains decoded JSON or error information if JSON source not successfully parsed. You can check if JSON source was successfully parsed with [code]if json_result.error == 0[/code].
 */
 type JSONParseResult struct {
 	Reference
@@ -44259,8 +44361,8 @@ type JSONParseResultImplementer interface {
 }
 
 /*
-
- */
+   All 3D joints link two nodes, has a priority, and can decide if the two bodies of the nodes should be able to collide with each other
+*/
 type Joint struct {
 	Spatial
 }
@@ -44772,7 +44874,7 @@ func (o *KinematicBody) MoveAndCollide(relVec *Vector3) *KinematicCollision {
 }
 
 /*
-   Moves the body along a vector. If the body collides with another, it will slide along the other body rather than stop immediately. If the other body is a [KinematicBody] or [RigidBody], it will also be affected by the motion of the other body. You can use this to make moving or rotating platforms, or to make nodes push other nodes. [code]linear_velocity[/code] is a value in pixels per second. Unlike in for example [method move_and_collide], you should [i]not[/i] multiply it with [code]delta[/code] — this is done by the method. [code]floor_normal[/code] is the up direction, used to determine what is a wall and what is a floor or a ceiling. If set to the default value of [code]Vector2(0, 0)[/code], everything is considered a wall. This is useful for topdown games. If the body is standing on a slope and the horizontal speed (relative to the floor's speed) goes below [code]slope_stop_min_velocity[/code], the body will stop completely. This prevents the body from sliding down slopes when you include gravity in [code]linear_velocity[/code]. When set to lower values, the body will not be able to stand still on steep slopes. If the body collides, it will change direction a maximum of [code]max_bounces[/code] times before it stops. [code]floor_max_angle[/code] is the maximum angle (in radians) where a slope is still considered a floor (or a ceiling), rather than a wall. The default value equals 45 degrees. Returns the movement that remained when the body stopped. To get more detailed information about collisions that occured, use [method get_slide_collision].
+   Moves the body along a vector. If the body collides with another, it will slide along the other body rather than stop immediately. If the other body is a [code]KinematicBody[/code] or [RigidBody], it will also be affected by the motion of the other body. You can use this to make moving or rotating platforms, or to make nodes push other nodes. [code]linear_velocity[/code] is a value in pixels per second. Unlike in for example [method move_and_collide], you should [i]not[/i] multiply it with [code]delta[/code] — this is done by the method. [code]floor_normal[/code] is the up direction, used to determine what is a wall and what is a floor or a ceiling. If set to the default value of [code]Vector2(0, 0)[/code], everything is considered a wall. This is useful for topdown games. If the body is standing on a slope and the horizontal speed (relative to the floor's speed) goes below [code]slope_stop_min_velocity[/code], the body will stop completely. This prevents the body from sliding down slopes when you include gravity in [code]linear_velocity[/code]. When set to lower values, the body will not be able to stand still on steep slopes. If the body collides, it will change direction a maximum of [code]max_bounces[/code] times before it stops. [code]floor_max_angle[/code] is the maximum angle (in radians) where a slope is still considered a floor (or a ceiling), rather than a wall. The default value equals 45 degrees. Returns the movement that remained when the body stopped. To get more detailed information about collisions that occured, use [method get_slide_collision].
 */
 func (o *KinematicBody) MoveAndSlide(linearVelocity *Vector3, floorNormal *Vector3, slopeStopMinVelocity float64, maxSlides int64, floorMaxAngle float64) *Vector3 {
 	log.Println("Calling KinematicBody.MoveAndSlide()")
@@ -45017,7 +45119,7 @@ func (o *KinematicBody2D) MoveAndCollide(relVec *Vector2) *KinematicCollision2D 
 }
 
 /*
-   Moves the body along a vector. If the body collides with another, it will slide along the other body rather than stop immediately. If the other body is a [KinematicBody2D] or [RigidBody2D], it will also be affected by the motion of the other body. You can use this to make moving or rotating platforms, or to make nodes push other nodes. [code]linear_velocity[/code] is a value in pixels per second. Unlike in for example [method move_and_collide], you should [i]not[/i] multiply it with [code]delta[/code] — this is done by the method. [code]floor_normal[/code] is the up direction, used to determine what is a wall and what is a floor or a ceiling. If set to the default value of [code]Vector2(0, 0)[/code], everything is considered a wall. This is useful for topdown games. If the body is standing on a slope and the horizontal speed (relative to the floor's speed) goes below [code]slope_stop_min_velocity[/code], the body will stop completely. This prevents the body from sliding down slopes when you include gravity in [code]linear_velocity[/code]. When set to lower values, the body will not be able to stand still on steep slopes. If the body collides, it will change direction a maximum of [code]max_bounces[/code] times before it stops. [code]floor_max_angle[/code] is the maximum angle (in radians) where a slope is still considered a floor (or a ceiling), rather than a wall. The default value equals 45 degrees. Returns the movement that remained when the body stopped. To get more detailed information about collisions that occured, use [method get_slide_collision].
+   Moves the body along a vector. If the body collides with another, it will slide along the other body rather than stop immediately. If the other body is a [code]KinematicBody2D[/code] or [RigidBody2D], it will also be affected by the motion of the other body. You can use this to make moving or rotating platforms, or to make nodes push other nodes. [code]linear_velocity[/code] is a value in pixels per second. Unlike in for example [method move_and_collide], you should [i]not[/i] multiply it with [code]delta[/code] — this is done by the method. [code]floor_normal[/code] is the up direction, used to determine what is a wall and what is a floor or a ceiling. If set to the default value of [code]Vector2(0, 0)[/code], everything is considered a wall. This is useful for topdown games. If the body is standing on a slope and the horizontal speed (relative to the floor's speed) goes below [code]slope_stop_min_velocity[/code], the body will stop completely. This prevents the body from sliding down slopes when you include gravity in [code]linear_velocity[/code]. When set to lower values, the body will not be able to stand still on steep slopes. If the body collides, it will change direction a maximum of [code]max_bounces[/code] times before it stops. [code]floor_max_angle[/code] is the maximum angle (in radians) where a slope is still considered a floor (or a ceiling), rather than a wall. The default value equals 45 degrees. Returns the movement that remained when the body stopped. To get more detailed information about collisions that occured, use [method get_slide_collision].
 */
 func (o *KinematicBody2D) MoveAndSlide(linearVelocity *Vector2, floorNormal *Vector2, slopeStopMinVelocity float64, maxBounces int64, floorMaxAngle float64) *Vector2 {
 	log.Println("Calling KinematicBody2D.MoveAndSlide()")
@@ -48119,7 +48221,7 @@ func (o *LineEdit) X_ToggleDrawCaret() {
 }
 
 /*
-   Append text at cursor, scrolling the [LineEdit] when needed.
+   Adds [code]text[/code] after the cursor. If the resulting value is longer than [member max_length], nothing happens.
 */
 func (o *LineEdit) AppendAtCursor(text string) {
 	log.Println("Calling LineEdit.AppendAtCursor()")
@@ -48137,7 +48239,7 @@ func (o *LineEdit) AppendAtCursor(text string) {
 }
 
 /*
-   Clear the [LineEdit] text.
+   Erases the [LineEdit] text.
 */
 func (o *LineEdit) Clear() {
 	log.Println("Calling LineEdit.Clear()")
@@ -48230,7 +48332,7 @@ func (o *LineEdit) CursorSetBlinkSpeed(blinkSpeed float64) {
 }
 
 /*
-   Return the align mode of the [LineEdit].
+   Return the align mode of the [code]LineEdit[/code].
 */
 func (o *LineEdit) GetAlign() int64 {
 	log.Println("Calling LineEdit.GetAlign()")
@@ -48250,7 +48352,7 @@ func (o *LineEdit) GetAlign() int64 {
 }
 
 /*
-   Return the cursor position inside the [LineEdit].
+   Returns the cursor position inside the [code]LineEdit[/code].
 */
 func (o *LineEdit) GetCursorPosition() int64 {
 	log.Println("Calling LineEdit.GetCursorPosition()")
@@ -48290,7 +48392,7 @@ func (o *LineEdit) GetExpandToTextLength() bool {
 }
 
 /*
-   Return the maximum amount of characters the [LineEdit] can edit. If 0 is returned, no limit exists.
+   Return the maximum amount of characters the [code]LineEdit[/code] can edit. If 0 is returned, no limit exists.
 */
 func (o *LineEdit) GetMaxLength() int64 {
 	log.Println("Calling LineEdit.GetMaxLength()")
@@ -48310,7 +48412,7 @@ func (o *LineEdit) GetMaxLength() int64 {
 }
 
 /*
-   Return the [PopupMenu] of this [LineEdit].
+   Returns the [PopupMenu] of this [code]LineEdit[/code]. By default, this menu is displayed when right-clicking on the [LineEdit].
 */
 func (o *LineEdit) GetMenu() *PopupMenu {
 	log.Println("Calling LineEdit.GetMenu()")
@@ -48370,7 +48472,7 @@ func (o *LineEdit) GetPlaceholderAlpha() float64 {
 }
 
 /*
-   Return the text in the [LineEdit].
+   Return the text in the [code]LineEdit[/code].
 */
 func (o *LineEdit) GetText() string {
 	log.Println("Calling LineEdit.GetText()")
@@ -48390,7 +48492,7 @@ func (o *LineEdit) GetText() string {
 }
 
 /*
-   Return the [i]editable[/i] status of the [LineEdit] (see [method set_editable]).
+   Return the [i]editable[/i] status of the [code]LineEdit[/code] (see [method set_editable]).
 */
 func (o *LineEdit) IsEditable() bool {
 	log.Println("Calling LineEdit.IsEditable()")
@@ -48410,7 +48512,7 @@ func (o *LineEdit) IsEditable() bool {
 }
 
 /*
-   Return the [i]secret[/i] status of the [LineEdit] (see [method set_secret]).
+   Return the [i]secret[/i] status of the [code]LineEdit[/code] (see [method set_secret]).
 */
 func (o *LineEdit) IsSecret() bool {
 	log.Println("Calling LineEdit.IsSecret()")
@@ -48430,7 +48532,7 @@ func (o *LineEdit) IsSecret() bool {
 }
 
 /*
-   Execute a given action as defined in the MENU_* enum.
+   Executes a given action as defined in the MENU_* enum.
 */
 func (o *LineEdit) MenuOption(option int64) {
 	log.Println("Calling LineEdit.MenuOption()")
@@ -48448,7 +48550,7 @@ func (o *LineEdit) MenuOption(option int64) {
 }
 
 /*
-   Select the text inside [LineEdit] by the given character positions. [code]from[/code] is default to the beginning. [code]to[/code] is default to the end. [codeblock] select() # select all select(5) # select from the fifth character to the end. select(2, 5) # select from the second to the fifth character. [/codeblock]
+   Selects characters inside [LineEdit] between [code]from[/code] and [code]to[/code]. By default [code]from[/code] is at the beginning and [code]to[/code] at the end. [codeblock] text = "Welcome" select() # Welcome select(4) # ome select(2, 5) # lco [/codeblock]
 */
 func (o *LineEdit) Select(from int64, to int64) {
 	log.Println("Calling LineEdit.Select()")
@@ -48467,7 +48569,7 @@ func (o *LineEdit) Select(from int64, to int64) {
 }
 
 /*
-   Select the whole string.
+   Selects the whole [String].
 */
 func (o *LineEdit) SelectAll() {
 	log.Println("Calling LineEdit.SelectAll()")
@@ -48484,7 +48586,7 @@ func (o *LineEdit) SelectAll() {
 }
 
 /*
-   Set text alignment of the [LineEdit].
+   Set text alignment of the [code]LineEdit[/code].
 */
 func (o *LineEdit) SetAlign(align int64) {
 	log.Println("Calling LineEdit.SetAlign()")
@@ -48502,7 +48604,7 @@ func (o *LineEdit) SetAlign(align int64) {
 }
 
 /*
-   Set the cursor position inside the [LineEdit], causing it to scroll if needed.
+   Sets the cursor position inside the [code]LineEdit[/code]. The text may scroll if needed.
 */
 func (o *LineEdit) SetCursorPosition(position int64) {
 	log.Println("Calling LineEdit.SetCursorPosition()")
@@ -48520,7 +48622,7 @@ func (o *LineEdit) SetCursorPosition(position int64) {
 }
 
 /*
-   Set the [i]editable[/i] status of the [LineEdit]. When disabled, existing text can't be modified and new text can't be added.
+   Set the [i]editable[/i] status of the [code]LineEdit[/code]. When disabled, existing text can't be modified and new text can't be added.
 */
 func (o *LineEdit) SetEditable(enabled bool) {
 	log.Println("Calling LineEdit.SetEditable()")
@@ -48556,7 +48658,7 @@ func (o *LineEdit) SetExpandToTextLength(enabled bool) {
 }
 
 /*
-   Set the maximum amount of characters the [LineEdit] can edit, and cropping existing text in case it exceeds that limit. Setting 0 removes the limit.
+   Set the maximum amount of characters the [code]LineEdit[/code] can edit, and cropping existing text in case it exceeds that limit. Setting 0 removes the limit.
 */
 func (o *LineEdit) SetMaxLength(chars int64) {
 	log.Println("Calling LineEdit.SetMaxLength()")
@@ -48610,7 +48712,7 @@ func (o *LineEdit) SetPlaceholderAlpha(alpha float64) {
 }
 
 /*
-   Set the [i]secret[/i] status of the [LineEdit]. When enabled, every character is displayed as "*".
+   Set the [i]secret[/i] status of the [code]LineEdit[/code]. When enabled, every character is displayed as "*".
 */
 func (o *LineEdit) SetSecret(enabled bool) {
 	log.Println("Calling LineEdit.SetSecret()")
@@ -48628,7 +48730,7 @@ func (o *LineEdit) SetSecret(enabled bool) {
 }
 
 /*
-   Set the text in the [LineEdit], clearing the existing one and the selection.
+   Set the text in the [code]LineEdit[/code], clearing the existing one and the selection.
 */
 func (o *LineEdit) SetText(text string) {
 	log.Println("Calling LineEdit.SetText()")
@@ -48816,7 +48918,7 @@ func (o *LinkButton) SetText(text string) {
 }
 
 /*
-   Sets the underline mode for this button, the argument must be one of the [LinkButton] constants (see constants section).
+   Sets the underline mode for this button, the argument must be one of the [code]LinkButton[/code] constants (see constants section).
 */
 func (o *LinkButton) SetUnderlineMode(underlineMode int64) {
 	log.Println("Calling LinkButton.SetUnderlineMode()")
@@ -48933,7 +49035,7 @@ type ListenerImplementer interface {
 }
 
 /*
-   Main loop is the abstract main loop base class. All other main loop classes are derived from it. Upon application start, a [MainLoop] has to be provided to OS, else the application will exit. This happens automatically (and a [SceneTree] is created), unless a main [Script] is supplied, which may or not create and return a [MainLoop].
+   Main loop is the abstract main loop base class. All other main loop classes are derived from it. Upon application start, a [code]MainLoop[/code] has to be provided to OS, else the application will exit. This happens automatically (and a [SceneTree] is created), unless a main [Script] is supplied, which may or not create and return a [code]MainLoop[/code].
 */
 type MainLoop struct {
 	Object
@@ -50829,6 +50931,252 @@ func (o *MeshLibrary) SetItemShapes(id int64, shapes *Array) {
    MeshLibraryImplementer is an interface for MeshLibrary objects.
 */
 type MeshLibraryImplementer interface {
+	Class
+}
+
+/*
+   Undocumented
+*/
+type MobileVRInterface struct {
+	ARVRInterface
+}
+
+func (o *MobileVRInterface) baseClass() string {
+	return "MobileVRInterface"
+}
+
+/*
+   Undocumented
+*/
+func (o *MobileVRInterface) GetDisplayToLens() float64 {
+	log.Println("Calling MobileVRInterface.GetDisplayToLens()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_display_to_lens", goArguments, "float64")
+
+	returnValue := goRet.Interface().(float64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *MobileVRInterface) GetDisplayWidth() float64 {
+	log.Println("Calling MobileVRInterface.GetDisplayWidth()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_display_width", goArguments, "float64")
+
+	returnValue := goRet.Interface().(float64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *MobileVRInterface) GetIod() float64 {
+	log.Println("Calling MobileVRInterface.GetIod()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_iod", goArguments, "float64")
+
+	returnValue := goRet.Interface().(float64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *MobileVRInterface) GetK1() float64 {
+	log.Println("Calling MobileVRInterface.GetK1()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_k1", goArguments, "float64")
+
+	returnValue := goRet.Interface().(float64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *MobileVRInterface) GetK2() float64 {
+	log.Println("Calling MobileVRInterface.GetK2()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_k2", goArguments, "float64")
+
+	returnValue := goRet.Interface().(float64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *MobileVRInterface) GetOversample() float64 {
+	log.Println("Calling MobileVRInterface.GetOversample()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_oversample", goArguments, "float64")
+
+	returnValue := goRet.Interface().(float64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *MobileVRInterface) SetDisplayToLens(displayToLens float64) {
+	log.Println("Calling MobileVRInterface.SetDisplayToLens()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(displayToLens)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_display_to_lens", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *MobileVRInterface) SetDisplayWidth(displayWidth float64) {
+	log.Println("Calling MobileVRInterface.SetDisplayWidth()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(displayWidth)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_display_width", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *MobileVRInterface) SetIod(iod float64) {
+	log.Println("Calling MobileVRInterface.SetIod()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(iod)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_iod", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *MobileVRInterface) SetK1(k float64) {
+	log.Println("Calling MobileVRInterface.SetK1()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(k)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_k1", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *MobileVRInterface) SetK2(k float64) {
+	log.Println("Calling MobileVRInterface.SetK2()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(k)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_k2", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *MobileVRInterface) SetOversample(oversample float64) {
+	log.Println("Calling MobileVRInterface.SetOversample()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(oversample)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_oversample", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   MobileVRInterfaceImplementer is an interface for MobileVRInterface objects.
+*/
+type MobileVRInterfaceImplementer interface {
 	Class
 }
 
@@ -53323,7 +53671,7 @@ func (o *NetworkedMultiplayerPeer) GetUniqueId() int64 {
 }
 
 /*
-   Return whether this [NetworkedMultiplayerPeer] is refusing new connections.
+   Return whether this [code]NetworkedMultiplayerPeer[/code] is refusing new connections.
 */
 func (o *NetworkedMultiplayerPeer) IsRefusingNewConnections() bool {
 	log.Println("Calling NetworkedMultiplayerPeer.IsRefusingNewConnections()")
@@ -53360,7 +53708,7 @@ func (o *NetworkedMultiplayerPeer) Poll() {
 }
 
 /*
-   If [code]endable[/code] is true, this [NetworkedMultiplayerPeer] will refuse new connections.
+   If [code]endable[/code] is true, this [code]NetworkedMultiplayerPeer[/code] will refuse new connections.
 */
 func (o *NetworkedMultiplayerPeer) SetRefuseNewConnections(enable bool) {
 	log.Println("Calling NetworkedMultiplayerPeer.SetRefuseNewConnections()")
@@ -53669,7 +54017,7 @@ type NinePatchRectImplementer interface {
 }
 
 /*
-   Nodes are the base bricks with which Godot games are developed. They can be set as children of other nodes, resulting in a tree arrangement. A given node can contain any number of nodes as children (but there is only one scene tree root node) with the requirement that all siblings (direct children of a node) should have unique names. Any tree of nodes is called a [i]scene[/i]. Scenes can be saved to the disk and then instanced into other scenes. This allows for very high flexibility in the architecture and data model of the projects. Nodes can optionally be added to groups. This makes it easy to reach a number of nodes from the code (for example an "enemies" group) to perform grouped actions. [b]Scene tree:[/b] The [SceneTree] contains the active tree of nodes. When a node is added to the scene tree, it receives the NOTIFICATION_ENTER_TREE notification and its [method _enter_tree] callback is triggered. Children nodes are always added [i]after[/i] their parent node, i.e. the [method _enter_tree] callback of a parent node will be triggered before its child's. Once all nodes have been added in the scene tree, they receive the NOTIFICATION_READY notification and their respective [method _ready] callbacks are triggered. For groups of nodes, the [method _ready] callback is called in reverse order, from the children up to the parent nodes. It means that when adding a scene to the scene tree, the following order will be used for the callbacks: [method _enter_tree] of the parent, [method _enter_tree] of the children, [method _ready] of the children and finally [method _ready] of the parent (and that recursively for the whole scene). [b]Processing:[/b] Nodes can be set to the "process" state, so that they receive a callback on each frame requesting them to process (do something). Normal processing (callback [method _process], toggled with [method set_process]) happens as fast as possible and is dependent on the frame rate, so the processing time [i]delta[/i] is variable. Physics processing (callback [method _physics_process], toggled with [method set_physics_process]) happens a fixed amount of times per second (by default 60) and is useful to link itself to the physics. Nodes can also process input events. When set, the [method _input] function will be called for each input that the program receives. In many cases, this can be overkill (unless used for simple projects), and the [method _unhandled_input] function might be preferred; it is called when the input event was not handled by anyone else (typically, GUI [Control] nodes), ensuring that the node only receives the events that were meant for it. To keep track of the scene hierarchy (especially when instancing scenes into other scenes), an "owner" can be set for the node with [method set_owner]. This keeps track of who instanced what. This is mostly useful when writing editors and tools, though. Finally, when a node is freed with [method free] or [method queue_free], it will also free all its children. [b]Networking with nodes:[/b] After connecting to a server (or making one, see [NetworkedMultiplayerENet]) it is possible to use the built-in RPC (remote procedure call) system to easily communicate over the network. By calling [method rpc] with a method name, it will be called locally, and in all connected peers (peers = clients and the server that accepts connections), with behaviour varying depending on the network mode ([method set_network_mode]) on the receiving peer. To identify which [Node] receives the RPC call Godot will use its [NodePath] (make sure node names are the same on all peers).
+   Nodes are the base bricks with which Godot games are developed. They can be set as children of other nodes, resulting in a tree arrangement. A given node can contain any number of nodes as children (but there is only one scene tree root node) with the requirement that all siblings (direct children of a node) should have unique names. Any tree of nodes is called a [i]scene[/i]. Scenes can be saved to the disk and then instanced into other scenes. This allows for very high flexibility in the architecture and data model of the projects. Nodes can optionally be added to groups. This makes it easy to reach a number of nodes from the code (for example an "enemies" group) to perform grouped actions. [b]Scene tree:[/b] The [SceneTree] contains the active tree of nodes. When a node is added to the scene tree, it receives the NOTIFICATION_ENTER_TREE notification and its [method _enter_tree] callback is triggered. Children nodes are always added [i]after[/i] their parent node, i.e. the [method _enter_tree] callback of a parent node will be triggered before its child's. Once all nodes have been added in the scene tree, they receive the NOTIFICATION_READY notification and their respective [method _ready] callbacks are triggered. For groups of nodes, the [method _ready] callback is called in reverse order, from the children up to the parent nodes. It means that when adding a scene to the scene tree, the following order will be used for the callbacks: [method _enter_tree] of the parent, [method _enter_tree] of the children, [method _ready] of the children and finally [method _ready] of the parent (and that recursively for the whole scene). [b]Processing:[/b] Nodes can be set to the "process" state, so that they receive a callback on each frame requesting them to process (do something). Normal processing (callback [method _process], toggled with [method set_process]) happens as fast as possible and is dependent on the frame rate, so the processing time [i]delta[/i] is variable. Physics processing (callback [method _physics_process], toggled with [method set_physics_process]) happens a fixed amount of times per second (by default 60) and is useful to link itself to the physics. Nodes can also process input events. When set, the [method _input] function will be called for each input that the program receives. In many cases, this can be overkill (unless used for simple projects), and the [method _unhandled_input] function might be preferred; it is called when the input event was not handled by anyone else (typically, GUI [Control] nodes), ensuring that the node only receives the events that were meant for it. To keep track of the scene hierarchy (especially when instancing scenes into other scenes), an "owner" can be set for the node with [method set_owner]. This keeps track of who instanced what. This is mostly useful when writing editors and tools, though. Finally, when a node is freed with [method free] or [method queue_free], it will also free all its children. [b]Networking with nodes:[/b] After connecting to a server (or making one, see [NetworkedMultiplayerENet]) it is possible to use the built-in RPC (remote procedure call) system to easily communicate over the network. By calling [method rpc] with a method name, it will be called locally, and in all connected peers (peers = clients and the server that accepts connections), with behaviour varying depending on the network mode ([method set_network_mode]) on the receiving peer. To identify which [code]Node[/code] receives the RPC call Godot will use its [NodePath] (make sure node names are the same on all peers).
 */
 type Node struct {
 	Object
@@ -53716,24 +54064,6 @@ func (o *Node) X_ExitTree() {
 /*
    Undocumented
 */
-func (o *Node) X_FixedProcess(delta float64) {
-	log.Println("Calling Node.X_FixedProcess()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(delta)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "_fixed_process", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   Undocumented
-*/
 func (o *Node) X_GetImportPath() *NodePath {
 	log.Println("Calling Node.X_GetImportPath()")
 
@@ -53764,6 +54094,24 @@ func (o *Node) X_Input(event *InputEvent) {
 	// Call the parent method.
 
 	o.callParentMethod(o.baseClass(), "_input", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Called during the physics processing step of the main loop. Physics processing means that the frame rate is synced to the physics, i.e. the [code]delta[/code] variable should be constant. It is only called if physics processing has been enabled with [method set_physics_process]. Corresponds to the NOTIFICATION_PHYSICS_PROCESS notification in [method Object._notification].
+*/
+func (o *Node) X_PhysicsProcess(delta float64) {
+	log.Println("Calling Node.X_PhysicsProcess()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(delta)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_physics_process", goArguments, "")
 
 	log.Println("  Function successfully completed.")
 
@@ -53859,7 +54207,7 @@ func (o *Node) X_UnhandledKeyInput(event *InputEventKey) {
 }
 
 /*
-   Add a child [Node]. Nodes can have as many children as they want, but every child must have a unique name. Children nodes are automatically deleted when the parent node is deleted, so deleting a whole scene is performed by deleting its topmost node. The optional boolean argument enforces creating child nodes with human-readable names, based on the name of the node being instanced instead of its type only.
+   Add a child [code]Node[/code]. Nodes can have as many children as they want, but every child must have a unique name. Children nodes are automatically deleted when the parent node is deleted, so deleting a whole scene is performed by deleting its topmost node. The optional boolean argument enforces creating child nodes with human-readable names, based on the name of the node being instanced instead of its type only.
 */
 func (o *Node) AddChild(node *Object, legibleUniqueName bool) {
 	log.Println("Calling Node.AddChild()")
@@ -53898,7 +54246,7 @@ func (o *Node) AddChildBelowNode(node *Object, childNode *Object, legibleUniqueN
 }
 
 /*
-   Add a node to a group. Groups are helpers to name and organize a subset of nodes, like for example "enemies" or "collectables". A [Node] can be in any number of groups. Nodes can be assigned a group at any time, but will not be added to it until they are inside the scene tree (see [method is_inside_tree]).
+   Add a node to a group. Groups are helpers to name and organize a subset of nodes, like for example "enemies" or "collectables". A [code]Node[/code] can be in any number of groups. Nodes can be assigned a group at any time, but will not be added to it until they are inside the scene tree (see [method is_inside_tree]).
 */
 func (o *Node) AddToGroup(group string, persistent bool) {
 	log.Println("Calling Node.AddToGroup()")
@@ -53937,7 +54285,7 @@ func (o *Node) CanProcess() bool {
 }
 
 /*
-   Duplicate the node, returning a new [Node]. You can fine-tune the behavior using the [code]flags[/code], which are based on the DUPLICATE_* constants.
+   Duplicate the node, returning a new [code]Node[/code]. You can fine-tune the behavior using the [code]flags[/code], which are based on the DUPLICATE_* constants.
 */
 func (o *Node) Duplicate(flags int64) *Node {
 	log.Println("Calling Node.Duplicate()")
@@ -54022,7 +54370,7 @@ func (o *Node) GetChildCount() int64 {
 }
 
 /*
-   Return an array of references ([Node]) to the child nodes.
+   Return an array of references ([code]Node[/code]) to the child nodes.
 */
 func (o *Node) GetChildren() *Array {
 	log.Println("Calling Node.GetChildren()")
@@ -54055,26 +54403,6 @@ func (o *Node) GetFilename() string {
 	goRet := o.callParentMethod(o.baseClass(), "get_filename", goArguments, "string")
 
 	returnValue := goRet.Interface().(string)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   Undocumented
-*/
-func (o *Node) GetFixedProcessDeltaTime() float64 {
-	log.Println("Calling Node.GetFixedProcessDeltaTime()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_fixed_process_delta_time", goArguments, "float64")
-
-	returnValue := goRet.Interface().(float64)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -54224,7 +54552,7 @@ func (o *Node) GetOwner() *Node {
 }
 
 /*
-   Return the parent node of the current node, or an empty [Node] if the node lacks a parent.
+   Return the parent node of the current node, or an empty [code]Node[/code] if the node lacks a parent.
 */
 func (o *Node) GetParent() *Node {
 	log.Println("Calling Node.GetParent()")
@@ -54298,6 +54626,26 @@ func (o *Node) GetPauseMode() int64 {
 	goRet := o.callParentMethod(o.baseClass(), "get_pause_mode", goArguments, "int64")
 
 	returnValue := goRet.Interface().(int64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Return the time elapsed since the last physics-bound frame (see [method _physics_process]). This is always a constant value in physics processing unless the frames per second is changed in [OS].
+*/
+func (o *Node) GetPhysicsProcessDeltaTime() float64 {
+	log.Println("Calling Node.GetPhysicsProcessDeltaTime()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_physics_process_delta_time", goArguments, "float64")
+
+	returnValue := goRet.Interface().(float64)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -54488,46 +54836,6 @@ func (o *Node) IsDisplayedFolded() bool {
 }
 
 /*
-   Undocumented
-*/
-func (o *Node) IsFixedProcessing() bool {
-	log.Println("Calling Node.IsFixedProcessing()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "is_fixed_processing", goArguments, "bool")
-
-	returnValue := goRet.Interface().(bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   Undocumented
-*/
-func (o *Node) IsFixedProcessingInternal() bool {
-	log.Println("Calling Node.IsFixedProcessingInternal()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "is_fixed_processing_internal", goArguments, "bool")
-
-	returnValue := goRet.Interface().(bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
    Return [i]true[/i] if "node" occurs later in the scene hierarchy than the current node, otherwise return [i]false[/i].
 */
 func (o *Node) IsGreaterThan(node *Object) bool {
@@ -54601,6 +54909,46 @@ func (o *Node) IsNetworkMaster() bool {
 	// Call the parent method.
 
 	goRet := o.callParentMethod(o.baseClass(), "is_network_master", goArguments, "bool")
+
+	returnValue := goRet.Interface().(bool)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Return true if physics processing is enabled (see [method set_physics_process]).
+*/
+func (o *Node) IsPhysicsProcessing() bool {
+	log.Println("Calling Node.IsPhysicsProcessing()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_physics_processing", goArguments, "bool")
+
+	returnValue := goRet.Interface().(bool)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *Node) IsPhysicsProcessingInternal() bool {
+	log.Println("Calling Node.IsPhysicsProcessingInternal()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_physics_processing_internal", goArguments, "bool")
 
 	returnValue := goRet.Interface().(bool)
 
@@ -54763,7 +55111,7 @@ func (o *Node) PrintTree() {
 }
 
 /*
-   Calls the method (if present) with the arguments given in "args" on this Node and recursively on all children. If the parent_first argument is true then the method will be called on the current [Node] first, then on all children. If it is false then the children will get called first.
+   Calls the method (if present) with the arguments given in "args" on this Node and recursively on all children. If the parent_first argument is true then the method will be called on the current [code]Node[/code] first, then on all children. If it is false then the children will get called first.
 */
 func (o *Node) PropagateCall(method string, args *Array, parentFirst bool) {
 	log.Println("Calling Node.PropagateCall()")
@@ -54852,7 +55200,7 @@ func (o *Node) RemoveAndSkip() {
 }
 
 /*
-   Remove a child [Node]. Node is NOT deleted and will have to be deleted manually.
+   Remove a child [code]Node[/code]. Node is NOT deleted and will have to be deleted manually.
 */
 func (o *Node) RemoveChild(node *Object) {
 	log.Println("Calling Node.RemoveChild()")
@@ -55162,43 +55510,7 @@ func (o *Node) SetFilename(filename string) {
 }
 
 /*
-   Undocumented
-*/
-func (o *Node) SetFixedProcess(enable bool) {
-	log.Println("Calling Node.SetFixedProcess()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_fixed_process", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   Undocumented
-*/
-func (o *Node) SetFixedProcessInternal(enable bool) {
-	log.Println("Calling Node.SetFixedProcessInternal()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
-
-	// Call the parent method.
-
-	o.callParentMethod(o.baseClass(), "set_fixed_process_internal", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   Set the name of the [Node]. Name must be unique within parent, and setting an already existing name will cause for the node to be automatically renamed.
+   Set the name of the [code]Node[/code]. Name must be unique within parent, and setting an already existing name will cause for the node to be automatically renamed.
 */
 func (o *Node) SetName(name string) {
 	log.Println("Calling Node.SetName()")
@@ -55265,6 +55577,42 @@ func (o *Node) SetPauseMode(mode int64) {
 	// Call the parent method.
 
 	o.callParentMethod(o.baseClass(), "set_pause_mode", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Enables or disables the node's physics (alias fixed framerate) processing. When a node is being processed, it will receive a NOTIFICATION_PHYSICS_PROCESS at a fixed (usually 60 fps, check [OS] to change that) interval (and the [method _physics_process] callback will be called if exists). It is common to check how much time was elapsed since the previous frame by calling [method get_physics_process_delta_time].
+*/
+func (o *Node) SetPhysicsProcess(enable bool) {
+	log.Println("Calling Node.SetPhysicsProcess()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(enable)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_physics_process", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *Node) SetPhysicsProcessInternal(enable bool) {
+	log.Println("Calling Node.SetPhysicsProcessInternal()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(enable)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_physics_process_internal", goArguments, "")
 
 	log.Println("  Function successfully completed.")
 
@@ -55453,7 +55801,7 @@ func (o *Node2D) ApplyScale(ratio *Vector2) {
 }
 
 /*
-   Set the pivot position of the 2D node to 'pivot' value. Only some Node2Ds implement this method.
+   Sets the node's pivot position.
 */
 func (o *Node2D) EditSetPivot(pivot *Vector2) {
 	log.Println("Calling Node2D.EditSetPivot()")
@@ -55749,7 +56097,7 @@ func (o *Node2D) LookAt(point *Vector2) {
 }
 
 /*
-   Apply a local translation on the node's X axis based on the process's 'delta'. If 'scaled' is false, normalizes the movement.
+   Applies a local translation on the node's X axis based on the [method Node._process]'s [code]delta[/code]. If [code]scaled[/code] is false, normalizes the movement.
 */
 func (o *Node2D) MoveLocalX(delta float64, scaled bool) {
 	log.Println("Calling Node2D.MoveLocalX()")
@@ -55768,7 +56116,7 @@ func (o *Node2D) MoveLocalX(delta float64, scaled bool) {
 }
 
 /*
-   Apply a local translation on the node's Y axis based on the process's 'delta'. If 'scaled' is false, normalizes the movement.
+   Applies a local translation on the node's Y axis based on the [method Node._process]'s [code]delta[/code]. If [code]scaled[/code] is false, normalizes the movement.
 */
 func (o *Node2D) MoveLocalY(delta float64, scaled bool) {
 	log.Println("Calling Node2D.MoveLocalY()")
@@ -55787,7 +56135,7 @@ func (o *Node2D) MoveLocalY(delta float64, scaled bool) {
 }
 
 /*
-   Apply a rotation to the node, in radians, starting from its current rotation.
+   Applies a rotation to the node, in radians, starting from its current rotation.
 */
 func (o *Node2D) Rotate(radians float64) {
 	log.Println("Calling Node2D.Rotate()")
@@ -55805,7 +56153,7 @@ func (o *Node2D) Rotate(radians float64) {
 }
 
 /*
-   Set the node's global position.
+   Sets the node's global position.
 */
 func (o *Node2D) SetGlobalPosition(position *Vector2) {
 	log.Println("Calling Node2D.SetGlobalPosition()")
@@ -55823,7 +56171,7 @@ func (o *Node2D) SetGlobalPosition(position *Vector2) {
 }
 
 /*
-   Set the node's global rotation in radians.
+   Sets the node's global rotation in radians.
 */
 func (o *Node2D) SetGlobalRotation(radians float64) {
 	log.Println("Calling Node2D.SetGlobalRotation()")
@@ -55841,7 +56189,7 @@ func (o *Node2D) SetGlobalRotation(radians float64) {
 }
 
 /*
-   Set the node's global rotation in degrees.
+   Sets the node's global rotation in degrees.
 */
 func (o *Node2D) SetGlobalRotationInDegrees(degrees float64) {
 	log.Println("Calling Node2D.SetGlobalRotationInDegrees()")
@@ -55859,7 +56207,7 @@ func (o *Node2D) SetGlobalRotationInDegrees(degrees float64) {
 }
 
 /*
-   Set the node's global scale.
+   Sets the node's global scale.
 */
 func (o *Node2D) SetGlobalScale(scale *Vector2) {
 	log.Println("Calling Node2D.SetGlobalScale()")
@@ -55877,7 +56225,7 @@ func (o *Node2D) SetGlobalScale(scale *Vector2) {
 }
 
 /*
-   Set the node's global [Transform2D].
+   Sets the node's global [Transform2D].
 */
 func (o *Node2D) SetGlobalTransform(xform *Transform2D) {
 	log.Println("Calling Node2D.SetGlobalTransform()")
@@ -55895,7 +56243,7 @@ func (o *Node2D) SetGlobalTransform(xform *Transform2D) {
 }
 
 /*
-   Set the node's position.
+   Sets the node's position.
 */
 func (o *Node2D) SetPosition(position *Vector2) {
 	log.Println("Calling Node2D.SetPosition()")
@@ -55913,7 +56261,7 @@ func (o *Node2D) SetPosition(position *Vector2) {
 }
 
 /*
-   Set the node's rotation in radians.
+   Sets the node's rotation in radians.
 */
 func (o *Node2D) SetRotation(radians float64) {
 	log.Println("Calling Node2D.SetRotation()")
@@ -55931,7 +56279,7 @@ func (o *Node2D) SetRotation(radians float64) {
 }
 
 /*
-   Set the node's rotation in degrees.
+   Sets the node's rotation in degrees.
 */
 func (o *Node2D) SetRotationInDegrees(degrees float64) {
 	log.Println("Calling Node2D.SetRotationInDegrees()")
@@ -55949,7 +56297,7 @@ func (o *Node2D) SetRotationInDegrees(degrees float64) {
 }
 
 /*
-   Set the node's scale.
+   Sets the node's scale.
 */
 func (o *Node2D) SetScale(scale *Vector2) {
 	log.Println("Calling Node2D.SetScale()")
@@ -55967,7 +56315,7 @@ func (o *Node2D) SetScale(scale *Vector2) {
 }
 
 /*
-   Set the node's local [Transform2D].
+   Sets the node's local [Transform2D].
 */
 func (o *Node2D) SetTransform(xform *Transform2D) {
 	log.Println("Calling Node2D.SetTransform()")
@@ -55985,7 +56333,7 @@ func (o *Node2D) SetTransform(xform *Transform2D) {
 }
 
 /*
-   Set the node's Z-index.
+   Sets the node's Z-index.
 */
 func (o *Node2D) SetZ(z int64) {
 	log.Println("Calling Node2D.SetZ()")
@@ -56003,7 +56351,7 @@ func (o *Node2D) SetZ(z int64) {
 }
 
 /*
-   Make the node's Z-index relative to its parent's Z-index. If this node's Z-index is 2 and its parent's effective Z-index is 3, then this node's effective Z-index will be 2 + 3 = 5.
+   Makes the node's Z-index relative to its parent's Z-index. If this node's Z-index is 2 and its parent's effective Z-index is 3, then this node's effective Z-index will be 2 + 3 = 5.
 */
 func (o *Node2D) SetZAsRelative(enable bool) {
 	log.Println("Calling Node2D.SetZAsRelative()")
@@ -56021,8 +56369,8 @@ func (o *Node2D) SetZAsRelative(enable bool) {
 }
 
 /*
-
- */
+   Converts a local point's coordinates to global coordinates.
+*/
 func (o *Node2D) ToGlobal(localPoint *Vector2) *Vector2 {
 	log.Println("Calling Node2D.ToGlobal()")
 
@@ -56042,8 +56390,8 @@ func (o *Node2D) ToGlobal(localPoint *Vector2) *Vector2 {
 }
 
 /*
-
- */
+   Converts a global point's coordinates to local coordinates.
+*/
 func (o *Node2D) ToLocal(globalPoint *Vector2) *Vector2 {
 	log.Println("Calling Node2D.ToLocal()")
 
@@ -56063,7 +56411,7 @@ func (o *Node2D) ToLocal(globalPoint *Vector2) *Vector2 {
 }
 
 /*
-   Translate the node locally by the 'offset' vector, starting from its current local position.
+   Translates the node by the given [code]offset[/code] in local coordinates.
 */
 func (o *Node2D) Translate(offset *Vector2) {
 	log.Println("Calling Node2D.Translate()")
@@ -56995,8 +57343,8 @@ type ObjectImplementer interface {
 }
 
 /*
-
- */
+   Editor facility that helps you draw a 2D polygon used as resource for [LightOccluder2D].
+*/
 type OccluderPolygon2D struct {
 	Resource
 }
@@ -57362,7 +57710,7 @@ func (o *OptionButton) AddSeparator() {
 }
 
 /*
-   Clear all the items in the [OptionButton].
+   Clear all the items in the [code]OptionButton[/code].
 */
 func (o *OptionButton) Clear() {
 	log.Println("Calling OptionButton.Clear()")
@@ -58530,7 +58878,7 @@ type PacketPeerStreamImplementer interface {
 }
 
 /*
-   UDP packet peer. Can be used to send raw UDP packets as well as [Variant]\ s.
+   UDP packet peer. Can be used to send raw UDP packets as well as [Variant]s.
 */
 type PacketPeerUDP struct {
 	PacketPeer
@@ -58541,7 +58889,7 @@ func (o *PacketPeerUDP) baseClass() string {
 }
 
 /*
-   Close the UDP socket the [PacketPeerUDP] is currently listening on.
+   Close the UDP socket the [code]PacketPeerUDP[/code] is currently listening on.
 */
 func (o *PacketPeerUDP) Close() {
 	log.Println("Calling PacketPeerUDP.Close()")
@@ -58598,7 +58946,7 @@ func (o *PacketPeerUDP) GetPacketPort() int64 {
 }
 
 /*
-   Return whether this [PacketPeerUDP] is listening.
+   Return whether this [code]PacketPeerUDP[/code] is listening.
 */
 func (o *PacketPeerUDP) IsListening() bool {
 	log.Println("Calling PacketPeerUDP.IsListening()")
@@ -58618,7 +58966,7 @@ func (o *PacketPeerUDP) IsListening() bool {
 }
 
 /*
-   Make this [PacketPeerUDP] listen on the "port" binding to "bind_address" with a buffer size "recv_buf_size". If "bind_address" is set as "*" (default), the peer will listen on all available addresses (both IPv4 and IPv6). If "bind_address" is set as "0.0.0.0" (for IPv4) or "::" (for IPv6), the peer will listen on all available addresses matching that IP type. If "bind_address" is set to any valid address (e.g. "192.168.1.101", "::1", etc), the peer will only listen on the interface with that addresses (or fail if no interface with the given address exists).
+   Make this [code]PacketPeerUDP[/code] listen on the "port" binding to "bind_address" with a buffer size "recv_buf_size". If "bind_address" is set as "*" (default), the peer will listen on all available addresses (both IPv4 and IPv6). If "bind_address" is set as "0.0.0.0" (for IPv4) or "::" (for IPv6), the peer will listen on all available addresses matching that IP type. If "bind_address" is set to any valid address (e.g. "192.168.1.101", "::1", etc), the peer will only listen on the interface with that addresses (or fail if no interface with the given address exists).
 */
 func (o *PacketPeerUDP) Listen(port int64, bindAddress string, recvBufSize int64) int64 {
 	log.Println("Calling PacketPeerUDP.Listen()")
@@ -58782,7 +59130,7 @@ type PanoramaSkyImplementer interface {
 }
 
 /*
-   A ParallaxBackground will use one or more [ParallaxLayer] nodes to create a parallax scrolling background. Each [ParallaxLayer] can be set to move at different speeds relative to the camera movement, this can be used to create an illusion of depth in a 2D game.
+   A ParallaxBackground uses one or more [ParallaxLayer] child nodes to create a parallax effect. Each [ParallaxLayer] can move at a different speed using [member ParallaxLayer.motion_offset]. This creates an illusion of depth in a 2D game. If not used with a [Camera2D], you must manually calculate the [member scroll_offset].
 */
 type ParallaxBackground struct {
 	CanvasLayer
@@ -59046,7 +59394,7 @@ type ParallaxBackgroundImplementer interface {
 }
 
 /*
-   A ParallaxLayer must be the child of a [ParallaxBackground] node. All child nodes will be affected by the parallax scrolling of this layer.
+   A ParallaxLayer must be the child of a [ParallaxBackground] node. Each ParallaxLayer can be set to move at different speeds relative to the camera movement or the [member ParallaxBackground.scroll_offset] value. This node's children will be affected by its scroll offset.
 */
 type ParallaxLayer struct {
 	Node2D
@@ -61403,7 +61751,7 @@ type PathImplementer interface {
 }
 
 /*
-   This class is a container/Node-ification of a [Curve2D], so it can have [Node2D] properties and [Node] info.
+   Can have [PathFollow2D] child-nodes moving along the [Curve2D]. See [PathFollow2D] for more information on this usage.
 */
 type Path2D struct {
 	Node2D
@@ -62738,7 +63086,7 @@ func (o *Physics2DDirectSpaceState) GetRestInfo(shape *Physics2DShapeQueryParame
 }
 
 /*
-   Check whether a point is inside any shape. The shapes the point is inside of are returned in an array containing dictionaries with the following fields: shape: Shape index within the object the point is in. metadata: Metadata of the shape the point is in. This metadata is different from [method Object.get_meta], and is set with [method Physics2DServer.shape_set_data]. collider_id: Id of the object the point is in. collider: Object the point is inside of. rid: [RID] of the object the point is in. Additionally, the method can take an array of objects or [RID]\ s that are to be excluded from collisions, a bitmask representing the physics layers to check in, and another bitmask for the types of objects to check (see TYPE_MASK_* constants).
+   Check whether a point is inside any shape. The shapes the point is inside of are returned in an array containing dictionaries with the following fields: shape: Shape index within the object the point is in. metadata: Metadata of the shape the point is in. This metadata is different from [method Object.get_meta], and is set with [method Physics2DServer.shape_set_data]. collider_id: Id of the object the point is in. collider: Object the point is inside of. rid: [RID] of the object the point is in. Additionally, the method can take an array of objects or [RID]s that are to be excluded from collisions, a bitmask representing the physics layers to check in, and another bitmask for the types of objects to check (see TYPE_MASK_* constants).
 */
 func (o *Physics2DDirectSpaceState) IntersectPoint(point *Vector2, maxResults int64, exclude *Array, collisionLayer int64, typeMask int64) *Array {
 	log.Println("Calling Physics2DDirectSpaceState.IntersectPoint()")
@@ -62763,7 +63111,7 @@ func (o *Physics2DDirectSpaceState) IntersectPoint(point *Vector2, maxResults in
 }
 
 /*
-   Intersect a ray in a given space. The returned object is a dictionary with the following fields: position: Place where ray is stopped. normal: Normal of the object at the point where the ray was stopped. shape: Shape index within the object against which the ray was stopped. metadata: Metadata of the shape against which the ray was stopped. This metadata is different from [method Object.get_meta], and is set with [method Physics2DServer.shape_set_data]. collider_id: Id of the object against which the ray was stopped. collider: Object against which the ray was stopped. rid: [RID] of the object against which the ray was stopped. If the ray did not intersect anything, then an empty dictionary (dir.empty()==true) is returned instead. Additionally, the method can take an array of objects or [RID]\ s that are to be excluded from collisions, a bitmask representing the physics layers to check in, and another bitmask for the types of objects to check (see TYPE_MASK_* constants).
+   Intersect a ray in a given space. The returned object is a dictionary with the following fields: position: Place where ray is stopped. normal: Normal of the object at the point where the ray was stopped. shape: Shape index within the object against which the ray was stopped. metadata: Metadata of the shape against which the ray was stopped. This metadata is different from [method Object.get_meta], and is set with [method Physics2DServer.shape_set_data]. collider_id: Id of the object against which the ray was stopped. collider: Object against which the ray was stopped. rid: [RID] of the object against which the ray was stopped. If the ray did not intersect anything, then an empty dictionary (dir.empty()==true) is returned instead. Additionally, the method can take an array of objects or [RID]s that are to be excluded from collisions, a bitmask representing the physics layers to check in, and another bitmask for the types of objects to check (see TYPE_MASK_* constants).
 */
 func (o *Physics2DDirectSpaceState) IntersectRay(from *Vector2, to *Vector2, exclude *Array, collisionLayer int64, typeMask int64) *Dictionary {
 	log.Println("Calling Physics2DDirectSpaceState.IntersectRay()")
@@ -62840,7 +63188,7 @@ func (o *physics2DServer) baseClass() string {
 }
 
 /*
-   Add a shape to the area, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
+   Adds a shape to the area, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
 */
 func (o *physics2DServer) AreaAddShape(area *RID, shape *RID, transform *Transform2D) {
 	log.Println("Calling Physics2DServer.AreaAddShape()")
@@ -62860,7 +63208,7 @@ func (o *physics2DServer) AreaAddShape(area *RID, shape *RID, transform *Transfo
 }
 
 /*
-   Assign the area to a descendant of [Object], so it can exist in the node tree.
+   Assigns the area to a descendant of [Object], so it can exist in the node tree.
 */
 func (o *physics2DServer) AreaAttachObjectInstanceId(area *RID, id int64) {
 	log.Println("Calling Physics2DServer.AreaAttachObjectInstanceId()")
@@ -62879,7 +63227,7 @@ func (o *physics2DServer) AreaAttachObjectInstanceId(area *RID, id int64) {
 }
 
 /*
-   Remove all shapes from an area. It does not delete the shapes, so they can be reassigned later.
+   Removes all shapes from an area. It does not delete the shapes, so they can be reassigned later.
 */
 func (o *physics2DServer) AreaClearShapes(area *RID) {
 	log.Println("Calling Physics2DServer.AreaClearShapes()")
@@ -62897,7 +63245,7 @@ func (o *physics2DServer) AreaClearShapes(area *RID) {
 }
 
 /*
-   Create an [Area2D].
+   Creates an [Area2D].
 */
 func (o *physics2DServer) AreaCreate() *RID {
 	log.Println("Calling Physics2DServer.AreaCreate()")
@@ -62917,7 +63265,7 @@ func (o *physics2DServer) AreaCreate() *RID {
 }
 
 /*
-   Get the instance ID of the object the area is assigned to.
+   Gets the instance ID of the object the area is assigned to.
 */
 func (o *physics2DServer) AreaGetObjectInstanceId(area *RID) int64 {
 	log.Println("Calling Physics2DServer.AreaGetObjectInstanceId()")
@@ -62938,7 +63286,7 @@ func (o *physics2DServer) AreaGetObjectInstanceId(area *RID) int64 {
 }
 
 /*
-   Return an area parameter value.
+   Returns an area parameter value. A list of available parameters is on the AREA_PARAM_* constants.
 */
 func (o *physics2DServer) AreaGetParam(area *RID, param int64) *Variant {
 	log.Println("Calling Physics2DServer.AreaGetParam()")
@@ -62960,7 +63308,7 @@ func (o *physics2DServer) AreaGetParam(area *RID, param int64) *Variant {
 }
 
 /*
-   Return the [RID] of the nth shape of an area.
+   Returns the [RID] of the nth shape of an area.
 */
 func (o *physics2DServer) AreaGetShape(area *RID, shapeIdx int64) *RID {
 	log.Println("Calling Physics2DServer.AreaGetShape()")
@@ -62982,7 +63330,7 @@ func (o *physics2DServer) AreaGetShape(area *RID, shapeIdx int64) *RID {
 }
 
 /*
-   Return the number of shapes assigned to an area.
+   Returns the number of shapes assigned to an area.
 */
 func (o *physics2DServer) AreaGetShapeCount(area *RID) int64 {
 	log.Println("Calling Physics2DServer.AreaGetShapeCount()")
@@ -63003,7 +63351,7 @@ func (o *physics2DServer) AreaGetShapeCount(area *RID) int64 {
 }
 
 /*
-   Return the transform matrix of a shape within an area.
+   Returns the transform matrix of a shape within an area.
 */
 func (o *physics2DServer) AreaGetShapeTransform(area *RID, shapeIdx int64) *Transform2D {
 	log.Println("Calling Physics2DServer.AreaGetShapeTransform()")
@@ -63025,7 +63373,7 @@ func (o *physics2DServer) AreaGetShapeTransform(area *RID, shapeIdx int64) *Tran
 }
 
 /*
-   Return the space assigned to the area.
+   Returns the space assigned to the area.
 */
 func (o *physics2DServer) AreaGetSpace(area *RID) *RID {
 	log.Println("Calling Physics2DServer.AreaGetSpace()")
@@ -63046,7 +63394,7 @@ func (o *physics2DServer) AreaGetSpace(area *RID) *RID {
 }
 
 /*
-   Return the space override mode for the area.
+   Returns the space override mode for the area.
 */
 func (o *physics2DServer) AreaGetSpaceOverrideMode(area *RID) int64 {
 	log.Println("Calling Physics2DServer.AreaGetSpaceOverrideMode()")
@@ -63067,7 +63415,7 @@ func (o *physics2DServer) AreaGetSpaceOverrideMode(area *RID) int64 {
 }
 
 /*
-   Return the transform matrix for an area.
+   Returns the transform matrix for an area.
 */
 func (o *physics2DServer) AreaGetTransform(area *RID) *Transform2D {
 	log.Println("Calling Physics2DServer.AreaGetTransform()")
@@ -63088,7 +63436,7 @@ func (o *physics2DServer) AreaGetTransform(area *RID) *Transform2D {
 }
 
 /*
-   Remove a shape from an area. It does not delete the shape, so it can be reassigned later.
+   Removes a shape from an area. It does not delete the shape, so it can be reassigned later.
 */
 func (o *physics2DServer) AreaRemoveShape(area *RID, shapeIdx int64) {
 	log.Println("Calling Physics2DServer.AreaRemoveShape()")
@@ -63107,7 +63455,7 @@ func (o *physics2DServer) AreaRemoveShape(area *RID, shapeIdx int64) {
 }
 
 /*
-   Assign the area to one or many physics layers.
+   Assigns the area to one or many physics layers.
 */
 func (o *physics2DServer) AreaSetCollisionLayer(area *RID, layer int64) {
 	log.Println("Calling Physics2DServer.AreaSetCollisionLayer()")
@@ -63126,7 +63474,7 @@ func (o *physics2DServer) AreaSetCollisionLayer(area *RID, layer int64) {
 }
 
 /*
-   Set which physics layers the area will monitor.
+   Sets which physics layers the area will monitor.
 */
 func (o *physics2DServer) AreaSetCollisionMask(area *RID, mask int64) {
 	log.Println("Calling Physics2DServer.AreaSetCollisionMask()")
@@ -63145,7 +63493,7 @@ func (o *physics2DServer) AreaSetCollisionMask(area *RID, mask int64) {
 }
 
 /*
-   Set the function to call when any body/area enters or exits the area. This callback will be called for any object interacting with the area, and takes five parameters: 1: AREA_BODY_ADDED or AREA_BODY_REMOVED, depending on whether the object entered or exited the area. 2: [RID] of the object that entered/exited the area. 3: Instance ID of the object that entered/exited the area. 4: The shape index of the object that entered/exited the area. 5: The shape index of the area where the object entered/exited.
+   Sets the function to call when any body/area enters or exits the area. This callback will be called for any object interacting with the area, and takes five parameters: 1: AREA_BODY_ADDED or AREA_BODY_REMOVED, depending on whether the object entered or exited the area. 2: [RID] of the object that entered/exited the area. 3: Instance ID of the object that entered/exited the area. 4: The shape index of the object that entered/exited the area. 5: The shape index of the area where the object entered/exited.
 */
 func (o *physics2DServer) AreaSetMonitorCallback(area *RID, receiver *Object, method string) {
 	log.Println("Calling Physics2DServer.AreaSetMonitorCallback()")
@@ -63165,7 +63513,7 @@ func (o *physics2DServer) AreaSetMonitorCallback(area *RID, receiver *Object, me
 }
 
 /*
-   Set the value for an area parameter. A list of available parameters is on the AREA_PARAM_* constants.
+   Sets the value for an area parameter. A list of available parameters is on the AREA_PARAM_* constants.
 */
 func (o *physics2DServer) AreaSetParam(area *RID, param int64, value *Variant) {
 	log.Println("Calling Physics2DServer.AreaSetParam()")
@@ -63185,7 +63533,7 @@ func (o *physics2DServer) AreaSetParam(area *RID, param int64, value *Variant) {
 }
 
 /*
-   Substitute a given area shape by another. The old shape is selected by its index, the new one by its [RID].
+   Substitutes a given area shape by another. The old shape is selected by its index, the new one by its [RID].
 */
 func (o *physics2DServer) AreaSetShape(area *RID, shapeIdx int64, shape *RID) {
 	log.Println("Calling Physics2DServer.AreaSetShape()")
@@ -63205,8 +63553,8 @@ func (o *physics2DServer) AreaSetShape(area *RID, shapeIdx int64, shape *RID) {
 }
 
 /*
-
- */
+   Disables a given shape in this area if [code]disable is true[/code]
+*/
 func (o *physics2DServer) AreaSetShapeDisabled(area *RID, shapeIdx int64, disable bool) {
 	log.Println("Calling Physics2DServer.AreaSetShapeDisabled()")
 
@@ -63225,7 +63573,7 @@ func (o *physics2DServer) AreaSetShapeDisabled(area *RID, shapeIdx int64, disabl
 }
 
 /*
-   Set the transform matrix for an area shape.
+   Sets the transform matrix for an area shape.
 */
 func (o *physics2DServer) AreaSetShapeTransform(area *RID, shapeIdx int64, transform *Transform2D) {
 	log.Println("Calling Physics2DServer.AreaSetShapeTransform()")
@@ -63245,7 +63593,7 @@ func (o *physics2DServer) AreaSetShapeTransform(area *RID, shapeIdx int64, trans
 }
 
 /*
-   Assign a space to the area.
+   Assigns a space to the area.
 */
 func (o *physics2DServer) AreaSetSpace(area *RID, space *RID) {
 	log.Println("Calling Physics2DServer.AreaSetSpace()")
@@ -63264,7 +63612,7 @@ func (o *physics2DServer) AreaSetSpace(area *RID, space *RID) {
 }
 
 /*
-   Set the space override mode for the area. The modes are described in the constants AREA_SPACE_OVERRIDE_*.
+   Sets the space override mode for the area. The modes are described in the constants AREA_SPACE_OVERRIDE_*.
 */
 func (o *physics2DServer) AreaSetSpaceOverrideMode(area *RID, mode int64) {
 	log.Println("Calling Physics2DServer.AreaSetSpaceOverrideMode()")
@@ -63283,7 +63631,7 @@ func (o *physics2DServer) AreaSetSpaceOverrideMode(area *RID, mode int64) {
 }
 
 /*
-   Set the transform matrix for an area.
+   Sets the transform matrix for an area.
 */
 func (o *physics2DServer) AreaSetTransform(area *RID, transform *Transform2D) {
 	log.Println("Calling Physics2DServer.AreaSetTransform()")
@@ -63302,7 +63650,7 @@ func (o *physics2DServer) AreaSetTransform(area *RID, transform *Transform2D) {
 }
 
 /*
-   Add a body to the list of bodies exempt from collisions.
+   Adds a body to the list of bodies exempt from collisions.
 */
 func (o *physics2DServer) BodyAddCollisionException(body *RID, exceptedBody *RID) {
 	log.Println("Calling Physics2DServer.BodyAddCollisionException()")
@@ -63321,7 +63669,7 @@ func (o *physics2DServer) BodyAddCollisionException(body *RID, exceptedBody *RID
 }
 
 /*
-   Add a positioned force to the applied force and torque. As with [method body_apply_impulse], both the force and the offset from the body origin are in global coordinates. A force differs from an impulse in that, while the two are forces, the impulse clears itself after being applied.
+   Adds a positioned force to the applied force and torque. As with [method body_apply_impulse], both the force and the offset from the body origin are in global coordinates. A force differs from an impulse in that, while the two are forces, the impulse clears itself after being applied.
 */
 func (o *physics2DServer) BodyAddForce(body *RID, offset *Vector2, force *Vector2) {
 	log.Println("Calling Physics2DServer.BodyAddForce()")
@@ -63341,7 +63689,7 @@ func (o *physics2DServer) BodyAddForce(body *RID, offset *Vector2, force *Vector
 }
 
 /*
-   Add a shape to the body, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
+   Adds a shape to the body, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
 */
 func (o *physics2DServer) BodyAddShape(body *RID, shape *RID, transform *Transform2D) {
 	log.Println("Calling Physics2DServer.BodyAddShape()")
@@ -63361,7 +63709,7 @@ func (o *physics2DServer) BodyAddShape(body *RID, shape *RID, transform *Transfo
 }
 
 /*
-   Add a positioned impulse to the applied force and torque. Both the force and the offset from the body origin are in global coordinates.
+   Adds a positioned impulse to the applied force and torque. Both the force and the offset from the body origin are in global coordinates.
 */
 func (o *physics2DServer) BodyApplyImpulse(body *RID, position *Vector2, impulse *Vector2) {
 	log.Println("Calling Physics2DServer.BodyApplyImpulse()")
@@ -63381,7 +63729,7 @@ func (o *physics2DServer) BodyApplyImpulse(body *RID, position *Vector2, impulse
 }
 
 /*
-   Assign the area to a descendant of [Object], so it can exist in the node tree.
+   Assigns the area to a descendant of [Object], so it can exist in the node tree.
 */
 func (o *physics2DServer) BodyAttachObjectInstanceId(body *RID, id int64) {
 	log.Println("Calling Physics2DServer.BodyAttachObjectInstanceId()")
@@ -63400,7 +63748,7 @@ func (o *physics2DServer) BodyAttachObjectInstanceId(body *RID, id int64) {
 }
 
 /*
-   Remove all shapes from a body.
+   Removes all shapes from a body.
 */
 func (o *physics2DServer) BodyClearShapes(body *RID) {
 	log.Println("Calling Physics2DServer.BodyClearShapes()")
@@ -63418,7 +63766,7 @@ func (o *physics2DServer) BodyClearShapes(body *RID) {
 }
 
 /*
-   Create a physics body. The first parameter can be any value from constants BODY_MODE*, for the type of body created. Additionally, the body can be created in sleeping state to save processing time.
+   Creates a physics body. The first parameter can be any value from constants BODY_MODE*, for the type of body created. Additionally, the body can be created in sleeping state to save processing time.
 */
 func (o *physics2DServer) BodyCreate(mode int64, initSleeping bool) *RID {
 	log.Println("Calling Physics2DServer.BodyCreate()")
@@ -63440,7 +63788,7 @@ func (o *physics2DServer) BodyCreate(mode int64, initSleeping bool) *RID {
 }
 
 /*
-   Return the physics layer or layers a body belongs to.
+   Returns the physics layer or layers a body belongs to.
 */
 func (o *physics2DServer) BodyGetCollisionLayer(body *RID) int64 {
 	log.Println("Calling Physics2DServer.BodyGetCollisionLayer()")
@@ -63461,7 +63809,7 @@ func (o *physics2DServer) BodyGetCollisionLayer(body *RID) int64 {
 }
 
 /*
-   Return the physics layer or layers a body can collide with.
+   Returns the physics layer or layers a body can collide with.
 */
 func (o *physics2DServer) BodyGetCollisionMask(body *RID) int64 {
 	log.Println("Calling Physics2DServer.BodyGetCollisionMask()")
@@ -63482,7 +63830,7 @@ func (o *physics2DServer) BodyGetCollisionMask(body *RID) int64 {
 }
 
 /*
-   Return the continuous collision detection mode.
+   Returns the continuous collision detection mode.
 */
 func (o *physics2DServer) BodyGetContinuousCollisionDetectionMode(body *RID) int64 {
 	log.Println("Calling Physics2DServer.BodyGetContinuousCollisionDetectionMode()")
@@ -63503,7 +63851,28 @@ func (o *physics2DServer) BodyGetContinuousCollisionDetectionMode(body *RID) int
 }
 
 /*
-   Return the maximum contacts that can be reported. See [method body_set_max_contacts_reported].
+   Returns the [Physics2DDirectBodyState] of the body.
+*/
+func (o *physics2DServer) BodyGetDirectState(body *RID) *Physics2DDirectBodyState {
+	log.Println("Calling Physics2DServer.BodyGetDirectState()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(body)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "body_get_direct_state", goArguments, "*Physics2DDirectBodyState")
+
+	returnValue := goRet.Interface().(*Physics2DDirectBodyState)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Returns the maximum contacts that can be reported. See [method body_set_max_contacts_reported].
 */
 func (o *physics2DServer) BodyGetMaxContactsReported(body *RID) int64 {
 	log.Println("Calling Physics2DServer.BodyGetMaxContactsReported()")
@@ -63524,7 +63893,7 @@ func (o *physics2DServer) BodyGetMaxContactsReported(body *RID) int64 {
 }
 
 /*
-   Return the body mode.
+   Returns the body mode.
 */
 func (o *physics2DServer) BodyGetMode(body *RID) int64 {
 	log.Println("Calling Physics2DServer.BodyGetMode()")
@@ -63545,7 +63914,7 @@ func (o *physics2DServer) BodyGetMode(body *RID) int64 {
 }
 
 /*
-   Get the instance ID of the object the area is assigned to.
+   Gets the instance ID of the object the area is assigned to.
 */
 func (o *physics2DServer) BodyGetObjectInstanceId(body *RID) int64 {
 	log.Println("Calling Physics2DServer.BodyGetObjectInstanceId()")
@@ -63566,7 +63935,7 @@ func (o *physics2DServer) BodyGetObjectInstanceId(body *RID) int64 {
 }
 
 /*
-   Return the value of a body parameter.
+   Returns the value of a body parameter. A list of available parameters is on the BODY_PARAM_* constants.
 */
 func (o *physics2DServer) BodyGetParam(body *RID, param int64) float64 {
 	log.Println("Calling Physics2DServer.BodyGetParam()")
@@ -63588,7 +63957,7 @@ func (o *physics2DServer) BodyGetParam(body *RID, param int64) float64 {
 }
 
 /*
-   Return the [RID] of the nth shape of a body.
+   Returns the [RID] of the nth shape of a body.
 */
 func (o *physics2DServer) BodyGetShape(body *RID, shapeIdx int64) *RID {
 	log.Println("Calling Physics2DServer.BodyGetShape()")
@@ -63610,7 +63979,7 @@ func (o *physics2DServer) BodyGetShape(body *RID, shapeIdx int64) *RID {
 }
 
 /*
-   Return the number of shapes assigned to a body.
+   Returns the number of shapes assigned to a body.
 */
 func (o *physics2DServer) BodyGetShapeCount(body *RID) int64 {
 	log.Println("Calling Physics2DServer.BodyGetShapeCount()")
@@ -63631,7 +64000,7 @@ func (o *physics2DServer) BodyGetShapeCount(body *RID) int64 {
 }
 
 /*
-   Return the metadata of a shape of a body.
+   Returns the metadata of a shape of a body.
 */
 func (o *physics2DServer) BodyGetShapeMetadata(body *RID, shapeIdx int64) *Variant {
 	log.Println("Calling Physics2DServer.BodyGetShapeMetadata()")
@@ -63653,7 +64022,7 @@ func (o *physics2DServer) BodyGetShapeMetadata(body *RID, shapeIdx int64) *Varia
 }
 
 /*
-   Return the transform matrix of a body shape.
+   Returns the transform matrix of a body shape.
 */
 func (o *physics2DServer) BodyGetShapeTransform(body *RID, shapeIdx int64) *Transform2D {
 	log.Println("Calling Physics2DServer.BodyGetShapeTransform()")
@@ -63675,7 +64044,7 @@ func (o *physics2DServer) BodyGetShapeTransform(body *RID, shapeIdx int64) *Tran
 }
 
 /*
-   Return the [RID] of the space assigned to a body.
+   Returns the [RID] of the space assigned to a body.
 */
 func (o *physics2DServer) BodyGetSpace(body *RID) *RID {
 	log.Println("Calling Physics2DServer.BodyGetSpace()")
@@ -63696,7 +64065,7 @@ func (o *physics2DServer) BodyGetSpace(body *RID) *RID {
 }
 
 /*
-   Return a body state.
+   Returns a body state.
 */
 func (o *physics2DServer) BodyGetState(body *RID, state int64) *Variant {
 	log.Println("Calling Physics2DServer.BodyGetState()")
@@ -63718,7 +64087,7 @@ func (o *physics2DServer) BodyGetState(body *RID, state int64) *Variant {
 }
 
 /*
-   Return whether a body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]).
+   Returns whether a body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]).
 */
 func (o *physics2DServer) BodyIsOmittingForceIntegration(body *RID) bool {
 	log.Println("Calling Physics2DServer.BodyIsOmittingForceIntegration()")
@@ -63739,7 +64108,7 @@ func (o *physics2DServer) BodyIsOmittingForceIntegration(body *RID) bool {
 }
 
 /*
-   Remove a body from the list of bodies exempt from collisions.
+   Removes a body from the list of bodies exempt from collisions.
 */
 func (o *physics2DServer) BodyRemoveCollisionException(body *RID, exceptedBody *RID) {
 	log.Println("Calling Physics2DServer.BodyRemoveCollisionException()")
@@ -63758,7 +64127,7 @@ func (o *physics2DServer) BodyRemoveCollisionException(body *RID, exceptedBody *
 }
 
 /*
-   Remove a shape from a body. The shape is not deleted, so it can be reused afterwards.
+   Removes a shape from a body. The shape is not deleted, so it can be reused afterwards.
 */
 func (o *physics2DServer) BodyRemoveShape(body *RID, shapeIdx int64) {
 	log.Println("Calling Physics2DServer.BodyRemoveShape()")
@@ -63777,7 +64146,7 @@ func (o *physics2DServer) BodyRemoveShape(body *RID, shapeIdx int64) {
 }
 
 /*
-   Set an axis velocity. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior.
+   Sets an axis velocity. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior.
 */
 func (o *physics2DServer) BodySetAxisVelocity(body *RID, axisVelocity *Vector2) {
 	log.Println("Calling Physics2DServer.BodySetAxisVelocity()")
@@ -63796,7 +64165,7 @@ func (o *physics2DServer) BodySetAxisVelocity(body *RID, axisVelocity *Vector2) 
 }
 
 /*
-   Set the physics layer or layers a body belongs to.
+   Sets the physics layer or layers a body belongs to.
 */
 func (o *physics2DServer) BodySetCollisionLayer(body *RID, layer int64) {
 	log.Println("Calling Physics2DServer.BodySetCollisionLayer()")
@@ -63815,7 +64184,7 @@ func (o *physics2DServer) BodySetCollisionLayer(body *RID, layer int64) {
 }
 
 /*
-   Set the physics layer or layers a body can collide with.
+   Sets the physics layer or layers a body can collide with.
 */
 func (o *physics2DServer) BodySetCollisionMask(body *RID, mask int64) {
 	log.Println("Calling Physics2DServer.BodySetCollisionMask()")
@@ -63834,7 +64203,7 @@ func (o *physics2DServer) BodySetCollisionMask(body *RID, mask int64) {
 }
 
 /*
-   Set the continuous collision detection mode from any of the CCD_MODE_* constants. Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided.
+   Sets the continuous collision detection mode from any of the CCD_MODE_* constants. Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided.
 */
 func (o *physics2DServer) BodySetContinuousCollisionDetectionMode(body *RID, mode int64) {
 	log.Println("Calling Physics2DServer.BodySetContinuousCollisionDetectionMode()")
@@ -63853,7 +64222,7 @@ func (o *physics2DServer) BodySetContinuousCollisionDetectionMode(body *RID, mod
 }
 
 /*
-   Set the function used to calculate physics for an object, if that object allows it (see [method body_set_omit_force integration]).
+   Sets the function used to calculate physics for an object, if that object allows it (see [method body_set_omit_force integration]).
 */
 func (o *physics2DServer) BodySetForceIntegrationCallback(body *RID, receiver *Object, method string, userdata *Variant) {
 	log.Println("Calling Physics2DServer.BodySetForceIntegrationCallback()")
@@ -63874,7 +64243,7 @@ func (o *physics2DServer) BodySetForceIntegrationCallback(body *RID, receiver *O
 }
 
 /*
-   Set the maximum contacts to report. Bodies can keep a log of the contacts with other bodies, this is enabled by setting the maximum amount of contacts reported to a number greater than 0.
+   Sets the maximum contacts to report. Bodies can keep a log of the contacts with other bodies, this is enabled by setting the maximum amount of contacts reported to a number greater than 0.
 */
 func (o *physics2DServer) BodySetMaxContactsReported(body *RID, amount int64) {
 	log.Println("Calling Physics2DServer.BodySetMaxContactsReported()")
@@ -63893,7 +64262,7 @@ func (o *physics2DServer) BodySetMaxContactsReported(body *RID, amount int64) {
 }
 
 /*
-   Set the body mode, from one of the constants BODY_MODE*.
+   Sets the body mode, from one of the constants BODY_MODE*.
 */
 func (o *physics2DServer) BodySetMode(body *RID, mode int64) {
 	log.Println("Calling Physics2DServer.BodySetMode()")
@@ -63912,7 +64281,7 @@ func (o *physics2DServer) BodySetMode(body *RID, mode int64) {
 }
 
 /*
-   Set whether a body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]).
+   Sets whether a body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]).
 */
 func (o *physics2DServer) BodySetOmitForceIntegration(body *RID, enable bool) {
 	log.Println("Calling Physics2DServer.BodySetOmitForceIntegration()")
@@ -63931,7 +64300,7 @@ func (o *physics2DServer) BodySetOmitForceIntegration(body *RID, enable bool) {
 }
 
 /*
-   Set a body parameter (see BODY_PARAM* constants).
+   Sets a body parameter. A list of available parameters is on the BODY_PARAM_* constants.
 */
 func (o *physics2DServer) BodySetParam(body *RID, param int64, value float64) {
 	log.Println("Calling Physics2DServer.BodySetParam()")
@@ -63951,7 +64320,7 @@ func (o *physics2DServer) BodySetParam(body *RID, param int64, value float64) {
 }
 
 /*
-   Substitute a given body shape by another. The old shape is selected by its index, the new one by its [RID].
+   Substitutes a given body shape by another. The old shape is selected by its index, the new one by its [RID].
 */
 func (o *physics2DServer) BodySetShape(body *RID, shapeIdx int64, shape *RID) {
 	log.Println("Calling Physics2DServer.BodySetShape()")
@@ -63971,8 +64340,8 @@ func (o *physics2DServer) BodySetShape(body *RID, shapeIdx int64, shape *RID) {
 }
 
 /*
-
- */
+   Enables one way collision on body if [code]enable is true[/code].
+*/
 func (o *physics2DServer) BodySetShapeAsOneWayCollision(body *RID, shapeIdx int64, enable bool) {
 	log.Println("Calling Physics2DServer.BodySetShapeAsOneWayCollision()")
 
@@ -63991,8 +64360,8 @@ func (o *physics2DServer) BodySetShapeAsOneWayCollision(body *RID, shapeIdx int6
 }
 
 /*
-
- */
+   Disables shape in body if [code]disable is true[/code].
+*/
 func (o *physics2DServer) BodySetShapeDisabled(body *RID, shapeIdx int64, disable bool) {
 	log.Println("Calling Physics2DServer.BodySetShapeDisabled()")
 
@@ -64011,7 +64380,7 @@ func (o *physics2DServer) BodySetShapeDisabled(body *RID, shapeIdx int64, disabl
 }
 
 /*
-   Set metadata of a shape within a body. This metadata is different from [method Object.set_meta], and can be retrieved on shape queries.
+   Sets metadata of a shape within a body. This metadata is different from [method Object.set_meta], and can be retrieved on shape queries.
 */
 func (o *physics2DServer) BodySetShapeMetadata(body *RID, shapeIdx int64, metadata *Variant) {
 	log.Println("Calling Physics2DServer.BodySetShapeMetadata()")
@@ -64031,7 +64400,7 @@ func (o *physics2DServer) BodySetShapeMetadata(body *RID, shapeIdx int64, metada
 }
 
 /*
-   Set the transform matrix for a body shape.
+   Sets the transform matrix for a body shape.
 */
 func (o *physics2DServer) BodySetShapeTransform(body *RID, shapeIdx int64, transform *Transform2D) {
 	log.Println("Calling Physics2DServer.BodySetShapeTransform()")
@@ -64051,7 +64420,7 @@ func (o *physics2DServer) BodySetShapeTransform(body *RID, shapeIdx int64, trans
 }
 
 /*
-   Assign a space to the body (see [method create_space]).
+   Assigns a space to the body (see [method create_space]).
 */
 func (o *physics2DServer) BodySetSpace(body *RID, space *RID) {
 	log.Println("Calling Physics2DServer.BodySetSpace()")
@@ -64070,7 +64439,7 @@ func (o *physics2DServer) BodySetSpace(body *RID, space *RID) {
 }
 
 /*
-   Set a body state (see BODY_STATE* constants).
+   Sets a body state (see BODY_STATE* constants).
 */
 func (o *physics2DServer) BodySetState(body *RID, state int64, value *Variant) {
 	log.Println("Calling Physics2DServer.BodySetState()")
@@ -64090,7 +64459,7 @@ func (o *physics2DServer) BodySetState(body *RID, state int64, value *Variant) {
 }
 
 /*
-   Return whether a body can move from a given point in a given direction. Apart from the boolean return value, a [Physics2DTestMotionResult] can be passed to return additional information in.
+   Returns whether a body can move from a given point in a given direction. Apart from the boolean return value, a [Physics2DTestMotionResult] can be passed to return additional information in.
 */
 func (o *physics2DServer) BodyTestMotion(body *RID, from *Transform2D, motion *Vector2, margin float64, result *Physics2DTestMotionResult) bool {
 	log.Println("Calling Physics2DServer.BodyTestMotion()")
@@ -64115,7 +64484,7 @@ func (o *physics2DServer) BodyTestMotion(body *RID, from *Transform2D, motion *V
 }
 
 /*
-   Create a damped spring joint between two bodies. If not specified, the second body is assumed to be the joint itself.
+   Creates a damped spring joint between two bodies. If not specified, the second body is assumed to be the joint itself.
 */
 func (o *physics2DServer) DampedSpringJointCreate(anchorA *Vector2, anchorB *Vector2, bodyA *RID, bodyB *RID) *RID {
 	log.Println("Calling Physics2DServer.DampedSpringJointCreate()")
@@ -64139,7 +64508,7 @@ func (o *physics2DServer) DampedSpringJointCreate(anchorA *Vector2, anchorB *Vec
 }
 
 /*
-   Return the value of a damped spring joint parameter.
+   Returns the value of a damped spring joint parameter.
 */
 func (o *physics2DServer) DampedStringJointGetParam(joint *RID, param int64) float64 {
 	log.Println("Calling Physics2DServer.DampedStringJointGetParam()")
@@ -64161,7 +64530,7 @@ func (o *physics2DServer) DampedStringJointGetParam(joint *RID, param int64) flo
 }
 
 /*
-   Set a damped spring joint parameter. Parameters are explained in the DAMPED_STRING* constants.
+   Sets a damped spring joint parameter. Parameters are explained in the DAMPED_STRING* constants.
 */
 func (o *physics2DServer) DampedStringJointSetParam(joint *RID, param int64, value float64) {
 	log.Println("Calling Physics2DServer.DampedStringJointSetParam()")
@@ -64181,7 +64550,7 @@ func (o *physics2DServer) DampedStringJointSetParam(joint *RID, param int64, val
 }
 
 /*
-   Destroy any of the objects created by Physics2DServer. If the [RID] passed is not one of the objects that can be created by Physics2DServer, an error will be sent to the console.
+   Destroys any of the objects created by Physics2DServer. If the [RID] passed is not one of the objects that can be created by Physics2DServer, an error will be sent to the console.
 */
 func (o *physics2DServer) FreeRid(rid *RID) {
 	log.Println("Calling Physics2DServer.FreeRid()")
@@ -64199,7 +64568,7 @@ func (o *physics2DServer) FreeRid(rid *RID) {
 }
 
 /*
-   Return information about the current state of the 2D physics engine. The states are listed under the INFO_* constants.
+   Returns information about the current state of the 2D physics engine. The states are listed under the INFO_* constants.
 */
 func (o *physics2DServer) GetProcessInfo(processInfo int64) int64 {
 	log.Println("Calling Physics2DServer.GetProcessInfo()")
@@ -64220,7 +64589,7 @@ func (o *physics2DServer) GetProcessInfo(processInfo int64) int64 {
 }
 
 /*
-   Create a groove joint between two bodies. If not specified, the bodyies are assumed to be the joint itself.
+   Creates a groove joint between two bodies. If not specified, the bodyies are assumed to be the joint itself.
 */
 func (o *physics2DServer) GrooveJointCreate(groove1A *Vector2, groove2A *Vector2, anchorB *Vector2, bodyA *RID, bodyB *RID) *RID {
 	log.Println("Calling Physics2DServer.GrooveJointCreate()")
@@ -64245,7 +64614,7 @@ func (o *physics2DServer) GrooveJointCreate(groove1A *Vector2, groove2A *Vector2
 }
 
 /*
-   Return the value of a joint parameter.
+   Returns the value of a joint parameter.
 */
 func (o *physics2DServer) JointGetParam(joint *RID, param int64) float64 {
 	log.Println("Calling Physics2DServer.JointGetParam()")
@@ -64267,7 +64636,7 @@ func (o *physics2DServer) JointGetParam(joint *RID, param int64) float64 {
 }
 
 /*
-   Return the type of a joint (see JOINT_* constants).
+   Returns the type of a joint (see JOINT_* constants).
 */
 func (o *physics2DServer) JointGetType(joint *RID) int64 {
 	log.Println("Calling Physics2DServer.JointGetType()")
@@ -64288,7 +64657,7 @@ func (o *physics2DServer) JointGetType(joint *RID) int64 {
 }
 
 /*
-   Set a joint parameter. Parameters are explained in the JOINT_PARAM* constants.
+   Sets a joint parameter. Parameters are explained in the JOINT_PARAM* constants.
 */
 func (o *physics2DServer) JointSetParam(joint *RID, param int64, value float64) {
 	log.Println("Calling Physics2DServer.JointSetParam()")
@@ -64308,7 +64677,7 @@ func (o *physics2DServer) JointSetParam(joint *RID, param int64, value float64) 
 }
 
 /*
-   Create a pin joint between two bodies. If not specified, the second body is assumed to be the joint itself.
+   Creates a pin joint between two bodies. If not specified, the second body is assumed to be the joint itself.
 */
 func (o *physics2DServer) PinJointCreate(anchor *Vector2, bodyA *RID, bodyB *RID) *RID {
 	log.Println("Calling Physics2DServer.PinJointCreate()")
@@ -64331,7 +64700,7 @@ func (o *physics2DServer) PinJointCreate(anchor *Vector2, bodyA *RID, bodyB *RID
 }
 
 /*
-   Activate or deactivate the 2D physics engine.
+   Activates or deactivates the 2D physics engine.
 */
 func (o *physics2DServer) SetActive(active bool) {
 	log.Println("Calling Physics2DServer.SetActive()")
@@ -64349,7 +64718,7 @@ func (o *physics2DServer) SetActive(active bool) {
 }
 
 /*
-   Create a shape of type SHAPE_*. Does not assign it to a body or an area. To do so, you must use [method area_set_shape] or [method body_set_shape].
+   Creates a shape of type SHAPE_*. Does not assign it to a body or an area. To do so, you must use [method area_set_shape] or [method body_set_shape].
 */
 func (o *physics2DServer) ShapeCreate(aType int64) *RID {
 	log.Println("Calling Physics2DServer.ShapeCreate()")
@@ -64370,7 +64739,7 @@ func (o *physics2DServer) ShapeCreate(aType int64) *RID {
 }
 
 /*
-   Return the shape data.
+   Returns the shape data.
 */
 func (o *physics2DServer) ShapeGetData(shape *RID) *Variant {
 	log.Println("Calling Physics2DServer.ShapeGetData()")
@@ -64391,7 +64760,7 @@ func (o *physics2DServer) ShapeGetData(shape *RID) *Variant {
 }
 
 /*
-   Return the type of shape (see SHAPE_* constants).
+   Returns the type of shape (see SHAPE_* constants).
 */
 func (o *physics2DServer) ShapeGetType(shape *RID) int64 {
 	log.Println("Calling Physics2DServer.ShapeGetType()")
@@ -64412,7 +64781,7 @@ func (o *physics2DServer) ShapeGetType(shape *RID) int64 {
 }
 
 /*
-   Set the shape data that defines its shape and size. The data to be passed depends on the kind of shape created [method shape_get_type].
+   Sets the shape data that defines its shape and size. The data to be passed depends on the kind of shape created [method shape_get_type].
 */
 func (o *physics2DServer) ShapeSetData(shape *RID, data *Variant) {
 	log.Println("Calling Physics2DServer.ShapeSetData()")
@@ -64431,7 +64800,7 @@ func (o *physics2DServer) ShapeSetData(shape *RID, data *Variant) {
 }
 
 /*
-   Create a space. A space is a collection of parameters for the physics engine that can be assigned to an area or a body. It can be assigned to an area with [method area_set_space], or to a body with [method body_set_space].
+   Creates a space. A space is a collection of parameters for the physics engine that can be assigned to an area or a body. It can be assigned to an area with [method area_set_space], or to a body with [method body_set_space].
 */
 func (o *physics2DServer) SpaceCreate() *RID {
 	log.Println("Calling Physics2DServer.SpaceCreate()")
@@ -64451,7 +64820,7 @@ func (o *physics2DServer) SpaceCreate() *RID {
 }
 
 /*
-   Return the state of a space, a [Physics2DDirectSpaceState]. This object can be used to make collision/intersection queries.
+   Returns the state of a space, a [Physics2DDirectSpaceState]. This object can be used to make collision/intersection queries.
 */
 func (o *physics2DServer) SpaceGetDirectState(space *RID) *Physics2DDirectSpaceState {
 	log.Println("Calling Physics2DServer.SpaceGetDirectState()")
@@ -64472,7 +64841,7 @@ func (o *physics2DServer) SpaceGetDirectState(space *RID) *Physics2DDirectSpaceS
 }
 
 /*
-   Return the value of a space parameter.
+   Returns the value of a space parameter.
 */
 func (o *physics2DServer) SpaceGetParam(space *RID, param int64) float64 {
 	log.Println("Calling Physics2DServer.SpaceGetParam()")
@@ -64494,7 +64863,7 @@ func (o *physics2DServer) SpaceGetParam(space *RID, param int64) float64 {
 }
 
 /*
-   Return whether the space is active.
+   Returns whether the space is active.
 */
 func (o *physics2DServer) SpaceIsActive(space *RID) bool {
 	log.Println("Calling Physics2DServer.SpaceIsActive()")
@@ -64515,7 +64884,7 @@ func (o *physics2DServer) SpaceIsActive(space *RID) bool {
 }
 
 /*
-   Mark a space as active. It will not have an effect, unless it is assigned to an area or body.
+   Marks a space as active. It will not have an effect, unless it is assigned to an area or body.
 */
 func (o *physics2DServer) SpaceSetActive(space *RID, active bool) {
 	log.Println("Calling Physics2DServer.SpaceSetActive()")
@@ -64534,7 +64903,7 @@ func (o *physics2DServer) SpaceSetActive(space *RID, active bool) {
 }
 
 /*
-   Set the value for a space parameter. A list of available parameters is on the SPACE_PARAM_* constants.
+   Sets the value for a space parameter. A list of available parameters is on the SPACE_PARAM_* constants.
 */
 func (o *physics2DServer) SpaceSetParam(space *RID, param int64, value float64) {
 	log.Println("Calling Physics2DServer.SpaceSetParam()")
@@ -64554,7 +64923,7 @@ func (o *physics2DServer) SpaceSetParam(space *RID, param int64, value float64) 
 }
 
 /*
-   Software implementation of [Physics2DServer]. This class exposes no new methods or properties and should not be used, as [Physics2DServer] automatically selects the best implementation available.
+   This class exposes no new methods or properties and should not be used, as [Physics2DServer] automatically selects the best implementation available.
 */
 type Physics2DServerSW struct {
 	physics2DServer
@@ -64603,7 +64972,7 @@ func (o *Physics2DShapeQueryParameters) GetCollisionLayer() int64 {
 }
 
 /*
-   Return the list of objects, or object [RID]\ s, that will be excluded from collisions.
+   Return the list of objects, or object [RID]s, that will be excluded from collisions.
 */
 func (o *Physics2DShapeQueryParameters) GetExclude() *Array {
 	log.Println("Calling Physics2DShapeQueryParameters.GetExclude()")
@@ -64741,7 +65110,7 @@ func (o *Physics2DShapeQueryParameters) SetCollisionLayer(collisionLayer int64) 
 }
 
 /*
-   Set the list of objects, or object [RID]\ s, that will be excluded from collisions.
+   Set the list of objects, or object [RID]s, that will be excluded from collisions.
 */
 func (o *Physics2DShapeQueryParameters) SetExclude(exclude *Array) {
 	log.Println("Calling Physics2DShapeQueryParameters.SetExclude()")
@@ -66477,13 +66846,13 @@ func newSingletonPhysicsServer() *physicsServer {
 }
 
 /*
-
- */
+   Everything related to physics in 3D.
+*/
 var PhysicsServer = newSingletonPhysicsServer()
 
 /*
-
- */
+   Everything related to physics in 3D.
+*/
 type physicsServer struct {
 	Object
 }
@@ -66493,8 +66862,8 @@ func (o *physicsServer) baseClass() string {
 }
 
 /*
-
- */
+   Adds a shape to the area, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
+*/
 func (o *physicsServer) AreaAddShape(area *RID, shape *RID, transform *Transform) {
 	log.Println("Calling PhysicsServer.AreaAddShape()")
 
@@ -66513,8 +66882,8 @@ func (o *physicsServer) AreaAddShape(area *RID, shape *RID, transform *Transform
 }
 
 /*
-
- */
+   Assigns the area to a descendant of [Object], so it can exist in the node tree.
+*/
 func (o *physicsServer) AreaAttachObjectInstanceId(area *RID, id int64) {
 	log.Println("Calling PhysicsServer.AreaAttachObjectInstanceId()")
 
@@ -66532,8 +66901,8 @@ func (o *physicsServer) AreaAttachObjectInstanceId(area *RID, id int64) {
 }
 
 /*
-
- */
+   Removes all shapes from an area. It does not delete the shapes, so they can be reassigned later.
+*/
 func (o *physicsServer) AreaClearShapes(area *RID) {
 	log.Println("Calling PhysicsServer.AreaClearShapes()")
 
@@ -66550,8 +66919,8 @@ func (o *physicsServer) AreaClearShapes(area *RID) {
 }
 
 /*
-
- */
+   Creates an [Area].
+*/
 func (o *physicsServer) AreaCreate() *RID {
 	log.Println("Calling PhysicsServer.AreaCreate()")
 
@@ -66570,8 +66939,8 @@ func (o *physicsServer) AreaCreate() *RID {
 }
 
 /*
-
- */
+   Gets the instance ID of the object the area is assigned to.
+*/
 func (o *physicsServer) AreaGetObjectInstanceId(area *RID) int64 {
 	log.Println("Calling PhysicsServer.AreaGetObjectInstanceId()")
 
@@ -66591,8 +66960,8 @@ func (o *physicsServer) AreaGetObjectInstanceId(area *RID) int64 {
 }
 
 /*
-
- */
+   Returns an area parameter value. A list of available parameters is on the AREA_PARAM_* constants.
+*/
 func (o *physicsServer) AreaGetParam(area *RID, param int64) *Variant {
 	log.Println("Calling PhysicsServer.AreaGetParam()")
 
@@ -66613,8 +66982,8 @@ func (o *physicsServer) AreaGetParam(area *RID, param int64) *Variant {
 }
 
 /*
-
- */
+   Returns the [RID] of the nth shape of an area.
+*/
 func (o *physicsServer) AreaGetShape(area *RID, shapeIdx int64) *RID {
 	log.Println("Calling PhysicsServer.AreaGetShape()")
 
@@ -66635,8 +67004,8 @@ func (o *physicsServer) AreaGetShape(area *RID, shapeIdx int64) *RID {
 }
 
 /*
-
- */
+   Returns the number of shapes assigned to an area.
+*/
 func (o *physicsServer) AreaGetShapeCount(area *RID) int64 {
 	log.Println("Calling PhysicsServer.AreaGetShapeCount()")
 
@@ -66656,8 +67025,8 @@ func (o *physicsServer) AreaGetShapeCount(area *RID) int64 {
 }
 
 /*
-
- */
+   Returns the transform matrix of a shape within an area.
+*/
 func (o *physicsServer) AreaGetShapeTransform(area *RID, shapeIdx int64) *Transform {
 	log.Println("Calling PhysicsServer.AreaGetShapeTransform()")
 
@@ -66678,8 +67047,8 @@ func (o *physicsServer) AreaGetShapeTransform(area *RID, shapeIdx int64) *Transf
 }
 
 /*
-
- */
+   Returns the space assigned to the area.
+*/
 func (o *physicsServer) AreaGetSpace(area *RID) *RID {
 	log.Println("Calling PhysicsServer.AreaGetSpace()")
 
@@ -66699,8 +67068,8 @@ func (o *physicsServer) AreaGetSpace(area *RID) *RID {
 }
 
 /*
-
- */
+   Returns the space override mode for the area.
+*/
 func (o *physicsServer) AreaGetSpaceOverrideMode(area *RID) int64 {
 	log.Println("Calling PhysicsServer.AreaGetSpaceOverrideMode()")
 
@@ -66720,8 +67089,8 @@ func (o *physicsServer) AreaGetSpaceOverrideMode(area *RID) int64 {
 }
 
 /*
-
- */
+   Returns the transform matrix for an area.
+*/
 func (o *physicsServer) AreaGetTransform(area *RID) *Transform {
 	log.Println("Calling PhysicsServer.AreaGetTransform()")
 
@@ -66741,8 +67110,8 @@ func (o *physicsServer) AreaGetTransform(area *RID) *Transform {
 }
 
 /*
-
- */
+   If [code]true[/code] area collides with rays.
+*/
 func (o *physicsServer) AreaIsRayPickable(area *RID) bool {
 	log.Println("Calling PhysicsServer.AreaIsRayPickable()")
 
@@ -66762,8 +67131,8 @@ func (o *physicsServer) AreaIsRayPickable(area *RID) bool {
 }
 
 /*
-
- */
+   Removes a shape from an area. It does not delete the shape, so it can be reassigned later.
+*/
 func (o *physicsServer) AreaRemoveShape(area *RID, shapeIdx int64) {
 	log.Println("Calling PhysicsServer.AreaRemoveShape()")
 
@@ -66781,8 +67150,8 @@ func (o *physicsServer) AreaRemoveShape(area *RID, shapeIdx int64) {
 }
 
 /*
-
- */
+   Assigns the area to one or many physics layers.
+*/
 func (o *physicsServer) AreaSetCollisionLayer(area *RID, layer int64) {
 	log.Println("Calling PhysicsServer.AreaSetCollisionLayer()")
 
@@ -66800,8 +67169,8 @@ func (o *physicsServer) AreaSetCollisionLayer(area *RID, layer int64) {
 }
 
 /*
-
- */
+   Sets which physics layers the area will monitor.
+*/
 func (o *physicsServer) AreaSetCollisionMask(area *RID, mask int64) {
 	log.Println("Calling PhysicsServer.AreaSetCollisionMask()")
 
@@ -66819,8 +67188,8 @@ func (o *physicsServer) AreaSetCollisionMask(area *RID, mask int64) {
 }
 
 /*
-
- */
+   Sets the function to call when any body/area enters or exits the area. This callback will be called for any object interacting with the area, and takes five parameters: 1: AREA_BODY_ADDED or AREA_BODY_REMOVED, depending on whether the object entered or exited the area. 2: [RID] of the object that entered/exited the area. 3: Instance ID of the object that entered/exited the area. 4: The shape index of the object that entered/exited the area. 5: The shape index of the area where the object entered/exited.
+*/
 func (o *physicsServer) AreaSetMonitorCallback(area *RID, receiver *Object, method string) {
 	log.Println("Calling PhysicsServer.AreaSetMonitorCallback()")
 
@@ -66839,8 +67208,8 @@ func (o *physicsServer) AreaSetMonitorCallback(area *RID, receiver *Object, meth
 }
 
 /*
-
- */
+   Sets the value for an area parameter. A list of available parameters is on the AREA_PARAM_* constants.
+*/
 func (o *physicsServer) AreaSetParam(area *RID, param int64, value *Variant) {
 	log.Println("Calling PhysicsServer.AreaSetParam()")
 
@@ -66859,8 +67228,8 @@ func (o *physicsServer) AreaSetParam(area *RID, param int64, value *Variant) {
 }
 
 /*
-
- */
+   Sets object pickable with rays.
+*/
 func (o *physicsServer) AreaSetRayPickable(area *RID, enable bool) {
 	log.Println("Calling PhysicsServer.AreaSetRayPickable()")
 
@@ -66878,8 +67247,8 @@ func (o *physicsServer) AreaSetRayPickable(area *RID, enable bool) {
 }
 
 /*
-
- */
+   Substitutes a given area shape by another. The old shape is selected by its index, the new one by its [RID].
+*/
 func (o *physicsServer) AreaSetShape(area *RID, shapeIdx int64, shape *RID) {
 	log.Println("Calling PhysicsServer.AreaSetShape()")
 
@@ -66898,8 +67267,8 @@ func (o *physicsServer) AreaSetShape(area *RID, shapeIdx int64, shape *RID) {
 }
 
 /*
-
- */
+   Sets the transform matrix for an area shape.
+*/
 func (o *physicsServer) AreaSetShapeTransform(area *RID, shapeIdx int64, transform *Transform) {
 	log.Println("Calling PhysicsServer.AreaSetShapeTransform()")
 
@@ -66918,8 +67287,8 @@ func (o *physicsServer) AreaSetShapeTransform(area *RID, shapeIdx int64, transfo
 }
 
 /*
-
- */
+   Assigns a space to the area.
+*/
 func (o *physicsServer) AreaSetSpace(area *RID, space *RID) {
 	log.Println("Calling PhysicsServer.AreaSetSpace()")
 
@@ -66937,8 +67306,8 @@ func (o *physicsServer) AreaSetSpace(area *RID, space *RID) {
 }
 
 /*
-
- */
+   Sets the space override mode for the area. The modes are described in the constants AREA_SPACE_OVERRIDE_*.
+*/
 func (o *physicsServer) AreaSetSpaceOverrideMode(area *RID, mode int64) {
 	log.Println("Calling PhysicsServer.AreaSetSpaceOverrideMode()")
 
@@ -66956,8 +67325,8 @@ func (o *physicsServer) AreaSetSpaceOverrideMode(area *RID, mode int64) {
 }
 
 /*
-
- */
+   Sets the transform matrix for an area.
+*/
 func (o *physicsServer) AreaSetTransform(area *RID, transform *Transform) {
 	log.Println("Calling PhysicsServer.AreaSetTransform()")
 
@@ -66975,8 +67344,8 @@ func (o *physicsServer) AreaSetTransform(area *RID, transform *Transform) {
 }
 
 /*
-
- */
+   Adds a body to the list of bodies exempt from collisions.
+*/
 func (o *physicsServer) BodyAddCollisionException(body *RID, exceptedBody *RID) {
 	log.Println("Calling PhysicsServer.BodyAddCollisionException()")
 
@@ -66994,8 +67363,8 @@ func (o *physicsServer) BodyAddCollisionException(body *RID, exceptedBody *RID) 
 }
 
 /*
-
- */
+   Adds a shape to the body, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
+*/
 func (o *physicsServer) BodyAddShape(body *RID, shape *RID, transform *Transform) {
 	log.Println("Calling PhysicsServer.BodyAddShape()")
 
@@ -67014,8 +67383,8 @@ func (o *physicsServer) BodyAddShape(body *RID, shape *RID, transform *Transform
 }
 
 /*
-
- */
+   Gives the body a push at a [code]position[/code] in the direction of the [code]impulse[/code].
+*/
 func (o *physicsServer) BodyApplyImpulse(body *RID, position *Vector3, impulse *Vector3) {
 	log.Println("Calling PhysicsServer.BodyApplyImpulse()")
 
@@ -67034,8 +67403,8 @@ func (o *physicsServer) BodyApplyImpulse(body *RID, position *Vector3, impulse *
 }
 
 /*
-
- */
+   Gives the body a push to rotate it.
+*/
 func (o *physicsServer) BodyApplyTorqueImpulse(body *RID, impulse *Vector3) {
 	log.Println("Calling PhysicsServer.BodyApplyTorqueImpulse()")
 
@@ -67053,8 +67422,8 @@ func (o *physicsServer) BodyApplyTorqueImpulse(body *RID, impulse *Vector3) {
 }
 
 /*
-
- */
+   Assigns the area to a descendant of [Object], so it can exist in the node tree.
+*/
 func (o *physicsServer) BodyAttachObjectInstanceId(body *RID, id int64) {
 	log.Println("Calling PhysicsServer.BodyAttachObjectInstanceId()")
 
@@ -67072,8 +67441,8 @@ func (o *physicsServer) BodyAttachObjectInstanceId(body *RID, id int64) {
 }
 
 /*
-
- */
+   Removes all shapes from a body.
+*/
 func (o *physicsServer) BodyClearShapes(body *RID) {
 	log.Println("Calling PhysicsServer.BodyClearShapes()")
 
@@ -67090,8 +67459,8 @@ func (o *physicsServer) BodyClearShapes(body *RID) {
 }
 
 /*
-
- */
+   Creates a physics body. The first parameter can be any value from constants BODY_MODE*, for the type of body created. Additionally, the body can be created in sleeping state to save processing time.
+*/
 func (o *physicsServer) BodyCreate(mode int64, initSleeping bool) *RID {
 	log.Println("Calling PhysicsServer.BodyCreate()")
 
@@ -67112,8 +67481,8 @@ func (o *physicsServer) BodyCreate(mode int64, initSleeping bool) *RID {
 }
 
 /*
-
- */
+   Gets the information, which Axis is locked if any. The can be any calue from the constants BODY_AXIS_LOCK*
+*/
 func (o *physicsServer) BodyGetAxisLock(body *RID) int64 {
 	log.Println("Calling PhysicsServer.BodyGetAxisLock()")
 
@@ -67133,8 +67502,8 @@ func (o *physicsServer) BodyGetAxisLock(body *RID) int64 {
 }
 
 /*
-
- */
+   Returns the physics layer or layers a body belongs to.
+*/
 func (o *physicsServer) BodyGetCollisionLayer(body *RID) int64 {
 	log.Println("Calling PhysicsServer.BodyGetCollisionLayer()")
 
@@ -67154,8 +67523,9 @@ func (o *physicsServer) BodyGetCollisionLayer(body *RID) int64 {
 }
 
 /*
-
- */
+                Returns the physics layer or layers a body can collide with.
+-
+*/
 func (o *physicsServer) BodyGetCollisionMask(body *RID) int64 {
 	log.Println("Calling PhysicsServer.BodyGetCollisionMask()")
 
@@ -67175,8 +67545,29 @@ func (o *physicsServer) BodyGetCollisionMask(body *RID) int64 {
 }
 
 /*
+   Returns the [PhysicsDirectBodyState] of the body.
+*/
+func (o *physicsServer) BodyGetDirectState(body *RID) *PhysicsDirectBodyState {
+	log.Println("Calling PhysicsServer.BodyGetDirectState()")
 
- */
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(body)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "body_get_direct_state", goArguments, "*PhysicsDirectBodyState")
+
+	returnValue := goRet.Interface().(*PhysicsDirectBodyState)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Returns the maximum contacts that can be reported. See [method body_set_max_contacts_reported].
+*/
 func (o *physicsServer) BodyGetMaxContactsReported(body *RID) int64 {
 	log.Println("Calling PhysicsServer.BodyGetMaxContactsReported()")
 
@@ -67196,8 +67587,8 @@ func (o *physicsServer) BodyGetMaxContactsReported(body *RID) int64 {
 }
 
 /*
-
- */
+   Returns the body mode.
+*/
 func (o *physicsServer) BodyGetMode(body *RID) int64 {
 	log.Println("Calling PhysicsServer.BodyGetMode()")
 
@@ -67217,8 +67608,8 @@ func (o *physicsServer) BodyGetMode(body *RID) int64 {
 }
 
 /*
-
- */
+   Gets the instance ID of the object the area is assigned to.
+*/
 func (o *physicsServer) BodyGetObjectInstanceId(body *RID) int64 {
 	log.Println("Calling PhysicsServer.BodyGetObjectInstanceId()")
 
@@ -67238,8 +67629,8 @@ func (o *physicsServer) BodyGetObjectInstanceId(body *RID) int64 {
 }
 
 /*
-
- */
+   Returns the value of a body parameter. A list of available parameters is on the BODY_PARAM_* constants.
+*/
 func (o *physicsServer) BodyGetParam(body *RID, param int64) float64 {
 	log.Println("Calling PhysicsServer.BodyGetParam()")
 
@@ -67260,8 +67651,8 @@ func (o *physicsServer) BodyGetParam(body *RID, param int64) float64 {
 }
 
 /*
-
- */
+   Returns the [RID] of the nth shape of a body.
+*/
 func (o *physicsServer) BodyGetShape(body *RID, shapeIdx int64) *RID {
 	log.Println("Calling PhysicsServer.BodyGetShape()")
 
@@ -67282,8 +67673,8 @@ func (o *physicsServer) BodyGetShape(body *RID, shapeIdx int64) *RID {
 }
 
 /*
-
- */
+   Returns the number of shapes assigned to a body.
+*/
 func (o *physicsServer) BodyGetShapeCount(body *RID) int64 {
 	log.Println("Calling PhysicsServer.BodyGetShapeCount()")
 
@@ -67303,8 +67694,8 @@ func (o *physicsServer) BodyGetShapeCount(body *RID) int64 {
 }
 
 /*
-
- */
+   Returns the transform matrix of a body shape.
+*/
 func (o *physicsServer) BodyGetShapeTransform(body *RID, shapeIdx int64) *Transform {
 	log.Println("Calling PhysicsServer.BodyGetShapeTransform()")
 
@@ -67325,8 +67716,8 @@ func (o *physicsServer) BodyGetShapeTransform(body *RID, shapeIdx int64) *Transf
 }
 
 /*
-
- */
+   Returns the [RID] of the space assigned to a body.
+*/
 func (o *physicsServer) BodyGetSpace(body *RID) *RID {
 	log.Println("Calling PhysicsServer.BodyGetSpace()")
 
@@ -67346,8 +67737,8 @@ func (o *physicsServer) BodyGetSpace(body *RID) *RID {
 }
 
 /*
-
- */
+   Returns a body state.
+*/
 func (o *physicsServer) BodyGetState(body *RID, state int64) *Variant {
 	log.Println("Calling PhysicsServer.BodyGetState()")
 
@@ -67368,8 +67759,8 @@ func (o *physicsServer) BodyGetState(body *RID, state int64) *Variant {
 }
 
 /*
-
- */
+   If [code]true[/code] the continuous collision detection mode is enabled.
+*/
 func (o *physicsServer) BodyIsContinuousCollisionDetectionEnabled(body *RID) bool {
 	log.Println("Calling PhysicsServer.BodyIsContinuousCollisionDetectionEnabled()")
 
@@ -67389,8 +67780,8 @@ func (o *physicsServer) BodyIsContinuousCollisionDetectionEnabled(body *RID) boo
 }
 
 /*
-
- */
+   Returns whether a body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]).
+*/
 func (o *physicsServer) BodyIsOmittingForceIntegration(body *RID) bool {
 	log.Println("Calling PhysicsServer.BodyIsOmittingForceIntegration()")
 
@@ -67410,8 +67801,8 @@ func (o *physicsServer) BodyIsOmittingForceIntegration(body *RID) bool {
 }
 
 /*
-
- */
+   If [code]true[/code] the body can be detected by rays
+*/
 func (o *physicsServer) BodyIsRayPickable(body *RID) bool {
 	log.Println("Calling PhysicsServer.BodyIsRayPickable()")
 
@@ -67431,8 +67822,8 @@ func (o *physicsServer) BodyIsRayPickable(body *RID) bool {
 }
 
 /*
-
- */
+   Removes a body from the list of bodies exempt from collisions. Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided.
+*/
 func (o *physicsServer) BodyRemoveCollisionException(body *RID, exceptedBody *RID) {
 	log.Println("Calling PhysicsServer.BodyRemoveCollisionException()")
 
@@ -67450,8 +67841,8 @@ func (o *physicsServer) BodyRemoveCollisionException(body *RID, exceptedBody *RI
 }
 
 /*
-
- */
+   Removes a shape from a body. The shape is not deleted, so it can be reused afterwards.
+*/
 func (o *physicsServer) BodyRemoveShape(body *RID, shapeIdx int64) {
 	log.Println("Calling PhysicsServer.BodyRemoveShape()")
 
@@ -67469,8 +67860,8 @@ func (o *physicsServer) BodyRemoveShape(body *RID, shapeIdx int64) {
 }
 
 /*
-
- */
+   Locks velocity along one axis to 0 and only allows rotation along this axis, can also be set to disabled which disables this functionality.
+*/
 func (o *physicsServer) BodySetAxisLock(body *RID, axis int64) {
 	log.Println("Calling PhysicsServer.BodySetAxisLock()")
 
@@ -67488,8 +67879,8 @@ func (o *physicsServer) BodySetAxisLock(body *RID, axis int64) {
 }
 
 /*
-
- */
+   Sets an axis velocity. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior.
+*/
 func (o *physicsServer) BodySetAxisVelocity(body *RID, axisVelocity *Vector3) {
 	log.Println("Calling PhysicsServer.BodySetAxisVelocity()")
 
@@ -67507,8 +67898,8 @@ func (o *physicsServer) BodySetAxisVelocity(body *RID, axisVelocity *Vector3) {
 }
 
 /*
-
- */
+   Sets the physics layer or layers a body belongs to.
+*/
 func (o *physicsServer) BodySetCollisionLayer(body *RID, layer int64) {
 	log.Println("Calling PhysicsServer.BodySetCollisionLayer()")
 
@@ -67526,8 +67917,8 @@ func (o *physicsServer) BodySetCollisionLayer(body *RID, layer int64) {
 }
 
 /*
-
- */
+   Sets the physics layer or layers a body can collide with.
+*/
 func (o *physicsServer) BodySetCollisionMask(body *RID, mask int64) {
 	log.Println("Calling PhysicsServer.BodySetCollisionMask()")
 
@@ -67545,8 +67936,8 @@ func (o *physicsServer) BodySetCollisionMask(body *RID, mask int64) {
 }
 
 /*
-
- */
+   If [code]true[/code] the continuous collision detection mode is enabled. Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided.
+*/
 func (o *physicsServer) BodySetEnableContinuousCollisionDetection(body *RID, enable bool) {
 	log.Println("Calling PhysicsServer.BodySetEnableContinuousCollisionDetection()")
 
@@ -67564,8 +67955,8 @@ func (o *physicsServer) BodySetEnableContinuousCollisionDetection(body *RID, ena
 }
 
 /*
-
- */
+   Sets the function used to calculate physics for an object, if that object allows it (see [method body_set_omit_force integration]).
+*/
 func (o *physicsServer) BodySetForceIntegrationCallback(body *RID, receiver *Object, method string, userdata *Variant) {
 	log.Println("Calling PhysicsServer.BodySetForceIntegrationCallback()")
 
@@ -67585,8 +67976,8 @@ func (o *physicsServer) BodySetForceIntegrationCallback(body *RID, receiver *Obj
 }
 
 /*
-
- */
+   Sets the maximum contacts to report. Bodies can keep a log of the contacts with other bodies, this is enabled by setting the maximum amount of contacts reported to a number greater than 0.
+*/
 func (o *physicsServer) BodySetMaxContactsReported(body *RID, amount int64) {
 	log.Println("Calling PhysicsServer.BodySetMaxContactsReported()")
 
@@ -67604,8 +67995,8 @@ func (o *physicsServer) BodySetMaxContactsReported(body *RID, amount int64) {
 }
 
 /*
-
- */
+   Sets the body mode, from one of the constants BODY_MODE*.
+*/
 func (o *physicsServer) BodySetMode(body *RID, mode int64) {
 	log.Println("Calling PhysicsServer.BodySetMode()")
 
@@ -67623,8 +68014,8 @@ func (o *physicsServer) BodySetMode(body *RID, mode int64) {
 }
 
 /*
-
- */
+   Sets whether a body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]).
+*/
 func (o *physicsServer) BodySetOmitForceIntegration(body *RID, enable bool) {
 	log.Println("Calling PhysicsServer.BodySetOmitForceIntegration()")
 
@@ -67642,8 +68033,8 @@ func (o *physicsServer) BodySetOmitForceIntegration(body *RID, enable bool) {
 }
 
 /*
-
- */
+   Sets a body parameter. A list of available parameters is on the BODY_PARAM_* constants.
+*/
 func (o *physicsServer) BodySetParam(body *RID, param int64, value float64) {
 	log.Println("Calling PhysicsServer.BodySetParam()")
 
@@ -67662,8 +68053,8 @@ func (o *physicsServer) BodySetParam(body *RID, param int64, value float64) {
 }
 
 /*
-
- */
+   Sets the body pickable with rays if [code]enabled[/code] is set.
+*/
 func (o *physicsServer) BodySetRayPickable(body *RID, enable bool) {
 	log.Println("Calling PhysicsServer.BodySetRayPickable()")
 
@@ -67681,8 +68072,8 @@ func (o *physicsServer) BodySetRayPickable(body *RID, enable bool) {
 }
 
 /*
-
- */
+   Substitutes a given body shape by another. The old shape is selected by its index, the new one by its [RID].
+*/
 func (o *physicsServer) BodySetShape(body *RID, shapeIdx int64, shape *RID) {
 	log.Println("Calling PhysicsServer.BodySetShape()")
 
@@ -67701,8 +68092,8 @@ func (o *physicsServer) BodySetShape(body *RID, shapeIdx int64, shape *RID) {
 }
 
 /*
-
- */
+   Sets the transform matrix for a body shape.
+*/
 func (o *physicsServer) BodySetShapeTransform(body *RID, shapeIdx int64, transform *Transform) {
 	log.Println("Calling PhysicsServer.BodySetShapeTransform()")
 
@@ -67721,8 +68112,8 @@ func (o *physicsServer) BodySetShapeTransform(body *RID, shapeIdx int64, transfo
 }
 
 /*
-
- */
+   Assigns a space to the body (see [method create_space]).
+*/
 func (o *physicsServer) BodySetSpace(body *RID, space *RID) {
 	log.Println("Calling PhysicsServer.BodySetSpace()")
 
@@ -67740,8 +68131,8 @@ func (o *physicsServer) BodySetSpace(body *RID, space *RID) {
 }
 
 /*
-
- */
+   Sets a body state (see BODY_STATE* constants).
+*/
 func (o *physicsServer) BodySetState(body *RID, state int64, value *Variant) {
 	log.Println("Calling PhysicsServer.BodySetState()")
 
@@ -67760,8 +68151,8 @@ func (o *physicsServer) BodySetState(body *RID, state int64, value *Variant) {
 }
 
 /*
-
- */
+   Gets a cone_twist_joint parameter (see CONE_TWIST_JOINT* constants).
+*/
 func (o *physicsServer) ConeTwistJointGetParam(joint *RID, param int64) float64 {
 	log.Println("Calling PhysicsServer.ConeTwistJointGetParam()")
 
@@ -67782,8 +68173,8 @@ func (o *physicsServer) ConeTwistJointGetParam(joint *RID, param int64) float64 
 }
 
 /*
-
- */
+   Sets a cone_twist_joint parameter (see CONE_TWIST_JOINT* constants).
+*/
 func (o *physicsServer) ConeTwistJointSetParam(joint *RID, param int64, value float64) {
 	log.Println("Calling PhysicsServer.ConeTwistJointSetParam()")
 
@@ -67802,8 +68193,8 @@ func (o *physicsServer) ConeTwistJointSetParam(joint *RID, param int64, value fl
 }
 
 /*
-
- */
+   Destroys any of the objects created by PhysicsServer. If the [RID] passed is not one of the objects that can be created by PhysicsServer, an error will be sent to the console.
+*/
 func (o *physicsServer) FreeRid(rid *RID) {
 	log.Println("Calling PhysicsServer.FreeRid()")
 
@@ -67820,8 +68211,8 @@ func (o *physicsServer) FreeRid(rid *RID) {
 }
 
 /*
-
- */
+   Gets a generic_6_DOF_joint flag (see G6DOF_JOINT_FLAG* constants).
+*/
 func (o *physicsServer) Generic6DofJointGetFlag(joint *RID, axis int64, flag int64) bool {
 	log.Println("Calling PhysicsServer.Generic6DofJointGetFlag()")
 
@@ -67843,8 +68234,8 @@ func (o *physicsServer) Generic6DofJointGetFlag(joint *RID, axis int64, flag int
 }
 
 /*
-
- */
+   Gets a generic_6_DOF_joint parameter (see G6DOF_JOINT* constants without the G6DOF_JOINT_FLAG*).
+*/
 func (o *physicsServer) Generic6DofJointGetParam(joint *RID, axis int64, param int64) float64 {
 	log.Println("Calling PhysicsServer.Generic6DofJointGetParam()")
 
@@ -67866,8 +68257,8 @@ func (o *physicsServer) Generic6DofJointGetParam(joint *RID, axis int64, param i
 }
 
 /*
-
- */
+   Sets a generic_6_DOF_joint flag (see G6DOF_JOINT_FLAG* constants).
+*/
 func (o *physicsServer) Generic6DofJointSetFlag(joint *RID, axis int64, flag int64, enable bool) {
 	log.Println("Calling PhysicsServer.Generic6DofJointSetFlag()")
 
@@ -67887,8 +68278,8 @@ func (o *physicsServer) Generic6DofJointSetFlag(joint *RID, axis int64, flag int
 }
 
 /*
-
- */
+   Sets a generic_6_DOF_joint parameter (see G6DOF_JOINT* constants without the G6DOF_JOINT_FLAG*).
+*/
 func (o *physicsServer) Generic6DofJointSetParam(joint *RID, axis int64, param int64, value float64) {
 	log.Println("Calling PhysicsServer.Generic6DofJointSetParam()")
 
@@ -67908,8 +68299,8 @@ func (o *physicsServer) Generic6DofJointSetParam(joint *RID, axis int64, param i
 }
 
 /*
-
- */
+   Returns an Info defined by the [ProcessInfo] input given.
+*/
 func (o *physicsServer) GetProcessInfo(processInfo int64) int64 {
 	log.Println("Calling PhysicsServer.GetProcessInfo()")
 
@@ -67929,8 +68320,8 @@ func (o *physicsServer) GetProcessInfo(processInfo int64) int64 {
 }
 
 /*
-
- */
+   Gets a hinge_joint flag (see HINGE_JOINT_FLAG* constants).
+*/
 func (o *physicsServer) HingeJointGetFlag(joint *RID, flag int64) bool {
 	log.Println("Calling PhysicsServer.HingeJointGetFlag()")
 
@@ -67951,8 +68342,8 @@ func (o *physicsServer) HingeJointGetFlag(joint *RID, flag int64) bool {
 }
 
 /*
-
- */
+   Gets a hinge_joint parameter (see HINGE_JOINT* constants without the HINGE_JOINT_FLAG*).
+*/
 func (o *physicsServer) HingeJointGetParam(joint *RID, param int64) float64 {
 	log.Println("Calling PhysicsServer.HingeJointGetParam()")
 
@@ -67973,8 +68364,8 @@ func (o *physicsServer) HingeJointGetParam(joint *RID, param int64) float64 {
 }
 
 /*
-
- */
+   Sets a hinge_joint flag (see HINGE_JOINT_FLAG* constants).
+*/
 func (o *physicsServer) HingeJointSetFlag(joint *RID, flag int64, enabled bool) {
 	log.Println("Calling PhysicsServer.HingeJointSetFlag()")
 
@@ -67993,8 +68384,8 @@ func (o *physicsServer) HingeJointSetFlag(joint *RID, flag int64, enabled bool) 
 }
 
 /*
-
- */
+   Sets a hinge_joint parameter (see HINGE_JOINT* constants without the HINGE_JOINT_FLAG*).
+*/
 func (o *physicsServer) HingeJointSetParam(joint *RID, param int64, value float64) {
 	log.Println("Calling PhysicsServer.HingeJointSetParam()")
 
@@ -68013,8 +68404,8 @@ func (o *physicsServer) HingeJointSetParam(joint *RID, param int64, value float6
 }
 
 /*
-
- */
+   Creates a [ConeTwistJoint].
+*/
 func (o *physicsServer) JointCreateConeTwist(bodyA *RID, localRefA *Transform, bodyB *RID, localRefB *Transform) *RID {
 	log.Println("Calling PhysicsServer.JointCreateConeTwist()")
 
@@ -68037,8 +68428,8 @@ func (o *physicsServer) JointCreateConeTwist(bodyA *RID, localRefA *Transform, b
 }
 
 /*
-
- */
+   Creates a [Generic6DOFJoint].
+*/
 func (o *physicsServer) JointCreateGeneric6Dof(bodyA *RID, localRefA *Transform, bodyB *RID, localRefB *Transform) *RID {
 	log.Println("Calling PhysicsServer.JointCreateGeneric6Dof()")
 
@@ -68061,8 +68452,8 @@ func (o *physicsServer) JointCreateGeneric6Dof(bodyA *RID, localRefA *Transform,
 }
 
 /*
-
- */
+   Creates a [HingeJoint].
+*/
 func (o *physicsServer) JointCreateHinge(bodyA *RID, hingeA *Transform, bodyB *RID, hingeB *Transform) *RID {
 	log.Println("Calling PhysicsServer.JointCreateHinge()")
 
@@ -68085,8 +68476,8 @@ func (o *physicsServer) JointCreateHinge(bodyA *RID, hingeA *Transform, bodyB *R
 }
 
 /*
-
- */
+   Creates a [PinJoint].
+*/
 func (o *physicsServer) JointCreatePin(bodyA *RID, localA *Vector3, bodyB *RID, localB *Vector3) *RID {
 	log.Println("Calling PhysicsServer.JointCreatePin()")
 
@@ -68109,8 +68500,8 @@ func (o *physicsServer) JointCreatePin(bodyA *RID, localA *Vector3, bodyB *RID, 
 }
 
 /*
-
- */
+   Creates a [SliderJoint].
+*/
 func (o *physicsServer) JointCreateSlider(bodyA *RID, localRefA *Transform, bodyB *RID, localRefB *Transform) *RID {
 	log.Println("Calling PhysicsServer.JointCreateSlider()")
 
@@ -68133,8 +68524,8 @@ func (o *physicsServer) JointCreateSlider(bodyA *RID, localRefA *Transform, body
 }
 
 /*
-
- */
+   Gets the priority value of the Joint.
+*/
 func (o *physicsServer) JointGetSolverPriority(joint *RID) int64 {
 	log.Println("Calling PhysicsServer.JointGetSolverPriority()")
 
@@ -68154,8 +68545,8 @@ func (o *physicsServer) JointGetSolverPriority(joint *RID) int64 {
 }
 
 /*
-
- */
+   Returns the type of the Joint.
+*/
 func (o *physicsServer) JointGetType(joint *RID) int64 {
 	log.Println("Calling PhysicsServer.JointGetType()")
 
@@ -68175,8 +68566,8 @@ func (o *physicsServer) JointGetType(joint *RID) int64 {
 }
 
 /*
-
- */
+   Sets the priority value of the Joint.
+*/
 func (o *physicsServer) JointSetSolverPriority(joint *RID, priority int64) {
 	log.Println("Calling PhysicsServer.JointSetSolverPriority()")
 
@@ -68194,8 +68585,8 @@ func (o *physicsServer) JointSetSolverPriority(joint *RID, priority int64) {
 }
 
 /*
-
- */
+   Returns position of the joint in the local space of body a of the joint.
+*/
 func (o *physicsServer) PinJointGetLocalA(joint *RID) *Vector3 {
 	log.Println("Calling PhysicsServer.PinJointGetLocalA()")
 
@@ -68215,8 +68606,8 @@ func (o *physicsServer) PinJointGetLocalA(joint *RID) *Vector3 {
 }
 
 /*
-
- */
+   Returns position of the joint in the local space of body b of the joint.
+*/
 func (o *physicsServer) PinJointGetLocalB(joint *RID) *Vector3 {
 	log.Println("Calling PhysicsServer.PinJointGetLocalB()")
 
@@ -68236,8 +68627,8 @@ func (o *physicsServer) PinJointGetLocalB(joint *RID) *Vector3 {
 }
 
 /*
-
- */
+   Gets a pin_joint parameter (see PIN_JOINT* constants).
+*/
 func (o *physicsServer) PinJointGetParam(joint *RID, param int64) float64 {
 	log.Println("Calling PhysicsServer.PinJointGetParam()")
 
@@ -68258,8 +68649,8 @@ func (o *physicsServer) PinJointGetParam(joint *RID, param int64) float64 {
 }
 
 /*
-
- */
+   Sets position of the joint in the local space of body a of the joint.
+*/
 func (o *physicsServer) PinJointSetLocalA(joint *RID, localA *Vector3) {
 	log.Println("Calling PhysicsServer.PinJointSetLocalA()")
 
@@ -68277,8 +68668,8 @@ func (o *physicsServer) PinJointSetLocalA(joint *RID, localA *Vector3) {
 }
 
 /*
-
- */
+   Sets position of the joint in the local space of body b of the joint.
+*/
 func (o *physicsServer) PinJointSetLocalB(joint *RID, localB *Vector3) {
 	log.Println("Calling PhysicsServer.PinJointSetLocalB()")
 
@@ -68296,8 +68687,8 @@ func (o *physicsServer) PinJointSetLocalB(joint *RID, localB *Vector3) {
 }
 
 /*
-
- */
+   Sets a pin_joint parameter (see PIN_JOINT* constants).
+*/
 func (o *physicsServer) PinJointSetParam(joint *RID, param int64, value float64) {
 	log.Println("Calling PhysicsServer.PinJointSetParam()")
 
@@ -68316,8 +68707,8 @@ func (o *physicsServer) PinJointSetParam(joint *RID, param int64, value float64)
 }
 
 /*
-
- */
+   Activates or deactivates the 3D physics engine.
+*/
 func (o *physicsServer) SetActive(active bool) {
 	log.Println("Calling PhysicsServer.SetActive()")
 
@@ -68334,8 +68725,8 @@ func (o *physicsServer) SetActive(active bool) {
 }
 
 /*
-
- */
+   Creates a shape of type SHAPE_*. Does not assign it to a body or an area. To do so, you must use [method area_set_shape] or [method body_set_shape].
+*/
 func (o *physicsServer) ShapeCreate(aType int64) *RID {
 	log.Println("Calling PhysicsServer.ShapeCreate()")
 
@@ -68355,8 +68746,8 @@ func (o *physicsServer) ShapeCreate(aType int64) *RID {
 }
 
 /*
-
- */
+   Returns the shape data.
+*/
 func (o *physicsServer) ShapeGetData(shape *RID) *Variant {
 	log.Println("Calling PhysicsServer.ShapeGetData()")
 
@@ -68376,8 +68767,8 @@ func (o *physicsServer) ShapeGetData(shape *RID) *Variant {
 }
 
 /*
-
- */
+   Returns the type of shape (see SHAPE_* constants).
+*/
 func (o *physicsServer) ShapeGetType(shape *RID) int64 {
 	log.Println("Calling PhysicsServer.ShapeGetType()")
 
@@ -68397,8 +68788,8 @@ func (o *physicsServer) ShapeGetType(shape *RID) int64 {
 }
 
 /*
-
- */
+   Sets the shape data that defines its shape and size. The data to be passed depends on the kind of shape created [method shape_get_type].
+*/
 func (o *physicsServer) ShapeSetData(shape *RID, data *Variant) {
 	log.Println("Calling PhysicsServer.ShapeSetData()")
 
@@ -68416,8 +68807,8 @@ func (o *physicsServer) ShapeSetData(shape *RID, data *Variant) {
 }
 
 /*
-
- */
+   Gets a slider_joint parameter (see SLIDER_JOINT* constants).
+*/
 func (o *physicsServer) SliderJointGetParam(joint *RID, param int64) float64 {
 	log.Println("Calling PhysicsServer.SliderJointGetParam()")
 
@@ -68438,8 +68829,8 @@ func (o *physicsServer) SliderJointGetParam(joint *RID, param int64) float64 {
 }
 
 /*
-
- */
+   Gets a slider_joint parameter (see SLIDER_JOINT* constants).
+*/
 func (o *physicsServer) SliderJointSetParam(joint *RID, param int64, value float64) {
 	log.Println("Calling PhysicsServer.SliderJointSetParam()")
 
@@ -68458,8 +68849,8 @@ func (o *physicsServer) SliderJointSetParam(joint *RID, param int64, value float
 }
 
 /*
-
- */
+   Creates a space. A space is a collection of parameters for the physics engine that can be assigned to an area or a body. It can be assigned to an area with [method area_set_space], or to a body with [method body_set_space].
+*/
 func (o *physicsServer) SpaceCreate() *RID {
 	log.Println("Calling PhysicsServer.SpaceCreate()")
 
@@ -68478,8 +68869,8 @@ func (o *physicsServer) SpaceCreate() *RID {
 }
 
 /*
-
- */
+   Returns the state of a space, a [PhysicsDirectSpaceState]. This object can be used to make collision/intersection queries.
+*/
 func (o *physicsServer) SpaceGetDirectState(space *RID) *PhysicsDirectSpaceState {
 	log.Println("Calling PhysicsServer.SpaceGetDirectState()")
 
@@ -68499,8 +68890,8 @@ func (o *physicsServer) SpaceGetDirectState(space *RID) *PhysicsDirectSpaceState
 }
 
 /*
-
- */
+   Returns the value of a space parameter.
+*/
 func (o *physicsServer) SpaceGetParam(space *RID, param int64) float64 {
 	log.Println("Calling PhysicsServer.SpaceGetParam()")
 
@@ -68521,8 +68912,8 @@ func (o *physicsServer) SpaceGetParam(space *RID, param int64) float64 {
 }
 
 /*
-
- */
+   Returns whether the space is active.
+*/
 func (o *physicsServer) SpaceIsActive(space *RID) bool {
 	log.Println("Calling PhysicsServer.SpaceIsActive()")
 
@@ -68542,8 +68933,8 @@ func (o *physicsServer) SpaceIsActive(space *RID) bool {
 }
 
 /*
-
- */
+   Marks a space as active. It will not have an effect, unless it is assigned to an area or body.
+*/
 func (o *physicsServer) SpaceSetActive(space *RID, active bool) {
 	log.Println("Calling PhysicsServer.SpaceSetActive()")
 
@@ -68561,8 +68952,8 @@ func (o *physicsServer) SpaceSetActive(space *RID, active bool) {
 }
 
 /*
-
- */
+   Sets the value for a space parameter. A list of available parameters is on the SPACE_PARAM_* constants.
+*/
 func (o *physicsServer) SpaceSetParam(space *RID, param int64, value float64) {
 	log.Println("Calling PhysicsServer.SpaceSetParam()")
 
@@ -68581,8 +68972,8 @@ func (o *physicsServer) SpaceSetParam(space *RID, param int64, value float64) {
 }
 
 /*
-
- */
+   This class exposes no new methods or properties and should not be used, as [PhysicsServer] automatically selects the best implementation available.
+*/
 type PhysicsServerSW struct {
 	physicsServer
 }
@@ -68985,8 +69376,8 @@ type PhysicsShapeQueryResultImplementer interface {
 }
 
 /*
-
- */
+   Pin Joint for 3D Rigid Bodies. It pins 2 bodies (rigid or static) together.
+*/
 type PinJoint struct {
 	Joint
 }
@@ -69283,6 +69674,24 @@ func (o *PlaneShape) SetPlane(plane *Plane) {
    PlaneShapeImplementer is an interface for PlaneShape objects.
 */
 type PlaneShapeImplementer interface {
+	Class
+}
+
+/*
+
+ */
+type PluginScript struct {
+	Script
+}
+
+func (o *PluginScript) baseClass() string {
+	return "PluginScript"
+}
+
+/*
+   PluginScriptImplementer is an interface for PluginScript objects.
+*/
+type PluginScriptImplementer interface {
 	Class
 }
 
@@ -72263,6 +72672,27 @@ func (o *projectSettings) GetOrder(name string) int64 {
 /*
 
  */
+func (o *projectSettings) GetSetting(name string) *Variant {
+	log.Println("Calling ProjectSettings.GetSetting()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(name)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_setting", goArguments, "*Variant")
+
+	returnValue := goRet.Interface().(*Variant)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
 func (o *projectSettings) GetSingleton(name string) *Object {
 	log.Println("Calling ProjectSettings.GetSingleton()")
 
@@ -72303,10 +72733,10 @@ func (o *projectSettings) GlobalizePath(path string) string {
 }
 
 /*
-   Undocumented
+   Return true if a configuration value is present.
 */
-func (o *projectSettings) Has(name string) bool {
-	log.Println("Calling ProjectSettings.Has()")
+func (o *projectSettings) HasSetting(name string) bool {
+	log.Println("Calling ProjectSettings.HasSetting()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -72314,7 +72744,7 @@ func (o *projectSettings) Has(name string) bool {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "has", goArguments, "bool")
+	goRet := o.callParentMethod(o.baseClass(), "has_setting", goArguments, "bool")
 
 	returnValue := goRet.Interface().(bool)
 
@@ -72502,6 +72932,25 @@ func (o *projectSettings) SetOrder(name string, position int64) {
 	// Call the parent method.
 
 	o.callParentMethod(o.baseClass(), "set_order", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *projectSettings) SetSetting(name string, value *Variant) {
+	log.Println("Calling ProjectSettings.SetSetting()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(name)
+	goArguments[1] = reflect.ValueOf(value)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_setting", goArguments, "")
 
 	log.Println("  Function successfully completed.")
 
@@ -73154,19 +73603,40 @@ func (o *RayCast) GetColliderShape() int64 {
 }
 
 /*
-   Returns the collision layer for this ray.
+   Returns the collision mask for this ray.
 */
-func (o *RayCast) GetCollisionLayer() int64 {
-	log.Println("Calling RayCast.GetCollisionLayer()")
+func (o *RayCast) GetCollisionMask() int64 {
+	log.Println("Calling RayCast.GetCollisionMask()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_layer", goArguments, "int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_collision_mask", goArguments, "int64")
 
 	returnValue := goRet.Interface().(int64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *RayCast) GetCollisionMaskBit(bit int64) bool {
+	log.Println("Calling RayCast.GetCollisionMaskBit()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(bit)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_collision_mask_bit", goArguments, "bool")
+
+	returnValue := goRet.Interface().(bool)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -73328,18 +73798,37 @@ func (o *RayCast) SetCastTo(localPoint *Vector3) {
 }
 
 /*
-   Set the mask to filter objects. Only objects with at least the same mask element set will be detected.
+   Set the mask to filter objects. Only objects in at least one collision layer enabled in the mask will be detected.
 */
-func (o *RayCast) SetCollisionLayer(layer int64) {
-	log.Println("Calling RayCast.SetCollisionLayer()")
+func (o *RayCast) SetCollisionMask(mask int64) {
+	log.Println("Calling RayCast.SetCollisionMask()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(layer)
+	goArguments[0] = reflect.ValueOf(mask)
 
 	// Call the parent method.
 
-	o.callParentMethod(o.baseClass(), "set_collision_layer", goArguments, "")
+	o.callParentMethod(o.baseClass(), "set_collision_mask", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *RayCast) SetCollisionMaskBit(bit int64, value bool) {
+	log.Println("Calling RayCast.SetCollisionMaskBit()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(bit)
+	goArguments[1] = reflect.ValueOf(value)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_collision_mask_bit", goArguments, "")
 
 	log.Println("  Function successfully completed.")
 
@@ -73530,19 +74019,40 @@ func (o *RayCast2D) GetColliderShape() int64 {
 }
 
 /*
-   Returns the collision layer for this ray.
+   Returns the collision mask for this ray.
 */
-func (o *RayCast2D) GetCollisionLayer() int64 {
-	log.Println("Calling RayCast2D.GetCollisionLayer()")
+func (o *RayCast2D) GetCollisionMask() int64 {
+	log.Println("Calling RayCast2D.GetCollisionMask()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_collision_layer", goArguments, "int64")
+	goRet := o.callParentMethod(o.baseClass(), "get_collision_mask", goArguments, "int64")
 
 	returnValue := goRet.Interface().(int64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *RayCast2D) GetCollisionMaskBit(bit int64) bool {
+	log.Println("Calling RayCast2D.GetCollisionMaskBit()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(bit)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_collision_mask_bit", goArguments, "bool")
+
+	returnValue := goRet.Interface().(bool)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -73724,18 +74234,37 @@ func (o *RayCast2D) SetCastTo(localPoint *Vector2) {
 }
 
 /*
-   Set the mask to filter objects. Only objects with at least the same mask element set will be detected.
+   Set the mask to filter objects. Only objects in at least one collision layer enabled in the mask will be detected.
 */
-func (o *RayCast2D) SetCollisionLayer(layer int64) {
-	log.Println("Calling RayCast2D.SetCollisionLayer()")
+func (o *RayCast2D) SetCollisionMask(mask int64) {
+	log.Println("Calling RayCast2D.SetCollisionMask()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(layer)
+	goArguments[0] = reflect.ValueOf(mask)
 
 	// Call the parent method.
 
-	o.callParentMethod(o.baseClass(), "set_collision_layer", goArguments, "")
+	o.callParentMethod(o.baseClass(), "set_collision_mask", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *RayCast2D) SetCollisionMaskBit(bit int64, value bool) {
+	log.Println("Calling RayCast2D.SetCollisionMaskBit()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(bit)
+	goArguments[1] = reflect.ValueOf(value)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_collision_mask_bit", goArguments, "")
 
 	log.Println("  Function successfully completed.")
 
@@ -74886,8 +75415,8 @@ type RegExMatchImplementer interface {
 }
 
 /*
-
- */
+   RemoteTransform mirrors the [Transform] of another [Spatial] derived Node (called the remote node) in the scene. It can be set to track another Node's position, rotation and/or scale and update its own accordingly, using either global or local coordinates.
+*/
 type RemoteTransform struct {
 	Spatial
 }
@@ -75094,8 +75623,8 @@ type RemoteTransformImplementer interface {
 }
 
 /*
-
- */
+   RemoteTransform2D mirrors the [Transform2D] of another [CanvasItem] derived Node (called the remote node) in the scene. It can be set to track another Node's position, rotation and/or and update its own accordingly, using either global or local coordinates.
+*/
 type RemoteTransform2D struct {
 	Node2D
 }
@@ -75487,7 +76016,7 @@ func (o *Resource) SetName(name string) {
 }
 
 /*
-   Set the path of the resource. This is useful mainly for editors when saving/loading, and shouldn't be changed by anything else. Fails if another [Resource] already has path "path".
+   Set the path of the resource. This is useful mainly for editors when saving/loading, and shouldn't be changed by anything else. Fails if another [code]Resource[/code] already has path "path".
 */
 func (o *Resource) SetPath(path string) {
 	log.Println("Calling Resource.SetPath()")
@@ -75522,7 +76051,7 @@ func (o *Resource) SetupLocalToScene() {
 }
 
 /*
-   Set the path of the resource. Differs from set_path(), if another [Resource] exists with "path" it over-takes it, instead of failing.
+   Set the path of the resource. Differs from set_path(), if another [code]Resource[/code] exists with "path" it over-takes it, instead of failing.
 */
 func (o *Resource) TakeOverPath(path string) {
 	log.Println("Calling Resource.TakeOverPath()")
@@ -75979,8 +76508,8 @@ func (o *RichTextLabel) AppendBbcode(bbcode string) int64 {
 }
 
 /*
-
- */
+   Clears the label's text.
+*/
 func (o *RichTextLabel) Clear() {
 	log.Println("Calling RichTextLabel.Clear()")
 
@@ -75996,8 +76525,8 @@ func (o *RichTextLabel) Clear() {
 }
 
 /*
-
- */
+   Returns label's BBCode.
+*/
 func (o *RichTextLabel) GetBbcode() string {
 	log.Println("Calling RichTextLabel.GetBbcode()")
 
@@ -76016,8 +76545,8 @@ func (o *RichTextLabel) GetBbcode() string {
 }
 
 /*
-
- */
+   Returns the number of lines in the text.
+*/
 func (o *RichTextLabel) GetLineCount() int64 {
 	log.Println("Calling RichTextLabel.GetLineCount()")
 
@@ -76036,8 +76565,8 @@ func (o *RichTextLabel) GetLineCount() int64 {
 }
 
 /*
-
- */
+   Returns the text's visibility as a floating point value between 0.0 and 1.0.
+*/
 func (o *RichTextLabel) GetPercentVisible() float64 {
 	log.Println("Calling RichTextLabel.GetPercentVisible()")
 
@@ -76076,7 +76605,7 @@ func (o *RichTextLabel) GetTabSize() int64 {
 }
 
 /*
-   Returns the raw text, stripping out the formatting information.
+   Returns the label's text with the formatting removed.
 */
 func (o *RichTextLabel) GetText() string {
 	log.Println("Calling RichTextLabel.GetText()")
@@ -76096,8 +76625,8 @@ func (o *RichTextLabel) GetText() string {
 }
 
 /*
-
- */
+   Returns the total number of characters.
+*/
 func (o *RichTextLabel) GetTotalCharacterCount() int64 {
 	log.Println("Calling RichTextLabel.GetTotalCharacterCount()")
 
@@ -76156,8 +76685,8 @@ func (o *RichTextLabel) GetVisibleCharacters() int64 {
 }
 
 /*
-
- */
+   Returns the number of visible lines.
+*/
 func (o *RichTextLabel) GetVisibleLineCount() int64 {
 	log.Println("Calling RichTextLabel.GetVisibleLineCount()")
 
@@ -76198,6 +76727,26 @@ func (o *RichTextLabel) IsMetaUnderlined() bool {
 /*
 
  */
+func (o *RichTextLabel) IsOverridingSelectedFontColor() bool {
+	log.Println("Calling RichTextLabel.IsOverridingSelectedFontColor()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_overriding_selected_font_color", goArguments, "bool")
+
+	returnValue := goRet.Interface().(bool)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Returns [code]true[/code] if active scrolling is enabled.
+*/
 func (o *RichTextLabel) IsScrollActive() bool {
 	log.Println("Calling RichTextLabel.IsScrollActive()")
 
@@ -76236,7 +76785,7 @@ func (o *RichTextLabel) IsScrollFollowing() bool {
 }
 
 /*
-   Return true if selecting the text inside this richtext is allowed.
+   Returns [code]true[/code] if the label's text can be selected.
 */
 func (o *RichTextLabel) IsSelectionEnabled() bool {
 	log.Println("Calling RichTextLabel.IsSelectionEnabled()")
@@ -76256,8 +76805,8 @@ func (o *RichTextLabel) IsSelectionEnabled() bool {
 }
 
 /*
-
- */
+   Returns [code]true[/code] if the label has BBCode.
+*/
 func (o *RichTextLabel) IsUsingBbcode() bool {
 	log.Println("Calling RichTextLabel.IsUsingBbcode()")
 
@@ -76276,8 +76825,8 @@ func (o *RichTextLabel) IsUsingBbcode() bool {
 }
 
 /*
-
- */
+   Adds a newline to the end of the rich text.
+*/
 func (o *RichTextLabel) Newline() {
 	log.Println("Calling RichTextLabel.Newline()")
 
@@ -76530,8 +77079,8 @@ func (o *RichTextLabel) ScrollToLine(line int64) {
 }
 
 /*
-
- */
+   Sets the BBCode text to the label.
+*/
 func (o *RichTextLabel) SetBbcode(text string) {
 	log.Println("Calling RichTextLabel.SetBbcode()")
 
@@ -76568,6 +77117,24 @@ func (o *RichTextLabel) SetMetaUnderline(enable bool) {
 /*
 
  */
+func (o *RichTextLabel) SetOverrideSelectedFontColor(override bool) {
+	log.Println("Calling RichTextLabel.SetOverrideSelectedFontColor()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(override)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_override_selected_font_color", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Sets the text's visibility. Takes a floating point value between 0.0 and 1.0.
+*/
 func (o *RichTextLabel) SetPercentVisible(percentVisible float64) {
 	log.Println("Calling RichTextLabel.SetPercentVisible()")
 
@@ -76620,7 +77187,7 @@ func (o *RichTextLabel) SetScrollFollow(follow bool) {
 }
 
 /*
-   Set to true if selecting the text inside this richtext is allowed.
+   If [code]true[/code] text can be selected.
 */
 func (o *RichTextLabel) SetSelectionEnabled(enabled bool) {
 	log.Println("Calling RichTextLabel.SetSelectionEnabled()")
@@ -77530,7 +78097,7 @@ type RigidBodyImplementer interface {
 }
 
 /*
-   This is the node that implements full 2D physics. This means that you do not control a RigidBody2D directly. Instead you can apply forces to it (gravity, impulses, etc.), and the physics simulation will calculate the resulting movement, collision, bouncing, rotating, etc. This node can use custom force integration, for writing complex physics motion behavior per node. This node can shift state between regular Rigid body, Kinematic, Character or Static. Character mode forbids this node from being rotated. As a warning, don't change RigidBody2D's position every frame or very often. Sporadic changes work fine, but physics runs at a different granularity (fixed hz) than usual rendering (process callback) and maybe even in a separate thread, so changing this from a process loop will yield strange behavior.
+   This node implements simulated 2D physics. You do not control a RigidBody2D directly. Instead you apply forces to it (gravity, impulses, etc.) and the physics simulation calculates the resulting movement based on its mass, friction, and other physical properties. A RigidBody2D has 4 behavior modes (see [member mode]): - [b]Rigid[/b]: The body behaves as a physical object. It collides with other bodies and responds to forces applied to it. This is the default mode. - [b]Static[/b]: The body behaves like a [StaticBody2D] and does not move. - [b]Character[/b]: Similar to [code]Rigid[/code] mode, but the body can not rotate. - [b]Kinematic[/b]: The body behaves like a [KinematicBody2D], and must be moved by code. [b]Note:[/b] You should not change a RigidBody2D's [code]position[/code] or [code]linear_velocity[/code] every frame or even very often. If you need to directly affect the body's state, use [method _integrate_forces], which allows you to directly access the physics state. If you need to override the default physics behavior, you can write a custom force integration. See [member custom_integrator].
 */
 type RigidBody2D struct {
 	PhysicsBody2D
@@ -77595,7 +78162,7 @@ func (o *RigidBody2D) X_DirectStateChanged(arg0 *Object) {
 }
 
 /*
-   Called during physics processing, allowing you to read and safely modify the simulation state for the object. By default it works in addition to the usual physics behavior, but [method set_use_custom_integrator] allows you to disable the default behavior and do fully custom force integration for a body.
+   Allows you to read and safely modify the simulation state for the object. Use this instead of [Node._physics_process] if you need to directly change the body's [code]position[/code] or other physics properties. By default it works in addition to the usual physics behavior, but [member custom_integrator] allows you to disable the default behavior and write custom force integration for a body.
 */
 func (o *RigidBody2D) X_IntegrateForces(state *Physics2DDirectBodyState) {
 	log.Println("Calling RigidBody2D.X_IntegrateForces()")
@@ -77613,7 +78180,7 @@ func (o *RigidBody2D) X_IntegrateForces(state *Physics2DDirectBodyState) {
 }
 
 /*
-   Add a positioned force to the applied force and torque. As with [method apply_impulse], both the force and the offset from the body origin are in global coordinates.
+   Adds a positioned force to the body. Both the force and the offset from the body origin are in global coordinates.
 */
 func (o *RigidBody2D) AddForce(offset *Vector2, force *Vector2) {
 	log.Println("Calling RigidBody2D.AddForce()")
@@ -77632,7 +78199,7 @@ func (o *RigidBody2D) AddForce(offset *Vector2, force *Vector2) {
 }
 
 /*
-   Apply a positioned impulse (which will be affected by the body mass and shape). This is the equivalent of hitting a billiard ball with a cue: a force that is applied once, and only once. Both the impulse and the offset from the body origin are in global coordinates.
+   Applies a positioned impulse to the body (which will be affected by the body mass and shape). This is the equivalent of hitting a billiard ball with a cue: a force that is applied instantaneously. Both the impulse and the offset from the body origin are in global coordinates.
 */
 func (o *RigidBody2D) ApplyImpulse(offset *Vector2, impulse *Vector2) {
 	log.Println("Calling RigidBody2D.ApplyImpulse()")
@@ -77691,7 +78258,7 @@ func (o *RigidBody2D) GetAngularVelocity() float64 {
 }
 
 /*
-   Return the applied force vector.
+   Returns the body's total applied force.
 */
 func (o *RigidBody2D) GetAppliedForce() *Vector2 {
 	log.Println("Calling RigidBody2D.GetAppliedForce()")
@@ -77711,7 +78278,7 @@ func (o *RigidBody2D) GetAppliedForce() *Vector2 {
 }
 
 /*
-   Return the torque which is being applied to this body.
+   Returns the body's total applied torque.
 */
 func (o *RigidBody2D) GetAppliedTorque() float64 {
 	log.Println("Calling RigidBody2D.GetAppliedTorque()")
@@ -77751,7 +78318,7 @@ func (o *RigidBody2D) GetBounce() float64 {
 }
 
 /*
-   Return a list of the bodies colliding with this one. By default, number of max contacts reported is at 0 , see [method set_max_contacts_reported] to increase it. You must also enable contact monitor, see [method set_contact_monitor]
+   Returns a list of the bodies colliding with this one. Use [member contacts_reported] to set the maximum number reported. You must also set [member contact_monitor] to [code]true[/code].
 */
 func (o *RigidBody2D) GetCollidingBodies() *Array {
 	log.Println("Calling RigidBody2D.GetCollidingBodies()")
@@ -77831,7 +78398,7 @@ func (o *RigidBody2D) GetGravityScale() float64 {
 }
 
 /*
-   Return the body's moment of inertia. This is usually automatically computed from the mass and the shapes. Note that this doesn't seem to work in a [code]_ready[/code] function: it apparently has not been auto-computed yet.
+   Returns the body's moment of inertia, which is computed automatically from the body's mass and assigned [Shape2D]s during the physics frame. Note that it will not yet have a value in the [code]_ready()[/code] function.
 */
 func (o *RigidBody2D) GetInertia() float64 {
 	log.Println("Calling RigidBody2D.GetInertia()")
@@ -77871,7 +78438,7 @@ func (o *RigidBody2D) GetLinearDamp() float64 {
 }
 
 /*
-   Return the body linear velocity. This changes by physics granularity. See [method set_linear_velocity].
+   Returns the body's linear velocity. This changes when a physics frame has passed, not during a normal update. See [method set_linear_velocity].
 */
 func (o *RigidBody2D) GetLinearVelocity() *Vector2 {
 	log.Println("Calling RigidBody2D.GetLinearVelocity()")
@@ -78087,7 +78654,7 @@ func (o *RigidBody2D) SetAngularVelocity(angularVelocity float64) {
 }
 
 /*
-   Set the applied force vector. This is the equivalent of pushing a box over the ground: the force applied is applied constantly.
+   Sets the applied force vector. This is the equivalent of firing a rocket: the force is applied constantly.
 */
 func (o *RigidBody2D) SetAppliedForce(force *Vector2) {
 	log.Println("Calling RigidBody2D.SetAppliedForce()")
@@ -78105,7 +78672,7 @@ func (o *RigidBody2D) SetAppliedForce(force *Vector2) {
 }
 
 /*
-   Set a constant torque which will be applied to this body.
+   Sets the applied torque.
 */
 func (o *RigidBody2D) SetAppliedTorque(torque float64) {
 	log.Println("Calling RigidBody2D.SetAppliedTorque()")
@@ -78123,7 +78690,7 @@ func (o *RigidBody2D) SetAppliedTorque(torque float64) {
 }
 
 /*
-   Set an axis velocity. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior.
+   Sets the body's velocity on the given axis. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior.
 */
 func (o *RigidBody2D) SetAxisVelocity(axisVelocity *Vector2) {
 	log.Println("Calling RigidBody2D.SetAxisVelocity()")
@@ -78411,7 +78978,7 @@ func (o *RigidBody2D) SetWeight(weight float64) {
 }
 
 /*
-   Return whether the body would collide, if it tried to move in the given vector. This method allows two extra parameters: A margin, which increases slightly the size of the shapes involved in the collision detection, and an object of type [Physics2DTestMotionResult], which will store additional information about the collision (should there be one).
+   Returns [code]true[/code] if a collision would result from moving in the given vector. [code]margin[/code] increases the size of the shapes involved in the collision detection, and [code]result[/code] is an object of type [Physics2DTestMotionResult], which contains additional information about the collision (should there be one).
 */
 func (o *RigidBody2D) TestMotion(motion *Vector2, margin float64, result *Physics2DTestMotionResult) bool {
 	log.Println("Calling RigidBody2D.TestMotion()")
@@ -79724,7 +80291,7 @@ func (o *SceneTree) SetRefuseNewNetworkConnections(refuse bool) {
 /*
 
  */
-func (o *SceneTree) SetScreenStretch(mode int64, aspect int64, minsize *Vector2, shrink int64) {
+func (o *SceneTree) SetScreenStretch(mode int64, aspect int64, minsize *Vector2, shrink float64) {
 	log.Println("Calling SceneTree.SetScreenStretch()")
 
 	// Build out the method's arguments
@@ -79830,26 +80397,6 @@ func (o *Script) CanInstance() bool {
 	goRet := o.callParentMethod(o.baseClass(), "can_instance", goArguments, "bool")
 
 	returnValue := goRet.Interface().(bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *Script) GetNodeType() string {
-	log.Println("Calling Script.GetNodeType()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.baseClass(), "get_node_type", goArguments, "string")
-
-	returnValue := goRet.Interface().(string)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -80705,6 +81252,23 @@ func (o *ScriptEditor) X_UnhandledInput(arg0 *InputEvent) {
 	// Call the parent method.
 
 	o.callParentMethod(o.baseClass(), "_unhandled_input", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *ScriptEditor) X_UpdateRecentScripts() {
+	log.Println("Calling ScriptEditor.X_UpdateRecentScripts()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "_update_recent_scripts", goArguments, "")
 
 	log.Println("  Function successfully completed.")
 
@@ -82398,8 +82962,8 @@ type SliderImplementer interface {
 }
 
 /*
-
- */
+   Slides across the x-axis of the [Pivot] object.
+*/
 type SliderJoint struct {
 	Joint
 }
@@ -82638,7 +83202,7 @@ func (o *Spatial) GetGlobalTransform() *Transform {
 }
 
 /*
-   Returns the parent [Spatial], or an empty [Object] if no parent exists or parent is not of type [Spatial].
+   Returns the parent [code]Spatial[/code], or an empty [Object] if no parent exists or parent is not of type [code]Spatial[/code].
 */
 func (o *Spatial) GetParentSpatial() *Spatial {
 	log.Println("Calling Spatial.GetParentSpatial()")
@@ -85520,17 +86084,17 @@ func (o *SpatialVelocityTracker) GetTrackedLinearVelocity() *Vector3 {
 }
 
 /*
-   Undocumented
-*/
-func (o *SpatialVelocityTracker) IsTrackingFixedStep() bool {
-	log.Println("Calling SpatialVelocityTracker.IsTrackingFixedStep()")
+
+ */
+func (o *SpatialVelocityTracker) IsTrackingPhysicsStep() bool {
+	log.Println("Calling SpatialVelocityTracker.IsTrackingPhysicsStep()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 0, 0)
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "is_tracking_fixed_step", goArguments, "bool")
+	goRet := o.callParentMethod(o.baseClass(), "is_tracking_physics_step", goArguments, "bool")
 
 	returnValue := goRet.Interface().(bool)
 
@@ -85558,10 +86122,10 @@ func (o *SpatialVelocityTracker) Reset(position *Vector3) {
 }
 
 /*
-   Undocumented
-*/
-func (o *SpatialVelocityTracker) SetTrackFixedStep(enable bool) {
-	log.Println("Calling SpatialVelocityTracker.SetTrackFixedStep()")
+
+ */
+func (o *SpatialVelocityTracker) SetTrackPhysicsStep(enable bool) {
+	log.Println("Calling SpatialVelocityTracker.SetTrackPhysicsStep()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 1, 1)
@@ -85569,7 +86133,7 @@ func (o *SpatialVelocityTracker) SetTrackFixedStep(enable bool) {
 
 	// Call the parent method.
 
-	o.callParentMethod(o.baseClass(), "set_track_fixed_step", goArguments, "")
+	o.callParentMethod(o.baseClass(), "set_track_physics_step", goArguments, "")
 
 	log.Println("  Function successfully completed.")
 
@@ -88265,7 +88829,7 @@ func (o *StreamPeer) Get8() int64 {
 }
 
 /*
-   Return the amount of bytes this [StreamPeer] has available.
+   Return the amount of bytes this [code]StreamPeer[/code] has available.
 */
 func (o *StreamPeer) GetAvailableBytes() int64 {
 	log.Println("Calling StreamPeer.GetAvailableBytes()")
@@ -88509,7 +89073,7 @@ func (o *StreamPeer) GetVar() *Variant {
 }
 
 /*
-   Return whether this [StreamPeer] is using big-endian format.
+   Return whether this [code]StreamPeer[/code] is using big-endian format.
 */
 func (o *StreamPeer) IsBigEndianEnabled() bool {
 	log.Println("Calling StreamPeer.IsBigEndianEnabled()")
@@ -88787,7 +89351,7 @@ func (o *StreamPeer) PutVar(val *Variant) {
 }
 
 /*
-   Set this [StreamPeer] to use big-endian format. Default is false.
+   Set this [code]StreamPeer[/code] to use big-endian format. Default is false.
 */
 func (o *StreamPeer) SetBigEndian(enable bool) {
 	log.Println("Calling StreamPeer.SetBigEndian()")
@@ -89013,7 +89577,7 @@ func (o *StreamPeerSSL) AcceptStream(stream *StreamPeer) int64 {
 }
 
 /*
-   Connect to a peer using an underlying [StreamPeer] "stream", when "validate_certs" is true, [StreamPeerSSL] will validate that the certificate presented by the peer matches the "for_hostname".
+   Connect to a peer using an underlying [StreamPeer] "stream", when "validate_certs" is true, [code]StreamPeerSSL[/code] will validate that the certificate presented by the peer matches the "for_hostname".
 */
 func (o *StreamPeerSSL) ConnectToStream(stream *StreamPeer, validateCerts bool, forHostname string) int64 {
 	log.Println("Calling StreamPeerSSL.ConnectToStream()")
@@ -89932,14 +90496,14 @@ func (o *StyleBoxFlat) SetCornerRadiusAll(radius int64) {
 /*
 
  */
-func (o *StyleBoxFlat) SetCornerRadiusIndividual(radiusTopLeft int64, radiusTopRight int64, radiusBottonRight int64, radiusBottomLeft int64) {
+func (o *StyleBoxFlat) SetCornerRadiusIndividual(radiusTopLeft int64, radiusTopRight int64, radiusBottomRight int64, radiusBottomLeft int64) {
 	log.Println("Calling StyleBoxFlat.SetCornerRadiusIndividual()")
 
 	// Build out the method's arguments
 	goArguments := make([]reflect.Value, 4, 4)
 	goArguments[0] = reflect.ValueOf(radiusTopLeft)
 	goArguments[1] = reflect.ValueOf(radiusTopRight)
-	goArguments[2] = reflect.ValueOf(radiusBottonRight)
+	goArguments[2] = reflect.ValueOf(radiusBottomRight)
 	goArguments[3] = reflect.ValueOf(radiusBottomLeft)
 
 	// Call the parent method.
@@ -90066,6 +90630,176 @@ func (o *StyleBoxFlat) SetShadowSize(size int64) {
    StyleBoxFlatImplementer is an interface for StyleBoxFlat objects.
 */
 type StyleBoxFlatImplementer interface {
+	Class
+}
+
+/*
+   Undocumented
+*/
+type StyleBoxLine struct {
+	StyleBox
+}
+
+func (o *StyleBoxLine) baseClass() string {
+	return "StyleBoxLine"
+}
+
+/*
+   Undocumented
+*/
+func (o *StyleBoxLine) GetColor() *Color {
+	log.Println("Calling StyleBoxLine.GetColor()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_color", goArguments, "*Color")
+
+	returnValue := goRet.Interface().(*Color)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *StyleBoxLine) GetGrow() float64 {
+	log.Println("Calling StyleBoxLine.GetGrow()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_grow", goArguments, "float64")
+
+	returnValue := goRet.Interface().(float64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *StyleBoxLine) GetThickness() int64 {
+	log.Println("Calling StyleBoxLine.GetThickness()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_thickness", goArguments, "int64")
+
+	returnValue := goRet.Interface().(int64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *StyleBoxLine) IsVertical() bool {
+	log.Println("Calling StyleBoxLine.IsVertical()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_vertical", goArguments, "bool")
+
+	returnValue := goRet.Interface().(bool)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+   Undocumented
+*/
+func (o *StyleBoxLine) SetColor(color *Color) {
+	log.Println("Calling StyleBoxLine.SetColor()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(color)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_color", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *StyleBoxLine) SetGrow(grow float64) {
+	log.Println("Calling StyleBoxLine.SetGrow()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(grow)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_grow", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *StyleBoxLine) SetThickness(thickness int64) {
+	log.Println("Calling StyleBoxLine.SetThickness()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(thickness)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_thickness", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *StyleBoxLine) SetVertical(vertical bool) {
+	log.Println("Calling StyleBoxLine.SetVertical()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(vertical)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_vertical", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   StyleBoxLineImplementer is an interface for StyleBoxLine objects.
+*/
+type StyleBoxLineImplementer interface {
 	Class
 }
 
@@ -90473,7 +91207,7 @@ type StyleBoxTextureImplementer interface {
 }
 
 /*
-   The [SurfaceTool] is used to construct a [Mesh] by specifying vertex attributes individually. It can be used to construct a [Mesh] from script. All properties except index need to be added before a call to [method add_vertex]. For example adding vertex colors and UVs looks like [codeblock] var st = SurfaceTool.new() st.begin(Mesh.PRIMITIVE_TRIANGLES) st.add_color(Color(1, 0, 0)) st.add_uv(Vector2(0, 0)) st.add_vertex(Vector3(0, 0, 0)) [/codeblock] The [SurfaceTool] now contains one vertex of a triangle which has a UV coordinate and a specified [Color]. If another vertex were added without calls to [method add_uv] or [method add_color] then the last values would be used. It is very important that vertex attributes are passed [b]before[/b] the call to [method add_vertex], failure to do this will result in an error when committing the vertex information to a mesh.
+   The [code]SurfaceTool[/code] is used to construct a [Mesh] by specifying vertex attributes individually. It can be used to construct a [Mesh] from script. All properties except index need to be added before a call to [method add_vertex]. For example adding vertex colors and UVs looks like [codeblock] var st = SurfaceTool.new() st.begin(Mesh.PRIMITIVE_TRIANGLES) st.add_color(Color(1, 0, 0)) st.add_uv(Vector2(0, 0)) st.add_vertex(Vector3(0, 0, 0)) [/codeblock] The [code]SurfaceTool[/code] now contains one vertex of a triangle which has a UV coordinate and a specified [Color]. If another vertex were added without calls to [method add_uv] or [method add_color] then the last values would be used. It is very important that vertex attributes are passed [b]before[/b] the call to [method add_vertex], failure to do this will result in an error when committing the vertex information to a mesh.
 */
 type SurfaceTool struct {
 	Reference
@@ -90990,7 +91724,7 @@ type TCP_ServerImplementer interface {
 }
 
 /*
-   Tabbed Container. Contains several children controls, but shows only one at the same time. Clicking on the top tabs allows to change the currently visible one. Children controls of this one automatically.
+   Sets the active tab's [code]visible[/code] property to the value [code]true[/code]. Sets all other children's to [code]false[/code]. Ignores non-[Control] children. Individual tabs are always visible unless you use [method set_tab_disabled] and [method set_tab_title] to hide it. To hide only a tab's content, nest the content inside a child [Control], so it receives the [code]TabContainer[/code]'s visibility setting instead.
 */
 type TabContainer struct {
 	Control
@@ -91056,7 +91790,7 @@ func (o *TabContainer) AreTabsVisible() bool {
 }
 
 /*
-   Returns the current tab index that is being shown.
+   Returns the currently visible tab's index.
 */
 func (o *TabContainer) GetCurrentTab() int64 {
 	log.Println("Calling TabContainer.GetCurrentTab()")
@@ -91076,8 +91810,8 @@ func (o *TabContainer) GetCurrentTab() int64 {
 }
 
 /*
-
- */
+   Returns the child [Control] node located at the active tab index.
+*/
 func (o *TabContainer) GetCurrentTabControl() *Control {
 	log.Println("Calling TabContainer.GetCurrentTabControl()")
 
@@ -91096,8 +91830,8 @@ func (o *TabContainer) GetCurrentTabControl() *Control {
 }
 
 /*
-
- */
+   Returns the [Popup] node instance if one has been set already with [method set_popup].
+*/
 func (o *TabContainer) GetPopup() *Popup {
 	log.Println("Calling TabContainer.GetPopup()")
 
@@ -91116,7 +91850,7 @@ func (o *TabContainer) GetPopup() *Popup {
 }
 
 /*
-   Returns the previous tab index that was being shown.
+   Returns the previously active tab index.
 */
 func (o *TabContainer) GetPreviousTab() int64 {
 	log.Println("Calling TabContainer.GetPreviousTab()")
@@ -91136,7 +91870,7 @@ func (o *TabContainer) GetPreviousTab() int64 {
 }
 
 /*
-   Returns the tab alignment.See the ALIGN_* constants.
+   Returns the tab alignment. See the [code]ALIGN_*[/code] constants.
 */
 func (o *TabContainer) GetTabAlign() int64 {
 	log.Println("Calling TabContainer.GetTabAlign()")
@@ -91156,7 +91890,7 @@ func (o *TabContainer) GetTabAlign() int64 {
 }
 
 /*
-   Returns the current tab control that is being shown.
+   Returns the currently visible tab's [Control] node.
 */
 func (o *TabContainer) GetTabControl(idx int64) *Control {
 	log.Println("Calling TabContainer.GetTabControl()")
@@ -91177,7 +91911,7 @@ func (o *TabContainer) GetTabControl(idx int64) *Control {
 }
 
 /*
-   Returns the amount of tabs.
+   Returns the number of tabs.
 */
 func (o *TabContainer) GetTabCount() int64 {
 	log.Println("Calling TabContainer.GetTabCount()")
@@ -91239,7 +91973,7 @@ func (o *TabContainer) GetTabIcon(tabIdx int64) *Texture {
 }
 
 /*
-   Returns the title for the tab at index [code]tab_idx[/code]. Tab titles are by default the children node name, but this can be overridden.
+   Returns the title of the tab at index [code]tab_idx[/code]. Tab titles default to the name of the indexed child node, but this can be overridden with [method set_tab_title].
 */
 func (o *TabContainer) GetTabTitle(tabIdx int64) string {
 	log.Println("Calling TabContainer.GetTabTitle()")
@@ -91260,7 +91994,7 @@ func (o *TabContainer) GetTabTitle(tabIdx int64) string {
 }
 
 /*
-   Bring a tab (and the Control it represents) to the front, and hide the rest.
+   Sets to [code]false[/code] the [code]visible[/code] property for all [Control] children except for the tab at [code]tab_idx[/code].
 */
 func (o *TabContainer) SetCurrentTab(tabIdx int64) {
 	log.Println("Calling TabContainer.SetCurrentTab()")
@@ -91278,8 +92012,8 @@ func (o *TabContainer) SetCurrentTab(tabIdx int64) {
 }
 
 /*
-
- */
+   If set on a [Popup] node instance, a popup menu icon appears in the top-right corner of the [code]TabContainer[/code]. Clicking it will expand the [Popup] node.
+*/
 func (o *TabContainer) SetPopup(popup *Object) {
 	log.Println("Calling TabContainer.SetPopup()")
 
@@ -91296,7 +92030,7 @@ func (o *TabContainer) SetPopup(popup *Object) {
 }
 
 /*
-   Set tab alignment, from the ALIGN_* enum. Moves tabs to the left, right or center.
+   Sets tab alignment, from the [code]ALIGN_*[/code] constants. Moves tabs to the left, right, or center.
 */
 func (o *TabContainer) SetTabAlign(align int64) {
 	log.Println("Calling TabContainer.SetTabAlign()")
@@ -91314,7 +92048,7 @@ func (o *TabContainer) SetTabAlign(align int64) {
 }
 
 /*
-   Set tab at index [code]tab_idx[/code] disabled.
+   If [code]disabled[/code] is false, hides the tab at index [code]tab_idx[/code]. Note that its title text will remain, unless also removed with [method set_tab_title].
 */
 func (o *TabContainer) SetTabDisabled(tabIdx int64, disabled bool) {
 	log.Println("Calling TabContainer.SetTabDisabled()")
@@ -91333,7 +92067,7 @@ func (o *TabContainer) SetTabDisabled(tabIdx int64, disabled bool) {
 }
 
 /*
-   Set an icon for a tab at index [code]tab_idx[/code].
+   Sets an icon for the tab at index [code]tab_idx[/code].
 */
 func (o *TabContainer) SetTabIcon(tabIdx int64, icon *Texture) {
 	log.Println("Calling TabContainer.SetTabIcon()")
@@ -91352,7 +92086,7 @@ func (o *TabContainer) SetTabIcon(tabIdx int64, icon *Texture) {
 }
 
 /*
-   Set a title for the tab at index [code]tab_idx[/code]. Tab titles are by default the children node name, but this can be overridden.
+   Sets a title for the tab at index [code]tab_idx[/code]. Tab titles default to the name of the indexed child node, but this can be overridden with [method set_tab_title].
 */
 func (o *TabContainer) SetTabTitle(tabIdx int64, title string) {
 	log.Println("Calling TabContainer.SetTabTitle()")
@@ -91371,7 +92105,7 @@ func (o *TabContainer) SetTabTitle(tabIdx int64, title string) {
 }
 
 /*
-   If [code]true[/code] all the tabs will be visible.
+   If [code]true[/code] tabs are visible. If [code]false[/code] tabs' content and titles are hidden. Default value: [code]true[/code].
 */
 func (o *TabContainer) SetTabsVisible(visible bool) {
 	log.Println("Calling TabContainer.SetTabsVisible()")
@@ -92489,6 +93223,46 @@ func (o *TextEdit) IsHighlightAllOccurrencesEnabled() bool {
 }
 
 /*
+
+ */
+func (o *TextEdit) IsHighlightCurrentLineEnabled() bool {
+	log.Println("Calling TextEdit.IsHighlightCurrentLineEnabled()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_highlight_current_line_enabled", goArguments, "bool")
+
+	returnValue := goRet.Interface().(bool)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *TextEdit) IsOverridingSelectedFontColor() bool {
+	log.Println("Calling TextEdit.IsOverridingSelectedFontColor()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "is_overriding_selected_font_color", goArguments, "bool")
+
+	returnValue := goRet.Interface().(bool)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
    Return true if the selection is active.
 */
 func (o *TextEdit) IsSelectionActive() bool {
@@ -92701,6 +93475,24 @@ func (o *TextEdit) SetHighlightAllOccurrences(enable bool) {
 }
 
 /*
+
+ */
+func (o *TextEdit) SetHighlightCurrentLine(enabled bool) {
+	log.Println("Calling TextEdit.SetHighlightCurrentLine()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(enabled)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_highlight_current_line", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
    Set the maximum amount of characters editable.
 */
 func (o *TextEdit) SetMaxChars(amount int64) {
@@ -92713,6 +93505,24 @@ func (o *TextEdit) SetMaxChars(amount int64) {
 	// Call the parent method.
 
 	o.callParentMethod(o.baseClass(), "set_max_chars", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *TextEdit) SetOverrideSelectedFontColor(override bool) {
+	log.Println("Calling TextEdit.SetOverrideSelectedFontColor()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(override)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_override_selected_font_color", goArguments, "")
 
 	log.Println("  Function successfully completed.")
 
@@ -97379,6 +98189,27 @@ func (o *translationServer) GetLocale() string {
 /*
 
  */
+func (o *translationServer) GetLocaleName(locale string) string {
+	log.Println("Calling TranslationServer.GetLocaleName()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(locale)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_locale_name", goArguments, "string")
+
+	returnValue := goRet.Interface().(string)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
 func (o *translationServer) RemoveTranslation(translation *Translation) {
 	log.Println("Calling TranslationServer.RemoveTranslation()")
 
@@ -98260,7 +99091,7 @@ type TreeImplementer interface {
 }
 
 /*
-   Control for a single item inside a [Tree]. May have child [TreeItem]\ s and be styled as well as contain buttons.
+   Control for a single item inside a [Tree]. May have child [code]TreeItem[/code]s and be styled as well as contain buttons.
 */
 type TreeItem struct {
 	Object
@@ -100903,6 +101734,26 @@ func (o *VehicleWheel) GetRollInfluence() float64 {
 /*
 
  */
+func (o *VehicleWheel) GetSkidinfo() float64 {
+	log.Println("Calling VehicleWheel.GetSkidinfo()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_skidinfo", goArguments, "float64")
+
+	returnValue := goRet.Interface().(float64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
 func (o *VehicleWheel) GetSuspensionMaxForce() float64 {
 	log.Println("Calling VehicleWheel.GetSuspensionMaxForce()")
 
@@ -101616,6 +102467,24 @@ func (o *VideoPlayer) SetStream(stream *VideoStream) {
 	// Call the parent method.
 
 	o.callParentMethod(o.baseClass(), "set_stream", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Set the current position of the stream, in seconds.
+*/
+func (o *VideoPlayer) SetStreamPosition(position float64) {
+	log.Println("Calling VideoPlayer.SetStreamPosition()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(position)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_stream_position", goArguments, "")
 
 	log.Println("  Function successfully completed.")
 
@@ -102627,7 +103496,7 @@ func (o *Viewport) SetAttachToScreenRect(rect *Rect2) {
 }
 
 /*
-   Set the canvas transform of the viewport, useful for changing the on-screen positions of all child [CanvasItem]\ s. This is relative to the global canvas transform of the viewport.
+   Set the canvas transform of the viewport, useful for changing the on-screen positions of all child [CanvasItem]s. This is relative to the global canvas transform of the viewport.
 */
 func (o *Viewport) SetCanvasTransform(xform *Transform2D) {
 	log.Println("Calling Viewport.SetCanvasTransform()")
@@ -103135,6 +104004,26 @@ func (o *ViewportContainer) baseClass() string {
 }
 
 /*
+   Undocumented
+*/
+func (o *ViewportContainer) GetStretchShrink() int64 {
+	log.Println("Calling ViewportContainer.GetStretchShrink()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_stretch_shrink", goArguments, "int64")
+
+	returnValue := goRet.Interface().(int64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
 
  */
 func (o *ViewportContainer) IsStretchEnabled() bool {
@@ -103167,6 +104056,24 @@ func (o *ViewportContainer) SetStretch(enable bool) {
 	// Call the parent method.
 
 	o.callParentMethod(o.baseClass(), "set_stretch", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Undocumented
+*/
+func (o *ViewportContainer) SetStretchShrink(amount int64) {
+	log.Println("Calling ViewportContainer.SetStretchShrink()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(amount)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_stretch_shrink", goArguments, "")
 
 	log.Println("  Function successfully completed.")
 
@@ -104753,7 +105660,7 @@ type VisualScriptBuiltinFuncImplementer interface {
 }
 
 /*
-   A Visual Script node representing a constant from the classes, such as [@GlobalScope.TYPE_INT].
+   This node returns a constant from a given class, such as [@GlobalScope.TYPE_INT]. See the given class' documentation for available constants. [b]Input Ports:[/b] none [b]Output Ports:[/b] - Data (variant): [code]value[/code]
 */
 type VisualScriptClassConstant struct {
 	VisualScriptNode
@@ -104997,7 +105904,7 @@ type VisualScriptConditionImplementer interface {
 }
 
 /*
-   A Visual Script node which returns the specified constant value.
+   This node returns a constant's value. [b]Input Ports:[/b] none [b]Output Ports:[/b] - Data (variant): [code]get[/code]
 */
 type VisualScriptConstant struct {
 	VisualScriptNode
@@ -105603,7 +106510,7 @@ type VisualScriptDeconstructImplementer interface {
 }
 
 /*
-   A Visual Script node which emits a specified signal when it is executed.
+   Emits a specified signal when it is executed. [b]Input Ports:[/b] - Sequence: [code]emit[/code] [b]Output Ports:[/b] - Sequence
 */
 type VisualScriptEmitSignal struct {
 	VisualScriptNode
@@ -106472,8 +107379,8 @@ type VisualScriptInputActionImplementer interface {
 }
 
 /*
-
- */
+   This node steps through each item in a given input. Input can be any sequence data type, such as an [Array] or [String]. When each item has been processed, execution passed out the [code]exit[/code] Sequence port. [b]Input Ports:[/b] - Sequence: [code]for (elem) in (input)[/code] - Data (variant): [code]input[/code] [b]Output Ports:[/b] - Sequence: [code]each[/code] - Sequence: [code]exit[/code] - Data (variant): [code]elem[/code]
+*/
 type VisualScriptIterator struct {
 	VisualScriptNode
 }
@@ -106490,8 +107397,8 @@ type VisualScriptIteratorImplementer interface {
 }
 
 /*
-
- */
+   Returns a local variable's value. "Var Name" must be supplied, with an optional type. [b]Input Ports:[/b] none [b]Output Ports:[/b] - Data (variant): [code]get[/code]
+*/
 type VisualScriptLocalVar struct {
 	VisualScriptNode
 }
@@ -106584,8 +107491,8 @@ type VisualScriptLocalVarImplementer interface {
 }
 
 /*
-
- */
+   Changes a local variable's value to the given input. The new value is also provided on an output Data port. [b]Input Ports:[/b] - Sequence - Data (variant): [code]set[/code] [b]Output Ports:[/b] - Sequence - Data (variant): [code]get[/code]
+*/
 type VisualScriptLocalVarSet struct {
 	VisualScriptNode
 }
@@ -106678,8 +107585,8 @@ type VisualScriptLocalVarSetImplementer interface {
 }
 
 /*
-
- */
+   Provides common math constants, such as Pi or Euler's constant, on an output Data port. [b]Input Ports:[/b] none [b]Output Ports:[/b] - Data (variant): [code]get[/code]
+*/
 type VisualScriptMathConstant struct {
 	VisualScriptNode
 }
@@ -106824,6 +107731,23 @@ func (o *VisualScriptNode) GetVisualScript() *VisualScript {
 }
 
 /*
+   Notify that the node's ports have changed. Usually used in conjunction with [VisualScriptCustomNode] .
+*/
+func (o *VisualScriptNode) PortsChangedNotify() {
+	log.Println("Calling VisualScriptNode.PortsChangedNotify()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "ports_changed_notify", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
    Change the default value of a given port.
 */
 func (o *VisualScriptNode) SetDefaultInputValue(portIdx int64, value *Variant) {
@@ -106850,7 +107774,7 @@ type VisualScriptNodeImplementer interface {
 }
 
 /*
-   [b]Input Ports:[/b] - Data (variant): [code]A[/code] - Data (variant): [code]B[/code] [b]Output Ports:[/b] - Sequence: [code]true[/code] - Sequence: [code]false[/code] - Sequence: [code]done[/code]
+   [b]Input Ports:[/b] - Data (variant): [code]A[/code] - Data (variant): [code]B[/code] [b]Output Ports:[/b] - Data (variant): [code]result[/code]
 */
 type VisualScriptOperator struct {
 	VisualScriptNode
@@ -106944,8 +107868,8 @@ type VisualScriptOperatorImplementer interface {
 }
 
 /*
-
- */
+   Creates a new [Resource] or loads one from the filesystem. [b]Input Ports:[/b] none [b]Output Ports:[/b] - Data (object): [code]res[/code]
+*/
 type VisualScriptPreload struct {
 	VisualScriptNode
 }
@@ -107738,8 +108662,8 @@ type VisualScriptResourcePathImplementer interface {
 }
 
 /*
-
- */
+   Ends the execution of a function and returns control to the calling function. Optionally, it can return a [Variant] value. [b]Input Ports:[/b] - Sequence - Data (variant): [code]result[/code] (optional) [b]Output Ports:[/b] none
+*/
 type VisualScriptReturn struct {
 	VisualScriptNode
 }
@@ -107906,8 +108830,8 @@ type VisualScriptSceneTreeImplementer interface {
 }
 
 /*
-
- */
+   Chooses between two input values based on a Boolean condition. [b]Input Ports:[/b] - Data (boolean): [code]cond[/code] - Data (variant): [code]a[/code] - Data (variant): [code]b[/code] [b]Output Ports:[/b] - Data (variant): [code]out[/code]
+*/
 type VisualScriptSelect struct {
 	VisualScriptNode
 }
@@ -107962,8 +108886,8 @@ type VisualScriptSelectImplementer interface {
 }
 
 /*
-
- */
+   Provides a reference to the node running the visual script. [b]Input Ports:[/b] none [b]Output Ports:[/b] - Data (object): [code]instance[/code]
+*/
 type VisualScriptSelf struct {
 	VisualScriptNode
 }
@@ -107980,8 +108904,8 @@ type VisualScriptSelfImplementer interface {
 }
 
 /*
-
- */
+   Steps through a series of one or more output Sequence ports. The [code]current[/code] data port outputs the currently executing item. [b]Input Ports:[/b] - Sequence: [code]in order[/code] [b]Output Ports:[/b] - Sequence: [code]1[/code] - Sequence: [code]2 - n[/code] (optional) - Data (int): [code]current[/code]
+*/
 type VisualScriptSequence struct {
 	VisualScriptNode
 }
@@ -108075,8 +108999,8 @@ type VisualScriptSubCallImplementer interface {
 }
 
 /*
-
- */
+   Branches the flow based on an input's value. Use "Case Count" in the Inspector to set the number of branches and each comparison's optional type. [b]Input Ports:[/b] - Sequence: [code]'input' is[/code] - Data (variant): [code]=[/code] - Data (variant): [code]=[/code] (optional) - Data (variant): [code]input[/code] [b]Output Ports:[/b] - Sequence - Sequence (optional) - Sequence: [code]done[/code]
+*/
 type VisualScriptSwitch struct {
 	VisualScriptNode
 }
@@ -108187,8 +109111,8 @@ type VisualScriptTypeCastImplementer interface {
 }
 
 /*
-
- */
+   Returns a variable's value. "Var Name" must be supplied, with an optional type. [b]Input Ports:[/b] none [b]Output Ports:[/b] - Data (variant): [code]value[/code]
+*/
 type VisualScriptVariableGet struct {
 	VisualScriptNode
 }
@@ -108243,8 +109167,8 @@ type VisualScriptVariableGetImplementer interface {
 }
 
 /*
-
- */
+   Changes a variable's value to the given input. [b]Input Ports:[/b] - Sequence - Data (variant): [code]set[/code] [b]Output Ports:[/b] - Sequence
+*/
 type VisualScriptVariableSet struct {
 	VisualScriptNode
 }
@@ -108299,8 +109223,8 @@ type VisualScriptVariableSetImplementer interface {
 }
 
 /*
-
- */
+   Loops while a condition is [code]true[/code]. Execution continues out the [code]exit[/code] Sequence port when the loop terminates. [b]Input Ports:[/b] - Sequence: [code]while(cond)[/code] - Data (bool): [code]cond[/code] [b]Output Ports:[/b] - Sequence: [code]repeat[/code] - Sequence: [code]exit[/code]
+*/
 type VisualScriptWhile struct {
 	VisualScriptNode
 }
@@ -108606,6 +109530,1436 @@ func (o *visualServer) baseClass() string {
 /*
 
  */
+func (o *visualServer) BlackBarsSetImages(left *RID, top *RID, right *RID, bottom *RID) {
+	log.Println("Calling VisualServer.BlackBarsSetImages()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 4, 4)
+	goArguments[0] = reflect.ValueOf(left)
+	goArguments[1] = reflect.ValueOf(top)
+	goArguments[2] = reflect.ValueOf(right)
+	goArguments[3] = reflect.ValueOf(bottom)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "black_bars_set_images", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) BlackBarsSetMargins(left int64, top int64, right int64, bottom int64) {
+	log.Println("Calling VisualServer.BlackBarsSetMargins()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 4, 4)
+	goArguments[0] = reflect.ValueOf(left)
+	goArguments[1] = reflect.ValueOf(top)
+	goArguments[2] = reflect.ValueOf(right)
+	goArguments[3] = reflect.ValueOf(bottom)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "black_bars_set_margins", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasCreate() *RID {
+	log.Println("Calling VisualServer.CanvasCreate()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "canvas_create", goArguments, "*RID")
+
+	returnValue := goRet.Interface().(*RID)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemAddCircle(item *RID, pos *Vector2, radius float64, color *Color) {
+	log.Println("Calling VisualServer.CanvasItemAddCircle()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 4, 4)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(pos)
+	goArguments[2] = reflect.ValueOf(radius)
+	goArguments[3] = reflect.ValueOf(color)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_add_circle", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemAddClipIgnore(item *RID, ignore bool) {
+	log.Println("Calling VisualServer.CanvasItemAddClipIgnore()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(ignore)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_add_clip_ignore", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemAddLine(item *RID, from *Vector2, to *Vector2, color *Color, width float64, antialiased bool) {
+	log.Println("Calling VisualServer.CanvasItemAddLine()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 6, 6)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(from)
+	goArguments[2] = reflect.ValueOf(to)
+	goArguments[3] = reflect.ValueOf(color)
+	goArguments[4] = reflect.ValueOf(width)
+	goArguments[5] = reflect.ValueOf(antialiased)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_add_line", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemAddMesh(item *RID, mesh *RID, skeleton *RID) {
+	log.Println("Calling VisualServer.CanvasItemAddMesh()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(mesh)
+	goArguments[2] = reflect.ValueOf(skeleton)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_add_mesh", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemAddMultimesh(item *RID, mesh *RID, skeleton *RID) {
+	log.Println("Calling VisualServer.CanvasItemAddMultimesh()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(mesh)
+	goArguments[2] = reflect.ValueOf(skeleton)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_add_multimesh", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemAddNinePatch(item *RID, rect *Rect2, source *Rect2, texture *RID, topleft *Vector2, bottomright *Vector2, xAxisMode int64, yAxisMode int64, drawCenter bool, modulate *Color, normalMap *RID) {
+	log.Println("Calling VisualServer.CanvasItemAddNinePatch()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 11, 11)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(rect)
+	goArguments[2] = reflect.ValueOf(source)
+	goArguments[3] = reflect.ValueOf(texture)
+	goArguments[4] = reflect.ValueOf(topleft)
+	goArguments[5] = reflect.ValueOf(bottomright)
+	goArguments[6] = reflect.ValueOf(xAxisMode)
+	goArguments[7] = reflect.ValueOf(yAxisMode)
+	goArguments[8] = reflect.ValueOf(drawCenter)
+	goArguments[9] = reflect.ValueOf(modulate)
+	goArguments[10] = reflect.ValueOf(normalMap)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_add_nine_patch", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemAddParticles(item *RID, particles *RID, texture *RID, normalMap *RID, hFrames int64, vFrames int64) {
+	log.Println("Calling VisualServer.CanvasItemAddParticles()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 6, 6)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(particles)
+	goArguments[2] = reflect.ValueOf(texture)
+	goArguments[3] = reflect.ValueOf(normalMap)
+	goArguments[4] = reflect.ValueOf(hFrames)
+	goArguments[5] = reflect.ValueOf(vFrames)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_add_particles", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemAddPolygon(item *RID, points *PoolVector2Array, colors *PoolColorArray, uvs *PoolVector2Array, texture *RID, normalMap *RID, antialiased bool) {
+	log.Println("Calling VisualServer.CanvasItemAddPolygon()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 7, 7)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(points)
+	goArguments[2] = reflect.ValueOf(colors)
+	goArguments[3] = reflect.ValueOf(uvs)
+	goArguments[4] = reflect.ValueOf(texture)
+	goArguments[5] = reflect.ValueOf(normalMap)
+	goArguments[6] = reflect.ValueOf(antialiased)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_add_polygon", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemAddPolyline(item *RID, points *PoolVector2Array, colors *PoolColorArray, width float64, antialiased bool) {
+	log.Println("Calling VisualServer.CanvasItemAddPolyline()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 5, 5)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(points)
+	goArguments[2] = reflect.ValueOf(colors)
+	goArguments[3] = reflect.ValueOf(width)
+	goArguments[4] = reflect.ValueOf(antialiased)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_add_polyline", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemAddPrimitive(item *RID, points *PoolVector2Array, colors *PoolColorArray, uvs *PoolVector2Array, texture *RID, width float64, normalMap *RID) {
+	log.Println("Calling VisualServer.CanvasItemAddPrimitive()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 7, 7)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(points)
+	goArguments[2] = reflect.ValueOf(colors)
+	goArguments[3] = reflect.ValueOf(uvs)
+	goArguments[4] = reflect.ValueOf(texture)
+	goArguments[5] = reflect.ValueOf(width)
+	goArguments[6] = reflect.ValueOf(normalMap)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_add_primitive", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemAddRect(item *RID, rect *Rect2, color *Color) {
+	log.Println("Calling VisualServer.CanvasItemAddRect()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(rect)
+	goArguments[2] = reflect.ValueOf(color)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_add_rect", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemAddSetTransform(item *RID, transform *Transform2D) {
+	log.Println("Calling VisualServer.CanvasItemAddSetTransform()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(transform)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_add_set_transform", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemAddTextureRect(item *RID, rect *Rect2, texture *RID, tile bool, modulate *Color, transpose bool, normalMap *RID) {
+	log.Println("Calling VisualServer.CanvasItemAddTextureRect()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 7, 7)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(rect)
+	goArguments[2] = reflect.ValueOf(texture)
+	goArguments[3] = reflect.ValueOf(tile)
+	goArguments[4] = reflect.ValueOf(modulate)
+	goArguments[5] = reflect.ValueOf(transpose)
+	goArguments[6] = reflect.ValueOf(normalMap)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_add_texture_rect", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemAddTextureRectRegion(item *RID, rect *Rect2, texture *RID, srcRect *Rect2, modulate *Color, transpose bool, normalMap *RID, clipUv bool) {
+	log.Println("Calling VisualServer.CanvasItemAddTextureRectRegion()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 8, 8)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(rect)
+	goArguments[2] = reflect.ValueOf(texture)
+	goArguments[3] = reflect.ValueOf(srcRect)
+	goArguments[4] = reflect.ValueOf(modulate)
+	goArguments[5] = reflect.ValueOf(transpose)
+	goArguments[6] = reflect.ValueOf(normalMap)
+	goArguments[7] = reflect.ValueOf(clipUv)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_add_texture_rect_region", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemAddTriangleArray(item *RID, indices *PoolIntArray, points *PoolVector2Array, colors *PoolColorArray, uvs *PoolVector2Array, texture *RID, count int64, normalMap *RID) {
+	log.Println("Calling VisualServer.CanvasItemAddTriangleArray()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 8, 8)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(indices)
+	goArguments[2] = reflect.ValueOf(points)
+	goArguments[3] = reflect.ValueOf(colors)
+	goArguments[4] = reflect.ValueOf(uvs)
+	goArguments[5] = reflect.ValueOf(texture)
+	goArguments[6] = reflect.ValueOf(count)
+	goArguments[7] = reflect.ValueOf(normalMap)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_add_triangle_array", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemClear(item *RID) {
+	log.Println("Calling VisualServer.CanvasItemClear()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(item)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_clear", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemCreate() *RID {
+	log.Println("Calling VisualServer.CanvasItemCreate()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "canvas_item_create", goArguments, "*RID")
+
+	returnValue := goRet.Interface().(*RID)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemSetClip(item *RID, clip bool) {
+	log.Println("Calling VisualServer.CanvasItemSetClip()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(clip)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_set_clip", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemSetCopyToBackbuffer(item *RID, enabled bool, rect *Rect2) {
+	log.Println("Calling VisualServer.CanvasItemSetCopyToBackbuffer()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(enabled)
+	goArguments[2] = reflect.ValueOf(rect)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_set_copy_to_backbuffer", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemSetCustomRect(item *RID, useCustomRect bool, rect *Rect2) {
+	log.Println("Calling VisualServer.CanvasItemSetCustomRect()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(useCustomRect)
+	goArguments[2] = reflect.ValueOf(rect)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_set_custom_rect", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemSetDistanceFieldMode(item *RID, enabled bool) {
+	log.Println("Calling VisualServer.CanvasItemSetDistanceFieldMode()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(enabled)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_set_distance_field_mode", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemSetDrawBehindParent(item *RID, enabled bool) {
+	log.Println("Calling VisualServer.CanvasItemSetDrawBehindParent()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(enabled)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_set_draw_behind_parent", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemSetDrawIndex(item *RID, index int64) {
+	log.Println("Calling VisualServer.CanvasItemSetDrawIndex()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(index)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_set_draw_index", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemSetLightMask(item *RID, mask int64) {
+	log.Println("Calling VisualServer.CanvasItemSetLightMask()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(mask)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_set_light_mask", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemSetMaterial(item *RID, material *RID) {
+	log.Println("Calling VisualServer.CanvasItemSetMaterial()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(material)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_set_material", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemSetModulate(item *RID, color *Color) {
+	log.Println("Calling VisualServer.CanvasItemSetModulate()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(color)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_set_modulate", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemSetParent(item *RID, parent *RID) {
+	log.Println("Calling VisualServer.CanvasItemSetParent()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(parent)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_set_parent", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemSetSelfModulate(item *RID, color *Color) {
+	log.Println("Calling VisualServer.CanvasItemSetSelfModulate()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(color)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_set_self_modulate", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemSetSortChildrenByY(item *RID, enabled bool) {
+	log.Println("Calling VisualServer.CanvasItemSetSortChildrenByY()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(enabled)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_set_sort_children_by_y", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemSetTransform(item *RID, transform *Transform2D) {
+	log.Println("Calling VisualServer.CanvasItemSetTransform()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(transform)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_set_transform", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemSetUseParentMaterial(item *RID, enabled bool) {
+	log.Println("Calling VisualServer.CanvasItemSetUseParentMaterial()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(enabled)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_set_use_parent_material", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemSetVisible(item *RID, visible bool) {
+	log.Println("Calling VisualServer.CanvasItemSetVisible()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(visible)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_set_visible", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemSetZ(item *RID, z int64) {
+	log.Println("Calling VisualServer.CanvasItemSetZ()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(z)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_set_z", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasItemSetZAsRelativeToParent(item *RID, enabled bool) {
+	log.Println("Calling VisualServer.CanvasItemSetZAsRelativeToParent()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(item)
+	goArguments[1] = reflect.ValueOf(enabled)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_item_set_z_as_relative_to_parent", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightAttachToCanvas(light *RID, canvas *RID) {
+	log.Println("Calling VisualServer.CanvasLightAttachToCanvas()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(canvas)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_attach_to_canvas", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightCreate() *RID {
+	log.Println("Calling VisualServer.CanvasLightCreate()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "canvas_light_create", goArguments, "*RID")
+
+	returnValue := goRet.Interface().(*RID)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightOccluderAttachToCanvas(occluder *RID, canvas *RID) {
+	log.Println("Calling VisualServer.CanvasLightOccluderAttachToCanvas()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(occluder)
+	goArguments[1] = reflect.ValueOf(canvas)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_occluder_attach_to_canvas", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightOccluderCreate() *RID {
+	log.Println("Calling VisualServer.CanvasLightOccluderCreate()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "canvas_light_occluder_create", goArguments, "*RID")
+
+	returnValue := goRet.Interface().(*RID)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightOccluderSetEnabled(occluder *RID, enabled bool) {
+	log.Println("Calling VisualServer.CanvasLightOccluderSetEnabled()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(occluder)
+	goArguments[1] = reflect.ValueOf(enabled)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_occluder_set_enabled", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightOccluderSetLightMask(occluder *RID, mask int64) {
+	log.Println("Calling VisualServer.CanvasLightOccluderSetLightMask()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(occluder)
+	goArguments[1] = reflect.ValueOf(mask)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_occluder_set_light_mask", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightOccluderSetPolygon(occluder *RID, polygon *RID) {
+	log.Println("Calling VisualServer.CanvasLightOccluderSetPolygon()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(occluder)
+	goArguments[1] = reflect.ValueOf(polygon)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_occluder_set_polygon", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightOccluderSetTransform(occluder *RID, transform *Transform2D) {
+	log.Println("Calling VisualServer.CanvasLightOccluderSetTransform()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(occluder)
+	goArguments[1] = reflect.ValueOf(transform)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_occluder_set_transform", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetColor(light *RID, color *Color) {
+	log.Println("Calling VisualServer.CanvasLightSetColor()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(color)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_color", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetEnabled(light *RID, enabled bool) {
+	log.Println("Calling VisualServer.CanvasLightSetEnabled()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(enabled)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_enabled", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetEnergy(light *RID, energy float64) {
+	log.Println("Calling VisualServer.CanvasLightSetEnergy()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(energy)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_energy", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetHeight(light *RID, height float64) {
+	log.Println("Calling VisualServer.CanvasLightSetHeight()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(height)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_height", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetItemCullMask(light *RID, mask int64) {
+	log.Println("Calling VisualServer.CanvasLightSetItemCullMask()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(mask)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_item_cull_mask", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetItemShadowCullMask(light *RID, mask int64) {
+	log.Println("Calling VisualServer.CanvasLightSetItemShadowCullMask()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(mask)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_item_shadow_cull_mask", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetLayerRange(light *RID, minLayer int64, maxLayer int64) {
+	log.Println("Calling VisualServer.CanvasLightSetLayerRange()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(minLayer)
+	goArguments[2] = reflect.ValueOf(maxLayer)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_layer_range", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetMode(light *RID, mode int64) {
+	log.Println("Calling VisualServer.CanvasLightSetMode()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(mode)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_mode", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetScale(light *RID, scale float64) {
+	log.Println("Calling VisualServer.CanvasLightSetScale()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(scale)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_scale", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetShadowBufferSize(light *RID, size int64) {
+	log.Println("Calling VisualServer.CanvasLightSetShadowBufferSize()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(size)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_shadow_buffer_size", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetShadowColor(light *RID, color *Color) {
+	log.Println("Calling VisualServer.CanvasLightSetShadowColor()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(color)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_shadow_color", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetShadowEnabled(light *RID, enabled bool) {
+	log.Println("Calling VisualServer.CanvasLightSetShadowEnabled()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(enabled)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_shadow_enabled", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetShadowFilter(light *RID, filter int64) {
+	log.Println("Calling VisualServer.CanvasLightSetShadowFilter()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(filter)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_shadow_filter", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetShadowGradientLength(light *RID, length float64) {
+	log.Println("Calling VisualServer.CanvasLightSetShadowGradientLength()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(length)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_shadow_gradient_length", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetShadowSmooth(light *RID, smooth float64) {
+	log.Println("Calling VisualServer.CanvasLightSetShadowSmooth()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(smooth)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_shadow_smooth", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetTexture(light *RID, texture *RID) {
+	log.Println("Calling VisualServer.CanvasLightSetTexture()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(texture)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_texture", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetTextureOffset(light *RID, offset *Vector2) {
+	log.Println("Calling VisualServer.CanvasLightSetTextureOffset()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(offset)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_texture_offset", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetTransform(light *RID, transform *Transform2D) {
+	log.Println("Calling VisualServer.CanvasLightSetTransform()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(transform)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_transform", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasLightSetZRange(light *RID, minZ int64, maxZ int64) {
+	log.Println("Calling VisualServer.CanvasLightSetZRange()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(light)
+	goArguments[1] = reflect.ValueOf(minZ)
+	goArguments[2] = reflect.ValueOf(maxZ)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_light_set_z_range", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasOccluderPolygonCreate() *RID {
+	log.Println("Calling VisualServer.CanvasOccluderPolygonCreate()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "canvas_occluder_polygon_create", goArguments, "*RID")
+
+	returnValue := goRet.Interface().(*RID)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasOccluderPolygonSetCullMode(occluderPolygon *RID, mode int64) {
+	log.Println("Calling VisualServer.CanvasOccluderPolygonSetCullMode()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(occluderPolygon)
+	goArguments[1] = reflect.ValueOf(mode)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_occluder_polygon_set_cull_mode", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasOccluderPolygonSetShape(occluderPolygon *RID, shape *PoolVector2Array, closed bool) {
+	log.Println("Calling VisualServer.CanvasOccluderPolygonSetShape()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(occluderPolygon)
+	goArguments[1] = reflect.ValueOf(shape)
+	goArguments[2] = reflect.ValueOf(closed)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_occluder_polygon_set_shape", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasOccluderPolygonSetShapeAsLines(occluderPolygon *RID, shape *PoolVector2Array) {
+	log.Println("Calling VisualServer.CanvasOccluderPolygonSetShapeAsLines()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(occluderPolygon)
+	goArguments[1] = reflect.ValueOf(shape)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_occluder_polygon_set_shape_as_lines", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasSetItemMirroring(canvas *RID, item *RID, mirroring *Vector2) {
+	log.Println("Calling VisualServer.CanvasSetItemMirroring()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(canvas)
+	goArguments[1] = reflect.ValueOf(item)
+	goArguments[2] = reflect.ValueOf(mirroring)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_set_item_mirroring", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) CanvasSetModulate(canvas *RID, color *Color) {
+	log.Println("Calling VisualServer.CanvasSetModulate()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(canvas)
+	goArguments[1] = reflect.ValueOf(color)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "canvas_set_modulate", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) Draw() {
+	log.Println("Calling VisualServer.Draw()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "draw", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) Finish() {
+	log.Println("Calling VisualServer.Finish()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "finish", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
 func (o *visualServer) ForceDraw() {
 	log.Println("Calling VisualServer.ForceDraw()")
 
@@ -108615,6 +110969,1143 @@ func (o *visualServer) ForceDraw() {
 	// Call the parent method.
 
 	o.callParentMethod(o.baseClass(), "force_draw", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ForceSync() {
+	log.Println("Calling VisualServer.ForceSync()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "force_sync", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) Free(rid *RID) {
+	log.Println("Calling VisualServer.Free()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(rid)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "free", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) GetRenderInfo(info int64) int64 {
+	log.Println("Calling VisualServer.GetRenderInfo()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(info)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_render_info", goArguments, "int64")
+
+	returnValue := goRet.Interface().(int64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) GetTestCube() *RID {
+	log.Println("Calling VisualServer.GetTestCube()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_test_cube", goArguments, "*RID")
+
+	returnValue := goRet.Interface().(*RID)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) GetTestTexture() *RID {
+	log.Println("Calling VisualServer.GetTestTexture()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_test_texture", goArguments, "*RID")
+
+	returnValue := goRet.Interface().(*RID)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) GetWhiteTexture() *RID {
+	log.Println("Calling VisualServer.GetWhiteTexture()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "get_white_texture", goArguments, "*RID")
+
+	returnValue := goRet.Interface().(*RID)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) HasChanged() bool {
+	log.Println("Calling VisualServer.HasChanged()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "has_changed", goArguments, "bool")
+
+	returnValue := goRet.Interface().(bool)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) HasFeature(feature int64) bool {
+	log.Println("Calling VisualServer.HasFeature()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(feature)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "has_feature", goArguments, "bool")
+
+	returnValue := goRet.Interface().(bool)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) HasOsFeature(feature string) bool {
+	log.Println("Calling VisualServer.HasOsFeature()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(feature)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "has_os_feature", goArguments, "bool")
+
+	returnValue := goRet.Interface().(bool)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) Init() {
+	log.Println("Calling VisualServer.Init()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "init", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) MakeSphereMesh(latitudes int64, longitudes int64, radius float64) *RID {
+	log.Println("Calling VisualServer.MakeSphereMesh()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(latitudes)
+	goArguments[1] = reflect.ValueOf(longitudes)
+	goArguments[2] = reflect.ValueOf(radius)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "make_sphere_mesh", goArguments, "*RID")
+
+	returnValue := goRet.Interface().(*RID)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MaterialCreate() *RID {
+	log.Println("Calling VisualServer.MaterialCreate()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "material_create", goArguments, "*RID")
+
+	returnValue := goRet.Interface().(*RID)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MaterialGetParam(material *RID, parameter string) *Variant {
+	log.Println("Calling VisualServer.MaterialGetParam()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(material)
+	goArguments[1] = reflect.ValueOf(parameter)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "material_get_param", goArguments, "*Variant")
+
+	returnValue := goRet.Interface().(*Variant)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MaterialGetShader(shaderMaterial *RID) *RID {
+	log.Println("Calling VisualServer.MaterialGetShader()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(shaderMaterial)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "material_get_shader", goArguments, "*RID")
+
+	returnValue := goRet.Interface().(*RID)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MaterialSetLineWidth(material *RID, width float64) {
+	log.Println("Calling VisualServer.MaterialSetLineWidth()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(material)
+	goArguments[1] = reflect.ValueOf(width)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "material_set_line_width", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) MaterialSetNextPass(material *RID, nextMaterial *RID) {
+	log.Println("Calling VisualServer.MaterialSetNextPass()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(material)
+	goArguments[1] = reflect.ValueOf(nextMaterial)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "material_set_next_pass", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) MaterialSetParam(material *RID, parameter string, value *Variant) {
+	log.Println("Calling VisualServer.MaterialSetParam()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(material)
+	goArguments[1] = reflect.ValueOf(parameter)
+	goArguments[2] = reflect.ValueOf(value)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "material_set_param", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) MaterialSetRenderPriority(material *RID, priority int64) {
+	log.Println("Calling VisualServer.MaterialSetRenderPriority()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(material)
+	goArguments[1] = reflect.ValueOf(priority)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "material_set_render_priority", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) MaterialSetShader(shaderMaterial *RID, shader *RID) {
+	log.Println("Calling VisualServer.MaterialSetShader()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(shaderMaterial)
+	goArguments[1] = reflect.ValueOf(shader)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "material_set_shader", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshAddSurfaceFromArrays(mesh *RID, primtive int64, arrays *Array, blendShapes *Array, compressFormat int64) {
+	log.Println("Calling VisualServer.MeshAddSurfaceFromArrays()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 5, 5)
+	goArguments[0] = reflect.ValueOf(mesh)
+	goArguments[1] = reflect.ValueOf(primtive)
+	goArguments[2] = reflect.ValueOf(arrays)
+	goArguments[3] = reflect.ValueOf(blendShapes)
+	goArguments[4] = reflect.ValueOf(compressFormat)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "mesh_add_surface_from_arrays", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshClear(mesh *RID) {
+	log.Println("Calling VisualServer.MeshClear()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(mesh)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "mesh_clear", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshCreate() *RID {
+	log.Println("Calling VisualServer.MeshCreate()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "mesh_create", goArguments, "*RID")
+
+	returnValue := goRet.Interface().(*RID)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshGetBlendShapeCount(mesh *RID) int64 {
+	log.Println("Calling VisualServer.MeshGetBlendShapeCount()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(mesh)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "mesh_get_blend_shape_count", goArguments, "int64")
+
+	returnValue := goRet.Interface().(int64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshGetBlendShapeMode(mesh *RID) int64 {
+	log.Println("Calling VisualServer.MeshGetBlendShapeMode()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(mesh)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "mesh_get_blend_shape_mode", goArguments, "int64")
+
+	returnValue := goRet.Interface().(int64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshGetCustomAabb(mesh *RID) *Rect3 {
+	log.Println("Calling VisualServer.MeshGetCustomAabb()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(mesh)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "mesh_get_custom_aabb", goArguments, "*Rect3")
+
+	returnValue := goRet.Interface().(*Rect3)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshGetSurfaceCount(mesh *RID) int64 {
+	log.Println("Calling VisualServer.MeshGetSurfaceCount()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(mesh)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "mesh_get_surface_count", goArguments, "int64")
+
+	returnValue := goRet.Interface().(int64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshRemoveSurface(mesh *RID, index int64) {
+	log.Println("Calling VisualServer.MeshRemoveSurface()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(mesh)
+	goArguments[1] = reflect.ValueOf(index)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "mesh_remove_surface", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshSetBlendShapeCount(mesh *RID, amount int64) {
+	log.Println("Calling VisualServer.MeshSetBlendShapeCount()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(mesh)
+	goArguments[1] = reflect.ValueOf(amount)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "mesh_set_blend_shape_count", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshSetBlendShapeMode(mesh *RID, mode int64) {
+	log.Println("Calling VisualServer.MeshSetBlendShapeMode()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(mesh)
+	goArguments[1] = reflect.ValueOf(mode)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "mesh_set_blend_shape_mode", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshSetCustomAabb(mesh *RID, aabb *Rect3) {
+	log.Println("Calling VisualServer.MeshSetCustomAabb()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(mesh)
+	goArguments[1] = reflect.ValueOf(aabb)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "mesh_set_custom_aabb", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshSurfaceGetAabb(mesh *RID, surface int64) *Rect3 {
+	log.Println("Calling VisualServer.MeshSurfaceGetAabb()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(mesh)
+	goArguments[1] = reflect.ValueOf(surface)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "mesh_surface_get_aabb", goArguments, "*Rect3")
+
+	returnValue := goRet.Interface().(*Rect3)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshSurfaceGetArray(mesh *RID, surface int64) *PoolByteArray {
+	log.Println("Calling VisualServer.MeshSurfaceGetArray()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(mesh)
+	goArguments[1] = reflect.ValueOf(surface)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "mesh_surface_get_array", goArguments, "*PoolByteArray")
+
+	returnValue := goRet.Interface().(*PoolByteArray)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshSurfaceGetArrayIndexLen(mesh *RID, surface int64) int64 {
+	log.Println("Calling VisualServer.MeshSurfaceGetArrayIndexLen()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(mesh)
+	goArguments[1] = reflect.ValueOf(surface)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "mesh_surface_get_array_index_len", goArguments, "int64")
+
+	returnValue := goRet.Interface().(int64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshSurfaceGetArrayLen(mesh *RID, surface int64) int64 {
+	log.Println("Calling VisualServer.MeshSurfaceGetArrayLen()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(mesh)
+	goArguments[1] = reflect.ValueOf(surface)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "mesh_surface_get_array_len", goArguments, "int64")
+
+	returnValue := goRet.Interface().(int64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshSurfaceGetArrays(mesh *RID, surface int64) *Array {
+	log.Println("Calling VisualServer.MeshSurfaceGetArrays()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(mesh)
+	goArguments[1] = reflect.ValueOf(surface)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "mesh_surface_get_arrays", goArguments, "*Array")
+
+	returnValue := goRet.Interface().(*Array)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshSurfaceGetBlendShapeArrays(mesh *RID, surface int64) *Array {
+	log.Println("Calling VisualServer.MeshSurfaceGetBlendShapeArrays()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(mesh)
+	goArguments[1] = reflect.ValueOf(surface)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "mesh_surface_get_blend_shape_arrays", goArguments, "*Array")
+
+	returnValue := goRet.Interface().(*Array)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshSurfaceGetFormat(mesh *RID, surface int64) int64 {
+	log.Println("Calling VisualServer.MeshSurfaceGetFormat()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(mesh)
+	goArguments[1] = reflect.ValueOf(surface)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "mesh_surface_get_format", goArguments, "int64")
+
+	returnValue := goRet.Interface().(int64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshSurfaceGetIndexArray(mesh *RID, surface int64) *PoolByteArray {
+	log.Println("Calling VisualServer.MeshSurfaceGetIndexArray()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(mesh)
+	goArguments[1] = reflect.ValueOf(surface)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "mesh_surface_get_index_array", goArguments, "*PoolByteArray")
+
+	returnValue := goRet.Interface().(*PoolByteArray)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshSurfaceGetMaterial(mesh *RID, surface int64) *RID {
+	log.Println("Calling VisualServer.MeshSurfaceGetMaterial()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(mesh)
+	goArguments[1] = reflect.ValueOf(surface)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "mesh_surface_get_material", goArguments, "*RID")
+
+	returnValue := goRet.Interface().(*RID)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshSurfaceGetPrimitiveType(mesh *RID, surface int64) int64 {
+	log.Println("Calling VisualServer.MeshSurfaceGetPrimitiveType()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(mesh)
+	goArguments[1] = reflect.ValueOf(surface)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "mesh_surface_get_primitive_type", goArguments, "int64")
+
+	returnValue := goRet.Interface().(int64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshSurfaceGetSkeletonAabb(mesh *RID, surface int64) *Array {
+	log.Println("Calling VisualServer.MeshSurfaceGetSkeletonAabb()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(mesh)
+	goArguments[1] = reflect.ValueOf(surface)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "mesh_surface_get_skeleton_aabb", goArguments, "*Array")
+
+	returnValue := goRet.Interface().(*Array)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) MeshSurfaceSetMaterial(mesh *RID, surface int64, material *RID) {
+	log.Println("Calling VisualServer.MeshSurfaceSetMaterial()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(mesh)
+	goArguments[1] = reflect.ValueOf(surface)
+	goArguments[2] = reflect.ValueOf(material)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "mesh_surface_set_material", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+   Schedules a callback to the corresponding named 'method' on 'where' after a frame has been drawn. The callback method must use only 1 argument which will be called with 'userdata'.
+*/
+func (o *visualServer) RequestFrameDrawnCallback(where *Object, method string, userdata *Variant) {
+	log.Println("Calling VisualServer.RequestFrameDrawnCallback()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(where)
+	goArguments[1] = reflect.ValueOf(method)
+	goArguments[2] = reflect.ValueOf(userdata)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "request_frame_drawn_callback", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) SetBootImage(image *Image, color *Color, scale bool) {
+	log.Println("Calling VisualServer.SetBootImage()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(image)
+	goArguments[1] = reflect.ValueOf(color)
+	goArguments[2] = reflect.ValueOf(scale)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_boot_image", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) SetDebugGenerateWireframes(generate bool) {
+	log.Println("Calling VisualServer.SetDebugGenerateWireframes()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(generate)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_debug_generate_wireframes", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) SetDefaultClearColor(color *Color) {
+	log.Println("Calling VisualServer.SetDefaultClearColor()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(color)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "set_default_clear_color", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ShaderCreate() *RID {
+	log.Println("Calling VisualServer.ShaderCreate()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "shader_create", goArguments, "*RID")
+
+	returnValue := goRet.Interface().(*RID)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) ShaderGetCode(shader *RID) string {
+	log.Println("Calling VisualServer.ShaderGetCode()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(shader)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "shader_get_code", goArguments, "string")
+
+	returnValue := goRet.Interface().(string)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) ShaderGetDefaultTextureParam(shader *RID, name string) *RID {
+	log.Println("Calling VisualServer.ShaderGetDefaultTextureParam()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(shader)
+	goArguments[1] = reflect.ValueOf(name)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "shader_get_default_texture_param", goArguments, "*RID")
+
+	returnValue := goRet.Interface().(*RID)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) ShaderGetParamList(shader *RID) *Array {
+	log.Println("Calling VisualServer.ShaderGetParamList()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(shader)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "shader_get_param_list", goArguments, "*Array")
+
+	returnValue := goRet.Interface().(*Array)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) ShaderSetCode(shader *RID, code string) {
+	log.Println("Calling VisualServer.ShaderSetCode()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(shader)
+	goArguments[1] = reflect.ValueOf(code)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "shader_set_code", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ShaderSetDefaultTextureParam(shader *RID, name string, texture *RID) {
+	log.Println("Calling VisualServer.ShaderSetDefaultTextureParam()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(shader)
+	goArguments[1] = reflect.ValueOf(name)
+	goArguments[2] = reflect.ValueOf(texture)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "shader_set_default_texture_param", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) SkyCreate() *RID {
+	log.Println("Calling VisualServer.SkyCreate()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "sky_create", goArguments, "*RID")
+
+	returnValue := goRet.Interface().(*RID)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) SkySetTexture(sky *RID, cubeMap *RID, radianceSize int64) {
+	log.Println("Calling VisualServer.SkySetTexture()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(sky)
+	goArguments[1] = reflect.ValueOf(cubeMap)
+	goArguments[2] = reflect.ValueOf(radianceSize)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "sky_set_texture", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) Sync() {
+	log.Println("Calling VisualServer.Sync()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "sync", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) TextureAllocate(texture *RID, width int64, height int64, format int64, flags int64) {
+	log.Println("Calling VisualServer.TextureAllocate()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 5, 5)
+	goArguments[0] = reflect.ValueOf(texture)
+	goArguments[1] = reflect.ValueOf(width)
+	goArguments[2] = reflect.ValueOf(height)
+	goArguments[3] = reflect.ValueOf(format)
+	goArguments[4] = reflect.ValueOf(flags)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "texture_allocate", goArguments, "")
 
 	log.Println("  Function successfully completed.")
 
@@ -108665,6 +112156,48 @@ func (o *visualServer) TextureCreateFromImage(image *Image, flags int64) *RID {
 /*
 
  */
+func (o *visualServer) TextureDebugUsage() *Array {
+	log.Println("Calling VisualServer.TextureDebugUsage()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "texture_debug_usage", goArguments, "*Array")
+
+	returnValue := goRet.Interface().(*Array)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) TextureGetData(texture *RID, cubeSide int64) *Image {
+	log.Println("Calling VisualServer.TextureGetData()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(texture)
+	goArguments[1] = reflect.ValueOf(cubeSide)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "texture_get_data", goArguments, "*Image")
+
+	returnValue := goRet.Interface().(*Image)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
 func (o *visualServer) TextureGetFlags(texture *RID) int64 {
 	log.Println("Calling VisualServer.TextureGetFlags()")
 
@@ -108675,6 +112208,27 @@ func (o *visualServer) TextureGetFlags(texture *RID) int64 {
 	// Call the parent method.
 
 	goRet := o.callParentMethod(o.baseClass(), "texture_get_flags", goArguments, "int64")
+
+	returnValue := goRet.Interface().(int64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) TextureGetFormat(texture *RID) int64 {
+	log.Println("Calling VisualServer.TextureGetFormat()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(texture)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "texture_get_format", goArguments, "int64")
 
 	returnValue := goRet.Interface().(int64)
 
@@ -108707,6 +112261,48 @@ func (o *visualServer) TextureGetHeight(texture *RID) int64 {
 /*
 
  */
+func (o *visualServer) TextureGetPath(texture *RID) string {
+	log.Println("Calling VisualServer.TextureGetPath()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(texture)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "texture_get_path", goArguments, "string")
+
+	returnValue := goRet.Interface().(string)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) TextureGetTexid(texture *RID) int64 {
+	log.Println("Calling VisualServer.TextureGetTexid()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(texture)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "texture_get_texid", goArguments, "int64")
+
+	returnValue := goRet.Interface().(int64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
 func (o *visualServer) TextureGetWidth(texture *RID) int64 {
 	log.Println("Calling VisualServer.TextureGetWidth()")
 
@@ -108722,6 +112318,26 @@ func (o *visualServer) TextureGetWidth(texture *RID) int64 {
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) TextureSetData(texture *RID, image *Image, cubeSide int64) {
+	log.Println("Calling VisualServer.TextureSetData()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(texture)
+	goArguments[1] = reflect.ValueOf(image)
+	goArguments[2] = reflect.ValueOf(cubeSide)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "texture_set_data", goArguments, "")
+
+	log.Println("  Function successfully completed.")
 
 }
 
@@ -108747,6 +112363,25 @@ func (o *visualServer) TextureSetFlags(texture *RID, flags int64) {
 /*
 
  */
+func (o *visualServer) TextureSetPath(texture *RID, path string) {
+	log.Println("Calling VisualServer.TextureSetPath()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(texture)
+	goArguments[1] = reflect.ValueOf(path)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "texture_set_path", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
 func (o *visualServer) TextureSetShrinkAllX2OnSetData(shrink bool) {
 	log.Println("Calling VisualServer.TextureSetShrinkAllX2OnSetData()")
 
@@ -108757,6 +112392,624 @@ func (o *visualServer) TextureSetShrinkAllX2OnSetData(shrink bool) {
 	// Call the parent method.
 
 	o.callParentMethod(o.baseClass(), "texture_set_shrink_all_x2_on_set_data", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) TextureSetSizeOverride(texture *RID, width int64, height int64) {
+	log.Println("Calling VisualServer.TextureSetSizeOverride()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(texture)
+	goArguments[1] = reflect.ValueOf(width)
+	goArguments[2] = reflect.ValueOf(height)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "texture_set_size_override", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) TexturesKeepOriginal(enable bool) {
+	log.Println("Calling VisualServer.TexturesKeepOriginal()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(enable)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "textures_keep_original", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportAttachCamera(viewport *RID, camera *RID) {
+	log.Println("Calling VisualServer.ViewportAttachCamera()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(camera)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_attach_camera", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportAttachCanvas(viewport *RID, canvas *RID) {
+	log.Println("Calling VisualServer.ViewportAttachCanvas()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(canvas)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_attach_canvas", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportAttachToScreen(viewport *RID, rect *Rect2, screen int64) {
+	log.Println("Calling VisualServer.ViewportAttachToScreen()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(rect)
+	goArguments[2] = reflect.ValueOf(screen)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_attach_to_screen", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportCreate() *RID {
+	log.Println("Calling VisualServer.ViewportCreate()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 0, 0)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "viewport_create", goArguments, "*RID")
+
+	returnValue := goRet.Interface().(*RID)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportDetach(viewport *RID) {
+	log.Println("Calling VisualServer.ViewportDetach()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(viewport)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_detach", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportGetRenderInfo(viewport *RID, info int64) int64 {
+	log.Println("Calling VisualServer.ViewportGetRenderInfo()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(info)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "viewport_get_render_info", goArguments, "int64")
+
+	returnValue := goRet.Interface().(int64)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportGetTexture(viewport *RID) *RID {
+	log.Println("Calling VisualServer.ViewportGetTexture()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 1, 1)
+	goArguments[0] = reflect.ValueOf(viewport)
+
+	// Call the parent method.
+
+	goRet := o.callParentMethod(o.baseClass(), "viewport_get_texture", goArguments, "*RID")
+
+	returnValue := goRet.Interface().(*RID)
+
+	log.Println("  Got return value: ", returnValue)
+	return returnValue
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportRemoveCanvas(viewport *RID, canvas *RID) {
+	log.Println("Calling VisualServer.ViewportRemoveCanvas()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(canvas)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_remove_canvas", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetActive(viewport *RID, active bool) {
+	log.Println("Calling VisualServer.ViewportSetActive()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(active)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_active", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetCanvasLayer(viewport *RID, canvas *RID, layer int64) {
+	log.Println("Calling VisualServer.ViewportSetCanvasLayer()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(canvas)
+	goArguments[2] = reflect.ValueOf(layer)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_canvas_layer", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetCanvasTransform(viewport *RID, canvas *RID, offset *Transform2D) {
+	log.Println("Calling VisualServer.ViewportSetCanvasTransform()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(canvas)
+	goArguments[2] = reflect.ValueOf(offset)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_canvas_transform", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetClearMode(viewport *RID, clearMode int64) {
+	log.Println("Calling VisualServer.ViewportSetClearMode()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(clearMode)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_clear_mode", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetDebugDraw(viewport *RID, draw int64) {
+	log.Println("Calling VisualServer.ViewportSetDebugDraw()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(draw)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_debug_draw", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetDisable3D(viewport *RID, disabled bool) {
+	log.Println("Calling VisualServer.ViewportSetDisable3D()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(disabled)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_disable_3d", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetDisableEnvironment(viewport *RID, disabled bool) {
+	log.Println("Calling VisualServer.ViewportSetDisableEnvironment()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(disabled)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_disable_environment", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetGlobalCanvasTransform(viewport *RID, transform *Transform2D) {
+	log.Println("Calling VisualServer.ViewportSetGlobalCanvasTransform()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(transform)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_global_canvas_transform", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetHdr(viewport *RID, enabled bool) {
+	log.Println("Calling VisualServer.ViewportSetHdr()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(enabled)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_hdr", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetHideCanvas(viewport *RID, hidden bool) {
+	log.Println("Calling VisualServer.ViewportSetHideCanvas()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(hidden)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_hide_canvas", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetHideScenario(viewport *RID, hidden bool) {
+	log.Println("Calling VisualServer.ViewportSetHideScenario()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(hidden)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_hide_scenario", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetMsaa(viewport *RID, msaa int64) {
+	log.Println("Calling VisualServer.ViewportSetMsaa()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(msaa)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_msaa", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetParentViewport(viewport *RID, parentViewport *RID) {
+	log.Println("Calling VisualServer.ViewportSetParentViewport()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(parentViewport)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_parent_viewport", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetScenario(viewport *RID, scenario *RID) {
+	log.Println("Calling VisualServer.ViewportSetScenario()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(scenario)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_scenario", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetShadowAtlasQuadrantSubdivision(viewport *RID, quadrant int64, subdivision int64) {
+	log.Println("Calling VisualServer.ViewportSetShadowAtlasQuadrantSubdivision()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(quadrant)
+	goArguments[2] = reflect.ValueOf(subdivision)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_shadow_atlas_quadrant_subdivision", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetShadowAtlasSize(viewport *RID, size int64) {
+	log.Println("Calling VisualServer.ViewportSetShadowAtlasSize()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(size)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_shadow_atlas_size", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetSize(viewport *RID, width int64, height int64) {
+	log.Println("Calling VisualServer.ViewportSetSize()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 3, 3)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(width)
+	goArguments[2] = reflect.ValueOf(height)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_size", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetTransparentBackground(viewport *RID, enabled bool) {
+	log.Println("Calling VisualServer.ViewportSetTransparentBackground()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(enabled)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_transparent_background", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetUpdateMode(viewport *RID, updateMode int64) {
+	log.Println("Calling VisualServer.ViewportSetUpdateMode()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(updateMode)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_update_mode", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetUsage(viewport *RID, usage int64) {
+	log.Println("Calling VisualServer.ViewportSetUsage()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(usage)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_usage", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetUseArvr(viewport *RID, useArvr bool) {
+	log.Println("Calling VisualServer.ViewportSetUseArvr()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(useArvr)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_use_arvr", goArguments, "")
+
+	log.Println("  Function successfully completed.")
+
+}
+
+/*
+
+ */
+func (o *visualServer) ViewportSetVflip(viewport *RID, enabled bool) {
+	log.Println("Calling VisualServer.ViewportSetVflip()")
+
+	// Build out the method's arguments
+	goArguments := make([]reflect.Value, 2, 2)
+	goArguments[0] = reflect.ValueOf(viewport)
+	goArguments[1] = reflect.ValueOf(enabled)
+
+	// Call the parent method.
+
+	o.callParentMethod(o.baseClass(), "viewport_set_vflip", goArguments, "")
 
 	log.Println("  Function successfully completed.")
 
@@ -109182,7 +113435,7 @@ type World2DImplementer interface {
 }
 
 /*
-   The [WorldEnvironment] node can be added to a scene in order to set default [Environment] variables for the scene. The [WorldEnvironment] can be overridden by an [Environment] node set on the current [Camera]. Additionally, only one [WorldEnvironment] may be instanced in a given scene at a time. The [WorldEnvironment] allows the user to specify default lighting parameters (e.g. ambient lighting), various post-processing effects (e.g. SSAO, DOF, Tonemapping), and how to draw the background (e.g. solid color, skybox).
+   The [code]WorldEnvironment[/code] node can be added to a scene in order to set default [Environment] variables for the scene. The [code]WorldEnvironment[/code] can be overridden by an [Environment] node set on the current [Camera]. Additionally, only one [code]WorldEnvironment[/code] may be instanced in a given scene at a time. The [code]WorldEnvironment[/code] allows the user to specify default lighting parameters (e.g. ambient lighting), various post-processing effects (e.g. SSAO, DOF, Tonemapping), and how to draw the background (e.g. solid color, skybox).
 */
 type WorldEnvironment struct {
 	Node
@@ -109792,6 +114045,14 @@ var godotToGoConversionMap = map[string]godotToGoConverter{
 		return reflect.ValueOf(goObject)
 	},
 
+	"*ARVRInterfaceGDNative": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &ARVRInterfaceGDNative{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
 	"*ARVROrigin": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
 		goObject := &ARVROrigin{}
@@ -109803,14 +114064,6 @@ var godotToGoConversionMap = map[string]godotToGoConverter{
 	"*ARVRPositionalTracker": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
 		goObject := &ARVRPositionalTracker{}
-		goObject.setOwner(owner)
-
-		return reflect.ValueOf(goObject)
-	},
-
-	"*ARVRScriptInterface": func(gdObject unsafe.Pointer) reflect.Value {
-		owner := (*C.godot_object)(gdObject)
-		goObject := &ARVRScriptInterface{}
 		goObject.setOwner(owner)
 
 		return reflect.ValueOf(goObject)
@@ -111304,6 +115557,14 @@ var godotToGoConversionMap = map[string]godotToGoConverter{
 		return reflect.ValueOf(goObject)
 	},
 
+	"*MobileVRInterface": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &MobileVRInterface{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
 	"*MultiMesh": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
 		goObject := &MultiMesh{}
@@ -111779,6 +116040,14 @@ var godotToGoConversionMap = map[string]godotToGoConverter{
 	"*PlaneShape": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
 		goObject := &PlaneShape{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*PluginScript": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &PluginScript{}
 		goObject.setOwner(owner)
 
 		return reflect.ValueOf(goObject)
@@ -112395,6 +116664,14 @@ var godotToGoConversionMap = map[string]godotToGoConverter{
 	"*StyleBoxFlat": func(gdObject unsafe.Pointer) reflect.Value {
 		owner := (*C.godot_object)(gdObject)
 		goObject := &StyleBoxFlat{}
+		goObject.setOwner(owner)
+
+		return reflect.ValueOf(goObject)
+	},
+
+	"*StyleBoxLine": func(gdObject unsafe.Pointer) reflect.Value {
+		owner := (*C.godot_object)(gdObject)
+		goObject := &StyleBoxLine{}
 		goObject.setOwner(owner)
 
 		return reflect.ValueOf(goObject)
