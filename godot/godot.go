@@ -3,7 +3,8 @@ package godot
 
 /*
 #cgo CFLAGS: -I/usr/local/include -std=c11
-#cgo LDFLAGS: -Wl,-unresolved-symbols=ignore-all
+#cgo linux LDFLAGS: -Wl,-unresolved-symbols=ignore-all
+#cgo darwin LDFLAGS: -Wl,-undefined,dynamic_lookup
 #include <stddef.h>
 #include <stdlib.h>
 #include <nativescript/godot_nativescript.h>
