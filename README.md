@@ -76,6 +76,7 @@ the scene.
 // X_ready is called as soon as the node enters the scene.
 func (h *SimpleClass) X_ready() {
 	godot.Log.Warning("Hello World!")
+}
 ```
 
 Now that we have a struct and a method defined, we need to create a constructor
