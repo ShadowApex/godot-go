@@ -7,7 +7,7 @@ package godot
 #cgo darwin LDFLAGS: -Wl,-undefined,dynamic_lookup
 #include <stddef.h>
 #include <stdlib.h>
-#include <nativescript/godot_nativescript.h>
+#include <gdnative_api_struct.gen.h>
 
 // Type definitions for any function pointers. Some of these are not defined in
 // the godot headers when they are part of a typedef struct.
@@ -21,6 +21,15 @@ void *go_create_func_cgo(godot_object *, void *); // Forward declaration.
 void *go_destroy_func_cgo(godot_object *, void *); // Forward declaration.
 void *go_free_func_cgo(void *); // Forward declaration.
 godot_variant go_method_func_cgo(godot_object *obj, void *method_data, void *user_data, int num_args, godot_variant **args);
+
+// User data structure
+typedef struct user_data_struct {
+	char data[256];
+} user_data_struct;
+
+// API structure definition.
+const extern godot_gdnative_core_api_struct *api;
+
 */
 import "C"
 
@@ -50,6 +59,9 @@ func godot_gdnative_init(options *C.godot_gdnative_init_options) {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	log.SetOutput(Log)
 	log.Println("Initializing Go library.")
+
+	// Get the API from our options
+	C.api = (*options).api_struct
 
 	// Translate the C struct into a Go struct.
 	goOptions := &GodotGDNativeInitOptions{

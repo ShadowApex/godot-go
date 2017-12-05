@@ -7419,7 +7419,7 @@ func (o *ArrayMesh) GetBlendShapeName(index int64) string {
 /*
 
  */
-func (o *ArrayMesh) GetCustomAabb() *Rect3 {
+func (o *ArrayMesh) GetCustomAabb() *Aabb {
 	log.Println("Calling ArrayMesh.GetCustomAabb()")
 
 	// Build out the method's arguments
@@ -7427,9 +7427,9 @@ func (o *ArrayMesh) GetCustomAabb() *Rect3 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_custom_aabb", goArguments, "*Rect3")
+	goRet := o.callParentMethod(o.baseClass(), "get_custom_aabb", goArguments, "*Aabb")
 
-	returnValue := goRet.Interface().(*Rect3)
+	returnValue := goRet.Interface().(*Aabb)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -7494,7 +7494,7 @@ func (o *ArrayMesh) SetBlendShapeMode(mode int64) {
 /*
 
  */
-func (o *ArrayMesh) SetCustomAabb(aabb *Rect3) {
+func (o *ArrayMesh) SetCustomAabb(aabb *Aabb) {
 	log.Println("Calling ArrayMesh.SetCustomAabb()")
 
 	// Build out the method's arguments
@@ -29767,7 +29767,7 @@ func (o *EditorSpatialGizmo) AddCollisionSegments(segments *PoolVector3Array) {
 /*
    Add collision triangles to the gizmo for picking. A [TriangleMesh] can be generated from a regular [Mesh] too. Call this function during [method redraw].
 */
-func (o *EditorSpatialGizmo) AddCollisionTriangles(triangles *TriangleMesh, bounds *Rect3) {
+func (o *EditorSpatialGizmo) AddCollisionTriangles(triangles *TriangleMesh, bounds *Aabb) {
 	log.Println("Calling EditorSpatialGizmo.AddCollisionTriangles()")
 
 	// Build out the method's arguments
@@ -34474,7 +34474,7 @@ func (o *GIProbeData) GetBias() float64 {
 /*
 
  */
-func (o *GIProbeData) GetBounds() *Rect3 {
+func (o *GIProbeData) GetBounds() *Aabb {
 	log.Println("Calling GIProbeData.GetBounds()")
 
 	// Build out the method's arguments
@@ -34482,9 +34482,9 @@ func (o *GIProbeData) GetBounds() *Rect3 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_bounds", goArguments, "*Rect3")
+	goRet := o.callParentMethod(o.baseClass(), "get_bounds", goArguments, "*Aabb")
 
-	returnValue := goRet.Interface().(*Rect3)
+	returnValue := goRet.Interface().(*Aabb)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -34692,7 +34692,7 @@ func (o *GIProbeData) SetBias(bias float64) {
 /*
 
  */
-func (o *GIProbeData) SetBounds(bounds *Rect3) {
+func (o *GIProbeData) SetBounds(bounds *Aabb) {
 	log.Println("Calling GIProbeData.SetBounds()")
 
 	// Build out the method's arguments
@@ -51181,7 +51181,7 @@ type MobileVRInterfaceImplementer interface {
 }
 
 /*
-   MultiMesh provides low level mesh instancing. If the amount of [Mesh] instances needed goes from hundreds to thousands (and most need to be visible at close proximity) creating such a large amount of [MeshInstance] nodes may affect performance by using too much CPU or video memory. For this case a MultiMesh becomes very useful, as it can draw thousands of instances with little API overhead. As a drawback, if the instances are too far away of each other, performance may be reduced as every single instance will always rendered (they are spatially indexed as one, for the whole object). Since instances may have any behavior, the Rect3 used for visibility must be provided by the user.
+   MultiMesh provides low level mesh instancing. If the amount of [Mesh] instances needed goes from hundreds to thousands (and most need to be visible at close proximity) creating such a large amount of [MeshInstance] nodes may affect performance by using too much CPU or video memory. For this case a MultiMesh becomes very useful, as it can draw thousands of instances with little API overhead. As a drawback, if the instances are too far away of each other, performance may be reduced as every single instance will always rendered (they are spatially indexed as one, for the whole object). Since instances may have any behavior, the Aabb used for visibility must be provided by the user.
 */
 type MultiMesh struct {
 	Resource
@@ -51268,9 +51268,9 @@ func (o *MultiMesh) X_SetTransformArray(arg0 *PoolVector3Array) {
 }
 
 /*
-   Return the visibility Rect3.
+   Return the visibility Aabb.
 */
-func (o *MultiMesh) GetAabb() *Rect3 {
+func (o *MultiMesh) GetAabb() *Aabb {
 	log.Println("Calling MultiMesh.GetAabb()")
 
 	// Build out the method's arguments
@@ -51278,9 +51278,9 @@ func (o *MultiMesh) GetAabb() *Rect3 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_aabb", goArguments, "*Rect3")
+	goRet := o.callParentMethod(o.baseClass(), "get_aabb", goArguments, "*Aabb")
 
-	returnValue := goRet.Interface().(*Rect3)
+	returnValue := goRet.Interface().(*Aabb)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -59539,7 +59539,7 @@ func (o *Particles) baseClass() string {
 /*
 
  */
-func (o *Particles) CaptureAabb() *Rect3 {
+func (o *Particles) CaptureAabb() *Aabb {
 	log.Println("Calling Particles.CaptureAabb()")
 
 	// Build out the method's arguments
@@ -59547,9 +59547,9 @@ func (o *Particles) CaptureAabb() *Rect3 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "capture_aabb", goArguments, "*Rect3")
+	goRet := o.callParentMethod(o.baseClass(), "capture_aabb", goArguments, "*Aabb")
 
-	returnValue := goRet.Interface().(*Rect3)
+	returnValue := goRet.Interface().(*Aabb)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -59840,7 +59840,7 @@ func (o *Particles) GetUseLocalCoordinates() bool {
 /*
 
  */
-func (o *Particles) GetVisibilityAabb() *Rect3 {
+func (o *Particles) GetVisibilityAabb() *Aabb {
 	log.Println("Calling Particles.GetVisibilityAabb()")
 
 	// Build out the method's arguments
@@ -59848,9 +59848,9 @@ func (o *Particles) GetVisibilityAabb() *Rect3 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_visibility_aabb", goArguments, "*Rect3")
+	goRet := o.callParentMethod(o.baseClass(), "get_visibility_aabb", goArguments, "*Aabb")
 
-	returnValue := goRet.Interface().(*Rect3)
+	returnValue := goRet.Interface().(*Aabb)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -60168,7 +60168,7 @@ func (o *Particles) SetUseLocalCoordinates(enable bool) {
 /*
 
  */
-func (o *Particles) SetVisibilityAabb(aabb *Rect3) {
+func (o *Particles) SetVisibilityAabb(aabb *Aabb) {
 	log.Println("Calling Particles.SetVisibilityAabb()")
 
 	// Build out the method's arguments
@@ -104308,7 +104308,7 @@ func (o *VisibilityNotifier) baseClass() string {
 /*
    Returns the bounding box of the VisibilityNotifier.
 */
-func (o *VisibilityNotifier) GetAabb() *Rect3 {
+func (o *VisibilityNotifier) GetAabb() *Aabb {
 	log.Println("Calling VisibilityNotifier.GetAabb()")
 
 	// Build out the method's arguments
@@ -104316,9 +104316,9 @@ func (o *VisibilityNotifier) GetAabb() *Rect3 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_aabb", goArguments, "*Rect3")
+	goRet := o.callParentMethod(o.baseClass(), "get_aabb", goArguments, "*Aabb")
 
-	returnValue := goRet.Interface().(*Rect3)
+	returnValue := goRet.Interface().(*Aabb)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -104348,7 +104348,7 @@ func (o *VisibilityNotifier) IsOnScreen() bool {
 /*
    Set the visibility bounding box of the VisibilityNotifier.
 */
-func (o *VisibilityNotifier) SetAabb(rect *Rect3) {
+func (o *VisibilityNotifier) SetAabb(rect *Aabb) {
 	log.Println("Calling VisibilityNotifier.SetAabb()")
 
 	// Build out the method's arguments
@@ -104480,7 +104480,7 @@ func (o *VisualInstance) X_GetVisualInstanceRid() *RID {
 /*
 
  */
-func (o *VisualInstance) GetAabb() *Rect3 {
+func (o *VisualInstance) GetAabb() *Aabb {
 	log.Println("Calling VisualInstance.GetAabb()")
 
 	// Build out the method's arguments
@@ -104488,9 +104488,9 @@ func (o *VisualInstance) GetAabb() *Rect3 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_aabb", goArguments, "*Rect3")
+	goRet := o.callParentMethod(o.baseClass(), "get_aabb", goArguments, "*Aabb")
 
-	returnValue := goRet.Interface().(*Rect3)
+	returnValue := goRet.Interface().(*Aabb)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -104520,7 +104520,7 @@ func (o *VisualInstance) GetLayerMask() int64 {
 /*
 
  */
-func (o *VisualInstance) GetTransformedAabb() *Rect3 {
+func (o *VisualInstance) GetTransformedAabb() *Aabb {
 	log.Println("Calling VisualInstance.GetTransformedAabb()")
 
 	// Build out the method's arguments
@@ -104528,9 +104528,9 @@ func (o *VisualInstance) GetTransformedAabb() *Rect3 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "get_transformed_aabb", goArguments, "*Rect3")
+	goRet := o.callParentMethod(o.baseClass(), "get_transformed_aabb", goArguments, "*Aabb")
 
-	returnValue := goRet.Interface().(*Rect3)
+	returnValue := goRet.Interface().(*Aabb)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -111456,7 +111456,7 @@ func (o *visualServer) MeshGetBlendShapeMode(mesh *RID) int64 {
 /*
 
  */
-func (o *visualServer) MeshGetCustomAabb(mesh *RID) *Rect3 {
+func (o *visualServer) MeshGetCustomAabb(mesh *RID) *Aabb {
 	log.Println("Calling VisualServer.MeshGetCustomAabb()")
 
 	// Build out the method's arguments
@@ -111465,9 +111465,9 @@ func (o *visualServer) MeshGetCustomAabb(mesh *RID) *Rect3 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "mesh_get_custom_aabb", goArguments, "*Rect3")
+	goRet := o.callParentMethod(o.baseClass(), "mesh_get_custom_aabb", goArguments, "*Aabb")
 
-	returnValue := goRet.Interface().(*Rect3)
+	returnValue := goRet.Interface().(*Aabb)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -111555,7 +111555,7 @@ func (o *visualServer) MeshSetBlendShapeMode(mesh *RID, mode int64) {
 /*
 
  */
-func (o *visualServer) MeshSetCustomAabb(mesh *RID, aabb *Rect3) {
+func (o *visualServer) MeshSetCustomAabb(mesh *RID, aabb *Aabb) {
 	log.Println("Calling VisualServer.MeshSetCustomAabb()")
 
 	// Build out the method's arguments
@@ -111574,7 +111574,7 @@ func (o *visualServer) MeshSetCustomAabb(mesh *RID, aabb *Rect3) {
 /*
 
  */
-func (o *visualServer) MeshSurfaceGetAabb(mesh *RID, surface int64) *Rect3 {
+func (o *visualServer) MeshSurfaceGetAabb(mesh *RID, surface int64) *Aabb {
 	log.Println("Calling VisualServer.MeshSurfaceGetAabb()")
 
 	// Build out the method's arguments
@@ -111584,9 +111584,9 @@ func (o *visualServer) MeshSurfaceGetAabb(mesh *RID, surface int64) *Rect3 {
 
 	// Call the parent method.
 
-	goRet := o.callParentMethod(o.baseClass(), "mesh_surface_get_aabb", goArguments, "*Rect3")
+	goRet := o.callParentMethod(o.baseClass(), "mesh_surface_get_aabb", goArguments, "*Aabb")
 
-	returnValue := goRet.Interface().(*Rect3)
+	returnValue := goRet.Interface().(*Aabb)
 
 	log.Println("  Got return value: ", returnValue)
 	return returnValue
@@ -113977,9 +113977,9 @@ var godotToGoConversionMap = map[string]godotToGoConverter{
 		converted.rect2 = (*C.godot_rect2)(gdObject)
 		return reflect.ValueOf(converted)
 	},
-	"*Rect3": func(gdObject unsafe.Pointer) reflect.Value {
-		converted := &Rect3{}
-		converted.rect3 = (*C.godot_rect3)(gdObject)
+	"*Aabb": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &Aabb{}
+		converted.aabb = (*C.godot_aabb)(gdObject)
 		return reflect.ValueOf(converted)
 	},
 	"*RID": func(gdObject unsafe.Pointer) reflect.Value {

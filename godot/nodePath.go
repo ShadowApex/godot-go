@@ -96,14 +96,6 @@ func (n *NodePath) GetSubname(index int64) string {
 	return godotStringAsString(&gdString)
 }
 
-func (n *NodePath) GetProperty() string {
-	n.nilCheck()
-	gdString := C.godot_node_path_get_property(n.nodePath)
-	//defer C.godot_free(unsafe.Pointer(&gdString))
-
-	return godotStringAsString(&gdString)
-}
-
 func (n *NodePath) IsEmpty() bool {
 	if n.nodePath == nil {
 		return true

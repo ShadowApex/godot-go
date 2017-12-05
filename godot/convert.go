@@ -77,9 +77,9 @@ var goToGodotConversionMap = map[string]goToGodotConverter{
 		arg := goObject.(*Rect2)
 		return unsafe.Pointer(arg.rect2)
 	},
-	"*godot.Rect3": func(goObject interface{}) unsafe.Pointer {
-		arg := goObject.(*Rect3)
-		return unsafe.Pointer(arg.rect3)
+	"*godot.Aabb": func(goObject interface{}) unsafe.Pointer {
+		arg := goObject.(*Aabb)
+		return unsafe.Pointer(arg.aabb)
 	},
 	"*godot.RID": func(goObject interface{}) unsafe.Pointer {
 		arg := goObject.(*RID)
@@ -258,12 +258,12 @@ func godotRect2AsRect2(value C.godot_rect2) *Rect2 {
 	return &Rect2{rect2: &value}
 }
 
-func rect3AsGodotRect3(value Rect3) *C.godot_rect3 {
-	return value.rect3
+func aabbAsGodotAabb(value Aabb) *C.godot_aabb {
+	return value.aabb
 }
 
-func godotRect3AsRect3(value C.godot_rect3) *Rect3 {
-	return &Rect3{rect3: &value}
+func godotAabbAsAabb(value C.godot_aabb) *Aabb {
+	return &Aabb{aabb: &value}
 }
 
 func stringAsGodotString(value string) *C.godot_string {
@@ -275,7 +275,10 @@ func stringAsGodotString(value string) *C.godot_string {
 }
 
 func godotStringAsString(value *C.godot_string) string {
-	godotCString := C.godot_string_c_str(value)
+	godotCString := C.CString("")
+	strLength := C.godot_string_length(value)
+	cIntLength := C.int(strLength)
+	C.godot_string_get_data(value, godotCString, &cIntLength)
 
 	return C.GoString(godotCString)
 }
@@ -320,7 +323,7 @@ godot_pool_vector2_array GDAPI godot_variant_as_pool_vector2_array(const godot_v
 godot_pool_vector3_array GDAPI godot_variant_as_pool_vector3_array(const godot_variant *p_self);
 godot_quat GDAPI godot_variant_as_quat(const godot_variant *p_self);
 godot_rect2 GDAPI godot_variant_as_rect2(const godot_variant *p_self);
-godot_rect3 GDAPI godot_variant_as_rect3(const godot_variant *p_self);
+godot_aabb GDAPI godot_variant_as_aabb(const godot_variant *p_self);
 godot_rid GDAPI godot_variant_as_rid(const godot_variant *p_self);
 godot_transform GDAPI godot_variant_as_transform(const godot_variant *p_self);
 godot_transform2d GDAPI godot_variant_as_transform2d(const godot_variant *p_self);
