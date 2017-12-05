@@ -279,8 +279,8 @@ var godotToGoConversionMap = map[string]godotToGoConverter{
         converted.rect2 = (*C.godot_rect2)(gdObject)
 		return reflect.ValueOf(converted)
 	},
-	"*Aabb": func(gdObject unsafe.Pointer) reflect.Value {
-		converted := &Aabb{}
+	"*AABB": func(gdObject unsafe.Pointer) reflect.Value {
+		converted := &AABB{}
         converted.aabb = (*C.godot_aabb)(gdObject)
 		return reflect.ValueOf(converted)
 	},

@@ -77,8 +77,8 @@ var goToGodotConversionMap = map[string]goToGodotConverter{
 		arg := goObject.(*Rect2)
 		return unsafe.Pointer(arg.rect2)
 	},
-	"*godot.Aabb": func(goObject interface{}) unsafe.Pointer {
-		arg := goObject.(*Aabb)
+	"*godot.AABB": func(goObject interface{}) unsafe.Pointer {
+		arg := goObject.(*AABB)
 		return unsafe.Pointer(arg.aabb)
 	},
 	"*godot.RID": func(goObject interface{}) unsafe.Pointer {
@@ -258,12 +258,12 @@ func godotRect2AsRect2(value C.godot_rect2) *Rect2 {
 	return &Rect2{rect2: &value}
 }
 
-func aabbAsGodotAabb(value Aabb) *C.godot_aabb {
+func aabbAsGodotAABB(value AABB) *C.godot_aabb {
 	return value.aabb
 }
 
-func godotAabbAsAabb(value C.godot_aabb) *Aabb {
-	return &Aabb{aabb: &value}
+func godotAABBAsAABB(value C.godot_aabb) *AABB {
+	return &AABB{aabb: &value}
 }
 
 func stringAsGodotString(value string) *C.godot_string {
