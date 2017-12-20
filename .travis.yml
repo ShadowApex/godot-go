@@ -8,8 +8,6 @@ go:
 
 before_install:
     - ln -s $HOME/gopath/src/github.com/ShadowApex $HOME/gopath/src/github.com/shadowapex
-    - git clone https://github.com/GodotNativeTools/godot_headers.git
-    - sudo cp -r godot_headers/* /usr/local/include
 
 install:
     - go get github.com/pinzolo/casee
