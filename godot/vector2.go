@@ -236,7 +236,7 @@ func (v *Vector2) OperatorNeg() *Vector2 {
 //OperatorSubtract subtracts the current vector and with.
 func (v *Vector2) OperatorSubtract(with Vector2) *Vector2 {
 	return godotVec2AsVec2(
-		C.godot_vector2_operator_substract(
+		C.godot_vector2_operator_subtract(
 			v.vector2,
 			with.vector2,
 		),

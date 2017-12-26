@@ -145,7 +145,7 @@ func (q *Quat) OperatorNeg() *Quat {
 
 // OperatorSubtract returns the difference of q.quat and with.quat.
 func (q *Quat) OperatorSubtract(with Quat) *Quat {
-	return godotQuatAsQuat(C.godot_quat_operator_substract(q.quat, with.quat))
+	return godotQuatAsQuat(C.godot_quat_operator_subtract(q.quat, with.quat))
 }
 
 // SetX changes the x value of the quat to the specified value.
