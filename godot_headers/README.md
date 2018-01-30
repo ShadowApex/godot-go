@@ -152,6 +152,8 @@ The GDNativeLibrary resource contains links to the libraries for each platform.
 
 ![](images/faq/dllibrary_save_as_resource.png?raw=true)
 
+*Note*: Remember to save `GDNativeLibrary` as `.gdnlib`
+
 </details>
 
 `Expand details for screenshots.`
@@ -208,7 +210,8 @@ use of GDNative to implement scripts backed by native code.
 **Which languages are binding as a NativeScript?**
 
 [**C++**](https://github.com/GodotNativeTools/cpp_bindings),
- [**D**](https://github.com/GodotNativeTools/d_bindings)
+[**D**](https://github.com/GodotNativeTools/d_bindings),
+[**Nim**](https://github.com/pragmagic/godot-nim)
 
 **Can you debug NativeScripts?**
 
