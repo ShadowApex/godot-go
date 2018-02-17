@@ -267,18 +267,16 @@ func godotAABBAsAABB(value C.godot_aabb) *AABB {
 }
 
 func stringAsGodotString(value string) *C.godot_string {
-	var godotString C.godot_string
 	cString := C.CString(value)
-	C.godot_string_new_data(&godotString, cString, C.int(len(value)))
-
+	godotString := C.godot_string_chars_to_utf8(cString)
+	C.free(unsafe.Pointer(cString))
 	return &godotString
 }
 
 func godotStringAsString(value *C.godot_string) string {
-	godotCString := C.CString("")
-	strLength := C.godot_string_length(value)
-	cIntLength := C.int(strLength)
-	C.godot_string_get_data(value, godotCString, &cIntLength)
+	godotCharString := C.godot_string_utf8(value)
+	godotCString := C.godot_char_string_get_data(&godotCharString)
+	C.godot_char_string_destroy(&godotCharString)
 
 	return C.GoString(godotCString)
 }
