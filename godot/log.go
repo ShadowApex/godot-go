@@ -1,10 +1,9 @@
 package godot
 
 /*
-#include <stdio.h>
-#include <stdlib.h>
+#include <gdnative/string.h>
 #include <gdnative/gdnative.h>
-#include <nativescript/godot_nativescript.h>
+#include "gdnative.h"
 */
 import "C"
 
@@ -13,6 +12,8 @@ import (
 	"fmt"
 	"runtime"
 	"strings"
+
+	"github.com/vitaminwater/cgo.wchar"
 )
 
 // Log is used to log messages to Godot, and makes them viewable inside the
@@ -31,10 +32,10 @@ func (l *logger) Println(message ...interface{}) {
 	gdString := stringAsGodotString(goString)
 
 	// Print our string.
-	C.godot_print(gdString)
+	C.go_godot_print(GDNative.api, gdString)
 
 	// Free the string from memory.
-	C.godot_string_destroy(gdString)
+	C.go_godot_string_destroy(GDNative.api, gdString)
 }
 
 // Warning will print a warning message to the Godot debugger and console.
@@ -83,8 +84,27 @@ func (l *logger) log(isError bool, message ...interface{}) {
 	cLine := C.int(no)
 
 	if isError {
-		C.godot_print_error(cDescription, cFuncName, cFile, cLine)
+		C.go_godot_print_error(GDNative.api, cDescription, cFuncName, cFile, cLine)
 		return
 	}
-	C.godot_print_warning(cDescription, cFuncName, cFile, cLine)
+	C.go_godot_print_warning(GDNative.api, cDescription, cFuncName, cFile, cLine)
+}
+
+func stringAsGodotString(value string) *C.godot_string {
+	// Convert the Go string into a wchar
+	wcharString, err := wchar.FromGoString(value)
+	if err != nil {
+		fmt.Println("Error decoding string:", err)
+	}
+
+	// Build the Godot string with the wchar
+	var godotString C.godot_string
+	C.go_godot_string_new_with_wide_string(
+		GDNative.api,
+		&godotString,
+		(*C.wchar_t)(wcharString.Pointer()),
+		C.int(len(value)),
+	)
+
+	return &godotString
 }

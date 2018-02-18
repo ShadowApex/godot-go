@@ -12,29 +12,29 @@ resource_name = "PongClass"
 class_name = "main.PongClass"
 library = ExtResource( 1 )
 
-[node name="Node2D Scene" type="Node2D"]
+[node name="Node2D Scene" type="Node2D" index="0"]
 
 script = SubResource( 1 )
 
-[node name="left" type="Sprite" parent="."]
+[node name="left" type="Sprite" parent="." index="0"]
 
 position = Vector2( 67, 183 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="right" type="Sprite" parent="."]
+[node name="right" type="Sprite" parent="." index="1"]
 
 position = Vector2( 577, 187 )
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="seperator" type="Sprite" parent="."]
+[node name="seperator" type="Sprite" parent="." index="2"]
 
 position = Vector2( 320, 200 )
 texture = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="ball" type="Sprite" parent="."]
+[node name="ball" type="Sprite" parent="." index="3"]
 
 position = Vector2( 320, 188 )
 texture = ExtResource( 5 )

@@ -1,7 +1,7 @@
 package main
 
 import (
-	godot "github.com/shadowapex/godot-go/gdnative"
+	godot "github.com/shadowapex/godot-go/godot"
 )
 
 func init() {

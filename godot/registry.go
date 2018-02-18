@@ -4,6 +4,10 @@ import (
 	"reflect"
 )
 
+// ClassConstructor is any function that will build and return a class to be registered
+// with Godot.
+type ClassConstructor func() Class
+
 // Register will register the given object(s) as a Godot class. It will be available
 // inside Godot.
 func Register(constructor ...ClassConstructor) {

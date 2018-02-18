@@ -6,9 +6,6 @@ package godot
 #include <nativescript/godot_nativescript.h>
 #include <gdnative_api_struct.gen.h>
 
-// Set our API to null.
-godot_gdnative_core_api_struct *api = NULL;
-
 // This is a gateway function for the create method.
 void *go_create_func_cgo(godot_object *obj, void *method_data)
 {
