@@ -1,0 +1,13 @@
+
+[general]
+singleton=false
+load_once=true
+symbol_prefix="godot_"
+
+[entry]
+X11.64="res://libgodot.so"
+OSX.64="res://libgodot.dylib"
+
+[dependencies]
+X11.64=[]
+OSX.64=[]
