@@ -4,8 +4,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/kr/pretty"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"strings"
 )
 
@@ -23,23 +25,45 @@ func main() {
 	}
 	packagePath := goPath + "/src/github.com/shadowapex/godot-go"
 
-	fmt.Println("vim-go")
-	// Read the header
-	content, err := ioutil.ReadFile(packagePath + "/godot_headers/gdnative/gdnative.h")
+	// Walk through all of the godot header files
+	searchDir := packagePath + "/godot_headers"
+	fileList := []string{}
+	err := filepath.Walk(searchDir, func(path string, f os.FileInfo, err error) error {
+		if !f.IsDir() && strings.Contains(path, ".h") {
+			fileList = append(fileList, path)
+		}
+		return nil
+	})
 	if err != nil {
 		panic(err)
 	}
 
-	// Find all of the type definitions in the header file
-	foundTypes := findTypeDefs(content)
-	fmt.Println("")
+	// Create a list of all our type definitions
+	typeDefinitions := []TypeDef{}
 
-	// After extracting the lines, we can now parse the type definition to
-	// a structure that we can use to build a Go wrapper.
-	for _, foundType := range foundTypes {
-		typeDef := parseTypeDef(foundType)
-		fmt.Println(typeDef)
+	// Loop through all of the Godot header files and parse the type definitions
+	for _, header := range fileList {
+		fmt.Println("Parsing header:", header, "...")
+
+		// Read the header
+		content, err := ioutil.ReadFile(header)
+		if err != nil {
+			panic(err)
+		}
+
+		// Find all of the type definitions in the header file
+		foundTypes := findTypeDefs(content)
+		fmt.Println("")
+
+		// After extracting the lines, we can now parse the type definition to
+		// a structure that we can use to build a Go wrapper.
+		for _, foundType := range foundTypes {
+			typeDef := parseTypeDef(foundType)
+			typeDefinitions = append(typeDefinitions, typeDef)
+		}
 	}
+
+	pretty.Println(typeDefinitions)
 }
 
 func parseTypeDef(typeLines []string) TypeDef {
@@ -92,6 +116,10 @@ func parseTypeDef(typeLines []string) TypeDef {
 
 		// Set the property details
 		if typeDef.Base != "enum" {
+			if len(words) < 2 {
+				fmt.Println("Skipping irregular line:", line)
+				continue
+			}
 			property.Base = words[0]
 			property.Name = words[1]
 		} else {
