@@ -1,0 +1,47 @@
+{{ $view := . -}}
+
+func {{ $view.GodotCallDef }} {
+
+    methodBind := getGodotMethod(o.baseClass(), methodName)
+
+    // Construct a C array that will contain pointers to our arguments.
+    log.Println("  Allocating argument array in C.")
+    cArgsArray := C.build_array(C.int({{ len .Arguments }}))
+    log.Println("    C Array: ", cArgsArray)
+
+    {{ range $i, $arg := .Arguments }}
+        cArg{{ $i }} := arg{{ $i }} // TODO convert arg based on type
+        C.add_element(cArgsArray, cArg{{ $i }}, C.int({{ $i }}))
+    {{ end }}
+    log.Println("  Built argument array from variant arguments: ", cArgsArray)
+
+    {{ if eq .ReturnType "void" }}
+        log.Println("  No return value.")
+    {{ else }}
+        // Construct our return object that will be populated by the method call.
+        log.Println("  Building return value.")
+        var ret {{ $view.GetReturnType }}
+        retPtr := unsafe.Pointer(ret)
+    {{ end }}
+
+    // Get the Godot objects owner so we can pass it to godot_method_bind_ptrcall.
+	log.Println("  Using godot object owner:", o.getOwner())
+	objectOwner := unsafe.Pointer(o.getOwner())
+    
+    // Call the parent method. "ret" will be populated with the return value.
+    log.Println("  Calling bind_ptrcall...")
+    C.godot_method_bind_ptrcall(
+        methodBind,
+        objectOwner,
+        cArgsArray, // void**
+        {{ if eq .ReturnType "void" -}}nil{{ else }}retPtr{{end}}, // void*
+    )
+    log.Println("  Finished calling method")
+    
+    {{ if ne .ReturnType "void" }}
+        // Convert the return value based on the type.
+        // TODO convert
+        // Return the converted variant.
+        return nil // TODO
+    {{end}}
+}

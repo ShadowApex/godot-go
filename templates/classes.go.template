@@ -8,25 +8,6 @@ package godot
 #include <stdlib.h>
 #include <gdnative/gdnative.h>
 #include <nativescript/godot_nativescript.h>
-
-void **build_array(int length);
-void **build_array(int length) {
-	void *ptr;
-	void **arr = malloc(sizeof(void *) * length);
-	for (int i = 0; i < length; i++) {
-	    arr[i] = ptr;
-	}
-
-	return arr;
-}
-
-void add_element(void**, void*, int);
-void add_element(void **array, void *element, int index) {
-	printf("CGO: Array %p %p %p %p %p\n", &array, array, &array[index], *array, array[index]);
-    array[index] = element;
-	printf("CGO: Index %i %p\n", index, element);
-	printf("CGO: Array %p %p %p %p %p\n", &array, array, &array[index], *array, array[index]);
-}
 */
 import "C"
 
@@ -49,7 +30,9 @@ type Class interface {
         {{ if $class.Singleton -}}
             func newSingleton{{ $view.GoClassName $class.Name }}() *{{ $view.SetClassName $class.Name $class.Singleton}} {
                 obj := &{{ $view.SetClassName $class.Name $class.Singleton }}{}
-                ptr := C.godot_global_get_singleton(C.CString("{{ $class.Name }}"))
+				name := C.CString("{{ $class.Name }}")
+				defer C.free(unsafe.Pointer(name))
+                ptr := C.godot_global_get_singleton(name)
                 obj.owner = (*C.godot_object)(ptr)
                 return obj
             }
@@ -77,32 +60,23 @@ type Class interface {
                 /*
                 {{ $view.MethodDoc $class.Name $method.Name }}
                 */
-                func (o *{{ $view.SetClassName $class.Name $class.Singleton }}) {{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $arg.Type }},{{ end }}) {{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ end }} {
+                func (o *{{ $view.SetClassName $class.Name $class.Singleton }}) {{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $arg.Type }},{{ end }}) {{ $view.GoValue $method.ReturnType }} {
                     log.Println("Calling {{ $class.Name }}.{{ $view.GoMethodName $method.Name }}()")
 
-                    // Build out the method's arguments
-                    goArguments := make([]reflect.Value, {{ len $method.Arguments }}, {{ len $method.Arguments }})
-                    {{ range $k, $arg := $method.Arguments -}}
-                        goArguments[{{ $k }}] = reflect.ValueOf({{ $view.GoArgName $arg.Name }})
-                    {{ end }}
+                    {{ if ne $method.ReturnType "void" }}
+                        returnValue := {{ $view.GodotCall $method }}
+                        log.Println("  Got return value: ", returnValue)
 
-                    // Call the parent method.
-                    {{ if $method.ReturnType }}
-                        {{ $returnType := $view.GoValue $method.ReturnType }}{{ if ne $returnType "" }}
-                            goRet := o.callParentMethod(o.baseClass(), "{{ $method.Name }}", goArguments, "{{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ end }}")
+                        {{ if $view.IsObjectReturnType $method }}
+                            var ret {{ $view.GoValue $method.ReturnType }}
+                            ret.owner = returnValue.owner
+                            return ret
                         {{ else }}
-                            o.callParentMethod(o.baseClass(), "{{ $method.Name }}", goArguments, "{{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ end }}")
-                        {{ end }}
-                    {{ end -}}
-                    {{ if $method.ReturnType }}
-                        {{ $returnType := $view.GoValue $method.ReturnType }}{{ if ne $returnType "" }}
-                            returnValue := goRet.Interface().({{ $view.GoValue $method.ReturnType }})
-
-                            log.Println("  Got return value: ", returnValue)
                             return returnValue
+                        {{ end}}
                     {{else}}
+                        {{ $view.GodotCall $method }}
                         log.Println("  Function successfully completed.")
-                        {{ end }}
                     {{ end }}
                 }
             {{ end }}
@@ -118,86 +92,6 @@ type Class interface {
             func (o *Object) getOwner() *C.godot_object {
                 return o.owner
             }
-
-            // callParentMethod will call this object's method with the given method name.
-            func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.Value, returns string) reflect.Value {
-            	log.Println("Calling parent method!")
-            
-            	// Convert the base class and method names to C strings.
-            	log.Println("  Using base class: ", baseClass)
-            	classCString := C.CString(baseClass)
-            	log.Println("  Using method name: ", methodName)
-            	methodCString := C.CString(methodName)
-            
-                // Get the Godot objects owner so we can pass it to godot_method_bind_ptrcall.
-            	log.Println("  Using godot object owner:", o.getOwner())
-                objectOwner := unsafe.Pointer(o.getOwner())
-
-            	// Get the Godot method bind pointer so we can pass it to godot_method_bind_ptrcall.
-            	var methodBind *C.godot_method_bind
-            	methodBind = C.godot_method_bind_get_method(classCString, methodCString)
-            	log.Println("  Using method bind pointer: ", methodBind)
-            
-            	// Loop through the given arguments and see what type they are. When we know what
-            	// type it is, we need to convert them to the correct godot objects.
-            	// TODO: Probably pull this out into its own function?
-            	variantArgs := []unsafe.Pointer{}
-            	for _, arg := range args {
-            		log.Println("  Argument type: ", arg.Type().String())
-            
-            		// Look up our conversion function in our map of conversion functions
-            		// based on the Go type. This is essentially a more optimal case/switch
-            		// statement on the type of Go object, so we can know how to convert it
-            		// to a Godot object.
-            		if convert, ok := goToGodotConversionMap[arg.Type().String()]; ok {
-            			argValue := convert(arg.Interface())
-            			variantArgs = append(variantArgs, argValue)
-            		} else {
-                        err := "Unknown type of argument value when calling parent method: " + arg.Type().String()
-            			Log.Error(err)
-                        panic(err)
-            		}
-            	}
-            	log.Println("  Built variant arguments: ", variantArgs)
-            
-            	// Construct a C array that will contain pointers to our arguments.
-            	log.Println("  Allocating argument array in C.")
-            	cArgsArray := C.build_array(C.int(len(variantArgs)))
-            	log.Println("    C Array: ", cArgsArray)
-            
-            	// Loop through and add each argument to our C args array.
-            	for i, arg := range variantArgs {
-            		C.add_element(cArgsArray, arg, C.int(i))
-            	}
-            	log.Println("  Built argument array from variant arguments: ", cArgsArray)
-            
-            	// Construct our return object that will be populated by the method call.
-                // Here we're just using a CString
-            	log.Println("  Building return value.")
-            	ret := unsafe.Pointer(C.CString(""))
-            
-            	// Call the parent method. "ret" will be populated with the return value.
-            	log.Println("  Calling bind_ptrcall...")
-            	C.godot_method_bind_ptrcall(
-            		methodBind,
-            		objectOwner,
-                    cArgsArray, // void**
-            		ret,        // void*
-            	)
-            	log.Println("  Finished calling method")
-            
-            	// Convert the return value based on the type.
-            	var retValue reflect.Value
-                if _, ok := godotToGoConversionMap[returns]; ok {
-                    retValue = godotToGoConversionMap[returns](ret)
-                } else {
-		            panic("Return type not found when calling parent method: " + returns)
-                }
-           
-            	// Return the converted variant.
-            	return retValue
-            }
-
         {{ end }}
         {{ if eq $class.Singleton false -}} 
             /*

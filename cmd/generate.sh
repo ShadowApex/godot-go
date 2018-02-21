@@ -31,4 +31,8 @@ fi
 
 # Run our generator
 echo "Generating Godot classes..."
-go run $GOPATH/src/github.com/shadowapex/godot-go/cmd/generate/generate.go | gofmt > $PKG_PATH/godot/classes.go
+go run $GOPATH/src/github.com/shadowapex/godot-go/cmd/generate/generate.go
+
+# Format all our code
+echo "Running gofmt on generated classes..."
+find $PKG_PATH -name '*.go' -not -path '*/\.*' -exec gofmt -w {} \;
