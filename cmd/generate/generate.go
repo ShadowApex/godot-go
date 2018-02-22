@@ -214,14 +214,6 @@ func (v View) GoArgName(argString string) string {
 	return casee.ToCamelCase(argString)
 }
 
-func (v View) GoParamValue(typeString string) string {
-	gv := GetGoValue(typeString)
-	if !isPrimitive(typeString) {
-		return "*" + gv
-	}
-	return gv
-}
-
 func (v View) GoValue(returnString string) string {
 	return GetGoValue(returnString)
 }
