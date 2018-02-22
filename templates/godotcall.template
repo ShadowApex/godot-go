@@ -10,8 +10,8 @@ func {{ $view.GodotCallDef }} {
     log.Println("    C Array: ", cArgsArray)
 
     {{ range $i, $arg := .Arguments }}
-        cArg{{ $i }} := arg{{ $i }} // TODO convert arg based on type
-        C.add_element(cArgsArray, cArg{{ $i }}, C.int({{ $i }}))
+        cArg{{ $i }} := {{ template "go2godot.template" $arg}}
+        C.add_element(cArgsArray, unsafe.Pointer(&cArg{{ $i }}), C.int({{ $i }}))
     {{ end }}
     log.Println("  Built argument array from variant arguments: ", cArgsArray)
 
@@ -20,7 +20,7 @@ func {{ $view.GodotCallDef }} {
     {{ else }}
         // Construct our return object that will be populated by the method call.
         log.Println("  Building return value.")
-        var ret {{ $view.GetReturnType }}
+        var ret *{{ $view.GetReturnType }}
         retPtr := unsafe.Pointer(ret)
     {{ end }}
 
@@ -40,8 +40,6 @@ func {{ $view.GodotCallDef }} {
     
     {{ if ne .ReturnType "void" }}
         // Convert the return value based on the type.
-        // TODO convert
-        // Return the converted variant.
-        return nil // TODO
+        return {{ template "godot2go.template" $view.GetReturnType }}
     {{end}}
 }

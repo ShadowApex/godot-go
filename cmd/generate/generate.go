@@ -304,7 +304,14 @@ func (v View) GodotCall(method GDMethod) string {
 	var sig GodotCallSignature
 	sig, found := v.GodotCalls[sigKey]
 	if !found {
-		sig = GodotCallSignature{icallRetType, args}
+		godotArgs := make([]GodotCallArg, len(args))
+		for idx, arg := range args {
+			godotArgs[idx] = GodotCallArg{
+				fmt.Sprintf("arg%d", idx),
+				arg,
+			}
+		}
+		sig = GodotCallSignature{icallRetType, godotArgs}
 		v.GodotCalls[sigKey] = sig
 	}
 	icallName := sig.GodotCallName()
@@ -441,7 +448,12 @@ type GodotCallSigKey struct {
 
 type GodotCallSignature struct {
 	ReturnType string
-	Arguments  []string
+	Arguments  []GodotCallArg
+}
+
+type GodotCallArg struct {
+	Name string
+	Type string
 }
 
 func (gcs GodotCallSignature) GetReturnType() string {
@@ -451,15 +463,15 @@ func (gcs GodotCallSignature) GetReturnType() string {
 func (gcs GodotCallSignature) GodotCallName() string {
 	nameParts := []string{fmt.Sprintf("GodotCall_%s", stripName(gcs.ReturnType))}
 	for _, arg := range gcs.Arguments {
-		nameParts = append(nameParts, stripName(arg))
+		nameParts = append(nameParts, stripName(arg.Type))
 	}
 	return strings.Join(nameParts, "_")
 }
 
 func (gcs GodotCallSignature) GodotCallDef() string {
 	params := []string{"o Class, methodName string"}
-	for idx, argType := range gcs.Arguments {
-		params = append(params, fmt.Sprintf("arg%d %s", idx, GetGoValue(argType)))
+	for _, arg := range gcs.Arguments {
+		params = append(params, fmt.Sprintf("%s %s", arg.Name, GetGoValue(arg.Type)))
 	}
 	return fmt.Sprintf("%s(%s) %s", gcs.GodotCallName(), strings.Join(params, ","), GetGoValue(gcs.ReturnType))
 }
@@ -690,6 +702,15 @@ func returnType(t string) string {
 		return "C.godot_real"
 	}
 
+	if t == "bool" {
+		return "C.godot_bool"
+	}
+
+	coreType, found := coreTypesGo2Godot[t]
+	if found {
+		return coreType
+	}
+
 	return t
 }
 
@@ -776,35 +797,35 @@ func isClassType(name string) bool {
 	return !(isCoreType(name) || isPrimitive(name))
 }
 
-var coreTypes = map[string]struct{}{
-	"Array":            setMember,
-	"Basis":            setMember,
-	"Color":            setMember,
-	"Dictionary":       setMember,
-	"Error":            setMember,
-	"NodePath":         setMember,
-	"Plane":            setMember,
-	"PoolByteArray":    setMember,
-	"PoolIntArray":     setMember,
-	"PoolRealArray":    setMember,
-	"PoolStringArray":  setMember,
-	"PoolVector2Array": setMember,
-	"PoolVector3Array": setMember,
-	"PoolColorArray":   setMember,
-	"Quat":             setMember,
-	"Rect2":            setMember,
-	"AABB":             setMember,
-	"RID":              setMember,
-	"String":           setMember,
-	"Transform":        setMember,
-	"Transform2D":      setMember,
-	"Variant":          setMember,
-	"Vector2":          setMember,
-	"Vector3":          setMember,
+var coreTypesGo2Godot = map[string]string{
+	"Array":            "C.godot_array",
+	"Basis":            "C.godot_basis",
+	"Color":            "C.godot_color",
+	"Dictionary":       "C.godot_dictionary",
+	"Error":            "C.godot_error",
+	"NodePath":         "C.godot_node_path",
+	"Plane":            "C.godot_plane",
+	"PoolByteArray":    "C.godot_pool_byte_array",
+	"PoolIntArray":     "C.godot_pool_int_array",
+	"PoolRealArray":    "C.godot_pool_real_array",
+	"PoolStringArray":  "C.godot_pool_string_array",
+	"PoolVector2Array": "C.godot_pool_vector2_array",
+	"PoolVector3Array": "C.godot_pool_vector3_array",
+	"PoolColorArray":   "C.godot_pool_color_array",
+	"Quat":             "C.godot_quat",
+	"Rect2":            "C.godot_rect2",
+	"AABB":             "C.godot_aabb",
+	"RID":              "C.godot_rid",
+	"String":           "C.godot_string",
+	"Transform":        "C.godot_transform",
+	"Transform2D":      "C.godot_transform2d",
+	"Variant":          "C.godot_variant",
+	"Vector2":          "C.godot_vector2",
+	"Vector3":          "C.godot_vector3",
 }
 
 func isCoreType(name string) bool {
-	_, ok := coreTypes[name]
+	_, ok := coreTypesGo2Godot[name]
 	return ok
 }
 
