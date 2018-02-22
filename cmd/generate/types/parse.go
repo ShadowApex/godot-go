@@ -1,23 +1,18 @@
 // Package types is a package that parses the GDNative headers for type definitions
 // to create wrapper structures for Go.
-package main
+package types
 
 import (
 	"fmt"
 	"github.com/kr/pretty"
+	"github.com/pinzolo/casee"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
 )
 
-type TypeDef struct {
-	Name       string
-	Base       string
-	Properties []TypeDef
-}
-
-func main() {
+func Parse() []TypeDef {
 	// Get the GOPATH so we can locate the godot headers.
 	goPath := os.Getenv("GOPATH")
 	if goPath == "" {
@@ -44,6 +39,7 @@ func main() {
 	// Loop through all of the Godot header files and parse the type definitions
 	for _, header := range fileList {
 		fmt.Println("Parsing header:", header, "...")
+		headerName := strings.Replace(header, searchDir+"/", "", 1)
 
 		// Read the header
 		content, err := ioutil.ReadFile(header)
@@ -58,17 +54,19 @@ func main() {
 		// After extracting the lines, we can now parse the type definition to
 		// a structure that we can use to build a Go wrapper.
 		for _, foundType := range foundTypes {
-			typeDef := parseTypeDef(foundType)
+			typeDef := parseTypeDef(foundType, headerName)
 			typeDefinitions = append(typeDefinitions, typeDef)
 		}
 	}
 
 	pretty.Println(typeDefinitions)
+	return typeDefinitions
 }
 
-func parseTypeDef(typeLines []string) TypeDef {
+func parseTypeDef(typeLines []string, headerName string) TypeDef {
 	// Create a structure for our type definition.
 	typeDef := TypeDef{
+		HeaderName: headerName,
 		Properties: []TypeDef{},
 	}
 
@@ -77,6 +75,7 @@ func parseTypeDef(typeLines []string) TypeDef {
 		// Get the words of the line
 		words := strings.Split(typeLines[0], " ")
 		typeDef.Name = strings.Replace(words[len(words)-1], ";", "", 1)
+		typeDef.GoName = casee.ToPascalCase(strings.Replace(typeDef.Name, "godot_", "", 1))
 		typeDef.Base = words[len(words)-2]
 
 		return typeDef
@@ -86,6 +85,9 @@ func parseTypeDef(typeLines []string) TypeDef {
 	lastLine := typeLines[len(typeLines)-1]
 	words := strings.Split(lastLine, " ")
 	typeDef.Name = strings.Replace(words[len(words)-1], ";", "", 1)
+
+	// Convert the name of the type to a Go name
+	typeDef.GoName = casee.ToPascalCase(strings.Replace(typeDef.Name, "godot_", "", 1))
 
 	// Extract the base type
 	firstLine := typeLines[0]
