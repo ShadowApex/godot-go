@@ -12,7 +12,7 @@ package godot
 import "C"
 
 import (
-    "log"
+    {{ if $view.Debug }}"log"{{end}}
 	"unsafe"
 )
 
@@ -60,11 +60,11 @@ type Class interface {
                 {{ $view.MethodDoc $class.Name $method.Name }}
                 */
                 func (o *{{ $view.SetClassName $class.Name $class.Singleton }}) {{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $arg.Type }},{{ end }}) {{ $view.GoValue $method.ReturnType }} {
-                    log.Println("Calling {{ $class.Name }}.{{ $view.GoMethodName $method.Name }}()")
+                    {{ if $view.Debug }}log.Println("Calling {{ $class.Name }}.{{ $view.GoMethodName $method.Name }}()"){{end}}
 
                     {{ if ne $method.ReturnType "void" }}
                         returnValue := {{ $view.GodotCall $method }}
-                        log.Println("  Got return value: ", returnValue)
+                        {{ if $view.Debug }}log.Println("  Got return value: ", returnValue){{end}}
 
                         {{ if $view.IsClassType $method.ReturnType }}
                             var ret {{ $method.ReturnType }}
@@ -75,7 +75,7 @@ type Class interface {
                         {{ end}}
                     {{else}}
                         {{ $view.GodotCall $method }}
-                        log.Println("  Function successfully completed.")
+                        {{ if $view.Debug }}log.Println("  Function successfully completed."){{end}}
                     {{ end }}
                 }
             {{ end }}

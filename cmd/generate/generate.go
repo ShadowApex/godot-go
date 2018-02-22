@@ -133,6 +133,7 @@ type View struct {
 	SingletonMap map[string]bool
 	ClassMap     map[string]GDAPI
 	GodotCalls   map[GodotCallSigKey]GodotCallSignature
+	Debug        bool
 }
 
 // ClassDoc returns the class documentation for the given class.
@@ -312,7 +313,7 @@ func (v View) GodotCall(method GDMethod) string {
 				isPrimitive(arg),
 			}
 		}
-		sig = GodotCallSignature{icallRetType, godotArgs}
+		sig = GodotCallSignature{icallRetType, godotArgs, v.Debug}
 		v.GodotCalls[sigKey] = sig
 	}
 	icallName := sig.GodotCallName()
@@ -334,6 +335,9 @@ func main() {
 	if pkgPath == "" {
 		panic("$PKG_PATH environment variable was not set. Be sure to run this from generate.sh!")
 	}
+	debugLogs := os.Getenv("DEBUG_LOGS")
+	outputDebug := strings.ToLower(debugLogs) == "true"
+
 	// Get our documentation that was pulled down from generate.sh.
 	docFiles, err := ioutil.ReadDir(docsPath)
 	if err != nil {
@@ -370,6 +374,7 @@ func main() {
 
 	// Unmarshal the JSON into a defined structure.
 	var view View
+	view.Debug = outputDebug
 	json.Unmarshal(body, &view.APIs)
 	view.Header = `
 //------------------------------------------------------------------------------
@@ -450,6 +455,7 @@ type GodotCallSigKey struct {
 type GodotCallSignature struct {
 	ReturnType string
 	Arguments  []GodotCallArg
+	Debug      bool
 }
 
 type GodotCallArg struct {
