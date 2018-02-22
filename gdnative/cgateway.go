@@ -1,4 +1,4 @@
-package godot
+package gdnative
 
 /*
 #include <stdio.h>

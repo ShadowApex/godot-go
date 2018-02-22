@@ -1,5 +1,5 @@
 // Package godot provides a wrapper around the Godot GDNative API.
-package godot
+package gdnative
 
 /*
 #cgo CFLAGS: -I../godot_headers -std=c11

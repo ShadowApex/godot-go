@@ -77,14 +77,14 @@ func Generate() {
 	log.Println("Generating", view.StructType, "C headers...")
 	WriteTemplate(
 		packagePath+"/cmd/generate/templates/gdnative.h.tmpl",
-		packagePath+"/godot/gdnative.h",
+		packagePath+"/gdnative/gdnative.h",
 		view,
 	)
 
 	log.Println("Generating", view.StructType, "C bindings...")
 	WriteTemplate(
 		packagePath+"/cmd/generate/templates/gdnative.c.tmpl",
-		packagePath+"/godot/gdnative.c",
+		packagePath+"/gdnative/gdnative.c",
 		view,
 	)
 
@@ -96,14 +96,14 @@ func Generate() {
 		log.Println("Generating", view.StructType, "C headers...")
 		WriteTemplate(
 			packagePath+"/cmd/generate/templates/gdnative.h.tmpl",
-			packagePath+"/godot/"+name+".h",
+			packagePath+"/gdnative/"+name+".h",
 			view,
 		)
 
 		log.Println("Generating", view.StructType, "C bindings...")
 		WriteTemplate(
 			packagePath+"/cmd/generate/templates/gdnative.c.tmpl",
-			packagePath+"/godot/"+name+".c",
+			packagePath+"/gdnative/"+name+".c",
 			view,
 		)
 	}
