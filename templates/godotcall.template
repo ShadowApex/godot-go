@@ -10,8 +10,13 @@ func {{ $view.GodotCallDef }} {
     log.Println("    C Array: ", cArgsArray)
 
     {{ range $i, $arg := .Arguments }}
-        cArg{{ $i }} := {{ template "go2godot.template" $arg}}
-        C.add_element(cArgsArray, unsafe.Pointer(&cArg{{ $i }}), C.int({{ $i }}))
+        {{ if $arg.IsPrimitive }}
+            primArg{{ $i }} := {{ template "go2godot.template" $arg}}
+            cArg{{ $i }} := unsafe.Pointer(&primArg{{ $i }})
+        {{ else }}
+            cArg{{ $i }} := unsafe.Pointer({{ template "go2godot.template" $arg}})
+        {{ end }}
+        C.add_element(cArgsArray, cArg{{ $i }}, C.int({{ $i }}))
     {{ end }}
     log.Println("  Built argument array from variant arguments: ", cArgsArray)
 
@@ -20,8 +25,8 @@ func {{ $view.GodotCallDef }} {
     {{ else }}
         // Construct our return object that will be populated by the method call.
         log.Println("  Building return value.")
-        var ret *{{ $view.GetReturnType }}
-        retPtr := unsafe.Pointer(ret)
+        var ret {{ $view.GetReturnType }}
+        retPtr := unsafe.Pointer(&ret)
     {{ end }}
 
     // Get the Godot objects owner so we can pass it to godot_method_bind_ptrcall.

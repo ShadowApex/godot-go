@@ -1,6 +1,6 @@
 {{ if eq "bool" .Type -}}C.godot_bool({{.Name}})
-{{- else if eq "int" .Type -}}C.int64_t({{.Name}})
-{{- else if eq "float" .Type -}}C.double({{.Name}})
+{{- else if eq "int" .Type -}}C.godot_int({{.Name}})
+{{- else if eq "float" .Type -}}C.godot_real({{.Name}})
 {{- else if eq "String" .Type -}}stringAsGodotString({{.Name}})
 {{- else if eq "Array" .Type -}}{{.Name}}.array
 {{- else if eq "Basis" .Type -}}{{.Name}}.basis

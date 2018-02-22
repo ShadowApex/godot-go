@@ -784,9 +784,9 @@ func (o *arvrServer) FindInterface(name string) *ARVRInterface {
 	returnValue := godotCallObjectString(o, "find_interface", name)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *ARVRInterface
+	var ret ARVRInterface
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -799,9 +799,9 @@ func (o *arvrServer) GetInterface(idx int64) *ARVRInterface {
 	returnValue := godotCallObjectInt(o, "get_interface", idx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *ARVRInterface
+	var ret ARVRInterface
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -853,9 +853,9 @@ func (o *arvrServer) GetTracker(idx int64) *ARVRPositionalTracker {
 	returnValue := godotCallObjectInt(o, "get_tracker", idx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *ARVRPositionalTracker
+	var ret ARVRPositionalTracker
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -1224,9 +1224,9 @@ func (o *AcceptDialog) AddButton(text string, right bool, action string) *Button
 	returnValue := godotCallObjectStringBoolString(o, "add_button", text, right, action)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Button
+	var ret Button
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -1239,9 +1239,9 @@ func (o *AcceptDialog) AddCancel(name string) *Button {
 	returnValue := godotCallObjectString(o, "add_cancel", name)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Button
+	var ret Button
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -1267,9 +1267,9 @@ func (o *AcceptDialog) GetLabel() *Label {
 	returnValue := godotCallObject(o, "get_label")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Label
+	var ret Label
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -1282,9 +1282,9 @@ func (o *AcceptDialog) GetOk() *Button {
 	returnValue := godotCallObject(o, "get_ok")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Button
+	var ret Button
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -1435,9 +1435,9 @@ func (o *AnimatedSprite) GetSpriteFrames() *SpriteFrames {
 	returnValue := godotCallObject(o, "get_sprite_frames")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *SpriteFrames
+	var ret SpriteFrames
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -1680,9 +1680,9 @@ func (o *AnimatedSprite3D) GetSpriteFrames() *SpriteFrames {
 	returnValue := godotCallObject(o, "get_sprite_frames")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *SpriteFrames
+	var ret SpriteFrames
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -2425,9 +2425,9 @@ func (o *AnimationPlayer) GetAnimation(name string) *Animation {
 	returnValue := godotCallObjectString(o, "get_animation", name)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Animation
+	var ret Animation
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -2838,9 +2838,9 @@ func (o *AnimationTreePlayer) AnimationNodeGetAnimation(id string) *Animation {
 	returnValue := godotCallObjectString(o, "animation_node_get_animation", id)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Animation
+	var ret Animation
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -4943,9 +4943,9 @@ func (o *ArrayMesh) SurfaceGetMaterial(surfIdx int64) *Material {
 	returnValue := godotCallObjectInt(o, "surface_get_material", surfIdx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Material
+	var ret Material
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -5046,9 +5046,9 @@ func (o *AtlasTexture) GetAtlas() *Texture {
 	returnValue := godotCallObject(o, "get_atlas")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -7149,9 +7149,9 @@ func (o *audioServer) GenerateBusLayout() *AudioBusLayout {
 	returnValue := godotCallObject(o, "generate_bus_layout")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *AudioBusLayout
+	var ret AudioBusLayout
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -7177,9 +7177,9 @@ func (o *audioServer) GetBusEffect(busIdx int64, effectIdx int64) *AudioEffect {
 	returnValue := godotCallObjectIntInt(o, "get_bus_effect", busIdx, effectIdx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *AudioEffect
+	var ret AudioEffect
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -7737,9 +7737,9 @@ func (o *AudioStreamPlayer) GetStream() *AudioStream {
 	returnValue := godotCallObject(o, "get_stream")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *AudioStream
+	var ret AudioStream
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -7997,9 +7997,9 @@ func (o *AudioStreamPlayer2D) GetStream() *AudioStream {
 	returnValue := godotCallObject(o, "get_stream")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *AudioStream
+	var ret AudioStream
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -8370,9 +8370,9 @@ func (o *AudioStreamPlayer3D) GetStream() *AudioStream {
 	returnValue := godotCallObject(o, "get_stream")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *AudioStream
+	var ret AudioStream
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -8677,9 +8677,9 @@ func (o *AudioStreamRandomPitch) GetAudioStream() *AudioStream {
 	returnValue := godotCallObject(o, "get_audio_stream")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *AudioStream
+	var ret AudioStream
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -9112,9 +9112,9 @@ func (o *BakedLightmap) GetLightData() *BakedLightmapData {
 	returnValue := godotCallObject(o, "get_light_data")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *BakedLightmapData
+	var ret BakedLightmapData
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -9405,9 +9405,9 @@ func (o *BakedLightmapData) GetUserLightmap(userIdx int64) *Texture {
 	returnValue := godotCallObjectInt(o, "get_user_lightmap", userIdx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -9563,9 +9563,9 @@ func (o *BaseButton) GetButtonGroup() *ButtonGroup {
 	returnValue := godotCallObject(o, "get_button_group")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *ButtonGroup
+	var ret ButtonGroup
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -9604,9 +9604,9 @@ func (o *BaseButton) GetShortcut() *ShortCut {
 	returnValue := godotCallObject(o, "get_shortcut")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *ShortCut
+	var ret ShortCut
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -10033,9 +10033,9 @@ func (o *BitmapFont) GetFallback() *BitmapFont {
 	returnValue := godotCallObject(o, "get_fallback")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *BitmapFont
+	var ret BitmapFont
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -10061,9 +10061,9 @@ func (o *BitmapFont) GetTexture(idx int64) *Texture {
 	returnValue := godotCallObjectInt(o, "get_texture", idx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -10324,9 +10324,9 @@ func (o *Button) GetButtonIcon() *Texture {
 	returnValue := godotCallObject(o, "get_button_icon")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -10464,9 +10464,9 @@ func (o *ButtonGroup) GetPressedButton() *BaseButton {
 	returnValue := godotCallObject(o, "get_pressed_button")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *BaseButton
+	var ret BaseButton
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -10547,9 +10547,9 @@ func (o *Camera) GetEnvironment() *Environment {
 	returnValue := godotCallObject(o, "get_environment")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Environment
+	var ret Environment
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -11056,9 +11056,9 @@ func (o *Camera2D) GetCustomViewport() *Node {
 	returnValue := godotCallObject(o, "get_custom_viewport")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Node
+	var ret Node
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -12052,9 +12052,9 @@ func (o *CanvasItem) GetMaterial() *Material {
 	returnValue := godotCallObject(o, "get_material")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Material
+	var ret Material
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -12145,9 +12145,9 @@ func (o *CanvasItem) GetWorld2D() *World2D {
 	returnValue := godotCallObject(o, "get_world_2d")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *World2D
+	var ret World2D
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -12262,9 +12262,9 @@ func (o *CanvasItem) MakeInputLocal(event *InputEvent) *InputEvent {
 	returnValue := godotCallObjectObject(o, "make_input_local", &event.Object)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *InputEvent
+	var ret InputEvent
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -12493,9 +12493,9 @@ func (o *CanvasLayer) GetCustomViewport() *Node {
 	returnValue := godotCallObject(o, "get_custom_viewport")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Node
+	var ret Node
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -12586,9 +12586,9 @@ func (o *CanvasLayer) GetWorld2D() *World2D {
 	returnValue := godotCallObject(o, "get_world_2d")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *World2D
+	var ret World2D
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -13261,9 +13261,9 @@ func (o *CollisionObject) ShapeOwnerGetOwner(ownerId int64) *Object {
 	returnValue := godotCallObjectInt(o, "shape_owner_get_owner", ownerId)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -13276,9 +13276,9 @@ func (o *CollisionObject) ShapeOwnerGetShape(ownerId int64, shapeId int64) *Shap
 	returnValue := godotCallObjectIntInt(o, "shape_owner_get_shape", ownerId, shapeId)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Shape
+	var ret Shape
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -13527,9 +13527,9 @@ func (o *CollisionObject2D) ShapeOwnerGetOwner(ownerId int64) *Object {
 	returnValue := godotCallObjectInt(o, "shape_owner_get_owner", ownerId)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -13542,9 +13542,9 @@ func (o *CollisionObject2D) ShapeOwnerGetShape(ownerId int64, shapeId int64) *Sh
 	returnValue := godotCallObjectIntInt(o, "shape_owner_get_shape", ownerId, shapeId)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Shape2D
+	var ret Shape2D
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -13862,9 +13862,9 @@ func (o *CollisionShape) GetShape() *Shape {
 	returnValue := godotCallObject(o, "get_shape")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Shape
+	var ret Shape
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -13963,9 +13963,9 @@ func (o *CollisionShape2D) GetShape() *Shape2D {
 	returnValue := godotCallObject(o, "get_shape")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Shape2D
+	var ret Shape2D
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -14312,9 +14312,9 @@ func (o *ColorPickerButton) GetPicker() *ColorPicker {
 	returnValue := godotCallObject(o, "get_picker")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *ColorPicker
+	var ret ColorPicker
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -14327,9 +14327,9 @@ func (o *ColorPickerButton) GetPopup() *PopupPanel {
 	returnValue := godotCallObject(o, "get_popup")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *PopupPanel
+	var ret PopupPanel
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -14742,9 +14742,9 @@ func (o *ConfirmationDialog) GetCancel() *Button {
 	returnValue := godotCallObject(o, "get_cancel")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Button
+	var ret Button
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -15145,9 +15145,9 @@ func (o *Control) GetDragData(position *Vector2) *Object {
 	returnValue := godotCallObjectVector2(o, "get_drag_data", position)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -15212,9 +15212,9 @@ func (o *Control) GetFocusOwner() *Control {
 	returnValue := godotCallObject(o, "get_focus_owner")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Control
+	var ret Control
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -15240,9 +15240,9 @@ func (o *Control) GetFont(name string, aType string) *Font {
 	returnValue := godotCallObjectStringString(o, "get_font", name, aType)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Font
+	var ret Font
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -15307,9 +15307,9 @@ func (o *Control) GetIcon(name string, aType string) *Texture {
 	returnValue := godotCallObjectStringString(o, "get_icon", name, aType)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -15374,9 +15374,9 @@ func (o *Control) GetParentControl() *Control {
 	returnValue := godotCallObject(o, "get_parent_control")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Control
+	var ret Control
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -15493,9 +15493,9 @@ func (o *Control) GetStylebox(name string, aType string) *StyleBox {
 	returnValue := godotCallObjectStringString(o, "get_stylebox", name, aType)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *StyleBox
+	var ret StyleBox
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -15508,9 +15508,9 @@ func (o *Control) GetTheme() *Theme {
 	returnValue := godotCallObject(o, "get_theme")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Theme
+	var ret Theme
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -16314,9 +16314,9 @@ func (o *CubeMap) GetSide(side int64) *Image {
 	returnValue := godotCallObjectInt(o, "get_side", side)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Image
+	var ret Image
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -17433,9 +17433,9 @@ func (o *CurveTexture) GetCurve() *Curve {
 	returnValue := godotCallObject(o, "get_curve")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Curve
+	var ret Curve
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -17841,9 +17841,9 @@ func (o *DynamicFont) GetFallback(idx int64) *DynamicFontData {
 	returnValue := godotCallObjectInt(o, "get_fallback", idx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *DynamicFontData
+	var ret DynamicFontData
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -17869,9 +17869,9 @@ func (o *DynamicFont) GetFontData() *DynamicFontData {
 	returnValue := godotCallObject(o, "get_font_data")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *DynamicFontData
+	var ret DynamicFontData
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -18609,9 +18609,9 @@ func (o *EditorFileDialog) GetVbox() *VBoxContainer {
 	returnValue := godotCallObject(o, "get_vbox")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *VBoxContainer
+	var ret VBoxContainer
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -18780,9 +18780,9 @@ func (o *EditorFileSystem) GetFilesystem() *EditorFileSystemDirectory {
 	returnValue := godotCallObject(o, "get_filesystem")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *EditorFileSystemDirectory
+	var ret EditorFileSystemDirectory
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -18795,9 +18795,9 @@ func (o *EditorFileSystem) GetFilesystemPath(path string) *EditorFileSystemDirec
 	returnValue := godotCallObjectString(o, "get_filesystem_path", path)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *EditorFileSystemDirectory
+	var ret EditorFileSystemDirectory
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -18991,9 +18991,9 @@ func (o *EditorFileSystemDirectory) GetParent() *EditorFileSystemDirectory {
 	returnValue := godotCallObject(o, "get_parent")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *EditorFileSystemDirectory
+	var ret EditorFileSystemDirectory
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -19019,9 +19019,9 @@ func (o *EditorFileSystemDirectory) GetSubdir(idx int64) *EditorFileSystemDirect
 	returnValue := godotCallObjectInt(o, "get_subdir", idx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *EditorFileSystemDirectory
+	var ret EditorFileSystemDirectory
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -19224,9 +19224,9 @@ func (o *EditorInterface) GetBaseControl() *Control {
 	returnValue := godotCallObject(o, "get_base_control")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Control
+	var ret Control
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -19239,9 +19239,9 @@ func (o *EditorInterface) GetEditedSceneRoot() *Node {
 	returnValue := godotCallObject(o, "get_edited_scene_root")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Node
+	var ret Node
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -19254,9 +19254,9 @@ func (o *EditorInterface) GetEditorSettings() *EditorSettings {
 	returnValue := godotCallObject(o, "get_editor_settings")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *EditorSettings
+	var ret EditorSettings
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -19269,9 +19269,9 @@ func (o *EditorInterface) GetEditorViewport() *Control {
 	returnValue := godotCallObject(o, "get_editor_viewport")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Control
+	var ret Control
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -19297,9 +19297,9 @@ func (o *EditorInterface) GetResourceFilesystem() *EditorFileSystem {
 	returnValue := godotCallObject(o, "get_resource_filesystem")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *EditorFileSystem
+	var ret EditorFileSystem
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -19312,9 +19312,9 @@ func (o *EditorInterface) GetResourcePreviewer() *EditorResourcePreview {
 	returnValue := godotCallObject(o, "get_resource_previewer")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *EditorResourcePreview
+	var ret EditorResourcePreview
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -19327,9 +19327,9 @@ func (o *EditorInterface) GetScriptEditor() *ScriptEditor {
 	returnValue := godotCallObject(o, "get_script_editor")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *ScriptEditor
+	var ret ScriptEditor
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -19355,9 +19355,9 @@ func (o *EditorInterface) GetSelection() *EditorSelection {
 	returnValue := godotCallObject(o, "get_selection")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *EditorSelection
+	var ret EditorSelection
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -19469,9 +19469,9 @@ func (o *EditorPlugin) AddControlToBottomPanel(control *Object, title string) *T
 	returnValue := godotCallObjectObjectString(o, "add_control_to_bottom_panel", control, title)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *ToolButton
+	var ret ToolButton
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -19583,9 +19583,9 @@ func (o *EditorPlugin) CreateSpatialGizmo(forSpatial *Spatial) *EditorSpatialGiz
 	returnValue := godotCallObjectObject(o, "create_spatial_gizmo", &forSpatial.Object)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *EditorSpatialGizmo
+	var ret EditorSpatialGizmo
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -19670,9 +19670,9 @@ func (o *EditorPlugin) GetEditorInterface() *EditorInterface {
 	returnValue := godotCallObject(o, "get_editor_interface")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *EditorInterface
+	var ret EditorInterface
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -19685,9 +19685,9 @@ func (o *EditorPlugin) GetPluginIcon() *Object {
 	returnValue := godotCallObject(o, "get_plugin_icon")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -19726,9 +19726,9 @@ func (o *EditorPlugin) GetUndoRedo() *UndoRedo {
 	returnValue := godotCallObject(o, "get_undo_redo")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *UndoRedo
+	var ret UndoRedo
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -19974,9 +19974,9 @@ func (o *EditorResourceConversionPlugin) X_Convert(resource *Resource) *Resource
 	returnValue := godotCallObjectObject(o, "_convert", &resource.Object)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Resource
+	var ret Resource
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -20104,9 +20104,9 @@ func (o *EditorResourcePreviewGenerator) Generate(from *Resource) *Texture {
 	returnValue := godotCallObjectObject(o, "generate", &from.Object)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -20119,9 +20119,9 @@ func (o *EditorResourcePreviewGenerator) GenerateFromPath(path string) *Texture 
 	returnValue := godotCallObjectString(o, "generate_from_path", path)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -20191,9 +20191,9 @@ func (o *EditorSceneImporter) X_ImportAnimation(path string, flags int64, bakeFp
 	returnValue := godotCallObjectStringIntInt(o, "_import_animation", path, flags, bakeFps)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Animation
+	var ret Animation
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -20206,9 +20206,9 @@ func (o *EditorSceneImporter) X_ImportScene(path string, flags int64, bakeFps in
 	returnValue := godotCallObjectStringIntInt(o, "_import_scene", path, flags, bakeFps)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Node
+	var ret Node
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -20221,9 +20221,9 @@ func (o *EditorSceneImporter) ImportAnimationFromOtherImporter(path string, flag
 	returnValue := godotCallObjectStringIntInt(o, "import_animation_from_other_importer", path, flags, bakeFps)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Animation
+	var ret Animation
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -20236,9 +20236,9 @@ func (o *EditorSceneImporter) ImportSceneFromOtherImporter(path string, flags in
 	returnValue := godotCallObjectStringIntInt(o, "import_scene_from_other_importer", path, flags, bakeFps)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Node
+	var ret Node
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -20320,9 +20320,9 @@ func (o *EditorScript) GetEditorInterface() *EditorInterface {
 	returnValue := godotCallObject(o, "get_editor_interface")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *EditorInterface
+	var ret EditorInterface
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -20335,9 +20335,9 @@ func (o *EditorScript) GetScene() *Node {
 	returnValue := godotCallObject(o, "get_scene")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Node
+	var ret Node
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -20875,9 +20875,9 @@ func (o *Environment) GetAdjustmentColorCorrection() *Texture {
 	returnValue := godotCallObject(o, "get_adjustment_color_correction")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -21306,9 +21306,9 @@ func (o *Environment) GetSky() *Sky {
 	returnValue := godotCallObject(o, "get_sky")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Sky
+	var ret Sky
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -22864,9 +22864,9 @@ func (o *FileDialog) GetVbox() *VBoxContainer {
 	returnValue := godotCallObject(o, "get_vbox")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *VBoxContainer
+	var ret VBoxContainer
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -23206,9 +23206,9 @@ func (o *GDNative) GetLibrary() *GDNativeLibrary {
 	returnValue := godotCallObject(o, "get_library")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *GDNativeLibrary
+	var ret GDNativeLibrary
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -23276,9 +23276,9 @@ func (o *GDNativeLibrary) GetConfigFile() *ConfigFile {
 	returnValue := godotCallObject(o, "get_config_file")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *ConfigFile
+	var ret ConfigFile
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -23444,9 +23444,9 @@ func (o *GDScript) New() *Object {
 	returnValue := godotCallObject(o, "new")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -23621,9 +23621,9 @@ func (o *GIProbe) GetProbeData() *GIProbeData {
 	returnValue := godotCallObject(o, "get_probe_data")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *GIProbeData
+	var ret GIProbeData
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -24495,9 +24495,9 @@ func (o *GeometryInstance) GetMaterialOverride() *Material {
 	returnValue := godotCallObject(o, "get_material_override")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Material
+	var ret Material
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -24789,9 +24789,9 @@ func (o *GradientTexture) GetGradient() *Gradient {
 	returnValue := godotCallObject(o, "get_gradient")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Gradient
+	var ret Gradient
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -25868,9 +25868,9 @@ func (o *GridMap) GetTheme() *MeshLibrary {
 	returnValue := godotCallObject(o, "get_theme")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *MeshLibrary
+	var ret MeshLibrary
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -26285,9 +26285,9 @@ func (o *HTTPClient) GetConnection() *StreamPeer {
 	returnValue := godotCallObject(o, "get_connection")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *StreamPeer
+	var ret StreamPeer
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -27269,9 +27269,9 @@ func (o *Image) GetRect(rect *Rect2) *Image {
 	returnValue := godotCallObjectRect2(o, "get_rect", rect)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Image
+	var ret Image
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -28434,9 +28434,9 @@ func (o *InputEvent) XformedBy(xform *Transform2D, localOfs *Vector2) *InputEven
 	returnValue := godotCallObjectTransform2DVector2(o, "xformed_by", xform, localOfs)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *InputEvent
+	var ret InputEvent
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -29971,9 +29971,9 @@ func (o *ItemList) GetItemIcon(idx int64) *Texture {
 	returnValue := godotCallObjectInt(o, "get_item_icon", idx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -30090,9 +30090,9 @@ func (o *ItemList) GetVScroll() *VScrollBar {
 	returnValue := godotCallObject(o, "get_v_scroll")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *VScrollBar
+	var ret VScrollBar
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -30873,9 +30873,9 @@ func (o *KinematicBody) GetSlideCollision(slideIdx int64) *KinematicCollision {
 	returnValue := godotCallObjectInt(o, "get_slide_collision", slideIdx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *KinematicCollision
+	var ret KinematicCollision
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -30940,9 +30940,9 @@ func (o *KinematicBody) MoveAndCollide(relVec *Vector3) *KinematicCollision {
 	returnValue := godotCallObjectVector3(o, "move_and_collide", relVec)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *KinematicCollision
+	var ret KinematicCollision
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -31047,9 +31047,9 @@ func (o *KinematicBody2D) GetSlideCollision(slideIdx int64) *KinematicCollision2
 	returnValue := godotCallObjectInt(o, "get_slide_collision", slideIdx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *KinematicCollision2D
+	var ret KinematicCollision2D
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -31114,9 +31114,9 @@ func (o *KinematicBody2D) MoveAndCollide(relVec *Vector2) *KinematicCollision2D 
 	returnValue := godotCallObjectVector2(o, "move_and_collide", relVec)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *KinematicCollision2D
+	var ret KinematicCollision2D
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -31184,9 +31184,9 @@ func (o *KinematicCollision) GetCollider() *Object {
 	returnValue := godotCallObject(o, "get_collider")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -31225,9 +31225,9 @@ func (o *KinematicCollision) GetColliderShape() *Object {
 	returnValue := godotCallObject(o, "get_collider_shape")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -31266,9 +31266,9 @@ func (o *KinematicCollision) GetLocalShape() *Object {
 	returnValue := godotCallObject(o, "get_local_shape")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -31351,9 +31351,9 @@ func (o *KinematicCollision2D) GetCollider() *Object {
 	returnValue := godotCallObject(o, "get_collider")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -31392,9 +31392,9 @@ func (o *KinematicCollision2D) GetColliderShape() *Object {
 	returnValue := godotCallObject(o, "get_collider_shape")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -31433,9 +31433,9 @@ func (o *KinematicCollision2D) GetLocalShape() *Object {
 	returnValue := godotCallObject(o, "get_local_shape")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -31902,9 +31902,9 @@ func (o *LargeTexture) GetPieceTexture(idx int64) *Texture {
 	returnValue := godotCallObjectInt(o, "get_piece_texture", idx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -32371,9 +32371,9 @@ func (o *Light2D) GetTexture() *Texture {
 	returnValue := godotCallObject(o, "get_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -32750,9 +32750,9 @@ func (o *LightOccluder2D) GetOccluderPolygon() *OccluderPolygon2D {
 	returnValue := godotCallObject(o, "get_occluder_polygon")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *OccluderPolygon2D
+	var ret OccluderPolygon2D
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -32866,9 +32866,9 @@ func (o *Line2D) GetGradient() *Gradient {
 	returnValue := godotCallObject(o, "get_gradient")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Gradient
+	var ret Gradient
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -32959,9 +32959,9 @@ func (o *Line2D) GetTexture() *Texture {
 	returnValue := godotCallObject(o, "get_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -33327,9 +33327,9 @@ func (o *LineEdit) GetMenu() *PopupMenu {
 	returnValue := godotCallObject(o, "get_menu")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *PopupMenu
+	var ret PopupMenu
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -33962,9 +33962,9 @@ func (o *Material) GetNextPass() *Material {
 	returnValue := godotCallObject(o, "get_next_pass")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Material
+	var ret Material
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -34065,9 +34065,9 @@ func (o *MenuButton) GetPopup() *PopupMenu {
 	returnValue := godotCallObject(o, "get_popup")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *PopupMenu
+	var ret PopupMenu
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -34109,9 +34109,9 @@ func (o *Mesh) CreateConvexShape() *Shape {
 	returnValue := godotCallObject(o, "create_convex_shape")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Shape
+	var ret Shape
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -34124,9 +34124,9 @@ func (o *Mesh) CreateOutline(margin float64) *Mesh {
 	returnValue := godotCallObjectFloat(o, "create_outline", margin)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Mesh
+	var ret Mesh
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -34139,9 +34139,9 @@ func (o *Mesh) CreateTrimeshShape() *Shape {
 	returnValue := godotCallObject(o, "create_trimesh_shape")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Shape
+	var ret Shape
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -34154,9 +34154,9 @@ func (o *Mesh) GenerateTriangleMesh() *TriangleMesh {
 	returnValue := godotCallObject(o, "generate_triangle_mesh")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *TriangleMesh
+	var ret TriangleMesh
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -34391,9 +34391,9 @@ func (o *MeshDataTool) GetMaterial() *Material {
 	returnValue := godotCallObject(o, "get_material")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Material
+	var ret Material
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -34756,9 +34756,9 @@ func (o *MeshInstance) GetMesh() *Mesh {
 	returnValue := godotCallObject(o, "get_mesh")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Mesh
+	var ret Mesh
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -34784,9 +34784,9 @@ func (o *MeshInstance) GetSurfaceMaterial(surface int64) *Material {
 	returnValue := godotCallObjectInt(o, "get_surface_material", surface)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Material
+	var ret Material
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -34898,9 +34898,9 @@ func (o *MeshLibrary) GetItemMesh(id int64) *Mesh {
 	returnValue := godotCallObjectInt(o, "get_item_mesh", id)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Mesh
+	var ret Mesh
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -34926,9 +34926,9 @@ func (o *MeshLibrary) GetItemNavmesh(id int64) *NavigationMesh {
 	returnValue := godotCallObjectInt(o, "get_item_navmesh", id)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *NavigationMesh
+	var ret NavigationMesh
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -34941,9 +34941,9 @@ func (o *MeshLibrary) GetItemPreview(id int64) *Texture {
 	returnValue := godotCallObjectInt(o, "get_item_preview", id)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -35341,9 +35341,9 @@ func (o *MultiMesh) GetMesh() *Mesh {
 	returnValue := godotCallObject(o, "get_mesh")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Mesh
+	var ret Mesh
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -35453,9 +35453,9 @@ func (o *MultiMeshInstance) GetMultimesh() *MultiMesh {
 	returnValue := godotCallObject(o, "get_multimesh")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *MultiMesh
+	var ret MultiMesh
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -35510,9 +35510,9 @@ func (o *NativeScript) GetLibrary() *GDNativeLibrary {
 	returnValue := godotCallObject(o, "get_library")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *GDNativeLibrary
+	var ret GDNativeLibrary
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -35525,9 +35525,9 @@ func (o *NativeScript) New() *Object {
 	returnValue := godotCallObject(o, "new")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -35606,9 +35606,9 @@ func (o *Navigation) GetClosestPointOwner(toPoint *Vector3) *Object {
 	returnValue := godotCallObjectVector3(o, "get_closest_point_owner", toPoint)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -35737,9 +35737,9 @@ func (o *Navigation2D) GetClosestPointOwner(toPoint *Vector2) *Object {
 	returnValue := godotCallObjectVector2(o, "get_closest_point_owner", toPoint)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -36351,9 +36351,9 @@ func (o *NavigationMeshInstance) GetNavigationMesh() *NavigationMesh {
 	returnValue := godotCallObject(o, "get_navigation_mesh")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *NavigationMesh
+	var ret NavigationMesh
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -36660,9 +36660,9 @@ func (o *NavigationPolygonInstance) GetNavigationPolygon() *NavigationPolygon {
 	returnValue := godotCallObject(o, "get_navigation_polygon")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *NavigationPolygon
+	var ret NavigationPolygon
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -36984,9 +36984,9 @@ func (o *NinePatchRect) GetTexture() *Texture {
 	returnValue := godotCallObject(o, "get_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -37267,9 +37267,9 @@ func (o *Node) Duplicate(flags int64) *Node {
 	returnValue := godotCallObjectInt(o, "duplicate", flags)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Node
+	var ret Node
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -37282,9 +37282,9 @@ func (o *Node) FindNode(mask string, recursive bool, owned bool) *Node {
 	returnValue := godotCallObjectStringBoolBool(o, "find_node", mask, recursive, owned)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Node
+	var ret Node
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -37297,9 +37297,9 @@ func (o *Node) GetChild(idx int64) *Node {
 	returnValue := godotCallObjectInt(o, "get_child", idx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Node
+	var ret Node
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -37403,9 +37403,9 @@ func (o *Node) GetNode(path *NodePath) *Node {
 	returnValue := godotCallObjectNodePath(o, "get_node", path)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Node
+	var ret Node
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -37431,9 +37431,9 @@ func (o *Node) GetOwner() *Node {
 	returnValue := godotCallObject(o, "get_owner")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Node
+	var ret Node
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -37446,9 +37446,9 @@ func (o *Node) GetParent() *Node {
 	returnValue := godotCallObject(o, "get_parent")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Node
+	var ret Node
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -37552,9 +37552,9 @@ func (o *Node) GetTree() *SceneTree {
 	returnValue := godotCallObject(o, "get_tree")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *SceneTree
+	var ret SceneTree
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -37567,9 +37567,9 @@ func (o *Node) GetViewport() *Viewport {
 	returnValue := godotCallObject(o, "get_viewport")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Viewport
+	var ret Viewport
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -38895,9 +38895,9 @@ func (o *Object) GetScript() *Reference {
 	returnValue := godotCallObject(o, "get_script")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Reference
+	var ret Reference
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -39415,9 +39415,9 @@ func (o *OptionButton) GetItemIcon(idx int64) *Texture {
 	returnValue := godotCallObjectInt(o, "get_item_icon", idx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -39469,9 +39469,9 @@ func (o *OptionButton) GetPopup() *PopupMenu {
 	returnValue := godotCallObject(o, "get_popup")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *PopupMenu
+	var ret PopupMenu
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -39944,9 +39944,9 @@ func (o *PackedScene) GetState() *SceneState {
 	returnValue := godotCallObject(o, "get_state")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *SceneState
+	var ret SceneState
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -39959,9 +39959,9 @@ func (o *PackedScene) Instance(editState int64) *Node {
 	returnValue := godotCallObjectInt(o, "instance", editState)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Node
+	var ret Node
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -40151,9 +40151,9 @@ func (o *PacketPeerStream) GetStreamPeer() *StreamPeer {
 	returnValue := godotCallObject(o, "get_stream_peer")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *StreamPeer
+	var ret StreamPeer
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -40360,9 +40360,9 @@ func (o *PanoramaSky) GetPanorama() *Texture {
 	returnValue := godotCallObject(o, "get_panorama")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -40706,9 +40706,9 @@ func (o *Particles) GetDrawPassMesh(pass int64) *Mesh {
 	returnValue := godotCallObjectInt(o, "get_draw_pass_mesh", pass)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Mesh
+	var ret Mesh
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -40812,9 +40812,9 @@ func (o *Particles) GetProcessMaterial() *Material {
 	returnValue := godotCallObject(o, "get_process_material")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Material
+	var ret Material
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -41201,9 +41201,9 @@ func (o *Particles2D) GetNormalMap() *Texture {
 	returnValue := godotCallObject(o, "get_normal_map")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -41242,9 +41242,9 @@ func (o *Particles2D) GetProcessMaterial() *Material {
 	returnValue := godotCallObject(o, "get_process_material")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Material
+	var ret Material
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -41283,9 +41283,9 @@ func (o *Particles2D) GetTexture() *Texture {
 	returnValue := godotCallObject(o, "get_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -41590,9 +41590,9 @@ func (o *ParticlesMaterial) GetColorRamp() *Texture {
 	returnValue := godotCallObject(o, "get_color_ramp")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -41618,9 +41618,9 @@ func (o *ParticlesMaterial) GetEmissionColorTexture() *Texture {
 	returnValue := godotCallObject(o, "get_emission_color_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -41633,9 +41633,9 @@ func (o *ParticlesMaterial) GetEmissionNormalTexture() *Texture {
 	returnValue := godotCallObject(o, "get_emission_normal_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -41661,9 +41661,9 @@ func (o *ParticlesMaterial) GetEmissionPointTexture() *Texture {
 	returnValue := godotCallObject(o, "get_emission_point_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -41767,9 +41767,9 @@ func (o *ParticlesMaterial) GetParamTexture(param int64) *Texture {
 	returnValue := godotCallObjectInt(o, "get_param_texture", param)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -41795,9 +41795,9 @@ func (o *ParticlesMaterial) GetTrailColorModifier() *GradientTexture {
 	returnValue := godotCallObject(o, "get_trail_color_modifier")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *GradientTexture
+	var ret GradientTexture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -41823,9 +41823,9 @@ func (o *ParticlesMaterial) GetTrailSizeModifier() *CurveTexture {
 	returnValue := godotCallObject(o, "get_trail_size_modifier")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *CurveTexture
+	var ret CurveTexture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -42076,9 +42076,9 @@ func (o *Path) GetCurve() *Curve3D {
 	returnValue := godotCallObject(o, "get_curve")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Curve3D
+	var ret Curve3D
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -42131,9 +42131,9 @@ func (o *Path2D) GetCurve() *Curve2D {
 	returnValue := godotCallObject(o, "get_curve")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Curve2D
+	var ret Curve2D
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -42648,9 +42648,9 @@ func (o *Physics2DDirectBodyState) GetContactColliderObject(contactIdx int64) *O
 	returnValue := godotCallObjectInt(o, "get_contact_collider_object", contactIdx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -42806,9 +42806,9 @@ func (o *Physics2DDirectBodyState) GetSpaceState() *Physics2DDirectSpaceState {
 	returnValue := godotCallObject(o, "get_space_state")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Physics2DDirectSpaceState
+	var ret Physics2DDirectSpaceState
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -43489,9 +43489,9 @@ func (o *physics2DServer) BodyGetDirectState(body *RID) *Physics2DDirectBodyStat
 	returnValue := godotCallObjectRid(o, "body_get_direct_state", body)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Physics2DDirectBodyState
+	var ret Physics2DDirectBodyState
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -44147,9 +44147,9 @@ func (o *physics2DServer) SpaceGetDirectState(space *RID) *Physics2DDirectSpaceS
 	returnValue := godotCallObjectRid(o, "space_get_direct_state", space)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Physics2DDirectSpaceState
+	var ret Physics2DDirectSpaceState
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -44425,9 +44425,9 @@ func (o *Physics2DShapeQueryResult) GetResultObject(idx int64) *Object {
 	returnValue := godotCallObjectInt(o, "get_result_object", idx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -44497,9 +44497,9 @@ func (o *Physics2DTestMotionResult) GetCollider() *Object {
 	returnValue := godotCallObject(o, "get_collider")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -45039,9 +45039,9 @@ func (o *PhysicsDirectBodyState) GetContactColliderObject(contactIdx int64) *Obj
 	returnValue := godotCallObjectInt(o, "get_contact_collider_object", contactIdx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -45197,9 +45197,9 @@ func (o *PhysicsDirectBodyState) GetSpaceState() *PhysicsDirectSpaceState {
 	returnValue := godotCallObject(o, "get_space_state")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *PhysicsDirectSpaceState
+	var ret PhysicsDirectSpaceState
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -45850,9 +45850,9 @@ func (o *physicsServer) BodyGetDirectState(body *RID) *PhysicsDirectBodyState {
 	returnValue := godotCallObjectRid(o, "body_get_direct_state", body)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *PhysicsDirectBodyState
+	var ret PhysicsDirectBodyState
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -46661,9 +46661,9 @@ func (o *physicsServer) SpaceGetDirectState(space *RID) *PhysicsDirectSpaceState
 	returnValue := godotCallObjectRid(o, "space_get_direct_state", space)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *PhysicsDirectSpaceState
+	var ret PhysicsDirectSpaceState
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -46897,9 +46897,9 @@ func (o *PhysicsShapeQueryResult) GetResultObject(idx int64) *Object {
 	returnValue := godotCallObjectInt(o, "get_result_object", idx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -47281,9 +47281,9 @@ func (o *Polygon2D) GetTexture() *Texture {
 	returnValue := godotCallObject(o, "get_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -47974,9 +47974,9 @@ func (o *PopupMenu) GetItemIcon(idx int64) *Texture {
 	returnValue := godotCallObjectInt(o, "get_item_icon", idx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -48028,9 +48028,9 @@ func (o *PopupMenu) GetItemShortcut(idx int64) *ShortCut {
 	returnValue := godotCallObjectInt(o, "get_item_shortcut", idx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *ShortCut
+	var ret ShortCut
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -48465,9 +48465,9 @@ func (o *PrimitiveMesh) GetMaterial() *Material {
 	returnValue := godotCallObject(o, "get_material")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Material
+	var ret Material
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -49448,9 +49448,9 @@ func (o *ProxyTexture) GetBase() *Texture {
 	returnValue := godotCallObject(o, "get_base")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -49823,9 +49823,9 @@ func (o *RayCast) GetCollider() *Object {
 	returnValue := godotCallObject(o, "get_collider")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -50094,9 +50094,9 @@ func (o *RayCast2D) GetCollider() *Object {
 	returnValue := godotCallObject(o, "get_collider")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -50891,9 +50891,9 @@ func (o *RegEx) Search(subject string, offset int64, end int64) *RegExMatch {
 	returnValue := godotCallObjectStringIntInt(o, "search", subject, offset, end)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *RegExMatch
+	var ret RegExMatch
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -51346,9 +51346,9 @@ func (o *Resource) Duplicate(subresources bool) *Resource {
 	returnValue := godotCallObjectBool(o, "duplicate", subresources)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Resource
+	var ret Resource
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -51361,9 +51361,9 @@ func (o *Resource) GetLocalScene() *Node {
 	returnValue := godotCallObject(o, "get_local_scene")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Node
+	var ret Node
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -51573,9 +51573,9 @@ func (o *ResourceInteractiveLoader) GetResource() *Resource {
 	returnValue := godotCallObject(o, "get_resource")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Resource
+	var ret Resource
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -51693,9 +51693,9 @@ func (o *ResourcePreloader) GetResource(name string) *Resource {
 	returnValue := godotCallObjectString(o, "get_resource", name)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Resource
+	var ret Resource
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -51920,9 +51920,9 @@ func (o *RichTextLabel) GetVScroll() *VScrollBar {
 	returnValue := godotCallObject(o, "get_v_scroll")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *VScrollBar
+	var ret VScrollBar
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -53559,9 +53559,9 @@ func (o *SceneState) GetNodeInstance(idx int64) *PackedScene {
 	returnValue := godotCallObjectInt(o, "get_node_instance", idx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *PackedScene
+	var ret PackedScene
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -53827,9 +53827,9 @@ func (o *SceneTree) CreateTimer(timeSec float64, pauseModeProcess bool) *SceneTr
 	returnValue := godotCallObjectFloatBool(o, "create_timer", timeSec, pauseModeProcess)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *SceneTreeTimer
+	var ret SceneTreeTimer
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -53842,9 +53842,9 @@ func (o *SceneTree) GetCurrentScene() *Node {
 	returnValue := godotCallObject(o, "get_current_scene")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Node
+	var ret Node
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -53857,9 +53857,9 @@ func (o *SceneTree) GetEditedSceneRoot() *Node {
 	returnValue := godotCallObject(o, "get_edited_scene_root")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Node
+	var ret Node
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -53898,9 +53898,9 @@ func (o *SceneTree) GetNetworkPeer() *NetworkedMultiplayerPeer {
 	returnValue := godotCallObject(o, "get_network_peer")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *NetworkedMultiplayerPeer
+	var ret NetworkedMultiplayerPeer
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -53952,9 +53952,9 @@ func (o *SceneTree) GetRoot() *Viewport {
 	returnValue := godotCallObject(o, "get_root")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Viewport
+	var ret Viewport
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -54381,9 +54381,9 @@ func (o *Script) GetBaseScript() *Script {
 	returnValue := godotCallObject(o, "get_base_script")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Script
+	var ret Script
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -55026,9 +55026,9 @@ func (o *ScriptEditor) GetCurrentScript() *Script {
 	returnValue := godotCallObject(o, "get_current_script")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Script
+	var ret Script
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -55415,9 +55415,9 @@ func (o *Shader) GetDefaultTextureParam(param string) *Texture {
 	returnValue := godotCallObjectString(o, "get_default_texture_param", param)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -55496,9 +55496,9 @@ func (o *ShaderMaterial) GetShader() *Shader {
 	returnValue := godotCallObject(o, "get_shader")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Shader
+	var ret Shader
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -55689,9 +55689,9 @@ func (o *ShortCut) GetShortcut() *InputEvent {
 	returnValue := godotCallObject(o, "get_shortcut")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *InputEvent
+	var ret InputEvent
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -56285,9 +56285,9 @@ func (o *Spatial) GetGizmo() *SpatialGizmo {
 	returnValue := godotCallObject(o, "get_gizmo")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *SpatialGizmo
+	var ret SpatialGizmo
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -56313,9 +56313,9 @@ func (o *Spatial) GetParentSpatial() *Spatial {
 	returnValue := godotCallObject(o, "get_parent_spatial")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Spatial
+	var ret Spatial
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -56393,9 +56393,9 @@ func (o *Spatial) GetWorld() *World {
 	returnValue := godotCallObject(o, "get_world")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *World
+	var ret World
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -57424,9 +57424,9 @@ func (o *SpatialMaterial) GetTexture(param int64) *Texture {
 	returnValue := godotCallObjectInt(o, "get_texture", param)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -58517,9 +58517,9 @@ func (o *SpinBox) GetLineEdit() *LineEdit {
 	returnValue := godotCallObject(o, "get_line_edit")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *LineEdit
+	var ret LineEdit
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -58767,9 +58767,9 @@ func (o *Sprite) GetNormalMap() *Texture {
 	returnValue := godotCallObject(o, "get_normal_map")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -58808,9 +58808,9 @@ func (o *Sprite) GetTexture() *Texture {
 	returnValue := godotCallObject(o, "get_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -59090,9 +59090,9 @@ func (o *Sprite3D) GetTexture() *Texture {
 	returnValue := godotCallObject(o, "get_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -59626,9 +59626,9 @@ func (o *SpriteFrames) GetFrame(anim string, idx int64) *Texture {
 	returnValue := godotCallObjectStringInt(o, "get_frame", anim, idx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -60398,9 +60398,9 @@ func (o *StreamPeerBuffer) Duplicate() *StreamPeerBuffer {
 	returnValue := godotCallObject(o, "duplicate")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *StreamPeerBuffer
+	var ret StreamPeerBuffer
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -61385,9 +61385,9 @@ func (o *StyleBoxTexture) GetNormalMap() *Resource {
 	returnValue := godotCallObject(o, "get_normal_map")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Resource
+	var ret Resource
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -61413,9 +61413,9 @@ func (o *StyleBoxTexture) GetTexture() *Resource {
 	returnValue := godotCallObject(o, "get_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Resource
+	var ret Resource
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -61758,9 +61758,9 @@ func (o *SurfaceTool) Commit(existing *ArrayMesh, flags int64) *ArrayMesh {
 	returnValue := godotCallObjectObjectInt(o, "commit", &existing.Object, flags)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *ArrayMesh
+	var ret ArrayMesh
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -61894,9 +61894,9 @@ func (o *TCP_Server) TakeConnection() *StreamPeerTCP {
 	returnValue := godotCallObject(o, "take_connection")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *StreamPeerTCP
+	var ret StreamPeerTCP
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -61986,9 +61986,9 @@ func (o *TabContainer) GetCurrentTabControl() *Control {
 	returnValue := godotCallObject(o, "get_current_tab_control")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Control
+	var ret Control
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -62001,9 +62001,9 @@ func (o *TabContainer) GetPopup() *Popup {
 	returnValue := godotCallObject(o, "get_popup")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Popup
+	var ret Popup
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -62042,9 +62042,9 @@ func (o *TabContainer) GetTabControl(idx int64) *Control {
 	returnValue := godotCallObjectInt(o, "get_tab_control", idx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Control
+	var ret Control
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -62083,9 +62083,9 @@ func (o *TabContainer) GetTabIcon(tabIdx int64) *Texture {
 	returnValue := godotCallObjectInt(o, "get_tab_icon", tabIdx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -62330,9 +62330,9 @@ func (o *Tabs) GetTabIcon(tabIdx int64) *Texture {
 	returnValue := godotCallObjectInt(o, "get_tab_icon", tabIdx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -62847,9 +62847,9 @@ func (o *TextEdit) GetMenu() *PopupMenu {
 	returnValue := godotCallObject(o, "get_menu")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *PopupMenu
+	var ret PopupMenu
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -63476,9 +63476,9 @@ func (o *Texture) GetData() *Image {
 	returnValue := godotCallObject(o, "get_data")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Image
+	var ret Image
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -63585,9 +63585,9 @@ func (o *TextureButton) GetClickMask() *BitMap {
 	returnValue := godotCallObject(o, "get_click_mask")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *BitMap
+	var ret BitMap
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -63600,9 +63600,9 @@ func (o *TextureButton) GetDisabledTexture() *Texture {
 	returnValue := godotCallObject(o, "get_disabled_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -63628,9 +63628,9 @@ func (o *TextureButton) GetFocusedTexture() *Texture {
 	returnValue := godotCallObject(o, "get_focused_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -63643,9 +63643,9 @@ func (o *TextureButton) GetHoverTexture() *Texture {
 	returnValue := godotCallObject(o, "get_hover_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -63658,9 +63658,9 @@ func (o *TextureButton) GetNormalTexture() *Texture {
 	returnValue := godotCallObject(o, "get_normal_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -63673,9 +63673,9 @@ func (o *TextureButton) GetPressedTexture() *Texture {
 	returnValue := godotCallObject(o, "get_pressed_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -63846,9 +63846,9 @@ func (o *TextureProgress) GetOverTexture() *Texture {
 	returnValue := godotCallObject(o, "get_over_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -63861,9 +63861,9 @@ func (o *TextureProgress) GetProgressTexture() *Texture {
 	returnValue := godotCallObject(o, "get_progress_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -63915,9 +63915,9 @@ func (o *TextureProgress) GetUnderTexture() *Texture {
 	returnValue := godotCallObject(o, "get_under_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -64060,9 +64060,9 @@ func (o *TextureRect) GetTexture() *Texture {
 	returnValue := godotCallObject(o, "get_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -64268,9 +64268,9 @@ func (o *Theme) GetDefaultFont() *Font {
 	returnValue := godotCallObject(o, "get_default_font")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Font
+	var ret Font
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -64283,9 +64283,9 @@ func (o *Theme) GetFont(name string, aType string) *Font {
 	returnValue := godotCallObjectStringString(o, "get_font", name, aType)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Font
+	var ret Font
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -64311,9 +64311,9 @@ func (o *Theme) GetIcon(name string, aType string) *Texture {
 	returnValue := godotCallObjectStringString(o, "get_icon", name, aType)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -64339,9 +64339,9 @@ func (o *Theme) GetStylebox(name string, aType string) *StyleBox {
 	returnValue := godotCallObjectStringString(o, "get_stylebox", name, aType)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *StyleBox
+	var ret StyleBox
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -64855,9 +64855,9 @@ func (o *TileMap) GetTileset() *TileSet {
 	returnValue := godotCallObject(o, "get_tileset")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *TileSet
+	var ret TileSet
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -65369,9 +65369,9 @@ func (o *TileSet) TileGetLightOccluder(id int64) *OccluderPolygon2D {
 	returnValue := godotCallObjectInt(o, "tile_get_light_occluder", id)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *OccluderPolygon2D
+	var ret OccluderPolygon2D
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -65384,9 +65384,9 @@ func (o *TileSet) TileGetMaterial(id int64) *ShaderMaterial {
 	returnValue := godotCallObjectInt(o, "tile_get_material", id)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *ShaderMaterial
+	var ret ShaderMaterial
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -65412,9 +65412,9 @@ func (o *TileSet) TileGetNavigationPolygon(id int64) *NavigationPolygon {
 	returnValue := godotCallObjectInt(o, "tile_get_navigation_polygon", id)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *NavigationPolygon
+	var ret NavigationPolygon
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -65440,9 +65440,9 @@ func (o *TileSet) TileGetNormalMap(id int64) *Texture {
 	returnValue := godotCallObjectInt(o, "tile_get_normal_map", id)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -65481,9 +65481,9 @@ func (o *TileSet) TileGetShape(id int64, shapeId int64) *Shape2D {
 	returnValue := godotCallObjectIntInt(o, "tile_get_shape", id, shapeId)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Shape2D
+	var ret Shape2D
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -65548,9 +65548,9 @@ func (o *TileSet) TileGetTexture(id int64) *Texture {
 	returnValue := godotCallObjectInt(o, "tile_get_texture", id)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -65976,9 +65976,9 @@ func (o *TouchScreenButton) GetBitmask() *BitMap {
 	returnValue := godotCallObject(o, "get_bitmask")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *BitMap
+	var ret BitMap
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -65991,9 +65991,9 @@ func (o *TouchScreenButton) GetShape() *Shape2D {
 	returnValue := godotCallObject(o, "get_shape")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Shape2D
+	var ret Shape2D
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -66006,9 +66006,9 @@ func (o *TouchScreenButton) GetTexture() *Texture {
 	returnValue := godotCallObject(o, "get_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -66021,9 +66021,9 @@ func (o *TouchScreenButton) GetTexturePressed() *Texture {
 	returnValue := godotCallObject(o, "get_texture_pressed")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -66554,9 +66554,9 @@ func (o *Tree) CreateItem(parent *Object, idx int64) *Object {
 	returnValue := godotCallObjectObjectInt(o, "create_item", parent, idx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Object
+	var ret Object
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -66697,9 +66697,9 @@ func (o *Tree) GetEdited() *TreeItem {
 	returnValue := godotCallObject(o, "get_edited")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *TreeItem
+	var ret TreeItem
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -66738,9 +66738,9 @@ func (o *Tree) GetItemAtPosition(position *Vector2) *TreeItem {
 	returnValue := godotCallObjectVector2(o, "get_item_at_position", position)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *TreeItem
+	var ret TreeItem
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -66753,9 +66753,9 @@ func (o *Tree) GetNextSelected(from *Object) *TreeItem {
 	returnValue := godotCallObjectObject(o, "get_next_selected", from)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *TreeItem
+	var ret TreeItem
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -66781,9 +66781,9 @@ func (o *Tree) GetRoot() *TreeItem {
 	returnValue := godotCallObject(o, "get_root")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *TreeItem
+	var ret TreeItem
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -66822,9 +66822,9 @@ func (o *Tree) GetSelected() *TreeItem {
 	returnValue := godotCallObject(o, "get_selected")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *TreeItem
+	var ret TreeItem
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -67070,9 +67070,9 @@ func (o *TreeItem) GetButton(column int64, buttonIdx int64) *Texture {
 	returnValue := godotCallObjectIntInt(o, "get_button", column, buttonIdx)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -67111,9 +67111,9 @@ func (o *TreeItem) GetChildren() *TreeItem {
 	returnValue := godotCallObject(o, "get_children")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *TreeItem
+	var ret TreeItem
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -67165,9 +67165,9 @@ func (o *TreeItem) GetIcon(column int64) *Texture {
 	returnValue := godotCallObjectInt(o, "get_icon", column)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -67219,9 +67219,9 @@ func (o *TreeItem) GetNext() *TreeItem {
 	returnValue := godotCallObject(o, "get_next")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *TreeItem
+	var ret TreeItem
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -67234,9 +67234,9 @@ func (o *TreeItem) GetNextVisible() *TreeItem {
 	returnValue := godotCallObject(o, "get_next_visible")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *TreeItem
+	var ret TreeItem
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -67249,9 +67249,9 @@ func (o *TreeItem) GetParent() *TreeItem {
 	returnValue := godotCallObject(o, "get_parent")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *TreeItem
+	var ret TreeItem
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -67264,9 +67264,9 @@ func (o *TreeItem) GetPrev() *TreeItem {
 	returnValue := godotCallObject(o, "get_prev")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *TreeItem
+	var ret TreeItem
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -67279,9 +67279,9 @@ func (o *TreeItem) GetPrevVisible() *TreeItem {
 	returnValue := godotCallObject(o, "get_prev_visible")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *TreeItem
+	var ret TreeItem
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -68866,9 +68866,9 @@ func (o *VideoPlayer) GetStream() *VideoStream {
 	returnValue := godotCallObject(o, "get_stream")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *VideoStream
+	var ret VideoStream
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -68907,9 +68907,9 @@ func (o *VideoPlayer) GetVideoTexture() *Texture {
 	returnValue := godotCallObject(o, "get_video_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Texture
+	var ret Texture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -69307,9 +69307,9 @@ func (o *Viewport) FindWorld() *World {
 	returnValue := godotCallObject(o, "find_world")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *World
+	var ret World
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -69322,9 +69322,9 @@ func (o *Viewport) FindWorld2D() *World2D {
 	returnValue := godotCallObject(o, "find_world_2d")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *World2D
+	var ret World2D
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -69337,9 +69337,9 @@ func (o *Viewport) GetCamera() *Camera {
 	returnValue := godotCallObject(o, "get_camera")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Camera
+	var ret Camera
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -69534,9 +69534,9 @@ func (o *Viewport) GetTexture() *ViewportTexture {
 	returnValue := godotCallObject(o, "get_texture")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *ViewportTexture
+	var ret ViewportTexture
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -69614,9 +69614,9 @@ func (o *Viewport) GetWorld() *World {
 	returnValue := godotCallObject(o, "get_world")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *World
+	var ret World
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -69629,9 +69629,9 @@ func (o *Viewport) GetWorld2D() *World2D {
 	returnValue := godotCallObject(o, "get_world_2d")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *World2D
+	var ret World2D
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -70796,9 +70796,9 @@ func (o *VisualScript) GetNode(function string, id int64) *VisualScriptNode {
 	returnValue := godotCallObjectStringInt(o, "get_node", function, id)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *VisualScriptNode
+	var ret VisualScriptNode
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -72658,9 +72658,9 @@ func (o *VisualScriptNode) GetVisualScript() *VisualScript {
 	returnValue := godotCallObject(o, "get_visual_script")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *VisualScript
+	var ret VisualScript
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -72779,9 +72779,9 @@ func (o *VisualScriptPreload) GetPreload() *Resource {
 	returnValue := godotCallObject(o, "get_preload")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Resource
+	var ret Resource
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -75480,9 +75480,9 @@ func (o *visualServer) TextureGetData(texture *RID, cubeSide int64) *Image {
 	returnValue := godotCallObjectRidInt(o, "texture_get_data", texture, cubeSide)
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Image
+	var ret Image
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -76039,9 +76039,9 @@ func (o *WindowDialog) GetCloseButton() *TextureButton {
 	returnValue := godotCallObject(o, "get_close_button")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *TextureButton
+	var ret TextureButton
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -76120,9 +76120,9 @@ func (o *World) GetDirectSpaceState() *PhysicsDirectSpaceState {
 	returnValue := godotCallObject(o, "get_direct_space_state")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *PhysicsDirectSpaceState
+	var ret PhysicsDirectSpaceState
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -76135,9 +76135,9 @@ func (o *World) GetEnvironment() *Environment {
 	returnValue := godotCallObject(o, "get_environment")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Environment
+	var ret Environment
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -76150,9 +76150,9 @@ func (o *World) GetFallbackEnvironment() *Environment {
 	returnValue := godotCallObject(o, "get_fallback_environment")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Environment
+	var ret Environment
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -76244,9 +76244,9 @@ func (o *World2D) GetDirectSpaceState() *Physics2DDirectSpaceState {
 	returnValue := godotCallObject(o, "get_direct_space_state")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Physics2DDirectSpaceState
+	var ret Physics2DDirectSpaceState
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 
@@ -76290,9 +76290,9 @@ func (o *WorldEnvironment) GetEnvironment() *Environment {
 	returnValue := godotCallObject(o, "get_environment")
 	log.Println("  Got return value: ", returnValue)
 
-	var ret *Environment
+	var ret Environment
 	ret.owner = returnValue.owner
-	return ret
+	return &ret
 
 }
 

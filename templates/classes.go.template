@@ -66,10 +66,10 @@ type Class interface {
                         returnValue := {{ $view.GodotCall $method }}
                         log.Println("  Got return value: ", returnValue)
 
-                        {{ if $view.IsObjectReturnType $method }}
-                            var ret {{ $view.GoValue $method.ReturnType }}
+                        {{ if $view.IsClassType $method.ReturnType }}
+                            var ret {{ $method.ReturnType }}
                             ret.owner = returnValue.owner
-                            return ret
+                            return &ret
                         {{ else }}
                             return returnValue
                         {{ end}}

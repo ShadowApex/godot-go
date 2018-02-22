@@ -214,6 +214,14 @@ func (v View) GoArgName(argString string) string {
 	return casee.ToCamelCase(argString)
 }
 
+func (v View) GoParamValue(typeString string) string {
+	gv := GetGoValue(typeString)
+	if !isPrimitive(typeString) {
+		return "*" + gv
+	}
+	return gv
+}
+
 func (v View) GoValue(returnString string) string {
 	return GetGoValue(returnString)
 }
@@ -279,8 +287,8 @@ func (v View) SetBaseClassName(baseClass string) string {
 	return v.SetClassName(baseClass, v.SingletonMap[baseClass])
 }
 
-func (v View) IsObjectReturnType(method GDMethod) bool {
-	return isClassType(method.ReturnType) && !isEnum(method.ReturnType)
+func (v View) IsClassType(t string) bool {
+	return isClassType(t) && !isEnum(t)
 }
 
 func (v View) GodotCall(method GDMethod) string {
@@ -309,6 +317,7 @@ func (v View) GodotCall(method GDMethod) string {
 			godotArgs[idx] = GodotCallArg{
 				fmt.Sprintf("arg%d", idx),
 				arg,
+				isPrimitive(arg),
 			}
 		}
 		sig = GodotCallSignature{icallRetType, godotArgs}
@@ -452,8 +461,9 @@ type GodotCallSignature struct {
 }
 
 type GodotCallArg struct {
-	Name string
-	Type string
+	Name        string
+	Type        string
+	IsPrimitive bool
 }
 
 func (gcs GodotCallSignature) GetReturnType() string {
