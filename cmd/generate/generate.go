@@ -461,11 +461,11 @@ func (gcs GodotCallSignature) GetReturnType() string {
 }
 
 func (gcs GodotCallSignature) GodotCallName() string {
-	nameParts := []string{fmt.Sprintf("GodotCall_%s", stripName(gcs.ReturnType))}
+	nameParts := []string{fmt.Sprintf("godotCall_%s", stripName(gcs.ReturnType))}
 	for _, arg := range gcs.Arguments {
 		nameParts = append(nameParts, stripName(arg.Type))
 	}
-	return strings.Join(nameParts, "_")
+	return casee.ToCamelCase(strings.Join(nameParts, "_"))
 }
 
 func (gcs GodotCallSignature) GodotCallDef() string {
