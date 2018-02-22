@@ -1,4 +1,4 @@
-// Package godot provides a wrapper around Godot's nativescript
+// Package gdnative provides a wrapper around Godot's nativescript
 // extension. It exists to provide a way to use Go as an alternative scripting
 // language from GDScript.
 package gdnative

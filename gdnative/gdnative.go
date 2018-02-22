@@ -1,4 +1,4 @@
-// Package godot provides a wrapper around the Godot GDNative API.
+// Package gdnative provides a wrapper around the Godot GDNative API.
 package gdnative
 
 /*
