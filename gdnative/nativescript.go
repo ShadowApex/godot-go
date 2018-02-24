@@ -14,6 +14,134 @@ import (
 	"unsafe"
 )
 
+type MethodRPCMode int
+
+func (m MethodRPCMode) getBase() C.godot_method_rpc_mode {
+	return C.godot_method_rpc_mode(m)
+}
+
+const (
+	MethodRPCModeDisabled MethodRPCMode = iota
+	MethodRPCModeRemote
+	MethodRPCModeSync
+	MethodRPCModeMaster
+	MethodRPCModeSlave
+)
+
+type PropertyHint int
+
+func (p PropertyHint) getBase() C.godot_property_hint {
+	return C.godot_property_hint(p)
+}
+
+const (
+	PropertyHintNone      PropertyHint = iota
+	PropertyHintRange                  ///< hint_text = "min,max,step,slider; //slider is optional"
+	PropertyHintExpRange               ///< hint_text = "min,max,step", exponential edit
+	PropertyHintEnum                   ///< hint_text= "val1,val2,val3,etc"
+	PropertyHintExpEasing              /// exponential easing function (Math::ease)
+	PropertyHintLength                 ///< hint_text= "length" (as integer)
+	PropertyHintSpriteFrame
+	PropertyHintKeyAccel ///< hint_text= "length" (as integer)
+	PropertyHintFlags    ///< hint_text= "flag1,flag2,etc" (as bit flags)
+	PropertyHintLayers2DRender
+	PropertyHintLayers2DPhysics
+	PropertyHintLayers3DRender
+	PropertyHintLayers3DPhysics
+	PropertyHintFile          ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,"
+	PropertyHintDir           ///< a directort path must be passed
+	PropertyHintGlobalFile    ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,"
+	PropertyHintGlobalDir     ///< a directort path must be passed
+	PropertyHintResourceType  ///< a resource object type
+	PropertyHintMultilineText ///< used for string properties that can contain multiple lines
+	PropertyHintColorNoAlpha  ///< used for ignoring alpha component when editing a color
+	PropertyHintImageCompressLossy
+	PropertyHintImageCompressLossless
+	PropertyHintObjectID
+	PropertyHintTypeString            ///< a type string, the hint is the base type to choose
+	PropertyHintNodePathToEditedNode  ///< so something else can provide this (used in scripts)
+	PropertyHintMethodOfVariantType   ///< a method of a type
+	PropertyHintMethodOfBaseType      ///< a method of a base type
+	PropertyHintMethodOfInstance      ///< a method of an instance
+	PropertyHintMethodOfScript        ///< a method of a script & base
+	PropertyHintPropertyOfVariantType ///< a property of a type
+	PropertyHintPropertyOfBaseType    ///< a property of a base type
+	PropertyHintPropertyOfInstance    ///< a property of an instance
+	PropertyHintPropertyOfScript      ///< a property of a script & base
+	PropertyHintMax
+)
+
+type PropertyUsageFlags int
+
+func (p PropertyUsageFlags) getBase() C.godot_property_usage_flags {
+	return C.godot_property_usage_flags(p)
+}
+
+const (
+	PropertyUsageStorage             PropertyUsageFlags = 1
+	PropertyUsageEditor              PropertyUsageFlags = 2
+	PropertyUsageNetwork             PropertyUsageFlags = 4
+	PropertyUsageEditorHelper        PropertyUsageFlags = 8
+	PropertyUsageCheckable           PropertyUsageFlags = 16  //used for editing global variables
+	PropertyUsageChecked             PropertyUsageFlags = 32  //used for editing global variables
+	PropertyUsageInternationalized   PropertyUsageFlags = 64  //hint for internationalized strings
+	PropertyUsageGroup               PropertyUsageFlags = 128 //used for grouping props in the editor
+	PropertyUsageCategory            PropertyUsageFlags = 256
+	PropertyUsageStoreIfNonZero      PropertyUsageFlags = 512  //only store if nonzero
+	PropertyUsageStoreIfNonOne       PropertyUsageFlags = 1024 //only store if false
+	PropertyUsageNoInstanceState     PropertyUsageFlags = 2048
+	PropertyUsageRestartIfChanged    PropertyUsageFlags = 4096
+	PropertyUsageScriptVariable      PropertyUsageFlags = 8192
+	PropertyUsageStoreIfNull         PropertyUsageFlags = 16384
+	PropertyUsageAnimateAsTrigger    PropertyUsageFlags = 32768
+	PropertyUsageUpdateAllIfModified PropertyUsageFlags = 65536
+
+	PropertyUsageDefault     PropertyUsageFlags = PropertyUsageStorage | PropertyUsageEditor | PropertyUsageNetwork
+	PropertyUsageDefaultIntl PropertyUsageFlags = PropertyUsageStorage | PropertyUsageEditor | PropertyUsageNetwork | PropertyUsageInternationalized
+	PropertyUsageNoEditor    PropertyUsageFlags = PropertyUsageStorage | PropertyUsageNetwork
+)
+
+type PropertyAttributes struct {
+	base C.godot_property_attributes
+}
+
+func (p *PropertyAttributes) getBase() C.godot_property_attributes {
+	return p.base
+}
+
+// CreateFunc will be called when we need to create a new instance of a class.
+// Takes the instance object, user data.
+type CreateFunc func(Object, interface{})
+
+// DestroyFunc will be called when the object is destroyed. Takes the instance
+// object, method data, user data.
+type DestroyFunc func(Object, interface{}, interface{})
+
+// FreeFunc will be called when we should free the instance from memory.
+type FreeFunc func(interface{})
+
+type InstanceCreateFunc struct {
+	base       C.godot_instance_create_func
+	CreateFunc CreateFunc
+	MethodData interface{}
+	FreeFunc   FreeFunc
+}
+
+func (i *InstanceCreateFunc) getBase() C.godot_instance_create_func {
+	return i.base
+}
+
+type InstanceDestroyFunc struct {
+	base        C.godot_instance_destroy_func
+	DestroyFunc DestroyFunc
+	MethodData  interface{}
+	FreeFunc    FreeFunc
+}
+
+func (i *InstanceDestroyFunc) getBase() C.godot_instance_destroy_func {
+	return i.base
+}
+
 // NativeScript is a wrapper for the NativeScriptAPI.
 var NativeScript = &nativeScript{}
 
@@ -34,7 +162,7 @@ type nativeScript struct {
 // function value directly to C, so a gateway function should be used. More
 // information on using a gateway function can be found here:
 // https://github.com/golang/go/wiki/cgo#function-variables
-func (n *nativeScript) registerClass(name, base string, createFunc C.godot_instance_create_func, destroyFunc C.godot_instance_destroy_func) {
+func (n *nativeScript) RegisterClass(name, base string, createFunc C.godot_instance_create_func, destroyFunc C.godot_instance_destroy_func) {
 	C.go_godot_nativescript_register_class(
 		n.api,
 		handle,
@@ -47,7 +175,7 @@ func (n *nativeScript) registerClass(name, base string, createFunc C.godot_insta
 
 // RegisterToolClass will register the given class with Godot as a tool. Refer to
 // the 'RegisterClass' method for more information on how to use this.
-func (n *nativeScript) registerToolClass(name, base string, createFunc C.godot_instance_create_func, destroyFunc C.godot_instance_destroy_func) {
+func (n *nativeScript) RegisterToolClass(name, base string, createFunc C.godot_instance_create_func, destroyFunc C.godot_instance_destroy_func) {
 	C.go_godot_nativescript_register_tool_class(
 		n.api,
 		handle,
@@ -63,7 +191,7 @@ func (n *nativeScript) registerToolClass(name, base string, createFunc C.godot_i
 // attach this method to. The funcName parameter is the name of the function you
 // want to register. The attributes and method are what will actually be called
 // when Godot calls the method on the object.
-func (n *nativeScript) registerMethod(name, funcName string, attributes C.godot_method_attributes, method C.godot_instance_method) {
+func (n *nativeScript) RegisterMethod(name, funcName string, attributes C.godot_method_attributes, method C.godot_instance_method) {
 	C.go_godot_nativescript_register_method(
 		n.api,
 		handle,
@@ -79,7 +207,7 @@ func (n *nativeScript) registerMethod(name, funcName string, attributes C.godot_
 // to attach this property to. The path is the name of the property itself. The
 // attributes and setter/getter methods are what will be called when Godot gets
 // or sets this property.
-func (n *nativeScript) registerProperty(name, path string, attributes *C.godot_property_attributes, setFunc C.godot_property_set_func, getFunc C.godot_property_get_func) {
+func (n *nativeScript) RegisterProperty(name, path string, attributes *C.godot_property_attributes, setFunc C.godot_property_set_func, getFunc C.godot_property_get_func) {
 	C.go_godot_nativescript_register_property(
 		n.api,
 		handle,
@@ -92,7 +220,7 @@ func (n *nativeScript) registerProperty(name, path string, attributes *C.godot_p
 }
 
 // RegisterSignal will register the given signal with Godot.
-func (n *nativeScript) registerSignal(name string, signal *C.godot_signal) {
+func (n *nativeScript) RegisterSignal(name string, signal *C.godot_signal) {
 	C.go_godot_nativescript_register_signal(
 		n.api,
 		handle,
