@@ -4,7 +4,6 @@ package types
 
 import (
 	"fmt"
-	"github.com/kr/pretty"
 	"github.com/pinzolo/casee"
 	"io/ioutil"
 	"os"
@@ -12,7 +11,12 @@ import (
 	"strings"
 )
 
-func Parse() []TypeDef {
+// Parse will parse the GDNative headers. Takes a list of headers/structs to ignore.
+// Definitions in the given headers and definitions
+// with the given name will not be added to the returned list of type definitions.
+// We'll need to manually create these structures.
+func Parse(excludeHeaders, excludeStructs []string) []TypeDef {
+
 	// Get the GOPATH so we can locate the godot headers.
 	goPath := os.Getenv("GOPATH")
 	if goPath == "" {
@@ -48,18 +52,21 @@ func Parse() []TypeDef {
 		}
 
 		// Find all of the type definitions in the header file
-		foundTypes := findTypeDefs(content)
+		foundTypesLines := findTypeDefs(content)
 		fmt.Println("")
 
 		// After extracting the lines, we can now parse the type definition to
 		// a structure that we can use to build a Go wrapper.
-		for _, foundType := range foundTypes {
-			typeDef := parseTypeDef(foundType, headerName)
-			typeDefinitions = append(typeDefinitions, typeDef)
+		for _, foundTypeLines := range foundTypesLines {
+			typeDef := parseTypeDef(foundTypeLines, headerName)
+
+			// Only add the type if it's not in our exclude list.
+			if !strInSlice(typeDef.Name, excludeStructs) && !strInSlice(typeDef.HeaderName, excludeHeaders) {
+				typeDefinitions = append(typeDefinitions, typeDef)
+			}
 		}
 	}
 
-	pretty.Println(typeDefinitions)
 	return typeDefinitions
 }
 
@@ -70,13 +77,36 @@ func parseTypeDef(typeLines []string, headerName string) TypeDef {
 		Properties: []TypeDef{},
 	}
 
+	// Small function for splitting a line to get the uncommented line and
+	// get the comment itself.
+	getComment := func(line string) (def, comment string) {
+		halves := strings.Split(line, "//")
+		def = halves[0]
+		if len(halves) > 1 {
+			comment = strings.TrimSpace(halves[1])
+		}
+
+		return def, comment
+	}
+
 	// If the type definition is a single line, handle it a little differently
 	if len(typeLines) == 1 {
+		// Extract the comment if there is one.
+		line, comment := getComment(typeLines[0])
+
+		// Check to see if the property is a pointer type
+		if strings.Contains(line, "*") {
+			line = strings.Replace(line, "*", "", 1)
+			typeDef.IsPointer = true
+		}
+
 		// Get the words of the line
-		words := strings.Split(typeLines[0], " ")
+		words := strings.Split(line, " ")
 		typeDef.Name = strings.Replace(words[len(words)-1], ";", "", 1)
 		typeDef.GoName = casee.ToPascalCase(strings.Replace(typeDef.Name, "godot_", "", 1))
 		typeDef.Base = words[len(words)-2]
+		typeDef.Comment = comment
+		typeDef.SimpleType = true
 
 		return typeDef
 	}
@@ -107,6 +137,10 @@ func parseTypeDef(typeLines []string, headerName string) TypeDef {
 		// Create a type definition for the property
 		property := TypeDef{}
 
+		// Extract the comment if there is one.
+		line, comment := getComment(line)
+		property.Comment = comment
+
 		// Sanitize the line
 		line = strings.TrimSpace(line)
 		line = strings.Split(line, ";")[0]
@@ -116,16 +150,32 @@ func parseTypeDef(typeLines []string, headerName string) TypeDef {
 		// Split the line by spaces
 		words = strings.Split(line, " ")
 
+		// Check to see if the line is just a comment
+		if words[0] == "//" {
+			continue
+		}
+
 		// Set the property details
-		if typeDef.Base != "enum" {
+		if typeDef.Base == "enum" {
+			// Strip any commas in the name
+			words[0] = strings.Replace(words[0], ",", "", 1)
+			property.Name = words[0]
+			property.GoName = casee.ToPascalCase(strings.Replace(words[0], "GODOT_", "", 1))
+		} else {
 			if len(words) < 2 {
 				fmt.Println("Skipping irregular line:", line)
 				continue
 			}
 			property.Base = words[0]
 			property.Name = words[1]
-		} else {
-			property.Name = words[0]
+			property.GoName = casee.ToPascalCase(strings.Replace(words[1], "godot_", "", 1))
+		}
+
+		// Check to see if the property is a pointer type
+		if strings.Contains(property.Name, "*") {
+			property.Name = strings.Replace(property.Name, "*", "", 1)
+			property.GoName = strings.Replace(property.GoName, "*", "", 1)
+			property.IsPointer = true
 		}
 
 		// Append the property to the type definition
@@ -135,6 +185,7 @@ func parseTypeDef(typeLines []string, headerName string) TypeDef {
 	return typeDef
 }
 
+// findTypeDefs will return a list of type definition lines.
 func findTypeDefs(content []byte) [][]string {
 	lines := strings.Split(string(content), "\n")
 
@@ -186,4 +237,13 @@ func findTypeDefs(content []byte) [][]string {
 	}
 
 	return foundTypes
+}
+
+func strInSlice(a string, list []string) bool {
+	for _, b := range list {
+		if b == a {
+			return true
+		}
+	}
+	return false
 }

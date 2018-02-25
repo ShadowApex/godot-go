@@ -19,12 +19,55 @@ import "C"
 
 {{/* Loop through and define all of the type definitions as Go structs */}}
 {{ range $i, $typedef := $view.TypeDefinitions -}}
-type {{ $typedef.GoName }} struct {
-	base *C.{{ $typedef.Name }}
-}
+	{{/* Handle struct definitions */}}
+	{{ if or (eq $typedef.Base "struct") (eq $typedef.Base "void") }}
+		type {{ $typedef.GoName }} struct {
+			base *C.{{ $typedef.Name }}
+			{{/* Handle struct properties */}}
+			{{ range $j, $propdef := $typedef.Properties -}}
+				{{ if ($view.IsValidProperty $propdef) -}}
+					{{ $propdef.GoName }} {{ $view.ToGoName $propdef.Base }}
+				{{ end -}}
+			{{ end -}}
+		}
 
-func (t *{{ $typedef.GoName }}) getBase() *C.{{ $typedef.Name }} {
-	return t.base
-}
+		func (t *{{ $typedef.GoName }}) getBase() *C.{{ $typedef.Name }} {
+			return t.base
+		}
 
+	{{ end }}
+
+	{{/* Handle enum definitions */}}
+	{{ if eq $typedef.Base "enum" }}
+		type {{ $typedef.GoName }} int
+		
+		func (e {{ $typedef.GoName }}) getBase() C.{{ $typedef.Name }} {
+			return C.{{ $typedef.Name }}(e)
+		}
+		
+		const (
+		{{ range $j, $propdef := $typedef.Properties -}}
+			{{ if eq $j 0 -}}
+				{{ $propdef.GoName }} {{ $typedef.GoName }} = iota
+			{{ else -}}
+				{{ $propdef.GoName }}
+			{{ end -}}
+		{{ end }}
+		)
+		
+	{{ end }}
+
+	{{/* Handle base type definitions */}}
+	{{ if and ($typedef.SimpleType) (ne $typedef.Base "void") }}
+		{{ if ($view.IsGodotBaseType $typedef) }}
+			type {{ $typedef.GoName }} {{ $view.ToGoName $typedef.Base }}
+		{{ else }}
+			type {{ $typedef.GoName }} {{ $view.ToGoBaseType $typedef.Base }}
+
+			func (t {{ $typedef.GoName }}) getBase() C.{{ $typedef.Base }} {
+				return C.{{ $typedef.Base }}(t)
+			}
+		{{ end }}
+
+	{{ end }}
 {{ end }}

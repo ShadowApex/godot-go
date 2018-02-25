@@ -3,7 +3,7 @@ package gdnative
 /*
 #include <gdnative/string.h>
 #include <gdnative/gdnative.h>
-#include "gdnative.h"
+#include "gdnative.gen.h"
 */
 import "C"
 

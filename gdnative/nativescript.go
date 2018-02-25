@@ -5,70 +5,13 @@ package gdnative
 
 /*
 #include <nativescript/godot_nativescript.h>
-#include "nativescript.h"
+#include "nativescript.gen.h"
 */
 import "C"
 
 import (
 	"log"
 	"unsafe"
-)
-
-type MethodRPCMode int
-
-func (m MethodRPCMode) getBase() C.godot_method_rpc_mode {
-	return C.godot_method_rpc_mode(m)
-}
-
-const (
-	MethodRPCModeDisabled MethodRPCMode = iota
-	MethodRPCModeRemote
-	MethodRPCModeSync
-	MethodRPCModeMaster
-	MethodRPCModeSlave
-)
-
-type PropertyHint int
-
-func (p PropertyHint) getBase() C.godot_property_hint {
-	return C.godot_property_hint(p)
-}
-
-const (
-	PropertyHintNone      PropertyHint = iota
-	PropertyHintRange                  ///< hint_text = "min,max,step,slider; //slider is optional"
-	PropertyHintExpRange               ///< hint_text = "min,max,step", exponential edit
-	PropertyHintEnum                   ///< hint_text= "val1,val2,val3,etc"
-	PropertyHintExpEasing              /// exponential easing function (Math::ease)
-	PropertyHintLength                 ///< hint_text= "length" (as integer)
-	PropertyHintSpriteFrame
-	PropertyHintKeyAccel ///< hint_text= "length" (as integer)
-	PropertyHintFlags    ///< hint_text= "flag1,flag2,etc" (as bit flags)
-	PropertyHintLayers2DRender
-	PropertyHintLayers2DPhysics
-	PropertyHintLayers3DRender
-	PropertyHintLayers3DPhysics
-	PropertyHintFile          ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,"
-	PropertyHintDir           ///< a directort path must be passed
-	PropertyHintGlobalFile    ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,"
-	PropertyHintGlobalDir     ///< a directort path must be passed
-	PropertyHintResourceType  ///< a resource object type
-	PropertyHintMultilineText ///< used for string properties that can contain multiple lines
-	PropertyHintColorNoAlpha  ///< used for ignoring alpha component when editing a color
-	PropertyHintImageCompressLossy
-	PropertyHintImageCompressLossless
-	PropertyHintObjectID
-	PropertyHintTypeString            ///< a type string, the hint is the base type to choose
-	PropertyHintNodePathToEditedNode  ///< so something else can provide this (used in scripts)
-	PropertyHintMethodOfVariantType   ///< a method of a type
-	PropertyHintMethodOfBaseType      ///< a method of a base type
-	PropertyHintMethodOfInstance      ///< a method of an instance
-	PropertyHintMethodOfScript        ///< a method of a script & base
-	PropertyHintPropertyOfVariantType ///< a property of a type
-	PropertyHintPropertyOfBaseType    ///< a property of a base type
-	PropertyHintPropertyOfInstance    ///< a property of an instance
-	PropertyHintPropertyOfScript      ///< a property of a script & base
-	PropertyHintMax
 )
 
 type PropertyUsageFlags int
@@ -100,14 +43,6 @@ const (
 	PropertyUsageDefaultIntl PropertyUsageFlags = PropertyUsageStorage | PropertyUsageEditor | PropertyUsageNetwork | PropertyUsageInternationalized
 	PropertyUsageNoEditor    PropertyUsageFlags = PropertyUsageStorage | PropertyUsageNetwork
 )
-
-type PropertyAttributes struct {
-	base C.godot_property_attributes
-}
-
-func (p *PropertyAttributes) getBase() C.godot_property_attributes {
-	return p.base
-}
 
 // CreateFunc will be called when we need to create a new instance of a class.
 // Takes the instance object, user data.

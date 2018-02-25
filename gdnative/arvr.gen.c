@@ -6,7 +6,7 @@
 //   "gdnative.c.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
-#include "gdnative.h"
+#include "gdnative.gen.h"
 #include <gdnative/string.h>
 #include <gdnative_api_struct.gen.h>
 

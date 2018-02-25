@@ -63,3 +63,17 @@ func godot_gdnative_terminate(options *C.godot_gdnative_terminate_options) {
 	GDNative.api = nil
 	NativeScript.api = nil
 }
+
+// Uint is a Godot C uint wrapper
+type Uint uint
+
+func (u Uint) getBase() C.uint {
+	return C.uint(u)
+}
+
+// Uint64T is a Godot C uint64_t wrapper
+type Uint64T uint64
+
+func (u Uint64T) getBase() C.uint64_t {
+	return C.uint64_t(u)
+}
