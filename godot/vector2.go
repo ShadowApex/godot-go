@@ -263,9 +263,9 @@ func (v *Vector2) SetX(x float64) {
 	C.godot_vector2_set_x(v.vector2, realAsGodotReal(x))
 }
 
-//SetY changes v.vector2.x to the value specified.
+//SetY changes v.vector2.y to the value specified.
 func (v *Vector2) SetY(y float64) {
-	C.godot_vector2_set_x(v.vector2, realAsGodotReal(y))
+	C.godot_vector2_set_y(v.vector2, realAsGodotReal(y))
 }
 
 //Slide slides the vector by the other vector.
