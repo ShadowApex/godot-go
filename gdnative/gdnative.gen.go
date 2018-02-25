@@ -85,25 +85,17 @@ type Object struct {
 	base *C.godot_object
 }
 
-func (t *Object) getBase() *C.godot_object {
+func (t Object) getBase() *C.godot_object {
 	return t.base
 }
-
-// Destroy godot_object_destroy [[godot_object * p_o]]
 
 type MethodBind struct {
 	base *C.godot_method_bind
 }
 
-func (t *MethodBind) getBase() *C.godot_method_bind {
+func (t MethodBind) getBase() *C.godot_method_bind {
 	return t.base
 }
-
-// GetMethod godot_method_bind_get_method [[const char * p_classname] [const char * p_methodname]]
-
-// Ptrcall godot_method_bind_ptrcall [[godot_method_bind * p_method_bind] [godot_object * p_instance] [const void ** p_args] [void * p_ret]]
-
-// Call godot_method_bind_call [[godot_method_bind * p_method_bind] [godot_object * p_instance] [const godot_variant ** p_args] [const int p_arg_count] [godot_variant_call_error * p_call_error]]
 
 type GdnativeApiVersion struct {
 	base *C.godot_gdnative_api_version
@@ -112,7 +104,7 @@ type GdnativeApiVersion struct {
 	Minor Uint
 }
 
-func (t *GdnativeApiVersion) getBase() *C.godot_gdnative_api_version {
+func (t GdnativeApiVersion) getBase() *C.godot_gdnative_api_version {
 	return t.base
 }
 
@@ -122,6 +114,6 @@ type GdnativeTerminateOptions struct {
 	InEditor Bool
 }
 
-func (t *GdnativeTerminateOptions) getBase() *C.godot_gdnative_terminate_options {
+func (t GdnativeTerminateOptions) getBase() *C.godot_gdnative_terminate_options {
 	return t.base
 }

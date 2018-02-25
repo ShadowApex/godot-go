@@ -31,17 +31,34 @@ import "C"
 			{{ end -}}
 		}
 
-		func (t *{{ $typedef.GoName }}) getBase() *C.{{ $typedef.Name }} {
+		func (t {{ $typedef.GoName }}) getBase() *C.{{ $typedef.Name }} {
 			return t.base
 		}
 
 		{{/* Handle struct methods */}}
 		{{ range $j, $method := ($view.MethodsList $typedef) }}
-				// {{ $view.ToGoMethodName $typedef $method }} {{ $method.Name }} {{ $method.Arguments }}
-			{{ if ($view.MethodIsConstructor $method) }}
-				//func {{ $view.ToGoMethodName $typedef $method }}({{ range $k, $arg := $method.Arguments }}{{ $view.ToGoArgName (index $arg 1) }} {{ $view.ToGoArgType (index $arg 0) }}, {{ end }}) *{{ $typedef.GoName }} {
-				//	return &{{ $typedef.GoName }}{}
-				//}
+				// {{ $view.ToGoMethodName $typedef $method }} {{ $method.Name }} {{ $method.Arguments }} {{ $method.ReturnType }}
+			{{ if ($view.MethodIsConstructor $method) -}}
+				func {{ $view.ToGoMethodName $typedef $method }}({{ range $k, $arg := $method.Arguments }}{{ $view.ToGoArgName (index $arg 1) }} {{ $view.ToGoArgType (index $arg 0) }}, {{ end }}) *{{ $typedef.GoName }} {
+					return &{{ $typedef.GoName }}{}
+				}
+			{{ else -}}
+				func (t *{{ $typedef.GoName }}) {{ $view.ToGoMethodName $typedef $method }}({{ range $k, $arg := $method.Arguments }}{{ if $view.NotSelfArg (index $arg 1) }}{{ $view.ToGoArgName (index $arg 1) }} {{ $view.ToGoArgType (index $arg 0) }}, {{ end }}{{ end }})  {{ $view.ToGoReturnType $method.ReturnType }} {
+					{{ range $k, $arg := $method.Arguments -}}
+						{{ if $view.NotSelfArg (index $arg 1) -}}
+							arg{{ $k }} := {{ $view.ToGoArgName (index $arg 1) }}.getBase()
+						{{ else -}}
+							arg{{ $k }} := t.getBase()
+						{{ end -}}
+					{{ end }}
+					{{ if $view.HasReturn $method.ReturnType }}
+						ret := C.go_{{ $method.Name }}(GDNative.api, {{ range $k, $arg := $method.Arguments }}arg{{ $k }}, {{ end }})
+
+						return {{ $view.ToGoReturnType $method.ReturnType }}{base: ret}
+					{{ else }}
+						C.go_{{ $method.Name }}(GDNative.api, {{ range $k, $arg := $method.Arguments }}arg{{ $k }}, {{ end }})
+					{{ end }}
+				}
 			{{ end }}
 		{{ end }}
 

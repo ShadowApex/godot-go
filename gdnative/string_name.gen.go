@@ -18,30 +18,64 @@ type StringName struct {
 	base *C.godot_string_name
 }
 
-func (t *StringName) getBase() *C.godot_string_name {
+func (t StringName) getBase() *C.godot_string_name {
 	return t.base
 }
 
-// NewStringName godot_string_name_new [[godot_string_name * r_dest] [const godot_string * p_name]]
+// GetName godot_string_name_get_name [[const godot_string_name * p_self]] godot_string
+func (t *StringName) GetName() String {
+	arg0 := t.getBase()
 
-//func NewStringName(dest StringName, name ConstString, ) *StringName {
-//	return &StringName{}
-//}
+	ret := C.go_godot_string_name_get_name(GDNative.api, arg0)
 
-// NewStringNameData godot_string_name_new_data [[godot_string_name * r_dest] [const char * p_name]]
+	return String{base: ret}
 
-//func NewStringNameData(dest StringName, name ConstChar, ) *StringName {
-//	return &StringName{}
-//}
+}
 
-// GetName godot_string_name_get_name [[const godot_string_name * p_self]]
+// GetHash godot_string_name_get_hash [[const godot_string_name * p_self]] uint32_t
+func (t *StringName) GetHash() Uint32T {
+	arg0 := t.getBase()
 
-// GetHash godot_string_name_get_hash [[const godot_string_name * p_self]]
+	ret := C.go_godot_string_name_get_hash(GDNative.api, arg0)
 
-// GetDataUniquePointer godot_string_name_get_data_unique_pointer [[const godot_string_name * p_self]]
+	return Uint32T{base: ret}
 
-// OperatorEqual godot_string_name_operator_equal [[const godot_string_name * p_self] [const godot_string_name * p_other]]
+}
 
-// OperatorLess godot_string_name_operator_less [[const godot_string_name * p_self] [const godot_string_name * p_other]]
+// GetDataUniquePointer godot_string_name_get_data_unique_pointer [[const godot_string_name * p_self]] const void *
+func (t *StringName) GetDataUniquePointer() {
+	arg0 := t.getBase()
 
-// Destroy godot_string_name_destroy [[godot_string_name * p_self]]
+	C.go_godot_string_name_get_data_unique_pointer(GDNative.api, arg0)
+
+}
+
+// OperatorEqual godot_string_name_operator_equal [[const godot_string_name * p_self] [const godot_string_name * p_other]] godot_bool
+func (t *StringName) OperatorEqual(other StringName) Bool {
+	arg0 := t.getBase()
+	arg1 := other.getBase()
+
+	ret := C.go_godot_string_name_operator_equal(GDNative.api, arg0, arg1)
+
+	return Bool{base: ret}
+
+}
+
+// OperatorLess godot_string_name_operator_less [[const godot_string_name * p_self] [const godot_string_name * p_other]] godot_bool
+func (t *StringName) OperatorLess(other StringName) Bool {
+	arg0 := t.getBase()
+	arg1 := other.getBase()
+
+	ret := C.go_godot_string_name_operator_less(GDNative.api, arg0, arg1)
+
+	return Bool{base: ret}
+
+}
+
+// Destroy godot_string_name_destroy [[godot_string_name * p_self]] void
+func (t *StringName) Destroy() {
+	arg0 := t.getBase()
+
+	C.go_godot_string_name_destroy(GDNative.api, arg0)
+
+}

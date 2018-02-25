@@ -59,10 +59,34 @@ func (v View) ToGoName(str string) string {
 	return casee.ToPascalCase(str)
 }
 
+func (v View) ToGoReturnType(str string) string {
+	str = v.ToGoArgType(str)
+	if strings.Contains(str, "Void") {
+		return ""
+	}
+
+	return str
+}
+
+func (v View) HasReturn(str string) bool {
+	if str == "void" || str == "Void" || strings.Contains(str, "void") {
+		return false
+	}
+	return true
+}
+
 func (v View) ToGoArgType(str string) string {
+	str = strings.Replace(str, "const ", "", -1)
 	str = v.ToGoName(str)
-	str = strings.Replace(str, "const", "", 1)
-	return strings.Replace(str, "*", "", 1)
+	str = strings.Replace(str, "*", "", 1)
+
+	// If the string still contains a *, it is a list.
+	if strings.Contains(str, "*") {
+		str = strings.Replace(str, "*", "", 1)
+		str = "[]" + str
+	}
+
+	return str
 }
 
 func (v View) ToGoArgName(str string) string {
@@ -72,8 +96,27 @@ func (v View) ToGoArgName(str string) string {
 	if strings.HasPrefix(str, "r_") {
 		str = strings.Replace(str, "r_", "", 1)
 	}
+	str = casee.ToCamelCase(str)
 
-	return casee.ToCamelCase(str)
+	// Check for any reserved names
+	switch str {
+	case "type":
+		return "aType"
+	case "default":
+		return "aDefault"
+	case "var":
+		return "variable"
+	case "func":
+		return "function"
+	case "return":
+		return "returns"
+	case "interface":
+		return "intrfce"
+	case "string":
+		return "str"
+	}
+
+	return str
 }
 
 // MethodsList returns all of the methods that match this typedef.
@@ -82,8 +125,15 @@ func (v View) MethodsList(typeDef TypeDef) []Method {
 
 	// Look for all methods that match this typedef name.
 	for _, method := range v.MethodDefinitions {
-		if strings.Contains(method.Name, typeDef.Name) {
-			methods = append(methods, method)
+		for _, arg := range method.Arguments {
+			argName := arg[1]
+			argType := strings.Replace(arg[0], "const", "", 1)
+			argType = strings.Replace(argType, "*", "", 1)
+			argType = strings.TrimSpace(argType)
+
+			if argType == typeDef.Name && argName == "p_self" {
+				methods = append(methods, method)
+			}
 		}
 	}
 
@@ -97,6 +147,13 @@ func (v View) MethodIsConstructor(method Method) bool {
 	return false
 }
 
+func (v View) NotSelfArg(str string) bool {
+	if str == "self" || str == "p_self" {
+		return false
+	}
+	return true
+}
+
 func (v View) ToGoMethodName(typeDef TypeDef, method Method) string {
 	methodName := method.Name
 
@@ -107,6 +164,10 @@ func (v View) ToGoMethodName(typeDef TypeDef, method Method) string {
 	if v.MethodIsConstructor(method) {
 		methodName = strings.Replace(methodName, "_new", "", 1)
 		methodName = "new_" + typeDef.GoName + "_" + methodName
+	}
+
+	if strings.HasPrefix(methodName, "2") {
+		methodName = "T" + methodName
 	}
 
 	return casee.ToPascalCase(methodName)

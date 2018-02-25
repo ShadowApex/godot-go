@@ -18,64 +18,277 @@ type Aabb struct {
 	base *C.godot_aabb
 }
 
-func (t *Aabb) getBase() *C.godot_aabb {
+func (t Aabb) getBase() *C.godot_aabb {
 	return t.base
 }
 
-// NewAabb godot_aabb_new [[godot_aabb * r_dest] [const godot_vector3 * p_pos] [const godot_vector3 * p_size]]
+// GetPosition godot_aabb_get_position [[const godot_aabb * p_self]] godot_vector3
+func (t *Aabb) GetPosition() Vector3 {
+	arg0 := t.getBase()
 
-//func NewAabb(dest Aabb, pos ConstVector3, size ConstVector3, ) *Aabb {
-//	return &Aabb{}
-//}
+	ret := C.go_godot_aabb_get_position(GDNative.api, arg0)
 
-// GetPosition godot_aabb_get_position [[const godot_aabb * p_self]]
+	return Vector3{base: ret}
 
-// SetPosition godot_aabb_set_position [[const godot_aabb * p_self] [const godot_vector3 * p_v]]
+}
 
-// GetSize godot_aabb_get_size [[const godot_aabb * p_self]]
+// SetPosition godot_aabb_set_position [[const godot_aabb * p_self] [const godot_vector3 * p_v]] void
+func (t *Aabb) SetPosition(v Vector3) {
+	arg0 := t.getBase()
+	arg1 := v.getBase()
 
-// SetSize godot_aabb_set_size [[const godot_aabb * p_self] [const godot_vector3 * p_v]]
+	C.go_godot_aabb_set_position(GDNative.api, arg0, arg1)
 
-// AsString godot_aabb_as_string [[const godot_aabb * p_self]]
+}
 
-// GetArea godot_aabb_get_area [[const godot_aabb * p_self]]
+// GetSize godot_aabb_get_size [[const godot_aabb * p_self]] godot_vector3
+func (t *Aabb) GetSize() Vector3 {
+	arg0 := t.getBase()
 
-// HasNoArea godot_aabb_has_no_area [[const godot_aabb * p_self]]
+	ret := C.go_godot_aabb_get_size(GDNative.api, arg0)
 
-// HasNoSurface godot_aabb_has_no_surface [[const godot_aabb * p_self]]
+	return Vector3{base: ret}
 
-// Intersects godot_aabb_intersects [[const godot_aabb * p_self] [const godot_aabb * p_with]]
+}
 
-// Encloses godot_aabb_encloses [[const godot_aabb * p_self] [const godot_aabb * p_with]]
+// SetSize godot_aabb_set_size [[const godot_aabb * p_self] [const godot_vector3 * p_v]] void
+func (t *Aabb) SetSize(v Vector3) {
+	arg0 := t.getBase()
+	arg1 := v.getBase()
 
-// Merge godot_aabb_merge [[const godot_aabb * p_self] [const godot_aabb * p_with]]
+	C.go_godot_aabb_set_size(GDNative.api, arg0, arg1)
 
-// Intersection godot_aabb_intersection [[const godot_aabb * p_self] [const godot_aabb * p_with]]
+}
 
-// IntersectsPlane godot_aabb_intersects_plane [[const godot_aabb * p_self] [const godot_plane * p_plane]]
+// AsString godot_aabb_as_string [[const godot_aabb * p_self]] godot_string
+func (t *Aabb) AsString() String {
+	arg0 := t.getBase()
 
-// IntersectsSegment godot_aabb_intersects_segment [[const godot_aabb * p_self] [const godot_vector3 * p_from] [const godot_vector3 * p_to]]
+	ret := C.go_godot_aabb_as_string(GDNative.api, arg0)
 
-// HasPoint godot_aabb_has_point [[const godot_aabb * p_self] [const godot_vector3 * p_point]]
+	return String{base: ret}
 
-// GetSupport godot_aabb_get_support [[const godot_aabb * p_self] [const godot_vector3 * p_dir]]
+}
 
-// GetLongestAxis godot_aabb_get_longest_axis [[const godot_aabb * p_self]]
+// GetArea godot_aabb_get_area [[const godot_aabb * p_self]] godot_real
+func (t *Aabb) GetArea() Real {
+	arg0 := t.getBase()
 
-// GetLongestAxisIndex godot_aabb_get_longest_axis_index [[const godot_aabb * p_self]]
+	ret := C.go_godot_aabb_get_area(GDNative.api, arg0)
 
-// GetLongestAxisSize godot_aabb_get_longest_axis_size [[const godot_aabb * p_self]]
+	return Real{base: ret}
 
-// GetShortestAxis godot_aabb_get_shortest_axis [[const godot_aabb * p_self]]
+}
 
-// GetShortestAxisIndex godot_aabb_get_shortest_axis_index [[const godot_aabb * p_self]]
+// HasNoArea godot_aabb_has_no_area [[const godot_aabb * p_self]] godot_bool
+func (t *Aabb) HasNoArea() Bool {
+	arg0 := t.getBase()
 
-// GetShortestAxisSize godot_aabb_get_shortest_axis_size [[const godot_aabb * p_self]]
+	ret := C.go_godot_aabb_has_no_area(GDNative.api, arg0)
 
-// Expand godot_aabb_expand [[const godot_aabb * p_self] [const godot_vector3 * p_to_point]]
+	return Bool{base: ret}
 
-// Grow godot_aabb_grow [[const godot_aabb * p_self] [const godot_real p_by]]
+}
 
-// GetEndpoint godot_aabb_get_endpoint [[const godot_aabb * p_self] [const godot_int p_idx]]
+// HasNoSurface godot_aabb_has_no_surface [[const godot_aabb * p_self]] godot_bool
+func (t *Aabb) HasNoSurface() Bool {
+	arg0 := t.getBase()
 
-// OperatorEqual godot_aabb_operator_equal [[const godot_aabb * p_self] [const godot_aabb * p_b]]
+	ret := C.go_godot_aabb_has_no_surface(GDNative.api, arg0)
+
+	return Bool{base: ret}
+
+}
+
+// Intersects godot_aabb_intersects [[const godot_aabb * p_self] [const godot_aabb * p_with]] godot_bool
+func (t *Aabb) Intersects(with Aabb) Bool {
+	arg0 := t.getBase()
+	arg1 := with.getBase()
+
+	ret := C.go_godot_aabb_intersects(GDNative.api, arg0, arg1)
+
+	return Bool{base: ret}
+
+}
+
+// Encloses godot_aabb_encloses [[const godot_aabb * p_self] [const godot_aabb * p_with]] godot_bool
+func (t *Aabb) Encloses(with Aabb) Bool {
+	arg0 := t.getBase()
+	arg1 := with.getBase()
+
+	ret := C.go_godot_aabb_encloses(GDNative.api, arg0, arg1)
+
+	return Bool{base: ret}
+
+}
+
+// Merge godot_aabb_merge [[const godot_aabb * p_self] [const godot_aabb * p_with]] godot_aabb
+func (t *Aabb) Merge(with Aabb) Aabb {
+	arg0 := t.getBase()
+	arg1 := with.getBase()
+
+	ret := C.go_godot_aabb_merge(GDNative.api, arg0, arg1)
+
+	return Aabb{base: ret}
+
+}
+
+// Intersection godot_aabb_intersection [[const godot_aabb * p_self] [const godot_aabb * p_with]] godot_aabb
+func (t *Aabb) Intersection(with Aabb) Aabb {
+	arg0 := t.getBase()
+	arg1 := with.getBase()
+
+	ret := C.go_godot_aabb_intersection(GDNative.api, arg0, arg1)
+
+	return Aabb{base: ret}
+
+}
+
+// IntersectsPlane godot_aabb_intersects_plane [[const godot_aabb * p_self] [const godot_plane * p_plane]] godot_bool
+func (t *Aabb) IntersectsPlane(plane Plane) Bool {
+	arg0 := t.getBase()
+	arg1 := plane.getBase()
+
+	ret := C.go_godot_aabb_intersects_plane(GDNative.api, arg0, arg1)
+
+	return Bool{base: ret}
+
+}
+
+// IntersectsSegment godot_aabb_intersects_segment [[const godot_aabb * p_self] [const godot_vector3 * p_from] [const godot_vector3 * p_to]] godot_bool
+func (t *Aabb) IntersectsSegment(from Vector3, to Vector3) Bool {
+	arg0 := t.getBase()
+	arg1 := from.getBase()
+	arg2 := to.getBase()
+
+	ret := C.go_godot_aabb_intersects_segment(GDNative.api, arg0, arg1, arg2)
+
+	return Bool{base: ret}
+
+}
+
+// HasPoint godot_aabb_has_point [[const godot_aabb * p_self] [const godot_vector3 * p_point]] godot_bool
+func (t *Aabb) HasPoint(point Vector3) Bool {
+	arg0 := t.getBase()
+	arg1 := point.getBase()
+
+	ret := C.go_godot_aabb_has_point(GDNative.api, arg0, arg1)
+
+	return Bool{base: ret}
+
+}
+
+// GetSupport godot_aabb_get_support [[const godot_aabb * p_self] [const godot_vector3 * p_dir]] godot_vector3
+func (t *Aabb) GetSupport(dir Vector3) Vector3 {
+	arg0 := t.getBase()
+	arg1 := dir.getBase()
+
+	ret := C.go_godot_aabb_get_support(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// GetLongestAxis godot_aabb_get_longest_axis [[const godot_aabb * p_self]] godot_vector3
+func (t *Aabb) GetLongestAxis() Vector3 {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_aabb_get_longest_axis(GDNative.api, arg0)
+
+	return Vector3{base: ret}
+
+}
+
+// GetLongestAxisIndex godot_aabb_get_longest_axis_index [[const godot_aabb * p_self]] godot_int
+func (t *Aabb) GetLongestAxisIndex() Int {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_aabb_get_longest_axis_index(GDNative.api, arg0)
+
+	return Int{base: ret}
+
+}
+
+// GetLongestAxisSize godot_aabb_get_longest_axis_size [[const godot_aabb * p_self]] godot_real
+func (t *Aabb) GetLongestAxisSize() Real {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_aabb_get_longest_axis_size(GDNative.api, arg0)
+
+	return Real{base: ret}
+
+}
+
+// GetShortestAxis godot_aabb_get_shortest_axis [[const godot_aabb * p_self]] godot_vector3
+func (t *Aabb) GetShortestAxis() Vector3 {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_aabb_get_shortest_axis(GDNative.api, arg0)
+
+	return Vector3{base: ret}
+
+}
+
+// GetShortestAxisIndex godot_aabb_get_shortest_axis_index [[const godot_aabb * p_self]] godot_int
+func (t *Aabb) GetShortestAxisIndex() Int {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_aabb_get_shortest_axis_index(GDNative.api, arg0)
+
+	return Int{base: ret}
+
+}
+
+// GetShortestAxisSize godot_aabb_get_shortest_axis_size [[const godot_aabb * p_self]] godot_real
+func (t *Aabb) GetShortestAxisSize() Real {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_aabb_get_shortest_axis_size(GDNative.api, arg0)
+
+	return Real{base: ret}
+
+}
+
+// Expand godot_aabb_expand [[const godot_aabb * p_self] [const godot_vector3 * p_to_point]] godot_aabb
+func (t *Aabb) Expand(toPoint Vector3) Aabb {
+	arg0 := t.getBase()
+	arg1 := toPoint.getBase()
+
+	ret := C.go_godot_aabb_expand(GDNative.api, arg0, arg1)
+
+	return Aabb{base: ret}
+
+}
+
+// Grow godot_aabb_grow [[const godot_aabb * p_self] [const godot_real p_by]] godot_aabb
+func (t *Aabb) Grow(by Real) Aabb {
+	arg0 := t.getBase()
+	arg1 := by.getBase()
+
+	ret := C.go_godot_aabb_grow(GDNative.api, arg0, arg1)
+
+	return Aabb{base: ret}
+
+}
+
+// GetEndpoint godot_aabb_get_endpoint [[const godot_aabb * p_self] [const godot_int p_idx]] godot_vector3
+func (t *Aabb) GetEndpoint(idx Int) Vector3 {
+	arg0 := t.getBase()
+	arg1 := idx.getBase()
+
+	ret := C.go_godot_aabb_get_endpoint(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// OperatorEqual godot_aabb_operator_equal [[const godot_aabb * p_self] [const godot_aabb * p_b]] godot_bool
+func (t *Aabb) OperatorEqual(b Aabb) Bool {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_aabb_operator_equal(GDNative.api, arg0, arg1)
+
+	return Bool{base: ret}
+
+}

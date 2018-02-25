@@ -18,24 +18,38 @@ type Rid struct {
 	base *C.godot_rid
 }
 
-func (t *Rid) getBase() *C.godot_rid {
+func (t Rid) getBase() *C.godot_rid {
 	return t.base
 }
 
-// NewRid godot_rid_new [[godot_rid * r_dest]]
+// GetId godot_rid_get_id [[const godot_rid * p_self]] godot_int
+func (t *Rid) GetId() Int {
+	arg0 := t.getBase()
 
-//func NewRid(dest Rid, ) *Rid {
-//	return &Rid{}
-//}
+	ret := C.go_godot_rid_get_id(GDNative.api, arg0)
 
-// GetId godot_rid_get_id [[const godot_rid * p_self]]
+	return Int{base: ret}
 
-// NewRidWithResource godot_rid_new_with_resource [[godot_rid * r_dest] [const godot_object * p_from]]
+}
 
-//func NewRidWithResource(dest Rid, from ConstObject, ) *Rid {
-//	return &Rid{}
-//}
+// OperatorEqual godot_rid_operator_equal [[const godot_rid * p_self] [const godot_rid * p_b]] godot_bool
+func (t *Rid) OperatorEqual(b Rid) Bool {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
 
-// OperatorEqual godot_rid_operator_equal [[const godot_rid * p_self] [const godot_rid * p_b]]
+	ret := C.go_godot_rid_operator_equal(GDNative.api, arg0, arg1)
 
-// OperatorLess godot_rid_operator_less [[const godot_rid * p_self] [const godot_rid * p_b]]
+	return Bool{base: ret}
+
+}
+
+// OperatorLess godot_rid_operator_less [[const godot_rid * p_self] [const godot_rid * p_b]] godot_bool
+func (t *Rid) OperatorLess(b Rid) Bool {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_rid_operator_less(GDNative.api, arg0, arg1)
+
+	return Bool{base: ret}
+
+}

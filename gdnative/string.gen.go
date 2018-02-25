@@ -18,352 +18,1308 @@ type String struct {
 	base *C.godot_string
 }
 
-func (t *String) getBase() *C.godot_string {
+func (t String) getBase() *C.godot_string {
 	return t.base
 }
 
-// NewString godot_string_new [[godot_string * r_dest]]
+// OperatorIndex godot_string_operator_index [[godot_string * p_self] [const godot_int p_idx]] wchar_t *
+func (t *String) OperatorIndex(idx Int) WcharT {
+	arg0 := t.getBase()
+	arg1 := idx.getBase()
 
-//func NewString(dest String, ) *String {
-//	return &String{}
-//}
+	ret := C.go_godot_string_operator_index(GDNative.api, arg0, arg1)
 
-// NewStringCopy godot_string_new_copy [[godot_string * r_dest] [const godot_string * p_src]]
+	return WcharT{base: ret}
 
-//func NewStringCopy(dest String, src ConstString, ) *String {
-//	return &String{}
-//}
+}
 
-// NewStringWithWideString godot_string_new_with_wide_string [[godot_string * r_dest] [const wchar_t * p_contents] [const int p_size]]
+// OperatorIndexConst godot_string_operator_index_const [[const godot_string * p_self] [const godot_int p_idx]] wchar_t
+func (t *String) OperatorIndexConst(idx Int) WcharT {
+	arg0 := t.getBase()
+	arg1 := idx.getBase()
 
-//func NewStringWithWideString(dest String, contents ConstWcharT, size ConstInt, ) *String {
-//	return &String{}
-//}
+	ret := C.go_godot_string_operator_index_const(GDNative.api, arg0, arg1)
 
-// OperatorIndex godot_string_operator_index [[godot_string * p_self] [const godot_int p_idx]]
+	return WcharT{base: ret}
 
-// OperatorIndexConst godot_string_operator_index_const [[const godot_string * p_self] [const godot_int p_idx]]
+}
 
-// WideStr godot_string_wide_str [[const godot_string * p_self]]
+// WideStr godot_string_wide_str [[const godot_string * p_self]] const wchar_t *
+func (t *String) WideStr() WcharT {
+	arg0 := t.getBase()
 
-// OperatorEqual godot_string_operator_equal [[const godot_string * p_self] [const godot_string * p_b]]
+	ret := C.go_godot_string_wide_str(GDNative.api, arg0)
 
-// OperatorLess godot_string_operator_less [[const godot_string * p_self] [const godot_string * p_b]]
+	return WcharT{base: ret}
 
-// OperatorPlus godot_string_operator_plus [[const godot_string * p_self] [const godot_string * p_b]]
+}
 
-// Length godot_string_length [[const godot_string * p_self]]
+// OperatorEqual godot_string_operator_equal [[const godot_string * p_self] [const godot_string * p_b]] godot_bool
+func (t *String) OperatorEqual(b String) Bool {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
 
-// CasecmpTo godot_string_casecmp_to [[const godot_string * p_self] [const godot_string * p_str]]
+	ret := C.go_godot_string_operator_equal(GDNative.api, arg0, arg1)
 
-// NocasecmpTo godot_string_nocasecmp_to [[const godot_string * p_self] [const godot_string * p_str]]
+	return Bool{base: ret}
 
-// NaturalnocasecmpTo godot_string_naturalnocasecmp_to [[const godot_string * p_self] [const godot_string * p_str]]
+}
 
-// BeginsWith godot_string_begins_with [[const godot_string * p_self] [const godot_string * p_string]]
+// OperatorLess godot_string_operator_less [[const godot_string * p_self] [const godot_string * p_b]] godot_bool
+func (t *String) OperatorLess(b String) Bool {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
 
-// BeginsWithCharArray godot_string_begins_with_char_array [[const godot_string * p_self] [const char * p_char_array]]
+	ret := C.go_godot_string_operator_less(GDNative.api, arg0, arg1)
 
-// Bigrams godot_string_bigrams [[const godot_string * p_self]]
+	return Bool{base: ret}
 
-// Chr godot_string_chr [[wchar_t p_character]]
+}
 
-// EndsWith godot_string_ends_with [[const godot_string * p_self] [const godot_string * p_string]]
+// OperatorPlus godot_string_operator_plus [[const godot_string * p_self] [const godot_string * p_b]] godot_string
+func (t *String) OperatorPlus(b String) String {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
 
-// Find godot_string_find [[const godot_string * p_self] [godot_string p_what]]
+	ret := C.go_godot_string_operator_plus(GDNative.api, arg0, arg1)
 
-// FindFrom godot_string_find_from [[const godot_string * p_self] [godot_string p_what] [godot_int p_from]]
+	return String{base: ret}
 
-// Findmk godot_string_findmk [[const godot_string * p_self] [const godot_array * p_keys]]
+}
 
-// FindmkFrom godot_string_findmk_from [[const godot_string * p_self] [const godot_array * p_keys] [godot_int p_from]]
+// Length godot_string_length [[const godot_string * p_self]] godot_int
+func (t *String) Length() Int {
+	arg0 := t.getBase()
 
-// FindmkFromInPlace godot_string_findmk_from_in_place [[const godot_string * p_self] [const godot_array * p_keys] [godot_int p_from] [godot_int * r_key]]
+	ret := C.go_godot_string_length(GDNative.api, arg0)
 
-// Findn godot_string_findn [[const godot_string * p_self] [godot_string p_what]]
+	return Int{base: ret}
 
-// FindnFrom godot_string_findn_from [[const godot_string * p_self] [godot_string p_what] [godot_int p_from]]
+}
 
-// FindLast godot_string_find_last [[const godot_string * p_self] [godot_string p_what]]
+// CasecmpTo godot_string_casecmp_to [[const godot_string * p_self] [const godot_string * p_str]] signed char
+func (t *String) CasecmpTo(str String) SignedChar {
+	arg0 := t.getBase()
+	arg1 := str.getBase()
 
-// Format godot_string_format [[const godot_string * p_self] [const godot_variant * p_values]]
+	ret := C.go_godot_string_casecmp_to(GDNative.api, arg0, arg1)
 
-// FormatWithCustomPlaceholder godot_string_format_with_custom_placeholder [[const godot_string * p_self] [const godot_variant * p_values] [const char * p_placeholder]]
+	return SignedChar{base: ret}
 
-// HexEncodeBuffer godot_string_hex_encode_buffer [[const uint8_t * p_buffer] [godot_int p_len]]
+}
 
-// HexToInt godot_string_hex_to_int [[const godot_string * p_self]]
+// NocasecmpTo godot_string_nocasecmp_to [[const godot_string * p_self] [const godot_string * p_str]] signed char
+func (t *String) NocasecmpTo(str String) SignedChar {
+	arg0 := t.getBase()
+	arg1 := str.getBase()
 
-// HexToIntWithoutPrefix godot_string_hex_to_int_without_prefix [[const godot_string * p_self]]
+	ret := C.go_godot_string_nocasecmp_to(GDNative.api, arg0, arg1)
 
-// Insert godot_string_insert [[const godot_string * p_self] [godot_int p_at_pos] [godot_string p_string]]
+	return SignedChar{base: ret}
 
-// IsNumeric godot_string_is_numeric [[const godot_string * p_self]]
+}
 
-// IsSubsequenceOf godot_string_is_subsequence_of [[const godot_string * p_self] [const godot_string * p_string]]
+// NaturalnocasecmpTo godot_string_naturalnocasecmp_to [[const godot_string * p_self] [const godot_string * p_str]] signed char
+func (t *String) NaturalnocasecmpTo(str String) SignedChar {
+	arg0 := t.getBase()
+	arg1 := str.getBase()
 
-// IsSubsequenceOfi godot_string_is_subsequence_ofi [[const godot_string * p_self] [const godot_string * p_string]]
+	ret := C.go_godot_string_naturalnocasecmp_to(GDNative.api, arg0, arg1)
 
-// Lpad godot_string_lpad [[const godot_string * p_self] [godot_int p_min_length]]
+	return SignedChar{base: ret}
 
-// LpadWithCustomCharacter godot_string_lpad_with_custom_character [[const godot_string * p_self] [godot_int p_min_length] [const godot_string * p_character]]
+}
 
-// Match godot_string_match [[const godot_string * p_self] [const godot_string * p_wildcard]]
+// BeginsWith godot_string_begins_with [[const godot_string * p_self] [const godot_string * p_string]] godot_bool
+func (t *String) BeginsWith(str String) Bool {
+	arg0 := t.getBase()
+	arg1 := str.getBase()
 
-// Matchn godot_string_matchn [[const godot_string * p_self] [const godot_string * p_wildcard]]
+	ret := C.go_godot_string_begins_with(GDNative.api, arg0, arg1)
 
-// Md5 godot_string_md5 [[const uint8_t * p_md5]]
+	return Bool{base: ret}
 
-// Num godot_string_num [[double p_num]]
+}
 
-// NumInt64 godot_string_num_int64 [[int64_t p_num] [godot_int p_base]]
+// BeginsWithCharArray godot_string_begins_with_char_array [[const godot_string * p_self] [const char * p_char_array]] godot_bool
+func (t *String) BeginsWithCharArray(charArray Char) Bool {
+	arg0 := t.getBase()
+	arg1 := charArray.getBase()
 
-// NumInt64Capitalized godot_string_num_int64_capitalized [[int64_t p_num] [godot_int p_base] [godot_bool p_capitalize_hex]]
+	ret := C.go_godot_string_begins_with_char_array(GDNative.api, arg0, arg1)
 
-// NumReal godot_string_num_real [[double p_num]]
+	return Bool{base: ret}
 
-// NumScientific godot_string_num_scientific [[double p_num]]
+}
 
-// NumWithDecimals godot_string_num_with_decimals [[double p_num] [godot_int p_decimals]]
+// Bigrams godot_string_bigrams [[const godot_string * p_self]] godot_array
+func (t *String) Bigrams() Array {
+	arg0 := t.getBase()
 
-// PadDecimals godot_string_pad_decimals [[const godot_string * p_self] [godot_int p_digits]]
+	ret := C.go_godot_string_bigrams(GDNative.api, arg0)
 
-// PadZeros godot_string_pad_zeros [[const godot_string * p_self] [godot_int p_digits]]
+	return Array{base: ret}
 
-// ReplaceFirst godot_string_replace_first [[const godot_string * p_self] [godot_string p_key] [godot_string p_with]]
+}
 
-// Replace godot_string_replace [[const godot_string * p_self] [godot_string p_key] [godot_string p_with]]
+// EndsWith godot_string_ends_with [[const godot_string * p_self] [const godot_string * p_string]] godot_bool
+func (t *String) EndsWith(str String) Bool {
+	arg0 := t.getBase()
+	arg1 := str.getBase()
 
-// Replacen godot_string_replacen [[const godot_string * p_self] [godot_string p_key] [godot_string p_with]]
+	ret := C.go_godot_string_ends_with(GDNative.api, arg0, arg1)
 
-// Rfind godot_string_rfind [[const godot_string * p_self] [godot_string p_what]]
+	return Bool{base: ret}
 
-// Rfindn godot_string_rfindn [[const godot_string * p_self] [godot_string p_what]]
+}
 
-// RfindFrom godot_string_rfind_from [[const godot_string * p_self] [godot_string p_what] [godot_int p_from]]
+// Find godot_string_find [[const godot_string * p_self] [godot_string p_what]] godot_int
+func (t *String) Find(what String) Int {
+	arg0 := t.getBase()
+	arg1 := what.getBase()
 
-// RfindnFrom godot_string_rfindn_from [[const godot_string * p_self] [godot_string p_what] [godot_int p_from]]
+	ret := C.go_godot_string_find(GDNative.api, arg0, arg1)
 
-// Rpad godot_string_rpad [[const godot_string * p_self] [godot_int p_min_length]]
+	return Int{base: ret}
 
-// RpadWithCustomCharacter godot_string_rpad_with_custom_character [[const godot_string * p_self] [godot_int p_min_length] [const godot_string * p_character]]
+}
 
-// Similarity godot_string_similarity [[const godot_string * p_self] [const godot_string * p_string]]
+// FindFrom godot_string_find_from [[const godot_string * p_self] [godot_string p_what] [godot_int p_from]] godot_int
+func (t *String) FindFrom(what String, from Int) Int {
+	arg0 := t.getBase()
+	arg1 := what.getBase()
+	arg2 := from.getBase()
 
-// Sprintf godot_string_sprintf [[const godot_string * p_self] [const godot_array * p_values] [godot_bool * p_error]]
+	ret := C.go_godot_string_find_from(GDNative.api, arg0, arg1, arg2)
 
-// Substr godot_string_substr [[const godot_string * p_self] [godot_int p_from] [godot_int p_chars]]
+	return Int{base: ret}
 
-// ToDouble godot_string_to_double [[const godot_string * p_self]]
+}
 
-// ToFloat godot_string_to_float [[const godot_string * p_self]]
+// Findmk godot_string_findmk [[const godot_string * p_self] [const godot_array * p_keys]] godot_int
+func (t *String) Findmk(keys Array) Int {
+	arg0 := t.getBase()
+	arg1 := keys.getBase()
 
-// ToInt godot_string_to_int [[const godot_string * p_self]]
+	ret := C.go_godot_string_findmk(GDNative.api, arg0, arg1)
 
-// CamelcaseToUnderscore godot_string_camelcase_to_underscore [[const godot_string * p_self]]
+	return Int{base: ret}
 
-// CamelcaseToUnderscoreLowercased godot_string_camelcase_to_underscore_lowercased [[const godot_string * p_self]]
+}
 
-// Capitalize godot_string_capitalize [[const godot_string * p_self]]
+// FindmkFrom godot_string_findmk_from [[const godot_string * p_self] [const godot_array * p_keys] [godot_int p_from]] godot_int
+func (t *String) FindmkFrom(keys Array, from Int) Int {
+	arg0 := t.getBase()
+	arg1 := keys.getBase()
+	arg2 := from.getBase()
 
-// CharToDouble godot_string_char_to_double [[const char * p_what]]
+	ret := C.go_godot_string_findmk_from(GDNative.api, arg0, arg1, arg2)
 
-// CharToInt godot_string_char_to_int [[const char * p_what]]
+	return Int{base: ret}
 
-// WcharToInt godot_string_wchar_to_int [[const wchar_t * p_str]]
+}
 
-// CharToIntWithLen godot_string_char_to_int_with_len [[const char * p_what] [godot_int p_len]]
+// FindmkFromInPlace godot_string_findmk_from_in_place [[const godot_string * p_self] [const godot_array * p_keys] [godot_int p_from] [godot_int * r_key]] godot_int
+func (t *String) FindmkFromInPlace(keys Array, from Int, key Int) Int {
+	arg0 := t.getBase()
+	arg1 := keys.getBase()
+	arg2 := from.getBase()
+	arg3 := key.getBase()
 
-// CharToInt64WithLen godot_string_char_to_int64_with_len [[const wchar_t * p_str] [int p_len]]
+	ret := C.go_godot_string_findmk_from_in_place(GDNative.api, arg0, arg1, arg2, arg3)
 
-// HexToInt64 godot_string_hex_to_int64 [[const godot_string * p_self]]
+	return Int{base: ret}
 
-// HexToInt64WithPrefix godot_string_hex_to_int64_with_prefix [[const godot_string * p_self]]
+}
 
-// ToInt64 godot_string_to_int64 [[const godot_string * p_self]]
+// Findn godot_string_findn [[const godot_string * p_self] [godot_string p_what]] godot_int
+func (t *String) Findn(what String) Int {
+	arg0 := t.getBase()
+	arg1 := what.getBase()
 
-// UnicodeCharToDouble godot_string_unicode_char_to_double [[const wchar_t * p_str] [const wchar_t ** r_end]]
+	ret := C.go_godot_string_findn(GDNative.api, arg0, arg1)
 
-// GetSliceCount godot_string_get_slice_count [[const godot_string * p_self] [godot_string p_splitter]]
+	return Int{base: ret}
 
-// GetSlice godot_string_get_slice [[const godot_string * p_self] [godot_string p_splitter] [godot_int p_slice]]
+}
 
-// GetSlicec godot_string_get_slicec [[const godot_string * p_self] [wchar_t p_splitter] [godot_int p_slice]]
+// FindnFrom godot_string_findn_from [[const godot_string * p_self] [godot_string p_what] [godot_int p_from]] godot_int
+func (t *String) FindnFrom(what String, from Int) Int {
+	arg0 := t.getBase()
+	arg1 := what.getBase()
+	arg2 := from.getBase()
 
-// Split godot_string_split [[const godot_string * p_self] [const godot_string * p_splitter]]
+	ret := C.go_godot_string_findn_from(GDNative.api, arg0, arg1, arg2)
 
-// SplitAllowEmpty godot_string_split_allow_empty [[const godot_string * p_self] [const godot_string * p_splitter]]
+	return Int{base: ret}
 
-// SplitFloats godot_string_split_floats [[const godot_string * p_self] [const godot_string * p_splitter]]
+}
 
-// SplitFloatsAllowsEmpty godot_string_split_floats_allows_empty [[const godot_string * p_self] [const godot_string * p_splitter]]
+// FindLast godot_string_find_last [[const godot_string * p_self] [godot_string p_what]] godot_int
+func (t *String) FindLast(what String) Int {
+	arg0 := t.getBase()
+	arg1 := what.getBase()
 
-// SplitFloatsMk godot_string_split_floats_mk [[const godot_string * p_self] [const godot_array * p_splitters]]
+	ret := C.go_godot_string_find_last(GDNative.api, arg0, arg1)
 
-// SplitFloatsMkAllowsEmpty godot_string_split_floats_mk_allows_empty [[const godot_string * p_self] [const godot_array * p_splitters]]
+	return Int{base: ret}
 
-// SplitInts godot_string_split_ints [[const godot_string * p_self] [const godot_string * p_splitter]]
+}
 
-// SplitIntsAllowsEmpty godot_string_split_ints_allows_empty [[const godot_string * p_self] [const godot_string * p_splitter]]
+// Format godot_string_format [[const godot_string * p_self] [const godot_variant * p_values]] godot_string
+func (t *String) Format(values Variant) String {
+	arg0 := t.getBase()
+	arg1 := values.getBase()
 
-// SplitIntsMk godot_string_split_ints_mk [[const godot_string * p_self] [const godot_array * p_splitters]]
+	ret := C.go_godot_string_format(GDNative.api, arg0, arg1)
 
-// SplitIntsMkAllowsEmpty godot_string_split_ints_mk_allows_empty [[const godot_string * p_self] [const godot_array * p_splitters]]
+	return String{base: ret}
 
-// SplitSpaces godot_string_split_spaces [[const godot_string * p_self]]
+}
 
-// CharLowercase godot_string_char_lowercase [[wchar_t p_char]]
+// FormatWithCustomPlaceholder godot_string_format_with_custom_placeholder [[const godot_string * p_self] [const godot_variant * p_values] [const char * p_placeholder]] godot_string
+func (t *String) FormatWithCustomPlaceholder(values Variant, placeholder Char) String {
+	arg0 := t.getBase()
+	arg1 := values.getBase()
+	arg2 := placeholder.getBase()
 
-// CharUppercase godot_string_char_uppercase [[wchar_t p_char]]
+	ret := C.go_godot_string_format_with_custom_placeholder(GDNative.api, arg0, arg1, arg2)
 
-// ToLower godot_string_to_lower [[const godot_string * p_self]]
+	return String{base: ret}
 
-// ToUpper godot_string_to_upper [[const godot_string * p_self]]
+}
 
-// GetBasename godot_string_get_basename [[const godot_string * p_self]]
+// HexToInt godot_string_hex_to_int [[const godot_string * p_self]] godot_int
+func (t *String) HexToInt() Int {
+	arg0 := t.getBase()
 
-// GetExtension godot_string_get_extension [[const godot_string * p_self]]
+	ret := C.go_godot_string_hex_to_int(GDNative.api, arg0)
 
-// Left godot_string_left [[const godot_string * p_self] [godot_int p_pos]]
+	return Int{base: ret}
 
-// OrdAt godot_string_ord_at [[const godot_string * p_self] [godot_int p_idx]]
+}
 
-// PlusFile godot_string_plus_file [[const godot_string * p_self] [const godot_string * p_file]]
+// HexToIntWithoutPrefix godot_string_hex_to_int_without_prefix [[const godot_string * p_self]] godot_int
+func (t *String) HexToIntWithoutPrefix() Int {
+	arg0 := t.getBase()
 
-// Right godot_string_right [[const godot_string * p_self] [godot_int p_pos]]
+	ret := C.go_godot_string_hex_to_int_without_prefix(GDNative.api, arg0)
 
-// StripEdges godot_string_strip_edges [[const godot_string * p_self] [godot_bool p_left] [godot_bool p_right]]
+	return Int{base: ret}
 
-// StripEscapes godot_string_strip_escapes [[const godot_string * p_self]]
+}
 
-// Erase godot_string_erase [[godot_string * p_self] [godot_int p_pos] [godot_int p_chars]]
+// Insert godot_string_insert [[const godot_string * p_self] [godot_int p_at_pos] [godot_string p_string]] godot_string
+func (t *String) Insert(atPos Int, str String) String {
+	arg0 := t.getBase()
+	arg1 := atPos.getBase()
+	arg2 := str.getBase()
 
-// Ascii godot_string_ascii [[const godot_string * p_self]]
+	ret := C.go_godot_string_insert(GDNative.api, arg0, arg1, arg2)
 
-// AsciiExtended godot_string_ascii_extended [[const godot_string * p_self]]
+	return String{base: ret}
 
-// Utf8 godot_string_utf8 [[const godot_string * p_self]]
+}
 
-// ParseUtf8 godot_string_parse_utf8 [[godot_string * p_self] [const char * p_utf8]]
+// IsNumeric godot_string_is_numeric [[const godot_string * p_self]] godot_bool
+func (t *String) IsNumeric() Bool {
+	arg0 := t.getBase()
 
-// ParseUtf8WithLen godot_string_parse_utf8_with_len [[godot_string * p_self] [const char * p_utf8] [godot_int p_len]]
+	ret := C.go_godot_string_is_numeric(GDNative.api, arg0)
 
-// CharsToUtf8 godot_string_chars_to_utf8 [[const char * p_utf8]]
+	return Bool{base: ret}
 
-// CharsToUtf8WithLen godot_string_chars_to_utf8_with_len [[const char * p_utf8] [godot_int p_len]]
+}
 
-// Hash godot_string_hash [[const godot_string * p_self]]
+// IsSubsequenceOf godot_string_is_subsequence_of [[const godot_string * p_self] [const godot_string * p_string]] godot_bool
+func (t *String) IsSubsequenceOf(str String) Bool {
+	arg0 := t.getBase()
+	arg1 := str.getBase()
 
-// Hash64 godot_string_hash64 [[const godot_string * p_self]]
+	ret := C.go_godot_string_is_subsequence_of(GDNative.api, arg0, arg1)
 
-// HashChars godot_string_hash_chars [[const char * p_cstr]]
+	return Bool{base: ret}
 
-// HashCharsWithLen godot_string_hash_chars_with_len [[const char * p_cstr] [godot_int p_len]]
+}
 
-// HashUtf8Chars godot_string_hash_utf8_chars [[const wchar_t * p_str]]
+// IsSubsequenceOfi godot_string_is_subsequence_ofi [[const godot_string * p_self] [const godot_string * p_string]] godot_bool
+func (t *String) IsSubsequenceOfi(str String) Bool {
+	arg0 := t.getBase()
+	arg1 := str.getBase()
 
-// HashUtf8CharsWithLen godot_string_hash_utf8_chars_with_len [[const wchar_t * p_str] [godot_int p_len]]
+	ret := C.go_godot_string_is_subsequence_ofi(GDNative.api, arg0, arg1)
 
-// Md5Buffer godot_string_md5_buffer [[const godot_string * p_self]]
+	return Bool{base: ret}
 
-// Md5Text godot_string_md5_text [[const godot_string * p_self]]
+}
 
-// Sha256Buffer godot_string_sha256_buffer [[const godot_string * p_self]]
+// Lpad godot_string_lpad [[const godot_string * p_self] [godot_int p_min_length]] godot_string
+func (t *String) Lpad(minLength Int) String {
+	arg0 := t.getBase()
+	arg1 := minLength.getBase()
 
-// Sha256Text godot_string_sha256_text [[const godot_string * p_self]]
+	ret := C.go_godot_string_lpad(GDNative.api, arg0, arg1)
 
-// Empty godot_string_empty [[const godot_string * p_self]]
+	return String{base: ret}
 
-// GetBaseDir godot_string_get_base_dir [[const godot_string * p_self]]
+}
 
-// GetFile godot_string_get_file [[const godot_string * p_self]]
+// LpadWithCustomCharacter godot_string_lpad_with_custom_character [[const godot_string * p_self] [godot_int p_min_length] [const godot_string * p_character]] godot_string
+func (t *String) LpadWithCustomCharacter(minLength Int, character String) String {
+	arg0 := t.getBase()
+	arg1 := minLength.getBase()
+	arg2 := character.getBase()
 
-// HumanizeSize godot_string_humanize_size [[size_t p_size]]
+	ret := C.go_godot_string_lpad_with_custom_character(GDNative.api, arg0, arg1, arg2)
 
-// IsAbsPath godot_string_is_abs_path [[const godot_string * p_self]]
+	return String{base: ret}
 
-// IsRelPath godot_string_is_rel_path [[const godot_string * p_self]]
+}
 
-// IsResourceFile godot_string_is_resource_file [[const godot_string * p_self]]
+// Match godot_string_match [[const godot_string * p_self] [const godot_string * p_wildcard]] godot_bool
+func (t *String) Match(wildcard String) Bool {
+	arg0 := t.getBase()
+	arg1 := wildcard.getBase()
 
-// PathTo godot_string_path_to [[const godot_string * p_self] [const godot_string * p_path]]
+	ret := C.go_godot_string_match(GDNative.api, arg0, arg1)
 
-// PathToFile godot_string_path_to_file [[const godot_string * p_self] [const godot_string * p_path]]
+	return Bool{base: ret}
 
-// SimplifyPath godot_string_simplify_path [[const godot_string * p_self]]
+}
 
-// CEscape godot_string_c_escape [[const godot_string * p_self]]
+// Matchn godot_string_matchn [[const godot_string * p_self] [const godot_string * p_wildcard]] godot_bool
+func (t *String) Matchn(wildcard String) Bool {
+	arg0 := t.getBase()
+	arg1 := wildcard.getBase()
 
-// CEscapeMultiline godot_string_c_escape_multiline [[const godot_string * p_self]]
+	ret := C.go_godot_string_matchn(GDNative.api, arg0, arg1)
 
-// CUnescape godot_string_c_unescape [[const godot_string * p_self]]
+	return Bool{base: ret}
 
-// HttpEscape godot_string_http_escape [[const godot_string * p_self]]
+}
 
-// HttpUnescape godot_string_http_unescape [[const godot_string * p_self]]
+// PadDecimals godot_string_pad_decimals [[const godot_string * p_self] [godot_int p_digits]] godot_string
+func (t *String) PadDecimals(digits Int) String {
+	arg0 := t.getBase()
+	arg1 := digits.getBase()
 
-// JsonEscape godot_string_json_escape [[const godot_string * p_self]]
+	ret := C.go_godot_string_pad_decimals(GDNative.api, arg0, arg1)
 
-// WordWrap godot_string_word_wrap [[const godot_string * p_self] [godot_int p_chars_per_line]]
+	return String{base: ret}
 
-// XmlEscape godot_string_xml_escape [[const godot_string * p_self]]
+}
 
-// XmlEscapeWithQuotes godot_string_xml_escape_with_quotes [[const godot_string * p_self]]
+// PadZeros godot_string_pad_zeros [[const godot_string * p_self] [godot_int p_digits]] godot_string
+func (t *String) PadZeros(digits Int) String {
+	arg0 := t.getBase()
+	arg1 := digits.getBase()
 
-// XmlUnescape godot_string_xml_unescape [[const godot_string * p_self]]
+	ret := C.go_godot_string_pad_zeros(GDNative.api, arg0, arg1)
 
-// PercentDecode godot_string_percent_decode [[const godot_string * p_self]]
+	return String{base: ret}
 
-// PercentEncode godot_string_percent_encode [[const godot_string * p_self]]
+}
 
-// IsValidFloat godot_string_is_valid_float [[const godot_string * p_self]]
+// ReplaceFirst godot_string_replace_first [[const godot_string * p_self] [godot_string p_key] [godot_string p_with]] godot_string
+func (t *String) ReplaceFirst(key String, with String) String {
+	arg0 := t.getBase()
+	arg1 := key.getBase()
+	arg2 := with.getBase()
 
-// IsValidHexNumber godot_string_is_valid_hex_number [[const godot_string * p_self] [godot_bool p_with_prefix]]
+	ret := C.go_godot_string_replace_first(GDNative.api, arg0, arg1, arg2)
 
-// IsValidHtmlColor godot_string_is_valid_html_color [[const godot_string * p_self]]
+	return String{base: ret}
 
-// IsValidIdentifier godot_string_is_valid_identifier [[const godot_string * p_self]]
+}
 
-// IsValidInteger godot_string_is_valid_integer [[const godot_string * p_self]]
+// Replace godot_string_replace [[const godot_string * p_self] [godot_string p_key] [godot_string p_with]] godot_string
+func (t *String) Replace(key String, with String) String {
+	arg0 := t.getBase()
+	arg1 := key.getBase()
+	arg2 := with.getBase()
 
-// IsValidIpAddress godot_string_is_valid_ip_address [[const godot_string * p_self]]
+	ret := C.go_godot_string_replace(GDNative.api, arg0, arg1, arg2)
 
-// Destroy godot_string_destroy [[godot_string * p_self]]
+	return String{base: ret}
 
-// NewStringName godot_string_name_new [[godot_string_name * r_dest] [const godot_string * p_name]]
+}
 
-//func NewStringName(dest StringName, name ConstString, ) *String {
-//	return &String{}
-//}
+// Replacen godot_string_replacen [[const godot_string * p_self] [godot_string p_key] [godot_string p_with]] godot_string
+func (t *String) Replacen(key String, with String) String {
+	arg0 := t.getBase()
+	arg1 := key.getBase()
+	arg2 := with.getBase()
 
-// NewStringNameData godot_string_name_new_data [[godot_string_name * r_dest] [const char * p_name]]
+	ret := C.go_godot_string_replacen(GDNative.api, arg0, arg1, arg2)
 
-//func NewStringNameData(dest StringName, name ConstChar, ) *String {
-//	return &String{}
-//}
+	return String{base: ret}
 
-// NameGetName godot_string_name_get_name [[const godot_string_name * p_self]]
+}
 
-// NameGetHash godot_string_name_get_hash [[const godot_string_name * p_self]]
+// Rfind godot_string_rfind [[const godot_string * p_self] [godot_string p_what]] godot_int
+func (t *String) Rfind(what String) Int {
+	arg0 := t.getBase()
+	arg1 := what.getBase()
 
-// NameGetDataUniquePointer godot_string_name_get_data_unique_pointer [[const godot_string_name * p_self]]
+	ret := C.go_godot_string_rfind(GDNative.api, arg0, arg1)
 
-// NameOperatorEqual godot_string_name_operator_equal [[const godot_string_name * p_self] [const godot_string_name * p_other]]
+	return Int{base: ret}
 
-// NameOperatorLess godot_string_name_operator_less [[const godot_string_name * p_self] [const godot_string_name * p_other]]
+}
 
-// NameDestroy godot_string_name_destroy [[godot_string_name * p_self]]
+// Rfindn godot_string_rfindn [[const godot_string * p_self] [godot_string p_what]] godot_int
+func (t *String) Rfindn(what String) Int {
+	arg0 := t.getBase()
+	arg1 := what.getBase()
+
+	ret := C.go_godot_string_rfindn(GDNative.api, arg0, arg1)
+
+	return Int{base: ret}
+
+}
+
+// RfindFrom godot_string_rfind_from [[const godot_string * p_self] [godot_string p_what] [godot_int p_from]] godot_int
+func (t *String) RfindFrom(what String, from Int) Int {
+	arg0 := t.getBase()
+	arg1 := what.getBase()
+	arg2 := from.getBase()
+
+	ret := C.go_godot_string_rfind_from(GDNative.api, arg0, arg1, arg2)
+
+	return Int{base: ret}
+
+}
+
+// RfindnFrom godot_string_rfindn_from [[const godot_string * p_self] [godot_string p_what] [godot_int p_from]] godot_int
+func (t *String) RfindnFrom(what String, from Int) Int {
+	arg0 := t.getBase()
+	arg1 := what.getBase()
+	arg2 := from.getBase()
+
+	ret := C.go_godot_string_rfindn_from(GDNative.api, arg0, arg1, arg2)
+
+	return Int{base: ret}
+
+}
+
+// Rpad godot_string_rpad [[const godot_string * p_self] [godot_int p_min_length]] godot_string
+func (t *String) Rpad(minLength Int) String {
+	arg0 := t.getBase()
+	arg1 := minLength.getBase()
+
+	ret := C.go_godot_string_rpad(GDNative.api, arg0, arg1)
+
+	return String{base: ret}
+
+}
+
+// RpadWithCustomCharacter godot_string_rpad_with_custom_character [[const godot_string * p_self] [godot_int p_min_length] [const godot_string * p_character]] godot_string
+func (t *String) RpadWithCustomCharacter(minLength Int, character String) String {
+	arg0 := t.getBase()
+	arg1 := minLength.getBase()
+	arg2 := character.getBase()
+
+	ret := C.go_godot_string_rpad_with_custom_character(GDNative.api, arg0, arg1, arg2)
+
+	return String{base: ret}
+
+}
+
+// Similarity godot_string_similarity [[const godot_string * p_self] [const godot_string * p_string]] godot_real
+func (t *String) Similarity(str String) Real {
+	arg0 := t.getBase()
+	arg1 := str.getBase()
+
+	ret := C.go_godot_string_similarity(GDNative.api, arg0, arg1)
+
+	return Real{base: ret}
+
+}
+
+// Sprintf godot_string_sprintf [[const godot_string * p_self] [const godot_array * p_values] [godot_bool * p_error]] godot_string
+func (t *String) Sprintf(values Array, error Bool) String {
+	arg0 := t.getBase()
+	arg1 := values.getBase()
+	arg2 := error.getBase()
+
+	ret := C.go_godot_string_sprintf(GDNative.api, arg0, arg1, arg2)
+
+	return String{base: ret}
+
+}
+
+// Substr godot_string_substr [[const godot_string * p_self] [godot_int p_from] [godot_int p_chars]] godot_string
+func (t *String) Substr(from Int, chars Int) String {
+	arg0 := t.getBase()
+	arg1 := from.getBase()
+	arg2 := chars.getBase()
+
+	ret := C.go_godot_string_substr(GDNative.api, arg0, arg1, arg2)
+
+	return String{base: ret}
+
+}
+
+// ToDouble godot_string_to_double [[const godot_string * p_self]] double
+func (t *String) ToDouble() Double {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_to_double(GDNative.api, arg0)
+
+	return Double{base: ret}
+
+}
+
+// ToFloat godot_string_to_float [[const godot_string * p_self]] godot_real
+func (t *String) ToFloat() Real {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_to_float(GDNative.api, arg0)
+
+	return Real{base: ret}
+
+}
+
+// ToInt godot_string_to_int [[const godot_string * p_self]] godot_int
+func (t *String) ToInt() Int {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_to_int(GDNative.api, arg0)
+
+	return Int{base: ret}
+
+}
+
+// CamelcaseToUnderscore godot_string_camelcase_to_underscore [[const godot_string * p_self]] godot_string
+func (t *String) CamelcaseToUnderscore() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_camelcase_to_underscore(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// CamelcaseToUnderscoreLowercased godot_string_camelcase_to_underscore_lowercased [[const godot_string * p_self]] godot_string
+func (t *String) CamelcaseToUnderscoreLowercased() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_camelcase_to_underscore_lowercased(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// Capitalize godot_string_capitalize [[const godot_string * p_self]] godot_string
+func (t *String) Capitalize() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_capitalize(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// HexToInt64 godot_string_hex_to_int64 [[const godot_string * p_self]] int64_t
+func (t *String) HexToInt64() Int64T {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_hex_to_int64(GDNative.api, arg0)
+
+	return Int64T{base: ret}
+
+}
+
+// HexToInt64WithPrefix godot_string_hex_to_int64_with_prefix [[const godot_string * p_self]] int64_t
+func (t *String) HexToInt64WithPrefix() Int64T {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_hex_to_int64_with_prefix(GDNative.api, arg0)
+
+	return Int64T{base: ret}
+
+}
+
+// ToInt64 godot_string_to_int64 [[const godot_string * p_self]] int64_t
+func (t *String) ToInt64() Int64T {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_to_int64(GDNative.api, arg0)
+
+	return Int64T{base: ret}
+
+}
+
+// GetSliceCount godot_string_get_slice_count [[const godot_string * p_self] [godot_string p_splitter]] godot_int
+func (t *String) GetSliceCount(splitter String) Int {
+	arg0 := t.getBase()
+	arg1 := splitter.getBase()
+
+	ret := C.go_godot_string_get_slice_count(GDNative.api, arg0, arg1)
+
+	return Int{base: ret}
+
+}
+
+// GetSlice godot_string_get_slice [[const godot_string * p_self] [godot_string p_splitter] [godot_int p_slice]] godot_string
+func (t *String) GetSlice(splitter String, slice Int) String {
+	arg0 := t.getBase()
+	arg1 := splitter.getBase()
+	arg2 := slice.getBase()
+
+	ret := C.go_godot_string_get_slice(GDNative.api, arg0, arg1, arg2)
+
+	return String{base: ret}
+
+}
+
+// GetSlicec godot_string_get_slicec [[const godot_string * p_self] [wchar_t p_splitter] [godot_int p_slice]] godot_string
+func (t *String) GetSlicec(splitter WcharT, slice Int) String {
+	arg0 := t.getBase()
+	arg1 := splitter.getBase()
+	arg2 := slice.getBase()
+
+	ret := C.go_godot_string_get_slicec(GDNative.api, arg0, arg1, arg2)
+
+	return String{base: ret}
+
+}
+
+// Split godot_string_split [[const godot_string * p_self] [const godot_string * p_splitter]] godot_array
+func (t *String) Split(splitter String) Array {
+	arg0 := t.getBase()
+	arg1 := splitter.getBase()
+
+	ret := C.go_godot_string_split(GDNative.api, arg0, arg1)
+
+	return Array{base: ret}
+
+}
+
+// SplitAllowEmpty godot_string_split_allow_empty [[const godot_string * p_self] [const godot_string * p_splitter]] godot_array
+func (t *String) SplitAllowEmpty(splitter String) Array {
+	arg0 := t.getBase()
+	arg1 := splitter.getBase()
+
+	ret := C.go_godot_string_split_allow_empty(GDNative.api, arg0, arg1)
+
+	return Array{base: ret}
+
+}
+
+// SplitFloats godot_string_split_floats [[const godot_string * p_self] [const godot_string * p_splitter]] godot_array
+func (t *String) SplitFloats(splitter String) Array {
+	arg0 := t.getBase()
+	arg1 := splitter.getBase()
+
+	ret := C.go_godot_string_split_floats(GDNative.api, arg0, arg1)
+
+	return Array{base: ret}
+
+}
+
+// SplitFloatsAllowsEmpty godot_string_split_floats_allows_empty [[const godot_string * p_self] [const godot_string * p_splitter]] godot_array
+func (t *String) SplitFloatsAllowsEmpty(splitter String) Array {
+	arg0 := t.getBase()
+	arg1 := splitter.getBase()
+
+	ret := C.go_godot_string_split_floats_allows_empty(GDNative.api, arg0, arg1)
+
+	return Array{base: ret}
+
+}
+
+// SplitFloatsMk godot_string_split_floats_mk [[const godot_string * p_self] [const godot_array * p_splitters]] godot_array
+func (t *String) SplitFloatsMk(splitters Array) Array {
+	arg0 := t.getBase()
+	arg1 := splitters.getBase()
+
+	ret := C.go_godot_string_split_floats_mk(GDNative.api, arg0, arg1)
+
+	return Array{base: ret}
+
+}
+
+// SplitFloatsMkAllowsEmpty godot_string_split_floats_mk_allows_empty [[const godot_string * p_self] [const godot_array * p_splitters]] godot_array
+func (t *String) SplitFloatsMkAllowsEmpty(splitters Array) Array {
+	arg0 := t.getBase()
+	arg1 := splitters.getBase()
+
+	ret := C.go_godot_string_split_floats_mk_allows_empty(GDNative.api, arg0, arg1)
+
+	return Array{base: ret}
+
+}
+
+// SplitInts godot_string_split_ints [[const godot_string * p_self] [const godot_string * p_splitter]] godot_array
+func (t *String) SplitInts(splitter String) Array {
+	arg0 := t.getBase()
+	arg1 := splitter.getBase()
+
+	ret := C.go_godot_string_split_ints(GDNative.api, arg0, arg1)
+
+	return Array{base: ret}
+
+}
+
+// SplitIntsAllowsEmpty godot_string_split_ints_allows_empty [[const godot_string * p_self] [const godot_string * p_splitter]] godot_array
+func (t *String) SplitIntsAllowsEmpty(splitter String) Array {
+	arg0 := t.getBase()
+	arg1 := splitter.getBase()
+
+	ret := C.go_godot_string_split_ints_allows_empty(GDNative.api, arg0, arg1)
+
+	return Array{base: ret}
+
+}
+
+// SplitIntsMk godot_string_split_ints_mk [[const godot_string * p_self] [const godot_array * p_splitters]] godot_array
+func (t *String) SplitIntsMk(splitters Array) Array {
+	arg0 := t.getBase()
+	arg1 := splitters.getBase()
+
+	ret := C.go_godot_string_split_ints_mk(GDNative.api, arg0, arg1)
+
+	return Array{base: ret}
+
+}
+
+// SplitIntsMkAllowsEmpty godot_string_split_ints_mk_allows_empty [[const godot_string * p_self] [const godot_array * p_splitters]] godot_array
+func (t *String) SplitIntsMkAllowsEmpty(splitters Array) Array {
+	arg0 := t.getBase()
+	arg1 := splitters.getBase()
+
+	ret := C.go_godot_string_split_ints_mk_allows_empty(GDNative.api, arg0, arg1)
+
+	return Array{base: ret}
+
+}
+
+// SplitSpaces godot_string_split_spaces [[const godot_string * p_self]] godot_array
+func (t *String) SplitSpaces() Array {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_split_spaces(GDNative.api, arg0)
+
+	return Array{base: ret}
+
+}
+
+// ToLower godot_string_to_lower [[const godot_string * p_self]] godot_string
+func (t *String) ToLower() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_to_lower(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// ToUpper godot_string_to_upper [[const godot_string * p_self]] godot_string
+func (t *String) ToUpper() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_to_upper(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// GetBasename godot_string_get_basename [[const godot_string * p_self]] godot_string
+func (t *String) GetBasename() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_get_basename(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// GetExtension godot_string_get_extension [[const godot_string * p_self]] godot_string
+func (t *String) GetExtension() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_get_extension(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// Left godot_string_left [[const godot_string * p_self] [godot_int p_pos]] godot_string
+func (t *String) Left(pos Int) String {
+	arg0 := t.getBase()
+	arg1 := pos.getBase()
+
+	ret := C.go_godot_string_left(GDNative.api, arg0, arg1)
+
+	return String{base: ret}
+
+}
+
+// OrdAt godot_string_ord_at [[const godot_string * p_self] [godot_int p_idx]] wchar_t
+func (t *String) OrdAt(idx Int) WcharT {
+	arg0 := t.getBase()
+	arg1 := idx.getBase()
+
+	ret := C.go_godot_string_ord_at(GDNative.api, arg0, arg1)
+
+	return WcharT{base: ret}
+
+}
+
+// PlusFile godot_string_plus_file [[const godot_string * p_self] [const godot_string * p_file]] godot_string
+func (t *String) PlusFile(file String) String {
+	arg0 := t.getBase()
+	arg1 := file.getBase()
+
+	ret := C.go_godot_string_plus_file(GDNative.api, arg0, arg1)
+
+	return String{base: ret}
+
+}
+
+// Right godot_string_right [[const godot_string * p_self] [godot_int p_pos]] godot_string
+func (t *String) Right(pos Int) String {
+	arg0 := t.getBase()
+	arg1 := pos.getBase()
+
+	ret := C.go_godot_string_right(GDNative.api, arg0, arg1)
+
+	return String{base: ret}
+
+}
+
+// StripEdges godot_string_strip_edges [[const godot_string * p_self] [godot_bool p_left] [godot_bool p_right]] godot_string
+func (t *String) StripEdges(left Bool, right Bool) String {
+	arg0 := t.getBase()
+	arg1 := left.getBase()
+	arg2 := right.getBase()
+
+	ret := C.go_godot_string_strip_edges(GDNative.api, arg0, arg1, arg2)
+
+	return String{base: ret}
+
+}
+
+// StripEscapes godot_string_strip_escapes [[const godot_string * p_self]] godot_string
+func (t *String) StripEscapes() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_strip_escapes(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// Erase godot_string_erase [[godot_string * p_self] [godot_int p_pos] [godot_int p_chars]] void
+func (t *String) Erase(pos Int, chars Int) {
+	arg0 := t.getBase()
+	arg1 := pos.getBase()
+	arg2 := chars.getBase()
+
+	C.go_godot_string_erase(GDNative.api, arg0, arg1, arg2)
+
+}
+
+// Ascii godot_string_ascii [[const godot_string * p_self]] godot_char_string
+func (t *String) Ascii() CharString {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_ascii(GDNative.api, arg0)
+
+	return CharString{base: ret}
+
+}
+
+// AsciiExtended godot_string_ascii_extended [[const godot_string * p_self]] godot_char_string
+func (t *String) AsciiExtended() CharString {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_ascii_extended(GDNative.api, arg0)
+
+	return CharString{base: ret}
+
+}
+
+// Utf8 godot_string_utf8 [[const godot_string * p_self]] godot_char_string
+func (t *String) Utf8() CharString {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_utf8(GDNative.api, arg0)
+
+	return CharString{base: ret}
+
+}
+
+// ParseUtf8 godot_string_parse_utf8 [[godot_string * p_self] [const char * p_utf8]] godot_bool
+func (t *String) ParseUtf8(utf8 Char) Bool {
+	arg0 := t.getBase()
+	arg1 := utf8.getBase()
+
+	ret := C.go_godot_string_parse_utf8(GDNative.api, arg0, arg1)
+
+	return Bool{base: ret}
+
+}
+
+// ParseUtf8WithLen godot_string_parse_utf8_with_len [[godot_string * p_self] [const char * p_utf8] [godot_int p_len]] godot_bool
+func (t *String) ParseUtf8WithLen(utf8 Char, len Int) Bool {
+	arg0 := t.getBase()
+	arg1 := utf8.getBase()
+	arg2 := len.getBase()
+
+	ret := C.go_godot_string_parse_utf8_with_len(GDNative.api, arg0, arg1, arg2)
+
+	return Bool{base: ret}
+
+}
+
+// Hash godot_string_hash [[const godot_string * p_self]] uint32_t
+func (t *String) Hash() Uint32T {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_hash(GDNative.api, arg0)
+
+	return Uint32T{base: ret}
+
+}
+
+// Hash64 godot_string_hash64 [[const godot_string * p_self]] uint64_t
+func (t *String) Hash64() Uint64T {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_hash64(GDNative.api, arg0)
+
+	return Uint64T{base: ret}
+
+}
+
+// Md5Buffer godot_string_md5_buffer [[const godot_string * p_self]] godot_pool_byte_array
+func (t *String) Md5Buffer() PoolByteArray {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_md5_buffer(GDNative.api, arg0)
+
+	return PoolByteArray{base: ret}
+
+}
+
+// Md5Text godot_string_md5_text [[const godot_string * p_self]] godot_string
+func (t *String) Md5Text() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_md5_text(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// Sha256Buffer godot_string_sha256_buffer [[const godot_string * p_self]] godot_pool_byte_array
+func (t *String) Sha256Buffer() PoolByteArray {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_sha256_buffer(GDNative.api, arg0)
+
+	return PoolByteArray{base: ret}
+
+}
+
+// Sha256Text godot_string_sha256_text [[const godot_string * p_self]] godot_string
+func (t *String) Sha256Text() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_sha256_text(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// Empty godot_string_empty [[const godot_string * p_self]] godot_bool
+func (t *String) Empty() Bool {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_empty(GDNative.api, arg0)
+
+	return Bool{base: ret}
+
+}
+
+// GetBaseDir godot_string_get_base_dir [[const godot_string * p_self]] godot_string
+func (t *String) GetBaseDir() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_get_base_dir(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// GetFile godot_string_get_file [[const godot_string * p_self]] godot_string
+func (t *String) GetFile() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_get_file(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// IsAbsPath godot_string_is_abs_path [[const godot_string * p_self]] godot_bool
+func (t *String) IsAbsPath() Bool {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_is_abs_path(GDNative.api, arg0)
+
+	return Bool{base: ret}
+
+}
+
+// IsRelPath godot_string_is_rel_path [[const godot_string * p_self]] godot_bool
+func (t *String) IsRelPath() Bool {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_is_rel_path(GDNative.api, arg0)
+
+	return Bool{base: ret}
+
+}
+
+// IsResourceFile godot_string_is_resource_file [[const godot_string * p_self]] godot_bool
+func (t *String) IsResourceFile() Bool {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_is_resource_file(GDNative.api, arg0)
+
+	return Bool{base: ret}
+
+}
+
+// PathTo godot_string_path_to [[const godot_string * p_self] [const godot_string * p_path]] godot_string
+func (t *String) PathTo(path String) String {
+	arg0 := t.getBase()
+	arg1 := path.getBase()
+
+	ret := C.go_godot_string_path_to(GDNative.api, arg0, arg1)
+
+	return String{base: ret}
+
+}
+
+// PathToFile godot_string_path_to_file [[const godot_string * p_self] [const godot_string * p_path]] godot_string
+func (t *String) PathToFile(path String) String {
+	arg0 := t.getBase()
+	arg1 := path.getBase()
+
+	ret := C.go_godot_string_path_to_file(GDNative.api, arg0, arg1)
+
+	return String{base: ret}
+
+}
+
+// SimplifyPath godot_string_simplify_path [[const godot_string * p_self]] godot_string
+func (t *String) SimplifyPath() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_simplify_path(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// CEscape godot_string_c_escape [[const godot_string * p_self]] godot_string
+func (t *String) CEscape() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_c_escape(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// CEscapeMultiline godot_string_c_escape_multiline [[const godot_string * p_self]] godot_string
+func (t *String) CEscapeMultiline() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_c_escape_multiline(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// CUnescape godot_string_c_unescape [[const godot_string * p_self]] godot_string
+func (t *String) CUnescape() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_c_unescape(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// HttpEscape godot_string_http_escape [[const godot_string * p_self]] godot_string
+func (t *String) HttpEscape() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_http_escape(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// HttpUnescape godot_string_http_unescape [[const godot_string * p_self]] godot_string
+func (t *String) HttpUnescape() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_http_unescape(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// JsonEscape godot_string_json_escape [[const godot_string * p_self]] godot_string
+func (t *String) JsonEscape() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_json_escape(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// WordWrap godot_string_word_wrap [[const godot_string * p_self] [godot_int p_chars_per_line]] godot_string
+func (t *String) WordWrap(charsPerLine Int) String {
+	arg0 := t.getBase()
+	arg1 := charsPerLine.getBase()
+
+	ret := C.go_godot_string_word_wrap(GDNative.api, arg0, arg1)
+
+	return String{base: ret}
+
+}
+
+// XmlEscape godot_string_xml_escape [[const godot_string * p_self]] godot_string
+func (t *String) XmlEscape() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_xml_escape(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// XmlEscapeWithQuotes godot_string_xml_escape_with_quotes [[const godot_string * p_self]] godot_string
+func (t *String) XmlEscapeWithQuotes() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_xml_escape_with_quotes(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// XmlUnescape godot_string_xml_unescape [[const godot_string * p_self]] godot_string
+func (t *String) XmlUnescape() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_xml_unescape(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// PercentDecode godot_string_percent_decode [[const godot_string * p_self]] godot_string
+func (t *String) PercentDecode() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_percent_decode(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// PercentEncode godot_string_percent_encode [[const godot_string * p_self]] godot_string
+func (t *String) PercentEncode() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_percent_encode(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// IsValidFloat godot_string_is_valid_float [[const godot_string * p_self]] godot_bool
+func (t *String) IsValidFloat() Bool {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_is_valid_float(GDNative.api, arg0)
+
+	return Bool{base: ret}
+
+}
+
+// IsValidHexNumber godot_string_is_valid_hex_number [[const godot_string * p_self] [godot_bool p_with_prefix]] godot_bool
+func (t *String) IsValidHexNumber(withPrefix Bool) Bool {
+	arg0 := t.getBase()
+	arg1 := withPrefix.getBase()
+
+	ret := C.go_godot_string_is_valid_hex_number(GDNative.api, arg0, arg1)
+
+	return Bool{base: ret}
+
+}
+
+// IsValidHtmlColor godot_string_is_valid_html_color [[const godot_string * p_self]] godot_bool
+func (t *String) IsValidHtmlColor() Bool {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_is_valid_html_color(GDNative.api, arg0)
+
+	return Bool{base: ret}
+
+}
+
+// IsValidIdentifier godot_string_is_valid_identifier [[const godot_string * p_self]] godot_bool
+func (t *String) IsValidIdentifier() Bool {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_is_valid_identifier(GDNative.api, arg0)
+
+	return Bool{base: ret}
+
+}
+
+// IsValidInteger godot_string_is_valid_integer [[const godot_string * p_self]] godot_bool
+func (t *String) IsValidInteger() Bool {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_is_valid_integer(GDNative.api, arg0)
+
+	return Bool{base: ret}
+
+}
+
+// IsValidIpAddress godot_string_is_valid_ip_address [[const godot_string * p_self]] godot_bool
+func (t *String) IsValidIpAddress() Bool {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_string_is_valid_ip_address(GDNative.api, arg0)
+
+	return Bool{base: ret}
+
+}
+
+// Destroy godot_string_destroy [[godot_string * p_self]] void
+func (t *String) Destroy() {
+	arg0 := t.getBase()
+
+	C.go_godot_string_destroy(GDNative.api, arg0)
+
+}
 
 type CharString struct {
 	base *C.godot_char_string
 }
 
-func (t *CharString) getBase() *C.godot_char_string {
+func (t CharString) getBase() *C.godot_char_string {
 	return t.base
 }
-
-// Length godot_char_string_length [[const godot_char_string * p_cs]]
-
-// GetData godot_char_string_get_data [[const godot_char_string * p_cs]]
-
-// Destroy godot_char_string_destroy [[godot_char_string * p_cs]]

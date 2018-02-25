@@ -18,52 +18,178 @@ type Dictionary struct {
 	base *C.godot_dictionary
 }
 
-func (t *Dictionary) getBase() *C.godot_dictionary {
+func (t Dictionary) getBase() *C.godot_dictionary {
 	return t.base
 }
 
-// NewDictionary godot_dictionary_new [[godot_dictionary * r_dest]]
+// Destroy godot_dictionary_destroy [[godot_dictionary * p_self]] void
+func (t *Dictionary) Destroy() {
+	arg0 := t.getBase()
 
-//func NewDictionary(dest Dictionary, ) *Dictionary {
-//	return &Dictionary{}
-//}
+	C.go_godot_dictionary_destroy(GDNative.api, arg0)
 
-// NewDictionaryCopy godot_dictionary_new_copy [[godot_dictionary * r_dest] [const godot_dictionary * p_src]]
+}
 
-//func NewDictionaryCopy(dest Dictionary, src ConstDictionary, ) *Dictionary {
-//	return &Dictionary{}
-//}
+// Size godot_dictionary_size [[const godot_dictionary * p_self]] godot_int
+func (t *Dictionary) Size() Int {
+	arg0 := t.getBase()
 
-// Destroy godot_dictionary_destroy [[godot_dictionary * p_self]]
+	ret := C.go_godot_dictionary_size(GDNative.api, arg0)
 
-// Size godot_dictionary_size [[const godot_dictionary * p_self]]
+	return Int{base: ret}
 
-// Empty godot_dictionary_empty [[const godot_dictionary * p_self]]
+}
 
-// Clear godot_dictionary_clear [[godot_dictionary * p_self]]
+// Empty godot_dictionary_empty [[const godot_dictionary * p_self]] godot_bool
+func (t *Dictionary) Empty() Bool {
+	arg0 := t.getBase()
 
-// Has godot_dictionary_has [[const godot_dictionary * p_self] [const godot_variant * p_key]]
+	ret := C.go_godot_dictionary_empty(GDNative.api, arg0)
 
-// HasAll godot_dictionary_has_all [[const godot_dictionary * p_self] [const godot_array * p_keys]]
+	return Bool{base: ret}
 
-// Erase godot_dictionary_erase [[godot_dictionary * p_self] [const godot_variant * p_key]]
+}
 
-// Hash godot_dictionary_hash [[const godot_dictionary * p_self]]
+// Clear godot_dictionary_clear [[godot_dictionary * p_self]] void
+func (t *Dictionary) Clear() {
+	arg0 := t.getBase()
 
-// Keys godot_dictionary_keys [[const godot_dictionary * p_self]]
+	C.go_godot_dictionary_clear(GDNative.api, arg0)
 
-// Values godot_dictionary_values [[const godot_dictionary * p_self]]
+}
 
-// Get godot_dictionary_get [[const godot_dictionary * p_self] [const godot_variant * p_key]]
+// Has godot_dictionary_has [[const godot_dictionary * p_self] [const godot_variant * p_key]] godot_bool
+func (t *Dictionary) Has(key Variant) Bool {
+	arg0 := t.getBase()
+	arg1 := key.getBase()
 
-// Set godot_dictionary_set [[godot_dictionary * p_self] [const godot_variant * p_key] [const godot_variant * p_value]]
+	ret := C.go_godot_dictionary_has(GDNative.api, arg0, arg1)
 
-// OperatorIndex godot_dictionary_operator_index [[godot_dictionary * p_self] [const godot_variant * p_key]]
+	return Bool{base: ret}
 
-// OperatorIndexConst godot_dictionary_operator_index_const [[const godot_dictionary * p_self] [const godot_variant * p_key]]
+}
 
-// Next godot_dictionary_next [[const godot_dictionary * p_self] [const godot_variant * p_key]]
+// HasAll godot_dictionary_has_all [[const godot_dictionary * p_self] [const godot_array * p_keys]] godot_bool
+func (t *Dictionary) HasAll(keys Array) Bool {
+	arg0 := t.getBase()
+	arg1 := keys.getBase()
 
-// OperatorEqual godot_dictionary_operator_equal [[const godot_dictionary * p_self] [const godot_dictionary * p_b]]
+	ret := C.go_godot_dictionary_has_all(GDNative.api, arg0, arg1)
 
-// ToJson godot_dictionary_to_json [[const godot_dictionary * p_self]]
+	return Bool{base: ret}
+
+}
+
+// Erase godot_dictionary_erase [[godot_dictionary * p_self] [const godot_variant * p_key]] void
+func (t *Dictionary) Erase(key Variant) {
+	arg0 := t.getBase()
+	arg1 := key.getBase()
+
+	C.go_godot_dictionary_erase(GDNative.api, arg0, arg1)
+
+}
+
+// Hash godot_dictionary_hash [[const godot_dictionary * p_self]] godot_int
+func (t *Dictionary) Hash() Int {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_dictionary_hash(GDNative.api, arg0)
+
+	return Int{base: ret}
+
+}
+
+// Keys godot_dictionary_keys [[const godot_dictionary * p_self]] godot_array
+func (t *Dictionary) Keys() Array {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_dictionary_keys(GDNative.api, arg0)
+
+	return Array{base: ret}
+
+}
+
+// Values godot_dictionary_values [[const godot_dictionary * p_self]] godot_array
+func (t *Dictionary) Values() Array {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_dictionary_values(GDNative.api, arg0)
+
+	return Array{base: ret}
+
+}
+
+// Get godot_dictionary_get [[const godot_dictionary * p_self] [const godot_variant * p_key]] godot_variant
+func (t *Dictionary) Get(key Variant) Variant {
+	arg0 := t.getBase()
+	arg1 := key.getBase()
+
+	ret := C.go_godot_dictionary_get(GDNative.api, arg0, arg1)
+
+	return Variant{base: ret}
+
+}
+
+// Set godot_dictionary_set [[godot_dictionary * p_self] [const godot_variant * p_key] [const godot_variant * p_value]] void
+func (t *Dictionary) Set(key Variant, value Variant) {
+	arg0 := t.getBase()
+	arg1 := key.getBase()
+	arg2 := value.getBase()
+
+	C.go_godot_dictionary_set(GDNative.api, arg0, arg1, arg2)
+
+}
+
+// OperatorIndex godot_dictionary_operator_index [[godot_dictionary * p_self] [const godot_variant * p_key]] godot_variant *
+func (t *Dictionary) OperatorIndex(key Variant) Variant {
+	arg0 := t.getBase()
+	arg1 := key.getBase()
+
+	ret := C.go_godot_dictionary_operator_index(GDNative.api, arg0, arg1)
+
+	return Variant{base: ret}
+
+}
+
+// OperatorIndexConst godot_dictionary_operator_index_const [[const godot_dictionary * p_self] [const godot_variant * p_key]] const godot_variant *
+func (t *Dictionary) OperatorIndexConst(key Variant) Variant {
+	arg0 := t.getBase()
+	arg1 := key.getBase()
+
+	ret := C.go_godot_dictionary_operator_index_const(GDNative.api, arg0, arg1)
+
+	return Variant{base: ret}
+
+}
+
+// Next godot_dictionary_next [[const godot_dictionary * p_self] [const godot_variant * p_key]] godot_variant *
+func (t *Dictionary) Next(key Variant) Variant {
+	arg0 := t.getBase()
+	arg1 := key.getBase()
+
+	ret := C.go_godot_dictionary_next(GDNative.api, arg0, arg1)
+
+	return Variant{base: ret}
+
+}
+
+// OperatorEqual godot_dictionary_operator_equal [[const godot_dictionary * p_self] [const godot_dictionary * p_b]] godot_bool
+func (t *Dictionary) OperatorEqual(b Dictionary) Bool {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_dictionary_operator_equal(GDNative.api, arg0, arg1)
+
+	return Bool{base: ret}
+
+}
+
+// ToJson godot_dictionary_to_json [[const godot_dictionary * p_self]] godot_string
+func (t *Dictionary) ToJson() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_dictionary_to_json(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}

@@ -18,6 +18,6 @@ type ArvrInterfaceGdnative struct {
 	base *C.godot_arvr_interface_gdnative
 }
 
-func (t *ArvrInterfaceGdnative) getBase() *C.godot_arvr_interface_gdnative {
+func (t ArvrInterfaceGdnative) getBase() *C.godot_arvr_interface_gdnative {
 	return t.base
 }

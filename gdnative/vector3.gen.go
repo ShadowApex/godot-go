@@ -18,87 +18,396 @@ type Vector3 struct {
 	base *C.godot_vector3
 }
 
-func (t *Vector3) getBase() *C.godot_vector3 {
+func (t Vector3) getBase() *C.godot_vector3 {
 	return t.base
 }
 
-// NewVector3 godot_vector3_new [[godot_vector3 * r_dest] [const godot_real p_x] [const godot_real p_y] [const godot_real p_z]]
+// AsString godot_vector3_as_string [[const godot_vector3 * p_self]] godot_string
+func (t *Vector3) AsString() String {
+	arg0 := t.getBase()
 
-//func NewVector3(dest Vector3, x ConstReal, y ConstReal, z ConstReal, ) *Vector3 {
-//	return &Vector3{}
-//}
+	ret := C.go_godot_vector3_as_string(GDNative.api, arg0)
 
-// AsString godot_vector3_as_string [[const godot_vector3 * p_self]]
+	return String{base: ret}
 
-// MinAxis godot_vector3_min_axis [[const godot_vector3 * p_self]]
+}
 
-// MaxAxis godot_vector3_max_axis [[const godot_vector3 * p_self]]
+// MinAxis godot_vector3_min_axis [[const godot_vector3 * p_self]] godot_int
+func (t *Vector3) MinAxis() Int {
+	arg0 := t.getBase()
 
-// Length godot_vector3_length [[const godot_vector3 * p_self]]
+	ret := C.go_godot_vector3_min_axis(GDNative.api, arg0)
 
-// LengthSquared godot_vector3_length_squared [[const godot_vector3 * p_self]]
+	return Int{base: ret}
 
-// IsNormalized godot_vector3_is_normalized [[const godot_vector3 * p_self]]
+}
 
-// Normalized godot_vector3_normalized [[const godot_vector3 * p_self]]
+// MaxAxis godot_vector3_max_axis [[const godot_vector3 * p_self]] godot_int
+func (t *Vector3) MaxAxis() Int {
+	arg0 := t.getBase()
 
-// Inverse godot_vector3_inverse [[const godot_vector3 * p_self]]
+	ret := C.go_godot_vector3_max_axis(GDNative.api, arg0)
 
-// Snapped godot_vector3_snapped [[const godot_vector3 * p_self] [const godot_vector3 * p_by]]
+	return Int{base: ret}
 
-// Rotated godot_vector3_rotated [[const godot_vector3 * p_self] [const godot_vector3 * p_axis] [const godot_real p_phi]]
+}
 
-// LinearInterpolate godot_vector3_linear_interpolate [[const godot_vector3 * p_self] [const godot_vector3 * p_b] [const godot_real p_t]]
+// Length godot_vector3_length [[const godot_vector3 * p_self]] godot_real
+func (t *Vector3) Length() Real {
+	arg0 := t.getBase()
 
-// CubicInterpolate godot_vector3_cubic_interpolate [[const godot_vector3 * p_self] [const godot_vector3 * p_b] [const godot_vector3 * p_pre_a] [const godot_vector3 * p_post_b] [const godot_real p_t]]
+	ret := C.go_godot_vector3_length(GDNative.api, arg0)
 
-// Dot godot_vector3_dot [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+	return Real{base: ret}
 
-// Cross godot_vector3_cross [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+}
 
-// Outer godot_vector3_outer [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+// LengthSquared godot_vector3_length_squared [[const godot_vector3 * p_self]] godot_real
+func (t *Vector3) LengthSquared() Real {
+	arg0 := t.getBase()
 
-// ToDiagonalMatrix godot_vector3_to_diagonal_matrix [[const godot_vector3 * p_self]]
+	ret := C.go_godot_vector3_length_squared(GDNative.api, arg0)
 
-// Abs godot_vector3_abs [[const godot_vector3 * p_self]]
+	return Real{base: ret}
 
-// Floor godot_vector3_floor [[const godot_vector3 * p_self]]
+}
 
-// Ceil godot_vector3_ceil [[const godot_vector3 * p_self]]
+// IsNormalized godot_vector3_is_normalized [[const godot_vector3 * p_self]] godot_bool
+func (t *Vector3) IsNormalized() Bool {
+	arg0 := t.getBase()
 
-// DistanceTo godot_vector3_distance_to [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+	ret := C.go_godot_vector3_is_normalized(GDNative.api, arg0)
 
-// DistanceSquaredTo godot_vector3_distance_squared_to [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+	return Bool{base: ret}
 
-// AngleTo godot_vector3_angle_to [[const godot_vector3 * p_self] [const godot_vector3 * p_to]]
+}
 
-// Slide godot_vector3_slide [[const godot_vector3 * p_self] [const godot_vector3 * p_n]]
+// Normalized godot_vector3_normalized [[const godot_vector3 * p_self]] godot_vector3
+func (t *Vector3) Normalized() Vector3 {
+	arg0 := t.getBase()
 
-// Bounce godot_vector3_bounce [[const godot_vector3 * p_self] [const godot_vector3 * p_n]]
+	ret := C.go_godot_vector3_normalized(GDNative.api, arg0)
 
-// Reflect godot_vector3_reflect [[const godot_vector3 * p_self] [const godot_vector3 * p_n]]
+	return Vector3{base: ret}
 
-// OperatorAdd godot_vector3_operator_add [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+}
 
-// OperatorSubtract godot_vector3_operator_subtract [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+// Inverse godot_vector3_inverse [[const godot_vector3 * p_self]] godot_vector3
+func (t *Vector3) Inverse() Vector3 {
+	arg0 := t.getBase()
 
-// OperatorMultiplyVector godot_vector3_operator_multiply_vector [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+	ret := C.go_godot_vector3_inverse(GDNative.api, arg0)
 
-// OperatorMultiplyScalar godot_vector3_operator_multiply_scalar [[const godot_vector3 * p_self] [const godot_real p_b]]
+	return Vector3{base: ret}
 
-// OperatorDivideVector godot_vector3_operator_divide_vector [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+}
 
-// OperatorDivideScalar godot_vector3_operator_divide_scalar [[const godot_vector3 * p_self] [const godot_real p_b]]
+// Snapped godot_vector3_snapped [[const godot_vector3 * p_self] [const godot_vector3 * p_by]] godot_vector3
+func (t *Vector3) Snapped(by Vector3) Vector3 {
+	arg0 := t.getBase()
+	arg1 := by.getBase()
 
-// OperatorEqual godot_vector3_operator_equal [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+	ret := C.go_godot_vector3_snapped(GDNative.api, arg0, arg1)
 
-// OperatorLess godot_vector3_operator_less [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+	return Vector3{base: ret}
 
-// OperatorNeg godot_vector3_operator_neg [[const godot_vector3 * p_self]]
+}
 
-// SetAxis godot_vector3_set_axis [[godot_vector3 * p_self] [const godot_vector3_axis p_axis] [const godot_real p_val]]
+// Rotated godot_vector3_rotated [[const godot_vector3 * p_self] [const godot_vector3 * p_axis] [const godot_real p_phi]] godot_vector3
+func (t *Vector3) Rotated(axis Vector3, phi Real) Vector3 {
+	arg0 := t.getBase()
+	arg1 := axis.getBase()
+	arg2 := phi.getBase()
 
-// GetAxis godot_vector3_get_axis [[const godot_vector3 * p_self] [const godot_vector3_axis p_axis]]
+	ret := C.go_godot_vector3_rotated(GDNative.api, arg0, arg1, arg2)
+
+	return Vector3{base: ret}
+
+}
+
+// LinearInterpolate godot_vector3_linear_interpolate [[const godot_vector3 * p_self] [const godot_vector3 * p_b] [const godot_real p_t]] godot_vector3
+func (t *Vector3) LinearInterpolate(b Vector3, t Real) Vector3 {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+	arg2 := t.getBase()
+
+	ret := C.go_godot_vector3_linear_interpolate(GDNative.api, arg0, arg1, arg2)
+
+	return Vector3{base: ret}
+
+}
+
+// CubicInterpolate godot_vector3_cubic_interpolate [[const godot_vector3 * p_self] [const godot_vector3 * p_b] [const godot_vector3 * p_pre_a] [const godot_vector3 * p_post_b] [const godot_real p_t]] godot_vector3
+func (t *Vector3) CubicInterpolate(b Vector3, preA Vector3, postB Vector3, t Real) Vector3 {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+	arg2 := preA.getBase()
+	arg3 := postB.getBase()
+	arg4 := t.getBase()
+
+	ret := C.go_godot_vector3_cubic_interpolate(GDNative.api, arg0, arg1, arg2, arg3, arg4)
+
+	return Vector3{base: ret}
+
+}
+
+// Dot godot_vector3_dot [[const godot_vector3 * p_self] [const godot_vector3 * p_b]] godot_real
+func (t *Vector3) Dot(b Vector3) Real {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_vector3_dot(GDNative.api, arg0, arg1)
+
+	return Real{base: ret}
+
+}
+
+// Cross godot_vector3_cross [[const godot_vector3 * p_self] [const godot_vector3 * p_b]] godot_vector3
+func (t *Vector3) Cross(b Vector3) Vector3 {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_vector3_cross(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// Outer godot_vector3_outer [[const godot_vector3 * p_self] [const godot_vector3 * p_b]] godot_basis
+func (t *Vector3) Outer(b Vector3) Basis {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_vector3_outer(GDNative.api, arg0, arg1)
+
+	return Basis{base: ret}
+
+}
+
+// ToDiagonalMatrix godot_vector3_to_diagonal_matrix [[const godot_vector3 * p_self]] godot_basis
+func (t *Vector3) ToDiagonalMatrix() Basis {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_vector3_to_diagonal_matrix(GDNative.api, arg0)
+
+	return Basis{base: ret}
+
+}
+
+// Abs godot_vector3_abs [[const godot_vector3 * p_self]] godot_vector3
+func (t *Vector3) Abs() Vector3 {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_vector3_abs(GDNative.api, arg0)
+
+	return Vector3{base: ret}
+
+}
+
+// Floor godot_vector3_floor [[const godot_vector3 * p_self]] godot_vector3
+func (t *Vector3) Floor() Vector3 {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_vector3_floor(GDNative.api, arg0)
+
+	return Vector3{base: ret}
+
+}
+
+// Ceil godot_vector3_ceil [[const godot_vector3 * p_self]] godot_vector3
+func (t *Vector3) Ceil() Vector3 {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_vector3_ceil(GDNative.api, arg0)
+
+	return Vector3{base: ret}
+
+}
+
+// DistanceTo godot_vector3_distance_to [[const godot_vector3 * p_self] [const godot_vector3 * p_b]] godot_real
+func (t *Vector3) DistanceTo(b Vector3) Real {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_vector3_distance_to(GDNative.api, arg0, arg1)
+
+	return Real{base: ret}
+
+}
+
+// DistanceSquaredTo godot_vector3_distance_squared_to [[const godot_vector3 * p_self] [const godot_vector3 * p_b]] godot_real
+func (t *Vector3) DistanceSquaredTo(b Vector3) Real {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_vector3_distance_squared_to(GDNative.api, arg0, arg1)
+
+	return Real{base: ret}
+
+}
+
+// AngleTo godot_vector3_angle_to [[const godot_vector3 * p_self] [const godot_vector3 * p_to]] godot_real
+func (t *Vector3) AngleTo(to Vector3) Real {
+	arg0 := t.getBase()
+	arg1 := to.getBase()
+
+	ret := C.go_godot_vector3_angle_to(GDNative.api, arg0, arg1)
+
+	return Real{base: ret}
+
+}
+
+// Slide godot_vector3_slide [[const godot_vector3 * p_self] [const godot_vector3 * p_n]] godot_vector3
+func (t *Vector3) Slide(n Vector3) Vector3 {
+	arg0 := t.getBase()
+	arg1 := n.getBase()
+
+	ret := C.go_godot_vector3_slide(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// Bounce godot_vector3_bounce [[const godot_vector3 * p_self] [const godot_vector3 * p_n]] godot_vector3
+func (t *Vector3) Bounce(n Vector3) Vector3 {
+	arg0 := t.getBase()
+	arg1 := n.getBase()
+
+	ret := C.go_godot_vector3_bounce(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// Reflect godot_vector3_reflect [[const godot_vector3 * p_self] [const godot_vector3 * p_n]] godot_vector3
+func (t *Vector3) Reflect(n Vector3) Vector3 {
+	arg0 := t.getBase()
+	arg1 := n.getBase()
+
+	ret := C.go_godot_vector3_reflect(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// OperatorAdd godot_vector3_operator_add [[const godot_vector3 * p_self] [const godot_vector3 * p_b]] godot_vector3
+func (t *Vector3) OperatorAdd(b Vector3) Vector3 {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_vector3_operator_add(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// OperatorSubtract godot_vector3_operator_subtract [[const godot_vector3 * p_self] [const godot_vector3 * p_b]] godot_vector3
+func (t *Vector3) OperatorSubtract(b Vector3) Vector3 {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_vector3_operator_subtract(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// OperatorMultiplyVector godot_vector3_operator_multiply_vector [[const godot_vector3 * p_self] [const godot_vector3 * p_b]] godot_vector3
+func (t *Vector3) OperatorMultiplyVector(b Vector3) Vector3 {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_vector3_operator_multiply_vector(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// OperatorMultiplyScalar godot_vector3_operator_multiply_scalar [[const godot_vector3 * p_self] [const godot_real p_b]] godot_vector3
+func (t *Vector3) OperatorMultiplyScalar(b Real) Vector3 {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_vector3_operator_multiply_scalar(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// OperatorDivideVector godot_vector3_operator_divide_vector [[const godot_vector3 * p_self] [const godot_vector3 * p_b]] godot_vector3
+func (t *Vector3) OperatorDivideVector(b Vector3) Vector3 {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_vector3_operator_divide_vector(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// OperatorDivideScalar godot_vector3_operator_divide_scalar [[const godot_vector3 * p_self] [const godot_real p_b]] godot_vector3
+func (t *Vector3) OperatorDivideScalar(b Real) Vector3 {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_vector3_operator_divide_scalar(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// OperatorEqual godot_vector3_operator_equal [[const godot_vector3 * p_self] [const godot_vector3 * p_b]] godot_bool
+func (t *Vector3) OperatorEqual(b Vector3) Bool {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_vector3_operator_equal(GDNative.api, arg0, arg1)
+
+	return Bool{base: ret}
+
+}
+
+// OperatorLess godot_vector3_operator_less [[const godot_vector3 * p_self] [const godot_vector3 * p_b]] godot_bool
+func (t *Vector3) OperatorLess(b Vector3) Bool {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_vector3_operator_less(GDNative.api, arg0, arg1)
+
+	return Bool{base: ret}
+
+}
+
+// OperatorNeg godot_vector3_operator_neg [[const godot_vector3 * p_self]] godot_vector3
+func (t *Vector3) OperatorNeg() Vector3 {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_vector3_operator_neg(GDNative.api, arg0)
+
+	return Vector3{base: ret}
+
+}
+
+// SetAxis godot_vector3_set_axis [[godot_vector3 * p_self] [const godot_vector3_axis p_axis] [const godot_real p_val]] void
+func (t *Vector3) SetAxis(axis Vector3Axis, val Real) {
+	arg0 := t.getBase()
+	arg1 := axis.getBase()
+	arg2 := val.getBase()
+
+	C.go_godot_vector3_set_axis(GDNative.api, arg0, arg1, arg2)
+
+}
+
+// GetAxis godot_vector3_get_axis [[const godot_vector3 * p_self] [const godot_vector3_axis p_axis]] godot_real
+func (t *Vector3) GetAxis(axis Vector3Axis) Real {
+	arg0 := t.getBase()
+	arg1 := axis.getBase()
+
+	ret := C.go_godot_vector3_get_axis(GDNative.api, arg0, arg1)
+
+	return Real{base: ret}
+
+}
 
 type Vector3Axis int
 

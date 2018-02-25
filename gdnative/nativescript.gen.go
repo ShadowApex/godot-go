@@ -75,7 +75,7 @@ type PropertyAttributes struct {
 	DefaultValue Variant
 }
 
-func (t *PropertyAttributes) getBase() *C.godot_property_attributes {
+func (t PropertyAttributes) getBase() *C.godot_property_attributes {
 	return t.base
 }
 
@@ -90,7 +90,7 @@ type SignalArgument struct {
 	DefaultValue Variant
 }
 
-func (t *SignalArgument) getBase() *C.godot_signal_argument {
+func (t SignalArgument) getBase() *C.godot_signal_argument {
 	return t.base
 }
 
@@ -104,7 +104,7 @@ type Signal struct {
 	DefaultArgs    Variant
 }
 
-func (t *Signal) getBase() *C.godot_signal {
+func (t Signal) getBase() *C.godot_signal {
 	return t.base
 }
 
@@ -117,6 +117,6 @@ type MethodArg struct {
 	HintString String
 }
 
-func (t *MethodArg) getBase() *C.godot_method_arg {
+func (t MethodArg) getBase() *C.godot_method_arg {
 	return t.base
 }

@@ -18,62 +18,228 @@ type Color struct {
 	base *C.godot_color
 }
 
-func (t *Color) getBase() *C.godot_color {
+func (t Color) getBase() *C.godot_color {
 	return t.base
 }
 
-// NewColorRgba godot_color_new_rgba [[godot_color * r_dest] [const godot_real p_r] [const godot_real p_g] [const godot_real p_b] [const godot_real p_a]]
+// GetR godot_color_get_r [[const godot_color * p_self]] godot_real
+func (t *Color) GetR() Real {
+	arg0 := t.getBase()
 
-//func NewColorRgba(dest Color, r ConstReal, g ConstReal, b ConstReal, a ConstReal, ) *Color {
-//	return &Color{}
-//}
+	ret := C.go_godot_color_get_r(GDNative.api, arg0)
 
-// NewColorRgb godot_color_new_rgb [[godot_color * r_dest] [const godot_real p_r] [const godot_real p_g] [const godot_real p_b]]
+	return Real{base: ret}
 
-//func NewColorRgb(dest Color, r ConstReal, g ConstReal, b ConstReal, ) *Color {
-//	return &Color{}
-//}
+}
 
-// GetR godot_color_get_r [[const godot_color * p_self]]
+// SetR godot_color_set_r [[godot_color * p_self] [const godot_real r]] void
+func (t *Color) SetR(r Real) {
+	arg0 := t.getBase()
+	arg1 := r.getBase()
 
-// SetR godot_color_set_r [[godot_color * p_self] [const godot_real r]]
+	C.go_godot_color_set_r(GDNative.api, arg0, arg1)
 
-// GetG godot_color_get_g [[const godot_color * p_self]]
+}
 
-// SetG godot_color_set_g [[godot_color * p_self] [const godot_real g]]
+// GetG godot_color_get_g [[const godot_color * p_self]] godot_real
+func (t *Color) GetG() Real {
+	arg0 := t.getBase()
 
-// GetB godot_color_get_b [[const godot_color * p_self]]
+	ret := C.go_godot_color_get_g(GDNative.api, arg0)
 
-// SetB godot_color_set_b [[godot_color * p_self] [const godot_real b]]
+	return Real{base: ret}
 
-// GetA godot_color_get_a [[const godot_color * p_self]]
+}
 
-// SetA godot_color_set_a [[godot_color * p_self] [const godot_real a]]
+// SetG godot_color_set_g [[godot_color * p_self] [const godot_real g]] void
+func (t *Color) SetG(g Real) {
+	arg0 := t.getBase()
+	arg1 := g.getBase()
 
-// GetH godot_color_get_h [[const godot_color * p_self]]
+	C.go_godot_color_set_g(GDNative.api, arg0, arg1)
 
-// GetS godot_color_get_s [[const godot_color * p_self]]
+}
 
-// GetV godot_color_get_v [[const godot_color * p_self]]
+// GetB godot_color_get_b [[const godot_color * p_self]] godot_real
+func (t *Color) GetB() Real {
+	arg0 := t.getBase()
 
-// AsString godot_color_as_string [[const godot_color * p_self]]
+	ret := C.go_godot_color_get_b(GDNative.api, arg0)
 
-// ToRgba32 godot_color_to_rgba32 [[const godot_color * p_self]]
+	return Real{base: ret}
 
-// ToArgb32 godot_color_to_argb32 [[const godot_color * p_self]]
+}
 
-// Gray godot_color_gray [[const godot_color * p_self]]
+// SetB godot_color_set_b [[godot_color * p_self] [const godot_real b]] void
+func (t *Color) SetB(b Real) {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
 
-// Inverted godot_color_inverted [[const godot_color * p_self]]
+	C.go_godot_color_set_b(GDNative.api, arg0, arg1)
 
-// Contrasted godot_color_contrasted [[const godot_color * p_self]]
+}
 
-// LinearInterpolate godot_color_linear_interpolate [[const godot_color * p_self] [const godot_color * p_b] [const godot_real p_t]]
+// GetA godot_color_get_a [[const godot_color * p_self]] godot_real
+func (t *Color) GetA() Real {
+	arg0 := t.getBase()
 
-// Blend godot_color_blend [[const godot_color * p_self] [const godot_color * p_over]]
+	ret := C.go_godot_color_get_a(GDNative.api, arg0)
 
-// ToHtml godot_color_to_html [[const godot_color * p_self] [const godot_bool p_with_alpha]]
+	return Real{base: ret}
 
-// OperatorEqual godot_color_operator_equal [[const godot_color * p_self] [const godot_color * p_b]]
+}
 
-// OperatorLess godot_color_operator_less [[const godot_color * p_self] [const godot_color * p_b]]
+// SetA godot_color_set_a [[godot_color * p_self] [const godot_real a]] void
+func (t *Color) SetA(a Real) {
+	arg0 := t.getBase()
+	arg1 := a.getBase()
+
+	C.go_godot_color_set_a(GDNative.api, arg0, arg1)
+
+}
+
+// GetH godot_color_get_h [[const godot_color * p_self]] godot_real
+func (t *Color) GetH() Real {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_color_get_h(GDNative.api, arg0)
+
+	return Real{base: ret}
+
+}
+
+// GetS godot_color_get_s [[const godot_color * p_self]] godot_real
+func (t *Color) GetS() Real {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_color_get_s(GDNative.api, arg0)
+
+	return Real{base: ret}
+
+}
+
+// GetV godot_color_get_v [[const godot_color * p_self]] godot_real
+func (t *Color) GetV() Real {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_color_get_v(GDNative.api, arg0)
+
+	return Real{base: ret}
+
+}
+
+// AsString godot_color_as_string [[const godot_color * p_self]] godot_string
+func (t *Color) AsString() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_color_as_string(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// ToRgba32 godot_color_to_rgba32 [[const godot_color * p_self]] godot_int
+func (t *Color) ToRgba32() Int {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_color_to_rgba32(GDNative.api, arg0)
+
+	return Int{base: ret}
+
+}
+
+// ToArgb32 godot_color_to_argb32 [[const godot_color * p_self]] godot_int
+func (t *Color) ToArgb32() Int {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_color_to_argb32(GDNative.api, arg0)
+
+	return Int{base: ret}
+
+}
+
+// Gray godot_color_gray [[const godot_color * p_self]] godot_real
+func (t *Color) Gray() Real {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_color_gray(GDNative.api, arg0)
+
+	return Real{base: ret}
+
+}
+
+// Inverted godot_color_inverted [[const godot_color * p_self]] godot_color
+func (t *Color) Inverted() Color {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_color_inverted(GDNative.api, arg0)
+
+	return Color{base: ret}
+
+}
+
+// Contrasted godot_color_contrasted [[const godot_color * p_self]] godot_color
+func (t *Color) Contrasted() Color {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_color_contrasted(GDNative.api, arg0)
+
+	return Color{base: ret}
+
+}
+
+// LinearInterpolate godot_color_linear_interpolate [[const godot_color * p_self] [const godot_color * p_b] [const godot_real p_t]] godot_color
+func (t *Color) LinearInterpolate(b Color, t Real) Color {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+	arg2 := t.getBase()
+
+	ret := C.go_godot_color_linear_interpolate(GDNative.api, arg0, arg1, arg2)
+
+	return Color{base: ret}
+
+}
+
+// Blend godot_color_blend [[const godot_color * p_self] [const godot_color * p_over]] godot_color
+func (t *Color) Blend(over Color) Color {
+	arg0 := t.getBase()
+	arg1 := over.getBase()
+
+	ret := C.go_godot_color_blend(GDNative.api, arg0, arg1)
+
+	return Color{base: ret}
+
+}
+
+// ToHtml godot_color_to_html [[const godot_color * p_self] [const godot_bool p_with_alpha]] godot_string
+func (t *Color) ToHtml(withAlpha Bool) String {
+	arg0 := t.getBase()
+	arg1 := withAlpha.getBase()
+
+	ret := C.go_godot_color_to_html(GDNative.api, arg0, arg1)
+
+	return String{base: ret}
+
+}
+
+// OperatorEqual godot_color_operator_equal [[const godot_color * p_self] [const godot_color * p_b]] godot_bool
+func (t *Color) OperatorEqual(b Color) Bool {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_color_operator_equal(GDNative.api, arg0, arg1)
+
+	return Bool{base: ret}
+
+}
+
+// OperatorLess godot_color_operator_less [[const godot_color * p_self] [const godot_color * p_b]] godot_bool
+func (t *Color) OperatorLess(b Color) Bool {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_color_operator_less(GDNative.api, arg0, arg1)
+
+	return Bool{base: ret}
+
+}

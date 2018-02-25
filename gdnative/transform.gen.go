@@ -18,120 +18,218 @@ type Transform struct {
 	base *C.godot_transform
 }
 
-func (t *Transform) getBase() *C.godot_transform {
+func (t Transform) getBase() *C.godot_transform {
 	return t.base
 }
 
-// NewTransformWithAxisOrigin godot_transform_new_with_axis_origin [[godot_transform * r_dest] [const godot_vector3 * p_x_axis] [const godot_vector3 * p_y_axis] [const godot_vector3 * p_z_axis] [const godot_vector3 * p_origin]]
+// GetBasis godot_transform_get_basis [[const godot_transform * p_self]] godot_basis
+func (t *Transform) GetBasis() Basis {
+	arg0 := t.getBase()
 
-//func NewTransformWithAxisOrigin(dest Transform, xAxis ConstVector3, yAxis ConstVector3, zAxis ConstVector3, origin ConstVector3, ) *Transform {
-//	return &Transform{}
-//}
+	ret := C.go_godot_transform_get_basis(GDNative.api, arg0)
 
-// NewTransform godot_transform_new [[godot_transform * r_dest] [const godot_basis * p_basis] [const godot_vector3 * p_origin]]
+	return Basis{base: ret}
 
-//func NewTransform(dest Transform, basis ConstBasis, origin ConstVector3, ) *Transform {
-//	return &Transform{}
-//}
+}
 
-// GetBasis godot_transform_get_basis [[const godot_transform * p_self]]
+// SetBasis godot_transform_set_basis [[godot_transform * p_self] [const godot_basis * p_v]] void
+func (t *Transform) SetBasis(v Basis) {
+	arg0 := t.getBase()
+	arg1 := v.getBase()
 
-// SetBasis godot_transform_set_basis [[godot_transform * p_self] [const godot_basis * p_v]]
+	C.go_godot_transform_set_basis(GDNative.api, arg0, arg1)
 
-// GetOrigin godot_transform_get_origin [[const godot_transform * p_self]]
+}
 
-// SetOrigin godot_transform_set_origin [[godot_transform * p_self] [const godot_vector3 * p_v]]
+// GetOrigin godot_transform_get_origin [[const godot_transform * p_self]] godot_vector3
+func (t *Transform) GetOrigin() Vector3 {
+	arg0 := t.getBase()
 
-// AsString godot_transform_as_string [[const godot_transform * p_self]]
+	ret := C.go_godot_transform_get_origin(GDNative.api, arg0)
 
-// Inverse godot_transform_inverse [[const godot_transform * p_self]]
+	return Vector3{base: ret}
 
-// AffineInverse godot_transform_affine_inverse [[const godot_transform * p_self]]
+}
 
-// Orthonormalized godot_transform_orthonormalized [[const godot_transform * p_self]]
+// SetOrigin godot_transform_set_origin [[godot_transform * p_self] [const godot_vector3 * p_v]] void
+func (t *Transform) SetOrigin(v Vector3) {
+	arg0 := t.getBase()
+	arg1 := v.getBase()
 
-// Rotated godot_transform_rotated [[const godot_transform * p_self] [const godot_vector3 * p_axis] [const godot_real p_phi]]
+	C.go_godot_transform_set_origin(GDNative.api, arg0, arg1)
 
-// Scaled godot_transform_scaled [[const godot_transform * p_self] [const godot_vector3 * p_scale]]
+}
 
-// Translated godot_transform_translated [[const godot_transform * p_self] [const godot_vector3 * p_ofs]]
+// AsString godot_transform_as_string [[const godot_transform * p_self]] godot_string
+func (t *Transform) AsString() String {
+	arg0 := t.getBase()
 
-// LookingAt godot_transform_looking_at [[const godot_transform * p_self] [const godot_vector3 * p_target] [const godot_vector3 * p_up]]
+	ret := C.go_godot_transform_as_string(GDNative.api, arg0)
 
-// XformPlane godot_transform_xform_plane [[const godot_transform * p_self] [const godot_plane * p_v]]
+	return String{base: ret}
 
-// XformInvPlane godot_transform_xform_inv_plane [[const godot_transform * p_self] [const godot_plane * p_v]]
+}
 
-// NewTransformIdentity godot_transform_new_identity [[godot_transform * r_dest]]
+// Inverse godot_transform_inverse [[const godot_transform * p_self]] godot_transform
+func (t *Transform) Inverse() Transform {
+	arg0 := t.getBase()
 
-//func NewTransformIdentity(dest Transform, ) *Transform {
-//	return &Transform{}
-//}
+	ret := C.go_godot_transform_inverse(GDNative.api, arg0)
 
-// OperatorEqual godot_transform_operator_equal [[const godot_transform * p_self] [const godot_transform * p_b]]
+	return Transform{base: ret}
 
-// OperatorMultiply godot_transform_operator_multiply [[const godot_transform * p_self] [const godot_transform * p_b]]
+}
 
-// XformVector3 godot_transform_xform_vector3 [[const godot_transform * p_self] [const godot_vector3 * p_v]]
+// AffineInverse godot_transform_affine_inverse [[const godot_transform * p_self]] godot_transform
+func (t *Transform) AffineInverse() Transform {
+	arg0 := t.getBase()
 
-// XformInvVector3 godot_transform_xform_inv_vector3 [[const godot_transform * p_self] [const godot_vector3 * p_v]]
+	ret := C.go_godot_transform_affine_inverse(GDNative.api, arg0)
 
-// XformAabb godot_transform_xform_aabb [[const godot_transform * p_self] [const godot_aabb * p_v]]
+	return Transform{base: ret}
 
-// XformInvAabb godot_transform_xform_inv_aabb [[const godot_transform * p_self] [const godot_aabb * p_v]]
+}
 
-// NewTransform2D godot_transform2d_new [[godot_transform2d * r_dest] [const godot_real p_rot] [const godot_vector2 * p_pos]]
+// Orthonormalized godot_transform_orthonormalized [[const godot_transform * p_self]] godot_transform
+func (t *Transform) Orthonormalized() Transform {
+	arg0 := t.getBase()
 
-//func NewTransform2D(dest Transform2D, rot ConstReal, pos ConstVector2, ) *Transform {
-//	return &Transform{}
-//}
+	ret := C.go_godot_transform_orthonormalized(GDNative.api, arg0)
 
-// NewTransform2DAxisOrigin godot_transform2d_new_axis_origin [[godot_transform2d * r_dest] [const godot_vector2 * p_x_axis] [const godot_vector2 * p_y_axis] [const godot_vector2 * p_origin]]
+	return Transform{base: ret}
 
-//func NewTransform2DAxisOrigin(dest Transform2D, xAxis ConstVector2, yAxis ConstVector2, origin ConstVector2, ) *Transform {
-//	return &Transform{}
-//}
+}
 
-// 2DAsString godot_transform2d_as_string [[const godot_transform2d * p_self]]
+// Rotated godot_transform_rotated [[const godot_transform * p_self] [const godot_vector3 * p_axis] [const godot_real p_phi]] godot_transform
+func (t *Transform) Rotated(axis Vector3, phi Real) Transform {
+	arg0 := t.getBase()
+	arg1 := axis.getBase()
+	arg2 := phi.getBase()
 
-// 2DInverse godot_transform2d_inverse [[const godot_transform2d * p_self]]
+	ret := C.go_godot_transform_rotated(GDNative.api, arg0, arg1, arg2)
 
-// 2DAffineInverse godot_transform2d_affine_inverse [[const godot_transform2d * p_self]]
+	return Transform{base: ret}
 
-// 2DGetRotation godot_transform2d_get_rotation [[const godot_transform2d * p_self]]
+}
 
-// 2DGetOrigin godot_transform2d_get_origin [[const godot_transform2d * p_self]]
+// Scaled godot_transform_scaled [[const godot_transform * p_self] [const godot_vector3 * p_scale]] godot_transform
+func (t *Transform) Scaled(scale Vector3) Transform {
+	arg0 := t.getBase()
+	arg1 := scale.getBase()
 
-// 2DGetScale godot_transform2d_get_scale [[const godot_transform2d * p_self]]
+	ret := C.go_godot_transform_scaled(GDNative.api, arg0, arg1)
 
-// 2DOrthonormalized godot_transform2d_orthonormalized [[const godot_transform2d * p_self]]
+	return Transform{base: ret}
 
-// 2DRotated godot_transform2d_rotated [[const godot_transform2d * p_self] [const godot_real p_phi]]
+}
 
-// 2DScaled godot_transform2d_scaled [[const godot_transform2d * p_self] [const godot_vector2 * p_scale]]
+// Translated godot_transform_translated [[const godot_transform * p_self] [const godot_vector3 * p_ofs]] godot_transform
+func (t *Transform) Translated(ofs Vector3) Transform {
+	arg0 := t.getBase()
+	arg1 := ofs.getBase()
 
-// 2DTranslated godot_transform2d_translated [[const godot_transform2d * p_self] [const godot_vector2 * p_offset]]
+	ret := C.go_godot_transform_translated(GDNative.api, arg0, arg1)
 
-// 2DXformVector2 godot_transform2d_xform_vector2 [[const godot_transform2d * p_self] [const godot_vector2 * p_v]]
+	return Transform{base: ret}
 
-// 2DXformInvVector2 godot_transform2d_xform_inv_vector2 [[const godot_transform2d * p_self] [const godot_vector2 * p_v]]
+}
 
-// 2DBasisXformVector2 godot_transform2d_basis_xform_vector2 [[const godot_transform2d * p_self] [const godot_vector2 * p_v]]
+// LookingAt godot_transform_looking_at [[const godot_transform * p_self] [const godot_vector3 * p_target] [const godot_vector3 * p_up]] godot_transform
+func (t *Transform) LookingAt(target Vector3, up Vector3) Transform {
+	arg0 := t.getBase()
+	arg1 := target.getBase()
+	arg2 := up.getBase()
 
-// 2DBasisXformInvVector2 godot_transform2d_basis_xform_inv_vector2 [[const godot_transform2d * p_self] [const godot_vector2 * p_v]]
+	ret := C.go_godot_transform_looking_at(GDNative.api, arg0, arg1, arg2)
 
-// 2DInterpolateWith godot_transform2d_interpolate_with [[const godot_transform2d * p_self] [const godot_transform2d * p_m] [const godot_real p_c]]
+	return Transform{base: ret}
 
-// 2DOperatorEqual godot_transform2d_operator_equal [[const godot_transform2d * p_self] [const godot_transform2d * p_b]]
+}
 
-// 2DOperatorMultiply godot_transform2d_operator_multiply [[const godot_transform2d * p_self] [const godot_transform2d * p_b]]
+// XformPlane godot_transform_xform_plane [[const godot_transform * p_self] [const godot_plane * p_v]] godot_plane
+func (t *Transform) XformPlane(v Plane) Plane {
+	arg0 := t.getBase()
+	arg1 := v.getBase()
 
-// NewTransform2DIdentity godot_transform2d_new_identity [[godot_transform2d * r_dest]]
+	ret := C.go_godot_transform_xform_plane(GDNative.api, arg0, arg1)
 
-//func NewTransform2DIdentity(dest Transform2D, ) *Transform {
-//	return &Transform{}
-//}
+	return Plane{base: ret}
 
-// 2DXformRect2 godot_transform2d_xform_rect2 [[const godot_transform2d * p_self] [const godot_rect2 * p_v]]
+}
 
-// 2DXformInvRect2 godot_transform2d_xform_inv_rect2 [[const godot_transform2d * p_self] [const godot_rect2 * p_v]]
+// XformInvPlane godot_transform_xform_inv_plane [[const godot_transform * p_self] [const godot_plane * p_v]] godot_plane
+func (t *Transform) XformInvPlane(v Plane) Plane {
+	arg0 := t.getBase()
+	arg1 := v.getBase()
+
+	ret := C.go_godot_transform_xform_inv_plane(GDNative.api, arg0, arg1)
+
+	return Plane{base: ret}
+
+}
+
+// OperatorEqual godot_transform_operator_equal [[const godot_transform * p_self] [const godot_transform * p_b]] godot_bool
+func (t *Transform) OperatorEqual(b Transform) Bool {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_transform_operator_equal(GDNative.api, arg0, arg1)
+
+	return Bool{base: ret}
+
+}
+
+// OperatorMultiply godot_transform_operator_multiply [[const godot_transform * p_self] [const godot_transform * p_b]] godot_transform
+func (t *Transform) OperatorMultiply(b Transform) Transform {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_transform_operator_multiply(GDNative.api, arg0, arg1)
+
+	return Transform{base: ret}
+
+}
+
+// XformVector3 godot_transform_xform_vector3 [[const godot_transform * p_self] [const godot_vector3 * p_v]] godot_vector3
+func (t *Transform) XformVector3(v Vector3) Vector3 {
+	arg0 := t.getBase()
+	arg1 := v.getBase()
+
+	ret := C.go_godot_transform_xform_vector3(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// XformInvVector3 godot_transform_xform_inv_vector3 [[const godot_transform * p_self] [const godot_vector3 * p_v]] godot_vector3
+func (t *Transform) XformInvVector3(v Vector3) Vector3 {
+	arg0 := t.getBase()
+	arg1 := v.getBase()
+
+	ret := C.go_godot_transform_xform_inv_vector3(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// XformAabb godot_transform_xform_aabb [[const godot_transform * p_self] [const godot_aabb * p_v]] godot_aabb
+func (t *Transform) XformAabb(v Aabb) Aabb {
+	arg0 := t.getBase()
+	arg1 := v.getBase()
+
+	ret := C.go_godot_transform_xform_aabb(GDNative.api, arg0, arg1)
+
+	return Aabb{base: ret}
+
+}
+
+// XformInvAabb godot_transform_xform_inv_aabb [[const godot_transform * p_self] [const godot_aabb * p_v]] godot_aabb
+func (t *Transform) XformInvAabb(v Aabb) Aabb {
+	arg0 := t.getBase()
+	arg1 := v.getBase()
+
+	ret := C.go_godot_transform_xform_inv_aabb(GDNative.api, arg0, arg1)
+
+	return Aabb{base: ret}
+
+}

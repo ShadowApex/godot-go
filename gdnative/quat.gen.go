@@ -18,68 +18,267 @@ type Quat struct {
 	base *C.godot_quat
 }
 
-func (t *Quat) getBase() *C.godot_quat {
+func (t Quat) getBase() *C.godot_quat {
 	return t.base
 }
 
-// NewQuat godot_quat_new [[godot_quat * r_dest] [const godot_real p_x] [const godot_real p_y] [const godot_real p_z] [const godot_real p_w]]
+// GetX godot_quat_get_x [[const godot_quat * p_self]] godot_real
+func (t *Quat) GetX() Real {
+	arg0 := t.getBase()
 
-//func NewQuat(dest Quat, x ConstReal, y ConstReal, z ConstReal, w ConstReal, ) *Quat {
-//	return &Quat{}
-//}
+	ret := C.go_godot_quat_get_x(GDNative.api, arg0)
 
-// NewQuatWithAxisAngle godot_quat_new_with_axis_angle [[godot_quat * r_dest] [const godot_vector3 * p_axis] [const godot_real p_angle]]
+	return Real{base: ret}
 
-//func NewQuatWithAxisAngle(dest Quat, axis ConstVector3, angle ConstReal, ) *Quat {
-//	return &Quat{}
-//}
+}
 
-// GetX godot_quat_get_x [[const godot_quat * p_self]]
+// SetX godot_quat_set_x [[godot_quat * p_self] [const godot_real val]] void
+func (t *Quat) SetX(val Real) {
+	arg0 := t.getBase()
+	arg1 := val.getBase()
 
-// SetX godot_quat_set_x [[godot_quat * p_self] [const godot_real val]]
+	C.go_godot_quat_set_x(GDNative.api, arg0, arg1)
 
-// GetY godot_quat_get_y [[const godot_quat * p_self]]
+}
 
-// SetY godot_quat_set_y [[godot_quat * p_self] [const godot_real val]]
+// GetY godot_quat_get_y [[const godot_quat * p_self]] godot_real
+func (t *Quat) GetY() Real {
+	arg0 := t.getBase()
 
-// GetZ godot_quat_get_z [[const godot_quat * p_self]]
+	ret := C.go_godot_quat_get_y(GDNative.api, arg0)
 
-// SetZ godot_quat_set_z [[godot_quat * p_self] [const godot_real val]]
+	return Real{base: ret}
 
-// GetW godot_quat_get_w [[const godot_quat * p_self]]
+}
 
-// SetW godot_quat_set_w [[godot_quat * p_self] [const godot_real val]]
+// SetY godot_quat_set_y [[godot_quat * p_self] [const godot_real val]] void
+func (t *Quat) SetY(val Real) {
+	arg0 := t.getBase()
+	arg1 := val.getBase()
 
-// AsString godot_quat_as_string [[const godot_quat * p_self]]
+	C.go_godot_quat_set_y(GDNative.api, arg0, arg1)
 
-// Length godot_quat_length [[const godot_quat * p_self]]
+}
 
-// LengthSquared godot_quat_length_squared [[const godot_quat * p_self]]
+// GetZ godot_quat_get_z [[const godot_quat * p_self]] godot_real
+func (t *Quat) GetZ() Real {
+	arg0 := t.getBase()
 
-// Normalized godot_quat_normalized [[const godot_quat * p_self]]
+	ret := C.go_godot_quat_get_z(GDNative.api, arg0)
 
-// IsNormalized godot_quat_is_normalized [[const godot_quat * p_self]]
+	return Real{base: ret}
 
-// Inverse godot_quat_inverse [[const godot_quat * p_self]]
+}
 
-// Dot godot_quat_dot [[const godot_quat * p_self] [const godot_quat * p_b]]
+// SetZ godot_quat_set_z [[godot_quat * p_self] [const godot_real val]] void
+func (t *Quat) SetZ(val Real) {
+	arg0 := t.getBase()
+	arg1 := val.getBase()
 
-// Xform godot_quat_xform [[const godot_quat * p_self] [const godot_vector3 * p_v]]
+	C.go_godot_quat_set_z(GDNative.api, arg0, arg1)
 
-// Slerp godot_quat_slerp [[const godot_quat * p_self] [const godot_quat * p_b] [const godot_real p_t]]
+}
 
-// Slerpni godot_quat_slerpni [[const godot_quat * p_self] [const godot_quat * p_b] [const godot_real p_t]]
+// GetW godot_quat_get_w [[const godot_quat * p_self]] godot_real
+func (t *Quat) GetW() Real {
+	arg0 := t.getBase()
 
-// CubicSlerp godot_quat_cubic_slerp [[const godot_quat * p_self] [const godot_quat * p_b] [const godot_quat * p_pre_a] [const godot_quat * p_post_b] [const godot_real p_t]]
+	ret := C.go_godot_quat_get_w(GDNative.api, arg0)
 
-// OperatorMultiply godot_quat_operator_multiply [[const godot_quat * p_self] [const godot_real p_b]]
+	return Real{base: ret}
 
-// OperatorAdd godot_quat_operator_add [[const godot_quat * p_self] [const godot_quat * p_b]]
+}
 
-// OperatorSubtract godot_quat_operator_subtract [[const godot_quat * p_self] [const godot_quat * p_b]]
+// SetW godot_quat_set_w [[godot_quat * p_self] [const godot_real val]] void
+func (t *Quat) SetW(val Real) {
+	arg0 := t.getBase()
+	arg1 := val.getBase()
 
-// OperatorDivide godot_quat_operator_divide [[const godot_quat * p_self] [const godot_real p_b]]
+	C.go_godot_quat_set_w(GDNative.api, arg0, arg1)
 
-// OperatorEqual godot_quat_operator_equal [[const godot_quat * p_self] [const godot_quat * p_b]]
+}
 
-// OperatorNeg godot_quat_operator_neg [[const godot_quat * p_self]]
+// AsString godot_quat_as_string [[const godot_quat * p_self]] godot_string
+func (t *Quat) AsString() String {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_quat_as_string(GDNative.api, arg0)
+
+	return String{base: ret}
+
+}
+
+// Length godot_quat_length [[const godot_quat * p_self]] godot_real
+func (t *Quat) Length() Real {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_quat_length(GDNative.api, arg0)
+
+	return Real{base: ret}
+
+}
+
+// LengthSquared godot_quat_length_squared [[const godot_quat * p_self]] godot_real
+func (t *Quat) LengthSquared() Real {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_quat_length_squared(GDNative.api, arg0)
+
+	return Real{base: ret}
+
+}
+
+// Normalized godot_quat_normalized [[const godot_quat * p_self]] godot_quat
+func (t *Quat) Normalized() Quat {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_quat_normalized(GDNative.api, arg0)
+
+	return Quat{base: ret}
+
+}
+
+// IsNormalized godot_quat_is_normalized [[const godot_quat * p_self]] godot_bool
+func (t *Quat) IsNormalized() Bool {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_quat_is_normalized(GDNative.api, arg0)
+
+	return Bool{base: ret}
+
+}
+
+// Inverse godot_quat_inverse [[const godot_quat * p_self]] godot_quat
+func (t *Quat) Inverse() Quat {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_quat_inverse(GDNative.api, arg0)
+
+	return Quat{base: ret}
+
+}
+
+// Dot godot_quat_dot [[const godot_quat * p_self] [const godot_quat * p_b]] godot_real
+func (t *Quat) Dot(b Quat) Real {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_quat_dot(GDNative.api, arg0, arg1)
+
+	return Real{base: ret}
+
+}
+
+// Xform godot_quat_xform [[const godot_quat * p_self] [const godot_vector3 * p_v]] godot_vector3
+func (t *Quat) Xform(v Vector3) Vector3 {
+	arg0 := t.getBase()
+	arg1 := v.getBase()
+
+	ret := C.go_godot_quat_xform(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// Slerp godot_quat_slerp [[const godot_quat * p_self] [const godot_quat * p_b] [const godot_real p_t]] godot_quat
+func (t *Quat) Slerp(b Quat, t Real) Quat {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+	arg2 := t.getBase()
+
+	ret := C.go_godot_quat_slerp(GDNative.api, arg0, arg1, arg2)
+
+	return Quat{base: ret}
+
+}
+
+// Slerpni godot_quat_slerpni [[const godot_quat * p_self] [const godot_quat * p_b] [const godot_real p_t]] godot_quat
+func (t *Quat) Slerpni(b Quat, t Real) Quat {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+	arg2 := t.getBase()
+
+	ret := C.go_godot_quat_slerpni(GDNative.api, arg0, arg1, arg2)
+
+	return Quat{base: ret}
+
+}
+
+// CubicSlerp godot_quat_cubic_slerp [[const godot_quat * p_self] [const godot_quat * p_b] [const godot_quat * p_pre_a] [const godot_quat * p_post_b] [const godot_real p_t]] godot_quat
+func (t *Quat) CubicSlerp(b Quat, preA Quat, postB Quat, t Real) Quat {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+	arg2 := preA.getBase()
+	arg3 := postB.getBase()
+	arg4 := t.getBase()
+
+	ret := C.go_godot_quat_cubic_slerp(GDNative.api, arg0, arg1, arg2, arg3, arg4)
+
+	return Quat{base: ret}
+
+}
+
+// OperatorMultiply godot_quat_operator_multiply [[const godot_quat * p_self] [const godot_real p_b]] godot_quat
+func (t *Quat) OperatorMultiply(b Real) Quat {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_quat_operator_multiply(GDNative.api, arg0, arg1)
+
+	return Quat{base: ret}
+
+}
+
+// OperatorAdd godot_quat_operator_add [[const godot_quat * p_self] [const godot_quat * p_b]] godot_quat
+func (t *Quat) OperatorAdd(b Quat) Quat {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_quat_operator_add(GDNative.api, arg0, arg1)
+
+	return Quat{base: ret}
+
+}
+
+// OperatorSubtract godot_quat_operator_subtract [[const godot_quat * p_self] [const godot_quat * p_b]] godot_quat
+func (t *Quat) OperatorSubtract(b Quat) Quat {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_quat_operator_subtract(GDNative.api, arg0, arg1)
+
+	return Quat{base: ret}
+
+}
+
+// OperatorDivide godot_quat_operator_divide [[const godot_quat * p_self] [const godot_real p_b]] godot_quat
+func (t *Quat) OperatorDivide(b Real) Quat {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_quat_operator_divide(GDNative.api, arg0, arg1)
+
+	return Quat{base: ret}
+
+}
+
+// OperatorEqual godot_quat_operator_equal [[const godot_quat * p_self] [const godot_quat * p_b]] godot_bool
+func (t *Quat) OperatorEqual(b Quat) Bool {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_quat_operator_equal(GDNative.api, arg0, arg1)
+
+	return Bool{base: ret}
+
+}
+
+// OperatorNeg godot_quat_operator_neg [[const godot_quat * p_self]] godot_quat
+func (t *Quat) OperatorNeg() Quat {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_quat_operator_neg(GDNative.api, arg0)
+
+	return Quat{base: ret}
+
+}

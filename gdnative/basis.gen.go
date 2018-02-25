@@ -18,86 +18,270 @@ type Basis struct {
 	base *C.godot_basis
 }
 
-func (t *Basis) getBase() *C.godot_basis {
+func (t Basis) getBase() *C.godot_basis {
 	return t.base
 }
 
-// NewBasisWithRows godot_basis_new_with_rows [[godot_basis * r_dest] [const godot_vector3 * p_x_axis] [const godot_vector3 * p_y_axis] [const godot_vector3 * p_z_axis]]
+// AsString godot_basis_as_string [[const godot_basis * p_self]] godot_string
+func (t *Basis) AsString() String {
+	arg0 := t.getBase()
 
-//func NewBasisWithRows(dest Basis, xAxis ConstVector3, yAxis ConstVector3, zAxis ConstVector3, ) *Basis {
-//	return &Basis{}
-//}
+	ret := C.go_godot_basis_as_string(GDNative.api, arg0)
 
-// NewBasisWithAxisAndAngle godot_basis_new_with_axis_and_angle [[godot_basis * r_dest] [const godot_vector3 * p_axis] [const godot_real p_phi]]
+	return String{base: ret}
 
-//func NewBasisWithAxisAndAngle(dest Basis, axis ConstVector3, phi ConstReal, ) *Basis {
-//	return &Basis{}
-//}
+}
 
-// NewBasisWithEuler godot_basis_new_with_euler [[godot_basis * r_dest] [const godot_vector3 * p_euler]]
+// Inverse godot_basis_inverse [[const godot_basis * p_self]] godot_basis
+func (t *Basis) Inverse() Basis {
+	arg0 := t.getBase()
 
-//func NewBasisWithEuler(dest Basis, euler ConstVector3, ) *Basis {
-//	return &Basis{}
-//}
+	ret := C.go_godot_basis_inverse(GDNative.api, arg0)
 
-// AsString godot_basis_as_string [[const godot_basis * p_self]]
+	return Basis{base: ret}
 
-// Inverse godot_basis_inverse [[const godot_basis * p_self]]
+}
 
-// Transposed godot_basis_transposed [[const godot_basis * p_self]]
+// Transposed godot_basis_transposed [[const godot_basis * p_self]] godot_basis
+func (t *Basis) Transposed() Basis {
+	arg0 := t.getBase()
 
-// Orthonormalized godot_basis_orthonormalized [[const godot_basis * p_self]]
+	ret := C.go_godot_basis_transposed(GDNative.api, arg0)
 
-// Determinant godot_basis_determinant [[const godot_basis * p_self]]
+	return Basis{base: ret}
 
-// Rotated godot_basis_rotated [[const godot_basis * p_self] [const godot_vector3 * p_axis] [const godot_real p_phi]]
+}
 
-// Scaled godot_basis_scaled [[const godot_basis * p_self] [const godot_vector3 * p_scale]]
+// Orthonormalized godot_basis_orthonormalized [[const godot_basis * p_self]] godot_basis
+func (t *Basis) Orthonormalized() Basis {
+	arg0 := t.getBase()
 
-// GetScale godot_basis_get_scale [[const godot_basis * p_self]]
+	ret := C.go_godot_basis_orthonormalized(GDNative.api, arg0)
 
-// GetEuler godot_basis_get_euler [[const godot_basis * p_self]]
+	return Basis{base: ret}
 
-// Tdotx godot_basis_tdotx [[const godot_basis * p_self] [const godot_vector3 * p_with]]
+}
 
-// Tdoty godot_basis_tdoty [[const godot_basis * p_self] [const godot_vector3 * p_with]]
+// Determinant godot_basis_determinant [[const godot_basis * p_self]] godot_real
+func (t *Basis) Determinant() Real {
+	arg0 := t.getBase()
 
-// Tdotz godot_basis_tdotz [[const godot_basis * p_self] [const godot_vector3 * p_with]]
+	ret := C.go_godot_basis_determinant(GDNative.api, arg0)
 
-// Xform godot_basis_xform [[const godot_basis * p_self] [const godot_vector3 * p_v]]
+	return Real{base: ret}
 
-// XformInv godot_basis_xform_inv [[const godot_basis * p_self] [const godot_vector3 * p_v]]
+}
 
-// GetOrthogonalIndex godot_basis_get_orthogonal_index [[const godot_basis * p_self]]
+// Rotated godot_basis_rotated [[const godot_basis * p_self] [const godot_vector3 * p_axis] [const godot_real p_phi]] godot_basis
+func (t *Basis) Rotated(axis Vector3, phi Real) Basis {
+	arg0 := t.getBase()
+	arg1 := axis.getBase()
+	arg2 := phi.getBase()
 
-// NewBasis godot_basis_new [[godot_basis * r_dest]]
+	ret := C.go_godot_basis_rotated(GDNative.api, arg0, arg1, arg2)
 
-//func NewBasis(dest Basis, ) *Basis {
-//	return &Basis{}
-//}
+	return Basis{base: ret}
 
-// NewBasisWithEulerQuat godot_basis_new_with_euler_quat [[godot_basis * r_dest] [const godot_quat * p_euler]]
+}
 
-//func NewBasisWithEulerQuat(dest Basis, euler ConstQuat, ) *Basis {
-//	return &Basis{}
-//}
+// Scaled godot_basis_scaled [[const godot_basis * p_self] [const godot_vector3 * p_scale]] godot_basis
+func (t *Basis) Scaled(scale Vector3) Basis {
+	arg0 := t.getBase()
+	arg1 := scale.getBase()
 
-// GetElements godot_basis_get_elements [[const godot_basis * p_self] [godot_vector3 * p_elements]]
+	ret := C.go_godot_basis_scaled(GDNative.api, arg0, arg1)
 
-// GetAxis godot_basis_get_axis [[const godot_basis * p_self] [const godot_int p_axis]]
+	return Basis{base: ret}
 
-// SetAxis godot_basis_set_axis [[godot_basis * p_self] [const godot_int p_axis] [const godot_vector3 * p_value]]
+}
 
-// GetRow godot_basis_get_row [[const godot_basis * p_self] [const godot_int p_row]]
+// GetScale godot_basis_get_scale [[const godot_basis * p_self]] godot_vector3
+func (t *Basis) GetScale() Vector3 {
+	arg0 := t.getBase()
 
-// SetRow godot_basis_set_row [[godot_basis * p_self] [const godot_int p_row] [const godot_vector3 * p_value]]
+	ret := C.go_godot_basis_get_scale(GDNative.api, arg0)
 
-// OperatorEqual godot_basis_operator_equal [[const godot_basis * p_self] [const godot_basis * p_b]]
+	return Vector3{base: ret}
 
-// OperatorAdd godot_basis_operator_add [[const godot_basis * p_self] [const godot_basis * p_b]]
+}
 
-// OperatorSubtract godot_basis_operator_subtract [[const godot_basis * p_self] [const godot_basis * p_b]]
+// GetEuler godot_basis_get_euler [[const godot_basis * p_self]] godot_vector3
+func (t *Basis) GetEuler() Vector3 {
+	arg0 := t.getBase()
 
-// OperatorMultiplyVector godot_basis_operator_multiply_vector [[const godot_basis * p_self] [const godot_basis * p_b]]
+	ret := C.go_godot_basis_get_euler(GDNative.api, arg0)
 
-// OperatorMultiplyScalar godot_basis_operator_multiply_scalar [[const godot_basis * p_self] [const godot_real p_b]]
+	return Vector3{base: ret}
+
+}
+
+// Tdotx godot_basis_tdotx [[const godot_basis * p_self] [const godot_vector3 * p_with]] godot_real
+func (t *Basis) Tdotx(with Vector3) Real {
+	arg0 := t.getBase()
+	arg1 := with.getBase()
+
+	ret := C.go_godot_basis_tdotx(GDNative.api, arg0, arg1)
+
+	return Real{base: ret}
+
+}
+
+// Tdoty godot_basis_tdoty [[const godot_basis * p_self] [const godot_vector3 * p_with]] godot_real
+func (t *Basis) Tdoty(with Vector3) Real {
+	arg0 := t.getBase()
+	arg1 := with.getBase()
+
+	ret := C.go_godot_basis_tdoty(GDNative.api, arg0, arg1)
+
+	return Real{base: ret}
+
+}
+
+// Tdotz godot_basis_tdotz [[const godot_basis * p_self] [const godot_vector3 * p_with]] godot_real
+func (t *Basis) Tdotz(with Vector3) Real {
+	arg0 := t.getBase()
+	arg1 := with.getBase()
+
+	ret := C.go_godot_basis_tdotz(GDNative.api, arg0, arg1)
+
+	return Real{base: ret}
+
+}
+
+// Xform godot_basis_xform [[const godot_basis * p_self] [const godot_vector3 * p_v]] godot_vector3
+func (t *Basis) Xform(v Vector3) Vector3 {
+	arg0 := t.getBase()
+	arg1 := v.getBase()
+
+	ret := C.go_godot_basis_xform(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// XformInv godot_basis_xform_inv [[const godot_basis * p_self] [const godot_vector3 * p_v]] godot_vector3
+func (t *Basis) XformInv(v Vector3) Vector3 {
+	arg0 := t.getBase()
+	arg1 := v.getBase()
+
+	ret := C.go_godot_basis_xform_inv(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// GetOrthogonalIndex godot_basis_get_orthogonal_index [[const godot_basis * p_self]] godot_int
+func (t *Basis) GetOrthogonalIndex() Int {
+	arg0 := t.getBase()
+
+	ret := C.go_godot_basis_get_orthogonal_index(GDNative.api, arg0)
+
+	return Int{base: ret}
+
+}
+
+// GetElements godot_basis_get_elements [[const godot_basis * p_self] [godot_vector3 * p_elements]] void
+func (t *Basis) GetElements(elements Vector3) {
+	arg0 := t.getBase()
+	arg1 := elements.getBase()
+
+	C.go_godot_basis_get_elements(GDNative.api, arg0, arg1)
+
+}
+
+// GetAxis godot_basis_get_axis [[const godot_basis * p_self] [const godot_int p_axis]] godot_vector3
+func (t *Basis) GetAxis(axis Int) Vector3 {
+	arg0 := t.getBase()
+	arg1 := axis.getBase()
+
+	ret := C.go_godot_basis_get_axis(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// SetAxis godot_basis_set_axis [[godot_basis * p_self] [const godot_int p_axis] [const godot_vector3 * p_value]] void
+func (t *Basis) SetAxis(axis Int, value Vector3) {
+	arg0 := t.getBase()
+	arg1 := axis.getBase()
+	arg2 := value.getBase()
+
+	C.go_godot_basis_set_axis(GDNative.api, arg0, arg1, arg2)
+
+}
+
+// GetRow godot_basis_get_row [[const godot_basis * p_self] [const godot_int p_row]] godot_vector3
+func (t *Basis) GetRow(row Int) Vector3 {
+	arg0 := t.getBase()
+	arg1 := row.getBase()
+
+	ret := C.go_godot_basis_get_row(GDNative.api, arg0, arg1)
+
+	return Vector3{base: ret}
+
+}
+
+// SetRow godot_basis_set_row [[godot_basis * p_self] [const godot_int p_row] [const godot_vector3 * p_value]] void
+func (t *Basis) SetRow(row Int, value Vector3) {
+	arg0 := t.getBase()
+	arg1 := row.getBase()
+	arg2 := value.getBase()
+
+	C.go_godot_basis_set_row(GDNative.api, arg0, arg1, arg2)
+
+}
+
+// OperatorEqual godot_basis_operator_equal [[const godot_basis * p_self] [const godot_basis * p_b]] godot_bool
+func (t *Basis) OperatorEqual(b Basis) Bool {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_basis_operator_equal(GDNative.api, arg0, arg1)
+
+	return Bool{base: ret}
+
+}
+
+// OperatorAdd godot_basis_operator_add [[const godot_basis * p_self] [const godot_basis * p_b]] godot_basis
+func (t *Basis) OperatorAdd(b Basis) Basis {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_basis_operator_add(GDNative.api, arg0, arg1)
+
+	return Basis{base: ret}
+
+}
+
+// OperatorSubtract godot_basis_operator_subtract [[const godot_basis * p_self] [const godot_basis * p_b]] godot_basis
+func (t *Basis) OperatorSubtract(b Basis) Basis {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_basis_operator_subtract(GDNative.api, arg0, arg1)
+
+	return Basis{base: ret}
+
+}
+
+// OperatorMultiplyVector godot_basis_operator_multiply_vector [[const godot_basis * p_self] [const godot_basis * p_b]] godot_basis
+func (t *Basis) OperatorMultiplyVector(b Basis) Basis {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_basis_operator_multiply_vector(GDNative.api, arg0, arg1)
+
+	return Basis{base: ret}
+
+}
+
+// OperatorMultiplyScalar godot_basis_operator_multiply_scalar [[const godot_basis * p_self] [const godot_real p_b]] godot_basis
+func (t *Basis) OperatorMultiplyScalar(b Real) Basis {
+	arg0 := t.getBase()
+	arg1 := b.getBase()
+
+	ret := C.go_godot_basis_operator_multiply_scalar(GDNative.api, arg0, arg1)
+
+	return Basis{base: ret}
+
+}
