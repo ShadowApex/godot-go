@@ -5,7 +5,7 @@
 [sub_resource type="NativeScript" id=1]
 
 resource_name = "Simple"
-class_name = "Simple"
+class_name = "SimpleClass"
 library = ExtResource( 1 )
 
 [node name="Node" type="Node" index="0"]
