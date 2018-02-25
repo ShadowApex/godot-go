@@ -10,6 +10,7 @@ package gdnative
 //----------------------------------------------------------------------------*/
 
 /*
+#include "gdnative.gen.h"
 #include <gdnative/rect2.h>
 */
 import "C"
@@ -18,162 +19,147 @@ type Rect2 struct {
 	base *C.godot_rect2
 }
 
-func (t Rect2) getBase() *C.godot_rect2 {
-	return t.base
+func (gdt Rect2) getBase() *C.godot_rect2 {
+	return gdt.base
 }
 
 // AsString godot_rect2_as_string [[const godot_rect2 * p_self]] godot_string
-func (t *Rect2) AsString() String {
-	arg0 := t.getBase()
+func (gdt *Rect2) AsString() String {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_rect2_as_string(GDNative.api, arg0)
 
 	return String{base: ret}
-
 }
 
 // GetArea godot_rect2_get_area [[const godot_rect2 * p_self]] godot_real
-func (t *Rect2) GetArea() Real {
-	arg0 := t.getBase()
+func (gdt *Rect2) GetArea() Real {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_rect2_get_area(GDNative.api, arg0)
 
-	return Real{base: ret}
-
+	return Real(ret)
 }
 
 // Intersects godot_rect2_intersects [[const godot_rect2 * p_self] [const godot_rect2 * p_b]] godot_bool
-func (t *Rect2) Intersects(b Rect2) Bool {
-	arg0 := t.getBase()
+func (gdt *Rect2) Intersects(b Rect2) Bool {
+	arg0 := gdt.getBase()
 	arg1 := b.getBase()
 
 	ret := C.go_godot_rect2_intersects(GDNative.api, arg0, arg1)
 
-	return Bool{base: ret}
-
+	return Bool(ret)
 }
 
 // Encloses godot_rect2_encloses [[const godot_rect2 * p_self] [const godot_rect2 * p_b]] godot_bool
-func (t *Rect2) Encloses(b Rect2) Bool {
-	arg0 := t.getBase()
+func (gdt *Rect2) Encloses(b Rect2) Bool {
+	arg0 := gdt.getBase()
 	arg1 := b.getBase()
 
 	ret := C.go_godot_rect2_encloses(GDNative.api, arg0, arg1)
 
-	return Bool{base: ret}
-
+	return Bool(ret)
 }
 
 // HasNoArea godot_rect2_has_no_area [[const godot_rect2 * p_self]] godot_bool
-func (t *Rect2) HasNoArea() Bool {
-	arg0 := t.getBase()
+func (gdt *Rect2) HasNoArea() Bool {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_rect2_has_no_area(GDNative.api, arg0)
 
-	return Bool{base: ret}
-
+	return Bool(ret)
 }
 
 // Clip godot_rect2_clip [[const godot_rect2 * p_self] [const godot_rect2 * p_b]] godot_rect2
-func (t *Rect2) Clip(b Rect2) Rect2 {
-	arg0 := t.getBase()
+func (gdt *Rect2) Clip(b Rect2) Rect2 {
+	arg0 := gdt.getBase()
 	arg1 := b.getBase()
 
 	ret := C.go_godot_rect2_clip(GDNative.api, arg0, arg1)
 
 	return Rect2{base: ret}
-
 }
 
 // Merge godot_rect2_merge [[const godot_rect2 * p_self] [const godot_rect2 * p_b]] godot_rect2
-func (t *Rect2) Merge(b Rect2) Rect2 {
-	arg0 := t.getBase()
+func (gdt *Rect2) Merge(b Rect2) Rect2 {
+	arg0 := gdt.getBase()
 	arg1 := b.getBase()
 
 	ret := C.go_godot_rect2_merge(GDNative.api, arg0, arg1)
 
 	return Rect2{base: ret}
-
 }
 
 // HasPoint godot_rect2_has_point [[const godot_rect2 * p_self] [const godot_vector2 * p_point]] godot_bool
-func (t *Rect2) HasPoint(point Vector2) Bool {
-	arg0 := t.getBase()
+func (gdt *Rect2) HasPoint(point Vector2) Bool {
+	arg0 := gdt.getBase()
 	arg1 := point.getBase()
 
 	ret := C.go_godot_rect2_has_point(GDNative.api, arg0, arg1)
 
-	return Bool{base: ret}
-
+	return Bool(ret)
 }
 
 // Grow godot_rect2_grow [[const godot_rect2 * p_self] [const godot_real p_by]] godot_rect2
-func (t *Rect2) Grow(by Real) Rect2 {
-	arg0 := t.getBase()
+func (gdt *Rect2) Grow(by Real) Rect2 {
+	arg0 := gdt.getBase()
 	arg1 := by.getBase()
 
 	ret := C.go_godot_rect2_grow(GDNative.api, arg0, arg1)
 
 	return Rect2{base: ret}
-
 }
 
 // Expand godot_rect2_expand [[const godot_rect2 * p_self] [const godot_vector2 * p_to]] godot_rect2
-func (t *Rect2) Expand(to Vector2) Rect2 {
-	arg0 := t.getBase()
+func (gdt *Rect2) Expand(to Vector2) Rect2 {
+	arg0 := gdt.getBase()
 	arg1 := to.getBase()
 
 	ret := C.go_godot_rect2_expand(GDNative.api, arg0, arg1)
 
 	return Rect2{base: ret}
-
 }
 
 // OperatorEqual godot_rect2_operator_equal [[const godot_rect2 * p_self] [const godot_rect2 * p_b]] godot_bool
-func (t *Rect2) OperatorEqual(b Rect2) Bool {
-	arg0 := t.getBase()
+func (gdt *Rect2) OperatorEqual(b Rect2) Bool {
+	arg0 := gdt.getBase()
 	arg1 := b.getBase()
 
 	ret := C.go_godot_rect2_operator_equal(GDNative.api, arg0, arg1)
 
-	return Bool{base: ret}
-
+	return Bool(ret)
 }
 
 // GetPosition godot_rect2_get_position [[const godot_rect2 * p_self]] godot_vector2
-func (t *Rect2) GetPosition() Vector2 {
-	arg0 := t.getBase()
+func (gdt *Rect2) GetPosition() Vector2 {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_rect2_get_position(GDNative.api, arg0)
 
 	return Vector2{base: ret}
-
 }
 
 // GetSize godot_rect2_get_size [[const godot_rect2 * p_self]] godot_vector2
-func (t *Rect2) GetSize() Vector2 {
-	arg0 := t.getBase()
+func (gdt *Rect2) GetSize() Vector2 {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_rect2_get_size(GDNative.api, arg0)
 
 	return Vector2{base: ret}
-
 }
 
 // SetPosition godot_rect2_set_position [[godot_rect2 * p_self] [const godot_vector2 * p_pos]] void
-func (t *Rect2) SetPosition(pos Vector2) {
-	arg0 := t.getBase()
+func (gdt *Rect2) SetPosition(pos Vector2) {
+	arg0 := gdt.getBase()
 	arg1 := pos.getBase()
 
 	C.go_godot_rect2_set_position(GDNative.api, arg0, arg1)
-
 }
 
 // SetSize godot_rect2_set_size [[godot_rect2 * p_self] [const godot_vector2 * p_size]] void
-func (t *Rect2) SetSize(size Vector2) {
-	arg0 := t.getBase()
+func (gdt *Rect2) SetSize(size Vector2) {
+	arg0 := gdt.getBase()
 	arg1 := size.getBase()
 
 	C.go_godot_rect2_set_size(GDNative.api, arg0, arg1)
-
 }

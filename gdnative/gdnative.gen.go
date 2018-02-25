@@ -10,6 +10,7 @@ package gdnative
 //----------------------------------------------------------------------------*/
 
 /*
+#include "gdnative.gen.h"
 #include <gdnative/gdnative.h>
 */
 import "C"
@@ -85,16 +86,16 @@ type Object struct {
 	base *C.godot_object
 }
 
-func (t Object) getBase() *C.godot_object {
-	return t.base
+func (gdt Object) getBase() *C.godot_object {
+	return gdt.base
 }
 
 type MethodBind struct {
 	base *C.godot_method_bind
 }
 
-func (t MethodBind) getBase() *C.godot_method_bind {
-	return t.base
+func (gdt MethodBind) getBase() *C.godot_method_bind {
+	return gdt.base
 }
 
 type GdnativeApiVersion struct {
@@ -104,8 +105,8 @@ type GdnativeApiVersion struct {
 	Minor Uint
 }
 
-func (t GdnativeApiVersion) getBase() *C.godot_gdnative_api_version {
-	return t.base
+func (gdt GdnativeApiVersion) getBase() *C.godot_gdnative_api_version {
+	return gdt.base
 }
 
 type GdnativeTerminateOptions struct {
@@ -114,6 +115,6 @@ type GdnativeTerminateOptions struct {
 	InEditor Bool
 }
 
-func (t GdnativeTerminateOptions) getBase() *C.godot_gdnative_terminate_options {
-	return t.base
+func (gdt GdnativeTerminateOptions) getBase() *C.godot_gdnative_terminate_options {
+	return gdt.base
 }

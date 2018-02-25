@@ -11,6 +11,7 @@ package gdnative
 //----------------------------------------------------------------------------*/
 
 /*
+#include "gdnative.gen.h"
 {{ range $i, $header := $view.Headers -}}
 	#include <{{ $header }}>
 {{ end -}}
@@ -31,8 +32,8 @@ import "C"
 			{{ end -}}
 		}
 
-		func (t {{ $typedef.GoName }}) getBase() *C.{{ $typedef.Name }} {
-			return t.base
+		func (gdt {{ $typedef.GoName }}) getBase() *C.{{ $typedef.Name }} {
+			return gdt.base
 		}
 
 		{{/* Handle struct methods */}}
@@ -43,21 +44,25 @@ import "C"
 					return &{{ $typedef.GoName }}{}
 				}
 			{{ else -}}
-				func (t *{{ $typedef.GoName }}) {{ $view.ToGoMethodName $typedef $method }}({{ range $k, $arg := $method.Arguments }}{{ if $view.NotSelfArg (index $arg 1) }}{{ $view.ToGoArgName (index $arg 1) }} {{ $view.ToGoArgType (index $arg 0) }}, {{ end }}{{ end }})  {{ $view.ToGoReturnType $method.ReturnType }} {
+				func (gdt *{{ $typedef.GoName }}) {{ $view.ToGoMethodName $typedef $method }}({{ range $k, $arg := $method.Arguments }}{{ if $view.NotSelfArg (index $arg 1) }}{{ $view.ToGoArgName (index $arg 1) }} {{ $view.ToGoArgType (index $arg 0) }}, {{ end }}{{ end }})  {{ $view.ToGoReturnType $method.ReturnType }} {
 					{{ range $k, $arg := $method.Arguments -}}
 						{{ if $view.NotSelfArg (index $arg 1) -}}
 							arg{{ $k }} := {{ $view.ToGoArgName (index $arg 1) }}.getBase()
 						{{ else -}}
-							arg{{ $k }} := t.getBase()
+							arg{{ $k }} := gdt.getBase()
 						{{ end -}}
 					{{ end }}
 					{{ if $view.HasReturn $method.ReturnType }}
 						ret := C.go_{{ $method.Name }}(GDNative.api, {{ range $k, $arg := $method.Arguments }}arg{{ $k }}, {{ end }})
 
-						return {{ $view.ToGoReturnType $method.ReturnType }}{base: ret}
-					{{ else }}
+						{{ if $view.IsBasicType ($view.ToGoReturnType $method.ReturnType) -}}
+							return {{ $view.ToGoReturnType $method.ReturnType }}(ret)
+						{{ else -}}
+							return {{ $view.ToGoReturnType $method.ReturnType }}{base: ret}
+						{{ end -}}
+					{{ else -}}
 						C.go_{{ $method.Name }}(GDNative.api, {{ range $k, $arg := $method.Arguments }}arg{{ $k }}, {{ end }})
-					{{ end }}
+					{{ end -}}
 				}
 			{{ end }}
 		{{ end }}

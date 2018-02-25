@@ -10,6 +10,7 @@ package gdnative
 //----------------------------------------------------------------------------*/
 
 /*
+#include "gdnative.gen.h"
 #include <gdnative/pool_arrays.h>
 */
 import "C"
@@ -18,8 +19,8 @@ type PoolArrayReadAccess struct {
 	base *C.godot_pool_array_read_access
 }
 
-func (t PoolArrayReadAccess) getBase() *C.godot_pool_array_read_access {
-	return t.base
+func (gdt PoolArrayReadAccess) getBase() *C.godot_pool_array_read_access {
+	return gdt.base
 }
 
 type PoolByteArrayReadAccess PoolArrayReadAccess
@@ -40,8 +41,8 @@ type PoolArrayWriteAccess struct {
 	base *C.godot_pool_array_write_access
 }
 
-func (t PoolArrayWriteAccess) getBase() *C.godot_pool_array_write_access {
-	return t.base
+func (gdt PoolArrayWriteAccess) getBase() *C.godot_pool_array_write_access {
+	return gdt.base
 }
 
 type PoolByteArrayWriteAccess PoolArrayWriteAccess
@@ -62,922 +63,831 @@ type PoolByteArray struct {
 	base *C.godot_pool_byte_array
 }
 
-func (t PoolByteArray) getBase() *C.godot_pool_byte_array {
-	return t.base
+func (gdt PoolByteArray) getBase() *C.godot_pool_byte_array {
+	return gdt.base
 }
 
 // Append godot_pool_byte_array_append [[godot_pool_byte_array * p_self] [const uint8_t p_data]] void
-func (t *PoolByteArray) Append(data Uint8T) {
-	arg0 := t.getBase()
+func (gdt *PoolByteArray) Append(data Uint8T) {
+	arg0 := gdt.getBase()
 	arg1 := data.getBase()
 
 	C.go_godot_pool_byte_array_append(GDNative.api, arg0, arg1)
-
 }
 
 // AppendArray godot_pool_byte_array_append_array [[godot_pool_byte_array * p_self] [const godot_pool_byte_array * p_array]] void
-func (t *PoolByteArray) AppendArray(array PoolByteArray) {
-	arg0 := t.getBase()
+func (gdt *PoolByteArray) AppendArray(array PoolByteArray) {
+	arg0 := gdt.getBase()
 	arg1 := array.getBase()
 
 	C.go_godot_pool_byte_array_append_array(GDNative.api, arg0, arg1)
-
 }
 
 // Insert godot_pool_byte_array_insert [[godot_pool_byte_array * p_self] [const godot_int p_idx] [const uint8_t p_data]] godot_error
-func (t *PoolByteArray) Insert(idx Int, data Uint8T) Error {
-	arg0 := t.getBase()
+func (gdt *PoolByteArray) Insert(idx Int, data Uint8T) Error {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 	arg2 := data.getBase()
 
 	ret := C.go_godot_pool_byte_array_insert(GDNative.api, arg0, arg1, arg2)
 
-	return Error{base: ret}
-
+	return Error(ret)
 }
 
 // Invert godot_pool_byte_array_invert [[godot_pool_byte_array * p_self]] void
-func (t *PoolByteArray) Invert() {
-	arg0 := t.getBase()
+func (gdt *PoolByteArray) Invert() {
+	arg0 := gdt.getBase()
 
 	C.go_godot_pool_byte_array_invert(GDNative.api, arg0)
-
 }
 
 // PushBack godot_pool_byte_array_push_back [[godot_pool_byte_array * p_self] [const uint8_t p_data]] void
-func (t *PoolByteArray) PushBack(data Uint8T) {
-	arg0 := t.getBase()
+func (gdt *PoolByteArray) PushBack(data Uint8T) {
+	arg0 := gdt.getBase()
 	arg1 := data.getBase()
 
 	C.go_godot_pool_byte_array_push_back(GDNative.api, arg0, arg1)
-
 }
 
 // Remove godot_pool_byte_array_remove [[godot_pool_byte_array * p_self] [const godot_int p_idx]] void
-func (t *PoolByteArray) Remove(idx Int) {
-	arg0 := t.getBase()
+func (gdt *PoolByteArray) Remove(idx Int) {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 
 	C.go_godot_pool_byte_array_remove(GDNative.api, arg0, arg1)
-
 }
 
 // Resize godot_pool_byte_array_resize [[godot_pool_byte_array * p_self] [const godot_int p_size]] void
-func (t *PoolByteArray) Resize(size Int) {
-	arg0 := t.getBase()
+func (gdt *PoolByteArray) Resize(size Int) {
+	arg0 := gdt.getBase()
 	arg1 := size.getBase()
 
 	C.go_godot_pool_byte_array_resize(GDNative.api, arg0, arg1)
-
 }
 
 // Read godot_pool_byte_array_read [[const godot_pool_byte_array * p_self]] godot_pool_byte_array_read_access *
-func (t *PoolByteArray) Read() PoolByteArrayReadAccess {
-	arg0 := t.getBase()
+func (gdt *PoolByteArray) Read() PoolByteArrayReadAccess {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_byte_array_read(GDNative.api, arg0)
 
 	return PoolByteArrayReadAccess{base: ret}
-
 }
 
 // Write godot_pool_byte_array_write [[godot_pool_byte_array * p_self]] godot_pool_byte_array_write_access *
-func (t *PoolByteArray) Write() PoolByteArrayWriteAccess {
-	arg0 := t.getBase()
+func (gdt *PoolByteArray) Write() PoolByteArrayWriteAccess {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_byte_array_write(GDNative.api, arg0)
 
 	return PoolByteArrayWriteAccess{base: ret}
-
 }
 
 // Set godot_pool_byte_array_set [[godot_pool_byte_array * p_self] [const godot_int p_idx] [const uint8_t p_data]] void
-func (t *PoolByteArray) Set(idx Int, data Uint8T) {
-	arg0 := t.getBase()
+func (gdt *PoolByteArray) Set(idx Int, data Uint8T) {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 	arg2 := data.getBase()
 
 	C.go_godot_pool_byte_array_set(GDNative.api, arg0, arg1, arg2)
-
 }
 
 // Get godot_pool_byte_array_get [[const godot_pool_byte_array * p_self] [const godot_int p_idx]] uint8_t
-func (t *PoolByteArray) Get(idx Int) Uint8T {
-	arg0 := t.getBase()
+func (gdt *PoolByteArray) Get(idx Int) Uint8T {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 
 	ret := C.go_godot_pool_byte_array_get(GDNative.api, arg0, arg1)
 
-	return Uint8T{base: ret}
-
+	return Uint8T(ret)
 }
 
 // Size godot_pool_byte_array_size [[const godot_pool_byte_array * p_self]] godot_int
-func (t *PoolByteArray) Size() Int {
-	arg0 := t.getBase()
+func (gdt *PoolByteArray) Size() Int {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_byte_array_size(GDNative.api, arg0)
 
-	return Int{base: ret}
-
+	return Int(ret)
 }
 
 // Destroy godot_pool_byte_array_destroy [[godot_pool_byte_array * p_self]] void
-func (t *PoolByteArray) Destroy() {
-	arg0 := t.getBase()
+func (gdt *PoolByteArray) Destroy() {
+	arg0 := gdt.getBase()
 
 	C.go_godot_pool_byte_array_destroy(GDNative.api, arg0)
-
 }
 
 type PoolIntArray struct {
 	base *C.godot_pool_int_array
 }
 
-func (t PoolIntArray) getBase() *C.godot_pool_int_array {
-	return t.base
+func (gdt PoolIntArray) getBase() *C.godot_pool_int_array {
+	return gdt.base
 }
 
 // Append godot_pool_int_array_append [[godot_pool_int_array * p_self] [const godot_int p_data]] void
-func (t *PoolIntArray) Append(data Int) {
-	arg0 := t.getBase()
+func (gdt *PoolIntArray) Append(data Int) {
+	arg0 := gdt.getBase()
 	arg1 := data.getBase()
 
 	C.go_godot_pool_int_array_append(GDNative.api, arg0, arg1)
-
 }
 
 // AppendArray godot_pool_int_array_append_array [[godot_pool_int_array * p_self] [const godot_pool_int_array * p_array]] void
-func (t *PoolIntArray) AppendArray(array PoolIntArray) {
-	arg0 := t.getBase()
+func (gdt *PoolIntArray) AppendArray(array PoolIntArray) {
+	arg0 := gdt.getBase()
 	arg1 := array.getBase()
 
 	C.go_godot_pool_int_array_append_array(GDNative.api, arg0, arg1)
-
 }
 
 // Insert godot_pool_int_array_insert [[godot_pool_int_array * p_self] [const godot_int p_idx] [const godot_int p_data]] godot_error
-func (t *PoolIntArray) Insert(idx Int, data Int) Error {
-	arg0 := t.getBase()
+func (gdt *PoolIntArray) Insert(idx Int, data Int) Error {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 	arg2 := data.getBase()
 
 	ret := C.go_godot_pool_int_array_insert(GDNative.api, arg0, arg1, arg2)
 
-	return Error{base: ret}
-
+	return Error(ret)
 }
 
 // Invert godot_pool_int_array_invert [[godot_pool_int_array * p_self]] void
-func (t *PoolIntArray) Invert() {
-	arg0 := t.getBase()
+func (gdt *PoolIntArray) Invert() {
+	arg0 := gdt.getBase()
 
 	C.go_godot_pool_int_array_invert(GDNative.api, arg0)
-
 }
 
 // PushBack godot_pool_int_array_push_back [[godot_pool_int_array * p_self] [const godot_int p_data]] void
-func (t *PoolIntArray) PushBack(data Int) {
-	arg0 := t.getBase()
+func (gdt *PoolIntArray) PushBack(data Int) {
+	arg0 := gdt.getBase()
 	arg1 := data.getBase()
 
 	C.go_godot_pool_int_array_push_back(GDNative.api, arg0, arg1)
-
 }
 
 // Remove godot_pool_int_array_remove [[godot_pool_int_array * p_self] [const godot_int p_idx]] void
-func (t *PoolIntArray) Remove(idx Int) {
-	arg0 := t.getBase()
+func (gdt *PoolIntArray) Remove(idx Int) {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 
 	C.go_godot_pool_int_array_remove(GDNative.api, arg0, arg1)
-
 }
 
 // Resize godot_pool_int_array_resize [[godot_pool_int_array * p_self] [const godot_int p_size]] void
-func (t *PoolIntArray) Resize(size Int) {
-	arg0 := t.getBase()
+func (gdt *PoolIntArray) Resize(size Int) {
+	arg0 := gdt.getBase()
 	arg1 := size.getBase()
 
 	C.go_godot_pool_int_array_resize(GDNative.api, arg0, arg1)
-
 }
 
 // Read godot_pool_int_array_read [[const godot_pool_int_array * p_self]] godot_pool_int_array_read_access *
-func (t *PoolIntArray) Read() PoolIntArrayReadAccess {
-	arg0 := t.getBase()
+func (gdt *PoolIntArray) Read() PoolIntArrayReadAccess {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_int_array_read(GDNative.api, arg0)
 
 	return PoolIntArrayReadAccess{base: ret}
-
 }
 
 // Write godot_pool_int_array_write [[godot_pool_int_array * p_self]] godot_pool_int_array_write_access *
-func (t *PoolIntArray) Write() PoolIntArrayWriteAccess {
-	arg0 := t.getBase()
+func (gdt *PoolIntArray) Write() PoolIntArrayWriteAccess {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_int_array_write(GDNative.api, arg0)
 
 	return PoolIntArrayWriteAccess{base: ret}
-
 }
 
 // Set godot_pool_int_array_set [[godot_pool_int_array * p_self] [const godot_int p_idx] [const godot_int p_data]] void
-func (t *PoolIntArray) Set(idx Int, data Int) {
-	arg0 := t.getBase()
+func (gdt *PoolIntArray) Set(idx Int, data Int) {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 	arg2 := data.getBase()
 
 	C.go_godot_pool_int_array_set(GDNative.api, arg0, arg1, arg2)
-
 }
 
 // Get godot_pool_int_array_get [[const godot_pool_int_array * p_self] [const godot_int p_idx]] godot_int
-func (t *PoolIntArray) Get(idx Int) Int {
-	arg0 := t.getBase()
+func (gdt *PoolIntArray) Get(idx Int) Int {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 
 	ret := C.go_godot_pool_int_array_get(GDNative.api, arg0, arg1)
 
-	return Int{base: ret}
-
+	return Int(ret)
 }
 
 // Size godot_pool_int_array_size [[const godot_pool_int_array * p_self]] godot_int
-func (t *PoolIntArray) Size() Int {
-	arg0 := t.getBase()
+func (gdt *PoolIntArray) Size() Int {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_int_array_size(GDNative.api, arg0)
 
-	return Int{base: ret}
-
+	return Int(ret)
 }
 
 // Destroy godot_pool_int_array_destroy [[godot_pool_int_array * p_self]] void
-func (t *PoolIntArray) Destroy() {
-	arg0 := t.getBase()
+func (gdt *PoolIntArray) Destroy() {
+	arg0 := gdt.getBase()
 
 	C.go_godot_pool_int_array_destroy(GDNative.api, arg0)
-
 }
 
 type PoolRealArray struct {
 	base *C.godot_pool_real_array
 }
 
-func (t PoolRealArray) getBase() *C.godot_pool_real_array {
-	return t.base
+func (gdt PoolRealArray) getBase() *C.godot_pool_real_array {
+	return gdt.base
 }
 
 // Append godot_pool_real_array_append [[godot_pool_real_array * p_self] [const godot_real p_data]] void
-func (t *PoolRealArray) Append(data Real) {
-	arg0 := t.getBase()
+func (gdt *PoolRealArray) Append(data Real) {
+	arg0 := gdt.getBase()
 	arg1 := data.getBase()
 
 	C.go_godot_pool_real_array_append(GDNative.api, arg0, arg1)
-
 }
 
 // AppendArray godot_pool_real_array_append_array [[godot_pool_real_array * p_self] [const godot_pool_real_array * p_array]] void
-func (t *PoolRealArray) AppendArray(array PoolRealArray) {
-	arg0 := t.getBase()
+func (gdt *PoolRealArray) AppendArray(array PoolRealArray) {
+	arg0 := gdt.getBase()
 	arg1 := array.getBase()
 
 	C.go_godot_pool_real_array_append_array(GDNative.api, arg0, arg1)
-
 }
 
 // Insert godot_pool_real_array_insert [[godot_pool_real_array * p_self] [const godot_int p_idx] [const godot_real p_data]] godot_error
-func (t *PoolRealArray) Insert(idx Int, data Real) Error {
-	arg0 := t.getBase()
+func (gdt *PoolRealArray) Insert(idx Int, data Real) Error {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 	arg2 := data.getBase()
 
 	ret := C.go_godot_pool_real_array_insert(GDNative.api, arg0, arg1, arg2)
 
-	return Error{base: ret}
-
+	return Error(ret)
 }
 
 // Invert godot_pool_real_array_invert [[godot_pool_real_array * p_self]] void
-func (t *PoolRealArray) Invert() {
-	arg0 := t.getBase()
+func (gdt *PoolRealArray) Invert() {
+	arg0 := gdt.getBase()
 
 	C.go_godot_pool_real_array_invert(GDNative.api, arg0)
-
 }
 
 // PushBack godot_pool_real_array_push_back [[godot_pool_real_array * p_self] [const godot_real p_data]] void
-func (t *PoolRealArray) PushBack(data Real) {
-	arg0 := t.getBase()
+func (gdt *PoolRealArray) PushBack(data Real) {
+	arg0 := gdt.getBase()
 	arg1 := data.getBase()
 
 	C.go_godot_pool_real_array_push_back(GDNative.api, arg0, arg1)
-
 }
 
 // Remove godot_pool_real_array_remove [[godot_pool_real_array * p_self] [const godot_int p_idx]] void
-func (t *PoolRealArray) Remove(idx Int) {
-	arg0 := t.getBase()
+func (gdt *PoolRealArray) Remove(idx Int) {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 
 	C.go_godot_pool_real_array_remove(GDNative.api, arg0, arg1)
-
 }
 
 // Resize godot_pool_real_array_resize [[godot_pool_real_array * p_self] [const godot_int p_size]] void
-func (t *PoolRealArray) Resize(size Int) {
-	arg0 := t.getBase()
+func (gdt *PoolRealArray) Resize(size Int) {
+	arg0 := gdt.getBase()
 	arg1 := size.getBase()
 
 	C.go_godot_pool_real_array_resize(GDNative.api, arg0, arg1)
-
 }
 
 // Read godot_pool_real_array_read [[const godot_pool_real_array * p_self]] godot_pool_real_array_read_access *
-func (t *PoolRealArray) Read() PoolRealArrayReadAccess {
-	arg0 := t.getBase()
+func (gdt *PoolRealArray) Read() PoolRealArrayReadAccess {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_real_array_read(GDNative.api, arg0)
 
 	return PoolRealArrayReadAccess{base: ret}
-
 }
 
 // Write godot_pool_real_array_write [[godot_pool_real_array * p_self]] godot_pool_real_array_write_access *
-func (t *PoolRealArray) Write() PoolRealArrayWriteAccess {
-	arg0 := t.getBase()
+func (gdt *PoolRealArray) Write() PoolRealArrayWriteAccess {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_real_array_write(GDNative.api, arg0)
 
 	return PoolRealArrayWriteAccess{base: ret}
-
 }
 
 // Set godot_pool_real_array_set [[godot_pool_real_array * p_self] [const godot_int p_idx] [const godot_real p_data]] void
-func (t *PoolRealArray) Set(idx Int, data Real) {
-	arg0 := t.getBase()
+func (gdt *PoolRealArray) Set(idx Int, data Real) {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 	arg2 := data.getBase()
 
 	C.go_godot_pool_real_array_set(GDNative.api, arg0, arg1, arg2)
-
 }
 
 // Get godot_pool_real_array_get [[const godot_pool_real_array * p_self] [const godot_int p_idx]] godot_real
-func (t *PoolRealArray) Get(idx Int) Real {
-	arg0 := t.getBase()
+func (gdt *PoolRealArray) Get(idx Int) Real {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 
 	ret := C.go_godot_pool_real_array_get(GDNative.api, arg0, arg1)
 
-	return Real{base: ret}
-
+	return Real(ret)
 }
 
 // Size godot_pool_real_array_size [[const godot_pool_real_array * p_self]] godot_int
-func (t *PoolRealArray) Size() Int {
-	arg0 := t.getBase()
+func (gdt *PoolRealArray) Size() Int {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_real_array_size(GDNative.api, arg0)
 
-	return Int{base: ret}
-
+	return Int(ret)
 }
 
 // Destroy godot_pool_real_array_destroy [[godot_pool_real_array * p_self]] void
-func (t *PoolRealArray) Destroy() {
-	arg0 := t.getBase()
+func (gdt *PoolRealArray) Destroy() {
+	arg0 := gdt.getBase()
 
 	C.go_godot_pool_real_array_destroy(GDNative.api, arg0)
-
 }
 
 type PoolStringArray struct {
 	base *C.godot_pool_string_array
 }
 
-func (t PoolStringArray) getBase() *C.godot_pool_string_array {
-	return t.base
+func (gdt PoolStringArray) getBase() *C.godot_pool_string_array {
+	return gdt.base
 }
 
 // Append godot_pool_string_array_append [[godot_pool_string_array * p_self] [const godot_string * p_data]] void
-func (t *PoolStringArray) Append(data String) {
-	arg0 := t.getBase()
+func (gdt *PoolStringArray) Append(data String) {
+	arg0 := gdt.getBase()
 	arg1 := data.getBase()
 
 	C.go_godot_pool_string_array_append(GDNative.api, arg0, arg1)
-
 }
 
 // AppendArray godot_pool_string_array_append_array [[godot_pool_string_array * p_self] [const godot_pool_string_array * p_array]] void
-func (t *PoolStringArray) AppendArray(array PoolStringArray) {
-	arg0 := t.getBase()
+func (gdt *PoolStringArray) AppendArray(array PoolStringArray) {
+	arg0 := gdt.getBase()
 	arg1 := array.getBase()
 
 	C.go_godot_pool_string_array_append_array(GDNative.api, arg0, arg1)
-
 }
 
 // Insert godot_pool_string_array_insert [[godot_pool_string_array * p_self] [const godot_int p_idx] [const godot_string * p_data]] godot_error
-func (t *PoolStringArray) Insert(idx Int, data String) Error {
-	arg0 := t.getBase()
+func (gdt *PoolStringArray) Insert(idx Int, data String) Error {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 	arg2 := data.getBase()
 
 	ret := C.go_godot_pool_string_array_insert(GDNative.api, arg0, arg1, arg2)
 
-	return Error{base: ret}
-
+	return Error(ret)
 }
 
 // Invert godot_pool_string_array_invert [[godot_pool_string_array * p_self]] void
-func (t *PoolStringArray) Invert() {
-	arg0 := t.getBase()
+func (gdt *PoolStringArray) Invert() {
+	arg0 := gdt.getBase()
 
 	C.go_godot_pool_string_array_invert(GDNative.api, arg0)
-
 }
 
 // PushBack godot_pool_string_array_push_back [[godot_pool_string_array * p_self] [const godot_string * p_data]] void
-func (t *PoolStringArray) PushBack(data String) {
-	arg0 := t.getBase()
+func (gdt *PoolStringArray) PushBack(data String) {
+	arg0 := gdt.getBase()
 	arg1 := data.getBase()
 
 	C.go_godot_pool_string_array_push_back(GDNative.api, arg0, arg1)
-
 }
 
 // Remove godot_pool_string_array_remove [[godot_pool_string_array * p_self] [const godot_int p_idx]] void
-func (t *PoolStringArray) Remove(idx Int) {
-	arg0 := t.getBase()
+func (gdt *PoolStringArray) Remove(idx Int) {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 
 	C.go_godot_pool_string_array_remove(GDNative.api, arg0, arg1)
-
 }
 
 // Resize godot_pool_string_array_resize [[godot_pool_string_array * p_self] [const godot_int p_size]] void
-func (t *PoolStringArray) Resize(size Int) {
-	arg0 := t.getBase()
+func (gdt *PoolStringArray) Resize(size Int) {
+	arg0 := gdt.getBase()
 	arg1 := size.getBase()
 
 	C.go_godot_pool_string_array_resize(GDNative.api, arg0, arg1)
-
 }
 
 // Read godot_pool_string_array_read [[const godot_pool_string_array * p_self]] godot_pool_string_array_read_access *
-func (t *PoolStringArray) Read() PoolStringArrayReadAccess {
-	arg0 := t.getBase()
+func (gdt *PoolStringArray) Read() PoolStringArrayReadAccess {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_string_array_read(GDNative.api, arg0)
 
 	return PoolStringArrayReadAccess{base: ret}
-
 }
 
 // Write godot_pool_string_array_write [[godot_pool_string_array * p_self]] godot_pool_string_array_write_access *
-func (t *PoolStringArray) Write() PoolStringArrayWriteAccess {
-	arg0 := t.getBase()
+func (gdt *PoolStringArray) Write() PoolStringArrayWriteAccess {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_string_array_write(GDNative.api, arg0)
 
 	return PoolStringArrayWriteAccess{base: ret}
-
 }
 
 // Set godot_pool_string_array_set [[godot_pool_string_array * p_self] [const godot_int p_idx] [const godot_string * p_data]] void
-func (t *PoolStringArray) Set(idx Int, data String) {
-	arg0 := t.getBase()
+func (gdt *PoolStringArray) Set(idx Int, data String) {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 	arg2 := data.getBase()
 
 	C.go_godot_pool_string_array_set(GDNative.api, arg0, arg1, arg2)
-
 }
 
 // Get godot_pool_string_array_get [[const godot_pool_string_array * p_self] [const godot_int p_idx]] godot_string
-func (t *PoolStringArray) Get(idx Int) String {
-	arg0 := t.getBase()
+func (gdt *PoolStringArray) Get(idx Int) String {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 
 	ret := C.go_godot_pool_string_array_get(GDNative.api, arg0, arg1)
 
 	return String{base: ret}
-
 }
 
 // Size godot_pool_string_array_size [[const godot_pool_string_array * p_self]] godot_int
-func (t *PoolStringArray) Size() Int {
-	arg0 := t.getBase()
+func (gdt *PoolStringArray) Size() Int {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_string_array_size(GDNative.api, arg0)
 
-	return Int{base: ret}
-
+	return Int(ret)
 }
 
 // Destroy godot_pool_string_array_destroy [[godot_pool_string_array * p_self]] void
-func (t *PoolStringArray) Destroy() {
-	arg0 := t.getBase()
+func (gdt *PoolStringArray) Destroy() {
+	arg0 := gdt.getBase()
 
 	C.go_godot_pool_string_array_destroy(GDNative.api, arg0)
-
 }
 
 type PoolVector2Array struct {
 	base *C.godot_pool_vector2_array
 }
 
-func (t PoolVector2Array) getBase() *C.godot_pool_vector2_array {
-	return t.base
+func (gdt PoolVector2Array) getBase() *C.godot_pool_vector2_array {
+	return gdt.base
 }
 
 // Append godot_pool_vector2_array_append [[godot_pool_vector2_array * p_self] [const godot_vector2 * p_data]] void
-func (t *PoolVector2Array) Append(data Vector2) {
-	arg0 := t.getBase()
+func (gdt *PoolVector2Array) Append(data Vector2) {
+	arg0 := gdt.getBase()
 	arg1 := data.getBase()
 
 	C.go_godot_pool_vector2_array_append(GDNative.api, arg0, arg1)
-
 }
 
 // AppendArray godot_pool_vector2_array_append_array [[godot_pool_vector2_array * p_self] [const godot_pool_vector2_array * p_array]] void
-func (t *PoolVector2Array) AppendArray(array PoolVector2Array) {
-	arg0 := t.getBase()
+func (gdt *PoolVector2Array) AppendArray(array PoolVector2Array) {
+	arg0 := gdt.getBase()
 	arg1 := array.getBase()
 
 	C.go_godot_pool_vector2_array_append_array(GDNative.api, arg0, arg1)
-
 }
 
 // Insert godot_pool_vector2_array_insert [[godot_pool_vector2_array * p_self] [const godot_int p_idx] [const godot_vector2 * p_data]] godot_error
-func (t *PoolVector2Array) Insert(idx Int, data Vector2) Error {
-	arg0 := t.getBase()
+func (gdt *PoolVector2Array) Insert(idx Int, data Vector2) Error {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 	arg2 := data.getBase()
 
 	ret := C.go_godot_pool_vector2_array_insert(GDNative.api, arg0, arg1, arg2)
 
-	return Error{base: ret}
-
+	return Error(ret)
 }
 
 // Invert godot_pool_vector2_array_invert [[godot_pool_vector2_array * p_self]] void
-func (t *PoolVector2Array) Invert() {
-	arg0 := t.getBase()
+func (gdt *PoolVector2Array) Invert() {
+	arg0 := gdt.getBase()
 
 	C.go_godot_pool_vector2_array_invert(GDNative.api, arg0)
-
 }
 
 // PushBack godot_pool_vector2_array_push_back [[godot_pool_vector2_array * p_self] [const godot_vector2 * p_data]] void
-func (t *PoolVector2Array) PushBack(data Vector2) {
-	arg0 := t.getBase()
+func (gdt *PoolVector2Array) PushBack(data Vector2) {
+	arg0 := gdt.getBase()
 	arg1 := data.getBase()
 
 	C.go_godot_pool_vector2_array_push_back(GDNative.api, arg0, arg1)
-
 }
 
 // Remove godot_pool_vector2_array_remove [[godot_pool_vector2_array * p_self] [const godot_int p_idx]] void
-func (t *PoolVector2Array) Remove(idx Int) {
-	arg0 := t.getBase()
+func (gdt *PoolVector2Array) Remove(idx Int) {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 
 	C.go_godot_pool_vector2_array_remove(GDNative.api, arg0, arg1)
-
 }
 
 // Resize godot_pool_vector2_array_resize [[godot_pool_vector2_array * p_self] [const godot_int p_size]] void
-func (t *PoolVector2Array) Resize(size Int) {
-	arg0 := t.getBase()
+func (gdt *PoolVector2Array) Resize(size Int) {
+	arg0 := gdt.getBase()
 	arg1 := size.getBase()
 
 	C.go_godot_pool_vector2_array_resize(GDNative.api, arg0, arg1)
-
 }
 
 // Read godot_pool_vector2_array_read [[const godot_pool_vector2_array * p_self]] godot_pool_vector2_array_read_access *
-func (t *PoolVector2Array) Read() PoolVector2ArrayReadAccess {
-	arg0 := t.getBase()
+func (gdt *PoolVector2Array) Read() PoolVector2ArrayReadAccess {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_vector2_array_read(GDNative.api, arg0)
 
 	return PoolVector2ArrayReadAccess{base: ret}
-
 }
 
 // Write godot_pool_vector2_array_write [[godot_pool_vector2_array * p_self]] godot_pool_vector2_array_write_access *
-func (t *PoolVector2Array) Write() PoolVector2ArrayWriteAccess {
-	arg0 := t.getBase()
+func (gdt *PoolVector2Array) Write() PoolVector2ArrayWriteAccess {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_vector2_array_write(GDNative.api, arg0)
 
 	return PoolVector2ArrayWriteAccess{base: ret}
-
 }
 
 // Set godot_pool_vector2_array_set [[godot_pool_vector2_array * p_self] [const godot_int p_idx] [const godot_vector2 * p_data]] void
-func (t *PoolVector2Array) Set(idx Int, data Vector2) {
-	arg0 := t.getBase()
+func (gdt *PoolVector2Array) Set(idx Int, data Vector2) {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 	arg2 := data.getBase()
 
 	C.go_godot_pool_vector2_array_set(GDNative.api, arg0, arg1, arg2)
-
 }
 
 // Get godot_pool_vector2_array_get [[const godot_pool_vector2_array * p_self] [const godot_int p_idx]] godot_vector2
-func (t *PoolVector2Array) Get(idx Int) Vector2 {
-	arg0 := t.getBase()
+func (gdt *PoolVector2Array) Get(idx Int) Vector2 {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 
 	ret := C.go_godot_pool_vector2_array_get(GDNative.api, arg0, arg1)
 
 	return Vector2{base: ret}
-
 }
 
 // Size godot_pool_vector2_array_size [[const godot_pool_vector2_array * p_self]] godot_int
-func (t *PoolVector2Array) Size() Int {
-	arg0 := t.getBase()
+func (gdt *PoolVector2Array) Size() Int {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_vector2_array_size(GDNative.api, arg0)
 
-	return Int{base: ret}
-
+	return Int(ret)
 }
 
 // Destroy godot_pool_vector2_array_destroy [[godot_pool_vector2_array * p_self]] void
-func (t *PoolVector2Array) Destroy() {
-	arg0 := t.getBase()
+func (gdt *PoolVector2Array) Destroy() {
+	arg0 := gdt.getBase()
 
 	C.go_godot_pool_vector2_array_destroy(GDNative.api, arg0)
-
 }
 
 type PoolVector3Array struct {
 	base *C.godot_pool_vector3_array
 }
 
-func (t PoolVector3Array) getBase() *C.godot_pool_vector3_array {
-	return t.base
+func (gdt PoolVector3Array) getBase() *C.godot_pool_vector3_array {
+	return gdt.base
 }
 
 // Append godot_pool_vector3_array_append [[godot_pool_vector3_array * p_self] [const godot_vector3 * p_data]] void
-func (t *PoolVector3Array) Append(data Vector3) {
-	arg0 := t.getBase()
+func (gdt *PoolVector3Array) Append(data Vector3) {
+	arg0 := gdt.getBase()
 	arg1 := data.getBase()
 
 	C.go_godot_pool_vector3_array_append(GDNative.api, arg0, arg1)
-
 }
 
 // AppendArray godot_pool_vector3_array_append_array [[godot_pool_vector3_array * p_self] [const godot_pool_vector3_array * p_array]] void
-func (t *PoolVector3Array) AppendArray(array PoolVector3Array) {
-	arg0 := t.getBase()
+func (gdt *PoolVector3Array) AppendArray(array PoolVector3Array) {
+	arg0 := gdt.getBase()
 	arg1 := array.getBase()
 
 	C.go_godot_pool_vector3_array_append_array(GDNative.api, arg0, arg1)
-
 }
 
 // Insert godot_pool_vector3_array_insert [[godot_pool_vector3_array * p_self] [const godot_int p_idx] [const godot_vector3 * p_data]] godot_error
-func (t *PoolVector3Array) Insert(idx Int, data Vector3) Error {
-	arg0 := t.getBase()
+func (gdt *PoolVector3Array) Insert(idx Int, data Vector3) Error {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 	arg2 := data.getBase()
 
 	ret := C.go_godot_pool_vector3_array_insert(GDNative.api, arg0, arg1, arg2)
 
-	return Error{base: ret}
-
+	return Error(ret)
 }
 
 // Invert godot_pool_vector3_array_invert [[godot_pool_vector3_array * p_self]] void
-func (t *PoolVector3Array) Invert() {
-	arg0 := t.getBase()
+func (gdt *PoolVector3Array) Invert() {
+	arg0 := gdt.getBase()
 
 	C.go_godot_pool_vector3_array_invert(GDNative.api, arg0)
-
 }
 
 // PushBack godot_pool_vector3_array_push_back [[godot_pool_vector3_array * p_self] [const godot_vector3 * p_data]] void
-func (t *PoolVector3Array) PushBack(data Vector3) {
-	arg0 := t.getBase()
+func (gdt *PoolVector3Array) PushBack(data Vector3) {
+	arg0 := gdt.getBase()
 	arg1 := data.getBase()
 
 	C.go_godot_pool_vector3_array_push_back(GDNative.api, arg0, arg1)
-
 }
 
 // Remove godot_pool_vector3_array_remove [[godot_pool_vector3_array * p_self] [const godot_int p_idx]] void
-func (t *PoolVector3Array) Remove(idx Int) {
-	arg0 := t.getBase()
+func (gdt *PoolVector3Array) Remove(idx Int) {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 
 	C.go_godot_pool_vector3_array_remove(GDNative.api, arg0, arg1)
-
 }
 
 // Resize godot_pool_vector3_array_resize [[godot_pool_vector3_array * p_self] [const godot_int p_size]] void
-func (t *PoolVector3Array) Resize(size Int) {
-	arg0 := t.getBase()
+func (gdt *PoolVector3Array) Resize(size Int) {
+	arg0 := gdt.getBase()
 	arg1 := size.getBase()
 
 	C.go_godot_pool_vector3_array_resize(GDNative.api, arg0, arg1)
-
 }
 
 // Read godot_pool_vector3_array_read [[const godot_pool_vector3_array * p_self]] godot_pool_vector3_array_read_access *
-func (t *PoolVector3Array) Read() PoolVector3ArrayReadAccess {
-	arg0 := t.getBase()
+func (gdt *PoolVector3Array) Read() PoolVector3ArrayReadAccess {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_vector3_array_read(GDNative.api, arg0)
 
 	return PoolVector3ArrayReadAccess{base: ret}
-
 }
 
 // Write godot_pool_vector3_array_write [[godot_pool_vector3_array * p_self]] godot_pool_vector3_array_write_access *
-func (t *PoolVector3Array) Write() PoolVector3ArrayWriteAccess {
-	arg0 := t.getBase()
+func (gdt *PoolVector3Array) Write() PoolVector3ArrayWriteAccess {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_vector3_array_write(GDNative.api, arg0)
 
 	return PoolVector3ArrayWriteAccess{base: ret}
-
 }
 
 // Set godot_pool_vector3_array_set [[godot_pool_vector3_array * p_self] [const godot_int p_idx] [const godot_vector3 * p_data]] void
-func (t *PoolVector3Array) Set(idx Int, data Vector3) {
-	arg0 := t.getBase()
+func (gdt *PoolVector3Array) Set(idx Int, data Vector3) {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 	arg2 := data.getBase()
 
 	C.go_godot_pool_vector3_array_set(GDNative.api, arg0, arg1, arg2)
-
 }
 
 // Get godot_pool_vector3_array_get [[const godot_pool_vector3_array * p_self] [const godot_int p_idx]] godot_vector3
-func (t *PoolVector3Array) Get(idx Int) Vector3 {
-	arg0 := t.getBase()
+func (gdt *PoolVector3Array) Get(idx Int) Vector3 {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 
 	ret := C.go_godot_pool_vector3_array_get(GDNative.api, arg0, arg1)
 
 	return Vector3{base: ret}
-
 }
 
 // Size godot_pool_vector3_array_size [[const godot_pool_vector3_array * p_self]] godot_int
-func (t *PoolVector3Array) Size() Int {
-	arg0 := t.getBase()
+func (gdt *PoolVector3Array) Size() Int {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_vector3_array_size(GDNative.api, arg0)
 
-	return Int{base: ret}
-
+	return Int(ret)
 }
 
 // Destroy godot_pool_vector3_array_destroy [[godot_pool_vector3_array * p_self]] void
-func (t *PoolVector3Array) Destroy() {
-	arg0 := t.getBase()
+func (gdt *PoolVector3Array) Destroy() {
+	arg0 := gdt.getBase()
 
 	C.go_godot_pool_vector3_array_destroy(GDNative.api, arg0)
-
 }
 
 type PoolColorArray struct {
 	base *C.godot_pool_color_array
 }
 
-func (t PoolColorArray) getBase() *C.godot_pool_color_array {
-	return t.base
+func (gdt PoolColorArray) getBase() *C.godot_pool_color_array {
+	return gdt.base
 }
 
 // Append godot_pool_color_array_append [[godot_pool_color_array * p_self] [const godot_color * p_data]] void
-func (t *PoolColorArray) Append(data Color) {
-	arg0 := t.getBase()
+func (gdt *PoolColorArray) Append(data Color) {
+	arg0 := gdt.getBase()
 	arg1 := data.getBase()
 
 	C.go_godot_pool_color_array_append(GDNative.api, arg0, arg1)
-
 }
 
 // AppendArray godot_pool_color_array_append_array [[godot_pool_color_array * p_self] [const godot_pool_color_array * p_array]] void
-func (t *PoolColorArray) AppendArray(array PoolColorArray) {
-	arg0 := t.getBase()
+func (gdt *PoolColorArray) AppendArray(array PoolColorArray) {
+	arg0 := gdt.getBase()
 	arg1 := array.getBase()
 
 	C.go_godot_pool_color_array_append_array(GDNative.api, arg0, arg1)
-
 }
 
 // Insert godot_pool_color_array_insert [[godot_pool_color_array * p_self] [const godot_int p_idx] [const godot_color * p_data]] godot_error
-func (t *PoolColorArray) Insert(idx Int, data Color) Error {
-	arg0 := t.getBase()
+func (gdt *PoolColorArray) Insert(idx Int, data Color) Error {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 	arg2 := data.getBase()
 
 	ret := C.go_godot_pool_color_array_insert(GDNative.api, arg0, arg1, arg2)
 
-	return Error{base: ret}
-
+	return Error(ret)
 }
 
 // Invert godot_pool_color_array_invert [[godot_pool_color_array * p_self]] void
-func (t *PoolColorArray) Invert() {
-	arg0 := t.getBase()
+func (gdt *PoolColorArray) Invert() {
+	arg0 := gdt.getBase()
 
 	C.go_godot_pool_color_array_invert(GDNative.api, arg0)
-
 }
 
 // PushBack godot_pool_color_array_push_back [[godot_pool_color_array * p_self] [const godot_color * p_data]] void
-func (t *PoolColorArray) PushBack(data Color) {
-	arg0 := t.getBase()
+func (gdt *PoolColorArray) PushBack(data Color) {
+	arg0 := gdt.getBase()
 	arg1 := data.getBase()
 
 	C.go_godot_pool_color_array_push_back(GDNative.api, arg0, arg1)
-
 }
 
 // Remove godot_pool_color_array_remove [[godot_pool_color_array * p_self] [const godot_int p_idx]] void
-func (t *PoolColorArray) Remove(idx Int) {
-	arg0 := t.getBase()
+func (gdt *PoolColorArray) Remove(idx Int) {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 
 	C.go_godot_pool_color_array_remove(GDNative.api, arg0, arg1)
-
 }
 
 // Resize godot_pool_color_array_resize [[godot_pool_color_array * p_self] [const godot_int p_size]] void
-func (t *PoolColorArray) Resize(size Int) {
-	arg0 := t.getBase()
+func (gdt *PoolColorArray) Resize(size Int) {
+	arg0 := gdt.getBase()
 	arg1 := size.getBase()
 
 	C.go_godot_pool_color_array_resize(GDNative.api, arg0, arg1)
-
 }
 
 // Read godot_pool_color_array_read [[const godot_pool_color_array * p_self]] godot_pool_color_array_read_access *
-func (t *PoolColorArray) Read() PoolColorArrayReadAccess {
-	arg0 := t.getBase()
+func (gdt *PoolColorArray) Read() PoolColorArrayReadAccess {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_color_array_read(GDNative.api, arg0)
 
 	return PoolColorArrayReadAccess{base: ret}
-
 }
 
 // Write godot_pool_color_array_write [[godot_pool_color_array * p_self]] godot_pool_color_array_write_access *
-func (t *PoolColorArray) Write() PoolColorArrayWriteAccess {
-	arg0 := t.getBase()
+func (gdt *PoolColorArray) Write() PoolColorArrayWriteAccess {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_color_array_write(GDNative.api, arg0)
 
 	return PoolColorArrayWriteAccess{base: ret}
-
 }
 
 // Set godot_pool_color_array_set [[godot_pool_color_array * p_self] [const godot_int p_idx] [const godot_color * p_data]] void
-func (t *PoolColorArray) Set(idx Int, data Color) {
-	arg0 := t.getBase()
+func (gdt *PoolColorArray) Set(idx Int, data Color) {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 	arg2 := data.getBase()
 
 	C.go_godot_pool_color_array_set(GDNative.api, arg0, arg1, arg2)
-
 }
 
 // Get godot_pool_color_array_get [[const godot_pool_color_array * p_self] [const godot_int p_idx]] godot_color
-func (t *PoolColorArray) Get(idx Int) Color {
-	arg0 := t.getBase()
+func (gdt *PoolColorArray) Get(idx Int) Color {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 
 	ret := C.go_godot_pool_color_array_get(GDNative.api, arg0, arg1)
 
 	return Color{base: ret}
-
 }
 
 // Size godot_pool_color_array_size [[const godot_pool_color_array * p_self]] godot_int
-func (t *PoolColorArray) Size() Int {
-	arg0 := t.getBase()
+func (gdt *PoolColorArray) Size() Int {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_pool_color_array_size(GDNative.api, arg0)
 
-	return Int{base: ret}
-
+	return Int(ret)
 }
 
 // Destroy godot_pool_color_array_destroy [[godot_pool_color_array * p_self]] void
-func (t *PoolColorArray) Destroy() {
-	arg0 := t.getBase()
+func (gdt *PoolColorArray) Destroy() {
+	arg0 := gdt.getBase()
 
 	C.go_godot_pool_color_array_destroy(GDNative.api, arg0)
-
 }

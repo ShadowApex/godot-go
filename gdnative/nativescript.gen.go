@@ -10,6 +10,7 @@ package gdnative
 //----------------------------------------------------------------------------*/
 
 /*
+#include "gdnative.gen.h"
 #include <nativescript/godot_nativescript.h>
 */
 import "C"
@@ -75,8 +76,8 @@ type PropertyAttributes struct {
 	DefaultValue Variant
 }
 
-func (t PropertyAttributes) getBase() *C.godot_property_attributes {
-	return t.base
+func (gdt PropertyAttributes) getBase() *C.godot_property_attributes {
+	return gdt.base
 }
 
 type SignalArgument struct {
@@ -90,8 +91,8 @@ type SignalArgument struct {
 	DefaultValue Variant
 }
 
-func (t SignalArgument) getBase() *C.godot_signal_argument {
-	return t.base
+func (gdt SignalArgument) getBase() *C.godot_signal_argument {
+	return gdt.base
 }
 
 type Signal struct {
@@ -104,8 +105,8 @@ type Signal struct {
 	DefaultArgs    Variant
 }
 
-func (t Signal) getBase() *C.godot_signal {
-	return t.base
+func (gdt Signal) getBase() *C.godot_signal {
+	return gdt.base
 }
 
 type MethodArg struct {
@@ -117,6 +118,6 @@ type MethodArg struct {
 	HintString String
 }
 
-func (t MethodArg) getBase() *C.godot_method_arg {
-	return t.base
+func (gdt MethodArg) getBase() *C.godot_method_arg {
+	return gdt.base
 }

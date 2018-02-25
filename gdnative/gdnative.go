@@ -15,6 +15,8 @@ import "C"
 import (
 	"log"
 	"unsafe"
+
+	"github.com/vitaminwater/cgo.wchar"
 )
 
 // Set our API to null. This will be set when 'godot_gdnative_init' is called
@@ -73,4 +75,23 @@ type Uint64T uint64
 
 func (u Uint64T) getBase() C.uint64_t {
 	return C.uint64_t(u)
+}
+
+// Uint8T is a Godot C uint8_t wrapper
+type Uint8T uint8
+
+func (u Uint8T) getBase() C.uint8_t {
+	return C.uint8_t(u)
+}
+
+// WcharT is a Godot C wchar_t wrapper
+type WcharT string
+
+func (w WcharT) getBase() *C.wchar_t {
+	wcharString, err := wchar.FromGoString(w)
+	if err != nil {
+		log.Println("Error decoding WcharT:", err)
+	}
+
+	return (*C.wchar_t)(wcharString.Pointer())
 }

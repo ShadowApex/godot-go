@@ -10,6 +10,7 @@ package gdnative
 //----------------------------------------------------------------------------*/
 
 /*
+#include "gdnative.gen.h"
 #include <gdnative/rid.h>
 */
 import "C"
@@ -18,38 +19,35 @@ type Rid struct {
 	base *C.godot_rid
 }
 
-func (t Rid) getBase() *C.godot_rid {
-	return t.base
+func (gdt Rid) getBase() *C.godot_rid {
+	return gdt.base
 }
 
 // GetId godot_rid_get_id [[const godot_rid * p_self]] godot_int
-func (t *Rid) GetId() Int {
-	arg0 := t.getBase()
+func (gdt *Rid) GetId() Int {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_rid_get_id(GDNative.api, arg0)
 
-	return Int{base: ret}
-
+	return Int(ret)
 }
 
 // OperatorEqual godot_rid_operator_equal [[const godot_rid * p_self] [const godot_rid * p_b]] godot_bool
-func (t *Rid) OperatorEqual(b Rid) Bool {
-	arg0 := t.getBase()
+func (gdt *Rid) OperatorEqual(b Rid) Bool {
+	arg0 := gdt.getBase()
 	arg1 := b.getBase()
 
 	ret := C.go_godot_rid_operator_equal(GDNative.api, arg0, arg1)
 
-	return Bool{base: ret}
-
+	return Bool(ret)
 }
 
 // OperatorLess godot_rid_operator_less [[const godot_rid * p_self] [const godot_rid * p_b]] godot_bool
-func (t *Rid) OperatorLess(b Rid) Bool {
-	arg0 := t.getBase()
+func (gdt *Rid) OperatorLess(b Rid) Bool {
+	arg0 := gdt.getBase()
 	arg1 := b.getBase()
 
 	ret := C.go_godot_rid_operator_less(GDNative.api, arg0, arg1)
 
-	return Bool{base: ret}
-
+	return Bool(ret)
 }

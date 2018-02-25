@@ -10,6 +10,7 @@ package gdnative
 //----------------------------------------------------------------------------*/
 
 /*
+#include "gdnative.gen.h"
 #include <gdnative/node_path.h>
 */
 import "C"
@@ -18,107 +19,97 @@ type NodePath struct {
 	base *C.godot_node_path
 }
 
-func (t NodePath) getBase() *C.godot_node_path {
-	return t.base
+func (gdt NodePath) getBase() *C.godot_node_path {
+	return gdt.base
 }
 
 // Destroy godot_node_path_destroy [[godot_node_path * p_self]] void
-func (t *NodePath) Destroy() {
-	arg0 := t.getBase()
+func (gdt *NodePath) Destroy() {
+	arg0 := gdt.getBase()
 
 	C.go_godot_node_path_destroy(GDNative.api, arg0)
-
 }
 
 // AsString godot_node_path_as_string [[const godot_node_path * p_self]] godot_string
-func (t *NodePath) AsString() String {
-	arg0 := t.getBase()
+func (gdt *NodePath) AsString() String {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_node_path_as_string(GDNative.api, arg0)
 
 	return String{base: ret}
-
 }
 
 // IsAbsolute godot_node_path_is_absolute [[const godot_node_path * p_self]] godot_bool
-func (t *NodePath) IsAbsolute() Bool {
-	arg0 := t.getBase()
+func (gdt *NodePath) IsAbsolute() Bool {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_node_path_is_absolute(GDNative.api, arg0)
 
-	return Bool{base: ret}
-
+	return Bool(ret)
 }
 
 // GetNameCount godot_node_path_get_name_count [[const godot_node_path * p_self]] godot_int
-func (t *NodePath) GetNameCount() Int {
-	arg0 := t.getBase()
+func (gdt *NodePath) GetNameCount() Int {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_node_path_get_name_count(GDNative.api, arg0)
 
-	return Int{base: ret}
-
+	return Int(ret)
 }
 
 // GetName godot_node_path_get_name [[const godot_node_path * p_self] [const godot_int p_idx]] godot_string
-func (t *NodePath) GetName(idx Int) String {
-	arg0 := t.getBase()
+func (gdt *NodePath) GetName(idx Int) String {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 
 	ret := C.go_godot_node_path_get_name(GDNative.api, arg0, arg1)
 
 	return String{base: ret}
-
 }
 
 // GetSubnameCount godot_node_path_get_subname_count [[const godot_node_path * p_self]] godot_int
-func (t *NodePath) GetSubnameCount() Int {
-	arg0 := t.getBase()
+func (gdt *NodePath) GetSubnameCount() Int {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_node_path_get_subname_count(GDNative.api, arg0)
 
-	return Int{base: ret}
-
+	return Int(ret)
 }
 
 // GetSubname godot_node_path_get_subname [[const godot_node_path * p_self] [const godot_int p_idx]] godot_string
-func (t *NodePath) GetSubname(idx Int) String {
-	arg0 := t.getBase()
+func (gdt *NodePath) GetSubname(idx Int) String {
+	arg0 := gdt.getBase()
 	arg1 := idx.getBase()
 
 	ret := C.go_godot_node_path_get_subname(GDNative.api, arg0, arg1)
 
 	return String{base: ret}
-
 }
 
 // GetConcatenatedSubnames godot_node_path_get_concatenated_subnames [[const godot_node_path * p_self]] godot_string
-func (t *NodePath) GetConcatenatedSubnames() String {
-	arg0 := t.getBase()
+func (gdt *NodePath) GetConcatenatedSubnames() String {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_node_path_get_concatenated_subnames(GDNative.api, arg0)
 
 	return String{base: ret}
-
 }
 
 // IsEmpty godot_node_path_is_empty [[const godot_node_path * p_self]] godot_bool
-func (t *NodePath) IsEmpty() Bool {
-	arg0 := t.getBase()
+func (gdt *NodePath) IsEmpty() Bool {
+	arg0 := gdt.getBase()
 
 	ret := C.go_godot_node_path_is_empty(GDNative.api, arg0)
 
-	return Bool{base: ret}
-
+	return Bool(ret)
 }
 
 // OperatorEqual godot_node_path_operator_equal [[const godot_node_path * p_self] [const godot_node_path * p_b]] godot_bool
-func (t *NodePath) OperatorEqual(b NodePath) Bool {
-	arg0 := t.getBase()
+func (gdt *NodePath) OperatorEqual(b NodePath) Bool {
+	arg0 := gdt.getBase()
 	arg1 := b.getBase()
 
 	ret := C.go_godot_node_path_operator_equal(GDNative.api, arg0, arg1)
 
-	return Bool{base: ret}
-
+	return Bool(ret)
 }

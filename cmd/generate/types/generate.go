@@ -119,6 +119,15 @@ func (v View) ToGoArgName(str string) string {
 	return str
 }
 
+func (v View) IsBasicType(str string) bool {
+	switch str {
+	case "Uint", "Uint64T", "Uint8T", "WcharT", "Bool", "Error", "Int", "Real", "MethodRpcMode", "PropertyHint":
+		return true
+	}
+
+	return false
+}
+
 // MethodsList returns all of the methods that match this typedef.
 func (v View) MethodsList(typeDef TypeDef) []Method {
 	methods := []Method{}

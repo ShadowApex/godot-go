@@ -10,6 +10,7 @@ package gdnative
 //----------------------------------------------------------------------------*/
 
 /*
+#include "gdnative.gen.h"
 #include <arvr/godot_arvr.h>
 */
 import "C"
@@ -18,6 +19,6 @@ type ArvrInterfaceGdnative struct {
 	base *C.godot_arvr_interface_gdnative
 }
 
-func (t ArvrInterfaceGdnative) getBase() *C.godot_arvr_interface_gdnative {
-	return t.base
+func (gdt ArvrInterfaceGdnative) getBase() *C.godot_arvr_interface_gdnative {
+	return gdt.base
 }
