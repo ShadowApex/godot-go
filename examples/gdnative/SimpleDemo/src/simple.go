@@ -23,7 +23,7 @@ func nativeScriptInit() {
 	// creates a new instance of our class.
 	createFunc := gdnative.InstanceCreateFunc{
 		CreateFunc: simpleConstructor,
-		MethodData: "SimpleClass",
+		MethodData: "SIMPLE",
 		FreeFunc:   func(methodData string) {},
 	}
 
@@ -31,30 +31,30 @@ func nativeScriptInit() {
 	// asks our library to destroy our class instance.
 	destroyFunc := gdnative.InstanceDestroyFunc{
 		DestroyFunc: simpleDestructor,
-		MethodData:  "SimpleClass",
+		MethodData:  "SIMPLE",
 		FreeFunc:    func(methodData string) {},
 	}
 
 	// Register our class with Godot.
-	gdnative.Log.Warning("Registering SimpleClass...")
+	gdnative.Log.Warning("Registering SIMPLE class...")
 	gdnative.NativeScript.RegisterClass(
-		"SimpleClass",
-		"Node",
+		"SIMPLE",
+		"Reference",
 		&createFunc,
 		&destroyFunc,
 	)
 
 	// Register a method with Godot.
-	gdnative.Log.Warning("Registering SimpleMethod...")
+	gdnative.Log.Warning("Registering SIMPLE method...")
 	gdnative.NativeScript.RegisterMethod(
-		"SimpleClass",
-		"SimpleMethod",
+		"SIMPLE",
+		"get_data",
 		&gdnative.MethodAttributes{
 			RPCType: gdnative.MethodRpcModeDisabled,
 		},
 		&gdnative.InstanceMethod{
 			Method:     simpleMethod,
-			MethodData: "SimpleClass",
+			MethodData: "SIMPLE",
 			FreeFunc:   func(methodData string) {},
 		},
 	)
@@ -83,8 +83,11 @@ func simpleDestructor(object gdnative.Object, methodData, userData string) {
 }
 
 func simpleMethod(object gdnative.Object, methodData, userData string, numArgs int, args []gdnative.Variant) gdnative.Variant {
-	gdnative.Log.Println("SimpleClass.SimpleMethod() called!")
-	var ret gdnative.Variant
+	gdnative.Log.Println("SIMPLE.get_data() called!")
+
+	data := gdnative.NewStringWithWideString("World from godot-go!")
+	ret := gdnative.NewVariantWithString(data)
+
 	return ret
 }
 

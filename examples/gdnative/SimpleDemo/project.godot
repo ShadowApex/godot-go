@@ -1,0 +1,30 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=3
+
+[application]
+
+config/name="SimpleDemo"
+run/main_scene="res://main.tscn"
+config/icon="res://icon.png"
+name="SimpleDemo"
+main_scene="res://main.tscn"
+icon="res://icon.png"
+
+[gdnative]
+
+singletons=[  ]
+
+[memory]
+
+multithread/thread_rid_pool_prealloc=60
+
+[rendering]
+
+viewport/default_environment="res://default_env.tres"

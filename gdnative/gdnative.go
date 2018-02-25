@@ -26,9 +26,6 @@ type gdNative struct {
 	api *C.godot_gdnative_core_api_struct
 }
 
-func Null() {
-}
-
 // godot_gdnative_init is the library entry point. When the library is loaded
 // this method will be called by Godot.
 //export godot_gdnative_init
