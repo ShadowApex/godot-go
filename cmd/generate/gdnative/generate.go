@@ -55,19 +55,12 @@ func Generate() {
 	}
 	packagePath := goPath + "/src/github.com/shadowapex/godot-go"
 
-	// Open the gdnative_api.json file that defines the GDNative API.
-	body, err := ioutil.ReadFile(packagePath + "/godot_headers/gdnative_api.json")
-	if err != nil {
-		panic(err)
-	}
-
 	// Create a structure for our template view. This will contain all of
 	// the data we need to construct our binding methods.
 	var view View
 
 	// Unmarshal the JSON into our struct.
-	var apis APIs
-	json.Unmarshal(body, &apis)
+	apis := Parse(packagePath)
 
 	// Add the core API to our view first
 	view.API = apis.Core
@@ -107,6 +100,20 @@ func Generate() {
 			view,
 		)
 	}
+}
+
+func Parse(packagePath string) APIs {
+	// Open the gdnative_api.json file that defines the GDNative API.
+	body, err := ioutil.ReadFile(packagePath + "/godot_headers/gdnative_api.json")
+	if err != nil {
+		panic(err)
+	}
+
+	// Unmarshal the JSON into our struct.
+	var apis APIs
+	json.Unmarshal(body, &apis)
+
+	return apis
 }
 
 func WriteTemplate(templatePath, outputPath string, view View) {

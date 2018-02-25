@@ -21,3 +21,55 @@ type Plane struct {
 func (t *Plane) getBase() *C.godot_plane {
 	return t.base
 }
+
+// NewPlaneWithReals godot_plane_new_with_reals [[godot_plane * r_dest] [const godot_real p_a] [const godot_real p_b] [const godot_real p_c] [const godot_real p_d]]
+
+//func NewPlaneWithReals(dest Plane, a ConstReal, b ConstReal, c ConstReal, d ConstReal, ) *Plane {
+//	return &Plane{}
+//}
+
+// NewPlaneWithVectors godot_plane_new_with_vectors [[godot_plane * r_dest] [const godot_vector3 * p_v1] [const godot_vector3 * p_v2] [const godot_vector3 * p_v3]]
+
+//func NewPlaneWithVectors(dest Plane, v1 ConstVector3, v2 ConstVector3, v3 ConstVector3, ) *Plane {
+//	return &Plane{}
+//}
+
+// NewPlaneWithNormal godot_plane_new_with_normal [[godot_plane * r_dest] [const godot_vector3 * p_normal] [const godot_real p_d]]
+
+//func NewPlaneWithNormal(dest Plane, normal ConstVector3, d ConstReal, ) *Plane {
+//	return &Plane{}
+//}
+
+// AsString godot_plane_as_string [[const godot_plane * p_self]]
+
+// Normalized godot_plane_normalized [[const godot_plane * p_self]]
+
+// Center godot_plane_center [[const godot_plane * p_self]]
+
+// GetAnyPoint godot_plane_get_any_point [[const godot_plane * p_self]]
+
+// IsPointOver godot_plane_is_point_over [[const godot_plane * p_self] [const godot_vector3 * p_point]]
+
+// DistanceTo godot_plane_distance_to [[const godot_plane * p_self] [const godot_vector3 * p_point]]
+
+// HasPoint godot_plane_has_point [[const godot_plane * p_self] [const godot_vector3 * p_point] [const godot_real p_epsilon]]
+
+// Project godot_plane_project [[const godot_plane * p_self] [const godot_vector3 * p_point]]
+
+// Intersect3 godot_plane_intersect_3 [[const godot_plane * p_self] [godot_vector3 * r_dest] [const godot_plane * p_b] [const godot_plane * p_c]]
+
+// IntersectsRay godot_plane_intersects_ray [[const godot_plane * p_self] [godot_vector3 * r_dest] [const godot_vector3 * p_from] [const godot_vector3 * p_dir]]
+
+// IntersectsSegment godot_plane_intersects_segment [[const godot_plane * p_self] [godot_vector3 * r_dest] [const godot_vector3 * p_begin] [const godot_vector3 * p_end]]
+
+// OperatorNeg godot_plane_operator_neg [[const godot_plane * p_self]]
+
+// OperatorEqual godot_plane_operator_equal [[const godot_plane * p_self] [const godot_plane * p_b]]
+
+// SetNormal godot_plane_set_normal [[godot_plane * p_self] [const godot_vector3 * p_normal]]
+
+// GetNormal godot_plane_get_normal [[const godot_plane * p_self]]
+
+// GetD godot_plane_get_d [[const godot_plane * p_self]]
+
+// SetD godot_plane_set_d [[godot_plane * p_self] [const godot_real p_d]]

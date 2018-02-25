@@ -22,6 +22,84 @@ func (t *Vector3) getBase() *C.godot_vector3 {
 	return t.base
 }
 
+// NewVector3 godot_vector3_new [[godot_vector3 * r_dest] [const godot_real p_x] [const godot_real p_y] [const godot_real p_z]]
+
+//func NewVector3(dest Vector3, x ConstReal, y ConstReal, z ConstReal, ) *Vector3 {
+//	return &Vector3{}
+//}
+
+// AsString godot_vector3_as_string [[const godot_vector3 * p_self]]
+
+// MinAxis godot_vector3_min_axis [[const godot_vector3 * p_self]]
+
+// MaxAxis godot_vector3_max_axis [[const godot_vector3 * p_self]]
+
+// Length godot_vector3_length [[const godot_vector3 * p_self]]
+
+// LengthSquared godot_vector3_length_squared [[const godot_vector3 * p_self]]
+
+// IsNormalized godot_vector3_is_normalized [[const godot_vector3 * p_self]]
+
+// Normalized godot_vector3_normalized [[const godot_vector3 * p_self]]
+
+// Inverse godot_vector3_inverse [[const godot_vector3 * p_self]]
+
+// Snapped godot_vector3_snapped [[const godot_vector3 * p_self] [const godot_vector3 * p_by]]
+
+// Rotated godot_vector3_rotated [[const godot_vector3 * p_self] [const godot_vector3 * p_axis] [const godot_real p_phi]]
+
+// LinearInterpolate godot_vector3_linear_interpolate [[const godot_vector3 * p_self] [const godot_vector3 * p_b] [const godot_real p_t]]
+
+// CubicInterpolate godot_vector3_cubic_interpolate [[const godot_vector3 * p_self] [const godot_vector3 * p_b] [const godot_vector3 * p_pre_a] [const godot_vector3 * p_post_b] [const godot_real p_t]]
+
+// Dot godot_vector3_dot [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+
+// Cross godot_vector3_cross [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+
+// Outer godot_vector3_outer [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+
+// ToDiagonalMatrix godot_vector3_to_diagonal_matrix [[const godot_vector3 * p_self]]
+
+// Abs godot_vector3_abs [[const godot_vector3 * p_self]]
+
+// Floor godot_vector3_floor [[const godot_vector3 * p_self]]
+
+// Ceil godot_vector3_ceil [[const godot_vector3 * p_self]]
+
+// DistanceTo godot_vector3_distance_to [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+
+// DistanceSquaredTo godot_vector3_distance_squared_to [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+
+// AngleTo godot_vector3_angle_to [[const godot_vector3 * p_self] [const godot_vector3 * p_to]]
+
+// Slide godot_vector3_slide [[const godot_vector3 * p_self] [const godot_vector3 * p_n]]
+
+// Bounce godot_vector3_bounce [[const godot_vector3 * p_self] [const godot_vector3 * p_n]]
+
+// Reflect godot_vector3_reflect [[const godot_vector3 * p_self] [const godot_vector3 * p_n]]
+
+// OperatorAdd godot_vector3_operator_add [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+
+// OperatorSubtract godot_vector3_operator_subtract [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+
+// OperatorMultiplyVector godot_vector3_operator_multiply_vector [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+
+// OperatorMultiplyScalar godot_vector3_operator_multiply_scalar [[const godot_vector3 * p_self] [const godot_real p_b]]
+
+// OperatorDivideVector godot_vector3_operator_divide_vector [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+
+// OperatorDivideScalar godot_vector3_operator_divide_scalar [[const godot_vector3 * p_self] [const godot_real p_b]]
+
+// OperatorEqual godot_vector3_operator_equal [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+
+// OperatorLess godot_vector3_operator_less [[const godot_vector3 * p_self] [const godot_vector3 * p_b]]
+
+// OperatorNeg godot_vector3_operator_neg [[const godot_vector3 * p_self]]
+
+// SetAxis godot_vector3_set_axis [[godot_vector3 * p_self] [const godot_vector3_axis p_axis] [const godot_real p_val]]
+
+// GetAxis godot_vector3_get_axis [[const godot_vector3 * p_self] [const godot_vector3_axis p_axis]]
+
 type Vector3Axis int
 
 func (e Vector3Axis) getBase() C.godot_vector3_axis {

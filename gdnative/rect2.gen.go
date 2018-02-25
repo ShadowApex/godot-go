@@ -21,3 +21,45 @@ type Rect2 struct {
 func (t *Rect2) getBase() *C.godot_rect2 {
 	return t.base
 }
+
+// NewRect2WithPositionAndSize godot_rect2_new_with_position_and_size [[godot_rect2 * r_dest] [const godot_vector2 * p_pos] [const godot_vector2 * p_size]]
+
+//func NewRect2WithPositionAndSize(dest Rect2, pos ConstVector2, size ConstVector2, ) *Rect2 {
+//	return &Rect2{}
+//}
+
+// NewRect2 godot_rect2_new [[godot_rect2 * r_dest] [const godot_real p_x] [const godot_real p_y] [const godot_real p_width] [const godot_real p_height]]
+
+//func NewRect2(dest Rect2, x ConstReal, y ConstReal, width ConstReal, height ConstReal, ) *Rect2 {
+//	return &Rect2{}
+//}
+
+// AsString godot_rect2_as_string [[const godot_rect2 * p_self]]
+
+// GetArea godot_rect2_get_area [[const godot_rect2 * p_self]]
+
+// Intersects godot_rect2_intersects [[const godot_rect2 * p_self] [const godot_rect2 * p_b]]
+
+// Encloses godot_rect2_encloses [[const godot_rect2 * p_self] [const godot_rect2 * p_b]]
+
+// HasNoArea godot_rect2_has_no_area [[const godot_rect2 * p_self]]
+
+// Clip godot_rect2_clip [[const godot_rect2 * p_self] [const godot_rect2 * p_b]]
+
+// Merge godot_rect2_merge [[const godot_rect2 * p_self] [const godot_rect2 * p_b]]
+
+// HasPoint godot_rect2_has_point [[const godot_rect2 * p_self] [const godot_vector2 * p_point]]
+
+// Grow godot_rect2_grow [[const godot_rect2 * p_self] [const godot_real p_by]]
+
+// Expand godot_rect2_expand [[const godot_rect2 * p_self] [const godot_vector2 * p_to]]
+
+// OperatorEqual godot_rect2_operator_equal [[const godot_rect2 * p_self] [const godot_rect2 * p_b]]
+
+// GetPosition godot_rect2_get_position [[const godot_rect2 * p_self]]
+
+// GetSize godot_rect2_get_size [[const godot_rect2 * p_self]]
+
+// SetPosition godot_rect2_set_position [[godot_rect2 * p_self] [const godot_vector2 * p_pos]]
+
+// SetSize godot_rect2_set_size [[godot_rect2 * p_self] [const godot_vector2 * p_size]]

@@ -6,6 +6,7 @@ import (
 	"bytes"
 	"github.com/kr/pretty"
 	"github.com/pinzolo/casee"
+	"github.com/shadowapex/godot-go/cmd/generate/methods"
 	"log"
 	"os"
 	"os/exec"
@@ -17,8 +18,9 @@ import (
 // View is a structure that holds the api struct, so it can be used inside
 // our temaplte.
 type View struct {
-	Headers         []string
-	TypeDefinitions []TypeDef
+	Headers           []string
+	TypeDefinitions   []TypeDef
+	MethodDefinitions []Method
 }
 
 // IsValidProperty will determine if we should be generating the given property
@@ -57,6 +59,65 @@ func (v View) ToGoName(str string) string {
 	return casee.ToPascalCase(str)
 }
 
+func (v View) ToGoArgType(str string) string {
+	str = v.ToGoName(str)
+	str = strings.Replace(str, "const", "", 1)
+	return strings.Replace(str, "*", "", 1)
+}
+
+func (v View) ToGoArgName(str string) string {
+	if strings.HasPrefix(str, "p_") {
+		str = strings.Replace(str, "p_", "", 1)
+	}
+	if strings.HasPrefix(str, "r_") {
+		str = strings.Replace(str, "r_", "", 1)
+	}
+
+	return casee.ToCamelCase(str)
+}
+
+// MethodsList returns all of the methods that match this typedef.
+func (v View) MethodsList(typeDef TypeDef) []Method {
+	methods := []Method{}
+
+	// Look for all methods that match this typedef name.
+	for _, method := range v.MethodDefinitions {
+		if strings.Contains(method.Name, typeDef.Name) {
+			methods = append(methods, method)
+		}
+	}
+
+	return methods
+}
+
+func (v View) MethodIsConstructor(method Method) bool {
+	if strings.Contains(method.Name, "_new") {
+		return true
+	}
+	return false
+}
+
+func (v View) ToGoMethodName(typeDef TypeDef, method Method) string {
+	methodName := method.Name
+
+	// Replace the typedef in the method name
+	methodName = strings.Replace(methodName, typeDef.Name, "", 1)
+
+	// Swap some things around if this is a constructor
+	if v.MethodIsConstructor(method) {
+		methodName = strings.Replace(methodName, "_new", "", 1)
+		methodName = "new_" + typeDef.GoName + "_" + methodName
+	}
+
+	return casee.ToPascalCase(methodName)
+}
+
+type Method struct {
+	Name       string
+	ReturnType string
+	Arguments  [][]string
+}
+
 // Generate will generate Go wrappers for all Godot base types
 func Generate() {
 
@@ -92,6 +153,20 @@ func Generate() {
 		"godot_property_usage_flags",
 	}
 
+	// Parse all available methods
+	gdnativeAPI := methods.Parse()
+
+	// Convert the API definitions into a method struct
+	allMethodDefinitions := []Method{}
+	for _, api := range gdnativeAPI.Core.API {
+		method := Method{
+			Name:       api.Name,
+			ReturnType: api.ReturnType,
+			Arguments:  api.Arguments,
+		}
+		allMethodDefinitions = append(allMethodDefinitions, method)
+	}
+
 	// Parse the Godot header files for type definitions
 	allTypeDefinitions := Parse(ignoreHeaders, ignoreStructs)
 
@@ -124,6 +199,7 @@ func Generate() {
 		var view View
 
 		// Add the type definitions for this file to our view.
+		view.MethodDefinitions = allMethodDefinitions
 		view.TypeDefinitions = typeDefs
 		view.Headers = []string{}
 
@@ -148,6 +224,8 @@ func Generate() {
 		log.Println("  Running gofmt on output:", outFileName+"...")
 		GoFmt(packagePath + "/gdnative/" + outFileName)
 	}
+
+	pretty.Println(allMethodDefinitions)
 }
 
 func WriteTemplate(templatePath, outputPath string, view View) {

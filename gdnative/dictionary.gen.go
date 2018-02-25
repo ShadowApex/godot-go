@@ -21,3 +21,49 @@ type Dictionary struct {
 func (t *Dictionary) getBase() *C.godot_dictionary {
 	return t.base
 }
+
+// NewDictionary godot_dictionary_new [[godot_dictionary * r_dest]]
+
+//func NewDictionary(dest Dictionary, ) *Dictionary {
+//	return &Dictionary{}
+//}
+
+// NewDictionaryCopy godot_dictionary_new_copy [[godot_dictionary * r_dest] [const godot_dictionary * p_src]]
+
+//func NewDictionaryCopy(dest Dictionary, src ConstDictionary, ) *Dictionary {
+//	return &Dictionary{}
+//}
+
+// Destroy godot_dictionary_destroy [[godot_dictionary * p_self]]
+
+// Size godot_dictionary_size [[const godot_dictionary * p_self]]
+
+// Empty godot_dictionary_empty [[const godot_dictionary * p_self]]
+
+// Clear godot_dictionary_clear [[godot_dictionary * p_self]]
+
+// Has godot_dictionary_has [[const godot_dictionary * p_self] [const godot_variant * p_key]]
+
+// HasAll godot_dictionary_has_all [[const godot_dictionary * p_self] [const godot_array * p_keys]]
+
+// Erase godot_dictionary_erase [[godot_dictionary * p_self] [const godot_variant * p_key]]
+
+// Hash godot_dictionary_hash [[const godot_dictionary * p_self]]
+
+// Keys godot_dictionary_keys [[const godot_dictionary * p_self]]
+
+// Values godot_dictionary_values [[const godot_dictionary * p_self]]
+
+// Get godot_dictionary_get [[const godot_dictionary * p_self] [const godot_variant * p_key]]
+
+// Set godot_dictionary_set [[godot_dictionary * p_self] [const godot_variant * p_key] [const godot_variant * p_value]]
+
+// OperatorIndex godot_dictionary_operator_index [[godot_dictionary * p_self] [const godot_variant * p_key]]
+
+// OperatorIndexConst godot_dictionary_operator_index_const [[const godot_dictionary * p_self] [const godot_variant * p_key]]
+
+// Next godot_dictionary_next [[const godot_dictionary * p_self] [const godot_variant * p_key]]
+
+// OperatorEqual godot_dictionary_operator_equal [[const godot_dictionary * p_self] [const godot_dictionary * p_b]]
+
+// ToJson godot_dictionary_to_json [[const godot_dictionary * p_self]]

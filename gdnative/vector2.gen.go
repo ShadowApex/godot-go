@@ -21,3 +21,81 @@ type Vector2 struct {
 func (t *Vector2) getBase() *C.godot_vector2 {
 	return t.base
 }
+
+// NewVector2 godot_vector2_new [[godot_vector2 * r_dest] [const godot_real p_x] [const godot_real p_y]]
+
+//func NewVector2(dest Vector2, x ConstReal, y ConstReal, ) *Vector2 {
+//	return &Vector2{}
+//}
+
+// AsString godot_vector2_as_string [[const godot_vector2 * p_self]]
+
+// Normalized godot_vector2_normalized [[const godot_vector2 * p_self]]
+
+// Length godot_vector2_length [[const godot_vector2 * p_self]]
+
+// Angle godot_vector2_angle [[const godot_vector2 * p_self]]
+
+// LengthSquared godot_vector2_length_squared [[const godot_vector2 * p_self]]
+
+// IsNormalized godot_vector2_is_normalized [[const godot_vector2 * p_self]]
+
+// DistanceTo godot_vector2_distance_to [[const godot_vector2 * p_self] [const godot_vector2 * p_to]]
+
+// DistanceSquaredTo godot_vector2_distance_squared_to [[const godot_vector2 * p_self] [const godot_vector2 * p_to]]
+
+// AngleTo godot_vector2_angle_to [[const godot_vector2 * p_self] [const godot_vector2 * p_to]]
+
+// AngleToPoint godot_vector2_angle_to_point [[const godot_vector2 * p_self] [const godot_vector2 * p_to]]
+
+// LinearInterpolate godot_vector2_linear_interpolate [[const godot_vector2 * p_self] [const godot_vector2 * p_b] [const godot_real p_t]]
+
+// CubicInterpolate godot_vector2_cubic_interpolate [[const godot_vector2 * p_self] [const godot_vector2 * p_b] [const godot_vector2 * p_pre_a] [const godot_vector2 * p_post_b] [const godot_real p_t]]
+
+// Rotated godot_vector2_rotated [[const godot_vector2 * p_self] [const godot_real p_phi]]
+
+// Tangent godot_vector2_tangent [[const godot_vector2 * p_self]]
+
+// Floor godot_vector2_floor [[const godot_vector2 * p_self]]
+
+// Snapped godot_vector2_snapped [[const godot_vector2 * p_self] [const godot_vector2 * p_by]]
+
+// Aspect godot_vector2_aspect [[const godot_vector2 * p_self]]
+
+// Dot godot_vector2_dot [[const godot_vector2 * p_self] [const godot_vector2 * p_with]]
+
+// Slide godot_vector2_slide [[const godot_vector2 * p_self] [const godot_vector2 * p_n]]
+
+// Bounce godot_vector2_bounce [[const godot_vector2 * p_self] [const godot_vector2 * p_n]]
+
+// Reflect godot_vector2_reflect [[const godot_vector2 * p_self] [const godot_vector2 * p_n]]
+
+// Abs godot_vector2_abs [[const godot_vector2 * p_self]]
+
+// Clamped godot_vector2_clamped [[const godot_vector2 * p_self] [const godot_real p_length]]
+
+// OperatorAdd godot_vector2_operator_add [[const godot_vector2 * p_self] [const godot_vector2 * p_b]]
+
+// OperatorSubtract godot_vector2_operator_subtract [[const godot_vector2 * p_self] [const godot_vector2 * p_b]]
+
+// OperatorMultiplyVector godot_vector2_operator_multiply_vector [[const godot_vector2 * p_self] [const godot_vector2 * p_b]]
+
+// OperatorMultiplyScalar godot_vector2_operator_multiply_scalar [[const godot_vector2 * p_self] [const godot_real p_b]]
+
+// OperatorDivideVector godot_vector2_operator_divide_vector [[const godot_vector2 * p_self] [const godot_vector2 * p_b]]
+
+// OperatorDivideScalar godot_vector2_operator_divide_scalar [[const godot_vector2 * p_self] [const godot_real p_b]]
+
+// OperatorEqual godot_vector2_operator_equal [[const godot_vector2 * p_self] [const godot_vector2 * p_b]]
+
+// OperatorLess godot_vector2_operator_less [[const godot_vector2 * p_self] [const godot_vector2 * p_b]]
+
+// OperatorNeg godot_vector2_operator_neg [[const godot_vector2 * p_self]]
+
+// SetX godot_vector2_set_x [[godot_vector2 * p_self] [const godot_real p_x]]
+
+// SetY godot_vector2_set_y [[godot_vector2 * p_self] [const godot_real p_y]]
+
+// GetX godot_vector2_get_x [[const godot_vector2 * p_self]]
+
+// GetY godot_vector2_get_y [[const godot_vector2 * p_self]]

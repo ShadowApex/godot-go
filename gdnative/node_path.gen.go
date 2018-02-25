@@ -21,3 +21,35 @@ type NodePath struct {
 func (t *NodePath) getBase() *C.godot_node_path {
 	return t.base
 }
+
+// NewNodePath godot_node_path_new [[godot_node_path * r_dest] [const godot_string * p_from]]
+
+//func NewNodePath(dest NodePath, from ConstString, ) *NodePath {
+//	return &NodePath{}
+//}
+
+// NewNodePathCopy godot_node_path_new_copy [[godot_node_path * r_dest] [const godot_node_path * p_src]]
+
+//func NewNodePathCopy(dest NodePath, src ConstNodePath, ) *NodePath {
+//	return &NodePath{}
+//}
+
+// Destroy godot_node_path_destroy [[godot_node_path * p_self]]
+
+// AsString godot_node_path_as_string [[const godot_node_path * p_self]]
+
+// IsAbsolute godot_node_path_is_absolute [[const godot_node_path * p_self]]
+
+// GetNameCount godot_node_path_get_name_count [[const godot_node_path * p_self]]
+
+// GetName godot_node_path_get_name [[const godot_node_path * p_self] [const godot_int p_idx]]
+
+// GetSubnameCount godot_node_path_get_subname_count [[const godot_node_path * p_self]]
+
+// GetSubname godot_node_path_get_subname [[const godot_node_path * p_self] [const godot_int p_idx]]
+
+// GetConcatenatedSubnames godot_node_path_get_concatenated_subnames [[const godot_node_path * p_self]]
+
+// IsEmpty godot_node_path_is_empty [[const godot_node_path * p_self]]
+
+// OperatorEqual godot_node_path_operator_equal [[const godot_node_path * p_self] [const godot_node_path * p_b]]

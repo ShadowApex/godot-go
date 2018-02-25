@@ -21,3 +21,27 @@ type StringName struct {
 func (t *StringName) getBase() *C.godot_string_name {
 	return t.base
 }
+
+// NewStringName godot_string_name_new [[godot_string_name * r_dest] [const godot_string * p_name]]
+
+//func NewStringName(dest StringName, name ConstString, ) *StringName {
+//	return &StringName{}
+//}
+
+// NewStringNameData godot_string_name_new_data [[godot_string_name * r_dest] [const char * p_name]]
+
+//func NewStringNameData(dest StringName, name ConstChar, ) *StringName {
+//	return &StringName{}
+//}
+
+// GetName godot_string_name_get_name [[const godot_string_name * p_self]]
+
+// GetHash godot_string_name_get_hash [[const godot_string_name * p_self]]
+
+// GetDataUniquePointer godot_string_name_get_data_unique_pointer [[const godot_string_name * p_self]]
+
+// OperatorEqual godot_string_name_operator_equal [[const godot_string_name * p_self] [const godot_string_name * p_other]]
+
+// OperatorLess godot_string_name_operator_less [[const godot_string_name * p_self] [const godot_string_name * p_other]]
+
+// Destroy godot_string_name_destroy [[godot_string_name * p_self]]

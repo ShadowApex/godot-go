@@ -35,6 +35,16 @@ import "C"
 			return t.base
 		}
 
+		{{/* Handle struct methods */}}
+		{{ range $j, $method := ($view.MethodsList $typedef) }}
+				// {{ $view.ToGoMethodName $typedef $method }} {{ $method.Name }} {{ $method.Arguments }}
+			{{ if ($view.MethodIsConstructor $method) }}
+				//func {{ $view.ToGoMethodName $typedef $method }}({{ range $k, $arg := $method.Arguments }}{{ $view.ToGoArgName (index $arg 1) }} {{ $view.ToGoArgType (index $arg 0) }}, {{ end }}) *{{ $typedef.GoName }} {
+				//	return &{{ $typedef.GoName }}{}
+				//}
+			{{ end }}
+		{{ end }}
+
 	{{ end }}
 
 	{{/* Handle enum definitions */}}

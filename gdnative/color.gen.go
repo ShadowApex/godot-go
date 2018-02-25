@@ -21,3 +21,59 @@ type Color struct {
 func (t *Color) getBase() *C.godot_color {
 	return t.base
 }
+
+// NewColorRgba godot_color_new_rgba [[godot_color * r_dest] [const godot_real p_r] [const godot_real p_g] [const godot_real p_b] [const godot_real p_a]]
+
+//func NewColorRgba(dest Color, r ConstReal, g ConstReal, b ConstReal, a ConstReal, ) *Color {
+//	return &Color{}
+//}
+
+// NewColorRgb godot_color_new_rgb [[godot_color * r_dest] [const godot_real p_r] [const godot_real p_g] [const godot_real p_b]]
+
+//func NewColorRgb(dest Color, r ConstReal, g ConstReal, b ConstReal, ) *Color {
+//	return &Color{}
+//}
+
+// GetR godot_color_get_r [[const godot_color * p_self]]
+
+// SetR godot_color_set_r [[godot_color * p_self] [const godot_real r]]
+
+// GetG godot_color_get_g [[const godot_color * p_self]]
+
+// SetG godot_color_set_g [[godot_color * p_self] [const godot_real g]]
+
+// GetB godot_color_get_b [[const godot_color * p_self]]
+
+// SetB godot_color_set_b [[godot_color * p_self] [const godot_real b]]
+
+// GetA godot_color_get_a [[const godot_color * p_self]]
+
+// SetA godot_color_set_a [[godot_color * p_self] [const godot_real a]]
+
+// GetH godot_color_get_h [[const godot_color * p_self]]
+
+// GetS godot_color_get_s [[const godot_color * p_self]]
+
+// GetV godot_color_get_v [[const godot_color * p_self]]
+
+// AsString godot_color_as_string [[const godot_color * p_self]]
+
+// ToRgba32 godot_color_to_rgba32 [[const godot_color * p_self]]
+
+// ToArgb32 godot_color_to_argb32 [[const godot_color * p_self]]
+
+// Gray godot_color_gray [[const godot_color * p_self]]
+
+// Inverted godot_color_inverted [[const godot_color * p_self]]
+
+// Contrasted godot_color_contrasted [[const godot_color * p_self]]
+
+// LinearInterpolate godot_color_linear_interpolate [[const godot_color * p_self] [const godot_color * p_b] [const godot_real p_t]]
+
+// Blend godot_color_blend [[const godot_color * p_self] [const godot_color * p_over]]
+
+// ToHtml godot_color_to_html [[const godot_color * p_self] [const godot_bool p_with_alpha]]
+
+// OperatorEqual godot_color_operator_equal [[const godot_color * p_self] [const godot_color * p_b]]
+
+// OperatorLess godot_color_operator_less [[const godot_color * p_self] [const godot_color * p_b]]

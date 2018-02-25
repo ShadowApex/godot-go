@@ -21,3 +21,65 @@ type Quat struct {
 func (t *Quat) getBase() *C.godot_quat {
 	return t.base
 }
+
+// NewQuat godot_quat_new [[godot_quat * r_dest] [const godot_real p_x] [const godot_real p_y] [const godot_real p_z] [const godot_real p_w]]
+
+//func NewQuat(dest Quat, x ConstReal, y ConstReal, z ConstReal, w ConstReal, ) *Quat {
+//	return &Quat{}
+//}
+
+// NewQuatWithAxisAngle godot_quat_new_with_axis_angle [[godot_quat * r_dest] [const godot_vector3 * p_axis] [const godot_real p_angle]]
+
+//func NewQuatWithAxisAngle(dest Quat, axis ConstVector3, angle ConstReal, ) *Quat {
+//	return &Quat{}
+//}
+
+// GetX godot_quat_get_x [[const godot_quat * p_self]]
+
+// SetX godot_quat_set_x [[godot_quat * p_self] [const godot_real val]]
+
+// GetY godot_quat_get_y [[const godot_quat * p_self]]
+
+// SetY godot_quat_set_y [[godot_quat * p_self] [const godot_real val]]
+
+// GetZ godot_quat_get_z [[const godot_quat * p_self]]
+
+// SetZ godot_quat_set_z [[godot_quat * p_self] [const godot_real val]]
+
+// GetW godot_quat_get_w [[const godot_quat * p_self]]
+
+// SetW godot_quat_set_w [[godot_quat * p_self] [const godot_real val]]
+
+// AsString godot_quat_as_string [[const godot_quat * p_self]]
+
+// Length godot_quat_length [[const godot_quat * p_self]]
+
+// LengthSquared godot_quat_length_squared [[const godot_quat * p_self]]
+
+// Normalized godot_quat_normalized [[const godot_quat * p_self]]
+
+// IsNormalized godot_quat_is_normalized [[const godot_quat * p_self]]
+
+// Inverse godot_quat_inverse [[const godot_quat * p_self]]
+
+// Dot godot_quat_dot [[const godot_quat * p_self] [const godot_quat * p_b]]
+
+// Xform godot_quat_xform [[const godot_quat * p_self] [const godot_vector3 * p_v]]
+
+// Slerp godot_quat_slerp [[const godot_quat * p_self] [const godot_quat * p_b] [const godot_real p_t]]
+
+// Slerpni godot_quat_slerpni [[const godot_quat * p_self] [const godot_quat * p_b] [const godot_real p_t]]
+
+// CubicSlerp godot_quat_cubic_slerp [[const godot_quat * p_self] [const godot_quat * p_b] [const godot_quat * p_pre_a] [const godot_quat * p_post_b] [const godot_real p_t]]
+
+// OperatorMultiply godot_quat_operator_multiply [[const godot_quat * p_self] [const godot_real p_b]]
+
+// OperatorAdd godot_quat_operator_add [[const godot_quat * p_self] [const godot_quat * p_b]]
+
+// OperatorSubtract godot_quat_operator_subtract [[const godot_quat * p_self] [const godot_quat * p_b]]
+
+// OperatorDivide godot_quat_operator_divide [[const godot_quat * p_self] [const godot_real p_b]]
+
+// OperatorEqual godot_quat_operator_equal [[const godot_quat * p_self] [const godot_quat * p_b]]
+
+// OperatorNeg godot_quat_operator_neg [[const godot_quat * p_self]]

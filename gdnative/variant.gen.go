@@ -22,6 +22,250 @@ func (t *Variant) getBase() *C.godot_variant {
 	return t.base
 }
 
+// GetType godot_variant_get_type [[const godot_variant * p_v]]
+
+// NewVariantCopy godot_variant_new_copy [[godot_variant * r_dest] [const godot_variant * p_src]]
+
+//func NewVariantCopy(dest Variant, src ConstVariant, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantNil godot_variant_new_nil [[godot_variant * r_dest]]
+
+//func NewVariantNil(dest Variant, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantBool godot_variant_new_bool [[godot_variant * p_v] [const godot_bool p_b]]
+
+//func NewVariantBool(v Variant, b ConstBool, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantUint godot_variant_new_uint [[godot_variant * r_dest] [const uint64_t p_i]]
+
+//func NewVariantUint(dest Variant, i ConstUint64T, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantInt godot_variant_new_int [[godot_variant * r_dest] [const int64_t p_i]]
+
+//func NewVariantInt(dest Variant, i ConstInt64T, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantReal godot_variant_new_real [[godot_variant * r_dest] [const double p_r]]
+
+//func NewVariantReal(dest Variant, r ConstDouble, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantString godot_variant_new_string [[godot_variant * r_dest] [const godot_string * p_s]]
+
+//func NewVariantString(dest Variant, s ConstString, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantVector2 godot_variant_new_vector2 [[godot_variant * r_dest] [const godot_vector2 * p_v2]]
+
+//func NewVariantVector2(dest Variant, v2 ConstVector2, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantRect2 godot_variant_new_rect2 [[godot_variant * r_dest] [const godot_rect2 * p_rect2]]
+
+//func NewVariantRect2(dest Variant, rect2 ConstRect2, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantVector3 godot_variant_new_vector3 [[godot_variant * r_dest] [const godot_vector3 * p_v3]]
+
+//func NewVariantVector3(dest Variant, v3 ConstVector3, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantTransform2D godot_variant_new_transform2d [[godot_variant * r_dest] [const godot_transform2d * p_t2d]]
+
+//func NewVariantTransform2D(dest Variant, t2D ConstTransform2D, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantPlane godot_variant_new_plane [[godot_variant * r_dest] [const godot_plane * p_plane]]
+
+//func NewVariantPlane(dest Variant, plane ConstPlane, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantQuat godot_variant_new_quat [[godot_variant * r_dest] [const godot_quat * p_quat]]
+
+//func NewVariantQuat(dest Variant, quat ConstQuat, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantAabb godot_variant_new_aabb [[godot_variant * r_dest] [const godot_aabb * p_aabb]]
+
+//func NewVariantAabb(dest Variant, aabb ConstAabb, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantBasis godot_variant_new_basis [[godot_variant * r_dest] [const godot_basis * p_basis]]
+
+//func NewVariantBasis(dest Variant, basis ConstBasis, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantTransform godot_variant_new_transform [[godot_variant * r_dest] [const godot_transform * p_trans]]
+
+//func NewVariantTransform(dest Variant, trans ConstTransform, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantColor godot_variant_new_color [[godot_variant * r_dest] [const godot_color * p_color]]
+
+//func NewVariantColor(dest Variant, color ConstColor, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantNodePath godot_variant_new_node_path [[godot_variant * r_dest] [const godot_node_path * p_np]]
+
+//func NewVariantNodePath(dest Variant, np ConstNodePath, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantRid godot_variant_new_rid [[godot_variant * r_dest] [const godot_rid * p_rid]]
+
+//func NewVariantRid(dest Variant, rid ConstRid, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantObject godot_variant_new_object [[godot_variant * r_dest] [const godot_object * p_obj]]
+
+//func NewVariantObject(dest Variant, obj ConstObject, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantDictionary godot_variant_new_dictionary [[godot_variant * r_dest] [const godot_dictionary * p_dict]]
+
+//func NewVariantDictionary(dest Variant, dict ConstDictionary, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantArray godot_variant_new_array [[godot_variant * r_dest] [const godot_array * p_arr]]
+
+//func NewVariantArray(dest Variant, arr ConstArray, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantPoolByteArray godot_variant_new_pool_byte_array [[godot_variant * r_dest] [const godot_pool_byte_array * p_pba]]
+
+//func NewVariantPoolByteArray(dest Variant, pba ConstPoolByteArray, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantPoolIntArray godot_variant_new_pool_int_array [[godot_variant * r_dest] [const godot_pool_int_array * p_pia]]
+
+//func NewVariantPoolIntArray(dest Variant, pia ConstPoolIntArray, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantPoolRealArray godot_variant_new_pool_real_array [[godot_variant * r_dest] [const godot_pool_real_array * p_pra]]
+
+//func NewVariantPoolRealArray(dest Variant, pra ConstPoolRealArray, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantPoolStringArray godot_variant_new_pool_string_array [[godot_variant * r_dest] [const godot_pool_string_array * p_psa]]
+
+//func NewVariantPoolStringArray(dest Variant, psa ConstPoolStringArray, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantPoolVector2Array godot_variant_new_pool_vector2_array [[godot_variant * r_dest] [const godot_pool_vector2_array * p_pv2a]]
+
+//func NewVariantPoolVector2Array(dest Variant, pv2A ConstPoolVector2Array, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantPoolVector3Array godot_variant_new_pool_vector3_array [[godot_variant * r_dest] [const godot_pool_vector3_array * p_pv3a]]
+
+//func NewVariantPoolVector3Array(dest Variant, pv3A ConstPoolVector3Array, ) *Variant {
+//	return &Variant{}
+//}
+
+// NewVariantPoolColorArray godot_variant_new_pool_color_array [[godot_variant * r_dest] [const godot_pool_color_array * p_pca]]
+
+//func NewVariantPoolColorArray(dest Variant, pca ConstPoolColorArray, ) *Variant {
+//	return &Variant{}
+//}
+
+// AsBool godot_variant_as_bool [[const godot_variant * p_self]]
+
+// AsUint godot_variant_as_uint [[const godot_variant * p_self]]
+
+// AsInt godot_variant_as_int [[const godot_variant * p_self]]
+
+// AsReal godot_variant_as_real [[const godot_variant * p_self]]
+
+// AsString godot_variant_as_string [[const godot_variant * p_self]]
+
+// AsVector2 godot_variant_as_vector2 [[const godot_variant * p_self]]
+
+// AsRect2 godot_variant_as_rect2 [[const godot_variant * p_self]]
+
+// AsVector3 godot_variant_as_vector3 [[const godot_variant * p_self]]
+
+// AsTransform2D godot_variant_as_transform2d [[const godot_variant * p_self]]
+
+// AsPlane godot_variant_as_plane [[const godot_variant * p_self]]
+
+// AsQuat godot_variant_as_quat [[const godot_variant * p_self]]
+
+// AsAabb godot_variant_as_aabb [[const godot_variant * p_self]]
+
+// AsBasis godot_variant_as_basis [[const godot_variant * p_self]]
+
+// AsTransform godot_variant_as_transform [[const godot_variant * p_self]]
+
+// AsColor godot_variant_as_color [[const godot_variant * p_self]]
+
+// AsNodePath godot_variant_as_node_path [[const godot_variant * p_self]]
+
+// AsRid godot_variant_as_rid [[const godot_variant * p_self]]
+
+// AsObject godot_variant_as_object [[const godot_variant * p_self]]
+
+// AsDictionary godot_variant_as_dictionary [[const godot_variant * p_self]]
+
+// AsArray godot_variant_as_array [[const godot_variant * p_self]]
+
+// AsPoolByteArray godot_variant_as_pool_byte_array [[const godot_variant * p_self]]
+
+// AsPoolIntArray godot_variant_as_pool_int_array [[const godot_variant * p_self]]
+
+// AsPoolRealArray godot_variant_as_pool_real_array [[const godot_variant * p_self]]
+
+// AsPoolStringArray godot_variant_as_pool_string_array [[const godot_variant * p_self]]
+
+// AsPoolVector2Array godot_variant_as_pool_vector2_array [[const godot_variant * p_self]]
+
+// AsPoolVector3Array godot_variant_as_pool_vector3_array [[const godot_variant * p_self]]
+
+// AsPoolColorArray godot_variant_as_pool_color_array [[const godot_variant * p_self]]
+
+// Call godot_variant_call [[godot_variant * p_self] [const godot_string * p_method] [const godot_variant ** p_args] [const godot_int p_argcount] [godot_variant_call_error * r_error]]
+
+// HasMethod godot_variant_has_method [[const godot_variant * p_self] [const godot_string * p_method]]
+
+// OperatorEqual godot_variant_operator_equal [[const godot_variant * p_self] [const godot_variant * p_other]]
+
+// OperatorLess godot_variant_operator_less [[const godot_variant * p_self] [const godot_variant * p_other]]
+
+// HashCompare godot_variant_hash_compare [[const godot_variant * p_self] [const godot_variant * p_other]]
+
+// Booleanize godot_variant_booleanize [[const godot_variant * p_self]]
+
+// Destroy godot_variant_destroy [[godot_variant * p_self]]
+
 type VariantType int
 
 func (e VariantType) getBase() C.godot_variant_type {

@@ -21,3 +21,117 @@ type Transform struct {
 func (t *Transform) getBase() *C.godot_transform {
 	return t.base
 }
+
+// NewTransformWithAxisOrigin godot_transform_new_with_axis_origin [[godot_transform * r_dest] [const godot_vector3 * p_x_axis] [const godot_vector3 * p_y_axis] [const godot_vector3 * p_z_axis] [const godot_vector3 * p_origin]]
+
+//func NewTransformWithAxisOrigin(dest Transform, xAxis ConstVector3, yAxis ConstVector3, zAxis ConstVector3, origin ConstVector3, ) *Transform {
+//	return &Transform{}
+//}
+
+// NewTransform godot_transform_new [[godot_transform * r_dest] [const godot_basis * p_basis] [const godot_vector3 * p_origin]]
+
+//func NewTransform(dest Transform, basis ConstBasis, origin ConstVector3, ) *Transform {
+//	return &Transform{}
+//}
+
+// GetBasis godot_transform_get_basis [[const godot_transform * p_self]]
+
+// SetBasis godot_transform_set_basis [[godot_transform * p_self] [const godot_basis * p_v]]
+
+// GetOrigin godot_transform_get_origin [[const godot_transform * p_self]]
+
+// SetOrigin godot_transform_set_origin [[godot_transform * p_self] [const godot_vector3 * p_v]]
+
+// AsString godot_transform_as_string [[const godot_transform * p_self]]
+
+// Inverse godot_transform_inverse [[const godot_transform * p_self]]
+
+// AffineInverse godot_transform_affine_inverse [[const godot_transform * p_self]]
+
+// Orthonormalized godot_transform_orthonormalized [[const godot_transform * p_self]]
+
+// Rotated godot_transform_rotated [[const godot_transform * p_self] [const godot_vector3 * p_axis] [const godot_real p_phi]]
+
+// Scaled godot_transform_scaled [[const godot_transform * p_self] [const godot_vector3 * p_scale]]
+
+// Translated godot_transform_translated [[const godot_transform * p_self] [const godot_vector3 * p_ofs]]
+
+// LookingAt godot_transform_looking_at [[const godot_transform * p_self] [const godot_vector3 * p_target] [const godot_vector3 * p_up]]
+
+// XformPlane godot_transform_xform_plane [[const godot_transform * p_self] [const godot_plane * p_v]]
+
+// XformInvPlane godot_transform_xform_inv_plane [[const godot_transform * p_self] [const godot_plane * p_v]]
+
+// NewTransformIdentity godot_transform_new_identity [[godot_transform * r_dest]]
+
+//func NewTransformIdentity(dest Transform, ) *Transform {
+//	return &Transform{}
+//}
+
+// OperatorEqual godot_transform_operator_equal [[const godot_transform * p_self] [const godot_transform * p_b]]
+
+// OperatorMultiply godot_transform_operator_multiply [[const godot_transform * p_self] [const godot_transform * p_b]]
+
+// XformVector3 godot_transform_xform_vector3 [[const godot_transform * p_self] [const godot_vector3 * p_v]]
+
+// XformInvVector3 godot_transform_xform_inv_vector3 [[const godot_transform * p_self] [const godot_vector3 * p_v]]
+
+// XformAabb godot_transform_xform_aabb [[const godot_transform * p_self] [const godot_aabb * p_v]]
+
+// XformInvAabb godot_transform_xform_inv_aabb [[const godot_transform * p_self] [const godot_aabb * p_v]]
+
+// NewTransform2D godot_transform2d_new [[godot_transform2d * r_dest] [const godot_real p_rot] [const godot_vector2 * p_pos]]
+
+//func NewTransform2D(dest Transform2D, rot ConstReal, pos ConstVector2, ) *Transform {
+//	return &Transform{}
+//}
+
+// NewTransform2DAxisOrigin godot_transform2d_new_axis_origin [[godot_transform2d * r_dest] [const godot_vector2 * p_x_axis] [const godot_vector2 * p_y_axis] [const godot_vector2 * p_origin]]
+
+//func NewTransform2DAxisOrigin(dest Transform2D, xAxis ConstVector2, yAxis ConstVector2, origin ConstVector2, ) *Transform {
+//	return &Transform{}
+//}
+
+// 2DAsString godot_transform2d_as_string [[const godot_transform2d * p_self]]
+
+// 2DInverse godot_transform2d_inverse [[const godot_transform2d * p_self]]
+
+// 2DAffineInverse godot_transform2d_affine_inverse [[const godot_transform2d * p_self]]
+
+// 2DGetRotation godot_transform2d_get_rotation [[const godot_transform2d * p_self]]
+
+// 2DGetOrigin godot_transform2d_get_origin [[const godot_transform2d * p_self]]
+
+// 2DGetScale godot_transform2d_get_scale [[const godot_transform2d * p_self]]
+
+// 2DOrthonormalized godot_transform2d_orthonormalized [[const godot_transform2d * p_self]]
+
+// 2DRotated godot_transform2d_rotated [[const godot_transform2d * p_self] [const godot_real p_phi]]
+
+// 2DScaled godot_transform2d_scaled [[const godot_transform2d * p_self] [const godot_vector2 * p_scale]]
+
+// 2DTranslated godot_transform2d_translated [[const godot_transform2d * p_self] [const godot_vector2 * p_offset]]
+
+// 2DXformVector2 godot_transform2d_xform_vector2 [[const godot_transform2d * p_self] [const godot_vector2 * p_v]]
+
+// 2DXformInvVector2 godot_transform2d_xform_inv_vector2 [[const godot_transform2d * p_self] [const godot_vector2 * p_v]]
+
+// 2DBasisXformVector2 godot_transform2d_basis_xform_vector2 [[const godot_transform2d * p_self] [const godot_vector2 * p_v]]
+
+// 2DBasisXformInvVector2 godot_transform2d_basis_xform_inv_vector2 [[const godot_transform2d * p_self] [const godot_vector2 * p_v]]
+
+// 2DInterpolateWith godot_transform2d_interpolate_with [[const godot_transform2d * p_self] [const godot_transform2d * p_m] [const godot_real p_c]]
+
+// 2DOperatorEqual godot_transform2d_operator_equal [[const godot_transform2d * p_self] [const godot_transform2d * p_b]]
+
+// 2DOperatorMultiply godot_transform2d_operator_multiply [[const godot_transform2d * p_self] [const godot_transform2d * p_b]]
+
+// NewTransform2DIdentity godot_transform2d_new_identity [[godot_transform2d * r_dest]]
+
+//func NewTransform2DIdentity(dest Transform2D, ) *Transform {
+//	return &Transform{}
+//}
+
+// 2DXformRect2 godot_transform2d_xform_rect2 [[const godot_transform2d * p_self] [const godot_rect2 * p_v]]
+
+// 2DXformInvRect2 godot_transform2d_xform_inv_rect2 [[const godot_transform2d * p_self] [const godot_rect2 * p_v]]

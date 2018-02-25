@@ -21,3 +21,61 @@ type Aabb struct {
 func (t *Aabb) getBase() *C.godot_aabb {
 	return t.base
 }
+
+// NewAabb godot_aabb_new [[godot_aabb * r_dest] [const godot_vector3 * p_pos] [const godot_vector3 * p_size]]
+
+//func NewAabb(dest Aabb, pos ConstVector3, size ConstVector3, ) *Aabb {
+//	return &Aabb{}
+//}
+
+// GetPosition godot_aabb_get_position [[const godot_aabb * p_self]]
+
+// SetPosition godot_aabb_set_position [[const godot_aabb * p_self] [const godot_vector3 * p_v]]
+
+// GetSize godot_aabb_get_size [[const godot_aabb * p_self]]
+
+// SetSize godot_aabb_set_size [[const godot_aabb * p_self] [const godot_vector3 * p_v]]
+
+// AsString godot_aabb_as_string [[const godot_aabb * p_self]]
+
+// GetArea godot_aabb_get_area [[const godot_aabb * p_self]]
+
+// HasNoArea godot_aabb_has_no_area [[const godot_aabb * p_self]]
+
+// HasNoSurface godot_aabb_has_no_surface [[const godot_aabb * p_self]]
+
+// Intersects godot_aabb_intersects [[const godot_aabb * p_self] [const godot_aabb * p_with]]
+
+// Encloses godot_aabb_encloses [[const godot_aabb * p_self] [const godot_aabb * p_with]]
+
+// Merge godot_aabb_merge [[const godot_aabb * p_self] [const godot_aabb * p_with]]
+
+// Intersection godot_aabb_intersection [[const godot_aabb * p_self] [const godot_aabb * p_with]]
+
+// IntersectsPlane godot_aabb_intersects_plane [[const godot_aabb * p_self] [const godot_plane * p_plane]]
+
+// IntersectsSegment godot_aabb_intersects_segment [[const godot_aabb * p_self] [const godot_vector3 * p_from] [const godot_vector3 * p_to]]
+
+// HasPoint godot_aabb_has_point [[const godot_aabb * p_self] [const godot_vector3 * p_point]]
+
+// GetSupport godot_aabb_get_support [[const godot_aabb * p_self] [const godot_vector3 * p_dir]]
+
+// GetLongestAxis godot_aabb_get_longest_axis [[const godot_aabb * p_self]]
+
+// GetLongestAxisIndex godot_aabb_get_longest_axis_index [[const godot_aabb * p_self]]
+
+// GetLongestAxisSize godot_aabb_get_longest_axis_size [[const godot_aabb * p_self]]
+
+// GetShortestAxis godot_aabb_get_shortest_axis [[const godot_aabb * p_self]]
+
+// GetShortestAxisIndex godot_aabb_get_shortest_axis_index [[const godot_aabb * p_self]]
+
+// GetShortestAxisSize godot_aabb_get_shortest_axis_size [[const godot_aabb * p_self]]
+
+// Expand godot_aabb_expand [[const godot_aabb * p_self] [const godot_vector3 * p_to_point]]
+
+// Grow godot_aabb_grow [[const godot_aabb * p_self] [const godot_real p_by]]
+
+// GetEndpoint godot_aabb_get_endpoint [[const godot_aabb * p_self] [const godot_int p_idx]]
+
+// OperatorEqual godot_aabb_operator_equal [[const godot_aabb * p_self] [const godot_aabb * p_b]]

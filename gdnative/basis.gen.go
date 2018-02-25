@@ -21,3 +21,83 @@ type Basis struct {
 func (t *Basis) getBase() *C.godot_basis {
 	return t.base
 }
+
+// NewBasisWithRows godot_basis_new_with_rows [[godot_basis * r_dest] [const godot_vector3 * p_x_axis] [const godot_vector3 * p_y_axis] [const godot_vector3 * p_z_axis]]
+
+//func NewBasisWithRows(dest Basis, xAxis ConstVector3, yAxis ConstVector3, zAxis ConstVector3, ) *Basis {
+//	return &Basis{}
+//}
+
+// NewBasisWithAxisAndAngle godot_basis_new_with_axis_and_angle [[godot_basis * r_dest] [const godot_vector3 * p_axis] [const godot_real p_phi]]
+
+//func NewBasisWithAxisAndAngle(dest Basis, axis ConstVector3, phi ConstReal, ) *Basis {
+//	return &Basis{}
+//}
+
+// NewBasisWithEuler godot_basis_new_with_euler [[godot_basis * r_dest] [const godot_vector3 * p_euler]]
+
+//func NewBasisWithEuler(dest Basis, euler ConstVector3, ) *Basis {
+//	return &Basis{}
+//}
+
+// AsString godot_basis_as_string [[const godot_basis * p_self]]
+
+// Inverse godot_basis_inverse [[const godot_basis * p_self]]
+
+// Transposed godot_basis_transposed [[const godot_basis * p_self]]
+
+// Orthonormalized godot_basis_orthonormalized [[const godot_basis * p_self]]
+
+// Determinant godot_basis_determinant [[const godot_basis * p_self]]
+
+// Rotated godot_basis_rotated [[const godot_basis * p_self] [const godot_vector3 * p_axis] [const godot_real p_phi]]
+
+// Scaled godot_basis_scaled [[const godot_basis * p_self] [const godot_vector3 * p_scale]]
+
+// GetScale godot_basis_get_scale [[const godot_basis * p_self]]
+
+// GetEuler godot_basis_get_euler [[const godot_basis * p_self]]
+
+// Tdotx godot_basis_tdotx [[const godot_basis * p_self] [const godot_vector3 * p_with]]
+
+// Tdoty godot_basis_tdoty [[const godot_basis * p_self] [const godot_vector3 * p_with]]
+
+// Tdotz godot_basis_tdotz [[const godot_basis * p_self] [const godot_vector3 * p_with]]
+
+// Xform godot_basis_xform [[const godot_basis * p_self] [const godot_vector3 * p_v]]
+
+// XformInv godot_basis_xform_inv [[const godot_basis * p_self] [const godot_vector3 * p_v]]
+
+// GetOrthogonalIndex godot_basis_get_orthogonal_index [[const godot_basis * p_self]]
+
+// NewBasis godot_basis_new [[godot_basis * r_dest]]
+
+//func NewBasis(dest Basis, ) *Basis {
+//	return &Basis{}
+//}
+
+// NewBasisWithEulerQuat godot_basis_new_with_euler_quat [[godot_basis * r_dest] [const godot_quat * p_euler]]
+
+//func NewBasisWithEulerQuat(dest Basis, euler ConstQuat, ) *Basis {
+//	return &Basis{}
+//}
+
+// GetElements godot_basis_get_elements [[const godot_basis * p_self] [godot_vector3 * p_elements]]
+
+// GetAxis godot_basis_get_axis [[const godot_basis * p_self] [const godot_int p_axis]]
+
+// SetAxis godot_basis_set_axis [[godot_basis * p_self] [const godot_int p_axis] [const godot_vector3 * p_value]]
+
+// GetRow godot_basis_get_row [[const godot_basis * p_self] [const godot_int p_row]]
+
+// SetRow godot_basis_set_row [[godot_basis * p_self] [const godot_int p_row] [const godot_vector3 * p_value]]
+
+// OperatorEqual godot_basis_operator_equal [[const godot_basis * p_self] [const godot_basis * p_b]]
+
+// OperatorAdd godot_basis_operator_add [[const godot_basis * p_self] [const godot_basis * p_b]]
+
+// OperatorSubtract godot_basis_operator_subtract [[const godot_basis * p_self] [const godot_basis * p_b]]
+
+// OperatorMultiplyVector godot_basis_operator_multiply_vector [[const godot_basis * p_self] [const godot_basis * p_b]]
+
+// OperatorMultiplyScalar godot_basis_operator_multiply_scalar [[const godot_basis * p_self] [const godot_real p_b]]

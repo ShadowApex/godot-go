@@ -21,3 +21,117 @@ type Array struct {
 func (t *Array) getBase() *C.godot_array {
 	return t.base
 }
+
+// NewArray godot_array_new [[godot_array * r_dest]]
+
+//func NewArray(dest Array, ) *Array {
+//	return &Array{}
+//}
+
+// NewArrayCopy godot_array_new_copy [[godot_array * r_dest] [const godot_array * p_src]]
+
+//func NewArrayCopy(dest Array, src ConstArray, ) *Array {
+//	return &Array{}
+//}
+
+// NewArrayPoolColorArray godot_array_new_pool_color_array [[godot_array * r_dest] [const godot_pool_color_array * p_pca]]
+
+//func NewArrayPoolColorArray(dest Array, pca ConstPoolColorArray, ) *Array {
+//	return &Array{}
+//}
+
+// NewArrayPoolVector3Array godot_array_new_pool_vector3_array [[godot_array * r_dest] [const godot_pool_vector3_array * p_pv3a]]
+
+//func NewArrayPoolVector3Array(dest Array, pv3A ConstPoolVector3Array, ) *Array {
+//	return &Array{}
+//}
+
+// NewArrayPoolVector2Array godot_array_new_pool_vector2_array [[godot_array * r_dest] [const godot_pool_vector2_array * p_pv2a]]
+
+//func NewArrayPoolVector2Array(dest Array, pv2A ConstPoolVector2Array, ) *Array {
+//	return &Array{}
+//}
+
+// NewArrayPoolStringArray godot_array_new_pool_string_array [[godot_array * r_dest] [const godot_pool_string_array * p_psa]]
+
+//func NewArrayPoolStringArray(dest Array, psa ConstPoolStringArray, ) *Array {
+//	return &Array{}
+//}
+
+// NewArrayPoolRealArray godot_array_new_pool_real_array [[godot_array * r_dest] [const godot_pool_real_array * p_pra]]
+
+//func NewArrayPoolRealArray(dest Array, pra ConstPoolRealArray, ) *Array {
+//	return &Array{}
+//}
+
+// NewArrayPoolIntArray godot_array_new_pool_int_array [[godot_array * r_dest] [const godot_pool_int_array * p_pia]]
+
+//func NewArrayPoolIntArray(dest Array, pia ConstPoolIntArray, ) *Array {
+//	return &Array{}
+//}
+
+// NewArrayPoolByteArray godot_array_new_pool_byte_array [[godot_array * r_dest] [const godot_pool_byte_array * p_pba]]
+
+//func NewArrayPoolByteArray(dest Array, pba ConstPoolByteArray, ) *Array {
+//	return &Array{}
+//}
+
+// Set godot_array_set [[godot_array * p_self] [const godot_int p_idx] [const godot_variant * p_value]]
+
+// Get godot_array_get [[const godot_array * p_self] [const godot_int p_idx]]
+
+// OperatorIndex godot_array_operator_index [[godot_array * p_self] [const godot_int p_idx]]
+
+// OperatorIndexConst godot_array_operator_index_const [[const godot_array * p_self] [const godot_int p_idx]]
+
+// Append godot_array_append [[godot_array * p_self] [const godot_variant * p_value]]
+
+// Clear godot_array_clear [[godot_array * p_self]]
+
+// Count godot_array_count [[const godot_array * p_self] [const godot_variant * p_value]]
+
+// Empty godot_array_empty [[const godot_array * p_self]]
+
+// Erase godot_array_erase [[godot_array * p_self] [const godot_variant * p_value]]
+
+// Front godot_array_front [[const godot_array * p_self]]
+
+// Back godot_array_back [[const godot_array * p_self]]
+
+// Find godot_array_find [[const godot_array * p_self] [const godot_variant * p_what] [const godot_int p_from]]
+
+// FindLast godot_array_find_last [[const godot_array * p_self] [const godot_variant * p_what]]
+
+// Has godot_array_has [[const godot_array * p_self] [const godot_variant * p_value]]
+
+// Hash godot_array_hash [[const godot_array * p_self]]
+
+// Insert godot_array_insert [[godot_array * p_self] [const godot_int p_pos] [const godot_variant * p_value]]
+
+// Invert godot_array_invert [[godot_array * p_self]]
+
+// PopBack godot_array_pop_back [[godot_array * p_self]]
+
+// PopFront godot_array_pop_front [[godot_array * p_self]]
+
+// PushBack godot_array_push_back [[godot_array * p_self] [const godot_variant * p_value]]
+
+// PushFront godot_array_push_front [[godot_array * p_self] [const godot_variant * p_value]]
+
+// Remove godot_array_remove [[godot_array * p_self] [const godot_int p_idx]]
+
+// Resize godot_array_resize [[godot_array * p_self] [const godot_int p_size]]
+
+// Rfind godot_array_rfind [[const godot_array * p_self] [const godot_variant * p_what] [const godot_int p_from]]
+
+// Size godot_array_size [[const godot_array * p_self]]
+
+// Sort godot_array_sort [[godot_array * p_self]]
+
+// SortCustom godot_array_sort_custom [[godot_array * p_self] [godot_object * p_obj] [const godot_string * p_func]]
+
+// Bsearch godot_array_bsearch [[godot_array * p_self] [const godot_variant * p_value] [const godot_bool p_before]]
+
+// BsearchCustom godot_array_bsearch_custom [[godot_array * p_self] [const godot_variant * p_value] [godot_object * p_obj] [const godot_string * p_func] [const godot_bool p_before]]
+
+// Destroy godot_array_destroy [[godot_array * p_self]]
