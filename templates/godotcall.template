@@ -1,0 +1,50 @@
+{{ $view := . -}}
+
+func {{ $view.GodotCallDef }} {
+
+    methodBind := getGodotMethod(o.baseClass(), methodName)
+
+    // Construct a C array that will contain pointers to our arguments.
+    {{ if $view.Debug }}log.Println("  Allocating argument array in C."){{end}}
+    cArgsArray := C.build_array(C.int({{ len .Arguments }}))
+    {{ if $view.Debug }}log.Println("    C Array: ", cArgsArray){{end}}
+
+    {{ range $i, $arg := .Arguments }}
+        {{ if $arg.IsPrimitive }}
+            primArg{{ $i }} := {{ template "go2godot.template" $arg}}
+            cArg{{ $i }} := unsafe.Pointer(&primArg{{ $i }})
+        {{ else }}
+            cArg{{ $i }} := unsafe.Pointer({{ template "go2godot.template" $arg}})
+        {{ end }}
+        C.add_element(cArgsArray, cArg{{ $i }}, C.int({{ $i }}))
+    {{ end }}
+    {{ if $view.Debug }}log.Println("  Built argument array from variant arguments: ", cArgsArray){{end}}
+
+    {{ if eq .ReturnType "void" }}
+        {{ if $view.Debug }}log.Println("  No return value."){{end}}
+    {{ else }}
+        // Construct our return object that will be populated by the method call.
+        {{ if $view.Debug }}log.Println("  Building return value."){{end}}
+        var ret {{ $view.GetReturnType }}
+        retPtr := unsafe.Pointer(&ret)
+    {{ end }}
+
+    // Get the Godot objects owner so we can pass it to godot_method_bind_ptrcall.
+	{{ if $view.Debug }}log.Println("  Using godot object owner:", o.getOwner()){{end}}
+	objectOwner := unsafe.Pointer(o.getOwner())
+    
+    // Call the parent method. "ret" will be populated with the return value.
+    {{ if $view.Debug }}log.Println("  Calling bind_ptrcall..."){{end}}
+    C.godot_method_bind_ptrcall(
+        methodBind,
+        objectOwner,
+        cArgsArray, // void**
+        {{ if eq .ReturnType "void" -}}nil{{ else }}retPtr{{end}}, // void*
+    )
+    {{ if $view.Debug }}log.Println("  Finished calling method"){{end}}
+    
+    {{ if ne .ReturnType "void" }}
+        // Convert the return value based on the type.
+        return {{ template "godot2go.template" $view.GetReturnType }}
+    {{end}}
+}

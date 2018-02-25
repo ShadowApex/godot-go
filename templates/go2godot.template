@@ -1,0 +1,28 @@
+{{ if eq "bool" .Type -}}C.godot_bool({{.Name}})
+{{- else if eq "int" .Type -}}C.godot_int({{.Name}})
+{{- else if eq "float" .Type -}}C.godot_real({{.Name}})
+{{- else if eq "String" .Type -}}stringAsGodotString({{.Name}})
+{{- else if eq "Array" .Type -}}{{.Name}}.array
+{{- else if eq "Basis" .Type -}}{{.Name}}.basis
+{{- else if eq "Color" .Type -}}{{.Name}}.color
+{{- else if eq "Dictionary" .Type -}}{{.Name}}.dictionary
+{{- else if eq "NodePath" .Type -}}{{.Name}}.nodePath
+{{- else if eq "Plane" .Type -}}{{.Name}}.plane
+{{- else if eq "Quat" .Type -}}{{.Name}}.quat
+{{- else if eq "Rect2" .Type -}}{{.Name}}.rect2
+{{- else if eq "AABB" .Type -}}{{.Name}}.aabb
+{{- else if eq "RID" .Type -}}{{.Name}}.rid
+{{- else if eq "Transform" .Type -}}{{.Name}}.transform
+{{- else if eq "Transform2D" .Type -}}{{.Name}}.transform2d
+{{- else if eq "Variant" .Type -}}{{.Name}}.variant
+{{- else if eq "Vector2" .Type -}}{{.Name}}.vector2
+{{- else if eq "Vector3" .Type -}}{{.Name}}.vector3
+{{- else if eq "PoolByteArray" .Type -}}{{.Name}}.array
+{{- else if eq "PoolIntArray" .Type -}}{{.Name}}.array
+{{- else if eq "PoolRealArray" .Type -}}{{.Name}}.array
+{{- else if eq "PoolStringArray" .Type -}}{{.Name}}.array
+{{- else if eq "PoolVector2Array" .Type -}}{{.Name}}.array
+{{- else if eq "PoolVector3Array" .Type -}}{{.Name}}.array
+{{- else if eq "PoolColorArray" .Type -}}{{.Name}}.array
+{{- else -}}{{.Name}}.owner
+{{- end}}

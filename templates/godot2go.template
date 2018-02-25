@@ -1,0 +1,28 @@
+{{ if eq "C.godot_bool" . -}}bool(ret)
+{{- else if eq "C.godot_int" . -}}int64(ret)
+{{- else if eq "C.godot_real" . -}}float64(ret)
+{{- else if eq "C.godot_string" . -}}godotStringAsString(&ret)
+{{- else if eq "C.godot_array" . -}}&Array{&ret}
+{{- else if eq "C.godot_basis" . -}}&Basis{&ret}
+{{- else if eq "C.godot_color" . -}}&Color{&ret}
+{{- else if eq "C.godot_dictionary" . -}}&Dictionary{&ret}
+{{- else if eq "C.godot_node_path" . -}}&NodePath{&ret}
+{{- else if eq "C.godot_plane" . -}}&Plane{&ret}
+{{- else if eq "C.godot_quat" . -}}&Quat{&ret}
+{{- else if eq "C.godot_rect2" . -}}&Rect2{&ret}
+{{- else if eq "C.godot_aabb" . -}}&AABB{&ret}
+{{- else if eq "C.godot_rid" . -}}&RID{&ret}
+{{- else if eq "C.godot_transform" . -}}&Transform{&ret}
+{{- else if eq "C.godot_transform2d" . -}}&Transform2D{&ret}
+{{- else if eq "C.godot_variant" . -}}&Variant{&ret}
+{{- else if eq "C.godot_vector2" . -}}&Vector2{&ret}
+{{- else if eq "C.godot_vector3" . -}}&Vector3{&ret}
+{{- else if eq "C.godot_pool_byte_array" . -}}&PoolByteArray{&ret}
+{{- else if eq "C.godot_pool_int_array" . -}}&PoolIntArray{&ret}
+{{- else if eq "C.godot_pool_real_array" . -}}&PoolRealArray{&ret}
+{{- else if eq "C.godot_pool_string_array" . -}}&PoolStringArray{&ret}
+{{- else if eq "C.godot_pool_vector2_array" . -}}&PoolVector2Array{&ret}
+{{- else if eq "C.godot_pool_vector3_array" . -}}&PoolVector3Array{&ret}
+{{- else if eq "C.godot_pool_color_array" . -}}&PoolColorArray{&ret}
+{{- else -}}&Object{&ret}
+{{- end}}

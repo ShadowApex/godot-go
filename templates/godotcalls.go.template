@@ -1,0 +1,56 @@
+package godot
+
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <gdnative/gdnative.h>
+#include <nativescript/godot_nativescript.h>
+
+void **build_array(int length);
+void **build_array(int length) {
+	void *ptr;
+	void **arr = malloc(sizeof(void *) * length);
+	for (int i = 0; i < length; i++) {
+	    arr[i] = ptr;
+	}
+
+	return arr;
+}
+
+void add_element(void**, void*, int);
+void add_element(void **array, void *element, int index) {
+	{{ if .Debug }}printf("CGO: Array %p %p %p %p %p\n", &array, array, &array[index], *array, array[index]);{{end}}
+    array[index] = element;
+	{{ if .Debug }}
+		printf("CGO: Index %i %p\n", index, element);
+		printf("CGO: Array %p %p %p %p %p\n", &array, array, &array[index], *array, array[index]);
+	{{end}}
+}
+*/
+import "C"
+
+import (
+    {{ if .Debug }}"log"{{end}}
+	"unsafe"
+)
+
+func getGodotMethod(baseClass string, methodName string) *C.godot_method_bind {
+	// Convert the base class and method names to C strings.
+	{{ if .Debug }}log.Println("  Using base class: ", baseClass){{end}}
+	classCString := C.CString(baseClass)
+	defer C.free(unsafe.Pointer(classCString))
+
+	{{ if .Debug }}log.Println("  Using method name: ", methodName){{end}}
+	methodCString := C.CString(methodName)
+	defer C.free(unsafe.Pointer(methodCString))
+
+	// Get the Godot method bind pointer so we can pass it to godot_method_bind_ptrcall.
+	var methodBind *C.godot_method_bind
+	methodBind = C.godot_method_bind_get_method(classCString, methodCString)
+	{{ if .Debug }}log.Println("  Using method bind pointer: ", methodBind){{end}}
+	return methodBind
+}
+
+{{ range .GodotCalls -}}
+	{{ template "godotcall.template" .}}
+{{ end }}
