@@ -189,7 +189,7 @@ func createMethod(classString, methodString string) *gdnative.InstanceMethod {
 		// If we have arguments, append the first argument.
 		for _, arg := range args {
 			// Convert the variant into its base type
-			goArgsSlice = append(goArgsSlice, variantToGoType(arg.GetType()))
+			goArgsSlice = append(goArgsSlice, variantToGoType(arg))
 		}
 
 		// Use the method string to get the class name and method name.
@@ -226,34 +226,43 @@ func createMethod(classString, methodString string) *gdnative.InstanceMethod {
 		// Convert our returned value into a Godot Variant.
 		rawRetInterface := rawRet[0].Interface()
 		switch regMethod.returns[0].String() {
-
 		case "bool":
-			ret = boolAsVariant(rawRetInterface.(bool))
-
+			base := gdnative.Bool(rawRetInterface.(bool))
+			variant := gdnative.NewVariantBool(base)
+			ret = *variant
 		case "int64":
-			ret = intAsVariant(rawRetInterface.(int64))
-
+			base := gdnative.Int64T(rawRetInterface.(int64))
+			variant := gdnative.NewVariantInt(base)
+			ret = *variant
 		case "int32":
-			ret = intAsVariant(int64(rawRetInterface.(int32)))
-
+			base := gdnative.Int64T(rawRetInterface.(int32))
+			variant := gdnative.NewVariantInt(base)
+			ret = *variant
 		case "int":
-			ret = intAsVariant(int64(rawRetInterface.(int)))
-
+			base := gdnative.Int64T(rawRetInterface.(int))
+			variant := gdnative.NewVariantInt(base)
+			ret = *variant
 		case "uint64":
-			ret = uIntAsVariant(rawRetInterface.(uint64))
-
+			base := gdnative.Uint64T(rawRetInterface.(uint64))
+			variant := gdnative.NewVariantUint(base)
+			ret = *variant
 		case "uint32":
-			ret = uIntAsVariant(uint64(rawRetInterface.(uint32)))
-
+			base := gdnative.Uint64T(rawRetInterface.(uint32))
+			variant := gdnative.NewVariantUint(base)
+			ret = *variant
 		case "uint":
-			ret = uIntAsVariant(uint64(rawRetInterface.(uint)))
-
+			base := gdnative.Uint64T(rawRetInterface.(uint))
+			variant := gdnative.NewVariantUint(base)
+			ret = *variant
 		case "float64":
-			ret = realAsVariant(rawRetInterface.(float64))
-
+			base := gdnative.Double(rawRetInterface.(float64))
+			variant := gdnative.NewVariantReal(base)
+			ret = *variant
 		case "string":
-			ret = stringAsVariant(rawRetInterface.(string))
-
+			base := gdnative.WcharT(rawRetInterface.(string))
+			baseStr := base.AsString()
+			variant := gdnative.NewVariantString(*baseStr)
+			ret = *variant
 		default:
 			panic("The return was not valid. Should be Godot Variant or built-in Go type. Received: " + regMethod.returns[0].String())
 		}
@@ -268,8 +277,8 @@ func createMethod(classString, methodString string) *gdnative.InstanceMethod {
 
 // VariantToGoType will check the given variant type and convert it to its
 // actual type. The value is returned as a reflect.Value.
-func variantToGoType(variantType gdnative.VariantType) reflect.Value {
-	switch variantType {
+func variantToGoType(variant gdnative.Variant) reflect.Value {
+	switch variant.GetType() {
 	case gdnative.VariantTypeBool:
 		return reflect.ValueOf(variant.AsBool())
 	case gdnative.VariantTypeInt:

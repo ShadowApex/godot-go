@@ -138,6 +138,10 @@ func (w WcharT) getBase() *C.wchar_t {
 	return (*C.wchar_t)(wcharString.Pointer())
 }
 
+func (w WcharT) AsString() *String {
+	return NewStringWithWideString(string(w))
+}
+
 // ID will return the Godot object memory address as a string, which can
 // be used in an instance registry for registering classes.
 func (gdt Object) ID() string {
