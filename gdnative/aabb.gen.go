@@ -12,6 +12,28 @@ package gdnative
 /*
 #include "gdnative.gen.h"
 #include <gdnative/aabb.h>
+// Include all headers for now. TODO: Look up all the required
+// headers we need to import based on the method arguments and return types.
+#include <gdnative/aabb.h>
+#include <gdnative/array.h>
+#include <gdnative/basis.h>
+#include <gdnative/color.h>
+#include <gdnative/dictionary.h>
+#include <gdnative/gdnative.h>
+#include <gdnative/node_path.h>
+#include <gdnative/plane.h>
+#include <gdnative/pool_arrays.h>
+#include <gdnative/quat.h>
+#include <gdnative/rect2.h>
+#include <gdnative/rid.h>
+#include <gdnative/string.h>
+#include <gdnative/string_name.h>
+#include <gdnative/transform.h>
+#include <gdnative/transform2d.h>
+#include <gdnative/variant.h>
+#include <gdnative/vector2.h>
+#include <gdnative/vector3.h>
+#include <gdnative_api_struct.gen.h>
 */
 import "C"
 
@@ -29,7 +51,8 @@ func (gdt *Aabb) GetPosition() Vector3 {
 
 	ret := C.go_godot_aabb_get_position(GDNative.api, arg0)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // SetPosition godot_aabb_set_position [[const godot_aabb * p_self] [const godot_vector3 * p_v]] void
@@ -46,7 +69,8 @@ func (gdt *Aabb) GetSize() Vector3 {
 
 	ret := C.go_godot_aabb_get_size(GDNative.api, arg0)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // SetSize godot_aabb_set_size [[const godot_aabb * p_self] [const godot_vector3 * p_v]] void
@@ -63,7 +87,8 @@ func (gdt *Aabb) AsString() String {
 
 	ret := C.go_godot_aabb_as_string(GDNative.api, arg0)
 
-	return String{base: ret}
+	return String{base: &ret}
+
 }
 
 // GetArea godot_aabb_get_area [[const godot_aabb * p_self]] godot_real
@@ -120,7 +145,8 @@ func (gdt *Aabb) Merge(with Aabb) Aabb {
 
 	ret := C.go_godot_aabb_merge(GDNative.api, arg0, arg1)
 
-	return Aabb{base: ret}
+	return Aabb{base: &ret}
+
 }
 
 // Intersection godot_aabb_intersection [[const godot_aabb * p_self] [const godot_aabb * p_with]] godot_aabb
@@ -130,7 +156,8 @@ func (gdt *Aabb) Intersection(with Aabb) Aabb {
 
 	ret := C.go_godot_aabb_intersection(GDNative.api, arg0, arg1)
 
-	return Aabb{base: ret}
+	return Aabb{base: &ret}
+
 }
 
 // IntersectsPlane godot_aabb_intersects_plane [[const godot_aabb * p_self] [const godot_plane * p_plane]] godot_bool
@@ -171,7 +198,8 @@ func (gdt *Aabb) GetSupport(dir Vector3) Vector3 {
 
 	ret := C.go_godot_aabb_get_support(GDNative.api, arg0, arg1)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // GetLongestAxis godot_aabb_get_longest_axis [[const godot_aabb * p_self]] godot_vector3
@@ -180,7 +208,8 @@ func (gdt *Aabb) GetLongestAxis() Vector3 {
 
 	ret := C.go_godot_aabb_get_longest_axis(GDNative.api, arg0)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // GetLongestAxisIndex godot_aabb_get_longest_axis_index [[const godot_aabb * p_self]] godot_int
@@ -207,7 +236,8 @@ func (gdt *Aabb) GetShortestAxis() Vector3 {
 
 	ret := C.go_godot_aabb_get_shortest_axis(GDNative.api, arg0)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // GetShortestAxisIndex godot_aabb_get_shortest_axis_index [[const godot_aabb * p_self]] godot_int
@@ -235,7 +265,8 @@ func (gdt *Aabb) Expand(toPoint Vector3) Aabb {
 
 	ret := C.go_godot_aabb_expand(GDNative.api, arg0, arg1)
 
-	return Aabb{base: ret}
+	return Aabb{base: &ret}
+
 }
 
 // Grow godot_aabb_grow [[const godot_aabb * p_self] [const godot_real p_by]] godot_aabb
@@ -245,7 +276,8 @@ func (gdt *Aabb) Grow(by Real) Aabb {
 
 	ret := C.go_godot_aabb_grow(GDNative.api, arg0, arg1)
 
-	return Aabb{base: ret}
+	return Aabb{base: &ret}
+
 }
 
 // GetEndpoint godot_aabb_get_endpoint [[const godot_aabb * p_self] [const godot_int p_idx]] godot_vector3
@@ -255,7 +287,8 @@ func (gdt *Aabb) GetEndpoint(idx Int) Vector3 {
 
 	ret := C.go_godot_aabb_get_endpoint(GDNative.api, arg0, arg1)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // OperatorEqual godot_aabb_operator_equal [[const godot_aabb * p_self] [const godot_aabb * p_b]] godot_bool

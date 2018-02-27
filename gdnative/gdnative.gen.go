@@ -12,9 +12,32 @@ package gdnative
 /*
 #include "gdnative.gen.h"
 #include <gdnative/gdnative.h>
+// Include all headers for now. TODO: Look up all the required
+// headers we need to import based on the method arguments and return types.
+#include <gdnative/aabb.h>
+#include <gdnative/array.h>
+#include <gdnative/basis.h>
+#include <gdnative/color.h>
+#include <gdnative/dictionary.h>
+#include <gdnative/gdnative.h>
+#include <gdnative/node_path.h>
+#include <gdnative/plane.h>
+#include <gdnative/pool_arrays.h>
+#include <gdnative/quat.h>
+#include <gdnative/rect2.h>
+#include <gdnative/rid.h>
+#include <gdnative/string.h>
+#include <gdnative/string_name.h>
+#include <gdnative/transform.h>
+#include <gdnative/transform2d.h>
+#include <gdnative/variant.h>
+#include <gdnative/vector2.h>
+#include <gdnative/vector3.h>
+#include <gdnative_api_struct.gen.h>
 */
 import "C"
 
+// Error is a Go wrapper for the C.godot_error enum type.
 type Error int
 
 func (e Error) getBase() C.godot_error {
@@ -64,22 +87,25 @@ const (
 	ErrPrinterOnFire
 )
 
+// Bool is a Go wrapper for the C.godot_bool type
 type Bool bool
 
-func (t Bool) getBase() C.bool {
-	return C.bool(t)
+func (t Bool) getBase() C.godot_bool {
+	return C.godot_bool(t)
 }
 
+// Int is a Go wrapper for the C.godot_int type
 type Int int
 
-func (t Int) getBase() C.int {
-	return C.int(t)
+func (t Int) getBase() C.godot_int {
+	return C.godot_int(t)
 }
 
+// Real is a Go wrapper for the C.godot_real type
 type Real float64
 
-func (t Real) getBase() C.float {
-	return C.float(t)
+func (t Real) getBase() C.godot_real {
+	return C.godot_real(t)
 }
 
 type Object struct {

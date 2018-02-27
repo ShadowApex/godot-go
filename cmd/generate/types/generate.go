@@ -60,7 +60,7 @@ func (v View) ToGoName(str string) string {
 }
 
 func (v View) ToGoReturnType(str string) string {
-	str = v.ToGoArgType(str)
+	str = v.ToGoArgType(str, true)
 	if strings.Contains(str, "Void") {
 		return ""
 	}
@@ -75,15 +75,47 @@ func (v View) HasReturn(str string) bool {
 	return true
 }
 
-func (v View) ToGoArgType(str string) string {
+func (v View) HasPointerReturn(str string) bool {
+	if strings.Contains(str, "*") {
+		return true
+	}
+	return false
+}
+
+func (v View) IsVoidPointerType(str string) bool {
+	switch str {
+	case "godot_object *":
+		return true
+	}
+	return false
+}
+
+func (v View) IsWcharT(str string) bool {
+	if strings.Contains(str, "wchar_t") {
+		return true
+	}
+	return false
+}
+
+func (v View) IsDoublePointer(str string) bool {
+	if strings.Contains(str, "**") {
+		return true
+	}
+	return false
+}
+
+func (v View) ToGoArgType(str string, parseArray bool) string {
 	str = strings.Replace(str, "const ", "", -1)
 	str = v.ToGoName(str)
 	str = strings.Replace(str, "*", "", 1)
+	str = strings.TrimSpace(str)
 
 	// If the string still contains a *, it is a list.
 	if strings.Contains(str, "*") {
 		str = strings.Replace(str, "*", "", 1)
-		str = "[]" + str
+		if parseArray {
+			str = "[]" + str
+		}
 	}
 
 	return str
@@ -121,11 +153,36 @@ func (v View) ToGoArgName(str string) string {
 
 func (v View) IsBasicType(str string) bool {
 	switch str {
-	case "Uint", "Uint64T", "Uint8T", "WcharT", "Bool", "Error", "Int", "Real", "MethodRpcMode", "PropertyHint":
+	case "Uint", "WcharT", "Bool", "Double", "Error", "Int", "Int64T", "Uint64T", "Uint8T", "Uint32T", "Real", "MethodRpcMode", "PropertyHint", "SignedChar", "UnsignedChar", "Vector3Axis":
 		return true
 	}
 
 	return false
+}
+
+// OutputCArg will determine if we need to reference, dereference, etc. an argument
+// before passing it to a C function.
+func (v View) OutputCArg(arg []string) string {
+	argType := arg[0]
+
+	// For basic types, we usually don't pass by pointer.
+	if v.IsBasicType(v.ToGoArgType(argType, true)) {
+		if v.HasPointerReturn(argType) {
+			return "&"
+		}
+		if argType == "wchar_t" && !v.HasPointerReturn(argType) {
+			return "*"
+		}
+		return ""
+	}
+
+	// Non-basic types are returned as pointers. If the C function doesn't want
+	// a pointer, we need to dereference the argument.
+	if !v.HasPointerReturn(argType) {
+		return "*"
+	}
+
+	return ""
 }
 
 // MethodsList returns all of the methods that match this typedef.
@@ -293,6 +350,9 @@ func Generate() {
 		// Run gofmt on the generated Go file.
 		log.Println("  Running gofmt on output:", outFileName+"...")
 		GoFmt(packagePath + "/gdnative/" + outFileName)
+
+		log.Println("  Running goimports on output:", outFileName+"...")
+		GoImports(packagePath + "/gdnative/" + outFileName)
 	}
 
 	pretty.Println(allMethodDefinitions)
@@ -326,6 +386,17 @@ func GoFmt(filePath string) {
 	err := cmd.Run()
 	if err != nil {
 		log.Println("Error running gofmt:", err)
+		panic(stdErr.String())
+	}
+}
+
+func GoImports(filePath string) {
+	cmd := exec.Command("goimports", "-w", filePath)
+	var stdErr bytes.Buffer
+	cmd.Stderr = &stdErr
+	err := cmd.Run()
+	if err != nil {
+		log.Println("Error running goimports:", err)
 		panic(stdErr.String())
 	}
 }

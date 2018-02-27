@@ -15,6 +15,28 @@ package gdnative
 {{ range $i, $header := $view.Headers -}}
 	#include <{{ $header }}>
 {{ end -}}
+// Include all headers for now. TODO: Look up all the required
+// headers we need to import based on the method arguments and return types.
+#include <gdnative/aabb.h>
+#include <gdnative/array.h>
+#include <gdnative/basis.h>
+#include <gdnative/color.h>
+#include <gdnative/dictionary.h>
+#include <gdnative/gdnative.h>
+#include <gdnative/node_path.h>
+#include <gdnative/plane.h>
+#include <gdnative/pool_arrays.h>
+#include <gdnative/quat.h>
+#include <gdnative/rect2.h>
+#include <gdnative/rid.h>
+#include <gdnative/string.h>
+#include <gdnative/string_name.h>
+#include <gdnative/transform.h>
+#include <gdnative/transform2d.h>
+#include <gdnative/variant.h>
+#include <gdnative/vector2.h>
+#include <gdnative/vector3.h>
+#include <gdnative_api_struct.gen.h>
 */
 import "C"
 
@@ -40,25 +62,50 @@ import "C"
 		{{ range $j, $method := ($view.MethodsList $typedef) }}
 				// {{ $view.ToGoMethodName $typedef $method }} {{ $method.Name }} {{ $method.Arguments }} {{ $method.ReturnType }}
 			{{ if ($view.MethodIsConstructor $method) -}}
-				func {{ $view.ToGoMethodName $typedef $method }}({{ range $k, $arg := $method.Arguments }}{{ $view.ToGoArgName (index $arg 1) }} {{ $view.ToGoArgType (index $arg 0) }}, {{ end }}) *{{ $typedef.GoName }} {
+				func {{ $view.ToGoMethodName $typedef $method }}({{ range $k, $arg := $method.Arguments }}{{ $view.ToGoArgName (index $arg 1) }} {{ $view.ToGoArgType (index $arg 0) true }}, {{ end }}) *{{ $typedef.GoName }} {
 					return &{{ $typedef.GoName }}{}
 				}
 			{{ else -}}
-				func (gdt *{{ $typedef.GoName }}) {{ $view.ToGoMethodName $typedef $method }}({{ range $k, $arg := $method.Arguments }}{{ if $view.NotSelfArg (index $arg 1) }}{{ $view.ToGoArgName (index $arg 1) }} {{ $view.ToGoArgType (index $arg 0) }}, {{ end }}{{ end }})  {{ $view.ToGoReturnType $method.ReturnType }} {
+				func (gdt *{{ $typedef.GoName }}) {{ $view.ToGoMethodName $typedef $method }}({{ range $k, $arg := $method.Arguments }}{{ if $view.NotSelfArg (index $arg 1) }}{{ $view.ToGoArgName (index $arg 1) }} {{ $view.ToGoArgType (index $arg 0) true }}, {{ end }}{{ end }})  {{ $view.ToGoReturnType $method.ReturnType }} {
 					{{ range $k, $arg := $method.Arguments -}}
 						{{ if $view.NotSelfArg (index $arg 1) -}}
-							arg{{ $k }} := {{ $view.ToGoArgName (index $arg 1) }}.getBase()
+							{{ if $view.IsVoidPointerType (index $arg 0) -}}
+								arg{{ $k }} := unsafe.Pointer({{ $view.ToGoArgName (index $arg 1) }}.getBase())
+							{{ else -}}
+								{{ if $view.IsDoublePointer (index $arg 0) -}}
+									arg{{ $k }}Array := {{ $view.ToGoArgType (index $arg 0) false }}Array{array: {{ $view.ToGoArgName (index $arg 1) }}}
+									arg{{ $k }} := arg{{ $k }}Array.getBase()
+								{{ else -}}
+									arg{{ $k }} := {{ $view.ToGoArgName (index $arg 1) }}.getBase()
+								{{ end -}}
+							{{ end -}}
 						{{ else -}}
 							arg{{ $k }} := gdt.getBase()
 						{{ end -}}
 					{{ end }}
 					{{ if $view.HasReturn $method.ReturnType }}
-						ret := C.go_{{ $method.Name }}(GDNative.api, {{ range $k, $arg := $method.Arguments }}arg{{ $k }}, {{ end }})
+						ret := C.go_{{ $method.Name }}(GDNative.api, {{ range $k, $arg := $method.Arguments }}{{ $view.OutputCArg $arg }}arg{{ $k }}, {{ end }})
 
 						{{ if $view.IsBasicType ($view.ToGoReturnType $method.ReturnType) -}}
-							return {{ $view.ToGoReturnType $method.ReturnType }}(ret)
+							{{ if ($view.IsWcharT $method.ReturnType ) -}}
+								{{ if ($view.HasPointerReturn $method.ReturnType) -}}
+									return newWcharT(ret)
+								{{ else }}
+									return newWcharT(&ret)
+								{{ end }}
+							{{ else -}}
+								return {{ $view.ToGoReturnType $method.ReturnType }}(ret)
+							{{ end -}}
 						{{ else -}}
-							return {{ $view.ToGoReturnType $method.ReturnType }}{base: ret}
+							{{ if $view.HasPointerReturn $method.ReturnType }}
+								{{ if (eq $method.ReturnType "godot_object *") -}}
+									return {{ $view.ToGoReturnType $method.ReturnType }}{base: (*C.godot_object)(ret)}
+								{{ else }}
+									return {{ $view.ToGoReturnType $method.ReturnType }}{base: ret}
+								{{ end }}
+							{{ else }}
+								return {{ $view.ToGoReturnType $method.ReturnType }}{base: &ret}
+							{{ end }}
 						{{ end -}}
 					{{ else -}}
 						C.go_{{ $method.Name }}(GDNative.api, {{ range $k, $arg := $method.Arguments }}arg{{ $k }}, {{ end }})
@@ -71,6 +118,7 @@ import "C"
 
 	{{/* Handle enum definitions */}}
 	{{ if eq $typedef.Base "enum" }}
+		// {{ $typedef.GoName }} is a Go wrapper for the C.{{ $typedef.Name }} enum type.
 		type {{ $typedef.GoName }} int
 		
 		func (e {{ $typedef.GoName }}) getBase() C.{{ $typedef.Name }} {
@@ -92,12 +140,14 @@ import "C"
 	{{/* Handle base type definitions */}}
 	{{ if and ($typedef.SimpleType) (ne $typedef.Base "void") }}
 		{{ if ($view.IsGodotBaseType $typedef) }}
+			// {{ $typedef.GoName }} is a Go wrapper for the C.{{ $typedef.Name }} type
 			type {{ $typedef.GoName }} {{ $view.ToGoName $typedef.Base }}
 		{{ else }}
+			// {{ $typedef.GoName }} is a Go wrapper for the C.{{ $typedef.Name }} type
 			type {{ $typedef.GoName }} {{ $view.ToGoBaseType $typedef.Base }}
 
-			func (t {{ $typedef.GoName }}) getBase() C.{{ $typedef.Base }} {
-				return C.{{ $typedef.Base }}(t)
+			func (t {{ $typedef.GoName }}) getBase() C.{{ $typedef.Name }} {
+				return C.{{ $typedef.Name }}(t)
 			}
 		{{ end }}
 

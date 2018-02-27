@@ -12,6 +12,28 @@ package gdnative
 /*
 #include "gdnative.gen.h"
 #include <gdnative/basis.h>
+// Include all headers for now. TODO: Look up all the required
+// headers we need to import based on the method arguments and return types.
+#include <gdnative/aabb.h>
+#include <gdnative/array.h>
+#include <gdnative/basis.h>
+#include <gdnative/color.h>
+#include <gdnative/dictionary.h>
+#include <gdnative/gdnative.h>
+#include <gdnative/node_path.h>
+#include <gdnative/plane.h>
+#include <gdnative/pool_arrays.h>
+#include <gdnative/quat.h>
+#include <gdnative/rect2.h>
+#include <gdnative/rid.h>
+#include <gdnative/string.h>
+#include <gdnative/string_name.h>
+#include <gdnative/transform.h>
+#include <gdnative/transform2d.h>
+#include <gdnative/variant.h>
+#include <gdnative/vector2.h>
+#include <gdnative/vector3.h>
+#include <gdnative_api_struct.gen.h>
 */
 import "C"
 
@@ -29,7 +51,8 @@ func (gdt *Basis) AsString() String {
 
 	ret := C.go_godot_basis_as_string(GDNative.api, arg0)
 
-	return String{base: ret}
+	return String{base: &ret}
+
 }
 
 // Inverse godot_basis_inverse [[const godot_basis * p_self]] godot_basis
@@ -38,7 +61,8 @@ func (gdt *Basis) Inverse() Basis {
 
 	ret := C.go_godot_basis_inverse(GDNative.api, arg0)
 
-	return Basis{base: ret}
+	return Basis{base: &ret}
+
 }
 
 // Transposed godot_basis_transposed [[const godot_basis * p_self]] godot_basis
@@ -47,7 +71,8 @@ func (gdt *Basis) Transposed() Basis {
 
 	ret := C.go_godot_basis_transposed(GDNative.api, arg0)
 
-	return Basis{base: ret}
+	return Basis{base: &ret}
+
 }
 
 // Orthonormalized godot_basis_orthonormalized [[const godot_basis * p_self]] godot_basis
@@ -56,7 +81,8 @@ func (gdt *Basis) Orthonormalized() Basis {
 
 	ret := C.go_godot_basis_orthonormalized(GDNative.api, arg0)
 
-	return Basis{base: ret}
+	return Basis{base: &ret}
+
 }
 
 // Determinant godot_basis_determinant [[const godot_basis * p_self]] godot_real
@@ -76,7 +102,8 @@ func (gdt *Basis) Rotated(axis Vector3, phi Real) Basis {
 
 	ret := C.go_godot_basis_rotated(GDNative.api, arg0, arg1, arg2)
 
-	return Basis{base: ret}
+	return Basis{base: &ret}
+
 }
 
 // Scaled godot_basis_scaled [[const godot_basis * p_self] [const godot_vector3 * p_scale]] godot_basis
@@ -86,7 +113,8 @@ func (gdt *Basis) Scaled(scale Vector3) Basis {
 
 	ret := C.go_godot_basis_scaled(GDNative.api, arg0, arg1)
 
-	return Basis{base: ret}
+	return Basis{base: &ret}
+
 }
 
 // GetScale godot_basis_get_scale [[const godot_basis * p_self]] godot_vector3
@@ -95,7 +123,8 @@ func (gdt *Basis) GetScale() Vector3 {
 
 	ret := C.go_godot_basis_get_scale(GDNative.api, arg0)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // GetEuler godot_basis_get_euler [[const godot_basis * p_self]] godot_vector3
@@ -104,7 +133,8 @@ func (gdt *Basis) GetEuler() Vector3 {
 
 	ret := C.go_godot_basis_get_euler(GDNative.api, arg0)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // Tdotx godot_basis_tdotx [[const godot_basis * p_self] [const godot_vector3 * p_with]] godot_real
@@ -144,7 +174,8 @@ func (gdt *Basis) Xform(v Vector3) Vector3 {
 
 	ret := C.go_godot_basis_xform(GDNative.api, arg0, arg1)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // XformInv godot_basis_xform_inv [[const godot_basis * p_self] [const godot_vector3 * p_v]] godot_vector3
@@ -154,7 +185,8 @@ func (gdt *Basis) XformInv(v Vector3) Vector3 {
 
 	ret := C.go_godot_basis_xform_inv(GDNative.api, arg0, arg1)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // GetOrthogonalIndex godot_basis_get_orthogonal_index [[const godot_basis * p_self]] godot_int
@@ -181,7 +213,8 @@ func (gdt *Basis) GetAxis(axis Int) Vector3 {
 
 	ret := C.go_godot_basis_get_axis(GDNative.api, arg0, arg1)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // SetAxis godot_basis_set_axis [[godot_basis * p_self] [const godot_int p_axis] [const godot_vector3 * p_value]] void
@@ -200,7 +233,8 @@ func (gdt *Basis) GetRow(row Int) Vector3 {
 
 	ret := C.go_godot_basis_get_row(GDNative.api, arg0, arg1)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // SetRow godot_basis_set_row [[godot_basis * p_self] [const godot_int p_row] [const godot_vector3 * p_value]] void
@@ -229,7 +263,8 @@ func (gdt *Basis) OperatorAdd(b Basis) Basis {
 
 	ret := C.go_godot_basis_operator_add(GDNative.api, arg0, arg1)
 
-	return Basis{base: ret}
+	return Basis{base: &ret}
+
 }
 
 // OperatorSubtract godot_basis_operator_subtract [[const godot_basis * p_self] [const godot_basis * p_b]] godot_basis
@@ -239,7 +274,8 @@ func (gdt *Basis) OperatorSubtract(b Basis) Basis {
 
 	ret := C.go_godot_basis_operator_subtract(GDNative.api, arg0, arg1)
 
-	return Basis{base: ret}
+	return Basis{base: &ret}
+
 }
 
 // OperatorMultiplyVector godot_basis_operator_multiply_vector [[const godot_basis * p_self] [const godot_basis * p_b]] godot_basis
@@ -249,7 +285,8 @@ func (gdt *Basis) OperatorMultiplyVector(b Basis) Basis {
 
 	ret := C.go_godot_basis_operator_multiply_vector(GDNative.api, arg0, arg1)
 
-	return Basis{base: ret}
+	return Basis{base: &ret}
+
 }
 
 // OperatorMultiplyScalar godot_basis_operator_multiply_scalar [[const godot_basis * p_self] [const godot_real p_b]] godot_basis
@@ -259,5 +296,6 @@ func (gdt *Basis) OperatorMultiplyScalar(b Real) Basis {
 
 	ret := C.go_godot_basis_operator_multiply_scalar(GDNative.api, arg0, arg1)
 
-	return Basis{base: ret}
+	return Basis{base: &ret}
+
 }

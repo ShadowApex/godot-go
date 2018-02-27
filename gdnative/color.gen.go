@@ -12,6 +12,28 @@ package gdnative
 /*
 #include "gdnative.gen.h"
 #include <gdnative/color.h>
+// Include all headers for now. TODO: Look up all the required
+// headers we need to import based on the method arguments and return types.
+#include <gdnative/aabb.h>
+#include <gdnative/array.h>
+#include <gdnative/basis.h>
+#include <gdnative/color.h>
+#include <gdnative/dictionary.h>
+#include <gdnative/gdnative.h>
+#include <gdnative/node_path.h>
+#include <gdnative/plane.h>
+#include <gdnative/pool_arrays.h>
+#include <gdnative/quat.h>
+#include <gdnative/rect2.h>
+#include <gdnative/rid.h>
+#include <gdnative/string.h>
+#include <gdnative/string_name.h>
+#include <gdnative/transform.h>
+#include <gdnative/transform2d.h>
+#include <gdnative/variant.h>
+#include <gdnative/vector2.h>
+#include <gdnative/vector3.h>
+#include <gdnative_api_struct.gen.h>
 */
 import "C"
 
@@ -124,7 +146,8 @@ func (gdt *Color) AsString() String {
 
 	ret := C.go_godot_color_as_string(GDNative.api, arg0)
 
-	return String{base: ret}
+	return String{base: &ret}
+
 }
 
 // ToRgba32 godot_color_to_rgba32 [[const godot_color * p_self]] godot_int
@@ -160,7 +183,8 @@ func (gdt *Color) Inverted() Color {
 
 	ret := C.go_godot_color_inverted(GDNative.api, arg0)
 
-	return Color{base: ret}
+	return Color{base: &ret}
+
 }
 
 // Contrasted godot_color_contrasted [[const godot_color * p_self]] godot_color
@@ -169,7 +193,8 @@ func (gdt *Color) Contrasted() Color {
 
 	ret := C.go_godot_color_contrasted(GDNative.api, arg0)
 
-	return Color{base: ret}
+	return Color{base: &ret}
+
 }
 
 // LinearInterpolate godot_color_linear_interpolate [[const godot_color * p_self] [const godot_color * p_b] [const godot_real p_t]] godot_color
@@ -180,7 +205,8 @@ func (gdt *Color) LinearInterpolate(b Color, t Real) Color {
 
 	ret := C.go_godot_color_linear_interpolate(GDNative.api, arg0, arg1, arg2)
 
-	return Color{base: ret}
+	return Color{base: &ret}
+
 }
 
 // Blend godot_color_blend [[const godot_color * p_self] [const godot_color * p_over]] godot_color
@@ -190,7 +216,8 @@ func (gdt *Color) Blend(over Color) Color {
 
 	ret := C.go_godot_color_blend(GDNative.api, arg0, arg1)
 
-	return Color{base: ret}
+	return Color{base: &ret}
+
 }
 
 // ToHtml godot_color_to_html [[const godot_color * p_self] [const godot_bool p_with_alpha]] godot_string
@@ -200,7 +227,8 @@ func (gdt *Color) ToHtml(withAlpha Bool) String {
 
 	ret := C.go_godot_color_to_html(GDNative.api, arg0, arg1)
 
-	return String{base: ret}
+	return String{base: &ret}
+
 }
 
 // OperatorEqual godot_color_operator_equal [[const godot_color * p_self] [const godot_color * p_b]] godot_bool

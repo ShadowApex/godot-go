@@ -12,8 +12,31 @@ package gdnative
 /*
 #include "gdnative.gen.h"
 #include <gdnative/array.h>
+// Include all headers for now. TODO: Look up all the required
+// headers we need to import based on the method arguments and return types.
+#include <gdnative/aabb.h>
+#include <gdnative/array.h>
+#include <gdnative/basis.h>
+#include <gdnative/color.h>
+#include <gdnative/dictionary.h>
+#include <gdnative/gdnative.h>
+#include <gdnative/node_path.h>
+#include <gdnative/plane.h>
+#include <gdnative/pool_arrays.h>
+#include <gdnative/quat.h>
+#include <gdnative/rect2.h>
+#include <gdnative/rid.h>
+#include <gdnative/string.h>
+#include <gdnative/string_name.h>
+#include <gdnative/transform.h>
+#include <gdnative/transform2d.h>
+#include <gdnative/variant.h>
+#include <gdnative/vector2.h>
+#include <gdnative/vector3.h>
+#include <gdnative_api_struct.gen.h>
 */
 import "C"
+import "unsafe"
 
 type Array struct {
 	base *C.godot_array
@@ -39,7 +62,8 @@ func (gdt *Array) Get(idx Int) Variant {
 
 	ret := C.go_godot_array_get(GDNative.api, arg0, arg1)
 
-	return Variant{base: ret}
+	return Variant{base: &ret}
+
 }
 
 // OperatorIndex godot_array_operator_index [[godot_array * p_self] [const godot_int p_idx]] godot_variant *
@@ -50,6 +74,7 @@ func (gdt *Array) OperatorIndex(idx Int) Variant {
 	ret := C.go_godot_array_operator_index(GDNative.api, arg0, arg1)
 
 	return Variant{base: ret}
+
 }
 
 // OperatorIndexConst godot_array_operator_index_const [[const godot_array * p_self] [const godot_int p_idx]] const godot_variant *
@@ -60,6 +85,7 @@ func (gdt *Array) OperatorIndexConst(idx Int) Variant {
 	ret := C.go_godot_array_operator_index_const(GDNative.api, arg0, arg1)
 
 	return Variant{base: ret}
+
 }
 
 // Append godot_array_append [[godot_array * p_self] [const godot_variant * p_value]] void
@@ -110,7 +136,8 @@ func (gdt *Array) Front() Variant {
 
 	ret := C.go_godot_array_front(GDNative.api, arg0)
 
-	return Variant{base: ret}
+	return Variant{base: &ret}
+
 }
 
 // Back godot_array_back [[const godot_array * p_self]] godot_variant
@@ -119,7 +146,8 @@ func (gdt *Array) Back() Variant {
 
 	ret := C.go_godot_array_back(GDNative.api, arg0)
 
-	return Variant{base: ret}
+	return Variant{base: &ret}
+
 }
 
 // Find godot_array_find [[const godot_array * p_self] [const godot_variant * p_what] [const godot_int p_from]] godot_int
@@ -184,7 +212,8 @@ func (gdt *Array) PopBack() Variant {
 
 	ret := C.go_godot_array_pop_back(GDNative.api, arg0)
 
-	return Variant{base: ret}
+	return Variant{base: &ret}
+
 }
 
 // PopFront godot_array_pop_front [[godot_array * p_self]] godot_variant
@@ -193,7 +222,8 @@ func (gdt *Array) PopFront() Variant {
 
 	ret := C.go_godot_array_pop_front(GDNative.api, arg0)
 
-	return Variant{base: ret}
+	return Variant{base: &ret}
+
 }
 
 // PushBack godot_array_push_back [[godot_array * p_self] [const godot_variant * p_value]] void
@@ -258,7 +288,7 @@ func (gdt *Array) Sort() {
 // SortCustom godot_array_sort_custom [[godot_array * p_self] [godot_object * p_obj] [const godot_string * p_func]] void
 func (gdt *Array) SortCustom(obj Object, function String) {
 	arg0 := gdt.getBase()
-	arg1 := obj.getBase()
+	arg1 := unsafe.Pointer(obj.getBase())
 	arg2 := function.getBase()
 
 	C.go_godot_array_sort_custom(GDNative.api, arg0, arg1, arg2)
@@ -279,7 +309,7 @@ func (gdt *Array) Bsearch(value Variant, before Bool) Int {
 func (gdt *Array) BsearchCustom(value Variant, obj Object, function String, before Bool) Int {
 	arg0 := gdt.getBase()
 	arg1 := value.getBase()
-	arg2 := obj.getBase()
+	arg2 := unsafe.Pointer(obj.getBase())
 	arg3 := function.getBase()
 	arg4 := before.getBase()
 

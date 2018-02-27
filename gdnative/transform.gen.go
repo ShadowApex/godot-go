@@ -12,6 +12,28 @@ package gdnative
 /*
 #include "gdnative.gen.h"
 #include <gdnative/transform.h>
+// Include all headers for now. TODO: Look up all the required
+// headers we need to import based on the method arguments and return types.
+#include <gdnative/aabb.h>
+#include <gdnative/array.h>
+#include <gdnative/basis.h>
+#include <gdnative/color.h>
+#include <gdnative/dictionary.h>
+#include <gdnative/gdnative.h>
+#include <gdnative/node_path.h>
+#include <gdnative/plane.h>
+#include <gdnative/pool_arrays.h>
+#include <gdnative/quat.h>
+#include <gdnative/rect2.h>
+#include <gdnative/rid.h>
+#include <gdnative/string.h>
+#include <gdnative/string_name.h>
+#include <gdnative/transform.h>
+#include <gdnative/transform2d.h>
+#include <gdnative/variant.h>
+#include <gdnative/vector2.h>
+#include <gdnative/vector3.h>
+#include <gdnative_api_struct.gen.h>
 */
 import "C"
 
@@ -29,7 +51,8 @@ func (gdt *Transform) GetBasis() Basis {
 
 	ret := C.go_godot_transform_get_basis(GDNative.api, arg0)
 
-	return Basis{base: ret}
+	return Basis{base: &ret}
+
 }
 
 // SetBasis godot_transform_set_basis [[godot_transform * p_self] [const godot_basis * p_v]] void
@@ -46,7 +69,8 @@ func (gdt *Transform) GetOrigin() Vector3 {
 
 	ret := C.go_godot_transform_get_origin(GDNative.api, arg0)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // SetOrigin godot_transform_set_origin [[godot_transform * p_self] [const godot_vector3 * p_v]] void
@@ -63,7 +87,8 @@ func (gdt *Transform) AsString() String {
 
 	ret := C.go_godot_transform_as_string(GDNative.api, arg0)
 
-	return String{base: ret}
+	return String{base: &ret}
+
 }
 
 // Inverse godot_transform_inverse [[const godot_transform * p_self]] godot_transform
@@ -72,7 +97,8 @@ func (gdt *Transform) Inverse() Transform {
 
 	ret := C.go_godot_transform_inverse(GDNative.api, arg0)
 
-	return Transform{base: ret}
+	return Transform{base: &ret}
+
 }
 
 // AffineInverse godot_transform_affine_inverse [[const godot_transform * p_self]] godot_transform
@@ -81,7 +107,8 @@ func (gdt *Transform) AffineInverse() Transform {
 
 	ret := C.go_godot_transform_affine_inverse(GDNative.api, arg0)
 
-	return Transform{base: ret}
+	return Transform{base: &ret}
+
 }
 
 // Orthonormalized godot_transform_orthonormalized [[const godot_transform * p_self]] godot_transform
@@ -90,7 +117,8 @@ func (gdt *Transform) Orthonormalized() Transform {
 
 	ret := C.go_godot_transform_orthonormalized(GDNative.api, arg0)
 
-	return Transform{base: ret}
+	return Transform{base: &ret}
+
 }
 
 // Rotated godot_transform_rotated [[const godot_transform * p_self] [const godot_vector3 * p_axis] [const godot_real p_phi]] godot_transform
@@ -101,7 +129,8 @@ func (gdt *Transform) Rotated(axis Vector3, phi Real) Transform {
 
 	ret := C.go_godot_transform_rotated(GDNative.api, arg0, arg1, arg2)
 
-	return Transform{base: ret}
+	return Transform{base: &ret}
+
 }
 
 // Scaled godot_transform_scaled [[const godot_transform * p_self] [const godot_vector3 * p_scale]] godot_transform
@@ -111,7 +140,8 @@ func (gdt *Transform) Scaled(scale Vector3) Transform {
 
 	ret := C.go_godot_transform_scaled(GDNative.api, arg0, arg1)
 
-	return Transform{base: ret}
+	return Transform{base: &ret}
+
 }
 
 // Translated godot_transform_translated [[const godot_transform * p_self] [const godot_vector3 * p_ofs]] godot_transform
@@ -121,7 +151,8 @@ func (gdt *Transform) Translated(ofs Vector3) Transform {
 
 	ret := C.go_godot_transform_translated(GDNative.api, arg0, arg1)
 
-	return Transform{base: ret}
+	return Transform{base: &ret}
+
 }
 
 // LookingAt godot_transform_looking_at [[const godot_transform * p_self] [const godot_vector3 * p_target] [const godot_vector3 * p_up]] godot_transform
@@ -132,7 +163,8 @@ func (gdt *Transform) LookingAt(target Vector3, up Vector3) Transform {
 
 	ret := C.go_godot_transform_looking_at(GDNative.api, arg0, arg1, arg2)
 
-	return Transform{base: ret}
+	return Transform{base: &ret}
+
 }
 
 // XformPlane godot_transform_xform_plane [[const godot_transform * p_self] [const godot_plane * p_v]] godot_plane
@@ -142,7 +174,8 @@ func (gdt *Transform) XformPlane(v Plane) Plane {
 
 	ret := C.go_godot_transform_xform_plane(GDNative.api, arg0, arg1)
 
-	return Plane{base: ret}
+	return Plane{base: &ret}
+
 }
 
 // XformInvPlane godot_transform_xform_inv_plane [[const godot_transform * p_self] [const godot_plane * p_v]] godot_plane
@@ -152,7 +185,8 @@ func (gdt *Transform) XformInvPlane(v Plane) Plane {
 
 	ret := C.go_godot_transform_xform_inv_plane(GDNative.api, arg0, arg1)
 
-	return Plane{base: ret}
+	return Plane{base: &ret}
+
 }
 
 // OperatorEqual godot_transform_operator_equal [[const godot_transform * p_self] [const godot_transform * p_b]] godot_bool
@@ -172,7 +206,8 @@ func (gdt *Transform) OperatorMultiply(b Transform) Transform {
 
 	ret := C.go_godot_transform_operator_multiply(GDNative.api, arg0, arg1)
 
-	return Transform{base: ret}
+	return Transform{base: &ret}
+
 }
 
 // XformVector3 godot_transform_xform_vector3 [[const godot_transform * p_self] [const godot_vector3 * p_v]] godot_vector3
@@ -182,7 +217,8 @@ func (gdt *Transform) XformVector3(v Vector3) Vector3 {
 
 	ret := C.go_godot_transform_xform_vector3(GDNative.api, arg0, arg1)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // XformInvVector3 godot_transform_xform_inv_vector3 [[const godot_transform * p_self] [const godot_vector3 * p_v]] godot_vector3
@@ -192,7 +228,8 @@ func (gdt *Transform) XformInvVector3(v Vector3) Vector3 {
 
 	ret := C.go_godot_transform_xform_inv_vector3(GDNative.api, arg0, arg1)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // XformAabb godot_transform_xform_aabb [[const godot_transform * p_self] [const godot_aabb * p_v]] godot_aabb
@@ -202,7 +239,8 @@ func (gdt *Transform) XformAabb(v Aabb) Aabb {
 
 	ret := C.go_godot_transform_xform_aabb(GDNative.api, arg0, arg1)
 
-	return Aabb{base: ret}
+	return Aabb{base: &ret}
+
 }
 
 // XformInvAabb godot_transform_xform_inv_aabb [[const godot_transform * p_self] [const godot_aabb * p_v]] godot_aabb
@@ -212,5 +250,6 @@ func (gdt *Transform) XformInvAabb(v Aabb) Aabb {
 
 	ret := C.go_godot_transform_xform_inv_aabb(GDNative.api, arg0, arg1)
 
-	return Aabb{base: ret}
+	return Aabb{base: &ret}
+
 }

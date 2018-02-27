@@ -12,6 +12,28 @@ package gdnative
 /*
 #include "gdnative.gen.h"
 #include <gdnative/string_name.h>
+// Include all headers for now. TODO: Look up all the required
+// headers we need to import based on the method arguments and return types.
+#include <gdnative/aabb.h>
+#include <gdnative/array.h>
+#include <gdnative/basis.h>
+#include <gdnative/color.h>
+#include <gdnative/dictionary.h>
+#include <gdnative/gdnative.h>
+#include <gdnative/node_path.h>
+#include <gdnative/plane.h>
+#include <gdnative/pool_arrays.h>
+#include <gdnative/quat.h>
+#include <gdnative/rect2.h>
+#include <gdnative/rid.h>
+#include <gdnative/string.h>
+#include <gdnative/string_name.h>
+#include <gdnative/transform.h>
+#include <gdnative/transform2d.h>
+#include <gdnative/variant.h>
+#include <gdnative/vector2.h>
+#include <gdnative/vector3.h>
+#include <gdnative_api_struct.gen.h>
 */
 import "C"
 
@@ -29,7 +51,8 @@ func (gdt *StringName) GetName() String {
 
 	ret := C.go_godot_string_name_get_name(GDNative.api, arg0)
 
-	return String{base: ret}
+	return String{base: &ret}
+
 }
 
 // GetHash godot_string_name_get_hash [[const godot_string_name * p_self]] uint32_t
@@ -38,7 +61,7 @@ func (gdt *StringName) GetHash() Uint32T {
 
 	ret := C.go_godot_string_name_get_hash(GDNative.api, arg0)
 
-	return Uint32T{base: ret}
+	return Uint32T(ret)
 }
 
 // GetDataUniquePointer godot_string_name_get_data_unique_pointer [[const godot_string_name * p_self]] const void *

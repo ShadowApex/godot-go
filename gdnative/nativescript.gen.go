@@ -12,9 +12,32 @@ package gdnative
 /*
 #include "gdnative.gen.h"
 #include <nativescript/godot_nativescript.h>
+// Include all headers for now. TODO: Look up all the required
+// headers we need to import based on the method arguments and return types.
+#include <gdnative/aabb.h>
+#include <gdnative/array.h>
+#include <gdnative/basis.h>
+#include <gdnative/color.h>
+#include <gdnative/dictionary.h>
+#include <gdnative/gdnative.h>
+#include <gdnative/node_path.h>
+#include <gdnative/plane.h>
+#include <gdnative/pool_arrays.h>
+#include <gdnative/quat.h>
+#include <gdnative/rect2.h>
+#include <gdnative/rid.h>
+#include <gdnative/string.h>
+#include <gdnative/string_name.h>
+#include <gdnative/transform.h>
+#include <gdnative/transform2d.h>
+#include <gdnative/variant.h>
+#include <gdnative/vector2.h>
+#include <gdnative/vector3.h>
+#include <gdnative_api_struct.gen.h>
 */
 import "C"
 
+// MethodRpcMode is a Go wrapper for the C.godot_method_rpc_mode enum type.
 type MethodRpcMode int
 
 func (e MethodRpcMode) getBase() C.godot_method_rpc_mode {
@@ -29,6 +52,7 @@ const (
 	MethodRpcModeSlave
 )
 
+// PropertyHint is a Go wrapper for the C.godot_property_hint enum type.
 type PropertyHint int
 
 func (e PropertyHint) getBase() C.godot_property_hint {

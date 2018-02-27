@@ -12,6 +12,28 @@ package gdnative
 /*
 #include "gdnative.gen.h"
 #include <gdnative/quat.h>
+// Include all headers for now. TODO: Look up all the required
+// headers we need to import based on the method arguments and return types.
+#include <gdnative/aabb.h>
+#include <gdnative/array.h>
+#include <gdnative/basis.h>
+#include <gdnative/color.h>
+#include <gdnative/dictionary.h>
+#include <gdnative/gdnative.h>
+#include <gdnative/node_path.h>
+#include <gdnative/plane.h>
+#include <gdnative/pool_arrays.h>
+#include <gdnative/quat.h>
+#include <gdnative/rect2.h>
+#include <gdnative/rid.h>
+#include <gdnative/string.h>
+#include <gdnative/string_name.h>
+#include <gdnative/transform.h>
+#include <gdnative/transform2d.h>
+#include <gdnative/variant.h>
+#include <gdnative/vector2.h>
+#include <gdnative/vector3.h>
+#include <gdnative_api_struct.gen.h>
 */
 import "C"
 
@@ -97,7 +119,8 @@ func (gdt *Quat) AsString() String {
 
 	ret := C.go_godot_quat_as_string(GDNative.api, arg0)
 
-	return String{base: ret}
+	return String{base: &ret}
+
 }
 
 // Length godot_quat_length [[const godot_quat * p_self]] godot_real
@@ -124,7 +147,8 @@ func (gdt *Quat) Normalized() Quat {
 
 	ret := C.go_godot_quat_normalized(GDNative.api, arg0)
 
-	return Quat{base: ret}
+	return Quat{base: &ret}
+
 }
 
 // IsNormalized godot_quat_is_normalized [[const godot_quat * p_self]] godot_bool
@@ -142,7 +166,8 @@ func (gdt *Quat) Inverse() Quat {
 
 	ret := C.go_godot_quat_inverse(GDNative.api, arg0)
 
-	return Quat{base: ret}
+	return Quat{base: &ret}
+
 }
 
 // Dot godot_quat_dot [[const godot_quat * p_self] [const godot_quat * p_b]] godot_real
@@ -162,7 +187,8 @@ func (gdt *Quat) Xform(v Vector3) Vector3 {
 
 	ret := C.go_godot_quat_xform(GDNative.api, arg0, arg1)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // Slerp godot_quat_slerp [[const godot_quat * p_self] [const godot_quat * p_b] [const godot_real p_t]] godot_quat
@@ -173,7 +199,8 @@ func (gdt *Quat) Slerp(b Quat, t Real) Quat {
 
 	ret := C.go_godot_quat_slerp(GDNative.api, arg0, arg1, arg2)
 
-	return Quat{base: ret}
+	return Quat{base: &ret}
+
 }
 
 // Slerpni godot_quat_slerpni [[const godot_quat * p_self] [const godot_quat * p_b] [const godot_real p_t]] godot_quat
@@ -184,7 +211,8 @@ func (gdt *Quat) Slerpni(b Quat, t Real) Quat {
 
 	ret := C.go_godot_quat_slerpni(GDNative.api, arg0, arg1, arg2)
 
-	return Quat{base: ret}
+	return Quat{base: &ret}
+
 }
 
 // CubicSlerp godot_quat_cubic_slerp [[const godot_quat * p_self] [const godot_quat * p_b] [const godot_quat * p_pre_a] [const godot_quat * p_post_b] [const godot_real p_t]] godot_quat
@@ -197,7 +225,8 @@ func (gdt *Quat) CubicSlerp(b Quat, preA Quat, postB Quat, t Real) Quat {
 
 	ret := C.go_godot_quat_cubic_slerp(GDNative.api, arg0, arg1, arg2, arg3, arg4)
 
-	return Quat{base: ret}
+	return Quat{base: &ret}
+
 }
 
 // OperatorMultiply godot_quat_operator_multiply [[const godot_quat * p_self] [const godot_real p_b]] godot_quat
@@ -207,7 +236,8 @@ func (gdt *Quat) OperatorMultiply(b Real) Quat {
 
 	ret := C.go_godot_quat_operator_multiply(GDNative.api, arg0, arg1)
 
-	return Quat{base: ret}
+	return Quat{base: &ret}
+
 }
 
 // OperatorAdd godot_quat_operator_add [[const godot_quat * p_self] [const godot_quat * p_b]] godot_quat
@@ -217,7 +247,8 @@ func (gdt *Quat) OperatorAdd(b Quat) Quat {
 
 	ret := C.go_godot_quat_operator_add(GDNative.api, arg0, arg1)
 
-	return Quat{base: ret}
+	return Quat{base: &ret}
+
 }
 
 // OperatorSubtract godot_quat_operator_subtract [[const godot_quat * p_self] [const godot_quat * p_b]] godot_quat
@@ -227,7 +258,8 @@ func (gdt *Quat) OperatorSubtract(b Quat) Quat {
 
 	ret := C.go_godot_quat_operator_subtract(GDNative.api, arg0, arg1)
 
-	return Quat{base: ret}
+	return Quat{base: &ret}
+
 }
 
 // OperatorDivide godot_quat_operator_divide [[const godot_quat * p_self] [const godot_real p_b]] godot_quat
@@ -237,7 +269,8 @@ func (gdt *Quat) OperatorDivide(b Real) Quat {
 
 	ret := C.go_godot_quat_operator_divide(GDNative.api, arg0, arg1)
 
-	return Quat{base: ret}
+	return Quat{base: &ret}
+
 }
 
 // OperatorEqual godot_quat_operator_equal [[const godot_quat * p_self] [const godot_quat * p_b]] godot_bool
@@ -256,5 +289,6 @@ func (gdt *Quat) OperatorNeg() Quat {
 
 	ret := C.go_godot_quat_operator_neg(GDNative.api, arg0)
 
-	return Quat{base: ret}
+	return Quat{base: &ret}
+
 }

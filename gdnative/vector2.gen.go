@@ -12,6 +12,28 @@ package gdnative
 /*
 #include "gdnative.gen.h"
 #include <gdnative/vector2.h>
+// Include all headers for now. TODO: Look up all the required
+// headers we need to import based on the method arguments and return types.
+#include <gdnative/aabb.h>
+#include <gdnative/array.h>
+#include <gdnative/basis.h>
+#include <gdnative/color.h>
+#include <gdnative/dictionary.h>
+#include <gdnative/gdnative.h>
+#include <gdnative/node_path.h>
+#include <gdnative/plane.h>
+#include <gdnative/pool_arrays.h>
+#include <gdnative/quat.h>
+#include <gdnative/rect2.h>
+#include <gdnative/rid.h>
+#include <gdnative/string.h>
+#include <gdnative/string_name.h>
+#include <gdnative/transform.h>
+#include <gdnative/transform2d.h>
+#include <gdnative/variant.h>
+#include <gdnative/vector2.h>
+#include <gdnative/vector3.h>
+#include <gdnative_api_struct.gen.h>
 */
 import "C"
 
@@ -29,7 +51,8 @@ func (gdt *Vector2) AsString() String {
 
 	ret := C.go_godot_vector2_as_string(GDNative.api, arg0)
 
-	return String{base: ret}
+	return String{base: &ret}
+
 }
 
 // Normalized godot_vector2_normalized [[const godot_vector2 * p_self]] godot_vector2
@@ -38,7 +61,8 @@ func (gdt *Vector2) Normalized() Vector2 {
 
 	ret := C.go_godot_vector2_normalized(GDNative.api, arg0)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // Length godot_vector2_length [[const godot_vector2 * p_self]] godot_real
@@ -125,7 +149,8 @@ func (gdt *Vector2) LinearInterpolate(b Vector2, t Real) Vector2 {
 
 	ret := C.go_godot_vector2_linear_interpolate(GDNative.api, arg0, arg1, arg2)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // CubicInterpolate godot_vector2_cubic_interpolate [[const godot_vector2 * p_self] [const godot_vector2 * p_b] [const godot_vector2 * p_pre_a] [const godot_vector2 * p_post_b] [const godot_real p_t]] godot_vector2
@@ -138,7 +163,8 @@ func (gdt *Vector2) CubicInterpolate(b Vector2, preA Vector2, postB Vector2, t R
 
 	ret := C.go_godot_vector2_cubic_interpolate(GDNative.api, arg0, arg1, arg2, arg3, arg4)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // Rotated godot_vector2_rotated [[const godot_vector2 * p_self] [const godot_real p_phi]] godot_vector2
@@ -148,7 +174,8 @@ func (gdt *Vector2) Rotated(phi Real) Vector2 {
 
 	ret := C.go_godot_vector2_rotated(GDNative.api, arg0, arg1)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // Tangent godot_vector2_tangent [[const godot_vector2 * p_self]] godot_vector2
@@ -157,7 +184,8 @@ func (gdt *Vector2) Tangent() Vector2 {
 
 	ret := C.go_godot_vector2_tangent(GDNative.api, arg0)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // Floor godot_vector2_floor [[const godot_vector2 * p_self]] godot_vector2
@@ -166,7 +194,8 @@ func (gdt *Vector2) Floor() Vector2 {
 
 	ret := C.go_godot_vector2_floor(GDNative.api, arg0)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // Snapped godot_vector2_snapped [[const godot_vector2 * p_self] [const godot_vector2 * p_by]] godot_vector2
@@ -176,7 +205,8 @@ func (gdt *Vector2) Snapped(by Vector2) Vector2 {
 
 	ret := C.go_godot_vector2_snapped(GDNative.api, arg0, arg1)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // Aspect godot_vector2_aspect [[const godot_vector2 * p_self]] godot_real
@@ -205,7 +235,8 @@ func (gdt *Vector2) Slide(n Vector2) Vector2 {
 
 	ret := C.go_godot_vector2_slide(GDNative.api, arg0, arg1)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // Bounce godot_vector2_bounce [[const godot_vector2 * p_self] [const godot_vector2 * p_n]] godot_vector2
@@ -215,7 +246,8 @@ func (gdt *Vector2) Bounce(n Vector2) Vector2 {
 
 	ret := C.go_godot_vector2_bounce(GDNative.api, arg0, arg1)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // Reflect godot_vector2_reflect [[const godot_vector2 * p_self] [const godot_vector2 * p_n]] godot_vector2
@@ -225,7 +257,8 @@ func (gdt *Vector2) Reflect(n Vector2) Vector2 {
 
 	ret := C.go_godot_vector2_reflect(GDNative.api, arg0, arg1)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // Abs godot_vector2_abs [[const godot_vector2 * p_self]] godot_vector2
@@ -234,7 +267,8 @@ func (gdt *Vector2) Abs() Vector2 {
 
 	ret := C.go_godot_vector2_abs(GDNative.api, arg0)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // Clamped godot_vector2_clamped [[const godot_vector2 * p_self] [const godot_real p_length]] godot_vector2
@@ -244,7 +278,8 @@ func (gdt *Vector2) Clamped(length Real) Vector2 {
 
 	ret := C.go_godot_vector2_clamped(GDNative.api, arg0, arg1)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // OperatorAdd godot_vector2_operator_add [[const godot_vector2 * p_self] [const godot_vector2 * p_b]] godot_vector2
@@ -254,7 +289,8 @@ func (gdt *Vector2) OperatorAdd(b Vector2) Vector2 {
 
 	ret := C.go_godot_vector2_operator_add(GDNative.api, arg0, arg1)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // OperatorSubtract godot_vector2_operator_subtract [[const godot_vector2 * p_self] [const godot_vector2 * p_b]] godot_vector2
@@ -264,7 +300,8 @@ func (gdt *Vector2) OperatorSubtract(b Vector2) Vector2 {
 
 	ret := C.go_godot_vector2_operator_subtract(GDNative.api, arg0, arg1)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // OperatorMultiplyVector godot_vector2_operator_multiply_vector [[const godot_vector2 * p_self] [const godot_vector2 * p_b]] godot_vector2
@@ -274,7 +311,8 @@ func (gdt *Vector2) OperatorMultiplyVector(b Vector2) Vector2 {
 
 	ret := C.go_godot_vector2_operator_multiply_vector(GDNative.api, arg0, arg1)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // OperatorMultiplyScalar godot_vector2_operator_multiply_scalar [[const godot_vector2 * p_self] [const godot_real p_b]] godot_vector2
@@ -284,7 +322,8 @@ func (gdt *Vector2) OperatorMultiplyScalar(b Real) Vector2 {
 
 	ret := C.go_godot_vector2_operator_multiply_scalar(GDNative.api, arg0, arg1)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // OperatorDivideVector godot_vector2_operator_divide_vector [[const godot_vector2 * p_self] [const godot_vector2 * p_b]] godot_vector2
@@ -294,7 +333,8 @@ func (gdt *Vector2) OperatorDivideVector(b Vector2) Vector2 {
 
 	ret := C.go_godot_vector2_operator_divide_vector(GDNative.api, arg0, arg1)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // OperatorDivideScalar godot_vector2_operator_divide_scalar [[const godot_vector2 * p_self] [const godot_real p_b]] godot_vector2
@@ -304,7 +344,8 @@ func (gdt *Vector2) OperatorDivideScalar(b Real) Vector2 {
 
 	ret := C.go_godot_vector2_operator_divide_scalar(GDNative.api, arg0, arg1)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // OperatorEqual godot_vector2_operator_equal [[const godot_vector2 * p_self] [const godot_vector2 * p_b]] godot_bool
@@ -333,7 +374,8 @@ func (gdt *Vector2) OperatorNeg() Vector2 {
 
 	ret := C.go_godot_vector2_operator_neg(GDNative.api, arg0)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // SetX godot_vector2_set_x [[godot_vector2 * p_self] [const godot_real p_x]] void

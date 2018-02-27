@@ -12,6 +12,28 @@ package gdnative
 /*
 #include "gdnative.gen.h"
 #include <gdnative/plane.h>
+// Include all headers for now. TODO: Look up all the required
+// headers we need to import based on the method arguments and return types.
+#include <gdnative/aabb.h>
+#include <gdnative/array.h>
+#include <gdnative/basis.h>
+#include <gdnative/color.h>
+#include <gdnative/dictionary.h>
+#include <gdnative/gdnative.h>
+#include <gdnative/node_path.h>
+#include <gdnative/plane.h>
+#include <gdnative/pool_arrays.h>
+#include <gdnative/quat.h>
+#include <gdnative/rect2.h>
+#include <gdnative/rid.h>
+#include <gdnative/string.h>
+#include <gdnative/string_name.h>
+#include <gdnative/transform.h>
+#include <gdnative/transform2d.h>
+#include <gdnative/variant.h>
+#include <gdnative/vector2.h>
+#include <gdnative/vector3.h>
+#include <gdnative_api_struct.gen.h>
 */
 import "C"
 
@@ -29,7 +51,8 @@ func (gdt *Plane) AsString() String {
 
 	ret := C.go_godot_plane_as_string(GDNative.api, arg0)
 
-	return String{base: ret}
+	return String{base: &ret}
+
 }
 
 // Normalized godot_plane_normalized [[const godot_plane * p_self]] godot_plane
@@ -38,7 +61,8 @@ func (gdt *Plane) Normalized() Plane {
 
 	ret := C.go_godot_plane_normalized(GDNative.api, arg0)
 
-	return Plane{base: ret}
+	return Plane{base: &ret}
+
 }
 
 // Center godot_plane_center [[const godot_plane * p_self]] godot_vector3
@@ -47,7 +71,8 @@ func (gdt *Plane) Center() Vector3 {
 
 	ret := C.go_godot_plane_center(GDNative.api, arg0)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // GetAnyPoint godot_plane_get_any_point [[const godot_plane * p_self]] godot_vector3
@@ -56,7 +81,8 @@ func (gdt *Plane) GetAnyPoint() Vector3 {
 
 	ret := C.go_godot_plane_get_any_point(GDNative.api, arg0)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // IsPointOver godot_plane_is_point_over [[const godot_plane * p_self] [const godot_vector3 * p_point]] godot_bool
@@ -97,7 +123,8 @@ func (gdt *Plane) Project(point Vector3) Vector3 {
 
 	ret := C.go_godot_plane_project(GDNative.api, arg0, arg1)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // Intersect3 godot_plane_intersect_3 [[const godot_plane * p_self] [godot_vector3 * r_dest] [const godot_plane * p_b] [const godot_plane * p_c]] godot_bool
@@ -142,7 +169,8 @@ func (gdt *Plane) OperatorNeg() Plane {
 
 	ret := C.go_godot_plane_operator_neg(GDNative.api, arg0)
 
-	return Plane{base: ret}
+	return Plane{base: &ret}
+
 }
 
 // OperatorEqual godot_plane_operator_equal [[const godot_plane * p_self] [const godot_plane * p_b]] godot_bool
@@ -169,7 +197,8 @@ func (gdt *Plane) GetNormal() Vector3 {
 
 	ret := C.go_godot_plane_get_normal(GDNative.api, arg0)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // GetD godot_plane_get_d [[const godot_plane * p_self]] godot_real

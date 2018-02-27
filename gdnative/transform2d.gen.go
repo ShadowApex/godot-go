@@ -12,6 +12,28 @@ package gdnative
 /*
 #include "gdnative.gen.h"
 #include <gdnative/transform2d.h>
+// Include all headers for now. TODO: Look up all the required
+// headers we need to import based on the method arguments and return types.
+#include <gdnative/aabb.h>
+#include <gdnative/array.h>
+#include <gdnative/basis.h>
+#include <gdnative/color.h>
+#include <gdnative/dictionary.h>
+#include <gdnative/gdnative.h>
+#include <gdnative/node_path.h>
+#include <gdnative/plane.h>
+#include <gdnative/pool_arrays.h>
+#include <gdnative/quat.h>
+#include <gdnative/rect2.h>
+#include <gdnative/rid.h>
+#include <gdnative/string.h>
+#include <gdnative/string_name.h>
+#include <gdnative/transform.h>
+#include <gdnative/transform2d.h>
+#include <gdnative/variant.h>
+#include <gdnative/vector2.h>
+#include <gdnative/vector3.h>
+#include <gdnative_api_struct.gen.h>
 */
 import "C"
 
@@ -29,7 +51,8 @@ func (gdt *Transform2D) AsString() String {
 
 	ret := C.go_godot_transform2d_as_string(GDNative.api, arg0)
 
-	return String{base: ret}
+	return String{base: &ret}
+
 }
 
 // Inverse godot_transform2d_inverse [[const godot_transform2d * p_self]] godot_transform2d
@@ -38,7 +61,8 @@ func (gdt *Transform2D) Inverse() Transform2D {
 
 	ret := C.go_godot_transform2d_inverse(GDNative.api, arg0)
 
-	return Transform2D{base: ret}
+	return Transform2D{base: &ret}
+
 }
 
 // AffineInverse godot_transform2d_affine_inverse [[const godot_transform2d * p_self]] godot_transform2d
@@ -47,7 +71,8 @@ func (gdt *Transform2D) AffineInverse() Transform2D {
 
 	ret := C.go_godot_transform2d_affine_inverse(GDNative.api, arg0)
 
-	return Transform2D{base: ret}
+	return Transform2D{base: &ret}
+
 }
 
 // GetRotation godot_transform2d_get_rotation [[const godot_transform2d * p_self]] godot_real
@@ -65,7 +90,8 @@ func (gdt *Transform2D) GetOrigin() Vector2 {
 
 	ret := C.go_godot_transform2d_get_origin(GDNative.api, arg0)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // GetScale godot_transform2d_get_scale [[const godot_transform2d * p_self]] godot_vector2
@@ -74,7 +100,8 @@ func (gdt *Transform2D) GetScale() Vector2 {
 
 	ret := C.go_godot_transform2d_get_scale(GDNative.api, arg0)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // Orthonormalized godot_transform2d_orthonormalized [[const godot_transform2d * p_self]] godot_transform2d
@@ -83,7 +110,8 @@ func (gdt *Transform2D) Orthonormalized() Transform2D {
 
 	ret := C.go_godot_transform2d_orthonormalized(GDNative.api, arg0)
 
-	return Transform2D{base: ret}
+	return Transform2D{base: &ret}
+
 }
 
 // Rotated godot_transform2d_rotated [[const godot_transform2d * p_self] [const godot_real p_phi]] godot_transform2d
@@ -93,7 +121,8 @@ func (gdt *Transform2D) Rotated(phi Real) Transform2D {
 
 	ret := C.go_godot_transform2d_rotated(GDNative.api, arg0, arg1)
 
-	return Transform2D{base: ret}
+	return Transform2D{base: &ret}
+
 }
 
 // Scaled godot_transform2d_scaled [[const godot_transform2d * p_self] [const godot_vector2 * p_scale]] godot_transform2d
@@ -103,7 +132,8 @@ func (gdt *Transform2D) Scaled(scale Vector2) Transform2D {
 
 	ret := C.go_godot_transform2d_scaled(GDNative.api, arg0, arg1)
 
-	return Transform2D{base: ret}
+	return Transform2D{base: &ret}
+
 }
 
 // Translated godot_transform2d_translated [[const godot_transform2d * p_self] [const godot_vector2 * p_offset]] godot_transform2d
@@ -113,7 +143,8 @@ func (gdt *Transform2D) Translated(offset Vector2) Transform2D {
 
 	ret := C.go_godot_transform2d_translated(GDNative.api, arg0, arg1)
 
-	return Transform2D{base: ret}
+	return Transform2D{base: &ret}
+
 }
 
 // XformVector2 godot_transform2d_xform_vector2 [[const godot_transform2d * p_self] [const godot_vector2 * p_v]] godot_vector2
@@ -123,7 +154,8 @@ func (gdt *Transform2D) XformVector2(v Vector2) Vector2 {
 
 	ret := C.go_godot_transform2d_xform_vector2(GDNative.api, arg0, arg1)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // XformInvVector2 godot_transform2d_xform_inv_vector2 [[const godot_transform2d * p_self] [const godot_vector2 * p_v]] godot_vector2
@@ -133,7 +165,8 @@ func (gdt *Transform2D) XformInvVector2(v Vector2) Vector2 {
 
 	ret := C.go_godot_transform2d_xform_inv_vector2(GDNative.api, arg0, arg1)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // BasisXformVector2 godot_transform2d_basis_xform_vector2 [[const godot_transform2d * p_self] [const godot_vector2 * p_v]] godot_vector2
@@ -143,7 +176,8 @@ func (gdt *Transform2D) BasisXformVector2(v Vector2) Vector2 {
 
 	ret := C.go_godot_transform2d_basis_xform_vector2(GDNative.api, arg0, arg1)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // BasisXformInvVector2 godot_transform2d_basis_xform_inv_vector2 [[const godot_transform2d * p_self] [const godot_vector2 * p_v]] godot_vector2
@@ -153,7 +187,8 @@ func (gdt *Transform2D) BasisXformInvVector2(v Vector2) Vector2 {
 
 	ret := C.go_godot_transform2d_basis_xform_inv_vector2(GDNative.api, arg0, arg1)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // InterpolateWith godot_transform2d_interpolate_with [[const godot_transform2d * p_self] [const godot_transform2d * p_m] [const godot_real p_c]] godot_transform2d
@@ -164,7 +199,8 @@ func (gdt *Transform2D) InterpolateWith(m Transform2D, c Real) Transform2D {
 
 	ret := C.go_godot_transform2d_interpolate_with(GDNative.api, arg0, arg1, arg2)
 
-	return Transform2D{base: ret}
+	return Transform2D{base: &ret}
+
 }
 
 // OperatorEqual godot_transform2d_operator_equal [[const godot_transform2d * p_self] [const godot_transform2d * p_b]] godot_bool
@@ -184,7 +220,8 @@ func (gdt *Transform2D) OperatorMultiply(b Transform2D) Transform2D {
 
 	ret := C.go_godot_transform2d_operator_multiply(GDNative.api, arg0, arg1)
 
-	return Transform2D{base: ret}
+	return Transform2D{base: &ret}
+
 }
 
 // XformRect2 godot_transform2d_xform_rect2 [[const godot_transform2d * p_self] [const godot_rect2 * p_v]] godot_rect2
@@ -194,7 +231,8 @@ func (gdt *Transform2D) XformRect2(v Rect2) Rect2 {
 
 	ret := C.go_godot_transform2d_xform_rect2(GDNative.api, arg0, arg1)
 
-	return Rect2{base: ret}
+	return Rect2{base: &ret}
+
 }
 
 // XformInvRect2 godot_transform2d_xform_inv_rect2 [[const godot_transform2d * p_self] [const godot_rect2 * p_v]] godot_rect2
@@ -204,5 +242,6 @@ func (gdt *Transform2D) XformInvRect2(v Rect2) Rect2 {
 
 	ret := C.go_godot_transform2d_xform_inv_rect2(GDNative.api, arg0, arg1)
 
-	return Rect2{base: ret}
+	return Rect2{base: &ret}
+
 }

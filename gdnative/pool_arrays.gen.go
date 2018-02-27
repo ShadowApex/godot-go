@@ -12,6 +12,28 @@ package gdnative
 /*
 #include "gdnative.gen.h"
 #include <gdnative/pool_arrays.h>
+// Include all headers for now. TODO: Look up all the required
+// headers we need to import based on the method arguments and return types.
+#include <gdnative/aabb.h>
+#include <gdnative/array.h>
+#include <gdnative/basis.h>
+#include <gdnative/color.h>
+#include <gdnative/dictionary.h>
+#include <gdnative/gdnative.h>
+#include <gdnative/node_path.h>
+#include <gdnative/plane.h>
+#include <gdnative/pool_arrays.h>
+#include <gdnative/quat.h>
+#include <gdnative/rect2.h>
+#include <gdnative/rid.h>
+#include <gdnative/string.h>
+#include <gdnative/string_name.h>
+#include <gdnative/transform.h>
+#include <gdnative/transform2d.h>
+#include <gdnative/variant.h>
+#include <gdnative/vector2.h>
+#include <gdnative/vector3.h>
+#include <gdnative_api_struct.gen.h>
 */
 import "C"
 
@@ -23,18 +45,25 @@ func (gdt PoolArrayReadAccess) getBase() *C.godot_pool_array_read_access {
 	return gdt.base
 }
 
+// PoolByteArrayReadAccess is a Go wrapper for the C.godot_pool_byte_array_read_access type
 type PoolByteArrayReadAccess PoolArrayReadAccess
 
+// PoolIntArrayReadAccess is a Go wrapper for the C.godot_pool_int_array_read_access type
 type PoolIntArrayReadAccess PoolArrayReadAccess
 
+// PoolRealArrayReadAccess is a Go wrapper for the C.godot_pool_real_array_read_access type
 type PoolRealArrayReadAccess PoolArrayReadAccess
 
+// PoolStringArrayReadAccess is a Go wrapper for the C.godot_pool_string_array_read_access type
 type PoolStringArrayReadAccess PoolArrayReadAccess
 
+// PoolVector2ArrayReadAccess is a Go wrapper for the C.godot_pool_vector2_array_read_access type
 type PoolVector2ArrayReadAccess PoolArrayReadAccess
 
+// PoolVector3ArrayReadAccess is a Go wrapper for the C.godot_pool_vector3_array_read_access type
 type PoolVector3ArrayReadAccess PoolArrayReadAccess
 
+// PoolColorArrayReadAccess is a Go wrapper for the C.godot_pool_color_array_read_access type
 type PoolColorArrayReadAccess PoolArrayReadAccess
 
 type PoolArrayWriteAccess struct {
@@ -45,18 +74,25 @@ func (gdt PoolArrayWriteAccess) getBase() *C.godot_pool_array_write_access {
 	return gdt.base
 }
 
+// PoolByteArrayWriteAccess is a Go wrapper for the C.godot_pool_byte_array_write_access type
 type PoolByteArrayWriteAccess PoolArrayWriteAccess
 
+// PoolIntArrayWriteAccess is a Go wrapper for the C.godot_pool_int_array_write_access type
 type PoolIntArrayWriteAccess PoolArrayWriteAccess
 
+// PoolRealArrayWriteAccess is a Go wrapper for the C.godot_pool_real_array_write_access type
 type PoolRealArrayWriteAccess PoolArrayWriteAccess
 
+// PoolStringArrayWriteAccess is a Go wrapper for the C.godot_pool_string_array_write_access type
 type PoolStringArrayWriteAccess PoolArrayWriteAccess
 
+// PoolVector2ArrayWriteAccess is a Go wrapper for the C.godot_pool_vector2_array_write_access type
 type PoolVector2ArrayWriteAccess PoolArrayWriteAccess
 
+// PoolVector3ArrayWriteAccess is a Go wrapper for the C.godot_pool_vector3_array_write_access type
 type PoolVector3ArrayWriteAccess PoolArrayWriteAccess
 
+// PoolColorArrayWriteAccess is a Go wrapper for the C.godot_pool_color_array_write_access type
 type PoolColorArrayWriteAccess PoolArrayWriteAccess
 
 type PoolByteArray struct {
@@ -132,6 +168,7 @@ func (gdt *PoolByteArray) Read() PoolByteArrayReadAccess {
 	ret := C.go_godot_pool_byte_array_read(GDNative.api, arg0)
 
 	return PoolByteArrayReadAccess{base: ret}
+
 }
 
 // Write godot_pool_byte_array_write [[godot_pool_byte_array * p_self]] godot_pool_byte_array_write_access *
@@ -141,6 +178,7 @@ func (gdt *PoolByteArray) Write() PoolByteArrayWriteAccess {
 	ret := C.go_godot_pool_byte_array_write(GDNative.api, arg0)
 
 	return PoolByteArrayWriteAccess{base: ret}
+
 }
 
 // Set godot_pool_byte_array_set [[godot_pool_byte_array * p_self] [const godot_int p_idx] [const uint8_t p_data]] void
@@ -251,6 +289,7 @@ func (gdt *PoolIntArray) Read() PoolIntArrayReadAccess {
 	ret := C.go_godot_pool_int_array_read(GDNative.api, arg0)
 
 	return PoolIntArrayReadAccess{base: ret}
+
 }
 
 // Write godot_pool_int_array_write [[godot_pool_int_array * p_self]] godot_pool_int_array_write_access *
@@ -260,6 +299,7 @@ func (gdt *PoolIntArray) Write() PoolIntArrayWriteAccess {
 	ret := C.go_godot_pool_int_array_write(GDNative.api, arg0)
 
 	return PoolIntArrayWriteAccess{base: ret}
+
 }
 
 // Set godot_pool_int_array_set [[godot_pool_int_array * p_self] [const godot_int p_idx] [const godot_int p_data]] void
@@ -370,6 +410,7 @@ func (gdt *PoolRealArray) Read() PoolRealArrayReadAccess {
 	ret := C.go_godot_pool_real_array_read(GDNative.api, arg0)
 
 	return PoolRealArrayReadAccess{base: ret}
+
 }
 
 // Write godot_pool_real_array_write [[godot_pool_real_array * p_self]] godot_pool_real_array_write_access *
@@ -379,6 +420,7 @@ func (gdt *PoolRealArray) Write() PoolRealArrayWriteAccess {
 	ret := C.go_godot_pool_real_array_write(GDNative.api, arg0)
 
 	return PoolRealArrayWriteAccess{base: ret}
+
 }
 
 // Set godot_pool_real_array_set [[godot_pool_real_array * p_self] [const godot_int p_idx] [const godot_real p_data]] void
@@ -489,6 +531,7 @@ func (gdt *PoolStringArray) Read() PoolStringArrayReadAccess {
 	ret := C.go_godot_pool_string_array_read(GDNative.api, arg0)
 
 	return PoolStringArrayReadAccess{base: ret}
+
 }
 
 // Write godot_pool_string_array_write [[godot_pool_string_array * p_self]] godot_pool_string_array_write_access *
@@ -498,6 +541,7 @@ func (gdt *PoolStringArray) Write() PoolStringArrayWriteAccess {
 	ret := C.go_godot_pool_string_array_write(GDNative.api, arg0)
 
 	return PoolStringArrayWriteAccess{base: ret}
+
 }
 
 // Set godot_pool_string_array_set [[godot_pool_string_array * p_self] [const godot_int p_idx] [const godot_string * p_data]] void
@@ -516,7 +560,8 @@ func (gdt *PoolStringArray) Get(idx Int) String {
 
 	ret := C.go_godot_pool_string_array_get(GDNative.api, arg0, arg1)
 
-	return String{base: ret}
+	return String{base: &ret}
+
 }
 
 // Size godot_pool_string_array_size [[const godot_pool_string_array * p_self]] godot_int
@@ -608,6 +653,7 @@ func (gdt *PoolVector2Array) Read() PoolVector2ArrayReadAccess {
 	ret := C.go_godot_pool_vector2_array_read(GDNative.api, arg0)
 
 	return PoolVector2ArrayReadAccess{base: ret}
+
 }
 
 // Write godot_pool_vector2_array_write [[godot_pool_vector2_array * p_self]] godot_pool_vector2_array_write_access *
@@ -617,6 +663,7 @@ func (gdt *PoolVector2Array) Write() PoolVector2ArrayWriteAccess {
 	ret := C.go_godot_pool_vector2_array_write(GDNative.api, arg0)
 
 	return PoolVector2ArrayWriteAccess{base: ret}
+
 }
 
 // Set godot_pool_vector2_array_set [[godot_pool_vector2_array * p_self] [const godot_int p_idx] [const godot_vector2 * p_data]] void
@@ -635,7 +682,8 @@ func (gdt *PoolVector2Array) Get(idx Int) Vector2 {
 
 	ret := C.go_godot_pool_vector2_array_get(GDNative.api, arg0, arg1)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // Size godot_pool_vector2_array_size [[const godot_pool_vector2_array * p_self]] godot_int
@@ -727,6 +775,7 @@ func (gdt *PoolVector3Array) Read() PoolVector3ArrayReadAccess {
 	ret := C.go_godot_pool_vector3_array_read(GDNative.api, arg0)
 
 	return PoolVector3ArrayReadAccess{base: ret}
+
 }
 
 // Write godot_pool_vector3_array_write [[godot_pool_vector3_array * p_self]] godot_pool_vector3_array_write_access *
@@ -736,6 +785,7 @@ func (gdt *PoolVector3Array) Write() PoolVector3ArrayWriteAccess {
 	ret := C.go_godot_pool_vector3_array_write(GDNative.api, arg0)
 
 	return PoolVector3ArrayWriteAccess{base: ret}
+
 }
 
 // Set godot_pool_vector3_array_set [[godot_pool_vector3_array * p_self] [const godot_int p_idx] [const godot_vector3 * p_data]] void
@@ -754,7 +804,8 @@ func (gdt *PoolVector3Array) Get(idx Int) Vector3 {
 
 	ret := C.go_godot_pool_vector3_array_get(GDNative.api, arg0, arg1)
 
-	return Vector3{base: ret}
+	return Vector3{base: &ret}
+
 }
 
 // Size godot_pool_vector3_array_size [[const godot_pool_vector3_array * p_self]] godot_int
@@ -846,6 +897,7 @@ func (gdt *PoolColorArray) Read() PoolColorArrayReadAccess {
 	ret := C.go_godot_pool_color_array_read(GDNative.api, arg0)
 
 	return PoolColorArrayReadAccess{base: ret}
+
 }
 
 // Write godot_pool_color_array_write [[godot_pool_color_array * p_self]] godot_pool_color_array_write_access *
@@ -855,6 +907,7 @@ func (gdt *PoolColorArray) Write() PoolColorArrayWriteAccess {
 	ret := C.go_godot_pool_color_array_write(GDNative.api, arg0)
 
 	return PoolColorArrayWriteAccess{base: ret}
+
 }
 
 // Set godot_pool_color_array_set [[godot_pool_color_array * p_self] [const godot_int p_idx] [const godot_color * p_data]] void
@@ -873,7 +926,8 @@ func (gdt *PoolColorArray) Get(idx Int) Color {
 
 	ret := C.go_godot_pool_color_array_get(GDNative.api, arg0, arg1)
 
-	return Color{base: ret}
+	return Color{base: &ret}
+
 }
 
 // Size godot_pool_color_array_size [[const godot_pool_color_array * p_self]] godot_int

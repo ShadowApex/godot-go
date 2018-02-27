@@ -12,6 +12,28 @@ package gdnative
 /*
 #include "gdnative.gen.h"
 #include <gdnative/rect2.h>
+// Include all headers for now. TODO: Look up all the required
+// headers we need to import based on the method arguments and return types.
+#include <gdnative/aabb.h>
+#include <gdnative/array.h>
+#include <gdnative/basis.h>
+#include <gdnative/color.h>
+#include <gdnative/dictionary.h>
+#include <gdnative/gdnative.h>
+#include <gdnative/node_path.h>
+#include <gdnative/plane.h>
+#include <gdnative/pool_arrays.h>
+#include <gdnative/quat.h>
+#include <gdnative/rect2.h>
+#include <gdnative/rid.h>
+#include <gdnative/string.h>
+#include <gdnative/string_name.h>
+#include <gdnative/transform.h>
+#include <gdnative/transform2d.h>
+#include <gdnative/variant.h>
+#include <gdnative/vector2.h>
+#include <gdnative/vector3.h>
+#include <gdnative_api_struct.gen.h>
 */
 import "C"
 
@@ -29,7 +51,8 @@ func (gdt *Rect2) AsString() String {
 
 	ret := C.go_godot_rect2_as_string(GDNative.api, arg0)
 
-	return String{base: ret}
+	return String{base: &ret}
+
 }
 
 // GetArea godot_rect2_get_area [[const godot_rect2 * p_self]] godot_real
@@ -77,7 +100,8 @@ func (gdt *Rect2) Clip(b Rect2) Rect2 {
 
 	ret := C.go_godot_rect2_clip(GDNative.api, arg0, arg1)
 
-	return Rect2{base: ret}
+	return Rect2{base: &ret}
+
 }
 
 // Merge godot_rect2_merge [[const godot_rect2 * p_self] [const godot_rect2 * p_b]] godot_rect2
@@ -87,7 +111,8 @@ func (gdt *Rect2) Merge(b Rect2) Rect2 {
 
 	ret := C.go_godot_rect2_merge(GDNative.api, arg0, arg1)
 
-	return Rect2{base: ret}
+	return Rect2{base: &ret}
+
 }
 
 // HasPoint godot_rect2_has_point [[const godot_rect2 * p_self] [const godot_vector2 * p_point]] godot_bool
@@ -107,7 +132,8 @@ func (gdt *Rect2) Grow(by Real) Rect2 {
 
 	ret := C.go_godot_rect2_grow(GDNative.api, arg0, arg1)
 
-	return Rect2{base: ret}
+	return Rect2{base: &ret}
+
 }
 
 // Expand godot_rect2_expand [[const godot_rect2 * p_self] [const godot_vector2 * p_to]] godot_rect2
@@ -117,7 +143,8 @@ func (gdt *Rect2) Expand(to Vector2) Rect2 {
 
 	ret := C.go_godot_rect2_expand(GDNative.api, arg0, arg1)
 
-	return Rect2{base: ret}
+	return Rect2{base: &ret}
+
 }
 
 // OperatorEqual godot_rect2_operator_equal [[const godot_rect2 * p_self] [const godot_rect2 * p_b]] godot_bool
@@ -136,7 +163,8 @@ func (gdt *Rect2) GetPosition() Vector2 {
 
 	ret := C.go_godot_rect2_get_position(GDNative.api, arg0)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // GetSize godot_rect2_get_size [[const godot_rect2 * p_self]] godot_vector2
@@ -145,7 +173,8 @@ func (gdt *Rect2) GetSize() Vector2 {
 
 	ret := C.go_godot_rect2_get_size(GDNative.api, arg0)
 
-	return Vector2{base: ret}
+	return Vector2{base: &ret}
+
 }
 
 // SetPosition godot_rect2_set_position [[godot_rect2 * p_self] [const godot_vector2 * p_pos]] void

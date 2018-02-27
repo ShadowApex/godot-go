@@ -63,18 +63,36 @@ func godot_gdnative_terminate(options *C.godot_gdnative_terminate_options) {
 	NativeScript.api = nil
 }
 
+type Char string
+
+func (c Char) getBase() *C.char {
+	return C.CString(string(c))
+}
+
+type Double float64
+
+func (d Double) getBase() C.double {
+	return C.double(d)
+}
+
+type Int64T int64
+
+func (i Int64T) getBase() C.int64_t {
+	return C.int64_t(i)
+}
+
+type SignedChar int8
+
+func (s SignedChar) getBase() *C.schar {
+	intVal := int8(s)
+	return (*C.schar)(unsafe.Pointer(&intVal))
+}
+
 // Uint is a Godot C uint wrapper
 type Uint uint
 
 func (u Uint) getBase() C.uint {
 	return C.uint(u)
-}
-
-// Uint64T is a Godot C uint64_t wrapper
-type Uint64T uint64
-
-func (u Uint64T) getBase() C.uint64_t {
-	return C.uint64_t(u)
 }
 
 // Uint8T is a Godot C uint8_t wrapper
@@ -84,11 +102,34 @@ func (u Uint8T) getBase() C.uint8_t {
 	return C.uint8_t(u)
 }
 
+// Uint32T is a Godot C uint32_t wrapper
+type Uint32T uint32
+
+func (u Uint32T) getBase() C.uint32_t {
+	return C.uint32_t(u)
+}
+
+// Uint64T is a Godot C uint64_t wrapper
+type Uint64T uint64
+
+func (u Uint64T) getBase() C.uint64_t {
+	return C.uint64_t(u)
+}
+
+// newWcharT will convert the given C.wchar_t into a Go string
+func newWcharT(str *C.wchar_t) WcharT {
+	goStr, err := wchar.WcharStringPtrToGoString(unsafe.Pointer(str))
+	if err != nil {
+		log.Println("Error converting wchar_t to Go string:", err)
+	}
+	return WcharT(goStr)
+}
+
 // WcharT is a Godot C wchar_t wrapper
 type WcharT string
 
 func (w WcharT) getBase() *C.wchar_t {
-	wcharString, err := wchar.FromGoString(w)
+	wcharString, err := wchar.FromGoString(string(w))
 	if err != nil {
 		log.Println("Error decoding WcharT:", err)
 	}

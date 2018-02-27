@@ -12,6 +12,28 @@ package gdnative
 /*
 #include "gdnative.gen.h"
 #include <gdnative/node_path.h>
+// Include all headers for now. TODO: Look up all the required
+// headers we need to import based on the method arguments and return types.
+#include <gdnative/aabb.h>
+#include <gdnative/array.h>
+#include <gdnative/basis.h>
+#include <gdnative/color.h>
+#include <gdnative/dictionary.h>
+#include <gdnative/gdnative.h>
+#include <gdnative/node_path.h>
+#include <gdnative/plane.h>
+#include <gdnative/pool_arrays.h>
+#include <gdnative/quat.h>
+#include <gdnative/rect2.h>
+#include <gdnative/rid.h>
+#include <gdnative/string.h>
+#include <gdnative/string_name.h>
+#include <gdnative/transform.h>
+#include <gdnative/transform2d.h>
+#include <gdnative/variant.h>
+#include <gdnative/vector2.h>
+#include <gdnative/vector3.h>
+#include <gdnative_api_struct.gen.h>
 */
 import "C"
 
@@ -36,7 +58,8 @@ func (gdt *NodePath) AsString() String {
 
 	ret := C.go_godot_node_path_as_string(GDNative.api, arg0)
 
-	return String{base: ret}
+	return String{base: &ret}
+
 }
 
 // IsAbsolute godot_node_path_is_absolute [[const godot_node_path * p_self]] godot_bool
@@ -64,7 +87,8 @@ func (gdt *NodePath) GetName(idx Int) String {
 
 	ret := C.go_godot_node_path_get_name(GDNative.api, arg0, arg1)
 
-	return String{base: ret}
+	return String{base: &ret}
+
 }
 
 // GetSubnameCount godot_node_path_get_subname_count [[const godot_node_path * p_self]] godot_int
@@ -83,7 +107,8 @@ func (gdt *NodePath) GetSubname(idx Int) String {
 
 	ret := C.go_godot_node_path_get_subname(GDNative.api, arg0, arg1)
 
-	return String{base: ret}
+	return String{base: &ret}
+
 }
 
 // GetConcatenatedSubnames godot_node_path_get_concatenated_subnames [[const godot_node_path * p_self]] godot_string
@@ -92,7 +117,8 @@ func (gdt *NodePath) GetConcatenatedSubnames() String {
 
 	ret := C.go_godot_node_path_get_concatenated_subnames(GDNative.api, arg0)
 
-	return String{base: ret}
+	return String{base: &ret}
+
 }
 
 // IsEmpty godot_node_path_is_empty [[const godot_node_path * p_self]] godot_bool

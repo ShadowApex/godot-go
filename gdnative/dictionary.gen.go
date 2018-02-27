@@ -12,6 +12,28 @@ package gdnative
 /*
 #include "gdnative.gen.h"
 #include <gdnative/dictionary.h>
+// Include all headers for now. TODO: Look up all the required
+// headers we need to import based on the method arguments and return types.
+#include <gdnative/aabb.h>
+#include <gdnative/array.h>
+#include <gdnative/basis.h>
+#include <gdnative/color.h>
+#include <gdnative/dictionary.h>
+#include <gdnative/gdnative.h>
+#include <gdnative/node_path.h>
+#include <gdnative/plane.h>
+#include <gdnative/pool_arrays.h>
+#include <gdnative/quat.h>
+#include <gdnative/rect2.h>
+#include <gdnative/rid.h>
+#include <gdnative/string.h>
+#include <gdnative/string_name.h>
+#include <gdnative/transform.h>
+#include <gdnative/transform2d.h>
+#include <gdnative/variant.h>
+#include <gdnative/vector2.h>
+#include <gdnative/vector3.h>
+#include <gdnative_api_struct.gen.h>
 */
 import "C"
 
@@ -98,7 +120,8 @@ func (gdt *Dictionary) Keys() Array {
 
 	ret := C.go_godot_dictionary_keys(GDNative.api, arg0)
 
-	return Array{base: ret}
+	return Array{base: &ret}
+
 }
 
 // Values godot_dictionary_values [[const godot_dictionary * p_self]] godot_array
@@ -107,7 +130,8 @@ func (gdt *Dictionary) Values() Array {
 
 	ret := C.go_godot_dictionary_values(GDNative.api, arg0)
 
-	return Array{base: ret}
+	return Array{base: &ret}
+
 }
 
 // Get godot_dictionary_get [[const godot_dictionary * p_self] [const godot_variant * p_key]] godot_variant
@@ -117,7 +141,8 @@ func (gdt *Dictionary) Get(key Variant) Variant {
 
 	ret := C.go_godot_dictionary_get(GDNative.api, arg0, arg1)
 
-	return Variant{base: ret}
+	return Variant{base: &ret}
+
 }
 
 // Set godot_dictionary_set [[godot_dictionary * p_self] [const godot_variant * p_key] [const godot_variant * p_value]] void
@@ -137,6 +162,7 @@ func (gdt *Dictionary) OperatorIndex(key Variant) Variant {
 	ret := C.go_godot_dictionary_operator_index(GDNative.api, arg0, arg1)
 
 	return Variant{base: ret}
+
 }
 
 // OperatorIndexConst godot_dictionary_operator_index_const [[const godot_dictionary * p_self] [const godot_variant * p_key]] const godot_variant *
@@ -147,6 +173,7 @@ func (gdt *Dictionary) OperatorIndexConst(key Variant) Variant {
 	ret := C.go_godot_dictionary_operator_index_const(GDNative.api, arg0, arg1)
 
 	return Variant{base: ret}
+
 }
 
 // Next godot_dictionary_next [[const godot_dictionary * p_self] [const godot_variant * p_key]] godot_variant *
@@ -157,6 +184,7 @@ func (gdt *Dictionary) Next(key Variant) Variant {
 	ret := C.go_godot_dictionary_next(GDNative.api, arg0, arg1)
 
 	return Variant{base: ret}
+
 }
 
 // OperatorEqual godot_dictionary_operator_equal [[const godot_dictionary * p_self] [const godot_dictionary * p_b]] godot_bool
@@ -175,5 +203,6 @@ func (gdt *Dictionary) ToJson() String {
 
 	ret := C.go_godot_dictionary_to_json(GDNative.api, arg0)
 
-	return String{base: ret}
+	return String{base: &ret}
+
 }
