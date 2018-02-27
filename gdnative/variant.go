@@ -15,6 +15,11 @@ func NewVariantWithString(str *String) Variant {
 	return Variant{base: &variant}
 }
 
+func (gdt *Variant) GetType() VariantType {
+	variantType := C.go_godot_variant_get_type(GDNative.api, gdt.getBase())
+	return VariantType(variantType)
+}
+
 type VariantArray struct {
 	base  **C.godot_variant
 	array []Variant

@@ -103,6 +103,29 @@ func (gdt PoolByteArray) getBase() *C.godot_pool_byte_array {
 	return gdt.base
 }
 
+// NewPoolByteArray godot_pool_byte_array_new [[godot_pool_byte_array * r_dest]] void
+func NewPoolByteArray() *PoolByteArray {
+	var dest C.godot_pool_byte_array
+	C.go_godot_pool_byte_array_new(GDNative.api, &dest)
+	return &PoolByteArray{base: &dest}
+}
+
+// NewPoolByteArrayCopy godot_pool_byte_array_new_copy [[godot_pool_byte_array * r_dest] [const godot_pool_byte_array * p_src]] void
+func NewPoolByteArrayCopy(src PoolByteArray) *PoolByteArray {
+	var dest C.godot_pool_byte_array
+	arg1 := src.getBase()
+	C.go_godot_pool_byte_array_new_copy(GDNative.api, &dest, arg1)
+	return &PoolByteArray{base: &dest}
+}
+
+// NewPoolByteArrayWithArray godot_pool_byte_array_new_with_array [[godot_pool_byte_array * r_dest] [const godot_array * p_a]] void
+func NewPoolByteArrayWithArray(a Array) *PoolByteArray {
+	var dest C.godot_pool_byte_array
+	arg1 := a.getBase()
+	C.go_godot_pool_byte_array_new_with_array(GDNative.api, &dest, arg1)
+	return &PoolByteArray{base: &dest}
+}
+
 // Append godot_pool_byte_array_append [[godot_pool_byte_array * p_self] [const uint8_t p_data]] void
 func (gdt *PoolByteArray) Append(data Uint8T) {
 	arg0 := gdt.getBase()
@@ -222,6 +245,29 @@ type PoolIntArray struct {
 
 func (gdt PoolIntArray) getBase() *C.godot_pool_int_array {
 	return gdt.base
+}
+
+// NewPoolIntArray godot_pool_int_array_new [[godot_pool_int_array * r_dest]] void
+func NewPoolIntArray() *PoolIntArray {
+	var dest C.godot_pool_int_array
+	C.go_godot_pool_int_array_new(GDNative.api, &dest)
+	return &PoolIntArray{base: &dest}
+}
+
+// NewPoolIntArrayCopy godot_pool_int_array_new_copy [[godot_pool_int_array * r_dest] [const godot_pool_int_array * p_src]] void
+func NewPoolIntArrayCopy(src PoolIntArray) *PoolIntArray {
+	var dest C.godot_pool_int_array
+	arg1 := src.getBase()
+	C.go_godot_pool_int_array_new_copy(GDNative.api, &dest, arg1)
+	return &PoolIntArray{base: &dest}
+}
+
+// NewPoolIntArrayWithArray godot_pool_int_array_new_with_array [[godot_pool_int_array * r_dest] [const godot_array * p_a]] void
+func NewPoolIntArrayWithArray(a Array) *PoolIntArray {
+	var dest C.godot_pool_int_array
+	arg1 := a.getBase()
+	C.go_godot_pool_int_array_new_with_array(GDNative.api, &dest, arg1)
+	return &PoolIntArray{base: &dest}
 }
 
 // Append godot_pool_int_array_append [[godot_pool_int_array * p_self] [const godot_int p_data]] void
@@ -345,6 +391,29 @@ func (gdt PoolRealArray) getBase() *C.godot_pool_real_array {
 	return gdt.base
 }
 
+// NewPoolRealArray godot_pool_real_array_new [[godot_pool_real_array * r_dest]] void
+func NewPoolRealArray() *PoolRealArray {
+	var dest C.godot_pool_real_array
+	C.go_godot_pool_real_array_new(GDNative.api, &dest)
+	return &PoolRealArray{base: &dest}
+}
+
+// NewPoolRealArrayCopy godot_pool_real_array_new_copy [[godot_pool_real_array * r_dest] [const godot_pool_real_array * p_src]] void
+func NewPoolRealArrayCopy(src PoolRealArray) *PoolRealArray {
+	var dest C.godot_pool_real_array
+	arg1 := src.getBase()
+	C.go_godot_pool_real_array_new_copy(GDNative.api, &dest, arg1)
+	return &PoolRealArray{base: &dest}
+}
+
+// NewPoolRealArrayWithArray godot_pool_real_array_new_with_array [[godot_pool_real_array * r_dest] [const godot_array * p_a]] void
+func NewPoolRealArrayWithArray(a Array) *PoolRealArray {
+	var dest C.godot_pool_real_array
+	arg1 := a.getBase()
+	C.go_godot_pool_real_array_new_with_array(GDNative.api, &dest, arg1)
+	return &PoolRealArray{base: &dest}
+}
+
 // Append godot_pool_real_array_append [[godot_pool_real_array * p_self] [const godot_real p_data]] void
 func (gdt *PoolRealArray) Append(data Real) {
 	arg0 := gdt.getBase()
@@ -464,6 +533,29 @@ type PoolStringArray struct {
 
 func (gdt PoolStringArray) getBase() *C.godot_pool_string_array {
 	return gdt.base
+}
+
+// NewPoolStringArray godot_pool_string_array_new [[godot_pool_string_array * r_dest]] void
+func NewPoolStringArray() *PoolStringArray {
+	var dest C.godot_pool_string_array
+	C.go_godot_pool_string_array_new(GDNative.api, &dest)
+	return &PoolStringArray{base: &dest}
+}
+
+// NewPoolStringArrayCopy godot_pool_string_array_new_copy [[godot_pool_string_array * r_dest] [const godot_pool_string_array * p_src]] void
+func NewPoolStringArrayCopy(src PoolStringArray) *PoolStringArray {
+	var dest C.godot_pool_string_array
+	arg1 := src.getBase()
+	C.go_godot_pool_string_array_new_copy(GDNative.api, &dest, arg1)
+	return &PoolStringArray{base: &dest}
+}
+
+// NewPoolStringArrayWithArray godot_pool_string_array_new_with_array [[godot_pool_string_array * r_dest] [const godot_array * p_a]] void
+func NewPoolStringArrayWithArray(a Array) *PoolStringArray {
+	var dest C.godot_pool_string_array
+	arg1 := a.getBase()
+	C.go_godot_pool_string_array_new_with_array(GDNative.api, &dest, arg1)
+	return &PoolStringArray{base: &dest}
 }
 
 // Append godot_pool_string_array_append [[godot_pool_string_array * p_self] [const godot_string * p_data]] void
@@ -588,6 +680,29 @@ func (gdt PoolVector2Array) getBase() *C.godot_pool_vector2_array {
 	return gdt.base
 }
 
+// NewPoolVector2Array godot_pool_vector2_array_new [[godot_pool_vector2_array * r_dest]] void
+func NewPoolVector2Array() *PoolVector2Array {
+	var dest C.godot_pool_vector2_array
+	C.go_godot_pool_vector2_array_new(GDNative.api, &dest)
+	return &PoolVector2Array{base: &dest}
+}
+
+// NewPoolVector2ArrayCopy godot_pool_vector2_array_new_copy [[godot_pool_vector2_array * r_dest] [const godot_pool_vector2_array * p_src]] void
+func NewPoolVector2ArrayCopy(src PoolVector2Array) *PoolVector2Array {
+	var dest C.godot_pool_vector2_array
+	arg1 := src.getBase()
+	C.go_godot_pool_vector2_array_new_copy(GDNative.api, &dest, arg1)
+	return &PoolVector2Array{base: &dest}
+}
+
+// NewPoolVector2ArrayWithArray godot_pool_vector2_array_new_with_array [[godot_pool_vector2_array * r_dest] [const godot_array * p_a]] void
+func NewPoolVector2ArrayWithArray(a Array) *PoolVector2Array {
+	var dest C.godot_pool_vector2_array
+	arg1 := a.getBase()
+	C.go_godot_pool_vector2_array_new_with_array(GDNative.api, &dest, arg1)
+	return &PoolVector2Array{base: &dest}
+}
+
 // Append godot_pool_vector2_array_append [[godot_pool_vector2_array * p_self] [const godot_vector2 * p_data]] void
 func (gdt *PoolVector2Array) Append(data Vector2) {
 	arg0 := gdt.getBase()
@@ -710,6 +825,29 @@ func (gdt PoolVector3Array) getBase() *C.godot_pool_vector3_array {
 	return gdt.base
 }
 
+// NewPoolVector3Array godot_pool_vector3_array_new [[godot_pool_vector3_array * r_dest]] void
+func NewPoolVector3Array() *PoolVector3Array {
+	var dest C.godot_pool_vector3_array
+	C.go_godot_pool_vector3_array_new(GDNative.api, &dest)
+	return &PoolVector3Array{base: &dest}
+}
+
+// NewPoolVector3ArrayCopy godot_pool_vector3_array_new_copy [[godot_pool_vector3_array * r_dest] [const godot_pool_vector3_array * p_src]] void
+func NewPoolVector3ArrayCopy(src PoolVector3Array) *PoolVector3Array {
+	var dest C.godot_pool_vector3_array
+	arg1 := src.getBase()
+	C.go_godot_pool_vector3_array_new_copy(GDNative.api, &dest, arg1)
+	return &PoolVector3Array{base: &dest}
+}
+
+// NewPoolVector3ArrayWithArray godot_pool_vector3_array_new_with_array [[godot_pool_vector3_array * r_dest] [const godot_array * p_a]] void
+func NewPoolVector3ArrayWithArray(a Array) *PoolVector3Array {
+	var dest C.godot_pool_vector3_array
+	arg1 := a.getBase()
+	C.go_godot_pool_vector3_array_new_with_array(GDNative.api, &dest, arg1)
+	return &PoolVector3Array{base: &dest}
+}
+
 // Append godot_pool_vector3_array_append [[godot_pool_vector3_array * p_self] [const godot_vector3 * p_data]] void
 func (gdt *PoolVector3Array) Append(data Vector3) {
 	arg0 := gdt.getBase()
@@ -830,6 +968,29 @@ type PoolColorArray struct {
 
 func (gdt PoolColorArray) getBase() *C.godot_pool_color_array {
 	return gdt.base
+}
+
+// NewPoolColorArray godot_pool_color_array_new [[godot_pool_color_array * r_dest]] void
+func NewPoolColorArray() *PoolColorArray {
+	var dest C.godot_pool_color_array
+	C.go_godot_pool_color_array_new(GDNative.api, &dest)
+	return &PoolColorArray{base: &dest}
+}
+
+// NewPoolColorArrayCopy godot_pool_color_array_new_copy [[godot_pool_color_array * r_dest] [const godot_pool_color_array * p_src]] void
+func NewPoolColorArrayCopy(src PoolColorArray) *PoolColorArray {
+	var dest C.godot_pool_color_array
+	arg1 := src.getBase()
+	C.go_godot_pool_color_array_new_copy(GDNative.api, &dest, arg1)
+	return &PoolColorArray{base: &dest}
+}
+
+// NewPoolColorArrayWithArray godot_pool_color_array_new_with_array [[godot_pool_color_array * r_dest] [const godot_array * p_a]] void
+func NewPoolColorArrayWithArray(a Array) *PoolColorArray {
+	var dest C.godot_pool_color_array
+	arg1 := a.getBase()
+	C.go_godot_pool_color_array_new_with_array(GDNative.api, &dest, arg1)
+	return &PoolColorArray{base: &dest}
 }
 
 // Append godot_pool_color_array_append [[godot_pool_color_array * p_self] [const godot_color * p_data]] void

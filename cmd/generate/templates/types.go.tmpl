@@ -62,8 +62,25 @@ import "C"
 		{{ range $j, $method := ($view.MethodsList $typedef) }}
 				// {{ $view.ToGoMethodName $typedef $method }} {{ $method.Name }} {{ $method.Arguments }} {{ $method.ReturnType }}
 			{{ if ($view.MethodIsConstructor $method) -}}
-				func {{ $view.ToGoMethodName $typedef $method }}({{ range $k, $arg := $method.Arguments }}{{ $view.ToGoArgName (index $arg 1) }} {{ $view.ToGoArgType (index $arg 0) true }}, {{ end }}) *{{ $typedef.GoName }} {
-					return &{{ $typedef.GoName }}{}
+				func {{ $view.ToGoMethodName $typedef $method }}({{ range $k, $arg := $method.Arguments }}{{ if (ne $k 0) }}{{ $view.ToGoArgName (index $arg 1) }} {{ $view.ToGoArgType (index $arg 0) true }}, {{ end }}{{ end }}) *{{ $typedef.GoName }} {
+				var dest C.{{ $view.StripPointer (index (index $method.Arguments 0) 0) }} {{/* First argument is always the destination */}}
+					{{ range $k, $arg := $method.Arguments -}}
+						{{ if (ne $k 0 ) -}}
+							{{ if $view.IsVoidPointerType (index $arg 0) -}}
+								arg{{ $k }} := unsafe.Pointer({{ $view.ToGoArgName (index $arg 1) }}.getBase())
+							{{ else -}}
+								{{ if $view.IsDoublePointer (index $arg 0) -}}
+									arg{{ $k }}Array := {{ $view.ToGoArgType (index $arg 0) false }}Array{array: {{ $view.ToGoArgName (index $arg 1) }}}
+									arg{{ $k }} := arg{{ $k }}Array.getBase()
+								{{ else -}}
+									arg{{ $k }} := {{ $view.ToGoArgName (index $arg 1) }}.getBase()
+								{{ end -}}
+							{{ end -}}
+						{{ end -}}
+					{{ end -}}
+
+					C.go_{{ $method.Name }}(GDNative.api, {{ range $k, $arg := $method.Arguments }}{{ if (eq $k 0) }}&dest, {{ else }}{{ $view.OutputCArg $arg }}arg{{ $k }}, {{ end }}{{ end }})
+					return &{{ $typedef.GoName }}{base: &dest}
 				}
 			{{ else -}}
 				func (gdt *{{ $typedef.GoName }}) {{ $view.ToGoMethodName $typedef $method }}({{ range $k, $arg := $method.Arguments }}{{ if $view.NotSelfArg (index $arg 1) }}{{ $view.ToGoArgName (index $arg 1) }} {{ $view.ToGoArgType (index $arg 0) true }}, {{ end }}{{ end }})  {{ $view.ToGoReturnType $method.ReturnType }} {

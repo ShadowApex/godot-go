@@ -45,6 +45,26 @@ func (gdt Rect2) getBase() *C.godot_rect2 {
 	return gdt.base
 }
 
+// NewRect2WithPositionAndSize godot_rect2_new_with_position_and_size [[godot_rect2 * r_dest] [const godot_vector2 * p_pos] [const godot_vector2 * p_size]] void
+func NewRect2WithPositionAndSize(pos Vector2, size Vector2) *Rect2 {
+	var dest C.godot_rect2
+	arg1 := pos.getBase()
+	arg2 := size.getBase()
+	C.go_godot_rect2_new_with_position_and_size(GDNative.api, &dest, arg1, arg2)
+	return &Rect2{base: &dest}
+}
+
+// NewRect2 godot_rect2_new [[godot_rect2 * r_dest] [const godot_real p_x] [const godot_real p_y] [const godot_real p_width] [const godot_real p_height]] void
+func NewRect2(x Real, y Real, width Real, height Real) *Rect2 {
+	var dest C.godot_rect2
+	arg1 := x.getBase()
+	arg2 := y.getBase()
+	arg3 := width.getBase()
+	arg4 := height.getBase()
+	C.go_godot_rect2_new(GDNative.api, &dest, arg1, arg2, arg3, arg4)
+	return &Rect2{base: &dest}
+}
+
 // AsString godot_rect2_as_string [[const godot_rect2 * p_self]] godot_string
 func (gdt *Rect2) AsString() String {
 	arg0 := gdt.getBase()

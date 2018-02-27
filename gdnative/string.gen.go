@@ -45,6 +45,21 @@ func (gdt String) getBase() *C.godot_string {
 	return gdt.base
 }
 
+// NewString godot_string_new [[godot_string * r_dest]] void
+func NewString() *String {
+	var dest C.godot_string
+	C.go_godot_string_new(GDNative.api, &dest)
+	return &String{base: &dest}
+}
+
+// NewStringCopy godot_string_new_copy [[godot_string * r_dest] [const godot_string * p_src]] void
+func NewStringCopy(src String) *String {
+	var dest C.godot_string
+	arg1 := src.getBase()
+	C.go_godot_string_new_copy(GDNative.api, &dest, arg1)
+	return &String{base: &dest}
+}
+
 // OperatorIndex godot_string_operator_index [[godot_string * p_self] [const godot_int p_idx]] wchar_t *
 func (gdt *String) OperatorIndex(idx Int) WcharT {
 	arg0 := gdt.getBase()

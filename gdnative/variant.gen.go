@@ -36,6 +36,7 @@ package gdnative
 #include <gdnative_api_struct.gen.h>
 */
 import "C"
+import "unsafe"
 
 type Variant struct {
 	base *C.godot_variant
@@ -43,6 +44,237 @@ type Variant struct {
 
 func (gdt Variant) getBase() *C.godot_variant {
 	return gdt.base
+}
+
+// NewVariantCopy godot_variant_new_copy [[godot_variant * r_dest] [const godot_variant * p_src]] void
+func NewVariantCopy(src Variant) *Variant {
+	var dest C.godot_variant
+	arg1 := src.getBase()
+	C.go_godot_variant_new_copy(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantNil godot_variant_new_nil [[godot_variant * r_dest]] void
+func NewVariantNil() *Variant {
+	var dest C.godot_variant
+	C.go_godot_variant_new_nil(GDNative.api, &dest)
+	return &Variant{base: &dest}
+}
+
+// NewVariantBool godot_variant_new_bool [[godot_variant * p_v] [const godot_bool p_b]] void
+func NewVariantBool(b Bool) *Variant {
+	var dest C.godot_variant
+	arg1 := b.getBase()
+	C.go_godot_variant_new_bool(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantUint godot_variant_new_uint [[godot_variant * r_dest] [const uint64_t p_i]] void
+func NewVariantUint(i Uint64T) *Variant {
+	var dest C.godot_variant
+	arg1 := i.getBase()
+	C.go_godot_variant_new_uint(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantInt godot_variant_new_int [[godot_variant * r_dest] [const int64_t p_i]] void
+func NewVariantInt(i Int64T) *Variant {
+	var dest C.godot_variant
+	arg1 := i.getBase()
+	C.go_godot_variant_new_int(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantReal godot_variant_new_real [[godot_variant * r_dest] [const double p_r]] void
+func NewVariantReal(r Double) *Variant {
+	var dest C.godot_variant
+	arg1 := r.getBase()
+	C.go_godot_variant_new_real(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantString godot_variant_new_string [[godot_variant * r_dest] [const godot_string * p_s]] void
+func NewVariantString(s String) *Variant {
+	var dest C.godot_variant
+	arg1 := s.getBase()
+	C.go_godot_variant_new_string(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantVector2 godot_variant_new_vector2 [[godot_variant * r_dest] [const godot_vector2 * p_v2]] void
+func NewVariantVector2(v2 Vector2) *Variant {
+	var dest C.godot_variant
+	arg1 := v2.getBase()
+	C.go_godot_variant_new_vector2(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantRect2 godot_variant_new_rect2 [[godot_variant * r_dest] [const godot_rect2 * p_rect2]] void
+func NewVariantRect2(rect2 Rect2) *Variant {
+	var dest C.godot_variant
+	arg1 := rect2.getBase()
+	C.go_godot_variant_new_rect2(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantVector3 godot_variant_new_vector3 [[godot_variant * r_dest] [const godot_vector3 * p_v3]] void
+func NewVariantVector3(v3 Vector3) *Variant {
+	var dest C.godot_variant
+	arg1 := v3.getBase()
+	C.go_godot_variant_new_vector3(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantTransform2D godot_variant_new_transform2d [[godot_variant * r_dest] [const godot_transform2d * p_t2d]] void
+func NewVariantTransform2D(t2D Transform2D) *Variant {
+	var dest C.godot_variant
+	arg1 := t2D.getBase()
+	C.go_godot_variant_new_transform2d(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantPlane godot_variant_new_plane [[godot_variant * r_dest] [const godot_plane * p_plane]] void
+func NewVariantPlane(plane Plane) *Variant {
+	var dest C.godot_variant
+	arg1 := plane.getBase()
+	C.go_godot_variant_new_plane(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantQuat godot_variant_new_quat [[godot_variant * r_dest] [const godot_quat * p_quat]] void
+func NewVariantQuat(quat Quat) *Variant {
+	var dest C.godot_variant
+	arg1 := quat.getBase()
+	C.go_godot_variant_new_quat(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantAabb godot_variant_new_aabb [[godot_variant * r_dest] [const godot_aabb * p_aabb]] void
+func NewVariantAabb(aabb Aabb) *Variant {
+	var dest C.godot_variant
+	arg1 := aabb.getBase()
+	C.go_godot_variant_new_aabb(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantBasis godot_variant_new_basis [[godot_variant * r_dest] [const godot_basis * p_basis]] void
+func NewVariantBasis(basis Basis) *Variant {
+	var dest C.godot_variant
+	arg1 := basis.getBase()
+	C.go_godot_variant_new_basis(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantTransform godot_variant_new_transform [[godot_variant * r_dest] [const godot_transform * p_trans]] void
+func NewVariantTransform(trans Transform) *Variant {
+	var dest C.godot_variant
+	arg1 := trans.getBase()
+	C.go_godot_variant_new_transform(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantColor godot_variant_new_color [[godot_variant * r_dest] [const godot_color * p_color]] void
+func NewVariantColor(color Color) *Variant {
+	var dest C.godot_variant
+	arg1 := color.getBase()
+	C.go_godot_variant_new_color(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantNodePath godot_variant_new_node_path [[godot_variant * r_dest] [const godot_node_path * p_np]] void
+func NewVariantNodePath(np NodePath) *Variant {
+	var dest C.godot_variant
+	arg1 := np.getBase()
+	C.go_godot_variant_new_node_path(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantRid godot_variant_new_rid [[godot_variant * r_dest] [const godot_rid * p_rid]] void
+func NewVariantRid(rid Rid) *Variant {
+	var dest C.godot_variant
+	arg1 := rid.getBase()
+	C.go_godot_variant_new_rid(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantObject godot_variant_new_object [[godot_variant * r_dest] [const godot_object * p_obj]] void
+func NewVariantObject(obj Object) *Variant {
+	var dest C.godot_variant
+	arg1 := unsafe.Pointer(obj.getBase())
+	C.go_godot_variant_new_object(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantDictionary godot_variant_new_dictionary [[godot_variant * r_dest] [const godot_dictionary * p_dict]] void
+func NewVariantDictionary(dict Dictionary) *Variant {
+	var dest C.godot_variant
+	arg1 := dict.getBase()
+	C.go_godot_variant_new_dictionary(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantArray godot_variant_new_array [[godot_variant * r_dest] [const godot_array * p_arr]] void
+func NewVariantArray(arr Array) *Variant {
+	var dest C.godot_variant
+	arg1 := arr.getBase()
+	C.go_godot_variant_new_array(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantPoolByteArray godot_variant_new_pool_byte_array [[godot_variant * r_dest] [const godot_pool_byte_array * p_pba]] void
+func NewVariantPoolByteArray(pba PoolByteArray) *Variant {
+	var dest C.godot_variant
+	arg1 := pba.getBase()
+	C.go_godot_variant_new_pool_byte_array(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantPoolIntArray godot_variant_new_pool_int_array [[godot_variant * r_dest] [const godot_pool_int_array * p_pia]] void
+func NewVariantPoolIntArray(pia PoolIntArray) *Variant {
+	var dest C.godot_variant
+	arg1 := pia.getBase()
+	C.go_godot_variant_new_pool_int_array(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantPoolRealArray godot_variant_new_pool_real_array [[godot_variant * r_dest] [const godot_pool_real_array * p_pra]] void
+func NewVariantPoolRealArray(pra PoolRealArray) *Variant {
+	var dest C.godot_variant
+	arg1 := pra.getBase()
+	C.go_godot_variant_new_pool_real_array(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantPoolStringArray godot_variant_new_pool_string_array [[godot_variant * r_dest] [const godot_pool_string_array * p_psa]] void
+func NewVariantPoolStringArray(psa PoolStringArray) *Variant {
+	var dest C.godot_variant
+	arg1 := psa.getBase()
+	C.go_godot_variant_new_pool_string_array(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantPoolVector2Array godot_variant_new_pool_vector2_array [[godot_variant * r_dest] [const godot_pool_vector2_array * p_pv2a]] void
+func NewVariantPoolVector2Array(pv2A PoolVector2Array) *Variant {
+	var dest C.godot_variant
+	arg1 := pv2A.getBase()
+	C.go_godot_variant_new_pool_vector2_array(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantPoolVector3Array godot_variant_new_pool_vector3_array [[godot_variant * r_dest] [const godot_pool_vector3_array * p_pv3a]] void
+func NewVariantPoolVector3Array(pv3A PoolVector3Array) *Variant {
+	var dest C.godot_variant
+	arg1 := pv3A.getBase()
+	C.go_godot_variant_new_pool_vector3_array(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
+}
+
+// NewVariantPoolColorArray godot_variant_new_pool_color_array [[godot_variant * r_dest] [const godot_pool_color_array * p_pca]] void
+func NewVariantPoolColorArray(pca PoolColorArray) *Variant {
+	var dest C.godot_variant
+	arg1 := pca.getBase()
+	C.go_godot_variant_new_pool_color_array(GDNative.api, &dest, arg1)
+	return &Variant{base: &dest}
 }
 
 // AsBool godot_variant_as_bool [[const godot_variant * p_self]] godot_bool

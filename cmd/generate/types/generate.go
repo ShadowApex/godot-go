@@ -21,6 +21,7 @@ type View struct {
 	Headers           []string
 	TypeDefinitions   []TypeDef
 	MethodDefinitions []Method
+	IgnoreMethods     []string
 }
 
 // IsValidProperty will determine if we should be generating the given property
@@ -84,7 +85,7 @@ func (v View) HasPointerReturn(str string) bool {
 
 func (v View) IsVoidPointerType(str string) bool {
 	switch str {
-	case "godot_object *":
+	case "godot_object *", "const godot_object *":
 		return true
 	}
 	return false
@@ -191,6 +192,16 @@ func (v View) MethodsList(typeDef TypeDef) []Method {
 
 	// Look for all methods that match this typedef name.
 	for _, method := range v.MethodDefinitions {
+		ignoreMethod := false
+		for _, ignMethod := range v.IgnoreMethods {
+			if method.Name == ignMethod {
+				ignoreMethod = true
+			}
+		}
+		if ignoreMethod {
+			continue
+		}
+
 		for _, arg := range method.Arguments {
 			argName := arg[1]
 			argType := strings.Replace(arg[0], "const", "", 1)
@@ -199,7 +210,12 @@ func (v View) MethodsList(typeDef TypeDef) []Method {
 
 			if argType == typeDef.Name && argName == "p_self" {
 				methods = append(methods, method)
+				break
+			} else if strings.Contains(method.Name, typeDef.Name) && v.MethodIsConstructor(method) {
+				methods = append(methods, method)
+				break
 			}
+
 		}
 	}
 
@@ -218,6 +234,13 @@ func (v View) NotSelfArg(str string) bool {
 		return false
 	}
 	return true
+}
+
+func (v View) StripPointer(str string) string {
+	str = strings.Replace(str, "*", "", 1)
+	str = strings.TrimSpace(str)
+
+	return str
 }
 
 func (v View) ToGoMethodName(typeDef TypeDef, method Method) string {
@@ -279,6 +302,14 @@ func Generate() {
 		"godot_property_set_func",
 		"godot_property_usage_flags",
 	}
+	ignoreMethods := []string{
+		"godot_string_new_with_wide_string",
+		"godot_string_name_new",
+		"godot_string_name_new_data",
+		"godot_transform2d_new",
+		"godot_transform2d_new_axis_origin",
+		"godot_transform2d_new_identity",
+	}
 
 	// Parse all available methods
 	gdnativeAPI := methods.Parse()
@@ -329,6 +360,7 @@ func Generate() {
 		view.MethodDefinitions = allMethodDefinitions
 		view.TypeDefinitions = typeDefs
 		view.Headers = []string{}
+		view.IgnoreMethods = ignoreMethods
 
 		// Collect all of the headers we need to use in our template.
 		headers := map[string]bool{}

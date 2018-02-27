@@ -45,6 +45,15 @@ func (gdt Aabb) getBase() *C.godot_aabb {
 	return gdt.base
 }
 
+// NewAabb godot_aabb_new [[godot_aabb * r_dest] [const godot_vector3 * p_pos] [const godot_vector3 * p_size]] void
+func NewAabb(pos Vector3, size Vector3) *Aabb {
+	var dest C.godot_aabb
+	arg1 := pos.getBase()
+	arg2 := size.getBase()
+	C.go_godot_aabb_new(GDNative.api, &dest, arg1, arg2)
+	return &Aabb{base: &dest}
+}
+
 // GetPosition godot_aabb_get_position [[const godot_aabb * p_self]] godot_vector3
 func (gdt *Aabb) GetPosition() Vector3 {
 	arg0 := gdt.getBase()

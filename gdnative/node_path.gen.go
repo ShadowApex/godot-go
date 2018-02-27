@@ -45,6 +45,22 @@ func (gdt NodePath) getBase() *C.godot_node_path {
 	return gdt.base
 }
 
+// NewNodePath godot_node_path_new [[godot_node_path * r_dest] [const godot_string * p_from]] void
+func NewNodePath(from String) *NodePath {
+	var dest C.godot_node_path
+	arg1 := from.getBase()
+	C.go_godot_node_path_new(GDNative.api, &dest, arg1)
+	return &NodePath{base: &dest}
+}
+
+// NewNodePathCopy godot_node_path_new_copy [[godot_node_path * r_dest] [const godot_node_path * p_src]] void
+func NewNodePathCopy(src NodePath) *NodePath {
+	var dest C.godot_node_path
+	arg1 := src.getBase()
+	C.go_godot_node_path_new_copy(GDNative.api, &dest, arg1)
+	return &NodePath{base: &dest}
+}
+
 // Destroy godot_node_path_destroy [[godot_node_path * p_self]] void
 func (gdt *NodePath) Destroy() {
 	arg0 := gdt.getBase()

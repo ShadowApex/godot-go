@@ -85,7 +85,7 @@ func simpleDestructor(object gdnative.Object, methodData, userData string) {
 func simpleMethod(object gdnative.Object, methodData, userData string, numArgs int, args []gdnative.Variant) gdnative.Variant {
 	gdnative.Log.Println("SIMPLE.get_data() called!")
 
-	data := gdnative.NewStringWithWideString("World from godot-go!")
+	data := gdnative.NewStringWithWideString("World from godot-go from instance: " + object.ID() + "!")
 	ret := gdnative.NewVariantWithString(data)
 
 	return ret

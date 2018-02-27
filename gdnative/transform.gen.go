@@ -45,6 +45,26 @@ func (gdt Transform) getBase() *C.godot_transform {
 	return gdt.base
 }
 
+// NewTransformWithAxisOrigin godot_transform_new_with_axis_origin [[godot_transform * r_dest] [const godot_vector3 * p_x_axis] [const godot_vector3 * p_y_axis] [const godot_vector3 * p_z_axis] [const godot_vector3 * p_origin]] void
+func NewTransformWithAxisOrigin(xAxis Vector3, yAxis Vector3, zAxis Vector3, origin Vector3) *Transform {
+	var dest C.godot_transform
+	arg1 := xAxis.getBase()
+	arg2 := yAxis.getBase()
+	arg3 := zAxis.getBase()
+	arg4 := origin.getBase()
+	C.go_godot_transform_new_with_axis_origin(GDNative.api, &dest, arg1, arg2, arg3, arg4)
+	return &Transform{base: &dest}
+}
+
+// NewTransform godot_transform_new [[godot_transform * r_dest] [const godot_basis * p_basis] [const godot_vector3 * p_origin]] void
+func NewTransform(basis Basis, origin Vector3) *Transform {
+	var dest C.godot_transform
+	arg1 := basis.getBase()
+	arg2 := origin.getBase()
+	C.go_godot_transform_new(GDNative.api, &dest, arg1, arg2)
+	return &Transform{base: &dest}
+}
+
 // GetBasis godot_transform_get_basis [[const godot_transform * p_self]] godot_basis
 func (gdt *Transform) GetBasis() Basis {
 	arg0 := gdt.getBase()
@@ -187,6 +207,13 @@ func (gdt *Transform) XformInvPlane(v Plane) Plane {
 
 	return Plane{base: &ret}
 
+}
+
+// NewTransformIdentity godot_transform_new_identity [[godot_transform * r_dest]] void
+func NewTransformIdentity() *Transform {
+	var dest C.godot_transform
+	C.go_godot_transform_new_identity(GDNative.api, &dest)
+	return &Transform{base: &dest}
 }
 
 // OperatorEqual godot_transform_operator_equal [[const godot_transform * p_self] [const godot_transform * p_b]] godot_bool

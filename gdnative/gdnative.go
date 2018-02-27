@@ -13,6 +13,7 @@ package gdnative
 import "C"
 
 import (
+	"fmt"
 	"log"
 	"unsafe"
 
@@ -135,4 +136,10 @@ func (w WcharT) getBase() *C.wchar_t {
 	}
 
 	return (*C.wchar_t)(wcharString.Pointer())
+}
+
+// ID will return the Godot object memory address as a string, which can
+// be used in an instance registry for registering classes.
+func (gdt Object) ID() string {
+	return fmt.Sprintf("%p", gdt.base)
 }

@@ -45,6 +45,21 @@ func (gdt Dictionary) getBase() *C.godot_dictionary {
 	return gdt.base
 }
 
+// NewDictionary godot_dictionary_new [[godot_dictionary * r_dest]] void
+func NewDictionary() *Dictionary {
+	var dest C.godot_dictionary
+	C.go_godot_dictionary_new(GDNative.api, &dest)
+	return &Dictionary{base: &dest}
+}
+
+// NewDictionaryCopy godot_dictionary_new_copy [[godot_dictionary * r_dest] [const godot_dictionary * p_src]] void
+func NewDictionaryCopy(src Dictionary) *Dictionary {
+	var dest C.godot_dictionary
+	arg1 := src.getBase()
+	C.go_godot_dictionary_new_copy(GDNative.api, &dest, arg1)
+	return &Dictionary{base: &dest}
+}
+
 // Destroy godot_dictionary_destroy [[godot_dictionary * p_self]] void
 func (gdt *Dictionary) Destroy() {
 	arg0 := gdt.getBase()

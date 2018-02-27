@@ -45,6 +45,33 @@ func (gdt Basis) getBase() *C.godot_basis {
 	return gdt.base
 }
 
+// NewBasisWithRows godot_basis_new_with_rows [[godot_basis * r_dest] [const godot_vector3 * p_x_axis] [const godot_vector3 * p_y_axis] [const godot_vector3 * p_z_axis]] void
+func NewBasisWithRows(xAxis Vector3, yAxis Vector3, zAxis Vector3) *Basis {
+	var dest C.godot_basis
+	arg1 := xAxis.getBase()
+	arg2 := yAxis.getBase()
+	arg3 := zAxis.getBase()
+	C.go_godot_basis_new_with_rows(GDNative.api, &dest, arg1, arg2, arg3)
+	return &Basis{base: &dest}
+}
+
+// NewBasisWithAxisAndAngle godot_basis_new_with_axis_and_angle [[godot_basis * r_dest] [const godot_vector3 * p_axis] [const godot_real p_phi]] void
+func NewBasisWithAxisAndAngle(axis Vector3, phi Real) *Basis {
+	var dest C.godot_basis
+	arg1 := axis.getBase()
+	arg2 := phi.getBase()
+	C.go_godot_basis_new_with_axis_and_angle(GDNative.api, &dest, arg1, arg2)
+	return &Basis{base: &dest}
+}
+
+// NewBasisWithEuler godot_basis_new_with_euler [[godot_basis * r_dest] [const godot_vector3 * p_euler]] void
+func NewBasisWithEuler(euler Vector3) *Basis {
+	var dest C.godot_basis
+	arg1 := euler.getBase()
+	C.go_godot_basis_new_with_euler(GDNative.api, &dest, arg1)
+	return &Basis{base: &dest}
+}
+
 // AsString godot_basis_as_string [[const godot_basis * p_self]] godot_string
 func (gdt *Basis) AsString() String {
 	arg0 := gdt.getBase()
@@ -196,6 +223,21 @@ func (gdt *Basis) GetOrthogonalIndex() Int {
 	ret := C.go_godot_basis_get_orthogonal_index(GDNative.api, arg0)
 
 	return Int(ret)
+}
+
+// NewBasis godot_basis_new [[godot_basis * r_dest]] void
+func NewBasis() *Basis {
+	var dest C.godot_basis
+	C.go_godot_basis_new(GDNative.api, &dest)
+	return &Basis{base: &dest}
+}
+
+// NewBasisWithEulerQuat godot_basis_new_with_euler_quat [[godot_basis * r_dest] [const godot_quat * p_euler]] void
+func NewBasisWithEulerQuat(euler Quat) *Basis {
+	var dest C.godot_basis
+	arg1 := euler.getBase()
+	C.go_godot_basis_new_with_euler_quat(GDNative.api, &dest, arg1)
+	return &Basis{base: &dest}
 }
 
 // GetElements godot_basis_get_elements [[const godot_basis * p_self] [godot_vector3 * p_elements]] void
