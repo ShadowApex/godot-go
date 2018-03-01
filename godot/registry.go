@@ -5,20 +5,23 @@ import (
 	"reflect"
 )
 
-// Register will register the given object(s) as a Godot class. It will be available
-// inside Godot.
-func Register(constructor ...ClassConstructor) {
+// AutoRegister will register the given object(s) as a Godot class, so it will be available
+// inside Godot. This method uses reflection at runtime to automatically discover the given
+// Go structs' methods and properties. It will automatically map Godot method names in
+// CamelCase to Godot's conventional snake_case. It will also automatically use the
+// struct name for the class name to register as.
+func AutoRegister(constructor ...ClassConstructor) {
 	for _, construct := range constructor {
-		godotConstructorsToRegister = append(godotConstructorsToRegister, construct)
+		godotConstructorsToAutoRegister = append(godotConstructorsToAutoRegister, construct)
 	}
 }
 
 // Class is an interface for any objects that can have Godot
 // inheritance.
 type Class interface {
-	baseClass() string
-	setOwner(object gdnative.Object)
-	getOwner() gdnative.Object
+	BaseClass() string
+	SetOwner(object gdnative.Object)
+	GetOwner() gdnative.Object
 }
 
 // ClassConstructor is any function that will build and return a class to be registered
@@ -90,9 +93,9 @@ func newRegisteredMethod(classMethod reflect.Method) *registeredMethod {
 	return method
 }
 
-// godotClassesToRegister is a slice of objects that will be registered as a Godot class
+// godotClassesToAutoRegister is a slice of objects that will be registered as a Godot class
 // upon library initialization.
-var godotConstructorsToRegister = []ClassConstructor{}
+var godotConstructorsToAutoRegister = []ClassConstructor{}
 
 // classRegistry is a mapping of all classes that have been registered in Godot.
 var classRegistry = map[string]*registeredClass{}

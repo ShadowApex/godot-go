@@ -9,34 +9,45 @@ import (
 	"strings"
 )
 
+var debug = false
+
+// EnableDebug will enable debug logging of the godot library.
+func EnableDebug() {
+	debug = true
+}
+
 // Init is a special Go function that will be called upon library initialization.
 func init() {
 	// Configure GDNative to use our own NativeScript init function.
-	gdnative.SetNativeScriptInit(registerClasses)
+	gdnative.SetNativeScriptInit(autoRegisterClasses)
 }
 
-// registerClasses is the script's entrypoint. It is called by Godot
+// autoRegisterClasses is the script's entrypoint. It is called by Godot
 // when a script is loaded. It is responsible for registering all the classes.
-func registerClasses() {
-	gdnative.Log.Println("Initializing NativeScript...")
+func autoRegisterClasses() {
+	log.Println("Discovering classes to register with Godot...")
 
 	// Loop through our registered classes and register them with the Godot API.
-	for _, constructor := range godotConstructorsToRegister {
+	for _, constructor := range godotConstructorsToAutoRegister {
 		// Use the constructor to build a class to inspect the given structure.
 		class := constructor()
 
 		// Get the type of the given struct, and get its name as a string
 		classType := reflect.TypeOf(class)
 		classString := strings.Replace(classType.String(), "*", "", 1)
-		log.Println("Registering class:", classString)
+		if debug {
+			log.Println("Registering class:", classString)
+		}
 
 		// Create a registered class structure that will hold information about the
 		// cass and its methods.
 		regClass := newRegisteredClass(classType)
 
 		// Call the "BaseClass" method on the class to get the base class.
-		baseClass := class.(Class).baseClass()
-		log.Println("  Using Base Class:", baseClass)
+		baseClass := class.(Class).BaseClass()
+		if debug {
+			log.Println("  Using Base Class:", baseClass)
+		}
 
 		// Set up our constructor and destructor function structs.
 		createFunc := createConstructor(classString, constructor)
@@ -47,14 +58,18 @@ func registerClasses() {
 
 		// Loop through our class's struct fields. We do this to register properties as well
 		// as find the embedded parent struct to ensure we don't register those methods.
-		log.Println("  Looking at struct fields:")
-		log.Println("    Found", classType.Elem().NumField(), "struct fields.")
+		if debug {
+			log.Println("  Looking at struct fields:")
+			log.Println("    Found", classType.Elem().NumField(), "struct fields.")
+		}
 		for i := 0; i < classType.Elem().NumField(); i++ {
 			classField := classType.Elem().Field(i)
-			log.Println("  Found field:", classField.Name)
-			log.Println("    Type:", classField.Type.String())
-			log.Println("    Anonymous:", classField.Anonymous)
-			log.Println("    Package Path:", classField.PkgPath)
+			if debug {
+				log.Println("  Found field:", classField.Name)
+				log.Println("    Type:", classField.Type.String())
+				log.Println("    Anonymous:", classField.Anonymous)
+				log.Println("    Package Path:", classField.PkgPath)
+			}
 
 			// Look only at anonymously embedded fields
 			if !classField.Anonymous {
@@ -63,8 +78,10 @@ func registerClasses() {
 		}
 
 		// Loop through our class's methods that are attached to it.
-		log.Println("  Looking at methods:")
-		log.Println("    Found", classType.NumMethod(), "methods")
+		if debug {
+			log.Println("  Looking at methods:")
+			log.Println("    Found", classType.NumMethod(), "methods")
+		}
 		for i := 0; i < classType.NumMethod(); i++ {
 			classMethod := classType.Method(i)
 
@@ -78,43 +95,51 @@ func registerClasses() {
 				continue
 			}
 
-			log.Println("  Found method:", classMethod.Name)
-			log.Println("    Method in package path:", classMethod.PkgPath)
-			log.Println("    Type package path:", classMethod.Type.PkgPath())
-			log.Println("    Type:", classMethod.Type.String())
-			log.Println("    Kind:", classMethod.Type.Kind().String())
+			if debug {
+				log.Println("  Found method:", classMethod.Name)
+				log.Println("    Method in package path:", classMethod.PkgPath)
+				log.Println("    Type package path:", classMethod.Type.PkgPath())
+				log.Println("    Type:", classMethod.Type.String())
+				log.Println("    Kind:", classMethod.Type.Kind().String())
+			}
 
 			// Construct a registered method structure that inspects all of the
 			// arguments and return types.
 			regMethod := newRegisteredMethod(classMethod)
 			regClass.addMethod(classMethod.Name, regMethod)
-			log.Println("    Method Arguments:", len(regMethod.arguments))
-			log.Println("    Method Arguments:", regMethod.arguments)
-			log.Println("    Method Returns:", len(regMethod.returns))
-			log.Println("    Method Returns:", regMethod.returns)
+			if debug {
+				log.Println("    Method Arguments:", len(regMethod.arguments))
+				log.Println("    Method Arguments:", regMethod.arguments)
+				log.Println("    Method Returns:", len(regMethod.returns))
+				log.Println("    Method Returns:", regMethod.returns)
+			}
+
+			// Skip the method if its a Class interface method
+			skip := false
+			for _, exclude := range []string{"BaseClass", "GetOwner", "SetOwner"} {
+				if classMethod.Name == exclude {
+					skip = true
+				}
+			}
+			if skip {
+				continue
+			}
 
 			// Look at the method name to see if it starts with "X_". If it does, we need to
 			// replace it with an underscore. This is required because Go method visibility
 			// is done through case sensitivity. Since Godot private methods start with an
 			// "_" character.
-			origMethodName := classMethod.Name
-			methodString := origMethodName
-			if strings.HasPrefix(methodString, "X_") {
-				methodString = strings.Replace(methodString, "X_", "_", 1)
-			}
-			methodString = casee.ToSnakeCase(methodString)
-			methodString = strings.Replace(methodString, "__", "_", 1) // NOTE: Prevent double underscore from camelToSnake lib.
-			log.Println("    Original method name:", origMethodName)
-			log.Println("    Godot mapped method name:", methodString)
+			goMethodName := classMethod.Name
+			godotMethodName := toGodotMethodName(goMethodName)
 
 			// Set up our method structure
-			method := createMethod(classString, methodString)
+			method := createMethod(classString, goMethodName)
 			attributes := &gdnative.MethodAttributes{
 				RPCType: gdnative.MethodRpcModeDisabled,
 			}
 
 			// Register the method.
-			gdnative.NativeScript.RegisterMethod(classString, methodString, attributes, method)
+			gdnative.NativeScript.RegisterMethod(classString, godotMethodName, attributes, method)
 		}
 
 		// Register our class in our Go registry.
@@ -127,13 +152,15 @@ func registerClasses() {
 // and constructor. This structure can be used when registering a class with Godot.
 func createConstructor(classString string, constructor ClassConstructor) *gdnative.InstanceCreateFunc {
 	var createFunc gdnative.InstanceCreateFunc
-	createFunc.CreateFunc = func(object gdnative.Object) string {
+	createFunc.CreateFunc = func(object gdnative.Object, methodData string) string {
 		// Create a new instance of the object.
 		class := constructor()
-		log.Println("Created new object instance:", class, "with instance address:", object.ID())
+		if debug {
+			log.Println("Created new object instance:", class, "with instance address:", object.ID())
+		}
 
 		// Add the Godot object pointer to the class structure.
-		class.setOwner(object)
+		class.SetOwner(object)
 
 		// Add the instance to our instance registry.
 		instanceRegistry[object.ID()] = class
@@ -154,7 +181,9 @@ func createConstructor(classString string, constructor ClassConstructor) *gdnati
 func createDestructor(classString string) *gdnative.InstanceDestroyFunc {
 	var destroyFunc gdnative.InstanceDestroyFunc
 	destroyFunc.DestroyFunc = func(object gdnative.Object, className, instanceID string) {
-		log.Println("Destroying object instance:", className, "with instance address:", object.ID())
+		if debug {
+			log.Println("Destroying object instance:", className, "with instance address:", object.ID())
+		}
 
 		// Unregister it from our instanceRegistry so it can be garbage collected.
 		delete(instanceRegistry, instanceID)
@@ -165,23 +194,26 @@ func createDestructor(classString string) *gdnative.InstanceDestroyFunc {
 	return &destroyFunc
 }
 
-// CreateMethod will create the InstanceMethod structure
+// CreateMethod will create the InstanceMethod structure. This will be called whenever
+// a Godot method is called.
 func createMethod(classString, methodString string) *gdnative.InstanceMethod {
 	var methodFunc gdnative.InstanceMethod
-	methodFunc.Method = func(object gdnative.Object, methodData, instanceString string, numArgs int, args []gdnative.Variant) gdnative.Variant {
+	methodFunc.Method = func(object gdnative.Object, classMethod, instanceString string, numArgs int, args []gdnative.Variant) gdnative.Variant {
 		var ret gdnative.Variant
 
 		// Get the object instance based on the instance string given in userData.
 		class := instanceRegistry[instanceString]
 		classValue := reflect.ValueOf(class)
 
-		log.Println("Method was called!")
-		log.Println("  godotObject:", object)
-		log.Println("  numArgs:", numArgs)
-		log.Println("  args:", args)
-		log.Println("  instance:", class)
-		log.Println("  methodString (methodData):", methodData)
-		log.Println("  instanceString (userData):", instanceString)
+		if debug {
+			log.Println("Method was called!")
+			log.Println("  godotObject:", object)
+			log.Println("  numArgs:", numArgs)
+			log.Println("  args:", args)
+			log.Println("  instance:", class)
+			log.Println("  methodString (methodData):", classMethod)
+			log.Println("  instanceString (userData):", instanceString)
+		}
 
 		// Create a slice of Godot Variant arguments
 		goArgsSlice := []reflect.Value{}
@@ -193,24 +225,37 @@ func createMethod(classString, methodString string) *gdnative.InstanceMethod {
 		}
 
 		// Use the method string to get the class name and method name.
-		log.Println("  Getting class name and method name...")
-		classMethodSlice := strings.Split(methodString, "::")
+		if debug {
+			log.Println("  Getting class name and method name...")
+		}
+		classMethodSlice := strings.Split(classMethod, "::")
 		className := classMethodSlice[0]
 		methodName := classMethodSlice[1]
-		log.Println("    Class Name: ", className)
-		log.Println("    Method Name: ", methodName)
+		if debug {
+			log.Println("    Class Name: ", className)
+			log.Println("    Method Name: ", methodName)
+		}
 
 		// Look up the registered class so we can find out how many arguments it takes
 		// and their types.
-		log.Println("  Look up the registered class and its method")
+		if debug {
+			log.Println("  Look up the registered class and its method")
+			log.Println("  Registered classes:", classRegistry)
+		}
 		regClass := classRegistry[className]
 		if regClass == nil {
 			log.Fatal("  This class has not been registered! Class name: ", className, " Method name: ", methodName)
 		}
+		if debug {
+			log.Println("  Looked up class:", regClass)
+			log.Println("  Methods in class:", regClass.methods)
+		}
 		regMethod := regClass.methods[methodName]
 
-		log.Println("  Registered method arguments:", regMethod.arguments)
-		log.Println("  Arguments to pass:", goArgsSlice)
+		if debug {
+			log.Println("  Registered method arguments:", regMethod.arguments)
+			log.Println("  Arguments to pass:", goArgsSlice)
+		}
 
 		// Check to ensure the method has the same number of arguments we expect
 		if len(regMethod.arguments)-1 != int(numArgs) {
@@ -221,7 +266,15 @@ func createMethod(classString, methodString string) *gdnative.InstanceMethod {
 		// Get the value of the class, so we can call methods on it.
 		method := classValue.MethodByName(methodName)
 		rawRet := method.Call(goArgsSlice)
-		log.Println(method)
+		if debug {
+			log.Println("Got raw return value after method call:", rawRet)
+		}
+
+		// Check to see if this returns anything.
+		if len(rawRet) == 0 {
+			nilReturn := gdnative.NewVariantNil()
+			return *nilReturn
+		}
 
 		// Convert our returned value into a Godot Variant.
 		rawRetInterface := rawRet[0].Interface()
@@ -335,4 +388,38 @@ func variantToGoType(variant gdnative.Variant) reflect.Value {
 		panic("Unknown type of variant argument.")
 	}
 	return reflect.Value{}
+}
+
+// toGoMethodName will take the given Godot method name in snake_case and convert it
+// to a CamelCase method name.
+func toGoMethodName(methodName string) string {
+	goMethodName := casee.ToPascalCase(methodName)
+	if strings.HasPrefix(methodName, "_") {
+		goMethodName = "X_" + goMethodName
+	}
+	if debug {
+		log.Println("    Godot method name:", methodName)
+		log.Println("    Go mapped method name:", goMethodName)
+	}
+
+	return goMethodName
+}
+
+// toGodotMethodName will take the given Go method name in CamelCase and convert it
+// to a snake_case method name.
+func toGodotMethodName(goMethodName string) string {
+	methodName := goMethodName
+	privatePrefix := ""
+	if strings.HasPrefix(goMethodName, "X_") {
+		methodName = strings.Replace(methodName, "X_", "_", 1)
+		privatePrefix = "_"
+	}
+	methodName = casee.ToSnakeCase(methodName)
+	methodName = privatePrefix + methodName
+	if debug {
+		log.Println("    Go method name:", goMethodName)
+		log.Println("    Godot mapped method name:", methodName)
+	}
+
+	return methodName
 }

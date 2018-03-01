@@ -46,8 +46,9 @@ const (
 )
 
 // CreateFunc will be called when we need to create a new instance of a class.
-// Takes the instance object, user data.
-type CreateFunc func(Object) string
+// When it is called, the Godot object will passed as an argument, as well as the
+// methodData string, which is usually the name of the class to be created.
+type CreateFunc func(Object, string) string
 
 // CreateFuncRegistry is a mapping of instance creation functions. This map is
 // used whenever a CreateFunc is registered. It is also used to look up a
@@ -74,6 +75,11 @@ type FreeFunc func(string)
 var FreeFuncRegistry = map[string]FreeFunc{}
 
 // MethodFunc will be called when a method attached to an instance is called.
+// When it is called, it will be passed the Godot object the method is attached to,
+// the methodData string (which is usually the class and method name that is being called),
+// the userData string (which is usually the class instance ID),  the number of
+// arguments being passed to the function, and a list of Variant arguments to pass
+// to the function.
 type MethodFunc func(Object, string, string, int, []Variant) Variant
 
 // MethodFuncRegistry is a mapping of instance method functions. This map is
@@ -312,7 +318,7 @@ func go_create_func(godotObject *C.godot_object, methodData unsafe.Pointer) unsa
 	// Call the constructor and return the user data string. The user data
 	// returned by the create func will be passed to the method function as
 	// userData.
-	userData := constructor(Object{base: godotObject})
+	userData := constructor(Object{base: godotObject}, methodDataString)
 
 	return unsafe.Pointer(C.CString(userData))
 }
