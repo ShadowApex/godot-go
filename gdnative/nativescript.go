@@ -131,6 +131,10 @@ type MethodAttributes struct {
 	RPCType MethodRpcMode
 }
 
+func (m *MethodAttributes) getBase() C.godot_method_attributes {
+	return m.base
+}
+
 // NativeScript is a wrapper for the NativeScriptAPI.
 var NativeScript = &nativeScript{}
 
@@ -178,8 +182,8 @@ func (n *nativeScript) RegisterClass(name, base string, createFunc *InstanceCrea
 		n.handle,
 		C.CString(name),
 		C.CString(base),
-		createFunc.base,
-		destroyFunc.base,
+		createFunc.getBase(),
+		destroyFunc.getBase(),
 	)
 }
 
@@ -207,8 +211,8 @@ func (n *nativeScript) RegisterToolClass(name, base string, createFunc *Instance
 		n.handle,
 		C.CString(name),
 		C.CString(base),
-		createFunc.base,
-		destroyFunc.base,
+		createFunc.getBase(),
+		destroyFunc.getBase(),
 	)
 }
 
@@ -235,8 +239,8 @@ func (n *nativeScript) RegisterMethod(name, funcName string, attributes *MethodA
 		n.handle,
 		C.CString(name),
 		C.CString(funcName),
-		attributes.base,
-		method.base,
+		attributes.getBase(),
+		method.getBase(),
 	)
 }
 
@@ -406,5 +410,5 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 	// Call the method
 	ret := method(Object{base: godotObject}, methodDataString, userDataString, int(numArgs), variantArgs)
 
-	return *ret.base
+	return *ret.getBase()
 }

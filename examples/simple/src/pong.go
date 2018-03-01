@@ -30,12 +30,12 @@ func (p *PongClass) GetOwner() gdnative.Object {
 }
 
 // Xready is called as soon as the node enters the scene.
-func (p *PongClass) X_ready() {
+func (p *PongClass) X_Ready() {
 	// Log when the class is ready
 	gdnative.Log.Warning("Ready called from pong.go!")
 }
 
-func (p *PongClass) X_process(delta gdnative.Double) {
+func (p *PongClass) X_Process(delta gdnative.Double) {
 	gdnative.Log.Warning("Got delta:", delta)
 }
 

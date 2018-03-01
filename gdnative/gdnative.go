@@ -8,6 +8,7 @@ package gdnative
 
 #include <gdnative/gdnative.h>
 #include <gdnative_api_struct.gen.h>
+#include "gdnative.gen.h"
 #include "util.h"
 */
 import "C"
@@ -62,6 +63,52 @@ func godot_gdnative_terminate(options *C.godot_gdnative_terminate_options) {
 	log.Println("De-initializing Go library.")
 	GDNative.api = nil
 	NativeScript.api = nil
+}
+
+// NewMethodBind will return a method binding using the given class name and method
+// name.
+func NewMethodBind(class, method string) MethodBind {
+	methodBind := C.go_godot_method_bind_get_method(
+		GDNative.api,
+		C.CString(class),
+		C.CString(method),
+	)
+
+	return MethodBind{base: methodBind}
+}
+
+// MethodBindPtrCall will call the given method on the given Godot Object. Its return
+// value is given as a pointer, which can be used to convert it to a variant.
+func MethodBindPtrCall(methodBind MethodBind, instance Object, args []Variant) Pointer {
+	// Build out our C arguments array
+	cArgs := C.go_void_build_array(C.int(len(args)))
+	for i, arg := range args {
+		C.go_void_add_element(cArgs, unsafe.Pointer(arg.getBase()), C.int(i))
+	}
+
+	// Build out the return argument.
+	ret := unsafe.Pointer(C.CString(""))
+
+	// Call the C method
+	C.go_godot_method_bind_ptrcall(
+		GDNative.api,
+		methodBind.getBase(),
+		unsafe.Pointer(instance.getBase()),
+		cArgs,
+		ret,
+	)
+
+	return Pointer{base: ret}
+}
+
+// Pointer is a pointer to arbitrary underlying data. This is primarily used
+// in conjunction with MethodBindPtrCall.
+type Pointer struct {
+	base unsafe.Pointer
+}
+
+func (p *Pointer) getBase() unsafe.Pointer {
+	return p.base
 }
 
 type Char string
