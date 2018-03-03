@@ -2,7 +2,6 @@ package inputevent
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -16,6 +15,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewInputEventScreenDragFromPointer(ptr gdnative.Pointer) *InputEventScreenDrag {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := InputEventScreenDrag{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Contains screen drag information. See [method Node._input].
 */
@@ -28,160 +36,193 @@ func (o *InputEventScreenDrag) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *InputEventScreenDrag) GetIndex() gdnative.Int {
 	log.Println("Calling InputEventScreenDrag.GetIndex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventScreenDrag", "get_index")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_index", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *InputEventScreenDrag) GetPosition() *Vector2 {
+
+func (o *InputEventScreenDrag) GetPosition() gdnative.Vector2 {
 	log.Println("Calling InputEventScreenDrag.GetPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventScreenDrag", "get_position")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_position", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *InputEventScreenDrag) GetRelative() *Vector2 {
+
+func (o *InputEventScreenDrag) GetRelative() gdnative.Vector2 {
 	log.Println("Calling InputEventScreenDrag.GetRelative()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventScreenDrag", "get_relative")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_relative", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *InputEventScreenDrag) GetSpeed() *Vector2 {
+
+func (o *InputEventScreenDrag) GetSpeed() gdnative.Vector2 {
 	log.Println("Calling InputEventScreenDrag.GetSpeed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventScreenDrag", "get_speed")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_speed", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false index int}], Returns: void
 */
+
 func (o *InputEventScreenDrag) SetIndex(index gdnative.Int) {
 	log.Println("Calling InputEventScreenDrag.SetIndex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(index)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(index)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventScreenDrag", "set_index")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_index", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false position Vector2}], Returns: void
 */
-func (o *InputEventScreenDrag) SetPosition(position *Vector2) {
+
+func (o *InputEventScreenDrag) SetPosition(position gdnative.Vector2) {
 	log.Println("Calling InputEventScreenDrag.SetPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventScreenDrag", "set_position")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_position", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false relative Vector2}], Returns: void
 */
-func (o *InputEventScreenDrag) SetRelative(relative *Vector2) {
+
+func (o *InputEventScreenDrag) SetRelative(relative gdnative.Vector2) {
 	log.Println("Calling InputEventScreenDrag.SetRelative()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(relative)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(relative)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventScreenDrag", "set_relative")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_relative", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false speed Vector2}], Returns: void
 */
-func (o *InputEventScreenDrag) SetSpeed(speed *Vector2) {
+
+func (o *InputEventScreenDrag) SetSpeed(speed gdnative.Vector2) {
 	log.Println("Calling InputEventScreenDrag.SetSpeed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(speed)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(speed)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventScreenDrag", "set_speed")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_speed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   InputEventScreenDragImplementer is an interface for InputEventScreenDrag objects.
-*/
-type InputEventScreenDragImplementer interface {
-	Class
 }

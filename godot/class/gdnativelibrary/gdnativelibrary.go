@@ -2,9 +2,11 @@ package gdnativelibrary
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/configfile"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewGDNativeLibraryFromPointer(ptr gdnative.Pointer) *GDNativeLibrary {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := GDNativeLibrary{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
 type GDNativeLibrary struct {
-	Resource
+	resource.Resource
 }
 
 func (o *GDNativeLibrary) BaseClass() string {
@@ -28,220 +39,271 @@ func (o *GDNativeLibrary) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: ConfigFile
 */
-func (o *GDNativeLibrary) GetConfigFile() *ConfigFile {
+
+func (o *GDNativeLibrary) GetConfigFile() configfile.ConfigFile {
 	log.Println("Calling GDNativeLibrary.GetConfigFile()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDNativeLibrary", "get_config_file")
 
 	// Call the parent method.
+	// ConfigFile
+	retPtr := configfile.NewEmptyConfigFile()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_config_file", goArguments, "*ConfigFile")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := configfile.NewConfigFileFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*ConfigFile)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolStringArray
 */
-func (o *GDNativeLibrary) GetCurrentDependencies() *PoolStringArray {
+
+func (o *GDNativeLibrary) GetCurrentDependencies() gdnative.PoolStringArray {
 	log.Println("Calling GDNativeLibrary.GetCurrentDependencies()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDNativeLibrary", "get_current_dependencies")
 
 	// Call the parent method.
+	// PoolStringArray
+	retPtr := gdnative.NewEmptyPoolStringArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_current_dependencies", goArguments, "*PoolStringArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolStringArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *GDNativeLibrary) GetCurrentLibraryPath() gdnative.String {
 	log.Println("Calling GDNativeLibrary.GetCurrentLibraryPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDNativeLibrary", "get_current_library_path")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_current_library_path", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *GDNativeLibrary) GetSymbolPrefix() gdnative.String {
 	log.Println("Calling GDNativeLibrary.GetSymbolPrefix()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDNativeLibrary", "get_symbol_prefix")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_symbol_prefix", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *GDNativeLibrary) IsReloadable() gdnative.Bool {
 	log.Println("Calling GDNativeLibrary.IsReloadable()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDNativeLibrary", "is_reloadable")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_reloadable", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *GDNativeLibrary) IsSingleton() gdnative.Bool {
 	log.Println("Calling GDNativeLibrary.IsSingleton()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDNativeLibrary", "is_singleton")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_singleton", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false load_once bool}], Returns: void
 */
+
 func (o *GDNativeLibrary) SetLoadOnce(loadOnce gdnative.Bool) {
 	log.Println("Calling GDNativeLibrary.SetLoadOnce()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(loadOnce)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(loadOnce)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDNativeLibrary", "set_load_once")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_load_once", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false reloadable bool}], Returns: void
 */
+
 func (o *GDNativeLibrary) SetReloadable(reloadable gdnative.Bool) {
 	log.Println("Calling GDNativeLibrary.SetReloadable()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(reloadable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(reloadable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDNativeLibrary", "set_reloadable")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_reloadable", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false singleton bool}], Returns: void
 */
+
 func (o *GDNativeLibrary) SetSingleton(singleton gdnative.Bool) {
 	log.Println("Calling GDNativeLibrary.SetSingleton()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(singleton)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(singleton)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDNativeLibrary", "set_singleton")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_singleton", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false symbol_prefix String}], Returns: void
 */
+
 func (o *GDNativeLibrary) SetSymbolPrefix(symbolPrefix gdnative.String) {
 	log.Println("Calling GDNativeLibrary.SetSymbolPrefix()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(symbolPrefix)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(symbolPrefix)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDNativeLibrary", "set_symbol_prefix")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_symbol_prefix", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *GDNativeLibrary) ShouldLoadOnce() gdnative.Bool {
 	log.Println("Calling GDNativeLibrary.ShouldLoadOnce()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDNativeLibrary", "should_load_once")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "should_load_once", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   GDNativeLibraryImplementer is an interface for GDNativeLibrary objects.
-*/
-type GDNativeLibraryImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

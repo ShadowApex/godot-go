@@ -2,9 +2,11 @@ package curvetexture
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/curve"
+	"github.com/shadowapex/godot-go/godot/class/texture"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewCurveTextureFromPointer(ptr gdnative.Pointer) *CurveTexture {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := CurveTexture{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Renders a given [Curve] provided to it. Simplifies the task of drawing curves and/or saving them as image files.
 */
 type CurveTexture struct {
-	Texture
+	texture.Texture
 }
 
 func (o *CurveTexture) BaseClass() string {
@@ -28,81 +39,92 @@ func (o *CurveTexture) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *CurveTexture) X_Update() {
 	log.Println("Calling CurveTexture.X_Update()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CurveTexture", "_update")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_update", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Curve
 */
-func (o *CurveTexture) GetCurve() *Curve {
+
+func (o *CurveTexture) GetCurve() curve.Curve {
 	log.Println("Calling CurveTexture.GetCurve()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CurveTexture", "get_curve")
 
 	// Call the parent method.
+	// Curve
+	retPtr := curve.NewEmptyCurve()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_curve", goArguments, "*Curve")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := curve.NewCurveFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Curve)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false curve Curve}], Returns: void
 */
-func (o *CurveTexture) SetCurve(curve *Curve) {
+
+func (o *CurveTexture) SetCurve(curve curve.Curve) {
 	log.Println("Calling CurveTexture.SetCurve()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(curve)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(curve.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CurveTexture", "set_curve")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_curve", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false width int}], Returns: void
 */
+
 func (o *CurveTexture) SetWidth(width gdnative.Int) {
 	log.Println("Calling CurveTexture.SetWidth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(width)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(width)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CurveTexture", "set_width")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_width", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   CurveTextureImplementer is an interface for CurveTexture objects.
-*/
-type CurveTextureImplementer interface {
-	Class
 }

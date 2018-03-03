@@ -2,9 +2,21 @@ package tileset
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/resource"
+	"github.com/shadowapex/godot-go/godot/class/shader"
+
+	"github.com/shadowapex/godot-go/godot/class/navigationpolygon"
+
+	"github.com/shadowapex/godot-go/godot/class/texture"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
+
+	"github.com/shadowapex/godot-go/godot/class/shape2d"
+
+	"github.com/shadowapex/godot-go/godot/class/occluderpolygon2d"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +28,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewTileSetFromPointer(ptr gdnative.Pointer) *TileSet {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := TileSet{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 A TileSet is a library of tiles for a [TileMap]. It contains a list of tiles, each consisting of a sprite and optional collision shapes. Tiles are referenced by a unique integer ID.
 */
 type TileSet struct {
-	Resource
+	resource.Resource
 }
 
 func (o *TileSet) BaseClass() string {
@@ -29,816 +50,989 @@ func (o *TileSet) BaseClass() string {
 
 /*
 
- */
-func (o *TileSet) X_ForwardSubtileSelection(autotileId gdnative.Int, bitmask gdnative.Int, tilemap *Object, tileLocation *Vector2) *Vector2 {
+	Args: [{ false autotile_id int} { false bitmask int} { false tilemap Object} { false tile_location Vector2}], Returns: Vector2
+*/
+
+func (o *TileSet) X_ForwardSubtileSelection(autotileId gdnative.Int, bitmask gdnative.Int, tilemap object.Object, tileLocation gdnative.Vector2) gdnative.Vector2 {
 	log.Println("Calling TileSet.X_ForwardSubtileSelection()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(autotileId)
-	goArguments[1] = reflect.ValueOf(bitmask)
-	goArguments[2] = reflect.ValueOf(tilemap)
-	goArguments[3] = reflect.ValueOf(tileLocation)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromInt(autotileId)
+	ptrArguments[1] = gdnative.NewPointerFromInt(bitmask)
+	ptrArguments[2] = gdnative.NewPointerFromObject(tilemap.GetOwner())
+	ptrArguments[3] = gdnative.NewPointerFromVector2(tileLocation)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "_forward_subtile_selection")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_forward_subtile_selection", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false drawn_id int} { false neighbor_id int}], Returns: bool
+*/
+
 func (o *TileSet) X_IsTileBound(drawnId gdnative.Int, neighborId gdnative.Int) gdnative.Bool {
 	log.Println("Calling TileSet.X_IsTileBound()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(drawnId)
-	goArguments[1] = reflect.ValueOf(neighborId)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(drawnId)
+	ptrArguments[1] = gdnative.NewPointerFromInt(neighborId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "_is_tile_bound")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_is_tile_bound", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *TileSet) AutotileGetBitmaskMode(id gdnative.Int) gdnative.Int {
-	log.Println("Calling TileSet.AutotileGetBitmaskMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "autotile_get_bitmask_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
+	Args: [{ false id int}], Returns: enum.TileSet::BitmaskMode
+*/
 
 /*
 
- */
+	Args: [{ false id int} { false mode int}], Returns: void
+*/
+
 func (o *TileSet) AutotileSetBitmaskMode(id gdnative.Int, mode gdnative.Int) {
 	log.Println("Calling TileSet.AutotileSetBitmaskMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "autotile_set_bitmask_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "autotile_set_bitmask_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Clear all tiles.
+        Clear all tiles.
+	Args: [], Returns: void
 */
+
 func (o *TileSet) Clear() {
 	log.Println("Calling TileSet.Clear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Create a new tile which will be referenced by the given ID.
+        Create a new tile which will be referenced by the given ID.
+	Args: [{ false id int}], Returns: void
 */
+
 func (o *TileSet) CreateTile(id gdnative.Int) {
 	log.Println("Calling TileSet.CreateTile()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "create_tile")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "create_tile", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Find the first tile matching the given name.
+        Find the first tile matching the given name.
+	Args: [{ false name String}], Returns: int
 */
+
 func (o *TileSet) FindTileByName(name gdnative.String) gdnative.Int {
 	log.Println("Calling TileSet.FindTileByName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "find_tile_by_name")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "find_tile_by_name", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the ID following the last currently used ID, useful when creating a new tile.
+        Return the ID following the last currently used ID, useful when creating a new tile.
+	Args: [], Returns: int
 */
+
 func (o *TileSet) GetLastUnusedTileId() gdnative.Int {
 	log.Println("Calling TileSet.GetLastUnusedTileId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "get_last_unused_tile_id")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_last_unused_tile_id", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return an array of all currently used tile IDs.
+        Return an array of all currently used tile IDs.
+	Args: [], Returns: Array
 */
-func (o *TileSet) GetTilesIds() *Array {
+
+func (o *TileSet) GetTilesIds() gdnative.Array {
 	log.Println("Calling TileSet.GetTilesIds()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "get_tiles_ids")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tiles_ids", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Remove the tile referenced by the given ID.
+        Remove the tile referenced by the given ID.
+	Args: [{ false id int}], Returns: void
 */
+
 func (o *TileSet) RemoveTile(id gdnative.Int) {
 	log.Println("Calling TileSet.RemoveTile()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "remove_tile")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_tile", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *TileSet) TileAddShape(id gdnative.Int, shape *Shape2D, shapeTransform *Transform2D, oneWay gdnative.Bool, autotileCoord *Vector2) {
+	Args: [{ false id int} { false shape Shape2D} { false shape_transform Transform2D} {False true one_way bool} {(0, 0) true autotile_coord Vector2}], Returns: void
+*/
+
+func (o *TileSet) TileAddShape(id gdnative.Int, shape shape2d.Shape2D, shapeTransform gdnative.Transform2D, oneWay gdnative.Bool, autotileCoord gdnative.Vector2) {
 	log.Println("Calling TileSet.TileAddShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(shape)
-	goArguments[2] = reflect.ValueOf(shapeTransform)
-	goArguments[3] = reflect.ValueOf(oneWay)
-	goArguments[4] = reflect.ValueOf(autotileCoord)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromObject(shape.GetOwner())
+	ptrArguments[2] = gdnative.NewPointerFromTransform2D(shapeTransform)
+	ptrArguments[3] = gdnative.NewPointerFromBool(oneWay)
+	ptrArguments[4] = gdnative.NewPointerFromVector2(autotileCoord)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_add_shape")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "tile_add_shape", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Return the light occluder of the tile.
+        Return the light occluder of the tile.
+	Args: [{ false id int}], Returns: OccluderPolygon2D
 */
-func (o *TileSet) TileGetLightOccluder(id gdnative.Int) *OccluderPolygon2D {
+
+func (o *TileSet) TileGetLightOccluder(id gdnative.Int) occluderpolygon2d.OccluderPolygon2D {
 	log.Println("Calling TileSet.TileGetLightOccluder()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_get_light_occluder")
 
 	// Call the parent method.
+	// OccluderPolygon2D
+	retPtr := occluderpolygon2d.NewEmptyOccluderPolygon2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "tile_get_light_occluder", goArguments, "*OccluderPolygon2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := occluderpolygon2d.NewOccluderPolygon2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*OccluderPolygon2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the material of the tile.
+        Return the material of the tile.
+	Args: [{ false id int}], Returns: ShaderMaterial
 */
-func (o *TileSet) TileGetMaterial(id gdnative.Int) *ShaderMaterial {
+
+func (o *TileSet) TileGetMaterial(id gdnative.Int) shader.ShaderMaterial {
 	log.Println("Calling TileSet.TileGetMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_get_material")
 
 	// Call the parent method.
+	// ShaderMaterial
+	retPtr := shader.NewEmptyShaderMaterial()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "tile_get_material", goArguments, "*ShaderMaterial")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := shader.NewShaderMaterialFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*ShaderMaterial)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the name of the tile.
+        Return the name of the tile.
+	Args: [{ false id int}], Returns: String
 */
+
 func (o *TileSet) TileGetName(id gdnative.Int) gdnative.String {
 	log.Println("Calling TileSet.TileGetName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_get_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "tile_get_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the navigation polygon of the tile.
+        Return the navigation polygon of the tile.
+	Args: [{ false id int}], Returns: NavigationPolygon
 */
-func (o *TileSet) TileGetNavigationPolygon(id gdnative.Int) *NavigationPolygon {
+
+func (o *TileSet) TileGetNavigationPolygon(id gdnative.Int) navigationpolygon.NavigationPolygon {
 	log.Println("Calling TileSet.TileGetNavigationPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_get_navigation_polygon")
 
 	// Call the parent method.
+	// NavigationPolygon
+	retPtr := navigationpolygon.NewEmptyNavigationPolygon()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "tile_get_navigation_polygon", goArguments, "*NavigationPolygon")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := navigationpolygon.NewNavigationPolygonFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NavigationPolygon)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the offset of the tile's navigation polygon.
+        Return the offset of the tile's navigation polygon.
+	Args: [{ false id int}], Returns: Vector2
 */
-func (o *TileSet) TileGetNavigationPolygonOffset(id gdnative.Int) *Vector2 {
+
+func (o *TileSet) TileGetNavigationPolygonOffset(id gdnative.Int) gdnative.Vector2 {
 	log.Println("Calling TileSet.TileGetNavigationPolygonOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_get_navigation_polygon_offset")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "tile_get_navigation_polygon_offset", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *TileSet) TileGetNormalMap(id gdnative.Int) *Texture {
+	Args: [{ false id int}], Returns: Texture
+*/
+
+func (o *TileSet) TileGetNormalMap(id gdnative.Int) texture.Texture {
 	log.Println("Calling TileSet.TileGetNormalMap()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_get_normal_map")
 
 	// Call the parent method.
+	// Texture
+	retPtr := texture.NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "tile_get_normal_map", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := texture.NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the offset of the tile's light occluder.
+        Return the offset of the tile's light occluder.
+	Args: [{ false id int}], Returns: Vector2
 */
-func (o *TileSet) TileGetOccluderOffset(id gdnative.Int) *Vector2 {
+
+func (o *TileSet) TileGetOccluderOffset(id gdnative.Int) gdnative.Vector2 {
 	log.Println("Calling TileSet.TileGetOccluderOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_get_occluder_offset")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "tile_get_occluder_offset", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the tile sub-region in the texture.
+        Return the tile sub-region in the texture.
+	Args: [{ false id int}], Returns: Rect2
 */
-func (o *TileSet) TileGetRegion(id gdnative.Int) *Rect2 {
+
+func (o *TileSet) TileGetRegion(id gdnative.Int) gdnative.Rect2 {
 	log.Println("Calling TileSet.TileGetRegion()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_get_region")
 
 	// Call the parent method.
+	// Rect2
+	retPtr := gdnative.NewEmptyRect2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "tile_get_region", goArguments, "*Rect2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRect2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Rect2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *TileSet) TileGetShape(id gdnative.Int, shapeId gdnative.Int) *Shape2D {
+	Args: [{ false id int} { false shape_id int}], Returns: Shape2D
+*/
+
+func (o *TileSet) TileGetShape(id gdnative.Int, shapeId gdnative.Int) shape2d.Shape2D {
 	log.Println("Calling TileSet.TileGetShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(shapeId)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_get_shape")
 
 	// Call the parent method.
+	// Shape2D
+	retPtr := shape2d.NewEmptyShape2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "tile_get_shape", goArguments, "*Shape2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := shape2d.NewShape2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Shape2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false id int}], Returns: int
+*/
+
 func (o *TileSet) TileGetShapeCount(id gdnative.Int) gdnative.Int {
 	log.Println("Calling TileSet.TileGetShapeCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_get_shape_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "tile_get_shape_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false id int} { false shape_id int}], Returns: bool
+*/
+
 func (o *TileSet) TileGetShapeOneWay(id gdnative.Int, shapeId gdnative.Int) gdnative.Bool {
 	log.Println("Calling TileSet.TileGetShapeOneWay()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(shapeId)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_get_shape_one_way")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "tile_get_shape_one_way", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *TileSet) TileGetShapeTransform(id gdnative.Int, shapeId gdnative.Int) *Transform2D {
+	Args: [{ false id int} { false shape_id int}], Returns: Transform2D
+*/
+
+func (o *TileSet) TileGetShapeTransform(id gdnative.Int, shapeId gdnative.Int) gdnative.Transform2D {
 	log.Println("Calling TileSet.TileGetShapeTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(shapeId)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_get_shape_transform")
 
 	// Call the parent method.
+	// Transform2D
+	retPtr := gdnative.NewEmptyTransform2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "tile_get_shape_transform", goArguments, "*Transform2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransform2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the array of shapes of the tile.
+        Return the array of shapes of the tile.
+	Args: [{ false id int}], Returns: Array
 */
-func (o *TileSet) TileGetShapes(id gdnative.Int) *Array {
+
+func (o *TileSet) TileGetShapes(id gdnative.Int) gdnative.Array {
 	log.Println("Calling TileSet.TileGetShapes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_get_shapes")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "tile_get_shapes", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the texture of the tile.
+        Return the texture of the tile.
+	Args: [{ false id int}], Returns: Texture
 */
-func (o *TileSet) TileGetTexture(id gdnative.Int) *Texture {
+
+func (o *TileSet) TileGetTexture(id gdnative.Int) texture.Texture {
 	log.Println("Calling TileSet.TileGetTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_get_texture")
 
 	// Call the parent method.
+	// Texture
+	retPtr := texture.NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "tile_get_texture", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := texture.NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the texture offset of the tile.
+        Return the texture offset of the tile.
+	Args: [{ false id int}], Returns: Vector2
 */
-func (o *TileSet) TileGetTextureOffset(id gdnative.Int) *Vector2 {
+
+func (o *TileSet) TileGetTextureOffset(id gdnative.Int) gdnative.Vector2 {
 	log.Println("Calling TileSet.TileGetTextureOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_get_texture_offset")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "tile_get_texture_offset", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Set a light occluder for the tile.
+        Set a light occluder for the tile.
+	Args: [{ false id int} { false light_occluder OccluderPolygon2D}], Returns: void
 */
-func (o *TileSet) TileSetLightOccluder(id gdnative.Int, lightOccluder *OccluderPolygon2D) {
+
+func (o *TileSet) TileSetLightOccluder(id gdnative.Int, lightOccluder occluderpolygon2d.OccluderPolygon2D) {
 	log.Println("Calling TileSet.TileSetLightOccluder()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(lightOccluder)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromObject(lightOccluder.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_set_light_occluder")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "tile_set_light_occluder", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the material of the tile.
+        Set the material of the tile.
+	Args: [{ false id int} { false material ShaderMaterial}], Returns: void
 */
-func (o *TileSet) TileSetMaterial(id gdnative.Int, material *ShaderMaterial) {
+
+func (o *TileSet) TileSetMaterial(id gdnative.Int, material shader.ShaderMaterial) {
 	log.Println("Calling TileSet.TileSetMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(material)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromObject(material.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_set_material")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "tile_set_material", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the name of the tile, for descriptive purposes.
+        Set the name of the tile, for descriptive purposes.
+	Args: [{ false id int} { false name String}], Returns: void
 */
+
 func (o *TileSet) TileSetName(id gdnative.Int, name gdnative.String) {
 	log.Println("Calling TileSet.TileSetName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_set_name")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "tile_set_name", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set a navigation polygon for the tile.
+        Set a navigation polygon for the tile.
+	Args: [{ false id int} { false navigation_polygon NavigationPolygon}], Returns: void
 */
-func (o *TileSet) TileSetNavigationPolygon(id gdnative.Int, navigationPolygon *NavigationPolygon) {
+
+func (o *TileSet) TileSetNavigationPolygon(id gdnative.Int, navigationPolygon navigationpolygon.NavigationPolygon) {
 	log.Println("Calling TileSet.TileSetNavigationPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(navigationPolygon)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromObject(navigationPolygon.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_set_navigation_polygon")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "tile_set_navigation_polygon", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set an offset for the tile's navigation polygon.
+        Set an offset for the tile's navigation polygon.
+	Args: [{ false id int} { false navigation_polygon_offset Vector2}], Returns: void
 */
-func (o *TileSet) TileSetNavigationPolygonOffset(id gdnative.Int, navigationPolygonOffset *Vector2) {
+
+func (o *TileSet) TileSetNavigationPolygonOffset(id gdnative.Int, navigationPolygonOffset gdnative.Vector2) {
 	log.Println("Calling TileSet.TileSetNavigationPolygonOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(navigationPolygonOffset)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(navigationPolygonOffset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_set_navigation_polygon_offset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "tile_set_navigation_polygon_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *TileSet) TileSetNormalMap(id gdnative.Int, normalMap *Texture) {
+	Args: [{ false id int} { false normal_map Texture}], Returns: void
+*/
+
+func (o *TileSet) TileSetNormalMap(id gdnative.Int, normalMap texture.Texture) {
 	log.Println("Calling TileSet.TileSetNormalMap()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(normalMap)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromObject(normalMap.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_set_normal_map")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "tile_set_normal_map", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set an offset for the tile's light occluder.
+        Set an offset for the tile's light occluder.
+	Args: [{ false id int} { false occluder_offset Vector2}], Returns: void
 */
-func (o *TileSet) TileSetOccluderOffset(id gdnative.Int, occluderOffset *Vector2) {
+
+func (o *TileSet) TileSetOccluderOffset(id gdnative.Int, occluderOffset gdnative.Vector2) {
 	log.Println("Calling TileSet.TileSetOccluderOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(occluderOffset)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(occluderOffset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_set_occluder_offset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "tile_set_occluder_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the tile sub-region in the texture. This is common in texture atlases.
+        Set the tile sub-region in the texture. This is common in texture atlases.
+	Args: [{ false id int} { false region Rect2}], Returns: void
 */
-func (o *TileSet) TileSetRegion(id gdnative.Int, region *Rect2) {
+
+func (o *TileSet) TileSetRegion(id gdnative.Int, region gdnative.Rect2) {
 	log.Println("Calling TileSet.TileSetRegion()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(region)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromRect2(region)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_set_region")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "tile_set_region", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *TileSet) TileSetShape(id gdnative.Int, shapeId gdnative.Int, shape *Shape2D) {
+	Args: [{ false id int} { false shape_id int} { false shape Shape2D}], Returns: void
+*/
+
+func (o *TileSet) TileSetShape(id gdnative.Int, shapeId gdnative.Int, shape shape2d.Shape2D) {
 	log.Println("Calling TileSet.TileSetShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(shapeId)
-	goArguments[2] = reflect.ValueOf(shape)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeId)
+	ptrArguments[2] = gdnative.NewPointerFromObject(shape.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_set_shape")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "tile_set_shape", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false id int} { false shape_id int} { false one_way bool}], Returns: void
+*/
+
 func (o *TileSet) TileSetShapeOneWay(id gdnative.Int, shapeId gdnative.Int, oneWay gdnative.Bool) {
 	log.Println("Calling TileSet.TileSetShapeOneWay()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(shapeId)
-	goArguments[2] = reflect.ValueOf(oneWay)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeId)
+	ptrArguments[2] = gdnative.NewPointerFromBool(oneWay)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_set_shape_one_way")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "tile_set_shape_one_way", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *TileSet) TileSetShapeTransform(id gdnative.Int, shapeId gdnative.Int, shapeTransform *Transform2D) {
+	Args: [{ false id int} { false shape_id int} { false shape_transform Transform2D}], Returns: void
+*/
+
+func (o *TileSet) TileSetShapeTransform(id gdnative.Int, shapeId gdnative.Int, shapeTransform gdnative.Transform2D) {
 	log.Println("Calling TileSet.TileSetShapeTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(shapeId)
-	goArguments[2] = reflect.ValueOf(shapeTransform)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeId)
+	ptrArguments[2] = gdnative.NewPointerFromTransform2D(shapeTransform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_set_shape_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "tile_set_shape_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set an array of shapes for the tile, enabling physics to collide with it.
+        Set an array of shapes for the tile, enabling physics to collide with it.
+	Args: [{ false id int} { false shapes Array}], Returns: void
 */
-func (o *TileSet) TileSetShapes(id gdnative.Int, shapes *Array) {
+
+func (o *TileSet) TileSetShapes(id gdnative.Int, shapes gdnative.Array) {
 	log.Println("Calling TileSet.TileSetShapes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(shapes)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromArray(shapes)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_set_shapes")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "tile_set_shapes", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the texture of the tile.
+        Set the texture of the tile.
+	Args: [{ false id int} { false texture Texture}], Returns: void
 */
-func (o *TileSet) TileSetTexture(id gdnative.Int, texture *Texture) {
+
+func (o *TileSet) TileSetTexture(id gdnative.Int, texture texture.Texture) {
 	log.Println("Calling TileSet.TileSetTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromObject(texture.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_set_texture")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "tile_set_texture", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the texture offset of the tile.
+        Set the texture offset of the tile.
+	Args: [{ false id int} { false texture_offset Vector2}], Returns: void
 */
-func (o *TileSet) TileSetTextureOffset(id gdnative.Int, textureOffset *Vector2) {
+
+func (o *TileSet) TileSetTextureOffset(id gdnative.Int, textureOffset gdnative.Vector2) {
 	log.Println("Calling TileSet.TileSetTextureOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(textureOffset)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(textureOffset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "tile_set_texture_offset")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "tile_set_texture_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   TileSetImplementer is an interface for TileSet objects.
-*/
-type TileSetImplementer interface {
-	Class
 }

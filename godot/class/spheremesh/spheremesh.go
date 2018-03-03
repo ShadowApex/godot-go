@@ -2,7 +2,9 @@ package spheremesh
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/primitivemesh"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewSphereMeshFromPointer(ptr gdnative.Pointer) *SphereMesh {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := SphereMesh{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Class representing a spherical [PrimitiveMesh].
 */
 type SphereMesh struct {
-	PrimitiveMesh
+	primitivemesh.PrimitiveMesh
 }
 
 func (o *SphereMesh) BaseClass() string {
@@ -26,198 +37,241 @@ func (o *SphereMesh) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *SphereMesh) GetHeight() gdnative.Float {
 	log.Println("Calling SphereMesh.GetHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SphereMesh", "get_height")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_height", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *SphereMesh) GetIsHemisphere() gdnative.Bool {
 	log.Println("Calling SphereMesh.GetIsHemisphere()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SphereMesh", "get_is_hemisphere")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_is_hemisphere", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *SphereMesh) GetRadialSegments() gdnative.Int {
 	log.Println("Calling SphereMesh.GetRadialSegments()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SphereMesh", "get_radial_segments")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_radial_segments", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *SphereMesh) GetRadius() gdnative.Float {
 	log.Println("Calling SphereMesh.GetRadius()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SphereMesh", "get_radius")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_radius", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *SphereMesh) GetRings() gdnative.Int {
 	log.Println("Calling SphereMesh.GetRings()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SphereMesh", "get_rings")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_rings", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false height float}], Returns: void
 */
+
 func (o *SphereMesh) SetHeight(height gdnative.Float) {
 	log.Println("Calling SphereMesh.SetHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(height)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(height)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SphereMesh", "set_height")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_height", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false is_hemisphere bool}], Returns: void
 */
+
 func (o *SphereMesh) SetIsHemisphere(isHemisphere gdnative.Bool) {
 	log.Println("Calling SphereMesh.SetIsHemisphere()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(isHemisphere)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(isHemisphere)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SphereMesh", "set_is_hemisphere")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_is_hemisphere", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false radial_segments int}], Returns: void
 */
+
 func (o *SphereMesh) SetRadialSegments(radialSegments gdnative.Int) {
 	log.Println("Calling SphereMesh.SetRadialSegments()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(radialSegments)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(radialSegments)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SphereMesh", "set_radial_segments")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_radial_segments", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false radius float}], Returns: void
 */
+
 func (o *SphereMesh) SetRadius(radius gdnative.Float) {
 	log.Println("Calling SphereMesh.SetRadius()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(radius)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(radius)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SphereMesh", "set_radius")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_radius", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false rings int}], Returns: void
 */
+
 func (o *SphereMesh) SetRings(rings gdnative.Int) {
 	log.Println("Calling SphereMesh.SetRings()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(rings)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(rings)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SphereMesh", "set_rings")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_rings", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   SphereMeshImplementer is an interface for SphereMesh objects.
-*/
-type SphereMeshImplementer interface {
-	Class
 }

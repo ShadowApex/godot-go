@@ -2,9 +2,9 @@ package joint
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/spatial"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewJointFromPointer(ptr gdnative.Pointer) *Joint {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Joint{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 All 3D joints link two nodes, has a priority, and can decide if the two bodies of the nodes should be able to collide with each other
 */
 type Joint struct {
-	Spatial
+	spatial.Spatial
 }
 
 func (o *Joint) BaseClass() string {
@@ -28,160 +37,193 @@ func (o *Joint) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Joint) GetExcludeNodesFromCollision() gdnative.Bool {
 	log.Println("Calling Joint.GetExcludeNodesFromCollision()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Joint", "get_exclude_nodes_from_collision")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_exclude_nodes_from_collision", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: NodePath
 */
-func (o *Joint) GetNodeA() *NodePath {
+
+func (o *Joint) GetNodeA() gdnative.NodePath {
 	log.Println("Calling Joint.GetNodeA()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Joint", "get_node_a")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_a", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: NodePath
 */
-func (o *Joint) GetNodeB() *NodePath {
+
+func (o *Joint) GetNodeB() gdnative.NodePath {
 	log.Println("Calling Joint.GetNodeB()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Joint", "get_node_b")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_b", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *Joint) GetSolverPriority() gdnative.Int {
 	log.Println("Calling Joint.GetSolverPriority()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Joint", "get_solver_priority")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_solver_priority", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Joint) SetExcludeNodesFromCollision(enable gdnative.Bool) {
 	log.Println("Calling Joint.SetExcludeNodesFromCollision()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Joint", "set_exclude_nodes_from_collision")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_exclude_nodes_from_collision", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false node NodePath}], Returns: void
 */
-func (o *Joint) SetNodeA(node *NodePath) {
+
+func (o *Joint) SetNodeA(node gdnative.NodePath) {
 	log.Println("Calling Joint.SetNodeA()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(node)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(node)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Joint", "set_node_a")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_node_a", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false node NodePath}], Returns: void
 */
-func (o *Joint) SetNodeB(node *NodePath) {
+
+func (o *Joint) SetNodeB(node gdnative.NodePath) {
 	log.Println("Calling Joint.SetNodeB()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(node)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(node)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Joint", "set_node_b")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_node_b", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false priority int}], Returns: void
 */
+
 func (o *Joint) SetSolverPriority(priority gdnative.Int) {
 	log.Println("Calling Joint.SetSolverPriority()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(priority)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(priority)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Joint", "set_solver_priority")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_solver_priority", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   JointImplementer is an interface for Joint objects.
-*/
-type JointImplementer interface {
-	Class
 }

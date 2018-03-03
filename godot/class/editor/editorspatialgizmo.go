@@ -2,9 +2,19 @@ package editor
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/arraymesh"
+	"github.com/shadowapex/godot-go/godot/class/spatial"
+
+	"github.com/shadowapex/godot-go/godot/class/camera"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
+
+	"github.com/shadowapex/godot-go/godot/class/trianglemesh"
+
+	"github.com/shadowapex/godot-go/godot/class/material"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +26,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewEditorSpatialGizmoFromPointer(ptr gdnative.Pointer) *EditorSpatialGizmo {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := EditorSpatialGizmo{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Custom gizmo that is used for providing custom visualization and editing (handles) for 3D Spatial objects. These are created by [method EditorPlugin.create_spatial_gizmo].
 */
 type EditorSpatialGizmo struct {
-	SpatialGizmo
+	spatial.SpatialGizmo
 }
 
 func (o *EditorSpatialGizmo) BaseClass() string {
@@ -29,257 +48,306 @@ func (o *EditorSpatialGizmo) BaseClass() string {
 
 /*
 
- */
-func (o *EditorSpatialGizmo) AddCollisionSegments(segments *PoolVector3Array) {
+	Args: [{ false segments PoolVector3Array}], Returns: void
+*/
+
+func (o *EditorSpatialGizmo) AddCollisionSegments(segments gdnative.PoolVector3Array) {
 	log.Println("Calling EditorSpatialGizmo.AddCollisionSegments()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(segments)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector3Array(segments)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSpatialGizmo", "add_collision_segments")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_collision_segments", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Add collision triangles to the gizmo for picking. A [TriangleMesh] can be generated from a regular [Mesh] too. Call this function during [method redraw].
+        Add collision triangles to the gizmo for picking. A [TriangleMesh] can be generated from a regular [Mesh] too. Call this function during [method redraw].
+	Args: [{ false triangles TriangleMesh} { false bounds AABB}], Returns: void
 */
-func (o *EditorSpatialGizmo) AddCollisionTriangles(triangles *TriangleMesh, bounds *AABB) {
+
+func (o *EditorSpatialGizmo) AddCollisionTriangles(triangles trianglemesh.TriangleMesh, bounds gdnative.AABB) {
 	log.Println("Calling EditorSpatialGizmo.AddCollisionTriangles()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(triangles)
-	goArguments[1] = reflect.ValueOf(bounds)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromObject(triangles.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromAabb(bounds)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSpatialGizmo", "add_collision_triangles")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_collision_triangles", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Add a list of handles (points) which can be used to deform the object being edited. There are virtual functions which will be called upon editing of these handles. Call this function during [method redraw].
+        Add a list of handles (points) which can be used to deform the object being edited. There are virtual functions which will be called upon editing of these handles. Call this function during [method redraw].
+	Args: [{ false handles PoolVector3Array} {False true billboard bool} {False true secondary bool}], Returns: void
 */
-func (o *EditorSpatialGizmo) AddHandles(handles *PoolVector3Array, billboard gdnative.Bool, secondary gdnative.Bool) {
+
+func (o *EditorSpatialGizmo) AddHandles(handles gdnative.PoolVector3Array, billboard gdnative.Bool, secondary gdnative.Bool) {
 	log.Println("Calling EditorSpatialGizmo.AddHandles()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(handles)
-	goArguments[1] = reflect.ValueOf(billboard)
-	goArguments[2] = reflect.ValueOf(secondary)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector3Array(handles)
+	ptrArguments[1] = gdnative.NewPointerFromBool(billboard)
+	ptrArguments[2] = gdnative.NewPointerFromBool(secondary)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSpatialGizmo", "add_handles")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_handles", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Add lines to the gizmo (as sets of 2 points), with a given material. The lines are used for visualizing the gizmo. Call this function during [method redraw].
+        Add lines to the gizmo (as sets of 2 points), with a given material. The lines are used for visualizing the gizmo. Call this function during [method redraw].
+	Args: [{ false lines PoolVector3Array} { false material Material} {False true billboard bool}], Returns: void
 */
-func (o *EditorSpatialGizmo) AddLines(lines *PoolVector3Array, material *Material, billboard gdnative.Bool) {
+
+func (o *EditorSpatialGizmo) AddLines(lines gdnative.PoolVector3Array, material material.Material, billboard gdnative.Bool) {
 	log.Println("Calling EditorSpatialGizmo.AddLines()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(lines)
-	goArguments[1] = reflect.ValueOf(material)
-	goArguments[2] = reflect.ValueOf(billboard)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector3Array(lines)
+	ptrArguments[1] = gdnative.NewPointerFromObject(material.GetOwner())
+	ptrArguments[2] = gdnative.NewPointerFromBool(billboard)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSpatialGizmo", "add_lines")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_lines", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *EditorSpatialGizmo) AddMesh(mesh *ArrayMesh, billboard gdnative.Bool, skeleton *RID) {
+	Args: [{ false mesh ArrayMesh} {False true billboard bool} {[RID] true skeleton RID}], Returns: void
+*/
+
+func (o *EditorSpatialGizmo) AddMesh(mesh arraymesh.ArrayMesh, billboard gdnative.Bool, skeleton gdnative.RID) {
 	log.Println("Calling EditorSpatialGizmo.AddMesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(billboard)
-	goArguments[2] = reflect.ValueOf(skeleton)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromObject(mesh.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromBool(billboard)
+	ptrArguments[2] = gdnative.NewPointerFromRid(skeleton)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSpatialGizmo", "add_mesh")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_mesh", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Add an unscaled billboard for visualization. Call this function during [method redraw].
+        Add an unscaled billboard for visualization. Call this function during [method redraw].
+	Args: [{ false material Material} {1 true default_scale float}], Returns: void
 */
-func (o *EditorSpatialGizmo) AddUnscaledBillboard(material *Material, defaultScale gdnative.Float) {
+
+func (o *EditorSpatialGizmo) AddUnscaledBillboard(material material.Material, defaultScale gdnative.Float) {
 	log.Println("Calling EditorSpatialGizmo.AddUnscaledBillboard()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(material)
-	goArguments[1] = reflect.ValueOf(defaultScale)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromObject(material.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromFloat(defaultScale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSpatialGizmo", "add_unscaled_billboard")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_unscaled_billboard", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *EditorSpatialGizmo) Clear() {
 	log.Println("Calling EditorSpatialGizmo.Clear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSpatialGizmo", "clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Commit a handle being edited (handles must have been previously added by [method add_handles]). If the cancel parameter is true, an option to restore the edited value to the original is provided.
+        Commit a handle being edited (handles must have been previously added by [method add_handles]). If the cancel parameter is true, an option to restore the edited value to the original is provided.
+	Args: [{ false index int} { false restore Variant} { false cancel bool}], Returns: void
 */
-func (o *EditorSpatialGizmo) CommitHandle(index gdnative.Int, restore *Variant, cancel gdnative.Bool) {
+
+func (o *EditorSpatialGizmo) CommitHandle(index gdnative.Int, restore gdnative.Variant, cancel gdnative.Bool) {
 	log.Println("Calling EditorSpatialGizmo.CommitHandle()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(index)
-	goArguments[1] = reflect.ValueOf(restore)
-	goArguments[2] = reflect.ValueOf(cancel)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(index)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(restore)
+	ptrArguments[2] = gdnative.NewPointerFromBool(cancel)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSpatialGizmo", "commit_handle")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "commit_handle", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Get the name of an edited handle (handles must have been previously added by [method add_handles]). Handles can be named for reference to the user when editing.
+        Get the name of an edited handle (handles must have been previously added by [method add_handles]). Handles can be named for reference to the user when editing.
+	Args: [{ false index int}], Returns: String
 */
+
 func (o *EditorSpatialGizmo) GetHandleName(index gdnative.Int) gdnative.String {
 	log.Println("Calling EditorSpatialGizmo.GetHandleName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(index)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(index)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSpatialGizmo", "get_handle_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_handle_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get actual value of a handle. This value can be anything and used for eventually undoing the motion when calling [method commit_handle]
+        Get actual value of a handle. This value can be anything and used for eventually undoing the motion when calling [method commit_handle]
+	Args: [{ false index int}], Returns: Variant
 */
-func (o *EditorSpatialGizmo) GetHandleValue(index gdnative.Int) *Variant {
+
+func (o *EditorSpatialGizmo) GetHandleValue(index gdnative.Int) gdnative.Variant {
 	log.Println("Calling EditorSpatialGizmo.GetHandleValue()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(index)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(index)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSpatialGizmo", "get_handle_value")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_handle_value", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   This function is called when the Spatial this gizmo refers to changes (the [method Spatial.update_gizmo] is called).
+        This function is called when the Spatial this gizmo refers to changes (the [method Spatial.update_gizmo] is called).
+	Args: [], Returns: void
 */
+
 func (o *EditorSpatialGizmo) Redraw() {
 	log.Println("Calling EditorSpatialGizmo.Redraw()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSpatialGizmo", "redraw")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "redraw", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   This function is used when the user drags a gizmo handle (previously added with [method add_handles]) in screen coordinates. The [Camera] is also provided so screen coordinates can be converted to raycasts.
+        This function is used when the user drags a gizmo handle (previously added with [method add_handles]) in screen coordinates. The [Camera] is also provided so screen coordinates can be converted to raycasts.
+	Args: [{ false index int} { false camera Camera} { false point Vector2}], Returns: void
 */
-func (o *EditorSpatialGizmo) SetHandle(index gdnative.Int, camera *Camera, point *Vector2) {
+
+func (o *EditorSpatialGizmo) SetHandle(index gdnative.Int, camera camera.Camera, point gdnative.Vector2) {
 	log.Println("Calling EditorSpatialGizmo.SetHandle()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(index)
-	goArguments[1] = reflect.ValueOf(camera)
-	goArguments[2] = reflect.ValueOf(point)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(index)
+	ptrArguments[1] = gdnative.NewPointerFromObject(camera.GetOwner())
+	ptrArguments[2] = gdnative.NewPointerFromVector2(point)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSpatialGizmo", "set_handle")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_handle", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *EditorSpatialGizmo) SetSpatialNode(node *Object) {
+	Args: [{ false node Object}], Returns: void
+*/
+
+func (o *EditorSpatialGizmo) SetSpatialNode(node object.Object) {
 	log.Println("Calling EditorSpatialGizmo.SetSpatialNode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(node)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(node.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSpatialGizmo", "set_spatial_node")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_spatial_node", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   EditorSpatialGizmoImplementer is an interface for EditorSpatialGizmo objects.
-*/
-type EditorSpatialGizmoImplementer interface {
-	Class
 }

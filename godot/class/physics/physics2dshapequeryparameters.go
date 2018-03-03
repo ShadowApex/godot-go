@@ -2,9 +2,11 @@ package physics
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/reference"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPhysics2DShapeQueryParametersFromPointer(ptr gdnative.Pointer) *Physics2DShapeQueryParameters {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Physics2DShapeQueryParameters{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 This class contains the shape and other parameters for intersection/collision queries.
 */
 type Physics2DShapeQueryParameters struct {
-	Reference
+	reference.Reference
 }
 
 func (o *Physics2DShapeQueryParameters) BaseClass() string {
@@ -28,254 +39,311 @@ func (o *Physics2DShapeQueryParameters) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *Physics2DShapeQueryParameters) GetCollisionLayer() gdnative.Int {
 	log.Println("Calling Physics2DShapeQueryParameters.GetCollisionLayer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DShapeQueryParameters", "get_collision_layer")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collision_layer", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Array
 */
-func (o *Physics2DShapeQueryParameters) GetExclude() *Array {
+
+func (o *Physics2DShapeQueryParameters) GetExclude() gdnative.Array {
 	log.Println("Calling Physics2DShapeQueryParameters.GetExclude()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DShapeQueryParameters", "get_exclude")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_exclude", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Physics2DShapeQueryParameters) GetMargin() gdnative.Float {
 	log.Println("Calling Physics2DShapeQueryParameters.GetMargin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DShapeQueryParameters", "get_margin")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_margin", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *Physics2DShapeQueryParameters) GetMotion() *Vector2 {
+
+func (o *Physics2DShapeQueryParameters) GetMotion() gdnative.Vector2 {
 	log.Println("Calling Physics2DShapeQueryParameters.GetMotion()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DShapeQueryParameters", "get_motion")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_motion", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: RID
 */
-func (o *Physics2DShapeQueryParameters) GetShapeRid() *RID {
+
+func (o *Physics2DShapeQueryParameters) GetShapeRid() gdnative.RID {
 	log.Println("Calling Physics2DShapeQueryParameters.GetShapeRid()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DShapeQueryParameters", "get_shape_rid")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_shape_rid", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Transform2D
 */
-func (o *Physics2DShapeQueryParameters) GetTransform() *Transform2D {
+
+func (o *Physics2DShapeQueryParameters) GetTransform() gdnative.Transform2D {
 	log.Println("Calling Physics2DShapeQueryParameters.GetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DShapeQueryParameters", "get_transform")
 
 	// Call the parent method.
+	// Transform2D
+	retPtr := gdnative.NewEmptyTransform2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_transform", goArguments, "*Transform2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransform2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false collision_layer int}], Returns: void
 */
+
 func (o *Physics2DShapeQueryParameters) SetCollisionLayer(collisionLayer gdnative.Int) {
 	log.Println("Calling Physics2DShapeQueryParameters.SetCollisionLayer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(collisionLayer)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(collisionLayer)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DShapeQueryParameters", "set_collision_layer")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_collision_layer", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false exclude Array}], Returns: void
 */
-func (o *Physics2DShapeQueryParameters) SetExclude(exclude *Array) {
+
+func (o *Physics2DShapeQueryParameters) SetExclude(exclude gdnative.Array) {
 	log.Println("Calling Physics2DShapeQueryParameters.SetExclude()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(exclude)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromArray(exclude)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DShapeQueryParameters", "set_exclude")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_exclude", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin float}], Returns: void
 */
+
 func (o *Physics2DShapeQueryParameters) SetMargin(margin gdnative.Float) {
 	log.Println("Calling Physics2DShapeQueryParameters.SetMargin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(margin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DShapeQueryParameters", "set_margin")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_margin", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false motion Vector2}], Returns: void
 */
-func (o *Physics2DShapeQueryParameters) SetMotion(motion *Vector2) {
+
+func (o *Physics2DShapeQueryParameters) SetMotion(motion gdnative.Vector2) {
 	log.Println("Calling Physics2DShapeQueryParameters.SetMotion()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(motion)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(motion)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DShapeQueryParameters", "set_motion")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_motion", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the [Shape2D] that will be used for collision/intersection queries.
+        Set the [Shape2D] that will be used for collision/intersection queries.
+	Args: [{ false shape Resource}], Returns: void
 */
-func (o *Physics2DShapeQueryParameters) SetShape(shape *Resource) {
+
+func (o *Physics2DShapeQueryParameters) SetShape(shape resource.Resource) {
 	log.Println("Calling Physics2DShapeQueryParameters.SetShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(shape)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(shape.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DShapeQueryParameters", "set_shape")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_shape", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false shape RID}], Returns: void
 */
-func (o *Physics2DShapeQueryParameters) SetShapeRid(shape *RID) {
+
+func (o *Physics2DShapeQueryParameters) SetShapeRid(shape gdnative.RID) {
 	log.Println("Calling Physics2DShapeQueryParameters.SetShapeRid()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(shape)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(shape)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DShapeQueryParameters", "set_shape_rid")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_shape_rid", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false transform Transform2D}], Returns: void
 */
-func (o *Physics2DShapeQueryParameters) SetTransform(transform *Transform2D) {
+
+func (o *Physics2DShapeQueryParameters) SetTransform(transform gdnative.Transform2D) {
 	log.Println("Calling Physics2DShapeQueryParameters.SetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromTransform2D(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DShapeQueryParameters", "set_transform")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   Physics2DShapeQueryParametersImplementer is an interface for Physics2DShapeQueryParameters objects.
-*/
-type Physics2DShapeQueryParametersImplementer interface {
-	Class
 }

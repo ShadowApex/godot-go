@@ -2,7 +2,8 @@ package audioeffect
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
 )
 
 /*------------------------------------------------------------------------------
@@ -13,6 +14,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewAudioEffectDelayFromPointer(ptr gdnative.Pointer) *AudioEffectDelay {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := AudioEffectDelay{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 /*
 Plays input signal back after a period of time. The delayed signal may be played back multiple times to create the sound of a repeating, decaying echo. Delay effects range from a subtle echo effect to a pronounced blending of previous sounds with new sounds.
@@ -26,502 +36,625 @@ func (o *AudioEffectDelay) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectDelay) GetDry() gdnative.Float {
 	log.Println("Calling AudioEffectDelay.GetDry()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "get_dry")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_dry", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectDelay) GetFeedbackDelayMs() gdnative.Float {
 	log.Println("Calling AudioEffectDelay.GetFeedbackDelayMs()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "get_feedback_delay_ms")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_feedback_delay_ms", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectDelay) GetFeedbackLevelDb() gdnative.Float {
 	log.Println("Calling AudioEffectDelay.GetFeedbackLevelDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "get_feedback_level_db")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_feedback_level_db", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectDelay) GetFeedbackLowpass() gdnative.Float {
 	log.Println("Calling AudioEffectDelay.GetFeedbackLowpass()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "get_feedback_lowpass")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_feedback_lowpass", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectDelay) GetTap1DelayMs() gdnative.Float {
 	log.Println("Calling AudioEffectDelay.GetTap1DelayMs()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "get_tap1_delay_ms")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tap1_delay_ms", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectDelay) GetTap1LevelDb() gdnative.Float {
 	log.Println("Calling AudioEffectDelay.GetTap1LevelDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "get_tap1_level_db")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tap1_level_db", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectDelay) GetTap1Pan() gdnative.Float {
 	log.Println("Calling AudioEffectDelay.GetTap1Pan()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "get_tap1_pan")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tap1_pan", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectDelay) GetTap2DelayMs() gdnative.Float {
 	log.Println("Calling AudioEffectDelay.GetTap2DelayMs()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "get_tap2_delay_ms")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tap2_delay_ms", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectDelay) GetTap2LevelDb() gdnative.Float {
 	log.Println("Calling AudioEffectDelay.GetTap2LevelDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "get_tap2_level_db")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tap2_level_db", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectDelay) GetTap2Pan() gdnative.Float {
 	log.Println("Calling AudioEffectDelay.GetTap2Pan()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "get_tap2_pan")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tap2_pan", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *AudioEffectDelay) IsFeedbackActive() gdnative.Bool {
 	log.Println("Calling AudioEffectDelay.IsFeedbackActive()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "is_feedback_active")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_feedback_active", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *AudioEffectDelay) IsTap1Active() gdnative.Bool {
 	log.Println("Calling AudioEffectDelay.IsTap1Active()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "is_tap1_active")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_tap1_active", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *AudioEffectDelay) IsTap2Active() gdnative.Bool {
 	log.Println("Calling AudioEffectDelay.IsTap2Active()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "is_tap2_active")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_tap2_active", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount float}], Returns: void
 */
+
 func (o *AudioEffectDelay) SetDry(amount gdnative.Float) {
 	log.Println("Calling AudioEffectDelay.SetDry()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "set_dry")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_dry", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount bool}], Returns: void
 */
+
 func (o *AudioEffectDelay) SetFeedbackActive(amount gdnative.Bool) {
 	log.Println("Calling AudioEffectDelay.SetFeedbackActive()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "set_feedback_active")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_feedback_active", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount float}], Returns: void
 */
+
 func (o *AudioEffectDelay) SetFeedbackDelayMs(amount gdnative.Float) {
 	log.Println("Calling AudioEffectDelay.SetFeedbackDelayMs()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "set_feedback_delay_ms")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_feedback_delay_ms", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount float}], Returns: void
 */
+
 func (o *AudioEffectDelay) SetFeedbackLevelDb(amount gdnative.Float) {
 	log.Println("Calling AudioEffectDelay.SetFeedbackLevelDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "set_feedback_level_db")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_feedback_level_db", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount float}], Returns: void
 */
+
 func (o *AudioEffectDelay) SetFeedbackLowpass(amount gdnative.Float) {
 	log.Println("Calling AudioEffectDelay.SetFeedbackLowpass()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "set_feedback_lowpass")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_feedback_lowpass", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount bool}], Returns: void
 */
+
 func (o *AudioEffectDelay) SetTap1Active(amount gdnative.Bool) {
 	log.Println("Calling AudioEffectDelay.SetTap1Active()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "set_tap1_active")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_tap1_active", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount float}], Returns: void
 */
+
 func (o *AudioEffectDelay) SetTap1DelayMs(amount gdnative.Float) {
 	log.Println("Calling AudioEffectDelay.SetTap1DelayMs()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "set_tap1_delay_ms")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_tap1_delay_ms", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount float}], Returns: void
 */
+
 func (o *AudioEffectDelay) SetTap1LevelDb(amount gdnative.Float) {
 	log.Println("Calling AudioEffectDelay.SetTap1LevelDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "set_tap1_level_db")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_tap1_level_db", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount float}], Returns: void
 */
+
 func (o *AudioEffectDelay) SetTap1Pan(amount gdnative.Float) {
 	log.Println("Calling AudioEffectDelay.SetTap1Pan()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "set_tap1_pan")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_tap1_pan", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount bool}], Returns: void
 */
+
 func (o *AudioEffectDelay) SetTap2Active(amount gdnative.Bool) {
 	log.Println("Calling AudioEffectDelay.SetTap2Active()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "set_tap2_active")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_tap2_active", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount float}], Returns: void
 */
+
 func (o *AudioEffectDelay) SetTap2DelayMs(amount gdnative.Float) {
 	log.Println("Calling AudioEffectDelay.SetTap2DelayMs()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "set_tap2_delay_ms")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_tap2_delay_ms", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount float}], Returns: void
 */
+
 func (o *AudioEffectDelay) SetTap2LevelDb(amount gdnative.Float) {
 	log.Println("Calling AudioEffectDelay.SetTap2LevelDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "set_tap2_level_db")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_tap2_level_db", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount float}], Returns: void
 */
+
 func (o *AudioEffectDelay) SetTap2Pan(amount gdnative.Float) {
 	log.Println("Calling AudioEffectDelay.SetTap2Pan()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDelay", "set_tap2_pan")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_tap2_pan", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   AudioEffectDelayImplementer is an interface for AudioEffectDelay objects.
-*/
-type AudioEffectDelayImplementer interface {
-	Class
 }

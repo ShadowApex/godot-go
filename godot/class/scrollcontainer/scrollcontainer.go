@@ -2,7 +2,11 @@ package scrollcontainer
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/container"
+	"github.com/shadowapex/godot-go/godot/class/inputevent"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewScrollContainerFromPointer(ptr gdnative.Pointer) *ScrollContainer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ScrollContainer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 A ScrollContainer node with a [Control] child and scrollbar child ([HScrollbar], [VScrollBar], or both) will only draw the Control within the ScrollContainer area. Scrollbars will automatically be drawn at the right (for vertical) or bottom (for horizontal) and will enable dragging to move the viewable Control (and its children) within the ScrollContainer. Scrollbars will also automatically resize the grabber based on the minimum_size of the Control relative to the ScrollContainer. Works great with a [Panel] control. You can set EXPAND on children size flags, so they will upscale to ScrollContainer size if ScrollContainer size is bigger (scroll is invisible for chosen dimension).
 */
 type ScrollContainer struct {
-	Container
+	container.Container
 }
 
 func (o *ScrollContainer) BaseClass() string {
@@ -26,213 +39,258 @@ func (o *ScrollContainer) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *ScrollContainer) X_GuiInput(arg0 *InputEvent) {
+
+func (o *ScrollContainer) X_GuiInput(arg0 inputevent.InputEvent) {
 	log.Println("Calling ScrollContainer.X_GuiInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScrollContainer", "_gui_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_gui_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 float}], Returns: void
 */
+
 func (o *ScrollContainer) X_ScrollMoved(arg0 gdnative.Float) {
 	log.Println("Calling ScrollContainer.X_ScrollMoved()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScrollContainer", "_scroll_moved")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_scroll_moved", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScrollContainer) X_UpdateScrollbarPosition() {
 	log.Println("Calling ScrollContainer.X_UpdateScrollbarPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScrollContainer", "_update_scrollbar_position")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_update_scrollbar_position", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *ScrollContainer) GetHScroll() gdnative.Int {
 	log.Println("Calling ScrollContainer.GetHScroll()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScrollContainer", "get_h_scroll")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_h_scroll", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *ScrollContainer) GetVScroll() gdnative.Int {
 	log.Println("Calling ScrollContainer.GetVScroll()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScrollContainer", "get_v_scroll")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_v_scroll", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *ScrollContainer) IsHScrollEnabled() gdnative.Bool {
 	log.Println("Calling ScrollContainer.IsHScrollEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScrollContainer", "is_h_scroll_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_h_scroll_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *ScrollContainer) IsVScrollEnabled() gdnative.Bool {
 	log.Println("Calling ScrollContainer.IsVScrollEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScrollContainer", "is_v_scroll_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_v_scroll_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *ScrollContainer) SetEnableHScroll(enable gdnative.Bool) {
 	log.Println("Calling ScrollContainer.SetEnableHScroll()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScrollContainer", "set_enable_h_scroll")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_enable_h_scroll", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *ScrollContainer) SetEnableVScroll(enable gdnative.Bool) {
 	log.Println("Calling ScrollContainer.SetEnableVScroll()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScrollContainer", "set_enable_v_scroll")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_enable_v_scroll", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false value int}], Returns: void
 */
+
 func (o *ScrollContainer) SetHScroll(value gdnative.Int) {
 	log.Println("Calling ScrollContainer.SetHScroll()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScrollContainer", "set_h_scroll")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_h_scroll", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false value int}], Returns: void
 */
+
 func (o *ScrollContainer) SetVScroll(value gdnative.Int) {
 	log.Println("Calling ScrollContainer.SetVScroll()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScrollContainer", "set_v_scroll")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_v_scroll", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ScrollContainerImplementer is an interface for ScrollContainer objects.
-*/
-type ScrollContainerImplementer interface {
-	Class
 }

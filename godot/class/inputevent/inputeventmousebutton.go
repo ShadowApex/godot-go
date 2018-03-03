@@ -2,7 +2,6 @@ package inputevent
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -16,6 +15,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewInputEventMouseButtonFromPointer(ptr gdnative.Pointer) *InputEventMouseButton {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := InputEventMouseButton{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Contains mouse click information. See [method Node._input].
 */
@@ -28,140 +36,167 @@ func (o *InputEventMouseButton) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *InputEventMouseButton) GetButtonIndex() gdnative.Int {
 	log.Println("Calling InputEventMouseButton.GetButtonIndex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventMouseButton", "get_button_index")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_button_index", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *InputEventMouseButton) GetFactor() gdnative.Float {
 	log.Println("Calling InputEventMouseButton.GetFactor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventMouseButton", "get_factor")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_factor", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *InputEventMouseButton) IsDoubleclick() gdnative.Bool {
 	log.Println("Calling InputEventMouseButton.IsDoubleclick()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventMouseButton", "is_doubleclick")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_doubleclick", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false button_index int}], Returns: void
 */
+
 func (o *InputEventMouseButton) SetButtonIndex(buttonIndex gdnative.Int) {
 	log.Println("Calling InputEventMouseButton.SetButtonIndex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(buttonIndex)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(buttonIndex)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventMouseButton", "set_button_index")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_button_index", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false doubleclick bool}], Returns: void
 */
+
 func (o *InputEventMouseButton) SetDoubleclick(doubleclick gdnative.Bool) {
 	log.Println("Calling InputEventMouseButton.SetDoubleclick()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(doubleclick)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(doubleclick)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventMouseButton", "set_doubleclick")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_doubleclick", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false factor float}], Returns: void
 */
+
 func (o *InputEventMouseButton) SetFactor(factor gdnative.Float) {
 	log.Println("Calling InputEventMouseButton.SetFactor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(factor)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(factor)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventMouseButton", "set_factor")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_factor", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false pressed bool}], Returns: void
 */
+
 func (o *InputEventMouseButton) SetPressed(pressed gdnative.Bool) {
 	log.Println("Calling InputEventMouseButton.SetPressed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pressed)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(pressed)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventMouseButton", "set_pressed")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_pressed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   InputEventMouseButtonImplementer is an interface for InputEventMouseButton objects.
-*/
-type InputEventMouseButtonImplementer interface {
-	Class
 }

@@ -2,7 +2,11 @@ package polygon2d
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/node2d"
+	"github.com/shadowapex/godot-go/godot/class/texture"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPolygon2DFromPointer(ptr gdnative.Pointer) *Polygon2D {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Polygon2D{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 A Polygon2D is defined by a set of points. Each point is connected to the next, with the final point being connected to the first, resulting in a closed polygon. Polygon2Ds can be filled with color (solid or gradient) or filled with a given texture.
 */
 type Polygon2D struct {
-	Node2D
+	node2d.Node2D
 }
 
 func (o *Polygon2D) BaseClass() string {
@@ -26,502 +39,625 @@ func (o *Polygon2D) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Polygon2D) GetAntialiased() gdnative.Bool {
 	log.Println("Calling Polygon2D.GetAntialiased()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "get_antialiased")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_antialiased", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Color
 */
-func (o *Polygon2D) GetColor() *Color {
+
+func (o *Polygon2D) GetColor() gdnative.Color {
 	log.Println("Calling Polygon2D.GetColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "get_color")
 
 	// Call the parent method.
+	// Color
+	retPtr := gdnative.NewEmptyColor()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_color", goArguments, "*Color")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewColorFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Color)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Polygon2D) GetInvert() gdnative.Bool {
 	log.Println("Calling Polygon2D.GetInvert()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "get_invert")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_invert", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Polygon2D) GetInvertBorder() gdnative.Float {
 	log.Println("Calling Polygon2D.GetInvertBorder()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "get_invert_border")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_invert_border", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *Polygon2D) GetOffset() *Vector2 {
+
+func (o *Polygon2D) GetOffset() gdnative.Vector2 {
 	log.Println("Calling Polygon2D.GetOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "get_offset")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_offset", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolVector2Array
 */
-func (o *Polygon2D) GetPolygon() *PoolVector2Array {
+
+func (o *Polygon2D) GetPolygon() gdnative.PoolVector2Array {
 	log.Println("Calling Polygon2D.GetPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "get_polygon")
 
 	// Call the parent method.
+	// PoolVector2Array
+	retPtr := gdnative.NewEmptyPoolVector2Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_polygon", goArguments, "*PoolVector2Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector2Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Texture
 */
-func (o *Polygon2D) GetTexture() *Texture {
+
+func (o *Polygon2D) GetTexture() texture.Texture {
 	log.Println("Calling Polygon2D.GetTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "get_texture")
 
 	// Call the parent method.
+	// Texture
+	retPtr := texture.NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_texture", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := texture.NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *Polygon2D) GetTextureOffset() *Vector2 {
+
+func (o *Polygon2D) GetTextureOffset() gdnative.Vector2 {
 	log.Println("Calling Polygon2D.GetTextureOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "get_texture_offset")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_texture_offset", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Polygon2D) GetTextureRotation() gdnative.Float {
 	log.Println("Calling Polygon2D.GetTextureRotation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "get_texture_rotation")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_texture_rotation", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Polygon2D) GetTextureRotationDegrees() gdnative.Float {
 	log.Println("Calling Polygon2D.GetTextureRotationDegrees()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "get_texture_rotation_degrees")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_texture_rotation_degrees", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *Polygon2D) GetTextureScale() *Vector2 {
+
+func (o *Polygon2D) GetTextureScale() gdnative.Vector2 {
 	log.Println("Calling Polygon2D.GetTextureScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "get_texture_scale")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_texture_scale", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolVector2Array
 */
-func (o *Polygon2D) GetUv() *PoolVector2Array {
+
+func (o *Polygon2D) GetUv() gdnative.PoolVector2Array {
 	log.Println("Calling Polygon2D.GetUv()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "get_uv")
 
 	// Call the parent method.
+	// PoolVector2Array
+	retPtr := gdnative.NewEmptyPoolVector2Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_uv", goArguments, "*PoolVector2Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector2Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolColorArray
 */
-func (o *Polygon2D) GetVertexColors() *PoolColorArray {
+
+func (o *Polygon2D) GetVertexColors() gdnative.PoolColorArray {
 	log.Println("Calling Polygon2D.GetVertexColors()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "get_vertex_colors")
 
 	// Call the parent method.
+	// PoolColorArray
+	retPtr := gdnative.NewEmptyPoolColorArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_vertex_colors", goArguments, "*PoolColorArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolColorArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolColorArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false antialiased bool}], Returns: void
 */
+
 func (o *Polygon2D) SetAntialiased(antialiased gdnative.Bool) {
 	log.Println("Calling Polygon2D.SetAntialiased()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(antialiased)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(antialiased)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "set_antialiased")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_antialiased", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false color Color}], Returns: void
 */
-func (o *Polygon2D) SetColor(color *Color) {
+
+func (o *Polygon2D) SetColor(color gdnative.Color) {
 	log.Println("Calling Polygon2D.SetColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "set_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false invert bool}], Returns: void
 */
+
 func (o *Polygon2D) SetInvert(invert gdnative.Bool) {
 	log.Println("Calling Polygon2D.SetInvert()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(invert)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(invert)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "set_invert")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_invert", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false invert_border float}], Returns: void
 */
+
 func (o *Polygon2D) SetInvertBorder(invertBorder gdnative.Float) {
 	log.Println("Calling Polygon2D.SetInvertBorder()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(invertBorder)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(invertBorder)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "set_invert_border")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_invert_border", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false offset Vector2}], Returns: void
 */
-func (o *Polygon2D) SetOffset(offset *Vector2) {
+
+func (o *Polygon2D) SetOffset(offset gdnative.Vector2) {
 	log.Println("Calling Polygon2D.SetOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(offset)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(offset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "set_offset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false polygon PoolVector2Array}], Returns: void
 */
-func (o *Polygon2D) SetPolygon(polygon *PoolVector2Array) {
+
+func (o *Polygon2D) SetPolygon(polygon gdnative.PoolVector2Array) {
 	log.Println("Calling Polygon2D.SetPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(polygon)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(polygon)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "set_polygon")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_polygon", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false texture Texture}], Returns: void
 */
-func (o *Polygon2D) SetTexture(texture *Texture) {
+
+func (o *Polygon2D) SetTexture(texture texture.Texture) {
 	log.Println("Calling Polygon2D.SetTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(texture.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "set_texture")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_texture", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false texture_offset Vector2}], Returns: void
 */
-func (o *Polygon2D) SetTextureOffset(textureOffset *Vector2) {
+
+func (o *Polygon2D) SetTextureOffset(textureOffset gdnative.Vector2) {
 	log.Println("Calling Polygon2D.SetTextureOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(textureOffset)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(textureOffset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "set_texture_offset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_texture_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false texture_rotation float}], Returns: void
 */
+
 func (o *Polygon2D) SetTextureRotation(textureRotation gdnative.Float) {
 	log.Println("Calling Polygon2D.SetTextureRotation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(textureRotation)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(textureRotation)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "set_texture_rotation")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_texture_rotation", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false texture_rotation float}], Returns: void
 */
+
 func (o *Polygon2D) SetTextureRotationDegrees(textureRotation gdnative.Float) {
 	log.Println("Calling Polygon2D.SetTextureRotationDegrees()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(textureRotation)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(textureRotation)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "set_texture_rotation_degrees")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_texture_rotation_degrees", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false texture_scale Vector2}], Returns: void
 */
-func (o *Polygon2D) SetTextureScale(textureScale *Vector2) {
+
+func (o *Polygon2D) SetTextureScale(textureScale gdnative.Vector2) {
 	log.Println("Calling Polygon2D.SetTextureScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(textureScale)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(textureScale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "set_texture_scale")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_texture_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false uv PoolVector2Array}], Returns: void
 */
-func (o *Polygon2D) SetUv(uv *PoolVector2Array) {
+
+func (o *Polygon2D) SetUv(uv gdnative.PoolVector2Array) {
 	log.Println("Calling Polygon2D.SetUv()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(uv)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(uv)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "set_uv")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_uv", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false vertex_colors PoolColorArray}], Returns: void
 */
-func (o *Polygon2D) SetVertexColors(vertexColors *PoolColorArray) {
+
+func (o *Polygon2D) SetVertexColors(vertexColors gdnative.PoolColorArray) {
 	log.Println("Calling Polygon2D.SetVertexColors()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(vertexColors)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolColorArray(vertexColors)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Polygon2D", "set_vertex_colors")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_vertex_colors", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   Polygon2DImplementer is an interface for Polygon2D objects.
-*/
-type Polygon2DImplementer interface {
-	Class
 }

@@ -38,6 +38,14 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewEmptyArvrInterfaceGdnative will return a pointer to an empty
+// initialized ArvrInterfaceGdnative. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyArvrInterfaceGdnative() Pointer {
+	var obj C.godot_arvr_interface_gdnative
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromArvrInterfaceGdnative will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromArvrInterfaceGdnative(obj ArvrInterfaceGdnative) Pointer {

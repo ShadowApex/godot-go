@@ -2,7 +2,10 @@ package phashtranslation
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/translation"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +17,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPHashTranslationFromPointer(ptr gdnative.Pointer) *PHashTranslation {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := PHashTranslation{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Optimized translation. Uses real-time compressed translations, which results in very small dictionaries.
 */
 type PHashTranslation struct {
-	Translation
+	translation.Translation
 }
 
 func (o *PHashTranslation) BaseClass() string {
@@ -27,25 +39,22 @@ func (o *PHashTranslation) BaseClass() string {
 
 /*
 
- */
-func (o *PHashTranslation) Generate(from *Translation) {
+	Args: [{ false from Translation}], Returns: void
+*/
+
+func (o *PHashTranslation) Generate(from translation.Translation) {
 	log.Println("Calling PHashTranslation.Generate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(from)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(from.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PHashTranslation", "generate")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "generate", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   PHashTranslationImplementer is an interface for PHashTranslation objects.
-*/
-type PHashTranslationImplementer interface {
-	Class
 }

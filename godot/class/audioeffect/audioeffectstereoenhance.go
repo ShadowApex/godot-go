@@ -2,7 +2,8 @@ package audioeffect
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
 )
 
 /*------------------------------------------------------------------------------
@@ -13,6 +14,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewAudioEffectStereoEnhanceFromPointer(ptr gdnative.Pointer) *AudioEffectStereoEnhance {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := AudioEffectStereoEnhance{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 /*
 
@@ -26,122 +36,145 @@ func (o *AudioEffectStereoEnhance) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectStereoEnhance) GetPanPullout() gdnative.Float {
 	log.Println("Calling AudioEffectStereoEnhance.GetPanPullout()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectStereoEnhance", "get_pan_pullout")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_pan_pullout", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectStereoEnhance) GetSurround() gdnative.Float {
 	log.Println("Calling AudioEffectStereoEnhance.GetSurround()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectStereoEnhance", "get_surround")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_surround", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectStereoEnhance) GetTimePullout() gdnative.Float {
 	log.Println("Calling AudioEffectStereoEnhance.GetTimePullout()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectStereoEnhance", "get_time_pullout")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_time_pullout", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount float}], Returns: void
 */
+
 func (o *AudioEffectStereoEnhance) SetPanPullout(amount gdnative.Float) {
 	log.Println("Calling AudioEffectStereoEnhance.SetPanPullout()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectStereoEnhance", "set_pan_pullout")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_pan_pullout", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount float}], Returns: void
 */
+
 func (o *AudioEffectStereoEnhance) SetSurround(amount gdnative.Float) {
 	log.Println("Calling AudioEffectStereoEnhance.SetSurround()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectStereoEnhance", "set_surround")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_surround", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount float}], Returns: void
 */
+
 func (o *AudioEffectStereoEnhance) SetTimePullout(amount gdnative.Float) {
 	log.Println("Calling AudioEffectStereoEnhance.SetTimePullout()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectStereoEnhance", "set_time_pullout")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_time_pullout", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   AudioEffectStereoEnhanceImplementer is an interface for AudioEffectStereoEnhance objects.
-*/
-type AudioEffectStereoEnhanceImplementer interface {
-	Class
 }

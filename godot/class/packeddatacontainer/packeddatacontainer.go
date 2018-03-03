@@ -2,9 +2,9 @@ package packeddatacontainer
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPackedDataContainerFromPointer(ptr gdnative.Pointer) *PackedDataContainer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := PackedDataContainer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type PackedDataContainer struct {
-	Resource
+	resource.Resource
 }
 
 func (o *PackedDataContainer) BaseClass() string {
@@ -28,150 +37,161 @@ func (o *PackedDataContainer) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolByteArray
 */
-func (o *PackedDataContainer) X_GetData() *PoolByteArray {
+
+func (o *PackedDataContainer) X_GetData() gdnative.PoolByteArray {
 	log.Println("Calling PackedDataContainer.X_GetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PackedDataContainer", "_get_data")
 
 	// Call the parent method.
+	// PoolByteArray
+	retPtr := gdnative.NewEmptyPoolByteArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_data", goArguments, "*PoolByteArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolByteArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolByteArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 Variant}], Returns: Variant
 */
-func (o *PackedDataContainer) X_IterGet(arg0 *Variant) *Variant {
+
+func (o *PackedDataContainer) X_IterGet(arg0 gdnative.Variant) gdnative.Variant {
 	log.Println("Calling PackedDataContainer.X_IterGet()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVariant(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PackedDataContainer", "_iter_get")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_iter_get", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 Array}], Returns: Variant
 */
-func (o *PackedDataContainer) X_IterInit(arg0 *Array) *Variant {
+
+func (o *PackedDataContainer) X_IterInit(arg0 gdnative.Array) gdnative.Variant {
 	log.Println("Calling PackedDataContainer.X_IterInit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromArray(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PackedDataContainer", "_iter_init")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_iter_init", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 Array}], Returns: Variant
 */
-func (o *PackedDataContainer) X_IterNext(arg0 *Array) *Variant {
+
+func (o *PackedDataContainer) X_IterNext(arg0 gdnative.Array) gdnative.Variant {
 	log.Println("Calling PackedDataContainer.X_IterNext()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromArray(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PackedDataContainer", "_iter_next")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_iter_next", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 PoolByteArray}], Returns: void
 */
-func (o *PackedDataContainer) X_SetData(arg0 *PoolByteArray) {
+
+func (o *PackedDataContainer) X_SetData(arg0 gdnative.PoolByteArray) {
 	log.Println("Calling PackedDataContainer.X_SetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolByteArray(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PackedDataContainer", "_set_data")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_data", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *PackedDataContainer) Pack(value *Variant) gdnative.Int {
-	log.Println("Calling PackedDataContainer.Pack()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(value)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "pack", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
+	Args: [{ false value Variant}], Returns: enum.Error
+*/
 
 /*
 
- */
+	Args: [], Returns: int
+*/
+
 func (o *PackedDataContainer) Size() gdnative.Int {
 	log.Println("Calling PackedDataContainer.Size()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PackedDataContainer", "size")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "size", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   PackedDataContainerImplementer is an interface for PackedDataContainer objects.
-*/
-type PackedDataContainerImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

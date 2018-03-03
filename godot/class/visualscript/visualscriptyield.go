@@ -2,7 +2,6 @@ package visualscript
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -16,6 +15,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewVisualScriptYieldFromPointer(ptr gdnative.Pointer) *VisualScriptYield {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := VisualScriptYield{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
@@ -28,84 +36,76 @@ func (o *VisualScriptYield) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *VisualScriptYield) GetWaitTime() gdnative.Float {
 	log.Println("Calling VisualScriptYield.GetWaitTime()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptYield", "get_wait_time")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_wait_time", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.VisualScriptYield::YieldMode
 */
-func (o *VisualScriptYield) GetYieldMode() gdnative.Int {
-	log.Println("Calling VisualScriptYield.GetYieldMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_yield_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false sec float}], Returns: void
 */
+
 func (o *VisualScriptYield) SetWaitTime(sec gdnative.Float) {
 	log.Println("Calling VisualScriptYield.SetWaitTime()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(sec)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(sec)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptYield", "set_wait_time")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_wait_time", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *VisualScriptYield) SetYieldMode(mode gdnative.Int) {
 	log.Println("Calling VisualScriptYield.SetYieldMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptYield", "set_yield_mode")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_yield_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   VisualScriptYieldImplementer is an interface for VisualScriptYield objects.
-*/
-type VisualScriptYieldImplementer interface {
-	Class
 }

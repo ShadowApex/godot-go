@@ -2,7 +2,14 @@ package canvaslayer
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/node"
+
+	"github.com/shadowapex/godot-go/godot/class/world2d"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +21,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewCanvasLayerFromPointer(ptr gdnative.Pointer) *CanvasLayer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := CanvasLayer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Canvas drawing layer. [CanvasItem] nodes that are direct or indirect children of a [code]CanvasLayer[/code] will be drawn in that layer. The layer is a numeric index that defines the draw order. The default 2D scene renders with index 0, so a [code]CanvasLayer[/code] with index -1 will be drawn below, and one with index 1 will be drawn above. This is very useful for HUDs (in layer 1+ or above), or backgrounds (in layer -1 or below).
 */
 type CanvasLayer struct {
-	Node
+	node.Node
 }
 
 func (o *CanvasLayer) BaseClass() string {
@@ -26,294 +42,363 @@ func (o *CanvasLayer) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Node
 */
-func (o *CanvasLayer) GetCustomViewport() *Node {
+
+func (o *CanvasLayer) GetCustomViewport() node.Node {
 	log.Println("Calling CanvasLayer.GetCustomViewport()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasLayer", "get_custom_viewport")
 
 	// Call the parent method.
+	// Node
+	retPtr := node.NewEmptyNode()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_custom_viewport", goArguments, "*Node")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := node.NewNodeFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Node)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *CanvasLayer) GetLayer() gdnative.Int {
 	log.Println("Calling CanvasLayer.GetLayer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasLayer", "get_layer")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_layer", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *CanvasLayer) GetOffset() *Vector2 {
+
+func (o *CanvasLayer) GetOffset() gdnative.Vector2 {
 	log.Println("Calling CanvasLayer.GetOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasLayer", "get_offset")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_offset", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *CanvasLayer) GetRotation() gdnative.Float {
 	log.Println("Calling CanvasLayer.GetRotation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasLayer", "get_rotation")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_rotation", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *CanvasLayer) GetRotationDegrees() gdnative.Float {
 	log.Println("Calling CanvasLayer.GetRotationDegrees()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasLayer", "get_rotation_degrees")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_rotation_degrees", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *CanvasLayer) GetScale() *Vector2 {
+
+func (o *CanvasLayer) GetScale() gdnative.Vector2 {
 	log.Println("Calling CanvasLayer.GetScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasLayer", "get_scale")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_scale", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Transform2D
 */
-func (o *CanvasLayer) GetTransform() *Transform2D {
+
+func (o *CanvasLayer) GetTransform() gdnative.Transform2D {
 	log.Println("Calling CanvasLayer.GetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasLayer", "get_transform")
 
 	// Call the parent method.
+	// Transform2D
+	retPtr := gdnative.NewEmptyTransform2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_transform", goArguments, "*Transform2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransform2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the [World2D] used by this layer.
+        Return the [World2D] used by this layer.
+	Args: [], Returns: World2D
 */
-func (o *CanvasLayer) GetWorld2D() *World2D {
+
+func (o *CanvasLayer) GetWorld2D() world2d.World2D {
 	log.Println("Calling CanvasLayer.GetWorld2D()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasLayer", "get_world_2d")
 
 	// Call the parent method.
+	// World2D
+	retPtr := world2d.NewEmptyWorld2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_world_2d", goArguments, "*World2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := world2d.NewWorld2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*World2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false viewport Object}], Returns: void
 */
-func (o *CanvasLayer) SetCustomViewport(viewport *Object) {
+
+func (o *CanvasLayer) SetCustomViewport(viewport object.Object) {
 	log.Println("Calling CanvasLayer.SetCustomViewport()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(viewport)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(viewport.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasLayer", "set_custom_viewport")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_custom_viewport", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false layer int}], Returns: void
 */
+
 func (o *CanvasLayer) SetLayer(layer gdnative.Int) {
 	log.Println("Calling CanvasLayer.SetLayer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(layer)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(layer)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasLayer", "set_layer")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_layer", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false offset Vector2}], Returns: void
 */
-func (o *CanvasLayer) SetOffset(offset *Vector2) {
+
+func (o *CanvasLayer) SetOffset(offset gdnative.Vector2) {
 	log.Println("Calling CanvasLayer.SetOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(offset)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(offset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasLayer", "set_offset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false radians float}], Returns: void
 */
+
 func (o *CanvasLayer) SetRotation(radians gdnative.Float) {
 	log.Println("Calling CanvasLayer.SetRotation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(radians)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(radians)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasLayer", "set_rotation")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_rotation", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false degrees float}], Returns: void
 */
+
 func (o *CanvasLayer) SetRotationDegrees(degrees gdnative.Float) {
 	log.Println("Calling CanvasLayer.SetRotationDegrees()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(degrees)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(degrees)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasLayer", "set_rotation_degrees")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_rotation_degrees", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false scale Vector2}], Returns: void
 */
-func (o *CanvasLayer) SetScale(scale *Vector2) {
+
+func (o *CanvasLayer) SetScale(scale gdnative.Vector2) {
 	log.Println("Calling CanvasLayer.SetScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(scale)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(scale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasLayer", "set_scale")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false transform Transform2D}], Returns: void
 */
-func (o *CanvasLayer) SetTransform(transform *Transform2D) {
+
+func (o *CanvasLayer) SetTransform(transform gdnative.Transform2D) {
 	log.Println("Calling CanvasLayer.SetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromTransform2D(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasLayer", "set_transform")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   CanvasLayerImplementer is an interface for CanvasLayer objects.
-*/
-type CanvasLayerImplementer interface {
-	Class
 }

@@ -2,9 +2,9 @@ package arvr
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/spatial"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewARVRControllerFromPointer(ptr gdnative.Pointer) *ARVRController {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ARVRController{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 This is a helper spatial node that is linked to the tracking of controllers. It also offers several handy pass throughs to the state of buttons and such on the controllers. Controllers are linked by their id. You can create controller nodes before the controllers are available. Say your game always uses two controllers (one for each hand) you can predefine the controllers with id 1 and 2 and they will become active as soon as the controllers are identified. If you expect additional controllers to be used you should react to the signals and add ARVRController nodes to your scene. The position of the controller node is automatically updated by the ARVR Server. This makes this node ideal to add child nodes to visualise the controller.
 */
 type ARVRController struct {
-	Spatial
+	spatial.Spatial
 }
 
 func (o *ARVRController) BaseClass() string {
@@ -28,206 +37,234 @@ func (o *ARVRController) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *ARVRController) GetControllerId() gdnative.Int {
 	log.Println("Calling ARVRController.GetControllerId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRController", "get_controller_id")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_controller_id", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   If active, returns the name of the associated controller if provided by the AR/VR SDK used.
+        If active, returns the name of the associated controller if provided by the AR/VR SDK used.
+	Args: [], Returns: String
 */
+
 func (o *ARVRController) GetControllerName() gdnative.String {
 	log.Println("Calling ARVRController.GetControllerName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRController", "get_controller_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_controller_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the hand holding this controller, if known. See TRACKER_* constants in [ARVRPositionalTracker].
+        Returns the hand holding this controller, if known. See TRACKER_* constants in [ARVRPositionalTracker].
+	Args: [], Returns: enum.ARVRPositionalTracker::TrackerHand
 */
-func (o *ARVRController) GetHand() gdnative.Int {
-	log.Println("Calling ARVRController.GetHand()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_hand", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Returns [code]true[/code] if the bound controller is active. ARVR systems attempt to track active controllers.
+        Returns [code]true[/code] if the bound controller is active. ARVR systems attempt to track active controllers.
+	Args: [], Returns: bool
 */
+
 func (o *ARVRController) GetIsActive() gdnative.Bool {
 	log.Println("Calling ARVRController.GetIsActive()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRController", "get_is_active")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_is_active", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the value of the given axis for things like triggers, touchpads, etc. that are embedded into the controller.
+        Returns the value of the given axis for things like triggers, touchpads, etc. that are embedded into the controller.
+	Args: [{ false axis int}], Returns: float
 */
+
 func (o *ARVRController) GetJoystickAxis(axis gdnative.Int) gdnative.Float {
 	log.Println("Calling ARVRController.GetJoystickAxis()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(axis)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(axis)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRController", "get_joystick_axis")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_joystick_axis", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the ID of the joystick object bound to this. Every controller tracked by the ARVR Server that has buttons and axis will also be registered as a joystick within Godot. This means that all the normal joystick tracking and input mapping will work for buttons and axis found on the AR/VR controllers. This ID is purely offered as information so you can link up the controller with its joystick entry.
+        Returns the ID of the joystick object bound to this. Every controller tracked by the ARVR Server that has buttons and axis will also be registered as a joystick within Godot. This means that all the normal joystick tracking and input mapping will work for buttons and axis found on the AR/VR controllers. This ID is purely offered as information so you can link up the controller with its joystick entry.
+	Args: [], Returns: int
 */
+
 func (o *ARVRController) GetJoystickId() gdnative.Int {
 	log.Println("Calling ARVRController.GetJoystickId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRController", "get_joystick_id")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_joystick_id", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *ARVRController) GetRumble() gdnative.Float {
 	log.Println("Calling ARVRController.GetRumble()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRController", "get_rumble")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_rumble", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the button at index [code]button[/code] is pressed.
+        Returns [code]true[/code] if the button at index [code]button[/code] is pressed.
+	Args: [{ false button int}], Returns: int
 */
+
 func (o *ARVRController) IsButtonPressed(button gdnative.Int) gdnative.Int {
 	log.Println("Calling ARVRController.IsButtonPressed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(button)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(button)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRController", "is_button_pressed")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_button_pressed", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false controller_id int}], Returns: void
 */
+
 func (o *ARVRController) SetControllerId(controllerId gdnative.Int) {
 	log.Println("Calling ARVRController.SetControllerId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(controllerId)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(controllerId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRController", "set_controller_id")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_controller_id", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false rumble float}], Returns: void
 */
+
 func (o *ARVRController) SetRumble(rumble gdnative.Float) {
 	log.Println("Calling ARVRController.SetRumble()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(rumble)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(rumble)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRController", "set_rumble")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_rumble", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ARVRControllerImplementer is an interface for ARVRController objects.
-*/
-type ARVRControllerImplementer interface {
-	Class
 }

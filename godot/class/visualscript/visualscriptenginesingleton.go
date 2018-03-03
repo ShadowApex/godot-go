@@ -2,7 +2,6 @@ package visualscript
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -16,6 +15,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewVisualScriptEngineSingletonFromPointer(ptr gdnative.Pointer) *VisualScriptEngineSingleton {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := VisualScriptEngineSingleton{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
@@ -28,46 +36,49 @@ func (o *VisualScriptEngineSingleton) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *VisualScriptEngineSingleton) GetSingleton() gdnative.String {
 	log.Println("Calling VisualScriptEngineSingleton.GetSingleton()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptEngineSingleton", "get_singleton")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_singleton", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String}], Returns: void
 */
+
 func (o *VisualScriptEngineSingleton) SetSingleton(name gdnative.String) {
 	log.Println("Calling VisualScriptEngineSingleton.SetSingleton()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptEngineSingleton", "set_singleton")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_singleton", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   VisualScriptEngineSingletonImplementer is an interface for VisualScriptEngineSingleton objects.
-*/
-type VisualScriptEngineSingletonImplementer interface {
-	Class
 }

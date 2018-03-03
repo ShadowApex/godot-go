@@ -2,7 +2,16 @@ package node
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/inputevent"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
+
+	"github.com/shadowapex/godot-go/godot/class/scenetree"
+
+	"github.com/shadowapex/godot-go/godot/class/viewport"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +23,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewNodeFromPointer(ptr gdnative.Pointer) *Node {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Node{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Nodes are Godot's building blocks. They can be assigned as the child of another node, resulting in a tree arrangement. A given node can contain any number of nodes as children with the requirement that all siblings (direct children of a node) should have unique names. A tree of nodes is called a [i]scene[/i]. Scenes can be saved to the disk and then instanced into other scenes. This allows for very high flexibility in the architecture and data model of Godot projects. Nodes can also optionally be added to groups. This makes it possible to access a number of nodes from code (an "enemies" group, for example) to perform grouped actions. [b]Scene tree:[/b] The [SceneTree] contains the active tree of nodes. When a node is added to the scene tree, it receives the NOTIFICATION_ENTER_TREE notification and its [method _enter_tree] callback is triggered. Child nodes are always added [i]after[/i] their parent node, i.e. the [method _enter_tree] callback of a parent node will be triggered before its child's. Once all nodes have been added in the scene tree, they receive the NOTIFICATION_READY notification and their respective [method _ready] callbacks are triggered. For groups of nodes, the [method _ready] callback is called in reverse order, starting with the children and moving up to the parent nodes. This means that when adding a node to the scene tree, the following order will be used for the callbacks: [method _enter_tree] of the parent, [method _enter_tree] of the children, [method _ready] of the children and finally [method _ready] of the parent (recursively for the entire scene tree). [b]Processing:[/b] Nodes can override the "process" state, so that they receive a callback on each frame requesting them to process (do something). Normal processing (callback [method _process], toggled with [method set_process]) happens as fast as possible and is dependent on the frame rate, so the processing time [i]delta[/i] is passed as an argument. Physics processing (callback [method _physics_process], toggled with [method set_physics_process]) happens a fixed number of times per second (60 by default) and is useful for code related to the physics engine. Nodes can also process input events. When present, the [method _input] function will be called for each input that the program receives. In many cases, this can be overkill (unless used for simple projects), and the [method _unhandled_input] function might be preferred; it is called when the input event was not handled by anyone else (typically, GUI [Control] nodes), ensuring that the node only receives the events that were meant for it. To keep track of the scene hierarchy (especially when instancing scenes into other scenes), an "owner" can be set for the node with [method set_owner]. This keeps track of who instanced what. This is mostly useful when writing editors and tools, though. Finally, when a node is freed with [method free] or [method queue_free], it will also free all its children. [b]Networking with nodes:[/b] After connecting to a server (or making one, see [NetworkedMultiplayerENet]) it is possible to use the built-in RPC (remote procedure call) system to communicate over the network. By calling [method rpc] with a method name, it will be called locally and in all connected peers (peers = clients and the server that accepts connections), with behaviour varying depending on the network mode ([method set_network_mode]) of the receiving peer. To identify which node receives the RPC call Godot will use its [NodePath] (make sure node names are the same on all peers).
 */
 type Node struct {
-	Object
+	object.Object
 }
 
 func (o *Node) BaseClass() string {
@@ -26,1707 +44,2119 @@ func (o *Node) BaseClass() string {
 }
 
 /*
-   Called when the node enters the [SceneTree] (e.g. upon instancing, scene changing, or after calling [method add_child] in a script). If the node has children, its [method _enter_tree] callback will be called first, and then that of the children. Corresponds to the NOTIFICATION_ENTER_TREE notification in [method Object._notification].
+        Called when the node enters the [SceneTree] (e.g. upon instancing, scene changing, or after calling [method add_child] in a script). If the node has children, its [method _enter_tree] callback will be called first, and then that of the children. Corresponds to the NOTIFICATION_ENTER_TREE notification in [method Object._notification].
+	Args: [], Returns: void
 */
+
 func (o *Node) X_EnterTree() {
 	log.Println("Calling Node.X_EnterTree()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "_enter_tree")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_enter_tree", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Called when the node is about to leave the [SceneTree] (e.g. upon freeing, scene changing, or after calling [method remove_child] in a script). If the node has children, its [method _exit_tree] callback will be called last, after all its children have left the tree. Corresponds to the NOTIFICATION_EXIT_TREE notification in [method Object._notification] and signal [signal tree_exiting]. To get notified when the node has already left the active tree, connect to the [signal tree_exited]
+        Called when the node is about to leave the [SceneTree] (e.g. upon freeing, scene changing, or after calling [method remove_child] in a script). If the node has children, its [method _exit_tree] callback will be called last, after all its children have left the tree. Corresponds to the NOTIFICATION_EXIT_TREE notification in [method Object._notification] and signal [signal tree_exiting]. To get notified when the node has already left the active tree, connect to the [signal tree_exited]
+	Args: [], Returns: void
 */
+
 func (o *Node) X_ExitTree() {
 	log.Println("Calling Node.X_ExitTree()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "_exit_tree")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_exit_tree", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: NodePath
 */
-func (o *Node) X_GetImportPath() *NodePath {
+
+func (o *Node) X_GetImportPath() gdnative.NodePath {
 	log.Println("Calling Node.X_GetImportPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "_get_import_path")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_import_path", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Called when there is an input event. The input event propagates through the node tree until a node consumes it. It is only called if input processing is enabled, which is done automatically if this method is overridden, and can be toggled with [method set_process_input].
+        Called when there is an input event. The input event propagates through the node tree until a node consumes it. It is only called if input processing is enabled, which is done automatically if this method is overridden, and can be toggled with [method set_process_input].
+	Args: [{ false event InputEvent}], Returns: void
 */
-func (o *Node) X_Input(event *InputEvent) {
+
+func (o *Node) X_Input(event inputevent.InputEvent) {
 	log.Println("Calling Node.X_Input()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(event)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(event.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Called during the physics processing step of the main loop. Physics processing means that the frame rate is synced to the physics, i.e. the [code]delta[/code] variable should be constant. It is only called if physics processing is enabled, which is done automatically if this method is overridden, and can be toggled with [method set_physics_process]. Corresponds to the NOTIFICATION_PHYSICS_PROCESS notification in [method Object._notification].
+        Called during the physics processing step of the main loop. Physics processing means that the frame rate is synced to the physics, i.e. the [code]delta[/code] variable should be constant. It is only called if physics processing is enabled, which is done automatically if this method is overridden, and can be toggled with [method set_physics_process]. Corresponds to the NOTIFICATION_PHYSICS_PROCESS notification in [method Object._notification].
+	Args: [{ false delta float}], Returns: void
 */
+
 func (o *Node) X_PhysicsProcess(delta gdnative.Float) {
 	log.Println("Calling Node.X_PhysicsProcess()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(delta)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(delta)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "_physics_process")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_physics_process", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Called during the processing step of the main loop. Processing happens at every frame and as fast as possible, so the [code]delta[/code] time since the previous frame is not constant. It is only called if processing is enabled, which is done automatically if this method is overridden, and can be toggled with [method set_process]. Corresponds to the NOTIFICATION_PROCESS notification in [method Object._notification].
+        Called during the processing step of the main loop. Processing happens at every frame and as fast as possible, so the [code]delta[/code] time since the previous frame is not constant. It is only called if processing is enabled, which is done automatically if this method is overridden, and can be toggled with [method set_process]. Corresponds to the NOTIFICATION_PROCESS notification in [method Object._notification].
+	Args: [{ false delta float}], Returns: void
 */
+
 func (o *Node) X_Process(delta gdnative.Float) {
 	log.Println("Calling Node.X_Process()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(delta)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(delta)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "_process")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_process", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Called when the node is "ready", i.e. when both the node and its children have entered the scene tree. If the node has children, their [method _ready] callbacks get triggered first, and the parent node will receive the ready notification afterwards. Corresponds to the NOTIFICATION_READY notification in [method Object._notification].
+        Called when the node is "ready", i.e. when both the node and its children have entered the scene tree. If the node has children, their [method _ready] callbacks get triggered first, and the parent node will receive the ready notification afterwards. Corresponds to the NOTIFICATION_READY notification in [method Object._notification].
+	Args: [], Returns: void
 */
+
 func (o *Node) X_Ready() {
 	log.Println("Calling Node.X_Ready()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "_ready")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_ready", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false import_path NodePath}], Returns: void
 */
-func (o *Node) X_SetImportPath(importPath *NodePath) {
+
+func (o *Node) X_SetImportPath(importPath gdnative.NodePath) {
 	log.Println("Calling Node.X_SetImportPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(importPath)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(importPath)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "_set_import_path")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_import_path", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Propagated to all nodes when the previous InputEvent is not consumed by any nodes. It is only called if unhandled input processing is enabled, which is done automatically if this method is overridden, and can be toggled with [method set_process_unhandled_input].
+        Propagated to all nodes when the previous InputEvent is not consumed by any nodes. It is only called if unhandled input processing is enabled, which is done automatically if this method is overridden, and can be toggled with [method set_process_unhandled_input].
+	Args: [{ false event InputEvent}], Returns: void
 */
-func (o *Node) X_UnhandledInput(event *InputEvent) {
+
+func (o *Node) X_UnhandledInput(event inputevent.InputEvent) {
 	log.Println("Calling Node.X_UnhandledInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(event)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(event.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "_unhandled_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_unhandled_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *Node) X_UnhandledKeyInput(event *InputEventKey) {
+	Args: [{ false event InputEventKey}], Returns: void
+*/
+
+func (o *Node) X_UnhandledKeyInput(event inputevent.InputEventKey) {
 	log.Println("Calling Node.X_UnhandledKeyInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(event)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(event.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "_unhandled_key_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_unhandled_key_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a child node. Nodes can have any number of children, but every child must have a unique name. Child nodes are automatically deleted when the parent node is deleted, so an entire scene can be removed by deleting its topmost node. Setting "legible_unique_name" [code]true[/code] creates child nodes with human-readable names, based on the name of the node being instanced instead of its type.
+        Adds a child node. Nodes can have any number of children, but every child must have a unique name. Child nodes are automatically deleted when the parent node is deleted, so an entire scene can be removed by deleting its topmost node. Setting "legible_unique_name" [code]true[/code] creates child nodes with human-readable names, based on the name of the node being instanced instead of its type.
+	Args: [{ false node Object} {False true legible_unique_name bool}], Returns: void
 */
-func (o *Node) AddChild(node *Object, legibleUniqueName gdnative.Bool) {
+
+func (o *Node) AddChild(node object.Object, legibleUniqueName gdnative.Bool) {
 	log.Println("Calling Node.AddChild()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(node)
-	goArguments[1] = reflect.ValueOf(legibleUniqueName)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromObject(node.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromBool(legibleUniqueName)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "add_child")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_child", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a child node. The child is placed below the given node in the list of children. Setting "legible_unique_name" [code]true[/code] creates child nodes with human-readable names, based on the name of the node being instanced instead of its type.
+        Adds a child node. The child is placed below the given node in the list of children. Setting "legible_unique_name" [code]true[/code] creates child nodes with human-readable names, based on the name of the node being instanced instead of its type.
+	Args: [{ false node Object} { false child_node Object} {False true legible_unique_name bool}], Returns: void
 */
-func (o *Node) AddChildBelowNode(node *Object, childNode *Object, legibleUniqueName gdnative.Bool) {
+
+func (o *Node) AddChildBelowNode(node object.Object, childNode object.Object, legibleUniqueName gdnative.Bool) {
 	log.Println("Calling Node.AddChildBelowNode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(node)
-	goArguments[1] = reflect.ValueOf(childNode)
-	goArguments[2] = reflect.ValueOf(legibleUniqueName)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromObject(node.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromObject(childNode.GetOwner())
+	ptrArguments[2] = gdnative.NewPointerFromBool(legibleUniqueName)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "add_child_below_node")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_child_below_node", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds the node to a group. Groups are helpers to name and organize a subset of nodes, for example "enemies" or "collectables". A node can be in any number of groups. Nodes can be assigned a group at any time, but will not be added until they are inside the scene tree (see [method is_inside_tree]).
+        Adds the node to a group. Groups are helpers to name and organize a subset of nodes, for example "enemies" or "collectables". A node can be in any number of groups. Nodes can be assigned a group at any time, but will not be added until they are inside the scene tree (see [method is_inside_tree]).
+	Args: [{ false group String} {False true persistent bool}], Returns: void
 */
+
 func (o *Node) AddToGroup(group gdnative.String, persistent gdnative.Bool) {
 	log.Println("Calling Node.AddToGroup()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(group)
-	goArguments[1] = reflect.ValueOf(persistent)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(group)
+	ptrArguments[1] = gdnative.NewPointerFromBool(persistent)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "add_to_group")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_to_group", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns [code]true[/code] if the node can process while the scene tree is paused (see [method set_pause_mode]). Always returns [code]true[/code] if the scene tree is not paused, and [code]false[/code] if the node is not in the tree. FIXME: Why FAIL_COND?
+        Returns [code]true[/code] if the node can process while the scene tree is paused (see [method set_pause_mode]). Always returns [code]true[/code] if the scene tree is not paused, and [code]false[/code] if the node is not in the tree. FIXME: Why FAIL_COND?
+	Args: [], Returns: bool
 */
+
 func (o *Node) CanProcess() gdnative.Bool {
 	log.Println("Calling Node.CanProcess()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "can_process")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "can_process", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Duplicates the node, returning a new node. You can fine-tune the behavior using the [code]flags[/code]. See DUPLICATE_* constants.
+        Duplicates the node, returning a new node. You can fine-tune the behavior using the [code]flags[/code]. See DUPLICATE_* constants.
+	Args: [{15 true flags int}], Returns: Node
 */
-func (o *Node) Duplicate(flags gdnative.Int) *Node {
+
+func (o *Node) Duplicate(flags gdnative.Int) Node {
 	log.Println("Calling Node.Duplicate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(flags)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(flags)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "duplicate")
 
 	// Call the parent method.
+	// Node
+	retPtr := NewEmptyNode()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "duplicate", goArguments, "*Node")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewNodeFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Node)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Finds a descendant of this node whose name matches [code]mask[/code] as in [method String.match] (i.e. case sensitive, but '*' matches zero or more characters and '?' matches any single character except '.'). Note that it does not match against the full path, just against individual node names.
+        Finds a descendant of this node whose name matches [code]mask[/code] as in [method String.match] (i.e. case sensitive, but '*' matches zero or more characters and '?' matches any single character except '.'). Note that it does not match against the full path, just against individual node names.
+	Args: [{ false mask String} {True true recursive bool} {True true owned bool}], Returns: Node
 */
-func (o *Node) FindNode(mask gdnative.String, recursive gdnative.Bool, owned gdnative.Bool) *Node {
+
+func (o *Node) FindNode(mask gdnative.String, recursive gdnative.Bool, owned gdnative.Bool) Node {
 	log.Println("Calling Node.FindNode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(mask)
-	goArguments[1] = reflect.ValueOf(recursive)
-	goArguments[2] = reflect.ValueOf(owned)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(mask)
+	ptrArguments[1] = gdnative.NewPointerFromBool(recursive)
+	ptrArguments[2] = gdnative.NewPointerFromBool(owned)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "find_node")
 
 	// Call the parent method.
+	// Node
+	retPtr := NewEmptyNode()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "find_node", goArguments, "*Node")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewNodeFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Node)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a child node by its index (see [method get_child_count]). This method is often used for iterating all children of a node.
+        Returns a child node by its index (see [method get_child_count]). This method is often used for iterating all children of a node.
+	Args: [{ false idx int}], Returns: Node
 */
-func (o *Node) GetChild(idx gdnative.Int) *Node {
+
+func (o *Node) GetChild(idx gdnative.Int) Node {
 	log.Println("Calling Node.GetChild()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_child")
 
 	// Call the parent method.
+	// Node
+	retPtr := NewEmptyNode()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_child", goArguments, "*Node")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewNodeFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Node)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the number of child nodes.
+        Returns the number of child nodes.
+	Args: [], Returns: int
 */
+
 func (o *Node) GetChildCount() gdnative.Int {
 	log.Println("Calling Node.GetChildCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_child_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_child_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns an array of references to node's children.
+        Returns an array of references to node's children.
+	Args: [], Returns: Array
 */
-func (o *Node) GetChildren() *Array {
+
+func (o *Node) GetChildren() gdnative.Array {
 	log.Println("Calling Node.GetChildren()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_children")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_children", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *Node) GetFilename() gdnative.String {
 	log.Println("Calling Node.GetFilename()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_filename")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_filename", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns an array listing the groups that the node is a member of.
+        Returns an array listing the groups that the node is a member of.
+	Args: [], Returns: Array
 */
-func (o *Node) GetGroups() *Array {
+
+func (o *Node) GetGroups() gdnative.Array {
 	log.Println("Calling Node.GetGroups()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_groups")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_groups", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the node's index, i.e. its position among the siblings of its parent.
+        Returns the node's index, i.e. its position among the siblings of its parent.
+	Args: [], Returns: int
 */
+
 func (o *Node) GetIndex() gdnative.Int {
 	log.Println("Calling Node.GetIndex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_index")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_index", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *Node) GetName() gdnative.String {
 	log.Println("Calling Node.GetName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the peer ID of the network master for this node.
+        Returns the peer ID of the network master for this node.
+	Args: [], Returns: int
 */
+
 func (o *Node) GetNetworkMaster() gdnative.Int {
 	log.Println("Calling Node.GetNetworkMaster()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_network_master")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_network_master", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Fetches a node. The [NodePath] can be either a relative path (from the current node) or an absolute path (in the scene tree) to a node. If the path does not exist, a [code]null instance[/code] is returned and attempts to access it will result in an "Attempt to call <method> on a null instance." error. Note: fetching absolute paths only works when the node is inside the scene tree (see [method is_inside_tree]). [i]Example:[/i] Assume your current node is Character and the following tree: [codeblock] /root /root/Character /root/Character/Sword /root/Character/Backpack/Dagger /root/MyGame /root/Swamp/Alligator /root/Swamp/Mosquito /root/Swamp/Goblin [/codeblock] Possible paths are: [codeblock] get_node("Sword") get_node("Backpack/Dagger") get_node("../Swamp/Alligator") get_node("/root/MyGame") [/codeblock]
+        Fetches a node. The [NodePath] can be either a relative path (from the current node) or an absolute path (in the scene tree) to a node. If the path does not exist, a [code]null instance[/code] is returned and attempts to access it will result in an "Attempt to call <method> on a null instance." error. Note: fetching absolute paths only works when the node is inside the scene tree (see [method is_inside_tree]). [i]Example:[/i] Assume your current node is Character and the following tree: [codeblock] /root /root/Character /root/Character/Sword /root/Character/Backpack/Dagger /root/MyGame /root/Swamp/Alligator /root/Swamp/Mosquito /root/Swamp/Goblin [/codeblock] Possible paths are: [codeblock] get_node("Sword") get_node("Backpack/Dagger") get_node("../Swamp/Alligator") get_node("/root/MyGame") [/codeblock]
+	Args: [{ false path NodePath}], Returns: Node
 */
-func (o *Node) GetNode(path *NodePath) *Node {
+
+func (o *Node) GetNode(path gdnative.NodePath) Node {
 	log.Println("Calling Node.GetNode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_node")
 
 	// Call the parent method.
+	// Node
+	retPtr := NewEmptyNode()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node", goArguments, "*Node")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewNodeFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Node)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Node) GetNodeAndResource(path *NodePath) *Array {
+	Args: [{ false path NodePath}], Returns: Array
+*/
+
+func (o *Node) GetNodeAndResource(path gdnative.NodePath) gdnative.Array {
 	log.Println("Calling Node.GetNodeAndResource()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_node_and_resource")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_and_resource", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Node
 */
-func (o *Node) GetOwner() *Node {
+
+func (o *Node) GetOwner() Node {
 	log.Println("Calling Node.GetOwner()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_owner")
 
 	// Call the parent method.
+	// Node
+	retPtr := NewEmptyNode()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_owner", goArguments, "*Node")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewNodeFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Node)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the parent node of the current node, or an empty [code]Node[/code] if the node lacks a parent.
+        Returns the parent node of the current node, or an empty [code]Node[/code] if the node lacks a parent.
+	Args: [], Returns: Node
 */
-func (o *Node) GetParent() *Node {
+
+func (o *Node) GetParent() Node {
 	log.Println("Calling Node.GetParent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_parent")
 
 	// Call the parent method.
+	// Node
+	retPtr := NewEmptyNode()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_parent", goArguments, "*Node")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewNodeFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Node)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the absolute path of the current node. This only works if the current node is inside the scene tree (see [method is_inside_tree]).
+        Returns the absolute path of the current node. This only works if the current node is inside the scene tree (see [method is_inside_tree]).
+	Args: [], Returns: NodePath
 */
-func (o *Node) GetPath() *NodePath {
+
+func (o *Node) GetPath() gdnative.NodePath {
 	log.Println("Calling Node.GetPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_path")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_path", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the relative path from the current node to the specified node in "node" argument. Both nodes must be in the same scene, or the function will fail.
+        Returns the relative path from the current node to the specified node in "node" argument. Both nodes must be in the same scene, or the function will fail.
+	Args: [{ false node Object}], Returns: NodePath
 */
-func (o *Node) GetPathTo(node *Object) *NodePath {
+
+func (o *Node) GetPathTo(node object.Object) gdnative.NodePath {
 	log.Println("Calling Node.GetPathTo()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(node)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(node.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_path_to")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_path_to", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Node::PauseMode
 */
-func (o *Node) GetPauseMode() gdnative.Int {
-	log.Println("Calling Node.GetPauseMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_pause_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Returns the time elapsed since the last physics-bound frame (see [method _physics_process]). This is always a constant value in physics processing unless the frames per second is changed in [OS].
+        Returns the time elapsed since the last physics-bound frame (see [method _physics_process]). This is always a constant value in physics processing unless the frames per second is changed in [OS].
+	Args: [], Returns: float
 */
+
 func (o *Node) GetPhysicsProcessDeltaTime() gdnative.Float {
 	log.Println("Calling Node.GetPhysicsProcessDeltaTime()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_physics_process_delta_time")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_physics_process_delta_time", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the node's order in the scene tree branch. For example, if called on the first child node the position is [code]0[/code].
+        Returns the node's order in the scene tree branch. For example, if called on the first child node the position is [code]0[/code].
+	Args: [], Returns: int
 */
+
 func (o *Node) GetPositionInParent() gdnative.Int {
 	log.Println("Calling Node.GetPositionInParent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_position_in_parent")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_position_in_parent", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the time elapsed (in seconds) since the last process callback. This value may vary from frame to frame.
+        Returns the time elapsed (in seconds) since the last process callback. This value may vary from frame to frame.
+	Args: [], Returns: float
 */
+
 func (o *Node) GetProcessDeltaTime() gdnative.Float {
 	log.Println("Calling Node.GetProcessDeltaTime()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_process_delta_time")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_process_delta_time", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: bool
+*/
+
 func (o *Node) GetSceneInstanceLoadPlaceholder() gdnative.Bool {
 	log.Println("Calling Node.GetSceneInstanceLoadPlaceholder()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_scene_instance_load_placeholder")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_scene_instance_load_placeholder", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the [SceneTree] that contains this node.
+        Returns the [SceneTree] that contains this node.
+	Args: [], Returns: SceneTree
 */
-func (o *Node) GetTree() *SceneTree {
+
+func (o *Node) GetTree() scenetree.SceneTree {
 	log.Println("Calling Node.GetTree()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_tree")
 
 	// Call the parent method.
+	// SceneTree
+	retPtr := scenetree.NewEmptySceneTree()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tree", goArguments, "*SceneTree")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := scenetree.NewSceneTreeFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*SceneTree)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the node's [Viewport].
+        Returns the node's [Viewport].
+	Args: [], Returns: Viewport
 */
-func (o *Node) GetViewport() *Viewport {
+
+func (o *Node) GetViewport() viewport.Viewport {
 	log.Println("Calling Node.GetViewport()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_viewport")
 
 	// Call the parent method.
+	// Viewport
+	retPtr := viewport.NewEmptyViewport()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_viewport", goArguments, "*Viewport")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := viewport.NewViewportFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Viewport)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the node that the [NodePath] points to exists.
+        Returns [code]true[/code] if the node that the [NodePath] points to exists.
+	Args: [{ false path NodePath}], Returns: bool
 */
-func (o *Node) HasNode(path *NodePath) gdnative.Bool {
+
+func (o *Node) HasNode(path gdnative.NodePath) gdnative.Bool {
 	log.Println("Calling Node.HasNode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "has_node")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_node", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Node) HasNodeAndResource(path *NodePath) gdnative.Bool {
+	Args: [{ false path NodePath}], Returns: bool
+*/
+
+func (o *Node) HasNodeAndResource(path gdnative.NodePath) gdnative.Bool {
 	log.Println("Calling Node.HasNodeAndResource()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "has_node_and_resource")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_node_and_resource", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the given node is a direct or indirect child of the current node.
+        Returns [code]true[/code] if the given node is a direct or indirect child of the current node.
+	Args: [{ false node Object}], Returns: bool
 */
-func (o *Node) IsAParentOf(node *Object) gdnative.Bool {
+
+func (o *Node) IsAParentOf(node object.Object) gdnative.Bool {
 	log.Println("Calling Node.IsAParentOf()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(node)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(node.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "is_a_parent_of")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_a_parent_of", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the node is folded (collapsed) in the Scene dock.
+        Returns [code]true[/code] if the node is folded (collapsed) in the Scene dock.
+	Args: [], Returns: bool
 */
+
 func (o *Node) IsDisplayedFolded() gdnative.Bool {
 	log.Println("Calling Node.IsDisplayedFolded()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "is_displayed_folded")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_displayed_folded", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the given node occurs later in the scene hierarchy than the current node.
+        Returns [code]true[/code] if the given node occurs later in the scene hierarchy than the current node.
+	Args: [{ false node Object}], Returns: bool
 */
-func (o *Node) IsGreaterThan(node *Object) gdnative.Bool {
+
+func (o *Node) IsGreaterThan(node object.Object) gdnative.Bool {
 	log.Println("Calling Node.IsGreaterThan()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(node)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(node.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "is_greater_than")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_greater_than", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if this node is in the specified group.
+        Returns [code]true[/code] if this node is in the specified group.
+	Args: [{ false group String}], Returns: bool
 */
+
 func (o *Node) IsInGroup(group gdnative.String) gdnative.Bool {
 	log.Println("Calling Node.IsInGroup()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(group)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(group)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "is_in_group")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_in_group", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if this node is currently inside a [SceneTree].
+        Returns [code]true[/code] if this node is currently inside a [SceneTree].
+	Args: [], Returns: bool
 */
+
 func (o *Node) IsInsideTree() gdnative.Bool {
 	log.Println("Calling Node.IsInsideTree()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "is_inside_tree")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_inside_tree", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: bool
+*/
+
 func (o *Node) IsNetworkMaster() gdnative.Bool {
 	log.Println("Calling Node.IsNetworkMaster()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "is_network_master")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_network_master", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if physics processing is enabled (see [method set_physics_process]).
+        Returns [code]true[/code] if physics processing is enabled (see [method set_physics_process]).
+	Args: [], Returns: bool
 */
+
 func (o *Node) IsPhysicsProcessing() gdnative.Bool {
 	log.Println("Calling Node.IsPhysicsProcessing()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "is_physics_processing")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_physics_processing", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: bool
+*/
+
 func (o *Node) IsPhysicsProcessingInternal() gdnative.Bool {
 	log.Println("Calling Node.IsPhysicsProcessingInternal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "is_physics_processing_internal")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_physics_processing_internal", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if processing is enabled (see [method set_process]).
+        Returns [code]true[/code] if processing is enabled (see [method set_process]).
+	Args: [], Returns: bool
 */
+
 func (o *Node) IsProcessing() gdnative.Bool {
 	log.Println("Calling Node.IsProcessing()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "is_processing")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_processing", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the node is processing input (see [method set_process_input]).
+        Returns [code]true[/code] if the node is processing input (see [method set_process_input]).
+	Args: [], Returns: bool
 */
+
 func (o *Node) IsProcessingInput() gdnative.Bool {
 	log.Println("Calling Node.IsProcessingInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "is_processing_input")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_processing_input", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: bool
+*/
+
 func (o *Node) IsProcessingInternal() gdnative.Bool {
 	log.Println("Calling Node.IsProcessingInternal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "is_processing_internal")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_processing_internal", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the node is processing unhandled input (see [method set_process_unhandled_input]).
+        Returns [code]true[/code] if the node is processing unhandled input (see [method set_process_unhandled_input]).
+	Args: [], Returns: bool
 */
+
 func (o *Node) IsProcessingUnhandledInput() gdnative.Bool {
 	log.Println("Calling Node.IsProcessingUnhandledInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "is_processing_unhandled_input")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_processing_unhandled_input", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the node is processing unhandled key input (see [method set_process_unhandled_key_input]).
+        Returns [code]true[/code] if the node is processing unhandled key input (see [method set_process_unhandled_key_input]).
+	Args: [], Returns: bool
 */
+
 func (o *Node) IsProcessingUnhandledKeyInput() gdnative.Bool {
 	log.Println("Calling Node.IsProcessingUnhandledKeyInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "is_processing_unhandled_key_input")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_processing_unhandled_key_input", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Moves a child node to a different position (order) amongst the other children. Since calls, signals, etc are performed by tree order, changing the order of children nodes may be useful.
+        Moves a child node to a different position (order) amongst the other children. Since calls, signals, etc are performed by tree order, changing the order of children nodes may be useful.
+	Args: [{ false child_node Object} { false to_position int}], Returns: void
 */
-func (o *Node) MoveChild(childNode *Object, toPosition gdnative.Int) {
+
+func (o *Node) MoveChild(childNode object.Object, toPosition gdnative.Int) {
 	log.Println("Calling Node.MoveChild()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(childNode)
-	goArguments[1] = reflect.ValueOf(toPosition)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromObject(childNode.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromInt(toPosition)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "move_child")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "move_child", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *Node) PrintStrayNodes() {
 	log.Println("Calling Node.PrintStrayNodes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "print_stray_nodes")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "print_stray_nodes", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Prints the scene to stdout. Used mainly for debugging purposes.
+        Prints the scene to stdout. Used mainly for debugging purposes.
+	Args: [], Returns: void
 */
+
 func (o *Node) PrintTree() {
 	log.Println("Calling Node.PrintTree()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "print_tree")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "print_tree", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Calls the given method (if present) with the arguments given in [code]args[/code] on this node and recursively on all its children. If the parent_first argument is [code]true[/code] then the method will be called on the current node first, then on all children. If it is [code]false[/code] then the children will be called first.
+        Calls the given method (if present) with the arguments given in [code]args[/code] on this node and recursively on all its children. If the parent_first argument is [code]true[/code] then the method will be called on the current node first, then on all children. If it is [code]false[/code] then the children will be called first.
+	Args: [{ false method String} {[] true args Array} {False true parent_first bool}], Returns: void
 */
-func (o *Node) PropagateCall(method gdnative.String, args *Array, parentFirst gdnative.Bool) {
+
+func (o *Node) PropagateCall(method gdnative.String, args gdnative.Array, parentFirst gdnative.Bool) {
 	log.Println("Calling Node.PropagateCall()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(method)
-	goArguments[1] = reflect.ValueOf(args)
-	goArguments[2] = reflect.ValueOf(parentFirst)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(method)
+	ptrArguments[1] = gdnative.NewPointerFromArray(args)
+	ptrArguments[2] = gdnative.NewPointerFromBool(parentFirst)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "propagate_call")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "propagate_call", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Notifies the current node and all its children recursively by calling notification() on all of them.
+        Notifies the current node and all its children recursively by calling notification() on all of them.
+	Args: [{ false what int}], Returns: void
 */
+
 func (o *Node) PropagateNotification(what gdnative.Int) {
 	log.Println("Calling Node.PropagateNotification()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(what)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(what)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "propagate_notification")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "propagate_notification", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Queues a node for deletion at the end of the current frame. When deleted, all of its child nodes will be deleted as well. This method ensures it's safe to delete the node, contrary to [method Object.free]. Use [method Object.is_queued_for_deletion] to check whether a node will be deleted at the end of the frame.
+        Queues a node for deletion at the end of the current frame. When deleted, all of its child nodes will be deleted as well. This method ensures it's safe to delete the node, contrary to [method Object.free]. Use [method Object.is_queued_for_deletion] to check whether a node will be deleted at the end of the frame.
+	Args: [], Returns: void
 */
+
 func (o *Node) QueueFree() {
 	log.Println("Calling Node.QueueFree()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "queue_free")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "queue_free", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Moves this node to the top of the array of nodes of the parent node. This is often useful in GUIs ([Control] nodes), because their order of drawing depends on their order in the tree.
+        Moves this node to the top of the array of nodes of the parent node. This is often useful in GUIs ([Control] nodes), because their order of drawing depends on their order in the tree.
+	Args: [], Returns: void
 */
+
 func (o *Node) Raise() {
 	log.Println("Calling Node.Raise()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "raise")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "raise", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Removes a node and sets all its children as children of the parent node (if it exists). All event subscriptions that pass by the removed node will be unsubscribed.
+        Removes a node and sets all its children as children of the parent node (if it exists). All event subscriptions that pass by the removed node will be unsubscribed.
+	Args: [], Returns: void
 */
+
 func (o *Node) RemoveAndSkip() {
 	log.Println("Calling Node.RemoveAndSkip()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "remove_and_skip")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_and_skip", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Removes a child node. The node is NOT deleted and must be deleted manually.
+        Removes a child node. The node is NOT deleted and must be deleted manually.
+	Args: [{ false node Object}], Returns: void
 */
-func (o *Node) RemoveChild(node *Object) {
+
+func (o *Node) RemoveChild(node object.Object) {
 	log.Println("Calling Node.RemoveChild()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(node)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(node.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "remove_child")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_child", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Removes a node from a group.
+        Removes a node from a group.
+	Args: [{ false group String}], Returns: void
 */
+
 func (o *Node) RemoveFromGroup(group gdnative.String) {
 	log.Println("Calling Node.RemoveFromGroup()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(group)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(group)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "remove_from_group")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_from_group", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Replaces a node in a scene by the given one. Subscriptions that pass through this node will be lost.
+        Replaces a node in a scene by the given one. Subscriptions that pass through this node will be lost.
+	Args: [{ false node Object} {False true keep_data bool}], Returns: void
 */
-func (o *Node) ReplaceBy(node *Object, keepData gdnative.Bool) {
+
+func (o *Node) ReplaceBy(node object.Object, keepData gdnative.Bool) {
 	log.Println("Calling Node.ReplaceBy()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(node)
-	goArguments[1] = reflect.ValueOf(keepData)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromObject(node.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromBool(keepData)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "replace_by")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "replace_by", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Requests that [code]_ready[/code] be called again.
+        Requests that [code]_ready[/code] be called again.
+	Args: [], Returns: void
 */
+
 func (o *Node) RequestReady() {
 	log.Println("Calling Node.RequestReady()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "request_ready")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "request_ready", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sends a remote procedure call request to all peers on the network (and locally), optionally sending additional data as arguments. Call request will be received by nodes with the same [NodePath].
+        Sends a remote procedure call request to all peers on the network (and locally), optionally sending additional data as arguments. Call request will be received by nodes with the same [NodePath].
+	Args: [{ false method String}], Returns: Variant
 */
-func (o *Node) Rpc(method gdnative.String) *Variant {
+
+func (o *Node) Rpc(method gdnative.String) gdnative.Variant {
 	log.Println("Calling Node.Rpc()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(method)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(method)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "rpc")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "rpc", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Changes the method's RPC mode (one of RPC_MODE_* constants).
+        Changes the method's RPC mode (one of RPC_MODE_* constants).
+	Args: [{ false method String} { false mode int}], Returns: void
 */
+
 func (o *Node) RpcConfig(method gdnative.String, mode gdnative.Int) {
 	log.Println("Calling Node.RpcConfig()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(method)
-	goArguments[1] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(method)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "rpc_config")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "rpc_config", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sends a [method rpc] to a specific peer identified by [i]peer_id[/i].
+        Sends a [method rpc] to a specific peer identified by [i]peer_id[/i].
+	Args: [{ false peer_id int} { false method String}], Returns: Variant
 */
-func (o *Node) RpcId(peerId gdnative.Int, method gdnative.String) *Variant {
+
+func (o *Node) RpcId(peerId gdnative.Int, method gdnative.String) gdnative.Variant {
 	log.Println("Calling Node.RpcId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(peerId)
-	goArguments[1] = reflect.ValueOf(method)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(peerId)
+	ptrArguments[1] = gdnative.NewPointerFromString(method)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "rpc_id")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "rpc_id", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sends a [method rpc] using an unreliable protocol.
+        Sends a [method rpc] using an unreliable protocol.
+	Args: [{ false method String}], Returns: Variant
 */
-func (o *Node) RpcUnreliable(method gdnative.String) *Variant {
+
+func (o *Node) RpcUnreliable(method gdnative.String) gdnative.Variant {
 	log.Println("Calling Node.RpcUnreliable()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(method)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(method)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "rpc_unreliable")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "rpc_unreliable", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sends a [method rpc] to a specific peer identified by [i]peer_id[/i] using an unreliable protocol.
+        Sends a [method rpc] to a specific peer identified by [i]peer_id[/i] using an unreliable protocol.
+	Args: [{ false peer_id int} { false method String}], Returns: Variant
 */
-func (o *Node) RpcUnreliableId(peerId gdnative.Int, method gdnative.String) *Variant {
+
+func (o *Node) RpcUnreliableId(peerId gdnative.Int, method gdnative.String) gdnative.Variant {
 	log.Println("Calling Node.RpcUnreliableId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(peerId)
-	goArguments[1] = reflect.ValueOf(method)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(peerId)
+	ptrArguments[1] = gdnative.NewPointerFromString(method)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "rpc_unreliable_id")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "rpc_unreliable_id", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Remotely changes property's value on other peers (and locally).
+        Remotely changes property's value on other peers (and locally).
+	Args: [{ false property String} { false value Variant}], Returns: void
 */
-func (o *Node) Rset(property gdnative.String, value *Variant) {
+
+func (o *Node) Rset(property gdnative.String, value gdnative.Variant) {
 	log.Println("Calling Node.Rset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(property)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(property)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "rset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "rset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Changes the property's RPC mode (one of RPC_MODE_* constants).
+        Changes the property's RPC mode (one of RPC_MODE_* constants).
+	Args: [{ false property String} { false mode int}], Returns: void
 */
+
 func (o *Node) RsetConfig(property gdnative.String, mode gdnative.Int) {
 	log.Println("Calling Node.RsetConfig()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(property)
-	goArguments[1] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(property)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "rset_config")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "rset_config", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Remotely changes property's value on a specific peer identified by [i]peer_id[/i].
+        Remotely changes property's value on a specific peer identified by [i]peer_id[/i].
+	Args: [{ false peer_id int} { false property String} { false value Variant}], Returns: void
 */
-func (o *Node) RsetId(peerId gdnative.Int, property gdnative.String, value *Variant) {
+
+func (o *Node) RsetId(peerId gdnative.Int, property gdnative.String, value gdnative.Variant) {
 	log.Println("Calling Node.RsetId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(peerId)
-	goArguments[1] = reflect.ValueOf(property)
-	goArguments[2] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(peerId)
+	ptrArguments[1] = gdnative.NewPointerFromString(property)
+	ptrArguments[2] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "rset_id")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "rset_id", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Remotely changes property's value on other peers (and locally) using an unreliable protocol.
+        Remotely changes property's value on other peers (and locally) using an unreliable protocol.
+	Args: [{ false property String} { false value Variant}], Returns: void
 */
-func (o *Node) RsetUnreliable(property gdnative.String, value *Variant) {
+
+func (o *Node) RsetUnreliable(property gdnative.String, value gdnative.Variant) {
 	log.Println("Calling Node.RsetUnreliable()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(property)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(property)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "rset_unreliable")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "rset_unreliable", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Remotely changes property's value on a specific peer identified by [i]peer_id[/i] using an unreliable protocol.
+        Remotely changes property's value on a specific peer identified by [i]peer_id[/i] using an unreliable protocol.
+	Args: [{ false peer_id int} { false property String} { false value Variant}], Returns: void
 */
-func (o *Node) RsetUnreliableId(peerId gdnative.Int, property gdnative.String, value *Variant) {
+
+func (o *Node) RsetUnreliableId(peerId gdnative.Int, property gdnative.String, value gdnative.Variant) {
 	log.Println("Calling Node.RsetUnreliableId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(peerId)
-	goArguments[1] = reflect.ValueOf(property)
-	goArguments[2] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(peerId)
+	ptrArguments[1] = gdnative.NewPointerFromString(property)
+	ptrArguments[2] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "rset_unreliable_id")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "rset_unreliable_id", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the folded state of the node in the Scene dock.
+        Sets the folded state of the node in the Scene dock.
+	Args: [{ false fold bool}], Returns: void
 */
+
 func (o *Node) SetDisplayFolded(fold gdnative.Bool) {
 	log.Println("Calling Node.SetDisplayFolded()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(fold)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(fold)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "set_display_folded")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_display_folded", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false filename String}], Returns: void
 */
+
 func (o *Node) SetFilename(filename gdnative.String) {
 	log.Println("Calling Node.SetFilename()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(filename)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(filename)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "set_filename")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_filename", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String}], Returns: void
 */
+
 func (o *Node) SetName(name gdnative.String) {
 	log.Println("Calling Node.SetName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "set_name")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_name", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the node network master to the peer with the given peer ID. The network master is the peer that has authority over it on the network. Inherited from the parent node by default, which ultimately defaults to peer ID 1 (the server).
+        Sets the node network master to the peer with the given peer ID. The network master is the peer that has authority over it on the network. Inherited from the parent node by default, which ultimately defaults to peer ID 1 (the server).
+	Args: [{ false id int} {True true recursive bool}], Returns: void
 */
+
 func (o *Node) SetNetworkMaster(id gdnative.Int, recursive gdnative.Bool) {
 	log.Println("Calling Node.SetNetworkMaster()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(recursive)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromBool(recursive)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "set_network_master")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_network_master", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false owner Object}], Returns: void
 */
-func (o *Node) SetOwner(owner *Object) {
+
+func (o *Node) SetOwner(owner object.Object) {
 	log.Println("Calling Node.SetOwner()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(owner)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(owner.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "set_owner")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_owner", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *Node) SetPauseMode(mode gdnative.Int) {
 	log.Println("Calling Node.SetPauseMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "set_pause_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_pause_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Enables or disables physics (i.e. fixed framerate) processing. When a node is being processed, it will receive a NOTIFICATION_PHYSICS_PROCESS at a fixed (usually 60 fps, see [OS] to change) interval (and the [method _physics_process] callback will be called if exists). Enabled automatically if [method _physics_process] is overridden. Any calls to this before [method _ready] will be ignored.
+        Enables or disables physics (i.e. fixed framerate) processing. When a node is being processed, it will receive a NOTIFICATION_PHYSICS_PROCESS at a fixed (usually 60 fps, see [OS] to change) interval (and the [method _physics_process] callback will be called if exists). Enabled automatically if [method _physics_process] is overridden. Any calls to this before [method _ready] will be ignored.
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Node) SetPhysicsProcess(enable gdnative.Bool) {
 	log.Println("Calling Node.SetPhysicsProcess()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "set_physics_process")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_physics_process", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false enable bool}], Returns: void
+*/
+
 func (o *Node) SetPhysicsProcessInternal(enable gdnative.Bool) {
 	log.Println("Calling Node.SetPhysicsProcessInternal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "set_physics_process_internal")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_physics_process_internal", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Enables or disables processing. When a node is being processed, it will receive a NOTIFICATION_PROCESS on every drawn frame (and the [method _process] callback will be called if exists). Enabled automatically if [method _process] is overridden. Any calls to this before [method _ready] will be ignored.
+        Enables or disables processing. When a node is being processed, it will receive a NOTIFICATION_PROCESS on every drawn frame (and the [method _process] callback will be called if exists). Enabled automatically if [method _process] is overridden. Any calls to this before [method _ready] will be ignored.
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Node) SetProcess(enable gdnative.Bool) {
 	log.Println("Calling Node.SetProcess()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "set_process")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_process", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Enables or disables input processing. This is not required for GUI controls! Enabled automatically if [method _input] is overridden. Any calls to this before [method _ready] will be ignored.
+        Enables or disables input processing. This is not required for GUI controls! Enabled automatically if [method _input] is overridden. Any calls to this before [method _ready] will be ignored.
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Node) SetProcessInput(enable gdnative.Bool) {
 	log.Println("Calling Node.SetProcessInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "set_process_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_process_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false enable bool}], Returns: void
+*/
+
 func (o *Node) SetProcessInternal(enable gdnative.Bool) {
 	log.Println("Calling Node.SetProcessInternal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "set_process_internal")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_process_internal", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Enables unhandled input processing. This is not required for GUI controls! It enables the node to receive all input that was not previously handled (usually by a [Control]). Enabled automatically if [method _unhandled_input] is overridden. Any calls to this before [method _ready] will be ignored.
+        Enables unhandled input processing. This is not required for GUI controls! It enables the node to receive all input that was not previously handled (usually by a [Control]). Enabled automatically if [method _unhandled_input] is overridden. Any calls to this before [method _ready] will be ignored.
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Node) SetProcessUnhandledInput(enable gdnative.Bool) {
 	log.Println("Calling Node.SetProcessUnhandledInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "set_process_unhandled_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_process_unhandled_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Enables unhandled key input processing. Enabled automatically if [method _unhandled_key_input] is overridden. Any calls to this before [method _ready] will be ignored.
+        Enables unhandled key input processing. Enabled automatically if [method _unhandled_key_input] is overridden. Any calls to this before [method _ready] will be ignored.
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Node) SetProcessUnhandledKeyInput(enable gdnative.Bool) {
 	log.Println("Calling Node.SetProcessUnhandledKeyInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "set_process_unhandled_key_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_process_unhandled_key_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false load_placeholder bool}], Returns: void
+*/
+
 func (o *Node) SetSceneInstanceLoadPlaceholder(loadPlaceholder gdnative.Bool) {
 	log.Println("Calling Node.SetSceneInstanceLoadPlaceholder()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(loadPlaceholder)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(loadPlaceholder)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "set_scene_instance_load_placeholder")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_scene_instance_load_placeholder", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   NodeImplementer is an interface for Node objects.
-*/
-type NodeImplementer interface {
-	Class
 }

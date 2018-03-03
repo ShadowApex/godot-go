@@ -2,7 +2,6 @@ package streampeer
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -16,6 +15,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewStreamPeerTCPFromPointer(ptr gdnative.Pointer) *StreamPeerTCP {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := StreamPeerTCP{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 TCP Stream peer. This object can be used to connect to TCP servers, or also is returned by a tcp server.
 */
@@ -28,145 +36,132 @@ func (o *StreamPeerTCP) BaseClass() string {
 }
 
 /*
-   Connect to the specified host:port pair. A hostname will be resolved if valid. Returns [OK] on success or [FAILED] on failure.
+        Connect to the specified host:port pair. A hostname will be resolved if valid. Returns [OK] on success or [FAILED] on failure.
+	Args: [{ false host String} { false port int}], Returns: enum.Error
 */
-func (o *StreamPeerTCP) ConnectToHost(host gdnative.String, port gdnative.Int) gdnative.Int {
-	log.Println("Calling StreamPeerTCP.ConnectToHost()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(host)
-	goArguments[1] = reflect.ValueOf(port)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "connect_to_host", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Disconnect from host.
+        Disconnect from host.
+	Args: [], Returns: void
 */
+
 func (o *StreamPeerTCP) DisconnectFromHost() {
 	log.Println("Calling StreamPeerTCP.DisconnectFromHost()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerTCP", "disconnect_from_host")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "disconnect_from_host", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Return the IP of this peer.
+        Return the IP of this peer.
+	Args: [], Returns: String
 */
+
 func (o *StreamPeerTCP) GetConnectedHost() gdnative.String {
 	log.Println("Calling StreamPeerTCP.GetConnectedHost()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerTCP", "get_connected_host")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_connected_host", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the port of this peer.
+        Return the port of this peer.
+	Args: [], Returns: int
 */
+
 func (o *StreamPeerTCP) GetConnectedPort() gdnative.Int {
 	log.Println("Calling StreamPeerTCP.GetConnectedPort()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerTCP", "get_connected_port")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_connected_port", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the status of the connection, one of STATUS_* enum.
+        Return the status of the connection, one of STATUS_* enum.
+	Args: [], Returns: enum.StreamPeerTCP::Status
 */
-func (o *StreamPeerTCP) GetStatus() gdnative.Int {
-	log.Println("Calling StreamPeerTCP.GetStatus()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_status", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
 
- */
+	Args: [], Returns: bool
+*/
+
 func (o *StreamPeerTCP) IsConnectedToHost() gdnative.Bool {
 	log.Println("Calling StreamPeerTCP.IsConnectedToHost()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerTCP", "is_connected_to_host")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_connected_to_host", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Disable Nagle algorithm to improve latency for small packets. Note that for applications that send large packets, or need to transfer a lot of data, this can reduce total bandwidth.
+        Disable Nagle algorithm to improve latency for small packets. Note that for applications that send large packets, or need to transfer a lot of data, this can reduce total bandwidth.
+	Args: [{ false enabled bool}], Returns: void
 */
+
 func (o *StreamPeerTCP) SetNoDelay(enabled gdnative.Bool) {
 	log.Println("Calling StreamPeerTCP.SetNoDelay()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerTCP", "set_no_delay")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_no_delay", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   StreamPeerTCPImplementer is an interface for StreamPeerTCP objects.
-*/
-type StreamPeerTCPImplementer interface {
-	Class
 }

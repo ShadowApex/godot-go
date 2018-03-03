@@ -2,7 +2,11 @@ package container
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/control"
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewContainerFromPointer(ptr gdnative.Pointer) *Container {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Container{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Base node for containers. A [code]Container[/code] contains other controls and automatically arranges them in a certain way. A Control can inherit this to create custom container classes.
 */
 type Container struct {
-	Control
+	control.Control
 }
 
 func (o *Container) BaseClass() string {
@@ -26,78 +39,87 @@ func (o *Container) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *Container) X_ChildMinsizeChanged() {
 	log.Println("Calling Container.X_ChildMinsizeChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Container", "_child_minsize_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_child_minsize_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *Container) X_SortChildren() {
 	log.Println("Calling Container.X_SortChildren()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Container", "_sort_children")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_sort_children", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Fit a child control in a given rect. This is mainly a helper for creating custom container classes.
+        Fit a child control in a given rect. This is mainly a helper for creating custom container classes.
+	Args: [{ false child Object} { false rect Rect2}], Returns: void
 */
-func (o *Container) FitChildInRect(child *Object, rect *Rect2) {
+
+func (o *Container) FitChildInRect(child object.Object, rect gdnative.Rect2) {
 	log.Println("Calling Container.FitChildInRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(child)
-	goArguments[1] = reflect.ValueOf(rect)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromObject(child.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromRect2(rect)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Container", "fit_child_in_rect")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "fit_child_in_rect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Queue resort of the contained children. This is called automatically anyway, but can be called upon request.
+        Queue resort of the contained children. This is called automatically anyway, but can be called upon request.
+	Args: [], Returns: void
 */
+
 func (o *Container) QueueSort() {
 	log.Println("Calling Container.QueueSort()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Container", "queue_sort")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "queue_sort", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ContainerImplementer is an interface for Container objects.
-*/
-type ContainerImplementer interface {
-	Class
 }

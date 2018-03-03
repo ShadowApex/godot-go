@@ -2,7 +2,8 @@ package stylebox
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
 )
 
 /*------------------------------------------------------------------------------
@@ -13,6 +14,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewStyleBoxFlatFromPointer(ptr gdnative.Pointer) *StyleBoxFlat {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := StyleBoxFlat{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 /*
 This stylebox can be used to achieve all kinds of looks without the need of a texture. Those properties are customizable: - Color - Border width (individual width for each border) - Rounded corners (individual radius for each corner) - Shadow About corner radius: Setting corner radius to high values is allowed. As soon as corners would overlap the stylebox will switch to a relative system. Example: [codeblock] height = 30 corner_radius_top_left = 50 corner_radius_bottom_left = 100 [/codeblock] The relative system now would take the 1:2 ratio of the two left corners to calculate the actual corner width. Both corners added will [b]never[/b] be more than the height. Result: [codeblock] corner_radius_top_left: 10 corner_radius_bottom_left: 20 [/codeblock]
@@ -26,586 +36,725 @@ func (o *StyleBoxFlat) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *StyleBoxFlat) GetAaSize() gdnative.Int {
 	log.Println("Calling StyleBoxFlat.GetAaSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "get_aa_size")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_aa_size", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Color
 */
-func (o *StyleBoxFlat) GetBgColor() *Color {
+
+func (o *StyleBoxFlat) GetBgColor() gdnative.Color {
 	log.Println("Calling StyleBoxFlat.GetBgColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "get_bg_color")
 
 	// Call the parent method.
+	// Color
+	retPtr := gdnative.NewEmptyColor()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bg_color", goArguments, "*Color")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewColorFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Color)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *StyleBoxFlat) GetBorderBlend() gdnative.Bool {
 	log.Println("Calling StyleBoxFlat.GetBorderBlend()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "get_border_blend")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_border_blend", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Color
 */
-func (o *StyleBoxFlat) GetBorderColor() *Color {
+
+func (o *StyleBoxFlat) GetBorderColor() gdnative.Color {
 	log.Println("Calling StyleBoxFlat.GetBorderColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "get_border_color")
 
 	// Call the parent method.
+	// Color
+	retPtr := gdnative.NewEmptyColor()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_border_color", goArguments, "*Color")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewColorFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Color)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin int}], Returns: int
 */
+
 func (o *StyleBoxFlat) GetBorderWidth(margin gdnative.Int) gdnative.Int {
 	log.Println("Calling StyleBoxFlat.GetBorderWidth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "get_border_width")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_border_width", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: int
+*/
+
 func (o *StyleBoxFlat) GetBorderWidthMin() gdnative.Int {
 	log.Println("Calling StyleBoxFlat.GetBorderWidthMin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "get_border_width_min")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_border_width_min", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *StyleBoxFlat) GetCornerDetail() gdnative.Int {
 	log.Println("Calling StyleBoxFlat.GetCornerDetail()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "get_corner_detail")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_corner_detail", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false corner int}], Returns: int
 */
+
 func (o *StyleBoxFlat) GetCornerRadius(corner gdnative.Int) gdnative.Int {
 	log.Println("Calling StyleBoxFlat.GetCornerRadius()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(corner)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(corner)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "get_corner_radius")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_corner_radius", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin int}], Returns: float
 */
+
 func (o *StyleBoxFlat) GetExpandMargin(margin gdnative.Int) gdnative.Float {
 	log.Println("Calling StyleBoxFlat.GetExpandMargin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "get_expand_margin")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_expand_margin", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Color
 */
-func (o *StyleBoxFlat) GetShadowColor() *Color {
+
+func (o *StyleBoxFlat) GetShadowColor() gdnative.Color {
 	log.Println("Calling StyleBoxFlat.GetShadowColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "get_shadow_color")
 
 	// Call the parent method.
+	// Color
+	retPtr := gdnative.NewEmptyColor()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_shadow_color", goArguments, "*Color")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewColorFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Color)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *StyleBoxFlat) GetShadowSize() gdnative.Int {
 	log.Println("Calling StyleBoxFlat.GetShadowSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "get_shadow_size")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_shadow_size", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *StyleBoxFlat) IsAntiAliased() gdnative.Bool {
 	log.Println("Calling StyleBoxFlat.IsAntiAliased()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "is_anti_aliased")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_anti_aliased", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *StyleBoxFlat) IsDrawCenterEnabled() gdnative.Bool {
 	log.Println("Calling StyleBoxFlat.IsDrawCenterEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "is_draw_center_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_draw_center_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false size int}], Returns: void
 */
+
 func (o *StyleBoxFlat) SetAaSize(size gdnative.Int) {
 	log.Println("Calling StyleBoxFlat.SetAaSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_aa_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_aa_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false anti_aliased bool}], Returns: void
 */
+
 func (o *StyleBoxFlat) SetAntiAliased(antiAliased gdnative.Bool) {
 	log.Println("Calling StyleBoxFlat.SetAntiAliased()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(antiAliased)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(antiAliased)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_anti_aliased")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_anti_aliased", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false color Color}], Returns: void
 */
-func (o *StyleBoxFlat) SetBgColor(color *Color) {
+
+func (o *StyleBoxFlat) SetBgColor(color gdnative.Color) {
 	log.Println("Calling StyleBoxFlat.SetBgColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_bg_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_bg_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false blend bool}], Returns: void
 */
+
 func (o *StyleBoxFlat) SetBorderBlend(blend gdnative.Bool) {
 	log.Println("Calling StyleBoxFlat.SetBorderBlend()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(blend)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(blend)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_border_blend")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_border_blend", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false color Color}], Returns: void
 */
-func (o *StyleBoxFlat) SetBorderColor(color *Color) {
+
+func (o *StyleBoxFlat) SetBorderColor(color gdnative.Color) {
 	log.Println("Calling StyleBoxFlat.SetBorderColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_border_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_border_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin int} { false width int}], Returns: void
 */
+
 func (o *StyleBoxFlat) SetBorderWidth(margin gdnative.Int, width gdnative.Int) {
 	log.Println("Calling StyleBoxFlat.SetBorderWidth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(margin)
-	goArguments[1] = reflect.ValueOf(width)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+	ptrArguments[1] = gdnative.NewPointerFromInt(width)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_border_width")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_border_width", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false width int}], Returns: void
+*/
+
 func (o *StyleBoxFlat) SetBorderWidthAll(width gdnative.Int) {
 	log.Println("Calling StyleBoxFlat.SetBorderWidthAll()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(width)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(width)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_border_width_all")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_border_width_all", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false detail int}], Returns: void
 */
+
 func (o *StyleBoxFlat) SetCornerDetail(detail gdnative.Int) {
 	log.Println("Calling StyleBoxFlat.SetCornerDetail()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(detail)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(detail)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_corner_detail")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_corner_detail", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false corner int} { false radius int}], Returns: void
 */
+
 func (o *StyleBoxFlat) SetCornerRadius(corner gdnative.Int, radius gdnative.Int) {
 	log.Println("Calling StyleBoxFlat.SetCornerRadius()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(corner)
-	goArguments[1] = reflect.ValueOf(radius)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(corner)
+	ptrArguments[1] = gdnative.NewPointerFromInt(radius)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_corner_radius")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_corner_radius", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false radius int}], Returns: void
+*/
+
 func (o *StyleBoxFlat) SetCornerRadiusAll(radius gdnative.Int) {
 	log.Println("Calling StyleBoxFlat.SetCornerRadiusAll()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(radius)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(radius)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_corner_radius_all")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_corner_radius_all", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false radius_top_left int} { false radius_top_right int} { false radius_bottom_right int} { false radius_bottom_left int}], Returns: void
+*/
+
 func (o *StyleBoxFlat) SetCornerRadiusIndividual(radiusTopLeft gdnative.Int, radiusTopRight gdnative.Int, radiusBottomRight gdnative.Int, radiusBottomLeft gdnative.Int) {
 	log.Println("Calling StyleBoxFlat.SetCornerRadiusIndividual()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(radiusTopLeft)
-	goArguments[1] = reflect.ValueOf(radiusTopRight)
-	goArguments[2] = reflect.ValueOf(radiusBottomRight)
-	goArguments[3] = reflect.ValueOf(radiusBottomLeft)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromInt(radiusTopLeft)
+	ptrArguments[1] = gdnative.NewPointerFromInt(radiusTopRight)
+	ptrArguments[2] = gdnative.NewPointerFromInt(radiusBottomRight)
+	ptrArguments[3] = gdnative.NewPointerFromInt(radiusBottomLeft)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_corner_radius_individual")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_corner_radius_individual", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false draw_center bool}], Returns: void
 */
+
 func (o *StyleBoxFlat) SetDrawCenter(drawCenter gdnative.Bool) {
 	log.Println("Calling StyleBoxFlat.SetDrawCenter()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(drawCenter)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(drawCenter)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_draw_center")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_draw_center", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin int} { false size float}], Returns: void
 */
+
 func (o *StyleBoxFlat) SetExpandMargin(margin gdnative.Int, size gdnative.Float) {
 	log.Println("Calling StyleBoxFlat.SetExpandMargin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(margin)
-	goArguments[1] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_expand_margin")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_expand_margin", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false size float}], Returns: void
+*/
+
 func (o *StyleBoxFlat) SetExpandMarginAll(size gdnative.Float) {
 	log.Println("Calling StyleBoxFlat.SetExpandMarginAll()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_expand_margin_all")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_expand_margin_all", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false size_left float} { false size_top float} { false size_right float} { false size_bottom float}], Returns: void
+*/
+
 func (o *StyleBoxFlat) SetExpandMarginIndividual(sizeLeft gdnative.Float, sizeTop gdnative.Float, sizeRight gdnative.Float, sizeBottom gdnative.Float) {
 	log.Println("Calling StyleBoxFlat.SetExpandMarginIndividual()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(sizeLeft)
-	goArguments[1] = reflect.ValueOf(sizeTop)
-	goArguments[2] = reflect.ValueOf(sizeRight)
-	goArguments[3] = reflect.ValueOf(sizeBottom)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(sizeLeft)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(sizeTop)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(sizeRight)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(sizeBottom)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_expand_margin_individual")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_expand_margin_individual", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false color Color}], Returns: void
 */
-func (o *StyleBoxFlat) SetShadowColor(color *Color) {
+
+func (o *StyleBoxFlat) SetShadowColor(color gdnative.Color) {
 	log.Println("Calling StyleBoxFlat.SetShadowColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_shadow_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_shadow_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false size int}], Returns: void
 */
+
 func (o *StyleBoxFlat) SetShadowSize(size gdnative.Int) {
 	log.Println("Calling StyleBoxFlat.SetShadowSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_shadow_size")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_shadow_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   StyleBoxFlatImplementer is an interface for StyleBoxFlat objects.
-*/
-type StyleBoxFlatImplementer interface {
-	Class
 }

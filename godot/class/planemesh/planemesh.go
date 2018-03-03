@@ -2,9 +2,9 @@ package planemesh
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/primitivemesh"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPlaneMeshFromPointer(ptr gdnative.Pointer) *PlaneMesh {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := PlaneMesh{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Class representing a planar [PrimitiveMesh]. This flat mesh does not have a thickness.
 */
 type PlaneMesh struct {
-	PrimitiveMesh
+	primitivemesh.PrimitiveMesh
 }
 
 func (o *PlaneMesh) BaseClass() string {
@@ -28,122 +37,145 @@ func (o *PlaneMesh) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *PlaneMesh) GetSize() *Vector2 {
+
+func (o *PlaneMesh) GetSize() gdnative.Vector2 {
 	log.Println("Calling PlaneMesh.GetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PlaneMesh", "get_size")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_size", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *PlaneMesh) GetSubdivideDepth() gdnative.Int {
 	log.Println("Calling PlaneMesh.GetSubdivideDepth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PlaneMesh", "get_subdivide_depth")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_subdivide_depth", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *PlaneMesh) GetSubdivideWidth() gdnative.Int {
 	log.Println("Calling PlaneMesh.GetSubdivideWidth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PlaneMesh", "get_subdivide_width")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_subdivide_width", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false size Vector2}], Returns: void
 */
-func (o *PlaneMesh) SetSize(size *Vector2) {
+
+func (o *PlaneMesh) SetSize(size gdnative.Vector2) {
 	log.Println("Calling PlaneMesh.SetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PlaneMesh", "set_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false subdivide int}], Returns: void
 */
+
 func (o *PlaneMesh) SetSubdivideDepth(subdivide gdnative.Int) {
 	log.Println("Calling PlaneMesh.SetSubdivideDepth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(subdivide)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(subdivide)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PlaneMesh", "set_subdivide_depth")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_subdivide_depth", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false subdivide int}], Returns: void
 */
+
 func (o *PlaneMesh) SetSubdivideWidth(subdivide gdnative.Int) {
 	log.Println("Calling PlaneMesh.SetSubdivideWidth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(subdivide)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(subdivide)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PlaneMesh", "set_subdivide_width")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_subdivide_width", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   PlaneMeshImplementer is an interface for PlaneMesh objects.
-*/
-type PlaneMeshImplementer interface {
-	Class
 }

@@ -38,6 +38,14 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewEmptyVector3 will return a pointer to an empty
+// initialized Vector3. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyVector3() Pointer {
+	var obj C.godot_vector3
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromVector3 will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromVector3(obj Vector3) Pointer {

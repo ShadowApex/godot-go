@@ -2,7 +2,6 @@ package visualscript
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -16,6 +15,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewVisualScriptConstantFromPointer(ptr gdnative.Pointer) *VisualScriptConstant {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := VisualScriptConstant{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
@@ -28,84 +36,76 @@ func (o *VisualScriptConstant) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Variant::Type
 */
-func (o *VisualScriptConstant) GetConstantType() gdnative.Int {
-	log.Println("Calling VisualScriptConstant.GetConstantType()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_constant_type", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Variant
 */
-func (o *VisualScriptConstant) GetConstantValue() *Variant {
+
+func (o *VisualScriptConstant) GetConstantValue() gdnative.Variant {
 	log.Println("Calling VisualScriptConstant.GetConstantValue()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptConstant", "get_constant_value")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_constant_value", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false type int}], Returns: void
 */
+
 func (o *VisualScriptConstant) SetConstantType(aType gdnative.Int) {
 	log.Println("Calling VisualScriptConstant.SetConstantType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptConstant", "set_constant_type")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_constant_type", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false value Variant}], Returns: void
 */
-func (o *VisualScriptConstant) SetConstantValue(value *Variant) {
+
+func (o *VisualScriptConstant) SetConstantValue(value gdnative.Variant) {
 	log.Println("Calling VisualScriptConstant.SetConstantValue()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptConstant", "set_constant_value")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_constant_value", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   VisualScriptConstantImplementer is an interface for VisualScriptConstant objects.
-*/
-type VisualScriptConstantImplementer interface {
-	Class
 }

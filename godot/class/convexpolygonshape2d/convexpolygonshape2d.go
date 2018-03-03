@@ -2,7 +2,9 @@ package convexpolygonshape2d
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/shape2d"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewConvexPolygonShape2DFromPointer(ptr gdnative.Pointer) *ConvexPolygonShape2D {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ConvexPolygonShape2D{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Convex Polygon Shape for 2D physics. A convex polygon, whatever its shape, is internally decomposed into as many convex polygons as needed to ensure all collision checks against it are always done on convex polygons (which are faster to check). The main difference between a [code]ConvexPolygonShape2D[/code] and a [ConcavePolygonShape2D] is that a concave polygon assumes it is concave and uses a more complex method of collision detection, and a convex one forces itself to be convex in order to speed up collision detection.
 */
 type ConvexPolygonShape2D struct {
-	Shape2D
+	shape2d.Shape2D
 }
 
 func (o *ConvexPolygonShape2D) BaseClass() string {
@@ -26,64 +37,71 @@ func (o *ConvexPolygonShape2D) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolVector2Array
 */
-func (o *ConvexPolygonShape2D) GetPoints() *PoolVector2Array {
+
+func (o *ConvexPolygonShape2D) GetPoints() gdnative.PoolVector2Array {
 	log.Println("Calling ConvexPolygonShape2D.GetPoints()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ConvexPolygonShape2D", "get_points")
 
 	// Call the parent method.
+	// PoolVector2Array
+	retPtr := gdnative.NewEmptyPoolVector2Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_points", goArguments, "*PoolVector2Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector2Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Currently, this method does nothing.
+        Currently, this method does nothing.
+	Args: [{ false point_cloud PoolVector2Array}], Returns: void
 */
-func (o *ConvexPolygonShape2D) SetPointCloud(pointCloud *PoolVector2Array) {
+
+func (o *ConvexPolygonShape2D) SetPointCloud(pointCloud gdnative.PoolVector2Array) {
 	log.Println("Calling ConvexPolygonShape2D.SetPointCloud()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pointCloud)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(pointCloud)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ConvexPolygonShape2D", "set_point_cloud")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_point_cloud", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false points PoolVector2Array}], Returns: void
 */
-func (o *ConvexPolygonShape2D) SetPoints(points *PoolVector2Array) {
+
+func (o *ConvexPolygonShape2D) SetPoints(points gdnative.PoolVector2Array) {
 	log.Println("Calling ConvexPolygonShape2D.SetPoints()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(points)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(points)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ConvexPolygonShape2D", "set_points")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_points", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ConvexPolygonShape2DImplementer is an interface for ConvexPolygonShape2D objects.
-*/
-type ConvexPolygonShape2DImplementer interface {
-	Class
 }

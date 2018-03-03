@@ -2,9 +2,9 @@ package networkedmultiplayerpeer
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/packetpeer"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewNetworkedMultiplayerPeerFromPointer(ptr gdnative.Pointer) *NetworkedMultiplayerPeer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := NetworkedMultiplayerPeer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Manages the connection to network peers. Assigns unique IDs to each client connected to the server.
 */
 type NetworkedMultiplayerPeer struct {
-	PacketPeer
+	packetpeer.PacketPeer
 }
 
 func (o *NetworkedMultiplayerPeer) BaseClass() string {
@@ -28,179 +37,176 @@ func (o *NetworkedMultiplayerPeer) BaseClass() string {
 }
 
 /*
-   Returns the current state of the connection. See [enum ConnectionStatus].
+        Returns the current state of the connection. See [enum ConnectionStatus].
+	Args: [], Returns: enum.NetworkedMultiplayerPeer::ConnectionStatus
 */
-func (o *NetworkedMultiplayerPeer) GetConnectionStatus() gdnative.Int {
-	log.Println("Calling NetworkedMultiplayerPeer.GetConnectionStatus()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_connection_status", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Returns the ID of the [code]NetworkedMultiplayerPeer[/code] who sent the most recent packet.
+        Returns the ID of the [code]NetworkedMultiplayerPeer[/code] who sent the most recent packet.
+	Args: [], Returns: int
 */
+
 func (o *NetworkedMultiplayerPeer) GetPacketPeer() gdnative.Int {
 	log.Println("Calling NetworkedMultiplayerPeer.GetPacketPeer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NetworkedMultiplayerPeer", "get_packet_peer")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_packet_peer", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.NetworkedMultiplayerPeer::TransferMode
 */
-func (o *NetworkedMultiplayerPeer) GetTransferMode() gdnative.Int {
-	log.Println("Calling NetworkedMultiplayerPeer.GetTransferMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_transfer_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Returns the ID of this [code]NetworkedMultiplayerPeer[/code].
+        Returns the ID of this [code]NetworkedMultiplayerPeer[/code].
+	Args: [], Returns: int
 */
+
 func (o *NetworkedMultiplayerPeer) GetUniqueId() gdnative.Int {
 	log.Println("Calling NetworkedMultiplayerPeer.GetUniqueId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NetworkedMultiplayerPeer", "get_unique_id")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_unique_id", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *NetworkedMultiplayerPeer) IsRefusingNewConnections() gdnative.Bool {
 	log.Println("Calling NetworkedMultiplayerPeer.IsRefusingNewConnections()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NetworkedMultiplayerPeer", "is_refusing_new_connections")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_refusing_new_connections", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Waits up to 1 second to receive a new network event.
+        Waits up to 1 second to receive a new network event.
+	Args: [], Returns: void
 */
+
 func (o *NetworkedMultiplayerPeer) Poll() {
 	log.Println("Calling NetworkedMultiplayerPeer.Poll()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NetworkedMultiplayerPeer", "poll")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "poll", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *NetworkedMultiplayerPeer) SetRefuseNewConnections(enable gdnative.Bool) {
 	log.Println("Calling NetworkedMultiplayerPeer.SetRefuseNewConnections()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NetworkedMultiplayerPeer", "set_refuse_new_connections")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_refuse_new_connections", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   The peer to which packets will be sent. Default value: [code]0[/code].
+        The peer to which packets will be sent. Default value: [code]0[/code].
+	Args: [{ false id int}], Returns: void
 */
+
 func (o *NetworkedMultiplayerPeer) SetTargetPeer(id gdnative.Int) {
 	log.Println("Calling NetworkedMultiplayerPeer.SetTargetPeer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NetworkedMultiplayerPeer", "set_target_peer")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_target_peer", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *NetworkedMultiplayerPeer) SetTransferMode(mode gdnative.Int) {
 	log.Println("Calling NetworkedMultiplayerPeer.SetTransferMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NetworkedMultiplayerPeer", "set_transfer_mode")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_transfer_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   NetworkedMultiplayerPeerImplementer is an interface for NetworkedMultiplayerPeer objects.
-*/
-type NetworkedMultiplayerPeerImplementer interface {
-	Class
 }

@@ -2,9 +2,11 @@ package kinematiccollision
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewKinematicCollisionFromPointer(ptr gdnative.Pointer) *KinematicCollision {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := KinematicCollision{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Contains collision data for KinematicBody collisions. When a [KinematicBody] is moved using [method KinematicBody.move_and_collide], it stops if it detects a collision with another body. If a collision is detected, a KinematicCollision object is returned. This object contains information about the collision, including the colliding object, the remaining motion, and the collision position. This information can be used to calculate a collision response.
 */
 type KinematicCollision struct {
-	Reference
+	reference.Reference
 }
 
 func (o *KinematicCollision) BaseClass() string {
@@ -28,228 +39,287 @@ func (o *KinematicCollision) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Object
 */
-func (o *KinematicCollision) GetCollider() *Object {
+
+func (o *KinematicCollision) GetCollider() object.Object {
 	log.Println("Calling KinematicCollision.GetCollider()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("KinematicCollision", "get_collider")
 
 	// Call the parent method.
+	// Object
+	retPtr := object.NewEmptyObject()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collider", goArguments, "*Object")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := object.NewObjectFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Object)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *KinematicCollision) GetColliderId() gdnative.Int {
 	log.Println("Calling KinematicCollision.GetColliderId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("KinematicCollision", "get_collider_id")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collider_id", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Variant
 */
-func (o *KinematicCollision) GetColliderMetadata() *Variant {
+
+func (o *KinematicCollision) GetColliderMetadata() gdnative.Variant {
 	log.Println("Calling KinematicCollision.GetColliderMetadata()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("KinematicCollision", "get_collider_metadata")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collider_metadata", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Object
 */
-func (o *KinematicCollision) GetColliderShape() *Object {
+
+func (o *KinematicCollision) GetColliderShape() object.Object {
 	log.Println("Calling KinematicCollision.GetColliderShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("KinematicCollision", "get_collider_shape")
 
 	// Call the parent method.
+	// Object
+	retPtr := object.NewEmptyObject()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collider_shape", goArguments, "*Object")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := object.NewObjectFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Object)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *KinematicCollision) GetColliderShapeIndex() gdnative.Int {
 	log.Println("Calling KinematicCollision.GetColliderShapeIndex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("KinematicCollision", "get_collider_shape_index")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collider_shape_index", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector3
 */
-func (o *KinematicCollision) GetColliderVelocity() *Vector3 {
+
+func (o *KinematicCollision) GetColliderVelocity() gdnative.Vector3 {
 	log.Println("Calling KinematicCollision.GetColliderVelocity()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("KinematicCollision", "get_collider_velocity")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collider_velocity", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Object
 */
-func (o *KinematicCollision) GetLocalShape() *Object {
+
+func (o *KinematicCollision) GetLocalShape() object.Object {
 	log.Println("Calling KinematicCollision.GetLocalShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("KinematicCollision", "get_local_shape")
 
 	// Call the parent method.
+	// Object
+	retPtr := object.NewEmptyObject()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_local_shape", goArguments, "*Object")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := object.NewObjectFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Object)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector3
 */
-func (o *KinematicCollision) GetNormal() *Vector3 {
+
+func (o *KinematicCollision) GetNormal() gdnative.Vector3 {
 	log.Println("Calling KinematicCollision.GetNormal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("KinematicCollision", "get_normal")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_normal", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector3
 */
-func (o *KinematicCollision) GetPosition() *Vector3 {
+
+func (o *KinematicCollision) GetPosition() gdnative.Vector3 {
 	log.Println("Calling KinematicCollision.GetPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("KinematicCollision", "get_position")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_position", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector3
 */
-func (o *KinematicCollision) GetRemainder() *Vector3 {
+
+func (o *KinematicCollision) GetRemainder() gdnative.Vector3 {
 	log.Println("Calling KinematicCollision.GetRemainder()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("KinematicCollision", "get_remainder")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_remainder", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector3
 */
-func (o *KinematicCollision) GetTravel() *Vector3 {
+
+func (o *KinematicCollision) GetTravel() gdnative.Vector3 {
 	log.Println("Calling KinematicCollision.GetTravel()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("KinematicCollision", "get_travel")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_travel", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   KinematicCollisionImplementer is an interface for KinematicCollision objects.
-*/
-type KinematicCollisionImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

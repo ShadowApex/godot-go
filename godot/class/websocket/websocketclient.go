@@ -2,7 +2,6 @@ package websocket
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -15,6 +14,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewWebSocketClientFromPointer(ptr gdnative.Pointer) *WebSocketClient {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := WebSocketClient{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 /*
 
@@ -29,47 +37,26 @@ func (o *WebSocketClient) BaseClass() string {
 
 /*
 
- */
-func (o *WebSocketClient) ConnectToUrl(url gdnative.String, protocols *PoolStringArray, gdMpApi gdnative.Bool) gdnative.Int {
-	log.Println("Calling WebSocketClient.ConnectToUrl()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(url)
-	goArguments[1] = reflect.ValueOf(protocols)
-	goArguments[2] = reflect.ValueOf(gdMpApi)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "connect_to_url", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
+	Args: [{ false url String} {[] true protocols PoolStringArray} {False true gd_mp_api bool}], Returns: enum.Error
+*/
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *WebSocketClient) DisconnectFromHost() {
 	log.Println("Calling WebSocketClient.DisconnectFromHost()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("WebSocketClient", "disconnect_from_host")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "disconnect_from_host", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   WebSocketClientImplementer is an interface for WebSocketClient objects.
-*/
-type WebSocketClientImplementer interface {
-	Class
 }

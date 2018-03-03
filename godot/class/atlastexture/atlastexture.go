@@ -2,9 +2,10 @@ package atlastexture
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/texture"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +17,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewAtlasTextureFromPointer(ptr gdnative.Pointer) *AtlasTexture {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := AtlasTexture{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 [Texture] resource aimed at managing big textures files that pack multiple smaller textures. Consists of a [Texture], a margin that defines the border width, and a region that defines the actual area of the AtlasTexture.
 */
 type AtlasTexture struct {
-	Texture
+	texture.Texture
 }
 
 func (o *AtlasTexture) BaseClass() string {
@@ -28,160 +38,193 @@ func (o *AtlasTexture) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Texture
 */
-func (o *AtlasTexture) GetAtlas() *Texture {
+
+func (o *AtlasTexture) GetAtlas() texture.Texture {
 	log.Println("Calling AtlasTexture.GetAtlas()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AtlasTexture", "get_atlas")
 
 	// Call the parent method.
+	// Texture
+	retPtr := texture.NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_atlas", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := texture.NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Rect2
 */
-func (o *AtlasTexture) GetMargin() *Rect2 {
+
+func (o *AtlasTexture) GetMargin() gdnative.Rect2 {
 	log.Println("Calling AtlasTexture.GetMargin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AtlasTexture", "get_margin")
 
 	// Call the parent method.
+	// Rect2
+	retPtr := gdnative.NewEmptyRect2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_margin", goArguments, "*Rect2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRect2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Rect2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Rect2
 */
-func (o *AtlasTexture) GetRegion() *Rect2 {
+
+func (o *AtlasTexture) GetRegion() gdnative.Rect2 {
 	log.Println("Calling AtlasTexture.GetRegion()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AtlasTexture", "get_region")
 
 	// Call the parent method.
+	// Rect2
+	retPtr := gdnative.NewEmptyRect2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_region", goArguments, "*Rect2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRect2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Rect2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *AtlasTexture) HasFilterClip() gdnative.Bool {
 	log.Println("Calling AtlasTexture.HasFilterClip()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AtlasTexture", "has_filter_clip")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_filter_clip", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false atlas Texture}], Returns: void
 */
-func (o *AtlasTexture) SetAtlas(atlas *Texture) {
+
+func (o *AtlasTexture) SetAtlas(atlas texture.Texture) {
 	log.Println("Calling AtlasTexture.SetAtlas()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(atlas)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(atlas.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AtlasTexture", "set_atlas")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_atlas", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *AtlasTexture) SetFilterClip(enable gdnative.Bool) {
 	log.Println("Calling AtlasTexture.SetFilterClip()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AtlasTexture", "set_filter_clip")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_filter_clip", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin Rect2}], Returns: void
 */
-func (o *AtlasTexture) SetMargin(margin *Rect2) {
+
+func (o *AtlasTexture) SetMargin(margin gdnative.Rect2) {
 	log.Println("Calling AtlasTexture.SetMargin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRect2(margin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AtlasTexture", "set_margin")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_margin", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false region Rect2}], Returns: void
 */
-func (o *AtlasTexture) SetRegion(region *Rect2) {
+
+func (o *AtlasTexture) SetRegion(region gdnative.Rect2) {
 	log.Println("Calling AtlasTexture.SetRegion()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(region)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRect2(region)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AtlasTexture", "set_region")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_region", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   AtlasTextureImplementer is an interface for AtlasTexture objects.
-*/
-type AtlasTextureImplementer interface {
-	Class
 }

@@ -2,7 +2,6 @@ package visualscript
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -16,6 +15,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewVisualScriptConstructorFromPointer(ptr gdnative.Pointer) *VisualScriptConstructor {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := VisualScriptConstructor{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
@@ -28,84 +36,76 @@ func (o *VisualScriptConstructor) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Dictionary
 */
-func (o *VisualScriptConstructor) GetConstructor() *Dictionary {
+
+func (o *VisualScriptConstructor) GetConstructor() gdnative.Dictionary {
 	log.Println("Calling VisualScriptConstructor.GetConstructor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptConstructor", "get_constructor")
 
 	// Call the parent method.
+	// Dictionary
+	retPtr := gdnative.NewEmptyDictionary()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_constructor", goArguments, "*Dictionary")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewDictionaryFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Dictionary)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Variant::Type
 */
-func (o *VisualScriptConstructor) GetConstructorType() gdnative.Int {
-	log.Println("Calling VisualScriptConstructor.GetConstructorType()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_constructor_type", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false constructor Dictionary}], Returns: void
 */
-func (o *VisualScriptConstructor) SetConstructor(constructor *Dictionary) {
+
+func (o *VisualScriptConstructor) SetConstructor(constructor gdnative.Dictionary) {
 	log.Println("Calling VisualScriptConstructor.SetConstructor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(constructor)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromDictionary(constructor)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptConstructor", "set_constructor")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_constructor", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false type int}], Returns: void
 */
+
 func (o *VisualScriptConstructor) SetConstructorType(aType gdnative.Int) {
 	log.Println("Calling VisualScriptConstructor.SetConstructorType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptConstructor", "set_constructor_type")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_constructor_type", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   VisualScriptConstructorImplementer is an interface for VisualScriptConstructor objects.
-*/
-type VisualScriptConstructorImplementer interface {
-	Class
 }

@@ -2,9 +2,9 @@ package jsonparseresult
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewJSONParseResultFromPointer(ptr gdnative.Pointer) *JSONParseResult {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := JSONParseResult{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Returned by [method JSON.parse], [code]JSONParseResult[/code] contains decoded JSON or error information if JSON source not successfully parsed. You can check if JSON source was successfully parsed with [code]if json_result.error == OK[/code].
 */
 type JSONParseResult struct {
-	Reference
+	reference.Reference
 }
 
 func (o *JSONParseResult) BaseClass() string {
@@ -28,160 +37,172 @@ func (o *JSONParseResult) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Error
 */
-func (o *JSONParseResult) GetError() gdnative.Int {
-	log.Println("Calling JSONParseResult.GetError()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_error", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *JSONParseResult) GetErrorLine() gdnative.Int {
 	log.Println("Calling JSONParseResult.GetErrorLine()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("JSONParseResult", "get_error_line")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_error_line", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *JSONParseResult) GetErrorString() gdnative.String {
 	log.Println("Calling JSONParseResult.GetErrorString()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("JSONParseResult", "get_error_string")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_error_string", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Variant
 */
-func (o *JSONParseResult) GetResult() *Variant {
+
+func (o *JSONParseResult) GetResult() gdnative.Variant {
 	log.Println("Calling JSONParseResult.GetResult()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("JSONParseResult", "get_result")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_result", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false error int}], Returns: void
 */
+
 func (o *JSONParseResult) SetError(error gdnative.Int) {
 	log.Println("Calling JSONParseResult.SetError()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(error)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(error)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("JSONParseResult", "set_error")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_error", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false error_line int}], Returns: void
 */
+
 func (o *JSONParseResult) SetErrorLine(errorLine gdnative.Int) {
 	log.Println("Calling JSONParseResult.SetErrorLine()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(errorLine)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(errorLine)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("JSONParseResult", "set_error_line")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_error_line", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false error_string String}], Returns: void
 */
+
 func (o *JSONParseResult) SetErrorString(errorString gdnative.String) {
 	log.Println("Calling JSONParseResult.SetErrorString()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(errorString)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(errorString)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("JSONParseResult", "set_error_string")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_error_string", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false result Variant}], Returns: void
 */
-func (o *JSONParseResult) SetResult(result *Variant) {
+
+func (o *JSONParseResult) SetResult(result gdnative.Variant) {
 	log.Println("Calling JSONParseResult.SetResult()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(result)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVariant(result)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("JSONParseResult", "set_result")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_result", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   JSONParseResultImplementer is an interface for JSONParseResult objects.
-*/
-type JSONParseResultImplementer interface {
-	Class
 }

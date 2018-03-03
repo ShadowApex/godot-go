@@ -2,9 +2,11 @@ package script
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewScriptFromPointer(ptr gdnative.Pointer) *Script {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Script{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 A class stored as a resource. The script exends the functionality of all objects that instance it. The 'new' method of a script subclass creates a new instance. [method Object.set_script] extends an existing object, if that object's class matches one of the script's base classes.
 */
 type Script struct {
-	Resource
+	resource.Resource
 }
 
 func (o *Script) BaseClass() string {
@@ -28,209 +39,238 @@ func (o *Script) BaseClass() string {
 }
 
 /*
-   Returns true if the script can be instanced.
+        Returns true if the script can be instanced.
+	Args: [], Returns: bool
 */
+
 func (o *Script) CanInstance() gdnative.Bool {
 	log.Println("Calling Script.CanInstance()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Script", "can_instance")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "can_instance", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Script) GetBaseScript() *Script {
+	Args: [], Returns: Script
+*/
+
+func (o *Script) GetBaseScript() Script {
 	log.Println("Calling Script.GetBaseScript()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Script", "get_base_script")
 
 	// Call the parent method.
+	// Script
+	retPtr := NewEmptyScript()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_base_script", goArguments, "*Script")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewScriptFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Script)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: String
+*/
+
 func (o *Script) GetInstanceBaseType() gdnative.String {
 	log.Println("Calling Script.GetInstanceBaseType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Script", "get_instance_base_type")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_instance_base_type", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *Script) GetSourceCode() gdnative.String {
 	log.Println("Calling Script.GetSourceCode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Script", "get_source_code")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_source_code", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns true if the script, or a base class, defines a signal with the given name.
+        Returns true if the script, or a base class, defines a signal with the given name.
+	Args: [{ false signal_name String}], Returns: bool
 */
+
 func (o *Script) HasScriptSignal(signalName gdnative.String) gdnative.Bool {
 	log.Println("Calling Script.HasScriptSignal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(signalName)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(signalName)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Script", "has_script_signal")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_script_signal", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns true if the script contains non-empty source code.
+        Returns true if the script contains non-empty source code.
+	Args: [], Returns: bool
 */
+
 func (o *Script) HasSourceCode() gdnative.Bool {
 	log.Println("Calling Script.HasSourceCode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Script", "has_source_code")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_source_code", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns true if 'base_object' is an instance of this script.
+        Returns true if 'base_object' is an instance of this script.
+	Args: [{ false base_object Object}], Returns: bool
 */
-func (o *Script) InstanceHas(baseObject *Object) gdnative.Bool {
+
+func (o *Script) InstanceHas(baseObject object.Object) gdnative.Bool {
 	log.Println("Calling Script.InstanceHas()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(baseObject)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(baseObject.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Script", "instance_has")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "instance_has", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns true if the script is a tool script. A tool script can run in the editor.
+        Returns true if the script is a tool script. A tool script can run in the editor.
+	Args: [], Returns: bool
 */
+
 func (o *Script) IsTool() gdnative.Bool {
 	log.Println("Calling Script.IsTool()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Script", "is_tool")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_tool", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Reloads the script's class implementation. Returns an error code.
+        Reloads the script's class implementation. Returns an error code.
+	Args: [{False true keep_state bool}], Returns: enum.Error
 */
-func (o *Script) Reload(keepState gdnative.Bool) gdnative.Int {
-	log.Println("Calling Script.Reload()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(keepState)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "reload", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false source String}], Returns: void
 */
+
 func (o *Script) SetSourceCode(source gdnative.String) {
 	log.Println("Calling Script.SetSourceCode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(source)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(source)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Script", "set_source_code")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_source_code", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ScriptImplementer is an interface for Script objects.
-*/
-type ScriptImplementer interface {
-	Class
 }

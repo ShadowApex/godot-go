@@ -2,9 +2,9 @@ package cubemesh
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/primitivemesh"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewCubeMeshFromPointer(ptr gdnative.Pointer) *CubeMesh {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := CubeMesh{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Generate an axis-aligned cuboid [PrimitiveMesh].
 */
 type CubeMesh struct {
-	PrimitiveMesh
+	primitivemesh.PrimitiveMesh
 }
 
 func (o *CubeMesh) BaseClass() string {
@@ -28,160 +37,193 @@ func (o *CubeMesh) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector3
 */
-func (o *CubeMesh) GetSize() *Vector3 {
+
+func (o *CubeMesh) GetSize() gdnative.Vector3 {
 	log.Println("Calling CubeMesh.GetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CubeMesh", "get_size")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_size", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *CubeMesh) GetSubdivideDepth() gdnative.Int {
 	log.Println("Calling CubeMesh.GetSubdivideDepth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CubeMesh", "get_subdivide_depth")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_subdivide_depth", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *CubeMesh) GetSubdivideHeight() gdnative.Int {
 	log.Println("Calling CubeMesh.GetSubdivideHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CubeMesh", "get_subdivide_height")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_subdivide_height", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *CubeMesh) GetSubdivideWidth() gdnative.Int {
 	log.Println("Calling CubeMesh.GetSubdivideWidth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CubeMesh", "get_subdivide_width")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_subdivide_width", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false size Vector3}], Returns: void
 */
-func (o *CubeMesh) SetSize(size *Vector3) {
+
+func (o *CubeMesh) SetSize(size gdnative.Vector3) {
 	log.Println("Calling CubeMesh.SetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CubeMesh", "set_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false divisions int}], Returns: void
 */
+
 func (o *CubeMesh) SetSubdivideDepth(divisions gdnative.Int) {
 	log.Println("Calling CubeMesh.SetSubdivideDepth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(divisions)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(divisions)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CubeMesh", "set_subdivide_depth")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_subdivide_depth", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false divisions int}], Returns: void
 */
+
 func (o *CubeMesh) SetSubdivideHeight(divisions gdnative.Int) {
 	log.Println("Calling CubeMesh.SetSubdivideHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(divisions)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(divisions)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CubeMesh", "set_subdivide_height")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_subdivide_height", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false subdivide int}], Returns: void
 */
+
 func (o *CubeMesh) SetSubdivideWidth(subdivide gdnative.Int) {
 	log.Println("Calling CubeMesh.SetSubdivideWidth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(subdivide)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(subdivide)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CubeMesh", "set_subdivide_width")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_subdivide_width", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   CubeMeshImplementer is an interface for CubeMesh objects.
-*/
-type CubeMeshImplementer interface {
-	Class
 }

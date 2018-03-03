@@ -38,6 +38,14 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewEmptyBasis will return a pointer to an empty
+// initialized Basis. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyBasis() Pointer {
+	var obj C.godot_basis
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromBasis will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromBasis(obj Basis) Pointer {

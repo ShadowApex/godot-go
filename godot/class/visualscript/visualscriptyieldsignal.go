@@ -2,7 +2,6 @@ package visualscript
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -16,6 +15,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewVisualScriptYieldSignalFromPointer(ptr gdnative.Pointer) *VisualScriptYieldSignal {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := VisualScriptYieldSignal{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
@@ -28,160 +36,172 @@ func (o *VisualScriptYieldSignal) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: NodePath
 */
-func (o *VisualScriptYieldSignal) GetBasePath() *NodePath {
+
+func (o *VisualScriptYieldSignal) GetBasePath() gdnative.NodePath {
 	log.Println("Calling VisualScriptYieldSignal.GetBasePath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptYieldSignal", "get_base_path")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_base_path", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *VisualScriptYieldSignal) GetBaseType() gdnative.String {
 	log.Println("Calling VisualScriptYieldSignal.GetBaseType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptYieldSignal", "get_base_type")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_base_type", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.VisualScriptYieldSignal::CallMode
 */
-func (o *VisualScriptYieldSignal) GetCallMode() gdnative.Int {
-	log.Println("Calling VisualScriptYieldSignal.GetCallMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_call_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *VisualScriptYieldSignal) GetSignal() gdnative.String {
 	log.Println("Calling VisualScriptYieldSignal.GetSignal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptYieldSignal", "get_signal")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_signal", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false base_path NodePath}], Returns: void
 */
-func (o *VisualScriptYieldSignal) SetBasePath(basePath *NodePath) {
+
+func (o *VisualScriptYieldSignal) SetBasePath(basePath gdnative.NodePath) {
 	log.Println("Calling VisualScriptYieldSignal.SetBasePath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(basePath)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(basePath)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptYieldSignal", "set_base_path")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_base_path", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false base_type String}], Returns: void
 */
+
 func (o *VisualScriptYieldSignal) SetBaseType(baseType gdnative.String) {
 	log.Println("Calling VisualScriptYieldSignal.SetBaseType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(baseType)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(baseType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptYieldSignal", "set_base_type")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_base_type", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *VisualScriptYieldSignal) SetCallMode(mode gdnative.Int) {
 	log.Println("Calling VisualScriptYieldSignal.SetCallMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptYieldSignal", "set_call_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_call_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false signal String}], Returns: void
 */
+
 func (o *VisualScriptYieldSignal) SetSignal(signal gdnative.String) {
 	log.Println("Calling VisualScriptYieldSignal.SetSignal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(signal)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(signal)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptYieldSignal", "set_signal")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_signal", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   VisualScriptYieldSignalImplementer is an interface for VisualScriptYieldSignal objects.
-*/
-type VisualScriptYieldSignalImplementer interface {
-	Class
 }

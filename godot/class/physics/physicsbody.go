@@ -2,9 +2,11 @@ package physics
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/collisionobject"
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPhysicsBodyFromPointer(ptr gdnative.Pointer) *PhysicsBody {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := PhysicsBody{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 PhysicsBody is an abstract base class for implementing a physics body. All *Body types inherit from it.
 */
 type PhysicsBody struct {
-	CollisionObject
+	collisionobject.CollisionObject
 }
 
 func (o *PhysicsBody) BaseClass() string {
@@ -28,238 +39,289 @@ func (o *PhysicsBody) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *PhysicsBody) X_GetLayers() gdnative.Int {
 	log.Println("Calling PhysicsBody.X_GetLayers()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsBody", "_get_layers")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_layers", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mask int}], Returns: void
 */
+
 func (o *PhysicsBody) X_SetLayers(mask gdnative.Int) {
 	log.Println("Calling PhysicsBody.X_SetLayers()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mask)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mask)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsBody", "_set_layers")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_layers", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a body to the list of bodies that this body can't collide with.
+        Adds a body to the list of bodies that this body can't collide with.
+	Args: [{ false body Object}], Returns: void
 */
-func (o *PhysicsBody) AddCollisionExceptionWith(body *Object) {
+
+func (o *PhysicsBody) AddCollisionExceptionWith(body object.Object) {
 	log.Println("Calling PhysicsBody.AddCollisionExceptionWith()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(body)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(body.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsBody", "add_collision_exception_with")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_collision_exception_with", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *PhysicsBody) GetCollisionLayer() gdnative.Int {
 	log.Println("Calling PhysicsBody.GetCollisionLayer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsBody", "get_collision_layer")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collision_layer", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false bit int}], Returns: bool
+*/
+
 func (o *PhysicsBody) GetCollisionLayerBit(bit gdnative.Int) gdnative.Bool {
 	log.Println("Calling PhysicsBody.GetCollisionLayerBit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bit)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bit)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsBody", "get_collision_layer_bit")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collision_layer_bit", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *PhysicsBody) GetCollisionMask() gdnative.Int {
 	log.Println("Calling PhysicsBody.GetCollisionMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsBody", "get_collision_mask")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collision_mask", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false bit int}], Returns: bool
+*/
+
 func (o *PhysicsBody) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
 	log.Println("Calling PhysicsBody.GetCollisionMaskBit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bit)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bit)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsBody", "get_collision_mask_bit")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collision_mask_bit", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Removes a body from the list of bodies that this body can't collide with.
+        Removes a body from the list of bodies that this body can't collide with.
+	Args: [{ false body Object}], Returns: void
 */
-func (o *PhysicsBody) RemoveCollisionExceptionWith(body *Object) {
+
+func (o *PhysicsBody) RemoveCollisionExceptionWith(body object.Object) {
 	log.Println("Calling PhysicsBody.RemoveCollisionExceptionWith()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(body)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(body.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsBody", "remove_collision_exception_with")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_collision_exception_with", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false layer int}], Returns: void
 */
+
 func (o *PhysicsBody) SetCollisionLayer(layer gdnative.Int) {
 	log.Println("Calling PhysicsBody.SetCollisionLayer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(layer)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(layer)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsBody", "set_collision_layer")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_collision_layer", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false bit int} { false value bool}], Returns: void
+*/
+
 func (o *PhysicsBody) SetCollisionLayerBit(bit gdnative.Int, value gdnative.Bool) {
 	log.Println("Calling PhysicsBody.SetCollisionLayerBit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(bit)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bit)
+	ptrArguments[1] = gdnative.NewPointerFromBool(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsBody", "set_collision_layer_bit")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_collision_layer_bit", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mask int}], Returns: void
 */
+
 func (o *PhysicsBody) SetCollisionMask(mask gdnative.Int) {
 	log.Println("Calling PhysicsBody.SetCollisionMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mask)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mask)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsBody", "set_collision_mask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_collision_mask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false bit int} { false value bool}], Returns: void
+*/
+
 func (o *PhysicsBody) SetCollisionMaskBit(bit gdnative.Int, value gdnative.Bool) {
 	log.Println("Calling PhysicsBody.SetCollisionMaskBit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(bit)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bit)
+	ptrArguments[1] = gdnative.NewPointerFromBool(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsBody", "set_collision_mask_bit")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_collision_mask_bit", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   PhysicsBodyImplementer is an interface for PhysicsBody objects.
-*/
-type PhysicsBodyImplementer interface {
-	Class
 }

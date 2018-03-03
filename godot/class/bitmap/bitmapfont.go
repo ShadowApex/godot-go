@@ -2,9 +2,11 @@ package bitmap
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/font"
+	"github.com/shadowapex/godot-go/godot/class/texture"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewBitmapFontFromPointer(ptr gdnative.Pointer) *BitmapFont {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := BitmapFont{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Renders text using [code]*.fnt[/code] fonts containing texture atlases. Supports distance fields. For using vector font files like TTF directly, see [DynamicFont].
 */
 type BitmapFont struct {
-	Font
+	font.Font
 }
 
 func (o *BitmapFont) BaseClass() string {
@@ -28,397 +39,466 @@ func (o *BitmapFont) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolIntArray
 */
-func (o *BitmapFont) X_GetChars() *PoolIntArray {
+
+func (o *BitmapFont) X_GetChars() gdnative.PoolIntArray {
 	log.Println("Calling BitmapFont.X_GetChars()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "_get_chars")
 
 	// Call the parent method.
+	// PoolIntArray
+	retPtr := gdnative.NewEmptyPoolIntArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_chars", goArguments, "*PoolIntArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolIntArray
 */
-func (o *BitmapFont) X_GetKernings() *PoolIntArray {
+
+func (o *BitmapFont) X_GetKernings() gdnative.PoolIntArray {
 	log.Println("Calling BitmapFont.X_GetKernings()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "_get_kernings")
 
 	// Call the parent method.
+	// PoolIntArray
+	retPtr := gdnative.NewEmptyPoolIntArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_kernings", goArguments, "*PoolIntArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Array
 */
-func (o *BitmapFont) X_GetTextures() *Array {
+
+func (o *BitmapFont) X_GetTextures() gdnative.Array {
 	log.Println("Calling BitmapFont.X_GetTextures()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "_get_textures")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_textures", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 PoolIntArray}], Returns: void
 */
-func (o *BitmapFont) X_SetChars(arg0 *PoolIntArray) {
+
+func (o *BitmapFont) X_SetChars(arg0 gdnative.PoolIntArray) {
 	log.Println("Calling BitmapFont.X_SetChars()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolIntArray(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "_set_chars")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_chars", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 PoolIntArray}], Returns: void
 */
-func (o *BitmapFont) X_SetKernings(arg0 *PoolIntArray) {
+
+func (o *BitmapFont) X_SetKernings(arg0 gdnative.PoolIntArray) {
 	log.Println("Calling BitmapFont.X_SetKernings()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolIntArray(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "_set_kernings")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_kernings", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 Array}], Returns: void
 */
-func (o *BitmapFont) X_SetTextures(arg0 *Array) {
+
+func (o *BitmapFont) X_SetTextures(arg0 gdnative.Array) {
 	log.Println("Calling BitmapFont.X_SetTextures()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromArray(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "_set_textures")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_textures", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a character to the font, where [code]character[/code] is the unicode value, [code]texture[/code] is the texture index, [code]rect[/code] is the region in the texture (in pixels!), [code]align[/code] is the (optional) alignment for the character and [code]advance[/code] is the (optional) advance.
+        Adds a character to the font, where [code]character[/code] is the unicode value, [code]texture[/code] is the texture index, [code]rect[/code] is the region in the texture (in pixels!), [code]align[/code] is the (optional) alignment for the character and [code]advance[/code] is the (optional) advance.
+	Args: [{ false character int} { false texture int} { false rect Rect2} {(0, 0) true align Vector2} {-1 true advance float}], Returns: void
 */
-func (o *BitmapFont) AddChar(character gdnative.Int, texture gdnative.Int, rect *Rect2, align *Vector2, advance gdnative.Float) {
+
+func (o *BitmapFont) AddChar(character gdnative.Int, texture gdnative.Int, rect gdnative.Rect2, align gdnative.Vector2, advance gdnative.Float) {
 	log.Println("Calling BitmapFont.AddChar()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(character)
-	goArguments[1] = reflect.ValueOf(texture)
-	goArguments[2] = reflect.ValueOf(rect)
-	goArguments[3] = reflect.ValueOf(align)
-	goArguments[4] = reflect.ValueOf(advance)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromInt(character)
+	ptrArguments[1] = gdnative.NewPointerFromInt(texture)
+	ptrArguments[2] = gdnative.NewPointerFromRect2(rect)
+	ptrArguments[3] = gdnative.NewPointerFromVector2(align)
+	ptrArguments[4] = gdnative.NewPointerFromFloat(advance)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "add_char")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_char", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a kerning pair to the [code]BitmapFont[/code] as a difference. Kerning pairs are special cases where a typeface advance is determined by the next character.
+        Adds a kerning pair to the [code]BitmapFont[/code] as a difference. Kerning pairs are special cases where a typeface advance is determined by the next character.
+	Args: [{ false char_a int} { false char_b int} { false kerning int}], Returns: void
 */
+
 func (o *BitmapFont) AddKerningPair(charA gdnative.Int, charB gdnative.Int, kerning gdnative.Int) {
 	log.Println("Calling BitmapFont.AddKerningPair()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(charA)
-	goArguments[1] = reflect.ValueOf(charB)
-	goArguments[2] = reflect.ValueOf(kerning)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(charA)
+	ptrArguments[1] = gdnative.NewPointerFromInt(charB)
+	ptrArguments[2] = gdnative.NewPointerFromInt(kerning)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "add_kerning_pair")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_kerning_pair", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a texture to the [code]BitmapFont[/code].
+        Adds a texture to the [code]BitmapFont[/code].
+	Args: [{ false texture Texture}], Returns: void
 */
-func (o *BitmapFont) AddTexture(texture *Texture) {
+
+func (o *BitmapFont) AddTexture(texture texture.Texture) {
 	log.Println("Calling BitmapFont.AddTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(texture.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "add_texture")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_texture", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Clears all the font data and settings.
+        Clears all the font data and settings.
+	Args: [], Returns: void
 */
+
 func (o *BitmapFont) Clear() {
 	log.Println("Calling BitmapFont.Clear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Creates a BitmapFont from the [code]*.fnt[/code] file at [code]path[/code].
+        Creates a BitmapFont from the [code]*.fnt[/code] file at [code]path[/code].
+	Args: [{ false path String}], Returns: enum.Error
 */
-func (o *BitmapFont) CreateFromFnt(path gdnative.String) gdnative.Int {
-	log.Println("Calling BitmapFont.CreateFromFnt()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "create_from_fnt", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Returns the size of a character, optionally taking kerning into account if the next character is provided.
+        Returns the size of a character, optionally taking kerning into account if the next character is provided.
+	Args: [{ false char int} {0 true next int}], Returns: Vector2
 */
-func (o *BitmapFont) GetCharSize(char gdnative.Int, next gdnative.Int) *Vector2 {
+
+func (o *BitmapFont) GetCharSize(char gdnative.Int, next gdnative.Int) gdnative.Vector2 {
 	log.Println("Calling BitmapFont.GetCharSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(char)
-	goArguments[1] = reflect.ValueOf(next)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(char)
+	ptrArguments[1] = gdnative.NewPointerFromInt(next)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "get_char_size")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_char_size", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: BitmapFont
 */
-func (o *BitmapFont) GetFallback() *BitmapFont {
+
+func (o *BitmapFont) GetFallback() BitmapFont {
 	log.Println("Calling BitmapFont.GetFallback()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "get_fallback")
 
 	// Call the parent method.
+	// BitmapFont
+	retPtr := NewEmptyBitmapFont()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_fallback", goArguments, "*BitmapFont")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewBitmapFontFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*BitmapFont)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a kerning pair as a difference.
+        Returns a kerning pair as a difference.
+	Args: [{ false char_a int} { false char_b int}], Returns: int
 */
+
 func (o *BitmapFont) GetKerningPair(charA gdnative.Int, charB gdnative.Int) gdnative.Int {
 	log.Println("Calling BitmapFont.GetKerningPair()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(charA)
-	goArguments[1] = reflect.ValueOf(charB)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(charA)
+	ptrArguments[1] = gdnative.NewPointerFromInt(charB)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "get_kerning_pair")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_kerning_pair", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the font atlas texture at index [code]idx[/code].
+        Returns the font atlas texture at index [code]idx[/code].
+	Args: [{ false idx int}], Returns: Texture
 */
-func (o *BitmapFont) GetTexture(idx gdnative.Int) *Texture {
+
+func (o *BitmapFont) GetTexture(idx gdnative.Int) texture.Texture {
 	log.Println("Calling BitmapFont.GetTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "get_texture")
 
 	// Call the parent method.
+	// Texture
+	retPtr := texture.NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_texture", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := texture.NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the number of textures in the BitmapFont atlas.
+        Returns the number of textures in the BitmapFont atlas.
+	Args: [], Returns: int
 */
+
 func (o *BitmapFont) GetTextureCount() gdnative.Int {
 	log.Println("Calling BitmapFont.GetTextureCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "get_texture_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_texture_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false px float}], Returns: void
 */
+
 func (o *BitmapFont) SetAscent(px gdnative.Float) {
 	log.Println("Calling BitmapFont.SetAscent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(px)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(px)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "set_ascent")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_ascent", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *BitmapFont) SetDistanceFieldHint(enable gdnative.Bool) {
 	log.Println("Calling BitmapFont.SetDistanceFieldHint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "set_distance_field_hint")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_distance_field_hint", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false fallback BitmapFont}], Returns: void
 */
-func (o *BitmapFont) SetFallback(fallback *BitmapFont) {
+
+func (o *BitmapFont) SetFallback(fallback BitmapFont) {
 	log.Println("Calling BitmapFont.SetFallback()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(fallback)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(fallback.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "set_fallback")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_fallback", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false px float}], Returns: void
 */
+
 func (o *BitmapFont) SetHeight(px gdnative.Float) {
 	log.Println("Calling BitmapFont.SetHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(px)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(px)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "set_height")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_height", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   BitmapFontImplementer is an interface for BitmapFont objects.
-*/
-type BitmapFontImplementer interface {
-	Class
 }

@@ -2,7 +2,6 @@ package websocket
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -15,6 +14,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewWebSocketServerFromPointer(ptr gdnative.Pointer) *WebSocketServer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := WebSocketServer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 /*
 
@@ -29,88 +37,79 @@ func (o *WebSocketServer) BaseClass() string {
 
 /*
 
- */
+	Args: [{ false id int}], Returns: bool
+*/
+
 func (o *WebSocketServer) HasPeer(id gdnative.Int) gdnative.Bool {
 	log.Println("Calling WebSocketServer.HasPeer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("WebSocketServer", "has_peer")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_peer", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: bool
+*/
+
 func (o *WebSocketServer) IsListening() gdnative.Bool {
 	log.Println("Calling WebSocketServer.IsListening()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("WebSocketServer", "is_listening")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_listening", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *WebSocketServer) Listen(port gdnative.Int, protocols *PoolStringArray, gdMpApi gdnative.Bool) gdnative.Int {
-	log.Println("Calling WebSocketServer.Listen()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(port)
-	goArguments[1] = reflect.ValueOf(protocols)
-	goArguments[2] = reflect.ValueOf(gdMpApi)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "listen", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
+	Args: [{ false port int} {[] true protocols PoolStringArray} {False true gd_mp_api bool}], Returns: enum.Error
+*/
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *WebSocketServer) Stop() {
 	log.Println("Calling WebSocketServer.Stop()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("WebSocketServer", "stop")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "stop", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   WebSocketServerImplementer is an interface for WebSocketServer objects.
-*/
-type WebSocketServerImplementer interface {
-	Class
 }

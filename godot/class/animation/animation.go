@@ -2,7 +2,9 @@ package animation
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewAnimationFromPointer(ptr gdnative.Pointer) *Animation {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Animation{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 An Animation resource contains data used to animate everything in the engine. Animations are divided into tracks, and each track must be linked to a node. The state of that node can be changed through time, by adding timed keys (events) to the track. Animations are just data containers, and must be added to odes such as an [AnimationPlayer] or [AnimationTreePlayer] to be played back.
 */
 type Animation struct {
-	Resource
+	resource.Resource
 }
 
 func (o *Animation) BaseClass() string {
@@ -26,882 +37,1029 @@ func (o *Animation) BaseClass() string {
 }
 
 /*
-   Add a track to the Animation. The track type must be specified as any of the values in the TYPE_* enumeration.
+        Add a track to the Animation. The track type must be specified as any of the values in the TYPE_* enumeration.
+	Args: [{ false type int} {-1 true at_position int}], Returns: int
 */
+
 func (o *Animation) AddTrack(aType gdnative.Int, atPosition gdnative.Int) gdnative.Int {
 	log.Println("Calling Animation.AddTrack()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(aType)
-	goArguments[1] = reflect.ValueOf(atPosition)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(aType)
+	ptrArguments[1] = gdnative.NewPointerFromInt(atPosition)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "add_track")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "add_track", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Clear the animation (clear all tracks and reset all).
+        Clear the animation (clear all tracks and reset all).
+	Args: [], Returns: void
 */
+
 func (o *Animation) Clear() {
 	log.Println("Calling Animation.Clear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a new track that is a copy of the given track from [code]to_animation[/code].
+        Adds a new track that is a copy of the given track from [code]to_animation[/code].
+	Args: [{ false track int} { false to_animation Animation}], Returns: void
 */
-func (o *Animation) CopyTrack(track gdnative.Int, toAnimation *Animation) {
+
+func (o *Animation) CopyTrack(track gdnative.Int, toAnimation Animation) {
 	log.Println("Calling Animation.CopyTrack()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(track)
-	goArguments[1] = reflect.ValueOf(toAnimation)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(track)
+	ptrArguments[1] = gdnative.NewPointerFromObject(toAnimation.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "copy_track")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "copy_track", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Return the index of the specified track. If the track is not found, return -1.
+        Return the index of the specified track. If the track is not found, return -1.
+	Args: [{ false path NodePath}], Returns: int
 */
-func (o *Animation) FindTrack(path *NodePath) gdnative.Int {
+
+func (o *Animation) FindTrack(path gdnative.NodePath) gdnative.Int {
 	log.Println("Calling Animation.FindTrack()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "find_track")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "find_track", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Animation) GetLength() gdnative.Float {
 	log.Println("Calling Animation.GetLength()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "get_length")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_length", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Animation) GetStep() gdnative.Float {
 	log.Println("Calling Animation.GetStep()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "get_step")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_step", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the amount of tracks in the animation.
+        Return the amount of tracks in the animation.
+	Args: [], Returns: int
 */
+
 func (o *Animation) GetTrackCount() gdnative.Int {
 	log.Println("Calling Animation.GetTrackCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "get_track_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_track_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Animation) HasLoop() gdnative.Bool {
 	log.Println("Calling Animation.HasLoop()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "has_loop")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_loop", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return all the key indices of a method track, given a position and delta time.
+        Return all the key indices of a method track, given a position and delta time.
+	Args: [{ false idx int} { false time_sec float} { false delta float}], Returns: PoolIntArray
 */
-func (o *Animation) MethodTrackGetKeyIndices(idx gdnative.Int, timeSec gdnative.Float, delta gdnative.Float) *PoolIntArray {
+
+func (o *Animation) MethodTrackGetKeyIndices(idx gdnative.Int, timeSec gdnative.Float, delta gdnative.Float) gdnative.PoolIntArray {
 	log.Println("Calling Animation.MethodTrackGetKeyIndices()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(timeSec)
-	goArguments[2] = reflect.ValueOf(delta)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(timeSec)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(delta)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "method_track_get_key_indices")
 
 	// Call the parent method.
+	// PoolIntArray
+	retPtr := gdnative.NewEmptyPoolIntArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "method_track_get_key_indices", goArguments, "*PoolIntArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the method name of a method track.
+        Return the method name of a method track.
+	Args: [{ false idx int} { false key_idx int}], Returns: String
 */
+
 func (o *Animation) MethodTrackGetName(idx gdnative.Int, keyIdx gdnative.Int) gdnative.String {
 	log.Println("Calling Animation.MethodTrackGetName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(keyIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromInt(keyIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "method_track_get_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "method_track_get_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the arguments values to be called on a method track for a given key in a given track.
+        Return the arguments values to be called on a method track for a given key in a given track.
+	Args: [{ false idx int} { false key_idx int}], Returns: Array
 */
-func (o *Animation) MethodTrackGetParams(idx gdnative.Int, keyIdx gdnative.Int) *Array {
+
+func (o *Animation) MethodTrackGetParams(idx gdnative.Int, keyIdx gdnative.Int) gdnative.Array {
 	log.Println("Calling Animation.MethodTrackGetParams()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(keyIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromInt(keyIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "method_track_get_params")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "method_track_get_params", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Remove a track by specifying the track index.
+        Remove a track by specifying the track index.
+	Args: [{ false idx int}], Returns: void
 */
+
 func (o *Animation) RemoveTrack(idx gdnative.Int) {
 	log.Println("Calling Animation.RemoveTrack()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "remove_track")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_track", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false time_sec float}], Returns: void
 */
+
 func (o *Animation) SetLength(timeSec gdnative.Float) {
 	log.Println("Calling Animation.SetLength()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(timeSec)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(timeSec)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "set_length")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_length", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enabled bool}], Returns: void
 */
+
 func (o *Animation) SetLoop(enabled gdnative.Bool) {
 	log.Println("Calling Animation.SetLoop()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "set_loop")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_loop", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false size_sec float}], Returns: void
 */
+
 func (o *Animation) SetStep(sizeSec gdnative.Float) {
 	log.Println("Calling Animation.SetStep()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(sizeSec)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(sizeSec)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "set_step")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_step", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Find the key index by time in a given track. Optionally, only find it if the exact time is given.
+        Find the key index by time in a given track. Optionally, only find it if the exact time is given.
+	Args: [{ false idx int} { false time float} {False true exact bool}], Returns: int
 */
+
 func (o *Animation) TrackFindKey(idx gdnative.Int, time gdnative.Float, exact gdnative.Bool) gdnative.Int {
 	log.Println("Calling Animation.TrackFindKey()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(time)
-	goArguments[2] = reflect.ValueOf(exact)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(time)
+	ptrArguments[2] = gdnative.NewPointerFromBool(exact)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_find_key")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "track_find_key", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the track at [code]idx[/code] wraps the interpolation loop. Default value: [code]true[/code].
+        Returns [code]true[/code] if the track at [code]idx[/code] wraps the interpolation loop. Default value: [code]true[/code].
+	Args: [{ false idx int}], Returns: bool
 */
+
 func (o *Animation) TrackGetInterpolationLoopWrap(idx gdnative.Int) gdnative.Bool {
 	log.Println("Calling Animation.TrackGetInterpolationLoopWrap()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_get_interpolation_loop_wrap")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "track_get_interpolation_loop_wrap", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the interpolation type of a given track, from the INTERPOLATION_* enum.
+        Return the interpolation type of a given track, from the INTERPOLATION_* enum.
+	Args: [{ false idx int}], Returns: enum.Animation::InterpolationType
 */
-func (o *Animation) TrackGetInterpolationType(idx gdnative.Int) gdnative.Int {
-	log.Println("Calling Animation.TrackGetInterpolationType()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "track_get_interpolation_type", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Return the amount of keys in a given track.
+        Return the amount of keys in a given track.
+	Args: [{ false idx int}], Returns: int
 */
+
 func (o *Animation) TrackGetKeyCount(idx gdnative.Int) gdnative.Int {
 	log.Println("Calling Animation.TrackGetKeyCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_get_key_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "track_get_key_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the time at which the key is located.
+        Return the time at which the key is located.
+	Args: [{ false idx int} { false key_idx int}], Returns: float
 */
+
 func (o *Animation) TrackGetKeyTime(idx gdnative.Int, keyIdx gdnative.Int) gdnative.Float {
 	log.Println("Calling Animation.TrackGetKeyTime()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(keyIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromInt(keyIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_get_key_time")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "track_get_key_time", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the transition curve (easing) for a specific key (see built-in math function "ease").
+        Return the transition curve (easing) for a specific key (see built-in math function "ease").
+	Args: [{ false idx int} { false key_idx int}], Returns: float
 */
+
 func (o *Animation) TrackGetKeyTransition(idx gdnative.Int, keyIdx gdnative.Int) gdnative.Float {
 	log.Println("Calling Animation.TrackGetKeyTransition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(keyIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromInt(keyIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_get_key_transition")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "track_get_key_transition", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the value of a given key in a given track.
+        Return the value of a given key in a given track.
+	Args: [{ false idx int} { false key_idx int}], Returns: Variant
 */
-func (o *Animation) TrackGetKeyValue(idx gdnative.Int, keyIdx gdnative.Int) *Variant {
+
+func (o *Animation) TrackGetKeyValue(idx gdnative.Int, keyIdx gdnative.Int) gdnative.Variant {
 	log.Println("Calling Animation.TrackGetKeyValue()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(keyIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromInt(keyIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_get_key_value")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "track_get_key_value", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the path of a track. for more information on the path format, see [method track_set_path]
+        Get the path of a track. for more information on the path format, see [method track_set_path]
+	Args: [{ false idx int}], Returns: NodePath
 */
-func (o *Animation) TrackGetPath(idx gdnative.Int) *NodePath {
+
+func (o *Animation) TrackGetPath(idx gdnative.Int) gdnative.NodePath {
 	log.Println("Calling Animation.TrackGetPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_get_path")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "track_get_path", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the type of a track.
+        Get the type of a track.
+	Args: [{ false idx int}], Returns: enum.Animation::TrackType
 */
-func (o *Animation) TrackGetType(idx gdnative.Int) gdnative.Int {
-	log.Println("Calling Animation.TrackGetType()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "track_get_type", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Insert a generic key in a given track.
+        Insert a generic key in a given track.
+	Args: [{ false idx int} { false time float} { false key Variant} {1 true transition float}], Returns: void
 */
-func (o *Animation) TrackInsertKey(idx gdnative.Int, time gdnative.Float, key *Variant, transition gdnative.Float) {
+
+func (o *Animation) TrackInsertKey(idx gdnative.Int, time gdnative.Float, key gdnative.Variant, transition gdnative.Float) {
 	log.Println("Calling Animation.TrackInsertKey()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(time)
-	goArguments[2] = reflect.ValueOf(key)
-	goArguments[3] = reflect.ValueOf(transition)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(time)
+	ptrArguments[2] = gdnative.NewPointerFromVariant(key)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(transition)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_insert_key")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "track_insert_key", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns [code]true[/code] if the track at index [code]idx[/code] is enabled.
+        Returns [code]true[/code] if the track at index [code]idx[/code] is enabled.
+	Args: [{ false idx int}], Returns: bool
 */
+
 func (o *Animation) TrackIsEnabled(idx gdnative.Int) gdnative.Bool {
 	log.Println("Calling Animation.TrackIsEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_is_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "track_is_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return true if the given track is imported. Else, return false.
+        Return true if the given track is imported. Else, return false.
+	Args: [{ false idx int}], Returns: bool
 */
+
 func (o *Animation) TrackIsImported(idx gdnative.Int) gdnative.Bool {
 	log.Println("Calling Animation.TrackIsImported()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_is_imported")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "track_is_imported", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Move a track down.
+        Move a track down.
+	Args: [{ false idx int}], Returns: void
 */
+
 func (o *Animation) TrackMoveDown(idx gdnative.Int) {
 	log.Println("Calling Animation.TrackMoveDown()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_move_down")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "track_move_down", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Move a track up.
+        Move a track up.
+	Args: [{ false idx int}], Returns: void
 */
+
 func (o *Animation) TrackMoveUp(idx gdnative.Int) {
 	log.Println("Calling Animation.TrackMoveUp()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_move_up")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "track_move_up", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Remove a key by index in a given track.
+        Remove a key by index in a given track.
+	Args: [{ false idx int} { false key_idx int}], Returns: void
 */
+
 func (o *Animation) TrackRemoveKey(idx gdnative.Int, keyIdx gdnative.Int) {
 	log.Println("Calling Animation.TrackRemoveKey()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(keyIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromInt(keyIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_remove_key")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "track_remove_key", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Remove a key by position (seconds) in a given track.
+        Remove a key by position (seconds) in a given track.
+	Args: [{ false idx int} { false position float}], Returns: void
 */
+
 func (o *Animation) TrackRemoveKeyAtPosition(idx gdnative.Int, position gdnative.Float) {
 	log.Println("Calling Animation.TrackRemoveKeyAtPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_remove_key_at_position")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "track_remove_key_at_position", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Enables/disables the given track. Tracks are enabled by default.
+        Enables/disables the given track. Tracks are enabled by default.
+	Args: [{ false idx int} { false enabled bool}], Returns: void
 */
+
 func (o *Animation) TrackSetEnabled(idx gdnative.Int, enabled gdnative.Bool) {
 	log.Println("Calling Animation.TrackSetEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_set_enabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "track_set_enabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the given track as imported or not.
+        Set the given track as imported or not.
+	Args: [{ false idx int} { false imported bool}], Returns: void
 */
+
 func (o *Animation) TrackSetImported(idx gdnative.Int, imported gdnative.Bool) {
 	log.Println("Calling Animation.TrackSetImported()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(imported)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromBool(imported)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_set_imported")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "track_set_imported", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]true[/code] the track at [code]idx[/code] wraps the interpolation loop.
+        If [code]true[/code] the track at [code]idx[/code] wraps the interpolation loop.
+	Args: [{ false idx int} { false interpolation bool}], Returns: void
 */
+
 func (o *Animation) TrackSetInterpolationLoopWrap(idx gdnative.Int, interpolation gdnative.Bool) {
 	log.Println("Calling Animation.TrackSetInterpolationLoopWrap()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(interpolation)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromBool(interpolation)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_set_interpolation_loop_wrap")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "track_set_interpolation_loop_wrap", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the interpolation type of a given track, from the INTERPOLATION_* enum.
+        Set the interpolation type of a given track, from the INTERPOLATION_* enum.
+	Args: [{ false idx int} { false interpolation int}], Returns: void
 */
+
 func (o *Animation) TrackSetInterpolationType(idx gdnative.Int, interpolation gdnative.Int) {
 	log.Println("Calling Animation.TrackSetInterpolationType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(interpolation)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromInt(interpolation)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_set_interpolation_type")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "track_set_interpolation_type", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the transition curve (easing) for a specific key (see built-in math function "ease").
+        Set the transition curve (easing) for a specific key (see built-in math function "ease").
+	Args: [{ false idx int} { false key_idx int} { false transition float}], Returns: void
 */
+
 func (o *Animation) TrackSetKeyTransition(idx gdnative.Int, keyIdx gdnative.Int, transition gdnative.Float) {
 	log.Println("Calling Animation.TrackSetKeyTransition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(keyIdx)
-	goArguments[2] = reflect.ValueOf(transition)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromInt(keyIdx)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(transition)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_set_key_transition")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "track_set_key_transition", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the value of an existing key.
+        Set the value of an existing key.
+	Args: [{ false idx int} { false key int} { false value Variant}], Returns: void
 */
-func (o *Animation) TrackSetKeyValue(idx gdnative.Int, key gdnative.Int, value *Variant) {
+
+func (o *Animation) TrackSetKeyValue(idx gdnative.Int, key gdnative.Int, value gdnative.Variant) {
 	log.Println("Calling Animation.TrackSetKeyValue()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(key)
-	goArguments[2] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromInt(key)
+	ptrArguments[2] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_set_key_value")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "track_set_key_value", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the path of a track. Paths must be valid scene-tree paths to a node, and must be specified starting from the parent node of the node that will reproduce the animation. Tracks that control properties or bones must append their name after the path, separated by ":". Example: "character/skeleton:ankle" or "character/mesh:transform/local"
+        Set the path of a track. Paths must be valid scene-tree paths to a node, and must be specified starting from the parent node of the node that will reproduce the animation. Tracks that control properties or bones must append their name after the path, separated by ":". Example: "character/skeleton:ankle" or "character/mesh:transform/local"
+	Args: [{ false idx int} { false path NodePath}], Returns: void
 */
-func (o *Animation) TrackSetPath(idx gdnative.Int, path *NodePath) {
+
+func (o *Animation) TrackSetPath(idx gdnative.Int, path gdnative.NodePath) {
 	log.Println("Calling Animation.TrackSetPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromNodePath(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_set_path")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "track_set_path", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Insert a transform key for a transform track.
+        Insert a transform key for a transform track.
+	Args: [{ false idx int} { false time float} { false location Vector3} { false rotation Quat} { false scale Vector3}], Returns: int
 */
-func (o *Animation) TransformTrackInsertKey(idx gdnative.Int, time gdnative.Float, location *Vector3, rotation *Quat, scale *Vector3) gdnative.Int {
+
+func (o *Animation) TransformTrackInsertKey(idx gdnative.Int, time gdnative.Float, location gdnative.Vector3, rotation gdnative.Quat, scale gdnative.Vector3) gdnative.Int {
 	log.Println("Calling Animation.TransformTrackInsertKey()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(time)
-	goArguments[2] = reflect.ValueOf(location)
-	goArguments[3] = reflect.ValueOf(rotation)
-	goArguments[4] = reflect.ValueOf(scale)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(time)
+	ptrArguments[2] = gdnative.NewPointerFromVector3(location)
+	ptrArguments[3] = gdnative.NewPointerFromQuat(rotation)
+	ptrArguments[4] = gdnative.NewPointerFromVector3(scale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "transform_track_insert_key")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "transform_track_insert_key", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the interpolated value of a transform track at a given time (in seconds). An array consisting of 3 elements: position ([Vector3]), rotation ([Quat]) and scale ([Vector3]).
+        Return the interpolated value of a transform track at a given time (in seconds). An array consisting of 3 elements: position ([Vector3]), rotation ([Quat]) and scale ([Vector3]).
+	Args: [{ false idx int} { false time_sec float}], Returns: Array
 */
-func (o *Animation) TransformTrackInterpolate(idx gdnative.Int, timeSec gdnative.Float) *Array {
+
+func (o *Animation) TransformTrackInterpolate(idx gdnative.Int, timeSec gdnative.Float) gdnative.Array {
 	log.Println("Calling Animation.TransformTrackInterpolate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(timeSec)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(timeSec)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "transform_track_interpolate")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "transform_track_interpolate", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return all the key indices of a value track, given a position and delta time.
+        Return all the key indices of a value track, given a position and delta time.
+	Args: [{ false idx int} { false time_sec float} { false delta float}], Returns: PoolIntArray
 */
-func (o *Animation) ValueTrackGetKeyIndices(idx gdnative.Int, timeSec gdnative.Float, delta gdnative.Float) *PoolIntArray {
+
+func (o *Animation) ValueTrackGetKeyIndices(idx gdnative.Int, timeSec gdnative.Float, delta gdnative.Float) gdnative.PoolIntArray {
 	log.Println("Calling Animation.ValueTrackGetKeyIndices()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(timeSec)
-	goArguments[2] = reflect.ValueOf(delta)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(timeSec)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(delta)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "value_track_get_key_indices")
 
 	// Call the parent method.
+	// PoolIntArray
+	retPtr := gdnative.NewEmptyPoolIntArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "value_track_get_key_indices", goArguments, "*PoolIntArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the update mode of a value track.
+        Return the update mode of a value track.
+	Args: [{ false idx int}], Returns: enum.Animation::UpdateMode
 */
-func (o *Animation) ValueTrackGetUpdateMode(idx gdnative.Int) gdnative.Int {
-	log.Println("Calling Animation.ValueTrackGetUpdateMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "value_track_get_update_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Set the update mode (UPDATE_*) of a value track.
+        Set the update mode (UPDATE_*) of a value track.
+	Args: [{ false idx int} { false mode int}], Returns: void
 */
+
 func (o *Animation) ValueTrackSetUpdateMode(idx gdnative.Int, mode gdnative.Int) {
 	log.Println("Calling Animation.ValueTrackSetUpdateMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "value_track_set_update_mode")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "value_track_set_update_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   AnimationImplementer is an interface for Animation objects.
-*/
-type AnimationImplementer interface {
-	Class
 }

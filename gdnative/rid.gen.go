@@ -38,6 +38,14 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewEmptyRid will return a pointer to an empty
+// initialized Rid. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyRid() Pointer {
+	var obj C.godot_rid
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromRid will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromRid(obj Rid) Pointer {

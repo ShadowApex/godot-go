@@ -65,6 +65,11 @@ func godot_gdnative_terminate(options *C.godot_gdnative_terminate_options) {
 	NativeScript.api = nil
 }
 
+func NewEmptyVoid() Pointer {
+	var empty C.void
+	return Pointer{base: unsafe.Pointer(&empty)}
+}
+
 // NewMethodBind will return a method binding using the given class name and method
 // name.
 func NewMethodBind(class, method string) MethodBind {

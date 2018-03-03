@@ -2,9 +2,9 @@ package audiostream
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/node"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewAudioStreamPlayerFromPointer(ptr gdnative.Pointer) *AudioStreamPlayer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := AudioStreamPlayer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Plays background audio.
 */
 type AudioStreamPlayer struct {
-	Node
+	node.Node
 }
 
 func (o *AudioStreamPlayer) BaseClass() string {
@@ -28,384 +37,454 @@ func (o *AudioStreamPlayer) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *AudioStreamPlayer) X_BusLayoutChanged() {
 	log.Println("Calling AudioStreamPlayer.X_BusLayoutChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "_bus_layout_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_bus_layout_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *AudioStreamPlayer) X_IsActive() gdnative.Bool {
 	log.Println("Calling AudioStreamPlayer.X_IsActive()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "_is_active")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_is_active", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *AudioStreamPlayer) X_SetPlaying(enable gdnative.Bool) {
 	log.Println("Calling AudioStreamPlayer.X_SetPlaying()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "_set_playing")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_playing", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *AudioStreamPlayer) GetBus() gdnative.String {
 	log.Println("Calling AudioStreamPlayer.GetBus()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "get_bus")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bus", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.AudioStreamPlayer::MixTarget
 */
-func (o *AudioStreamPlayer) GetMixTarget() gdnative.Int {
-	log.Println("Calling AudioStreamPlayer.GetMixTarget()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_mix_target", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioStreamPlayer) GetPitchScale() gdnative.Float {
 	log.Println("Calling AudioStreamPlayer.GetPitchScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "get_pitch_scale")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_pitch_scale", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the position in the [AudioStream].
+        Returns the position in the [AudioStream].
+	Args: [], Returns: float
 */
+
 func (o *AudioStreamPlayer) GetPlaybackPosition() gdnative.Float {
 	log.Println("Calling AudioStreamPlayer.GetPlaybackPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "get_playback_position")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_playback_position", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: AudioStream
 */
-func (o *AudioStreamPlayer) GetStream() *AudioStream {
+
+func (o *AudioStreamPlayer) GetStream() AudioStream {
 	log.Println("Calling AudioStreamPlayer.GetStream()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "get_stream")
 
 	// Call the parent method.
+	// AudioStream
+	retPtr := NewEmptyAudioStream()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_stream", goArguments, "*AudioStream")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewAudioStreamFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*AudioStream)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioStreamPlayer) GetVolumeDb() gdnative.Float {
 	log.Println("Calling AudioStreamPlayer.GetVolumeDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "get_volume_db")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_volume_db", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *AudioStreamPlayer) IsAutoplayEnabled() gdnative.Bool {
 	log.Println("Calling AudioStreamPlayer.IsAutoplayEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "is_autoplay_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_autoplay_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *AudioStreamPlayer) IsPlaying() gdnative.Bool {
 	log.Println("Calling AudioStreamPlayer.IsPlaying()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "is_playing")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_playing", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Plays the audio from the given position 'from_position', in seconds.
+        Plays the audio from the given position 'from_position', in seconds.
+	Args: [{0 true from_position float}], Returns: void
 */
+
 func (o *AudioStreamPlayer) Play(fromPosition gdnative.Float) {
 	log.Println("Calling AudioStreamPlayer.Play()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(fromPosition)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(fromPosition)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "play")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "play", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the position from which audio will be played, in seconds.
+        Sets the position from which audio will be played, in seconds.
+	Args: [{ false to_position float}], Returns: void
 */
+
 func (o *AudioStreamPlayer) Seek(toPosition gdnative.Float) {
 	log.Println("Calling AudioStreamPlayer.Seek()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(toPosition)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(toPosition)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "seek")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "seek", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *AudioStreamPlayer) SetAutoplay(enable gdnative.Bool) {
 	log.Println("Calling AudioStreamPlayer.SetAutoplay()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "set_autoplay")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_autoplay", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false bus String}], Returns: void
 */
+
 func (o *AudioStreamPlayer) SetBus(bus gdnative.String) {
 	log.Println("Calling AudioStreamPlayer.SetBus()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bus)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(bus)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "set_bus")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_bus", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mix_target int}], Returns: void
 */
+
 func (o *AudioStreamPlayer) SetMixTarget(mixTarget gdnative.Int) {
 	log.Println("Calling AudioStreamPlayer.SetMixTarget()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mixTarget)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mixTarget)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "set_mix_target")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_mix_target", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false pitch_scale float}], Returns: void
 */
+
 func (o *AudioStreamPlayer) SetPitchScale(pitchScale gdnative.Float) {
 	log.Println("Calling AudioStreamPlayer.SetPitchScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pitchScale)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(pitchScale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "set_pitch_scale")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_pitch_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false stream AudioStream}], Returns: void
 */
-func (o *AudioStreamPlayer) SetStream(stream *AudioStream) {
+
+func (o *AudioStreamPlayer) SetStream(stream AudioStream) {
 	log.Println("Calling AudioStreamPlayer.SetStream()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(stream)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(stream.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "set_stream")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_stream", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false volume_db float}], Returns: void
 */
+
 func (o *AudioStreamPlayer) SetVolumeDb(volumeDb gdnative.Float) {
 	log.Println("Calling AudioStreamPlayer.SetVolumeDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(volumeDb)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(volumeDb)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "set_volume_db")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_volume_db", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Stops the audio.
+        Stops the audio.
+	Args: [], Returns: void
 */
+
 func (o *AudioStreamPlayer) Stop() {
 	log.Println("Calling AudioStreamPlayer.Stop()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "stop")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "stop", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   AudioStreamPlayerImplementer is an interface for AudioStreamPlayer objects.
-*/
-type AudioStreamPlayerImplementer interface {
-	Class
 }

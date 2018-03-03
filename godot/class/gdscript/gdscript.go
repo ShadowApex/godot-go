@@ -2,7 +2,11 @@ package gdscript
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
+	"github.com/shadowapex/godot-go/godot/class/script"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewGDScriptFromPointer(ptr gdnative.Pointer) *GDScript {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := GDScript{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
 type GDScript struct {
-	Script
+	script.Script
 }
 
 func (o *GDScript) BaseClass() string {
@@ -26,48 +39,53 @@ func (o *GDScript) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolByteArray
 */
-func (o *GDScript) GetAsByteCode() *PoolByteArray {
+
+func (o *GDScript) GetAsByteCode() gdnative.PoolByteArray {
 	log.Println("Calling GDScript.GetAsByteCode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDScript", "get_as_byte_code")
 
 	// Call the parent method.
+	// PoolByteArray
+	retPtr := gdnative.NewEmptyPoolByteArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_as_byte_code", goArguments, "*PoolByteArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolByteArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolByteArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Object
 */
-func (o *GDScript) New() *Object {
+
+func (o *GDScript) New() object.Object {
 	log.Println("Calling GDScript.New()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDScript", "new")
 
 	// Call the parent method.
+	// Object
+	retPtr := object.NewEmptyObject()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "new", goArguments, "*Object")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := object.NewObjectFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Object)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   GDScriptImplementer is an interface for GDScript objects.
-*/
-type GDScriptImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

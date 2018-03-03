@@ -2,7 +2,9 @@ package polygonpathfinder
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPolygonPathFinderFromPointer(ptr gdnative.Pointer) *PolygonPathFinder {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := PolygonPathFinder{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type PolygonPathFinder struct {
-	Resource
+	resource.Resource
 }
 
 func (o *PolygonPathFinder) BaseClass() string {
@@ -26,211 +37,258 @@ func (o *PolygonPathFinder) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Dictionary
 */
-func (o *PolygonPathFinder) X_GetData() *Dictionary {
+
+func (o *PolygonPathFinder) X_GetData() gdnative.Dictionary {
 	log.Println("Calling PolygonPathFinder.X_GetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PolygonPathFinder", "_get_data")
 
 	// Call the parent method.
+	// Dictionary
+	retPtr := gdnative.NewEmptyDictionary()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_data", goArguments, "*Dictionary")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewDictionaryFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Dictionary)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 Dictionary}], Returns: void
 */
-func (o *PolygonPathFinder) X_SetData(arg0 *Dictionary) {
+
+func (o *PolygonPathFinder) X_SetData(arg0 gdnative.Dictionary) {
 	log.Println("Calling PolygonPathFinder.X_SetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromDictionary(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PolygonPathFinder", "_set_data")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_data", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *PolygonPathFinder) FindPath(from *Vector2, to *Vector2) *PoolVector2Array {
+	Args: [{ false from Vector2} { false to Vector2}], Returns: PoolVector2Array
+*/
+
+func (o *PolygonPathFinder) FindPath(from gdnative.Vector2, to gdnative.Vector2) gdnative.PoolVector2Array {
 	log.Println("Calling PolygonPathFinder.FindPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(from)
-	goArguments[1] = reflect.ValueOf(to)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(from)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(to)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PolygonPathFinder", "find_path")
 
 	// Call the parent method.
+	// PoolVector2Array
+	retPtr := gdnative.NewEmptyPoolVector2Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "find_path", goArguments, "*PoolVector2Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector2Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *PolygonPathFinder) GetBounds() *Rect2 {
+	Args: [], Returns: Rect2
+*/
+
+func (o *PolygonPathFinder) GetBounds() gdnative.Rect2 {
 	log.Println("Calling PolygonPathFinder.GetBounds()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PolygonPathFinder", "get_bounds")
 
 	// Call the parent method.
+	// Rect2
+	retPtr := gdnative.NewEmptyRect2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bounds", goArguments, "*Rect2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRect2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Rect2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *PolygonPathFinder) GetClosestPoint(point *Vector2) *Vector2 {
+	Args: [{ false point Vector2}], Returns: Vector2
+*/
+
+func (o *PolygonPathFinder) GetClosestPoint(point gdnative.Vector2) gdnative.Vector2 {
 	log.Println("Calling PolygonPathFinder.GetClosestPoint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(point)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(point)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PolygonPathFinder", "get_closest_point")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_closest_point", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *PolygonPathFinder) GetIntersections(from *Vector2, to *Vector2) *PoolVector2Array {
+	Args: [{ false from Vector2} { false to Vector2}], Returns: PoolVector2Array
+*/
+
+func (o *PolygonPathFinder) GetIntersections(from gdnative.Vector2, to gdnative.Vector2) gdnative.PoolVector2Array {
 	log.Println("Calling PolygonPathFinder.GetIntersections()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(from)
-	goArguments[1] = reflect.ValueOf(to)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(from)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(to)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PolygonPathFinder", "get_intersections")
 
 	// Call the parent method.
+	// PoolVector2Array
+	retPtr := gdnative.NewEmptyPoolVector2Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_intersections", goArguments, "*PoolVector2Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector2Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false idx int}], Returns: float
+*/
+
 func (o *PolygonPathFinder) GetPointPenalty(idx gdnative.Int) gdnative.Float {
 	log.Println("Calling PolygonPathFinder.GetPointPenalty()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PolygonPathFinder", "get_point_penalty")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_point_penalty", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *PolygonPathFinder) IsPointInside(point *Vector2) gdnative.Bool {
+	Args: [{ false point Vector2}], Returns: bool
+*/
+
+func (o *PolygonPathFinder) IsPointInside(point gdnative.Vector2) gdnative.Bool {
 	log.Println("Calling PolygonPathFinder.IsPointInside()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(point)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(point)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PolygonPathFinder", "is_point_inside")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_point_inside", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false idx int} { false penalty float}], Returns: void
+*/
+
 func (o *PolygonPathFinder) SetPointPenalty(idx gdnative.Int, penalty gdnative.Float) {
 	log.Println("Calling PolygonPathFinder.SetPointPenalty()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(penalty)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(penalty)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PolygonPathFinder", "set_point_penalty")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_point_penalty", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *PolygonPathFinder) Setup(points *PoolVector2Array, connections *PoolIntArray) {
+	Args: [{ false points PoolVector2Array} { false connections PoolIntArray}], Returns: void
+*/
+
+func (o *PolygonPathFinder) Setup(points gdnative.PoolVector2Array, connections gdnative.PoolIntArray) {
 	log.Println("Calling PolygonPathFinder.Setup()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(points)
-	goArguments[1] = reflect.ValueOf(connections)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(points)
+	ptrArguments[1] = gdnative.NewPointerFromPoolIntArray(connections)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PolygonPathFinder", "setup")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "setup", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   PolygonPathFinderImplementer is an interface for PolygonPathFinder objects.
-*/
-type PolygonPathFinderImplementer interface {
-	Class
 }

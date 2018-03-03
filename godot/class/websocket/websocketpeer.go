@@ -2,9 +2,9 @@ package websocket
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/packetpeer"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewWebSocketPeerFromPointer(ptr gdnative.Pointer) *WebSocketPeer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := WebSocketPeer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type WebSocketPeer struct {
-	PacketPeer
+	packetpeer.PacketPeer
 }
 
 func (o *WebSocketPeer) BaseClass() string {
@@ -29,102 +38,100 @@ func (o *WebSocketPeer) BaseClass() string {
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *WebSocketPeer) Close() {
 	log.Println("Calling WebSocketPeer.Close()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("WebSocketPeer", "close")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "close", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *WebSocketPeer) GetWriteMode() gdnative.Int {
-	log.Println("Calling WebSocketPeer.GetWriteMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_write_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
+	Args: [], Returns: enum.WebSocketPeer::WriteMode
+*/
 
 /*
 
- */
+	Args: [], Returns: bool
+*/
+
 func (o *WebSocketPeer) IsConnectedToHost() gdnative.Bool {
 	log.Println("Calling WebSocketPeer.IsConnectedToHost()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("WebSocketPeer", "is_connected_to_host")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_connected_to_host", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false mode int}], Returns: void
+*/
+
 func (o *WebSocketPeer) SetWriteMode(mode gdnative.Int) {
 	log.Println("Calling WebSocketPeer.SetWriteMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("WebSocketPeer", "set_write_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_write_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [], Returns: bool
+*/
+
 func (o *WebSocketPeer) WasStringPacket() gdnative.Bool {
 	log.Println("Calling WebSocketPeer.WasStringPacket()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("WebSocketPeer", "was_string_packet")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "was_string_packet", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   WebSocketPeerImplementer is an interface for WebSocketPeer objects.
-*/
-type WebSocketPeerImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

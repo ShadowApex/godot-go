@@ -38,6 +38,14 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewEmptyArray will return a pointer to an empty
+// initialized Array. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyArray() Pointer {
+	var obj C.godot_array
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromArray will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromArray(obj Array) Pointer {

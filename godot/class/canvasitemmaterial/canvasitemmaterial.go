@@ -2,9 +2,9 @@ package canvasitemmaterial
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/material"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewCanvasItemMaterialFromPointer(ptr gdnative.Pointer) *CanvasItemMaterial {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := CanvasItemMaterial{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 [code]CanvasItemMaterial[/code]s provide a means of modifying the textures associated with a CanvasItem. They specialize in describing blend and lighting behaviors for textures. Use a [ShaderMaterial] to more fully customize a material's interactions with a [CanvasItem].
 */
 type CanvasItemMaterial struct {
-	Material
+	material.Material
 }
 
 func (o *CanvasItemMaterial) BaseClass() string {
@@ -28,84 +37,55 @@ func (o *CanvasItemMaterial) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.CanvasItemMaterial::BlendMode
 */
-func (o *CanvasItemMaterial) GetBlendMode() gdnative.Int {
-	log.Println("Calling CanvasItemMaterial.GetBlendMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_blend_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.CanvasItemMaterial::LightMode
 */
-func (o *CanvasItemMaterial) GetLightMode() gdnative.Int {
-	log.Println("Calling CanvasItemMaterial.GetLightMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_light_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false blend_mode int}], Returns: void
 */
+
 func (o *CanvasItemMaterial) SetBlendMode(blendMode gdnative.Int) {
 	log.Println("Calling CanvasItemMaterial.SetBlendMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(blendMode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(blendMode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItemMaterial", "set_blend_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_blend_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false light_mode int}], Returns: void
 */
+
 func (o *CanvasItemMaterial) SetLightMode(lightMode gdnative.Int) {
 	log.Println("Calling CanvasItemMaterial.SetLightMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(lightMode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(lightMode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItemMaterial", "set_light_mode")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_light_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   CanvasItemMaterialImplementer is an interface for CanvasItemMaterial objects.
-*/
-type CanvasItemMaterialImplementer interface {
-	Class
 }

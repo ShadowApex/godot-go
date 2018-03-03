@@ -2,9 +2,11 @@ package instanceplaceholder
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/node"
+	"github.com/shadowapex/godot-go/godot/class/packedscene"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewInstancePlaceholderFromPointer(ptr gdnative.Pointer) *InstancePlaceholder {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := InstancePlaceholder{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Turning on the option [b]Load As Placeholder[/b] for an instanced scene in the editor causes it to be replaced by an InstacePlaceholder when running the game. This makes it possible to delay actually loading the scene until calling [method replace_by_instance]. This is useful to avoid loading large scenes all at once by loading parts of it selectively. The InstancePlaceholder does not have a transform. This causes any child nodes to be positioned relatively to the Viewport from point (0,0), rather than their parent as displayed in the editor. Replacing the placeholder with a scene with a transform will transform children relatively to their parent again.
 */
 type InstancePlaceholder struct {
-	Node
+	node.Node
 }
 
 func (o *InstancePlaceholder) BaseClass() string {
@@ -28,67 +39,76 @@ func (o *InstancePlaceholder) BaseClass() string {
 }
 
 /*
-   Retrieve the path to the [PackedScene] resource file that is loaded by default when calling [method replace_by_instance].
+        Retrieve the path to the [PackedScene] resource file that is loaded by default when calling [method replace_by_instance].
+	Args: [], Returns: String
 */
+
 func (o *InstancePlaceholder) GetInstancePath() gdnative.String {
 	log.Println("Calling InstancePlaceholder.GetInstancePath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InstancePlaceholder", "get_instance_path")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_instance_path", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *InstancePlaceholder) GetStoredValues(withOrder gdnative.Bool) *Dictionary {
+	Args: [{False true with_order bool}], Returns: Dictionary
+*/
+
+func (o *InstancePlaceholder) GetStoredValues(withOrder gdnative.Bool) gdnative.Dictionary {
 	log.Println("Calling InstancePlaceholder.GetStoredValues()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(withOrder)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(withOrder)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InstancePlaceholder", "get_stored_values")
 
 	// Call the parent method.
+	// Dictionary
+	retPtr := gdnative.NewEmptyDictionary()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_stored_values", goArguments, "*Dictionary")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewDictionaryFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Dictionary)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Replace this placeholder by the scene handed as an argument, or the original scene if no argument is given. As for all resources, the scene is loaded only if it's not loaded already. By manually loading the scene beforehand, delays caused by this function can be avoided.
+        Replace this placeholder by the scene handed as an argument, or the original scene if no argument is given. As for all resources, the scene is loaded only if it's not loaded already. By manually loading the scene beforehand, delays caused by this function can be avoided.
+	Args: [{Null true custom_scene PackedScene}], Returns: void
 */
-func (o *InstancePlaceholder) ReplaceByInstance(customScene *PackedScene) {
+
+func (o *InstancePlaceholder) ReplaceByInstance(customScene packedscene.PackedScene) {
 	log.Println("Calling InstancePlaceholder.ReplaceByInstance()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(customScene)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(customScene.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InstancePlaceholder", "replace_by_instance")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "replace_by_instance", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   InstancePlaceholderImplementer is an interface for InstancePlaceholder objects.
-*/
-type InstancePlaceholderImplementer interface {
-	Class
 }

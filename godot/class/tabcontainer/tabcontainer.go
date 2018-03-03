@@ -2,9 +2,18 @@ package tabcontainer
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
+
+	"github.com/shadowapex/godot-go/godot/class/inputevent"
+
+	"github.com/shadowapex/godot-go/godot/class/control"
+
+	"github.com/shadowapex/godot-go/godot/class/popup"
+
+	"github.com/shadowapex/godot-go/godot/class/texture"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +25,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewTabContainerFromPointer(ptr gdnative.Pointer) *TabContainer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := TabContainer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Sets the active tab's [code]visible[/code] property to the value [code]true[/code]. Sets all other children's to [code]false[/code]. Ignores non-[Control] children. Individual tabs are always visible unless you use [method set_tab_disabled] and [method set_tab_title] to hide it. To hide only a tab's content, nest the content inside a child [Control], so it receives the [code]TabContainer[/code]'s visibility setting instead.
 */
 type TabContainer struct {
-	Control
+	control.Control
 }
 
 func (o *TabContainer) BaseClass() string {
@@ -28,413 +46,491 @@ func (o *TabContainer) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *TabContainer) X_ChildRenamedCallback() {
 	log.Println("Calling TabContainer.X_ChildRenamedCallback()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "_child_renamed_callback")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_child_renamed_callback", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *TabContainer) X_GuiInput(arg0 *InputEvent) {
+
+func (o *TabContainer) X_GuiInput(arg0 inputevent.InputEvent) {
 	log.Println("Calling TabContainer.X_GuiInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "_gui_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_gui_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *TabContainer) X_OnThemeChanged() {
 	log.Println("Calling TabContainer.X_OnThemeChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "_on_theme_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_on_theme_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TabContainer) AreTabsVisible() gdnative.Bool {
 	log.Println("Calling TabContainer.AreTabsVisible()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "are_tabs_visible")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "are_tabs_visible", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *TabContainer) GetCurrentTab() gdnative.Int {
 	log.Println("Calling TabContainer.GetCurrentTab()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "get_current_tab")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_current_tab", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the child [Control] node located at the active tab index.
+        Returns the child [Control] node located at the active tab index.
+	Args: [], Returns: Control
 */
-func (o *TabContainer) GetCurrentTabControl() *Control {
+
+func (o *TabContainer) GetCurrentTabControl() control.Control {
 	log.Println("Calling TabContainer.GetCurrentTabControl()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "get_current_tab_control")
 
 	// Call the parent method.
+	// Control
+	retPtr := control.NewEmptyControl()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_current_tab_control", goArguments, "*Control")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := control.NewControlFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Control)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the [Popup] node instance if one has been set already with [method set_popup].
+        Returns the [Popup] node instance if one has been set already with [method set_popup].
+	Args: [], Returns: Popup
 */
-func (o *TabContainer) GetPopup() *Popup {
+
+func (o *TabContainer) GetPopup() popup.Popup {
 	log.Println("Calling TabContainer.GetPopup()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "get_popup")
 
 	// Call the parent method.
+	// Popup
+	retPtr := popup.NewEmptyPopup()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_popup", goArguments, "*Popup")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := popup.NewPopupFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Popup)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the previously active tab index.
+        Returns the previously active tab index.
+	Args: [], Returns: int
 */
+
 func (o *TabContainer) GetPreviousTab() gdnative.Int {
 	log.Println("Calling TabContainer.GetPreviousTab()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "get_previous_tab")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_previous_tab", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.TabContainer::TabAlign
 */
-func (o *TabContainer) GetTabAlign() gdnative.Int {
-	log.Println("Calling TabContainer.GetTabAlign()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_tab_align", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Returns the currently visible tab's [Control] node.
+        Returns the currently visible tab's [Control] node.
+	Args: [{ false idx int}], Returns: Control
 */
-func (o *TabContainer) GetTabControl(idx gdnative.Int) *Control {
+
+func (o *TabContainer) GetTabControl(idx gdnative.Int) control.Control {
 	log.Println("Calling TabContainer.GetTabControl()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "get_tab_control")
 
 	// Call the parent method.
+	// Control
+	retPtr := control.NewEmptyControl()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tab_control", goArguments, "*Control")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := control.NewControlFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Control)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the number of tabs.
+        Returns the number of tabs.
+	Args: [], Returns: int
 */
+
 func (o *TabContainer) GetTabCount() gdnative.Int {
 	log.Println("Calling TabContainer.GetTabCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "get_tab_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tab_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the tab at index [code]tab_idx[/code] is disabled.
+        Returns [code]true[/code] if the tab at index [code]tab_idx[/code] is disabled.
+	Args: [{ false tab_idx int}], Returns: bool
 */
+
 func (o *TabContainer) GetTabDisabled(tabIdx gdnative.Int) gdnative.Bool {
 	log.Println("Calling TabContainer.GetTabDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(tabIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(tabIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "get_tab_disabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tab_disabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the [Texture] for the tab at index [code]tab_idx[/code] or null if the tab has no [Texture].
+        Returns the [Texture] for the tab at index [code]tab_idx[/code] or null if the tab has no [Texture].
+	Args: [{ false tab_idx int}], Returns: Texture
 */
-func (o *TabContainer) GetTabIcon(tabIdx gdnative.Int) *Texture {
+
+func (o *TabContainer) GetTabIcon(tabIdx gdnative.Int) texture.Texture {
 	log.Println("Calling TabContainer.GetTabIcon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(tabIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(tabIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "get_tab_icon")
 
 	// Call the parent method.
+	// Texture
+	retPtr := texture.NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tab_icon", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := texture.NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the title of the tab at index [code]tab_idx[/code]. Tab titles default to the name of the indexed child node, but this can be overridden with [method set_tab_title].
+        Returns the title of the tab at index [code]tab_idx[/code]. Tab titles default to the name of the indexed child node, but this can be overridden with [method set_tab_title].
+	Args: [{ false tab_idx int}], Returns: String
 */
+
 func (o *TabContainer) GetTabTitle(tabIdx gdnative.Int) gdnative.String {
 	log.Println("Calling TabContainer.GetTabTitle()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(tabIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(tabIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "get_tab_title")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tab_title", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false tab_idx int}], Returns: void
 */
+
 func (o *TabContainer) SetCurrentTab(tabIdx gdnative.Int) {
 	log.Println("Calling TabContainer.SetCurrentTab()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(tabIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(tabIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "set_current_tab")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_current_tab", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If set on a [Popup] node instance, a popup menu icon appears in the top-right corner of the [code]TabContainer[/code]. Clicking it will expand the [Popup] node.
+        If set on a [Popup] node instance, a popup menu icon appears in the top-right corner of the [code]TabContainer[/code]. Clicking it will expand the [Popup] node.
+	Args: [{ false popup Object}], Returns: void
 */
-func (o *TabContainer) SetPopup(popup *Object) {
+
+func (o *TabContainer) SetPopup(popup object.Object) {
 	log.Println("Calling TabContainer.SetPopup()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(popup)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(popup.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "set_popup")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_popup", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false align int}], Returns: void
 */
+
 func (o *TabContainer) SetTabAlign(align gdnative.Int) {
 	log.Println("Calling TabContainer.SetTabAlign()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(align)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(align)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "set_tab_align")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_tab_align", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]disabled[/code] is false, hides the tab at index [code]tab_idx[/code]. Note that its title text will remain, unless also removed with [method set_tab_title].
+        If [code]disabled[/code] is false, hides the tab at index [code]tab_idx[/code]. Note that its title text will remain, unless also removed with [method set_tab_title].
+	Args: [{ false tab_idx int} { false disabled bool}], Returns: void
 */
+
 func (o *TabContainer) SetTabDisabled(tabIdx gdnative.Int, disabled gdnative.Bool) {
 	log.Println("Calling TabContainer.SetTabDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(tabIdx)
-	goArguments[1] = reflect.ValueOf(disabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(tabIdx)
+	ptrArguments[1] = gdnative.NewPointerFromBool(disabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "set_tab_disabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_tab_disabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets an icon for the tab at index [code]tab_idx[/code].
+        Sets an icon for the tab at index [code]tab_idx[/code].
+	Args: [{ false tab_idx int} { false icon Texture}], Returns: void
 */
-func (o *TabContainer) SetTabIcon(tabIdx gdnative.Int, icon *Texture) {
+
+func (o *TabContainer) SetTabIcon(tabIdx gdnative.Int, icon texture.Texture) {
 	log.Println("Calling TabContainer.SetTabIcon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(tabIdx)
-	goArguments[1] = reflect.ValueOf(icon)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(tabIdx)
+	ptrArguments[1] = gdnative.NewPointerFromObject(icon.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "set_tab_icon")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_tab_icon", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a title for the tab at index [code]tab_idx[/code]. Tab titles default to the name of the indexed child node, but this can be overridden with [method set_tab_title].
+        Sets a title for the tab at index [code]tab_idx[/code]. Tab titles default to the name of the indexed child node, but this can be overridden with [method set_tab_title].
+	Args: [{ false tab_idx int} { false title String}], Returns: void
 */
+
 func (o *TabContainer) SetTabTitle(tabIdx gdnative.Int, title gdnative.String) {
 	log.Println("Calling TabContainer.SetTabTitle()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(tabIdx)
-	goArguments[1] = reflect.ValueOf(title)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(tabIdx)
+	ptrArguments[1] = gdnative.NewPointerFromString(title)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "set_tab_title")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_tab_title", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false visible bool}], Returns: void
 */
+
 func (o *TabContainer) SetTabsVisible(visible gdnative.Bool) {
 	log.Println("Calling TabContainer.SetTabsVisible()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(visible)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(visible)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "set_tabs_visible")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_tabs_visible", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   TabContainerImplementer is an interface for TabContainer objects.
-*/
-type TabContainerImplementer interface {
-	Class
 }

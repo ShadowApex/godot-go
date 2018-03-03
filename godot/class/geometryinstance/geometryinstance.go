@@ -2,7 +2,11 @@ package geometryinstance
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/material"
+	"github.com/shadowapex/godot-go/godot/class/visualinstance"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewGeometryInstanceFromPointer(ptr gdnative.Pointer) *GeometryInstance {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := GeometryInstance{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Base node for geometry based visual instances. Shares some common functionality like visibility and custom materials.
 */
 type GeometryInstance struct {
-	VisualInstance
+	visualinstance.VisualInstance
 }
 
 func (o *GeometryInstance) BaseClass() string {
@@ -26,314 +39,366 @@ func (o *GeometryInstance) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.GeometryInstance::ShadowCastingSetting
 */
-func (o *GeometryInstance) GetCastShadowsSetting() gdnative.Int {
-	log.Println("Calling GeometryInstance.GetCastShadowsSetting()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_cast_shadows_setting", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *GeometryInstance) GetExtraCullMargin() gdnative.Float {
 	log.Println("Calling GeometryInstance.GetExtraCullMargin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GeometryInstance", "get_extra_cull_margin")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_extra_cull_margin", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false flag int}], Returns: bool
 */
+
 func (o *GeometryInstance) GetFlag(flag gdnative.Int) gdnative.Bool {
 	log.Println("Calling GeometryInstance.GetFlag()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(flag)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(flag)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GeometryInstance", "get_flag")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_flag", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *GeometryInstance) GetLodMaxDistance() gdnative.Float {
 	log.Println("Calling GeometryInstance.GetLodMaxDistance()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GeometryInstance", "get_lod_max_distance")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_lod_max_distance", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *GeometryInstance) GetLodMaxHysteresis() gdnative.Float {
 	log.Println("Calling GeometryInstance.GetLodMaxHysteresis()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GeometryInstance", "get_lod_max_hysteresis")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_lod_max_hysteresis", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *GeometryInstance) GetLodMinDistance() gdnative.Float {
 	log.Println("Calling GeometryInstance.GetLodMinDistance()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GeometryInstance", "get_lod_min_distance")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_lod_min_distance", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *GeometryInstance) GetLodMinHysteresis() gdnative.Float {
 	log.Println("Calling GeometryInstance.GetLodMinHysteresis()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GeometryInstance", "get_lod_min_hysteresis")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_lod_min_hysteresis", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Material
 */
-func (o *GeometryInstance) GetMaterialOverride() *Material {
+
+func (o *GeometryInstance) GetMaterialOverride() material.Material {
 	log.Println("Calling GeometryInstance.GetMaterialOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GeometryInstance", "get_material_override")
 
 	// Call the parent method.
+	// Material
+	retPtr := material.NewEmptyMaterial()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_material_override", goArguments, "*Material")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := material.NewMaterialFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Material)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false shadow_casting_setting int}], Returns: void
 */
+
 func (o *GeometryInstance) SetCastShadowsSetting(shadowCastingSetting gdnative.Int) {
 	log.Println("Calling GeometryInstance.SetCastShadowsSetting()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(shadowCastingSetting)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(shadowCastingSetting)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GeometryInstance", "set_cast_shadows_setting")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_cast_shadows_setting", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin float}], Returns: void
 */
+
 func (o *GeometryInstance) SetExtraCullMargin(margin gdnative.Float) {
 	log.Println("Calling GeometryInstance.SetExtraCullMargin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(margin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GeometryInstance", "set_extra_cull_margin")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_extra_cull_margin", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false flag int} { false value bool}], Returns: void
 */
+
 func (o *GeometryInstance) SetFlag(flag gdnative.Int, value gdnative.Bool) {
 	log.Println("Calling GeometryInstance.SetFlag()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(flag)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(flag)
+	ptrArguments[1] = gdnative.NewPointerFromBool(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GeometryInstance", "set_flag")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_flag", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode float}], Returns: void
 */
+
 func (o *GeometryInstance) SetLodMaxDistance(mode gdnative.Float) {
 	log.Println("Calling GeometryInstance.SetLodMaxDistance()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GeometryInstance", "set_lod_max_distance")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_lod_max_distance", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode float}], Returns: void
 */
+
 func (o *GeometryInstance) SetLodMaxHysteresis(mode gdnative.Float) {
 	log.Println("Calling GeometryInstance.SetLodMaxHysteresis()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GeometryInstance", "set_lod_max_hysteresis")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_lod_max_hysteresis", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode float}], Returns: void
 */
+
 func (o *GeometryInstance) SetLodMinDistance(mode gdnative.Float) {
 	log.Println("Calling GeometryInstance.SetLodMinDistance()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GeometryInstance", "set_lod_min_distance")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_lod_min_distance", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode float}], Returns: void
 */
+
 func (o *GeometryInstance) SetLodMinHysteresis(mode gdnative.Float) {
 	log.Println("Calling GeometryInstance.SetLodMinHysteresis()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GeometryInstance", "set_lod_min_hysteresis")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_lod_min_hysteresis", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false material Material}], Returns: void
 */
-func (o *GeometryInstance) SetMaterialOverride(material *Material) {
+
+func (o *GeometryInstance) SetMaterialOverride(material material.Material) {
 	log.Println("Calling GeometryInstance.SetMaterialOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(material)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(material.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GeometryInstance", "set_material_override")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_material_override", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   GeometryInstanceImplementer is an interface for GeometryInstance objects.
-*/
-type GeometryInstanceImplementer interface {
-	Class
 }

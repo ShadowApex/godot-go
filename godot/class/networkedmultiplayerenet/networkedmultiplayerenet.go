@@ -2,9 +2,9 @@ package networkedmultiplayerenet
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/networkedmultiplayerpeer"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewNetworkedMultiplayerENetFromPointer(ptr gdnative.Pointer) *NetworkedMultiplayerENet {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := NetworkedMultiplayerENet{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
 type NetworkedMultiplayerENet struct {
-	NetworkedMultiplayerPeer
+	networkedmultiplayerpeer.NetworkedMultiplayerPeer
 }
 
 func (o *NetworkedMultiplayerENet) BaseClass() string {
@@ -28,129 +37,81 @@ func (o *NetworkedMultiplayerENet) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *NetworkedMultiplayerENet) CloseConnection() {
 	log.Println("Calling NetworkedMultiplayerENet.CloseConnection()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NetworkedMultiplayerENet", "close_connection")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "close_connection", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false ip String} { false port int} {0 true in_bandwidth int} {0 true out_bandwidth int}], Returns: enum.Error
 */
-func (o *NetworkedMultiplayerENet) CreateClient(ip gdnative.String, port gdnative.Int, inBandwidth gdnative.Int, outBandwidth gdnative.Int) gdnative.Int {
-	log.Println("Calling NetworkedMultiplayerENet.CreateClient()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(ip)
-	goArguments[1] = reflect.ValueOf(port)
-	goArguments[2] = reflect.ValueOf(inBandwidth)
-	goArguments[3] = reflect.ValueOf(outBandwidth)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "create_client", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false port int} {32 true max_clients int} {0 true in_bandwidth int} {0 true out_bandwidth int}], Returns: enum.Error
 */
-func (o *NetworkedMultiplayerENet) CreateServer(port gdnative.Int, maxClients gdnative.Int, inBandwidth gdnative.Int, outBandwidth gdnative.Int) gdnative.Int {
-	log.Println("Calling NetworkedMultiplayerENet.CreateServer()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(port)
-	goArguments[1] = reflect.ValueOf(maxClients)
-	goArguments[2] = reflect.ValueOf(inBandwidth)
-	goArguments[3] = reflect.ValueOf(outBandwidth)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "create_server", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.NetworkedMultiplayerENet::CompressionMode
 */
-func (o *NetworkedMultiplayerENet) GetCompressionMode() gdnative.Int {
-	log.Println("Calling NetworkedMultiplayerENet.GetCompressionMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_compression_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false ip String}], Returns: void
 */
+
 func (o *NetworkedMultiplayerENet) SetBindIp(ip gdnative.String) {
 	log.Println("Calling NetworkedMultiplayerENet.SetBindIp()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ip)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(ip)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NetworkedMultiplayerENet", "set_bind_ip")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_bind_ip", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *NetworkedMultiplayerENet) SetCompressionMode(mode gdnative.Int) {
 	log.Println("Calling NetworkedMultiplayerENet.SetCompressionMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NetworkedMultiplayerENet", "set_compression_mode")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_compression_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   NetworkedMultiplayerENetImplementer is an interface for NetworkedMultiplayerENet objects.
-*/
-type NetworkedMultiplayerENetImplementer interface {
-	Class
 }

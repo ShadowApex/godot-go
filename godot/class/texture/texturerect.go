@@ -2,9 +2,9 @@ package texture
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/control"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewTextureRectFromPointer(ptr gdnative.Pointer) *TextureRect {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := TextureRect{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Use TextureRect to draw icons and sprites in your User Interfaces. To create panels and menu boxes, take a look at [NinePatchFrame]. Its Stretch Mode property controls the texture's scale and placement. It can scale, tile and stay centered inside its bounding rectangle. TextureRect is one of the 5 most common nodes to create game UI.
 */
 type TextureRect struct {
-	Control
+	control.Control
 }
 
 func (o *TextureRect) BaseClass() string {
@@ -28,122 +37,124 @@ func (o *TextureRect) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.TextureRect::StretchMode
 */
-func (o *TextureRect) GetStretchMode() gdnative.Int {
-	log.Println("Calling TextureRect.GetStretchMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_stretch_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Texture
 */
-func (o *TextureRect) GetTexture() *Texture {
+
+func (o *TextureRect) GetTexture() Texture {
 	log.Println("Calling TextureRect.GetTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureRect", "get_texture")
 
 	// Call the parent method.
+	// Texture
+	retPtr := NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_texture", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TextureRect) HasExpand() gdnative.Bool {
 	log.Println("Calling TextureRect.HasExpand()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureRect", "has_expand")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_expand", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *TextureRect) SetExpand(enable gdnative.Bool) {
 	log.Println("Calling TextureRect.SetExpand()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureRect", "set_expand")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_expand", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false stretch_mode int}], Returns: void
 */
+
 func (o *TextureRect) SetStretchMode(stretchMode gdnative.Int) {
 	log.Println("Calling TextureRect.SetStretchMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(stretchMode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(stretchMode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureRect", "set_stretch_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_stretch_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false texture Texture}], Returns: void
 */
-func (o *TextureRect) SetTexture(texture *Texture) {
+
+func (o *TextureRect) SetTexture(texture Texture) {
 	log.Println("Calling TextureRect.SetTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(texture.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureRect", "set_texture")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_texture", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   TextureRectImplementer is an interface for TextureRect objects.
-*/
-type TextureRectImplementer interface {
-	Class
 }

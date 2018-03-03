@@ -2,7 +2,9 @@ package conetwistjoint
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/joint"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewConeTwistJointFromPointer(ptr gdnative.Pointer) *ConeTwistJoint {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ConeTwistJoint{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 The joint can rotate the bodies across an axis defined by the local x-axes of the [Joint]. The twist axis is initiated as the x-axis of the [Joint]. Once the Bodies swing, the twist axis is calculated as the middle of the x-axes of the Joint in the local space of the two Bodies.
 */
 type ConeTwistJoint struct {
-	Joint
+	joint.Joint
 }
 
 func (o *ConeTwistJoint) BaseClass() string {
@@ -26,124 +37,147 @@ func (o *ConeTwistJoint) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *ConeTwistJoint) X_GetSwingSpan() gdnative.Float {
 	log.Println("Calling ConeTwistJoint.X_GetSwingSpan()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ConeTwistJoint", "_get_swing_span")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_swing_span", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *ConeTwistJoint) X_GetTwistSpan() gdnative.Float {
 	log.Println("Calling ConeTwistJoint.X_GetTwistSpan()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ConeTwistJoint", "_get_twist_span")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_twist_span", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false swing_span float}], Returns: void
 */
+
 func (o *ConeTwistJoint) X_SetSwingSpan(swingSpan gdnative.Float) {
 	log.Println("Calling ConeTwistJoint.X_SetSwingSpan()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(swingSpan)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(swingSpan)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ConeTwistJoint", "_set_swing_span")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_swing_span", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false twist_span float}], Returns: void
 */
+
 func (o *ConeTwistJoint) X_SetTwistSpan(twistSpan gdnative.Float) {
 	log.Println("Calling ConeTwistJoint.X_SetTwistSpan()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(twistSpan)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(twistSpan)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ConeTwistJoint", "_set_twist_span")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_twist_span", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false param int}], Returns: float
 */
+
 func (o *ConeTwistJoint) GetParam(param gdnative.Int) gdnative.Float {
 	log.Println("Calling ConeTwistJoint.GetParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(param)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(param)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ConeTwistJoint", "get_param")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_param", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false param int} { false value float}], Returns: void
 */
+
 func (o *ConeTwistJoint) SetParam(param gdnative.Int, value gdnative.Float) {
 	log.Println("Calling ConeTwistJoint.SetParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(param)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(param)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ConeTwistJoint", "set_param")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_param", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ConeTwistJointImplementer is an interface for ConeTwistJoint objects.
-*/
-type ConeTwistJointImplementer interface {
-	Class
 }

@@ -2,9 +2,9 @@ package boneattachment
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/spatial"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewBoneAttachmentFromPointer(ptr gdnative.Pointer) *BoneAttachment {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := BoneAttachment{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 This node must be the child of a [Skeleton] node. You can then select a bone for this node to attach to. The BoneAttachment node will copy the transform of the selected bone.
 */
 type BoneAttachment struct {
-	Spatial
+	spatial.Spatial
 }
 
 func (o *BoneAttachment) BaseClass() string {
@@ -28,46 +37,49 @@ func (o *BoneAttachment) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *BoneAttachment) GetBoneName() gdnative.String {
 	log.Println("Calling BoneAttachment.GetBoneName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BoneAttachment", "get_bone_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bone_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false bone_name String}], Returns: void
 */
+
 func (o *BoneAttachment) SetBoneName(boneName gdnative.String) {
 	log.Println("Calling BoneAttachment.SetBoneName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(boneName)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(boneName)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BoneAttachment", "set_bone_name")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_bone_name", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   BoneAttachmentImplementer is an interface for BoneAttachment objects.
-*/
-type BoneAttachmentImplementer interface {
-	Class
 }

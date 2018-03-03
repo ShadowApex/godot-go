@@ -2,7 +2,6 @@ package videostream
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -16,6 +15,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewVideoStreamWebmFromPointer(ptr gdnative.Pointer) *VideoStreamWebm {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := VideoStreamWebm{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
@@ -28,46 +36,49 @@ func (o *VideoStreamWebm) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *VideoStreamWebm) GetFile() gdnative.String {
 	log.Println("Calling VideoStreamWebm.GetFile()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VideoStreamWebm", "get_file")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_file", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false file String}], Returns: void
 */
+
 func (o *VideoStreamWebm) SetFile(file gdnative.String) {
 	log.Println("Calling VideoStreamWebm.SetFile()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(file)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(file)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VideoStreamWebm", "set_file")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_file", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   VideoStreamWebmImplementer is an interface for VideoStreamWebm objects.
-*/
-type VideoStreamWebmImplementer interface {
-	Class
 }

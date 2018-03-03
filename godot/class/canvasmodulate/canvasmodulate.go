@@ -2,7 +2,9 @@ package canvasmodulate
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/node2d"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewCanvasModulateFromPointer(ptr gdnative.Pointer) *CanvasModulate {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := CanvasModulate{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 [code]CanvasModulate[/code] tints the canvas elements using its assigned [code]color[/code].
 */
 type CanvasModulate struct {
-	Node2D
+	node2d.Node2D
 }
 
 func (o *CanvasModulate) BaseClass() string {
@@ -26,46 +37,49 @@ func (o *CanvasModulate) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Color
 */
-func (o *CanvasModulate) GetColor() *Color {
+
+func (o *CanvasModulate) GetColor() gdnative.Color {
 	log.Println("Calling CanvasModulate.GetColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasModulate", "get_color")
 
 	// Call the parent method.
+	// Color
+	retPtr := gdnative.NewEmptyColor()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_color", goArguments, "*Color")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewColorFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Color)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false color Color}], Returns: void
 */
-func (o *CanvasModulate) SetColor(color *Color) {
+
+func (o *CanvasModulate) SetColor(color gdnative.Color) {
 	log.Println("Calling CanvasModulate.SetColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasModulate", "set_color")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   CanvasModulateImplementer is an interface for CanvasModulate objects.
-*/
-type CanvasModulateImplementer interface {
-	Class
 }

@@ -2,9 +2,18 @@ package editor
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/resource"
+
+	"github.com/shadowapex/godot-go/godot/class/control"
+
+	"github.com/shadowapex/godot-go/godot/class/node"
+
+	"github.com/shadowapex/godot-go/godot/class/scripteditor"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +25,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewEditorInterfaceFromPointer(ptr gdnative.Pointer) *EditorInterface {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := EditorInterface{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Editor interface. Allows saving and (re-)loading scenes, rendering mesh previews, inspecting and editing resources and objects and provides access to [EditorSettings], [EditorFileSystem], [EditorResourcePreview]\ er, [ScriptEditor], the editor viewport, as well as information about scenes. Also see [EditorPlugin] and [EditorScript].
 */
 type EditorInterface struct {
-	Node
+	node.Node
 }
 
 func (o *EditorInterface) BaseClass() string {
@@ -28,400 +46,478 @@ func (o *EditorInterface) BaseClass() string {
 }
 
 /*
-   Edits the given [Resource].
+        Edits the given [Resource].
+	Args: [{ false resource Resource}], Returns: void
 */
-func (o *EditorInterface) EditResource(resource *Resource) {
+
+func (o *EditorInterface) EditResource(resource resource.Resource) {
 	log.Println("Calling EditorInterface.EditResource()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(resource)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(resource.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "edit_resource")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "edit_resource", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the base [Control].
+        Returns the base [Control].
+	Args: [], Returns: Control
 */
-func (o *EditorInterface) GetBaseControl() *Control {
+
+func (o *EditorInterface) GetBaseControl() control.Control {
 	log.Println("Calling EditorInterface.GetBaseControl()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "get_base_control")
 
 	// Call the parent method.
+	// Control
+	retPtr := control.NewEmptyControl()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_base_control", goArguments, "*Control")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := control.NewControlFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Control)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the edited scene's root [Node].
+        Returns the edited scene's root [Node].
+	Args: [], Returns: Node
 */
-func (o *EditorInterface) GetEditedSceneRoot() *Node {
+
+func (o *EditorInterface) GetEditedSceneRoot() node.Node {
 	log.Println("Calling EditorInterface.GetEditedSceneRoot()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "get_edited_scene_root")
 
 	// Call the parent method.
+	// Node
+	retPtr := node.NewEmptyNode()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_edited_scene_root", goArguments, "*Node")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := node.NewNodeFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Node)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the [EditorSettings].
+        Returns the [EditorSettings].
+	Args: [], Returns: EditorSettings
 */
-func (o *EditorInterface) GetEditorSettings() *EditorSettings {
+
+func (o *EditorInterface) GetEditorSettings() EditorSettings {
 	log.Println("Calling EditorInterface.GetEditorSettings()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "get_editor_settings")
 
 	// Call the parent method.
+	// EditorSettings
+	retPtr := NewEmptyEditorSettings()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_editor_settings", goArguments, "*EditorSettings")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewEditorSettingsFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*EditorSettings)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the editor [Viewport].
+        Returns the editor [Viewport].
+	Args: [], Returns: Control
 */
-func (o *EditorInterface) GetEditorViewport() *Control {
+
+func (o *EditorInterface) GetEditorViewport() control.Control {
 	log.Println("Calling EditorInterface.GetEditorViewport()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "get_editor_viewport")
 
 	// Call the parent method.
+	// Control
+	retPtr := control.NewEmptyControl()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_editor_viewport", goArguments, "*Control")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := control.NewControlFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Control)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns an [Array] of the currently opened scenes.
+        Returns an [Array] of the currently opened scenes.
+	Args: [], Returns: Array
 */
-func (o *EditorInterface) GetOpenScenes() *Array {
+
+func (o *EditorInterface) GetOpenScenes() gdnative.Array {
 	log.Println("Calling EditorInterface.GetOpenScenes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "get_open_scenes")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_open_scenes", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the [EditorFileSystem].
+        Returns the [EditorFileSystem].
+	Args: [], Returns: EditorFileSystem
 */
-func (o *EditorInterface) GetResourceFilesystem() *EditorFileSystem {
+
+func (o *EditorInterface) GetResourceFilesystem() EditorFileSystem {
 	log.Println("Calling EditorInterface.GetResourceFilesystem()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "get_resource_filesystem")
 
 	// Call the parent method.
+	// EditorFileSystem
+	retPtr := NewEmptyEditorFileSystem()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_resource_filesystem", goArguments, "*EditorFileSystem")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewEditorFileSystemFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*EditorFileSystem)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the [EditorResourcePreview]\ er.
+        Returns the [EditorResourcePreview]\ er.
+	Args: [], Returns: EditorResourcePreview
 */
-func (o *EditorInterface) GetResourcePreviewer() *EditorResourcePreview {
+
+func (o *EditorInterface) GetResourcePreviewer() EditorResourcePreview {
 	log.Println("Calling EditorInterface.GetResourcePreviewer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "get_resource_previewer")
 
 	// Call the parent method.
+	// EditorResourcePreview
+	retPtr := NewEmptyEditorResourcePreview()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_resource_previewer", goArguments, "*EditorResourcePreview")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewEditorResourcePreviewFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*EditorResourcePreview)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the [ScriptEditor].
+        Returns the [ScriptEditor].
+	Args: [], Returns: ScriptEditor
 */
-func (o *EditorInterface) GetScriptEditor() *ScriptEditor {
+
+func (o *EditorInterface) GetScriptEditor() scripteditor.ScriptEditor {
 	log.Println("Calling EditorInterface.GetScriptEditor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "get_script_editor")
 
 	// Call the parent method.
+	// ScriptEditor
+	retPtr := scripteditor.NewEmptyScriptEditor()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_script_editor", goArguments, "*ScriptEditor")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := scripteditor.NewScriptEditorFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*ScriptEditor)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: String
+*/
+
 func (o *EditorInterface) GetSelectedPath() gdnative.String {
 	log.Println("Calling EditorInterface.GetSelectedPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "get_selected_path")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_selected_path", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the [EditorSelection].
+        Returns the [EditorSelection].
+	Args: [], Returns: EditorSelection
 */
-func (o *EditorInterface) GetSelection() *EditorSelection {
+
+func (o *EditorInterface) GetSelection() EditorSelection {
 	log.Println("Calling EditorInterface.GetSelection()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "get_selection")
 
 	// Call the parent method.
+	// EditorSelection
+	retPtr := NewEmptyEditorSelection()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_selection", goArguments, "*EditorSelection")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewEditorSelectionFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*EditorSelection)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Shows the given property on the given [code]object[/code] in the Editor's Inspector dock.
+        Shows the given property on the given [code]object[/code] in the Editor's Inspector dock.
+	Args: [{ false object Object} { true for_property String}], Returns: void
 */
-func (o *EditorInterface) InspectObject(object *Object, forProperty gdnative.String) {
+
+func (o *EditorInterface) InspectObject(object object.Object, forProperty gdnative.String) {
 	log.Println("Calling EditorInterface.InspectObject()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(object)
-	goArguments[1] = reflect.ValueOf(forProperty)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromObject(object.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromString(forProperty)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "inspect_object")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "inspect_object", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the enabled status of a plugin. The plugin name is the same as its directory name.
+        Returns the enabled status of a plugin. The plugin name is the same as its directory name.
+	Args: [{ false plugin String}], Returns: bool
 */
+
 func (o *EditorInterface) IsPluginEnabled(plugin gdnative.String) gdnative.Bool {
 	log.Println("Calling EditorInterface.IsPluginEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(plugin)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(plugin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "is_plugin_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_plugin_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns mesh previews rendered at the given size as an [Array] of [Texture]s.
+        Returns mesh previews rendered at the given size as an [Array] of [Texture]s.
+	Args: [{ false meshes Array} { false preview_size int}], Returns: Array
 */
-func (o *EditorInterface) MakeMeshPreviews(meshes *Array, previewSize gdnative.Int) *Array {
+
+func (o *EditorInterface) MakeMeshPreviews(meshes gdnative.Array, previewSize gdnative.Int) gdnative.Array {
 	log.Println("Calling EditorInterface.MakeMeshPreviews()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(meshes)
-	goArguments[1] = reflect.ValueOf(previewSize)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromArray(meshes)
+	ptrArguments[1] = gdnative.NewPointerFromInt(previewSize)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "make_mesh_previews")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "make_mesh_previews", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Opens the scene at the given path.
+        Opens the scene at the given path.
+	Args: [{ false scene_filepath String}], Returns: void
 */
+
 func (o *EditorInterface) OpenSceneFromPath(sceneFilepath gdnative.String) {
 	log.Println("Calling EditorInterface.OpenSceneFromPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(sceneFilepath)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(sceneFilepath)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "open_scene_from_path")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "open_scene_from_path", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Reloads the scene at the given path.
+        Reloads the scene at the given path.
+	Args: [{ false scene_filepath String}], Returns: void
 */
+
 func (o *EditorInterface) ReloadSceneFromPath(sceneFilepath gdnative.String) {
 	log.Println("Calling EditorInterface.ReloadSceneFromPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(sceneFilepath)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(sceneFilepath)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "reload_scene_from_path")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "reload_scene_from_path", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Saves the scene. Returns either OK or ERR_CANT_CREATE. See [@GlobalScope] constants.
+        Saves the scene. Returns either OK or ERR_CANT_CREATE. See [@GlobalScope] constants.
+	Args: [], Returns: enum.Error
 */
-func (o *EditorInterface) SaveScene() gdnative.Int {
-	log.Println("Calling EditorInterface.SaveScene()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "save_scene", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Saves the scene as a file at [code]path[/code].
+        Saves the scene as a file at [code]path[/code].
+	Args: [{ false path String} {True true with_preview bool}], Returns: void
 */
+
 func (o *EditorInterface) SaveSceneAs(path gdnative.String, withPreview gdnative.Bool) {
 	log.Println("Calling EditorInterface.SaveSceneAs()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(path)
-	goArguments[1] = reflect.ValueOf(withPreview)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+	ptrArguments[1] = gdnative.NewPointerFromBool(withPreview)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "save_scene_as")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "save_scene_as", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false p_file String}], Returns: void
+*/
+
 func (o *EditorInterface) SelectFile(pFile gdnative.String) {
 	log.Println("Calling EditorInterface.SelectFile()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pFile)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(pFile)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "select_file")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "select_file", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the enabled status of a plugin. The plugin name is the same as its directory name.
+        Sets the enabled status of a plugin. The plugin name is the same as its directory name.
+	Args: [{ false plugin String} { false enabled bool}], Returns: void
 */
+
 func (o *EditorInterface) SetPluginEnabled(plugin gdnative.String, enabled gdnative.Bool) {
 	log.Println("Calling EditorInterface.SetPluginEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(plugin)
-	goArguments[1] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(plugin)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "set_plugin_enabled")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_plugin_enabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   EditorInterfaceImplementer is an interface for EditorInterface objects.
-*/
-type EditorInterfaceImplementer interface {
-	Class
 }

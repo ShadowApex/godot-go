@@ -2,9 +2,13 @@ package editor
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/reference"
+	"github.com/shadowapex/godot-go/godot/class/resource"
+
+	"github.com/shadowapex/godot-go/godot/class/texture"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +20,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewEditorResourcePreviewGeneratorFromPointer(ptr gdnative.Pointer) *EditorResourcePreviewGenerator {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := EditorResourcePreviewGenerator{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Custom code to generate previews. Please check "file_dialog/thumbnail_size" in EditorSettings to find out the right size to do previews at.
 */
 type EditorResourcePreviewGenerator struct {
-	Reference
+	reference.Reference
 }
 
 func (o *EditorResourcePreviewGenerator) BaseClass() string {
@@ -28,71 +41,82 @@ func (o *EditorResourcePreviewGenerator) BaseClass() string {
 }
 
 /*
-   Generate a preview from a given resource. This must be always implemented. Returning an empty texture is an OK way to fail and let another generator take care. Care must be taken because this function is always called from a thread (not the main thread).
+        Generate a preview from a given resource. This must be always implemented. Returning an empty texture is an OK way to fail and let another generator take care. Care must be taken because this function is always called from a thread (not the main thread).
+	Args: [{ false from Resource}], Returns: Texture
 */
-func (o *EditorResourcePreviewGenerator) Generate(from *Resource) *Texture {
+
+func (o *EditorResourcePreviewGenerator) Generate(from resource.Resource) texture.Texture {
 	log.Println("Calling EditorResourcePreviewGenerator.Generate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(from)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(from.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorResourcePreviewGenerator", "generate")
 
 	// Call the parent method.
+	// Texture
+	retPtr := texture.NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "generate", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := texture.NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Generate a preview directly from a path, implementing this is optional, as default code will load and call generate() Returning an empty texture is an OK way to fail and let another generator take care. Care must be taken because this function is always called from a thread (not the main thread).
+        Generate a preview directly from a path, implementing this is optional, as default code will load and call generate() Returning an empty texture is an OK way to fail and let another generator take care. Care must be taken because this function is always called from a thread (not the main thread).
+	Args: [{ false path String}], Returns: Texture
 */
-func (o *EditorResourcePreviewGenerator) GenerateFromPath(path gdnative.String) *Texture {
+
+func (o *EditorResourcePreviewGenerator) GenerateFromPath(path gdnative.String) texture.Texture {
 	log.Println("Calling EditorResourcePreviewGenerator.GenerateFromPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorResourcePreviewGenerator", "generate_from_path")
 
 	// Call the parent method.
+	// Texture
+	retPtr := texture.NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "generate_from_path", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := texture.NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return if your generator supports this resource type.
+        Return if your generator supports this resource type.
+	Args: [{ false type String}], Returns: bool
 */
+
 func (o *EditorResourcePreviewGenerator) Handles(aType gdnative.String) gdnative.Bool {
 	log.Println("Calling EditorResourcePreviewGenerator.Handles()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorResourcePreviewGenerator", "handles")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "handles", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   EditorResourcePreviewGeneratorImplementer is an interface for EditorResourcePreviewGenerator objects.
-*/
-type EditorResourcePreviewGeneratorImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

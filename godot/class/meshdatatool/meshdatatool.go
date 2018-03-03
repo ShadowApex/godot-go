@@ -2,9 +2,11 @@ package meshdatatool
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/material"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewMeshDataToolFromPointer(ptr gdnative.Pointer) *MeshDataTool {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := MeshDataTool{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type MeshDataTool struct {
-	Reference
+	reference.Reference
 }
 
 func (o *MeshDataTool) BaseClass() string {
@@ -29,775 +40,925 @@ func (o *MeshDataTool) BaseClass() string {
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *MeshDataTool) Clear() {
 	log.Println("Calling MeshDataTool.Clear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *MeshDataTool) CommitToSurface(mesh *ArrayMesh) gdnative.Int {
-	log.Println("Calling MeshDataTool.CommitToSurface()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mesh)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "commit_to_surface", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
+	Args: [{ false mesh ArrayMesh}], Returns: enum.Error
+*/
 
 /*
 
- */
-func (o *MeshDataTool) CreateFromSurface(mesh *ArrayMesh, surface gdnative.Int) gdnative.Int {
-	log.Println("Calling MeshDataTool.CreateFromSurface()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(surface)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "create_from_surface", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
+	Args: [{ false mesh ArrayMesh} { false surface int}], Returns: enum.Error
+*/
 
 /*
 
- */
+	Args: [], Returns: int
+*/
+
 func (o *MeshDataTool) GetEdgeCount() gdnative.Int {
 	log.Println("Calling MeshDataTool.GetEdgeCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_edge_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_edge_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshDataTool) GetEdgeFaces(idx gdnative.Int) *PoolIntArray {
+	Args: [{ false idx int}], Returns: PoolIntArray
+*/
+
+func (o *MeshDataTool) GetEdgeFaces(idx gdnative.Int) gdnative.PoolIntArray {
 	log.Println("Calling MeshDataTool.GetEdgeFaces()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_edge_faces")
 
 	// Call the parent method.
+	// PoolIntArray
+	retPtr := gdnative.NewEmptyPoolIntArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_edge_faces", goArguments, "*PoolIntArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshDataTool) GetEdgeMeta(idx gdnative.Int) *Variant {
+	Args: [{ false idx int}], Returns: Variant
+*/
+
+func (o *MeshDataTool) GetEdgeMeta(idx gdnative.Int) gdnative.Variant {
 	log.Println("Calling MeshDataTool.GetEdgeMeta()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_edge_meta")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_edge_meta", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false idx int} { false vertex int}], Returns: int
+*/
+
 func (o *MeshDataTool) GetEdgeVertex(idx gdnative.Int, vertex gdnative.Int) gdnative.Int {
 	log.Println("Calling MeshDataTool.GetEdgeVertex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(vertex)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromInt(vertex)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_edge_vertex")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_edge_vertex", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: int
+*/
+
 func (o *MeshDataTool) GetFaceCount() gdnative.Int {
 	log.Println("Calling MeshDataTool.GetFaceCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_face_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_face_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false idx int} { false edge int}], Returns: int
+*/
+
 func (o *MeshDataTool) GetFaceEdge(idx gdnative.Int, edge gdnative.Int) gdnative.Int {
 	log.Println("Calling MeshDataTool.GetFaceEdge()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(edge)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromInt(edge)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_face_edge")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_face_edge", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshDataTool) GetFaceMeta(idx gdnative.Int) *Variant {
+	Args: [{ false idx int}], Returns: Variant
+*/
+
+func (o *MeshDataTool) GetFaceMeta(idx gdnative.Int) gdnative.Variant {
 	log.Println("Calling MeshDataTool.GetFaceMeta()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_face_meta")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_face_meta", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshDataTool) GetFaceNormal(idx gdnative.Int) *Vector3 {
+	Args: [{ false idx int}], Returns: Vector3
+*/
+
+func (o *MeshDataTool) GetFaceNormal(idx gdnative.Int) gdnative.Vector3 {
 	log.Println("Calling MeshDataTool.GetFaceNormal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_face_normal")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_face_normal", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false idx int} { false vertex int}], Returns: int
+*/
+
 func (o *MeshDataTool) GetFaceVertex(idx gdnative.Int, vertex gdnative.Int) gdnative.Int {
 	log.Println("Calling MeshDataTool.GetFaceVertex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(vertex)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromInt(vertex)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_face_vertex")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_face_vertex", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: int
+*/
+
 func (o *MeshDataTool) GetFormat() gdnative.Int {
 	log.Println("Calling MeshDataTool.GetFormat()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_format")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_format", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshDataTool) GetMaterial() *Material {
+	Args: [], Returns: Material
+*/
+
+func (o *MeshDataTool) GetMaterial() material.Material {
 	log.Println("Calling MeshDataTool.GetMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_material")
 
 	// Call the parent method.
+	// Material
+	retPtr := material.NewEmptyMaterial()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_material", goArguments, "*Material")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := material.NewMaterialFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Material)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshDataTool) GetVertex(idx gdnative.Int) *Vector3 {
+	Args: [{ false idx int}], Returns: Vector3
+*/
+
+func (o *MeshDataTool) GetVertex(idx gdnative.Int) gdnative.Vector3 {
 	log.Println("Calling MeshDataTool.GetVertex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_vertex")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_vertex", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshDataTool) GetVertexBones(idx gdnative.Int) *PoolIntArray {
+	Args: [{ false idx int}], Returns: PoolIntArray
+*/
+
+func (o *MeshDataTool) GetVertexBones(idx gdnative.Int) gdnative.PoolIntArray {
 	log.Println("Calling MeshDataTool.GetVertexBones()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_vertex_bones")
 
 	// Call the parent method.
+	// PoolIntArray
+	retPtr := gdnative.NewEmptyPoolIntArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_vertex_bones", goArguments, "*PoolIntArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshDataTool) GetVertexColor(idx gdnative.Int) *Color {
+	Args: [{ false idx int}], Returns: Color
+*/
+
+func (o *MeshDataTool) GetVertexColor(idx gdnative.Int) gdnative.Color {
 	log.Println("Calling MeshDataTool.GetVertexColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_vertex_color")
 
 	// Call the parent method.
+	// Color
+	retPtr := gdnative.NewEmptyColor()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_vertex_color", goArguments, "*Color")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewColorFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Color)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: int
+*/
+
 func (o *MeshDataTool) GetVertexCount() gdnative.Int {
 	log.Println("Calling MeshDataTool.GetVertexCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_vertex_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_vertex_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshDataTool) GetVertexEdges(idx gdnative.Int) *PoolIntArray {
+	Args: [{ false idx int}], Returns: PoolIntArray
+*/
+
+func (o *MeshDataTool) GetVertexEdges(idx gdnative.Int) gdnative.PoolIntArray {
 	log.Println("Calling MeshDataTool.GetVertexEdges()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_vertex_edges")
 
 	// Call the parent method.
+	// PoolIntArray
+	retPtr := gdnative.NewEmptyPoolIntArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_vertex_edges", goArguments, "*PoolIntArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshDataTool) GetVertexFaces(idx gdnative.Int) *PoolIntArray {
+	Args: [{ false idx int}], Returns: PoolIntArray
+*/
+
+func (o *MeshDataTool) GetVertexFaces(idx gdnative.Int) gdnative.PoolIntArray {
 	log.Println("Calling MeshDataTool.GetVertexFaces()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_vertex_faces")
 
 	// Call the parent method.
+	// PoolIntArray
+	retPtr := gdnative.NewEmptyPoolIntArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_vertex_faces", goArguments, "*PoolIntArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshDataTool) GetVertexMeta(idx gdnative.Int) *Variant {
+	Args: [{ false idx int}], Returns: Variant
+*/
+
+func (o *MeshDataTool) GetVertexMeta(idx gdnative.Int) gdnative.Variant {
 	log.Println("Calling MeshDataTool.GetVertexMeta()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_vertex_meta")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_vertex_meta", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshDataTool) GetVertexNormal(idx gdnative.Int) *Vector3 {
+	Args: [{ false idx int}], Returns: Vector3
+*/
+
+func (o *MeshDataTool) GetVertexNormal(idx gdnative.Int) gdnative.Vector3 {
 	log.Println("Calling MeshDataTool.GetVertexNormal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_vertex_normal")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_vertex_normal", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshDataTool) GetVertexTangent(idx gdnative.Int) *Plane {
+	Args: [{ false idx int}], Returns: Plane
+*/
+
+func (o *MeshDataTool) GetVertexTangent(idx gdnative.Int) gdnative.Plane {
 	log.Println("Calling MeshDataTool.GetVertexTangent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_vertex_tangent")
 
 	// Call the parent method.
+	// Plane
+	retPtr := gdnative.NewEmptyPlane()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_vertex_tangent", goArguments, "*Plane")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPlaneFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Plane)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshDataTool) GetVertexUv(idx gdnative.Int) *Vector2 {
+	Args: [{ false idx int}], Returns: Vector2
+*/
+
+func (o *MeshDataTool) GetVertexUv(idx gdnative.Int) gdnative.Vector2 {
 	log.Println("Calling MeshDataTool.GetVertexUv()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_vertex_uv")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_vertex_uv", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshDataTool) GetVertexUv2(idx gdnative.Int) *Vector2 {
+	Args: [{ false idx int}], Returns: Vector2
+*/
+
+func (o *MeshDataTool) GetVertexUv2(idx gdnative.Int) gdnative.Vector2 {
 	log.Println("Calling MeshDataTool.GetVertexUv2()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_vertex_uv2")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_vertex_uv2", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshDataTool) GetVertexWeights(idx gdnative.Int) *PoolRealArray {
+	Args: [{ false idx int}], Returns: PoolRealArray
+*/
+
+func (o *MeshDataTool) GetVertexWeights(idx gdnative.Int) gdnative.PoolRealArray {
 	log.Println("Calling MeshDataTool.GetVertexWeights()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "get_vertex_weights")
 
 	// Call the parent method.
+	// PoolRealArray
+	retPtr := gdnative.NewEmptyPoolRealArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_vertex_weights", goArguments, "*PoolRealArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolRealArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolRealArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshDataTool) SetEdgeMeta(idx gdnative.Int, meta *Variant) {
+	Args: [{ false idx int} { false meta Variant}], Returns: void
+*/
+
+func (o *MeshDataTool) SetEdgeMeta(idx gdnative.Int, meta gdnative.Variant) {
 	log.Println("Calling MeshDataTool.SetEdgeMeta()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(meta)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(meta)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "set_edge_meta")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_edge_meta", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *MeshDataTool) SetFaceMeta(idx gdnative.Int, meta *Variant) {
+	Args: [{ false idx int} { false meta Variant}], Returns: void
+*/
+
+func (o *MeshDataTool) SetFaceMeta(idx gdnative.Int, meta gdnative.Variant) {
 	log.Println("Calling MeshDataTool.SetFaceMeta()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(meta)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(meta)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "set_face_meta")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_face_meta", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *MeshDataTool) SetMaterial(material *Material) {
+	Args: [{ false material Material}], Returns: void
+*/
+
+func (o *MeshDataTool) SetMaterial(material material.Material) {
 	log.Println("Calling MeshDataTool.SetMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(material)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(material.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "set_material")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_material", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *MeshDataTool) SetVertex(idx gdnative.Int, vertex *Vector3) {
+	Args: [{ false idx int} { false vertex Vector3}], Returns: void
+*/
+
+func (o *MeshDataTool) SetVertex(idx gdnative.Int, vertex gdnative.Vector3) {
 	log.Println("Calling MeshDataTool.SetVertex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(vertex)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromVector3(vertex)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "set_vertex")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_vertex", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *MeshDataTool) SetVertexBones(idx gdnative.Int, bones *PoolIntArray) {
+	Args: [{ false idx int} { false bones PoolIntArray}], Returns: void
+*/
+
+func (o *MeshDataTool) SetVertexBones(idx gdnative.Int, bones gdnative.PoolIntArray) {
 	log.Println("Calling MeshDataTool.SetVertexBones()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(bones)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromPoolIntArray(bones)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "set_vertex_bones")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_vertex_bones", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *MeshDataTool) SetVertexColor(idx gdnative.Int, color *Color) {
+	Args: [{ false idx int} { false color Color}], Returns: void
+*/
+
+func (o *MeshDataTool) SetVertexColor(idx gdnative.Int, color gdnative.Color) {
 	log.Println("Calling MeshDataTool.SetVertexColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "set_vertex_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_vertex_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *MeshDataTool) SetVertexMeta(idx gdnative.Int, meta *Variant) {
+	Args: [{ false idx int} { false meta Variant}], Returns: void
+*/
+
+func (o *MeshDataTool) SetVertexMeta(idx gdnative.Int, meta gdnative.Variant) {
 	log.Println("Calling MeshDataTool.SetVertexMeta()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(meta)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(meta)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "set_vertex_meta")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_vertex_meta", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *MeshDataTool) SetVertexNormal(idx gdnative.Int, normal *Vector3) {
+	Args: [{ false idx int} { false normal Vector3}], Returns: void
+*/
+
+func (o *MeshDataTool) SetVertexNormal(idx gdnative.Int, normal gdnative.Vector3) {
 	log.Println("Calling MeshDataTool.SetVertexNormal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(normal)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromVector3(normal)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "set_vertex_normal")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_vertex_normal", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *MeshDataTool) SetVertexTangent(idx gdnative.Int, tangent *Plane) {
+	Args: [{ false idx int} { false tangent Plane}], Returns: void
+*/
+
+func (o *MeshDataTool) SetVertexTangent(idx gdnative.Int, tangent gdnative.Plane) {
 	log.Println("Calling MeshDataTool.SetVertexTangent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(tangent)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromPlane(tangent)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "set_vertex_tangent")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_vertex_tangent", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *MeshDataTool) SetVertexUv(idx gdnative.Int, uv *Vector2) {
+	Args: [{ false idx int} { false uv Vector2}], Returns: void
+*/
+
+func (o *MeshDataTool) SetVertexUv(idx gdnative.Int, uv gdnative.Vector2) {
 	log.Println("Calling MeshDataTool.SetVertexUv()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(uv)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(uv)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "set_vertex_uv")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_vertex_uv", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *MeshDataTool) SetVertexUv2(idx gdnative.Int, uv2 *Vector2) {
+	Args: [{ false idx int} { false uv2 Vector2}], Returns: void
+*/
+
+func (o *MeshDataTool) SetVertexUv2(idx gdnative.Int, uv2 gdnative.Vector2) {
 	log.Println("Calling MeshDataTool.SetVertexUv2()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(uv2)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(uv2)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "set_vertex_uv2")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_vertex_uv2", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *MeshDataTool) SetVertexWeights(idx gdnative.Int, weights *PoolRealArray) {
+	Args: [{ false idx int} { false weights PoolRealArray}], Returns: void
+*/
+
+func (o *MeshDataTool) SetVertexWeights(idx gdnative.Int, weights gdnative.PoolRealArray) {
 	log.Println("Calling MeshDataTool.SetVertexWeights()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(weights)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromPoolRealArray(weights)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshDataTool", "set_vertex_weights")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_vertex_weights", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   MeshDataToolImplementer is an interface for MeshDataTool objects.
-*/
-type MeshDataToolImplementer interface {
-	Class
 }

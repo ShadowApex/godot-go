@@ -2,7 +2,6 @@ package visualscript
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -16,6 +15,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewVisualScriptGlobalConstantFromPointer(ptr gdnative.Pointer) *VisualScriptGlobalConstant {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := VisualScriptGlobalConstant{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
@@ -28,46 +36,49 @@ func (o *VisualScriptGlobalConstant) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *VisualScriptGlobalConstant) GetGlobalConstant() gdnative.Int {
 	log.Println("Calling VisualScriptGlobalConstant.GetGlobalConstant()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptGlobalConstant", "get_global_constant")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_global_constant", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false index int}], Returns: void
 */
+
 func (o *VisualScriptGlobalConstant) SetGlobalConstant(index gdnative.Int) {
 	log.Println("Calling VisualScriptGlobalConstant.SetGlobalConstant()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(index)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(index)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptGlobalConstant", "set_global_constant")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_global_constant", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   VisualScriptGlobalConstantImplementer is an interface for VisualScriptGlobalConstant objects.
-*/
-type VisualScriptGlobalConstantImplementer interface {
-	Class
 }

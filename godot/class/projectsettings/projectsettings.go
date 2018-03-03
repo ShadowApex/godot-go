@@ -2,9 +2,9 @@ package projectsettings
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -15,6 +15,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewprojectSettingsFromPointer(ptr gdnative.Pointer) *projectSettings {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := projectSettings{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 func newSingletonProjectSettings() *projectSettings {
 	obj := &projectSettings{}
@@ -32,7 +41,7 @@ var ProjectSettings = newSingletonProjectSettings()
 Contains global variables accessible from everywhere. Use "ProjectSettings.get_setting(variable)", "ProjectSettings.set_setting(variable,value)" or "ProjectSettings.has_setting(variable)" to access them. Variables stored in project.godot are also loaded into ProjectSettings, making this object very useful for reading custom game configuration options.
 */
 type projectSettings struct {
-	Object
+	object.Object
 }
 
 func (o *projectSettings) BaseClass() string {
@@ -40,303 +49,340 @@ func (o *projectSettings) BaseClass() string {
 }
 
 /*
-   Add a custom property info to a property. The dictionary must contain: name:[String](the name of the property) and type:[int](see TYPE_* in [@GlobalScope]), and optionally hint:[int](see PROPERTY_HINT_* in [@GlobalScope]), hint_string:[String]. Example: [codeblock] ProjectSettings.set("category/property_name", 0) var property_info = { "name": "category/property_name", "type": TYPE_INT, "hint": PROPERTY_HINT_ENUM, "hint_string": "one,two,three" } ProjectSettings.add_property_info(property_info) [/codeblock]
+        Add a custom property info to a property. The dictionary must contain: name:[String](the name of the property) and type:[int](see TYPE_* in [@GlobalScope]), and optionally hint:[int](see PROPERTY_HINT_* in [@GlobalScope]), hint_string:[String]. Example: [codeblock] ProjectSettings.set("category/property_name", 0) var property_info = { "name": "category/property_name", "type": TYPE_INT, "hint": PROPERTY_HINT_ENUM, "hint_string": "one,two,three" } ProjectSettings.add_property_info(property_info) [/codeblock]
+	Args: [{ false hint Dictionary}], Returns: void
 */
-func (o *projectSettings) AddPropertyInfo(hint *Dictionary) {
+
+func (o *projectSettings) AddPropertyInfo(hint gdnative.Dictionary) {
 	log.Println("Calling ProjectSettings.AddPropertyInfo()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(hint)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromDictionary(hint)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProjectSettings", "add_property_info")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_property_info", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Clear the whole configuration (not recommended, may break things).
+        Clear the whole configuration (not recommended, may break things).
+	Args: [{ false name String}], Returns: void
 */
+
 func (o *projectSettings) Clear(name gdnative.String) {
 	log.Println("Calling ProjectSettings.Clear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProjectSettings", "clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Return the order of a configuration value (influences when saved to the config file).
+        Return the order of a configuration value (influences when saved to the config file).
+	Args: [{ false name String}], Returns: int
 */
+
 func (o *projectSettings) GetOrder(name gdnative.String) gdnative.Int {
 	log.Println("Calling ProjectSettings.GetOrder()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProjectSettings", "get_order")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_order", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *projectSettings) GetSetting(name gdnative.String) *Variant {
+	Args: [{ false name String}], Returns: Variant
+*/
+
+func (o *projectSettings) GetSetting(name gdnative.String) gdnative.Variant {
 	log.Println("Calling ProjectSettings.GetSetting()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProjectSettings", "get_setting")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_setting", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Convert a localized path (res://) to a full native OS path.
+        Convert a localized path (res://) to a full native OS path.
+	Args: [{ false path String}], Returns: String
 */
+
 func (o *projectSettings) GlobalizePath(path gdnative.String) gdnative.String {
 	log.Println("Calling ProjectSettings.GlobalizePath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProjectSettings", "globalize_path")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "globalize_path", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return true if a configuration value is present.
+        Return true if a configuration value is present.
+	Args: [{ false name String}], Returns: bool
 */
+
 func (o *projectSettings) HasSetting(name gdnative.String) gdnative.Bool {
 	log.Println("Calling ProjectSettings.HasSetting()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProjectSettings", "has_setting")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_setting", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false pack String}], Returns: bool
+*/
+
 func (o *projectSettings) LoadResourcePack(pack gdnative.String) gdnative.Bool {
 	log.Println("Calling ProjectSettings.LoadResourcePack()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pack)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(pack)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProjectSettings", "load_resource_pack")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "load_resource_pack", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Convert a path to a localized path (res:// path).
+        Convert a path to a localized path (res:// path).
+	Args: [{ false path String}], Returns: String
 */
+
 func (o *projectSettings) LocalizePath(path gdnative.String) gdnative.String {
 	log.Println("Calling ProjectSettings.LocalizePath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProjectSettings", "localize_path")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "localize_path", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false name String}], Returns: bool
+*/
+
 func (o *projectSettings) PropertyCanRevert(name gdnative.String) gdnative.Bool {
 	log.Println("Calling ProjectSettings.PropertyCanRevert()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProjectSettings", "property_can_revert")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "property_can_revert", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *projectSettings) PropertyGetRevert(name gdnative.String) *Variant {
+	Args: [{ false name String}], Returns: Variant
+*/
+
+func (o *projectSettings) PropertyGetRevert(name gdnative.String) gdnative.Variant {
 	log.Println("Calling ProjectSettings.PropertyGetRevert()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProjectSettings", "property_get_revert")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "property_get_revert", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *projectSettings) Save() gdnative.Int {
-	log.Println("Calling ProjectSettings.Save()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "save", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
+	Args: [], Returns: enum.Error
+*/
 
 /*
 
- */
-func (o *projectSettings) SaveCustom(file gdnative.String) gdnative.Int {
-	log.Println("Calling ProjectSettings.SaveCustom()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(file)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "save_custom", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
+	Args: [{ false file String}], Returns: enum.Error
+*/
 
 /*
 
- */
-func (o *projectSettings) SetInitialValue(name gdnative.String, value *Variant) {
+	Args: [{ false name String} { false value Variant}], Returns: void
+*/
+
+func (o *projectSettings) SetInitialValue(name gdnative.String, value gdnative.Variant) {
 	log.Println("Calling ProjectSettings.SetInitialValue()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProjectSettings", "set_initial_value")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_initial_value", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the order of a configuration value (influences when saved to the config file).
+        Set the order of a configuration value (influences when saved to the config file).
+	Args: [{ false name String} { false position int}], Returns: void
 */
+
 func (o *projectSettings) SetOrder(name gdnative.String, position gdnative.Int) {
 	log.Println("Calling ProjectSettings.SetOrder()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromInt(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProjectSettings", "set_order")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_order", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *projectSettings) SetSetting(name gdnative.String, value *Variant) {
+	Args: [{ false name String} { false value Variant}], Returns: void
+*/
+
+func (o *projectSettings) SetSetting(name gdnative.String, value gdnative.Variant) {
 	log.Println("Calling ProjectSettings.SetSetting()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProjectSettings", "set_setting")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_setting", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }

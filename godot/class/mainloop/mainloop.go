@@ -2,7 +2,11 @@ package mainloop
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/inputevent"
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewMainLoopFromPointer(ptr gdnative.Pointer) *MainLoop {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := MainLoop{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Main loop is the abstract main loop base class. All other main loop classes are derived from it. Upon application start, a [code]MainLoop[/code] has to be provided to OS, else the application will exit. This happens automatically (and a [SceneTree] is created), unless a main [Script] is supplied, which may or not create and return a [code]MainLoop[/code].
 */
 type MainLoop struct {
-	Object
+	object.Object
 }
 
 func (o *MainLoop) BaseClass() string {
@@ -27,244 +40,293 @@ func (o *MainLoop) BaseClass() string {
 
 /*
 
- */
-func (o *MainLoop) X_DropFiles(files *PoolStringArray, screen gdnative.Int) {
+	Args: [{ false files PoolStringArray} { false screen int}], Returns: void
+*/
+
+func (o *MainLoop) X_DropFiles(files gdnative.PoolStringArray, screen gdnative.Int) {
 	log.Println("Calling MainLoop.X_DropFiles()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(files)
-	goArguments[1] = reflect.ValueOf(screen)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromPoolStringArray(files)
+	ptrArguments[1] = gdnative.NewPointerFromInt(screen)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MainLoop", "_drop_files")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_drop_files", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Called before the program exits.
+        Called before the program exits.
+	Args: [], Returns: void
 */
+
 func (o *MainLoop) X_Finalize() {
 	log.Println("Calling MainLoop.X_Finalize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MainLoop", "_finalize")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_finalize", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Called each idle frame with time since last call as an only argument.
+        Called each idle frame with time since last call as an only argument.
+	Args: [{ false delta float}], Returns: void
 */
+
 func (o *MainLoop) X_Idle(delta gdnative.Float) {
 	log.Println("Calling MainLoop.X_Idle()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(delta)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(delta)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MainLoop", "_idle")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_idle", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Called once during initialization.
+        Called once during initialization.
+	Args: [], Returns: void
 */
+
 func (o *MainLoop) X_Initialize() {
 	log.Println("Calling MainLoop.X_Initialize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MainLoop", "_initialize")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_initialize", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *MainLoop) X_InputEvent(ev *InputEvent) {
+	Args: [{ false ev InputEvent}], Returns: void
+*/
+
+func (o *MainLoop) X_InputEvent(ev inputevent.InputEvent) {
 	log.Println("Calling MainLoop.X_InputEvent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ev)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(ev.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MainLoop", "_input_event")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_input_event", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false text String}], Returns: void
+*/
+
 func (o *MainLoop) X_InputText(text gdnative.String) {
 	log.Println("Calling MainLoop.X_InputText()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(text)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(text)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MainLoop", "_input_text")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_input_text", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false delta float}], Returns: void
+*/
+
 func (o *MainLoop) X_Iteration(delta gdnative.Float) {
 	log.Println("Calling MainLoop.X_Iteration()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(delta)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(delta)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MainLoop", "_iteration")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_iteration", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *MainLoop) Finish() {
 	log.Println("Calling MainLoop.Finish()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MainLoop", "finish")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "finish", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false delta float}], Returns: bool
+*/
+
 func (o *MainLoop) Idle(delta gdnative.Float) gdnative.Bool {
 	log.Println("Calling MainLoop.Idle()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(delta)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(delta)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MainLoop", "idle")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "idle", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *MainLoop) Init() {
 	log.Println("Calling MainLoop.Init()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MainLoop", "init")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "init", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *MainLoop) InputEvent(ev *InputEvent) {
+	Args: [{ false ev InputEvent}], Returns: void
+*/
+
+func (o *MainLoop) InputEvent(ev inputevent.InputEvent) {
 	log.Println("Calling MainLoop.InputEvent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ev)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(ev.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MainLoop", "input_event")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "input_event", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false text String}], Returns: void
+*/
+
 func (o *MainLoop) InputText(text gdnative.String) {
 	log.Println("Calling MainLoop.InputText()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(text)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(text)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MainLoop", "input_text")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "input_text", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false delta float}], Returns: bool
+*/
+
 func (o *MainLoop) Iteration(delta gdnative.Float) gdnative.Bool {
 	log.Println("Calling MainLoop.Iteration()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(delta)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(delta)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MainLoop", "iteration")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "iteration", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   MainLoopImplementer is an interface for MainLoop objects.
-*/
-type MainLoopImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

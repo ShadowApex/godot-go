@@ -2,9 +2,9 @@ package ip
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -15,6 +15,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewipFromPointer(ptr gdnative.Pointer) *ip {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ip{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 func newSingletonIP() *ip {
 	obj := &ip{}
@@ -32,7 +41,7 @@ var IP = newSingletonIP()
 IP contains support functions for the Internet Protocol (IP). TCP/IP support is in different classes (see [StreamPeerTCP] and [TCP_Server]). IP provides DNS hostname resolution support, both blocking and threaded.
 */
 type ip struct {
-	Object
+	object.Object
 }
 
 func (o *ip) BaseClass() string {
@@ -40,143 +49,159 @@ func (o *ip) BaseClass() string {
 }
 
 /*
-   Removes all of a "hostname"'s cached references. If no "hostname" is given then all cached IP addresses are removed.
+        Removes all of a "hostname"'s cached references. If no "hostname" is given then all cached IP addresses are removed.
+	Args: [{ true hostname String}], Returns: void
 */
+
 func (o *ip) ClearCache(hostname gdnative.String) {
 	log.Println("Calling IP.ClearCache()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(hostname)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(hostname)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("IP", "clear_cache")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear_cache", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Removes a given item "id" from the queue. This should be used to free a queue after it has completed to enable more queries to happen.
+        Removes a given item "id" from the queue. This should be used to free a queue after it has completed to enable more queries to happen.
+	Args: [{ false id int}], Returns: void
 */
+
 func (o *ip) EraseResolveItem(id gdnative.Int) {
 	log.Println("Calling IP.EraseResolveItem()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("IP", "erase_resolve_item")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "erase_resolve_item", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns all of the user's current IPv4 and IPv6 addresses as an array.
+        Returns all of the user's current IPv4 and IPv6 addresses as an array.
+	Args: [], Returns: Array
 */
-func (o *ip) GetLocalAddresses() *Array {
+
+func (o *ip) GetLocalAddresses() gdnative.Array {
 	log.Println("Calling IP.GetLocalAddresses()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("IP", "get_local_addresses")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_local_addresses", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a queued hostname's IP address, given its queue "id". Returns an empty string on error or if resolution hasn't happened yet (see [method get_resolve_item_status]).
+        Returns a queued hostname's IP address, given its queue "id". Returns an empty string on error or if resolution hasn't happened yet (see [method get_resolve_item_status]).
+	Args: [{ false id int}], Returns: String
 */
+
 func (o *ip) GetResolveItemAddress(id gdnative.Int) gdnative.String {
 	log.Println("Calling IP.GetResolveItemAddress()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("IP", "get_resolve_item_address")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_resolve_item_address", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a queued hostname's status as a RESOLVER_STATUS_* constant, given its queue "id".
+        Returns a queued hostname's status as a RESOLVER_STATUS_* constant, given its queue "id".
+	Args: [{ false id int}], Returns: enum.IP::ResolverStatus
 */
-func (o *ip) GetResolveItemStatus(id gdnative.Int) gdnative.Int {
-	log.Println("Calling IP.GetResolveItemStatus()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_resolve_item_status", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Returns a given hostname's IPv4 or IPv6 address when resolved (blocking-type method). The address type returned depends on the TYPE_* constant given as "ip_type".
+        Returns a given hostname's IPv4 or IPv6 address when resolved (blocking-type method). The address type returned depends on the TYPE_* constant given as "ip_type".
+	Args: [{ false host String} {3 true ip_type int}], Returns: String
 */
+
 func (o *ip) ResolveHostname(host gdnative.String, ipType gdnative.Int) gdnative.String {
 	log.Println("Calling IP.ResolveHostname()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(host)
-	goArguments[1] = reflect.ValueOf(ipType)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(host)
+	ptrArguments[1] = gdnative.NewPointerFromInt(ipType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("IP", "resolve_hostname")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "resolve_hostname", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Creates a queue item to resolve a hostname to an IPv4 or IPv6 address depending on the TYPE_* constant given as "ip_type". Returns the queue ID if successful, or RESOLVER_INVALID_ID on error.
+        Creates a queue item to resolve a hostname to an IPv4 or IPv6 address depending on the TYPE_* constant given as "ip_type". Returns the queue ID if successful, or RESOLVER_INVALID_ID on error.
+	Args: [{ false host String} {3 true ip_type int}], Returns: int
 */
+
 func (o *ip) ResolveHostnameQueueItem(host gdnative.String, ipType gdnative.Int) gdnative.Int {
 	log.Println("Calling IP.ResolveHostnameQueueItem()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(host)
-	goArguments[1] = reflect.ValueOf(ipType)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(host)
+	ptrArguments[1] = gdnative.NewPointerFromInt(ipType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("IP", "resolve_hostname_queue_item")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "resolve_hostname_queue_item", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }

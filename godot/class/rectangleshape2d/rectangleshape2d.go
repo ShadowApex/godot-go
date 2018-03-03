@@ -2,7 +2,9 @@ package rectangleshape2d
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/shape2d"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewRectangleShape2DFromPointer(ptr gdnative.Pointer) *RectangleShape2D {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := RectangleShape2D{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Rectangle shape for 2D collisions. This shape is useful for modeling box-like 2D objects.
 */
 type RectangleShape2D struct {
-	Shape2D
+	shape2d.Shape2D
 }
 
 func (o *RectangleShape2D) BaseClass() string {
@@ -26,46 +37,49 @@ func (o *RectangleShape2D) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *RectangleShape2D) GetExtents() *Vector2 {
+
+func (o *RectangleShape2D) GetExtents() gdnative.Vector2 {
 	log.Println("Calling RectangleShape2D.GetExtents()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RectangleShape2D", "get_extents")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_extents", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false extents Vector2}], Returns: void
 */
-func (o *RectangleShape2D) SetExtents(extents *Vector2) {
+
+func (o *RectangleShape2D) SetExtents(extents gdnative.Vector2) {
 	log.Println("Calling RectangleShape2D.SetExtents()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(extents)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(extents)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RectangleShape2D", "set_extents")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_extents", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   RectangleShape2DImplementer is an interface for RectangleShape2D objects.
-*/
-type RectangleShape2DImplementer interface {
-	Class
 }

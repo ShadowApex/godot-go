@@ -2,9 +2,17 @@ package viewport
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/node"
+	"github.com/shadowapex/godot-go/godot/class/world"
+
+	"github.com/shadowapex/godot-go/godot/class/world2d"
+
+	"github.com/shadowapex/godot-go/godot/class/camera"
+
+	"github.com/shadowapex/godot-go/godot/class/inputevent"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +24,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewViewportFromPointer(ptr gdnative.Pointer) *Viewport {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Viewport{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 A Viewport creates a different view into the screen, or a sub-view inside another viewport. Children 2D Nodes will display on it, and children Camera 3D nodes will render on it too. Optionally, a viewport can have its own 2D or 3D world, so they don't share what they draw with other viewports. If a viewport is a child of a [Control], it will automatically take up its same rect and position, otherwise they must be set manually. Viewports can also choose to be audio listeners, so they generate positional audio depending on a 2D or 3D camera child of it. Also, viewports can be assigned to different screens in case the devices have multiple screens. Finally, viewports can also behave as render targets, in which case they will not be visible unless the associated texture is used to draw.
 */
 type Viewport struct {
-	Node
+	node.Node
 }
 
 func (o *Viewport) BaseClass() string {
@@ -28,1380 +45,1608 @@ func (o *Viewport) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *Viewport) X_GuiRemoveFocus() {
 	log.Println("Calling Viewport.X_GuiRemoveFocus()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "_gui_remove_focus")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_gui_remove_focus", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *Viewport) X_GuiShowTooltip() {
 	log.Println("Calling Viewport.X_GuiShowTooltip()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "_gui_show_tooltip")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_gui_show_tooltip", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *Viewport) X_VpInput(arg0 *InputEvent) {
+
+func (o *Viewport) X_VpInput(arg0 inputevent.InputEvent) {
 	log.Println("Calling Viewport.X_VpInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "_vp_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_vp_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false text String}], Returns: void
 */
+
 func (o *Viewport) X_VpInputText(text gdnative.String) {
 	log.Println("Calling Viewport.X_VpInputText()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(text)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(text)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "_vp_input_text")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_vp_input_text", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *Viewport) X_VpUnhandledInput(arg0 *InputEvent) {
+
+func (o *Viewport) X_VpUnhandledInput(arg0 inputevent.InputEvent) {
 	log.Println("Calling Viewport.X_VpUnhandledInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "_vp_unhandled_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_vp_unhandled_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Return the 3D world of the viewport, or if no such present, the one of the parent viewport.
+        Return the 3D world of the viewport, or if no such present, the one of the parent viewport.
+	Args: [], Returns: World
 */
-func (o *Viewport) FindWorld() *World {
+
+func (o *Viewport) FindWorld() world.World {
 	log.Println("Calling Viewport.FindWorld()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "find_world")
 
 	// Call the parent method.
+	// World
+	retPtr := world.NewEmptyWorld()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "find_world", goArguments, "*World")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := world.NewWorldFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*World)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the 2D world of the viewport.
+        Return the 2D world of the viewport.
+	Args: [], Returns: World2D
 */
-func (o *Viewport) FindWorld2D() *World2D {
+
+func (o *Viewport) FindWorld2D() world2d.World2D {
 	log.Println("Calling Viewport.FindWorld2D()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "find_world_2d")
 
 	// Call the parent method.
+	// World2D
+	retPtr := world2d.NewEmptyWorld2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "find_world_2d", goArguments, "*World2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := world2d.NewWorld2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*World2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the active 3D camera.
+        Return the active 3D camera.
+	Args: [], Returns: Camera
 */
-func (o *Viewport) GetCamera() *Camera {
+
+func (o *Viewport) GetCamera() camera.Camera {
 	log.Println("Calling Viewport.GetCamera()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_camera")
 
 	// Call the parent method.
+	// Camera
+	retPtr := camera.NewEmptyCamera()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_camera", goArguments, "*Camera")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := camera.NewCameraFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Camera)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Transform2D
 */
-func (o *Viewport) GetCanvasTransform() *Transform2D {
+
+func (o *Viewport) GetCanvasTransform() gdnative.Transform2D {
 	log.Println("Calling Viewport.GetCanvasTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_canvas_transform")
 
 	// Call the parent method.
+	// Transform2D
+	retPtr := gdnative.NewEmptyTransform2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_canvas_transform", goArguments, "*Transform2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransform2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Viewport::ClearMode
 */
-func (o *Viewport) GetClearMode() gdnative.Int {
-	log.Println("Calling Viewport.GetClearMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_clear_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Viewport::DebugDraw
 */
-func (o *Viewport) GetDebugDraw() gdnative.Int {
-	log.Println("Calling Viewport.GetDebugDraw()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_debug_draw", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Get the total transform of the viewport.
+        Get the total transform of the viewport.
+	Args: [], Returns: Transform2D
 */
-func (o *Viewport) GetFinalTransform() *Transform2D {
+
+func (o *Viewport) GetFinalTransform() gdnative.Transform2D {
 	log.Println("Calling Viewport.GetFinalTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_final_transform")
 
 	// Call the parent method.
+	// Transform2D
+	retPtr := gdnative.NewEmptyTransform2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_final_transform", goArguments, "*Transform2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransform2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Transform2D
 */
-func (o *Viewport) GetGlobalCanvasTransform() *Transform2D {
+
+func (o *Viewport) GetGlobalCanvasTransform() gdnative.Transform2D {
 	log.Println("Calling Viewport.GetGlobalCanvasTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_global_canvas_transform")
 
 	// Call the parent method.
+	// Transform2D
+	retPtr := gdnative.NewEmptyTransform2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_global_canvas_transform", goArguments, "*Transform2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransform2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Viewport) GetHdr() gdnative.Bool {
 	log.Println("Calling Viewport.GetHdr()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_hdr")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_hdr", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the mouse position, relative to the viewport.
+        Get the mouse position, relative to the viewport.
+	Args: [], Returns: Vector2
 */
-func (o *Viewport) GetMousePosition() *Vector2 {
+
+func (o *Viewport) GetMousePosition() gdnative.Vector2 {
 	log.Println("Calling Viewport.GetMousePosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_mouse_position")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_mouse_position", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Viewport::MSAA
 */
-func (o *Viewport) GetMsaa() gdnative.Int {
-	log.Println("Calling Viewport.GetMsaa()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_msaa", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Viewport) GetPhysicsObjectPicking() gdnative.Bool {
 	log.Println("Calling Viewport.GetPhysicsObjectPicking()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_physics_object_picking")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_physics_object_picking", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the specific information about the viewport from rendering pipeline.
+        Get the specific information about the viewport from rendering pipeline.
+	Args: [{ false info int}], Returns: int
 */
+
 func (o *Viewport) GetRenderInfo(info gdnative.Int) gdnative.Int {
 	log.Println("Calling Viewport.GetRenderInfo()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(info)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(info)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_render_info")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_render_info", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false quadrant int}], Returns: enum.Viewport::ShadowAtlasQuadrantSubdiv
 */
-func (o *Viewport) GetShadowAtlasQuadrantSubdiv(quadrant gdnative.Int) gdnative.Int {
-	log.Println("Calling Viewport.GetShadowAtlasQuadrantSubdiv()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(quadrant)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_shadow_atlas_quadrant_subdiv", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *Viewport) GetShadowAtlasSize() gdnative.Int {
 	log.Println("Calling Viewport.GetShadowAtlasSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_shadow_atlas_size")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_shadow_atlas_size", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *Viewport) GetSize() *Vector2 {
+
+func (o *Viewport) GetSize() gdnative.Vector2 {
 	log.Println("Calling Viewport.GetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_size")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_size", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the size override set with [method set_size_override].
+        Get the size override set with [method set_size_override].
+	Args: [], Returns: Vector2
 */
-func (o *Viewport) GetSizeOverride() *Vector2 {
+
+func (o *Viewport) GetSizeOverride() gdnative.Vector2 {
 	log.Println("Calling Viewport.GetSizeOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_size_override")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_size_override", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the viewport's texture, for use with various objects that you want to texture with the viewport.
+        Get the viewport's texture, for use with various objects that you want to texture with the viewport.
+	Args: [], Returns: ViewportTexture
 */
-func (o *Viewport) GetTexture() *ViewportTexture {
+
+func (o *Viewport) GetTexture() ViewportTexture {
 	log.Println("Calling Viewport.GetTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_texture")
 
 	// Call the parent method.
+	// ViewportTexture
+	retPtr := NewEmptyViewportTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_texture", goArguments, "*ViewportTexture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewViewportTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*ViewportTexture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Viewport::UpdateMode
 */
-func (o *Viewport) GetUpdateMode() gdnative.Int {
-	log.Println("Calling Viewport.GetUpdateMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_update_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Viewport::Usage
 */
-func (o *Viewport) GetUsage() gdnative.Int {
-	log.Println("Calling Viewport.GetUsage()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_usage", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Viewport) GetVflip() gdnative.Bool {
 	log.Println("Calling Viewport.GetVflip()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_vflip")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_vflip", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the viewport RID from the [VisualServer].
+        Get the viewport RID from the [VisualServer].
+	Args: [], Returns: RID
 */
-func (o *Viewport) GetViewportRid() *RID {
+
+func (o *Viewport) GetViewportRid() gdnative.RID {
 	log.Println("Calling Viewport.GetViewportRid()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_viewport_rid")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_viewport_rid", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the final, visible rect in global screen coordinates.
+        Return the final, visible rect in global screen coordinates.
+	Args: [], Returns: Rect2
 */
-func (o *Viewport) GetVisibleRect() *Rect2 {
+
+func (o *Viewport) GetVisibleRect() gdnative.Rect2 {
 	log.Println("Calling Viewport.GetVisibleRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_visible_rect")
 
 	// Call the parent method.
+	// Rect2
+	retPtr := gdnative.NewEmptyRect2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_visible_rect", goArguments, "*Rect2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRect2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Rect2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: World
 */
-func (o *Viewport) GetWorld() *World {
+
+func (o *Viewport) GetWorld() world.World {
 	log.Println("Calling Viewport.GetWorld()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_world")
 
 	// Call the parent method.
+	// World
+	retPtr := world.NewEmptyWorld()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_world", goArguments, "*World")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := world.NewWorldFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*World)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: World2D
 */
-func (o *Viewport) GetWorld2D() *World2D {
+
+func (o *Viewport) GetWorld2D() world2d.World2D {
 	log.Println("Calling Viewport.GetWorld2D()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_world_2d")
 
 	// Call the parent method.
+	// World2D
+	retPtr := world2d.NewEmptyWorld2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_world_2d", goArguments, "*World2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := world2d.NewWorld2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*World2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the drag data from the GUI, that was previously returned by [method Control.get_drag_data].
+        Returns the drag data from the GUI, that was previously returned by [method Control.get_drag_data].
+	Args: [], Returns: Variant
 */
-func (o *Viewport) GuiGetDragData() *Variant {
+
+func (o *Viewport) GuiGetDragData() gdnative.Variant {
 	log.Println("Calling Viewport.GuiGetDragData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "gui_get_drag_data")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "gui_get_drag_data", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns whether there are shown modals on-screen.
+        Returns whether there are shown modals on-screen.
+	Args: [], Returns: bool
 */
+
 func (o *Viewport) GuiHasModalStack() gdnative.Bool {
 	log.Println("Calling Viewport.GuiHasModalStack()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "gui_has_modal_stack")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "gui_has_modal_stack", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Viewport) HasTransparentBackground() gdnative.Bool {
 	log.Println("Calling Viewport.HasTransparentBackground()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "has_transparent_background")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_transparent_background", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Viewport) Input(localEvent *InputEvent) {
+	Args: [{ false local_event InputEvent}], Returns: void
+*/
+
+func (o *Viewport) Input(localEvent inputevent.InputEvent) {
 	log.Println("Calling Viewport.Input()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(localEvent)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(localEvent.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Viewport) Is3DDisabled() gdnative.Bool {
 	log.Println("Calling Viewport.Is3DDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "is_3d_disabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_3d_disabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Viewport) IsAudioListener() gdnative.Bool {
 	log.Println("Calling Viewport.IsAudioListener()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "is_audio_listener")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_audio_listener", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Viewport) IsAudioListener2D() gdnative.Bool {
 	log.Println("Calling Viewport.IsAudioListener2D()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "is_audio_listener_2d")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_audio_listener_2d", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Viewport) IsInputDisabled() gdnative.Bool {
 	log.Println("Calling Viewport.IsInputDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "is_input_disabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_input_disabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the enabled status of the size override set with [method set_size_override].
+        Get the enabled status of the size override set with [method set_size_override].
+	Args: [], Returns: bool
 */
+
 func (o *Viewport) IsSizeOverrideEnabled() gdnative.Bool {
 	log.Println("Calling Viewport.IsSizeOverrideEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "is_size_override_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_size_override_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the enabled status of the size stretch override set with [method set_size_override_stretch].
+        Get the enabled status of the size stretch override set with [method set_size_override_stretch].
+	Args: [], Returns: bool
 */
+
 func (o *Viewport) IsSizeOverrideStretchEnabled() gdnative.Bool {
 	log.Println("Calling Viewport.IsSizeOverrideStretchEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "is_size_override_stretch_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_size_override_stretch_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Viewport) IsSnapControlsToPixelsEnabled() gdnative.Bool {
 	log.Println("Calling Viewport.IsSnapControlsToPixelsEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "is_snap_controls_to_pixels_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_snap_controls_to_pixels_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Viewport) IsUsingOwnWorld() gdnative.Bool {
 	log.Println("Calling Viewport.IsUsingOwnWorld()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "is_using_own_world")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_using_own_world", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Viewport) SetAsAudioListener(enable gdnative.Bool) {
 	log.Println("Calling Viewport.SetAsAudioListener()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_as_audio_listener")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_as_audio_listener", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Viewport) SetAsAudioListener2D(enable gdnative.Bool) {
 	log.Println("Calling Viewport.SetAsAudioListener2D()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_as_audio_listener_2d")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_as_audio_listener_2d", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *Viewport) SetAttachToScreenRect(rect *Rect2) {
+	Args: [{ false rect Rect2}], Returns: void
+*/
+
+func (o *Viewport) SetAttachToScreenRect(rect gdnative.Rect2) {
 	log.Println("Calling Viewport.SetAttachToScreenRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(rect)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRect2(rect)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_attach_to_screen_rect")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_attach_to_screen_rect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false xform Transform2D}], Returns: void
 */
-func (o *Viewport) SetCanvasTransform(xform *Transform2D) {
+
+func (o *Viewport) SetCanvasTransform(xform gdnative.Transform2D) {
 	log.Println("Calling Viewport.SetCanvasTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(xform)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromTransform2D(xform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_canvas_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_canvas_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *Viewport) SetClearMode(mode gdnative.Int) {
 	log.Println("Calling Viewport.SetClearMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_clear_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_clear_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false debug_draw int}], Returns: void
 */
+
 func (o *Viewport) SetDebugDraw(debugDraw gdnative.Int) {
 	log.Println("Calling Viewport.SetDebugDraw()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(debugDraw)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(debugDraw)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_debug_draw")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_debug_draw", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false disable bool}], Returns: void
 */
+
 func (o *Viewport) SetDisable3D(disable gdnative.Bool) {
 	log.Println("Calling Viewport.SetDisable3D()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(disable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(disable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_disable_3d")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_disable_3d", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false disable bool}], Returns: void
 */
+
 func (o *Viewport) SetDisableInput(disable gdnative.Bool) {
 	log.Println("Calling Viewport.SetDisableInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(disable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(disable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_disable_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_disable_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false xform Transform2D}], Returns: void
 */
-func (o *Viewport) SetGlobalCanvasTransform(xform *Transform2D) {
+
+func (o *Viewport) SetGlobalCanvasTransform(xform gdnative.Transform2D) {
 	log.Println("Calling Viewport.SetGlobalCanvasTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(xform)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromTransform2D(xform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_global_canvas_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_global_canvas_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Viewport) SetHdr(enable gdnative.Bool) {
 	log.Println("Calling Viewport.SetHdr()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_hdr")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_hdr", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false msaa int}], Returns: void
 */
+
 func (o *Viewport) SetMsaa(msaa gdnative.Int) {
 	log.Println("Calling Viewport.SetMsaa()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(msaa)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(msaa)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_msaa")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_msaa", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Viewport) SetPhysicsObjectPicking(enable gdnative.Bool) {
 	log.Println("Calling Viewport.SetPhysicsObjectPicking()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_physics_object_picking")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_physics_object_picking", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false quadrant int} { false subdiv int}], Returns: void
 */
+
 func (o *Viewport) SetShadowAtlasQuadrantSubdiv(quadrant gdnative.Int, subdiv gdnative.Int) {
 	log.Println("Calling Viewport.SetShadowAtlasQuadrantSubdiv()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(quadrant)
-	goArguments[1] = reflect.ValueOf(subdiv)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(quadrant)
+	ptrArguments[1] = gdnative.NewPointerFromInt(subdiv)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_shadow_atlas_quadrant_subdiv")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_shadow_atlas_quadrant_subdiv", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false size int}], Returns: void
 */
+
 func (o *Viewport) SetShadowAtlasSize(size gdnative.Int) {
 	log.Println("Calling Viewport.SetShadowAtlasSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_shadow_atlas_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_shadow_atlas_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false size Vector2}], Returns: void
 */
-func (o *Viewport) SetSize(size *Vector2) {
+
+func (o *Viewport) SetSize(size gdnative.Vector2) {
 	log.Println("Calling Viewport.SetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the size override of the viewport. If the enable parameter is true, it would use the override, otherwise it would use the default size. If the size parameter is equal to [code](-1, -1)[/code], it won't update the size.
+        Set the size override of the viewport. If the enable parameter is true, it would use the override, otherwise it would use the default size. If the size parameter is equal to [code](-1, -1)[/code], it won't update the size.
+	Args: [{ false enable bool} {(-1, -1) true size Vector2} {(0, 0) true margin Vector2}], Returns: void
 */
-func (o *Viewport) SetSizeOverride(enable gdnative.Bool, size *Vector2, margin *Vector2) {
+
+func (o *Viewport) SetSizeOverride(enable gdnative.Bool, size gdnative.Vector2, margin gdnative.Vector2) {
 	log.Println("Calling Viewport.SetSizeOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(enable)
-	goArguments[1] = reflect.ValueOf(size)
-	goArguments[2] = reflect.ValueOf(margin)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(size)
+	ptrArguments[2] = gdnative.NewPointerFromVector2(margin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_size_override")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_size_override", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set whether the size override affects stretch as well.
+        Set whether the size override affects stretch as well.
+	Args: [{ false enabled bool}], Returns: void
 */
+
 func (o *Viewport) SetSizeOverrideStretch(enabled gdnative.Bool) {
 	log.Println("Calling Viewport.SetSizeOverrideStretch()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_size_override_stretch")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_size_override_stretch", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enabled bool}], Returns: void
 */
+
 func (o *Viewport) SetSnapControlsToPixels(enabled gdnative.Bool) {
 	log.Println("Calling Viewport.SetSnapControlsToPixels()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_snap_controls_to_pixels")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_snap_controls_to_pixels", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Viewport) SetTransparentBackground(enable gdnative.Bool) {
 	log.Println("Calling Viewport.SetTransparentBackground()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_transparent_background")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_transparent_background", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *Viewport) SetUpdateMode(mode gdnative.Int) {
 	log.Println("Calling Viewport.SetUpdateMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_update_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_update_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false usage int}], Returns: void
 */
+
 func (o *Viewport) SetUsage(usage gdnative.Int) {
 	log.Println("Calling Viewport.SetUsage()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(usage)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(usage)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_usage")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_usage", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false use bool}], Returns: void
 */
+
 func (o *Viewport) SetUseArvr(use gdnative.Bool) {
 	log.Println("Calling Viewport.SetUseArvr()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(use)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(use)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_use_arvr")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_use_arvr", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Viewport) SetUseOwnWorld(enable gdnative.Bool) {
 	log.Println("Calling Viewport.SetUseOwnWorld()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_use_own_world")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_use_own_world", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Viewport) SetVflip(enable gdnative.Bool) {
 	log.Println("Calling Viewport.SetVflip()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_vflip")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_vflip", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false world World}], Returns: void
 */
-func (o *Viewport) SetWorld(world *World) {
+
+func (o *Viewport) SetWorld(world world.World) {
 	log.Println("Calling Viewport.SetWorld()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(world)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(world.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_world")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_world", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false world_2d World2D}], Returns: void
 */
-func (o *Viewport) SetWorld2D(world2D *World2D) {
+
+func (o *Viewport) SetWorld2D(world2D world2d.World2D) {
 	log.Println("Calling Viewport.SetWorld2D()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(world2D)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(world2D.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "set_world_2d")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_world_2d", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *Viewport) UnhandledInput(localEvent *InputEvent) {
+	Args: [{ false local_event InputEvent}], Returns: void
+*/
+
+func (o *Viewport) UnhandledInput(localEvent inputevent.InputEvent) {
 	log.Println("Calling Viewport.UnhandledInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(localEvent)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(localEvent.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "unhandled_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "unhandled_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Force update of the 2D and 3D worlds.
+        Force update of the 2D and 3D worlds.
+	Args: [], Returns: void
 */
+
 func (o *Viewport) UpdateWorlds() {
 	log.Println("Calling Viewport.UpdateWorlds()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "update_worlds")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "update_worlds", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Viewport) UseArvr() gdnative.Bool {
 	log.Println("Calling Viewport.UseArvr()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "use_arvr")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "use_arvr", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Warp the mouse to a position, relative to the viewport.
+        Warp the mouse to a position, relative to the viewport.
+	Args: [{ false to_position Vector2}], Returns: void
 */
-func (o *Viewport) WarpMouse(toPosition *Vector2) {
+
+func (o *Viewport) WarpMouse(toPosition gdnative.Vector2) {
 	log.Println("Calling Viewport.WarpMouse()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(toPosition)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(toPosition)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "warp_mouse")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "warp_mouse", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ViewportImplementer is an interface for Viewport objects.
-*/
-type ViewportImplementer interface {
-	Class
 }

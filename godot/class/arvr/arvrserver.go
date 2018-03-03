@@ -2,9 +2,9 @@ package arvr
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -15,6 +15,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewarvrServerFromPointer(ptr gdnative.Pointer) *arvrServer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := arvrServer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 func newSingletonARVRServer() *arvrServer {
 	obj := &arvrServer{}
@@ -32,7 +41,7 @@ var ARVRServer = newSingletonARVRServer()
 The AR/VR Server is the heart of our AR/VR solution and handles all the processing.
 */
 type arvrServer struct {
-	Object
+	object.Object
 }
 
 func (o *arvrServer) BaseClass() string {
@@ -40,219 +49,279 @@ func (o *arvrServer) BaseClass() string {
 }
 
 /*
-   This is a really important function to understand correctly. AR and VR platforms all handle positioning slightly differently. For platforms that do not offer spatial tracking our origin point (0,0,0) is the location of our HMD but you have little control over the direction the player is facing in the real world. For platforms that do offer spatial tracking our origin point depends very much on the system. For OpenVR our origin point is usually the center of the tracking space, on the ground. For other platforms its often the location of the tracking camera. This method allows you to center our tracker on the location of the HMD, it will take the current location of the HMD and use that to adjust all our tracking data in essence realigning the real world to your players current position in your game world. For this method to produce usable results tracking information should be available and this often takes a few frames after starting your game. You should call this method after a few seconds have passed, when the user requests a realignment of the display holding a designated button on a controller for a short period of time, and when implementing a teleport mechanism.
+        This is a really important function to understand correctly. AR and VR platforms all handle positioning slightly differently. For platforms that do not offer spatial tracking our origin point (0,0,0) is the location of our HMD but you have little control over the direction the player is facing in the real world. For platforms that do offer spatial tracking our origin point depends very much on the system. For OpenVR our origin point is usually the center of the tracking space, on the ground. For other platforms its often the location of the tracking camera. This method allows you to center our tracker on the location of the HMD, it will take the current location of the HMD and use that to adjust all our tracking data in essence realigning the real world to your players current position in your game world. For this method to produce usable results tracking information should be available and this often takes a few frames after starting your game. You should call this method after a few seconds have passed, when the user requests a realignment of the display holding a designated button on a controller for a short period of time, and when implementing a teleport mechanism.
+	Args: [{ false rotation_mode int} { false keep_height bool}], Returns: void
 */
+
 func (o *arvrServer) CenterOnHmd(rotationMode gdnative.Int, keepHeight gdnative.Bool) {
 	log.Println("Calling ARVRServer.CenterOnHmd()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(rotationMode)
-	goArguments[1] = reflect.ValueOf(keepHeight)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(rotationMode)
+	ptrArguments[1] = gdnative.NewPointerFromBool(keepHeight)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRServer", "center_on_hmd")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "center_on_hmd", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Find an interface by its name. Say that you're making a game that uses specific capabilities of an AR/VR platform you can find the interface for that platform by name and initialize it.
+        Find an interface by its name. Say that you're making a game that uses specific capabilities of an AR/VR platform you can find the interface for that platform by name and initialize it.
+	Args: [{ false name String}], Returns: ARVRInterface
 */
-func (o *arvrServer) FindInterface(name gdnative.String) *ARVRInterface {
+
+func (o *arvrServer) FindInterface(name gdnative.String) ARVRInterface {
 	log.Println("Calling ARVRServer.FindInterface()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRServer", "find_interface")
 
 	// Call the parent method.
+	// ARVRInterface
+	retPtr := NewEmptyARVRInterface()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "find_interface", goArguments, "*ARVRInterface")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewArvrInterfaceFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*ARVRInterface)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the interface registered at a given index in our list of interfaces.
+        Get the interface registered at a given index in our list of interfaces.
+	Args: [{ false idx int}], Returns: ARVRInterface
 */
-func (o *arvrServer) GetInterface(idx gdnative.Int) *ARVRInterface {
+
+func (o *arvrServer) GetInterface(idx gdnative.Int) ARVRInterface {
 	log.Println("Calling ARVRServer.GetInterface()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRServer", "get_interface")
 
 	// Call the parent method.
+	// ARVRInterface
+	retPtr := NewEmptyARVRInterface()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_interface", goArguments, "*ARVRInterface")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewArvrInterfaceFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*ARVRInterface)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the number of interfaces currently registered with the AR/VR server. If you're game supports multiple AR/VR platforms you can look through the available interface and either present the user with a selection or simply try an initialize each interface and use the first one that returns true.
+        Get the number of interfaces currently registered with the AR/VR server. If you're game supports multiple AR/VR platforms you can look through the available interface and either present the user with a selection or simply try an initialize each interface and use the first one that returns true.
+	Args: [], Returns: int
 */
+
 func (o *arvrServer) GetInterfaceCount() gdnative.Int {
 	log.Println("Calling ARVRServer.GetInterfaceCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRServer", "get_interface_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_interface_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a list of available interfaces with both id and name of the interface.
+        Returns a list of available interfaces with both id and name of the interface.
+	Args: [], Returns: Array
 */
-func (o *arvrServer) GetInterfaces() *Array {
+
+func (o *arvrServer) GetInterfaces() gdnative.Array {
 	log.Println("Calling ARVRServer.GetInterfaces()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRServer", "get_interfaces")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_interfaces", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Gets our reference frame transform, mostly used internally and exposed for GDNative build interfaces.
+        Gets our reference frame transform, mostly used internally and exposed for GDNative build interfaces.
+	Args: [], Returns: Transform
 */
-func (o *arvrServer) GetReferenceFrame() *Transform {
+
+func (o *arvrServer) GetReferenceFrame() gdnative.Transform {
 	log.Println("Calling ARVRServer.GetReferenceFrame()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRServer", "get_reference_frame")
 
 	// Call the parent method.
+	// Transform
+	retPtr := gdnative.NewEmptyTransform()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_reference_frame", goArguments, "*Transform")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransformFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the positional tracker at the given ID.
+        Get the positional tracker at the given ID.
+	Args: [{ false idx int}], Returns: ARVRPositionalTracker
 */
-func (o *arvrServer) GetTracker(idx gdnative.Int) *ARVRPositionalTracker {
+
+func (o *arvrServer) GetTracker(idx gdnative.Int) ARVRPositionalTracker {
 	log.Println("Calling ARVRServer.GetTracker()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRServer", "get_tracker")
 
 	// Call the parent method.
+	// ARVRPositionalTracker
+	retPtr := NewEmptyARVRPositionalTracker()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tracker", goArguments, "*ARVRPositionalTracker")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewArvrPositionalTrackerFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*ARVRPositionalTracker)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the number of trackers currently registered.
+        Get the number of trackers currently registered.
+	Args: [], Returns: int
 */
+
 func (o *arvrServer) GetTrackerCount() gdnative.Int {
 	log.Println("Calling ARVRServer.GetTrackerCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRServer", "get_tracker_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tracker_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *arvrServer) GetWorldScale() gdnative.Float {
 	log.Println("Calling ARVRServer.GetWorldScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRServer", "get_world_scale")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_world_scale", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Changes the primary interface to the specified interface. Again mostly exposed for GDNative interfaces.
+        Changes the primary interface to the specified interface. Again mostly exposed for GDNative interfaces.
+	Args: [{ false interface ARVRInterface}], Returns: void
 */
-func (o *arvrServer) SetPrimaryInterface(intrfce *ARVRInterface) {
+
+func (o *arvrServer) SetPrimaryInterface(intrfce ARVRInterface) {
 	log.Println("Calling ARVRServer.SetPrimaryInterface()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(intrfce)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(intrfce.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRServer", "set_primary_interface")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_primary_interface", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 float}], Returns: void
 */
+
 func (o *arvrServer) SetWorldScale(arg0 gdnative.Float) {
 	log.Println("Calling ARVRServer.SetWorldScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRServer", "set_world_scale")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_world_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }

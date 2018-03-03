@@ -2,7 +2,8 @@ package audioeffect
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
 )
 
 /*------------------------------------------------------------------------------
@@ -13,6 +14,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewAudioEffectLimiterFromPointer(ptr gdnative.Pointer) *AudioEffectLimiter {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := AudioEffectLimiter{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 /*
 A limiter is similar to a compressor, but it’s less flexible and designed to disallow sound going over a given dB threshold. Adding one in the Master Bus is always recommended to reduce the effects of clipping. Soft clipping starts to reduce the peaks a little below the threshold level and progressively increases its effect as the input level increases such that the threshold is never exceeded.
@@ -26,160 +36,193 @@ func (o *AudioEffectLimiter) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectLimiter) GetCeilingDb() gdnative.Float {
 	log.Println("Calling AudioEffectLimiter.GetCeilingDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectLimiter", "get_ceiling_db")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_ceiling_db", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectLimiter) GetSoftClipDb() gdnative.Float {
 	log.Println("Calling AudioEffectLimiter.GetSoftClipDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectLimiter", "get_soft_clip_db")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_soft_clip_db", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectLimiter) GetSoftClipRatio() gdnative.Float {
 	log.Println("Calling AudioEffectLimiter.GetSoftClipRatio()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectLimiter", "get_soft_clip_ratio")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_soft_clip_ratio", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectLimiter) GetThresholdDb() gdnative.Float {
 	log.Println("Calling AudioEffectLimiter.GetThresholdDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectLimiter", "get_threshold_db")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_threshold_db", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false ceiling float}], Returns: void
 */
+
 func (o *AudioEffectLimiter) SetCeilingDb(ceiling gdnative.Float) {
 	log.Println("Calling AudioEffectLimiter.SetCeilingDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ceiling)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(ceiling)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectLimiter", "set_ceiling_db")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_ceiling_db", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false soft_clip float}], Returns: void
 */
+
 func (o *AudioEffectLimiter) SetSoftClipDb(softClip gdnative.Float) {
 	log.Println("Calling AudioEffectLimiter.SetSoftClipDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(softClip)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(softClip)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectLimiter", "set_soft_clip_db")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_soft_clip_db", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false soft_clip float}], Returns: void
 */
+
 func (o *AudioEffectLimiter) SetSoftClipRatio(softClip gdnative.Float) {
 	log.Println("Calling AudioEffectLimiter.SetSoftClipRatio()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(softClip)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(softClip)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectLimiter", "set_soft_clip_ratio")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_soft_clip_ratio", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false threshold float}], Returns: void
 */
+
 func (o *AudioEffectLimiter) SetThresholdDb(threshold gdnative.Float) {
 	log.Println("Calling AudioEffectLimiter.SetThresholdDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(threshold)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(threshold)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectLimiter", "set_threshold_db")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_threshold_db", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   AudioEffectLimiterImplementer is an interface for AudioEffectLimiter objects.
-*/
-type AudioEffectLimiterImplementer interface {
-	Class
 }

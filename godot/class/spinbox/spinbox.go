@@ -2,9 +2,13 @@ package spinbox
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/inputevent"
+	"github.com/shadowapex/godot-go/godot/class/ranges"
+
+	"github.com/shadowapex/godot-go/godot/class/lineedit"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +20,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewSpinBoxFromPointer(ptr gdnative.Pointer) *SpinBox {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := SpinBox{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 SpinBox is a numerical input text field. It allows entering integers and floats.
 */
 type SpinBox struct {
-	Range
+	ranges.Range
 }
 
 func (o *SpinBox) BaseClass() string {
@@ -28,230 +41,279 @@ func (o *SpinBox) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *SpinBox) X_GuiInput(arg0 *InputEvent) {
+
+func (o *SpinBox) X_GuiInput(arg0 inputevent.InputEvent) {
 	log.Println("Calling SpinBox.X_GuiInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpinBox", "_gui_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_gui_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *SpinBox) X_LineEditFocusExit() {
 	log.Println("Calling SpinBox.X_LineEditFocusExit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpinBox", "_line_edit_focus_exit")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_line_edit_focus_exit", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *SpinBox) X_LineEditInput(arg0 *InputEvent) {
+
+func (o *SpinBox) X_LineEditInput(arg0 inputevent.InputEvent) {
 	log.Println("Calling SpinBox.X_LineEditInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpinBox", "_line_edit_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_line_edit_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *SpinBox) X_RangeClickTimeout() {
 	log.Println("Calling SpinBox.X_RangeClickTimeout()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpinBox", "_range_click_timeout")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_range_click_timeout", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 String}], Returns: void
 */
+
 func (o *SpinBox) X_TextEntered(arg0 gdnative.String) {
 	log.Println("Calling SpinBox.X_TextEntered()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpinBox", "_text_entered")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_text_entered", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *SpinBox) GetLineEdit() *LineEdit {
+	Args: [], Returns: LineEdit
+*/
+
+func (o *SpinBox) GetLineEdit() lineedit.LineEdit {
 	log.Println("Calling SpinBox.GetLineEdit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpinBox", "get_line_edit")
 
 	// Call the parent method.
+	// LineEdit
+	retPtr := lineedit.NewEmptyLineEdit()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_line_edit", goArguments, "*LineEdit")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := lineedit.NewLineEditFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*LineEdit)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *SpinBox) GetPrefix() gdnative.String {
 	log.Println("Calling SpinBox.GetPrefix()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpinBox", "get_prefix")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_prefix", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *SpinBox) GetSuffix() gdnative.String {
 	log.Println("Calling SpinBox.GetSuffix()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpinBox", "get_suffix")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_suffix", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *SpinBox) IsEditable() gdnative.Bool {
 	log.Println("Calling SpinBox.IsEditable()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpinBox", "is_editable")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_editable", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false editable bool}], Returns: void
 */
+
 func (o *SpinBox) SetEditable(editable gdnative.Bool) {
 	log.Println("Calling SpinBox.SetEditable()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(editable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(editable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpinBox", "set_editable")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_editable", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false prefix String}], Returns: void
 */
+
 func (o *SpinBox) SetPrefix(prefix gdnative.String) {
 	log.Println("Calling SpinBox.SetPrefix()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(prefix)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(prefix)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpinBox", "set_prefix")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_prefix", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false suffix String}], Returns: void
 */
+
 func (o *SpinBox) SetSuffix(suffix gdnative.String) {
 	log.Println("Calling SpinBox.SetSuffix()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(suffix)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(suffix)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpinBox", "set_suffix")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_suffix", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   SpinBoxImplementer is an interface for SpinBox objects.
-*/
-type SpinBoxImplementer interface {
-	Class
 }

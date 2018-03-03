@@ -2,9 +2,11 @@ package splitcontainer
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/container"
+	"github.com/shadowapex/godot-go/godot/class/inputevent"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewSplitContainerFromPointer(ptr gdnative.Pointer) *SplitContainer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := SplitContainer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Container for splitting two controls vertically or horizontally, with a grabber that allows adjusting the split offset or ratio.
 */
 type SplitContainer struct {
-	Container
+	container.Container
 }
 
 func (o *SplitContainer) BaseClass() string {
@@ -28,140 +39,146 @@ func (o *SplitContainer) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *SplitContainer) X_GuiInput(arg0 *InputEvent) {
+
+func (o *SplitContainer) X_GuiInput(arg0 inputevent.InputEvent) {
 	log.Println("Calling SplitContainer.X_GuiInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SplitContainer", "_gui_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_gui_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.SplitContainer::DraggerVisibility
 */
-func (o *SplitContainer) GetDraggerVisibility() gdnative.Int {
-	log.Println("Calling SplitContainer.GetDraggerVisibility()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_dragger_visibility", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *SplitContainer) GetSplitOffset() gdnative.Int {
 	log.Println("Calling SplitContainer.GetSplitOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SplitContainer", "get_split_offset")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_split_offset", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *SplitContainer) IsCollapsed() gdnative.Bool {
 	log.Println("Calling SplitContainer.IsCollapsed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SplitContainer", "is_collapsed")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_collapsed", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false collapsed bool}], Returns: void
 */
+
 func (o *SplitContainer) SetCollapsed(collapsed gdnative.Bool) {
 	log.Println("Calling SplitContainer.SetCollapsed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(collapsed)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(collapsed)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SplitContainer", "set_collapsed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_collapsed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *SplitContainer) SetDraggerVisibility(mode gdnative.Int) {
 	log.Println("Calling SplitContainer.SetDraggerVisibility()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SplitContainer", "set_dragger_visibility")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_dragger_visibility", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false offset int}], Returns: void
 */
+
 func (o *SplitContainer) SetSplitOffset(offset gdnative.Int) {
 	log.Println("Calling SplitContainer.SetSplitOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(offset)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(offset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SplitContainer", "set_split_offset")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_split_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   SplitContainerImplementer is an interface for SplitContainer objects.
-*/
-type SplitContainerImplementer interface {
-	Class
 }

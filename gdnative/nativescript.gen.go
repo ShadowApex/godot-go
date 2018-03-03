@@ -90,6 +90,14 @@ const (
 	PropertyHintMax
 )
 
+// NewEmptyPropertyAttributes will return a pointer to an empty
+// initialized PropertyAttributes. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyPropertyAttributes() Pointer {
+	var obj C.godot_property_attributes
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromPropertyAttributes will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromPropertyAttributes(obj PropertyAttributes) Pointer {
@@ -115,6 +123,14 @@ type PropertyAttributes struct {
 
 func (gdt PropertyAttributes) getBase() *C.godot_property_attributes {
 	return gdt.base
+}
+
+// NewEmptySignalArgument will return a pointer to an empty
+// initialized SignalArgument. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptySignalArgument() Pointer {
+	var obj C.godot_signal_argument
+	return Pointer{base: unsafe.Pointer(&obj)}
 }
 
 // NewPointerFromSignalArgument will return an unsafe pointer to the given
@@ -144,6 +160,14 @@ func (gdt SignalArgument) getBase() *C.godot_signal_argument {
 	return gdt.base
 }
 
+// NewEmptySignal will return a pointer to an empty
+// initialized Signal. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptySignal() Pointer {
+	var obj C.godot_signal
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromSignal will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromSignal(obj Signal) Pointer {
@@ -168,6 +192,14 @@ type Signal struct {
 
 func (gdt Signal) getBase() *C.godot_signal {
 	return gdt.base
+}
+
+// NewEmptyMethodArg will return a pointer to an empty
+// initialized MethodArg. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyMethodArg() Pointer {
+	var obj C.godot_method_arg
+	return Pointer{base: unsafe.Pointer(&obj)}
 }
 
 // NewPointerFromMethodArg will return an unsafe pointer to the given

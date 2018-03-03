@@ -2,7 +2,11 @@ package camera
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/environment"
+	"github.com/shadowapex/godot-go/godot/class/spatial"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewCameraFromPointer(ptr gdnative.Pointer) *Camera {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Camera{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Camera is a special node that displays what is visible from its current location. Cameras register themselves in the nearest [Viewport] node (when ascending the tree). Only one camera can be active per viewport. If no viewport is available ascending the tree, the Camera will register in the global viewport. In other words, a Camera just provides [i]3D[/i] display capabilities to a [Viewport], and, without one, a scene registered in that [Viewport] (or higher viewports) can't be displayed.
 */
 type Camera struct {
-	Spatial
+	spatial.Spatial
 }
 
 func (o *Camera) BaseClass() string {
@@ -26,684 +39,792 @@ func (o *Camera) BaseClass() string {
 }
 
 /*
-   If this is the current Camera, remove it from being current. If it is inside the node tree, request to make the next Camera current, if any.
+        If this is the current Camera, remove it from being current. If it is inside the node tree, request to make the next Camera current, if any.
+	Args: [], Returns: void
 */
+
 func (o *Camera) ClearCurrent() {
 	log.Println("Calling Camera.ClearCurrent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "clear_current")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear_current", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Get the camera transform. Subclassed cameras (such as CharacterCamera) may provide different transforms than the [Node] transform.
+        Get the camera transform. Subclassed cameras (such as CharacterCamera) may provide different transforms than the [Node] transform.
+	Args: [], Returns: Transform
 */
-func (o *Camera) GetCameraTransform() *Transform {
+
+func (o *Camera) GetCameraTransform() gdnative.Transform {
 	log.Println("Calling Camera.GetCameraTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "get_camera_transform")
 
 	// Call the parent method.
+	// Transform
+	retPtr := gdnative.NewEmptyTransform()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_camera_transform", goArguments, "*Transform")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransformFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *Camera) GetCullMask() gdnative.Int {
 	log.Println("Calling Camera.GetCullMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "get_cull_mask")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_cull_mask", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Camera::DopplerTracking
 */
-func (o *Camera) GetDopplerTracking() gdnative.Int {
-	log.Println("Calling Camera.GetDopplerTracking()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_doppler_tracking", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Environment
 */
-func (o *Camera) GetEnvironment() *Environment {
+
+func (o *Camera) GetEnvironment() environment.Environment {
 	log.Println("Calling Camera.GetEnvironment()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "get_environment")
 
 	// Call the parent method.
+	// Environment
+	retPtr := environment.NewEmptyEnvironment()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_environment", goArguments, "*Environment")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := environment.NewEnvironmentFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Environment)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Camera) GetFov() gdnative.Float {
 	log.Println("Calling Camera.GetFov()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "get_fov")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_fov", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Camera) GetHOffset() gdnative.Float {
 	log.Println("Calling Camera.GetHOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "get_h_offset")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_h_offset", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Camera::KeepAspect
 */
-func (o *Camera) GetKeepAspectMode() gdnative.Int {
-	log.Println("Calling Camera.GetKeepAspectMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_keep_aspect_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Camera::Projection
 */
-func (o *Camera) GetProjection() gdnative.Int {
-	log.Println("Calling Camera.GetProjection()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_projection", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Camera) GetSize() gdnative.Float {
 	log.Println("Calling Camera.GetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "get_size")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_size", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Camera) GetVOffset() gdnative.Float {
 	log.Println("Calling Camera.GetVOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "get_v_offset")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_v_offset", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Camera) GetZfar() gdnative.Float {
 	log.Println("Calling Camera.GetZfar()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "get_zfar")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_zfar", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Camera) GetZnear() gdnative.Float {
 	log.Println("Calling Camera.GetZnear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "get_znear")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_znear", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Camera) IsCurrent() gdnative.Bool {
 	log.Println("Calling Camera.IsCurrent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "is_current")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_current", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the given position is behind the Camera.
+        Returns [code]true[/code] if the given position is behind the Camera.
+	Args: [{ false world_point Vector3}], Returns: bool
 */
-func (o *Camera) IsPositionBehind(worldPoint *Vector3) gdnative.Bool {
+
+func (o *Camera) IsPositionBehind(worldPoint gdnative.Vector3) gdnative.Bool {
 	log.Println("Calling Camera.IsPositionBehind()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(worldPoint)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(worldPoint)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "is_position_behind")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_position_behind", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Make this camera the current Camera for the [Viewport] (see class description). If the Camera Node is outside the scene tree, it will attempt to become current once it's added.
+        Make this camera the current Camera for the [Viewport] (see class description). If the Camera Node is outside the scene tree, it will attempt to become current once it's added.
+	Args: [], Returns: void
 */
+
 func (o *Camera) MakeCurrent() {
 	log.Println("Calling Camera.MakeCurrent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "make_current")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "make_current", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns a normal vector from the screen point location directed along the camera. Orthogonal cameras are normalized. Perspective cameras account for perspective, screen width/height, etc.
+        Returns a normal vector from the screen point location directed along the camera. Orthogonal cameras are normalized. Perspective cameras account for perspective, screen width/height, etc.
+	Args: [{ false screen_point Vector2}], Returns: Vector3
 */
-func (o *Camera) ProjectLocalRayNormal(screenPoint *Vector2) *Vector3 {
+
+func (o *Camera) ProjectLocalRayNormal(screenPoint gdnative.Vector2) gdnative.Vector3 {
 	log.Println("Calling Camera.ProjectLocalRayNormal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(screenPoint)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(screenPoint)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "project_local_ray_normal")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "project_local_ray_normal", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns how a 2D coordinate in the Viewport rectangle maps to a 3D point in worldspace.
+        Returns how a 2D coordinate in the Viewport rectangle maps to a 3D point in worldspace.
+	Args: [{ false screen_point Vector2}], Returns: Vector3
 */
-func (o *Camera) ProjectPosition(screenPoint *Vector2) *Vector3 {
+
+func (o *Camera) ProjectPosition(screenPoint gdnative.Vector2) gdnative.Vector3 {
 	log.Println("Calling Camera.ProjectPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(screenPoint)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(screenPoint)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "project_position")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "project_position", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a normal vector in worldspace, that is the result of projecting a point on the [Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
+        Returns a normal vector in worldspace, that is the result of projecting a point on the [Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
+	Args: [{ false screen_point Vector2}], Returns: Vector3
 */
-func (o *Camera) ProjectRayNormal(screenPoint *Vector2) *Vector3 {
+
+func (o *Camera) ProjectRayNormal(screenPoint gdnative.Vector2) gdnative.Vector3 {
 	log.Println("Calling Camera.ProjectRayNormal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(screenPoint)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(screenPoint)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "project_ray_normal")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "project_ray_normal", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a 3D position in worldspace, that is the result of projecting a point on the [Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
+        Returns a 3D position in worldspace, that is the result of projecting a point on the [Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
+	Args: [{ false screen_point Vector2}], Returns: Vector3
 */
-func (o *Camera) ProjectRayOrigin(screenPoint *Vector2) *Vector3 {
+
+func (o *Camera) ProjectRayOrigin(screenPoint gdnative.Vector2) gdnative.Vector3 {
 	log.Println("Calling Camera.ProjectRayOrigin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(screenPoint)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(screenPoint)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "project_ray_origin")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "project_ray_origin", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mask int}], Returns: void
 */
+
 func (o *Camera) SetCullMask(mask gdnative.Int) {
 	log.Println("Calling Camera.SetCullMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mask)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mask)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "set_cull_mask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_cull_mask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 bool}], Returns: void
 */
+
 func (o *Camera) SetCurrent(arg0 gdnative.Bool) {
 	log.Println("Calling Camera.SetCurrent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "set_current")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_current", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *Camera) SetDopplerTracking(mode gdnative.Int) {
 	log.Println("Calling Camera.SetDopplerTracking()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "set_doppler_tracking")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_doppler_tracking", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false env Environment}], Returns: void
 */
-func (o *Camera) SetEnvironment(env *Environment) {
+
+func (o *Camera) SetEnvironment(env environment.Environment) {
 	log.Println("Calling Camera.SetEnvironment()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(env)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(env.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "set_environment")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_environment", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 float}], Returns: void
 */
+
 func (o *Camera) SetFov(arg0 gdnative.Float) {
 	log.Println("Calling Camera.SetFov()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "set_fov")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_fov", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false ofs float}], Returns: void
 */
+
 func (o *Camera) SetHOffset(ofs gdnative.Float) {
 	log.Println("Calling Camera.SetHOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ofs)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(ofs)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "set_h_offset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_h_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *Camera) SetKeepAspectMode(mode gdnative.Int) {
 	log.Println("Calling Camera.SetKeepAspectMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "set_keep_aspect_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_keep_aspect_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the camera projection to orthogonal mode, by specifying a width and the [i]near[/i] and [i]far[/i] clip planes in worldspace units. (As a hint, 2D games often use this projection, with values specified in pixels)
+        Set the camera projection to orthogonal mode, by specifying a width and the [i]near[/i] and [i]far[/i] clip planes in worldspace units. (As a hint, 2D games often use this projection, with values specified in pixels)
+	Args: [{ false size float} { false z_near float} { false z_far float}], Returns: void
 */
+
 func (o *Camera) SetOrthogonal(size gdnative.Float, zNear gdnative.Float, zFar gdnative.Float) {
 	log.Println("Calling Camera.SetOrthogonal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(size)
-	goArguments[1] = reflect.ValueOf(zNear)
-	goArguments[2] = reflect.ValueOf(zFar)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(size)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(zNear)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(zFar)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "set_orthogonal")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_orthogonal", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the camera projection to perspective mode, by specifying a [i]FOV[/i] Y angle in degrees (FOV means Field of View), and the [i]near[/i] and [i]far[/i] clip planes in worldspace units.
+        Set the camera projection to perspective mode, by specifying a [i]FOV[/i] Y angle in degrees (FOV means Field of View), and the [i]near[/i] and [i]far[/i] clip planes in worldspace units.
+	Args: [{ false fov float} { false z_near float} { false z_far float}], Returns: void
 */
+
 func (o *Camera) SetPerspective(fov gdnative.Float, zNear gdnative.Float, zFar gdnative.Float) {
 	log.Println("Calling Camera.SetPerspective()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(fov)
-	goArguments[1] = reflect.ValueOf(zNear)
-	goArguments[2] = reflect.ValueOf(zFar)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(fov)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(zNear)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(zFar)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "set_perspective")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_perspective", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 int}], Returns: void
 */
+
 func (o *Camera) SetProjection(arg0 gdnative.Int) {
 	log.Println("Calling Camera.SetProjection()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "set_projection")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_projection", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 float}], Returns: void
 */
+
 func (o *Camera) SetSize(arg0 gdnative.Float) {
 	log.Println("Calling Camera.SetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "set_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false ofs float}], Returns: void
 */
+
 func (o *Camera) SetVOffset(ofs gdnative.Float) {
 	log.Println("Calling Camera.SetVOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ofs)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(ofs)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "set_v_offset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_v_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 float}], Returns: void
 */
+
 func (o *Camera) SetZfar(arg0 gdnative.Float) {
 	log.Println("Calling Camera.SetZfar()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "set_zfar")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_zfar", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 float}], Returns: void
 */
+
 func (o *Camera) SetZnear(arg0 gdnative.Float) {
 	log.Println("Calling Camera.SetZnear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "set_znear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_znear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns how a 3D point in worldspace maps to a 2D coordinate in the [Viewport] rectangle.
+        Returns how a 3D point in worldspace maps to a 2D coordinate in the [Viewport] rectangle.
+	Args: [{ false world_point Vector3}], Returns: Vector2
 */
-func (o *Camera) UnprojectPosition(worldPoint *Vector3) *Vector2 {
+
+func (o *Camera) UnprojectPosition(worldPoint gdnative.Vector3) gdnative.Vector2 {
 	log.Println("Calling Camera.UnprojectPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(worldPoint)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(worldPoint)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "unproject_position")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "unproject_position", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   CameraImplementer is an interface for Camera objects.
-*/
-type CameraImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

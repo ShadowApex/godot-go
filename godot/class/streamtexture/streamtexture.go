@@ -2,9 +2,9 @@ package streamtexture
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/texture"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewStreamTextureFromPointer(ptr gdnative.Pointer) *StreamTexture {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := StreamTexture{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 A texture that is loaded from a .stex file.
 */
 type StreamTexture struct {
-	Texture
+	texture.Texture
 }
 
 func (o *StreamTexture) BaseClass() string {
@@ -28,49 +37,32 @@ func (o *StreamTexture) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *StreamTexture) GetLoadPath() gdnative.String {
 	log.Println("Calling StreamTexture.GetLoadPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamTexture", "get_load_path")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_load_path", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false path String}], Returns: enum.Error
 */
-func (o *StreamTexture) Load(path gdnative.String) gdnative.Int {
-	log.Println("Calling StreamTexture.Load()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "load", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   StreamTextureImplementer is an interface for StreamTexture objects.
-*/
-type StreamTextureImplementer interface {
-	Class
-}

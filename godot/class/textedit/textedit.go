@@ -2,7 +2,13 @@ package textedit
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/control"
+	"github.com/shadowapex/godot-go/godot/class/inputevent"
+
+	"github.com/shadowapex/godot-go/godot/class/popup"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +20,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewTextEditFromPointer(ptr gdnative.Pointer) *TextEdit {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := TextEdit{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 TextEdit is meant for editing large, multiline text. It also has facilities for editing code, such as syntax highlighting support and multiple levels of undo/redo.
 */
 type TextEdit struct {
-	Control
+	control.Control
 }
 
 func (o *TextEdit) BaseClass() string {
@@ -26,1478 +41,1847 @@ func (o *TextEdit) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *TextEdit) X_ClickSelectionHeld() {
 	log.Println("Calling TextEdit.X_ClickSelectionHeld()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "_click_selection_held")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_click_selection_held", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *TextEdit) X_CursorChangedEmit() {
 	log.Println("Calling TextEdit.X_CursorChangedEmit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "_cursor_changed_emit")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_cursor_changed_emit", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *TextEdit) X_GuiInput(arg0 *InputEvent) {
+
+func (o *TextEdit) X_GuiInput(arg0 inputevent.InputEvent) {
 	log.Println("Calling TextEdit.X_GuiInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "_gui_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_gui_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *TextEdit) X_PushCurrentOp() {
 	log.Println("Calling TextEdit.X_PushCurrentOp()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "_push_current_op")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_push_current_op", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 float}], Returns: void
 */
+
 func (o *TextEdit) X_ScrollMoved(arg0 gdnative.Float) {
 	log.Println("Calling TextEdit.X_ScrollMoved()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "_scroll_moved")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_scroll_moved", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *TextEdit) X_TextChangedEmit() {
 	log.Println("Calling TextEdit.X_TextChangedEmit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "_text_changed_emit")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_text_changed_emit", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *TextEdit) X_ToggleDrawCaret() {
 	log.Println("Calling TextEdit.X_ToggleDrawCaret()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "_toggle_draw_caret")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_toggle_draw_caret", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *TextEdit) X_VScrollInput() {
 	log.Println("Calling TextEdit.X_VScrollInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "_v_scroll_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_v_scroll_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Add color region (given the delimiters) and its colors.
+        Add color region (given the delimiters) and its colors.
+	Args: [{ false begin_key String} { false end_key String} { false color Color} {False true line_only bool}], Returns: void
 */
-func (o *TextEdit) AddColorRegion(beginKey gdnative.String, endKey gdnative.String, color *Color, lineOnly gdnative.Bool) {
+
+func (o *TextEdit) AddColorRegion(beginKey gdnative.String, endKey gdnative.String, color gdnative.Color, lineOnly gdnative.Bool) {
 	log.Println("Calling TextEdit.AddColorRegion()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(beginKey)
-	goArguments[1] = reflect.ValueOf(endKey)
-	goArguments[2] = reflect.ValueOf(color)
-	goArguments[3] = reflect.ValueOf(lineOnly)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromString(beginKey)
+	ptrArguments[1] = gdnative.NewPointerFromString(endKey)
+	ptrArguments[2] = gdnative.NewPointerFromColor(color)
+	ptrArguments[3] = gdnative.NewPointerFromBool(lineOnly)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "add_color_region")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_color_region", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Add a keyword and its color.
+        Add a keyword and its color.
+	Args: [{ false keyword String} { false color Color}], Returns: void
 */
-func (o *TextEdit) AddKeywordColor(keyword gdnative.String, color *Color) {
+
+func (o *TextEdit) AddKeywordColor(keyword gdnative.String, color gdnative.Color) {
 	log.Println("Calling TextEdit.AddKeywordColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(keyword)
-	goArguments[1] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(keyword)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "add_keyword_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_keyword_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false line int}], Returns: bool
+*/
+
 func (o *TextEdit) CanFold(line gdnative.Int) gdnative.Bool {
 	log.Println("Calling TextEdit.CanFold()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(line)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(line)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "can_fold")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "can_fold", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Clear all the syntax coloring information.
+        Clear all the syntax coloring information.
+	Args: [], Returns: void
 */
+
 func (o *TextEdit) ClearColors() {
 	log.Println("Calling TextEdit.ClearColors()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "clear_colors")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear_colors", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Clear the undo history.
+        Clear the undo history.
+	Args: [], Returns: void
 */
+
 func (o *TextEdit) ClearUndoHistory() {
 	log.Println("Calling TextEdit.ClearUndoHistory()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "clear_undo_history")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear_undo_history", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Copy the current selection.
+        Copy the current selection.
+	Args: [], Returns: void
 */
+
 func (o *TextEdit) Copy() {
 	log.Println("Calling TextEdit.Copy()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "copy")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "copy", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TextEdit) CursorGetBlinkEnabled() gdnative.Bool {
 	log.Println("Calling TextEdit.CursorGetBlinkEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "cursor_get_blink_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "cursor_get_blink_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *TextEdit) CursorGetBlinkSpeed() gdnative.Float {
 	log.Println("Calling TextEdit.CursorGetBlinkSpeed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "cursor_get_blink_speed")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "cursor_get_blink_speed", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the column the editing cursor is at.
+        Return the column the editing cursor is at.
+	Args: [], Returns: int
 */
+
 func (o *TextEdit) CursorGetColumn() gdnative.Int {
 	log.Println("Calling TextEdit.CursorGetColumn()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "cursor_get_column")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "cursor_get_column", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the line the editing cursor is at.
+        Return the line the editing cursor is at.
+	Args: [], Returns: int
 */
+
 func (o *TextEdit) CursorGetLine() gdnative.Int {
 	log.Println("Calling TextEdit.CursorGetLine()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "cursor_get_line")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "cursor_get_line", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TextEdit) CursorIsBlockMode() gdnative.Bool {
 	log.Println("Calling TextEdit.CursorIsBlockMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "cursor_is_block_mode")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "cursor_is_block_mode", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *TextEdit) CursorSetBlinkEnabled(enable gdnative.Bool) {
 	log.Println("Calling TextEdit.CursorSetBlinkEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "cursor_set_blink_enabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "cursor_set_blink_enabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false blink_speed float}], Returns: void
 */
+
 func (o *TextEdit) CursorSetBlinkSpeed(blinkSpeed gdnative.Float) {
 	log.Println("Calling TextEdit.CursorSetBlinkSpeed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(blinkSpeed)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(blinkSpeed)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "cursor_set_blink_speed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "cursor_set_blink_speed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *TextEdit) CursorSetBlockMode(enable gdnative.Bool) {
 	log.Println("Calling TextEdit.CursorSetBlockMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "cursor_set_block_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "cursor_set_block_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false column int} {True true adjust_viewport bool}], Returns: void
+*/
+
 func (o *TextEdit) CursorSetColumn(column gdnative.Int, adjustViewport gdnative.Bool) {
 	log.Println("Calling TextEdit.CursorSetColumn()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(column)
-	goArguments[1] = reflect.ValueOf(adjustViewport)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(column)
+	ptrArguments[1] = gdnative.NewPointerFromBool(adjustViewport)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "cursor_set_column")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "cursor_set_column", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false line int} {True true adjust_viewport bool} {True true can_be_hidden bool}], Returns: void
+*/
+
 func (o *TextEdit) CursorSetLine(line gdnative.Int, adjustViewport gdnative.Bool, canBeHidden gdnative.Bool) {
 	log.Println("Calling TextEdit.CursorSetLine()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(line)
-	goArguments[1] = reflect.ValueOf(adjustViewport)
-	goArguments[2] = reflect.ValueOf(canBeHidden)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(line)
+	ptrArguments[1] = gdnative.NewPointerFromBool(adjustViewport)
+	ptrArguments[2] = gdnative.NewPointerFromBool(canBeHidden)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "cursor_set_line")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "cursor_set_line", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Cut the current selection.
+        Cut the current selection.
+	Args: [], Returns: void
 */
+
 func (o *TextEdit) Cut() {
 	log.Println("Calling TextEdit.Cut()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "cut")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "cut", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Clears the current selection.
+        Clears the current selection.
+	Args: [], Returns: void
 */
+
 func (o *TextEdit) Deselect() {
 	log.Println("Calling TextEdit.Deselect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "deselect")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "deselect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *TextEdit) FoldAllLines() {
 	log.Println("Calling TextEdit.FoldAllLines()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "fold_all_lines")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "fold_all_lines", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false line int}], Returns: void
+*/
+
 func (o *TextEdit) FoldLine(line gdnative.Int) {
 	log.Println("Calling TextEdit.FoldLine()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(line)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(line)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "fold_line")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "fold_line", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Return the text of a specific line.
+        Return the text of a specific line.
+	Args: [{ false line int}], Returns: String
 */
+
 func (o *TextEdit) GetLine(line gdnative.Int) gdnative.String {
 	log.Println("Calling TextEdit.GetLine()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(line)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(line)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "get_line")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_line", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the amount of total lines in the text.
+        Return the amount of total lines in the text.
+	Args: [], Returns: int
 */
+
 func (o *TextEdit) GetLineCount() gdnative.Int {
 	log.Println("Calling TextEdit.GetLineCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "get_line_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_line_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *TextEdit) GetMenu() *PopupMenu {
+	Args: [], Returns: PopupMenu
+*/
+
+func (o *TextEdit) GetMenu() popup.PopupMenu {
 	log.Println("Calling TextEdit.GetMenu()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "get_menu")
 
 	// Call the parent method.
+	// PopupMenu
+	retPtr := popup.NewEmptyPopupMenu()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_menu", goArguments, "*PopupMenu")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := popup.NewPopupMenuFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PopupMenu)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the selection begin column.
+        Return the selection begin column.
+	Args: [], Returns: int
 */
+
 func (o *TextEdit) GetSelectionFromColumn() gdnative.Int {
 	log.Println("Calling TextEdit.GetSelectionFromColumn()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "get_selection_from_column")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_selection_from_column", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the selection begin line.
+        Return the selection begin line.
+	Args: [], Returns: int
 */
+
 func (o *TextEdit) GetSelectionFromLine() gdnative.Int {
 	log.Println("Calling TextEdit.GetSelectionFromLine()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "get_selection_from_line")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_selection_from_line", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the text inside the selection.
+        Return the text inside the selection.
+	Args: [], Returns: String
 */
+
 func (o *TextEdit) GetSelectionText() gdnative.String {
 	log.Println("Calling TextEdit.GetSelectionText()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "get_selection_text")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_selection_text", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the selection end column.
+        Return the selection end column.
+	Args: [], Returns: int
 */
+
 func (o *TextEdit) GetSelectionToColumn() gdnative.Int {
 	log.Println("Calling TextEdit.GetSelectionToColumn()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "get_selection_to_column")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_selection_to_column", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the selection end line.
+        Return the selection end line.
+	Args: [], Returns: int
 */
+
 func (o *TextEdit) GetSelectionToLine() gdnative.Int {
 	log.Println("Calling TextEdit.GetSelectionToLine()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "get_selection_to_line")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_selection_to_line", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *TextEdit) GetText() gdnative.String {
 	log.Println("Calling TextEdit.GetText()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "get_text")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_text", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *TextEdit) GetVScrollSpeed() gdnative.Float {
 	log.Println("Calling TextEdit.GetVScrollSpeed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "get_v_scroll_speed")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_v_scroll_speed", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: String
+*/
+
 func (o *TextEdit) GetWordUnderCursor() gdnative.String {
 	log.Println("Calling TextEdit.GetWordUnderCursor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "get_word_under_cursor")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_word_under_cursor", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Insert a given text at the cursor position.
+        Insert a given text at the cursor position.
+	Args: [{ false text String}], Returns: void
 */
+
 func (o *TextEdit) InsertTextAtCursor(text gdnative.String) {
 	log.Println("Calling TextEdit.InsertTextAtCursor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(text)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(text)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "insert_text_at_cursor")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "insert_text_at_cursor", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TextEdit) IsContextMenuEnabled() gdnative.Bool {
 	log.Println("Calling TextEdit.IsContextMenuEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "is_context_menu_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_context_menu_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false line int}], Returns: bool
+*/
+
 func (o *TextEdit) IsFolded(line gdnative.Int) gdnative.Bool {
 	log.Println("Calling TextEdit.IsFolded()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(line)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(line)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "is_folded")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_folded", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *TextEdit) IsHidingEnabled() gdnative.Int {
 	log.Println("Calling TextEdit.IsHidingEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "is_hiding_enabled")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_hiding_enabled", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TextEdit) IsHighlightAllOccurrencesEnabled() gdnative.Bool {
 	log.Println("Calling TextEdit.IsHighlightAllOccurrencesEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "is_highlight_all_occurrences_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_highlight_all_occurrences_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TextEdit) IsHighlightCurrentLineEnabled() gdnative.Bool {
 	log.Println("Calling TextEdit.IsHighlightCurrentLineEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "is_highlight_current_line_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_highlight_current_line_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false line int}], Returns: bool
+*/
+
 func (o *TextEdit) IsLineHidden(line gdnative.Int) gdnative.Bool {
 	log.Println("Calling TextEdit.IsLineHidden()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(line)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(line)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "is_line_hidden")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_line_hidden", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TextEdit) IsOverridingSelectedFontColor() gdnative.Bool {
 	log.Println("Calling TextEdit.IsOverridingSelectedFontColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "is_overriding_selected_font_color")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_overriding_selected_font_color", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TextEdit) IsReadonly() gdnative.Bool {
 	log.Println("Calling TextEdit.IsReadonly()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "is_readonly")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_readonly", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TextEdit) IsRightClickMovingCaret() gdnative.Bool {
 	log.Println("Calling TextEdit.IsRightClickMovingCaret()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "is_right_click_moving_caret")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_right_click_moving_caret", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return true if the selection is active.
+        Return true if the selection is active.
+	Args: [], Returns: bool
 */
+
 func (o *TextEdit) IsSelectionActive() gdnative.Bool {
 	log.Println("Calling TextEdit.IsSelectionActive()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "is_selection_active")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_selection_active", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TextEdit) IsShowLineNumbersEnabled() gdnative.Bool {
 	log.Println("Calling TextEdit.IsShowLineNumbersEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "is_show_line_numbers_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_show_line_numbers_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TextEdit) IsSmoothScrollEnabled() gdnative.Bool {
 	log.Println("Calling TextEdit.IsSmoothScrollEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "is_smooth_scroll_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_smooth_scroll_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TextEdit) IsSyntaxColoringEnabled() gdnative.Bool {
 	log.Println("Calling TextEdit.IsSyntaxColoringEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "is_syntax_coloring_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_syntax_coloring_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TextEdit) IsWrapping() gdnative.Bool {
 	log.Println("Calling TextEdit.IsWrapping()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "is_wrapping")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_wrapping", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false option int}], Returns: void
+*/
+
 func (o *TextEdit) MenuOption(option gdnative.Int) {
 	log.Println("Calling TextEdit.MenuOption()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(option)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(option)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "menu_option")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "menu_option", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Paste the current selection.
+        Paste the current selection.
+	Args: [], Returns: void
 */
+
 func (o *TextEdit) Paste() {
 	log.Println("Calling TextEdit.Paste()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "paste")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "paste", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Perform redo operation.
+        Perform redo operation.
+	Args: [], Returns: void
 */
+
 func (o *TextEdit) Redo() {
 	log.Println("Calling TextEdit.Redo()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "redo")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "redo", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Perform a search inside the text. Search flags can be specified in the SEARCH_* enum.
+        Perform a search inside the text. Search flags can be specified in the SEARCH_* enum.
+	Args: [{ false key String} { false flags int} { false from_line int} { false from_column int}], Returns: PoolIntArray
 */
-func (o *TextEdit) Search(key gdnative.String, flags gdnative.Int, fromLine gdnative.Int, fromColumn gdnative.Int) *PoolIntArray {
+
+func (o *TextEdit) Search(key gdnative.String, flags gdnative.Int, fromLine gdnative.Int, fromColumn gdnative.Int) gdnative.PoolIntArray {
 	log.Println("Calling TextEdit.Search()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(key)
-	goArguments[1] = reflect.ValueOf(flags)
-	goArguments[2] = reflect.ValueOf(fromLine)
-	goArguments[3] = reflect.ValueOf(fromColumn)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromString(key)
+	ptrArguments[1] = gdnative.NewPointerFromInt(flags)
+	ptrArguments[2] = gdnative.NewPointerFromInt(fromLine)
+	ptrArguments[3] = gdnative.NewPointerFromInt(fromColumn)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "search")
 
 	// Call the parent method.
+	// PoolIntArray
+	retPtr := gdnative.NewEmptyPoolIntArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "search", goArguments, "*PoolIntArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Perform selection, from line/column to line/column.
+        Perform selection, from line/column to line/column.
+	Args: [{ false from_line int} { false from_column int} { false to_line int} { false to_column int}], Returns: void
 */
+
 func (o *TextEdit) Select(fromLine gdnative.Int, fromColumn gdnative.Int, toLine gdnative.Int, toColumn gdnative.Int) {
 	log.Println("Calling TextEdit.Select()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(fromLine)
-	goArguments[1] = reflect.ValueOf(fromColumn)
-	goArguments[2] = reflect.ValueOf(toLine)
-	goArguments[3] = reflect.ValueOf(toColumn)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromInt(fromLine)
+	ptrArguments[1] = gdnative.NewPointerFromInt(fromColumn)
+	ptrArguments[2] = gdnative.NewPointerFromInt(toLine)
+	ptrArguments[3] = gdnative.NewPointerFromInt(toColumn)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "select")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "select", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Select all the text.
+        Select all the text.
+	Args: [], Returns: void
 */
+
 func (o *TextEdit) SelectAll() {
 	log.Println("Calling TextEdit.SelectAll()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "select_all")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "select_all", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *TextEdit) SetContextMenuEnabled(enable gdnative.Bool) {
 	log.Println("Calling TextEdit.SetContextMenuEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "set_context_menu_enabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_context_menu_enabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable int}], Returns: void
 */
+
 func (o *TextEdit) SetHidingEnabled(enable gdnative.Int) {
 	log.Println("Calling TextEdit.SetHidingEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "set_hiding_enabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_hiding_enabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *TextEdit) SetHighlightAllOccurrences(enable gdnative.Bool) {
 	log.Println("Calling TextEdit.SetHighlightAllOccurrences()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "set_highlight_all_occurrences")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_highlight_all_occurrences", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enabled bool}], Returns: void
 */
+
 func (o *TextEdit) SetHighlightCurrentLine(enabled gdnative.Bool) {
 	log.Println("Calling TextEdit.SetHighlightCurrentLine()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "set_highlight_current_line")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_highlight_current_line", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false line int} { false enable bool}], Returns: void
+*/
+
 func (o *TextEdit) SetLineAsHidden(line gdnative.Int, enable gdnative.Bool) {
 	log.Println("Calling TextEdit.SetLineAsHidden()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(line)
-	goArguments[1] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(line)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "set_line_as_hidden")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_line_as_hidden", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false override bool}], Returns: void
 */
+
 func (o *TextEdit) SetOverrideSelectedFontColor(override gdnative.Bool) {
 	log.Println("Calling TextEdit.SetOverrideSelectedFontColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(override)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(override)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "set_override_selected_font_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_override_selected_font_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *TextEdit) SetReadonly(enable gdnative.Bool) {
 	log.Println("Calling TextEdit.SetReadonly()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "set_readonly")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_readonly", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *TextEdit) SetRightClickMovesCaret(enable gdnative.Bool) {
 	log.Println("Calling TextEdit.SetRightClickMovesCaret()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "set_right_click_moves_caret")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_right_click_moves_caret", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *TextEdit) SetShowLineNumbers(enable gdnative.Bool) {
 	log.Println("Calling TextEdit.SetShowLineNumbers()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "set_show_line_numbers")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_show_line_numbers", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *TextEdit) SetSmoothScrollEnable(enable gdnative.Bool) {
 	log.Println("Calling TextEdit.SetSmoothScrollEnable()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "set_smooth_scroll_enable")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_smooth_scroll_enable", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *TextEdit) SetSyntaxColoring(enable gdnative.Bool) {
 	log.Println("Calling TextEdit.SetSyntaxColoring()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "set_syntax_coloring")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_syntax_coloring", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false text String}], Returns: void
 */
+
 func (o *TextEdit) SetText(text gdnative.String) {
 	log.Println("Calling TextEdit.SetText()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(text)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(text)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "set_text")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_text", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false speed float}], Returns: void
 */
+
 func (o *TextEdit) SetVScrollSpeed(speed gdnative.Float) {
 	log.Println("Calling TextEdit.SetVScrollSpeed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(speed)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(speed)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "set_v_scroll_speed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_v_scroll_speed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *TextEdit) SetWrap(enable gdnative.Bool) {
 	log.Println("Calling TextEdit.SetWrap()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "set_wrap")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_wrap", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Toggle the folding of the code block at the given line.
+        Toggle the folding of the code block at the given line.
+	Args: [{ false line int}], Returns: void
 */
+
 func (o *TextEdit) ToggleFoldLine(line gdnative.Int) {
 	log.Println("Calling TextEdit.ToggleFoldLine()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(line)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(line)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "toggle_fold_line")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "toggle_fold_line", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Perform undo operation.
+        Perform undo operation.
+	Args: [], Returns: void
 */
+
 func (o *TextEdit) Undo() {
 	log.Println("Calling TextEdit.Undo()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "undo")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "undo", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false line int}], Returns: void
+*/
+
 func (o *TextEdit) UnfoldLine(line gdnative.Int) {
 	log.Println("Calling TextEdit.UnfoldLine()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(line)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(line)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "unfold_line")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "unfold_line", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *TextEdit) UnhideAllLines() {
 	log.Println("Calling TextEdit.UnhideAllLines()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextEdit", "unhide_all_lines")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "unhide_all_lines", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   TextEditImplementer is an interface for TextEdit objects.
-*/
-type TextEditImplementer interface {
-	Class
 }

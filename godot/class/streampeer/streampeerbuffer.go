@@ -2,7 +2,6 @@ package streampeer
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -15,6 +14,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewStreamPeerBufferFromPointer(ptr gdnative.Pointer) *StreamPeerBuffer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := StreamPeerBuffer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 /*
 
@@ -29,158 +37,191 @@ func (o *StreamPeerBuffer) BaseClass() string {
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *StreamPeerBuffer) Clear() {
 	log.Println("Calling StreamPeerBuffer.Clear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerBuffer", "clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *StreamPeerBuffer) Duplicate() *StreamPeerBuffer {
+	Args: [], Returns: StreamPeerBuffer
+*/
+
+func (o *StreamPeerBuffer) Duplicate() StreamPeerBuffer {
 	log.Println("Calling StreamPeerBuffer.Duplicate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerBuffer", "duplicate")
 
 	// Call the parent method.
+	// StreamPeerBuffer
+	retPtr := NewEmptyStreamPeerBuffer()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "duplicate", goArguments, "*StreamPeerBuffer")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewStreamPeerBufferFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*StreamPeerBuffer)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolByteArray
 */
-func (o *StreamPeerBuffer) GetDataArray() *PoolByteArray {
+
+func (o *StreamPeerBuffer) GetDataArray() gdnative.PoolByteArray {
 	log.Println("Calling StreamPeerBuffer.GetDataArray()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerBuffer", "get_data_array")
 
 	// Call the parent method.
+	// PoolByteArray
+	retPtr := gdnative.NewEmptyPoolByteArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_data_array", goArguments, "*PoolByteArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolByteArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolByteArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: int
+*/
+
 func (o *StreamPeerBuffer) GetPosition() gdnative.Int {
 	log.Println("Calling StreamPeerBuffer.GetPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerBuffer", "get_position")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_position", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: int
+*/
+
 func (o *StreamPeerBuffer) GetSize() gdnative.Int {
 	log.Println("Calling StreamPeerBuffer.GetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerBuffer", "get_size")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_size", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false size int}], Returns: void
+*/
+
 func (o *StreamPeerBuffer) Resize(size gdnative.Int) {
 	log.Println("Calling StreamPeerBuffer.Resize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerBuffer", "resize")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "resize", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false position int}], Returns: void
+*/
+
 func (o *StreamPeerBuffer) Seek(position gdnative.Int) {
 	log.Println("Calling StreamPeerBuffer.Seek()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerBuffer", "seek")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "seek", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false data PoolByteArray}], Returns: void
 */
-func (o *StreamPeerBuffer) SetDataArray(data *PoolByteArray) {
+
+func (o *StreamPeerBuffer) SetDataArray(data gdnative.PoolByteArray) {
 	log.Println("Calling StreamPeerBuffer.SetDataArray()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(data)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolByteArray(data)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerBuffer", "set_data_array")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_data_array", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   StreamPeerBufferImplementer is an interface for StreamPeerBuffer objects.
-*/
-type StreamPeerBufferImplementer interface {
-	Class
 }

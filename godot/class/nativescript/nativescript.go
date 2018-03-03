@@ -2,9 +2,13 @@ package nativescript
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/gdnativelibrary"
+	"github.com/shadowapex/godot-go/godot/class/script"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +20,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewNativeScriptFromPointer(ptr gdnative.Pointer) *NativeScript {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := NativeScript{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
 type NativeScript struct {
-	Script
+	script.Script
 }
 
 func (o *NativeScript) BaseClass() string {
@@ -28,187 +41,230 @@ func (o *NativeScript) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *NativeScript) GetClassDocumentation() gdnative.String {
 	log.Println("Calling NativeScript.GetClassDocumentation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NativeScript", "get_class_documentation")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_class_documentation", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *NativeScript) GetClassName() gdnative.String {
 	log.Println("Calling NativeScript.GetClassName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NativeScript", "get_class_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_class_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: GDNativeLibrary
 */
-func (o *NativeScript) GetLibrary() *GDNativeLibrary {
+
+func (o *NativeScript) GetLibrary() gdnativelibrary.GDNativeLibrary {
 	log.Println("Calling NativeScript.GetLibrary()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NativeScript", "get_library")
 
 	// Call the parent method.
+	// GDNativeLibrary
+	retPtr := gdnativelibrary.NewEmptyGDNativeLibrary()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_library", goArguments, "*GDNativeLibrary")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnativelibrary.NewGdNativeLibraryFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*GDNativeLibrary)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false method String}], Returns: String
 */
+
 func (o *NativeScript) GetMethodDocumentation(method gdnative.String) gdnative.String {
 	log.Println("Calling NativeScript.GetMethodDocumentation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(method)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(method)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NativeScript", "get_method_documentation")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_method_documentation", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false path String}], Returns: String
 */
+
 func (o *NativeScript) GetPropertyDocumentation(path gdnative.String) gdnative.String {
 	log.Println("Calling NativeScript.GetPropertyDocumentation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NativeScript", "get_property_documentation")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_property_documentation", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false signal_name String}], Returns: String
 */
+
 func (o *NativeScript) GetSignalDocumentation(signalName gdnative.String) gdnative.String {
 	log.Println("Calling NativeScript.GetSignalDocumentation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(signalName)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(signalName)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NativeScript", "get_signal_documentation")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_signal_documentation", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Object
 */
-func (o *NativeScript) New() *Object {
+
+func (o *NativeScript) New() object.Object {
 	log.Println("Calling NativeScript.New()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NativeScript", "new")
 
 	// Call the parent method.
+	// Object
+	retPtr := object.NewEmptyObject()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "new", goArguments, "*Object")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := object.NewObjectFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Object)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false class_name String}], Returns: void
 */
+
 func (o *NativeScript) SetClassName(className gdnative.String) {
 	log.Println("Calling NativeScript.SetClassName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(className)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(className)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NativeScript", "set_class_name")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_class_name", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false library GDNativeLibrary}], Returns: void
 */
-func (o *NativeScript) SetLibrary(library *GDNativeLibrary) {
+
+func (o *NativeScript) SetLibrary(library gdnativelibrary.GDNativeLibrary) {
 	log.Println("Calling NativeScript.SetLibrary()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(library)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(library.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NativeScript", "set_library")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_library", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   NativeScriptImplementer is an interface for NativeScript objects.
-*/
-type NativeScriptImplementer interface {
-	Class
 }

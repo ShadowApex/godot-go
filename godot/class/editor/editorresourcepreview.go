@@ -2,9 +2,15 @@ package editor
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/node"
+	"github.com/shadowapex/godot-go/godot/class/texture"
+
+	"github.com/shadowapex/godot-go/godot/class/resource"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +22,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewEditorResourcePreviewFromPointer(ptr gdnative.Pointer) *EditorResourcePreview {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := EditorResourcePreview{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 This object is used to generate previews for resources of files.
 */
 type EditorResourcePreview struct {
-	Node
+	node.Node
 }
 
 func (o *EditorResourcePreview) BaseClass() string {
@@ -28,126 +43,143 @@ func (o *EditorResourcePreview) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 String} { false arg1 Texture} { false arg2 int} { false arg3 String} { false arg4 Variant}], Returns: void
 */
-func (o *EditorResourcePreview) X_PreviewReady(arg0 gdnative.String, arg1 *Texture, arg2 gdnative.Int, arg3 gdnative.String, arg4 *Variant) {
+
+func (o *EditorResourcePreview) X_PreviewReady(arg0 gdnative.String, arg1 texture.Texture, arg2 gdnative.Int, arg3 gdnative.String, arg4 gdnative.Variant) {
 	log.Println("Calling EditorResourcePreview.X_PreviewReady()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(arg0)
-	goArguments[1] = reflect.ValueOf(arg1)
-	goArguments[2] = reflect.ValueOf(arg2)
-	goArguments[3] = reflect.ValueOf(arg3)
-	goArguments[4] = reflect.ValueOf(arg4)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromString(arg0)
+	ptrArguments[1] = gdnative.NewPointerFromObject(arg1.GetOwner())
+	ptrArguments[2] = gdnative.NewPointerFromInt(arg2)
+	ptrArguments[3] = gdnative.NewPointerFromString(arg3)
+	ptrArguments[4] = gdnative.NewPointerFromVariant(arg4)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorResourcePreview", "_preview_ready")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_preview_ready", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Create an own, custom preview generator.
+        Create an own, custom preview generator.
+	Args: [{ false generator EditorResourcePreviewGenerator}], Returns: void
 */
-func (o *EditorResourcePreview) AddPreviewGenerator(generator *EditorResourcePreviewGenerator) {
+
+func (o *EditorResourcePreview) AddPreviewGenerator(generator EditorResourcePreviewGenerator) {
 	log.Println("Calling EditorResourcePreview.AddPreviewGenerator()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(generator)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(generator.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorResourcePreview", "add_preview_generator")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_preview_generator", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Check if the resource changed, if so it will be invalidated and the corresponding signal emitted.
+        Check if the resource changed, if so it will be invalidated and the corresponding signal emitted.
+	Args: [{ false path String}], Returns: void
 */
+
 func (o *EditorResourcePreview) CheckForInvalidation(path gdnative.String) {
 	log.Println("Calling EditorResourcePreview.CheckForInvalidation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorResourcePreview", "check_for_invalidation")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "check_for_invalidation", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Queue a resource being edited for preview (using an instance). Once the preview is ready, your receiver.receiver_func will be called either containing the preview texture or an empty texture (if no preview was possible). Callback must have the format: (path,texture,userdata). Userdata can be anything.
+        Queue a resource being edited for preview (using an instance). Once the preview is ready, your receiver.receiver_func will be called either containing the preview texture or an empty texture (if no preview was possible). Callback must have the format: (path,texture,userdata). Userdata can be anything.
+	Args: [{ false resource Resource} { false receiver Object} { false receiver_func String} { false userdata Variant}], Returns: void
 */
-func (o *EditorResourcePreview) QueueEditedResourcePreview(resource *Resource, receiver *Object, receiverFunc gdnative.String, userdata *Variant) {
+
+func (o *EditorResourcePreview) QueueEditedResourcePreview(resource resource.Resource, receiver object.Object, receiverFunc gdnative.String, userdata gdnative.Variant) {
 	log.Println("Calling EditorResourcePreview.QueueEditedResourcePreview()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(resource)
-	goArguments[1] = reflect.ValueOf(receiver)
-	goArguments[2] = reflect.ValueOf(receiverFunc)
-	goArguments[3] = reflect.ValueOf(userdata)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromObject(resource.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromObject(receiver.GetOwner())
+	ptrArguments[2] = gdnative.NewPointerFromString(receiverFunc)
+	ptrArguments[3] = gdnative.NewPointerFromVariant(userdata)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorResourcePreview", "queue_edited_resource_preview")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "queue_edited_resource_preview", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Queue a resource file for preview (using a path). Once the preview is ready, your receiver.receiver_func will be called either containing the preview texture or an empty texture (if no preview was possible). Callback must have the format: (path,texture,userdata). Userdata can be anything.
+        Queue a resource file for preview (using a path). Once the preview is ready, your receiver.receiver_func will be called either containing the preview texture or an empty texture (if no preview was possible). Callback must have the format: (path,texture,userdata). Userdata can be anything.
+	Args: [{ false path String} { false receiver Object} { false receiver_func String} { false userdata Variant}], Returns: void
 */
-func (o *EditorResourcePreview) QueueResourcePreview(path gdnative.String, receiver *Object, receiverFunc gdnative.String, userdata *Variant) {
+
+func (o *EditorResourcePreview) QueueResourcePreview(path gdnative.String, receiver object.Object, receiverFunc gdnative.String, userdata gdnative.Variant) {
 	log.Println("Calling EditorResourcePreview.QueueResourcePreview()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(path)
-	goArguments[1] = reflect.ValueOf(receiver)
-	goArguments[2] = reflect.ValueOf(receiverFunc)
-	goArguments[3] = reflect.ValueOf(userdata)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+	ptrArguments[1] = gdnative.NewPointerFromObject(receiver.GetOwner())
+	ptrArguments[2] = gdnative.NewPointerFromString(receiverFunc)
+	ptrArguments[3] = gdnative.NewPointerFromVariant(userdata)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorResourcePreview", "queue_resource_preview")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "queue_resource_preview", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Remove a custom preview generator.
+        Remove a custom preview generator.
+	Args: [{ false generator EditorResourcePreviewGenerator}], Returns: void
 */
-func (o *EditorResourcePreview) RemovePreviewGenerator(generator *EditorResourcePreviewGenerator) {
+
+func (o *EditorResourcePreview) RemovePreviewGenerator(generator EditorResourcePreviewGenerator) {
 	log.Println("Calling EditorResourcePreview.RemovePreviewGenerator()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(generator)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(generator.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorResourcePreview", "remove_preview_generator")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "remove_preview_generator", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   EditorResourcePreviewImplementer is an interface for EditorResourcePreview objects.
-*/
-type EditorResourcePreviewImplementer interface {
-	Class
 }

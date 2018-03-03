@@ -2,7 +2,9 @@ package quadmesh
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/primitivemesh"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewQuadMeshFromPointer(ptr gdnative.Pointer) *QuadMesh {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := QuadMesh{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Class representing a square mesh with size (2,2,0). Consider using a [PlaneMesh] if you require a differently sized plane.
 */
 type QuadMesh struct {
-	PrimitiveMesh
+	primitivemesh.PrimitiveMesh
 }
 
 func (o *QuadMesh) BaseClass() string {
@@ -26,46 +37,49 @@ func (o *QuadMesh) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *QuadMesh) GetSize() *Vector2 {
+
+func (o *QuadMesh) GetSize() gdnative.Vector2 {
 	log.Println("Calling QuadMesh.GetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("QuadMesh", "get_size")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_size", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false size Vector2}], Returns: void
 */
-func (o *QuadMesh) SetSize(size *Vector2) {
+
+func (o *QuadMesh) SetSize(size gdnative.Vector2) {
 	log.Println("Calling QuadMesh.SetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("QuadMesh", "set_size")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   QuadMeshImplementer is an interface for QuadMesh objects.
-*/
-type QuadMeshImplementer interface {
-	Class
 }

@@ -2,7 +2,9 @@ package parallaxlayer
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/node2d"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewParallaxLayerFromPointer(ptr gdnative.Pointer) *ParallaxLayer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ParallaxLayer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 A ParallaxLayer must be the child of a [ParallaxBackground] node. Each ParallaxLayer can be set to move at different speeds relative to the camera movement or the [member ParallaxBackground.scroll_offset] value. This node's children will be affected by its scroll offset.
 */
 type ParallaxLayer struct {
-	Node2D
+	node2d.Node2D
 }
 
 func (o *ParallaxLayer) BaseClass() string {
@@ -26,122 +37,145 @@ func (o *ParallaxLayer) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *ParallaxLayer) GetMirroring() *Vector2 {
+
+func (o *ParallaxLayer) GetMirroring() gdnative.Vector2 {
 	log.Println("Calling ParallaxLayer.GetMirroring()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxLayer", "get_mirroring")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_mirroring", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *ParallaxLayer) GetMotionOffset() *Vector2 {
+
+func (o *ParallaxLayer) GetMotionOffset() gdnative.Vector2 {
 	log.Println("Calling ParallaxLayer.GetMotionOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxLayer", "get_motion_offset")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_motion_offset", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *ParallaxLayer) GetMotionScale() *Vector2 {
+
+func (o *ParallaxLayer) GetMotionScale() gdnative.Vector2 {
 	log.Println("Calling ParallaxLayer.GetMotionScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxLayer", "get_motion_scale")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_motion_scale", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mirror Vector2}], Returns: void
 */
-func (o *ParallaxLayer) SetMirroring(mirror *Vector2) {
+
+func (o *ParallaxLayer) SetMirroring(mirror gdnative.Vector2) {
 	log.Println("Calling ParallaxLayer.SetMirroring()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mirror)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(mirror)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxLayer", "set_mirroring")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_mirroring", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false offset Vector2}], Returns: void
 */
-func (o *ParallaxLayer) SetMotionOffset(offset *Vector2) {
+
+func (o *ParallaxLayer) SetMotionOffset(offset gdnative.Vector2) {
 	log.Println("Calling ParallaxLayer.SetMotionOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(offset)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(offset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxLayer", "set_motion_offset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_motion_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false scale Vector2}], Returns: void
 */
-func (o *ParallaxLayer) SetMotionScale(scale *Vector2) {
+
+func (o *ParallaxLayer) SetMotionScale(scale gdnative.Vector2) {
 	log.Println("Calling ParallaxLayer.SetMotionScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(scale)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(scale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxLayer", "set_motion_scale")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_motion_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ParallaxLayerImplementer is an interface for ParallaxLayer objects.
-*/
-type ParallaxLayerImplementer interface {
-	Class
 }

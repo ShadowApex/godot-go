@@ -2,9 +2,9 @@ package resource
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewResourceInteractiveLoaderFromPointer(ptr gdnative.Pointer) *ResourceInteractiveLoader {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ResourceInteractiveLoader{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Interactive Resource Loader. This object is returned by ResourceLoader when performing an interactive load. It allows to load with high granularity, so this is mainly useful for displaying load bars/percentages.
 */
 type ResourceInteractiveLoader struct {
-	Reference
+	reference.Reference
 }
 
 func (o *ResourceInteractiveLoader) BaseClass() string {
@@ -28,108 +37,89 @@ func (o *ResourceInteractiveLoader) BaseClass() string {
 }
 
 /*
-   Return the loaded resource (only if loaded). Otherwise, returns null.
+        Return the loaded resource (only if loaded). Otherwise, returns null.
+	Args: [], Returns: Resource
 */
-func (o *ResourceInteractiveLoader) GetResource() *Resource {
+
+func (o *ResourceInteractiveLoader) GetResource() Resource {
 	log.Println("Calling ResourceInteractiveLoader.GetResource()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ResourceInteractiveLoader", "get_resource")
 
 	// Call the parent method.
+	// Resource
+	retPtr := NewEmptyResource()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_resource", goArguments, "*Resource")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewResourceFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Resource)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the load stage. The total amount of stages can be queried with [method get_stage_count]
+        Return the load stage. The total amount of stages can be queried with [method get_stage_count]
+	Args: [], Returns: int
 */
+
 func (o *ResourceInteractiveLoader) GetStage() gdnative.Int {
 	log.Println("Calling ResourceInteractiveLoader.GetStage()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ResourceInteractiveLoader", "get_stage")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_stage", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the total amount of stages (calls to [method poll]) needed to completely load this resource.
+        Return the total amount of stages (calls to [method poll]) needed to completely load this resource.
+	Args: [], Returns: int
 */
+
 func (o *ResourceInteractiveLoader) GetStageCount() gdnative.Int {
 	log.Println("Calling ResourceInteractiveLoader.GetStageCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ResourceInteractiveLoader", "get_stage_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_stage_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Poll the load. If OK is returned, this means poll will have to be called again. If ERR_FILE_EOF is returned, them the load has finished and the resource can be obtained by calling [method get_resource].
+        Poll the load. If OK is returned, this means poll will have to be called again. If ERR_FILE_EOF is returned, them the load has finished and the resource can be obtained by calling [method get_resource].
+	Args: [], Returns: enum.Error
 */
-func (o *ResourceInteractiveLoader) Poll() gdnative.Int {
-	log.Println("Calling ResourceInteractiveLoader.Poll()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "poll", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
 
- */
-func (o *ResourceInteractiveLoader) Wait() gdnative.Int {
-	log.Println("Calling ResourceInteractiveLoader.Wait()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "wait", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   ResourceInteractiveLoaderImplementer is an interface for ResourceInteractiveLoader objects.
+	Args: [], Returns: enum.Error
 */
-type ResourceInteractiveLoaderImplementer interface {
-	Class
-}

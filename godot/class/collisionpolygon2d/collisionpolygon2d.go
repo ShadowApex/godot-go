@@ -2,9 +2,9 @@ package collisionpolygon2d
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/node2d"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewCollisionPolygon2DFromPointer(ptr gdnative.Pointer) *CollisionPolygon2D {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := CollisionPolygon2D{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Provides a 2D collision polygon to a [CollisionObject2D] parent. Polygon can be drawn in the editor or specified by a list of vertices.
 */
 type CollisionPolygon2D struct {
-	Node2D
+	node2d.Node2D
 }
 
 func (o *CollisionPolygon2D) BaseClass() string {
@@ -28,160 +37,172 @@ func (o *CollisionPolygon2D) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.CollisionPolygon2D::BuildMode
 */
-func (o *CollisionPolygon2D) GetBuildMode() gdnative.Int {
-	log.Println("Calling CollisionPolygon2D.GetBuildMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_build_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolVector2Array
 */
-func (o *CollisionPolygon2D) GetPolygon() *PoolVector2Array {
+
+func (o *CollisionPolygon2D) GetPolygon() gdnative.PoolVector2Array {
 	log.Println("Calling CollisionPolygon2D.GetPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionPolygon2D", "get_polygon")
 
 	// Call the parent method.
+	// PoolVector2Array
+	retPtr := gdnative.NewEmptyPoolVector2Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_polygon", goArguments, "*PoolVector2Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector2Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *CollisionPolygon2D) IsDisabled() gdnative.Bool {
 	log.Println("Calling CollisionPolygon2D.IsDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionPolygon2D", "is_disabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_disabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *CollisionPolygon2D) IsOneWayCollisionEnabled() gdnative.Bool {
 	log.Println("Calling CollisionPolygon2D.IsOneWayCollisionEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionPolygon2D", "is_one_way_collision_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_one_way_collision_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false build_mode int}], Returns: void
 */
+
 func (o *CollisionPolygon2D) SetBuildMode(buildMode gdnative.Int) {
 	log.Println("Calling CollisionPolygon2D.SetBuildMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(buildMode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(buildMode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionPolygon2D", "set_build_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_build_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false disabled bool}], Returns: void
 */
+
 func (o *CollisionPolygon2D) SetDisabled(disabled gdnative.Bool) {
 	log.Println("Calling CollisionPolygon2D.SetDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(disabled)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(disabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionPolygon2D", "set_disabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_disabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enabled bool}], Returns: void
 */
+
 func (o *CollisionPolygon2D) SetOneWayCollision(enabled gdnative.Bool) {
 	log.Println("Calling CollisionPolygon2D.SetOneWayCollision()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionPolygon2D", "set_one_way_collision")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_one_way_collision", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false polygon PoolVector2Array}], Returns: void
 */
-func (o *CollisionPolygon2D) SetPolygon(polygon *PoolVector2Array) {
+
+func (o *CollisionPolygon2D) SetPolygon(polygon gdnative.PoolVector2Array) {
 	log.Println("Calling CollisionPolygon2D.SetPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(polygon)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(polygon)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionPolygon2D", "set_polygon")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_polygon", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   CollisionPolygon2DImplementer is an interface for CollisionPolygon2D objects.
-*/
-type CollisionPolygon2DImplementer interface {
-	Class
 }

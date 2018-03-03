@@ -2,9 +2,9 @@ package boxcontainer
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/container"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewBoxContainerFromPointer(ptr gdnative.Pointer) *BoxContainer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := BoxContainer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Arranges child controls vertically or horizontally, and rearranges the controls automatically when their minimum size changes.
 */
 type BoxContainer struct {
-	Container
+	container.Container
 }
 
 func (o *BoxContainer) BaseClass() string {
@@ -28,64 +37,50 @@ func (o *BoxContainer) BaseClass() string {
 }
 
 /*
-   Adds a control to the box as a spacer. If [code]true[/code], [i]begin[/i] will insert the spacer control in front of other children.
+        Adds a control to the box as a spacer. If [code]true[/code], [i]begin[/i] will insert the spacer control in front of other children.
+	Args: [{ false begin bool}], Returns: void
 */
+
 func (o *BoxContainer) AddSpacer(begin gdnative.Bool) {
 	log.Println("Calling BoxContainer.AddSpacer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(begin)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(begin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BoxContainer", "add_spacer")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_spacer", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.BoxContainer::AlignMode
 */
-func (o *BoxContainer) GetAlignment() gdnative.Int {
-	log.Println("Calling BoxContainer.GetAlignment()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_alignment", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false alignment int}], Returns: void
 */
+
 func (o *BoxContainer) SetAlignment(alignment gdnative.Int) {
 	log.Println("Calling BoxContainer.SetAlignment()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(alignment)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(alignment)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BoxContainer", "set_alignment")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_alignment", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   BoxContainerImplementer is an interface for BoxContainer objects.
-*/
-type BoxContainerImplementer interface {
-	Class
 }

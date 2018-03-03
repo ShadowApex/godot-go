@@ -2,9 +2,10 @@ package visibility
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -15,6 +16,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewVisibilityEnablerFromPointer(ptr gdnative.Pointer) *VisibilityEnabler {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := VisibilityEnabler{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 /*
 The VisibilityEnabler will disable [RigidBody] and [AnimationPlayer] nodes when they are not visible. It will only affect other nodes within the same scene as the VisibilityEnabler itself.
@@ -28,66 +38,73 @@ func (o *VisibilityEnabler) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 Object}], Returns: void
 */
-func (o *VisibilityEnabler) X_NodeRemoved(arg0 *Object) {
+
+func (o *VisibilityEnabler) X_NodeRemoved(arg0 object.Object) {
 	log.Println("Calling VisibilityEnabler.X_NodeRemoved()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisibilityEnabler", "_node_removed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_node_removed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enabler int}], Returns: bool
 */
+
 func (o *VisibilityEnabler) IsEnablerEnabled(enabler gdnative.Int) gdnative.Bool {
 	log.Println("Calling VisibilityEnabler.IsEnablerEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enabler)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(enabler)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisibilityEnabler", "is_enabler_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_enabler_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enabler int} { false enabled bool}], Returns: void
 */
+
 func (o *VisibilityEnabler) SetEnabler(enabler gdnative.Int, enabled gdnative.Bool) {
 	log.Println("Calling VisibilityEnabler.SetEnabler()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(enabler)
-	goArguments[1] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(enabler)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisibilityEnabler", "set_enabler")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_enabler", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   VisibilityEnablerImplementer is an interface for VisibilityEnabler objects.
-*/
-type VisibilityEnablerImplementer interface {
-	Class
 }

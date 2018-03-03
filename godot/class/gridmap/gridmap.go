@@ -2,7 +2,13 @@ package gridmap
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/meshlibrary"
+	"github.com/shadowapex/godot-go/godot/class/spatial"
+
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +20,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewGridMapFromPointer(ptr gdnative.Pointer) *GridMap {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := GridMap{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
 type GridMap struct {
-	Spatial
+	spatial.Spatial
 }
 
 func (o *GridMap) BaseClass() string {
@@ -26,732 +41,911 @@ func (o *GridMap) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *GridMap) X_UpdateOctantsCallback() {
 	log.Println("Calling GridMap.X_UpdateOctantsCallback()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "_update_octants_callback")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_update_octants_callback", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *GridMap) Clear() {
 	log.Println("Calling GridMap.Clear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *GridMap) ClearBakedMeshes() {
 	log.Println("Calling GridMap.ClearBakedMeshes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "clear_baked_meshes")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear_baked_meshes", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false idx int}], Returns: RID
 */
-func (o *GridMap) GetBakeMeshInstance(idx gdnative.Int) *RID {
+
+func (o *GridMap) GetBakeMeshInstance(idx gdnative.Int) gdnative.RID {
 	log.Println("Calling GridMap.GetBakeMeshInstance()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "get_bake_mesh_instance")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bake_mesh_instance", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Array
 */
-func (o *GridMap) GetBakeMeshes() *Array {
+
+func (o *GridMap) GetBakeMeshes() gdnative.Array {
 	log.Println("Calling GridMap.GetBakeMeshes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "get_bake_meshes")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bake_meshes", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false x int} { false y int} { false z int}], Returns: int
 */
+
 func (o *GridMap) GetCellItem(x gdnative.Int, y gdnative.Int, z gdnative.Int) gdnative.Int {
 	log.Println("Calling GridMap.GetCellItem()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(x)
-	goArguments[1] = reflect.ValueOf(y)
-	goArguments[2] = reflect.ValueOf(z)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(x)
+	ptrArguments[1] = gdnative.NewPointerFromInt(y)
+	ptrArguments[2] = gdnative.NewPointerFromInt(z)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "get_cell_item")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_cell_item", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false x int} { false y int} { false z int}], Returns: int
 */
+
 func (o *GridMap) GetCellItemOrientation(x gdnative.Int, y gdnative.Int, z gdnative.Int) gdnative.Int {
 	log.Println("Calling GridMap.GetCellItemOrientation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(x)
-	goArguments[1] = reflect.ValueOf(y)
-	goArguments[2] = reflect.ValueOf(z)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(x)
+	ptrArguments[1] = gdnative.NewPointerFromInt(y)
+	ptrArguments[2] = gdnative.NewPointerFromInt(z)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "get_cell_item_orientation")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_cell_item_orientation", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *GridMap) GetCellScale() gdnative.Float {
 	log.Println("Calling GridMap.GetCellScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "get_cell_scale")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_cell_scale", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector3
 */
-func (o *GridMap) GetCellSize() *Vector3 {
+
+func (o *GridMap) GetCellSize() gdnative.Vector3 {
 	log.Println("Calling GridMap.GetCellSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "get_cell_size")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_cell_size", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *GridMap) GetCenterX() gdnative.Bool {
 	log.Println("Calling GridMap.GetCenterX()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "get_center_x")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_center_x", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *GridMap) GetCenterY() gdnative.Bool {
 	log.Println("Calling GridMap.GetCenterY()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "get_center_y")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_center_y", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *GridMap) GetCenterZ() gdnative.Bool {
 	log.Println("Calling GridMap.GetCenterZ()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "get_center_z")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_center_z", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *GridMap) GetCollisionLayer() gdnative.Int {
 	log.Println("Calling GridMap.GetCollisionLayer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "get_collision_layer")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collision_layer", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false bit int}], Returns: bool
 */
+
 func (o *GridMap) GetCollisionLayerBit(bit gdnative.Int) gdnative.Bool {
 	log.Println("Calling GridMap.GetCollisionLayerBit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bit)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bit)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "get_collision_layer_bit")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collision_layer_bit", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *GridMap) GetCollisionMask() gdnative.Int {
 	log.Println("Calling GridMap.GetCollisionMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "get_collision_mask")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collision_mask", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false bit int}], Returns: bool
 */
+
 func (o *GridMap) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
 	log.Println("Calling GridMap.GetCollisionMaskBit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bit)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bit)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "get_collision_mask_bit")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collision_mask_bit", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Array
 */
-func (o *GridMap) GetMeshes() *Array {
+
+func (o *GridMap) GetMeshes() gdnative.Array {
 	log.Println("Calling GridMap.GetMeshes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "get_meshes")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_meshes", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *GridMap) GetOctantSize() gdnative.Int {
 	log.Println("Calling GridMap.GetOctantSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "get_octant_size")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_octant_size", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: MeshLibrary
 */
-func (o *GridMap) GetTheme() *MeshLibrary {
+
+func (o *GridMap) GetTheme() meshlibrary.MeshLibrary {
 	log.Println("Calling GridMap.GetTheme()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "get_theme")
 
 	// Call the parent method.
+	// MeshLibrary
+	retPtr := meshlibrary.NewEmptyMeshLibrary()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_theme", goArguments, "*MeshLibrary")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := meshlibrary.NewMeshLibraryFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*MeshLibrary)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Array
 */
-func (o *GridMap) GetUsedCells() *Array {
+
+func (o *GridMap) GetUsedCells() gdnative.Array {
 	log.Println("Calling GridMap.GetUsedCells()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "get_used_cells")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_used_cells", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{False true gen_lightmap_uv bool} {0.1 true lightmap_uv_texel_size float}], Returns: void
 */
+
 func (o *GridMap) MakeBakedMeshes(genLightmapUv gdnative.Bool, lightmapUvTexelSize gdnative.Float) {
 	log.Println("Calling GridMap.MakeBakedMeshes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(genLightmapUv)
-	goArguments[1] = reflect.ValueOf(lightmapUvTexelSize)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromBool(genLightmapUv)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(lightmapUvTexelSize)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "make_baked_meshes")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "make_baked_meshes", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false x int} { false y int} { false z int}], Returns: Vector3
 */
-func (o *GridMap) MapToWorld(x gdnative.Int, y gdnative.Int, z gdnative.Int) *Vector3 {
+
+func (o *GridMap) MapToWorld(x gdnative.Int, y gdnative.Int, z gdnative.Int) gdnative.Vector3 {
 	log.Println("Calling GridMap.MapToWorld()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(x)
-	goArguments[1] = reflect.ValueOf(y)
-	goArguments[2] = reflect.ValueOf(z)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(x)
+	ptrArguments[1] = gdnative.NewPointerFromInt(y)
+	ptrArguments[2] = gdnative.NewPointerFromInt(z)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "map_to_world")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "map_to_world", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false resource Resource}], Returns: void
 */
-func (o *GridMap) ResourceChanged(resource *Resource) {
+
+func (o *GridMap) ResourceChanged(resource resource.Resource) {
 	log.Println("Calling GridMap.ResourceChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(resource)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(resource.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "resource_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "resource_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false x int} { false y int} { false z int} { false item int} {0 true orientation int}], Returns: void
 */
+
 func (o *GridMap) SetCellItem(x gdnative.Int, y gdnative.Int, z gdnative.Int, item gdnative.Int, orientation gdnative.Int) {
 	log.Println("Calling GridMap.SetCellItem()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(x)
-	goArguments[1] = reflect.ValueOf(y)
-	goArguments[2] = reflect.ValueOf(z)
-	goArguments[3] = reflect.ValueOf(item)
-	goArguments[4] = reflect.ValueOf(orientation)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromInt(x)
+	ptrArguments[1] = gdnative.NewPointerFromInt(y)
+	ptrArguments[2] = gdnative.NewPointerFromInt(z)
+	ptrArguments[3] = gdnative.NewPointerFromInt(item)
+	ptrArguments[4] = gdnative.NewPointerFromInt(orientation)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "set_cell_item")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_cell_item", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false scale float}], Returns: void
 */
+
 func (o *GridMap) SetCellScale(scale gdnative.Float) {
 	log.Println("Calling GridMap.SetCellScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(scale)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(scale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "set_cell_scale")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_cell_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false size Vector3}], Returns: void
 */
-func (o *GridMap) SetCellSize(size *Vector3) {
+
+func (o *GridMap) SetCellSize(size gdnative.Vector3) {
 	log.Println("Calling GridMap.SetCellSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "set_cell_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_cell_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *GridMap) SetCenterX(enable gdnative.Bool) {
 	log.Println("Calling GridMap.SetCenterX()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "set_center_x")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_center_x", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *GridMap) SetCenterY(enable gdnative.Bool) {
 	log.Println("Calling GridMap.SetCenterY()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "set_center_y")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_center_y", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *GridMap) SetCenterZ(enable gdnative.Bool) {
 	log.Println("Calling GridMap.SetCenterZ()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "set_center_z")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_center_z", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enabled bool} {True true clipabove bool} {0 true floor int} {0 true axis int}], Returns: void
 */
+
 func (o *GridMap) SetClip(enabled gdnative.Bool, clipabove gdnative.Bool, floor gdnative.Int, axis gdnative.Int) {
 	log.Println("Calling GridMap.SetClip()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(enabled)
-	goArguments[1] = reflect.ValueOf(clipabove)
-	goArguments[2] = reflect.ValueOf(floor)
-	goArguments[3] = reflect.ValueOf(axis)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enabled)
+	ptrArguments[1] = gdnative.NewPointerFromBool(clipabove)
+	ptrArguments[2] = gdnative.NewPointerFromInt(floor)
+	ptrArguments[3] = gdnative.NewPointerFromInt(axis)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "set_clip")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_clip", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false layer int}], Returns: void
 */
+
 func (o *GridMap) SetCollisionLayer(layer gdnative.Int) {
 	log.Println("Calling GridMap.SetCollisionLayer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(layer)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(layer)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "set_collision_layer")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_collision_layer", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false bit int} { false value bool}], Returns: void
 */
+
 func (o *GridMap) SetCollisionLayerBit(bit gdnative.Int, value gdnative.Bool) {
 	log.Println("Calling GridMap.SetCollisionLayerBit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(bit)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bit)
+	ptrArguments[1] = gdnative.NewPointerFromBool(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "set_collision_layer_bit")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_collision_layer_bit", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mask int}], Returns: void
 */
+
 func (o *GridMap) SetCollisionMask(mask gdnative.Int) {
 	log.Println("Calling GridMap.SetCollisionMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mask)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mask)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "set_collision_mask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_collision_mask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false bit int} { false value bool}], Returns: void
 */
+
 func (o *GridMap) SetCollisionMaskBit(bit gdnative.Int, value gdnative.Bool) {
 	log.Println("Calling GridMap.SetCollisionMaskBit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(bit)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bit)
+	ptrArguments[1] = gdnative.NewPointerFromBool(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "set_collision_mask_bit")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_collision_mask_bit", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false size int}], Returns: void
 */
+
 func (o *GridMap) SetOctantSize(size gdnative.Int) {
 	log.Println("Calling GridMap.SetOctantSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "set_octant_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_octant_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false theme MeshLibrary}], Returns: void
 */
-func (o *GridMap) SetTheme(theme *MeshLibrary) {
+
+func (o *GridMap) SetTheme(theme meshlibrary.MeshLibrary) {
 	log.Println("Calling GridMap.SetTheme()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(theme)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(theme.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "set_theme")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_theme", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false pos Vector3}], Returns: Vector3
 */
-func (o *GridMap) WorldToMap(pos *Vector3) *Vector3 {
+
+func (o *GridMap) WorldToMap(pos gdnative.Vector3) gdnative.Vector3 {
 	log.Println("Calling GridMap.WorldToMap()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pos)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(pos)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridMap", "world_to_map")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "world_to_map", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   GridMapImplementer is an interface for GridMap objects.
-*/
-type GridMapImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

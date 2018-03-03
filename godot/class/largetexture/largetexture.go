@@ -2,9 +2,10 @@ package largetexture
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/texture"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +17,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewLargeTextureFromPointer(ptr gdnative.Pointer) *LargeTexture {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := LargeTexture{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 A Texture capable of storing many smaller Textures with offsets. You can dynamically add pieces([Texture]) to this [code]LargeTexture[/code] using different offsets.
 */
 type LargeTexture struct {
-	Texture
+	texture.Texture
 }
 
 func (o *LargeTexture) BaseClass() string {
@@ -28,203 +38,246 @@ func (o *LargeTexture) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Array
 */
-func (o *LargeTexture) X_GetData() *Array {
+
+func (o *LargeTexture) X_GetData() gdnative.Array {
 	log.Println("Calling LargeTexture.X_GetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LargeTexture", "_get_data")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_data", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false data Array}], Returns: void
 */
-func (o *LargeTexture) X_SetData(data *Array) {
+
+func (o *LargeTexture) X_SetData(data gdnative.Array) {
 	log.Println("Calling LargeTexture.X_SetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(data)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromArray(data)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LargeTexture", "_set_data")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_data", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Add another [Texture] to this [code]LargeTexture[/code], starting on offset "ofs".
+        Add another [Texture] to this [code]LargeTexture[/code], starting on offset "ofs".
+	Args: [{ false ofs Vector2} { false texture Texture}], Returns: int
 */
-func (o *LargeTexture) AddPiece(ofs *Vector2, texture *Texture) gdnative.Int {
+
+func (o *LargeTexture) AddPiece(ofs gdnative.Vector2, texture texture.Texture) gdnative.Int {
 	log.Println("Calling LargeTexture.AddPiece()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(ofs)
-	goArguments[1] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(ofs)
+	ptrArguments[1] = gdnative.NewPointerFromObject(texture.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LargeTexture", "add_piece")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "add_piece", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Clears the [code]LargeTexture[/code].
+        Clears the [code]LargeTexture[/code].
+	Args: [], Returns: void
 */
+
 func (o *LargeTexture) Clear() {
 	log.Println("Calling LargeTexture.Clear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LargeTexture", "clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the number of pieces currently in this [code]LargeTexture[/code].
+        Returns the number of pieces currently in this [code]LargeTexture[/code].
+	Args: [], Returns: int
 */
+
 func (o *LargeTexture) GetPieceCount() gdnative.Int {
 	log.Println("Calling LargeTexture.GetPieceCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LargeTexture", "get_piece_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_piece_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the offset of the piece with index "idx".
+        Returns the offset of the piece with index "idx".
+	Args: [{ false idx int}], Returns: Vector2
 */
-func (o *LargeTexture) GetPieceOffset(idx gdnative.Int) *Vector2 {
+
+func (o *LargeTexture) GetPieceOffset(idx gdnative.Int) gdnative.Vector2 {
 	log.Println("Calling LargeTexture.GetPieceOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LargeTexture", "get_piece_offset")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_piece_offset", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the [Texture] of the piece with index "idx".
+        Returns the [Texture] of the piece with index "idx".
+	Args: [{ false idx int}], Returns: Texture
 */
-func (o *LargeTexture) GetPieceTexture(idx gdnative.Int) *Texture {
+
+func (o *LargeTexture) GetPieceTexture(idx gdnative.Int) texture.Texture {
 	log.Println("Calling LargeTexture.GetPieceTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LargeTexture", "get_piece_texture")
 
 	// Call the parent method.
+	// Texture
+	retPtr := texture.NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_piece_texture", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := texture.NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets the offset of the piece with index "idx" to "ofs".
+        Sets the offset of the piece with index "idx" to "ofs".
+	Args: [{ false idx int} { false ofs Vector2}], Returns: void
 */
-func (o *LargeTexture) SetPieceOffset(idx gdnative.Int, ofs *Vector2) {
+
+func (o *LargeTexture) SetPieceOffset(idx gdnative.Int, ofs gdnative.Vector2) {
 	log.Println("Calling LargeTexture.SetPieceOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(ofs)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(ofs)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LargeTexture", "set_piece_offset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_piece_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the [Texture] of the piece with index "idx" to "ofs".
+        Sets the [Texture] of the piece with index "idx" to "ofs".
+	Args: [{ false idx int} { false texture Texture}], Returns: void
 */
-func (o *LargeTexture) SetPieceTexture(idx gdnative.Int, texture *Texture) {
+
+func (o *LargeTexture) SetPieceTexture(idx gdnative.Int, texture texture.Texture) {
 	log.Println("Calling LargeTexture.SetPieceTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromObject(texture.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LargeTexture", "set_piece_texture")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_piece_texture", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the size of this [code]LargeTexture[/code].
+        Sets the size of this [code]LargeTexture[/code].
+	Args: [{ false size Vector2}], Returns: void
 */
-func (o *LargeTexture) SetSize(size *Vector2) {
+
+func (o *LargeTexture) SetSize(size gdnative.Vector2) {
 	log.Println("Calling LargeTexture.SetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LargeTexture", "set_size")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   LargeTextureImplementer is an interface for LargeTexture objects.
-*/
-type LargeTextureImplementer interface {
-	Class
 }

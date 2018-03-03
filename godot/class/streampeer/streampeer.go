@@ -2,9 +2,9 @@ package streampeer
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewStreamPeerFromPointer(ptr gdnative.Pointer) *StreamPeer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := StreamPeer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 StreamPeer is an abstraction and base class for stream-based protocols (such as TCP or Unix Sockets). It provides an API for sending and receiving data through streams as raw data or strings.
 */
 type StreamPeer struct {
-	Reference
+	reference.Reference
 }
 
 func (o *StreamPeer) BaseClass() string {
@@ -28,628 +37,765 @@ func (o *StreamPeer) BaseClass() string {
 }
 
 /*
-   Get a signed 16 bit value from the stream.
+        Get a signed 16 bit value from the stream.
+	Args: [], Returns: int
 */
+
 func (o *StreamPeer) Get16() gdnative.Int {
 	log.Println("Calling StreamPeer.Get16()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "get_16")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_16", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get a signed 32 bit value from the stream.
+        Get a signed 32 bit value from the stream.
+	Args: [], Returns: int
 */
+
 func (o *StreamPeer) Get32() gdnative.Int {
 	log.Println("Calling StreamPeer.Get32()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "get_32")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_32", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get a signed 64 bit value from the stream.
+        Get a signed 64 bit value from the stream.
+	Args: [], Returns: int
 */
+
 func (o *StreamPeer) Get64() gdnative.Int {
 	log.Println("Calling StreamPeer.Get64()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "get_64")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_64", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get a signed byte from the stream.
+        Get a signed byte from the stream.
+	Args: [], Returns: int
 */
+
 func (o *StreamPeer) Get8() gdnative.Int {
 	log.Println("Calling StreamPeer.Get8()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "get_8")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_8", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the amount of bytes this [code]StreamPeer[/code] has available.
+        Return the amount of bytes this [code]StreamPeer[/code] has available.
+	Args: [], Returns: int
 */
+
 func (o *StreamPeer) GetAvailableBytes() gdnative.Int {
 	log.Println("Calling StreamPeer.GetAvailableBytes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "get_available_bytes")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_available_bytes", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return a chunk data with the received bytes. The amount of bytes to be received can be requested in the "bytes" argument. If not enough bytes are available, the function will block until the desired amount is received. This function returns two values, an Error code and a data array.
+        Return a chunk data with the received bytes. The amount of bytes to be received can be requested in the "bytes" argument. If not enough bytes are available, the function will block until the desired amount is received. This function returns two values, an Error code and a data array.
+	Args: [{ false bytes int}], Returns: Array
 */
-func (o *StreamPeer) GetData(bytes gdnative.Int) *Array {
+
+func (o *StreamPeer) GetData(bytes gdnative.Int) gdnative.Array {
 	log.Println("Calling StreamPeer.GetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bytes)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bytes)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "get_data")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_data", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get a double-precision float from the stream.
+        Get a double-precision float from the stream.
+	Args: [], Returns: float
 */
+
 func (o *StreamPeer) GetDouble() gdnative.Float {
 	log.Println("Calling StreamPeer.GetDouble()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "get_double")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_double", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get a single-precision float from the stream.
+        Get a single-precision float from the stream.
+	Args: [], Returns: float
 */
+
 func (o *StreamPeer) GetFloat() gdnative.Float {
 	log.Println("Calling StreamPeer.GetFloat()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "get_float")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_float", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return a chunk data with the received bytes. The amount of bytes to be received can be requested in the "bytes" argument. If not enough bytes are available, the function will return how many were actually received. This function returns two values, an Error code, and a data array.
+        Return a chunk data with the received bytes. The amount of bytes to be received can be requested in the "bytes" argument. If not enough bytes are available, the function will return how many were actually received. This function returns two values, an Error code, and a data array.
+	Args: [{ false bytes int}], Returns: Array
 */
-func (o *StreamPeer) GetPartialData(bytes gdnative.Int) *Array {
+
+func (o *StreamPeer) GetPartialData(bytes gdnative.Int) gdnative.Array {
 	log.Println("Calling StreamPeer.GetPartialData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bytes)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bytes)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "get_partial_data")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_partial_data", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get a string with byte-length "bytes" from the stream.
+        Get a string with byte-length "bytes" from the stream.
+	Args: [{ false bytes int}], Returns: String
 */
+
 func (o *StreamPeer) GetString(bytes gdnative.Int) gdnative.String {
 	log.Println("Calling StreamPeer.GetString()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bytes)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bytes)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "get_string")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_string", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get an unsigned 16 bit value from the stream.
+        Get an unsigned 16 bit value from the stream.
+	Args: [], Returns: int
 */
+
 func (o *StreamPeer) GetU16() gdnative.Int {
 	log.Println("Calling StreamPeer.GetU16()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "get_u16")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_u16", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get an unsigned 32 bit value from the stream.
+        Get an unsigned 32 bit value from the stream.
+	Args: [], Returns: int
 */
+
 func (o *StreamPeer) GetU32() gdnative.Int {
 	log.Println("Calling StreamPeer.GetU32()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "get_u32")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_u32", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get an unsigned 64 bit value from the stream.
+        Get an unsigned 64 bit value from the stream.
+	Args: [], Returns: int
 */
+
 func (o *StreamPeer) GetU64() gdnative.Int {
 	log.Println("Calling StreamPeer.GetU64()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "get_u64")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_u64", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get an unsigned byte from the stream.
+        Get an unsigned byte from the stream.
+	Args: [], Returns: int
 */
+
 func (o *StreamPeer) GetU8() gdnative.Int {
 	log.Println("Calling StreamPeer.GetU8()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "get_u8")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_u8", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get a utf8 string with byte-length "bytes" from the stream (this decodes the string sent as utf8).
+        Get a utf8 string with byte-length "bytes" from the stream (this decodes the string sent as utf8).
+	Args: [{ false bytes int}], Returns: String
 */
+
 func (o *StreamPeer) GetUtf8String(bytes gdnative.Int) gdnative.String {
 	log.Println("Calling StreamPeer.GetUtf8String()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bytes)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bytes)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "get_utf8_string")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_utf8_string", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get a Variant from the stream.
+        Get a Variant from the stream.
+	Args: [], Returns: Variant
 */
-func (o *StreamPeer) GetVar() *Variant {
+
+func (o *StreamPeer) GetVar() gdnative.Variant {
 	log.Println("Calling StreamPeer.GetVar()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "get_var")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_var", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *StreamPeer) IsBigEndianEnabled() gdnative.Bool {
 	log.Println("Calling StreamPeer.IsBigEndianEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "is_big_endian_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_big_endian_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Put a signed 16 bit value into the stream.
+        Put a signed 16 bit value into the stream.
+	Args: [{ false value int}], Returns: void
 */
+
 func (o *StreamPeer) Put16(value gdnative.Int) {
 	log.Println("Calling StreamPeer.Put16()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "put_16")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "put_16", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Put a signed 32 bit value into the stream.
+        Put a signed 32 bit value into the stream.
+	Args: [{ false value int}], Returns: void
 */
+
 func (o *StreamPeer) Put32(value gdnative.Int) {
 	log.Println("Calling StreamPeer.Put32()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "put_32")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "put_32", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Put a signed 64 bit value into the stream.
+        Put a signed 64 bit value into the stream.
+	Args: [{ false value int}], Returns: void
 */
+
 func (o *StreamPeer) Put64(value gdnative.Int) {
 	log.Println("Calling StreamPeer.Put64()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "put_64")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "put_64", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Put a signed byte into the stream.
+        Put a signed byte into the stream.
+	Args: [{ false value int}], Returns: void
 */
+
 func (o *StreamPeer) Put8(value gdnative.Int) {
 	log.Println("Calling StreamPeer.Put8()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "put_8")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "put_8", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Send a chunk of data through the connection, blocking if necessary until the data is done sending. This function returns an Error code.
+        Send a chunk of data through the connection, blocking if necessary until the data is done sending. This function returns an Error code.
+	Args: [{ false data PoolByteArray}], Returns: enum.Error
 */
-func (o *StreamPeer) PutData(data *PoolByteArray) gdnative.Int {
-	log.Println("Calling StreamPeer.PutData()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(data)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "put_data", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Put a double-precision float into the stream.
+        Put a double-precision float into the stream.
+	Args: [{ false value float}], Returns: void
 */
+
 func (o *StreamPeer) PutDouble(value gdnative.Float) {
 	log.Println("Calling StreamPeer.PutDouble()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "put_double")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "put_double", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Put a single-precision float into the stream.
+        Put a single-precision float into the stream.
+	Args: [{ false value float}], Returns: void
 */
+
 func (o *StreamPeer) PutFloat(value gdnative.Float) {
 	log.Println("Calling StreamPeer.PutFloat()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "put_float")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "put_float", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Send a chunk of data through the connection, if all the data could not be sent at once, only part of it will. This function returns two values, an Error code and an integer, describing how much data was actually sent.
+        Send a chunk of data through the connection, if all the data could not be sent at once, only part of it will. This function returns two values, an Error code and an integer, describing how much data was actually sent.
+	Args: [{ false data PoolByteArray}], Returns: Array
 */
-func (o *StreamPeer) PutPartialData(data *PoolByteArray) *Array {
+
+func (o *StreamPeer) PutPartialData(data gdnative.PoolByteArray) gdnative.Array {
 	log.Println("Calling StreamPeer.PutPartialData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(data)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolByteArray(data)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "put_partial_data")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "put_partial_data", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Put an unsigned 16 bit value into the stream.
+        Put an unsigned 16 bit value into the stream.
+	Args: [{ false value int}], Returns: void
 */
+
 func (o *StreamPeer) PutU16(value gdnative.Int) {
 	log.Println("Calling StreamPeer.PutU16()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "put_u16")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "put_u16", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Put an unsigned 32 bit value into the stream.
+        Put an unsigned 32 bit value into the stream.
+	Args: [{ false value int}], Returns: void
 */
+
 func (o *StreamPeer) PutU32(value gdnative.Int) {
 	log.Println("Calling StreamPeer.PutU32()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "put_u32")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "put_u32", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Put an unsigned 64 bit value into the stream.
+        Put an unsigned 64 bit value into the stream.
+	Args: [{ false value int}], Returns: void
 */
+
 func (o *StreamPeer) PutU64(value gdnative.Int) {
 	log.Println("Calling StreamPeer.PutU64()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "put_u64")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "put_u64", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Put an unsigned byte into the stream.
+        Put an unsigned byte into the stream.
+	Args: [{ false value int}], Returns: void
 */
+
 func (o *StreamPeer) PutU8(value gdnative.Int) {
 	log.Println("Calling StreamPeer.PutU8()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "put_u8")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "put_u8", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Put a zero-terminated utf8 string into the stream.
+        Put a zero-terminated utf8 string into the stream.
+	Args: [{ false value String}], Returns: void
 */
+
 func (o *StreamPeer) PutUtf8String(value gdnative.String) {
 	log.Println("Calling StreamPeer.PutUtf8String()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "put_utf8_string")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "put_utf8_string", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Put a Variant into the stream.
+        Put a Variant into the stream.
+	Args: [{ false value Variant}], Returns: void
 */
-func (o *StreamPeer) PutVar(value *Variant) {
+
+func (o *StreamPeer) PutVar(value gdnative.Variant) {
 	log.Println("Calling StreamPeer.PutVar()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "put_var")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "put_var", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *StreamPeer) SetBigEndian(enable gdnative.Bool) {
 	log.Println("Calling StreamPeer.SetBigEndian()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeer", "set_big_endian")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_big_endian", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   StreamPeerImplementer is an interface for StreamPeer objects.
-*/
-type StreamPeerImplementer interface {
-	Class
 }

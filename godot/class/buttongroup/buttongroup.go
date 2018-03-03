@@ -2,7 +2,11 @@ package buttongroup
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/basebutton"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewButtonGroupFromPointer(ptr gdnative.Pointer) *ButtonGroup {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ButtonGroup{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Group of [Button]. All direct and indirect children buttons become radios. Only one allows being pressed. [member BaseButton.toggle_mode] should be [code]true[/code].
 */
 type ButtonGroup struct {
-	Resource
+	resource.Resource
 }
 
 func (o *ButtonGroup) BaseClass() string {
@@ -26,28 +39,27 @@ func (o *ButtonGroup) BaseClass() string {
 }
 
 /*
-   Return the pressed button.
+        Return the pressed button.
+	Args: [], Returns: BaseButton
 */
-func (o *ButtonGroup) GetPressedButton() *BaseButton {
+
+func (o *ButtonGroup) GetPressedButton() basebutton.BaseButton {
 	log.Println("Calling ButtonGroup.GetPressedButton()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ButtonGroup", "get_pressed_button")
 
 	// Call the parent method.
+	// BaseButton
+	retPtr := basebutton.NewEmptyBaseButton()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_pressed_button", goArguments, "*BaseButton")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := basebutton.NewBaseButtonFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*BaseButton)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   ButtonGroupImplementer is an interface for ButtonGroup objects.
-*/
-type ButtonGroupImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

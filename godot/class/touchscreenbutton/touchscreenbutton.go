@@ -2,9 +2,17 @@ package touchscreenbutton
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/node2d"
+	"github.com/shadowapex/godot-go/godot/class/texture"
+
+	"github.com/shadowapex/godot-go/godot/class/inputevent"
+
+	"github.com/shadowapex/godot-go/godot/class/bitmap"
+
+	"github.com/shadowapex/godot-go/godot/class/shape2d"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +24,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewTouchScreenButtonFromPointer(ptr gdnative.Pointer) *TouchScreenButton {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := TouchScreenButton{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Button for touch screen devices. You can set it to be visible on all screens, or only on touch devices.
 */
 type TouchScreenButton struct {
-	Node2D
+	node2d.Node2D
 }
 
 func (o *TouchScreenButton) BaseClass() string {
@@ -28,388 +45,460 @@ func (o *TouchScreenButton) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *TouchScreenButton) X_Input(arg0 *InputEvent) {
+
+func (o *TouchScreenButton) X_Input(arg0 inputevent.InputEvent) {
 	log.Println("Calling TouchScreenButton.X_Input()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *TouchScreenButton) GetAction() gdnative.String {
 	log.Println("Calling TouchScreenButton.GetAction()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "get_action")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_action", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: BitMap
 */
-func (o *TouchScreenButton) GetBitmask() *BitMap {
+
+func (o *TouchScreenButton) GetBitmask() bitmap.BitMap {
 	log.Println("Calling TouchScreenButton.GetBitmask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "get_bitmask")
 
 	// Call the parent method.
+	// BitMap
+	retPtr := bitmap.NewEmptyBitMap()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bitmask", goArguments, "*BitMap")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := bitmap.NewBitMapFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*BitMap)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Shape2D
 */
-func (o *TouchScreenButton) GetShape() *Shape2D {
+
+func (o *TouchScreenButton) GetShape() shape2d.Shape2D {
 	log.Println("Calling TouchScreenButton.GetShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "get_shape")
 
 	// Call the parent method.
+	// Shape2D
+	retPtr := shape2d.NewEmptyShape2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_shape", goArguments, "*Shape2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := shape2d.NewShape2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Shape2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Texture
 */
-func (o *TouchScreenButton) GetTexture() *Texture {
+
+func (o *TouchScreenButton) GetTexture() texture.Texture {
 	log.Println("Calling TouchScreenButton.GetTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "get_texture")
 
 	// Call the parent method.
+	// Texture
+	retPtr := texture.NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_texture", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := texture.NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Texture
 */
-func (o *TouchScreenButton) GetTexturePressed() *Texture {
+
+func (o *TouchScreenButton) GetTexturePressed() texture.Texture {
 	log.Println("Calling TouchScreenButton.GetTexturePressed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "get_texture_pressed")
 
 	// Call the parent method.
+	// Texture
+	retPtr := texture.NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_texture_pressed", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := texture.NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.TouchScreenButton::VisibilityMode
 */
-func (o *TouchScreenButton) GetVisibilityMode() gdnative.Int {
-	log.Println("Calling TouchScreenButton.GetVisibilityMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_visibility_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TouchScreenButton) IsPassbyPressEnabled() gdnative.Bool {
 	log.Println("Calling TouchScreenButton.IsPassbyPressEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "is_passby_press_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_passby_press_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if this button is currently pressed.
+        Returns [code]true[/code] if this button is currently pressed.
+	Args: [], Returns: bool
 */
+
 func (o *TouchScreenButton) IsPressed() gdnative.Bool {
 	log.Println("Calling TouchScreenButton.IsPressed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "is_pressed")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_pressed", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TouchScreenButton) IsShapeCentered() gdnative.Bool {
 	log.Println("Calling TouchScreenButton.IsShapeCentered()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "is_shape_centered")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_shape_centered", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TouchScreenButton) IsShapeVisible() gdnative.Bool {
 	log.Println("Calling TouchScreenButton.IsShapeVisible()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "is_shape_visible")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_shape_visible", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false action String}], Returns: void
 */
+
 func (o *TouchScreenButton) SetAction(action gdnative.String) {
 	log.Println("Calling TouchScreenButton.SetAction()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(action)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(action)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "set_action")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_action", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false bitmask BitMap}], Returns: void
 */
-func (o *TouchScreenButton) SetBitmask(bitmask *BitMap) {
+
+func (o *TouchScreenButton) SetBitmask(bitmask bitmap.BitMap) {
 	log.Println("Calling TouchScreenButton.SetBitmask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bitmask)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(bitmask.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "set_bitmask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_bitmask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enabled bool}], Returns: void
 */
+
 func (o *TouchScreenButton) SetPassbyPress(enabled gdnative.Bool) {
 	log.Println("Calling TouchScreenButton.SetPassbyPress()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "set_passby_press")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_passby_press", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false shape Shape2D}], Returns: void
 */
-func (o *TouchScreenButton) SetShape(shape *Shape2D) {
+
+func (o *TouchScreenButton) SetShape(shape shape2d.Shape2D) {
 	log.Println("Calling TouchScreenButton.SetShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(shape)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(shape.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "set_shape")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_shape", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false bool bool}], Returns: void
 */
+
 func (o *TouchScreenButton) SetShapeCentered(bool gdnative.Bool) {
 	log.Println("Calling TouchScreenButton.SetShapeCentered()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bool)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(bool)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "set_shape_centered")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_shape_centered", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false bool bool}], Returns: void
 */
+
 func (o *TouchScreenButton) SetShapeVisible(bool gdnative.Bool) {
 	log.Println("Calling TouchScreenButton.SetShapeVisible()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bool)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(bool)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "set_shape_visible")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_shape_visible", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false texture Texture}], Returns: void
 */
-func (o *TouchScreenButton) SetTexture(texture *Texture) {
+
+func (o *TouchScreenButton) SetTexture(texture texture.Texture) {
 	log.Println("Calling TouchScreenButton.SetTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(texture.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "set_texture")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_texture", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false texture_pressed Texture}], Returns: void
 */
-func (o *TouchScreenButton) SetTexturePressed(texturePressed *Texture) {
+
+func (o *TouchScreenButton) SetTexturePressed(texturePressed texture.Texture) {
 	log.Println("Calling TouchScreenButton.SetTexturePressed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texturePressed)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(texturePressed.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "set_texture_pressed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_texture_pressed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *TouchScreenButton) SetVisibilityMode(mode gdnative.Int) {
 	log.Println("Calling TouchScreenButton.SetVisibilityMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "set_visibility_mode")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_visibility_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   TouchScreenButtonImplementer is an interface for TouchScreenButton objects.
-*/
-type TouchScreenButtonImplementer interface {
-	Class
 }

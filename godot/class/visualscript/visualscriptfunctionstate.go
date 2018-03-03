@@ -2,9 +2,11 @@ package visualscript
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewVisualScriptFunctionStateFromPointer(ptr gdnative.Pointer) *VisualScriptFunctionState {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := VisualScriptFunctionState{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
 type VisualScriptFunctionState struct {
-	Reference
+	reference.Reference
 }
 
 func (o *VisualScriptFunctionState) BaseClass() string {
@@ -28,89 +39,104 @@ func (o *VisualScriptFunctionState) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Variant
 */
-func (o *VisualScriptFunctionState) X_SignalCallback() *Variant {
+
+func (o *VisualScriptFunctionState) X_SignalCallback() gdnative.Variant {
 	log.Println("Calling VisualScriptFunctionState.X_SignalCallback()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptFunctionState", "_signal_callback")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_signal_callback", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false obj Object} { false signals String} { false args Array}], Returns: void
 */
-func (o *VisualScriptFunctionState) ConnectToSignal(obj *Object, signals gdnative.String, args *Array) {
+
+func (o *VisualScriptFunctionState) ConnectToSignal(obj object.Object, signals gdnative.String, args gdnative.Array) {
 	log.Println("Calling VisualScriptFunctionState.ConnectToSignal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(obj)
-	goArguments[1] = reflect.ValueOf(signals)
-	goArguments[2] = reflect.ValueOf(args)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromObject(obj.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromString(signals)
+	ptrArguments[2] = gdnative.NewPointerFromArray(args)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptFunctionState", "connect_to_signal")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "connect_to_signal", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *VisualScriptFunctionState) IsValid() gdnative.Bool {
 	log.Println("Calling VisualScriptFunctionState.IsValid()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptFunctionState", "is_valid")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_valid", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{Null true args Array}], Returns: Variant
 */
-func (o *VisualScriptFunctionState) Resume(args *Array) *Variant {
+
+func (o *VisualScriptFunctionState) Resume(args gdnative.Array) gdnative.Variant {
 	log.Println("Calling VisualScriptFunctionState.Resume()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(args)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromArray(args)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptFunctionState", "resume")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "resume", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   VisualScriptFunctionStateImplementer is an interface for VisualScriptFunctionState objects.
-*/
-type VisualScriptFunctionStateImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

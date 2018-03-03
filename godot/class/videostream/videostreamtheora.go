@@ -2,7 +2,6 @@ package videostream
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -16,6 +15,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewVideoStreamTheoraFromPointer(ptr gdnative.Pointer) *VideoStreamTheora {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := VideoStreamTheora{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
@@ -28,46 +36,49 @@ func (o *VideoStreamTheora) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *VideoStreamTheora) GetFile() gdnative.String {
 	log.Println("Calling VideoStreamTheora.GetFile()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VideoStreamTheora", "get_file")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_file", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false file String}], Returns: void
 */
+
 func (o *VideoStreamTheora) SetFile(file gdnative.String) {
 	log.Println("Calling VideoStreamTheora.SetFile()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(file)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(file)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VideoStreamTheora", "set_file")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_file", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   VideoStreamTheoraImplementer is an interface for VideoStreamTheora objects.
-*/
-type VideoStreamTheoraImplementer interface {
-	Class
 }

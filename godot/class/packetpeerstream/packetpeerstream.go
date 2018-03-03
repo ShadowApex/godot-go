@@ -2,9 +2,11 @@ package packetpeerstream
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/packetpeer"
+	"github.com/shadowapex/godot-go/godot/class/streampeer"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPacketPeerStreamFromPointer(ptr gdnative.Pointer) *PacketPeerStream {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := PacketPeerStream{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 PacketStreamPeer provides a wrapper for working using packets over a stream. This allows for using packet based code with StreamPeers. PacketPeerStream implements a custom protocol over the StreamPeer, so the user should not read or write to the wrapped StreamPeer directly.
 */
 type PacketPeerStream struct {
-	PacketPeer
+	packetpeer.PacketPeer
 }
 
 func (o *PacketPeerStream) BaseClass() string {
@@ -28,122 +39,145 @@ func (o *PacketPeerStream) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *PacketPeerStream) GetInputBufferMaxSize() gdnative.Int {
 	log.Println("Calling PacketPeerStream.GetInputBufferMaxSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PacketPeerStream", "get_input_buffer_max_size")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_input_buffer_max_size", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *PacketPeerStream) GetOutputBufferMaxSize() gdnative.Int {
 	log.Println("Calling PacketPeerStream.GetOutputBufferMaxSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PacketPeerStream", "get_output_buffer_max_size")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_output_buffer_max_size", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: StreamPeer
 */
-func (o *PacketPeerStream) GetStreamPeer() *StreamPeer {
+
+func (o *PacketPeerStream) GetStreamPeer() streampeer.StreamPeer {
 	log.Println("Calling PacketPeerStream.GetStreamPeer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PacketPeerStream", "get_stream_peer")
 
 	// Call the parent method.
+	// StreamPeer
+	retPtr := streampeer.NewEmptyStreamPeer()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_stream_peer", goArguments, "*StreamPeer")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := streampeer.NewStreamPeerFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*StreamPeer)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false max_size_bytes int}], Returns: void
 */
+
 func (o *PacketPeerStream) SetInputBufferMaxSize(maxSizeBytes gdnative.Int) {
 	log.Println("Calling PacketPeerStream.SetInputBufferMaxSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(maxSizeBytes)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(maxSizeBytes)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PacketPeerStream", "set_input_buffer_max_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_input_buffer_max_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false max_size_bytes int}], Returns: void
 */
+
 func (o *PacketPeerStream) SetOutputBufferMaxSize(maxSizeBytes gdnative.Int) {
 	log.Println("Calling PacketPeerStream.SetOutputBufferMaxSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(maxSizeBytes)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(maxSizeBytes)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PacketPeerStream", "set_output_buffer_max_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_output_buffer_max_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false peer StreamPeer}], Returns: void
 */
-func (o *PacketPeerStream) SetStreamPeer(peer *StreamPeer) {
+
+func (o *PacketPeerStream) SetStreamPeer(peer streampeer.StreamPeer) {
 	log.Println("Calling PacketPeerStream.SetStreamPeer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(peer)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(peer.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PacketPeerStream", "set_stream_peer")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_stream_peer", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   PacketPeerStreamImplementer is an interface for PacketPeerStream objects.
-*/
-type PacketPeerStreamImplementer interface {
-	Class
 }

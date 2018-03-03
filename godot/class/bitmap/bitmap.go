@@ -2,9 +2,11 @@ package bitmap
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/image"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewBitMapFromPointer(ptr gdnative.Pointer) *BitMap {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := BitMap{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 A two-dimensional array of boolean values, can be used to efficiently store a binary matrix (every matrix element takes only one bit) and query the values using natural cartesian coordinates.
 */
 type BitMap struct {
-	Resource
+	resource.Resource
 }
 
 func (o *BitMap) BaseClass() string {
@@ -28,181 +39,218 @@ func (o *BitMap) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Dictionary
 */
-func (o *BitMap) X_GetData() *Dictionary {
+
+func (o *BitMap) X_GetData() gdnative.Dictionary {
 	log.Println("Calling BitMap.X_GetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitMap", "_get_data")
 
 	// Call the parent method.
+	// Dictionary
+	retPtr := gdnative.NewEmptyDictionary()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_data", goArguments, "*Dictionary")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewDictionaryFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Dictionary)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 Dictionary}], Returns: void
 */
-func (o *BitMap) X_SetData(arg0 *Dictionary) {
+
+func (o *BitMap) X_SetData(arg0 gdnative.Dictionary) {
 	log.Println("Calling BitMap.X_SetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromDictionary(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitMap", "_set_data")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_data", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Creates a bitmap with the specified size, filled with false.
+        Creates a bitmap with the specified size, filled with false.
+	Args: [{ false size Vector2}], Returns: void
 */
-func (o *BitMap) Create(size *Vector2) {
+
+func (o *BitMap) Create(size gdnative.Vector2) {
 	log.Println("Calling BitMap.Create()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitMap", "create")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "create", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Creates a bitmap that matches the given image dimensions, every element of the bitmap is set to false if the alpha value of the image at that position is equal to [code]threshold[/code] or less, and true in other case.
+        Creates a bitmap that matches the given image dimensions, every element of the bitmap is set to false if the alpha value of the image at that position is equal to [code]threshold[/code] or less, and true in other case.
+	Args: [{ false image Image}], Returns: void
 */
-func (o *BitMap) CreateFromImageAlpha(image *Image) {
+
+func (o *BitMap) CreateFromImageAlpha(image image.Image) {
 	log.Println("Calling BitMap.CreateFromImageAlpha()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(image)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(image.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitMap", "create_from_image_alpha")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "create_from_image_alpha", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns bitmap's value at the specified position.
+        Returns bitmap's value at the specified position.
+	Args: [{ false position Vector2}], Returns: bool
 */
-func (o *BitMap) GetBit(position *Vector2) gdnative.Bool {
+
+func (o *BitMap) GetBit(position gdnative.Vector2) gdnative.Bool {
 	log.Println("Calling BitMap.GetBit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitMap", "get_bit")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bit", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns bitmap's dimensions.
+        Returns bitmap's dimensions.
+	Args: [], Returns: Vector2
 */
-func (o *BitMap) GetSize() *Vector2 {
+
+func (o *BitMap) GetSize() gdnative.Vector2 {
 	log.Println("Calling BitMap.GetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitMap", "get_size")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_size", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the amount of bitmap elements that are set to true.
+        Returns the amount of bitmap elements that are set to true.
+	Args: [], Returns: int
 */
+
 func (o *BitMap) GetTrueBitCount() gdnative.Int {
 	log.Println("Calling BitMap.GetTrueBitCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitMap", "get_true_bit_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_true_bit_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets the bitmap's element at the specified position, to the specified value.
+        Sets the bitmap's element at the specified position, to the specified value.
+	Args: [{ false position Vector2} { false bit bool}], Returns: void
 */
-func (o *BitMap) SetBit(position *Vector2, bit gdnative.Bool) {
+
+func (o *BitMap) SetBit(position gdnative.Vector2, bit gdnative.Bool) {
 	log.Println("Calling BitMap.SetBit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(position)
-	goArguments[1] = reflect.ValueOf(bit)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+	ptrArguments[1] = gdnative.NewPointerFromBool(bit)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitMap", "set_bit")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_bit", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a rectangular portion of the bitmap to the specified value.
+        Sets a rectangular portion of the bitmap to the specified value.
+	Args: [{ false p_rect Rect2} { false bit bool}], Returns: void
 */
-func (o *BitMap) SetBitRect(pRect *Rect2, bit gdnative.Bool) {
+
+func (o *BitMap) SetBitRect(pRect gdnative.Rect2, bit gdnative.Bool) {
 	log.Println("Calling BitMap.SetBitRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(pRect)
-	goArguments[1] = reflect.ValueOf(bit)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRect2(pRect)
+	ptrArguments[1] = gdnative.NewPointerFromBool(bit)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitMap", "set_bit_rect")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_bit_rect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   BitMapImplementer is an interface for BitMap objects.
-*/
-type BitMapImplementer interface {
-	Class
 }

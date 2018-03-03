@@ -2,9 +2,9 @@ package gdscriptfunctionstate
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewGDScriptFunctionStateFromPointer(ptr gdnative.Pointer) *GDScriptFunctionState {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := GDScriptFunctionState{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
 type GDScriptFunctionState struct {
-	Reference
+	reference.Reference
 }
 
 func (o *GDScriptFunctionState) BaseClass() string {
@@ -28,70 +37,81 @@ func (o *GDScriptFunctionState) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Variant
 */
-func (o *GDScriptFunctionState) X_SignalCallback() *Variant {
+
+func (o *GDScriptFunctionState) X_SignalCallback() gdnative.Variant {
 	log.Println("Calling GDScriptFunctionState.X_SignalCallback()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDScriptFunctionState", "_signal_callback")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_signal_callback", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{False true extended_check bool}], Returns: bool
 */
+
 func (o *GDScriptFunctionState) IsValid(extendedCheck gdnative.Bool) gdnative.Bool {
 	log.Println("Calling GDScriptFunctionState.IsValid()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(extendedCheck)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(extendedCheck)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDScriptFunctionState", "is_valid")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_valid", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{Null true arg Variant}], Returns: Variant
 */
-func (o *GDScriptFunctionState) Resume(arg *Variant) *Variant {
+
+func (o *GDScriptFunctionState) Resume(arg gdnative.Variant) gdnative.Variant {
 	log.Println("Calling GDScriptFunctionState.Resume()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVariant(arg)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDScriptFunctionState", "resume")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "resume", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   GDScriptFunctionStateImplementer is an interface for GDScriptFunctionState objects.
-*/
-type GDScriptFunctionStateImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

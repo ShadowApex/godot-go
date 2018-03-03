@@ -2,7 +2,13 @@ package graphedit
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/control"
+	"github.com/shadowapex/godot-go/godot/class/inputevent"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +20,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewGraphEditFromPointer(ptr gdnative.Pointer) *GraphEdit {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := GraphEdit{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 GraphEdit manages the showing of GraphNodes it contains, as well as connections and disconnections between them. Signals are sent for each of these two events. Disconnection between GraphNodes slots is disabled by default. It is greatly advised to enable low processor usage mode (see [method OS.set_low_processor_usage_mode]) when using GraphEdits.
 */
 type GraphEdit struct {
-	Control
+	control.Control
 }
 
 func (o *GraphEdit) BaseClass() string {
@@ -26,681 +41,811 @@ func (o *GraphEdit) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *GraphEdit) X_ConnectionsLayerDraw() {
 	log.Println("Calling GraphEdit.X_ConnectionsLayerDraw()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "_connections_layer_draw")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_connections_layer_draw", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 Object}], Returns: void
 */
-func (o *GraphEdit) X_GraphNodeMoved(arg0 *Object) {
+
+func (o *GraphEdit) X_GraphNodeMoved(arg0 object.Object) {
 	log.Println("Calling GraphEdit.X_GraphNodeMoved()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "_graph_node_moved")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_graph_node_moved", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 Object}], Returns: void
 */
-func (o *GraphEdit) X_GraphNodeRaised(arg0 *Object) {
+
+func (o *GraphEdit) X_GraphNodeRaised(arg0 object.Object) {
 	log.Println("Calling GraphEdit.X_GraphNodeRaised()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "_graph_node_raised")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_graph_node_raised", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *GraphEdit) X_GuiInput(arg0 *InputEvent) {
+
+func (o *GraphEdit) X_GuiInput(arg0 inputevent.InputEvent) {
 	log.Println("Calling GraphEdit.X_GuiInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "_gui_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_gui_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 float}], Returns: void
 */
+
 func (o *GraphEdit) X_ScrollMoved(arg0 gdnative.Float) {
 	log.Println("Calling GraphEdit.X_ScrollMoved()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "_scroll_moved")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_scroll_moved", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *GraphEdit) X_SnapToggled() {
 	log.Println("Calling GraphEdit.X_SnapToggled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "_snap_toggled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_snap_toggled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 float}], Returns: void
 */
+
 func (o *GraphEdit) X_SnapValueChanged(arg0 gdnative.Float) {
 	log.Println("Calling GraphEdit.X_SnapValueChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "_snap_value_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_snap_value_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *GraphEdit) X_TopLayerDraw() {
 	log.Println("Calling GraphEdit.X_TopLayerDraw()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "_top_layer_draw")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_top_layer_draw", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *GraphEdit) X_TopLayerInput(arg0 *InputEvent) {
+
+func (o *GraphEdit) X_TopLayerInput(arg0 inputevent.InputEvent) {
 	log.Println("Calling GraphEdit.X_TopLayerInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "_top_layer_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_top_layer_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *GraphEdit) X_UpdateScrollOffset() {
 	log.Println("Calling GraphEdit.X_UpdateScrollOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "_update_scroll_offset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_update_scroll_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *GraphEdit) X_ZoomMinus() {
 	log.Println("Calling GraphEdit.X_ZoomMinus()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "_zoom_minus")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_zoom_minus", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *GraphEdit) X_ZoomPlus() {
 	log.Println("Calling GraphEdit.X_ZoomPlus()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "_zoom_plus")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_zoom_plus", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *GraphEdit) X_ZoomReset() {
 	log.Println("Calling GraphEdit.X_ZoomReset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "_zoom_reset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_zoom_reset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Makes possible the connection between two different slot types. The type is defined with the [method GraphNode.set_slot] method.
+        Makes possible the connection between two different slot types. The type is defined with the [method GraphNode.set_slot] method.
+	Args: [{ false from_type int} { false to_type int}], Returns: void
 */
+
 func (o *GraphEdit) AddValidConnectionType(fromType gdnative.Int, toType gdnative.Int) {
 	log.Println("Calling GraphEdit.AddValidConnectionType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(fromType)
-	goArguments[1] = reflect.ValueOf(toType)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(fromType)
+	ptrArguments[1] = gdnative.NewPointerFromInt(toType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "add_valid_connection_type")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_valid_connection_type", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Makes possible to disconnect nodes when dragging from the slot at the left if it has the specified type.
+        Makes possible to disconnect nodes when dragging from the slot at the left if it has the specified type.
+	Args: [{ false type int}], Returns: void
 */
+
 func (o *GraphEdit) AddValidLeftDisconnectType(aType gdnative.Int) {
 	log.Println("Calling GraphEdit.AddValidLeftDisconnectType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "add_valid_left_disconnect_type")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_valid_left_disconnect_type", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Makes possible to disconnect nodes when dragging from the slot at the right if it has the specified type.
+        Makes possible to disconnect nodes when dragging from the slot at the right if it has the specified type.
+	Args: [{ false type int}], Returns: void
 */
+
 func (o *GraphEdit) AddValidRightDisconnectType(aType gdnative.Int) {
 	log.Println("Calling GraphEdit.AddValidRightDisconnectType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "add_valid_right_disconnect_type")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_valid_right_disconnect_type", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Remove all connections between nodes.
+        Remove all connections between nodes.
+	Args: [], Returns: void
 */
+
 func (o *GraphEdit) ClearConnections() {
 	log.Println("Calling GraphEdit.ClearConnections()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "clear_connections")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear_connections", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Create a connection between 'from_port' slot of 'from' GraphNode and 'to_port' slot of 'to' GraphNode. If the connection already exists, no connection is created.
+        Create a connection between 'from_port' slot of 'from' GraphNode and 'to_port' slot of 'to' GraphNode. If the connection already exists, no connection is created.
+	Args: [{ false from String} { false from_port int} { false to String} { false to_port int}], Returns: enum.Error
 */
-func (o *GraphEdit) ConnectNode(from gdnative.String, fromPort gdnative.Int, to gdnative.String, toPort gdnative.Int) gdnative.Int {
-	log.Println("Calling GraphEdit.ConnectNode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(from)
-	goArguments[1] = reflect.ValueOf(fromPort)
-	goArguments[2] = reflect.ValueOf(to)
-	goArguments[3] = reflect.ValueOf(toPort)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "connect_node", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Remove the connection between 'from_port' slot of 'from' GraphNode and 'to_port' slot of 'to' GraphNode, if connection exists.
+        Remove the connection between 'from_port' slot of 'from' GraphNode and 'to_port' slot of 'to' GraphNode, if connection exists.
+	Args: [{ false from String} { false from_port int} { false to String} { false to_port int}], Returns: void
 */
+
 func (o *GraphEdit) DisconnectNode(from gdnative.String, fromPort gdnative.Int, to gdnative.String, toPort gdnative.Int) {
 	log.Println("Calling GraphEdit.DisconnectNode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(from)
-	goArguments[1] = reflect.ValueOf(fromPort)
-	goArguments[2] = reflect.ValueOf(to)
-	goArguments[3] = reflect.ValueOf(toPort)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromString(from)
+	ptrArguments[1] = gdnative.NewPointerFromInt(fromPort)
+	ptrArguments[2] = gdnative.NewPointerFromString(to)
+	ptrArguments[3] = gdnative.NewPointerFromInt(toPort)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "disconnect_node")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "disconnect_node", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Return an Array containing the list of connections. A connection consists in a structure of the form {from_slot: 0, from: "GraphNode name 0", to_slot: 1, to: "GraphNode name 1" }
+        Return an Array containing the list of connections. A connection consists in a structure of the form {from_slot: 0, from: "GraphNode name 0", to_slot: 1, to: "GraphNode name 1" }
+	Args: [], Returns: Array
 */
-func (o *GraphEdit) GetConnectionList() *Array {
+
+func (o *GraphEdit) GetConnectionList() gdnative.Array {
 	log.Println("Calling GraphEdit.GetConnectionList()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "get_connection_list")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_connection_list", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *GraphEdit) GetScrollOfs() *Vector2 {
+
+func (o *GraphEdit) GetScrollOfs() gdnative.Vector2 {
 	log.Println("Calling GraphEdit.GetScrollOfs()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "get_scroll_ofs")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_scroll_ofs", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *GraphEdit) GetSnap() gdnative.Int {
 	log.Println("Calling GraphEdit.GetSnap()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "get_snap")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_snap", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *GraphEdit) GetZoom() gdnative.Float {
 	log.Println("Calling GraphEdit.GetZoom()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "get_zoom")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_zoom", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return true if the 'from_port' slot of 'from' GraphNode is connected to the 'to_port' slot of 'to' GraphNode.
+        Return true if the 'from_port' slot of 'from' GraphNode is connected to the 'to_port' slot of 'to' GraphNode.
+	Args: [{ false from String} { false from_port int} { false to String} { false to_port int}], Returns: bool
 */
+
 func (o *GraphEdit) IsNodeConnected(from gdnative.String, fromPort gdnative.Int, to gdnative.String, toPort gdnative.Int) gdnative.Bool {
 	log.Println("Calling GraphEdit.IsNodeConnected()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(from)
-	goArguments[1] = reflect.ValueOf(fromPort)
-	goArguments[2] = reflect.ValueOf(to)
-	goArguments[3] = reflect.ValueOf(toPort)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromString(from)
+	ptrArguments[1] = gdnative.NewPointerFromInt(fromPort)
+	ptrArguments[2] = gdnative.NewPointerFromString(to)
+	ptrArguments[3] = gdnative.NewPointerFromInt(toPort)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "is_node_connected")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_node_connected", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *GraphEdit) IsRightDisconnectsEnabled() gdnative.Bool {
 	log.Println("Calling GraphEdit.IsRightDisconnectsEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "is_right_disconnects_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_right_disconnects_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *GraphEdit) IsUsingSnap() gdnative.Bool {
 	log.Println("Calling GraphEdit.IsUsingSnap()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "is_using_snap")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_using_snap", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns whether it's possible to connect slots of the specified types.
+        Returns whether it's possible to connect slots of the specified types.
+	Args: [{ false from_type int} { false to_type int}], Returns: bool
 */
+
 func (o *GraphEdit) IsValidConnectionType(fromType gdnative.Int, toType gdnative.Int) gdnative.Bool {
 	log.Println("Calling GraphEdit.IsValidConnectionType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(fromType)
-	goArguments[1] = reflect.ValueOf(toType)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(fromType)
+	ptrArguments[1] = gdnative.NewPointerFromInt(toType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "is_valid_connection_type")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_valid_connection_type", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Makes it not possible to connect between two different slot types. The type is defined with the [method GraphNode.set_slot] method.
+        Makes it not possible to connect between two different slot types. The type is defined with the [method GraphNode.set_slot] method.
+	Args: [{ false from_type int} { false to_type int}], Returns: void
 */
+
 func (o *GraphEdit) RemoveValidConnectionType(fromType gdnative.Int, toType gdnative.Int) {
 	log.Println("Calling GraphEdit.RemoveValidConnectionType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(fromType)
-	goArguments[1] = reflect.ValueOf(toType)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(fromType)
+	ptrArguments[1] = gdnative.NewPointerFromInt(toType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "remove_valid_connection_type")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_valid_connection_type", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Removes the possibility to disconnect nodes when dragging from the slot at the left if it has the specified type.
+        Removes the possibility to disconnect nodes when dragging from the slot at the left if it has the specified type.
+	Args: [{ false type int}], Returns: void
 */
+
 func (o *GraphEdit) RemoveValidLeftDisconnectType(aType gdnative.Int) {
 	log.Println("Calling GraphEdit.RemoveValidLeftDisconnectType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "remove_valid_left_disconnect_type")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_valid_left_disconnect_type", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Removes the possibility to disconnect nodes when dragging from the slot at the right if it has the specified type.
+        Removes the possibility to disconnect nodes when dragging from the slot at the right if it has the specified type.
+	Args: [{ false type int}], Returns: void
 */
+
 func (o *GraphEdit) RemoveValidRightDisconnectType(aType gdnative.Int) {
 	log.Println("Calling GraphEdit.RemoveValidRightDisconnectType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "remove_valid_right_disconnect_type")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_valid_right_disconnect_type", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *GraphEdit) SetRightDisconnects(enable gdnative.Bool) {
 	log.Println("Calling GraphEdit.SetRightDisconnects()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "set_right_disconnects")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_right_disconnects", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false ofs Vector2}], Returns: void
 */
-func (o *GraphEdit) SetScrollOfs(ofs *Vector2) {
+
+func (o *GraphEdit) SetScrollOfs(ofs gdnative.Vector2) {
 	log.Println("Calling GraphEdit.SetScrollOfs()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ofs)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(ofs)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "set_scroll_ofs")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_scroll_ofs", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the specified [code]node[/code] as the one selected.
+        Sets the specified [code]node[/code] as the one selected.
+	Args: [{ false node Object}], Returns: void
 */
-func (o *GraphEdit) SetSelected(node *Object) {
+
+func (o *GraphEdit) SetSelected(node object.Object) {
 	log.Println("Calling GraphEdit.SetSelected()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(node)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(node.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "set_selected")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_selected", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false pixels int}], Returns: void
 */
+
 func (o *GraphEdit) SetSnap(pixels gdnative.Int) {
 	log.Println("Calling GraphEdit.SetSnap()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pixels)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(pixels)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "set_snap")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_snap", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *GraphEdit) SetUseSnap(enable gdnative.Bool) {
 	log.Println("Calling GraphEdit.SetUseSnap()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "set_use_snap")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_use_snap", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false p_zoom float}], Returns: void
 */
+
 func (o *GraphEdit) SetZoom(pZoom gdnative.Float) {
 	log.Println("Calling GraphEdit.SetZoom()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pZoom)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(pZoom)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "set_zoom")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_zoom", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   GraphEditImplementer is an interface for GraphEdit objects.
-*/
-type GraphEditImplementer interface {
-	Class
 }

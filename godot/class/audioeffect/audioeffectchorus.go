@@ -2,7 +2,8 @@ package audioeffect
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
 )
 
 /*------------------------------------------------------------------------------
@@ -13,6 +14,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewAudioEffectChorusFromPointer(ptr gdnative.Pointer) *AudioEffectChorus {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := AudioEffectChorus{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 /*
 Adds a chorus audio effect. The effect applies a filter with voices to duplicate the audio source and manipulate it through the filter.
@@ -26,362 +36,445 @@ func (o *AudioEffectChorus) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectChorus) GetDry() gdnative.Float {
 	log.Println("Calling AudioEffectChorus.GetDry()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "get_dry")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_dry", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *AudioEffectChorus) GetVoiceCount() gdnative.Int {
 	log.Println("Calling AudioEffectChorus.GetVoiceCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "get_voice_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_voice_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false voice_idx int}], Returns: float
 */
+
 func (o *AudioEffectChorus) GetVoiceCutoffHz(voiceIdx gdnative.Int) gdnative.Float {
 	log.Println("Calling AudioEffectChorus.GetVoiceCutoffHz()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(voiceIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(voiceIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "get_voice_cutoff_hz")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_voice_cutoff_hz", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false voice_idx int}], Returns: float
 */
+
 func (o *AudioEffectChorus) GetVoiceDelayMs(voiceIdx gdnative.Int) gdnative.Float {
 	log.Println("Calling AudioEffectChorus.GetVoiceDelayMs()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(voiceIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(voiceIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "get_voice_delay_ms")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_voice_delay_ms", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false voice_idx int}], Returns: float
 */
+
 func (o *AudioEffectChorus) GetVoiceDepthMs(voiceIdx gdnative.Int) gdnative.Float {
 	log.Println("Calling AudioEffectChorus.GetVoiceDepthMs()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(voiceIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(voiceIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "get_voice_depth_ms")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_voice_depth_ms", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false voice_idx int}], Returns: float
 */
+
 func (o *AudioEffectChorus) GetVoiceLevelDb(voiceIdx gdnative.Int) gdnative.Float {
 	log.Println("Calling AudioEffectChorus.GetVoiceLevelDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(voiceIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(voiceIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "get_voice_level_db")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_voice_level_db", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false voice_idx int}], Returns: float
 */
+
 func (o *AudioEffectChorus) GetVoicePan(voiceIdx gdnative.Int) gdnative.Float {
 	log.Println("Calling AudioEffectChorus.GetVoicePan()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(voiceIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(voiceIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "get_voice_pan")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_voice_pan", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false voice_idx int}], Returns: float
 */
+
 func (o *AudioEffectChorus) GetVoiceRateHz(voiceIdx gdnative.Int) gdnative.Float {
 	log.Println("Calling AudioEffectChorus.GetVoiceRateHz()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(voiceIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(voiceIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "get_voice_rate_hz")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_voice_rate_hz", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectChorus) GetWet() gdnative.Float {
 	log.Println("Calling AudioEffectChorus.GetWet()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "get_wet")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_wet", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount float}], Returns: void
 */
+
 func (o *AudioEffectChorus) SetDry(amount gdnative.Float) {
 	log.Println("Calling AudioEffectChorus.SetDry()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "set_dry")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_dry", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false voices int}], Returns: void
 */
+
 func (o *AudioEffectChorus) SetVoiceCount(voices gdnative.Int) {
 	log.Println("Calling AudioEffectChorus.SetVoiceCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(voices)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(voices)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "set_voice_count")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_voice_count", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false voice_idx int} { false cutoff_hz float}], Returns: void
 */
+
 func (o *AudioEffectChorus) SetVoiceCutoffHz(voiceIdx gdnative.Int, cutoffHz gdnative.Float) {
 	log.Println("Calling AudioEffectChorus.SetVoiceCutoffHz()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(voiceIdx)
-	goArguments[1] = reflect.ValueOf(cutoffHz)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(voiceIdx)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(cutoffHz)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "set_voice_cutoff_hz")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_voice_cutoff_hz", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false voice_idx int} { false delay_ms float}], Returns: void
 */
+
 func (o *AudioEffectChorus) SetVoiceDelayMs(voiceIdx gdnative.Int, delayMs gdnative.Float) {
 	log.Println("Calling AudioEffectChorus.SetVoiceDelayMs()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(voiceIdx)
-	goArguments[1] = reflect.ValueOf(delayMs)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(voiceIdx)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(delayMs)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "set_voice_delay_ms")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_voice_delay_ms", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false voice_idx int} { false depth_ms float}], Returns: void
 */
+
 func (o *AudioEffectChorus) SetVoiceDepthMs(voiceIdx gdnative.Int, depthMs gdnative.Float) {
 	log.Println("Calling AudioEffectChorus.SetVoiceDepthMs()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(voiceIdx)
-	goArguments[1] = reflect.ValueOf(depthMs)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(voiceIdx)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(depthMs)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "set_voice_depth_ms")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_voice_depth_ms", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false voice_idx int} { false level_db float}], Returns: void
 */
+
 func (o *AudioEffectChorus) SetVoiceLevelDb(voiceIdx gdnative.Int, levelDb gdnative.Float) {
 	log.Println("Calling AudioEffectChorus.SetVoiceLevelDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(voiceIdx)
-	goArguments[1] = reflect.ValueOf(levelDb)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(voiceIdx)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(levelDb)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "set_voice_level_db")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_voice_level_db", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false voice_idx int} { false pan float}], Returns: void
 */
+
 func (o *AudioEffectChorus) SetVoicePan(voiceIdx gdnative.Int, pan gdnative.Float) {
 	log.Println("Calling AudioEffectChorus.SetVoicePan()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(voiceIdx)
-	goArguments[1] = reflect.ValueOf(pan)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(voiceIdx)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(pan)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "set_voice_pan")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_voice_pan", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false voice_idx int} { false rate_hz float}], Returns: void
 */
+
 func (o *AudioEffectChorus) SetVoiceRateHz(voiceIdx gdnative.Int, rateHz gdnative.Float) {
 	log.Println("Calling AudioEffectChorus.SetVoiceRateHz()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(voiceIdx)
-	goArguments[1] = reflect.ValueOf(rateHz)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(voiceIdx)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(rateHz)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "set_voice_rate_hz")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_voice_rate_hz", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount float}], Returns: void
 */
+
 func (o *AudioEffectChorus) SetWet(amount gdnative.Float) {
 	log.Println("Calling AudioEffectChorus.SetWet()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "set_wet")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_wet", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   AudioEffectChorusImplementer is an interface for AudioEffectChorus objects.
-*/
-type AudioEffectChorusImplementer interface {
-	Class
 }

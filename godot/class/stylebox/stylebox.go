@@ -2,7 +2,9 @@ package stylebox
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewStyleBoxFromPointer(ptr gdnative.Pointer) *StyleBox {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := StyleBox{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 StyleBox is [Resource] that provides an abstract base class for drawing stylized boxes for the UI. StyleBoxes are used for drawing the styles of buttons, line edit backgrounds, tree backgrounds, etc. and also for testing a transparency mask for pointer signals. If mask test fails on a StyleBox assigned as mask to a control, clicks and motion signals will go through it to the one below.
 */
 type StyleBox struct {
-	Resource
+	resource.Resource
 }
 
 func (o *StyleBox) BaseClass() string {
@@ -27,169 +38,206 @@ func (o *StyleBox) BaseClass() string {
 
 /*
 
- */
-func (o *StyleBox) Draw(canvasItem *RID, rect *Rect2) {
+	Args: [{ false canvas_item RID} { false rect Rect2}], Returns: void
+*/
+
+func (o *StyleBox) Draw(canvasItem gdnative.RID, rect gdnative.Rect2) {
 	log.Println("Calling StyleBox.Draw()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(canvasItem)
-	goArguments[1] = reflect.ValueOf(rect)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(canvasItem)
+	ptrArguments[1] = gdnative.NewPointerFromRect2(rect)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBox", "draw")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *StyleBox) GetCenterSize() *Vector2 {
+	Args: [], Returns: Vector2
+*/
+
+func (o *StyleBox) GetCenterSize() gdnative.Vector2 {
 	log.Println("Calling StyleBox.GetCenterSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBox", "get_center_size")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_center_size", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin int}], Returns: float
 */
+
 func (o *StyleBox) GetDefaultMargin(margin gdnative.Int) gdnative.Float {
 	log.Println("Calling StyleBox.GetDefaultMargin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBox", "get_default_margin")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_default_margin", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the offset of margin "margin" (see MARGIN_* enum).
+        Return the offset of margin "margin" (see MARGIN_* enum).
+	Args: [{ false margin int}], Returns: float
 */
+
 func (o *StyleBox) GetMargin(margin gdnative.Int) gdnative.Float {
 	log.Println("Calling StyleBox.GetMargin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBox", "get_margin")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_margin", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the minimum size that this stylebox can be shrunk to.
+        Return the minimum size that this stylebox can be shrunk to.
+	Args: [], Returns: Vector2
 */
-func (o *StyleBox) GetMinimumSize() *Vector2 {
+
+func (o *StyleBox) GetMinimumSize() gdnative.Vector2 {
 	log.Println("Calling StyleBox.GetMinimumSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBox", "get_minimum_size")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_minimum_size", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the "offset" of a stylebox, this is a helper function, like writing [code]Vector2(style.get_margin(MARGIN_LEFT), style.get_margin(MARGIN_TOP))[/code].
+        Return the "offset" of a stylebox, this is a helper function, like writing [code]Vector2(style.get_margin(MARGIN_LEFT), style.get_margin(MARGIN_TOP))[/code].
+	Args: [], Returns: Vector2
 */
-func (o *StyleBox) GetOffset() *Vector2 {
+
+func (o *StyleBox) GetOffset() gdnative.Vector2 {
 	log.Println("Calling StyleBox.GetOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBox", "get_offset")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_offset", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin int} { false offset float}], Returns: void
 */
+
 func (o *StyleBox) SetDefaultMargin(margin gdnative.Int, offset gdnative.Float) {
 	log.Println("Calling StyleBox.SetDefaultMargin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(margin)
-	goArguments[1] = reflect.ValueOf(offset)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(offset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBox", "set_default_margin")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_default_margin", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Test a position in a rectangle, return whether it passes the mask test.
+        Test a position in a rectangle, return whether it passes the mask test.
+	Args: [{ false point Vector2} { false rect Rect2}], Returns: bool
 */
-func (o *StyleBox) TestMask(point *Vector2, rect *Rect2) gdnative.Bool {
+
+func (o *StyleBox) TestMask(point gdnative.Vector2, rect gdnative.Rect2) gdnative.Bool {
 	log.Println("Calling StyleBox.TestMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(point)
-	goArguments[1] = reflect.ValueOf(rect)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(point)
+	ptrArguments[1] = gdnative.NewPointerFromRect2(rect)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBox", "test_mask")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "test_mask", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   StyleBoxImplementer is an interface for StyleBox objects.
-*/
-type StyleBoxImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

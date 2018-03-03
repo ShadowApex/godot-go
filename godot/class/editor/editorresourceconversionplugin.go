@@ -2,9 +2,11 @@ package editor
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/reference"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewEditorResourceConversionPluginFromPointer(ptr gdnative.Pointer) *EditorResourceConversionPlugin {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := EditorResourceConversionPlugin{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type EditorResourceConversionPlugin struct {
-	Reference
+	reference.Reference
 }
 
 func (o *EditorResourceConversionPlugin) BaseClass() string {
@@ -29,48 +40,53 @@ func (o *EditorResourceConversionPlugin) BaseClass() string {
 
 /*
 
- */
-func (o *EditorResourceConversionPlugin) X_Convert(resource *Resource) *Resource {
+	Args: [{ false resource Resource}], Returns: Resource
+*/
+
+func (o *EditorResourceConversionPlugin) X_Convert(resource resource.Resource) resource.Resource {
 	log.Println("Calling EditorResourceConversionPlugin.X_Convert()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(resource)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(resource.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorResourceConversionPlugin", "_convert")
 
 	// Call the parent method.
+	// Resource
+	retPtr := resource.NewEmptyResource()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_convert", goArguments, "*Resource")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := resource.NewResourceFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Resource)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: String
+*/
+
 func (o *EditorResourceConversionPlugin) X_ConvertsTo() gdnative.String {
 	log.Println("Calling EditorResourceConversionPlugin.X_ConvertsTo()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorResourceConversionPlugin", "_converts_to")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_converts_to", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   EditorResourceConversionPluginImplementer is an interface for EditorResourceConversionPlugin objects.
-*/
-type EditorResourceConversionPluginImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

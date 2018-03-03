@@ -2,9 +2,13 @@ package navigation2d
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/node2d"
+	"github.com/shadowapex/godot-go/godot/class/object"
+
+	"github.com/shadowapex/godot-go/godot/class/navigationpolygon"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +20,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewNavigation2DFromPointer(ptr gdnative.Pointer) *Navigation2D {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Navigation2D{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type Navigation2D struct {
-	Node2D
+	node2d.Node2D
 }
 
 func (o *Navigation2D) BaseClass() string {
@@ -29,132 +42,157 @@ func (o *Navigation2D) BaseClass() string {
 
 /*
 
- */
-func (o *Navigation2D) GetClosestPoint(toPoint *Vector2) *Vector2 {
+	Args: [{ false to_point Vector2}], Returns: Vector2
+*/
+
+func (o *Navigation2D) GetClosestPoint(toPoint gdnative.Vector2) gdnative.Vector2 {
 	log.Println("Calling Navigation2D.GetClosestPoint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(toPoint)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(toPoint)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Navigation2D", "get_closest_point")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_closest_point", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Navigation2D) GetClosestPointOwner(toPoint *Vector2) *Object {
+	Args: [{ false to_point Vector2}], Returns: Object
+*/
+
+func (o *Navigation2D) GetClosestPointOwner(toPoint gdnative.Vector2) object.Object {
 	log.Println("Calling Navigation2D.GetClosestPointOwner()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(toPoint)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(toPoint)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Navigation2D", "get_closest_point_owner")
 
 	// Call the parent method.
+	// Object
+	retPtr := object.NewEmptyObject()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_closest_point_owner", goArguments, "*Object")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := object.NewObjectFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Object)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Navigation2D) GetSimplePath(start *Vector2, end *Vector2, optimize gdnative.Bool) *PoolVector2Array {
+	Args: [{ false start Vector2} { false end Vector2} {True true optimize bool}], Returns: PoolVector2Array
+*/
+
+func (o *Navigation2D) GetSimplePath(start gdnative.Vector2, end gdnative.Vector2, optimize gdnative.Bool) gdnative.PoolVector2Array {
 	log.Println("Calling Navigation2D.GetSimplePath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(start)
-	goArguments[1] = reflect.ValueOf(end)
-	goArguments[2] = reflect.ValueOf(optimize)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(start)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(end)
+	ptrArguments[2] = gdnative.NewPointerFromBool(optimize)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Navigation2D", "get_simple_path")
 
 	// Call the parent method.
+	// PoolVector2Array
+	retPtr := gdnative.NewEmptyPoolVector2Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_simple_path", goArguments, "*PoolVector2Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector2Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Navigation2D) NavpolyAdd(mesh *NavigationPolygon, xform *Transform2D, owner *Object) gdnative.Int {
+	Args: [{ false mesh NavigationPolygon} { false xform Transform2D} {Null true owner Object}], Returns: int
+*/
+
+func (o *Navigation2D) NavpolyAdd(mesh navigationpolygon.NavigationPolygon, xform gdnative.Transform2D, owner object.Object) gdnative.Int {
 	log.Println("Calling Navigation2D.NavpolyAdd()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(xform)
-	goArguments[2] = reflect.ValueOf(owner)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromObject(mesh.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromTransform2D(xform)
+	ptrArguments[2] = gdnative.NewPointerFromObject(owner.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Navigation2D", "navpoly_add")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "navpoly_add", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false id int}], Returns: void
+*/
+
 func (o *Navigation2D) NavpolyRemove(id gdnative.Int) {
 	log.Println("Calling Navigation2D.NavpolyRemove()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Navigation2D", "navpoly_remove")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "navpoly_remove", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *Navigation2D) NavpolySetTransform(id gdnative.Int, xform *Transform2D) {
+	Args: [{ false id int} { false xform Transform2D}], Returns: void
+*/
+
+func (o *Navigation2D) NavpolySetTransform(id gdnative.Int, xform gdnative.Transform2D) {
 	log.Println("Calling Navigation2D.NavpolySetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(xform)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromTransform2D(xform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Navigation2D", "navpoly_set_transform")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "navpoly_set_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   Navigation2DImplementer is an interface for Navigation2D objects.
-*/
-type Navigation2DImplementer interface {
-	Class
 }

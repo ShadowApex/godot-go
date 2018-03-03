@@ -2,7 +2,9 @@ package sphereshape
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/shape"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewSphereShapeFromPointer(ptr gdnative.Pointer) *SphereShape {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := SphereShape{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Sphere shape for 3D collisions, which can be set into a [PhysicsBody] or [Area]. This shape is useful for modeling sphere-like 3D objects.
 */
 type SphereShape struct {
-	Shape
+	shape.Shape
 }
 
 func (o *SphereShape) BaseClass() string {
@@ -26,46 +37,49 @@ func (o *SphereShape) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *SphereShape) GetRadius() gdnative.Float {
 	log.Println("Calling SphereShape.GetRadius()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SphereShape", "get_radius")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_radius", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false radius float}], Returns: void
 */
+
 func (o *SphereShape) SetRadius(radius gdnative.Float) {
 	log.Println("Calling SphereShape.SetRadius()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(radius)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(radius)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SphereShape", "set_radius")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_radius", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   SphereShapeImplementer is an interface for SphereShape objects.
-*/
-type SphereShapeImplementer interface {
-	Class
 }

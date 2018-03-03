@@ -2,7 +2,9 @@ package prismmesh
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/primitivemesh"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPrismMeshFromPointer(ptr gdnative.Pointer) *PrismMesh {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := PrismMesh{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Class representing a prism-shaped [PrimitiveMesh].
 */
 type PrismMesh struct {
-	PrimitiveMesh
+	primitivemesh.PrimitiveMesh
 }
 
 func (o *PrismMesh) BaseClass() string {
@@ -26,198 +37,241 @@ func (o *PrismMesh) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *PrismMesh) GetLeftToRight() gdnative.Float {
 	log.Println("Calling PrismMesh.GetLeftToRight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PrismMesh", "get_left_to_right")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_left_to_right", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector3
 */
-func (o *PrismMesh) GetSize() *Vector3 {
+
+func (o *PrismMesh) GetSize() gdnative.Vector3 {
 	log.Println("Calling PrismMesh.GetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PrismMesh", "get_size")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_size", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *PrismMesh) GetSubdivideDepth() gdnative.Int {
 	log.Println("Calling PrismMesh.GetSubdivideDepth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PrismMesh", "get_subdivide_depth")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_subdivide_depth", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *PrismMesh) GetSubdivideHeight() gdnative.Int {
 	log.Println("Calling PrismMesh.GetSubdivideHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PrismMesh", "get_subdivide_height")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_subdivide_height", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *PrismMesh) GetSubdivideWidth() gdnative.Int {
 	log.Println("Calling PrismMesh.GetSubdivideWidth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PrismMesh", "get_subdivide_width")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_subdivide_width", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false left_to_right float}], Returns: void
 */
+
 func (o *PrismMesh) SetLeftToRight(leftToRight gdnative.Float) {
 	log.Println("Calling PrismMesh.SetLeftToRight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(leftToRight)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(leftToRight)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PrismMesh", "set_left_to_right")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_left_to_right", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false size Vector3}], Returns: void
 */
-func (o *PrismMesh) SetSize(size *Vector3) {
+
+func (o *PrismMesh) SetSize(size gdnative.Vector3) {
 	log.Println("Calling PrismMesh.SetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PrismMesh", "set_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false segments int}], Returns: void
 */
+
 func (o *PrismMesh) SetSubdivideDepth(segments gdnative.Int) {
 	log.Println("Calling PrismMesh.SetSubdivideDepth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(segments)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(segments)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PrismMesh", "set_subdivide_depth")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_subdivide_depth", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false segments int}], Returns: void
 */
+
 func (o *PrismMesh) SetSubdivideHeight(segments gdnative.Int) {
 	log.Println("Calling PrismMesh.SetSubdivideHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(segments)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(segments)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PrismMesh", "set_subdivide_height")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_subdivide_height", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false segments int}], Returns: void
 */
+
 func (o *PrismMesh) SetSubdivideWidth(segments gdnative.Int) {
 	log.Println("Calling PrismMesh.SetSubdivideWidth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(segments)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(segments)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PrismMesh", "set_subdivide_width")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_subdivide_width", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   PrismMeshImplementer is an interface for PrismMesh objects.
-*/
-type PrismMeshImplementer interface {
-	Class
 }

@@ -2,7 +2,11 @@ package interpolatedcamera
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/camera"
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewInterpolatedCameraFromPointer(ptr gdnative.Pointer) *InterpolatedCamera {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := InterpolatedCamera{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type InterpolatedCamera struct {
-	Camera
+	camera.Camera
 }
 
 func (o *InterpolatedCamera) BaseClass() string {
@@ -26,140 +39,167 @@ func (o *InterpolatedCamera) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *InterpolatedCamera) GetSpeed() gdnative.Float {
 	log.Println("Calling InterpolatedCamera.GetSpeed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InterpolatedCamera", "get_speed")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_speed", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: NodePath
 */
-func (o *InterpolatedCamera) GetTargetPath() *NodePath {
+
+func (o *InterpolatedCamera) GetTargetPath() gdnative.NodePath {
 	log.Println("Calling InterpolatedCamera.GetTargetPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InterpolatedCamera", "get_target_path")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_target_path", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *InterpolatedCamera) IsInterpolationEnabled() gdnative.Bool {
 	log.Println("Calling InterpolatedCamera.IsInterpolationEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InterpolatedCamera", "is_interpolation_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_interpolation_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false target_path bool}], Returns: void
 */
+
 func (o *InterpolatedCamera) SetInterpolationEnabled(targetPath gdnative.Bool) {
 	log.Println("Calling InterpolatedCamera.SetInterpolationEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(targetPath)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(targetPath)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InterpolatedCamera", "set_interpolation_enabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_interpolation_enabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false speed float}], Returns: void
 */
+
 func (o *InterpolatedCamera) SetSpeed(speed gdnative.Float) {
 	log.Println("Calling InterpolatedCamera.SetSpeed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(speed)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(speed)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InterpolatedCamera", "set_speed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_speed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *InterpolatedCamera) SetTarget(target *Object) {
+	Args: [{ false target Object}], Returns: void
+*/
+
+func (o *InterpolatedCamera) SetTarget(target object.Object) {
 	log.Println("Calling InterpolatedCamera.SetTarget()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(target)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(target.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InterpolatedCamera", "set_target")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_target", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false target_path NodePath}], Returns: void
 */
-func (o *InterpolatedCamera) SetTargetPath(targetPath *NodePath) {
+
+func (o *InterpolatedCamera) SetTargetPath(targetPath gdnative.NodePath) {
 	log.Println("Calling InterpolatedCamera.SetTargetPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(targetPath)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(targetPath)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InterpolatedCamera", "set_target_path")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_target_path", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   InterpolatedCameraImplementer is an interface for InterpolatedCamera objects.
-*/
-type InterpolatedCameraImplementer interface {
-	Class
 }

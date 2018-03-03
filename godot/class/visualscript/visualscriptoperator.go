@@ -2,7 +2,6 @@ package visualscript
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -16,6 +15,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewVisualScriptOperatorFromPointer(ptr gdnative.Pointer) *VisualScriptOperator {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := VisualScriptOperator{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
@@ -28,84 +36,55 @@ func (o *VisualScriptOperator) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Variant::Operator
 */
-func (o *VisualScriptOperator) GetOperator() gdnative.Int {
-	log.Println("Calling VisualScriptOperator.GetOperator()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_operator", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Variant::Type
 */
-func (o *VisualScriptOperator) GetTyped() gdnative.Int {
-	log.Println("Calling VisualScriptOperator.GetTyped()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_typed", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false op int}], Returns: void
 */
+
 func (o *VisualScriptOperator) SetOperator(op gdnative.Int) {
 	log.Println("Calling VisualScriptOperator.SetOperator()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(op)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(op)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptOperator", "set_operator")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_operator", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false type int}], Returns: void
 */
+
 func (o *VisualScriptOperator) SetTyped(aType gdnative.Int) {
 	log.Println("Calling VisualScriptOperator.SetTyped()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptOperator", "set_typed")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_typed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   VisualScriptOperatorImplementer is an interface for VisualScriptOperator objects.
-*/
-type VisualScriptOperatorImplementer interface {
-	Class
 }

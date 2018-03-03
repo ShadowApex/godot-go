@@ -2,9 +2,13 @@ package navigation
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
+	"github.com/shadowapex/godot-go/godot/class/spatial"
+
+	"github.com/shadowapex/godot-go/godot/class/navigationmesh"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +20,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewNavigationFromPointer(ptr gdnative.Pointer) *Navigation {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Navigation{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 The Navigation node is used for basic or advanced navigation. By default it will automatically collect all child [code]NavigationMesh[/code] resources, but they can also be added on the fly through scripting. It can be used for generating a simple path between two points or it can be used to ensure that a navigation agent is angled perfectly to the terrain it is navigating.
 */
 type Navigation struct {
-	Spatial
+	spatial.Spatial
 }
 
 func (o *Navigation) BaseClass() string {
@@ -28,215 +41,262 @@ func (o *Navigation) BaseClass() string {
 }
 
 /*
-   Returns the closest navigation point to the point passed.
+        Returns the closest navigation point to the point passed.
+	Args: [{ false to_point Vector3}], Returns: Vector3
 */
-func (o *Navigation) GetClosestPoint(toPoint *Vector3) *Vector3 {
+
+func (o *Navigation) GetClosestPoint(toPoint gdnative.Vector3) gdnative.Vector3 {
 	log.Println("Calling Navigation.GetClosestPoint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(toPoint)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(toPoint)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Navigation", "get_closest_point")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_closest_point", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the surface normal of the navigation mesh at the point passed. For instance, if the point passed was at a 45 degree slope it would return something like (0.5,0.5,0). This is useful for rotating a navigation agent in accordance with the [code]NavigationMesh[/code].
+        Returns the surface normal of the navigation mesh at the point passed. For instance, if the point passed was at a 45 degree slope it would return something like (0.5,0.5,0). This is useful for rotating a navigation agent in accordance with the [code]NavigationMesh[/code].
+	Args: [{ false to_point Vector3}], Returns: Vector3
 */
-func (o *Navigation) GetClosestPointNormal(toPoint *Vector3) *Vector3 {
+
+func (o *Navigation) GetClosestPointNormal(toPoint gdnative.Vector3) gdnative.Vector3 {
 	log.Println("Calling Navigation.GetClosestPointNormal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(toPoint)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(toPoint)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Navigation", "get_closest_point_normal")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_closest_point_normal", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the nearest [code]NavigationMeshInstance[/code] to the point passed.
+        Returns the nearest [code]NavigationMeshInstance[/code] to the point passed.
+	Args: [{ false to_point Vector3}], Returns: Object
 */
-func (o *Navigation) GetClosestPointOwner(toPoint *Vector3) *Object {
+
+func (o *Navigation) GetClosestPointOwner(toPoint gdnative.Vector3) object.Object {
 	log.Println("Calling Navigation.GetClosestPointOwner()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(toPoint)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(toPoint)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Navigation", "get_closest_point_owner")
 
 	// Call the parent method.
+	// Object
+	retPtr := object.NewEmptyObject()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_closest_point_owner", goArguments, "*Object")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := object.NewObjectFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Object)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the nearest point to the line segment passed. The third optional parameter takes collisions into account.
+        Returns the nearest point to the line segment passed. The third optional parameter takes collisions into account.
+	Args: [{ false start Vector3} { false end Vector3} {False true use_collision bool}], Returns: Vector3
 */
-func (o *Navigation) GetClosestPointToSegment(start *Vector3, end *Vector3, useCollision gdnative.Bool) *Vector3 {
+
+func (o *Navigation) GetClosestPointToSegment(start gdnative.Vector3, end gdnative.Vector3, useCollision gdnative.Bool) gdnative.Vector3 {
 	log.Println("Calling Navigation.GetClosestPointToSegment()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(start)
-	goArguments[1] = reflect.ValueOf(end)
-	goArguments[2] = reflect.ValueOf(useCollision)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(start)
+	ptrArguments[1] = gdnative.NewPointerFromVector3(end)
+	ptrArguments[2] = gdnative.NewPointerFromBool(useCollision)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Navigation", "get_closest_point_to_segment")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_closest_point_to_segment", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a path of points as a [code]PoolVector3Array[/code]. If [code]optimize[/code] is false the [code]NavigationMesh[/code] agent properties will be taken into account, otherwise it will return the nearest path and ignore agent radius, height, etc.
+        Returns a path of points as a [code]PoolVector3Array[/code]. If [code]optimize[/code] is false the [code]NavigationMesh[/code] agent properties will be taken into account, otherwise it will return the nearest path and ignore agent radius, height, etc.
+	Args: [{ false start Vector3} { false end Vector3} {True true optimize bool}], Returns: PoolVector3Array
 */
-func (o *Navigation) GetSimplePath(start *Vector3, end *Vector3, optimize gdnative.Bool) *PoolVector3Array {
+
+func (o *Navigation) GetSimplePath(start gdnative.Vector3, end gdnative.Vector3, optimize gdnative.Bool) gdnative.PoolVector3Array {
 	log.Println("Calling Navigation.GetSimplePath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(start)
-	goArguments[1] = reflect.ValueOf(end)
-	goArguments[2] = reflect.ValueOf(optimize)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(start)
+	ptrArguments[1] = gdnative.NewPointerFromVector3(end)
+	ptrArguments[2] = gdnative.NewPointerFromBool(optimize)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Navigation", "get_simple_path")
 
 	// Call the parent method.
+	// PoolVector3Array
+	retPtr := gdnative.NewEmptyPoolVector3Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_simple_path", goArguments, "*PoolVector3Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector3ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector3Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector3
 */
-func (o *Navigation) GetUpVector() *Vector3 {
+
+func (o *Navigation) GetUpVector() gdnative.Vector3 {
 	log.Println("Calling Navigation.GetUpVector()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Navigation", "get_up_vector")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_up_vector", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Adds a [code]NavigationMesh[/code] to the list of NavigationMesh's in this node. Returns an id. Its position, rotation and scale are associated with the [code]Transform[/code] passed. The [code]Node[/code] (or [code]Object[/code]) that owns this node is an optional parameter.
+        Adds a [code]NavigationMesh[/code] to the list of NavigationMesh's in this node. Returns an id. Its position, rotation and scale are associated with the [code]Transform[/code] passed. The [code]Node[/code] (or [code]Object[/code]) that owns this node is an optional parameter.
+	Args: [{ false mesh NavigationMesh} { false xform Transform} {Null true owner Object}], Returns: int
 */
-func (o *Navigation) NavmeshAdd(mesh *NavigationMesh, xform *Transform, owner *Object) gdnative.Int {
+
+func (o *Navigation) NavmeshAdd(mesh navigationmesh.NavigationMesh, xform gdnative.Transform, owner object.Object) gdnative.Int {
 	log.Println("Calling Navigation.NavmeshAdd()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(xform)
-	goArguments[2] = reflect.ValueOf(owner)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromObject(mesh.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromTransform(xform)
+	ptrArguments[2] = gdnative.NewPointerFromObject(owner.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Navigation", "navmesh_add")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "navmesh_add", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Removes a [code]NavigationMesh[/code] from the list of NavigationMesh's in this node.
+        Removes a [code]NavigationMesh[/code] from the list of NavigationMesh's in this node.
+	Args: [{ false id int}], Returns: void
 */
+
 func (o *Navigation) NavmeshRemove(id gdnative.Int) {
 	log.Println("Calling Navigation.NavmeshRemove()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Navigation", "navmesh_remove")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "navmesh_remove", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Associates a [code]NavigationMesh[/code]'s id with a [code]Transform[/code]. Its position, rotation and scale are based on the [code]Transform[/code] passed.
+        Associates a [code]NavigationMesh[/code]'s id with a [code]Transform[/code]. Its position, rotation and scale are based on the [code]Transform[/code] passed.
+	Args: [{ false id int} { false xform Transform}], Returns: void
 */
-func (o *Navigation) NavmeshSetTransform(id gdnative.Int, xform *Transform) {
+
+func (o *Navigation) NavmeshSetTransform(id gdnative.Int, xform gdnative.Transform) {
 	log.Println("Calling Navigation.NavmeshSetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(xform)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromTransform(xform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Navigation", "navmesh_set_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "navmesh_set_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false up Vector3}], Returns: void
 */
-func (o *Navigation) SetUpVector(up *Vector3) {
+
+func (o *Navigation) SetUpVector(up gdnative.Vector3) {
 	log.Println("Calling Navigation.SetUpVector()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(up)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(up)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Navigation", "set_up_vector")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_up_vector", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   NavigationImplementer is an interface for Navigation objects.
-*/
-type NavigationImplementer interface {
-	Class
 }

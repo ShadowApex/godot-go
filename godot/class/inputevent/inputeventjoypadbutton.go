@@ -2,7 +2,6 @@ package inputevent
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -16,6 +15,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewInputEventJoypadButtonFromPointer(ptr gdnative.Pointer) *InputEventJoypadButton {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := InputEventJoypadButton{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Input event type for gamepad buttons. For joysticks see [InputEventJoypadMotion].
 */
@@ -28,102 +36,119 @@ func (o *InputEventJoypadButton) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *InputEventJoypadButton) GetButtonIndex() gdnative.Int {
 	log.Println("Calling InputEventJoypadButton.GetButtonIndex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventJoypadButton", "get_button_index")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_button_index", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *InputEventJoypadButton) GetPressure() gdnative.Float {
 	log.Println("Calling InputEventJoypadButton.GetPressure()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventJoypadButton", "get_pressure")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_pressure", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false button_index int}], Returns: void
 */
+
 func (o *InputEventJoypadButton) SetButtonIndex(buttonIndex gdnative.Int) {
 	log.Println("Calling InputEventJoypadButton.SetButtonIndex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(buttonIndex)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(buttonIndex)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventJoypadButton", "set_button_index")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_button_index", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false pressed bool}], Returns: void
 */
+
 func (o *InputEventJoypadButton) SetPressed(pressed gdnative.Bool) {
 	log.Println("Calling InputEventJoypadButton.SetPressed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pressed)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(pressed)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventJoypadButton", "set_pressed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_pressed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false pressure float}], Returns: void
 */
+
 func (o *InputEventJoypadButton) SetPressure(pressure gdnative.Float) {
 	log.Println("Calling InputEventJoypadButton.SetPressure()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pressure)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(pressure)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventJoypadButton", "set_pressure")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_pressure", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   InputEventJoypadButtonImplementer is an interface for InputEventJoypadButton objects.
-*/
-type InputEventJoypadButtonImplementer interface {
-	Class
 }

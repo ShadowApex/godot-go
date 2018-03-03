@@ -2,9 +2,11 @@ package scenestate
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/packedscene"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewSceneStateFromPointer(ptr gdnative.Pointer) *SceneState {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := SceneState{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Maintains a list of resources, nodes, exported and overridden properties, and built-in scripts associated with a scene.
 */
 type SceneState struct {
-	Reference
+	reference.Reference
 }
 
 func (o *SceneState) BaseClass() string {
@@ -28,429 +39,542 @@ func (o *SceneState) BaseClass() string {
 }
 
 /*
-   Returns the list of bound parameters for the signal at [code]idx[/code].
+        Returns the list of bound parameters for the signal at [code]idx[/code].
+	Args: [{ false idx int}], Returns: Array
 */
-func (o *SceneState) GetConnectionBinds(idx gdnative.Int) *Array {
+
+func (o *SceneState) GetConnectionBinds(idx gdnative.Int) gdnative.Array {
 	log.Println("Calling SceneState.GetConnectionBinds()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_connection_binds")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_connection_binds", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the number of signal connections in the scene.
+        Returns the number of signal connections in the scene.
+	Args: [], Returns: int
 */
+
 func (o *SceneState) GetConnectionCount() gdnative.Int {
 	log.Println("Calling SceneState.GetConnectionCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_connection_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_connection_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the flags for the signal at [code]idx[/code]. See [Object]'s [code]CONNECT_*[/code] flags.
+        Returns the flags for the signal at [code]idx[/code]. See [Object]'s [code]CONNECT_*[/code] flags.
+	Args: [{ false idx int}], Returns: int
 */
+
 func (o *SceneState) GetConnectionFlags(idx gdnative.Int) gdnative.Int {
 	log.Println("Calling SceneState.GetConnectionFlags()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_connection_flags")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_connection_flags", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the method connected to the signal at [code]idx[/code].
+        Returns the method connected to the signal at [code]idx[/code].
+	Args: [{ false idx int}], Returns: String
 */
+
 func (o *SceneState) GetConnectionMethod(idx gdnative.Int) gdnative.String {
 	log.Println("Calling SceneState.GetConnectionMethod()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_connection_method")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_connection_method", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the name of the signal at [code]idx[/code].
+        Returns the name of the signal at [code]idx[/code].
+	Args: [{ false idx int}], Returns: String
 */
+
 func (o *SceneState) GetConnectionSignal(idx gdnative.Int) gdnative.String {
 	log.Println("Calling SceneState.GetConnectionSignal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_connection_signal")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_connection_signal", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the path to the node that owns the signal at [code]idx[/code], relative to the root node.
+        Returns the path to the node that owns the signal at [code]idx[/code], relative to the root node.
+	Args: [{ false idx int}], Returns: NodePath
 */
-func (o *SceneState) GetConnectionSource(idx gdnative.Int) *NodePath {
+
+func (o *SceneState) GetConnectionSource(idx gdnative.Int) gdnative.NodePath {
 	log.Println("Calling SceneState.GetConnectionSource()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_connection_source")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_connection_source", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the path to the node that owns the method connected to the signal at [code]idx[/code], relative to the root node.
+        Returns the path to the node that owns the method connected to the signal at [code]idx[/code], relative to the root node.
+	Args: [{ false idx int}], Returns: NodePath
 */
-func (o *SceneState) GetConnectionTarget(idx gdnative.Int) *NodePath {
+
+func (o *SceneState) GetConnectionTarget(idx gdnative.Int) gdnative.NodePath {
 	log.Println("Calling SceneState.GetConnectionTarget()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_connection_target")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_connection_target", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the number of nodes in the scene.
+        Returns the number of nodes in the scene.
+	Args: [], Returns: int
 */
+
 func (o *SceneState) GetNodeCount() gdnative.Int {
 	log.Println("Calling SceneState.GetNodeCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_node_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the list of group names associated with the node at [code]idx[/code].
+        Returns the list of group names associated with the node at [code]idx[/code].
+	Args: [{ false idx int}], Returns: PoolStringArray
 */
-func (o *SceneState) GetNodeGroups(idx gdnative.Int) *PoolStringArray {
+
+func (o *SceneState) GetNodeGroups(idx gdnative.Int) gdnative.PoolStringArray {
 	log.Println("Calling SceneState.GetNodeGroups()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_node_groups")
 
 	// Call the parent method.
+	// PoolStringArray
+	retPtr := gdnative.NewEmptyPoolStringArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_groups", goArguments, "*PoolStringArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolStringArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false idx int}], Returns: int
+*/
+
 func (o *SceneState) GetNodeIndex(idx gdnative.Int) gdnative.Int {
 	log.Println("Calling SceneState.GetNodeIndex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_node_index")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_index", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the scene for the node at [code]idx[/code] or [code]null[/code] if the node is not an instance.
+        Returns the scene for the node at [code]idx[/code] or [code]null[/code] if the node is not an instance.
+	Args: [{ false idx int}], Returns: PackedScene
 */
-func (o *SceneState) GetNodeInstance(idx gdnative.Int) *PackedScene {
+
+func (o *SceneState) GetNodeInstance(idx gdnative.Int) packedscene.PackedScene {
 	log.Println("Calling SceneState.GetNodeInstance()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_node_instance")
 
 	// Call the parent method.
+	// PackedScene
+	retPtr := packedscene.NewEmptyPackedScene()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_instance", goArguments, "*PackedScene")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := packedscene.NewPackedSceneFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PackedScene)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the path to the represented scene file if the node at [code]idx[/code] is an [InstancePlaceholder].
+        Returns the path to the represented scene file if the node at [code]idx[/code] is an [InstancePlaceholder].
+	Args: [{ false idx int}], Returns: String
 */
+
 func (o *SceneState) GetNodeInstancePlaceholder(idx gdnative.Int) gdnative.String {
 	log.Println("Calling SceneState.GetNodeInstancePlaceholder()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_node_instance_placeholder")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_instance_placeholder", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the name of the node at [code]idx[/code].
+        Returns the name of the node at [code]idx[/code].
+	Args: [{ false idx int}], Returns: String
 */
+
 func (o *SceneState) GetNodeName(idx gdnative.Int) gdnative.String {
 	log.Println("Calling SceneState.GetNodeName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_node_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the path to the owner of the node at [code]idx[/code], relative to the root node.
+        Returns the path to the owner of the node at [code]idx[/code], relative to the root node.
+	Args: [{ false idx int}], Returns: NodePath
 */
-func (o *SceneState) GetNodeOwnerPath(idx gdnative.Int) *NodePath {
+
+func (o *SceneState) GetNodeOwnerPath(idx gdnative.Int) gdnative.NodePath {
 	log.Println("Calling SceneState.GetNodeOwnerPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_node_owner_path")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_owner_path", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the path to the node at [code]idx[/code].
+        Returns the path to the node at [code]idx[/code].
+	Args: [{ false idx int} {False true for_parent bool}], Returns: NodePath
 */
-func (o *SceneState) GetNodePath(idx gdnative.Int, forParent gdnative.Bool) *NodePath {
+
+func (o *SceneState) GetNodePath(idx gdnative.Int, forParent gdnative.Bool) gdnative.NodePath {
 	log.Println("Calling SceneState.GetNodePath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(forParent)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromBool(forParent)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_node_path")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_path", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the number of exported or overridden properties for the node at [code]idx[/code].
+        Returns the number of exported or overridden properties for the node at [code]idx[/code].
+	Args: [{ false idx int}], Returns: int
 */
+
 func (o *SceneState) GetNodePropertyCount(idx gdnative.Int) gdnative.Int {
 	log.Println("Calling SceneState.GetNodePropertyCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_node_property_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_property_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the name of the property at [code]prop_idx[/code] for the node at [code]idx[/code].
+        Returns the name of the property at [code]prop_idx[/code] for the node at [code]idx[/code].
+	Args: [{ false idx int} { false prop_idx int}], Returns: String
 */
+
 func (o *SceneState) GetNodePropertyName(idx gdnative.Int, propIdx gdnative.Int) gdnative.String {
 	log.Println("Calling SceneState.GetNodePropertyName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(propIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromInt(propIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_node_property_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_property_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the value of the property at [code]prop_idx[/code] for the node at [code]idx[/code].
+        Returns the value of the property at [code]prop_idx[/code] for the node at [code]idx[/code].
+	Args: [{ false idx int} { false prop_idx int}], Returns: Variant
 */
-func (o *SceneState) GetNodePropertyValue(idx gdnative.Int, propIdx gdnative.Int) *Variant {
+
+func (o *SceneState) GetNodePropertyValue(idx gdnative.Int, propIdx gdnative.Int) gdnative.Variant {
 	log.Println("Calling SceneState.GetNodePropertyValue()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(propIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromInt(propIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_node_property_value")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_property_value", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the type of the node at [code]idx[/code].
+        Returns the type of the node at [code]idx[/code].
+	Args: [{ false idx int}], Returns: String
 */
+
 func (o *SceneState) GetNodeType(idx gdnative.Int) gdnative.String {
 	log.Println("Calling SceneState.GetNodeType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "get_node_type")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_type", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the node at [code]idx[/code] is an [InstancePlaceholder].
+        Returns [code]true[/code] if the node at [code]idx[/code] is an [InstancePlaceholder].
+	Args: [{ false idx int}], Returns: bool
 */
+
 func (o *SceneState) IsNodeInstancePlaceholder(idx gdnative.Int) gdnative.Bool {
 	log.Println("Calling SceneState.IsNodeInstancePlaceholder()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneState", "is_node_instance_placeholder")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_node_instance_placeholder", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   SceneStateImplementer is an interface for SceneState objects.
-*/
-type SceneStateImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

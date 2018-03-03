@@ -2,9 +2,9 @@ package translation
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewTranslationFromPointer(ptr gdnative.Pointer) *Translation {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Translation{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Translations are resources that can be loaded/unloaded on demand. They map a string to another string.
 */
 type Translation struct {
-	Resource
+	resource.Resource
 }
 
 func (o *Translation) BaseClass() string {
@@ -28,182 +37,221 @@ func (o *Translation) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolStringArray
 */
-func (o *Translation) X_GetMessages() *PoolStringArray {
+
+func (o *Translation) X_GetMessages() gdnative.PoolStringArray {
 	log.Println("Calling Translation.X_GetMessages()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Translation", "_get_messages")
 
 	// Call the parent method.
+	// PoolStringArray
+	retPtr := gdnative.NewEmptyPoolStringArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_messages", goArguments, "*PoolStringArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolStringArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 PoolStringArray}], Returns: void
 */
-func (o *Translation) X_SetMessages(arg0 *PoolStringArray) {
+
+func (o *Translation) X_SetMessages(arg0 gdnative.PoolStringArray) {
 	log.Println("Calling Translation.X_SetMessages()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolStringArray(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Translation", "_set_messages")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_messages", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Add a message for translation.
+        Add a message for translation.
+	Args: [{ false src_message String} { false xlated_message String}], Returns: void
 */
+
 func (o *Translation) AddMessage(srcMessage gdnative.String, xlatedMessage gdnative.String) {
 	log.Println("Calling Translation.AddMessage()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(srcMessage)
-	goArguments[1] = reflect.ValueOf(xlatedMessage)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(srcMessage)
+	ptrArguments[1] = gdnative.NewPointerFromString(xlatedMessage)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Translation", "add_message")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_message", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Erase a message.
+        Erase a message.
+	Args: [{ false src_message String}], Returns: void
 */
+
 func (o *Translation) EraseMessage(srcMessage gdnative.String) {
 	log.Println("Calling Translation.EraseMessage()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(srcMessage)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(srcMessage)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Translation", "erase_message")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "erase_message", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *Translation) GetLocale() gdnative.String {
 	log.Println("Calling Translation.GetLocale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Translation", "get_locale")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_locale", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return a message for translation.
+        Return a message for translation.
+	Args: [{ false src_message String}], Returns: String
 */
+
 func (o *Translation) GetMessage(srcMessage gdnative.String) gdnative.String {
 	log.Println("Calling Translation.GetMessage()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(srcMessage)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(srcMessage)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Translation", "get_message")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_message", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: int
+*/
+
 func (o *Translation) GetMessageCount() gdnative.Int {
 	log.Println("Calling Translation.GetMessageCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Translation", "get_message_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_message_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return all the messages (keys).
+        Return all the messages (keys).
+	Args: [], Returns: PoolStringArray
 */
-func (o *Translation) GetMessageList() *PoolStringArray {
+
+func (o *Translation) GetMessageList() gdnative.PoolStringArray {
 	log.Println("Calling Translation.GetMessageList()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Translation", "get_message_list")
 
 	// Call the parent method.
+	// PoolStringArray
+	retPtr := gdnative.NewEmptyPoolStringArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_message_list", goArguments, "*PoolStringArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolStringArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false locale String}], Returns: void
 */
+
 func (o *Translation) SetLocale(locale gdnative.String) {
 	log.Println("Calling Translation.SetLocale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(locale)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(locale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Translation", "set_locale")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_locale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   TranslationImplementer is an interface for Translation objects.
-*/
-type TranslationImplementer interface {
-	Class
 }

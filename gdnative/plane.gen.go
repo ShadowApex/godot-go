@@ -38,6 +38,14 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewEmptyPlane will return a pointer to an empty
+// initialized Plane. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyPlane() Pointer {
+	var obj C.godot_plane
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromPlane will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromPlane(obj Plane) Pointer {

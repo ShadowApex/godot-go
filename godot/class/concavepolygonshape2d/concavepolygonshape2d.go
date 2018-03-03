@@ -2,7 +2,9 @@ package concavepolygonshape2d
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/shape2d"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewConcavePolygonShape2DFromPointer(ptr gdnative.Pointer) *ConcavePolygonShape2D {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ConcavePolygonShape2D{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Concave polygon 2D shape resource for physics. It is made out of segments and is very optimal for complex polygonal concave collisions. It is really not advised to use for [RigidBody2D] nodes. A CollisionPolygon2D in convex decomposition mode (solids) or several convex objects are advised for that instead. Otherwise, a concave polygon 2D shape is better for static collisions. The main difference between a [ConvexPolygonShape2D] and a [code]ConcavePolygonShape2D[/code] is that a concave polygon assumes it is concave and uses a more complex method of collision detection, and a convex one forces itself to be convex in order to speed up collision detection.
 */
 type ConcavePolygonShape2D struct {
-	Shape2D
+	shape2d.Shape2D
 }
 
 func (o *ConcavePolygonShape2D) BaseClass() string {
@@ -26,46 +37,49 @@ func (o *ConcavePolygonShape2D) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolVector2Array
 */
-func (o *ConcavePolygonShape2D) GetSegments() *PoolVector2Array {
+
+func (o *ConcavePolygonShape2D) GetSegments() gdnative.PoolVector2Array {
 	log.Println("Calling ConcavePolygonShape2D.GetSegments()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ConcavePolygonShape2D", "get_segments")
 
 	// Call the parent method.
+	// PoolVector2Array
+	retPtr := gdnative.NewEmptyPoolVector2Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_segments", goArguments, "*PoolVector2Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector2Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false segments PoolVector2Array}], Returns: void
 */
-func (o *ConcavePolygonShape2D) SetSegments(segments *PoolVector2Array) {
+
+func (o *ConcavePolygonShape2D) SetSegments(segments gdnative.PoolVector2Array) {
 	log.Println("Calling ConcavePolygonShape2D.SetSegments()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(segments)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(segments)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ConcavePolygonShape2D", "set_segments")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_segments", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ConcavePolygonShape2DImplementer is an interface for ConcavePolygonShape2D objects.
-*/
-type ConcavePolygonShape2DImplementer interface {
-	Class
 }

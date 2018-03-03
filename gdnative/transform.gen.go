@@ -38,6 +38,14 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewEmptyTransform will return a pointer to an empty
+// initialized Transform. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyTransform() Pointer {
+	var obj C.godot_transform
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromTransform will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromTransform(obj Transform) Pointer {

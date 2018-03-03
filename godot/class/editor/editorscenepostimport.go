@@ -2,7 +2,11 @@ package editor
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewEditorScenePostImportFromPointer(ptr gdnative.Pointer) *EditorScenePostImport {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := EditorScenePostImport{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type EditorScenePostImport struct {
-	Reference
+	reference.Reference
 }
 
 func (o *EditorScenePostImport) BaseClass() string {
@@ -27,25 +40,22 @@ func (o *EditorScenePostImport) BaseClass() string {
 
 /*
 
- */
-func (o *EditorScenePostImport) PostImport(scene *Object) {
+	Args: [{ false scene Object}], Returns: void
+*/
+
+func (o *EditorScenePostImport) PostImport(scene object.Object) {
 	log.Println("Calling EditorScenePostImport.PostImport()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(scene)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(scene.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorScenePostImport", "post_import")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "post_import", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   EditorScenePostImportImplementer is an interface for EditorScenePostImport objects.
-*/
-type EditorScenePostImportImplementer interface {
-	Class
 }

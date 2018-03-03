@@ -2,7 +2,9 @@ package font
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewFontFromPointer(ptr gdnative.Pointer) *Font {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Font{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Font contains a unicode compatible character set, as well as the ability to draw it with variable width, ascent, descent and kerning. For creating fonts from TTF files (or other font formats), see the editor support for fonts. TODO check wikipedia for graph of ascent/baseline/descent/height/etc.
 */
 type Font struct {
-	Resource
+	resource.Resource
 }
 
 func (o *Font) BaseClass() string {
@@ -26,173 +37,210 @@ func (o *Font) BaseClass() string {
 }
 
 /*
-   Draw "string" into a canvas item using the font at a given position, with "modulate" color, and optionally clipping the width. "position" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis.
+        Draw "string" into a canvas item using the font at a given position, with "modulate" color, and optionally clipping the width. "position" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis.
+	Args: [{ false canvas_item RID} { false position Vector2} { false string String} {1,1,1,1 true modulate Color} {-1 true clip_w int}], Returns: void
 */
-func (o *Font) Draw(canvasItem *RID, position *Vector2, string gdnative.String, modulate *Color, clipW gdnative.Int) {
+
+func (o *Font) Draw(canvasItem gdnative.RID, position gdnative.Vector2, string gdnative.String, modulate gdnative.Color, clipW gdnative.Int) {
 	log.Println("Calling Font.Draw()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(canvasItem)
-	goArguments[1] = reflect.ValueOf(position)
-	goArguments[2] = reflect.ValueOf(string)
-	goArguments[3] = reflect.ValueOf(modulate)
-	goArguments[4] = reflect.ValueOf(clipW)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromRid(canvasItem)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(position)
+	ptrArguments[2] = gdnative.NewPointerFromString(string)
+	ptrArguments[3] = gdnative.NewPointerFromColor(modulate)
+	ptrArguments[4] = gdnative.NewPointerFromInt(clipW)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Font", "draw")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Draw character "char" into a canvas item using the font at a given position, with "modulate" color, and optionally kerning if "next" is passed. clipping the width. "position" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis. The width used by the character is returned, making this function useful for drawing strings character by character.
+        Draw character "char" into a canvas item using the font at a given position, with "modulate" color, and optionally kerning if "next" is passed. clipping the width. "position" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis. The width used by the character is returned, making this function useful for drawing strings character by character.
+	Args: [{ false canvas_item RID} { false position Vector2} { false char int} {-1 true next int} {1,1,1,1 true modulate Color}], Returns: float
 */
-func (o *Font) DrawChar(canvasItem *RID, position *Vector2, char gdnative.Int, next gdnative.Int, modulate *Color) gdnative.Float {
+
+func (o *Font) DrawChar(canvasItem gdnative.RID, position gdnative.Vector2, char gdnative.Int, next gdnative.Int, modulate gdnative.Color) gdnative.Float {
 	log.Println("Calling Font.DrawChar()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(canvasItem)
-	goArguments[1] = reflect.ValueOf(position)
-	goArguments[2] = reflect.ValueOf(char)
-	goArguments[3] = reflect.ValueOf(next)
-	goArguments[4] = reflect.ValueOf(modulate)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromRid(canvasItem)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(position)
+	ptrArguments[2] = gdnative.NewPointerFromInt(char)
+	ptrArguments[3] = gdnative.NewPointerFromInt(next)
+	ptrArguments[4] = gdnative.NewPointerFromColor(modulate)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Font", "draw_char")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "draw_char", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the font ascent (number of pixels above the baseline).
+        Return the font ascent (number of pixels above the baseline).
+	Args: [], Returns: float
 */
+
 func (o *Font) GetAscent() gdnative.Float {
 	log.Println("Calling Font.GetAscent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Font", "get_ascent")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_ascent", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the font descent (number of pixels below the baseline).
+        Return the font descent (number of pixels below the baseline).
+	Args: [], Returns: float
 */
+
 func (o *Font) GetDescent() gdnative.Float {
 	log.Println("Calling Font.GetDescent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Font", "get_descent")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_descent", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the total font height (ascent plus descent) in pixels.
+        Return the total font height (ascent plus descent) in pixels.
+	Args: [], Returns: float
 */
+
 func (o *Font) GetHeight() gdnative.Float {
 	log.Println("Calling Font.GetHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Font", "get_height")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_height", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the size of a string, taking kerning and advance into account.
+        Return the size of a string, taking kerning and advance into account.
+	Args: [{ false string String}], Returns: Vector2
 */
-func (o *Font) GetStringSize(string gdnative.String) *Vector2 {
+
+func (o *Font) GetStringSize(string gdnative.String) gdnative.Vector2 {
 	log.Println("Calling Font.GetStringSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(string)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(string)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Font", "get_string_size")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_string_size", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: bool
+*/
+
 func (o *Font) IsDistanceFieldHint() gdnative.Bool {
 	log.Println("Calling Font.IsDistanceFieldHint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Font", "is_distance_field_hint")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_distance_field_hint", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   After editing a font (changing size, ascent, char rects, etc.). Call this function to propagate changes to controls that might use it.
+        After editing a font (changing size, ascent, char rects, etc.). Call this function to propagate changes to controls that might use it.
+	Args: [], Returns: void
 */
+
 func (o *Font) UpdateChanges() {
 	log.Println("Calling Font.UpdateChanges()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Font", "update_changes")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "update_changes", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   FontImplementer is an interface for Font objects.
-*/
-type FontImplementer interface {
-	Class
 }

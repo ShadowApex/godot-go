@@ -88,6 +88,14 @@ const (
 	ErrPrinterOnFire
 )
 
+// NewEmptyBool will return a pointer to an empty
+// initialized Bool. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyBool() Pointer {
+	var obj C.godot_bool
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromBool will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromBool(obj Bool) Pointer {
@@ -107,6 +115,14 @@ type Bool bool
 
 func (t Bool) getBase() C.godot_bool {
 	return C.godot_bool(t)
+}
+
+// NewEmptyInt will return a pointer to an empty
+// initialized Int. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyInt() Pointer {
+	var obj C.godot_int
+	return Pointer{base: unsafe.Pointer(&obj)}
 }
 
 // NewPointerFromInt will return an unsafe pointer to the given
@@ -130,6 +146,14 @@ func (t Int) getBase() C.godot_int {
 	return C.godot_int(t)
 }
 
+// NewEmptyReal will return a pointer to an empty
+// initialized Real. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyReal() Pointer {
+	var obj C.godot_real
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromReal will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromReal(obj Real) Pointer {
@@ -149,6 +173,14 @@ type Real float64
 
 func (t Real) getBase() C.godot_real {
 	return C.godot_real(t)
+}
+
+// NewEmptyObject will return a pointer to an empty
+// initialized Object. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyObject() Pointer {
+	var obj C.godot_object
+	return Pointer{base: unsafe.Pointer(&obj)}
 }
 
 // NewPointerFromObject will return an unsafe pointer to the given
@@ -171,6 +203,14 @@ func (gdt Object) getBase() *C.godot_object {
 	return gdt.base
 }
 
+// NewEmptyMethodBind will return a pointer to an empty
+// initialized MethodBind. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyMethodBind() Pointer {
+	var obj C.godot_method_bind
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromMethodBind will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromMethodBind(obj MethodBind) Pointer {
@@ -189,6 +229,14 @@ type MethodBind struct {
 
 func (gdt MethodBind) getBase() *C.godot_method_bind {
 	return gdt.base
+}
+
+// NewEmptyGdnativeApiVersion will return a pointer to an empty
+// initialized GdnativeApiVersion. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyGdnativeApiVersion() Pointer {
+	var obj C.godot_gdnative_api_version
+	return Pointer{base: unsafe.Pointer(&obj)}
 }
 
 // NewPointerFromGdnativeApiVersion will return an unsafe pointer to the given
@@ -212,6 +260,14 @@ type GdnativeApiVersion struct {
 
 func (gdt GdnativeApiVersion) getBase() *C.godot_gdnative_api_version {
 	return gdt.base
+}
+
+// NewEmptyGdnativeTerminateOptions will return a pointer to an empty
+// initialized GdnativeTerminateOptions. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyGdnativeTerminateOptions() Pointer {
+	var obj C.godot_gdnative_terminate_options
+	return Pointer{base: unsafe.Pointer(&obj)}
 }
 
 // NewPointerFromGdnativeTerminateOptions will return an unsafe pointer to the given

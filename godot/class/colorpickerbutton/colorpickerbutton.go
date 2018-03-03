@@ -2,9 +2,13 @@ package colorpickerbutton
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/button"
+	"github.com/shadowapex/godot-go/godot/class/colorpicker"
+
+	"github.com/shadowapex/godot-go/godot/class/popup"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +20,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewColorPickerButtonFromPointer(ptr gdnative.Pointer) *ColorPickerButton {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ColorPickerButton{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Encapsulates a [ColorPicker] making it accesible by pressing a button, pressing the button will toggle the [ColorPicker] visibility
 */
 type ColorPickerButton struct {
-	Button
+	button.Button
 }
 
 func (o *ColorPickerButton) BaseClass() string {
@@ -28,142 +41,171 @@ func (o *ColorPickerButton) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 Color}], Returns: void
 */
-func (o *ColorPickerButton) X_ColorChanged(arg0 *Color) {
+
+func (o *ColorPickerButton) X_ColorChanged(arg0 gdnative.Color) {
 	log.Println("Calling ColorPickerButton.X_ColorChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromColor(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ColorPickerButton", "_color_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_color_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Color
 */
-func (o *ColorPickerButton) GetPickColor() *Color {
+
+func (o *ColorPickerButton) GetPickColor() gdnative.Color {
 	log.Println("Calling ColorPickerButton.GetPickColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ColorPickerButton", "get_pick_color")
 
 	// Call the parent method.
+	// Color
+	retPtr := gdnative.NewEmptyColor()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_pick_color", goArguments, "*Color")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewColorFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Color)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the [code]ColorPicker[/code] that this [code]ColorPickerButton[/code] toggles.
+        Returns the [code]ColorPicker[/code] that this [code]ColorPickerButton[/code] toggles.
+	Args: [], Returns: ColorPicker
 */
-func (o *ColorPickerButton) GetPicker() *ColorPicker {
+
+func (o *ColorPickerButton) GetPicker() colorpicker.ColorPicker {
 	log.Println("Calling ColorPickerButton.GetPicker()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ColorPickerButton", "get_picker")
 
 	// Call the parent method.
+	// ColorPicker
+	retPtr := colorpicker.NewEmptyColorPicker()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_picker", goArguments, "*ColorPicker")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := colorpicker.NewColorPickerFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*ColorPicker)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the control's [PopupPanel] which allows you to connect to Popup Signals. This allows you to handle events when the ColorPicker is shown or hidden.
+        Returns the control's [PopupPanel] which allows you to connect to Popup Signals. This allows you to handle events when the ColorPicker is shown or hidden.
+	Args: [], Returns: PopupPanel
 */
-func (o *ColorPickerButton) GetPopup() *PopupPanel {
+
+func (o *ColorPickerButton) GetPopup() popup.PopupPanel {
 	log.Println("Calling ColorPickerButton.GetPopup()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ColorPickerButton", "get_popup")
 
 	// Call the parent method.
+	// PopupPanel
+	retPtr := popup.NewEmptyPopupPanel()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_popup", goArguments, "*PopupPanel")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := popup.NewPopupPanelFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PopupPanel)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *ColorPickerButton) IsEditingAlpha() gdnative.Bool {
 	log.Println("Calling ColorPickerButton.IsEditingAlpha()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ColorPickerButton", "is_editing_alpha")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_editing_alpha", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false show bool}], Returns: void
 */
+
 func (o *ColorPickerButton) SetEditAlpha(show gdnative.Bool) {
 	log.Println("Calling ColorPickerButton.SetEditAlpha()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(show)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(show)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ColorPickerButton", "set_edit_alpha")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_edit_alpha", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false color Color}], Returns: void
 */
-func (o *ColorPickerButton) SetPickColor(color *Color) {
+
+func (o *ColorPickerButton) SetPickColor(color gdnative.Color) {
 	log.Println("Calling ColorPickerButton.SetPickColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ColorPickerButton", "set_pick_color")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_pick_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ColorPickerButtonImplementer is an interface for ColorPickerButton objects.
-*/
-type ColorPickerButtonImplementer interface {
-	Class
 }

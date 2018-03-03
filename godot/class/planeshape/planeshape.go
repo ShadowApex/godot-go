@@ -2,7 +2,9 @@ package planeshape
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/shape"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPlaneShapeFromPointer(ptr gdnative.Pointer) *PlaneShape {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := PlaneShape{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type PlaneShape struct {
-	Shape
+	shape.Shape
 }
 
 func (o *PlaneShape) BaseClass() string {
@@ -26,46 +37,49 @@ func (o *PlaneShape) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Plane
 */
-func (o *PlaneShape) GetPlane() *Plane {
+
+func (o *PlaneShape) GetPlane() gdnative.Plane {
 	log.Println("Calling PlaneShape.GetPlane()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PlaneShape", "get_plane")
 
 	// Call the parent method.
+	// Plane
+	retPtr := gdnative.NewEmptyPlane()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_plane", goArguments, "*Plane")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPlaneFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Plane)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false plane Plane}], Returns: void
 */
-func (o *PlaneShape) SetPlane(plane *Plane) {
+
+func (o *PlaneShape) SetPlane(plane gdnative.Plane) {
 	log.Println("Calling PlaneShape.SetPlane()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(plane)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPlane(plane)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PlaneShape", "set_plane")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_plane", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   PlaneShapeImplementer is an interface for PlaneShape objects.
-*/
-type PlaneShapeImplementer interface {
-	Class
 }

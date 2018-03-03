@@ -2,9 +2,15 @@ package surfacetool
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/mesh"
+	"github.com/shadowapex/godot-go/godot/class/reference"
+
+	"github.com/shadowapex/godot-go/godot/class/arraymesh"
+
+	"github.com/shadowapex/godot-go/godot/class/material"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +22,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewSurfaceToolFromPointer(ptr gdnative.Pointer) *SurfaceTool {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := SurfaceTool{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 The [code]SurfaceTool[/code] is used to construct a [Mesh] by specifying vertex attributes individually. It can be used to construct a [Mesh] from script. All properties except index need to be added before a call to [method add_vertex]. For example adding vertex colors and UVs looks like [codeblock] var st = SurfaceTool.new() st.begin(Mesh.PRIMITIVE_TRIANGLES) st.add_color(Color(1, 0, 0)) st.add_uv(Vector2(0, 0)) st.add_vertex(Vector3(0, 0, 0)) [/codeblock] The [code]SurfaceTool[/code] now contains one vertex of a triangle which has a UV coordinate and a specified [Color]. If another vertex were added without calls to [method add_uv] or [method add_color] then the last values would be used. It is very important that vertex attributes are passed [b]before[/b] the call to [method add_vertex], failure to do this will result in an error when committing the vertex information to a mesh.
 */
 type SurfaceTool struct {
-	Reference
+	reference.Reference
 }
 
 func (o *SurfaceTool) BaseClass() string {
@@ -28,411 +43,494 @@ func (o *SurfaceTool) BaseClass() string {
 }
 
 /*
-   Add an array of bones for the next Vertex to use.
+        Add an array of bones for the next Vertex to use.
+	Args: [{ false bones PoolIntArray}], Returns: void
 */
-func (o *SurfaceTool) AddBones(bones *PoolIntArray) {
+
+func (o *SurfaceTool) AddBones(bones gdnative.PoolIntArray) {
 	log.Println("Calling SurfaceTool.AddBones()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bones)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolIntArray(bones)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "add_bones")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_bones", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Specify a [Color] for the next Vertex to use.
+        Specify a [Color] for the next Vertex to use.
+	Args: [{ false color Color}], Returns: void
 */
-func (o *SurfaceTool) AddColor(color *Color) {
+
+func (o *SurfaceTool) AddColor(color gdnative.Color) {
 	log.Println("Calling SurfaceTool.AddColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "add_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds an index to index array if you are using indexed Vertices. Does not need to be called before adding Vertex.
+        Adds an index to index array if you are using indexed Vertices. Does not need to be called before adding Vertex.
+	Args: [{ false index int}], Returns: void
 */
+
 func (o *SurfaceTool) AddIndex(index gdnative.Int) {
 	log.Println("Calling SurfaceTool.AddIndex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(index)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(index)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "add_index")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_index", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Specify a normal for the next Vertex to use.
+        Specify a normal for the next Vertex to use.
+	Args: [{ false normal Vector3}], Returns: void
 */
-func (o *SurfaceTool) AddNormal(normal *Vector3) {
+
+func (o *SurfaceTool) AddNormal(normal gdnative.Vector3) {
 	log.Println("Calling SurfaceTool.AddNormal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(normal)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(normal)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "add_normal")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_normal", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Specify whether current Vertex (if using only Vertex arrays) or current index (if also using index arrays) should utilize smooth normals for normal calculation.
+        Specify whether current Vertex (if using only Vertex arrays) or current index (if also using index arrays) should utilize smooth normals for normal calculation.
+	Args: [{ false smooth bool}], Returns: void
 */
+
 func (o *SurfaceTool) AddSmoothGroup(smooth gdnative.Bool) {
 	log.Println("Calling SurfaceTool.AddSmoothGroup()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(smooth)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(smooth)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "add_smooth_group")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_smooth_group", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Specify a Tangent for the next Vertex to use.
+        Specify a Tangent for the next Vertex to use.
+	Args: [{ false tangent Plane}], Returns: void
 */
-func (o *SurfaceTool) AddTangent(tangent *Plane) {
+
+func (o *SurfaceTool) AddTangent(tangent gdnative.Plane) {
 	log.Println("Calling SurfaceTool.AddTangent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(tangent)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPlane(tangent)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "add_tangent")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_tangent", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false flags int}], Returns: void
+*/
+
 func (o *SurfaceTool) AddToFormat(flags gdnative.Int) {
 	log.Println("Calling SurfaceTool.AddToFormat()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(flags)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(flags)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "add_to_format")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_to_format", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Insert a triangle fan made of array data into [Mesh] being constructed.
+        Insert a triangle fan made of array data into [Mesh] being constructed.
+	Args: [{ false vertexes PoolVector3Array} {[] true uvs PoolVector2Array} {[PoolColorArray] true colors PoolColorArray} {[] true uv2s PoolVector2Array} {[] true normals PoolVector3Array} {[] true tangents Array}], Returns: void
 */
-func (o *SurfaceTool) AddTriangleFan(vertexes *PoolVector3Array, uvs *PoolVector2Array, colors *PoolColorArray, uv2S *PoolVector2Array, normals *PoolVector3Array, tangents *Array) {
+
+func (o *SurfaceTool) AddTriangleFan(vertexes gdnative.PoolVector3Array, uvs gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uv2S gdnative.PoolVector2Array, normals gdnative.PoolVector3Array, tangents gdnative.Array) {
 	log.Println("Calling SurfaceTool.AddTriangleFan()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 6, 6)
-	goArguments[0] = reflect.ValueOf(vertexes)
-	goArguments[1] = reflect.ValueOf(uvs)
-	goArguments[2] = reflect.ValueOf(colors)
-	goArguments[3] = reflect.ValueOf(uv2S)
-	goArguments[4] = reflect.ValueOf(normals)
-	goArguments[5] = reflect.ValueOf(tangents)
+	ptrArguments := make([]gdnative.Pointer, 6, 6)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector3Array(vertexes)
+	ptrArguments[1] = gdnative.NewPointerFromPoolVector2Array(uvs)
+	ptrArguments[2] = gdnative.NewPointerFromPoolColorArray(colors)
+	ptrArguments[3] = gdnative.NewPointerFromPoolVector2Array(uv2S)
+	ptrArguments[4] = gdnative.NewPointerFromPoolVector3Array(normals)
+	ptrArguments[5] = gdnative.NewPointerFromArray(tangents)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "add_triangle_fan")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_triangle_fan", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Specify UV Coordinate for next Vertex to use.
+        Specify UV Coordinate for next Vertex to use.
+	Args: [{ false uv Vector2}], Returns: void
 */
-func (o *SurfaceTool) AddUv(uv *Vector2) {
+
+func (o *SurfaceTool) AddUv(uv gdnative.Vector2) {
 	log.Println("Calling SurfaceTool.AddUv()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(uv)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(uv)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "add_uv")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_uv", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Specify an optional second set of UV coordinates for next Vertex to use.
+        Specify an optional second set of UV coordinates for next Vertex to use.
+	Args: [{ false uv2 Vector2}], Returns: void
 */
-func (o *SurfaceTool) AddUv2(uv2 *Vector2) {
+
+func (o *SurfaceTool) AddUv2(uv2 gdnative.Vector2) {
 	log.Println("Calling SurfaceTool.AddUv2()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(uv2)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(uv2)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "add_uv2")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_uv2", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Specify position of current Vertex. Should be called after specifying other vertex properties (e.g. Color, UV).
+        Specify position of current Vertex. Should be called after specifying other vertex properties (e.g. Color, UV).
+	Args: [{ false vertex Vector3}], Returns: void
 */
-func (o *SurfaceTool) AddVertex(vertex *Vector3) {
+
+func (o *SurfaceTool) AddVertex(vertex gdnative.Vector3) {
 	log.Println("Calling SurfaceTool.AddVertex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(vertex)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(vertex)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "add_vertex")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_vertex", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Specify weight value for next Vertex to use.
+        Specify weight value for next Vertex to use.
+	Args: [{ false weights PoolRealArray}], Returns: void
 */
-func (o *SurfaceTool) AddWeights(weights *PoolRealArray) {
+
+func (o *SurfaceTool) AddWeights(weights gdnative.PoolRealArray) {
 	log.Println("Calling SurfaceTool.AddWeights()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(weights)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolRealArray(weights)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "add_weights")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_weights", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *SurfaceTool) AppendFrom(existing *Mesh, surface gdnative.Int, transform *Transform) {
+	Args: [{ false existing Mesh} { false surface int} { false transform Transform}], Returns: void
+*/
+
+func (o *SurfaceTool) AppendFrom(existing mesh.Mesh, surface gdnative.Int, transform gdnative.Transform) {
 	log.Println("Calling SurfaceTool.AppendFrom()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(existing)
-	goArguments[1] = reflect.ValueOf(surface)
-	goArguments[2] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromObject(existing.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromInt(surface)
+	ptrArguments[2] = gdnative.NewPointerFromTransform(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "append_from")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "append_from", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Called before adding any Vertices. Takes the primitive type as an argument (e.g. Mesh.PRIMITIVE_TRIANGLES).
+        Called before adding any Vertices. Takes the primitive type as an argument (e.g. Mesh.PRIMITIVE_TRIANGLES).
+	Args: [{ false primitive int}], Returns: void
 */
+
 func (o *SurfaceTool) Begin(primitive gdnative.Int) {
 	log.Println("Calling SurfaceTool.Begin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(primitive)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(primitive)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "begin")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "begin", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Clear all information passed into the surface tool so far.
+        Clear all information passed into the surface tool so far.
+	Args: [], Returns: void
 */
+
 func (o *SurfaceTool) Clear() {
 	log.Println("Calling SurfaceTool.Clear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns a constructed [ArrayMesh] from current information passed in. If an existing [ArrayMesh] is passed in as an argument, will add an extra surface to the existing [ArrayMesh].
+        Returns a constructed [ArrayMesh] from current information passed in. If an existing [ArrayMesh] is passed in as an argument, will add an extra surface to the existing [ArrayMesh].
+	Args: [{Null true existing ArrayMesh} {97792 true flags int}], Returns: ArrayMesh
 */
-func (o *SurfaceTool) Commit(existing *ArrayMesh, flags gdnative.Int) *ArrayMesh {
+
+func (o *SurfaceTool) Commit(existing arraymesh.ArrayMesh, flags gdnative.Int) arraymesh.ArrayMesh {
 	log.Println("Calling SurfaceTool.Commit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(existing)
-	goArguments[1] = reflect.ValueOf(flags)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromObject(existing.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromInt(flags)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "commit")
 
 	// Call the parent method.
+	// ArrayMesh
+	retPtr := arraymesh.NewEmptyArrayMesh()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "commit", goArguments, "*ArrayMesh")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := arraymesh.NewArrayMeshFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*ArrayMesh)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *SurfaceTool) CreateFrom(existing *Mesh, surface gdnative.Int) {
+	Args: [{ false existing Mesh} { false surface int}], Returns: void
+*/
+
+func (o *SurfaceTool) CreateFrom(existing mesh.Mesh, surface gdnative.Int) {
 	log.Println("Calling SurfaceTool.CreateFrom()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(existing)
-	goArguments[1] = reflect.ValueOf(surface)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromObject(existing.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromInt(surface)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "create_from")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "create_from", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Removes index array by expanding Vertex array.
+        Removes index array by expanding Vertex array.
+	Args: [], Returns: void
 */
+
 func (o *SurfaceTool) Deindex() {
 	log.Println("Calling SurfaceTool.Deindex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "deindex")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "deindex", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Generates normals from Vertices so you do not have to do it manually.
+        Generates normals from Vertices so you do not have to do it manually.
+	Args: [], Returns: void
 */
+
 func (o *SurfaceTool) GenerateNormals() {
 	log.Println("Calling SurfaceTool.GenerateNormals()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "generate_normals")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "generate_normals", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *SurfaceTool) GenerateTangents() {
 	log.Println("Calling SurfaceTool.GenerateTangents()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "generate_tangents")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "generate_tangents", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Shrinks Vertex array by creating an index array. Avoids reusing Vertices.
+        Shrinks Vertex array by creating an index array. Avoids reusing Vertices.
+	Args: [], Returns: void
 */
+
 func (o *SurfaceTool) Index() {
 	log.Println("Calling SurfaceTool.Index()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "index")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "index", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets [Material] to be used by the [Mesh] you are constructing.
+        Sets [Material] to be used by the [Mesh] you are constructing.
+	Args: [{ false material Material}], Returns: void
 */
-func (o *SurfaceTool) SetMaterial(material *Material) {
+
+func (o *SurfaceTool) SetMaterial(material material.Material) {
 	log.Println("Calling SurfaceTool.SetMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(material)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(material.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SurfaceTool", "set_material")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_material", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   SurfaceToolImplementer is an interface for SurfaceTool objects.
-*/
-type SurfaceToolImplementer interface {
-	Class
 }

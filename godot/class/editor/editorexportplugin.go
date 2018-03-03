@@ -2,9 +2,9 @@ package editor
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewEditorExportPluginFromPointer(ptr gdnative.Pointer) *EditorExportPlugin {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := EditorExportPlugin{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type EditorExportPlugin struct {
-	Reference
+	reference.Reference
 }
 
 func (o *EditorExportPlugin) BaseClass() string {
@@ -29,194 +38,227 @@ func (o *EditorExportPlugin) BaseClass() string {
 
 /*
 
- */
-func (o *EditorExportPlugin) X_ExportBegin(features *PoolStringArray, isDebug gdnative.Bool, path gdnative.String, flags gdnative.Int) {
+	Args: [{ false features PoolStringArray} { false is_debug bool} { false path String} { false flags int}], Returns: void
+*/
+
+func (o *EditorExportPlugin) X_ExportBegin(features gdnative.PoolStringArray, isDebug gdnative.Bool, path gdnative.String, flags gdnative.Int) {
 	log.Println("Calling EditorExportPlugin.X_ExportBegin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(features)
-	goArguments[1] = reflect.ValueOf(isDebug)
-	goArguments[2] = reflect.ValueOf(path)
-	goArguments[3] = reflect.ValueOf(flags)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromPoolStringArray(features)
+	ptrArguments[1] = gdnative.NewPointerFromBool(isDebug)
+	ptrArguments[2] = gdnative.NewPointerFromString(path)
+	ptrArguments[3] = gdnative.NewPointerFromInt(flags)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorExportPlugin", "_export_begin")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_export_begin", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *EditorExportPlugin) X_ExportFile(path gdnative.String, aType gdnative.String, features *PoolStringArray) {
+	Args: [{ false path String} { false type String} { false features PoolStringArray}], Returns: void
+*/
+
+func (o *EditorExportPlugin) X_ExportFile(path gdnative.String, aType gdnative.String, features gdnative.PoolStringArray) {
 	log.Println("Calling EditorExportPlugin.X_ExportFile()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(path)
-	goArguments[1] = reflect.ValueOf(aType)
-	goArguments[2] = reflect.ValueOf(features)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+	ptrArguments[1] = gdnative.NewPointerFromString(aType)
+	ptrArguments[2] = gdnative.NewPointerFromPoolStringArray(features)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorExportPlugin", "_export_file")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_export_file", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *EditorExportPlugin) AddFile(path gdnative.String, file *PoolByteArray, remap gdnative.Bool) {
+	Args: [{ false path String} { false file PoolByteArray} { false remap bool}], Returns: void
+*/
+
+func (o *EditorExportPlugin) AddFile(path gdnative.String, file gdnative.PoolByteArray, remap gdnative.Bool) {
 	log.Println("Calling EditorExportPlugin.AddFile()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(path)
-	goArguments[1] = reflect.ValueOf(file)
-	goArguments[2] = reflect.ValueOf(remap)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+	ptrArguments[1] = gdnative.NewPointerFromPoolByteArray(file)
+	ptrArguments[2] = gdnative.NewPointerFromBool(remap)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorExportPlugin", "add_file")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_file", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false path String}], Returns: void
+*/
+
 func (o *EditorExportPlugin) AddIosBundleFile(path gdnative.String) {
 	log.Println("Calling EditorExportPlugin.AddIosBundleFile()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorExportPlugin", "add_ios_bundle_file")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_ios_bundle_file", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false code String}], Returns: void
+*/
+
 func (o *EditorExportPlugin) AddIosCppCode(code gdnative.String) {
 	log.Println("Calling EditorExportPlugin.AddIosCppCode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(code)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(code)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorExportPlugin", "add_ios_cpp_code")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_ios_cpp_code", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false path String}], Returns: void
+*/
+
 func (o *EditorExportPlugin) AddIosFramework(path gdnative.String) {
 	log.Println("Calling EditorExportPlugin.AddIosFramework()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorExportPlugin", "add_ios_framework")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_ios_framework", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false flags String}], Returns: void
+*/
+
 func (o *EditorExportPlugin) AddIosLinkerFlags(flags gdnative.String) {
 	log.Println("Calling EditorExportPlugin.AddIosLinkerFlags()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(flags)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(flags)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorExportPlugin", "add_ios_linker_flags")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_ios_linker_flags", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false plist_content String}], Returns: void
+*/
+
 func (o *EditorExportPlugin) AddIosPlistContent(plistContent gdnative.String) {
 	log.Println("Calling EditorExportPlugin.AddIosPlistContent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(plistContent)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(plistContent)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorExportPlugin", "add_ios_plist_content")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_ios_plist_content", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *EditorExportPlugin) AddSharedObject(path gdnative.String, tags *PoolStringArray) {
+	Args: [{ false path String} { false tags PoolStringArray}], Returns: void
+*/
+
+func (o *EditorExportPlugin) AddSharedObject(path gdnative.String, tags gdnative.PoolStringArray) {
 	log.Println("Calling EditorExportPlugin.AddSharedObject()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(path)
-	goArguments[1] = reflect.ValueOf(tags)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+	ptrArguments[1] = gdnative.NewPointerFromPoolStringArray(tags)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorExportPlugin", "add_shared_object")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_shared_object", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *EditorExportPlugin) Skip() {
 	log.Println("Calling EditorExportPlugin.Skip()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorExportPlugin", "skip")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "skip", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   EditorExportPluginImplementer is an interface for EditorExportPlugin objects.
-*/
-type EditorExportPluginImplementer interface {
-	Class
 }

@@ -2,7 +2,13 @@ package particles
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/geometryinstance"
+	"github.com/shadowapex/godot-go/godot/class/mesh"
+
+	"github.com/shadowapex/godot-go/godot/class/material"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +20,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewParticlesFromPointer(ptr gdnative.Pointer) *Particles {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Particles{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 3D particle node used to create a variety of particle systems and effects. [code]Particles[/code] features an emitter that generates some number of particles at a given rate. Use the [code]process_material[/code] property to add a [ParticlesMaterial] to configure particle appearance and behavior. Alternatively, you can add a [ShaderMaterial] which will be applied to all particles.
 */
 type Particles struct {
-	GeometryInstance
+	geometryinstance.GeometryInstance
 }
 
 func (o *Particles) BaseClass() string {
@@ -27,654 +42,796 @@ func (o *Particles) BaseClass() string {
 
 /*
 
- */
-func (o *Particles) CaptureAabb() *AABB {
+	Args: [], Returns: AABB
+*/
+
+func (o *Particles) CaptureAabb() gdnative.AABB {
 	log.Println("Calling Particles.CaptureAabb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "capture_aabb")
 
 	// Call the parent method.
+	// AABB
+	retPtr := gdnative.NewEmptyAabb()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "capture_aabb", goArguments, "*AABB")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewAabbFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*AABB)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *Particles) GetAmount() gdnative.Int {
 	log.Println("Calling Particles.GetAmount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "get_amount")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_amount", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Particles::DrawOrder
 */
-func (o *Particles) GetDrawOrder() gdnative.Int {
-	log.Println("Calling Particles.GetDrawOrder()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_draw_order", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false pass int}], Returns: Mesh
 */
-func (o *Particles) GetDrawPassMesh(pass gdnative.Int) *Mesh {
+
+func (o *Particles) GetDrawPassMesh(pass gdnative.Int) mesh.Mesh {
 	log.Println("Calling Particles.GetDrawPassMesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pass)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(pass)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "get_draw_pass_mesh")
 
 	// Call the parent method.
+	// Mesh
+	retPtr := mesh.NewEmptyMesh()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_draw_pass_mesh", goArguments, "*Mesh")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := mesh.NewMeshFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Mesh)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *Particles) GetDrawPasses() gdnative.Int {
 	log.Println("Calling Particles.GetDrawPasses()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "get_draw_passes")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_draw_passes", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Particles) GetExplosivenessRatio() gdnative.Float {
 	log.Println("Calling Particles.GetExplosivenessRatio()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "get_explosiveness_ratio")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_explosiveness_ratio", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *Particles) GetFixedFps() gdnative.Int {
 	log.Println("Calling Particles.GetFixedFps()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "get_fixed_fps")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_fixed_fps", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Particles) GetFractionalDelta() gdnative.Bool {
 	log.Println("Calling Particles.GetFractionalDelta()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "get_fractional_delta")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_fractional_delta", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Particles) GetLifetime() gdnative.Float {
 	log.Println("Calling Particles.GetLifetime()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "get_lifetime")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_lifetime", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Particles) GetOneShot() gdnative.Bool {
 	log.Println("Calling Particles.GetOneShot()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "get_one_shot")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_one_shot", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Particles) GetPreProcessTime() gdnative.Float {
 	log.Println("Calling Particles.GetPreProcessTime()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "get_pre_process_time")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_pre_process_time", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Material
 */
-func (o *Particles) GetProcessMaterial() *Material {
+
+func (o *Particles) GetProcessMaterial() material.Material {
 	log.Println("Calling Particles.GetProcessMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "get_process_material")
 
 	// Call the parent method.
+	// Material
+	retPtr := material.NewEmptyMaterial()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_process_material", goArguments, "*Material")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := material.NewMaterialFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Material)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Particles) GetRandomnessRatio() gdnative.Float {
 	log.Println("Calling Particles.GetRandomnessRatio()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "get_randomness_ratio")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_randomness_ratio", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Particles) GetSpeedScale() gdnative.Float {
 	log.Println("Calling Particles.GetSpeedScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "get_speed_scale")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_speed_scale", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Particles) GetUseLocalCoordinates() gdnative.Bool {
 	log.Println("Calling Particles.GetUseLocalCoordinates()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "get_use_local_coordinates")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_use_local_coordinates", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: AABB
 */
-func (o *Particles) GetVisibilityAabb() *AABB {
+
+func (o *Particles) GetVisibilityAabb() gdnative.AABB {
 	log.Println("Calling Particles.GetVisibilityAabb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "get_visibility_aabb")
 
 	// Call the parent method.
+	// AABB
+	retPtr := gdnative.NewEmptyAabb()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_visibility_aabb", goArguments, "*AABB")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewAabbFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*AABB)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Particles) IsEmitting() gdnative.Bool {
 	log.Println("Calling Particles.IsEmitting()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "is_emitting")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_emitting", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *Particles) Restart() {
 	log.Println("Calling Particles.Restart()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "restart")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "restart", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount int}], Returns: void
 */
+
 func (o *Particles) SetAmount(amount gdnative.Int) {
 	log.Println("Calling Particles.SetAmount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "set_amount")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_amount", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false order int}], Returns: void
 */
+
 func (o *Particles) SetDrawOrder(order gdnative.Int) {
 	log.Println("Calling Particles.SetDrawOrder()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(order)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(order)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "set_draw_order")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_draw_order", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false pass int} { false mesh Mesh}], Returns: void
 */
-func (o *Particles) SetDrawPassMesh(pass gdnative.Int, mesh *Mesh) {
+
+func (o *Particles) SetDrawPassMesh(pass gdnative.Int, mesh mesh.Mesh) {
 	log.Println("Calling Particles.SetDrawPassMesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(pass)
-	goArguments[1] = reflect.ValueOf(mesh)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(pass)
+	ptrArguments[1] = gdnative.NewPointerFromObject(mesh.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "set_draw_pass_mesh")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_draw_pass_mesh", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false passes int}], Returns: void
 */
+
 func (o *Particles) SetDrawPasses(passes gdnative.Int) {
 	log.Println("Calling Particles.SetDrawPasses()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(passes)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(passes)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "set_draw_passes")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_draw_passes", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false emitting bool}], Returns: void
 */
+
 func (o *Particles) SetEmitting(emitting gdnative.Bool) {
 	log.Println("Calling Particles.SetEmitting()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(emitting)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(emitting)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "set_emitting")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_emitting", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false ratio float}], Returns: void
 */
+
 func (o *Particles) SetExplosivenessRatio(ratio gdnative.Float) {
 	log.Println("Calling Particles.SetExplosivenessRatio()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ratio)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(ratio)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "set_explosiveness_ratio")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_explosiveness_ratio", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false fps int}], Returns: void
 */
+
 func (o *Particles) SetFixedFps(fps gdnative.Int) {
 	log.Println("Calling Particles.SetFixedFps()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(fps)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(fps)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "set_fixed_fps")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_fixed_fps", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Particles) SetFractionalDelta(enable gdnative.Bool) {
 	log.Println("Calling Particles.SetFractionalDelta()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "set_fractional_delta")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_fractional_delta", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false secs float}], Returns: void
 */
+
 func (o *Particles) SetLifetime(secs gdnative.Float) {
 	log.Println("Calling Particles.SetLifetime()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(secs)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(secs)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "set_lifetime")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_lifetime", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Particles) SetOneShot(enable gdnative.Bool) {
 	log.Println("Calling Particles.SetOneShot()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "set_one_shot")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_one_shot", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false secs float}], Returns: void
 */
+
 func (o *Particles) SetPreProcessTime(secs gdnative.Float) {
 	log.Println("Calling Particles.SetPreProcessTime()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(secs)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(secs)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "set_pre_process_time")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_pre_process_time", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false material Material}], Returns: void
 */
-func (o *Particles) SetProcessMaterial(material *Material) {
+
+func (o *Particles) SetProcessMaterial(material material.Material) {
 	log.Println("Calling Particles.SetProcessMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(material)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(material.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "set_process_material")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_process_material", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false ratio float}], Returns: void
 */
+
 func (o *Particles) SetRandomnessRatio(ratio gdnative.Float) {
 	log.Println("Calling Particles.SetRandomnessRatio()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ratio)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(ratio)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "set_randomness_ratio")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_randomness_ratio", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false scale float}], Returns: void
 */
+
 func (o *Particles) SetSpeedScale(scale gdnative.Float) {
 	log.Println("Calling Particles.SetSpeedScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(scale)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(scale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "set_speed_scale")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_speed_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Particles) SetUseLocalCoordinates(enable gdnative.Bool) {
 	log.Println("Calling Particles.SetUseLocalCoordinates()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "set_use_local_coordinates")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_use_local_coordinates", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false aabb AABB}], Returns: void
 */
-func (o *Particles) SetVisibilityAabb(aabb *AABB) {
+
+func (o *Particles) SetVisibilityAabb(aabb gdnative.AABB) {
 	log.Println("Calling Particles.SetVisibilityAabb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(aabb)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromAabb(aabb)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "set_visibility_aabb")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_visibility_aabb", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ParticlesImplementer is an interface for Particles objects.
-*/
-type ParticlesImplementer interface {
-	Class
 }

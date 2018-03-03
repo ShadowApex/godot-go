@@ -2,9 +2,11 @@ package translationserver
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
+	"github.com/shadowapex/godot-go/godot/class/translation"
 )
 
 /*------------------------------------------------------------------------------
@@ -15,6 +17,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewtranslationServerFromPointer(ptr gdnative.Pointer) *translationServer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := translationServer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 func newSingletonTranslationServer() *translationServer {
 	obj := &translationServer{}
@@ -32,7 +43,7 @@ var TranslationServer = newSingletonTranslationServer()
 
  */
 type translationServer struct {
-	Object
+	object.Object
 }
 
 func (o *translationServer) BaseClass() string {
@@ -41,133 +52,167 @@ func (o *translationServer) BaseClass() string {
 
 /*
 
- */
-func (o *translationServer) AddTranslation(translation *Translation) {
+	Args: [{ false translation Translation}], Returns: void
+*/
+
+func (o *translationServer) AddTranslation(translation translation.Translation) {
 	log.Println("Calling TranslationServer.AddTranslation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(translation)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(translation.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TranslationServer", "add_translation")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_translation", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *translationServer) Clear() {
 	log.Println("Calling TranslationServer.Clear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TranslationServer", "clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [], Returns: String
+*/
+
 func (o *translationServer) GetLocale() gdnative.String {
 	log.Println("Calling TranslationServer.GetLocale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TranslationServer", "get_locale")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_locale", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false locale String}], Returns: String
+*/
+
 func (o *translationServer) GetLocaleName(locale gdnative.String) gdnative.String {
 	log.Println("Calling TranslationServer.GetLocaleName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(locale)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(locale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TranslationServer", "get_locale_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_locale_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *translationServer) RemoveTranslation(translation *Translation) {
+	Args: [{ false translation Translation}], Returns: void
+*/
+
+func (o *translationServer) RemoveTranslation(translation translation.Translation) {
 	log.Println("Calling TranslationServer.RemoveTranslation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(translation)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(translation.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TranslationServer", "remove_translation")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_translation", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false locale String}], Returns: void
+*/
+
 func (o *translationServer) SetLocale(locale gdnative.String) {
 	log.Println("Calling TranslationServer.SetLocale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(locale)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(locale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TranslationServer", "set_locale")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_locale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false message String}], Returns: String
+*/
+
 func (o *translationServer) Translate(message gdnative.String) gdnative.String {
 	log.Println("Calling TranslationServer.Translate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(message)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(message)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TranslationServer", "translate")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "translate", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }

@@ -2,7 +2,9 @@ package giprobedata
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewGIProbeDataFromPointer(ptr gdnative.Pointer) *GIProbeData {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := GIProbeData{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type GIProbeData struct {
-	Resource
+	resource.Resource
 }
 
 func (o *GIProbeData) BaseClass() string {
@@ -26,426 +37,529 @@ func (o *GIProbeData) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *GIProbeData) GetBias() gdnative.Float {
 	log.Println("Calling GIProbeData.GetBias()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "get_bias")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bias", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: AABB
 */
-func (o *GIProbeData) GetBounds() *AABB {
+
+func (o *GIProbeData) GetBounds() gdnative.AABB {
 	log.Println("Calling GIProbeData.GetBounds()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "get_bounds")
 
 	// Call the parent method.
+	// AABB
+	retPtr := gdnative.NewEmptyAabb()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bounds", goArguments, "*AABB")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewAabbFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*AABB)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *GIProbeData) GetCellSize() gdnative.Float {
 	log.Println("Calling GIProbeData.GetCellSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "get_cell_size")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_cell_size", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolIntArray
 */
-func (o *GIProbeData) GetDynamicData() *PoolIntArray {
+
+func (o *GIProbeData) GetDynamicData() gdnative.PoolIntArray {
 	log.Println("Calling GIProbeData.GetDynamicData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "get_dynamic_data")
 
 	// Call the parent method.
+	// PoolIntArray
+	retPtr := gdnative.NewEmptyPoolIntArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_dynamic_data", goArguments, "*PoolIntArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *GIProbeData) GetDynamicRange() gdnative.Int {
 	log.Println("Calling GIProbeData.GetDynamicRange()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "get_dynamic_range")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_dynamic_range", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *GIProbeData) GetEnergy() gdnative.Float {
 	log.Println("Calling GIProbeData.GetEnergy()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "get_energy")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_energy", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *GIProbeData) GetNormalBias() gdnative.Float {
 	log.Println("Calling GIProbeData.GetNormalBias()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "get_normal_bias")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_normal_bias", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *GIProbeData) GetPropagation() gdnative.Float {
 	log.Println("Calling GIProbeData.GetPropagation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "get_propagation")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_propagation", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Transform
 */
-func (o *GIProbeData) GetToCellXform() *Transform {
+
+func (o *GIProbeData) GetToCellXform() gdnative.Transform {
 	log.Println("Calling GIProbeData.GetToCellXform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "get_to_cell_xform")
 
 	// Call the parent method.
+	// Transform
+	retPtr := gdnative.NewEmptyTransform()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_to_cell_xform", goArguments, "*Transform")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransformFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *GIProbeData) IsCompressed() gdnative.Bool {
 	log.Println("Calling GIProbeData.IsCompressed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "is_compressed")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_compressed", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *GIProbeData) IsInterior() gdnative.Bool {
 	log.Println("Calling GIProbeData.IsInterior()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "is_interior")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_interior", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false bias float}], Returns: void
 */
+
 func (o *GIProbeData) SetBias(bias gdnative.Float) {
 	log.Println("Calling GIProbeData.SetBias()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bias)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(bias)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "set_bias")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_bias", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false bounds AABB}], Returns: void
 */
-func (o *GIProbeData) SetBounds(bounds *AABB) {
+
+func (o *GIProbeData) SetBounds(bounds gdnative.AABB) {
 	log.Println("Calling GIProbeData.SetBounds()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bounds)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromAabb(bounds)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "set_bounds")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_bounds", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false cell_size float}], Returns: void
 */
+
 func (o *GIProbeData) SetCellSize(cellSize gdnative.Float) {
 	log.Println("Calling GIProbeData.SetCellSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(cellSize)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(cellSize)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "set_cell_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_cell_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false compress bool}], Returns: void
 */
+
 func (o *GIProbeData) SetCompress(compress gdnative.Bool) {
 	log.Println("Calling GIProbeData.SetCompress()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(compress)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(compress)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "set_compress")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_compress", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false dynamic_data PoolIntArray}], Returns: void
 */
-func (o *GIProbeData) SetDynamicData(dynamicData *PoolIntArray) {
+
+func (o *GIProbeData) SetDynamicData(dynamicData gdnative.PoolIntArray) {
 	log.Println("Calling GIProbeData.SetDynamicData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(dynamicData)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolIntArray(dynamicData)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "set_dynamic_data")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_dynamic_data", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false dynamic_range int}], Returns: void
 */
+
 func (o *GIProbeData) SetDynamicRange(dynamicRange gdnative.Int) {
 	log.Println("Calling GIProbeData.SetDynamicRange()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(dynamicRange)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(dynamicRange)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "set_dynamic_range")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_dynamic_range", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false energy float}], Returns: void
 */
+
 func (o *GIProbeData) SetEnergy(energy gdnative.Float) {
 	log.Println("Calling GIProbeData.SetEnergy()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(energy)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(energy)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "set_energy")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_energy", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false interior bool}], Returns: void
 */
+
 func (o *GIProbeData) SetInterior(interior gdnative.Bool) {
 	log.Println("Calling GIProbeData.SetInterior()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(interior)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(interior)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "set_interior")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_interior", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false bias float}], Returns: void
 */
+
 func (o *GIProbeData) SetNormalBias(bias gdnative.Float) {
 	log.Println("Calling GIProbeData.SetNormalBias()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bias)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(bias)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "set_normal_bias")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_normal_bias", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false propagation float}], Returns: void
 */
+
 func (o *GIProbeData) SetPropagation(propagation gdnative.Float) {
 	log.Println("Calling GIProbeData.SetPropagation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(propagation)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(propagation)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "set_propagation")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_propagation", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false to_cell_xform Transform}], Returns: void
 */
-func (o *GIProbeData) SetToCellXform(toCellXform *Transform) {
+
+func (o *GIProbeData) SetToCellXform(toCellXform gdnative.Transform) {
 	log.Println("Calling GIProbeData.SetToCellXform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(toCellXform)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromTransform(toCellXform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbeData", "set_to_cell_xform")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_to_cell_xform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   GIProbeDataImplementer is an interface for GIProbeData objects.
-*/
-type GIProbeDataImplementer interface {
-	Class
 }

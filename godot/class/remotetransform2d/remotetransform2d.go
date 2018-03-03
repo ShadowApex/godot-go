@@ -2,9 +2,9 @@ package remotetransform2d
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/node2d"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewRemoteTransform2DFromPointer(ptr gdnative.Pointer) *RemoteTransform2D {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := RemoteTransform2D{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 RemoteTransform2D leads the [Transform2D] of another [CanvasItem] derived Node (called the remote node) in the scene. It can be set to track another Node's position, rotation and/or scale. It can update using either global or local coordinates.
 */
 type RemoteTransform2D struct {
-	Node2D
+	node2d.Node2D
 }
 
 func (o *RemoteTransform2D) BaseClass() string {
@@ -28,198 +37,241 @@ func (o *RemoteTransform2D) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: NodePath
 */
-func (o *RemoteTransform2D) GetRemoteNode() *NodePath {
+
+func (o *RemoteTransform2D) GetRemoteNode() gdnative.NodePath {
 	log.Println("Calling RemoteTransform2D.GetRemoteNode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RemoteTransform2D", "get_remote_node")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_remote_node", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *RemoteTransform2D) GetUpdatePosition() gdnative.Bool {
 	log.Println("Calling RemoteTransform2D.GetUpdatePosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RemoteTransform2D", "get_update_position")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_update_position", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *RemoteTransform2D) GetUpdateRotation() gdnative.Bool {
 	log.Println("Calling RemoteTransform2D.GetUpdateRotation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RemoteTransform2D", "get_update_rotation")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_update_rotation", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *RemoteTransform2D) GetUpdateScale() gdnative.Bool {
 	log.Println("Calling RemoteTransform2D.GetUpdateScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RemoteTransform2D", "get_update_scale")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_update_scale", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *RemoteTransform2D) GetUseGlobalCoordinates() gdnative.Bool {
 	log.Println("Calling RemoteTransform2D.GetUseGlobalCoordinates()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RemoteTransform2D", "get_use_global_coordinates")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_use_global_coordinates", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false path NodePath}], Returns: void
 */
-func (o *RemoteTransform2D) SetRemoteNode(path *NodePath) {
+
+func (o *RemoteTransform2D) SetRemoteNode(path gdnative.NodePath) {
 	log.Println("Calling RemoteTransform2D.SetRemoteNode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RemoteTransform2D", "set_remote_node")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_remote_node", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false update_remote_position bool}], Returns: void
 */
+
 func (o *RemoteTransform2D) SetUpdatePosition(updateRemotePosition gdnative.Bool) {
 	log.Println("Calling RemoteTransform2D.SetUpdatePosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(updateRemotePosition)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(updateRemotePosition)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RemoteTransform2D", "set_update_position")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_update_position", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false update_remote_rotation bool}], Returns: void
 */
+
 func (o *RemoteTransform2D) SetUpdateRotation(updateRemoteRotation gdnative.Bool) {
 	log.Println("Calling RemoteTransform2D.SetUpdateRotation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(updateRemoteRotation)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(updateRemoteRotation)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RemoteTransform2D", "set_update_rotation")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_update_rotation", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false update_remote_scale bool}], Returns: void
 */
+
 func (o *RemoteTransform2D) SetUpdateScale(updateRemoteScale gdnative.Bool) {
 	log.Println("Calling RemoteTransform2D.SetUpdateScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(updateRemoteScale)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(updateRemoteScale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RemoteTransform2D", "set_update_scale")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_update_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false use_global_coordinates bool}], Returns: void
 */
+
 func (o *RemoteTransform2D) SetUseGlobalCoordinates(useGlobalCoordinates gdnative.Bool) {
 	log.Println("Calling RemoteTransform2D.SetUseGlobalCoordinates()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(useGlobalCoordinates)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(useGlobalCoordinates)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RemoteTransform2D", "set_use_global_coordinates")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_use_global_coordinates", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   RemoteTransform2DImplementer is an interface for RemoteTransform2D objects.
-*/
-type RemoteTransform2DImplementer interface {
-	Class
 }

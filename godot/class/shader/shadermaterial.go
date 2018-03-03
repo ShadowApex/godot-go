@@ -2,9 +2,9 @@ package shader
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/material"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewShaderMaterialFromPointer(ptr gdnative.Pointer) *ShaderMaterial {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ShaderMaterial{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type ShaderMaterial struct {
-	Material
+	material.Material
 }
 
 func (o *ShaderMaterial) BaseClass() string {
@@ -28,86 +37,99 @@ func (o *ShaderMaterial) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Shader
 */
-func (o *ShaderMaterial) GetShader() *Shader {
+
+func (o *ShaderMaterial) GetShader() Shader {
 	log.Println("Calling ShaderMaterial.GetShader()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ShaderMaterial", "get_shader")
 
 	// Call the parent method.
+	// Shader
+	retPtr := NewEmptyShader()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_shader", goArguments, "*Shader")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewShaderFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Shader)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *ShaderMaterial) GetShaderParam(param gdnative.String) *Variant {
+	Args: [{ false param String}], Returns: Variant
+*/
+
+func (o *ShaderMaterial) GetShaderParam(param gdnative.String) gdnative.Variant {
 	log.Println("Calling ShaderMaterial.GetShaderParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(param)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(param)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ShaderMaterial", "get_shader_param")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_shader_param", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false shader Shader}], Returns: void
 */
-func (o *ShaderMaterial) SetShader(shader *Shader) {
+
+func (o *ShaderMaterial) SetShader(shader Shader) {
 	log.Println("Calling ShaderMaterial.SetShader()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(shader)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(shader.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ShaderMaterial", "set_shader")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_shader", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *ShaderMaterial) SetShaderParam(param gdnative.String, value *Variant) {
+	Args: [{ false param String} { false value Variant}], Returns: void
+*/
+
+func (o *ShaderMaterial) SetShaderParam(param gdnative.String, value gdnative.Variant) {
 	log.Println("Calling ShaderMaterial.SetShaderParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(param)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(param)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ShaderMaterial", "set_shader_param")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_shader_param", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ShaderMaterialImplementer is an interface for ShaderMaterial objects.
-*/
-type ShaderMaterialImplementer interface {
-	Class
 }

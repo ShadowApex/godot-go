@@ -2,7 +2,13 @@ package world
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/physics"
+	"github.com/shadowapex/godot-go/godot/class/resource"
+
+	"github.com/shadowapex/godot-go/godot/class/environment"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +20,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewWorldFromPointer(ptr gdnative.Pointer) *World {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := World{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Class that has everything pertaining to a world. A physics space, a visual scenario and a sound space. Spatial nodes register their resources into the current world.
 */
 type World struct {
-	Resource
+	resource.Resource
 }
 
 func (o *World) BaseClass() string {
@@ -26,144 +41,175 @@ func (o *World) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PhysicsDirectSpaceState
 */
-func (o *World) GetDirectSpaceState() *PhysicsDirectSpaceState {
+
+func (o *World) GetDirectSpaceState() physics.PhysicsDirectSpaceState {
 	log.Println("Calling World.GetDirectSpaceState()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("World", "get_direct_space_state")
 
 	// Call the parent method.
+	// PhysicsDirectSpaceState
+	retPtr := physics.NewEmptyPhysicsDirectSpaceState()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_direct_space_state", goArguments, "*PhysicsDirectSpaceState")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := physics.NewPhysicsDirectSpaceStateFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PhysicsDirectSpaceState)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Environment
 */
-func (o *World) GetEnvironment() *Environment {
+
+func (o *World) GetEnvironment() environment.Environment {
 	log.Println("Calling World.GetEnvironment()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("World", "get_environment")
 
 	// Call the parent method.
+	// Environment
+	retPtr := environment.NewEmptyEnvironment()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_environment", goArguments, "*Environment")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := environment.NewEnvironmentFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Environment)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Environment
 */
-func (o *World) GetFallbackEnvironment() *Environment {
+
+func (o *World) GetFallbackEnvironment() environment.Environment {
 	log.Println("Calling World.GetFallbackEnvironment()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("World", "get_fallback_environment")
 
 	// Call the parent method.
+	// Environment
+	retPtr := environment.NewEmptyEnvironment()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_fallback_environment", goArguments, "*Environment")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := environment.NewEnvironmentFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Environment)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: RID
 */
-func (o *World) GetScenario() *RID {
+
+func (o *World) GetScenario() gdnative.RID {
 	log.Println("Calling World.GetScenario()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("World", "get_scenario")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_scenario", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: RID
 */
-func (o *World) GetSpace() *RID {
+
+func (o *World) GetSpace() gdnative.RID {
 	log.Println("Calling World.GetSpace()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("World", "get_space")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_space", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false env Environment}], Returns: void
 */
-func (o *World) SetEnvironment(env *Environment) {
+
+func (o *World) SetEnvironment(env environment.Environment) {
 	log.Println("Calling World.SetEnvironment()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(env)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(env.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("World", "set_environment")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_environment", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false env Environment}], Returns: void
 */
-func (o *World) SetFallbackEnvironment(env *Environment) {
+
+func (o *World) SetFallbackEnvironment(env environment.Environment) {
 	log.Println("Calling World.SetFallbackEnvironment()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(env)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(env.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("World", "set_fallback_environment")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_fallback_environment", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   WorldImplementer is an interface for World objects.
-*/
-type WorldImplementer interface {
-	Class
 }

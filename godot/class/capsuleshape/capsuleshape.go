@@ -2,7 +2,9 @@ package capsuleshape
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/shape"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewCapsuleShapeFromPointer(ptr gdnative.Pointer) *CapsuleShape {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := CapsuleShape{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Capsule shape for collisions.
 */
 type CapsuleShape struct {
-	Shape
+	shape.Shape
 }
 
 func (o *CapsuleShape) BaseClass() string {
@@ -26,84 +37,97 @@ func (o *CapsuleShape) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *CapsuleShape) GetHeight() gdnative.Float {
 	log.Println("Calling CapsuleShape.GetHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CapsuleShape", "get_height")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_height", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *CapsuleShape) GetRadius() gdnative.Float {
 	log.Println("Calling CapsuleShape.GetRadius()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CapsuleShape", "get_radius")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_radius", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false height float}], Returns: void
 */
+
 func (o *CapsuleShape) SetHeight(height gdnative.Float) {
 	log.Println("Calling CapsuleShape.SetHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(height)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(height)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CapsuleShape", "set_height")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_height", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false radius float}], Returns: void
 */
+
 func (o *CapsuleShape) SetRadius(radius gdnative.Float) {
 	log.Println("Calling CapsuleShape.SetRadius()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(radius)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(radius)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CapsuleShape", "set_radius")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_radius", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   CapsuleShapeImplementer is an interface for CapsuleShape objects.
-*/
-type CapsuleShapeImplementer interface {
-	Class
 }

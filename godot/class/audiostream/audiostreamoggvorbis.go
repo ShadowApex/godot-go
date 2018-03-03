@@ -2,7 +2,6 @@ package audiostream
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -16,6 +15,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewAudioStreamOGGVorbisFromPointer(ptr gdnative.Pointer) *AudioStreamOGGVorbis {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := AudioStreamOGGVorbis{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
@@ -28,122 +36,145 @@ func (o *AudioStreamOGGVorbis) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolByteArray
 */
-func (o *AudioStreamOGGVorbis) X_GetData() *PoolByteArray {
+
+func (o *AudioStreamOGGVorbis) X_GetData() gdnative.PoolByteArray {
 	log.Println("Calling AudioStreamOGGVorbis.X_GetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamOGGVorbis", "_get_data")
 
 	// Call the parent method.
+	// PoolByteArray
+	retPtr := gdnative.NewEmptyPoolByteArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_data", goArguments, "*PoolByteArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolByteArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolByteArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false data PoolByteArray}], Returns: void
 */
-func (o *AudioStreamOGGVorbis) X_SetData(data *PoolByteArray) {
+
+func (o *AudioStreamOGGVorbis) X_SetData(data gdnative.PoolByteArray) {
 	log.Println("Calling AudioStreamOGGVorbis.X_SetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(data)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolByteArray(data)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamOGGVorbis", "_set_data")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_data", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioStreamOGGVorbis) GetLoopOffset() gdnative.Float {
 	log.Println("Calling AudioStreamOGGVorbis.GetLoopOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamOGGVorbis", "get_loop_offset")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_loop_offset", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *AudioStreamOGGVorbis) HasLoop() gdnative.Bool {
 	log.Println("Calling AudioStreamOGGVorbis.HasLoop()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamOGGVorbis", "has_loop")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_loop", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *AudioStreamOGGVorbis) SetLoop(enable gdnative.Bool) {
 	log.Println("Calling AudioStreamOGGVorbis.SetLoop()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamOGGVorbis", "set_loop")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_loop", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false seconds float}], Returns: void
 */
+
 func (o *AudioStreamOGGVorbis) SetLoopOffset(seconds gdnative.Float) {
 	log.Println("Calling AudioStreamOGGVorbis.SetLoopOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(seconds)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(seconds)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamOGGVorbis", "set_loop_offset")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_loop_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   AudioStreamOGGVorbisImplementer is an interface for AudioStreamOGGVorbis objects.
-*/
-type AudioStreamOGGVorbisImplementer interface {
-	Class
 }

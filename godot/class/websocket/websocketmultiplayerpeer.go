@@ -2,9 +2,9 @@ package websocket
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/networkedmultiplayerpeer"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewWebSocketMultiplayerPeerFromPointer(ptr gdnative.Pointer) *WebSocketMultiplayerPeer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := WebSocketMultiplayerPeer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type WebSocketMultiplayerPeer struct {
-	NetworkedMultiplayerPeer
+	networkedmultiplayerpeer.NetworkedMultiplayerPeer
 }
 
 func (o *WebSocketMultiplayerPeer) BaseClass() string {
@@ -29,28 +38,27 @@ func (o *WebSocketMultiplayerPeer) BaseClass() string {
 
 /*
 
- */
-func (o *WebSocketMultiplayerPeer) GetPeer(peerId gdnative.Int) *WebSocketPeer {
+	Args: [{ false peer_id int}], Returns: WebSocketPeer
+*/
+
+func (o *WebSocketMultiplayerPeer) GetPeer(peerId gdnative.Int) WebSocketPeer {
 	log.Println("Calling WebSocketMultiplayerPeer.GetPeer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(peerId)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(peerId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("WebSocketMultiplayerPeer", "get_peer")
 
 	// Call the parent method.
+	// WebSocketPeer
+	retPtr := NewEmptyWebSocketPeer()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_peer", goArguments, "*WebSocketPeer")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewWebSocketPeerFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*WebSocketPeer)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   WebSocketMultiplayerPeerImplementer is an interface for WebSocketMultiplayerPeer objects.
-*/
-type WebSocketMultiplayerPeerImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

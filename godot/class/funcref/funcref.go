@@ -2,9 +2,11 @@ package funcref
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewFuncRefFromPointer(ptr gdnative.Pointer) *FuncRef {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := FuncRef{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 In GDScript, functions are not [i]first-class objects[/i]. This means it is impossible to store them directly as variables, return them from another function, or pass them as arguments. However, by creating a [code]FuncRef[/code] using the [method @GDScript.funcref] function, a reference to a function in a given object can be created, passed around and called.
 */
 type FuncRef struct {
-	Reference
+	reference.Reference
 }
 
 func (o *FuncRef) BaseClass() string {
@@ -28,64 +39,71 @@ func (o *FuncRef) BaseClass() string {
 }
 
 /*
-   Calls the referenced function previously set by [method set_function] or [method @GDScript.funcref].
+        Calls the referenced function previously set by [method set_function] or [method @GDScript.funcref].
+	Args: [], Returns: Variant
 */
-func (o *FuncRef) CallFunc() *Variant {
+
+func (o *FuncRef) CallFunc() gdnative.Variant {
 	log.Println("Calling FuncRef.CallFunc()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("FuncRef", "call_func")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "call_func", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   The name of the referenced function to call on the object, without parentheses or any parameters.
+        The name of the referenced function to call on the object, without parentheses or any parameters.
+	Args: [{ false name String}], Returns: void
 */
+
 func (o *FuncRef) SetFunction(name gdnative.String) {
 	log.Println("Calling FuncRef.SetFunction()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("FuncRef", "set_function")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_function", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   The object containing the referenced function. This object must be of a type actually inheriting from [Object], not a built-in type such as [int], [Vector2] or [Dictionary].
+        The object containing the referenced function. This object must be of a type actually inheriting from [Object], not a built-in type such as [int], [Vector2] or [Dictionary].
+	Args: [{ false instance Object}], Returns: void
 */
-func (o *FuncRef) SetInstance(instance *Object) {
+
+func (o *FuncRef) SetInstance(instance object.Object) {
 	log.Println("Calling FuncRef.SetInstance()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(instance)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(instance.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("FuncRef", "set_instance")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_instance", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   FuncRefImplementer is an interface for FuncRef objects.
-*/
-type FuncRefImplementer interface {
-	Class
 }

@@ -2,7 +2,9 @@ package collisionpolygon
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/spatial"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewCollisionPolygonFromPointer(ptr gdnative.Pointer) *CollisionPolygon {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := CollisionPolygon{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Allows editing a collision polygon's vertices on a selected plane. Can also set a depth perpendicular to that plane. This class is only available in the editor. It will not appear in the scene tree at runtime. Creates a [Shape] for gameplay. Properties modified during gameplay will have no effect.
 */
 type CollisionPolygon struct {
-	Spatial
+	spatial.Spatial
 }
 
 func (o *CollisionPolygon) BaseClass() string {
@@ -26,122 +37,145 @@ func (o *CollisionPolygon) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *CollisionPolygon) GetDepth() gdnative.Float {
 	log.Println("Calling CollisionPolygon.GetDepth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionPolygon", "get_depth")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_depth", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolVector2Array
 */
-func (o *CollisionPolygon) GetPolygon() *PoolVector2Array {
+
+func (o *CollisionPolygon) GetPolygon() gdnative.PoolVector2Array {
 	log.Println("Calling CollisionPolygon.GetPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionPolygon", "get_polygon")
 
 	// Call the parent method.
+	// PoolVector2Array
+	retPtr := gdnative.NewEmptyPoolVector2Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_polygon", goArguments, "*PoolVector2Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector2Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *CollisionPolygon) IsDisabled() gdnative.Bool {
 	log.Println("Calling CollisionPolygon.IsDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionPolygon", "is_disabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_disabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false depth float}], Returns: void
 */
+
 func (o *CollisionPolygon) SetDepth(depth gdnative.Float) {
 	log.Println("Calling CollisionPolygon.SetDepth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(depth)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(depth)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionPolygon", "set_depth")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_depth", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false disabled bool}], Returns: void
 */
+
 func (o *CollisionPolygon) SetDisabled(disabled gdnative.Bool) {
 	log.Println("Calling CollisionPolygon.SetDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(disabled)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(disabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionPolygon", "set_disabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_disabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false polygon PoolVector2Array}], Returns: void
 */
-func (o *CollisionPolygon) SetPolygon(polygon *PoolVector2Array) {
+
+func (o *CollisionPolygon) SetPolygon(polygon gdnative.PoolVector2Array) {
 	log.Println("Calling CollisionPolygon.SetPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(polygon)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(polygon)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionPolygon", "set_polygon")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_polygon", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   CollisionPolygonImplementer is an interface for CollisionPolygon objects.
-*/
-type CollisionPolygonImplementer interface {
-	Class
 }

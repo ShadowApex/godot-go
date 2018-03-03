@@ -2,7 +2,9 @@ package lineshape2d
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/shape2d"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewLineShape2DFromPointer(ptr gdnative.Pointer) *LineShape2D {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := LineShape2D{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Line shape for 2D collisions. It works like a 2D plane and will not allow any body to go to the negative side. Not recommended for rigid bodies, and usually not recommended for static bodies either because it forces checks against it on every frame.
 */
 type LineShape2D struct {
-	Shape2D
+	shape2d.Shape2D
 }
 
 func (o *LineShape2D) BaseClass() string {
@@ -26,84 +37,97 @@ func (o *LineShape2D) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *LineShape2D) GetD() gdnative.Float {
 	log.Println("Calling LineShape2D.GetD()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LineShape2D", "get_d")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_d", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *LineShape2D) GetNormal() *Vector2 {
+
+func (o *LineShape2D) GetNormal() gdnative.Vector2 {
 	log.Println("Calling LineShape2D.GetNormal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LineShape2D", "get_normal")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_normal", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false d float}], Returns: void
 */
+
 func (o *LineShape2D) SetD(d gdnative.Float) {
 	log.Println("Calling LineShape2D.SetD()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(d)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(d)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LineShape2D", "set_d")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_d", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false normal Vector2}], Returns: void
 */
-func (o *LineShape2D) SetNormal(normal *Vector2) {
+
+func (o *LineShape2D) SetNormal(normal gdnative.Vector2) {
 	log.Println("Calling LineShape2D.SetNormal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(normal)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(normal)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LineShape2D", "set_normal")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_normal", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   LineShape2DImplementer is an interface for LineShape2D objects.
-*/
-type LineShape2DImplementer interface {
-	Class
 }

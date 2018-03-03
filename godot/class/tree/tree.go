@@ -2,7 +2,13 @@ package tree
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/control"
+	"github.com/shadowapex/godot-go/godot/class/inputevent"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +20,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewTreeFromPointer(ptr gdnative.Pointer) *Tree {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Tree{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 This shows a tree of items that can be selected, expanded and collapsed. The tree can have multiple columns with custom controls like text editing, buttons and popups. It can be useful for structured displays and interactions. Trees are built via code, using [TreeItem] objects to create the structure. They have a single root but multiple roots can be simulated if a dummy hidden root is added. [codeblock] func _ready(): var tree = Tree.new() var root = tree.create_item() tree.set_hide_root(true) var child1 = tree.create_item(root) var child2 = tree.create_item(root) var subchild1 = tree.create_item(child1) subchild1.set_text(0, "Subchild1") [/codeblock]
 */
 type Tree struct {
-	Control
+	control.Control
 }
 
 func (o *Tree) BaseClass() string {
@@ -26,857 +41,1053 @@ func (o *Tree) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *Tree) X_GuiInput(arg0 *InputEvent) {
+
+func (o *Tree) X_GuiInput(arg0 inputevent.InputEvent) {
 	log.Println("Calling Tree.X_GuiInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "_gui_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_gui_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 int}], Returns: void
 */
+
 func (o *Tree) X_PopupSelect(arg0 gdnative.Int) {
 	log.Println("Calling Tree.X_PopupSelect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "_popup_select")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_popup_select", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *Tree) X_RangeClickTimeout() {
 	log.Println("Calling Tree.X_RangeClickTimeout()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "_range_click_timeout")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_range_click_timeout", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 float}], Returns: void
 */
+
 func (o *Tree) X_ScrollMoved(arg0 gdnative.Float) {
 	log.Println("Calling Tree.X_ScrollMoved()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "_scroll_moved")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_scroll_moved", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 String}], Returns: void
 */
+
 func (o *Tree) X_TextEditorEnter(arg0 gdnative.String) {
 	log.Println("Calling Tree.X_TextEditorEnter()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "_text_editor_enter")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_text_editor_enter", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *Tree) X_TextEditorModalClose() {
 	log.Println("Calling Tree.X_TextEditorModalClose()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "_text_editor_modal_close")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_text_editor_modal_close", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 float}], Returns: void
 */
+
 func (o *Tree) X_ValueEditorChanged(arg0 gdnative.Float) {
 	log.Println("Calling Tree.X_ValueEditorChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "_value_editor_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_value_editor_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns [code]true[/code] if the column titles are being shown.
+        Returns [code]true[/code] if the column titles are being shown.
+	Args: [], Returns: bool
 */
+
 func (o *Tree) AreColumnTitlesVisible() gdnative.Bool {
 	log.Println("Calling Tree.AreColumnTitlesVisible()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "are_column_titles_visible")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "are_column_titles_visible", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Clears the tree. This removes all items.
+        Clears the tree. This removes all items.
+	Args: [], Returns: void
 */
+
 func (o *Tree) Clear() {
 	log.Println("Calling Tree.Clear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Create an item in the tree and add it as the last child of [code]parent[/code]. If parent is not given, it will be added as the root's last child, or it'll the be the root itself if the tree is empty.
+        Create an item in the tree and add it as the last child of [code]parent[/code]. If parent is not given, it will be added as the root's last child, or it'll the be the root itself if the tree is empty.
+	Args: [{Null true parent Object} {-1 true idx int}], Returns: Object
 */
-func (o *Tree) CreateItem(parent *Object, idx gdnative.Int) *Object {
+
+func (o *Tree) CreateItem(parent object.Object, idx gdnative.Int) object.Object {
 	log.Println("Calling Tree.CreateItem()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(parent)
-	goArguments[1] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromObject(parent.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "create_item")
 
 	// Call the parent method.
+	// Object
+	retPtr := object.NewEmptyObject()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "create_item", goArguments, "*Object")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := object.NewObjectFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Object)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Makes the currently selected item visible. This will scroll the tree to make sure the selected item is visible.
+        Makes the currently selected item visible. This will scroll the tree to make sure the selected item is visible.
+	Args: [], Returns: void
 */
+
 func (o *Tree) EnsureCursorIsVisible() {
 	log.Println("Calling Tree.EnsureCursorIsVisible()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "ensure_cursor_is_visible")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "ensure_cursor_is_visible", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Tree) GetAllowReselect() gdnative.Bool {
 	log.Println("Calling Tree.GetAllowReselect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_allow_reselect")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_allow_reselect", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Tree) GetAllowRmbSelect() gdnative.Bool {
 	log.Println("Calling Tree.GetAllowRmbSelect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_allow_rmb_select")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_allow_rmb_select", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the column index under the given point.
+        Returns the column index under the given point.
+	Args: [{ false position Vector2}], Returns: int
 */
-func (o *Tree) GetColumnAtPosition(position *Vector2) gdnative.Int {
+
+func (o *Tree) GetColumnAtPosition(position gdnative.Vector2) gdnative.Int {
 	log.Println("Calling Tree.GetColumnAtPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_column_at_position")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_column_at_position", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the column's title.
+        Returns the column's title.
+	Args: [{ false column int}], Returns: String
 */
+
 func (o *Tree) GetColumnTitle(column gdnative.Int) gdnative.String {
 	log.Println("Calling Tree.GetColumnTitle()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(column)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(column)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_column_title")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_column_title", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the column's width in pixels.
+        Returns the column's width in pixels.
+	Args: [{ false column int}], Returns: int
 */
+
 func (o *Tree) GetColumnWidth(column gdnative.Int) gdnative.Int {
 	log.Println("Calling Tree.GetColumnWidth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(column)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(column)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_column_width")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_column_width", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *Tree) GetColumns() gdnative.Int {
 	log.Println("Calling Tree.GetColumns()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_columns")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_columns", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the rectangle for custom popups. Helper to create custom cell controls that display a popup. See [method TreeItem.set_cell_mode].
+        Returns the rectangle for custom popups. Helper to create custom cell controls that display a popup. See [method TreeItem.set_cell_mode].
+	Args: [], Returns: Rect2
 */
-func (o *Tree) GetCustomPopupRect() *Rect2 {
+
+func (o *Tree) GetCustomPopupRect() gdnative.Rect2 {
 	log.Println("Calling Tree.GetCustomPopupRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_custom_popup_rect")
 
 	// Call the parent method.
+	// Rect2
+	retPtr := gdnative.NewEmptyRect2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_custom_popup_rect", goArguments, "*Rect2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRect2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Rect2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *Tree) GetDropModeFlags() gdnative.Int {
 	log.Println("Calling Tree.GetDropModeFlags()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_drop_mode_flags")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_drop_mode_flags", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Tree) GetDropSectionAtPosition(position *Vector2) gdnative.Int {
+	Args: [{ false position Vector2}], Returns: int
+*/
+
+func (o *Tree) GetDropSectionAtPosition(position gdnative.Vector2) gdnative.Int {
 	log.Println("Calling Tree.GetDropSectionAtPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_drop_section_at_position")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_drop_section_at_position", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the currently edited item. This is only available for custom cell mode.
+        Returns the currently edited item. This is only available for custom cell mode.
+	Args: [], Returns: TreeItem
 */
-func (o *Tree) GetEdited() *TreeItem {
+
+func (o *Tree) GetEdited() TreeItem {
 	log.Println("Calling Tree.GetEdited()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_edited")
 
 	// Call the parent method.
+	// TreeItem
+	retPtr := NewEmptyTreeItem()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_edited", goArguments, "*TreeItem")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewTreeItemFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*TreeItem)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the column for the currently edited item. This is only available for custom cell mode.
+        Returns the column for the currently edited item. This is only available for custom cell mode.
+	Args: [], Returns: int
 */
+
 func (o *Tree) GetEditedColumn() gdnative.Int {
 	log.Println("Calling Tree.GetEditedColumn()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_edited_column")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_edited_column", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the rectangle area for the specified item. If column is specified, only get the position and size of that column, otherwise get the rectangle containing all columns.
+        Returns the rectangle area for the specified item. If column is specified, only get the position and size of that column, otherwise get the rectangle containing all columns.
+	Args: [{ false item Object} {-1 true column int}], Returns: Rect2
 */
-func (o *Tree) GetItemAreaRect(item *Object, column gdnative.Int) *Rect2 {
+
+func (o *Tree) GetItemAreaRect(item object.Object, column gdnative.Int) gdnative.Rect2 {
 	log.Println("Calling Tree.GetItemAreaRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(column)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromObject(item.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromInt(column)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_item_area_rect")
 
 	// Call the parent method.
+	// Rect2
+	retPtr := gdnative.NewEmptyRect2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_item_area_rect", goArguments, "*Rect2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRect2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Rect2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the tree item at the specified position (relative to the tree origin position).
+        Returns the tree item at the specified position (relative to the tree origin position).
+	Args: [{ false position Vector2}], Returns: TreeItem
 */
-func (o *Tree) GetItemAtPosition(position *Vector2) *TreeItem {
+
+func (o *Tree) GetItemAtPosition(position gdnative.Vector2) TreeItem {
 	log.Println("Calling Tree.GetItemAtPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_item_at_position")
 
 	// Call the parent method.
+	// TreeItem
+	retPtr := NewEmptyTreeItem()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_item_at_position", goArguments, "*TreeItem")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewTreeItemFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*TreeItem)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the next selected item after the given one.
+        Returns the next selected item after the given one.
+	Args: [{ false from Object}], Returns: TreeItem
 */
-func (o *Tree) GetNextSelected(from *Object) *TreeItem {
+
+func (o *Tree) GetNextSelected(from object.Object) TreeItem {
 	log.Println("Calling Tree.GetNextSelected()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(from)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(from.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_next_selected")
 
 	// Call the parent method.
+	// TreeItem
+	retPtr := NewEmptyTreeItem()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_next_selected", goArguments, "*TreeItem")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewTreeItemFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*TreeItem)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the last pressed button's index.
+        Returns the last pressed button's index.
+	Args: [], Returns: int
 */
+
 func (o *Tree) GetPressedButton() gdnative.Int {
 	log.Println("Calling Tree.GetPressedButton()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_pressed_button")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_pressed_button", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the tree's root item.
+        Returns the tree's root item.
+	Args: [], Returns: TreeItem
 */
-func (o *Tree) GetRoot() *TreeItem {
+
+func (o *Tree) GetRoot() TreeItem {
 	log.Println("Calling Tree.GetRoot()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_root")
 
 	// Call the parent method.
+	// TreeItem
+	retPtr := NewEmptyTreeItem()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_root", goArguments, "*TreeItem")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewTreeItemFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*TreeItem)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the current scrolling position.
+        Returns the current scrolling position.
+	Args: [], Returns: Vector2
 */
-func (o *Tree) GetScroll() *Vector2 {
+
+func (o *Tree) GetScroll() gdnative.Vector2 {
 	log.Println("Calling Tree.GetScroll()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_scroll")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_scroll", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Tree::SelectMode
 */
-func (o *Tree) GetSelectMode() gdnative.Int {
-	log.Println("Calling Tree.GetSelectMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_select_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Returns the currently selected item.
+        Returns the currently selected item.
+	Args: [], Returns: TreeItem
 */
-func (o *Tree) GetSelected() *TreeItem {
+
+func (o *Tree) GetSelected() TreeItem {
 	log.Println("Calling Tree.GetSelected()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_selected")
 
 	// Call the parent method.
+	// TreeItem
+	retPtr := NewEmptyTreeItem()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_selected", goArguments, "*TreeItem")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewTreeItemFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*TreeItem)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the current selection's column.
+        Returns the current selection's column.
+	Args: [], Returns: int
 */
+
 func (o *Tree) GetSelectedColumn() gdnative.Int {
 	log.Println("Calling Tree.GetSelectedColumn()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_selected_column")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_selected_column", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Tree) IsFoldingHidden() gdnative.Bool {
 	log.Println("Calling Tree.IsFoldingHidden()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "is_folding_hidden")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_folding_hidden", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Tree) IsRootHidden() gdnative.Bool {
 	log.Println("Calling Tree.IsRootHidden()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "is_root_hidden")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_root_hidden", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false allow bool}], Returns: void
 */
+
 func (o *Tree) SetAllowReselect(allow gdnative.Bool) {
 	log.Println("Calling Tree.SetAllowReselect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(allow)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(allow)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "set_allow_reselect")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_allow_reselect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false allow bool}], Returns: void
 */
+
 func (o *Tree) SetAllowRmbSelect(allow gdnative.Bool) {
 	log.Println("Calling Tree.SetAllowRmbSelect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(allow)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(allow)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "set_allow_rmb_select")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_allow_rmb_select", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]true[/code] the column will have the "Expand" flag of [Control].
+        If [code]true[/code] the column will have the "Expand" flag of [Control].
+	Args: [{ false column int} { false expand bool}], Returns: void
 */
+
 func (o *Tree) SetColumnExpand(column gdnative.Int, expand gdnative.Bool) {
 	log.Println("Calling Tree.SetColumnExpand()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(column)
-	goArguments[1] = reflect.ValueOf(expand)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(column)
+	ptrArguments[1] = gdnative.NewPointerFromBool(expand)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "set_column_expand")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_column_expand", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the minimum width of a column.
+        Set the minimum width of a column.
+	Args: [{ false column int} { false min_width int}], Returns: void
 */
+
 func (o *Tree) SetColumnMinWidth(column gdnative.Int, minWidth gdnative.Int) {
 	log.Println("Calling Tree.SetColumnMinWidth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(column)
-	goArguments[1] = reflect.ValueOf(minWidth)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(column)
+	ptrArguments[1] = gdnative.NewPointerFromInt(minWidth)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "set_column_min_width")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_column_min_width", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the title of a column.
+        Set the title of a column.
+	Args: [{ false column int} { false title String}], Returns: void
 */
+
 func (o *Tree) SetColumnTitle(column gdnative.Int, title gdnative.String) {
 	log.Println("Calling Tree.SetColumnTitle()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(column)
-	goArguments[1] = reflect.ValueOf(title)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(column)
+	ptrArguments[1] = gdnative.NewPointerFromString(title)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "set_column_title")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_column_title", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]true[/code] column titles are visible.
+        If [code]true[/code] column titles are visible.
+	Args: [{ false visible bool}], Returns: void
 */
+
 func (o *Tree) SetColumnTitlesVisible(visible gdnative.Bool) {
 	log.Println("Calling Tree.SetColumnTitlesVisible()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(visible)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(visible)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "set_column_titles_visible")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_column_titles_visible", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount int}], Returns: void
 */
+
 func (o *Tree) SetColumns(amount gdnative.Int) {
 	log.Println("Calling Tree.SetColumns()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "set_columns")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_columns", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false flags int}], Returns: void
 */
+
 func (o *Tree) SetDropModeFlags(flags gdnative.Int) {
 	log.Println("Calling Tree.SetDropModeFlags()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(flags)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(flags)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "set_drop_mode_flags")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_drop_mode_flags", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false hide bool}], Returns: void
 */
+
 func (o *Tree) SetHideFolding(hide gdnative.Bool) {
 	log.Println("Calling Tree.SetHideFolding()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(hide)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(hide)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "set_hide_folding")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_hide_folding", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Tree) SetHideRoot(enable gdnative.Bool) {
 	log.Println("Calling Tree.SetHideRoot()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "set_hide_root")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_hide_root", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *Tree) SetSelectMode(mode gdnative.Int) {
 	log.Println("Calling Tree.SetSelectMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "set_select_mode")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_select_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   TreeImplementer is an interface for Tree objects.
-*/
-type TreeImplementer interface {
-	Class
 }

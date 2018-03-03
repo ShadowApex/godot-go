@@ -2,7 +2,11 @@ package multimeshinstance
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/geometryinstance"
+	"github.com/shadowapex/godot-go/godot/class/multimesh"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewMultiMeshInstanceFromPointer(ptr gdnative.Pointer) *MultiMeshInstance {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := MultiMeshInstance{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 [code]MultiMeshInstance[/code] is a specialized node to instance [GeometryInstance]s based on a [MultiMesh] resource. This is useful to optimize the rendering of a high amount of instances of a given mesh (for example tree in a forest or grass strands).
 */
 type MultiMeshInstance struct {
-	GeometryInstance
+	geometryinstance.GeometryInstance
 }
 
 func (o *MultiMeshInstance) BaseClass() string {
@@ -26,46 +39,49 @@ func (o *MultiMeshInstance) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: MultiMesh
 */
-func (o *MultiMeshInstance) GetMultimesh() *MultiMesh {
+
+func (o *MultiMeshInstance) GetMultimesh() multimesh.MultiMesh {
 	log.Println("Calling MultiMeshInstance.GetMultimesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MultiMeshInstance", "get_multimesh")
 
 	// Call the parent method.
+	// MultiMesh
+	retPtr := multimesh.NewEmptyMultiMesh()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_multimesh", goArguments, "*MultiMesh")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := multimesh.NewMultiMeshFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*MultiMesh)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false multimesh MultiMesh}], Returns: void
 */
-func (o *MultiMeshInstance) SetMultimesh(multimesh *MultiMesh) {
+
+func (o *MultiMeshInstance) SetMultimesh(multimesh multimesh.MultiMesh) {
 	log.Println("Calling MultiMeshInstance.SetMultimesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(multimesh)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(multimesh.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MultiMeshInstance", "set_multimesh")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_multimesh", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   MultiMeshInstanceImplementer is an interface for MultiMeshInstance objects.
-*/
-type MultiMeshInstanceImplementer interface {
-	Class
 }

@@ -2,7 +2,11 @@ package path
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/curve3d"
+	"github.com/shadowapex/godot-go/godot/class/spatial"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPathFromPointer(ptr gdnative.Pointer) *Path {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Path{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 This class is a container/Node-ification of a [Curve3D], so it can have [Spatial] properties and [Node] info.
 */
 type Path struct {
-	Spatial
+	spatial.Spatial
 }
 
 func (o *Path) BaseClass() string {
@@ -26,63 +39,70 @@ func (o *Path) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *Path) X_CurveChanged() {
 	log.Println("Calling Path.X_CurveChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Path", "_curve_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_curve_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Curve3D
 */
-func (o *Path) GetCurve() *Curve3D {
+
+func (o *Path) GetCurve() curve3d.Curve3D {
 	log.Println("Calling Path.GetCurve()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Path", "get_curve")
 
 	// Call the parent method.
+	// Curve3D
+	retPtr := curve3d.NewEmptyCurve3D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_curve", goArguments, "*Curve3D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := curve3d.NewCurve3DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Curve3D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false curve Curve3D}], Returns: void
 */
-func (o *Path) SetCurve(curve *Curve3D) {
+
+func (o *Path) SetCurve(curve curve3d.Curve3D) {
 	log.Println("Calling Path.SetCurve()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(curve)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(curve.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Path", "set_curve")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_curve", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   PathImplementer is an interface for Path objects.
-*/
-type PathImplementer interface {
-	Class
 }

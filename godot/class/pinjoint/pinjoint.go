@@ -2,7 +2,9 @@ package pinjoint
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/joint"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPinJointFromPointer(ptr gdnative.Pointer) *PinJoint {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := PinJoint{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Pin Joint for 3D Rigid Bodies. It pins 2 bodies (rigid or static) together.
 */
 type PinJoint struct {
-	Joint
+	joint.Joint
 }
 
 func (o *PinJoint) BaseClass() string {
@@ -26,48 +37,51 @@ func (o *PinJoint) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false param int}], Returns: float
 */
+
 func (o *PinJoint) GetParam(param gdnative.Int) gdnative.Float {
 	log.Println("Calling PinJoint.GetParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(param)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(param)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PinJoint", "get_param")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_param", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false param int} { false value float}], Returns: void
 */
+
 func (o *PinJoint) SetParam(param gdnative.Int, value gdnative.Float) {
 	log.Println("Calling PinJoint.SetParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(param)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(param)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PinJoint", "set_param")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_param", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   PinJointImplementer is an interface for PinJoint objects.
-*/
-type PinJointImplementer interface {
-	Class
 }

@@ -2,9 +2,11 @@ package viewport
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/container"
+	"github.com/shadowapex/godot-go/godot/class/inputevent"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewViewportContainerFromPointer(ptr gdnative.Pointer) *ViewportContainer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ViewportContainer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type ViewportContainer struct {
-	Container
+	container.Container
 }
 
 func (o *ViewportContainer) BaseClass() string {
@@ -28,102 +39,119 @@ func (o *ViewportContainer) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false event InputEvent}], Returns: void
 */
-func (o *ViewportContainer) X_Input(event *InputEvent) {
+
+func (o *ViewportContainer) X_Input(event inputevent.InputEvent) {
 	log.Println("Calling ViewportContainer.X_Input()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(event)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(event.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ViewportContainer", "_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *ViewportContainer) GetStretchShrink() gdnative.Int {
 	log.Println("Calling ViewportContainer.GetStretchShrink()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ViewportContainer", "get_stretch_shrink")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_stretch_shrink", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *ViewportContainer) IsStretchEnabled() gdnative.Bool {
 	log.Println("Calling ViewportContainer.IsStretchEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ViewportContainer", "is_stretch_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_stretch_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *ViewportContainer) SetStretch(enable gdnative.Bool) {
 	log.Println("Calling ViewportContainer.SetStretch()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ViewportContainer", "set_stretch")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_stretch", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount int}], Returns: void
 */
+
 func (o *ViewportContainer) SetStretchShrink(amount gdnative.Int) {
 	log.Println("Calling ViewportContainer.SetStretchShrink()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ViewportContainer", "set_stretch_shrink")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_stretch_shrink", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ViewportContainerImplementer is an interface for ViewportContainer objects.
-*/
-type ViewportContainerImplementer interface {
-	Class
 }

@@ -2,9 +2,9 @@ package linkbutton
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/basebutton"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewLinkButtonFromPointer(ptr gdnative.Pointer) *LinkButton {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := LinkButton{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 This kind of buttons are primarily used when the interaction with the button causes a context change (like linking to a web page).
 */
 type LinkButton struct {
-	BaseButton
+	basebutton.BaseButton
 }
 
 func (o *LinkButton) BaseClass() string {
@@ -28,84 +37,76 @@ func (o *LinkButton) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *LinkButton) GetText() gdnative.String {
 	log.Println("Calling LinkButton.GetText()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LinkButton", "get_text")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_text", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.LinkButton::UnderlineMode
 */
-func (o *LinkButton) GetUnderlineMode() gdnative.Int {
-	log.Println("Calling LinkButton.GetUnderlineMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_underline_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false text String}], Returns: void
 */
+
 func (o *LinkButton) SetText(text gdnative.String) {
 	log.Println("Calling LinkButton.SetText()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(text)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(text)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LinkButton", "set_text")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_text", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false underline_mode int}], Returns: void
 */
+
 func (o *LinkButton) SetUnderlineMode(underlineMode gdnative.Int) {
 	log.Println("Calling LinkButton.SetUnderlineMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(underlineMode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(underlineMode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LinkButton", "set_underline_mode")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_underline_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   LinkButtonImplementer is an interface for LinkButton objects.
-*/
-type LinkButtonImplementer interface {
-	Class
 }

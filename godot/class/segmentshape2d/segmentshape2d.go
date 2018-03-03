@@ -2,7 +2,9 @@ package segmentshape2d
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/shape2d"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewSegmentShape2DFromPointer(ptr gdnative.Pointer) *SegmentShape2D {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := SegmentShape2D{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Segment shape for 2D collisions. Consists of two points, [code]a[/code] and [code]b[/code].
 */
 type SegmentShape2D struct {
-	Shape2D
+	shape2d.Shape2D
 }
 
 func (o *SegmentShape2D) BaseClass() string {
@@ -26,84 +37,97 @@ func (o *SegmentShape2D) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *SegmentShape2D) GetA() *Vector2 {
+
+func (o *SegmentShape2D) GetA() gdnative.Vector2 {
 	log.Println("Calling SegmentShape2D.GetA()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SegmentShape2D", "get_a")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_a", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *SegmentShape2D) GetB() *Vector2 {
+
+func (o *SegmentShape2D) GetB() gdnative.Vector2 {
 	log.Println("Calling SegmentShape2D.GetB()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SegmentShape2D", "get_b")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_b", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false a Vector2}], Returns: void
 */
-func (o *SegmentShape2D) SetA(a *Vector2) {
+
+func (o *SegmentShape2D) SetA(a gdnative.Vector2) {
 	log.Println("Calling SegmentShape2D.SetA()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(a)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(a)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SegmentShape2D", "set_a")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_a", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false b Vector2}], Returns: void
 */
-func (o *SegmentShape2D) SetB(b *Vector2) {
+
+func (o *SegmentShape2D) SetB(b gdnative.Vector2) {
 	log.Println("Calling SegmentShape2D.SetB()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(b)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(b)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SegmentShape2D", "set_b")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_b", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   SegmentShape2DImplementer is an interface for SegmentShape2D objects.
-*/
-type SegmentShape2DImplementer interface {
-	Class
 }

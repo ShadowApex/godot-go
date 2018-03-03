@@ -2,9 +2,15 @@ package acceptdialog
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/button"
+	"github.com/shadowapex/godot-go/godot/class/windowdialog"
+
+	"github.com/shadowapex/godot-go/godot/class/label"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +22,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewAcceptDialogFromPointer(ptr gdnative.Pointer) *AcceptDialog {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := AcceptDialog{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 This dialog is useful for small notifications to the user about an event. It can only be accepted or closed, with the same result.
 */
 type AcceptDialog struct {
-	WindowDialog
+	windowdialog.WindowDialog
 }
 
 func (o *AcceptDialog) BaseClass() string {
@@ -28,239 +43,292 @@ func (o *AcceptDialog) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 String}], Returns: void
 */
+
 func (o *AcceptDialog) X_BuiltinTextEntered(arg0 gdnative.String) {
 	log.Println("Calling AcceptDialog.X_BuiltinTextEntered()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AcceptDialog", "_builtin_text_entered")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_builtin_text_entered", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 String}], Returns: void
 */
+
 func (o *AcceptDialog) X_CustomAction(arg0 gdnative.String) {
 	log.Println("Calling AcceptDialog.X_CustomAction()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AcceptDialog", "_custom_action")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_custom_action", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *AcceptDialog) X_Ok() {
 	log.Println("Calling AcceptDialog.X_Ok()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AcceptDialog", "_ok")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_ok", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a button with label [i]text[/i] and a custom [i]action[/i] to the dialog and returns the created button. [i]action[/i] will be passed to the [custom_action] signal when pressed. If [code]true[/code], [i]right[/i] will place the button to the right of any sibling buttons. Default value: [code]false[/code].
+        Adds a button with label [i]text[/i] and a custom [i]action[/i] to the dialog and returns the created button. [i]action[/i] will be passed to the [custom_action] signal when pressed. If [code]true[/code], [i]right[/i] will place the button to the right of any sibling buttons. Default value: [code]false[/code].
+	Args: [{ false text String} {False true right bool} { true action String}], Returns: Button
 */
-func (o *AcceptDialog) AddButton(text gdnative.String, right gdnative.Bool, action gdnative.String) *Button {
+
+func (o *AcceptDialog) AddButton(text gdnative.String, right gdnative.Bool, action gdnative.String) button.Button {
 	log.Println("Calling AcceptDialog.AddButton()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(text)
-	goArguments[1] = reflect.ValueOf(right)
-	goArguments[2] = reflect.ValueOf(action)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(text)
+	ptrArguments[1] = gdnative.NewPointerFromBool(right)
+	ptrArguments[2] = gdnative.NewPointerFromString(action)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AcceptDialog", "add_button")
 
 	// Call the parent method.
+	// Button
+	retPtr := button.NewEmptyButton()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "add_button", goArguments, "*Button")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := button.NewButtonFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Button)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Adds a button with label [i]name[/i] and a cancel action to the dialog and returns the created button.
+        Adds a button with label [i]name[/i] and a cancel action to the dialog and returns the created button.
+	Args: [{ false name String}], Returns: Button
 */
-func (o *AcceptDialog) AddCancel(name gdnative.String) *Button {
+
+func (o *AcceptDialog) AddCancel(name gdnative.String) button.Button {
 	log.Println("Calling AcceptDialog.AddCancel()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AcceptDialog", "add_cancel")
 
 	// Call the parent method.
+	// Button
+	retPtr := button.NewEmptyButton()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "add_cancel", goArguments, "*Button")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := button.NewButtonFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Button)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *AcceptDialog) GetHideOnOk() gdnative.Bool {
 	log.Println("Calling AcceptDialog.GetHideOnOk()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AcceptDialog", "get_hide_on_ok")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_hide_on_ok", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the label used for built-in text.
+        Return the label used for built-in text.
+	Args: [], Returns: Label
 */
-func (o *AcceptDialog) GetLabel() *Label {
+
+func (o *AcceptDialog) GetLabel() label.Label {
 	log.Println("Calling AcceptDialog.GetLabel()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AcceptDialog", "get_label")
 
 	// Call the parent method.
+	// Label
+	retPtr := label.NewEmptyLabel()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_label", goArguments, "*Label")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := label.NewLabelFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Label)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the OK Button.
+        Return the OK Button.
+	Args: [], Returns: Button
 */
-func (o *AcceptDialog) GetOk() *Button {
+
+func (o *AcceptDialog) GetOk() button.Button {
 	log.Println("Calling AcceptDialog.GetOk()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AcceptDialog", "get_ok")
 
 	// Call the parent method.
+	// Button
+	retPtr := button.NewEmptyButton()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_ok", goArguments, "*Button")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := button.NewButtonFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Button)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *AcceptDialog) GetText() gdnative.String {
 	log.Println("Calling AcceptDialog.GetText()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AcceptDialog", "get_text")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_text", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Registers a [LineEdit] in the dialog. When the enter key is pressed, the dialog will be accepted.
+        Registers a [LineEdit] in the dialog. When the enter key is pressed, the dialog will be accepted.
+	Args: [{ false line_edit Object}], Returns: void
 */
-func (o *AcceptDialog) RegisterTextEnter(lineEdit *Object) {
+
+func (o *AcceptDialog) RegisterTextEnter(lineEdit object.Object) {
 	log.Println("Calling AcceptDialog.RegisterTextEnter()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(lineEdit)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(lineEdit.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AcceptDialog", "register_text_enter")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "register_text_enter", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enabled bool}], Returns: void
 */
+
 func (o *AcceptDialog) SetHideOnOk(enabled gdnative.Bool) {
 	log.Println("Calling AcceptDialog.SetHideOnOk()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AcceptDialog", "set_hide_on_ok")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_hide_on_ok", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false text String}], Returns: void
 */
+
 func (o *AcceptDialog) SetText(text gdnative.String) {
 	log.Println("Calling AcceptDialog.SetText()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(text)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(text)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AcceptDialog", "set_text")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_text", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   AcceptDialogImplementer is an interface for AcceptDialog objects.
-*/
-type AcceptDialogImplementer interface {
-	Class
 }

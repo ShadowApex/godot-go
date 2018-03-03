@@ -1,10 +1,8 @@
 package pckpacker
 
 import (
-	"log"
-	"reflect"
-
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +14,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPCKPackerFromPointer(ptr gdnative.Pointer) *PCKPacker {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := PCKPacker{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type PCKPacker struct {
-	Reference
+	reference.Reference
 }
 
 func (o *PCKPacker) BaseClass() string {
@@ -29,72 +36,15 @@ func (o *PCKPacker) BaseClass() string {
 
 /*
 
- */
-func (o *PCKPacker) AddFile(pckPath gdnative.String, sourcePath gdnative.String) gdnative.Int {
-	log.Println("Calling PCKPacker.AddFile()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(pckPath)
-	goArguments[1] = reflect.ValueOf(sourcePath)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "add_file", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *PCKPacker) Flush(verbose gdnative.Bool) gdnative.Int {
-	log.Println("Calling PCKPacker.Flush()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(verbose)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "flush", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-
- */
-func (o *PCKPacker) PckStart(pckName gdnative.String, alignment gdnative.Int) gdnative.Int {
-	log.Println("Calling PCKPacker.PckStart()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(pckName)
-	goArguments[1] = reflect.ValueOf(alignment)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "pck_start", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   PCKPackerImplementer is an interface for PCKPacker objects.
+	Args: [{ false pck_path String} { false source_path String}], Returns: enum.Error
 */
-type PCKPackerImplementer interface {
-	Class
-}
+
+/*
+
+	Args: [{ false verbose bool}], Returns: enum.Error
+*/
+
+/*
+
+	Args: [{ false pck_name String} { false alignment int}], Returns: enum.Error
+*/

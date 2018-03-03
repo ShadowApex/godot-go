@@ -2,9 +2,9 @@ package spatial
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewSpatialVelocityTrackerFromPointer(ptr gdnative.Pointer) *SpatialVelocityTracker {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := SpatialVelocityTracker{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type SpatialVelocityTracker struct {
-	Reference
+	reference.Reference
 }
 
 func (o *SpatialVelocityTracker) BaseClass() string {
@@ -29,101 +38,118 @@ func (o *SpatialVelocityTracker) BaseClass() string {
 
 /*
 
- */
-func (o *SpatialVelocityTracker) GetTrackedLinearVelocity() *Vector3 {
+	Args: [], Returns: Vector3
+*/
+
+func (o *SpatialVelocityTracker) GetTrackedLinearVelocity() gdnative.Vector3 {
 	log.Println("Calling SpatialVelocityTracker.GetTrackedLinearVelocity()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpatialVelocityTracker", "get_tracked_linear_velocity")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tracked_linear_velocity", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *SpatialVelocityTracker) IsTrackingPhysicsStep() gdnative.Bool {
 	log.Println("Calling SpatialVelocityTracker.IsTrackingPhysicsStep()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpatialVelocityTracker", "is_tracking_physics_step")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_tracking_physics_step", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *SpatialVelocityTracker) Reset(position *Vector3) {
+	Args: [{ false position Vector3}], Returns: void
+*/
+
+func (o *SpatialVelocityTracker) Reset(position gdnative.Vector3) {
 	log.Println("Calling SpatialVelocityTracker.Reset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpatialVelocityTracker", "reset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "reset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *SpatialVelocityTracker) SetTrackPhysicsStep(enable gdnative.Bool) {
 	log.Println("Calling SpatialVelocityTracker.SetTrackPhysicsStep()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpatialVelocityTracker", "set_track_physics_step")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_track_physics_step", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *SpatialVelocityTracker) UpdatePosition(position *Vector3) {
+	Args: [{ false position Vector3}], Returns: void
+*/
+
+func (o *SpatialVelocityTracker) UpdatePosition(position gdnative.Vector3) {
 	log.Println("Calling SpatialVelocityTracker.UpdatePosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpatialVelocityTracker", "update_position")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "update_position", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   SpatialVelocityTrackerImplementer is an interface for SpatialVelocityTracker objects.
-*/
-type SpatialVelocityTrackerImplementer interface {
-	Class
 }

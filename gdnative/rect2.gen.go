@@ -38,6 +38,14 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewEmptyRect2 will return a pointer to an empty
+// initialized Rect2. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyRect2() Pointer {
+	var obj C.godot_rect2
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromRect2 will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromRect2(obj Rect2) Pointer {

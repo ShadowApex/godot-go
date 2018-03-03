@@ -2,9 +2,9 @@ package javascript
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -15,6 +15,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewjavaScriptFromPointer(ptr gdnative.Pointer) *javaScript {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := javaScript{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 func newSingletonJavaScript() *javaScript {
 	obj := &javaScript{}
@@ -32,7 +41,7 @@ var JavaScript = newSingletonJavaScript()
 The JavaScript singleton is implemented only in HTML5 export. It's used to access the browser's JavaScript context. This allows interaction with embedding pages or calling third-party JavaScript APIs.
 */
 type javaScript struct {
-	Object
+	object.Object
 }
 
 func (o *javaScript) BaseClass() string {
@@ -40,23 +49,29 @@ func (o *javaScript) BaseClass() string {
 }
 
 /*
-   Execute the string [code]code[/code] as JavaScript code within the browser window. This is a call to the actual global JavaScript function [code]eval()[/code]. If [code]use_global_execution_context[/code] is [code]true[/code], the code will be evaluated in the global execution context. Otherwise, it is evaluated in the execution context of a function within the engine's runtime environment.
+        Execute the string [code]code[/code] as JavaScript code within the browser window. This is a call to the actual global JavaScript function [code]eval()[/code]. If [code]use_global_execution_context[/code] is [code]true[/code], the code will be evaluated in the global execution context. Otherwise, it is evaluated in the execution context of a function within the engine's runtime environment.
+	Args: [{ false code String} {False true use_global_execution_context bool}], Returns: Variant
 */
-func (o *javaScript) Eval(code gdnative.String, useGlobalExecutionContext gdnative.Bool) *Variant {
+
+func (o *javaScript) Eval(code gdnative.String, useGlobalExecutionContext gdnative.Bool) gdnative.Variant {
 	log.Println("Calling JavaScript.Eval()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(code)
-	goArguments[1] = reflect.ValueOf(useGlobalExecutionContext)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(code)
+	ptrArguments[1] = gdnative.NewPointerFromBool(useGlobalExecutionContext)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("JavaScript", "eval")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "eval", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }

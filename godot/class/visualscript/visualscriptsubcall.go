@@ -2,7 +2,8 @@ package visualscript
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
 )
 
 /*------------------------------------------------------------------------------
@@ -13,6 +14,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewVisualScriptSubCallFromPointer(ptr gdnative.Pointer) *VisualScriptSubCall {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := VisualScriptSubCall{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 /*
 Undocumented
@@ -26,29 +36,28 @@ func (o *VisualScriptSubCall) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arguments Variant}], Returns: Variant
 */
-func (o *VisualScriptSubCall) X_Subcall(arguments *Variant) *Variant {
+
+func (o *VisualScriptSubCall) X_Subcall(arguments gdnative.Variant) gdnative.Variant {
 	log.Println("Calling VisualScriptSubCall.X_Subcall()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arguments)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVariant(arguments)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptSubCall", "_subcall")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_subcall", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   VisualScriptSubCallImplementer is an interface for VisualScriptSubCall objects.
-*/
-type VisualScriptSubCallImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

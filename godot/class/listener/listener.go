@@ -2,9 +2,9 @@ package listener
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/spatial"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewListenerFromPointer(ptr gdnative.Pointer) *Listener {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Listener{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type Listener struct {
-	Spatial
+	spatial.Spatial
 }
 
 func (o *Listener) BaseClass() string {
@@ -29,81 +38,94 @@ func (o *Listener) BaseClass() string {
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *Listener) ClearCurrent() {
 	log.Println("Calling Listener.ClearCurrent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Listener", "clear_current")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear_current", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *Listener) GetListenerTransform() *Transform {
+	Args: [], Returns: Transform
+*/
+
+func (o *Listener) GetListenerTransform() gdnative.Transform {
 	log.Println("Calling Listener.GetListenerTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Listener", "get_listener_transform")
 
 	// Call the parent method.
+	// Transform
+	retPtr := gdnative.NewEmptyTransform()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_listener_transform", goArguments, "*Transform")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransformFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: bool
+*/
+
 func (o *Listener) IsCurrent() gdnative.Bool {
 	log.Println("Calling Listener.IsCurrent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Listener", "is_current")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_current", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *Listener) MakeCurrent() {
 	log.Println("Calling Listener.MakeCurrent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Listener", "make_current")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "make_current", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ListenerImplementer is an interface for Listener objects.
-*/
-type ListenerImplementer interface {
-	Class
 }

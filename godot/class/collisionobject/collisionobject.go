@@ -2,9 +2,15 @@ package collisionobject
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/shape"
+	"github.com/shadowapex/godot-go/godot/class/spatial"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
+
+	"github.com/shadowapex/godot-go/godot/class/inputevent"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +22,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewCollisionObjectFromPointer(ptr gdnative.Pointer) *CollisionObject {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := CollisionObject{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 CollisionObject is the base class for physics objects. It can hold any number of collision [Shape]s. Each shape must be assigned to a [i]shape owner[/i]. The CollisionObject can have any number of shape owners. Shape owners are not nodes and do not appear in the editor, but are accessible through code using the [code]shape_owner_*[/code] methods.
 */
 type CollisionObject struct {
-	Spatial
+	spatial.Spatial
 }
 
 func (o *CollisionObject) BaseClass() string {
@@ -28,428 +43,529 @@ func (o *CollisionObject) BaseClass() string {
 }
 
 /*
-   Accepts unhandled [InputEvent]s. [code]click_position[/code] is the clicked location in world space and [code]click_normal[/code] is the normal vector extending from the clicked surface of the [Shape] at [code]shape_idx[/code]. Connect to the [code]input_event[/code] signal to easily pick up these events.
+        Accepts unhandled [InputEvent]s. [code]click_position[/code] is the clicked location in world space and [code]click_normal[/code] is the normal vector extending from the clicked surface of the [Shape] at [code]shape_idx[/code]. Connect to the [code]input_event[/code] signal to easily pick up these events.
+	Args: [{ false camera Object} { false event InputEvent} { false click_position Vector3} { false click_normal Vector3} { false shape_idx int}], Returns: void
 */
-func (o *CollisionObject) X_InputEvent(camera *Object, event *InputEvent, clickPosition *Vector3, clickNormal *Vector3, shapeIdx gdnative.Int) {
+
+func (o *CollisionObject) X_InputEvent(camera object.Object, event inputevent.InputEvent, clickPosition gdnative.Vector3, clickNormal gdnative.Vector3, shapeIdx gdnative.Int) {
 	log.Println("Calling CollisionObject.X_InputEvent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(camera)
-	goArguments[1] = reflect.ValueOf(event)
-	goArguments[2] = reflect.ValueOf(clickPosition)
-	goArguments[3] = reflect.ValueOf(clickNormal)
-	goArguments[4] = reflect.ValueOf(shapeIdx)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromObject(camera.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromObject(event.GetOwner())
+	ptrArguments[2] = gdnative.NewPointerFromVector3(clickPosition)
+	ptrArguments[3] = gdnative.NewPointerFromVector3(clickNormal)
+	ptrArguments[4] = gdnative.NewPointerFromInt(shapeIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "_input_event")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_input_event", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Creates a new shape owner for the given object. Returns [code]owner_id[/code] of the new owner for future reference.
+        Creates a new shape owner for the given object. Returns [code]owner_id[/code] of the new owner for future reference.
+	Args: [{ false owner Object}], Returns: int
 */
-func (o *CollisionObject) CreateShapeOwner(owner *Object) gdnative.Int {
+
+func (o *CollisionObject) CreateShapeOwner(owner object.Object) gdnative.Int {
 	log.Println("Calling CollisionObject.CreateShapeOwner()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(owner)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(owner.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "create_shape_owner")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "create_shape_owner", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *CollisionObject) GetCaptureInputOnDrag() gdnative.Bool {
 	log.Println("Calling CollisionObject.GetCaptureInputOnDrag()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "get_capture_input_on_drag")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_capture_input_on_drag", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the object's [RID].
+        Returns the object's [RID].
+	Args: [], Returns: RID
 */
-func (o *CollisionObject) GetRid() *RID {
+
+func (o *CollisionObject) GetRid() gdnative.RID {
 	log.Println("Calling CollisionObject.GetRid()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "get_rid")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_rid", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns an [Array] of [code]owner_id[/code] identifiers. You can use these ids in other methods that take [code]owner_id[/code] as an argument.
+        Returns an [Array] of [code]owner_id[/code] identifiers. You can use these ids in other methods that take [code]owner_id[/code] as an argument.
+	Args: [], Returns: Array
 */
-func (o *CollisionObject) GetShapeOwners() *Array {
+
+func (o *CollisionObject) GetShapeOwners() gdnative.Array {
 	log.Println("Calling CollisionObject.GetShapeOwners()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "get_shape_owners")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_shape_owners", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *CollisionObject) IsRayPickable() gdnative.Bool {
 	log.Println("Calling CollisionObject.IsRayPickable()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "is_ray_pickable")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_ray_pickable", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   If [code]true[/code] the shape owner and its shapes are disabled.
+        If [code]true[/code] the shape owner and its shapes are disabled.
+	Args: [{ false owner_id int}], Returns: bool
 */
+
 func (o *CollisionObject) IsShapeOwnerDisabled(ownerId gdnative.Int) gdnative.Bool {
 	log.Println("Calling CollisionObject.IsShapeOwnerDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ownerId)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(ownerId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "is_shape_owner_disabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_shape_owner_disabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Removes the given shape owner.
+        Removes the given shape owner.
+	Args: [{ false owner_id int}], Returns: void
 */
+
 func (o *CollisionObject) RemoveShapeOwner(ownerId gdnative.Int) {
 	log.Println("Calling CollisionObject.RemoveShapeOwner()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ownerId)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(ownerId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "remove_shape_owner")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_shape_owner", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *CollisionObject) SetCaptureInputOnDrag(enable gdnative.Bool) {
 	log.Println("Calling CollisionObject.SetCaptureInputOnDrag()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "set_capture_input_on_drag")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_capture_input_on_drag", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false ray_pickable bool}], Returns: void
 */
+
 func (o *CollisionObject) SetRayPickable(rayPickable gdnative.Bool) {
 	log.Println("Calling CollisionObject.SetRayPickable()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(rayPickable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(rayPickable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "set_ray_pickable")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_ray_pickable", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the [code]owner_id[/code] of the given shape.
+        Returns the [code]owner_id[/code] of the given shape.
+	Args: [{ false shape_index int}], Returns: int
 */
+
 func (o *CollisionObject) ShapeFindOwner(shapeIndex gdnative.Int) gdnative.Int {
 	log.Println("Calling CollisionObject.ShapeFindOwner()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(shapeIndex)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(shapeIndex)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "shape_find_owner")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "shape_find_owner", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Adds a [Shape] to the shape owner.
+        Adds a [Shape] to the shape owner.
+	Args: [{ false owner_id int} { false shape Shape}], Returns: void
 */
-func (o *CollisionObject) ShapeOwnerAddShape(ownerId gdnative.Int, shape *Shape) {
+
+func (o *CollisionObject) ShapeOwnerAddShape(ownerId gdnative.Int, shape shape.Shape) {
 	log.Println("Calling CollisionObject.ShapeOwnerAddShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(ownerId)
-	goArguments[1] = reflect.ValueOf(shape)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(ownerId)
+	ptrArguments[1] = gdnative.NewPointerFromObject(shape.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "shape_owner_add_shape")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "shape_owner_add_shape", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Removes all shapes from the shape owner.
+        Removes all shapes from the shape owner.
+	Args: [{ false owner_id int}], Returns: void
 */
+
 func (o *CollisionObject) ShapeOwnerClearShapes(ownerId gdnative.Int) {
 	log.Println("Calling CollisionObject.ShapeOwnerClearShapes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ownerId)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(ownerId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "shape_owner_clear_shapes")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "shape_owner_clear_shapes", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the parent object of the given shape owner.
+        Returns the parent object of the given shape owner.
+	Args: [{ false owner_id int}], Returns: Object
 */
-func (o *CollisionObject) ShapeOwnerGetOwner(ownerId gdnative.Int) *Object {
+
+func (o *CollisionObject) ShapeOwnerGetOwner(ownerId gdnative.Int) object.Object {
 	log.Println("Calling CollisionObject.ShapeOwnerGetOwner()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ownerId)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(ownerId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "shape_owner_get_owner")
 
 	// Call the parent method.
+	// Object
+	retPtr := object.NewEmptyObject()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "shape_owner_get_owner", goArguments, "*Object")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := object.NewObjectFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Object)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the [Shape] with the given id from the given shape owner.
+        Returns the [Shape] with the given id from the given shape owner.
+	Args: [{ false owner_id int} { false shape_id int}], Returns: Shape
 */
-func (o *CollisionObject) ShapeOwnerGetShape(ownerId gdnative.Int, shapeId gdnative.Int) *Shape {
+
+func (o *CollisionObject) ShapeOwnerGetShape(ownerId gdnative.Int, shapeId gdnative.Int) shape.Shape {
 	log.Println("Calling CollisionObject.ShapeOwnerGetShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(ownerId)
-	goArguments[1] = reflect.ValueOf(shapeId)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(ownerId)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "shape_owner_get_shape")
 
 	// Call the parent method.
+	// Shape
+	retPtr := shape.NewEmptyShape()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "shape_owner_get_shape", goArguments, "*Shape")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := shape.NewShapeFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Shape)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the number of shapes the given shape owner contains.
+        Returns the number of shapes the given shape owner contains.
+	Args: [{ false owner_id int}], Returns: int
 */
+
 func (o *CollisionObject) ShapeOwnerGetShapeCount(ownerId gdnative.Int) gdnative.Int {
 	log.Println("Calling CollisionObject.ShapeOwnerGetShapeCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ownerId)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(ownerId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "shape_owner_get_shape_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "shape_owner_get_shape_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the child index of the [Shape] with the given id from the given shape owner.
+        Returns the child index of the [Shape] with the given id from the given shape owner.
+	Args: [{ false owner_id int} { false shape_id int}], Returns: int
 */
+
 func (o *CollisionObject) ShapeOwnerGetShapeIndex(ownerId gdnative.Int, shapeId gdnative.Int) gdnative.Int {
 	log.Println("Calling CollisionObject.ShapeOwnerGetShapeIndex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(ownerId)
-	goArguments[1] = reflect.ValueOf(shapeId)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(ownerId)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "shape_owner_get_shape_index")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "shape_owner_get_shape_index", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the shape owner's [Transform].
+        Returns the shape owner's [Transform].
+	Args: [{ false owner_id int}], Returns: Transform
 */
-func (o *CollisionObject) ShapeOwnerGetTransform(ownerId gdnative.Int) *Transform {
+
+func (o *CollisionObject) ShapeOwnerGetTransform(ownerId gdnative.Int) gdnative.Transform {
 	log.Println("Calling CollisionObject.ShapeOwnerGetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ownerId)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(ownerId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "shape_owner_get_transform")
 
 	// Call the parent method.
+	// Transform
+	retPtr := gdnative.NewEmptyTransform()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "shape_owner_get_transform", goArguments, "*Transform")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransformFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Removes a shape from the given shape owner.
+        Removes a shape from the given shape owner.
+	Args: [{ false owner_id int} { false shape_id int}], Returns: void
 */
+
 func (o *CollisionObject) ShapeOwnerRemoveShape(ownerId gdnative.Int, shapeId gdnative.Int) {
 	log.Println("Calling CollisionObject.ShapeOwnerRemoveShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(ownerId)
-	goArguments[1] = reflect.ValueOf(shapeId)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(ownerId)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "shape_owner_remove_shape")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "shape_owner_remove_shape", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]true[/code] disables the given shape owner.
+        If [code]true[/code] disables the given shape owner.
+	Args: [{ false owner_id int} { false disabled bool}], Returns: void
 */
+
 func (o *CollisionObject) ShapeOwnerSetDisabled(ownerId gdnative.Int, disabled gdnative.Bool) {
 	log.Println("Calling CollisionObject.ShapeOwnerSetDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(ownerId)
-	goArguments[1] = reflect.ValueOf(disabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(ownerId)
+	ptrArguments[1] = gdnative.NewPointerFromBool(disabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "shape_owner_set_disabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "shape_owner_set_disabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the [Transform] of the given shape owner.
+        Sets the [Transform] of the given shape owner.
+	Args: [{ false owner_id int} { false transform Transform}], Returns: void
 */
-func (o *CollisionObject) ShapeOwnerSetTransform(ownerId gdnative.Int, transform *Transform) {
+
+func (o *CollisionObject) ShapeOwnerSetTransform(ownerId gdnative.Int, transform gdnative.Transform) {
 	log.Println("Calling CollisionObject.ShapeOwnerSetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(ownerId)
-	goArguments[1] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(ownerId)
+	ptrArguments[1] = gdnative.NewPointerFromTransform(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionObject", "shape_owner_set_transform")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "shape_owner_set_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   CollisionObjectImplementer is an interface for CollisionObject objects.
-*/
-type CollisionObjectImplementer interface {
-	Class
 }

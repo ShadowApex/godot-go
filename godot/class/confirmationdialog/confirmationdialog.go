@@ -2,7 +2,11 @@ package confirmationdialog
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/acceptdialog"
+	"github.com/shadowapex/godot-go/godot/class/button"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewConfirmationDialogFromPointer(ptr gdnative.Pointer) *ConfirmationDialog {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ConfirmationDialog{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Dialog for confirmation of actions. This dialog inherits from [AcceptDialog], but has by default an OK and Cancel button (in host OS order).
 */
 type ConfirmationDialog struct {
-	AcceptDialog
+	acceptdialog.AcceptDialog
 }
 
 func (o *ConfirmationDialog) BaseClass() string {
@@ -26,28 +39,27 @@ func (o *ConfirmationDialog) BaseClass() string {
 }
 
 /*
-   Return the cancel button.
+        Return the cancel button.
+	Args: [], Returns: Button
 */
-func (o *ConfirmationDialog) GetCancel() *Button {
+
+func (o *ConfirmationDialog) GetCancel() button.Button {
 	log.Println("Calling ConfirmationDialog.GetCancel()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ConfirmationDialog", "get_cancel")
 
 	// Call the parent method.
+	// Button
+	retPtr := button.NewEmptyButton()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_cancel", goArguments, "*Button")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := button.NewButtonFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Button)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   ConfirmationDialogImplementer is an interface for ConfirmationDialog objects.
-*/
-type ConfirmationDialogImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

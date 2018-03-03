@@ -2,9 +2,9 @@ package regex
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewRegExFromPointer(ptr gdnative.Pointer) *RegEx {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := RegEx{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
 type RegEx struct {
-	Reference
+	reference.Reference
 }
 
 func (o *RegEx) BaseClass() string {
@@ -28,197 +37,220 @@ func (o *RegEx) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *RegEx) Clear() {
 	log.Println("Calling RegEx.Clear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RegEx", "clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false pattern String}], Returns: enum.Error
 */
-func (o *RegEx) Compile(pattern gdnative.String) gdnative.Int {
-	log.Println("Calling RegEx.Compile()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pattern)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "compile", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *RegEx) GetGroupCount() gdnative.Int {
 	log.Println("Calling RegEx.GetGroupCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RegEx", "get_group_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_group_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Array
 */
-func (o *RegEx) GetNames() *Array {
+
+func (o *RegEx) GetNames() gdnative.Array {
 	log.Println("Calling RegEx.GetNames()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RegEx", "get_names")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_names", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *RegEx) GetPattern() gdnative.String {
 	log.Println("Calling RegEx.GetPattern()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RegEx", "get_pattern")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_pattern", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *RegEx) IsValid() gdnative.Bool {
 	log.Println("Calling RegEx.IsValid()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RegEx", "is_valid")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_valid", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false subject String} {0 true offset int} {-1 true end int}], Returns: RegExMatch
 */
-func (o *RegEx) Search(subject gdnative.String, offset gdnative.Int, end gdnative.Int) *RegExMatch {
+
+func (o *RegEx) Search(subject gdnative.String, offset gdnative.Int, end gdnative.Int) RegExMatch {
 	log.Println("Calling RegEx.Search()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(subject)
-	goArguments[1] = reflect.ValueOf(offset)
-	goArguments[2] = reflect.ValueOf(end)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(subject)
+	ptrArguments[1] = gdnative.NewPointerFromInt(offset)
+	ptrArguments[2] = gdnative.NewPointerFromInt(end)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RegEx", "search")
 
 	// Call the parent method.
+	// RegExMatch
+	retPtr := NewEmptyRegExMatch()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "search", goArguments, "*RegExMatch")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewRegExMatchFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RegExMatch)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false subject String} {0 true offset int} {-1 true end int}], Returns: Array
 */
-func (o *RegEx) SearchAll(subject gdnative.String, offset gdnative.Int, end gdnative.Int) *Array {
+
+func (o *RegEx) SearchAll(subject gdnative.String, offset gdnative.Int, end gdnative.Int) gdnative.Array {
 	log.Println("Calling RegEx.SearchAll()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(subject)
-	goArguments[1] = reflect.ValueOf(offset)
-	goArguments[2] = reflect.ValueOf(end)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(subject)
+	ptrArguments[1] = gdnative.NewPointerFromInt(offset)
+	ptrArguments[2] = gdnative.NewPointerFromInt(end)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RegEx", "search_all")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "search_all", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false subject String} { false replacement String} {False true all bool} {0 true offset int} {-1 true end int}], Returns: String
 */
+
 func (o *RegEx) Sub(subject gdnative.String, replacement gdnative.String, all gdnative.Bool, offset gdnative.Int, end gdnative.Int) gdnative.String {
 	log.Println("Calling RegEx.Sub()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(subject)
-	goArguments[1] = reflect.ValueOf(replacement)
-	goArguments[2] = reflect.ValueOf(all)
-	goArguments[3] = reflect.ValueOf(offset)
-	goArguments[4] = reflect.ValueOf(end)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromString(subject)
+	ptrArguments[1] = gdnative.NewPointerFromString(replacement)
+	ptrArguments[2] = gdnative.NewPointerFromBool(all)
+	ptrArguments[3] = gdnative.NewPointerFromInt(offset)
+	ptrArguments[4] = gdnative.NewPointerFromInt(end)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RegEx", "sub")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "sub", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   RegExImplementer is an interface for RegEx objects.
-*/
-type RegExImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

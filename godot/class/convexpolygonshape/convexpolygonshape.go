@@ -2,7 +2,9 @@ package convexpolygonshape
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/shape"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewConvexPolygonShapeFromPointer(ptr gdnative.Pointer) *ConvexPolygonShape {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ConvexPolygonShape{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Convex polygon shape resource, which can be added to a [PhysicsBody] or area.
 */
 type ConvexPolygonShape struct {
-	Shape
+	shape.Shape
 }
 
 func (o *ConvexPolygonShape) BaseClass() string {
@@ -26,46 +37,49 @@ func (o *ConvexPolygonShape) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolVector3Array
 */
-func (o *ConvexPolygonShape) GetPoints() *PoolVector3Array {
+
+func (o *ConvexPolygonShape) GetPoints() gdnative.PoolVector3Array {
 	log.Println("Calling ConvexPolygonShape.GetPoints()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ConvexPolygonShape", "get_points")
 
 	// Call the parent method.
+	// PoolVector3Array
+	retPtr := gdnative.NewEmptyPoolVector3Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_points", goArguments, "*PoolVector3Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector3ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector3Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false points PoolVector3Array}], Returns: void
 */
-func (o *ConvexPolygonShape) SetPoints(points *PoolVector3Array) {
+
+func (o *ConvexPolygonShape) SetPoints(points gdnative.PoolVector3Array) {
 	log.Println("Calling ConvexPolygonShape.SetPoints()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(points)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector3Array(points)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ConvexPolygonShape", "set_points")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_points", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ConvexPolygonShapeImplementer is an interface for ConvexPolygonShape objects.
-*/
-type ConvexPolygonShapeImplementer interface {
-	Class
 }

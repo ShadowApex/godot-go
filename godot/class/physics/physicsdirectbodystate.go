@@ -2,9 +2,10 @@ package physics
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +17,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPhysicsDirectBodyStateFromPointer(ptr gdnative.Pointer) *PhysicsDirectBodyState {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := PhysicsDirectBodyState{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type PhysicsDirectBodyState struct {
-	Object
+	object.Object
 }
 
 func (o *PhysicsDirectBodyState) BaseClass() string {
@@ -29,621 +39,784 @@ func (o *PhysicsDirectBodyState) BaseClass() string {
 
 /*
 
- */
-func (o *PhysicsDirectBodyState) AddForce(force *Vector3, position *Vector3) {
+	Args: [{ false force Vector3} { false position Vector3}], Returns: void
+*/
+
+func (o *PhysicsDirectBodyState) AddForce(force gdnative.Vector3, position gdnative.Vector3) {
 	log.Println("Calling PhysicsDirectBodyState.AddForce()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(force)
-	goArguments[1] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(force)
+	ptrArguments[1] = gdnative.NewPointerFromVector3(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "add_force")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_force", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *PhysicsDirectBodyState) ApplyImpulse(position *Vector3, j *Vector3) {
+	Args: [{ false position Vector3} { false j Vector3}], Returns: void
+*/
+
+func (o *PhysicsDirectBodyState) ApplyImpulse(position gdnative.Vector3, j gdnative.Vector3) {
 	log.Println("Calling PhysicsDirectBodyState.ApplyImpulse()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(position)
-	goArguments[1] = reflect.ValueOf(j)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(position)
+	ptrArguments[1] = gdnative.NewPointerFromVector3(j)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "apply_impulse")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "apply_impulse", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false j Vector3}], Returns: void
 */
-func (o *PhysicsDirectBodyState) ApplyTorqeImpulse(j *Vector3) {
+
+func (o *PhysicsDirectBodyState) ApplyTorqeImpulse(j gdnative.Vector3) {
 	log.Println("Calling PhysicsDirectBodyState.ApplyTorqeImpulse()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(j)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(j)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "apply_torqe_impulse")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "apply_torqe_impulse", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector3
 */
-func (o *PhysicsDirectBodyState) GetAngularVelocity() *Vector3 {
+
+func (o *PhysicsDirectBodyState) GetAngularVelocity() gdnative.Vector3 {
 	log.Println("Calling PhysicsDirectBodyState.GetAngularVelocity()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_angular_velocity")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_angular_velocity", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector3
 */
-func (o *PhysicsDirectBodyState) GetCenterOfMass() *Vector3 {
+
+func (o *PhysicsDirectBodyState) GetCenterOfMass() gdnative.Vector3 {
 	log.Println("Calling PhysicsDirectBodyState.GetCenterOfMass()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_center_of_mass")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_center_of_mass", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *PhysicsDirectBodyState) GetContactCollider(contactIdx gdnative.Int) *RID {
+	Args: [{ false contact_idx int}], Returns: RID
+*/
+
+func (o *PhysicsDirectBodyState) GetContactCollider(contactIdx gdnative.Int) gdnative.RID {
 	log.Println("Calling PhysicsDirectBodyState.GetContactCollider()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(contactIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(contactIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_contact_collider")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_contact_collider", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false contact_idx int}], Returns: int
+*/
+
 func (o *PhysicsDirectBodyState) GetContactColliderId(contactIdx gdnative.Int) gdnative.Int {
 	log.Println("Calling PhysicsDirectBodyState.GetContactColliderId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(contactIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(contactIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_contact_collider_id")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_contact_collider_id", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *PhysicsDirectBodyState) GetContactColliderObject(contactIdx gdnative.Int) *Object {
+	Args: [{ false contact_idx int}], Returns: Object
+*/
+
+func (o *PhysicsDirectBodyState) GetContactColliderObject(contactIdx gdnative.Int) object.Object {
 	log.Println("Calling PhysicsDirectBodyState.GetContactColliderObject()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(contactIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(contactIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_contact_collider_object")
 
 	// Call the parent method.
+	// Object
+	retPtr := object.NewEmptyObject()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_contact_collider_object", goArguments, "*Object")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := object.NewObjectFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Object)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *PhysicsDirectBodyState) GetContactColliderPosition(contactIdx gdnative.Int) *Vector3 {
+	Args: [{ false contact_idx int}], Returns: Vector3
+*/
+
+func (o *PhysicsDirectBodyState) GetContactColliderPosition(contactIdx gdnative.Int) gdnative.Vector3 {
 	log.Println("Calling PhysicsDirectBodyState.GetContactColliderPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(contactIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(contactIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_contact_collider_position")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_contact_collider_position", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false contact_idx int}], Returns: int
+*/
+
 func (o *PhysicsDirectBodyState) GetContactColliderShape(contactIdx gdnative.Int) gdnative.Int {
 	log.Println("Calling PhysicsDirectBodyState.GetContactColliderShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(contactIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(contactIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_contact_collider_shape")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_contact_collider_shape", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *PhysicsDirectBodyState) GetContactColliderVelocityAtPosition(contactIdx gdnative.Int) *Vector3 {
+	Args: [{ false contact_idx int}], Returns: Vector3
+*/
+
+func (o *PhysicsDirectBodyState) GetContactColliderVelocityAtPosition(contactIdx gdnative.Int) gdnative.Vector3 {
 	log.Println("Calling PhysicsDirectBodyState.GetContactColliderVelocityAtPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(contactIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(contactIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_contact_collider_velocity_at_position")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_contact_collider_velocity_at_position", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: int
+*/
+
 func (o *PhysicsDirectBodyState) GetContactCount() gdnative.Int {
 	log.Println("Calling PhysicsDirectBodyState.GetContactCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_contact_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_contact_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *PhysicsDirectBodyState) GetContactLocalNormal(contactIdx gdnative.Int) *Vector3 {
+	Args: [{ false contact_idx int}], Returns: Vector3
+*/
+
+func (o *PhysicsDirectBodyState) GetContactLocalNormal(contactIdx gdnative.Int) gdnative.Vector3 {
 	log.Println("Calling PhysicsDirectBodyState.GetContactLocalNormal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(contactIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(contactIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_contact_local_normal")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_contact_local_normal", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *PhysicsDirectBodyState) GetContactLocalPosition(contactIdx gdnative.Int) *Vector3 {
+	Args: [{ false contact_idx int}], Returns: Vector3
+*/
+
+func (o *PhysicsDirectBodyState) GetContactLocalPosition(contactIdx gdnative.Int) gdnative.Vector3 {
 	log.Println("Calling PhysicsDirectBodyState.GetContactLocalPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(contactIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(contactIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_contact_local_position")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_contact_local_position", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false contact_idx int}], Returns: int
+*/
+
 func (o *PhysicsDirectBodyState) GetContactLocalShape(contactIdx gdnative.Int) gdnative.Int {
 	log.Println("Calling PhysicsDirectBodyState.GetContactLocalShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(contactIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(contactIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_contact_local_shape")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_contact_local_shape", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector3
 */
-func (o *PhysicsDirectBodyState) GetInverseInertia() *Vector3 {
+
+func (o *PhysicsDirectBodyState) GetInverseInertia() gdnative.Vector3 {
 	log.Println("Calling PhysicsDirectBodyState.GetInverseInertia()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_inverse_inertia")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_inverse_inertia", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *PhysicsDirectBodyState) GetInverseMass() gdnative.Float {
 	log.Println("Calling PhysicsDirectBodyState.GetInverseMass()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_inverse_mass")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_inverse_mass", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector3
 */
-func (o *PhysicsDirectBodyState) GetLinearVelocity() *Vector3 {
+
+func (o *PhysicsDirectBodyState) GetLinearVelocity() gdnative.Vector3 {
 	log.Println("Calling PhysicsDirectBodyState.GetLinearVelocity()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_linear_velocity")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_linear_velocity", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Basis
 */
-func (o *PhysicsDirectBodyState) GetPrincipalInertiaAxes() *Basis {
+
+func (o *PhysicsDirectBodyState) GetPrincipalInertiaAxes() gdnative.Basis {
 	log.Println("Calling PhysicsDirectBodyState.GetPrincipalInertiaAxes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_principal_inertia_axes")
 
 	// Call the parent method.
+	// Basis
+	retPtr := gdnative.NewEmptyBasis()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_principal_inertia_axes", goArguments, "*Basis")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBasisFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Basis)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *PhysicsDirectBodyState) GetSpaceState() *PhysicsDirectSpaceState {
+	Args: [], Returns: PhysicsDirectSpaceState
+*/
+
+func (o *PhysicsDirectBodyState) GetSpaceState() PhysicsDirectSpaceState {
 	log.Println("Calling PhysicsDirectBodyState.GetSpaceState()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_space_state")
 
 	// Call the parent method.
+	// PhysicsDirectSpaceState
+	retPtr := NewEmptyPhysicsDirectSpaceState()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_space_state", goArguments, "*PhysicsDirectSpaceState")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewPhysicsDirectSpaceStateFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PhysicsDirectSpaceState)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *PhysicsDirectBodyState) GetStep() gdnative.Float {
 	log.Println("Calling PhysicsDirectBodyState.GetStep()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_step")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_step", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *PhysicsDirectBodyState) GetTotalAngularDamp() gdnative.Float {
 	log.Println("Calling PhysicsDirectBodyState.GetTotalAngularDamp()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_total_angular_damp")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_total_angular_damp", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector3
 */
-func (o *PhysicsDirectBodyState) GetTotalGravity() *Vector3 {
+
+func (o *PhysicsDirectBodyState) GetTotalGravity() gdnative.Vector3 {
 	log.Println("Calling PhysicsDirectBodyState.GetTotalGravity()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_total_gravity")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_total_gravity", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *PhysicsDirectBodyState) GetTotalLinearDamp() gdnative.Float {
 	log.Println("Calling PhysicsDirectBodyState.GetTotalLinearDamp()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_total_linear_damp")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_total_linear_damp", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Transform
 */
-func (o *PhysicsDirectBodyState) GetTransform() *Transform {
+
+func (o *PhysicsDirectBodyState) GetTransform() gdnative.Transform {
 	log.Println("Calling PhysicsDirectBodyState.GetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "get_transform")
 
 	// Call the parent method.
+	// Transform
+	retPtr := gdnative.NewEmptyTransform()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_transform", goArguments, "*Transform")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransformFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *PhysicsDirectBodyState) IntegrateForces() {
 	log.Println("Calling PhysicsDirectBodyState.IntegrateForces()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "integrate_forces")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "integrate_forces", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *PhysicsDirectBodyState) IsSleeping() gdnative.Bool {
 	log.Println("Calling PhysicsDirectBodyState.IsSleeping()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "is_sleeping")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_sleeping", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false velocity Vector3}], Returns: void
 */
-func (o *PhysicsDirectBodyState) SetAngularVelocity(velocity *Vector3) {
+
+func (o *PhysicsDirectBodyState) SetAngularVelocity(velocity gdnative.Vector3) {
 	log.Println("Calling PhysicsDirectBodyState.SetAngularVelocity()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(velocity)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(velocity)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "set_angular_velocity")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_angular_velocity", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false velocity Vector3}], Returns: void
 */
-func (o *PhysicsDirectBodyState) SetLinearVelocity(velocity *Vector3) {
+
+func (o *PhysicsDirectBodyState) SetLinearVelocity(velocity gdnative.Vector3) {
 	log.Println("Calling PhysicsDirectBodyState.SetLinearVelocity()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(velocity)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(velocity)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "set_linear_velocity")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_linear_velocity", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enabled bool}], Returns: void
 */
+
 func (o *PhysicsDirectBodyState) SetSleepState(enabled gdnative.Bool) {
 	log.Println("Calling PhysicsDirectBodyState.SetSleepState()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "set_sleep_state")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_sleep_state", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false transform Transform}], Returns: void
 */
-func (o *PhysicsDirectBodyState) SetTransform(transform *Transform) {
+
+func (o *PhysicsDirectBodyState) SetTransform(transform gdnative.Transform) {
 	log.Println("Calling PhysicsDirectBodyState.SetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromTransform(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "set_transform")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   PhysicsDirectBodyStateImplementer is an interface for PhysicsDirectBodyState objects.
-*/
-type PhysicsDirectBodyStateImplementer interface {
-	Class
 }

@@ -2,9 +2,11 @@ package skeleton
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
+	"github.com/shadowapex/godot-go/godot/class/spatial"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewSkeletonFromPointer(ptr gdnative.Pointer) *Skeleton {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Skeleton{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Skeleton provides a hierarchical interface for managing bones, including pose, rest and animation (see [Animation]). Skeleton will support rag doll dynamics in the future.
 */
 type Skeleton struct {
-	Spatial
+	spatial.Spatial
 }
 
 func (o *Skeleton) BaseClass() string {
@@ -28,443 +39,546 @@ func (o *Skeleton) BaseClass() string {
 }
 
 /*
-   Add a bone, with name "name". [method get_bone_count] will become the bone index.
+        Add a bone, with name "name". [method get_bone_count] will become the bone index.
+	Args: [{ false name String}], Returns: void
 */
+
 func (o *Skeleton) AddBone(name gdnative.String) {
 	log.Println("Calling Skeleton.AddBone()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "add_bone")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_bone", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Deprecated soon.
+        Deprecated soon.
+	Args: [{ false bone_idx int} { false node Object}], Returns: void
 */
-func (o *Skeleton) BindChildNodeToBone(boneIdx gdnative.Int, node *Object) {
+
+func (o *Skeleton) BindChildNodeToBone(boneIdx gdnative.Int, node object.Object) {
 	log.Println("Calling Skeleton.BindChildNodeToBone()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(boneIdx)
-	goArguments[1] = reflect.ValueOf(node)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(boneIdx)
+	ptrArguments[1] = gdnative.NewPointerFromObject(node.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "bind_child_node_to_bone")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "bind_child_node_to_bone", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Clear all the bones in this skeleton.
+        Clear all the bones in this skeleton.
+	Args: [], Returns: void
 */
+
 func (o *Skeleton) ClearBones() {
 	log.Println("Calling Skeleton.ClearBones()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "clear_bones")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear_bones", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Return the bone index that matches "name" as its name.
+        Return the bone index that matches "name" as its name.
+	Args: [{ false name String}], Returns: int
 */
+
 func (o *Skeleton) FindBone(name gdnative.String) gdnative.Int {
 	log.Println("Calling Skeleton.FindBone()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "find_bone")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "find_bone", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the amount of bones in the skeleton.
+        Return the amount of bones in the skeleton.
+	Args: [], Returns: int
 */
+
 func (o *Skeleton) GetBoneCount() gdnative.Int {
 	log.Println("Calling Skeleton.GetBoneCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "get_bone_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bone_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Skeleton) GetBoneCustomPose(boneIdx gdnative.Int) *Transform {
+	Args: [{ false bone_idx int}], Returns: Transform
+*/
+
+func (o *Skeleton) GetBoneCustomPose(boneIdx gdnative.Int) gdnative.Transform {
 	log.Println("Calling Skeleton.GetBoneCustomPose()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(boneIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(boneIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "get_bone_custom_pose")
 
 	// Call the parent method.
+	// Transform
+	retPtr := gdnative.NewEmptyTransform()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bone_custom_pose", goArguments, "*Transform")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransformFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Skeleton) GetBoneGlobalPose(boneIdx gdnative.Int) *Transform {
+	Args: [{ false bone_idx int}], Returns: Transform
+*/
+
+func (o *Skeleton) GetBoneGlobalPose(boneIdx gdnative.Int) gdnative.Transform {
 	log.Println("Calling Skeleton.GetBoneGlobalPose()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(boneIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(boneIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "get_bone_global_pose")
 
 	// Call the parent method.
+	// Transform
+	retPtr := gdnative.NewEmptyTransform()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bone_global_pose", goArguments, "*Transform")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransformFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the name of the bone at index "index"
+        Return the name of the bone at index "index"
+	Args: [{ false bone_idx int}], Returns: String
 */
+
 func (o *Skeleton) GetBoneName(boneIdx gdnative.Int) gdnative.String {
 	log.Println("Calling Skeleton.GetBoneName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(boneIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(boneIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "get_bone_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bone_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the bone index which is the parent of the bone at "bone_idx". If -1, then bone has no parent. Note that the parent bone returned will always be less than "bone_idx".
+        Return the bone index which is the parent of the bone at "bone_idx". If -1, then bone has no parent. Note that the parent bone returned will always be less than "bone_idx".
+	Args: [{ false bone_idx int}], Returns: int
 */
+
 func (o *Skeleton) GetBoneParent(boneIdx gdnative.Int) gdnative.Int {
 	log.Println("Calling Skeleton.GetBoneParent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(boneIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(boneIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "get_bone_parent")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bone_parent", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the pose transform for bone "bone_idx".
+        Return the pose transform for bone "bone_idx".
+	Args: [{ false bone_idx int}], Returns: Transform
 */
-func (o *Skeleton) GetBonePose(boneIdx gdnative.Int) *Transform {
+
+func (o *Skeleton) GetBonePose(boneIdx gdnative.Int) gdnative.Transform {
 	log.Println("Calling Skeleton.GetBonePose()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(boneIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(boneIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "get_bone_pose")
 
 	// Call the parent method.
+	// Transform
+	retPtr := gdnative.NewEmptyTransform()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bone_pose", goArguments, "*Transform")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransformFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the rest transform for a bone "bone_idx".
+        Return the rest transform for a bone "bone_idx".
+	Args: [{ false bone_idx int}], Returns: Transform
 */
-func (o *Skeleton) GetBoneRest(boneIdx gdnative.Int) *Transform {
+
+func (o *Skeleton) GetBoneRest(boneIdx gdnative.Int) gdnative.Transform {
 	log.Println("Calling Skeleton.GetBoneRest()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(boneIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(boneIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "get_bone_rest")
 
 	// Call the parent method.
+	// Transform
+	retPtr := gdnative.NewEmptyTransform()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bone_rest", goArguments, "*Transform")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransformFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Skeleton) GetBoneTransform(boneIdx gdnative.Int) *Transform {
+	Args: [{ false bone_idx int}], Returns: Transform
+*/
+
+func (o *Skeleton) GetBoneTransform(boneIdx gdnative.Int) gdnative.Transform {
 	log.Println("Calling Skeleton.GetBoneTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(boneIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(boneIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "get_bone_transform")
 
 	// Call the parent method.
+	// Transform
+	retPtr := gdnative.NewEmptyTransform()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bone_transform", goArguments, "*Transform")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransformFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Deprecated soon.
+        Deprecated soon.
+	Args: [{ false bone_idx int}], Returns: Array
 */
-func (o *Skeleton) GetBoundChildNodesToBone(boneIdx gdnative.Int) *Array {
+
+func (o *Skeleton) GetBoundChildNodesToBone(boneIdx gdnative.Int) gdnative.Array {
 	log.Println("Calling Skeleton.GetBoundChildNodesToBone()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(boneIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(boneIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "get_bound_child_nodes_to_bone")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bound_child_nodes_to_bone", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false bone_idx int}], Returns: bool
+*/
+
 func (o *Skeleton) IsBoneRestDisabled(boneIdx gdnative.Int) gdnative.Bool {
 	log.Println("Calling Skeleton.IsBoneRestDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(boneIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(boneIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "is_bone_rest_disabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_bone_rest_disabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Skeleton) SetBoneCustomPose(boneIdx gdnative.Int, customPose *Transform) {
+	Args: [{ false bone_idx int} { false custom_pose Transform}], Returns: void
+*/
+
+func (o *Skeleton) SetBoneCustomPose(boneIdx gdnative.Int, customPose gdnative.Transform) {
 	log.Println("Calling Skeleton.SetBoneCustomPose()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(boneIdx)
-	goArguments[1] = reflect.ValueOf(customPose)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(boneIdx)
+	ptrArguments[1] = gdnative.NewPointerFromTransform(customPose)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "set_bone_custom_pose")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_bone_custom_pose", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false bone_idx int} { false disable bool}], Returns: void
+*/
+
 func (o *Skeleton) SetBoneDisableRest(boneIdx gdnative.Int, disable gdnative.Bool) {
 	log.Println("Calling Skeleton.SetBoneDisableRest()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(boneIdx)
-	goArguments[1] = reflect.ValueOf(disable)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(boneIdx)
+	ptrArguments[1] = gdnative.NewPointerFromBool(disable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "set_bone_disable_rest")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_bone_disable_rest", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *Skeleton) SetBoneGlobalPose(boneIdx gdnative.Int, pose *Transform) {
+	Args: [{ false bone_idx int} { false pose Transform}], Returns: void
+*/
+
+func (o *Skeleton) SetBoneGlobalPose(boneIdx gdnative.Int, pose gdnative.Transform) {
 	log.Println("Calling Skeleton.SetBoneGlobalPose()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(boneIdx)
-	goArguments[1] = reflect.ValueOf(pose)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(boneIdx)
+	ptrArguments[1] = gdnative.NewPointerFromTransform(pose)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "set_bone_global_pose")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_bone_global_pose", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the bone index "parent_idx" as the parent of the bone at "bone_idx". If -1, then bone has no parent. Note: "parent_idx" must be less than "bone_idx".
+        Set the bone index "parent_idx" as the parent of the bone at "bone_idx". If -1, then bone has no parent. Note: "parent_idx" must be less than "bone_idx".
+	Args: [{ false bone_idx int} { false parent_idx int}], Returns: void
 */
+
 func (o *Skeleton) SetBoneParent(boneIdx gdnative.Int, parentIdx gdnative.Int) {
 	log.Println("Calling Skeleton.SetBoneParent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(boneIdx)
-	goArguments[1] = reflect.ValueOf(parentIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(boneIdx)
+	ptrArguments[1] = gdnative.NewPointerFromInt(parentIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "set_bone_parent")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_bone_parent", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Return the pose transform for bone "bone_idx".
+        Return the pose transform for bone "bone_idx".
+	Args: [{ false bone_idx int} { false pose Transform}], Returns: void
 */
-func (o *Skeleton) SetBonePose(boneIdx gdnative.Int, pose *Transform) {
+
+func (o *Skeleton) SetBonePose(boneIdx gdnative.Int, pose gdnative.Transform) {
 	log.Println("Calling Skeleton.SetBonePose()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(boneIdx)
-	goArguments[1] = reflect.ValueOf(pose)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(boneIdx)
+	ptrArguments[1] = gdnative.NewPointerFromTransform(pose)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "set_bone_pose")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_bone_pose", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the rest transform for bone "bone_idx"
+        Set the rest transform for bone "bone_idx"
+	Args: [{ false bone_idx int} { false rest Transform}], Returns: void
 */
-func (o *Skeleton) SetBoneRest(boneIdx gdnative.Int, rest *Transform) {
+
+func (o *Skeleton) SetBoneRest(boneIdx gdnative.Int, rest gdnative.Transform) {
 	log.Println("Calling Skeleton.SetBoneRest()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(boneIdx)
-	goArguments[1] = reflect.ValueOf(rest)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(boneIdx)
+	ptrArguments[1] = gdnative.NewPointerFromTransform(rest)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "set_bone_rest")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_bone_rest", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Deprecated soon.
+        Deprecated soon.
+	Args: [{ false bone_idx int} { false node Object}], Returns: void
 */
-func (o *Skeleton) UnbindChildNodeFromBone(boneIdx gdnative.Int, node *Object) {
+
+func (o *Skeleton) UnbindChildNodeFromBone(boneIdx gdnative.Int, node object.Object) {
 	log.Println("Calling Skeleton.UnbindChildNodeFromBone()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(boneIdx)
-	goArguments[1] = reflect.ValueOf(node)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(boneIdx)
+	ptrArguments[1] = gdnative.NewPointerFromObject(node.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "unbind_child_node_from_bone")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "unbind_child_node_from_bone", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false bone_idx int}], Returns: void
+*/
+
 func (o *Skeleton) UnparentBoneAndRest(boneIdx gdnative.Int) {
 	log.Println("Calling Skeleton.UnparentBoneAndRest()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(boneIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(boneIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Skeleton", "unparent_bone_and_rest")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "unparent_bone_and_rest", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   SkeletonImplementer is an interface for Skeleton objects.
-*/
-type SkeletonImplementer interface {
-	Class
 }

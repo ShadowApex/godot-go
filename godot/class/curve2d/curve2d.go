@@ -2,7 +2,9 @@ package curve2d
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewCurve2DFromPointer(ptr gdnative.Pointer) *Curve2D {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Curve2D{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 This class describes a Bezier curve in 2D space. It is mainly used to give a shape to a [Path2D], but can be manually sampled for other purposes. It keeps a cache of precalculated points along the curve, to speed further calculations up.
 */
 type Curve2D struct {
-	Resource
+	resource.Resource
 }
 
 func (o *Curve2D) BaseClass() string {
@@ -26,407 +37,504 @@ func (o *Curve2D) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Dictionary
 */
-func (o *Curve2D) X_GetData() *Dictionary {
+
+func (o *Curve2D) X_GetData() gdnative.Dictionary {
 	log.Println("Calling Curve2D.X_GetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "_get_data")
 
 	// Call the parent method.
+	// Dictionary
+	retPtr := gdnative.NewEmptyDictionary()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_data", goArguments, "*Dictionary")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewDictionaryFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Dictionary)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 Dictionary}], Returns: void
 */
-func (o *Curve2D) X_SetData(arg0 *Dictionary) {
+
+func (o *Curve2D) X_SetData(arg0 gdnative.Dictionary) {
 	log.Println("Calling Curve2D.X_SetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromDictionary(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "_set_data")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_data", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a point to a curve, at "position", with control points "in" and "out". If "at_position" is given, the point is inserted before the point number "at_position", moving that point (and every point after) after the inserted point. If "at_position" is not given, or is an illegal value (at_position <0 or at_position >= [method get_point_count]), the point will be appended at the end of the point list.
+        Adds a point to a curve, at "position", with control points "in" and "out". If "at_position" is given, the point is inserted before the point number "at_position", moving that point (and every point after) after the inserted point. If "at_position" is not given, or is an illegal value (at_position <0 or at_position >= [method get_point_count]), the point will be appended at the end of the point list.
+	Args: [{ false position Vector2} {(0, 0) true in Vector2} {(0, 0) true out Vector2} {-1 true at_position int}], Returns: void
 */
-func (o *Curve2D) AddPoint(position *Vector2, in *Vector2, out *Vector2, atPosition gdnative.Int) {
+
+func (o *Curve2D) AddPoint(position gdnative.Vector2, in gdnative.Vector2, out gdnative.Vector2, atPosition gdnative.Int) {
 	log.Println("Calling Curve2D.AddPoint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(position)
-	goArguments[1] = reflect.ValueOf(in)
-	goArguments[2] = reflect.ValueOf(out)
-	goArguments[3] = reflect.ValueOf(atPosition)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(in)
+	ptrArguments[2] = gdnative.NewPointerFromVector2(out)
+	ptrArguments[3] = gdnative.NewPointerFromInt(atPosition)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "add_point")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_point", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Removes all points from the curve.
+        Removes all points from the curve.
+	Args: [], Returns: void
 */
+
 func (o *Curve2D) ClearPoints() {
 	log.Println("Calling Curve2D.ClearPoints()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "clear_points")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear_points", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Curve2D) GetBakeInterval() gdnative.Float {
 	log.Println("Calling Curve2D.GetBakeInterval()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "get_bake_interval")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bake_interval", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the total length of the curve, based on the cached points. Given enough density (see [method set_bake_interval]), it should be approximate enough.
+        Returns the total length of the curve, based on the cached points. Given enough density (see [method set_bake_interval]), it should be approximate enough.
+	Args: [], Returns: float
 */
+
 func (o *Curve2D) GetBakedLength() gdnative.Float {
 	log.Println("Calling Curve2D.GetBakedLength()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "get_baked_length")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_baked_length", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the cache of points as a [PoolVector2Array].
+        Returns the cache of points as a [PoolVector2Array].
+	Args: [], Returns: PoolVector2Array
 */
-func (o *Curve2D) GetBakedPoints() *PoolVector2Array {
+
+func (o *Curve2D) GetBakedPoints() gdnative.PoolVector2Array {
 	log.Println("Calling Curve2D.GetBakedPoints()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "get_baked_points")
 
 	// Call the parent method.
+	// PoolVector2Array
+	retPtr := gdnative.NewEmptyPoolVector2Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_baked_points", goArguments, "*PoolVector2Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector2Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the number of points describing the curve.
+        Returns the number of points describing the curve.
+	Args: [], Returns: int
 */
+
 func (o *Curve2D) GetPointCount() gdnative.Int {
 	log.Println("Calling Curve2D.GetPointCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "get_point_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_point_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the position of the control point leading to the vertex "idx". If the index is out of bounds, the function sends an error to the console, and returns (0, 0).
+        Returns the position of the control point leading to the vertex "idx". If the index is out of bounds, the function sends an error to the console, and returns (0, 0).
+	Args: [{ false idx int}], Returns: Vector2
 */
-func (o *Curve2D) GetPointIn(idx gdnative.Int) *Vector2 {
+
+func (o *Curve2D) GetPointIn(idx gdnative.Int) gdnative.Vector2 {
 	log.Println("Calling Curve2D.GetPointIn()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "get_point_in")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_point_in", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the position of the control point leading out of the vertex "idx". If the index is out of bounds, the function sends an error to the console, and returns (0, 0).
+        Returns the position of the control point leading out of the vertex "idx". If the index is out of bounds, the function sends an error to the console, and returns (0, 0).
+	Args: [{ false idx int}], Returns: Vector2
 */
-func (o *Curve2D) GetPointOut(idx gdnative.Int) *Vector2 {
+
+func (o *Curve2D) GetPointOut(idx gdnative.Int) gdnative.Vector2 {
 	log.Println("Calling Curve2D.GetPointOut()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "get_point_out")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_point_out", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the position of the vertex "idx". If the index is out of bounds, the function sends an error to the console, and returns (0, 0).
+        Returns the position of the vertex "idx". If the index is out of bounds, the function sends an error to the console, and returns (0, 0).
+	Args: [{ false idx int}], Returns: Vector2
 */
-func (o *Curve2D) GetPointPosition(idx gdnative.Int) *Vector2 {
+
+func (o *Curve2D) GetPointPosition(idx gdnative.Int) gdnative.Vector2 {
 	log.Println("Calling Curve2D.GetPointPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "get_point_position")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_point_position", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the position between the vertex "idx" and the vertex "idx"+1, where "t" controls if the point is the first vertex (t = 0.0), the last vertex (t = 1.0), or in between. Values of "t" outside the range (0.0 >= t <=1) give strange, but predictable results. If "idx" is out of bounds it is truncated to the first or last vertex, and "t" is ignored. If the curve has no points, the function sends an error to the console, and returns (0, 0).
+        Returns the position between the vertex "idx" and the vertex "idx"+1, where "t" controls if the point is the first vertex (t = 0.0), the last vertex (t = 1.0), or in between. Values of "t" outside the range (0.0 >= t <=1) give strange, but predictable results. If "idx" is out of bounds it is truncated to the first or last vertex, and "t" is ignored. If the curve has no points, the function sends an error to the console, and returns (0, 0).
+	Args: [{ false idx int} { false t float}], Returns: Vector2
 */
-func (o *Curve2D) Interpolate(idx gdnative.Int, t gdnative.Float) *Vector2 {
+
+func (o *Curve2D) Interpolate(idx gdnative.Int, t gdnative.Float) gdnative.Vector2 {
 	log.Println("Calling Curve2D.Interpolate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(t)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(t)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "interpolate")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "interpolate", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a point within the curve at position "offset", where "offset" is measured as a pixel distance along the curve. To do that, it finds the two cached points where the "offset" lies between, then interpolates the values. This interpolation is cubic if "cubic" is set to true, or linear if set to false. Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise enough).
+        Returns a point within the curve at position "offset", where "offset" is measured as a pixel distance along the curve. To do that, it finds the two cached points where the "offset" lies between, then interpolates the values. This interpolation is cubic if "cubic" is set to true, or linear if set to false. Cubic interpolation tends to follow the curves better, but linear is faster (and often, precise enough).
+	Args: [{ false offset float} {False true cubic bool}], Returns: Vector2
 */
-func (o *Curve2D) InterpolateBaked(offset gdnative.Float, cubic gdnative.Bool) *Vector2 {
+
+func (o *Curve2D) InterpolateBaked(offset gdnative.Float, cubic gdnative.Bool) gdnative.Vector2 {
 	log.Println("Calling Curve2D.InterpolateBaked()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(offset)
-	goArguments[1] = reflect.ValueOf(cubic)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(offset)
+	ptrArguments[1] = gdnative.NewPointerFromBool(cubic)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "interpolate_baked")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "interpolate_baked", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the position at the vertex "fofs". It calls [method interpolate] using the integer part of fofs as "idx", and its fractional part as "t".
+        Returns the position at the vertex "fofs". It calls [method interpolate] using the integer part of fofs as "idx", and its fractional part as "t".
+	Args: [{ false fofs float}], Returns: Vector2
 */
-func (o *Curve2D) Interpolatef(fofs gdnative.Float) *Vector2 {
+
+func (o *Curve2D) Interpolatef(fofs gdnative.Float) gdnative.Vector2 {
 	log.Println("Calling Curve2D.Interpolatef()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(fofs)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(fofs)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "interpolatef")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "interpolatef", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Deletes the point "idx" from the curve. Sends an error to the console if "idx" is out of bounds.
+        Deletes the point "idx" from the curve. Sends an error to the console if "idx" is out of bounds.
+	Args: [{ false idx int}], Returns: void
 */
+
 func (o *Curve2D) RemovePoint(idx gdnative.Int) {
 	log.Println("Calling Curve2D.RemovePoint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "remove_point")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_point", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false distance float}], Returns: void
 */
+
 func (o *Curve2D) SetBakeInterval(distance gdnative.Float) {
 	log.Println("Calling Curve2D.SetBakeInterval()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(distance)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(distance)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "set_bake_interval")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_bake_interval", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the position of the control point leading to the vertex "idx". If the index is out of bounds, the function sends an error to the console.
+        Sets the position of the control point leading to the vertex "idx". If the index is out of bounds, the function sends an error to the console.
+	Args: [{ false idx int} { false position Vector2}], Returns: void
 */
-func (o *Curve2D) SetPointIn(idx gdnative.Int, position *Vector2) {
+
+func (o *Curve2D) SetPointIn(idx gdnative.Int, position gdnative.Vector2) {
 	log.Println("Calling Curve2D.SetPointIn()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "set_point_in")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_point_in", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the position of the control point leading out of the vertex "idx". If the index is out of bounds, the function sends an error to the console.
+        Sets the position of the control point leading out of the vertex "idx". If the index is out of bounds, the function sends an error to the console.
+	Args: [{ false idx int} { false position Vector2}], Returns: void
 */
-func (o *Curve2D) SetPointOut(idx gdnative.Int, position *Vector2) {
+
+func (o *Curve2D) SetPointOut(idx gdnative.Int, position gdnative.Vector2) {
 	log.Println("Calling Curve2D.SetPointOut()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "set_point_out")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_point_out", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the position for the vertex "idx". If the index is out of bounds, the function sends an error to the console.
+        Sets the position for the vertex "idx". If the index is out of bounds, the function sends an error to the console.
+	Args: [{ false idx int} { false position Vector2}], Returns: void
 */
-func (o *Curve2D) SetPointPosition(idx gdnative.Int, position *Vector2) {
+
+func (o *Curve2D) SetPointPosition(idx gdnative.Int, position gdnative.Vector2) {
 	log.Println("Calling Curve2D.SetPointPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "set_point_position")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_point_position", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns a list of points along the curve, with a curvature controlled point density. That is, the curvier parts will have more points than the straighter parts. This approximation makes straight segments between each point, then subdivides those segments until the resulting shape is similar enough. "max_stages" controls how many subdivisions a curve segment may face before it is considered approximate enough. Each subdivision splits the segment in half, so the default 5 stages may mean up to 32 subdivisions per curve segment. Increase with care! "tolerance_degrees" controls how many degrees the midpoint of a segment may deviate from the real curve, before the segment has to be subdivided.
+        Returns a list of points along the curve, with a curvature controlled point density. That is, the curvier parts will have more points than the straighter parts. This approximation makes straight segments between each point, then subdivides those segments until the resulting shape is similar enough. "max_stages" controls how many subdivisions a curve segment may face before it is considered approximate enough. Each subdivision splits the segment in half, so the default 5 stages may mean up to 32 subdivisions per curve segment. Increase with care! "tolerance_degrees" controls how many degrees the midpoint of a segment may deviate from the real curve, before the segment has to be subdivided.
+	Args: [{5 true max_stages int} {4 true tolerance_degrees float}], Returns: PoolVector2Array
 */
-func (o *Curve2D) Tessellate(maxStages gdnative.Int, toleranceDegrees gdnative.Float) *PoolVector2Array {
+
+func (o *Curve2D) Tessellate(maxStages gdnative.Int, toleranceDegrees gdnative.Float) gdnative.PoolVector2Array {
 	log.Println("Calling Curve2D.Tessellate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(maxStages)
-	goArguments[1] = reflect.ValueOf(toleranceDegrees)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(maxStages)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(toleranceDegrees)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve2D", "tessellate")
 
 	// Call the parent method.
+	// PoolVector2Array
+	retPtr := gdnative.NewEmptyPoolVector2Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "tessellate", goArguments, "*PoolVector2Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector2Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   Curve2DImplementer is an interface for Curve2D objects.
-*/
-type Curve2DImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

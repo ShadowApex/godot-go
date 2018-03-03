@@ -38,6 +38,14 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewEmptyDictionary will return a pointer to an empty
+// initialized Dictionary. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyDictionary() Pointer {
+	var obj C.godot_dictionary
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromDictionary will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromDictionary(obj Dictionary) Pointer {

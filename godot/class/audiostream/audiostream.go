@@ -2,9 +2,9 @@ package audiostream
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewAudioStreamFromPointer(ptr gdnative.Pointer) *AudioStream {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := AudioStream{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Base class for audio streams. Audio streams are used for music playback, or other types of streamed sounds that don't fit or require more flexibility than a [Sample].
 */
 type AudioStream struct {
-	Resource
+	resource.Resource
 }
 
 func (o *AudioStream) BaseClass() string {
@@ -29,27 +38,26 @@ func (o *AudioStream) BaseClass() string {
 
 /*
 
- */
+	Args: [], Returns: float
+*/
+
 func (o *AudioStream) GetLength() gdnative.Float {
 	log.Println("Calling AudioStream.GetLength()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStream", "get_length")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_length", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   AudioStreamImplementer is an interface for AudioStream objects.
-*/
-type AudioStreamImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

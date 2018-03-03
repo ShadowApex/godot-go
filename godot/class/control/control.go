@@ -2,7 +2,23 @@ package control
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/canvasitem"
+	"github.com/shadowapex/godot-go/godot/class/font"
+
+	"github.com/shadowapex/godot-go/godot/class/texture"
+
+	"github.com/shadowapex/godot-go/godot/class/shader"
+
+	"github.com/shadowapex/godot-go/godot/class/stylebox"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
+
+	"github.com/shadowapex/godot-go/godot/class/theme"
+
+	"github.com/shadowapex/godot-go/godot/class/inputevent"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +30,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewControlFromPointer(ptr gdnative.Pointer) *Control {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Control{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Base class for all User Interface or [i]UI[/i] related nodes. [code]Control[/code] features a bounding rectangle that defines its extents, an anchor position relative to its parent and margins that represent an offset to the anchor. The margins update automatically when the node, any of its parents, or the screen size change. For more information on Godot's UI system, anchors, margins, and containers, see the related tutorials in the manual. To build flexible UIs, you'll need a mix of UI elements that inherit from [code]Control[/code] and [Container] nodes. [b]User Interface nodes and input[/b] Godot sends input events to the scene's root node first, by calling [method Node._input]. [method Node._input] forwards the event down the node tree to the nodes under the mouse cursor, or on keyboard focus. To do so, it calls [method MainLoop._input_event]. Call [method accept_event] so no other node receives the event. Once you accepted an input, it becomes handled so [method Node._unhandled_input] will not process it. Only one [code]Control[/code] node can be in keyboard focus. Only the node in focus will receive keyboard events. To get the focus, call [method grab_focus]. [code]Control[/code] nodes lose focus when another node grabs it, or if you hide the node in focus. Set [member mouse_filter] to MOUSE_FILTER_IGNORE to tell a [code]Control[/code] node to ignore mouse or touch events. You'll need it if you place an icon on top of a button. [Theme] resources change the Control's appearance. If you change the [Theme] on a [code]Control[/code] node, it affects all of its children. To override some of the theme's parameters, call one of the [code]add_*_override[/code] methods, like [method add_font_override]. You can override the theme with the inspector.
 */
 type Control struct {
-	CanvasItem
+	canvasitem.CanvasItem
 }
 
 func (o *Control) BaseClass() string {
@@ -26,2130 +51,2544 @@ func (o *Control) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *Control) X_FontChanged() {
 	log.Println("Calling Control.X_FontChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "_font_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_font_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the minimum size this Control can shrink to. The node can never be smaller than this minimum size.
+        Returns the minimum size this Control can shrink to. The node can never be smaller than this minimum size.
+	Args: [], Returns: Vector2
 */
-func (o *Control) X_GetMinimumSize() *Vector2 {
+
+func (o *Control) X_GetMinimumSize() gdnative.Vector2 {
 	log.Println("Calling Control.X_GetMinimumSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "_get_minimum_size")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_minimum_size", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *Control) X_GetTooltip() gdnative.String {
 	log.Println("Calling Control.X_GetTooltip()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "_get_tooltip")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_tooltip", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   The node's parent forwards input events to this method. Use it to process and accept inputs on UI elements. See [method accept_event]. Replaces Godot 2's [code]_input_event[/code].
+        The node's parent forwards input events to this method. Use it to process and accept inputs on UI elements. See [method accept_event]. Replaces Godot 2's [code]_input_event[/code].
+	Args: [{ false event InputEvent}], Returns: void
 */
-func (o *Control) X_GuiInput(event *InputEvent) {
+
+func (o *Control) X_GuiInput(event inputevent.InputEvent) {
 	log.Println("Calling Control.X_GuiInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(event)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(event.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "_gui_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_gui_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin int} { false anchor float}], Returns: void
 */
+
 func (o *Control) X_SetAnchor(margin gdnative.Int, anchor gdnative.Float) {
 	log.Println("Calling Control.X_SetAnchor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(margin)
-	goArguments[1] = reflect.ValueOf(anchor)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(anchor)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "_set_anchor")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_anchor", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *Control) X_SizeChanged() {
 	log.Println("Calling Control.X_SizeChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "_size_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_size_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *Control) X_ThemeChanged() {
 	log.Println("Calling Control.X_ThemeChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "_theme_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_theme_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *Control) X_UpdateMinimumSize() {
 	log.Println("Calling Control.X_UpdateMinimumSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "_update_minimum_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_update_minimum_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Marks an input event as handled. Once you accept an input event, it stops propagating, even to nodes listening to [method Node._unhandled_input] or [method Node._unhandled_key_input].
+        Marks an input event as handled. Once you accept an input event, it stops propagating, even to nodes listening to [method Node._unhandled_input] or [method Node._unhandled_key_input].
+	Args: [], Returns: void
 */
+
 func (o *Control) AcceptEvent() {
 	log.Println("Calling Control.AcceptEvent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "accept_event")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "accept_event", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Overrides the color in the [theme] resource the node uses.
+        Overrides the color in the [theme] resource the node uses.
+	Args: [{ false name String} { false color Color}], Returns: void
 */
-func (o *Control) AddColorOverride(name gdnative.String, color *Color) {
+
+func (o *Control) AddColorOverride(name gdnative.String, color gdnative.Color) {
 	log.Println("Calling Control.AddColorOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "add_color_override")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_color_override", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Overrides an integer constant in the [Theme] resource the node uses. If the [code]constant[/code] is invalid, Godot clears the override. See [member Theme.INVALID_CONSTANT] for more information.
+        Overrides an integer constant in the [Theme] resource the node uses. If the [code]constant[/code] is invalid, Godot clears the override. See [member Theme.INVALID_CONSTANT] for more information.
+	Args: [{ false name String} { false constant int}], Returns: void
 */
+
 func (o *Control) AddConstantOverride(name gdnative.String, constant gdnative.Int) {
 	log.Println("Calling Control.AddConstantOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(constant)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromInt(constant)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "add_constant_override")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_constant_override", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Overrides the [code]name[/code] font in the [theme] resource the node uses. If [code]font[/code] is empty, Godot clears the override.
+        Overrides the [code]name[/code] font in the [theme] resource the node uses. If [code]font[/code] is empty, Godot clears the override.
+	Args: [{ false name String} { false font Font}], Returns: void
 */
-func (o *Control) AddFontOverride(name gdnative.String, font *Font) {
+
+func (o *Control) AddFontOverride(name gdnative.String, font font.Font) {
 	log.Println("Calling Control.AddFontOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(font)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromObject(font.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "add_font_override")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_font_override", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Overrides the [code]name[/code] icon in the [theme] resource the node uses. If [code]icon[/code] is empty, Godot clears the override.
+        Overrides the [code]name[/code] icon in the [theme] resource the node uses. If [code]icon[/code] is empty, Godot clears the override.
+	Args: [{ false name String} { false texture Texture}], Returns: void
 */
-func (o *Control) AddIconOverride(name gdnative.String, texture *Texture) {
+
+func (o *Control) AddIconOverride(name gdnative.String, texture texture.Texture) {
 	log.Println("Calling Control.AddIconOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromObject(texture.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "add_icon_override")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_icon_override", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Overrides the [code]name[/code] shader in the [theme] resource the node uses. If [code]shader[/code] is empty, Godot clears the override.
+        Overrides the [code]name[/code] shader in the [theme] resource the node uses. If [code]shader[/code] is empty, Godot clears the override.
+	Args: [{ false name String} { false shader Shader}], Returns: void
 */
-func (o *Control) AddShaderOverride(name gdnative.String, shader *Shader) {
+
+func (o *Control) AddShaderOverride(name gdnative.String, shader shader.Shader) {
 	log.Println("Calling Control.AddShaderOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(shader)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromObject(shader.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "add_shader_override")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_shader_override", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Overrides the [code]name[/code] [Stylebox] in the [theme] resource the node uses. If [code]stylebox[/code] is empty, Godot clears the override.
+        Overrides the [code]name[/code] [Stylebox] in the [theme] resource the node uses. If [code]stylebox[/code] is empty, Godot clears the override.
+	Args: [{ false name String} { false stylebox StyleBox}], Returns: void
 */
-func (o *Control) AddStyleboxOverride(name gdnative.String, stylebox *StyleBox) {
+
+func (o *Control) AddStyleboxOverride(name gdnative.String, stylebox stylebox.StyleBox) {
 	log.Println("Calling Control.AddStyleboxOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(stylebox)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromObject(stylebox.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "add_stylebox_override")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_stylebox_override", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Godot calls this method to test if [code]data[/code] from a control's [method get_drag_data] can be dropped at [code]position[/code]. [code]position[/code] is local to this control. This method should only be used to test the data. Process the data in [method drop_data]. [codeblock] extends Control func can_drop_data(position, data): # check position if it is relevant to you # otherwise just check data return typeof(data) == TYPE_DICTIONARY and data.has('expected') [/codeblock]
+        Godot calls this method to test if [code]data[/code] from a control's [method get_drag_data] can be dropped at [code]position[/code]. [code]position[/code] is local to this control. This method should only be used to test the data. Process the data in [method drop_data]. [codeblock] extends Control func can_drop_data(position, data): # check position if it is relevant to you # otherwise just check data return typeof(data) == TYPE_DICTIONARY and data.has('expected') [/codeblock]
+	Args: [{ false position Vector2} { false data Variant}], Returns: bool
 */
-func (o *Control) CanDropData(position *Vector2, data *Variant) gdnative.Bool {
+
+func (o *Control) CanDropData(position gdnative.Vector2, data gdnative.Variant) gdnative.Bool {
 	log.Println("Calling Control.CanDropData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(position)
-	goArguments[1] = reflect.ValueOf(data)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(data)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "can_drop_data")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "can_drop_data", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Godot calls this method to pass you the [code]data[/code] from a control's [method get_drag_data] result. Godot first calls [method can_drop_data] to test if [code]data[/code] is allowed to drop at [code]position[/code] where [code]position[/code] is local to this control. [codeblock] extends ColorRect func can_drop_data(position, data): return typeof(data) == TYPE_DICTIONARY and data.has('color') func drop_data(position, data): color = data['color'] [/codeblock]
+        Godot calls this method to pass you the [code]data[/code] from a control's [method get_drag_data] result. Godot first calls [method can_drop_data] to test if [code]data[/code] is allowed to drop at [code]position[/code] where [code]position[/code] is local to this control. [codeblock] extends ColorRect func can_drop_data(position, data): return typeof(data) == TYPE_DICTIONARY and data.has('color') func drop_data(position, data): color = data['color'] [/codeblock]
+	Args: [{ false position Vector2} { false data Variant}], Returns: void
 */
-func (o *Control) DropData(position *Vector2, data *Variant) {
+
+func (o *Control) DropData(position gdnative.Vector2, data gdnative.Variant) {
 	log.Println("Calling Control.DropData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(position)
-	goArguments[1] = reflect.ValueOf(data)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(data)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "drop_data")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "drop_data", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Forces drag and bypasses [method get_drag_data] and [method set_drag_preview] by passing [code]data[/code] and [code]preview[/code]. Drag will start even if the mouse is neither over nor pressed on this control. The methods [method can_drop_data] and [method drop_data] must be implemented on controls that want to recieve drop data.
+        Forces drag and bypasses [method get_drag_data] and [method set_drag_preview] by passing [code]data[/code] and [code]preview[/code]. Drag will start even if the mouse is neither over nor pressed on this control. The methods [method can_drop_data] and [method drop_data] must be implemented on controls that want to recieve drop data.
+	Args: [{ false data Variant} { false preview Object}], Returns: void
 */
-func (o *Control) ForceDrag(data *Variant, preview *Object) {
+
+func (o *Control) ForceDrag(data gdnative.Variant, preview object.Object) {
 	log.Println("Calling Control.ForceDrag()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(data)
-	goArguments[1] = reflect.ValueOf(preview)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromVariant(data)
+	ptrArguments[1] = gdnative.NewPointerFromObject(preview.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "force_drag")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "force_drag", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin int}], Returns: float
 */
+
 func (o *Control) GetAnchor(margin gdnative.Int) gdnative.Float {
 	log.Println("Calling Control.GetAnchor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_anchor")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_anchor", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Control) GetBegin() *Vector2 {
+	Args: [], Returns: Vector2
+*/
+
+func (o *Control) GetBegin() gdnative.Vector2 {
 	log.Println("Calling Control.GetBegin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_begin")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_begin", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Control) GetColor(name gdnative.String, aType gdnative.String) *Color {
+	Args: [{ false name String} { true type String}], Returns: Color
+*/
+
+func (o *Control) GetColor(name gdnative.String, aType gdnative.String) gdnative.Color {
 	log.Println("Calling Control.GetColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromString(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_color")
 
 	// Call the parent method.
+	// Color
+	retPtr := gdnative.NewEmptyColor()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_color", goArguments, "*Color")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewColorFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Color)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Control) GetCombinedMinimumSize() *Vector2 {
+	Args: [], Returns: Vector2
+*/
+
+func (o *Control) GetCombinedMinimumSize() gdnative.Vector2 {
 	log.Println("Calling Control.GetCombinedMinimumSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_combined_minimum_size")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_combined_minimum_size", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false name String} { true type String}], Returns: int
+*/
+
 func (o *Control) GetConstant(name gdnative.String, aType gdnative.String) gdnative.Int {
 	log.Println("Calling Control.GetConstant()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromString(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_constant")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_constant", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the mouse cursor shape the control displays on mouse hover, one of the [code]CURSOR_*[/code] constants.
+        Returns the mouse cursor shape the control displays on mouse hover, one of the [code]CURSOR_*[/code] constants.
+	Args: [{(0, 0) true position Vector2}], Returns: enum.Control::CursorShape
 */
-func (o *Control) GetCursorShape(position *Vector2) gdnative.Int {
-	log.Println("Calling Control.GetCursorShape()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_cursor_shape", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *Control) GetCustomMinimumSize() *Vector2 {
+
+func (o *Control) GetCustomMinimumSize() gdnative.Vector2 {
 	log.Println("Calling Control.GetCustomMinimumSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_custom_minimum_size")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_custom_minimum_size", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Control::CursorShape
 */
-func (o *Control) GetDefaultCursorShape() gdnative.Int {
-	log.Println("Calling Control.GetDefaultCursorShape()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_default_cursor_shape", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Godot calls this method to get data that can be dragged and dropped onto controls that expect drop data. Return null if there is no data to drag. Controls that want to recieve drop data should implement [method can_drop_data] and [method drop_data]. [code]position[/code] is local to this control. Drag may be forced with [method force_drag]. A preview that will follow the mouse that should represent the data can be set with [method set_drag_preview]. A good time to set the preview is in this method. [codeblock] extends Control func get_drag_data(position): var mydata = make_data() set_drag_preview(make_preview(mydata)) return mydata [/codeblock]
+        Godot calls this method to get data that can be dragged and dropped onto controls that expect drop data. Return null if there is no data to drag. Controls that want to recieve drop data should implement [method can_drop_data] and [method drop_data]. [code]position[/code] is local to this control. Drag may be forced with [method force_drag]. A preview that will follow the mouse that should represent the data can be set with [method set_drag_preview]. A good time to set the preview is in this method. [codeblock] extends Control func get_drag_data(position): var mydata = make_data() set_drag_preview(make_preview(mydata)) return mydata [/codeblock]
+	Args: [{ false position Vector2}], Returns: Object
 */
-func (o *Control) GetDragData(position *Vector2) *Object {
+
+func (o *Control) GetDragData(position gdnative.Vector2) object.Object {
 	log.Println("Calling Control.GetDragData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_drag_data")
 
 	// Call the parent method.
+	// Object
+	retPtr := object.NewEmptyObject()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_drag_data", goArguments, "*Object")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := object.NewObjectFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Object)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns MARGIN_LEFT and MARGIN_TOP at the same time. This is a helper (see [method set_margin]).
+        Returns MARGIN_LEFT and MARGIN_TOP at the same time. This is a helper (see [method set_margin]).
+	Args: [], Returns: Vector2
 */
-func (o *Control) GetEnd() *Vector2 {
+
+func (o *Control) GetEnd() gdnative.Vector2 {
 	log.Println("Calling Control.GetEnd()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_end")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_end", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Control::FocusMode
 */
-func (o *Control) GetFocusMode() gdnative.Int {
-	log.Println("Calling Control.GetFocusMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_focus_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin int}], Returns: NodePath
 */
-func (o *Control) GetFocusNeighbour(margin gdnative.Int) *NodePath {
+
+func (o *Control) GetFocusNeighbour(margin gdnative.Int) gdnative.NodePath {
 	log.Println("Calling Control.GetFocusNeighbour()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_focus_neighbour")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_focus_neighbour", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: NodePath
 */
-func (o *Control) GetFocusNext() *NodePath {
+
+func (o *Control) GetFocusNext() gdnative.NodePath {
 	log.Println("Calling Control.GetFocusNext()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_focus_next")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_focus_next", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return which control is owning the keyboard focus, or null if no one.
+        Return which control is owning the keyboard focus, or null if no one.
+	Args: [], Returns: Control
 */
-func (o *Control) GetFocusOwner() *Control {
+
+func (o *Control) GetFocusOwner() Control {
 	log.Println("Calling Control.GetFocusOwner()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_focus_owner")
 
 	// Call the parent method.
+	// Control
+	retPtr := NewEmptyControl()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_focus_owner", goArguments, "*Control")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewControlFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Control)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: NodePath
 */
-func (o *Control) GetFocusPrevious() *NodePath {
+
+func (o *Control) GetFocusPrevious() gdnative.NodePath {
 	log.Println("Calling Control.GetFocusPrevious()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_focus_previous")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_focus_previous", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Control) GetFont(name gdnative.String, aType gdnative.String) *Font {
+	Args: [{ false name String} { true type String}], Returns: Font
+*/
+
+func (o *Control) GetFont(name gdnative.String, aType gdnative.String) font.Font {
 	log.Println("Calling Control.GetFont()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromString(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_font")
 
 	// Call the parent method.
+	// Font
+	retPtr := font.NewEmptyFont()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_font", goArguments, "*Font")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := font.NewFontFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Font)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *Control) GetGlobalPosition() *Vector2 {
+
+func (o *Control) GetGlobalPosition() gdnative.Vector2 {
 	log.Println("Calling Control.GetGlobalPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_global_position")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_global_position", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return position and size of the Control, relative to the top-left corner of the [i]window[/i] Control. This is a helper (see [method get_global_position], [method get_size]).
+        Return position and size of the Control, relative to the top-left corner of the [i]window[/i] Control. This is a helper (see [method get_global_position], [method get_size]).
+	Args: [], Returns: Rect2
 */
-func (o *Control) GetGlobalRect() *Rect2 {
+
+func (o *Control) GetGlobalRect() gdnative.Rect2 {
 	log.Println("Calling Control.GetGlobalRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_global_rect")
 
 	// Call the parent method.
+	// Rect2
+	retPtr := gdnative.NewEmptyRect2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_global_rect", goArguments, "*Rect2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRect2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Rect2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Control::GrowDirection
 */
-func (o *Control) GetHGrowDirection() gdnative.Int {
-	log.Println("Calling Control.GetHGrowDirection()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_h_grow_direction", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *Control) GetHSizeFlags() gdnative.Int {
 	log.Println("Calling Control.GetHSizeFlags()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_h_size_flags")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_h_size_flags", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Control) GetIcon(name gdnative.String, aType gdnative.String) *Texture {
+	Args: [{ false name String} { true type String}], Returns: Texture
+*/
+
+func (o *Control) GetIcon(name gdnative.String, aType gdnative.String) texture.Texture {
 	log.Println("Calling Control.GetIcon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromString(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_icon")
 
 	// Call the parent method.
+	// Texture
+	retPtr := texture.NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_icon", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := texture.NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin int}], Returns: float
 */
+
 func (o *Control) GetMargin(margin gdnative.Int) gdnative.Float {
 	log.Println("Calling Control.GetMargin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_margin")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_margin", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the minimum size this Control can shrink to. A control will never be displayed or resized smaller than its minimum size.
+        Return the minimum size this Control can shrink to. A control will never be displayed or resized smaller than its minimum size.
+	Args: [], Returns: Vector2
 */
-func (o *Control) GetMinimumSize() *Vector2 {
+
+func (o *Control) GetMinimumSize() gdnative.Vector2 {
 	log.Println("Calling Control.GetMinimumSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_minimum_size")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_minimum_size", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Control::MouseFilter
 */
-func (o *Control) GetMouseFilter() gdnative.Int {
-	log.Println("Calling Control.GetMouseFilter()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_mouse_filter", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
 
- */
-func (o *Control) GetParentAreaSize() *Vector2 {
+	Args: [], Returns: Vector2
+*/
+
+func (o *Control) GetParentAreaSize() gdnative.Vector2 {
 	log.Println("Calling Control.GetParentAreaSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_parent_area_size")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_parent_area_size", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Control) GetParentControl() *Control {
+	Args: [], Returns: Control
+*/
+
+func (o *Control) GetParentControl() Control {
 	log.Println("Calling Control.GetParentControl()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_parent_control")
 
 	// Call the parent method.
+	// Control
+	retPtr := NewEmptyControl()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_parent_control", goArguments, "*Control")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewControlFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Control)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *Control) GetPivotOffset() *Vector2 {
+
+func (o *Control) GetPivotOffset() gdnative.Vector2 {
 	log.Println("Calling Control.GetPivotOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_pivot_offset")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_pivot_offset", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *Control) GetPosition() *Vector2 {
+
+func (o *Control) GetPosition() gdnative.Vector2 {
 	log.Println("Calling Control.GetPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_position")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_position", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return position and size of the Control, relative to the top-left corner of the parent Control. This is a helper (see [method get_position], [method get_size]).
+        Return position and size of the Control, relative to the top-left corner of the parent Control. This is a helper (see [method get_position], [method get_size]).
+	Args: [], Returns: Rect2
 */
-func (o *Control) GetRect() *Rect2 {
+
+func (o *Control) GetRect() gdnative.Rect2 {
 	log.Println("Calling Control.GetRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_rect")
 
 	// Call the parent method.
+	// Rect2
+	retPtr := gdnative.NewEmptyRect2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_rect", goArguments, "*Rect2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRect2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Rect2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the rotation (in radians)
+        Return the rotation (in radians)
+	Args: [], Returns: float
 */
+
 func (o *Control) GetRotation() gdnative.Float {
 	log.Println("Calling Control.GetRotation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_rotation")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_rotation", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Control) GetRotationDegrees() gdnative.Float {
 	log.Println("Calling Control.GetRotationDegrees()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_rotation_degrees")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_rotation_degrees", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *Control) GetScale() *Vector2 {
+
+func (o *Control) GetScale() gdnative.Vector2 {
 	log.Println("Calling Control.GetScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_scale")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_scale", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *Control) GetSize() *Vector2 {
+
+func (o *Control) GetSize() gdnative.Vector2 {
 	log.Println("Calling Control.GetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_size")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_size", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Control) GetStretchRatio() gdnative.Float {
 	log.Println("Calling Control.GetStretchRatio()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_stretch_ratio")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_stretch_ratio", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Control) GetStylebox(name gdnative.String, aType gdnative.String) *StyleBox {
+	Args: [{ false name String} { true type String}], Returns: StyleBox
+*/
+
+func (o *Control) GetStylebox(name gdnative.String, aType gdnative.String) stylebox.StyleBox {
 	log.Println("Calling Control.GetStylebox()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromString(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_stylebox")
 
 	// Call the parent method.
+	// StyleBox
+	retPtr := stylebox.NewEmptyStyleBox()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_stylebox", goArguments, "*StyleBox")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := stylebox.NewStyleBoxFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*StyleBox)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Theme
 */
-func (o *Control) GetTheme() *Theme {
+
+func (o *Control) GetTheme() theme.Theme {
 	log.Println("Calling Control.GetTheme()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_theme")
 
 	// Call the parent method.
+	// Theme
+	retPtr := theme.NewEmptyTheme()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_theme", goArguments, "*Theme")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := theme.NewThemeFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Theme)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the tooltip, which will appear when the cursor is resting over this control.
+        Return the tooltip, which will appear when the cursor is resting over this control.
+	Args: [{(0, 0) true at_position Vector2}], Returns: String
 */
-func (o *Control) GetTooltip(atPosition *Vector2) gdnative.String {
+
+func (o *Control) GetTooltip(atPosition gdnative.Vector2) gdnative.String {
 	log.Println("Calling Control.GetTooltip()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(atPosition)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(atPosition)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_tooltip")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tooltip", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Control::GrowDirection
 */
-func (o *Control) GetVGrowDirection() gdnative.Int {
-	log.Println("Calling Control.GetVGrowDirection()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_v_grow_direction", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *Control) GetVSizeFlags() gdnative.Int {
 	log.Println("Calling Control.GetVSizeFlags()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_v_size_flags")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_v_size_flags", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *Control) GrabClickFocus() {
 	log.Println("Calling Control.GrabClickFocus()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "grab_click_focus")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "grab_click_focus", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Steal the focus from another control and become the focused control (see [method set_focus_mode]).
+        Steal the focus from another control and become the focused control (see [method set_focus_mode]).
+	Args: [], Returns: void
 */
+
 func (o *Control) GrabFocus() {
 	log.Println("Calling Control.GrabFocus()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "grab_focus")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "grab_focus", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false name String} { true type String}], Returns: bool
+*/
+
 func (o *Control) HasColor(name gdnative.String, aType gdnative.String) gdnative.Bool {
 	log.Println("Calling Control.HasColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromString(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "has_color")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_color", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false name String}], Returns: bool
+*/
+
 func (o *Control) HasColorOverride(name gdnative.String) gdnative.Bool {
 	log.Println("Calling Control.HasColorOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "has_color_override")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_color_override", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false name String} { true type String}], Returns: bool
+*/
+
 func (o *Control) HasConstant(name gdnative.String, aType gdnative.String) gdnative.Bool {
 	log.Println("Calling Control.HasConstant()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromString(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "has_constant")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_constant", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false name String}], Returns: bool
+*/
+
 func (o *Control) HasConstantOverride(name gdnative.String) gdnative.Bool {
 	log.Println("Calling Control.HasConstantOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "has_constant_override")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_constant_override", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return whether the Control is the current focused control (see [method set_focus_mode]).
+        Return whether the Control is the current focused control (see [method set_focus_mode]).
+	Args: [], Returns: bool
 */
+
 func (o *Control) HasFocus() gdnative.Bool {
 	log.Println("Calling Control.HasFocus()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "has_focus")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_focus", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false name String} { true type String}], Returns: bool
+*/
+
 func (o *Control) HasFont(name gdnative.String, aType gdnative.String) gdnative.Bool {
 	log.Println("Calling Control.HasFont()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromString(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "has_font")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_font", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false name String}], Returns: bool
+*/
+
 func (o *Control) HasFontOverride(name gdnative.String) gdnative.Bool {
 	log.Println("Calling Control.HasFontOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "has_font_override")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_font_override", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false name String} { true type String}], Returns: bool
+*/
+
 func (o *Control) HasIcon(name gdnative.String, aType gdnative.String) gdnative.Bool {
 	log.Println("Calling Control.HasIcon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromString(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "has_icon")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_icon", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false name String}], Returns: bool
+*/
+
 func (o *Control) HasIconOverride(name gdnative.String) gdnative.Bool {
 	log.Println("Calling Control.HasIconOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "has_icon_override")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_icon_override", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Control) HasPoint(point *Vector2) gdnative.Bool {
+	Args: [{ false point Vector2}], Returns: bool
+*/
+
+func (o *Control) HasPoint(point gdnative.Vector2) gdnative.Bool {
 	log.Println("Calling Control.HasPoint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(point)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(point)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "has_point")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_point", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false name String}], Returns: bool
+*/
+
 func (o *Control) HasShaderOverride(name gdnative.String) gdnative.Bool {
 	log.Println("Calling Control.HasShaderOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "has_shader_override")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_shader_override", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false name String} { true type String}], Returns: bool
+*/
+
 func (o *Control) HasStylebox(name gdnative.String, aType gdnative.String) gdnative.Bool {
 	log.Println("Calling Control.HasStylebox()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromString(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "has_stylebox")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_stylebox", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false name String}], Returns: bool
+*/
+
 func (o *Control) HasStyleboxOverride(name gdnative.String) gdnative.Bool {
 	log.Println("Calling Control.HasStyleboxOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "has_stylebox_override")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_stylebox_override", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Control) IsClippingContents() gdnative.Bool {
 	log.Println("Calling Control.IsClippingContents()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "is_clipping_contents")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_clipping_contents", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *Control) MinimumSizeChanged() {
 	log.Println("Calling Control.MinimumSizeChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "minimum_size_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "minimum_size_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Give up the focus, no other control will be able to receive keyboard input.
+        Give up the focus, no other control will be able to receive keyboard input.
+	Args: [], Returns: void
 */
+
 func (o *Control) ReleaseFocus() {
 	log.Println("Calling Control.ReleaseFocus()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "release_focus")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "release_focus", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false margin int} { false anchor float} {False true keep_margin bool} {True true push_opposite_anchor bool}], Returns: void
+*/
+
 func (o *Control) SetAnchor(margin gdnative.Int, anchor gdnative.Float, keepMargin gdnative.Bool, pushOppositeAnchor gdnative.Bool) {
 	log.Println("Calling Control.SetAnchor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(margin)
-	goArguments[1] = reflect.ValueOf(anchor)
-	goArguments[2] = reflect.ValueOf(keepMargin)
-	goArguments[3] = reflect.ValueOf(pushOppositeAnchor)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(anchor)
+	ptrArguments[2] = gdnative.NewPointerFromBool(keepMargin)
+	ptrArguments[3] = gdnative.NewPointerFromBool(pushOppositeAnchor)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_anchor")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_anchor", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false margin int} { false anchor float} { false offset float} {False true push_opposite_anchor bool}], Returns: void
+*/
+
 func (o *Control) SetAnchorAndMargin(margin gdnative.Int, anchor gdnative.Float, offset gdnative.Float, pushOppositeAnchor gdnative.Bool) {
 	log.Println("Calling Control.SetAnchorAndMargin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(margin)
-	goArguments[1] = reflect.ValueOf(anchor)
-	goArguments[2] = reflect.ValueOf(offset)
-	goArguments[3] = reflect.ValueOf(pushOppositeAnchor)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(anchor)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(offset)
+	ptrArguments[3] = gdnative.NewPointerFromBool(pushOppositeAnchor)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_anchor_and_margin")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_anchor_and_margin", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false preset int} {0 true resize_mode int} {0 true margin int}], Returns: void
+*/
+
 func (o *Control) SetAnchorsAndMarginsPreset(preset gdnative.Int, resizeMode gdnative.Int, margin gdnative.Int) {
 	log.Println("Calling Control.SetAnchorsAndMarginsPreset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(preset)
-	goArguments[1] = reflect.ValueOf(resizeMode)
-	goArguments[2] = reflect.ValueOf(margin)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(preset)
+	ptrArguments[1] = gdnative.NewPointerFromInt(resizeMode)
+	ptrArguments[2] = gdnative.NewPointerFromInt(margin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_anchors_and_margins_preset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_anchors_and_margins_preset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false preset int} {False true keep_margin bool}], Returns: void
+*/
+
 func (o *Control) SetAnchorsPreset(preset gdnative.Int, keepMargin gdnative.Bool) {
 	log.Println("Calling Control.SetAnchorsPreset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(preset)
-	goArguments[1] = reflect.ValueOf(keepMargin)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(preset)
+	ptrArguments[1] = gdnative.NewPointerFromBool(keepMargin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_anchors_preset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_anchors_preset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets MARGIN_LEFT and MARGIN_TOP at the same time. This is a helper (see [method set_margin]).
+        Sets MARGIN_LEFT and MARGIN_TOP at the same time. This is a helper (see [method set_margin]).
+	Args: [{ false position Vector2}], Returns: void
 */
-func (o *Control) SetBegin(position *Vector2) {
+
+func (o *Control) SetBegin(position gdnative.Vector2) {
 	log.Println("Calling Control.SetBegin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_begin")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_begin", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Control) SetClipContents(enable gdnative.Bool) {
 	log.Println("Calling Control.SetClipContents()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_clip_contents")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_clip_contents", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false size Vector2}], Returns: void
 */
-func (o *Control) SetCustomMinimumSize(size *Vector2) {
+
+func (o *Control) SetCustomMinimumSize(size gdnative.Vector2) {
 	log.Println("Calling Control.SetCustomMinimumSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_custom_minimum_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_custom_minimum_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false shape int}], Returns: void
 */
+
 func (o *Control) SetDefaultCursorShape(shape gdnative.Int) {
 	log.Println("Calling Control.SetDefaultCursorShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(shape)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(shape)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_default_cursor_shape")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_default_cursor_shape", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Forwards the handling of this control's drag and drop to [code]target[/code] control. Forwarding can be implemented in the target control similar to the methods [method get_drag_data], [method can_drop_data], and [method drop_data] but with two differences: 1. The function name must be suffixed with [b]_fw[/b] 2. The function must take an extra argument that is the control doing the forwarding [codeblock] # ThisControl.gd extends Control func _ready(): set_drag_forwarding(target_control) # TargetControl.gd extends Control func can_drop_data_fw(position, data, from_control): return true func drop_data_fw(position, data, from_control): my_handle_data(data) func get_drag_data_fw(position, from_control): set_drag_preview(my_preview) return my_data() [/codeblock]
+        Forwards the handling of this control's drag and drop to [code]target[/code] control. Forwarding can be implemented in the target control similar to the methods [method get_drag_data], [method can_drop_data], and [method drop_data] but with two differences: 1. The function name must be suffixed with [b]_fw[/b] 2. The function must take an extra argument that is the control doing the forwarding [codeblock] # ThisControl.gd extends Control func _ready(): set_drag_forwarding(target_control) # TargetControl.gd extends Control func can_drop_data_fw(position, data, from_control): return true func drop_data_fw(position, data, from_control): my_handle_data(data) func get_drag_data_fw(position, from_control): set_drag_preview(my_preview) return my_data() [/codeblock]
+	Args: [{ false target Object}], Returns: void
 */
-func (o *Control) SetDragForwarding(target *Object) {
+
+func (o *Control) SetDragForwarding(target object.Object) {
 	log.Println("Calling Control.SetDragForwarding()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(target)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(target.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_drag_forwarding")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_drag_forwarding", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Shows the given control at the mouse pointer. A good time to call this method is in [method get_drag_data].
+        Shows the given control at the mouse pointer. A good time to call this method is in [method get_drag_data].
+	Args: [{ false control Object}], Returns: void
 */
-func (o *Control) SetDragPreview(control *Object) {
+
+func (o *Control) SetDragPreview(control object.Object) {
 	log.Println("Calling Control.SetDragPreview()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(control)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(control.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_drag_preview")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_drag_preview", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets MARGIN_RIGHT and MARGIN_BOTTOM at the same time. This is a helper (see [method set_margin]).
+        Sets MARGIN_RIGHT and MARGIN_BOTTOM at the same time. This is a helper (see [method set_margin]).
+	Args: [{ false position Vector2}], Returns: void
 */
-func (o *Control) SetEnd(position *Vector2) {
+
+func (o *Control) SetEnd(position gdnative.Vector2) {
 	log.Println("Calling Control.SetEnd()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_end")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_end", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *Control) SetFocusMode(mode gdnative.Int) {
 	log.Println("Calling Control.SetFocusMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_focus_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_focus_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin int} { false neighbour NodePath}], Returns: void
 */
-func (o *Control) SetFocusNeighbour(margin gdnative.Int, neighbour *NodePath) {
+
+func (o *Control) SetFocusNeighbour(margin gdnative.Int, neighbour gdnative.NodePath) {
 	log.Println("Calling Control.SetFocusNeighbour()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(margin)
-	goArguments[1] = reflect.ValueOf(neighbour)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+	ptrArguments[1] = gdnative.NewPointerFromNodePath(neighbour)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_focus_neighbour")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_focus_neighbour", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false next NodePath}], Returns: void
 */
-func (o *Control) SetFocusNext(next *NodePath) {
+
+func (o *Control) SetFocusNext(next gdnative.NodePath) {
 	log.Println("Calling Control.SetFocusNext()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(next)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(next)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_focus_next")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_focus_next", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false previous NodePath}], Returns: void
 */
-func (o *Control) SetFocusPrevious(previous *NodePath) {
+
+func (o *Control) SetFocusPrevious(previous gdnative.NodePath) {
 	log.Println("Calling Control.SetFocusPrevious()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(previous)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(previous)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_focus_previous")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_focus_previous", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false position Vector2}], Returns: void
 */
-func (o *Control) SetGlobalPosition(position *Vector2) {
+
+func (o *Control) SetGlobalPosition(position gdnative.Vector2) {
 	log.Println("Calling Control.SetGlobalPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_global_position")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_global_position", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false direction int}], Returns: void
 */
+
 func (o *Control) SetHGrowDirection(direction gdnative.Int) {
 	log.Println("Calling Control.SetHGrowDirection()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(direction)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(direction)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_h_grow_direction")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_h_grow_direction", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false flags int}], Returns: void
 */
+
 func (o *Control) SetHSizeFlags(flags gdnative.Int) {
 	log.Println("Calling Control.SetHSizeFlags()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(flags)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(flags)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_h_size_flags")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_h_size_flags", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin int} { false offset float}], Returns: void
 */
+
 func (o *Control) SetMargin(margin gdnative.Int, offset gdnative.Float) {
 	log.Println("Calling Control.SetMargin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(margin)
-	goArguments[1] = reflect.ValueOf(offset)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(offset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_margin")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_margin", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false preset int} {0 true resize_mode int} {0 true margin int}], Returns: void
+*/
+
 func (o *Control) SetMarginsPreset(preset gdnative.Int, resizeMode gdnative.Int, margin gdnative.Int) {
 	log.Println("Calling Control.SetMarginsPreset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(preset)
-	goArguments[1] = reflect.ValueOf(resizeMode)
-	goArguments[2] = reflect.ValueOf(margin)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(preset)
+	ptrArguments[1] = gdnative.NewPointerFromInt(resizeMode)
+	ptrArguments[2] = gdnative.NewPointerFromInt(margin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_margins_preset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_margins_preset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false filter int}], Returns: void
 */
+
 func (o *Control) SetMouseFilter(filter gdnative.Int) {
 	log.Println("Calling Control.SetMouseFilter()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(filter)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(filter)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_mouse_filter")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_mouse_filter", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false pivot_offset Vector2}], Returns: void
 */
-func (o *Control) SetPivotOffset(pivotOffset *Vector2) {
+
+func (o *Control) SetPivotOffset(pivotOffset gdnative.Vector2) {
 	log.Println("Calling Control.SetPivotOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pivotOffset)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(pivotOffset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_pivot_offset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_pivot_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false position Vector2}], Returns: void
 */
-func (o *Control) SetPosition(position *Vector2) {
+
+func (o *Control) SetPosition(position gdnative.Vector2) {
 	log.Println("Calling Control.SetPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_position")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_position", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the rotation (in radians).
+        Set the rotation (in radians).
+	Args: [{ false radians float}], Returns: void
 */
+
 func (o *Control) SetRotation(radians gdnative.Float) {
 	log.Println("Calling Control.SetRotation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(radians)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(radians)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_rotation")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_rotation", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false degrees float}], Returns: void
 */
+
 func (o *Control) SetRotationDegrees(degrees gdnative.Float) {
 	log.Println("Calling Control.SetRotationDegrees()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(degrees)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(degrees)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_rotation_degrees")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_rotation_degrees", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false scale Vector2}], Returns: void
 */
-func (o *Control) SetScale(scale *Vector2) {
+
+func (o *Control) SetScale(scale gdnative.Vector2) {
 	log.Println("Calling Control.SetScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(scale)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(scale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_scale")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false size Vector2}], Returns: void
 */
-func (o *Control) SetSize(size *Vector2) {
+
+func (o *Control) SetSize(size gdnative.Vector2) {
 	log.Println("Calling Control.SetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false ratio float}], Returns: void
 */
+
 func (o *Control) SetStretchRatio(ratio gdnative.Float) {
 	log.Println("Calling Control.SetStretchRatio()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ratio)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(ratio)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_stretch_ratio")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_stretch_ratio", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false theme Theme}], Returns: void
 */
-func (o *Control) SetTheme(theme *Theme) {
+
+func (o *Control) SetTheme(theme theme.Theme) {
 	log.Println("Calling Control.SetTheme()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(theme)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(theme.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_theme")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_theme", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false tooltip String}], Returns: void
 */
+
 func (o *Control) SetTooltip(tooltip gdnative.String) {
 	log.Println("Calling Control.SetTooltip()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(tooltip)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(tooltip)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_tooltip")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_tooltip", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false direction int}], Returns: void
 */
+
 func (o *Control) SetVGrowDirection(direction gdnative.Int) {
 	log.Println("Calling Control.SetVGrowDirection()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(direction)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(direction)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_v_grow_direction")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_v_grow_direction", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false flags int}], Returns: void
 */
+
 func (o *Control) SetVSizeFlags(flags gdnative.Int) {
 	log.Println("Calling Control.SetVSizeFlags()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(flags)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(flags)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "set_v_size_flags")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_v_size_flags", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Display a Control as modal. Control must be a subwindow. Modal controls capture the input signals until closed or the area outside them is accessed. When a modal control loses focus, or the ESC key is pressed, they automatically hide. Modal controls are used extensively for popup dialogs and menus.
+        Display a Control as modal. Control must be a subwindow. Modal controls capture the input signals until closed or the area outside them is accessed. When a modal control loses focus, or the ESC key is pressed, they automatically hide. Modal controls are used extensively for popup dialogs and menus.
+	Args: [{False true exclusive bool}], Returns: void
 */
+
 func (o *Control) ShowModal(exclusive gdnative.Bool) {
 	log.Println("Calling Control.ShowModal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(exclusive)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(exclusive)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "show_modal")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "show_modal", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *Control) WarpMouse(toPosition *Vector2) {
+	Args: [{ false to_position Vector2}], Returns: void
+*/
+
+func (o *Control) WarpMouse(toPosition gdnative.Vector2) {
 	log.Println("Calling Control.WarpMouse()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(toPosition)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(toPosition)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "warp_mouse")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "warp_mouse", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ControlImplementer is an interface for Control objects.
-*/
-type ControlImplementer interface {
-	Class
 }

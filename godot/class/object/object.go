@@ -2,10 +2,10 @@ package object
 
 import (
 	"log"
-	"reflect"
-	"unsafe"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,6 +16,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewObjectFromPointer(ptr gdnative.Pointer) *Object {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Object{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 /*
 Base class for all non built-in types. Everything not a built-in type starts the inheritance chain from this class. Objects do not manage memory, if inheriting from one the object will most likely have to be deleted manually (call the [method free] function from the script or delete from C++). Some derivatives add memory management, such as [Reference] (which keeps a reference count and deletes itself automatically when no longer referenced) and [Node], which deletes the children tree when deleted. Objects export properties, which are mainly useful for storage and editing, but not really so much in programming. Properties are exported in [method _get_property_list] and handled in [method _get] and [method _set]. However, scripting languages and C++ have simpler means to export them. Objects also receive notifications ([method _notification]). Notifications are a simple way to notify the object about simple events, so they can all be handled together.
@@ -29,843 +38,1041 @@ func (o *Object) BaseClass() string {
 }
 
 /*
-   Returns the given property. Returns [code]null[/code] if the [code]property[/code] does not exist.
+        Returns the given property. Returns [code]null[/code] if the [code]property[/code] does not exist.
+	Args: [{ false property String}], Returns: void
 */
+
 func (o *Object) X_Get(property gdnative.String) {
 	log.Println("Calling Object.X_Get()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(property)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(property)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "_get")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_get", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the object's property list as an [Array] of dictionaries. Dictionaries must contain: name:String, type:int (see TYPE_* enum in [@GlobalScope]) and optionally: hint:int (see PROPERTY_HINT_* in [@GlobalScope]), hint_string:String, usage:int (see PROPERTY_USAGE_* in [@GlobalScope]).
+        Returns the object's property list as an [Array] of dictionaries. Dictionaries must contain: name:String, type:int (see TYPE_* enum in [@GlobalScope]) and optionally: hint:int (see PROPERTY_HINT_* in [@GlobalScope]), hint_string:String, usage:int (see PROPERTY_USAGE_* in [@GlobalScope]).
+	Args: [], Returns: Array
 */
-func (o *Object) X_GetPropertyList() *Array {
+
+func (o *Object) X_GetPropertyList() gdnative.Array {
 	log.Println("Calling Object.X_GetPropertyList()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "_get_property_list")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_property_list", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   The virtual method called upon initialization.
+        The virtual method called upon initialization.
+	Args: [], Returns: void
 */
+
 func (o *Object) X_Init() {
 	log.Println("Calling Object.X_Init()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "_init")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_init", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Notify the object internally using an ID.
+        Notify the object internally using an ID.
+	Args: [{ false what int}], Returns: void
 */
+
 func (o *Object) X_Notification(what gdnative.Int) {
 	log.Println("Calling Object.X_Notification()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(what)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(what)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "_notification")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_notification", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a property. Returns [code]true[/code] if the [code]property[/code] exists.
+        Sets a property. Returns [code]true[/code] if the [code]property[/code] exists.
+	Args: [{ false property String} { false value Variant}], Returns: bool
 */
-func (o *Object) X_Set(property gdnative.String, value *Variant) gdnative.Bool {
+
+func (o *Object) X_Set(property gdnative.String, value gdnative.Variant) gdnative.Bool {
 	log.Println("Calling Object.X_Set()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(property)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(property)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "_set")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_set", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Adds a user-defined [code]signal[/code]. Arguments are optional, but can be added as an [Array] of dictionaries, each containing "name" and "type" (from [@GlobalScope] TYPE_*).
+        Adds a user-defined [code]signal[/code]. Arguments are optional, but can be added as an [Array] of dictionaries, each containing "name" and "type" (from [@GlobalScope] TYPE_*).
+	Args: [{ false signal String} {[] true arguments Array}], Returns: void
 */
-func (o *Object) AddUserSignal(signal gdnative.String, arguments *Array) {
+
+func (o *Object) AddUserSignal(signal gdnative.String, arguments gdnative.Array) {
 	log.Println("Calling Object.AddUserSignal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(signal)
-	goArguments[1] = reflect.ValueOf(arguments)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(signal)
+	ptrArguments[1] = gdnative.NewPointerFromArray(arguments)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "add_user_signal")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_user_signal", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Calls the [code]method[/code] on the object and returns a result. Pass parameters as a comma separated list.
+        Calls the [code]method[/code] on the object and returns a result. Pass parameters as a comma separated list.
+	Args: [{ false method String}], Returns: Variant
 */
-func (o *Object) Call(method gdnative.String) *Variant {
+
+func (o *Object) Call(method gdnative.String) gdnative.Variant {
 	log.Println("Calling Object.Call()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(method)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(method)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "call")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "call", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Calls the [code]method[/code] on the object during idle time and returns a result. Pass parameters as a comma separated list.
+        Calls the [code]method[/code] on the object during idle time and returns a result. Pass parameters as a comma separated list.
+	Args: [{ false method String}], Returns: Variant
 */
-func (o *Object) CallDeferred(method gdnative.String) *Variant {
+
+func (o *Object) CallDeferred(method gdnative.String) gdnative.Variant {
 	log.Println("Calling Object.CallDeferred()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(method)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(method)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "call_deferred")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "call_deferred", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Calls the [code]method[/code] on the object and returns a result. Pass parameters as an [Array].
+        Calls the [code]method[/code] on the object and returns a result. Pass parameters as an [Array].
+	Args: [{ false method String} { false arg_array Array}], Returns: Variant
 */
-func (o *Object) Callv(method gdnative.String, argArray *Array) *Variant {
+
+func (o *Object) Callv(method gdnative.String, argArray gdnative.Array) gdnative.Variant {
 	log.Println("Calling Object.Callv()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(method)
-	goArguments[1] = reflect.ValueOf(argArray)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(method)
+	ptrArguments[1] = gdnative.NewPointerFromArray(argArray)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "callv")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "callv", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the object can translate strings.
+        Returns [code]true[/code] if the object can translate strings.
+	Args: [], Returns: bool
 */
+
 func (o *Object) CanTranslateMessages() gdnative.Bool {
 	log.Println("Calling Object.CanTranslateMessages()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "can_translate_messages")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "can_translate_messages", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Connects a [code]signal[/code] to a [code]method[/code] on a [code]target[/code] object. Pass optional [code]binds[/code] to the call. Use [code]flags[/code] to set deferred or one shot connections. See [code]CONNECT_*[/code] constants. A [code]signal[/code] can only be connected once to a [code]method[/code]. It will throw an error if already connected. To avoid this, first use [method is_connected] to check for existing connections.
+        Connects a [code]signal[/code] to a [code]method[/code] on a [code]target[/code] object. Pass optional [code]binds[/code] to the call. Use [code]flags[/code] to set deferred or one shot connections. See [code]CONNECT_*[/code] constants. A [code]signal[/code] can only be connected once to a [code]method[/code]. It will throw an error if already connected. To avoid this, first use [method is_connected] to check for existing connections.
+	Args: [{ false signal String} { false target Object} { false method String} {[] true binds Array} {0 true flags int}], Returns: enum.Error
 */
-func (o *Object) Connect(signal gdnative.String, target *Object, method gdnative.String, binds *Array, flags gdnative.Int) gdnative.Int {
-	log.Println("Calling Object.Connect()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(signal)
-	goArguments[1] = reflect.ValueOf(target)
-	goArguments[2] = reflect.ValueOf(method)
-	goArguments[3] = reflect.ValueOf(binds)
-	goArguments[4] = reflect.ValueOf(flags)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "connect", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Disconnects a [code]signal[/code] from a [code]method[/code] on the given [code]target[/code].
+        Disconnects a [code]signal[/code] from a [code]method[/code] on the given [code]target[/code].
+	Args: [{ false signal String} { false target Object} { false method String}], Returns: void
 */
-func (o *Object) Disconnect(signal gdnative.String, target *Object, method gdnative.String) {
+
+func (o *Object) Disconnect(signal gdnative.String, target Object, method gdnative.String) {
 	log.Println("Calling Object.Disconnect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(signal)
-	goArguments[1] = reflect.ValueOf(target)
-	goArguments[2] = reflect.ValueOf(method)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(signal)
+	ptrArguments[1] = gdnative.NewPointerFromObject(target.GetOwner())
+	ptrArguments[2] = gdnative.NewPointerFromString(method)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "disconnect")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "disconnect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Emits the given [code]signal[/code].
+        Emits the given [code]signal[/code].
+	Args: [{ false signal String}], Returns: Variant
 */
-func (o *Object) EmitSignal(signal gdnative.String) *Variant {
+
+func (o *Object) EmitSignal(signal gdnative.String) gdnative.Variant {
 	log.Println("Calling Object.EmitSignal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(signal)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(signal)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "emit_signal")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "emit_signal", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Deletes the object from memory.
+        Deletes the object from memory.
+	Args: [], Returns: void
 */
+
 func (o *Object) Free() {
 	log.Println("Calling Object.Free()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "free")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "free", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns a [Variant] for a [code]property[/code].
+        Returns a [Variant] for a [code]property[/code].
+	Args: [{ false property String}], Returns: Variant
 */
-func (o *Object) Get(property gdnative.String) *Variant {
+
+func (o *Object) Get(property gdnative.String) gdnative.Variant {
 	log.Println("Calling Object.Get()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(property)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(property)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "get")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the object's class as a [String].
+        Returns the object's class as a [String].
+	Args: [], Returns: String
 */
+
 func (o *Object) GetClass() gdnative.String {
 	log.Println("Calling Object.GetClass()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "get_class")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_class", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns an [Array] of dictionaries with information about signals that are connected to the object. Inside each [Dictionary] there are 3 fields: - "source" is a reference to signal emitter. - "signal_name" is name of connected signal. - "method_name" is a name of method to which signal is connected.
+        Returns an [Array] of dictionaries with information about signals that are connected to the object. Inside each [Dictionary] there are 3 fields: - "source" is a reference to signal emitter. - "signal_name" is name of connected signal. - "method_name" is a name of method to which signal is connected.
+	Args: [], Returns: Array
 */
-func (o *Object) GetIncomingConnections() *Array {
+
+func (o *Object) GetIncomingConnections() gdnative.Array {
 	log.Println("Calling Object.GetIncomingConnections()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "get_incoming_connections")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_incoming_connections", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *Object) GetIndexed(property *NodePath) *Variant {
+	Args: [{ false property NodePath}], Returns: Variant
+*/
+
+func (o *Object) GetIndexed(property gdnative.NodePath) gdnative.Variant {
 	log.Println("Calling Object.GetIndexed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(property)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(property)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "get_indexed")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_indexed", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the object's unique instance ID.
+        Returns the object's unique instance ID.
+	Args: [], Returns: int
 */
+
 func (o *Object) GetInstanceId() gdnative.Int {
 	log.Println("Calling Object.GetInstanceId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "get_instance_id")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_instance_id", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the object's metadata for the given [code]name[/code].
+        Returns the object's metadata for the given [code]name[/code].
+	Args: [{ false name String}], Returns: Variant
 */
-func (o *Object) GetMeta(name gdnative.String) *Variant {
+
+func (o *Object) GetMeta(name gdnative.String) gdnative.Variant {
 	log.Println("Calling Object.GetMeta()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "get_meta")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_meta", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the object's metadata as a [PoolStringArray].
+        Returns the object's metadata as a [PoolStringArray].
+	Args: [], Returns: PoolStringArray
 */
-func (o *Object) GetMetaList() *PoolStringArray {
+
+func (o *Object) GetMetaList() gdnative.PoolStringArray {
 	log.Println("Calling Object.GetMetaList()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "get_meta_list")
 
 	// Call the parent method.
+	// PoolStringArray
+	retPtr := gdnative.NewEmptyPoolStringArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_meta_list", goArguments, "*PoolStringArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolStringArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the object's methods and their signatures as an [Array].
+        Returns the object's methods and their signatures as an [Array].
+	Args: [], Returns: Array
 */
-func (o *Object) GetMethodList() *Array {
+
+func (o *Object) GetMethodList() gdnative.Array {
 	log.Println("Calling Object.GetMethodList()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "get_method_list")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_method_list", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the list of properties as an [Array] of dictionaries. Dictionaries contain: name:String, type:int (see TYPE_* enum in [@GlobalScope]) and optionally: hint:int (see PROPERTY_HINT_* in [@GlobalScope]), hint_string:String, usage:int (see PROPERTY_USAGE_* in [@GlobalScope]).
+        Returns the list of properties as an [Array] of dictionaries. Dictionaries contain: name:String, type:int (see TYPE_* enum in [@GlobalScope]) and optionally: hint:int (see PROPERTY_HINT_* in [@GlobalScope]), hint_string:String, usage:int (see PROPERTY_USAGE_* in [@GlobalScope]).
+	Args: [], Returns: Array
 */
-func (o *Object) GetPropertyList() *Array {
+
+func (o *Object) GetPropertyList() gdnative.Array {
 	log.Println("Calling Object.GetPropertyList()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "get_property_list")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_property_list", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the object's [Script] or [code]null[/code] if one doesn't exist.
+        Returns the object's [Script] or [code]null[/code] if one doesn't exist.
+	Args: [], Returns: Reference
 */
-func (o *Object) GetScript() *Reference {
+
+func (o *Object) GetScript() reference.Reference {
 	log.Println("Calling Object.GetScript()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "get_script")
 
 	// Call the parent method.
+	// Reference
+	retPtr := reference.NewEmptyReference()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_script", goArguments, "*Reference")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := reference.NewReferenceFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Reference)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns an [Array] of connections for the given [code]signal[/code].
+        Returns an [Array] of connections for the given [code]signal[/code].
+	Args: [{ false signal String}], Returns: Array
 */
-func (o *Object) GetSignalConnectionList(signal gdnative.String) *Array {
+
+func (o *Object) GetSignalConnectionList(signal gdnative.String) gdnative.Array {
 	log.Println("Calling Object.GetSignalConnectionList()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(signal)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(signal)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "get_signal_connection_list")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_signal_connection_list", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the list of signals as an [Array] of dictionaries.
+        Returns the list of signals as an [Array] of dictionaries.
+	Args: [], Returns: Array
 */
-func (o *Object) GetSignalList() *Array {
+
+func (o *Object) GetSignalList() gdnative.Array {
 	log.Println("Calling Object.GetSignalList()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "get_signal_list")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_signal_list", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if a metadata is found with the given [code]name[/code].
+        Returns [code]true[/code] if a metadata is found with the given [code]name[/code].
+	Args: [{ false name String}], Returns: bool
 */
+
 func (o *Object) HasMeta(name gdnative.String) gdnative.Bool {
 	log.Println("Calling Object.HasMeta()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "has_meta")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_meta", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the object contains the given [code]method[/code].
+        Returns [code]true[/code] if the object contains the given [code]method[/code].
+	Args: [{ false method String}], Returns: bool
 */
+
 func (o *Object) HasMethod(method gdnative.String) gdnative.Bool {
 	log.Println("Calling Object.HasMethod()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(method)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(method)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "has_method")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_method", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the given user-defined [code]signal[/code] exists.
+        Returns [code]true[/code] if the given user-defined [code]signal[/code] exists.
+	Args: [{ false signal String}], Returns: bool
 */
+
 func (o *Object) HasUserSignal(signal gdnative.String) gdnative.Bool {
 	log.Println("Calling Object.HasUserSignal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(signal)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(signal)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "has_user_signal")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_user_signal", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if signal emission blocking is enabled.
+        Returns [code]true[/code] if signal emission blocking is enabled.
+	Args: [], Returns: bool
 */
+
 func (o *Object) IsBlockingSignals() gdnative.Bool {
 	log.Println("Calling Object.IsBlockingSignals()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "is_blocking_signals")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_blocking_signals", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the object inherits from the given [code]type[/code].
+        Returns [code]true[/code] if the object inherits from the given [code]type[/code].
+	Args: [{ false type String}], Returns: bool
 */
+
 func (o *Object) IsClass(aType gdnative.String) gdnative.Bool {
 	log.Println("Calling Object.IsClass()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "is_class")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_class", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if a connection exists for a given [code]signal[/code], [code]target[/code], and [code]method[/code].
+        Returns [code]true[/code] if a connection exists for a given [code]signal[/code], [code]target[/code], and [code]method[/code].
+	Args: [{ false signal String} { false target Object} { false method String}], Returns: bool
 */
-func (o *Object) IsConnected(signal gdnative.String, target *Object, method gdnative.String) gdnative.Bool {
+
+func (o *Object) IsConnected(signal gdnative.String, target Object, method gdnative.String) gdnative.Bool {
 	log.Println("Calling Object.IsConnected()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(signal)
-	goArguments[1] = reflect.ValueOf(target)
-	goArguments[2] = reflect.ValueOf(method)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(signal)
+	ptrArguments[1] = gdnative.NewPointerFromObject(target.GetOwner())
+	ptrArguments[2] = gdnative.NewPointerFromString(method)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "is_connected")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_connected", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the [code]queue_free[/code] method was called for the object.
+        Returns [code]true[/code] if the [code]queue_free[/code] method was called for the object.
+	Args: [], Returns: bool
 */
+
 func (o *Object) IsQueuedForDeletion() gdnative.Bool {
 	log.Println("Calling Object.IsQueuedForDeletion()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "is_queued_for_deletion")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_queued_for_deletion", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Notify the object of something.
+        Notify the object of something.
+	Args: [{ false what int} {False true reversed bool}], Returns: void
 */
+
 func (o *Object) Notification(what gdnative.Int, reversed gdnative.Bool) {
 	log.Println("Calling Object.Notification()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(what)
-	goArguments[1] = reflect.ValueOf(reversed)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(what)
+	ptrArguments[1] = gdnative.NewPointerFromBool(reversed)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "notification")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "notification", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *Object) PropertyListChangedNotify() {
 	log.Println("Calling Object.PropertyListChangedNotify()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "property_list_changed_notify")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "property_list_changed_notify", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set property into the object.
+        Set property into the object.
+	Args: [{ false property String} { false value Variant}], Returns: void
 */
-func (o *Object) Set(property gdnative.String, value *Variant) {
+
+func (o *Object) Set(property gdnative.String, value gdnative.Variant) {
 	log.Println("Calling Object.Set()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(property)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(property)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "set")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If set to true, signal emission is blocked.
+        If set to true, signal emission is blocked.
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Object) SetBlockSignals(enable gdnative.Bool) {
 	log.Println("Calling Object.SetBlockSignals()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "set_block_signals")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_block_signals", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *Object) SetIndexed(property *NodePath, value *Variant) {
+	Args: [{ false property NodePath} { false value Variant}], Returns: void
+*/
+
+func (o *Object) SetIndexed(property gdnative.NodePath, value gdnative.Variant) {
 	log.Println("Calling Object.SetIndexed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(property)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(property)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "set_indexed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_indexed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Define whether the object can translate strings (with calls to [method tr]). Default is true.
+        Define whether the object can translate strings (with calls to [method tr]). Default is true.
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Object) SetMessageTranslation(enable gdnative.Bool) {
 	log.Println("Calling Object.SetMessageTranslation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "set_message_translation")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_message_translation", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set a metadata into the object. Metadata is serialized. Metadata can be [i]anything[/i].
+        Set a metadata into the object. Metadata is serialized. Metadata can be [i]anything[/i].
+	Args: [{ false name String} { false value Variant}], Returns: void
 */
-func (o *Object) SetMeta(name gdnative.String, value *Variant) {
+
+func (o *Object) SetMeta(name gdnative.String, value gdnative.Variant) {
 	log.Println("Calling Object.SetMeta()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "set_meta")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_meta", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set a script into the object, scripts extend the object functionality.
+        Set a script into the object, scripts extend the object functionality.
+	Args: [{ false script Reference}], Returns: void
 */
-func (o *Object) SetScript(script *Reference) {
+
+func (o *Object) SetScript(script reference.Reference) {
 	log.Println("Calling Object.SetScript()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(script)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(script.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "set_script")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_script", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Translate a message. Only works if message translation is enabled (which it is by default). See [method set_message_translation].
+        Translate a message. Only works if message translation is enabled (which it is by default). See [method set_message_translation].
+	Args: [{ false message String}], Returns: String
 */
+
 func (o *Object) Tr(message gdnative.String) gdnative.String {
 	log.Println("Calling Object.Tr()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(message)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(message)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "tr")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "tr", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 // SetOwner will internally set the Godot object inside the struct.
@@ -876,90 +1083,4 @@ func (o *Object) SetOwner(object gdnative.Object) {
 
 func (o *Object) GetOwner() gdnative.Object {
 	return o.owner
-}
-
-// callParentMethod will call this object's method with the given method name.
-func (o *Object) callParentMethod(baseClass, methodName string, args []reflect.Value, returns string) reflect.Value {
-	log.Println("Calling parent method!")
-
-	// Convert the base class and method names to C strings.
-	log.Println("  Using base class: ", baseClass)
-	classCString := C.CString(baseClass)
-	log.Println("  Using method name: ", methodName)
-	methodCString := C.CString(methodName)
-
-	// Get the Godot objects owner so we can pass it to godot_method_bind_ptrcall.
-	log.Println("  Using godot object owner:", o.getOwner())
-	objectOwner := unsafe.Pointer(o.getOwner())
-
-	// Get the Godot method bind pointer so we can pass it to godot_method_bind_ptrcall.
-	var methodBind *C.godot_method_bind
-	methodBind = C.godot_method_bind_get_method(classCString, methodCString)
-	log.Println("  Using method bind pointer: ", methodBind)
-
-	// Loop through the given arguments and see what type they are. When we know what
-	// type it is, we need to convert them to the correct godot objects.
-	// TODO: Probably pull this out into its own function?
-	variantArgs := []unsafe.Pointer{}
-	for _, arg := range args {
-		log.Println("  Argument type: ", arg.Type().String())
-
-		// Look up our conversion function in our map of conversion functions
-		// based on the Go type. This is essentially a more optimal case/switch
-		// statement on the type of Go object, so we can know how to convert it
-		// to a Godot object.
-		if convert, ok := goToGodotConversionMap[arg.Type().String()]; ok {
-			argValue := convert(arg.Interface())
-			variantArgs = append(variantArgs, argValue)
-		} else {
-			err := "Unknown type of argument value when calling parent method: " + arg.Type().String()
-			Log.Error(err)
-			panic(err)
-		}
-	}
-	log.Println("  Built variant arguments: ", variantArgs)
-
-	// Construct a C array that will contain pointers to our arguments.
-	log.Println("  Allocating argument array in C.")
-	cArgsArray := C.build_array(C.int(len(variantArgs)))
-	log.Println("    C Array: ", cArgsArray)
-
-	// Loop through and add each argument to our C args array.
-	for i, arg := range variantArgs {
-		C.add_element(cArgsArray, arg, C.int(i))
-	}
-	log.Println("  Built argument array from variant arguments: ", cArgsArray)
-
-	// Construct our return object that will be populated by the method call.
-	// Here we're just using a CString
-	log.Println("  Building return value.")
-	ret := unsafe.Pointer(C.CString(""))
-
-	// Call the parent method. "ret" will be populated with the return value.
-	log.Println("  Calling bind_ptrcall...")
-	C.godot_method_bind_ptrcall(
-		methodBind,
-		objectOwner,
-		cArgsArray, // void**
-		ret,        // void*
-	)
-	log.Println("  Finished calling method")
-
-	// Convert the return value based on the type.
-	var retValue reflect.Value
-	if _, ok := godotToGoConversionMap[returns]; ok {
-		retValue = godotToGoConversionMap[returns](ret)
-	} else {
-		panic("Return type not found when calling parent method: " + returns)
-	}
-
-	// Return the converted variant.
-	return retValue
-}
-
-/*
-   ObjectImplementer is an interface for Object objects.
-*/
-type ObjectImplementer interface {
-	Class
 }

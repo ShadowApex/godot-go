@@ -2,9 +2,9 @@ package xmlparser
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewXMLParserFromPointer(ptr gdnative.Pointer) *XMLParser {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := XMLParser{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 This class can serve as base to make custom XML parsers. Since XML is a very flexible standard, this interface is low level so it can be applied to any possible schema.
 */
 type XMLParser struct {
-	Reference
+	reference.Reference
 }
 
 func (o *XMLParser) BaseClass() string {
@@ -28,353 +37,338 @@ func (o *XMLParser) BaseClass() string {
 }
 
 /*
-   Get the amount of attributes in the current element.
+        Get the amount of attributes in the current element.
+	Args: [], Returns: int
 */
+
 func (o *XMLParser) GetAttributeCount() gdnative.Int {
 	log.Println("Calling XMLParser.GetAttributeCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("XMLParser", "get_attribute_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_attribute_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the name of the attribute specified by the index in [code]idx[/code] argument.
+        Get the name of the attribute specified by the index in [code]idx[/code] argument.
+	Args: [{ false idx int}], Returns: String
 */
+
 func (o *XMLParser) GetAttributeName(idx gdnative.Int) gdnative.String {
 	log.Println("Calling XMLParser.GetAttributeName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("XMLParser", "get_attribute_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_attribute_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the value of the attribute specified by the index in [code]idx[/code] argument.
+        Get the value of the attribute specified by the index in [code]idx[/code] argument.
+	Args: [{ false idx int}], Returns: String
 */
+
 func (o *XMLParser) GetAttributeValue(idx gdnative.Int) gdnative.String {
 	log.Println("Calling XMLParser.GetAttributeValue()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("XMLParser", "get_attribute_value")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_attribute_value", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the current line in the parsed file (currently not implemented).
+        Get the current line in the parsed file (currently not implemented).
+	Args: [], Returns: int
 */
+
 func (o *XMLParser) GetCurrentLine() gdnative.Int {
 	log.Println("Calling XMLParser.GetCurrentLine()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("XMLParser", "get_current_line")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_current_line", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the value of a certain attribute of the current element by name. This will raise an error if the element has no such attribute.
+        Get the value of a certain attribute of the current element by name. This will raise an error if the element has no such attribute.
+	Args: [{ false name String}], Returns: String
 */
+
 func (o *XMLParser) GetNamedAttributeValue(name gdnative.String) gdnative.String {
 	log.Println("Calling XMLParser.GetNamedAttributeValue()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("XMLParser", "get_named_attribute_value")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_named_attribute_value", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the value of a certain attribute of the current element by name. This will return an empty [String] if the attribute is not found.
+        Get the value of a certain attribute of the current element by name. This will return an empty [String] if the attribute is not found.
+	Args: [{ false name String}], Returns: String
 */
+
 func (o *XMLParser) GetNamedAttributeValueSafe(name gdnative.String) gdnative.String {
 	log.Println("Calling XMLParser.GetNamedAttributeValueSafe()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("XMLParser", "get_named_attribute_value_safe")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_named_attribute_value_safe", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the contents of a text node. This will raise an error in any other type of node.
+        Get the contents of a text node. This will raise an error in any other type of node.
+	Args: [], Returns: String
 */
+
 func (o *XMLParser) GetNodeData() gdnative.String {
 	log.Println("Calling XMLParser.GetNodeData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("XMLParser", "get_node_data")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_data", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the name of the current element node. This will raise an error if the current node type is not [code]NODE_ELEMENT[/code] nor [code]NODE_ELEMENT_END[/code]
+        Get the name of the current element node. This will raise an error if the current node type is not [code]NODE_ELEMENT[/code] nor [code]NODE_ELEMENT_END[/code]
+	Args: [], Returns: String
 */
+
 func (o *XMLParser) GetNodeName() gdnative.String {
 	log.Println("Calling XMLParser.GetNodeName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("XMLParser", "get_node_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the byte offset of the current node since the beginning of the file or buffer.
+        Get the byte offset of the current node since the beginning of the file or buffer.
+	Args: [], Returns: int
 */
+
 func (o *XMLParser) GetNodeOffset() gdnative.Int {
 	log.Println("Calling XMLParser.GetNodeOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("XMLParser", "get_node_offset")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_offset", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the type of the current node. Compare with [code]NODE_*[/code] constants.
+        Get the type of the current node. Compare with [code]NODE_*[/code] constants.
+	Args: [], Returns: enum.XMLParser::NodeType
 */
-func (o *XMLParser) GetNodeType() gdnative.Int {
-	log.Println("Calling XMLParser.GetNodeType()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_type", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Check whether or not the current element has a certain attribute.
+        Check whether or not the current element has a certain attribute.
+	Args: [{ false name String}], Returns: bool
 */
+
 func (o *XMLParser) HasAttribute(name gdnative.String) gdnative.Bool {
 	log.Println("Calling XMLParser.HasAttribute()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("XMLParser", "has_attribute")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_attribute", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Check whether the current element is empty (this only works for completely empty tags, e.g. <element \>).
+        Check whether the current element is empty (this only works for completely empty tags, e.g. <element \>).
+	Args: [], Returns: bool
 */
+
 func (o *XMLParser) IsEmpty() gdnative.Bool {
 	log.Println("Calling XMLParser.IsEmpty()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("XMLParser", "is_empty")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_empty", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Open a XML file for parsing. This returns an error code.
+        Open a XML file for parsing. This returns an error code.
+	Args: [{ false file String}], Returns: enum.Error
 */
-func (o *XMLParser) Open(file gdnative.String) gdnative.Int {
-	log.Println("Calling XMLParser.Open()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(file)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "open", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Open a XML raw buffer for parsing. This returns an error code.
+        Open a XML raw buffer for parsing. This returns an error code.
+	Args: [{ false buffer PoolByteArray}], Returns: enum.Error
 */
-func (o *XMLParser) OpenBuffer(buffer *PoolByteArray) gdnative.Int {
-	log.Println("Calling XMLParser.OpenBuffer()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(buffer)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "open_buffer", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Read the next node of the file. This returns an error code.
+        Read the next node of the file. This returns an error code.
+	Args: [], Returns: enum.Error
 */
-func (o *XMLParser) Read() gdnative.Int {
-	log.Println("Calling XMLParser.Read()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "read", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Move the buffer cursor to a certain offset (since the beginning) and read the next node there. This returns an error code.
+        Move the buffer cursor to a certain offset (since the beginning) and read the next node there. This returns an error code.
+	Args: [{ false position int}], Returns: enum.Error
 */
-func (o *XMLParser) Seek(position gdnative.Int) gdnative.Int {
-	log.Println("Calling XMLParser.Seek()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "seek", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Skips the current section. If the node contains other elements, they will be ignored and the cursor will go to the closing of the current element.
+        Skips the current section. If the node contains other elements, they will be ignored and the cursor will go to the closing of the current element.
+	Args: [], Returns: void
 */
+
 func (o *XMLParser) SkipSection() {
 	log.Println("Calling XMLParser.SkipSection()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("XMLParser", "skip_section")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "skip_section", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   XMLParserImplementer is an interface for XMLParser objects.
-*/
-type XMLParserImplementer interface {
-	Class
 }

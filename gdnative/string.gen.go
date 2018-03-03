@@ -38,6 +38,14 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewEmptyString will return a pointer to an empty
+// initialized String. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyString() Pointer {
+	var obj C.godot_string
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromString will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromString(obj String) Pointer {
@@ -1313,6 +1321,14 @@ func (gdt *String) Destroy() {
 	arg0 := gdt.getBase()
 
 	C.go_godot_string_destroy(GDNative.api, arg0)
+}
+
+// NewEmptyCharString will return a pointer to an empty
+// initialized CharString. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyCharString() Pointer {
+	var obj C.godot_char_string
+	return Pointer{base: unsafe.Pointer(&obj)}
 }
 
 // NewPointerFromCharString will return an unsafe pointer to the given

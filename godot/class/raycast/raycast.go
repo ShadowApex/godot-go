@@ -2,9 +2,11 @@ package raycast
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
+	"github.com/shadowapex/godot-go/godot/class/spatial"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewRayCastFromPointer(ptr gdnative.Pointer) *RayCast {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := RayCast{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 A RayCast represents a line from its origin to its destination position, [code]cast_to[/code]. It is used to query the 3D space in order to find the closest object along the path of the ray. RayCast can ignore some objects by adding them to the exception list via [code]add_exception[/code], by setting proper filtering with collision layers, or by filtering object types with type masks. Only enabled raycasts will be able to query the space and report collisions. RayCast calculates intersection every physics frame (see [Node]), and the result is cached so it can be used later until the next frame. If multiple queries are required between physics frames (or during the same frame) use [method force_raycast_update] after adjusting the raycast.
 */
 type RayCast struct {
-	Spatial
+	spatial.Spatial
 }
 
 func (o *RayCast) BaseClass() string {
@@ -28,406 +39,503 @@ func (o *RayCast) BaseClass() string {
 }
 
 /*
-   Adds a collision exception so the ray does not report collisions with the specified node.
+        Adds a collision exception so the ray does not report collisions with the specified node.
+	Args: [{ false node Object}], Returns: void
 */
-func (o *RayCast) AddException(node *Object) {
+
+func (o *RayCast) AddException(node object.Object) {
 	log.Println("Calling RayCast.AddException()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(node)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(node.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "add_exception")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_exception", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a collision exception so the ray does not report collisions with the specified [RID].
+        Adds a collision exception so the ray does not report collisions with the specified [RID].
+	Args: [{ false rid RID}], Returns: void
 */
-func (o *RayCast) AddExceptionRid(rid *RID) {
+
+func (o *RayCast) AddExceptionRid(rid gdnative.RID) {
 	log.Println("Calling RayCast.AddExceptionRid()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(rid)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(rid)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "add_exception_rid")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_exception_rid", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Removes all collision exceptions for this ray.
+        Removes all collision exceptions for this ray.
+	Args: [], Returns: void
 */
+
 func (o *RayCast) ClearExceptions() {
 	log.Println("Calling RayCast.ClearExceptions()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "clear_exceptions")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear_exceptions", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Updates the collision information for the ray. Use this method to update the collision information immediately instead of waiting for the next [code]_physics_process[/code] call, for example if the ray or its parent has changed state. Note: [code]enabled == true[/code] is not required for this to work.
+        Updates the collision information for the ray. Use this method to update the collision information immediately instead of waiting for the next [code]_physics_process[/code] call, for example if the ray or its parent has changed state. Note: [code]enabled == true[/code] is not required for this to work.
+	Args: [], Returns: void
 */
+
 func (o *RayCast) ForceRaycastUpdate() {
 	log.Println("Calling RayCast.ForceRaycastUpdate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "force_raycast_update")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "force_raycast_update", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector3
 */
-func (o *RayCast) GetCastTo() *Vector3 {
+
+func (o *RayCast) GetCastTo() gdnative.Vector3 {
 	log.Println("Calling RayCast.GetCastTo()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "get_cast_to")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_cast_to", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the closest object the ray is pointing to. Note that this does not consider the length of the ray, so you must also use [method is_colliding] to check if the object returned is actually colliding with the ray. Example: [codeblock] if RayCast.is_colliding(): var collider = RayCast.get_collider() [/codeblock]
+        Return the closest object the ray is pointing to. Note that this does not consider the length of the ray, so you must also use [method is_colliding] to check if the object returned is actually colliding with the ray. Example: [codeblock] if RayCast.is_colliding(): var collider = RayCast.get_collider() [/codeblock]
+	Args: [], Returns: Object
 */
-func (o *RayCast) GetCollider() *Object {
+
+func (o *RayCast) GetCollider() object.Object {
 	log.Println("Calling RayCast.GetCollider()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "get_collider")
 
 	// Call the parent method.
+	// Object
+	retPtr := object.NewEmptyObject()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collider", goArguments, "*Object")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := object.NewObjectFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Object)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the collision shape of the closest object the ray is pointing to. Note that this does not consider the length of the ray, so you must also use [method is_colliding] to check if the object returned is actually colliding with the ray. Example: [codeblock] if RayCast.is_colliding(): var shape = RayCast.get_collider_shape() [/codeblock]
+        Returns the collision shape of the closest object the ray is pointing to. Note that this does not consider the length of the ray, so you must also use [method is_colliding] to check if the object returned is actually colliding with the ray. Example: [codeblock] if RayCast.is_colliding(): var shape = RayCast.get_collider_shape() [/codeblock]
+	Args: [], Returns: int
 */
+
 func (o *RayCast) GetColliderShape() gdnative.Int {
 	log.Println("Calling RayCast.GetColliderShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "get_collider_shape")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collider_shape", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *RayCast) GetCollisionMask() gdnative.Int {
 	log.Println("Calling RayCast.GetCollisionMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "get_collision_mask")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collision_mask", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the bit index passed is turned on. Note that bit indexes range from 0-19.
+        Returns [code]true[/code] if the bit index passed is turned on. Note that bit indexes range from 0-19.
+	Args: [{ false bit int}], Returns: bool
 */
+
 func (o *RayCast) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
 	log.Println("Calling RayCast.GetCollisionMaskBit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bit)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bit)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "get_collision_mask_bit")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collision_mask_bit", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the normal of the intersecting object's shape at the collision point.
+        Returns the normal of the intersecting object's shape at the collision point.
+	Args: [], Returns: Vector3
 */
-func (o *RayCast) GetCollisionNormal() *Vector3 {
+
+func (o *RayCast) GetCollisionNormal() gdnative.Vector3 {
 	log.Println("Calling RayCast.GetCollisionNormal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "get_collision_normal")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collision_normal", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the collision point at which the ray intersects the closest object. Note: this point is in the [b]global[/b] coordinate system.
+        Returns the collision point at which the ray intersects the closest object. Note: this point is in the [b]global[/b] coordinate system.
+	Args: [], Returns: Vector3
 */
-func (o *RayCast) GetCollisionPoint() *Vector3 {
+
+func (o *RayCast) GetCollisionPoint() gdnative.Vector3 {
 	log.Println("Calling RayCast.GetCollisionPoint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "get_collision_point")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collision_point", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *RayCast) GetExcludeParentBody() gdnative.Bool {
 	log.Println("Calling RayCast.GetExcludeParentBody()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "get_exclude_parent_body")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_exclude_parent_body", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return whether the closest object the ray is pointing to is colliding with the vector (considering the vector length).
+        Return whether the closest object the ray is pointing to is colliding with the vector (considering the vector length).
+	Args: [], Returns: bool
 */
+
 func (o *RayCast) IsColliding() gdnative.Bool {
 	log.Println("Calling RayCast.IsColliding()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "is_colliding")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_colliding", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *RayCast) IsEnabled() gdnative.Bool {
 	log.Println("Calling RayCast.IsEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "is_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Removes a collision exception so the ray does report collisions with the specified node.
+        Removes a collision exception so the ray does report collisions with the specified node.
+	Args: [{ false node Object}], Returns: void
 */
-func (o *RayCast) RemoveException(node *Object) {
+
+func (o *RayCast) RemoveException(node object.Object) {
 	log.Println("Calling RayCast.RemoveException()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(node)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(node.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "remove_exception")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_exception", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Removes a collision exception so the ray does report collisions with the specified [RID].
+        Removes a collision exception so the ray does report collisions with the specified [RID].
+	Args: [{ false rid RID}], Returns: void
 */
-func (o *RayCast) RemoveExceptionRid(rid *RID) {
+
+func (o *RayCast) RemoveExceptionRid(rid gdnative.RID) {
 	log.Println("Calling RayCast.RemoveExceptionRid()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(rid)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(rid)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "remove_exception_rid")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_exception_rid", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false local_point Vector3}], Returns: void
 */
-func (o *RayCast) SetCastTo(localPoint *Vector3) {
+
+func (o *RayCast) SetCastTo(localPoint gdnative.Vector3) {
 	log.Println("Calling RayCast.SetCastTo()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(localPoint)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(localPoint)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "set_cast_to")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_cast_to", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mask int}], Returns: void
 */
+
 func (o *RayCast) SetCollisionMask(mask gdnative.Int) {
 	log.Println("Calling RayCast.SetCollisionMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mask)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mask)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "set_collision_mask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_collision_mask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the bit index passed to the [code]value[/code] passed. Note that bit indexes range from 0-19.
+        Sets the bit index passed to the [code]value[/code] passed. Note that bit indexes range from 0-19.
+	Args: [{ false bit int} { false value bool}], Returns: void
 */
+
 func (o *RayCast) SetCollisionMaskBit(bit gdnative.Int, value gdnative.Bool) {
 	log.Println("Calling RayCast.SetCollisionMaskBit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(bit)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bit)
+	ptrArguments[1] = gdnative.NewPointerFromBool(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "set_collision_mask_bit")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_collision_mask_bit", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enabled bool}], Returns: void
 */
+
 func (o *RayCast) SetEnabled(enabled gdnative.Bool) {
 	log.Println("Calling RayCast.SetEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "set_enabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_enabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mask bool}], Returns: void
 */
+
 func (o *RayCast) SetExcludeParentBody(mask gdnative.Bool) {
 	log.Println("Calling RayCast.SetExcludeParentBody()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mask)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(mask)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayCast", "set_exclude_parent_body")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_exclude_parent_body", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   RayCastImplementer is an interface for RayCast objects.
-*/
-type RayCastImplementer interface {
-	Class
 }

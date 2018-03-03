@@ -2,9 +2,13 @@ package editor
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/animation"
+	"github.com/shadowapex/godot-go/godot/class/reference"
+
+	"github.com/shadowapex/godot-go/godot/class/node"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +20,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewEditorSceneImporterFromPointer(ptr gdnative.Pointer) *EditorSceneImporter {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := EditorSceneImporter{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type EditorSceneImporter struct {
-	Reference
+	reference.Reference
 }
 
 func (o *EditorSceneImporter) BaseClass() string {
@@ -29,139 +42,168 @@ func (o *EditorSceneImporter) BaseClass() string {
 
 /*
 
- */
-func (o *EditorSceneImporter) X_GetExtensions() *Array {
+	Args: [], Returns: Array
+*/
+
+func (o *EditorSceneImporter) X_GetExtensions() gdnative.Array {
 	log.Println("Calling EditorSceneImporter.X_GetExtensions()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSceneImporter", "_get_extensions")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_extensions", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: int
+*/
+
 func (o *EditorSceneImporter) X_GetImportFlags() gdnative.Int {
 	log.Println("Calling EditorSceneImporter.X_GetImportFlags()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSceneImporter", "_get_import_flags")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_import_flags", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *EditorSceneImporter) X_ImportAnimation(path gdnative.String, flags gdnative.Int, bakeFps gdnative.Int) *Animation {
+	Args: [{ false path String} { false flags int} { false bake_fps int}], Returns: Animation
+*/
+
+func (o *EditorSceneImporter) X_ImportAnimation(path gdnative.String, flags gdnative.Int, bakeFps gdnative.Int) animation.Animation {
 	log.Println("Calling EditorSceneImporter.X_ImportAnimation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(path)
-	goArguments[1] = reflect.ValueOf(flags)
-	goArguments[2] = reflect.ValueOf(bakeFps)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+	ptrArguments[1] = gdnative.NewPointerFromInt(flags)
+	ptrArguments[2] = gdnative.NewPointerFromInt(bakeFps)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSceneImporter", "_import_animation")
 
 	// Call the parent method.
+	// Animation
+	retPtr := animation.NewEmptyAnimation()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_import_animation", goArguments, "*Animation")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := animation.NewAnimationFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Animation)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *EditorSceneImporter) X_ImportScene(path gdnative.String, flags gdnative.Int, bakeFps gdnative.Int) *Node {
+	Args: [{ false path String} { false flags int} { false bake_fps int}], Returns: Node
+*/
+
+func (o *EditorSceneImporter) X_ImportScene(path gdnative.String, flags gdnative.Int, bakeFps gdnative.Int) node.Node {
 	log.Println("Calling EditorSceneImporter.X_ImportScene()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(path)
-	goArguments[1] = reflect.ValueOf(flags)
-	goArguments[2] = reflect.ValueOf(bakeFps)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+	ptrArguments[1] = gdnative.NewPointerFromInt(flags)
+	ptrArguments[2] = gdnative.NewPointerFromInt(bakeFps)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSceneImporter", "_import_scene")
 
 	// Call the parent method.
+	// Node
+	retPtr := node.NewEmptyNode()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_import_scene", goArguments, "*Node")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := node.NewNodeFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Node)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *EditorSceneImporter) ImportAnimationFromOtherImporter(path gdnative.String, flags gdnative.Int, bakeFps gdnative.Int) *Animation {
+	Args: [{ false path String} { false flags int} { false bake_fps int}], Returns: Animation
+*/
+
+func (o *EditorSceneImporter) ImportAnimationFromOtherImporter(path gdnative.String, flags gdnative.Int, bakeFps gdnative.Int) animation.Animation {
 	log.Println("Calling EditorSceneImporter.ImportAnimationFromOtherImporter()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(path)
-	goArguments[1] = reflect.ValueOf(flags)
-	goArguments[2] = reflect.ValueOf(bakeFps)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+	ptrArguments[1] = gdnative.NewPointerFromInt(flags)
+	ptrArguments[2] = gdnative.NewPointerFromInt(bakeFps)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSceneImporter", "import_animation_from_other_importer")
 
 	// Call the parent method.
+	// Animation
+	retPtr := animation.NewEmptyAnimation()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "import_animation_from_other_importer", goArguments, "*Animation")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := animation.NewAnimationFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Animation)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *EditorSceneImporter) ImportSceneFromOtherImporter(path gdnative.String, flags gdnative.Int, bakeFps gdnative.Int) *Node {
+	Args: [{ false path String} { false flags int} { false bake_fps int}], Returns: Node
+*/
+
+func (o *EditorSceneImporter) ImportSceneFromOtherImporter(path gdnative.String, flags gdnative.Int, bakeFps gdnative.Int) node.Node {
 	log.Println("Calling EditorSceneImporter.ImportSceneFromOtherImporter()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(path)
-	goArguments[1] = reflect.ValueOf(flags)
-	goArguments[2] = reflect.ValueOf(bakeFps)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+	ptrArguments[1] = gdnative.NewPointerFromInt(flags)
+	ptrArguments[2] = gdnative.NewPointerFromInt(bakeFps)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorSceneImporter", "import_scene_from_other_importer")
 
 	// Call the parent method.
+	// Node
+	retPtr := node.NewEmptyNode()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "import_scene_from_other_importer", goArguments, "*Node")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := node.NewNodeFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Node)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   EditorSceneImporterImplementer is an interface for EditorSceneImporter objects.
-*/
-type EditorSceneImporterImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

@@ -2,9 +2,9 @@ package sky
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewSkyFromPointer(ptr gdnative.Pointer) *Sky {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Sky{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 The base class for [PanoramaSky] and [ProceduralSky].
 */
 type Sky struct {
-	Resource
+	resource.Resource
 }
 
 func (o *Sky) BaseClass() string {
@@ -28,46 +37,28 @@ func (o *Sky) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Sky::RadianceSize
 */
-func (o *Sky) GetRadianceSize() gdnative.Int {
-	log.Println("Calling Sky.GetRadianceSize()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_radiance_size", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false size int}], Returns: void
 */
+
 func (o *Sky) SetRadianceSize(size gdnative.Int) {
 	log.Println("Calling Sky.SetRadianceSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Sky", "set_radiance_size")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_radiance_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   SkyImplementer is an interface for Sky objects.
-*/
-type SkyImplementer interface {
-	Class
 }

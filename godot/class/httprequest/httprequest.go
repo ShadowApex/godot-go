@@ -2,9 +2,9 @@ package httprequest
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/node"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewHTTPRequestFromPointer(ptr gdnative.Pointer) *HTTPRequest {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := HTTPRequest{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 A node with the ability to send HTTP requests. Uses [HTTPClient] internally. Can be used to make HTTP requests, i.e. download or upload files or web content via HTTP.
 */
 type HTTPRequest struct {
-	Node
+	node.Node
 }
 
 func (o *HTTPRequest) BaseClass() string {
@@ -28,301 +37,323 @@ func (o *HTTPRequest) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 String}], Returns: void
 */
+
 func (o *HTTPRequest) X_RedirectRequest(arg0 gdnative.String) {
 	log.Println("Calling HTTPRequest.X_RedirectRequest()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPRequest", "_redirect_request")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_redirect_request", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 int} { false arg1 int} { false arg2 PoolStringArray} { false arg3 PoolByteArray}], Returns: void
 */
-func (o *HTTPRequest) X_RequestDone(arg0 gdnative.Int, arg1 gdnative.Int, arg2 *PoolStringArray, arg3 *PoolByteArray) {
+
+func (o *HTTPRequest) X_RequestDone(arg0 gdnative.Int, arg1 gdnative.Int, arg2 gdnative.PoolStringArray, arg3 gdnative.PoolByteArray) {
 	log.Println("Calling HTTPRequest.X_RequestDone()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(arg0)
-	goArguments[1] = reflect.ValueOf(arg1)
-	goArguments[2] = reflect.ValueOf(arg2)
-	goArguments[3] = reflect.ValueOf(arg3)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromInt(arg0)
+	ptrArguments[1] = gdnative.NewPointerFromInt(arg1)
+	ptrArguments[2] = gdnative.NewPointerFromPoolStringArray(arg2)
+	ptrArguments[3] = gdnative.NewPointerFromPoolByteArray(arg3)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPRequest", "_request_done")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_request_done", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Cancels the current request.
+        Cancels the current request.
+	Args: [], Returns: void
 */
+
 func (o *HTTPRequest) CancelRequest() {
 	log.Println("Calling HTTPRequest.CancelRequest()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPRequest", "cancel_request")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "cancel_request", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the response body length.
+        Returns the response body length.
+	Args: [], Returns: int
 */
+
 func (o *HTTPRequest) GetBodySize() gdnative.Int {
 	log.Println("Calling HTTPRequest.GetBodySize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPRequest", "get_body_size")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_body_size", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *HTTPRequest) GetBodySizeLimit() gdnative.Int {
 	log.Println("Calling HTTPRequest.GetBodySizeLimit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPRequest", "get_body_size_limit")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_body_size_limit", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *HTTPRequest) GetDownloadFile() gdnative.String {
 	log.Println("Calling HTTPRequest.GetDownloadFile()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPRequest", "get_download_file")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_download_file", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the amount of bytes this HTTPRequest downloaded.
+        Returns the amount of bytes this HTTPRequest downloaded.
+	Args: [], Returns: int
 */
+
 func (o *HTTPRequest) GetDownloadedBytes() gdnative.Int {
 	log.Println("Calling HTTPRequest.GetDownloadedBytes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPRequest", "get_downloaded_bytes")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_downloaded_bytes", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the current status of the underlying [HTTPClient]. See [code]STATUS_*[/code] enum on [HTTPClient].
+        Returns the current status of the underlying [HTTPClient]. See [code]STATUS_*[/code] enum on [HTTPClient].
+	Args: [], Returns: enum.HTTPClient::Status
 */
-func (o *HTTPRequest) GetHttpClientStatus() gdnative.Int {
-	log.Println("Calling HTTPRequest.GetHttpClientStatus()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_http_client_status", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *HTTPRequest) GetMaxRedirects() gdnative.Int {
 	log.Println("Calling HTTPRequest.GetMaxRedirects()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPRequest", "get_max_redirects")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_max_redirects", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *HTTPRequest) IsUsingThreads() gdnative.Bool {
 	log.Println("Calling HTTPRequest.IsUsingThreads()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPRequest", "is_using_threads")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_using_threads", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *HTTPRequest) Request(url gdnative.String, customHeaders *PoolStringArray, sslValidateDomain gdnative.Bool, method gdnative.Int, requestData gdnative.String) gdnative.Int {
-	log.Println("Calling HTTPRequest.Request()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(url)
-	goArguments[1] = reflect.ValueOf(customHeaders)
-	goArguments[2] = reflect.ValueOf(sslValidateDomain)
-	goArguments[3] = reflect.ValueOf(method)
-	goArguments[4] = reflect.ValueOf(requestData)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "request", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   Undocumented
+	Args: [{ false url String} {[] true custom_headers PoolStringArray} {True true ssl_validate_domain bool} {0 true method int} { true request_data String}], Returns: enum.Error
 */
+
+/*
+        Undocumented
+	Args: [{ false bytes int}], Returns: void
+*/
+
 func (o *HTTPRequest) SetBodySizeLimit(bytes gdnative.Int) {
 	log.Println("Calling HTTPRequest.SetBodySizeLimit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bytes)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bytes)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPRequest", "set_body_size_limit")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_body_size_limit", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false path String}], Returns: void
 */
+
 func (o *HTTPRequest) SetDownloadFile(path gdnative.String) {
 	log.Println("Calling HTTPRequest.SetDownloadFile()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPRequest", "set_download_file")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_download_file", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount int}], Returns: void
 */
+
 func (o *HTTPRequest) SetMaxRedirects(amount gdnative.Int) {
 	log.Println("Calling HTTPRequest.SetMaxRedirects()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPRequest", "set_max_redirects")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_max_redirects", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *HTTPRequest) SetUseThreads(enable gdnative.Bool) {
 	log.Println("Calling HTTPRequest.SetUseThreads()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPRequest", "set_use_threads")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_use_threads", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   HTTPRequestImplementer is an interface for HTTPRequest objects.
-*/
-type HTTPRequestImplementer interface {
-	Class
 }

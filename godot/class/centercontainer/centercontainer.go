@@ -2,9 +2,9 @@ package centercontainer
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/container"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewCenterContainerFromPointer(ptr gdnative.Pointer) *CenterContainer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := CenterContainer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 CenterContainer Keeps children controls centered. This container keeps all children to their minimum size, in the center.
 */
 type CenterContainer struct {
-	Container
+	container.Container
 }
 
 func (o *CenterContainer) BaseClass() string {
@@ -28,46 +37,49 @@ func (o *CenterContainer) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *CenterContainer) IsUsingTopLeft() gdnative.Bool {
 	log.Println("Calling CenterContainer.IsUsingTopLeft()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CenterContainer", "is_using_top_left")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_using_top_left", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *CenterContainer) SetUseTopLeft(enable gdnative.Bool) {
 	log.Println("Calling CenterContainer.SetUseTopLeft()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CenterContainer", "set_use_top_left")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_use_top_left", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   CenterContainerImplementer is an interface for CenterContainer objects.
-*/
-type CenterContainerImplementer interface {
-	Class
 }

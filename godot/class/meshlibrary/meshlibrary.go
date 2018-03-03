@@ -2,9 +2,15 @@ package meshlibrary
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/mesh"
+	"github.com/shadowapex/godot-go/godot/class/resource"
+
+	"github.com/shadowapex/godot-go/godot/class/navigationmesh"
+
+	"github.com/shadowapex/godot-go/godot/class/texture"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +22,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewMeshLibraryFromPointer(ptr gdnative.Pointer) *MeshLibrary {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := MeshLibrary{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Library of meshes. Contains a list of [Mesh] resources, each with name and ID. Useful for GridMap or painting Terrain.
 */
 type MeshLibrary struct {
-	Resource
+	resource.Resource
 }
 
 func (o *MeshLibrary) BaseClass() string {
@@ -28,322 +43,395 @@ func (o *MeshLibrary) BaseClass() string {
 }
 
 /*
-   Clear the library.
+        Clear the library.
+	Args: [], Returns: void
 */
+
 func (o *MeshLibrary) Clear() {
 	log.Println("Calling MeshLibrary.Clear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshLibrary", "clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Create a new item in the library, supplied an id.
+        Create a new item in the library, supplied an id.
+	Args: [{ false id int}], Returns: void
 */
+
 func (o *MeshLibrary) CreateItem(id gdnative.Int) {
 	log.Println("Calling MeshLibrary.CreateItem()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshLibrary", "create_item")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "create_item", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false name String}], Returns: int
+*/
+
 func (o *MeshLibrary) FindItemByName(name gdnative.String) gdnative.Int {
 	log.Println("Calling MeshLibrary.FindItemByName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshLibrary", "find_item_by_name")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "find_item_by_name", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the list of items.
+        Return the list of items.
+	Args: [], Returns: PoolIntArray
 */
-func (o *MeshLibrary) GetItemList() *PoolIntArray {
+
+func (o *MeshLibrary) GetItemList() gdnative.PoolIntArray {
 	log.Println("Calling MeshLibrary.GetItemList()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshLibrary", "get_item_list")
 
 	// Call the parent method.
+	// PoolIntArray
+	retPtr := gdnative.NewEmptyPoolIntArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_item_list", goArguments, "*PoolIntArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the mesh of the item.
+        Return the mesh of the item.
+	Args: [{ false id int}], Returns: Mesh
 */
-func (o *MeshLibrary) GetItemMesh(id gdnative.Int) *Mesh {
+
+func (o *MeshLibrary) GetItemMesh(id gdnative.Int) mesh.Mesh {
 	log.Println("Calling MeshLibrary.GetItemMesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshLibrary", "get_item_mesh")
 
 	// Call the parent method.
+	// Mesh
+	retPtr := mesh.NewEmptyMesh()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_item_mesh", goArguments, "*Mesh")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := mesh.NewMeshFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Mesh)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the name of the item.
+        Return the name of the item.
+	Args: [{ false id int}], Returns: String
 */
+
 func (o *MeshLibrary) GetItemName(id gdnative.Int) gdnative.String {
 	log.Println("Calling MeshLibrary.GetItemName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshLibrary", "get_item_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_item_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshLibrary) GetItemNavmesh(id gdnative.Int) *NavigationMesh {
+	Args: [{ false id int}], Returns: NavigationMesh
+*/
+
+func (o *MeshLibrary) GetItemNavmesh(id gdnative.Int) navigationmesh.NavigationMesh {
 	log.Println("Calling MeshLibrary.GetItemNavmesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshLibrary", "get_item_navmesh")
 
 	// Call the parent method.
+	// NavigationMesh
+	retPtr := navigationmesh.NewEmptyNavigationMesh()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_item_navmesh", goArguments, "*NavigationMesh")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := navigationmesh.NewNavigationMeshFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NavigationMesh)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshLibrary) GetItemPreview(id gdnative.Int) *Texture {
+	Args: [{ false id int}], Returns: Texture
+*/
+
+func (o *MeshLibrary) GetItemPreview(id gdnative.Int) texture.Texture {
 	log.Println("Calling MeshLibrary.GetItemPreview()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshLibrary", "get_item_preview")
 
 	// Call the parent method.
+	// Texture
+	retPtr := texture.NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_item_preview", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := texture.NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *MeshLibrary) GetItemShapes(id gdnative.Int) *Array {
+	Args: [{ false id int}], Returns: Array
+*/
+
+func (o *MeshLibrary) GetItemShapes(id gdnative.Int) gdnative.Array {
 	log.Println("Calling MeshLibrary.GetItemShapes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshLibrary", "get_item_shapes")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_item_shapes", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get an unused id for a new item.
+        Get an unused id for a new item.
+	Args: [], Returns: int
 */
+
 func (o *MeshLibrary) GetLastUnusedItemId() gdnative.Int {
 	log.Println("Calling MeshLibrary.GetLastUnusedItemId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshLibrary", "get_last_unused_item_id")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_last_unused_item_id", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Remove the item.
+        Remove the item.
+	Args: [{ false id int}], Returns: void
 */
+
 func (o *MeshLibrary) RemoveItem(id gdnative.Int) {
 	log.Println("Calling MeshLibrary.RemoveItem()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshLibrary", "remove_item")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_item", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the mesh of the item.
+        Set the mesh of the item.
+	Args: [{ false id int} { false mesh Mesh}], Returns: void
 */
-func (o *MeshLibrary) SetItemMesh(id gdnative.Int, mesh *Mesh) {
+
+func (o *MeshLibrary) SetItemMesh(id gdnative.Int, mesh mesh.Mesh) {
 	log.Println("Calling MeshLibrary.SetItemMesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(mesh)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromObject(mesh.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshLibrary", "set_item_mesh")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_item_mesh", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set the name of the item.
+        Set the name of the item.
+	Args: [{ false id int} { false name String}], Returns: void
 */
+
 func (o *MeshLibrary) SetItemName(id gdnative.Int, name gdnative.String) {
 	log.Println("Calling MeshLibrary.SetItemName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshLibrary", "set_item_name")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_item_name", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *MeshLibrary) SetItemNavmesh(id gdnative.Int, navmesh *NavigationMesh) {
+	Args: [{ false id int} { false navmesh NavigationMesh}], Returns: void
+*/
+
+func (o *MeshLibrary) SetItemNavmesh(id gdnative.Int, navmesh navigationmesh.NavigationMesh) {
 	log.Println("Calling MeshLibrary.SetItemNavmesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(navmesh)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromObject(navmesh.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshLibrary", "set_item_navmesh")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_item_navmesh", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *MeshLibrary) SetItemPreview(id gdnative.Int, texture *Texture) {
+	Args: [{ false id int} { false texture Texture}], Returns: void
+*/
+
+func (o *MeshLibrary) SetItemPreview(id gdnative.Int, texture texture.Texture) {
 	log.Println("Calling MeshLibrary.SetItemPreview()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromObject(texture.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshLibrary", "set_item_preview")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_item_preview", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *MeshLibrary) SetItemShapes(id gdnative.Int, shapes *Array) {
+	Args: [{ false id int} { false shapes Array}], Returns: void
+*/
+
+func (o *MeshLibrary) SetItemShapes(id gdnative.Int, shapes gdnative.Array) {
 	log.Println("Calling MeshLibrary.SetItemShapes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(shapes)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromArray(shapes)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshLibrary", "set_item_shapes")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_item_shapes", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   MeshLibraryImplementer is an interface for MeshLibrary objects.
-*/
-type MeshLibraryImplementer interface {
-	Class
 }

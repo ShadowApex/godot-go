@@ -2,9 +2,13 @@ package meshinstance
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/geometryinstance"
+	"github.com/shadowapex/godot-go/godot/class/mesh"
+
+	"github.com/shadowapex/godot-go/godot/class/material"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +20,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewMeshInstanceFromPointer(ptr gdnative.Pointer) *MeshInstance {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := MeshInstance{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 MeshInstance is a node that takes a [Mesh] resource and adds it to the current scenario by creating an instance of it. This is the class most often used to get 3D geometry rendered and can be used to instance a single [Mesh] in many places. This allows to reuse geometry and save on resources. When a [Mesh] has to be instanced more than thousands of times at close proximity, consider using a [MultiMesh] in a [MultiMeshInstance] instead.
 */
 type MeshInstance struct {
-	GeometryInstance
+	geometryinstance.GeometryInstance
 }
 
 func (o *MeshInstance) BaseClass() string {
@@ -28,192 +41,231 @@ func (o *MeshInstance) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *MeshInstance) X_MeshChanged() {
 	log.Println("Calling MeshInstance.X_MeshChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshInstance", "_mesh_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_mesh_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   This helper creates a [StaticBody] child node with a [ConvexPolygonShape] collision shape calculated from the mesh geometry. It's mainly used for testing.
+        This helper creates a [StaticBody] child node with a [ConvexPolygonShape] collision shape calculated from the mesh geometry. It's mainly used for testing.
+	Args: [], Returns: void
 */
+
 func (o *MeshInstance) CreateConvexCollision() {
 	log.Println("Calling MeshInstance.CreateConvexCollision()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshInstance", "create_convex_collision")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "create_convex_collision", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   This helper creates a [MeshInstance] child node with gizmos at every vertex calculated from the mesh geometry. It's mainly used for testing.
+        This helper creates a [MeshInstance] child node with gizmos at every vertex calculated from the mesh geometry. It's mainly used for testing.
+	Args: [], Returns: void
 */
+
 func (o *MeshInstance) CreateDebugTangents() {
 	log.Println("Calling MeshInstance.CreateDebugTangents()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshInstance", "create_debug_tangents")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "create_debug_tangents", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   This helper creates a [StaticBody] child node with a [ConcavePolygonShape] collision shape calculated from the mesh geometry. It's mainly used for testing.
+        This helper creates a [StaticBody] child node with a [ConcavePolygonShape] collision shape calculated from the mesh geometry. It's mainly used for testing.
+	Args: [], Returns: void
 */
+
 func (o *MeshInstance) CreateTrimeshCollision() {
 	log.Println("Calling MeshInstance.CreateTrimeshCollision()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshInstance", "create_trimesh_collision")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "create_trimesh_collision", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Mesh
 */
-func (o *MeshInstance) GetMesh() *Mesh {
+
+func (o *MeshInstance) GetMesh() mesh.Mesh {
 	log.Println("Calling MeshInstance.GetMesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshInstance", "get_mesh")
 
 	// Call the parent method.
+	// Mesh
+	retPtr := mesh.NewEmptyMesh()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_mesh", goArguments, "*Mesh")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := mesh.NewMeshFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Mesh)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: NodePath
 */
-func (o *MeshInstance) GetSkeletonPath() *NodePath {
+
+func (o *MeshInstance) GetSkeletonPath() gdnative.NodePath {
 	log.Println("Calling MeshInstance.GetSkeletonPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshInstance", "get_skeleton_path")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_skeleton_path", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the [Material] for a surface of the [Mesh] resource.
+        Returns the [Material] for a surface of the [Mesh] resource.
+	Args: [{ false surface int}], Returns: Material
 */
-func (o *MeshInstance) GetSurfaceMaterial(surface gdnative.Int) *Material {
+
+func (o *MeshInstance) GetSurfaceMaterial(surface gdnative.Int) material.Material {
 	log.Println("Calling MeshInstance.GetSurfaceMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(surface)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(surface)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshInstance", "get_surface_material")
 
 	// Call the parent method.
+	// Material
+	retPtr := material.NewEmptyMaterial()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_surface_material", goArguments, "*Material")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := material.NewMaterialFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Material)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mesh Mesh}], Returns: void
 */
-func (o *MeshInstance) SetMesh(mesh *Mesh) {
+
+func (o *MeshInstance) SetMesh(mesh mesh.Mesh) {
 	log.Println("Calling MeshInstance.SetMesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mesh)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(mesh.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshInstance", "set_mesh")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_mesh", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false skeleton_path NodePath}], Returns: void
 */
-func (o *MeshInstance) SetSkeletonPath(skeletonPath *NodePath) {
+
+func (o *MeshInstance) SetSkeletonPath(skeletonPath gdnative.NodePath) {
 	log.Println("Calling MeshInstance.SetSkeletonPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(skeletonPath)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(skeletonPath)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshInstance", "set_skeleton_path")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_skeleton_path", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the [Material] for a surface of the [Mesh] resource.
+        Sets the [Material] for a surface of the [Mesh] resource.
+	Args: [{ false surface int} { false material Material}], Returns: void
 */
-func (o *MeshInstance) SetSurfaceMaterial(surface gdnative.Int, material *Material) {
+
+func (o *MeshInstance) SetSurfaceMaterial(surface gdnative.Int, material material.Material) {
 	log.Println("Calling MeshInstance.SetSurfaceMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(surface)
-	goArguments[1] = reflect.ValueOf(material)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(surface)
+	ptrArguments[1] = gdnative.NewPointerFromObject(material.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MeshInstance", "set_surface_material")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_surface_material", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   MeshInstanceImplementer is an interface for MeshInstance objects.
-*/
-type MeshInstanceImplementer interface {
-	Class
 }

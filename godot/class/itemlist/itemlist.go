@@ -2,7 +2,15 @@ package itemlist
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/control"
+	"github.com/shadowapex/godot-go/godot/class/inputevent"
+
+	"github.com/shadowapex/godot-go/godot/class/texture"
+
+	"github.com/shadowapex/godot-go/godot/class/vscrollbar"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +22,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewItemListFromPointer(ptr gdnative.Pointer) *ItemList {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ItemList{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 This control provides a selectable list of items that may be in a single (or multiple columns) with option of text, icons, or both text and icon. Tooltips are supported and may be different for every item in the list. Selectable items in the list may be selected or deselected and multiple selection may be enabled. Selection with right mouse button may also be enabled to allow use of popup context menus. Items may also be 'activated' with a double click (or Enter key).
 */
 type ItemList struct {
-	Control
+	control.Control
 }
 
 func (o *ItemList) BaseClass() string {
@@ -26,1108 +43,1339 @@ func (o *ItemList) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Array
 */
-func (o *ItemList) X_GetItems() *Array {
+
+func (o *ItemList) X_GetItems() gdnative.Array {
 	log.Println("Calling ItemList.X_GetItems()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "_get_items")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_items", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *ItemList) X_GuiInput(arg0 *InputEvent) {
+
+func (o *ItemList) X_GuiInput(arg0 inputevent.InputEvent) {
 	log.Println("Calling ItemList.X_GuiInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "_gui_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_gui_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 float}], Returns: void
 */
+
 func (o *ItemList) X_ScrollChanged(arg0 gdnative.Float) {
 	log.Println("Calling ItemList.X_ScrollChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "_scroll_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_scroll_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 Array}], Returns: void
 */
-func (o *ItemList) X_SetItems(arg0 *Array) {
+
+func (o *ItemList) X_SetItems(arg0 gdnative.Array) {
 	log.Println("Calling ItemList.X_SetItems()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromArray(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "_set_items")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_items", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds an item to the item list with no text, only an icon.
+        Adds an item to the item list with no text, only an icon.
+	Args: [{ false icon Texture} {True true selectable bool}], Returns: void
 */
-func (o *ItemList) AddIconItem(icon *Texture, selectable gdnative.Bool) {
+
+func (o *ItemList) AddIconItem(icon texture.Texture, selectable gdnative.Bool) {
 	log.Println("Calling ItemList.AddIconItem()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(icon)
-	goArguments[1] = reflect.ValueOf(selectable)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromObject(icon.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromBool(selectable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "add_icon_item")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_icon_item", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds an item to the item list with specified text. Specify an icon of null for a list item with no icon. If selectable is true the list item will be selectable.
+        Adds an item to the item list with specified text. Specify an icon of null for a list item with no icon. If selectable is true the list item will be selectable.
+	Args: [{ false text String} {Null true icon Texture} {True true selectable bool}], Returns: void
 */
-func (o *ItemList) AddItem(text gdnative.String, icon *Texture, selectable gdnative.Bool) {
+
+func (o *ItemList) AddItem(text gdnative.String, icon texture.Texture, selectable gdnative.Bool) {
 	log.Println("Calling ItemList.AddItem()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(text)
-	goArguments[1] = reflect.ValueOf(icon)
-	goArguments[2] = reflect.ValueOf(selectable)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(text)
+	ptrArguments[1] = gdnative.NewPointerFromObject(icon.GetOwner())
+	ptrArguments[2] = gdnative.NewPointerFromBool(selectable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "add_item")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_item", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Remove all items from the list.
+        Remove all items from the list.
+	Args: [], Returns: void
 */
+
 func (o *ItemList) Clear() {
 	log.Println("Calling ItemList.Clear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Ensure selection is visible, adjusting the scroll position as necessary.
+        Ensure selection is visible, adjusting the scroll position as necessary.
+	Args: [], Returns: void
 */
+
 func (o *ItemList) EnsureCurrentIsVisible() {
 	log.Println("Calling ItemList.EnsureCurrentIsVisible()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "ensure_current_is_visible")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "ensure_current_is_visible", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *ItemList) GetAllowReselect() gdnative.Bool {
 	log.Println("Calling ItemList.GetAllowReselect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_allow_reselect")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_allow_reselect", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *ItemList) GetAllowRmbSelect() gdnative.Bool {
 	log.Println("Calling ItemList.GetAllowRmbSelect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_allow_rmb_select")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_allow_rmb_select", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *ItemList) GetFixedColumnWidth() gdnative.Int {
 	log.Println("Calling ItemList.GetFixedColumnWidth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_fixed_column_width")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_fixed_column_width", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *ItemList) GetFixedIconSize() *Vector2 {
+
+func (o *ItemList) GetFixedIconSize() gdnative.Vector2 {
 	log.Println("Calling ItemList.GetFixedIconSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_fixed_icon_size")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_fixed_icon_size", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.ItemList::IconMode
 */
-func (o *ItemList) GetIconMode() gdnative.Int {
-	log.Println("Calling ItemList.GetIconMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_icon_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *ItemList) GetIconScale() gdnative.Float {
 	log.Println("Calling ItemList.GetIconScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_icon_scale")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_icon_scale", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Given a position within the control return the item (if any) at that point.
+        Given a position within the control return the item (if any) at that point.
+	Args: [{ false position Vector2} {False true exact bool}], Returns: int
 */
-func (o *ItemList) GetItemAtPosition(position *Vector2, exact gdnative.Bool) gdnative.Int {
+
+func (o *ItemList) GetItemAtPosition(position gdnative.Vector2, exact gdnative.Bool) gdnative.Int {
 	log.Println("Calling ItemList.GetItemAtPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(position)
-	goArguments[1] = reflect.ValueOf(exact)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+	ptrArguments[1] = gdnative.NewPointerFromBool(exact)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_item_at_position")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_item_at_position", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return count of items currently in the item list.
+        Return count of items currently in the item list.
+	Args: [], Returns: int
 */
+
 func (o *ItemList) GetItemCount() gdnative.Int {
 	log.Println("Calling ItemList.GetItemCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_item_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_item_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *ItemList) GetItemCustomBgColor(idx gdnative.Int) *Color {
+	Args: [{ false idx int}], Returns: Color
+*/
+
+func (o *ItemList) GetItemCustomBgColor(idx gdnative.Int) gdnative.Color {
 	log.Println("Calling ItemList.GetItemCustomBgColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_item_custom_bg_color")
 
 	// Call the parent method.
+	// Color
+	retPtr := gdnative.NewEmptyColor()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_item_custom_bg_color", goArguments, "*Color")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewColorFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Color)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *ItemList) GetItemIcon(idx gdnative.Int) *Texture {
+	Args: [{ false idx int}], Returns: Texture
+*/
+
+func (o *ItemList) GetItemIcon(idx gdnative.Int) texture.Texture {
 	log.Println("Calling ItemList.GetItemIcon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_item_icon")
 
 	// Call the parent method.
+	// Texture
+	retPtr := texture.NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_item_icon", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := texture.NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *ItemList) GetItemIconRegion(idx gdnative.Int) *Rect2 {
+	Args: [{ false idx int}], Returns: Rect2
+*/
+
+func (o *ItemList) GetItemIconRegion(idx gdnative.Int) gdnative.Rect2 {
 	log.Println("Calling ItemList.GetItemIconRegion()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_item_icon_region")
 
 	// Call the parent method.
+	// Rect2
+	retPtr := gdnative.NewEmptyRect2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_item_icon_region", goArguments, "*Rect2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRect2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Rect2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *ItemList) GetItemMetadata(idx gdnative.Int) *Variant {
+	Args: [{ false idx int}], Returns: Variant
+*/
+
+func (o *ItemList) GetItemMetadata(idx gdnative.Int) gdnative.Variant {
 	log.Println("Calling ItemList.GetItemMetadata()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_item_metadata")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_item_metadata", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the text for specified item index.
+        Return the text for specified item index.
+	Args: [{ false idx int}], Returns: String
 */
+
 func (o *ItemList) GetItemText(idx gdnative.Int) gdnative.String {
 	log.Println("Calling ItemList.GetItemText()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_item_text")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_item_text", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return tooltip hint for specified item index.
+        Return tooltip hint for specified item index.
+	Args: [{ false idx int}], Returns: String
 */
+
 func (o *ItemList) GetItemTooltip(idx gdnative.Int) gdnative.String {
 	log.Println("Calling ItemList.GetItemTooltip()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_item_tooltip")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_item_tooltip", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *ItemList) GetMaxColumns() gdnative.Int {
 	log.Println("Calling ItemList.GetMaxColumns()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_max_columns")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_max_columns", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *ItemList) GetMaxTextLines() gdnative.Int {
 	log.Println("Calling ItemList.GetMaxTextLines()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_max_text_lines")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_max_text_lines", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.ItemList::SelectMode
 */
-func (o *ItemList) GetSelectMode() gdnative.Int {
-	log.Println("Calling ItemList.GetSelectMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_select_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Returns the list of selected indexes.
+        Returns the list of selected indexes.
+	Args: [], Returns: PoolIntArray
 */
-func (o *ItemList) GetSelectedItems() *PoolIntArray {
+
+func (o *ItemList) GetSelectedItems() gdnative.PoolIntArray {
 	log.Println("Calling ItemList.GetSelectedItems()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_selected_items")
 
 	// Call the parent method.
+	// PoolIntArray
+	retPtr := gdnative.NewEmptyPoolIntArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_selected_items", goArguments, "*PoolIntArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the current vertical scroll bar for the List.
+        Returns the current vertical scroll bar for the List.
+	Args: [], Returns: VScrollBar
 */
-func (o *ItemList) GetVScroll() *VScrollBar {
+
+func (o *ItemList) GetVScroll() vscrollbar.VScrollBar {
 	log.Println("Calling ItemList.GetVScroll()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_v_scroll")
 
 	// Call the parent method.
+	// VScrollBar
+	retPtr := vscrollbar.NewEmptyVScrollBar()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_v_scroll", goArguments, "*VScrollBar")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := vscrollbar.NewVScrollBarFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*VScrollBar)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *ItemList) HasAutoHeight() gdnative.Bool {
 	log.Println("Calling ItemList.HasAutoHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "has_auto_height")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_auto_height", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns whether or not the item at the specified index is disabled
+        Returns whether or not the item at the specified index is disabled
+	Args: [{ false idx int}], Returns: bool
 */
+
 func (o *ItemList) IsItemDisabled(idx gdnative.Int) gdnative.Bool {
 	log.Println("Calling ItemList.IsItemDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "is_item_disabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_item_disabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns whether or not the item at the specified index is selectable.
+        Returns whether or not the item at the specified index is selectable.
+	Args: [{ false idx int}], Returns: bool
 */
+
 func (o *ItemList) IsItemSelectable(idx gdnative.Int) gdnative.Bool {
 	log.Println("Calling ItemList.IsItemSelectable()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "is_item_selectable")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_item_selectable", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns whether the tooltip is enabled for specified item index.
+        Returns whether the tooltip is enabled for specified item index.
+	Args: [{ false idx int}], Returns: bool
 */
+
 func (o *ItemList) IsItemTooltipEnabled(idx gdnative.Int) gdnative.Bool {
 	log.Println("Calling ItemList.IsItemTooltipEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "is_item_tooltip_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_item_tooltip_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *ItemList) IsSameColumnWidth() gdnative.Bool {
 	log.Println("Calling ItemList.IsSameColumnWidth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "is_same_column_width")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_same_column_width", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns whether or not item at the specified index is currently selected.
+        Returns whether or not item at the specified index is currently selected.
+	Args: [{ false idx int}], Returns: bool
 */
+
 func (o *ItemList) IsSelected(idx gdnative.Int) gdnative.Bool {
 	log.Println("Calling ItemList.IsSelected()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "is_selected")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_selected", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Remove item at specified index from the list.
+        Remove item at specified index from the list.
+	Args: [{ false idx int}], Returns: void
 */
+
 func (o *ItemList) RemoveItem(idx gdnative.Int) {
 	log.Println("Calling ItemList.RemoveItem()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "remove_item")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_item", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Select the item at the specified index. Note: This method does not trigger the item selection signal.
+        Select the item at the specified index. Note: This method does not trigger the item selection signal.
+	Args: [{ false idx int} {True true single bool}], Returns: void
 */
+
 func (o *ItemList) Select(idx gdnative.Int, single gdnative.Bool) {
 	log.Println("Calling ItemList.Select()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(single)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromBool(single)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "select")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "select", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false allow bool}], Returns: void
 */
+
 func (o *ItemList) SetAllowReselect(allow gdnative.Bool) {
 	log.Println("Calling ItemList.SetAllowReselect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(allow)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(allow)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_allow_reselect")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_allow_reselect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false allow bool}], Returns: void
 */
+
 func (o *ItemList) SetAllowRmbSelect(allow gdnative.Bool) {
 	log.Println("Calling ItemList.SetAllowRmbSelect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(allow)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(allow)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_allow_rmb_select")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_allow_rmb_select", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *ItemList) SetAutoHeight(enable gdnative.Bool) {
 	log.Println("Calling ItemList.SetAutoHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_auto_height")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_auto_height", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false width int}], Returns: void
 */
+
 func (o *ItemList) SetFixedColumnWidth(width gdnative.Int) {
 	log.Println("Calling ItemList.SetFixedColumnWidth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(width)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(width)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_fixed_column_width")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_fixed_column_width", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false size Vector2}], Returns: void
 */
-func (o *ItemList) SetFixedIconSize(size *Vector2) {
+
+func (o *ItemList) SetFixedIconSize(size gdnative.Vector2) {
 	log.Println("Calling ItemList.SetFixedIconSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_fixed_icon_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_fixed_icon_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *ItemList) SetIconMode(mode gdnative.Int) {
 	log.Println("Calling ItemList.SetIconMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_icon_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_icon_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false scale float}], Returns: void
 */
+
 func (o *ItemList) SetIconScale(scale gdnative.Float) {
 	log.Println("Calling ItemList.SetIconScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(scale)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(scale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_icon_scale")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_icon_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *ItemList) SetItemCustomBgColor(idx gdnative.Int, customBgColor *Color) {
+	Args: [{ false idx int} { false custom_bg_color Color}], Returns: void
+*/
+
+func (o *ItemList) SetItemCustomBgColor(idx gdnative.Int, customBgColor gdnative.Color) {
 	log.Println("Calling ItemList.SetItemCustomBgColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(customBgColor)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromColor(customBgColor)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_item_custom_bg_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_item_custom_bg_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Disable (or enable) item at specified index. Disabled items are not be selectable and do not fire activation (Enter or double-click) signals.
+        Disable (or enable) item at specified index. Disabled items are not be selectable and do not fire activation (Enter or double-click) signals.
+	Args: [{ false idx int} { false disabled bool}], Returns: void
 */
+
 func (o *ItemList) SetItemDisabled(idx gdnative.Int, disabled gdnative.Bool) {
 	log.Println("Calling ItemList.SetItemDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(disabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromBool(disabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_item_disabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_item_disabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set (or replace) icon of the item at the specified index.
+        Set (or replace) icon of the item at the specified index.
+	Args: [{ false idx int} { false icon Texture}], Returns: void
 */
-func (o *ItemList) SetItemIcon(idx gdnative.Int, icon *Texture) {
+
+func (o *ItemList) SetItemIcon(idx gdnative.Int, icon texture.Texture) {
 	log.Println("Calling ItemList.SetItemIcon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(icon)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromObject(icon.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_item_icon")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_item_icon", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *ItemList) SetItemIconRegion(idx gdnative.Int, rect *Rect2) {
+	Args: [{ false idx int} { false rect Rect2}], Returns: void
+*/
+
+func (o *ItemList) SetItemIconRegion(idx gdnative.Int, rect gdnative.Rect2) {
 	log.Println("Calling ItemList.SetItemIconRegion()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(rect)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromRect2(rect)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_item_icon_region")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_item_icon_region", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a value (of any type) to be stored with the item at the specified index.
+        Sets a value (of any type) to be stored with the item at the specified index.
+	Args: [{ false idx int} { false metadata Variant}], Returns: void
 */
-func (o *ItemList) SetItemMetadata(idx gdnative.Int, metadata *Variant) {
+
+func (o *ItemList) SetItemMetadata(idx gdnative.Int, metadata gdnative.Variant) {
 	log.Println("Calling ItemList.SetItemMetadata()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(metadata)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(metadata)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_item_metadata")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_item_metadata", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Allow or disallow selection of the item at the specified index.
+        Allow or disallow selection of the item at the specified index.
+	Args: [{ false idx int} { false selectable bool}], Returns: void
 */
+
 func (o *ItemList) SetItemSelectable(idx gdnative.Int, selectable gdnative.Bool) {
 	log.Println("Calling ItemList.SetItemSelectable()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(selectable)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromBool(selectable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_item_selectable")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_item_selectable", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets text of item at specified index.
+        Sets text of item at specified index.
+	Args: [{ false idx int} { false text String}], Returns: void
 */
+
 func (o *ItemList) SetItemText(idx gdnative.Int, text gdnative.String) {
 	log.Println("Calling ItemList.SetItemText()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(text)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromString(text)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_item_text")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_item_text", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets tooltip hint for item at specified index.
+        Sets tooltip hint for item at specified index.
+	Args: [{ false idx int} { false tooltip String}], Returns: void
 */
+
 func (o *ItemList) SetItemTooltip(idx gdnative.Int, tooltip gdnative.String) {
 	log.Println("Calling ItemList.SetItemTooltip()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(tooltip)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromString(tooltip)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_item_tooltip")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_item_tooltip", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets whether the tooltip is enabled for specified item index.
+        Sets whether the tooltip is enabled for specified item index.
+	Args: [{ false idx int} { false enable bool}], Returns: void
 */
+
 func (o *ItemList) SetItemTooltipEnabled(idx gdnative.Int, enable gdnative.Bool) {
 	log.Println("Calling ItemList.SetItemTooltipEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_item_tooltip_enabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_item_tooltip_enabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false amount int}], Returns: void
 */
+
 func (o *ItemList) SetMaxColumns(amount gdnative.Int) {
 	log.Println("Calling ItemList.SetMaxColumns()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_max_columns")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_max_columns", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false lines int}], Returns: void
 */
+
 func (o *ItemList) SetMaxTextLines(lines gdnative.Int) {
 	log.Println("Calling ItemList.SetMaxTextLines()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(lines)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(lines)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_max_text_lines")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_max_text_lines", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *ItemList) SetSameColumnWidth(enable gdnative.Bool) {
 	log.Println("Calling ItemList.SetSameColumnWidth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_same_column_width")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_same_column_width", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *ItemList) SetSelectMode(mode gdnative.Int) {
 	log.Println("Calling ItemList.SetSelectMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "set_select_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_select_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sorts items in the list by their text.
+        Sorts items in the list by their text.
+	Args: [], Returns: void
 */
+
 func (o *ItemList) SortItemsByText() {
 	log.Println("Calling ItemList.SortItemsByText()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "sort_items_by_text")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "sort_items_by_text", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Ensure item at specified index is not selected.
+        Ensure item at specified index is not selected.
+	Args: [{ false idx int}], Returns: void
 */
+
 func (o *ItemList) Unselect(idx gdnative.Int) {
 	log.Println("Calling ItemList.Unselect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "unselect")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "unselect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ItemListImplementer is an interface for ItemList objects.
-*/
-type ItemListImplementer interface {
-	Class
 }

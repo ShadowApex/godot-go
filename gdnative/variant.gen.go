@@ -38,6 +38,14 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewEmptyVariant will return a pointer to an empty
+// initialized Variant. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyVariant() Pointer {
+	var obj C.godot_variant
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromVariant will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromVariant(obj Variant) Pointer {
@@ -682,6 +690,14 @@ const (
 	CallErrorCallErrorTooFewArguments
 	CallErrorCallErrorInstanceIsNull
 )
+
+// NewEmptyVariantCallError will return a pointer to an empty
+// initialized VariantCallError. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyVariantCallError() Pointer {
+	var obj C.godot_variant_call_error
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
 
 // NewPointerFromVariantCallError will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.

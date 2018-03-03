@@ -2,9 +2,9 @@ package resource
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/node"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewResourcePreloaderFromPointer(ptr gdnative.Pointer) *ResourcePreloader {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ResourcePreloader{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Resource Preloader Node. This node is used to preload sub-resources inside a scene, so when the scene is loaded all the resources are ready to use and be retrieved from here.
 */
 type ResourcePreloader struct {
-	Node
+	node.Node
 }
 
 func (o *ResourcePreloader) BaseClass() string {
@@ -28,164 +37,197 @@ func (o *ResourcePreloader) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Array
 */
-func (o *ResourcePreloader) X_GetResources() *Array {
+
+func (o *ResourcePreloader) X_GetResources() gdnative.Array {
 	log.Println("Calling ResourcePreloader.X_GetResources()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ResourcePreloader", "_get_resources")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_resources", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 Array}], Returns: void
 */
-func (o *ResourcePreloader) X_SetResources(arg0 *Array) {
+
+func (o *ResourcePreloader) X_SetResources(arg0 gdnative.Array) {
 	log.Println("Calling ResourcePreloader.X_SetResources()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromArray(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ResourcePreloader", "_set_resources")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_resources", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *ResourcePreloader) AddResource(name gdnative.String, resource *Resource) {
+	Args: [{ false name String} { false resource Resource}], Returns: void
+*/
+
+func (o *ResourcePreloader) AddResource(name gdnative.String, resource Resource) {
 	log.Println("Calling ResourcePreloader.AddResource()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(resource)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromObject(resource.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ResourcePreloader", "add_resource")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_resource", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Return the resource given a text-id.
+        Return the resource given a text-id.
+	Args: [{ false name String}], Returns: Resource
 */
-func (o *ResourcePreloader) GetResource(name gdnative.String) *Resource {
+
+func (o *ResourcePreloader) GetResource(name gdnative.String) Resource {
 	log.Println("Calling ResourcePreloader.GetResource()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ResourcePreloader", "get_resource")
 
 	// Call the parent method.
+	// Resource
+	retPtr := NewEmptyResource()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_resource", goArguments, "*Resource")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewResourceFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Resource)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the list of resources inside the preloader.
+        Return the list of resources inside the preloader.
+	Args: [], Returns: PoolStringArray
 */
-func (o *ResourcePreloader) GetResourceList() *PoolStringArray {
+
+func (o *ResourcePreloader) GetResourceList() gdnative.PoolStringArray {
 	log.Println("Calling ResourcePreloader.GetResourceList()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ResourcePreloader", "get_resource_list")
 
 	// Call the parent method.
+	// PoolStringArray
+	retPtr := gdnative.NewEmptyPoolStringArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_resource_list", goArguments, "*PoolStringArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolStringArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return true if the preloader has a given resource.
+        Return true if the preloader has a given resource.
+	Args: [{ false name String}], Returns: bool
 */
+
 func (o *ResourcePreloader) HasResource(name gdnative.String) gdnative.Bool {
 	log.Println("Calling ResourcePreloader.HasResource()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ResourcePreloader", "has_resource")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_resource", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Remove a resource from the preloader by text id.
+        Remove a resource from the preloader by text id.
+	Args: [{ false name String}], Returns: void
 */
+
 func (o *ResourcePreloader) RemoveResource(name gdnative.String) {
 	log.Println("Calling ResourcePreloader.RemoveResource()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ResourcePreloader", "remove_resource")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_resource", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Rename a resource inside the preloader, from a text-id to a new text-id.
+        Rename a resource inside the preloader, from a text-id to a new text-id.
+	Args: [{ false name String} { false newname String}], Returns: void
 */
+
 func (o *ResourcePreloader) RenameResource(name gdnative.String, newname gdnative.String) {
 	log.Println("Calling ResourcePreloader.RenameResource()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(newname)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromString(newname)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ResourcePreloader", "rename_resource")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "rename_resource", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ResourcePreloaderImplementer is an interface for ResourcePreloader objects.
-*/
-type ResourcePreloaderImplementer interface {
-	Class
 }

@@ -2,7 +2,12 @@ package visualserver
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/image"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -13,6 +18,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewvisualServerFromPointer(ptr gdnative.Pointer) *visualServer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := visualServer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 func newSingletonVisualServer() *visualServer {
 	obj := &visualServer{}
@@ -30,7 +44,7 @@ var VisualServer = newSingletonVisualServer()
 Server for anything visible. The visual server is the API backend for everything visible. The whole scene system mounts on it to display. The visual server is completely opaque, the internals are entirely implementation specific and cannot be accessed.
 */
 type visualServer struct {
-	Object
+	object.Object
 }
 
 func (o *visualServer) BaseClass() string {
@@ -38,6849 +52,8346 @@ func (o *visualServer) BaseClass() string {
 }
 
 /*
-   Sets images to be rendered in the window margin.
+        Sets images to be rendered in the window margin.
+	Args: [{ false left RID} { false top RID} { false right RID} { false bottom RID}], Returns: void
 */
-func (o *visualServer) BlackBarsSetImages(left *RID, top *RID, right *RID, bottom *RID) {
+
+func (o *visualServer) BlackBarsSetImages(left gdnative.RID, top gdnative.RID, right gdnative.RID, bottom gdnative.RID) {
 	log.Println("Calling VisualServer.BlackBarsSetImages()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(left)
-	goArguments[1] = reflect.ValueOf(top)
-	goArguments[2] = reflect.ValueOf(right)
-	goArguments[3] = reflect.ValueOf(bottom)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromRid(left)
+	ptrArguments[1] = gdnative.NewPointerFromRid(top)
+	ptrArguments[2] = gdnative.NewPointerFromRid(right)
+	ptrArguments[3] = gdnative.NewPointerFromRid(bottom)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "black_bars_set_images")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "black_bars_set_images", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets margin size, where black bars (or images, if [method black_bars_set_images] was used) are rendered.
+        Sets margin size, where black bars (or images, if [method black_bars_set_images] was used) are rendered.
+	Args: [{ false left int} { false top int} { false right int} { false bottom int}], Returns: void
 */
+
 func (o *visualServer) BlackBarsSetMargins(left gdnative.Int, top gdnative.Int, right gdnative.Int, bottom gdnative.Int) {
 	log.Println("Calling VisualServer.BlackBarsSetMargins()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(left)
-	goArguments[1] = reflect.ValueOf(top)
-	goArguments[2] = reflect.ValueOf(right)
-	goArguments[3] = reflect.ValueOf(bottom)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromInt(left)
+	ptrArguments[1] = gdnative.NewPointerFromInt(top)
+	ptrArguments[2] = gdnative.NewPointerFromInt(right)
+	ptrArguments[3] = gdnative.NewPointerFromInt(bottom)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "black_bars_set_margins")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "black_bars_set_margins", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) CameraCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *visualServer) CameraCreate() gdnative.RID {
 	log.Println("Calling VisualServer.CameraCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "camera_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "camera_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) CameraSetCullMask(camera *RID, layers gdnative.Int) {
+	Args: [{ false camera RID} { false layers int}], Returns: void
+*/
+
+func (o *visualServer) CameraSetCullMask(camera gdnative.RID, layers gdnative.Int) {
 	log.Println("Calling VisualServer.CameraSetCullMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(camera)
-	goArguments[1] = reflect.ValueOf(layers)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(camera)
+	ptrArguments[1] = gdnative.NewPointerFromInt(layers)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "camera_set_cull_mask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "camera_set_cull_mask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) CameraSetEnvironment(camera *RID, env *RID) {
+	Args: [{ false camera RID} { false env RID}], Returns: void
+*/
+
+func (o *visualServer) CameraSetEnvironment(camera gdnative.RID, env gdnative.RID) {
 	log.Println("Calling VisualServer.CameraSetEnvironment()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(camera)
-	goArguments[1] = reflect.ValueOf(env)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(camera)
+	ptrArguments[1] = gdnative.NewPointerFromRid(env)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "camera_set_environment")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "camera_set_environment", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) CameraSetOrthogonal(camera *RID, size gdnative.Float, zNear gdnative.Float, zFar gdnative.Float) {
+	Args: [{ false camera RID} { false size float} { false z_near float} { false z_far float}], Returns: void
+*/
+
+func (o *visualServer) CameraSetOrthogonal(camera gdnative.RID, size gdnative.Float, zNear gdnative.Float, zFar gdnative.Float) {
 	log.Println("Calling VisualServer.CameraSetOrthogonal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(camera)
-	goArguments[1] = reflect.ValueOf(size)
-	goArguments[2] = reflect.ValueOf(zNear)
-	goArguments[3] = reflect.ValueOf(zFar)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromRid(camera)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(size)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(zNear)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(zFar)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "camera_set_orthogonal")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "camera_set_orthogonal", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) CameraSetPerspective(camera *RID, fovyDegrees gdnative.Float, zNear gdnative.Float, zFar gdnative.Float) {
+	Args: [{ false camera RID} { false fovy_degrees float} { false z_near float} { false z_far float}], Returns: void
+*/
+
+func (o *visualServer) CameraSetPerspective(camera gdnative.RID, fovyDegrees gdnative.Float, zNear gdnative.Float, zFar gdnative.Float) {
 	log.Println("Calling VisualServer.CameraSetPerspective()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(camera)
-	goArguments[1] = reflect.ValueOf(fovyDegrees)
-	goArguments[2] = reflect.ValueOf(zNear)
-	goArguments[3] = reflect.ValueOf(zFar)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromRid(camera)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(fovyDegrees)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(zNear)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(zFar)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "camera_set_perspective")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "camera_set_perspective", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) CameraSetTransform(camera *RID, transform *Transform) {
+	Args: [{ false camera RID} { false transform Transform}], Returns: void
+*/
+
+func (o *visualServer) CameraSetTransform(camera gdnative.RID, transform gdnative.Transform) {
 	log.Println("Calling VisualServer.CameraSetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(camera)
-	goArguments[1] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(camera)
+	ptrArguments[1] = gdnative.NewPointerFromTransform(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "camera_set_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "camera_set_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) CameraSetUseVerticalAspect(camera *RID, enable gdnative.Bool) {
+	Args: [{ false camera RID} { false enable bool}], Returns: void
+*/
+
+func (o *visualServer) CameraSetUseVerticalAspect(camera gdnative.RID, enable gdnative.Bool) {
 	log.Println("Calling VisualServer.CameraSetUseVerticalAspect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(camera)
-	goArguments[1] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(camera)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "camera_set_use_vertical_aspect")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "camera_set_use_vertical_aspect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Creates a canvas and returns the assigned [RID].
+        Creates a canvas and returns the assigned [RID].
+	Args: [], Returns: RID
 */
-func (o *visualServer) CanvasCreate() *RID {
+
+func (o *visualServer) CanvasCreate() gdnative.RID {
 	log.Println("Calling VisualServer.CanvasCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "canvas_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Adds a circle command to the [CanvasItem]'s draw commands.
+        Adds a circle command to the [CanvasItem]'s draw commands.
+	Args: [{ false item RID} { false pos Vector2} { false radius float} { false color Color}], Returns: void
 */
-func (o *visualServer) CanvasItemAddCircle(item *RID, pos *Vector2, radius gdnative.Float, color *Color) {
+
+func (o *visualServer) CanvasItemAddCircle(item gdnative.RID, pos gdnative.Vector2, radius gdnative.Float, color gdnative.Color) {
 	log.Println("Calling VisualServer.CanvasItemAddCircle()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(pos)
-	goArguments[2] = reflect.ValueOf(radius)
-	goArguments[3] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(pos)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(radius)
+	ptrArguments[3] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_add_circle")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_add_circle", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If ignore is [code]true[/code], the VisualServer does not perform clipping.
+        If ignore is [code]true[/code], the VisualServer does not perform clipping.
+	Args: [{ false item RID} { false ignore bool}], Returns: void
 */
-func (o *visualServer) CanvasItemAddClipIgnore(item *RID, ignore gdnative.Bool) {
+
+func (o *visualServer) CanvasItemAddClipIgnore(item gdnative.RID, ignore gdnative.Bool) {
 	log.Println("Calling VisualServer.CanvasItemAddClipIgnore()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(ignore)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromBool(ignore)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_add_clip_ignore")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_add_clip_ignore", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a line command to the [CanvasItem]'s draw commands.
+        Adds a line command to the [CanvasItem]'s draw commands.
+	Args: [{ false item RID} { false from Vector2} { false to Vector2} { false color Color} {1 true width float} {False true antialiased bool}], Returns: void
 */
-func (o *visualServer) CanvasItemAddLine(item *RID, from *Vector2, to *Vector2, color *Color, width gdnative.Float, antialiased gdnative.Bool) {
+
+func (o *visualServer) CanvasItemAddLine(item gdnative.RID, from gdnative.Vector2, to gdnative.Vector2, color gdnative.Color, width gdnative.Float, antialiased gdnative.Bool) {
 	log.Println("Calling VisualServer.CanvasItemAddLine()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 6, 6)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(from)
-	goArguments[2] = reflect.ValueOf(to)
-	goArguments[3] = reflect.ValueOf(color)
-	goArguments[4] = reflect.ValueOf(width)
-	goArguments[5] = reflect.ValueOf(antialiased)
+	ptrArguments := make([]gdnative.Pointer, 6, 6)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(from)
+	ptrArguments[2] = gdnative.NewPointerFromVector2(to)
+	ptrArguments[3] = gdnative.NewPointerFromColor(color)
+	ptrArguments[4] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[5] = gdnative.NewPointerFromBool(antialiased)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_add_line")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_add_line", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a [Mesh] to the [CanvasItem]'s draw commands. Only affects its aabb at the moment.
+        Adds a [Mesh] to the [CanvasItem]'s draw commands. Only affects its aabb at the moment.
+	Args: [{ false item RID} { false mesh RID} {[RID] true skeleton RID}], Returns: void
 */
-func (o *visualServer) CanvasItemAddMesh(item *RID, mesh *RID, skeleton *RID) {
+
+func (o *visualServer) CanvasItemAddMesh(item gdnative.RID, mesh gdnative.RID, skeleton gdnative.RID) {
 	log.Println("Calling VisualServer.CanvasItemAddMesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(mesh)
-	goArguments[2] = reflect.ValueOf(skeleton)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[2] = gdnative.NewPointerFromRid(skeleton)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_add_mesh")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_add_mesh", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a [MultiMesh] to the [CanvasItem]'s draw commands. Only affects its aabb at the moment.
+        Adds a [MultiMesh] to the [CanvasItem]'s draw commands. Only affects its aabb at the moment.
+	Args: [{ false item RID} { false mesh RID} {[RID] true skeleton RID}], Returns: void
 */
-func (o *visualServer) CanvasItemAddMultimesh(item *RID, mesh *RID, skeleton *RID) {
+
+func (o *visualServer) CanvasItemAddMultimesh(item gdnative.RID, mesh gdnative.RID, skeleton gdnative.RID) {
 	log.Println("Calling VisualServer.CanvasItemAddMultimesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(mesh)
-	goArguments[2] = reflect.ValueOf(skeleton)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[2] = gdnative.NewPointerFromRid(skeleton)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_add_multimesh")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_add_multimesh", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a nine patch image to the [CanvasItem]'s draw commands. See [NinePatchRect] for more explanation.
+        Adds a nine patch image to the [CanvasItem]'s draw commands. See [NinePatchRect] for more explanation.
+	Args: [{ false item RID} { false rect Rect2} { false source Rect2} { false texture RID} { false topleft Vector2} { false bottomright Vector2} {0 true x_axis_mode int} {0 true y_axis_mode int} {True true draw_center bool} {1,1,1,1 true modulate Color} {[RID] true normal_map RID}], Returns: void
 */
-func (o *visualServer) CanvasItemAddNinePatch(item *RID, rect *Rect2, source *Rect2, texture *RID, topleft *Vector2, bottomright *Vector2, xAxisMode gdnative.Int, yAxisMode gdnative.Int, drawCenter gdnative.Bool, modulate *Color, normalMap *RID) {
+
+func (o *visualServer) CanvasItemAddNinePatch(item gdnative.RID, rect gdnative.Rect2, source gdnative.Rect2, texture gdnative.RID, topleft gdnative.Vector2, bottomright gdnative.Vector2, xAxisMode gdnative.Int, yAxisMode gdnative.Int, drawCenter gdnative.Bool, modulate gdnative.Color, normalMap gdnative.RID) {
 	log.Println("Calling VisualServer.CanvasItemAddNinePatch()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 11, 11)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(rect)
-	goArguments[2] = reflect.ValueOf(source)
-	goArguments[3] = reflect.ValueOf(texture)
-	goArguments[4] = reflect.ValueOf(topleft)
-	goArguments[5] = reflect.ValueOf(bottomright)
-	goArguments[6] = reflect.ValueOf(xAxisMode)
-	goArguments[7] = reflect.ValueOf(yAxisMode)
-	goArguments[8] = reflect.ValueOf(drawCenter)
-	goArguments[9] = reflect.ValueOf(modulate)
-	goArguments[10] = reflect.ValueOf(normalMap)
+	ptrArguments := make([]gdnative.Pointer, 11, 11)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromRect2(rect)
+	ptrArguments[2] = gdnative.NewPointerFromRect2(source)
+	ptrArguments[3] = gdnative.NewPointerFromRid(texture)
+	ptrArguments[4] = gdnative.NewPointerFromVector2(topleft)
+	ptrArguments[5] = gdnative.NewPointerFromVector2(bottomright)
+	ptrArguments[6] = gdnative.NewPointerFromInt(xAxisMode)
+	ptrArguments[7] = gdnative.NewPointerFromInt(yAxisMode)
+	ptrArguments[8] = gdnative.NewPointerFromBool(drawCenter)
+	ptrArguments[9] = gdnative.NewPointerFromColor(modulate)
+	ptrArguments[10] = gdnative.NewPointerFromRid(normalMap)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_add_nine_patch")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_add_nine_patch", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a particles system to the [CanvasItem]'s draw commands.
+        Adds a particles system to the [CanvasItem]'s draw commands.
+	Args: [{ false item RID} { false particles RID} { false texture RID} { false normal_map RID} { false h_frames int} { false v_frames int}], Returns: void
 */
-func (o *visualServer) CanvasItemAddParticles(item *RID, particles *RID, texture *RID, normalMap *RID, hFrames gdnative.Int, vFrames gdnative.Int) {
+
+func (o *visualServer) CanvasItemAddParticles(item gdnative.RID, particles gdnative.RID, texture gdnative.RID, normalMap gdnative.RID, hFrames gdnative.Int, vFrames gdnative.Int) {
 	log.Println("Calling VisualServer.CanvasItemAddParticles()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 6, 6)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(particles)
-	goArguments[2] = reflect.ValueOf(texture)
-	goArguments[3] = reflect.ValueOf(normalMap)
-	goArguments[4] = reflect.ValueOf(hFrames)
-	goArguments[5] = reflect.ValueOf(vFrames)
+	ptrArguments := make([]gdnative.Pointer, 6, 6)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromRid(particles)
+	ptrArguments[2] = gdnative.NewPointerFromRid(texture)
+	ptrArguments[3] = gdnative.NewPointerFromRid(normalMap)
+	ptrArguments[4] = gdnative.NewPointerFromInt(hFrames)
+	ptrArguments[5] = gdnative.NewPointerFromInt(vFrames)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_add_particles")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_add_particles", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a polygon to the [CanvasItem]'s draw commands.
+        Adds a polygon to the [CanvasItem]'s draw commands.
+	Args: [{ false item RID} { false points PoolVector2Array} { false colors PoolColorArray} {[] true uvs PoolVector2Array} {[RID] true texture RID} {[RID] true normal_map RID} {False true antialiased bool}], Returns: void
 */
-func (o *visualServer) CanvasItemAddPolygon(item *RID, points *PoolVector2Array, colors *PoolColorArray, uvs *PoolVector2Array, texture *RID, normalMap *RID, antialiased gdnative.Bool) {
+
+func (o *visualServer) CanvasItemAddPolygon(item gdnative.RID, points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture gdnative.RID, normalMap gdnative.RID, antialiased gdnative.Bool) {
 	log.Println("Calling VisualServer.CanvasItemAddPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 7, 7)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(points)
-	goArguments[2] = reflect.ValueOf(colors)
-	goArguments[3] = reflect.ValueOf(uvs)
-	goArguments[4] = reflect.ValueOf(texture)
-	goArguments[5] = reflect.ValueOf(normalMap)
-	goArguments[6] = reflect.ValueOf(antialiased)
+	ptrArguments := make([]gdnative.Pointer, 7, 7)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromPoolVector2Array(points)
+	ptrArguments[2] = gdnative.NewPointerFromPoolColorArray(colors)
+	ptrArguments[3] = gdnative.NewPointerFromPoolVector2Array(uvs)
+	ptrArguments[4] = gdnative.NewPointerFromRid(texture)
+	ptrArguments[5] = gdnative.NewPointerFromRid(normalMap)
+	ptrArguments[6] = gdnative.NewPointerFromBool(antialiased)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_add_polygon")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_add_polygon", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a polyline, which is a line from multiple points with a width, to the [CanvasItem]'s draw commands.
+        Adds a polyline, which is a line from multiple points with a width, to the [CanvasItem]'s draw commands.
+	Args: [{ false item RID} { false points PoolVector2Array} { false colors PoolColorArray} {1 true width float} {False true antialiased bool}], Returns: void
 */
-func (o *visualServer) CanvasItemAddPolyline(item *RID, points *PoolVector2Array, colors *PoolColorArray, width gdnative.Float, antialiased gdnative.Bool) {
+
+func (o *visualServer) CanvasItemAddPolyline(item gdnative.RID, points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Float, antialiased gdnative.Bool) {
 	log.Println("Calling VisualServer.CanvasItemAddPolyline()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(points)
-	goArguments[2] = reflect.ValueOf(colors)
-	goArguments[3] = reflect.ValueOf(width)
-	goArguments[4] = reflect.ValueOf(antialiased)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromPoolVector2Array(points)
+	ptrArguments[2] = gdnative.NewPointerFromPoolColorArray(colors)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[4] = gdnative.NewPointerFromBool(antialiased)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_add_polyline")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_add_polyline", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a primitive to the [CanvasItem]'s draw commands.
+        Adds a primitive to the [CanvasItem]'s draw commands.
+	Args: [{ false item RID} { false points PoolVector2Array} { false colors PoolColorArray} { false uvs PoolVector2Array} { false texture RID} {1 true width float} {[RID] true normal_map RID}], Returns: void
 */
-func (o *visualServer) CanvasItemAddPrimitive(item *RID, points *PoolVector2Array, colors *PoolColorArray, uvs *PoolVector2Array, texture *RID, width gdnative.Float, normalMap *RID) {
+
+func (o *visualServer) CanvasItemAddPrimitive(item gdnative.RID, points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture gdnative.RID, width gdnative.Float, normalMap gdnative.RID) {
 	log.Println("Calling VisualServer.CanvasItemAddPrimitive()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 7, 7)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(points)
-	goArguments[2] = reflect.ValueOf(colors)
-	goArguments[3] = reflect.ValueOf(uvs)
-	goArguments[4] = reflect.ValueOf(texture)
-	goArguments[5] = reflect.ValueOf(width)
-	goArguments[6] = reflect.ValueOf(normalMap)
+	ptrArguments := make([]gdnative.Pointer, 7, 7)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromPoolVector2Array(points)
+	ptrArguments[2] = gdnative.NewPointerFromPoolColorArray(colors)
+	ptrArguments[3] = gdnative.NewPointerFromPoolVector2Array(uvs)
+	ptrArguments[4] = gdnative.NewPointerFromRid(texture)
+	ptrArguments[5] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[6] = gdnative.NewPointerFromRid(normalMap)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_add_primitive")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_add_primitive", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a rectangle to the [CanvasItem]'s draw commands.
+        Adds a rectangle to the [CanvasItem]'s draw commands.
+	Args: [{ false item RID} { false rect Rect2} { false color Color}], Returns: void
 */
-func (o *visualServer) CanvasItemAddRect(item *RID, rect *Rect2, color *Color) {
+
+func (o *visualServer) CanvasItemAddRect(item gdnative.RID, rect gdnative.Rect2, color gdnative.Color) {
 	log.Println("Calling VisualServer.CanvasItemAddRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(rect)
-	goArguments[2] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromRect2(rect)
+	ptrArguments[2] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_add_rect")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_add_rect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a [Transform2D] command to the [CanvasItem]'s draw commands. This sets the extra_matrix uniform when executed. This affects the later command's of the canvas item.
+        Adds a [Transform2D] command to the [CanvasItem]'s draw commands. This sets the extra_matrix uniform when executed. This affects the later command's of the canvas item.
+	Args: [{ false item RID} { false transform Transform2D}], Returns: void
 */
-func (o *visualServer) CanvasItemAddSetTransform(item *RID, transform *Transform2D) {
+
+func (o *visualServer) CanvasItemAddSetTransform(item gdnative.RID, transform gdnative.Transform2D) {
 	log.Println("Calling VisualServer.CanvasItemAddSetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromTransform2D(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_add_set_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_add_set_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a textured rect to the [CanvasItem]'s draw commands.
+        Adds a textured rect to the [CanvasItem]'s draw commands.
+	Args: [{ false item RID} { false rect Rect2} { false texture RID} {False true tile bool} {1,1,1,1 true modulate Color} {False true transpose bool} {[RID] true normal_map RID}], Returns: void
 */
-func (o *visualServer) CanvasItemAddTextureRect(item *RID, rect *Rect2, texture *RID, tile gdnative.Bool, modulate *Color, transpose gdnative.Bool, normalMap *RID) {
+
+func (o *visualServer) CanvasItemAddTextureRect(item gdnative.RID, rect gdnative.Rect2, texture gdnative.RID, tile gdnative.Bool, modulate gdnative.Color, transpose gdnative.Bool, normalMap gdnative.RID) {
 	log.Println("Calling VisualServer.CanvasItemAddTextureRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 7, 7)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(rect)
-	goArguments[2] = reflect.ValueOf(texture)
-	goArguments[3] = reflect.ValueOf(tile)
-	goArguments[4] = reflect.ValueOf(modulate)
-	goArguments[5] = reflect.ValueOf(transpose)
-	goArguments[6] = reflect.ValueOf(normalMap)
+	ptrArguments := make([]gdnative.Pointer, 7, 7)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromRect2(rect)
+	ptrArguments[2] = gdnative.NewPointerFromRid(texture)
+	ptrArguments[3] = gdnative.NewPointerFromBool(tile)
+	ptrArguments[4] = gdnative.NewPointerFromColor(modulate)
+	ptrArguments[5] = gdnative.NewPointerFromBool(transpose)
+	ptrArguments[6] = gdnative.NewPointerFromRid(normalMap)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_add_texture_rect")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_add_texture_rect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a texture rect with region setting to the [CanvasItem]'s draw commands.
+        Adds a texture rect with region setting to the [CanvasItem]'s draw commands.
+	Args: [{ false item RID} { false rect Rect2} { false texture RID} { false src_rect Rect2} {1,1,1,1 true modulate Color} {False true transpose bool} {[RID] true normal_map RID} {True true clip_uv bool}], Returns: void
 */
-func (o *visualServer) CanvasItemAddTextureRectRegion(item *RID, rect *Rect2, texture *RID, srcRect *Rect2, modulate *Color, transpose gdnative.Bool, normalMap *RID, clipUv gdnative.Bool) {
+
+func (o *visualServer) CanvasItemAddTextureRectRegion(item gdnative.RID, rect gdnative.Rect2, texture gdnative.RID, srcRect gdnative.Rect2, modulate gdnative.Color, transpose gdnative.Bool, normalMap gdnative.RID, clipUv gdnative.Bool) {
 	log.Println("Calling VisualServer.CanvasItemAddTextureRectRegion()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 8, 8)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(rect)
-	goArguments[2] = reflect.ValueOf(texture)
-	goArguments[3] = reflect.ValueOf(srcRect)
-	goArguments[4] = reflect.ValueOf(modulate)
-	goArguments[5] = reflect.ValueOf(transpose)
-	goArguments[6] = reflect.ValueOf(normalMap)
-	goArguments[7] = reflect.ValueOf(clipUv)
+	ptrArguments := make([]gdnative.Pointer, 8, 8)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromRect2(rect)
+	ptrArguments[2] = gdnative.NewPointerFromRid(texture)
+	ptrArguments[3] = gdnative.NewPointerFromRect2(srcRect)
+	ptrArguments[4] = gdnative.NewPointerFromColor(modulate)
+	ptrArguments[5] = gdnative.NewPointerFromBool(transpose)
+	ptrArguments[6] = gdnative.NewPointerFromRid(normalMap)
+	ptrArguments[7] = gdnative.NewPointerFromBool(clipUv)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_add_texture_rect_region")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_add_texture_rect_region", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a triangle array to the [CanvasItem]'s draw commands.
+        Adds a triangle array to the [CanvasItem]'s draw commands.
+	Args: [{ false item RID} { false indices PoolIntArray} { false points PoolVector2Array} { false colors PoolColorArray} {[] true uvs PoolVector2Array} {[RID] true texture RID} {-1 true count int} {[RID] true normal_map RID}], Returns: void
 */
-func (o *visualServer) CanvasItemAddTriangleArray(item *RID, indices *PoolIntArray, points *PoolVector2Array, colors *PoolColorArray, uvs *PoolVector2Array, texture *RID, count gdnative.Int, normalMap *RID) {
+
+func (o *visualServer) CanvasItemAddTriangleArray(item gdnative.RID, indices gdnative.PoolIntArray, points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture gdnative.RID, count gdnative.Int, normalMap gdnative.RID) {
 	log.Println("Calling VisualServer.CanvasItemAddTriangleArray()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 8, 8)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(indices)
-	goArguments[2] = reflect.ValueOf(points)
-	goArguments[3] = reflect.ValueOf(colors)
-	goArguments[4] = reflect.ValueOf(uvs)
-	goArguments[5] = reflect.ValueOf(texture)
-	goArguments[6] = reflect.ValueOf(count)
-	goArguments[7] = reflect.ValueOf(normalMap)
+	ptrArguments := make([]gdnative.Pointer, 8, 8)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromPoolIntArray(indices)
+	ptrArguments[2] = gdnative.NewPointerFromPoolVector2Array(points)
+	ptrArguments[3] = gdnative.NewPointerFromPoolColorArray(colors)
+	ptrArguments[4] = gdnative.NewPointerFromPoolVector2Array(uvs)
+	ptrArguments[5] = gdnative.NewPointerFromRid(texture)
+	ptrArguments[6] = gdnative.NewPointerFromInt(count)
+	ptrArguments[7] = gdnative.NewPointerFromRid(normalMap)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_add_triangle_array")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_add_triangle_array", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Clears the [CanvasItem] and removes all commands in it.
+        Clears the [CanvasItem] and removes all commands in it.
+	Args: [{ false item RID}], Returns: void
 */
-func (o *visualServer) CanvasItemClear(item *RID) {
+
+func (o *visualServer) CanvasItemClear(item gdnative.RID) {
 	log.Println("Calling VisualServer.CanvasItemClear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(item)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Creates a new [CanvasItem] and returns its [RID].
+        Creates a new [CanvasItem] and returns its [RID].
+	Args: [], Returns: RID
 */
-func (o *visualServer) CanvasItemCreate() *RID {
+
+func (o *visualServer) CanvasItemCreate() gdnative.RID {
 	log.Println("Calling VisualServer.CanvasItemCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "canvas_item_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets clipping for the [CanvasItem].
+        Sets clipping for the [CanvasItem].
+	Args: [{ false item RID} { false clip bool}], Returns: void
 */
-func (o *visualServer) CanvasItemSetClip(item *RID, clip gdnative.Bool) {
+
+func (o *visualServer) CanvasItemSetClip(item gdnative.RID, clip gdnative.Bool) {
 	log.Println("Calling VisualServer.CanvasItemSetClip()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(clip)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromBool(clip)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_set_clip")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_set_clip", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the [CanvasItem] to copy a rect to the backbuffer.
+        Sets the [CanvasItem] to copy a rect to the backbuffer.
+	Args: [{ false item RID} { false enabled bool} { false rect Rect2}], Returns: void
 */
-func (o *visualServer) CanvasItemSetCopyToBackbuffer(item *RID, enabled gdnative.Bool, rect *Rect2) {
+
+func (o *visualServer) CanvasItemSetCopyToBackbuffer(item gdnative.RID, enabled gdnative.Bool, rect gdnative.Rect2) {
 	log.Println("Calling VisualServer.CanvasItemSetCopyToBackbuffer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(enabled)
-	goArguments[2] = reflect.ValueOf(rect)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+	ptrArguments[2] = gdnative.NewPointerFromRect2(rect)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_set_copy_to_backbuffer")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_set_copy_to_backbuffer", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Defines a custom drawing rectangle for the [CanvasItem].
+        Defines a custom drawing rectangle for the [CanvasItem].
+	Args: [{ false item RID} { false use_custom_rect bool} {(0, 0, 0, 0) true rect Rect2}], Returns: void
 */
-func (o *visualServer) CanvasItemSetCustomRect(item *RID, useCustomRect gdnative.Bool, rect *Rect2) {
+
+func (o *visualServer) CanvasItemSetCustomRect(item gdnative.RID, useCustomRect gdnative.Bool, rect gdnative.Rect2) {
 	log.Println("Calling VisualServer.CanvasItemSetCustomRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(useCustomRect)
-	goArguments[2] = reflect.ValueOf(rect)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromBool(useCustomRect)
+	ptrArguments[2] = gdnative.NewPointerFromRect2(rect)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_set_custom_rect")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_set_custom_rect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) CanvasItemSetDistanceFieldMode(item *RID, enabled gdnative.Bool) {
+	Args: [{ false item RID} { false enabled bool}], Returns: void
+*/
+
+func (o *visualServer) CanvasItemSetDistanceFieldMode(item gdnative.RID, enabled gdnative.Bool) {
 	log.Println("Calling VisualServer.CanvasItemSetDistanceFieldMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_set_distance_field_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_set_distance_field_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets [CanvasItem] to be drawn behind its parent.
+        Sets [CanvasItem] to be drawn behind its parent.
+	Args: [{ false item RID} { false enabled bool}], Returns: void
 */
-func (o *visualServer) CanvasItemSetDrawBehindParent(item *RID, enabled gdnative.Bool) {
+
+func (o *visualServer) CanvasItemSetDrawBehindParent(item gdnative.RID, enabled gdnative.Bool) {
 	log.Println("Calling VisualServer.CanvasItemSetDrawBehindParent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_set_draw_behind_parent")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_set_draw_behind_parent", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the index for the [CanvasItem].
+        Sets the index for the [CanvasItem].
+	Args: [{ false item RID} { false index int}], Returns: void
 */
-func (o *visualServer) CanvasItemSetDrawIndex(item *RID, index gdnative.Int) {
+
+func (o *visualServer) CanvasItemSetDrawIndex(item gdnative.RID, index gdnative.Int) {
 	log.Println("Calling VisualServer.CanvasItemSetDrawIndex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(index)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromInt(index)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_set_draw_index")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_set_draw_index", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   The light mask. See [LightOccluder2D] for more information on light masks.
+        The light mask. See [LightOccluder2D] for more information on light masks.
+	Args: [{ false item RID} { false mask int}], Returns: void
 */
-func (o *visualServer) CanvasItemSetLightMask(item *RID, mask gdnative.Int) {
+
+func (o *visualServer) CanvasItemSetLightMask(item gdnative.RID, mask gdnative.Int) {
 	log.Println("Calling VisualServer.CanvasItemSetLightMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(mask)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mask)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_set_light_mask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_set_light_mask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a new material to the [CanvasItem].
+        Sets a new material to the [CanvasItem].
+	Args: [{ false item RID} { false material RID}], Returns: void
 */
-func (o *visualServer) CanvasItemSetMaterial(item *RID, material *RID) {
+
+func (o *visualServer) CanvasItemSetMaterial(item gdnative.RID, material gdnative.RID) {
 	log.Println("Calling VisualServer.CanvasItemSetMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(material)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromRid(material)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_set_material")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_set_material", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the color that modulates the [CanvasItem] and its children.
+        Sets the color that modulates the [CanvasItem] and its children.
+	Args: [{ false item RID} { false color Color}], Returns: void
 */
-func (o *visualServer) CanvasItemSetModulate(item *RID, color *Color) {
+
+func (o *visualServer) CanvasItemSetModulate(item gdnative.RID, color gdnative.Color) {
 	log.Println("Calling VisualServer.CanvasItemSetModulate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_set_modulate")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_set_modulate", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the parent for the [CanvasItem].
+        Sets the parent for the [CanvasItem].
+	Args: [{ false item RID} { false parent RID}], Returns: void
 */
-func (o *visualServer) CanvasItemSetParent(item *RID, parent *RID) {
+
+func (o *visualServer) CanvasItemSetParent(item gdnative.RID, parent gdnative.RID) {
 	log.Println("Calling VisualServer.CanvasItemSetParent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(parent)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromRid(parent)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_set_parent")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_set_parent", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the color that modulates the [CanvasItem] without children.
+        Sets the color that modulates the [CanvasItem] without children.
+	Args: [{ false item RID} { false color Color}], Returns: void
 */
-func (o *visualServer) CanvasItemSetSelfModulate(item *RID, color *Color) {
+
+func (o *visualServer) CanvasItemSetSelfModulate(item gdnative.RID, color gdnative.Color) {
 	log.Println("Calling VisualServer.CanvasItemSetSelfModulate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_set_self_modulate")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_set_self_modulate", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets if [CanvasItem]'s children should be sorted by y-position.
+        Sets if [CanvasItem]'s children should be sorted by y-position.
+	Args: [{ false item RID} { false enabled bool}], Returns: void
 */
-func (o *visualServer) CanvasItemSetSortChildrenByY(item *RID, enabled gdnative.Bool) {
+
+func (o *visualServer) CanvasItemSetSortChildrenByY(item gdnative.RID, enabled gdnative.Bool) {
 	log.Println("Calling VisualServer.CanvasItemSetSortChildrenByY()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_set_sort_children_by_y")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_set_sort_children_by_y", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the [CanvasItem]'s [Transform2D].
+        Sets the [CanvasItem]'s [Transform2D].
+	Args: [{ false item RID} { false transform Transform2D}], Returns: void
 */
-func (o *visualServer) CanvasItemSetTransform(item *RID, transform *Transform2D) {
+
+func (o *visualServer) CanvasItemSetTransform(item gdnative.RID, transform gdnative.Transform2D) {
 	log.Println("Calling VisualServer.CanvasItemSetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromTransform2D(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_set_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_set_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets if the [CanvasItem] uses its parent's material.
+        Sets if the [CanvasItem] uses its parent's material.
+	Args: [{ false item RID} { false enabled bool}], Returns: void
 */
-func (o *visualServer) CanvasItemSetUseParentMaterial(item *RID, enabled gdnative.Bool) {
+
+func (o *visualServer) CanvasItemSetUseParentMaterial(item gdnative.RID, enabled gdnative.Bool) {
 	log.Println("Calling VisualServer.CanvasItemSetUseParentMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_set_use_parent_material")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_set_use_parent_material", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets if the canvas item (including its children) is visible.
+        Sets if the canvas item (including its children) is visible.
+	Args: [{ false item RID} { false visible bool}], Returns: void
 */
-func (o *visualServer) CanvasItemSetVisible(item *RID, visible gdnative.Bool) {
+
+func (o *visualServer) CanvasItemSetVisible(item gdnative.RID, visible gdnative.Bool) {
 	log.Println("Calling VisualServer.CanvasItemSetVisible()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(visible)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromBool(visible)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_set_visible")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_set_visible", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If this is enabled, the z-index of the parent will be added to the children's z-index.
+        If this is enabled, the z-index of the parent will be added to the children's z-index.
+	Args: [{ false item RID} { false enabled bool}], Returns: void
 */
-func (o *visualServer) CanvasItemSetZAsRelativeToParent(item *RID, enabled gdnative.Bool) {
+
+func (o *visualServer) CanvasItemSetZAsRelativeToParent(item gdnative.RID, enabled gdnative.Bool) {
 	log.Println("Calling VisualServer.CanvasItemSetZAsRelativeToParent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_set_z_as_relative_to_parent")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_set_z_as_relative_to_parent", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the [CanvasItem]'s z-index, i.e. its draw order (lower indexes are drawn first).
+        Sets the [CanvasItem]'s z-index, i.e. its draw order (lower indexes are drawn first).
+	Args: [{ false item RID} { false z_index int}], Returns: void
 */
-func (o *visualServer) CanvasItemSetZIndex(item *RID, zIndex gdnative.Int) {
+
+func (o *visualServer) CanvasItemSetZIndex(item gdnative.RID, zIndex gdnative.Int) {
 	log.Println("Calling VisualServer.CanvasItemSetZIndex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(item)
-	goArguments[1] = reflect.ValueOf(zIndex)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(item)
+	ptrArguments[1] = gdnative.NewPointerFromInt(zIndex)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_item_set_z_index")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_item_set_z_index", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Attaches the canvas light to the canvas. Removes it from its previous canvas.
+        Attaches the canvas light to the canvas. Removes it from its previous canvas.
+	Args: [{ false light RID} { false canvas RID}], Returns: void
 */
-func (o *visualServer) CanvasLightAttachToCanvas(light *RID, canvas *RID) {
+
+func (o *visualServer) CanvasLightAttachToCanvas(light gdnative.RID, canvas gdnative.RID) {
 	log.Println("Calling VisualServer.CanvasLightAttachToCanvas()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(canvas)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromRid(canvas)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_attach_to_canvas")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_attach_to_canvas", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Creates a canvas light.
+        Creates a canvas light.
+	Args: [], Returns: RID
 */
-func (o *visualServer) CanvasLightCreate() *RID {
+
+func (o *visualServer) CanvasLightCreate() gdnative.RID {
 	log.Println("Calling VisualServer.CanvasLightCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "canvas_light_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Attaches a light occluder to the canvas. Removes it from its previous canvas.
+        Attaches a light occluder to the canvas. Removes it from its previous canvas.
+	Args: [{ false occluder RID} { false canvas RID}], Returns: void
 */
-func (o *visualServer) CanvasLightOccluderAttachToCanvas(occluder *RID, canvas *RID) {
+
+func (o *visualServer) CanvasLightOccluderAttachToCanvas(occluder gdnative.RID, canvas gdnative.RID) {
 	log.Println("Calling VisualServer.CanvasLightOccluderAttachToCanvas()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(occluder)
-	goArguments[1] = reflect.ValueOf(canvas)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(occluder)
+	ptrArguments[1] = gdnative.NewPointerFromRid(canvas)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_occluder_attach_to_canvas")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_occluder_attach_to_canvas", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Creates a light occluder.
+        Creates a light occluder.
+	Args: [], Returns: RID
 */
-func (o *visualServer) CanvasLightOccluderCreate() *RID {
+
+func (o *visualServer) CanvasLightOccluderCreate() gdnative.RID {
 	log.Println("Calling VisualServer.CanvasLightOccluderCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_occluder_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "canvas_light_occluder_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Enables or disables light occluder.
+        Enables or disables light occluder.
+	Args: [{ false occluder RID} { false enabled bool}], Returns: void
 */
-func (o *visualServer) CanvasLightOccluderSetEnabled(occluder *RID, enabled gdnative.Bool) {
+
+func (o *visualServer) CanvasLightOccluderSetEnabled(occluder gdnative.RID, enabled gdnative.Bool) {
 	log.Println("Calling VisualServer.CanvasLightOccluderSetEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(occluder)
-	goArguments[1] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(occluder)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_occluder_set_enabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_occluder_set_enabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   The light mask. See [LightOccluder2D] for more information on light masks
+        The light mask. See [LightOccluder2D] for more information on light masks
+	Args: [{ false occluder RID} { false mask int}], Returns: void
 */
-func (o *visualServer) CanvasLightOccluderSetLightMask(occluder *RID, mask gdnative.Int) {
+
+func (o *visualServer) CanvasLightOccluderSetLightMask(occluder gdnative.RID, mask gdnative.Int) {
 	log.Println("Calling VisualServer.CanvasLightOccluderSetLightMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(occluder)
-	goArguments[1] = reflect.ValueOf(mask)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(occluder)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mask)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_occluder_set_light_mask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_occluder_set_light_mask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a light occluder's polygon.
+        Sets a light occluder's polygon.
+	Args: [{ false occluder RID} { false polygon RID}], Returns: void
 */
-func (o *visualServer) CanvasLightOccluderSetPolygon(occluder *RID, polygon *RID) {
+
+func (o *visualServer) CanvasLightOccluderSetPolygon(occluder gdnative.RID, polygon gdnative.RID) {
 	log.Println("Calling VisualServer.CanvasLightOccluderSetPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(occluder)
-	goArguments[1] = reflect.ValueOf(polygon)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(occluder)
+	ptrArguments[1] = gdnative.NewPointerFromRid(polygon)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_occluder_set_polygon")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_occluder_set_polygon", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a light occluder's [Transform2D].
+        Sets a light occluder's [Transform2D].
+	Args: [{ false occluder RID} { false transform Transform2D}], Returns: void
 */
-func (o *visualServer) CanvasLightOccluderSetTransform(occluder *RID, transform *Transform2D) {
+
+func (o *visualServer) CanvasLightOccluderSetTransform(occluder gdnative.RID, transform gdnative.Transform2D) {
 	log.Println("Calling VisualServer.CanvasLightOccluderSetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(occluder)
-	goArguments[1] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(occluder)
+	ptrArguments[1] = gdnative.NewPointerFromTransform2D(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_occluder_set_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_occluder_set_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the color for a light.
+        Sets the color for a light.
+	Args: [{ false light RID} { false color Color}], Returns: void
 */
-func (o *visualServer) CanvasLightSetColor(light *RID, color *Color) {
+
+func (o *visualServer) CanvasLightSetColor(light gdnative.RID, color gdnative.Color) {
 	log.Println("Calling VisualServer.CanvasLightSetColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Enables or disables a canvas light.
+        Enables or disables a canvas light.
+	Args: [{ false light RID} { false enabled bool}], Returns: void
 */
-func (o *visualServer) CanvasLightSetEnabled(light *RID, enabled gdnative.Bool) {
+
+func (o *visualServer) CanvasLightSetEnabled(light gdnative.RID, enabled gdnative.Bool) {
 	log.Println("Calling VisualServer.CanvasLightSetEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_enabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_enabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a canvas light's energy.
+        Sets a canvas light's energy.
+	Args: [{ false light RID} { false energy float}], Returns: void
 */
-func (o *visualServer) CanvasLightSetEnergy(light *RID, energy gdnative.Float) {
+
+func (o *visualServer) CanvasLightSetEnergy(light gdnative.RID, energy gdnative.Float) {
 	log.Println("Calling VisualServer.CanvasLightSetEnergy()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(energy)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(energy)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_energy")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_energy", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a canvas light's height.
+        Sets a canvas light's height.
+	Args: [{ false light RID} { false height float}], Returns: void
 */
-func (o *visualServer) CanvasLightSetHeight(light *RID, height gdnative.Float) {
+
+func (o *visualServer) CanvasLightSetHeight(light gdnative.RID, height gdnative.Float) {
 	log.Println("Calling VisualServer.CanvasLightSetHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(height)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(height)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_height")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_height", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   The light mask. See [LightOccluder2D] for more information on light masks
+        The light mask. See [LightOccluder2D] for more information on light masks
+	Args: [{ false light RID} { false mask int}], Returns: void
 */
-func (o *visualServer) CanvasLightSetItemCullMask(light *RID, mask gdnative.Int) {
+
+func (o *visualServer) CanvasLightSetItemCullMask(light gdnative.RID, mask gdnative.Int) {
 	log.Println("Calling VisualServer.CanvasLightSetItemCullMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(mask)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mask)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_item_cull_mask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_item_cull_mask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   The shadow mask. binary about which layers this canvas light affects which canvas item's shadows. See [LightOccluder2D] for more information on light masks.
+        The shadow mask. binary about which layers this canvas light affects which canvas item's shadows. See [LightOccluder2D] for more information on light masks.
+	Args: [{ false light RID} { false mask int}], Returns: void
 */
-func (o *visualServer) CanvasLightSetItemShadowCullMask(light *RID, mask gdnative.Int) {
+
+func (o *visualServer) CanvasLightSetItemShadowCullMask(light gdnative.RID, mask gdnative.Int) {
 	log.Println("Calling VisualServer.CanvasLightSetItemShadowCullMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(mask)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mask)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_item_shadow_cull_mask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_item_shadow_cull_mask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   The layer range that gets rendered with this light.
+        The layer range that gets rendered with this light.
+	Args: [{ false light RID} { false min_layer int} { false max_layer int}], Returns: void
 */
-func (o *visualServer) CanvasLightSetLayerRange(light *RID, minLayer gdnative.Int, maxLayer gdnative.Int) {
+
+func (o *visualServer) CanvasLightSetLayerRange(light gdnative.RID, minLayer gdnative.Int, maxLayer gdnative.Int) {
 	log.Println("Calling VisualServer.CanvasLightSetLayerRange()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(minLayer)
-	goArguments[2] = reflect.ValueOf(maxLayer)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromInt(minLayer)
+	ptrArguments[2] = gdnative.NewPointerFromInt(maxLayer)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_layer_range")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_layer_range", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   The mode of the light, see CANVAS_LIGHT_MODE_* constants.
+        The mode of the light, see CANVAS_LIGHT_MODE_* constants.
+	Args: [{ false light RID} { false mode int}], Returns: void
 */
-func (o *visualServer) CanvasLightSetMode(light *RID, mode gdnative.Int) {
+
+func (o *visualServer) CanvasLightSetMode(light gdnative.RID, mode gdnative.Int) {
 	log.Println("Calling VisualServer.CanvasLightSetMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) CanvasLightSetScale(light *RID, scale gdnative.Float) {
+	Args: [{ false light RID} { false scale float}], Returns: void
+*/
+
+func (o *visualServer) CanvasLightSetScale(light gdnative.RID, scale gdnative.Float) {
 	log.Println("Calling VisualServer.CanvasLightSetScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(scale)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(scale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_scale")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the width of the shadow buffer, size gets scaled to the next power of two for this.
+        Sets the width of the shadow buffer, size gets scaled to the next power of two for this.
+	Args: [{ false light RID} { false size int}], Returns: void
 */
-func (o *visualServer) CanvasLightSetShadowBufferSize(light *RID, size gdnative.Int) {
+
+func (o *visualServer) CanvasLightSetShadowBufferSize(light gdnative.RID, size gdnative.Int) {
 	log.Println("Calling VisualServer.CanvasLightSetShadowBufferSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromInt(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_shadow_buffer_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_shadow_buffer_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the color of the canvas light's shadow.
+        Sets the color of the canvas light's shadow.
+	Args: [{ false light RID} { false color Color}], Returns: void
 */
-func (o *visualServer) CanvasLightSetShadowColor(light *RID, color *Color) {
+
+func (o *visualServer) CanvasLightSetShadowColor(light gdnative.RID, color gdnative.Color) {
 	log.Println("Calling VisualServer.CanvasLightSetShadowColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_shadow_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_shadow_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Enables or disables the canvas light's shadow.
+        Enables or disables the canvas light's shadow.
+	Args: [{ false light RID} { false enabled bool}], Returns: void
 */
-func (o *visualServer) CanvasLightSetShadowEnabled(light *RID, enabled gdnative.Bool) {
+
+func (o *visualServer) CanvasLightSetShadowEnabled(light gdnative.RID, enabled gdnative.Bool) {
 	log.Println("Calling VisualServer.CanvasLightSetShadowEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_shadow_enabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_shadow_enabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the canvas light's shadow's filter, see CANVAS_LIGHT_SHADOW_FILTER_* constants.
+        Sets the canvas light's shadow's filter, see CANVAS_LIGHT_SHADOW_FILTER_* constants.
+	Args: [{ false light RID} { false filter int}], Returns: void
 */
-func (o *visualServer) CanvasLightSetShadowFilter(light *RID, filter gdnative.Int) {
+
+func (o *visualServer) CanvasLightSetShadowFilter(light gdnative.RID, filter gdnative.Int) {
 	log.Println("Calling VisualServer.CanvasLightSetShadowFilter()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(filter)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromInt(filter)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_shadow_filter")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_shadow_filter", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the length of the shadow's gradient.
+        Sets the length of the shadow's gradient.
+	Args: [{ false light RID} { false length float}], Returns: void
 */
-func (o *visualServer) CanvasLightSetShadowGradientLength(light *RID, length gdnative.Float) {
+
+func (o *visualServer) CanvasLightSetShadowGradientLength(light gdnative.RID, length gdnative.Float) {
 	log.Println("Calling VisualServer.CanvasLightSetShadowGradientLength()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(length)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(length)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_shadow_gradient_length")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_shadow_gradient_length", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Smoothens the shadow. The lower, the more smooth.
+        Smoothens the shadow. The lower, the more smooth.
+	Args: [{ false light RID} { false smooth float}], Returns: void
 */
-func (o *visualServer) CanvasLightSetShadowSmooth(light *RID, smooth gdnative.Float) {
+
+func (o *visualServer) CanvasLightSetShadowSmooth(light gdnative.RID, smooth gdnative.Float) {
 	log.Println("Calling VisualServer.CanvasLightSetShadowSmooth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(smooth)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(smooth)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_shadow_smooth")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_shadow_smooth", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) CanvasLightSetTexture(light *RID, texture *RID) {
+	Args: [{ false light RID} { false texture RID}], Returns: void
+*/
+
+func (o *visualServer) CanvasLightSetTexture(light gdnative.RID, texture gdnative.RID) {
 	log.Println("Calling VisualServer.CanvasLightSetTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromRid(texture)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_texture")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_texture", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) CanvasLightSetTextureOffset(light *RID, offset *Vector2) {
+	Args: [{ false light RID} { false offset Vector2}], Returns: void
+*/
+
+func (o *visualServer) CanvasLightSetTextureOffset(light gdnative.RID, offset gdnative.Vector2) {
 	log.Println("Calling VisualServer.CanvasLightSetTextureOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(offset)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(offset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_texture_offset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_texture_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the canvas light's [Transform2D].
+        Sets the canvas light's [Transform2D].
+	Args: [{ false light RID} { false transform Transform2D}], Returns: void
 */
-func (o *visualServer) CanvasLightSetTransform(light *RID, transform *Transform2D) {
+
+func (o *visualServer) CanvasLightSetTransform(light gdnative.RID, transform gdnative.Transform2D) {
 	log.Println("Calling VisualServer.CanvasLightSetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromTransform2D(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) CanvasLightSetZRange(light *RID, minZ gdnative.Int, maxZ gdnative.Int) {
+	Args: [{ false light RID} { false min_z int} { false max_z int}], Returns: void
+*/
+
+func (o *visualServer) CanvasLightSetZRange(light gdnative.RID, minZ gdnative.Int, maxZ gdnative.Int) {
 	log.Println("Calling VisualServer.CanvasLightSetZRange()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(minZ)
-	goArguments[2] = reflect.ValueOf(maxZ)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromInt(minZ)
+	ptrArguments[2] = gdnative.NewPointerFromInt(maxZ)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_z_range")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_light_set_z_range", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Creates a new light occluder polygon.
+        Creates a new light occluder polygon.
+	Args: [], Returns: RID
 */
-func (o *visualServer) CanvasOccluderPolygonCreate() *RID {
+
+func (o *visualServer) CanvasOccluderPolygonCreate() gdnative.RID {
 	log.Println("Calling VisualServer.CanvasOccluderPolygonCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_occluder_polygon_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "canvas_occluder_polygon_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets an occluder polygons cull mode. See CANVAS_OCCLUDER_POLYGON_CULL_MODE_* constants.
+        Sets an occluder polygons cull mode. See CANVAS_OCCLUDER_POLYGON_CULL_MODE_* constants.
+	Args: [{ false occluder_polygon RID} { false mode int}], Returns: void
 */
-func (o *visualServer) CanvasOccluderPolygonSetCullMode(occluderPolygon *RID, mode gdnative.Int) {
+
+func (o *visualServer) CanvasOccluderPolygonSetCullMode(occluderPolygon gdnative.RID, mode gdnative.Int) {
 	log.Println("Calling VisualServer.CanvasOccluderPolygonSetCullMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(occluderPolygon)
-	goArguments[1] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(occluderPolygon)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_occluder_polygon_set_cull_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_occluder_polygon_set_cull_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the shape of the occluder polygon.
+        Sets the shape of the occluder polygon.
+	Args: [{ false occluder_polygon RID} { false shape PoolVector2Array} { false closed bool}], Returns: void
 */
-func (o *visualServer) CanvasOccluderPolygonSetShape(occluderPolygon *RID, shape *PoolVector2Array, closed gdnative.Bool) {
+
+func (o *visualServer) CanvasOccluderPolygonSetShape(occluderPolygon gdnative.RID, shape gdnative.PoolVector2Array, closed gdnative.Bool) {
 	log.Println("Calling VisualServer.CanvasOccluderPolygonSetShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(occluderPolygon)
-	goArguments[1] = reflect.ValueOf(shape)
-	goArguments[2] = reflect.ValueOf(closed)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(occluderPolygon)
+	ptrArguments[1] = gdnative.NewPointerFromPoolVector2Array(shape)
+	ptrArguments[2] = gdnative.NewPointerFromBool(closed)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_occluder_polygon_set_shape")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_occluder_polygon_set_shape", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the shape of the occluder polygon as lines.
+        Sets the shape of the occluder polygon as lines.
+	Args: [{ false occluder_polygon RID} { false shape PoolVector2Array}], Returns: void
 */
-func (o *visualServer) CanvasOccluderPolygonSetShapeAsLines(occluderPolygon *RID, shape *PoolVector2Array) {
+
+func (o *visualServer) CanvasOccluderPolygonSetShapeAsLines(occluderPolygon gdnative.RID, shape gdnative.PoolVector2Array) {
 	log.Println("Calling VisualServer.CanvasOccluderPolygonSetShapeAsLines()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(occluderPolygon)
-	goArguments[1] = reflect.ValueOf(shape)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(occluderPolygon)
+	ptrArguments[1] = gdnative.NewPointerFromPoolVector2Array(shape)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_occluder_polygon_set_shape_as_lines")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_occluder_polygon_set_shape_as_lines", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   A copy of the canvas item will be drawn with a local offset of the mirroring [Vector2].
+        A copy of the canvas item will be drawn with a local offset of the mirroring [Vector2].
+	Args: [{ false canvas RID} { false item RID} { false mirroring Vector2}], Returns: void
 */
-func (o *visualServer) CanvasSetItemMirroring(canvas *RID, item *RID, mirroring *Vector2) {
+
+func (o *visualServer) CanvasSetItemMirroring(canvas gdnative.RID, item gdnative.RID, mirroring gdnative.Vector2) {
 	log.Println("Calling VisualServer.CanvasSetItemMirroring()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(canvas)
-	goArguments[1] = reflect.ValueOf(item)
-	goArguments[2] = reflect.ValueOf(mirroring)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(canvas)
+	ptrArguments[1] = gdnative.NewPointerFromRid(item)
+	ptrArguments[2] = gdnative.NewPointerFromVector2(mirroring)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_set_item_mirroring")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_set_item_mirroring", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Modulates all colors in the given canvas.
+        Modulates all colors in the given canvas.
+	Args: [{ false canvas RID} { false color Color}], Returns: void
 */
-func (o *visualServer) CanvasSetModulate(canvas *RID, color *Color) {
+
+func (o *visualServer) CanvasSetModulate(canvas gdnative.RID, color gdnative.Color) {
 	log.Println("Calling VisualServer.CanvasSetModulate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(canvas)
-	goArguments[1] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(canvas)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_set_modulate")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "canvas_set_modulate", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) DirectionalLightCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *visualServer) DirectionalLightCreate() gdnative.RID {
 	log.Println("Calling VisualServer.DirectionalLightCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "directional_light_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "directional_light_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) EnvironmentCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *visualServer) EnvironmentCreate() gdnative.RID {
 	log.Println("Calling VisualServer.EnvironmentCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "environment_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "environment_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) EnvironmentSetAdjustment(env *RID, enable gdnative.Bool, brightness gdnative.Float, contrast gdnative.Float, saturation gdnative.Float, ramp *RID) {
+	Args: [{ false env RID} { false enable bool} { false brightness float} { false contrast float} { false saturation float} { false ramp RID}], Returns: void
+*/
+
+func (o *visualServer) EnvironmentSetAdjustment(env gdnative.RID, enable gdnative.Bool, brightness gdnative.Float, contrast gdnative.Float, saturation gdnative.Float, ramp gdnative.RID) {
 	log.Println("Calling VisualServer.EnvironmentSetAdjustment()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 6, 6)
-	goArguments[0] = reflect.ValueOf(env)
-	goArguments[1] = reflect.ValueOf(enable)
-	goArguments[2] = reflect.ValueOf(brightness)
-	goArguments[3] = reflect.ValueOf(contrast)
-	goArguments[4] = reflect.ValueOf(saturation)
-	goArguments[5] = reflect.ValueOf(ramp)
+	ptrArguments := make([]gdnative.Pointer, 6, 6)
+	ptrArguments[0] = gdnative.NewPointerFromRid(env)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(brightness)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(contrast)
+	ptrArguments[4] = gdnative.NewPointerFromFloat(saturation)
+	ptrArguments[5] = gdnative.NewPointerFromRid(ramp)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_adjustment")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "environment_set_adjustment", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) EnvironmentSetAmbientLight(env *RID, color *Color, energy gdnative.Float, skyContibution gdnative.Float) {
+	Args: [{ false env RID} { false color Color} {1 true energy float} {0 true sky_contibution float}], Returns: void
+*/
+
+func (o *visualServer) EnvironmentSetAmbientLight(env gdnative.RID, color gdnative.Color, energy gdnative.Float, skyContibution gdnative.Float) {
 	log.Println("Calling VisualServer.EnvironmentSetAmbientLight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(env)
-	goArguments[1] = reflect.ValueOf(color)
-	goArguments[2] = reflect.ValueOf(energy)
-	goArguments[3] = reflect.ValueOf(skyContibution)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromRid(env)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(energy)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(skyContibution)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_ambient_light")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "environment_set_ambient_light", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) EnvironmentSetBackground(env *RID, bg gdnative.Int) {
+	Args: [{ false env RID} { false bg int}], Returns: void
+*/
+
+func (o *visualServer) EnvironmentSetBackground(env gdnative.RID, bg gdnative.Int) {
 	log.Println("Calling VisualServer.EnvironmentSetBackground()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(env)
-	goArguments[1] = reflect.ValueOf(bg)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(env)
+	ptrArguments[1] = gdnative.NewPointerFromInt(bg)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_background")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "environment_set_background", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) EnvironmentSetBgColor(env *RID, color *Color) {
+	Args: [{ false env RID} { false color Color}], Returns: void
+*/
+
+func (o *visualServer) EnvironmentSetBgColor(env gdnative.RID, color gdnative.Color) {
 	log.Println("Calling VisualServer.EnvironmentSetBgColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(env)
-	goArguments[1] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(env)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_bg_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "environment_set_bg_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) EnvironmentSetBgEnergy(env *RID, energy gdnative.Float) {
+	Args: [{ false env RID} { false energy float}], Returns: void
+*/
+
+func (o *visualServer) EnvironmentSetBgEnergy(env gdnative.RID, energy gdnative.Float) {
 	log.Println("Calling VisualServer.EnvironmentSetBgEnergy()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(env)
-	goArguments[1] = reflect.ValueOf(energy)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(env)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(energy)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_bg_energy")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "environment_set_bg_energy", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) EnvironmentSetCanvasMaxLayer(env *RID, maxLayer gdnative.Int) {
+	Args: [{ false env RID} { false max_layer int}], Returns: void
+*/
+
+func (o *visualServer) EnvironmentSetCanvasMaxLayer(env gdnative.RID, maxLayer gdnative.Int) {
 	log.Println("Calling VisualServer.EnvironmentSetCanvasMaxLayer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(env)
-	goArguments[1] = reflect.ValueOf(maxLayer)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(env)
+	ptrArguments[1] = gdnative.NewPointerFromInt(maxLayer)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_canvas_max_layer")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "environment_set_canvas_max_layer", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) EnvironmentSetDofBlurFar(env *RID, enable gdnative.Bool, distance gdnative.Float, transition gdnative.Float, farAmount gdnative.Float, quality gdnative.Int) {
+	Args: [{ false env RID} { false enable bool} { false distance float} { false transition float} { false far_amount float} { false quality int}], Returns: void
+*/
+
+func (o *visualServer) EnvironmentSetDofBlurFar(env gdnative.RID, enable gdnative.Bool, distance gdnative.Float, transition gdnative.Float, farAmount gdnative.Float, quality gdnative.Int) {
 	log.Println("Calling VisualServer.EnvironmentSetDofBlurFar()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 6, 6)
-	goArguments[0] = reflect.ValueOf(env)
-	goArguments[1] = reflect.ValueOf(enable)
-	goArguments[2] = reflect.ValueOf(distance)
-	goArguments[3] = reflect.ValueOf(transition)
-	goArguments[4] = reflect.ValueOf(farAmount)
-	goArguments[5] = reflect.ValueOf(quality)
+	ptrArguments := make([]gdnative.Pointer, 6, 6)
+	ptrArguments[0] = gdnative.NewPointerFromRid(env)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(distance)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(transition)
+	ptrArguments[4] = gdnative.NewPointerFromFloat(farAmount)
+	ptrArguments[5] = gdnative.NewPointerFromInt(quality)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_dof_blur_far")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "environment_set_dof_blur_far", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) EnvironmentSetDofBlurNear(env *RID, enable gdnative.Bool, distance gdnative.Float, transition gdnative.Float, farAmount gdnative.Float, quality gdnative.Int) {
+	Args: [{ false env RID} { false enable bool} { false distance float} { false transition float} { false far_amount float} { false quality int}], Returns: void
+*/
+
+func (o *visualServer) EnvironmentSetDofBlurNear(env gdnative.RID, enable gdnative.Bool, distance gdnative.Float, transition gdnative.Float, farAmount gdnative.Float, quality gdnative.Int) {
 	log.Println("Calling VisualServer.EnvironmentSetDofBlurNear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 6, 6)
-	goArguments[0] = reflect.ValueOf(env)
-	goArguments[1] = reflect.ValueOf(enable)
-	goArguments[2] = reflect.ValueOf(distance)
-	goArguments[3] = reflect.ValueOf(transition)
-	goArguments[4] = reflect.ValueOf(farAmount)
-	goArguments[5] = reflect.ValueOf(quality)
+	ptrArguments := make([]gdnative.Pointer, 6, 6)
+	ptrArguments[0] = gdnative.NewPointerFromRid(env)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(distance)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(transition)
+	ptrArguments[4] = gdnative.NewPointerFromFloat(farAmount)
+	ptrArguments[5] = gdnative.NewPointerFromInt(quality)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_dof_blur_near")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "environment_set_dof_blur_near", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) EnvironmentSetFog(env *RID, enable gdnative.Bool, color *Color, sunColor *Color, sunAmount gdnative.Float) {
+	Args: [{ false env RID} { false enable bool} { false color Color} { false sun_color Color} { false sun_amount float}], Returns: void
+*/
+
+func (o *visualServer) EnvironmentSetFog(env gdnative.RID, enable gdnative.Bool, color gdnative.Color, sunColor gdnative.Color, sunAmount gdnative.Float) {
 	log.Println("Calling VisualServer.EnvironmentSetFog()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(env)
-	goArguments[1] = reflect.ValueOf(enable)
-	goArguments[2] = reflect.ValueOf(color)
-	goArguments[3] = reflect.ValueOf(sunColor)
-	goArguments[4] = reflect.ValueOf(sunAmount)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromRid(env)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+	ptrArguments[2] = gdnative.NewPointerFromColor(color)
+	ptrArguments[3] = gdnative.NewPointerFromColor(sunColor)
+	ptrArguments[4] = gdnative.NewPointerFromFloat(sunAmount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_fog")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "environment_set_fog", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) EnvironmentSetFogDepth(env *RID, enable gdnative.Bool, depthBegin gdnative.Float, depthCurve gdnative.Float, transmit gdnative.Bool, transmitCurve gdnative.Float) {
+	Args: [{ false env RID} { false enable bool} { false depth_begin float} { false depth_curve float} { false transmit bool} { false transmit_curve float}], Returns: void
+*/
+
+func (o *visualServer) EnvironmentSetFogDepth(env gdnative.RID, enable gdnative.Bool, depthBegin gdnative.Float, depthCurve gdnative.Float, transmit gdnative.Bool, transmitCurve gdnative.Float) {
 	log.Println("Calling VisualServer.EnvironmentSetFogDepth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 6, 6)
-	goArguments[0] = reflect.ValueOf(env)
-	goArguments[1] = reflect.ValueOf(enable)
-	goArguments[2] = reflect.ValueOf(depthBegin)
-	goArguments[3] = reflect.ValueOf(depthCurve)
-	goArguments[4] = reflect.ValueOf(transmit)
-	goArguments[5] = reflect.ValueOf(transmitCurve)
+	ptrArguments := make([]gdnative.Pointer, 6, 6)
+	ptrArguments[0] = gdnative.NewPointerFromRid(env)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(depthBegin)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(depthCurve)
+	ptrArguments[4] = gdnative.NewPointerFromBool(transmit)
+	ptrArguments[5] = gdnative.NewPointerFromFloat(transmitCurve)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_fog_depth")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "environment_set_fog_depth", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) EnvironmentSetFogHeight(env *RID, enable gdnative.Bool, minHeight gdnative.Float, maxHeight gdnative.Float, heightCurve gdnative.Float) {
+	Args: [{ false env RID} { false enable bool} { false min_height float} { false max_height float} { false height_curve float}], Returns: void
+*/
+
+func (o *visualServer) EnvironmentSetFogHeight(env gdnative.RID, enable gdnative.Bool, minHeight gdnative.Float, maxHeight gdnative.Float, heightCurve gdnative.Float) {
 	log.Println("Calling VisualServer.EnvironmentSetFogHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(env)
-	goArguments[1] = reflect.ValueOf(enable)
-	goArguments[2] = reflect.ValueOf(minHeight)
-	goArguments[3] = reflect.ValueOf(maxHeight)
-	goArguments[4] = reflect.ValueOf(heightCurve)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromRid(env)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(minHeight)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(maxHeight)
+	ptrArguments[4] = gdnative.NewPointerFromFloat(heightCurve)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_fog_height")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "environment_set_fog_height", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) EnvironmentSetGlow(env *RID, enable gdnative.Bool, levelFlags gdnative.Int, intensity gdnative.Float, strength gdnative.Float, bloomThreshold gdnative.Float, blendMode gdnative.Int, hdrBleedThreshold gdnative.Float, hdrBleedScale gdnative.Float, bicubicUpscale gdnative.Bool) {
+	Args: [{ false env RID} { false enable bool} { false level_flags int} { false intensity float} { false strength float} { false bloom_threshold float} { false blend_mode int} { false hdr_bleed_threshold float} { false hdr_bleed_scale float} { false bicubic_upscale bool}], Returns: void
+*/
+
+func (o *visualServer) EnvironmentSetGlow(env gdnative.RID, enable gdnative.Bool, levelFlags gdnative.Int, intensity gdnative.Float, strength gdnative.Float, bloomThreshold gdnative.Float, blendMode gdnative.Int, hdrBleedThreshold gdnative.Float, hdrBleedScale gdnative.Float, bicubicUpscale gdnative.Bool) {
 	log.Println("Calling VisualServer.EnvironmentSetGlow()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 10, 10)
-	goArguments[0] = reflect.ValueOf(env)
-	goArguments[1] = reflect.ValueOf(enable)
-	goArguments[2] = reflect.ValueOf(levelFlags)
-	goArguments[3] = reflect.ValueOf(intensity)
-	goArguments[4] = reflect.ValueOf(strength)
-	goArguments[5] = reflect.ValueOf(bloomThreshold)
-	goArguments[6] = reflect.ValueOf(blendMode)
-	goArguments[7] = reflect.ValueOf(hdrBleedThreshold)
-	goArguments[8] = reflect.ValueOf(hdrBleedScale)
-	goArguments[9] = reflect.ValueOf(bicubicUpscale)
+	ptrArguments := make([]gdnative.Pointer, 10, 10)
+	ptrArguments[0] = gdnative.NewPointerFromRid(env)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+	ptrArguments[2] = gdnative.NewPointerFromInt(levelFlags)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(intensity)
+	ptrArguments[4] = gdnative.NewPointerFromFloat(strength)
+	ptrArguments[5] = gdnative.NewPointerFromFloat(bloomThreshold)
+	ptrArguments[6] = gdnative.NewPointerFromInt(blendMode)
+	ptrArguments[7] = gdnative.NewPointerFromFloat(hdrBleedThreshold)
+	ptrArguments[8] = gdnative.NewPointerFromFloat(hdrBleedScale)
+	ptrArguments[9] = gdnative.NewPointerFromBool(bicubicUpscale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_glow")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "environment_set_glow", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) EnvironmentSetSky(env *RID, sky *RID) {
+	Args: [{ false env RID} { false sky RID}], Returns: void
+*/
+
+func (o *visualServer) EnvironmentSetSky(env gdnative.RID, sky gdnative.RID) {
 	log.Println("Calling VisualServer.EnvironmentSetSky()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(env)
-	goArguments[1] = reflect.ValueOf(sky)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(env)
+	ptrArguments[1] = gdnative.NewPointerFromRid(sky)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_sky")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "environment_set_sky", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) EnvironmentSetSkyCustomFov(env *RID, scale gdnative.Float) {
+	Args: [{ false env RID} { false scale float}], Returns: void
+*/
+
+func (o *visualServer) EnvironmentSetSkyCustomFov(env gdnative.RID, scale gdnative.Float) {
 	log.Println("Calling VisualServer.EnvironmentSetSkyCustomFov()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(env)
-	goArguments[1] = reflect.ValueOf(scale)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(env)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(scale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_sky_custom_fov")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "environment_set_sky_custom_fov", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) EnvironmentSetSsao(env *RID, enable gdnative.Bool, radius gdnative.Float, intensity gdnative.Float, radius2 gdnative.Float, intensity2 gdnative.Float, bias gdnative.Float, lightAffect gdnative.Float, color *Color, quality gdnative.Int, blur gdnative.Int, bilateralSharpness gdnative.Float) {
+	Args: [{ false env RID} { false enable bool} { false radius float} { false intensity float} { false radius2 float} { false intensity2 float} { false bias float} { false light_affect float} { false color Color} { false quality int} { false blur int} { false bilateral_sharpness float}], Returns: void
+*/
+
+func (o *visualServer) EnvironmentSetSsao(env gdnative.RID, enable gdnative.Bool, radius gdnative.Float, intensity gdnative.Float, radius2 gdnative.Float, intensity2 gdnative.Float, bias gdnative.Float, lightAffect gdnative.Float, color gdnative.Color, quality gdnative.Int, blur gdnative.Int, bilateralSharpness gdnative.Float) {
 	log.Println("Calling VisualServer.EnvironmentSetSsao()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 12, 12)
-	goArguments[0] = reflect.ValueOf(env)
-	goArguments[1] = reflect.ValueOf(enable)
-	goArguments[2] = reflect.ValueOf(radius)
-	goArguments[3] = reflect.ValueOf(intensity)
-	goArguments[4] = reflect.ValueOf(radius2)
-	goArguments[5] = reflect.ValueOf(intensity2)
-	goArguments[6] = reflect.ValueOf(bias)
-	goArguments[7] = reflect.ValueOf(lightAffect)
-	goArguments[8] = reflect.ValueOf(color)
-	goArguments[9] = reflect.ValueOf(quality)
-	goArguments[10] = reflect.ValueOf(blur)
-	goArguments[11] = reflect.ValueOf(bilateralSharpness)
+	ptrArguments := make([]gdnative.Pointer, 12, 12)
+	ptrArguments[0] = gdnative.NewPointerFromRid(env)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(radius)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(intensity)
+	ptrArguments[4] = gdnative.NewPointerFromFloat(radius2)
+	ptrArguments[5] = gdnative.NewPointerFromFloat(intensity2)
+	ptrArguments[6] = gdnative.NewPointerFromFloat(bias)
+	ptrArguments[7] = gdnative.NewPointerFromFloat(lightAffect)
+	ptrArguments[8] = gdnative.NewPointerFromColor(color)
+	ptrArguments[9] = gdnative.NewPointerFromInt(quality)
+	ptrArguments[10] = gdnative.NewPointerFromInt(blur)
+	ptrArguments[11] = gdnative.NewPointerFromFloat(bilateralSharpness)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_ssao")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "environment_set_ssao", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) EnvironmentSetSsr(env *RID, enable gdnative.Bool, maxSteps gdnative.Int, fadeIn gdnative.Float, fadeOut gdnative.Float, depthTolerance gdnative.Float, roughness gdnative.Bool) {
+	Args: [{ false env RID} { false enable bool} { false max_steps int} { false fade_in float} { false fade_out float} { false depth_tolerance float} { false roughness bool}], Returns: void
+*/
+
+func (o *visualServer) EnvironmentSetSsr(env gdnative.RID, enable gdnative.Bool, maxSteps gdnative.Int, fadeIn gdnative.Float, fadeOut gdnative.Float, depthTolerance gdnative.Float, roughness gdnative.Bool) {
 	log.Println("Calling VisualServer.EnvironmentSetSsr()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 7, 7)
-	goArguments[0] = reflect.ValueOf(env)
-	goArguments[1] = reflect.ValueOf(enable)
-	goArguments[2] = reflect.ValueOf(maxSteps)
-	goArguments[3] = reflect.ValueOf(fadeIn)
-	goArguments[4] = reflect.ValueOf(fadeOut)
-	goArguments[5] = reflect.ValueOf(depthTolerance)
-	goArguments[6] = reflect.ValueOf(roughness)
+	ptrArguments := make([]gdnative.Pointer, 7, 7)
+	ptrArguments[0] = gdnative.NewPointerFromRid(env)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+	ptrArguments[2] = gdnative.NewPointerFromInt(maxSteps)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(fadeIn)
+	ptrArguments[4] = gdnative.NewPointerFromFloat(fadeOut)
+	ptrArguments[5] = gdnative.NewPointerFromFloat(depthTolerance)
+	ptrArguments[6] = gdnative.NewPointerFromBool(roughness)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_ssr")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "environment_set_ssr", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) EnvironmentSetTonemap(env *RID, toneMapper gdnative.Int, exposure gdnative.Float, white gdnative.Float, autoExposure gdnative.Bool, minLuminance gdnative.Float, maxLuminance gdnative.Float, autoExpSpeed gdnative.Float, autoExpGrey gdnative.Float) {
+	Args: [{ false env RID} { false tone_mapper int} { false exposure float} { false white float} { false auto_exposure bool} { false min_luminance float} { false max_luminance float} { false auto_exp_speed float} { false auto_exp_grey float}], Returns: void
+*/
+
+func (o *visualServer) EnvironmentSetTonemap(env gdnative.RID, toneMapper gdnative.Int, exposure gdnative.Float, white gdnative.Float, autoExposure gdnative.Bool, minLuminance gdnative.Float, maxLuminance gdnative.Float, autoExpSpeed gdnative.Float, autoExpGrey gdnative.Float) {
 	log.Println("Calling VisualServer.EnvironmentSetTonemap()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 9, 9)
-	goArguments[0] = reflect.ValueOf(env)
-	goArguments[1] = reflect.ValueOf(toneMapper)
-	goArguments[2] = reflect.ValueOf(exposure)
-	goArguments[3] = reflect.ValueOf(white)
-	goArguments[4] = reflect.ValueOf(autoExposure)
-	goArguments[5] = reflect.ValueOf(minLuminance)
-	goArguments[6] = reflect.ValueOf(maxLuminance)
-	goArguments[7] = reflect.ValueOf(autoExpSpeed)
-	goArguments[8] = reflect.ValueOf(autoExpGrey)
+	ptrArguments := make([]gdnative.Pointer, 9, 9)
+	ptrArguments[0] = gdnative.NewPointerFromRid(env)
+	ptrArguments[1] = gdnative.NewPointerFromInt(toneMapper)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(exposure)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(white)
+	ptrArguments[4] = gdnative.NewPointerFromBool(autoExposure)
+	ptrArguments[5] = gdnative.NewPointerFromFloat(minLuminance)
+	ptrArguments[6] = gdnative.NewPointerFromFloat(maxLuminance)
+	ptrArguments[7] = gdnative.NewPointerFromFloat(autoExpSpeed)
+	ptrArguments[8] = gdnative.NewPointerFromFloat(autoExpGrey)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_tonemap")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "environment_set_tonemap", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Removes buffers and clears testcubes.
+        Removes buffers and clears testcubes.
+	Args: [], Returns: void
 */
+
 func (o *visualServer) Finish() {
 	log.Println("Calling VisualServer.Finish()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "finish")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "finish", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Draws a frame. Same as [method draw].
+        Draws a frame. Same as [method draw].
+	Args: [{True true swap_buffers bool}], Returns: void
 */
+
 func (o *visualServer) ForceDraw(swapBuffers gdnative.Bool) {
 	log.Println("Calling VisualServer.ForceDraw()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(swapBuffers)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(swapBuffers)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "force_draw")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "force_draw", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Synchronizes threads.
+        Synchronizes threads.
+	Args: [], Returns: void
 */
+
 func (o *visualServer) ForceSync() {
 	log.Println("Calling VisualServer.ForceSync()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "force_sync")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "force_sync", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Tries to free an object in the VisualServer.
+        Tries to free an object in the VisualServer.
+	Args: [{ false rid RID}], Returns: void
 */
-func (o *visualServer) FreeRid(rid *RID) {
+
+func (o *visualServer) FreeRid(rid gdnative.RID) {
 	log.Println("Calling VisualServer.FreeRid()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(rid)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(rid)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "free_rid")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "free_rid", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns a certain information, see RENDER_INFO_* for options.
+        Returns a certain information, see RENDER_INFO_* for options.
+	Args: [{ false info int}], Returns: int
 */
+
 func (o *visualServer) GetRenderInfo(info gdnative.Int) gdnative.Int {
 	log.Println("Calling VisualServer.GetRenderInfo()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(info)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(info)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "get_render_info")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_render_info", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the id of the test cube. Creates one if none exists.
+        Returns the id of the test cube. Creates one if none exists.
+	Args: [], Returns: RID
 */
-func (o *visualServer) GetTestCube() *RID {
+
+func (o *visualServer) GetTestCube() gdnative.RID {
 	log.Println("Calling VisualServer.GetTestCube()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "get_test_cube")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_test_cube", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the id of the test texture. Creates one if none exists.
+        Returns the id of the test texture. Creates one if none exists.
+	Args: [], Returns: RID
 */
-func (o *visualServer) GetTestTexture() *RID {
+
+func (o *visualServer) GetTestTexture() gdnative.RID {
 	log.Println("Calling VisualServer.GetTestTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "get_test_texture")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_test_texture", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the id of a white texture. Creates one if none exists.
+        Returns the id of a white texture. Creates one if none exists.
+	Args: [], Returns: RID
 */
-func (o *visualServer) GetWhiteTexture() *RID {
+
+func (o *visualServer) GetWhiteTexture() gdnative.RID {
 	log.Println("Calling VisualServer.GetWhiteTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "get_white_texture")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_white_texture", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *visualServer) GiProbeCreate() gdnative.RID {
 	log.Println("Calling VisualServer.GiProbeCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "gi_probe_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeGetBias(arg0 *RID) gdnative.Float {
+	Args: [{ false arg0 RID}], Returns: float
+*/
+
+func (o *visualServer) GiProbeGetBias(arg0 gdnative.RID) gdnative.Float {
 	log.Println("Calling VisualServer.GiProbeGetBias()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_get_bias")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "gi_probe_get_bias", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeGetBounds(probe *RID) *AABB {
+	Args: [{ false probe RID}], Returns: AABB
+*/
+
+func (o *visualServer) GiProbeGetBounds(probe gdnative.RID) gdnative.AABB {
 	log.Println("Calling VisualServer.GiProbeGetBounds()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(probe)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_get_bounds")
 
 	// Call the parent method.
+	// AABB
+	retPtr := gdnative.NewEmptyAabb()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "gi_probe_get_bounds", goArguments, "*AABB")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewAabbFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*AABB)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeGetCellSize(probe *RID) gdnative.Float {
+	Args: [{ false probe RID}], Returns: float
+*/
+
+func (o *visualServer) GiProbeGetCellSize(probe gdnative.RID) gdnative.Float {
 	log.Println("Calling VisualServer.GiProbeGetCellSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(probe)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_get_cell_size")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "gi_probe_get_cell_size", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeGetDynamicData(arg0 *RID) *PoolIntArray {
+	Args: [{ false arg0 RID}], Returns: PoolIntArray
+*/
+
+func (o *visualServer) GiProbeGetDynamicData(arg0 gdnative.RID) gdnative.PoolIntArray {
 	log.Println("Calling VisualServer.GiProbeGetDynamicData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_get_dynamic_data")
 
 	// Call the parent method.
+	// PoolIntArray
+	retPtr := gdnative.NewEmptyPoolIntArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "gi_probe_get_dynamic_data", goArguments, "*PoolIntArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeGetDynamicRange(arg0 *RID) gdnative.Int {
+	Args: [{ false arg0 RID}], Returns: int
+*/
+
+func (o *visualServer) GiProbeGetDynamicRange(arg0 gdnative.RID) gdnative.Int {
 	log.Println("Calling VisualServer.GiProbeGetDynamicRange()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_get_dynamic_range")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "gi_probe_get_dynamic_range", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeGetEnergy(arg0 *RID) gdnative.Float {
+	Args: [{ false arg0 RID}], Returns: float
+*/
+
+func (o *visualServer) GiProbeGetEnergy(arg0 gdnative.RID) gdnative.Float {
 	log.Println("Calling VisualServer.GiProbeGetEnergy()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_get_energy")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "gi_probe_get_energy", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeGetNormalBias(arg0 *RID) gdnative.Float {
+	Args: [{ false arg0 RID}], Returns: float
+*/
+
+func (o *visualServer) GiProbeGetNormalBias(arg0 gdnative.RID) gdnative.Float {
 	log.Println("Calling VisualServer.GiProbeGetNormalBias()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_get_normal_bias")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "gi_probe_get_normal_bias", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeGetPropagation(arg0 *RID) gdnative.Float {
+	Args: [{ false arg0 RID}], Returns: float
+*/
+
+func (o *visualServer) GiProbeGetPropagation(arg0 gdnative.RID) gdnative.Float {
 	log.Println("Calling VisualServer.GiProbeGetPropagation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_get_propagation")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "gi_probe_get_propagation", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeGetToCellXform(arg0 *RID) *Transform {
+	Args: [{ false arg0 RID}], Returns: Transform
+*/
+
+func (o *visualServer) GiProbeGetToCellXform(arg0 gdnative.RID) gdnative.Transform {
 	log.Println("Calling VisualServer.GiProbeGetToCellXform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_get_to_cell_xform")
 
 	// Call the parent method.
+	// Transform
+	retPtr := gdnative.NewEmptyTransform()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "gi_probe_get_to_cell_xform", goArguments, "*Transform")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransformFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeIsCompressed(arg0 *RID) gdnative.Bool {
+	Args: [{ false arg0 RID}], Returns: bool
+*/
+
+func (o *visualServer) GiProbeIsCompressed(arg0 gdnative.RID) gdnative.Bool {
 	log.Println("Calling VisualServer.GiProbeIsCompressed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_is_compressed")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "gi_probe_is_compressed", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeIsInterior(arg0 *RID) gdnative.Bool {
+	Args: [{ false arg0 RID}], Returns: bool
+*/
+
+func (o *visualServer) GiProbeIsInterior(arg0 gdnative.RID) gdnative.Bool {
 	log.Println("Calling VisualServer.GiProbeIsInterior()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_is_interior")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "gi_probe_is_interior", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeSetBias(bias *RID, arg1 gdnative.Float) {
+	Args: [{ false bias RID} { false arg1 float}], Returns: void
+*/
+
+func (o *visualServer) GiProbeSetBias(bias gdnative.RID, arg1 gdnative.Float) {
 	log.Println("Calling VisualServer.GiProbeSetBias()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(bias)
-	goArguments[1] = reflect.ValueOf(arg1)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(bias)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(arg1)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_set_bias")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "gi_probe_set_bias", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeSetBounds(probe *RID, bounds *AABB) {
+	Args: [{ false probe RID} { false bounds AABB}], Returns: void
+*/
+
+func (o *visualServer) GiProbeSetBounds(probe gdnative.RID, bounds gdnative.AABB) {
 	log.Println("Calling VisualServer.GiProbeSetBounds()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(probe)
-	goArguments[1] = reflect.ValueOf(bounds)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
+	ptrArguments[1] = gdnative.NewPointerFromAabb(bounds)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_set_bounds")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "gi_probe_set_bounds", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeSetCellSize(probe *RID, rng gdnative.Float) {
+	Args: [{ false probe RID} { false range float}], Returns: void
+*/
+
+func (o *visualServer) GiProbeSetCellSize(probe gdnative.RID, rng gdnative.Float) {
 	log.Println("Calling VisualServer.GiProbeSetCellSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(probe)
-	goArguments[1] = reflect.ValueOf(rng)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(rng)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_set_cell_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "gi_probe_set_cell_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeSetCompress(enable *RID, arg1 gdnative.Bool) {
+	Args: [{ false enable RID} { false arg1 bool}], Returns: void
+*/
+
+func (o *visualServer) GiProbeSetCompress(enable gdnative.RID, arg1 gdnative.Bool) {
 	log.Println("Calling VisualServer.GiProbeSetCompress()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(enable)
-	goArguments[1] = reflect.ValueOf(arg1)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(enable)
+	ptrArguments[1] = gdnative.NewPointerFromBool(arg1)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_set_compress")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "gi_probe_set_compress", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeSetDynamicData(data *RID, arg1 *PoolIntArray) {
+	Args: [{ false data RID} { false arg1 PoolIntArray}], Returns: void
+*/
+
+func (o *visualServer) GiProbeSetDynamicData(data gdnative.RID, arg1 gdnative.PoolIntArray) {
 	log.Println("Calling VisualServer.GiProbeSetDynamicData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(data)
-	goArguments[1] = reflect.ValueOf(arg1)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(data)
+	ptrArguments[1] = gdnative.NewPointerFromPoolIntArray(arg1)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_set_dynamic_data")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "gi_probe_set_dynamic_data", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeSetDynamicRange(rng *RID, arg1 gdnative.Int) {
+	Args: [{ false range RID} { false arg1 int}], Returns: void
+*/
+
+func (o *visualServer) GiProbeSetDynamicRange(rng gdnative.RID, arg1 gdnative.Int) {
 	log.Println("Calling VisualServer.GiProbeSetDynamicRange()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(rng)
-	goArguments[1] = reflect.ValueOf(arg1)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(rng)
+	ptrArguments[1] = gdnative.NewPointerFromInt(arg1)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_set_dynamic_range")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "gi_probe_set_dynamic_range", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeSetEnergy(energy *RID, arg1 gdnative.Float) {
+	Args: [{ false energy RID} { false arg1 float}], Returns: void
+*/
+
+func (o *visualServer) GiProbeSetEnergy(energy gdnative.RID, arg1 gdnative.Float) {
 	log.Println("Calling VisualServer.GiProbeSetEnergy()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(energy)
-	goArguments[1] = reflect.ValueOf(arg1)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(energy)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(arg1)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_set_energy")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "gi_probe_set_energy", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeSetInterior(enable *RID, arg1 gdnative.Bool) {
+	Args: [{ false enable RID} { false arg1 bool}], Returns: void
+*/
+
+func (o *visualServer) GiProbeSetInterior(enable gdnative.RID, arg1 gdnative.Bool) {
 	log.Println("Calling VisualServer.GiProbeSetInterior()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(enable)
-	goArguments[1] = reflect.ValueOf(arg1)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(enable)
+	ptrArguments[1] = gdnative.NewPointerFromBool(arg1)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_set_interior")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "gi_probe_set_interior", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeSetNormalBias(bias *RID, arg1 gdnative.Float) {
+	Args: [{ false bias RID} { false arg1 float}], Returns: void
+*/
+
+func (o *visualServer) GiProbeSetNormalBias(bias gdnative.RID, arg1 gdnative.Float) {
 	log.Println("Calling VisualServer.GiProbeSetNormalBias()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(bias)
-	goArguments[1] = reflect.ValueOf(arg1)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(bias)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(arg1)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_set_normal_bias")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "gi_probe_set_normal_bias", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeSetPropagation(propagation *RID, arg1 gdnative.Float) {
+	Args: [{ false propagation RID} { false arg1 float}], Returns: void
+*/
+
+func (o *visualServer) GiProbeSetPropagation(propagation gdnative.RID, arg1 gdnative.Float) {
 	log.Println("Calling VisualServer.GiProbeSetPropagation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(propagation)
-	goArguments[1] = reflect.ValueOf(arg1)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(propagation)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(arg1)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_set_propagation")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "gi_probe_set_propagation", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) GiProbeSetToCellXform(xform *RID, arg1 *Transform) {
+	Args: [{ false xform RID} { false arg1 Transform}], Returns: void
+*/
+
+func (o *visualServer) GiProbeSetToCellXform(xform gdnative.RID, arg1 gdnative.Transform) {
 	log.Println("Calling VisualServer.GiProbeSetToCellXform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(xform)
-	goArguments[1] = reflect.ValueOf(arg1)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(xform)
+	ptrArguments[1] = gdnative.NewPointerFromTransform(arg1)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_set_to_cell_xform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "gi_probe_set_to_cell_xform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns [code]true[/code] if changes have been made to the VisualServer's data. [method draw] is usually called if this happens.
+        Returns [code]true[/code] if changes have been made to the VisualServer's data. [method draw] is usually called if this happens.
+	Args: [], Returns: bool
 */
+
 func (o *visualServer) HasChanged() gdnative.Bool {
 	log.Println("Calling VisualServer.HasChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "has_changed")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_changed", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false feature int}], Returns: bool
+*/
+
 func (o *visualServer) HasFeature(feature gdnative.Int) gdnative.Bool {
 	log.Println("Calling VisualServer.HasFeature()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(feature)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(feature)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "has_feature")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_feature", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns true, if the OS supports a certain feature. Features might be s3tc, etc, etc2 and pvrtc,
+        Returns true, if the OS supports a certain feature. Features might be s3tc, etc, etc2 and pvrtc,
+	Args: [{ false feature String}], Returns: bool
 */
+
 func (o *visualServer) HasOsFeature(feature gdnative.String) gdnative.Bool {
 	log.Println("Calling VisualServer.HasOsFeature()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(feature)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(feature)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "has_os_feature")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_os_feature", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) ImmediateBegin(immediate *RID, primitive gdnative.Int, texture *RID) {
+	Args: [{ false immediate RID} { false primitive int} {[RID] true texture RID}], Returns: void
+*/
+
+func (o *visualServer) ImmediateBegin(immediate gdnative.RID, primitive gdnative.Int, texture gdnative.RID) {
 	log.Println("Calling VisualServer.ImmediateBegin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(immediate)
-	goArguments[1] = reflect.ValueOf(primitive)
-	goArguments[2] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(immediate)
+	ptrArguments[1] = gdnative.NewPointerFromInt(primitive)
+	ptrArguments[2] = gdnative.NewPointerFromRid(texture)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "immediate_begin")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "immediate_begin", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ImmediateClear(immediate *RID) {
+	Args: [{ false immediate RID}], Returns: void
+*/
+
+func (o *visualServer) ImmediateClear(immediate gdnative.RID) {
 	log.Println("Calling VisualServer.ImmediateClear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(immediate)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(immediate)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "immediate_clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "immediate_clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ImmediateColor(immediate *RID, color *Color) {
+	Args: [{ false immediate RID} { false color Color}], Returns: void
+*/
+
+func (o *visualServer) ImmediateColor(immediate gdnative.RID, color gdnative.Color) {
 	log.Println("Calling VisualServer.ImmediateColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(immediate)
-	goArguments[1] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(immediate)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "immediate_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "immediate_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ImmediateCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *visualServer) ImmediateCreate() gdnative.RID {
 	log.Println("Calling VisualServer.ImmediateCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "immediate_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "immediate_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) ImmediateEnd(immediate *RID) {
+	Args: [{ false immediate RID}], Returns: void
+*/
+
+func (o *visualServer) ImmediateEnd(immediate gdnative.RID) {
 	log.Println("Calling VisualServer.ImmediateEnd()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(immediate)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(immediate)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "immediate_end")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "immediate_end", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ImmediateGetMaterial(immediate *RID) *RID {
+	Args: [{ false immediate RID}], Returns: RID
+*/
+
+func (o *visualServer) ImmediateGetMaterial(immediate gdnative.RID) gdnative.RID {
 	log.Println("Calling VisualServer.ImmediateGetMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(immediate)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(immediate)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "immediate_get_material")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "immediate_get_material", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) ImmediateNormal(immediate *RID, normal *Vector3) {
+	Args: [{ false immediate RID} { false normal Vector3}], Returns: void
+*/
+
+func (o *visualServer) ImmediateNormal(immediate gdnative.RID, normal gdnative.Vector3) {
 	log.Println("Calling VisualServer.ImmediateNormal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(immediate)
-	goArguments[1] = reflect.ValueOf(normal)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(immediate)
+	ptrArguments[1] = gdnative.NewPointerFromVector3(normal)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "immediate_normal")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "immediate_normal", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ImmediateSetMaterial(immediate *RID, material *RID) {
+	Args: [{ false immediate RID} { false material RID}], Returns: void
+*/
+
+func (o *visualServer) ImmediateSetMaterial(immediate gdnative.RID, material gdnative.RID) {
 	log.Println("Calling VisualServer.ImmediateSetMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(immediate)
-	goArguments[1] = reflect.ValueOf(material)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(immediate)
+	ptrArguments[1] = gdnative.NewPointerFromRid(material)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "immediate_set_material")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "immediate_set_material", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ImmediateTangent(immediate *RID, tangent *Plane) {
+	Args: [{ false immediate RID} { false tangent Plane}], Returns: void
+*/
+
+func (o *visualServer) ImmediateTangent(immediate gdnative.RID, tangent gdnative.Plane) {
 	log.Println("Calling VisualServer.ImmediateTangent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(immediate)
-	goArguments[1] = reflect.ValueOf(tangent)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(immediate)
+	ptrArguments[1] = gdnative.NewPointerFromPlane(tangent)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "immediate_tangent")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "immediate_tangent", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ImmediateUv(immediate *RID, texUv *Vector2) {
+	Args: [{ false immediate RID} { false tex_uv Vector2}], Returns: void
+*/
+
+func (o *visualServer) ImmediateUv(immediate gdnative.RID, texUv gdnative.Vector2) {
 	log.Println("Calling VisualServer.ImmediateUv()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(immediate)
-	goArguments[1] = reflect.ValueOf(texUv)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(immediate)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(texUv)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "immediate_uv")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "immediate_uv", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ImmediateUv2(immediate *RID, texUv *Vector2) {
+	Args: [{ false immediate RID} { false tex_uv Vector2}], Returns: void
+*/
+
+func (o *visualServer) ImmediateUv2(immediate gdnative.RID, texUv gdnative.Vector2) {
 	log.Println("Calling VisualServer.ImmediateUv2()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(immediate)
-	goArguments[1] = reflect.ValueOf(texUv)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(immediate)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(texUv)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "immediate_uv2")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "immediate_uv2", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ImmediateVertex(immediate *RID, vertex *Vector3) {
+	Args: [{ false immediate RID} { false vertex Vector3}], Returns: void
+*/
+
+func (o *visualServer) ImmediateVertex(immediate gdnative.RID, vertex gdnative.Vector3) {
 	log.Println("Calling VisualServer.ImmediateVertex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(immediate)
-	goArguments[1] = reflect.ValueOf(vertex)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(immediate)
+	ptrArguments[1] = gdnative.NewPointerFromVector3(vertex)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "immediate_vertex")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "immediate_vertex", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ImmediateVertex2D(immediate *RID, vertex *Vector2) {
+	Args: [{ false immediate RID} { false vertex Vector2}], Returns: void
+*/
+
+func (o *visualServer) ImmediateVertex2D(immediate gdnative.RID, vertex gdnative.Vector2) {
 	log.Println("Calling VisualServer.ImmediateVertex2D()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(immediate)
-	goArguments[1] = reflect.ValueOf(vertex)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(immediate)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(vertex)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "immediate_vertex_2d")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "immediate_vertex_2d", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Initializes the visual server.
+        Initializes the visual server.
+	Args: [], Returns: void
 */
+
 func (o *visualServer) Init() {
 	log.Println("Calling VisualServer.Init()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "init")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "init", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstanceAttachObjectInstanceId(instance *RID, id gdnative.Int) {
+	Args: [{ false instance RID} { false id int}], Returns: void
+*/
+
+func (o *visualServer) InstanceAttachObjectInstanceId(instance gdnative.RID, id gdnative.Int) {
 	log.Println("Calling VisualServer.InstanceAttachObjectInstanceId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(instance)
-	goArguments[1] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
+	ptrArguments[1] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_attach_object_instance_id")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "instance_attach_object_instance_id", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstanceAttachSkeleton(instance *RID, skeleton *RID) {
+	Args: [{ false instance RID} { false skeleton RID}], Returns: void
+*/
+
+func (o *visualServer) InstanceAttachSkeleton(instance gdnative.RID, skeleton gdnative.RID) {
 	log.Println("Calling VisualServer.InstanceAttachSkeleton()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(instance)
-	goArguments[1] = reflect.ValueOf(skeleton)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
+	ptrArguments[1] = gdnative.NewPointerFromRid(skeleton)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_attach_skeleton")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "instance_attach_skeleton", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstanceCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *visualServer) InstanceCreate() gdnative.RID {
 	log.Println("Calling VisualServer.InstanceCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "instance_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) InstanceCreate2(base *RID, scenario *RID) *RID {
+	Args: [{ false base RID} { false scenario RID}], Returns: RID
+*/
+
+func (o *visualServer) InstanceCreate2(base gdnative.RID, scenario gdnative.RID) gdnative.RID {
 	log.Println("Calling VisualServer.InstanceCreate2()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(base)
-	goArguments[1] = reflect.ValueOf(scenario)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(base)
+	ptrArguments[1] = gdnative.NewPointerFromRid(scenario)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_create2")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "instance_create2", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) InstanceGeometrySetAsInstanceLod(instance *RID, asLodOfInstance *RID) {
+	Args: [{ false instance RID} { false as_lod_of_instance RID}], Returns: void
+*/
+
+func (o *visualServer) InstanceGeometrySetAsInstanceLod(instance gdnative.RID, asLodOfInstance gdnative.RID) {
 	log.Println("Calling VisualServer.InstanceGeometrySetAsInstanceLod()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(instance)
-	goArguments[1] = reflect.ValueOf(asLodOfInstance)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
+	ptrArguments[1] = gdnative.NewPointerFromRid(asLodOfInstance)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_geometry_set_as_instance_lod")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "instance_geometry_set_as_instance_lod", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstanceGeometrySetCastShadowsSetting(instance *RID, shadowCastingSetting gdnative.Int) {
+	Args: [{ false instance RID} { false shadow_casting_setting int}], Returns: void
+*/
+
+func (o *visualServer) InstanceGeometrySetCastShadowsSetting(instance gdnative.RID, shadowCastingSetting gdnative.Int) {
 	log.Println("Calling VisualServer.InstanceGeometrySetCastShadowsSetting()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(instance)
-	goArguments[1] = reflect.ValueOf(shadowCastingSetting)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shadowCastingSetting)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_geometry_set_cast_shadows_setting")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "instance_geometry_set_cast_shadows_setting", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstanceGeometrySetDrawRange(instance *RID, min gdnative.Float, max gdnative.Float, minMargin gdnative.Float, maxMargin gdnative.Float) {
+	Args: [{ false instance RID} { false min float} { false max float} { false min_margin float} { false max_margin float}], Returns: void
+*/
+
+func (o *visualServer) InstanceGeometrySetDrawRange(instance gdnative.RID, min gdnative.Float, max gdnative.Float, minMargin gdnative.Float, maxMargin gdnative.Float) {
 	log.Println("Calling VisualServer.InstanceGeometrySetDrawRange()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(instance)
-	goArguments[1] = reflect.ValueOf(min)
-	goArguments[2] = reflect.ValueOf(max)
-	goArguments[3] = reflect.ValueOf(minMargin)
-	goArguments[4] = reflect.ValueOf(maxMargin)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(min)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(max)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(minMargin)
+	ptrArguments[4] = gdnative.NewPointerFromFloat(maxMargin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_geometry_set_draw_range")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "instance_geometry_set_draw_range", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstanceGeometrySetFlag(instance *RID, flag gdnative.Int, enabled gdnative.Bool) {
+	Args: [{ false instance RID} { false flag int} { false enabled bool}], Returns: void
+*/
+
+func (o *visualServer) InstanceGeometrySetFlag(instance gdnative.RID, flag gdnative.Int, enabled gdnative.Bool) {
 	log.Println("Calling VisualServer.InstanceGeometrySetFlag()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(instance)
-	goArguments[1] = reflect.ValueOf(flag)
-	goArguments[2] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
+	ptrArguments[1] = gdnative.NewPointerFromInt(flag)
+	ptrArguments[2] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_geometry_set_flag")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "instance_geometry_set_flag", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstanceGeometrySetMaterialOverride(instance *RID, material *RID) {
+	Args: [{ false instance RID} { false material RID}], Returns: void
+*/
+
+func (o *visualServer) InstanceGeometrySetMaterialOverride(instance gdnative.RID, material gdnative.RID) {
 	log.Println("Calling VisualServer.InstanceGeometrySetMaterialOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(instance)
-	goArguments[1] = reflect.ValueOf(material)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
+	ptrArguments[1] = gdnative.NewPointerFromRid(material)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_geometry_set_material_override")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "instance_geometry_set_material_override", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstanceSetBase(instance *RID, base *RID) {
+	Args: [{ false instance RID} { false base RID}], Returns: void
+*/
+
+func (o *visualServer) InstanceSetBase(instance gdnative.RID, base gdnative.RID) {
 	log.Println("Calling VisualServer.InstanceSetBase()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(instance)
-	goArguments[1] = reflect.ValueOf(base)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
+	ptrArguments[1] = gdnative.NewPointerFromRid(base)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_set_base")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "instance_set_base", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstanceSetBlendShapeWeight(instance *RID, shape gdnative.Int, weight gdnative.Float) {
+	Args: [{ false instance RID} { false shape int} { false weight float}], Returns: void
+*/
+
+func (o *visualServer) InstanceSetBlendShapeWeight(instance gdnative.RID, shape gdnative.Int, weight gdnative.Float) {
 	log.Println("Calling VisualServer.InstanceSetBlendShapeWeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(instance)
-	goArguments[1] = reflect.ValueOf(shape)
-	goArguments[2] = reflect.ValueOf(weight)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shape)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(weight)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_set_blend_shape_weight")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "instance_set_blend_shape_weight", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstanceSetCustomAabb(instance *RID, aabb *AABB) {
+	Args: [{ false instance RID} { false aabb AABB}], Returns: void
+*/
+
+func (o *visualServer) InstanceSetCustomAabb(instance gdnative.RID, aabb gdnative.AABB) {
 	log.Println("Calling VisualServer.InstanceSetCustomAabb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(instance)
-	goArguments[1] = reflect.ValueOf(aabb)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
+	ptrArguments[1] = gdnative.NewPointerFromAabb(aabb)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_set_custom_aabb")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "instance_set_custom_aabb", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstanceSetExterior(instance *RID, enabled gdnative.Bool) {
+	Args: [{ false instance RID} { false enabled bool}], Returns: void
+*/
+
+func (o *visualServer) InstanceSetExterior(instance gdnative.RID, enabled gdnative.Bool) {
 	log.Println("Calling VisualServer.InstanceSetExterior()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(instance)
-	goArguments[1] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_set_exterior")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "instance_set_exterior", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstanceSetExtraVisibilityMargin(instance *RID, margin gdnative.Float) {
+	Args: [{ false instance RID} { false margin float}], Returns: void
+*/
+
+func (o *visualServer) InstanceSetExtraVisibilityMargin(instance gdnative.RID, margin gdnative.Float) {
 	log.Println("Calling VisualServer.InstanceSetExtraVisibilityMargin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(instance)
-	goArguments[1] = reflect.ValueOf(margin)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(margin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_set_extra_visibility_margin")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "instance_set_extra_visibility_margin", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstanceSetLayerMask(instance *RID, mask gdnative.Int) {
+	Args: [{ false instance RID} { false mask int}], Returns: void
+*/
+
+func (o *visualServer) InstanceSetLayerMask(instance gdnative.RID, mask gdnative.Int) {
 	log.Println("Calling VisualServer.InstanceSetLayerMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(instance)
-	goArguments[1] = reflect.ValueOf(mask)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mask)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_set_layer_mask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "instance_set_layer_mask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstanceSetScenario(instance *RID, scenario *RID) {
+	Args: [{ false instance RID} { false scenario RID}], Returns: void
+*/
+
+func (o *visualServer) InstanceSetScenario(instance gdnative.RID, scenario gdnative.RID) {
 	log.Println("Calling VisualServer.InstanceSetScenario()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(instance)
-	goArguments[1] = reflect.ValueOf(scenario)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
+	ptrArguments[1] = gdnative.NewPointerFromRid(scenario)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_set_scenario")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "instance_set_scenario", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstanceSetSurfaceMaterial(instance *RID, surface gdnative.Int, material *RID) {
+	Args: [{ false instance RID} { false surface int} { false material RID}], Returns: void
+*/
+
+func (o *visualServer) InstanceSetSurfaceMaterial(instance gdnative.RID, surface gdnative.Int, material gdnative.RID) {
 	log.Println("Calling VisualServer.InstanceSetSurfaceMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(instance)
-	goArguments[1] = reflect.ValueOf(surface)
-	goArguments[2] = reflect.ValueOf(material)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
+	ptrArguments[1] = gdnative.NewPointerFromInt(surface)
+	ptrArguments[2] = gdnative.NewPointerFromRid(material)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_set_surface_material")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "instance_set_surface_material", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstanceSetTransform(instance *RID, transform *Transform) {
+	Args: [{ false instance RID} { false transform Transform}], Returns: void
+*/
+
+func (o *visualServer) InstanceSetTransform(instance gdnative.RID, transform gdnative.Transform) {
 	log.Println("Calling VisualServer.InstanceSetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(instance)
-	goArguments[1] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
+	ptrArguments[1] = gdnative.NewPointerFromTransform(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_set_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "instance_set_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstanceSetUseLightmap(instance *RID, lightmapInstance *RID, lightmap *RID) {
+	Args: [{ false instance RID} { false lightmap_instance RID} { false lightmap RID}], Returns: void
+*/
+
+func (o *visualServer) InstanceSetUseLightmap(instance gdnative.RID, lightmapInstance gdnative.RID, lightmap gdnative.RID) {
 	log.Println("Calling VisualServer.InstanceSetUseLightmap()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(instance)
-	goArguments[1] = reflect.ValueOf(lightmapInstance)
-	goArguments[2] = reflect.ValueOf(lightmap)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
+	ptrArguments[1] = gdnative.NewPointerFromRid(lightmapInstance)
+	ptrArguments[2] = gdnative.NewPointerFromRid(lightmap)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_set_use_lightmap")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "instance_set_use_lightmap", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstanceSetVisible(instance *RID, visible gdnative.Bool) {
+	Args: [{ false instance RID} { false visible bool}], Returns: void
+*/
+
+func (o *visualServer) InstanceSetVisible(instance gdnative.RID, visible gdnative.Bool) {
 	log.Println("Calling VisualServer.InstanceSetVisible()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(instance)
-	goArguments[1] = reflect.ValueOf(visible)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
+	ptrArguments[1] = gdnative.NewPointerFromBool(visible)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instance_set_visible")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "instance_set_visible", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) InstancesCullAabb(aabb *AABB, scenario *RID) *Array {
+	Args: [{ false aabb AABB} {[RID] true scenario RID}], Returns: Array
+*/
+
+func (o *visualServer) InstancesCullAabb(aabb gdnative.AABB, scenario gdnative.RID) gdnative.Array {
 	log.Println("Calling VisualServer.InstancesCullAabb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(aabb)
-	goArguments[1] = reflect.ValueOf(scenario)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromAabb(aabb)
+	ptrArguments[1] = gdnative.NewPointerFromRid(scenario)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instances_cull_aabb")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "instances_cull_aabb", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) InstancesCullConvex(convex *Array, scenario *RID) *Array {
+	Args: [{ false convex Array} {[RID] true scenario RID}], Returns: Array
+*/
+
+func (o *visualServer) InstancesCullConvex(convex gdnative.Array, scenario gdnative.RID) gdnative.Array {
 	log.Println("Calling VisualServer.InstancesCullConvex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(convex)
-	goArguments[1] = reflect.ValueOf(scenario)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromArray(convex)
+	ptrArguments[1] = gdnative.NewPointerFromRid(scenario)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instances_cull_convex")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "instances_cull_convex", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) InstancesCullRay(from *Vector3, to *Vector3, scenario *RID) *Array {
+	Args: [{ false from Vector3} { false to Vector3} {[RID] true scenario RID}], Returns: Array
+*/
+
+func (o *visualServer) InstancesCullRay(from gdnative.Vector3, to gdnative.Vector3, scenario gdnative.RID) gdnative.Array {
 	log.Println("Calling VisualServer.InstancesCullRay()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(from)
-	goArguments[1] = reflect.ValueOf(to)
-	goArguments[2] = reflect.ValueOf(scenario)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(from)
+	ptrArguments[1] = gdnative.NewPointerFromVector3(to)
+	ptrArguments[2] = gdnative.NewPointerFromRid(scenario)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "instances_cull_ray")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "instances_cull_ray", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) LightDirectionalSetBlendSplits(light *RID, enable gdnative.Bool) {
+	Args: [{ false light RID} { false enable bool}], Returns: void
+*/
+
+func (o *visualServer) LightDirectionalSetBlendSplits(light gdnative.RID, enable gdnative.Bool) {
 	log.Println("Calling VisualServer.LightDirectionalSetBlendSplits()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "light_directional_set_blend_splits")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "light_directional_set_blend_splits", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) LightDirectionalSetShadowDepthRangeMode(light *RID, rangeMode gdnative.Int) {
+	Args: [{ false light RID} { false range_mode int}], Returns: void
+*/
+
+func (o *visualServer) LightDirectionalSetShadowDepthRangeMode(light gdnative.RID, rangeMode gdnative.Int) {
 	log.Println("Calling VisualServer.LightDirectionalSetShadowDepthRangeMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(rangeMode)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromInt(rangeMode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "light_directional_set_shadow_depth_range_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "light_directional_set_shadow_depth_range_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) LightDirectionalSetShadowMode(light *RID, mode gdnative.Int) {
+	Args: [{ false light RID} { false mode int}], Returns: void
+*/
+
+func (o *visualServer) LightDirectionalSetShadowMode(light gdnative.RID, mode gdnative.Int) {
 	log.Println("Calling VisualServer.LightDirectionalSetShadowMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "light_directional_set_shadow_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "light_directional_set_shadow_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) LightOmniSetShadowDetail(light *RID, detail gdnative.Int) {
+	Args: [{ false light RID} { false detail int}], Returns: void
+*/
+
+func (o *visualServer) LightOmniSetShadowDetail(light gdnative.RID, detail gdnative.Int) {
 	log.Println("Calling VisualServer.LightOmniSetShadowDetail()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(detail)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromInt(detail)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "light_omni_set_shadow_detail")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "light_omni_set_shadow_detail", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) LightOmniSetShadowMode(light *RID, mode gdnative.Int) {
+	Args: [{ false light RID} { false mode int}], Returns: void
+*/
+
+func (o *visualServer) LightOmniSetShadowMode(light gdnative.RID, mode gdnative.Int) {
 	log.Println("Calling VisualServer.LightOmniSetShadowMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "light_omni_set_shadow_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "light_omni_set_shadow_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) LightSetColor(light *RID, color *Color) {
+	Args: [{ false light RID} { false color Color}], Returns: void
+*/
+
+func (o *visualServer) LightSetColor(light gdnative.RID, color gdnative.Color) {
 	log.Println("Calling VisualServer.LightSetColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "light_set_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "light_set_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) LightSetCullMask(light *RID, mask gdnative.Int) {
+	Args: [{ false light RID} { false mask int}], Returns: void
+*/
+
+func (o *visualServer) LightSetCullMask(light gdnative.RID, mask gdnative.Int) {
 	log.Println("Calling VisualServer.LightSetCullMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(mask)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mask)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "light_set_cull_mask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "light_set_cull_mask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) LightSetNegative(light *RID, enable gdnative.Bool) {
+	Args: [{ false light RID} { false enable bool}], Returns: void
+*/
+
+func (o *visualServer) LightSetNegative(light gdnative.RID, enable gdnative.Bool) {
 	log.Println("Calling VisualServer.LightSetNegative()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "light_set_negative")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "light_set_negative", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) LightSetParam(light *RID, param gdnative.Int, value gdnative.Float) {
+	Args: [{ false light RID} { false param int} { false value float}], Returns: void
+*/
+
+func (o *visualServer) LightSetParam(light gdnative.RID, param gdnative.Int, value gdnative.Float) {
 	log.Println("Calling VisualServer.LightSetParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(param)
-	goArguments[2] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromInt(param)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "light_set_param")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "light_set_param", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) LightSetProjector(light *RID, texture *RID) {
+	Args: [{ false light RID} { false texture RID}], Returns: void
+*/
+
+func (o *visualServer) LightSetProjector(light gdnative.RID, texture gdnative.RID) {
 	log.Println("Calling VisualServer.LightSetProjector()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromRid(texture)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "light_set_projector")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "light_set_projector", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) LightSetReverseCullFaceMode(light *RID, enabled gdnative.Bool) {
+	Args: [{ false light RID} { false enabled bool}], Returns: void
+*/
+
+func (o *visualServer) LightSetReverseCullFaceMode(light gdnative.RID, enabled gdnative.Bool) {
 	log.Println("Calling VisualServer.LightSetReverseCullFaceMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "light_set_reverse_cull_face_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "light_set_reverse_cull_face_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) LightSetShadow(light *RID, enabled gdnative.Bool) {
+	Args: [{ false light RID} { false enabled bool}], Returns: void
+*/
+
+func (o *visualServer) LightSetShadow(light gdnative.RID, enabled gdnative.Bool) {
 	log.Println("Calling VisualServer.LightSetShadow()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "light_set_shadow")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "light_set_shadow", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) LightSetShadowColor(light *RID, color *Color) {
+	Args: [{ false light RID} { false color Color}], Returns: void
+*/
+
+func (o *visualServer) LightSetShadowColor(light gdnative.RID, color gdnative.Color) {
 	log.Println("Calling VisualServer.LightSetShadowColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(light)
-	goArguments[1] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(light)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "light_set_shadow_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "light_set_shadow_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) LightmapCaptureCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *visualServer) LightmapCaptureCreate() gdnative.RID {
 	log.Println("Calling VisualServer.LightmapCaptureCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "lightmap_capture_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "lightmap_capture_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) LightmapCaptureGetBounds(capture *RID) *AABB {
+	Args: [{ false capture RID}], Returns: AABB
+*/
+
+func (o *visualServer) LightmapCaptureGetBounds(capture gdnative.RID) gdnative.AABB {
 	log.Println("Calling VisualServer.LightmapCaptureGetBounds()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(capture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(capture)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "lightmap_capture_get_bounds")
 
 	// Call the parent method.
+	// AABB
+	retPtr := gdnative.NewEmptyAabb()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "lightmap_capture_get_bounds", goArguments, "*AABB")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewAabbFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*AABB)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) LightmapCaptureGetEnergy(capture *RID) gdnative.Float {
+	Args: [{ false capture RID}], Returns: float
+*/
+
+func (o *visualServer) LightmapCaptureGetEnergy(capture gdnative.RID) gdnative.Float {
 	log.Println("Calling VisualServer.LightmapCaptureGetEnergy()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(capture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(capture)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "lightmap_capture_get_energy")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "lightmap_capture_get_energy", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) LightmapCaptureGetOctree(capture *RID) *PoolByteArray {
+	Args: [{ false capture RID}], Returns: PoolByteArray
+*/
+
+func (o *visualServer) LightmapCaptureGetOctree(capture gdnative.RID) gdnative.PoolByteArray {
 	log.Println("Calling VisualServer.LightmapCaptureGetOctree()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(capture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(capture)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "lightmap_capture_get_octree")
 
 	// Call the parent method.
+	// PoolByteArray
+	retPtr := gdnative.NewEmptyPoolByteArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "lightmap_capture_get_octree", goArguments, "*PoolByteArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolByteArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolByteArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) LightmapCaptureGetOctreeCellSubdiv(capture *RID) gdnative.Int {
+	Args: [{ false capture RID}], Returns: int
+*/
+
+func (o *visualServer) LightmapCaptureGetOctreeCellSubdiv(capture gdnative.RID) gdnative.Int {
 	log.Println("Calling VisualServer.LightmapCaptureGetOctreeCellSubdiv()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(capture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(capture)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "lightmap_capture_get_octree_cell_subdiv")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "lightmap_capture_get_octree_cell_subdiv", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) LightmapCaptureGetOctreeCellTransform(capture *RID) *Transform {
+	Args: [{ false capture RID}], Returns: Transform
+*/
+
+func (o *visualServer) LightmapCaptureGetOctreeCellTransform(capture gdnative.RID) gdnative.Transform {
 	log.Println("Calling VisualServer.LightmapCaptureGetOctreeCellTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(capture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(capture)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "lightmap_capture_get_octree_cell_transform")
 
 	// Call the parent method.
+	// Transform
+	retPtr := gdnative.NewEmptyTransform()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "lightmap_capture_get_octree_cell_transform", goArguments, "*Transform")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransformFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) LightmapCaptureSetBounds(capture *RID, bounds *AABB) {
+	Args: [{ false capture RID} { false bounds AABB}], Returns: void
+*/
+
+func (o *visualServer) LightmapCaptureSetBounds(capture gdnative.RID, bounds gdnative.AABB) {
 	log.Println("Calling VisualServer.LightmapCaptureSetBounds()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(capture)
-	goArguments[1] = reflect.ValueOf(bounds)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(capture)
+	ptrArguments[1] = gdnative.NewPointerFromAabb(bounds)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "lightmap_capture_set_bounds")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "lightmap_capture_set_bounds", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) LightmapCaptureSetEnergy(capture *RID, energy gdnative.Float) {
+	Args: [{ false capture RID} { false energy float}], Returns: void
+*/
+
+func (o *visualServer) LightmapCaptureSetEnergy(capture gdnative.RID, energy gdnative.Float) {
 	log.Println("Calling VisualServer.LightmapCaptureSetEnergy()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(capture)
-	goArguments[1] = reflect.ValueOf(energy)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(capture)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(energy)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "lightmap_capture_set_energy")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "lightmap_capture_set_energy", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) LightmapCaptureSetOctree(capture *RID, octree *PoolByteArray) {
+	Args: [{ false capture RID} { false octree PoolByteArray}], Returns: void
+*/
+
+func (o *visualServer) LightmapCaptureSetOctree(capture gdnative.RID, octree gdnative.PoolByteArray) {
 	log.Println("Calling VisualServer.LightmapCaptureSetOctree()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(capture)
-	goArguments[1] = reflect.ValueOf(octree)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(capture)
+	ptrArguments[1] = gdnative.NewPointerFromPoolByteArray(octree)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "lightmap_capture_set_octree")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "lightmap_capture_set_octree", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) LightmapCaptureSetOctreeCellSubdiv(capture *RID, subdiv gdnative.Int) {
+	Args: [{ false capture RID} { false subdiv int}], Returns: void
+*/
+
+func (o *visualServer) LightmapCaptureSetOctreeCellSubdiv(capture gdnative.RID, subdiv gdnative.Int) {
 	log.Println("Calling VisualServer.LightmapCaptureSetOctreeCellSubdiv()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(capture)
-	goArguments[1] = reflect.ValueOf(subdiv)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(capture)
+	ptrArguments[1] = gdnative.NewPointerFromInt(subdiv)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "lightmap_capture_set_octree_cell_subdiv")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "lightmap_capture_set_octree_cell_subdiv", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) LightmapCaptureSetOctreeCellTransform(capture *RID, xform *Transform) {
+	Args: [{ false capture RID} { false xform Transform}], Returns: void
+*/
+
+func (o *visualServer) LightmapCaptureSetOctreeCellTransform(capture gdnative.RID, xform gdnative.Transform) {
 	log.Println("Calling VisualServer.LightmapCaptureSetOctreeCellTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(capture)
-	goArguments[1] = reflect.ValueOf(xform)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(capture)
+	ptrArguments[1] = gdnative.NewPointerFromTransform(xform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "lightmap_capture_set_octree_cell_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "lightmap_capture_set_octree_cell_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns a mesh of a sphere with the given amount of horizontal and vertical subdivisions.
+        Returns a mesh of a sphere with the given amount of horizontal and vertical subdivisions.
+	Args: [{ false latitudes int} { false longitudes int} { false radius float}], Returns: RID
 */
-func (o *visualServer) MakeSphereMesh(latitudes gdnative.Int, longitudes gdnative.Int, radius gdnative.Float) *RID {
+
+func (o *visualServer) MakeSphereMesh(latitudes gdnative.Int, longitudes gdnative.Int, radius gdnative.Float) gdnative.RID {
 	log.Println("Calling VisualServer.MakeSphereMesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(latitudes)
-	goArguments[1] = reflect.ValueOf(longitudes)
-	goArguments[2] = reflect.ValueOf(radius)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(latitudes)
+	ptrArguments[1] = gdnative.NewPointerFromInt(longitudes)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(radius)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "make_sphere_mesh")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "make_sphere_mesh", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns an empty material.
+        Returns an empty material.
+	Args: [], Returns: RID
 */
-func (o *visualServer) MaterialCreate() *RID {
+
+func (o *visualServer) MaterialCreate() gdnative.RID {
 	log.Println("Calling VisualServer.MaterialCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "material_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "material_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the value of a certain material's parameter.
+        Returns the value of a certain material's parameter.
+	Args: [{ false material RID} { false parameter String}], Returns: Variant
 */
-func (o *visualServer) MaterialGetParam(material *RID, parameter gdnative.String) *Variant {
+
+func (o *visualServer) MaterialGetParam(material gdnative.RID, parameter gdnative.String) gdnative.Variant {
 	log.Println("Calling VisualServer.MaterialGetParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(material)
-	goArguments[1] = reflect.ValueOf(parameter)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(material)
+	ptrArguments[1] = gdnative.NewPointerFromString(parameter)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "material_get_param")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "material_get_param", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the shader of a certain material's shader. Returns an empty RID if the material doesn't have a shader.
+        Returns the shader of a certain material's shader. Returns an empty RID if the material doesn't have a shader.
+	Args: [{ false shader_material RID}], Returns: RID
 */
-func (o *visualServer) MaterialGetShader(shaderMaterial *RID) *RID {
+
+func (o *visualServer) MaterialGetShader(shaderMaterial gdnative.RID) gdnative.RID {
 	log.Println("Calling VisualServer.MaterialGetShader()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(shaderMaterial)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(shaderMaterial)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "material_get_shader")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "material_get_shader", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets a materials line width.
+        Sets a materials line width.
+	Args: [{ false material RID} { false width float}], Returns: void
 */
-func (o *visualServer) MaterialSetLineWidth(material *RID, width gdnative.Float) {
+
+func (o *visualServer) MaterialSetLineWidth(material gdnative.RID, width gdnative.Float) {
 	log.Println("Calling VisualServer.MaterialSetLineWidth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(material)
-	goArguments[1] = reflect.ValueOf(width)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(material)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(width)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "material_set_line_width")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "material_set_line_width", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets an objects next material.
+        Sets an objects next material.
+	Args: [{ false material RID} { false next_material RID}], Returns: void
 */
-func (o *visualServer) MaterialSetNextPass(material *RID, nextMaterial *RID) {
+
+func (o *visualServer) MaterialSetNextPass(material gdnative.RID, nextMaterial gdnative.RID) {
 	log.Println("Calling VisualServer.MaterialSetNextPass()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(material)
-	goArguments[1] = reflect.ValueOf(nextMaterial)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(material)
+	ptrArguments[1] = gdnative.NewPointerFromRid(nextMaterial)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "material_set_next_pass")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "material_set_next_pass", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a materials parameter.
+        Sets a materials parameter.
+	Args: [{ false material RID} { false parameter String} { false value Variant}], Returns: void
 */
-func (o *visualServer) MaterialSetParam(material *RID, parameter gdnative.String, value *Variant) {
+
+func (o *visualServer) MaterialSetParam(material gdnative.RID, parameter gdnative.String, value gdnative.Variant) {
 	log.Println("Calling VisualServer.MaterialSetParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(material)
-	goArguments[1] = reflect.ValueOf(parameter)
-	goArguments[2] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(material)
+	ptrArguments[1] = gdnative.NewPointerFromString(parameter)
+	ptrArguments[2] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "material_set_param")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "material_set_param", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a material's render priority.
+        Sets a material's render priority.
+	Args: [{ false material RID} { false priority int}], Returns: void
 */
-func (o *visualServer) MaterialSetRenderPriority(material *RID, priority gdnative.Int) {
+
+func (o *visualServer) MaterialSetRenderPriority(material gdnative.RID, priority gdnative.Int) {
 	log.Println("Calling VisualServer.MaterialSetRenderPriority()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(material)
-	goArguments[1] = reflect.ValueOf(priority)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(material)
+	ptrArguments[1] = gdnative.NewPointerFromInt(priority)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "material_set_render_priority")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "material_set_render_priority", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a shader material's shader.
+        Sets a shader material's shader.
+	Args: [{ false shader_material RID} { false shader RID}], Returns: void
 */
-func (o *visualServer) MaterialSetShader(shaderMaterial *RID, shader *RID) {
+
+func (o *visualServer) MaterialSetShader(shaderMaterial gdnative.RID, shader gdnative.RID) {
 	log.Println("Calling VisualServer.MaterialSetShader()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(shaderMaterial)
-	goArguments[1] = reflect.ValueOf(shader)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(shaderMaterial)
+	ptrArguments[1] = gdnative.NewPointerFromRid(shader)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "material_set_shader")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "material_set_shader", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a surface generated from the Arrays to a mesh. See PRIMITIVE_TYPE_* constants for types.
+        Adds a surface generated from the Arrays to a mesh. See PRIMITIVE_TYPE_* constants for types.
+	Args: [{ false mesh RID} { false primtive int} { false arrays Array} {[] true blend_shapes Array} {97792 true compress_format int}], Returns: void
 */
-func (o *visualServer) MeshAddSurfaceFromArrays(mesh *RID, primtive gdnative.Int, arrays *Array, blendShapes *Array, compressFormat gdnative.Int) {
+
+func (o *visualServer) MeshAddSurfaceFromArrays(mesh gdnative.RID, primtive gdnative.Int, arrays gdnative.Array, blendShapes gdnative.Array, compressFormat gdnative.Int) {
 	log.Println("Calling VisualServer.MeshAddSurfaceFromArrays()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(primtive)
-	goArguments[2] = reflect.ValueOf(arrays)
-	goArguments[3] = reflect.ValueOf(blendShapes)
-	goArguments[4] = reflect.ValueOf(compressFormat)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(primtive)
+	ptrArguments[2] = gdnative.NewPointerFromArray(arrays)
+	ptrArguments[3] = gdnative.NewPointerFromArray(blendShapes)
+	ptrArguments[4] = gdnative.NewPointerFromInt(compressFormat)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_add_surface_from_arrays")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "mesh_add_surface_from_arrays", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Removes all surfaces from a mesh.
+        Removes all surfaces from a mesh.
+	Args: [{ false mesh RID}], Returns: void
 */
-func (o *visualServer) MeshClear(mesh *RID) {
+
+func (o *visualServer) MeshClear(mesh gdnative.RID) {
 	log.Println("Calling VisualServer.MeshClear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mesh)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "mesh_clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Creates a new mesh.
+        Creates a new mesh.
+	Args: [], Returns: RID
 */
-func (o *visualServer) MeshCreate() *RID {
+
+func (o *visualServer) MeshCreate() gdnative.RID {
 	log.Println("Calling VisualServer.MeshCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "mesh_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a mesh's blend shape count.
+        Returns a mesh's blend shape count.
+	Args: [{ false mesh RID}], Returns: int
 */
-func (o *visualServer) MeshGetBlendShapeCount(mesh *RID) gdnative.Int {
+
+func (o *visualServer) MeshGetBlendShapeCount(mesh gdnative.RID) gdnative.Int {
 	log.Println("Calling VisualServer.MeshGetBlendShapeCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mesh)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_get_blend_shape_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "mesh_get_blend_shape_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a mesh's blend shape mode.
+        Returns a mesh's blend shape mode.
+	Args: [{ false mesh RID}], Returns: enum.VisualServer::BlendShapeMode
 */
-func (o *visualServer) MeshGetBlendShapeMode(mesh *RID) gdnative.Int {
-	log.Println("Calling VisualServer.MeshGetBlendShapeMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mesh)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "mesh_get_blend_shape_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Returns a mesh's custom aabb.
+        Returns a mesh's custom aabb.
+	Args: [{ false mesh RID}], Returns: AABB
 */
-func (o *visualServer) MeshGetCustomAabb(mesh *RID) *AABB {
+
+func (o *visualServer) MeshGetCustomAabb(mesh gdnative.RID) gdnative.AABB {
 	log.Println("Calling VisualServer.MeshGetCustomAabb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mesh)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_get_custom_aabb")
 
 	// Call the parent method.
+	// AABB
+	retPtr := gdnative.NewEmptyAabb()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "mesh_get_custom_aabb", goArguments, "*AABB")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewAabbFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*AABB)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a mesh's number of surfaces.
+        Returns a mesh's number of surfaces.
+	Args: [{ false mesh RID}], Returns: int
 */
-func (o *visualServer) MeshGetSurfaceCount(mesh *RID) gdnative.Int {
+
+func (o *visualServer) MeshGetSurfaceCount(mesh gdnative.RID) gdnative.Int {
 	log.Println("Calling VisualServer.MeshGetSurfaceCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mesh)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_get_surface_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "mesh_get_surface_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Removes a mesh's surface.
+        Removes a mesh's surface.
+	Args: [{ false mesh RID} { false index int}], Returns: void
 */
-func (o *visualServer) MeshRemoveSurface(mesh *RID, index gdnative.Int) {
+
+func (o *visualServer) MeshRemoveSurface(mesh gdnative.RID, index gdnative.Int) {
 	log.Println("Calling VisualServer.MeshRemoveSurface()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(index)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(index)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_remove_surface")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "mesh_remove_surface", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a mesh's blend shape count.
+        Sets a mesh's blend shape count.
+	Args: [{ false mesh RID} { false amount int}], Returns: void
 */
-func (o *visualServer) MeshSetBlendShapeCount(mesh *RID, amount gdnative.Int) {
+
+func (o *visualServer) MeshSetBlendShapeCount(mesh gdnative.RID, amount gdnative.Int) {
 	log.Println("Calling VisualServer.MeshSetBlendShapeCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_set_blend_shape_count")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "mesh_set_blend_shape_count", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a mesh's blend shape mode.
+        Sets a mesh's blend shape mode.
+	Args: [{ false mesh RID} { false mode int}], Returns: void
 */
-func (o *visualServer) MeshSetBlendShapeMode(mesh *RID, mode gdnative.Int) {
+
+func (o *visualServer) MeshSetBlendShapeMode(mesh gdnative.RID, mode gdnative.Int) {
 	log.Println("Calling VisualServer.MeshSetBlendShapeMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_set_blend_shape_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "mesh_set_blend_shape_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a mesh's custom aabb.
+        Sets a mesh's custom aabb.
+	Args: [{ false mesh RID} { false aabb AABB}], Returns: void
 */
-func (o *visualServer) MeshSetCustomAabb(mesh *RID, aabb *AABB) {
+
+func (o *visualServer) MeshSetCustomAabb(mesh gdnative.RID, aabb gdnative.AABB) {
 	log.Println("Calling VisualServer.MeshSetCustomAabb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(aabb)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[1] = gdnative.NewPointerFromAabb(aabb)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_set_custom_aabb")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "mesh_set_custom_aabb", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns a mesh's surface's aabb.
+        Returns a mesh's surface's aabb.
+	Args: [{ false mesh RID} { false surface int}], Returns: AABB
 */
-func (o *visualServer) MeshSurfaceGetAabb(mesh *RID, surface gdnative.Int) *AABB {
+
+func (o *visualServer) MeshSurfaceGetAabb(mesh gdnative.RID, surface gdnative.Int) gdnative.AABB {
 	log.Println("Calling VisualServer.MeshSurfaceGetAabb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(surface)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(surface)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_surface_get_aabb")
 
 	// Call the parent method.
+	// AABB
+	retPtr := gdnative.NewEmptyAabb()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "mesh_surface_get_aabb", goArguments, "*AABB")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewAabbFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*AABB)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a mesh's surface's vertex buffer.
+        Returns a mesh's surface's vertex buffer.
+	Args: [{ false mesh RID} { false surface int}], Returns: PoolByteArray
 */
-func (o *visualServer) MeshSurfaceGetArray(mesh *RID, surface gdnative.Int) *PoolByteArray {
+
+func (o *visualServer) MeshSurfaceGetArray(mesh gdnative.RID, surface gdnative.Int) gdnative.PoolByteArray {
 	log.Println("Calling VisualServer.MeshSurfaceGetArray()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(surface)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(surface)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_surface_get_array")
 
 	// Call the parent method.
+	// PoolByteArray
+	retPtr := gdnative.NewEmptyPoolByteArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "mesh_surface_get_array", goArguments, "*PoolByteArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolByteArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolByteArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a mesh's surface's amount of indices.
+        Returns a mesh's surface's amount of indices.
+	Args: [{ false mesh RID} { false surface int}], Returns: int
 */
-func (o *visualServer) MeshSurfaceGetArrayIndexLen(mesh *RID, surface gdnative.Int) gdnative.Int {
+
+func (o *visualServer) MeshSurfaceGetArrayIndexLen(mesh gdnative.RID, surface gdnative.Int) gdnative.Int {
 	log.Println("Calling VisualServer.MeshSurfaceGetArrayIndexLen()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(surface)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(surface)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_surface_get_array_index_len")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "mesh_surface_get_array_index_len", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a mesh's surface's amount of vertices.
+        Returns a mesh's surface's amount of vertices.
+	Args: [{ false mesh RID} { false surface int}], Returns: int
 */
-func (o *visualServer) MeshSurfaceGetArrayLen(mesh *RID, surface gdnative.Int) gdnative.Int {
+
+func (o *visualServer) MeshSurfaceGetArrayLen(mesh gdnative.RID, surface gdnative.Int) gdnative.Int {
 	log.Println("Calling VisualServer.MeshSurfaceGetArrayLen()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(surface)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(surface)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_surface_get_array_len")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "mesh_surface_get_array_len", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a mesh's surface's buffer arrays.
+        Returns a mesh's surface's buffer arrays.
+	Args: [{ false mesh RID} { false surface int}], Returns: Array
 */
-func (o *visualServer) MeshSurfaceGetArrays(mesh *RID, surface gdnative.Int) *Array {
+
+func (o *visualServer) MeshSurfaceGetArrays(mesh gdnative.RID, surface gdnative.Int) gdnative.Array {
 	log.Println("Calling VisualServer.MeshSurfaceGetArrays()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(surface)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(surface)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_surface_get_arrays")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "mesh_surface_get_arrays", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a mesh's surface's arrays for blend shapes
+        Returns a mesh's surface's arrays for blend shapes
+	Args: [{ false mesh RID} { false surface int}], Returns: Array
 */
-func (o *visualServer) MeshSurfaceGetBlendShapeArrays(mesh *RID, surface gdnative.Int) *Array {
+
+func (o *visualServer) MeshSurfaceGetBlendShapeArrays(mesh gdnative.RID, surface gdnative.Int) gdnative.Array {
 	log.Println("Calling VisualServer.MeshSurfaceGetBlendShapeArrays()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(surface)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(surface)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_surface_get_blend_shape_arrays")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "mesh_surface_get_blend_shape_arrays", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the format of a mesh's surface.
+        Returns the format of a mesh's surface.
+	Args: [{ false mesh RID} { false surface int}], Returns: int
 */
-func (o *visualServer) MeshSurfaceGetFormat(mesh *RID, surface gdnative.Int) gdnative.Int {
+
+func (o *visualServer) MeshSurfaceGetFormat(mesh gdnative.RID, surface gdnative.Int) gdnative.Int {
 	log.Println("Calling VisualServer.MeshSurfaceGetFormat()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(surface)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(surface)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_surface_get_format")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "mesh_surface_get_format", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a mesh's surface's index buffer.
+        Returns a mesh's surface's index buffer.
+	Args: [{ false mesh RID} { false surface int}], Returns: PoolByteArray
 */
-func (o *visualServer) MeshSurfaceGetIndexArray(mesh *RID, surface gdnative.Int) *PoolByteArray {
+
+func (o *visualServer) MeshSurfaceGetIndexArray(mesh gdnative.RID, surface gdnative.Int) gdnative.PoolByteArray {
 	log.Println("Calling VisualServer.MeshSurfaceGetIndexArray()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(surface)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(surface)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_surface_get_index_array")
 
 	// Call the parent method.
+	// PoolByteArray
+	retPtr := gdnative.NewEmptyPoolByteArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "mesh_surface_get_index_array", goArguments, "*PoolByteArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolByteArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolByteArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a mesh's surface's material.
+        Returns a mesh's surface's material.
+	Args: [{ false mesh RID} { false surface int}], Returns: RID
 */
-func (o *visualServer) MeshSurfaceGetMaterial(mesh *RID, surface gdnative.Int) *RID {
+
+func (o *visualServer) MeshSurfaceGetMaterial(mesh gdnative.RID, surface gdnative.Int) gdnative.RID {
 	log.Println("Calling VisualServer.MeshSurfaceGetMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(surface)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(surface)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_surface_get_material")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "mesh_surface_get_material", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the primitive type of a mesh's surface.
+        Returns the primitive type of a mesh's surface.
+	Args: [{ false mesh RID} { false surface int}], Returns: enum.VisualServer::PrimitiveType
 */
-func (o *visualServer) MeshSurfaceGetPrimitiveType(mesh *RID, surface gdnative.Int) gdnative.Int {
-	log.Println("Calling VisualServer.MeshSurfaceGetPrimitiveType()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(surface)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "mesh_surface_get_primitive_type", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Returns the aabb of a mesh's surface's skeleton.
+        Returns the aabb of a mesh's surface's skeleton.
+	Args: [{ false mesh RID} { false surface int}], Returns: Array
 */
-func (o *visualServer) MeshSurfaceGetSkeletonAabb(mesh *RID, surface gdnative.Int) *Array {
+
+func (o *visualServer) MeshSurfaceGetSkeletonAabb(mesh gdnative.RID, surface gdnative.Int) gdnative.Array {
 	log.Println("Calling VisualServer.MeshSurfaceGetSkeletonAabb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(surface)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(surface)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_surface_get_skeleton_aabb")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "mesh_surface_get_skeleton_aabb", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets a mesh's surface's material.
+        Sets a mesh's surface's material.
+	Args: [{ false mesh RID} { false surface int} { false material RID}], Returns: void
 */
-func (o *visualServer) MeshSurfaceSetMaterial(mesh *RID, surface gdnative.Int, material *RID) {
+
+func (o *visualServer) MeshSurfaceSetMaterial(mesh gdnative.RID, surface gdnative.Int, material gdnative.RID) {
 	log.Println("Calling VisualServer.MeshSurfaceSetMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(mesh)
-	goArguments[1] = reflect.ValueOf(surface)
-	goArguments[2] = reflect.ValueOf(material)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(surface)
+	ptrArguments[2] = gdnative.NewPointerFromRid(material)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_surface_set_material")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "mesh_surface_set_material", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) MultimeshAllocate(multimesh *RID, instances gdnative.Int, transformFormat gdnative.Int, colorFormat gdnative.Int) {
+	Args: [{ false multimesh RID} { false instances int} { false transform_format int} { false color_format int}], Returns: void
+*/
+
+func (o *visualServer) MultimeshAllocate(multimesh gdnative.RID, instances gdnative.Int, transformFormat gdnative.Int, colorFormat gdnative.Int) {
 	log.Println("Calling VisualServer.MultimeshAllocate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(multimesh)
-	goArguments[1] = reflect.ValueOf(instances)
-	goArguments[2] = reflect.ValueOf(transformFormat)
-	goArguments[3] = reflect.ValueOf(colorFormat)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromRid(multimesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(instances)
+	ptrArguments[2] = gdnative.NewPointerFromInt(transformFormat)
+	ptrArguments[3] = gdnative.NewPointerFromInt(colorFormat)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "multimesh_allocate")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "multimesh_allocate", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) MultimeshGetAabb(multimesh *RID) *AABB {
+	Args: [{ false multimesh RID}], Returns: AABB
+*/
+
+func (o *visualServer) MultimeshGetAabb(multimesh gdnative.RID) gdnative.AABB {
 	log.Println("Calling VisualServer.MultimeshGetAabb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(multimesh)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(multimesh)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "multimesh_get_aabb")
 
 	// Call the parent method.
+	// AABB
+	retPtr := gdnative.NewEmptyAabb()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "multimesh_get_aabb", goArguments, "*AABB")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewAabbFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*AABB)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) MultimeshGetInstanceCount(multimesh *RID) gdnative.Int {
+	Args: [{ false multimesh RID}], Returns: int
+*/
+
+func (o *visualServer) MultimeshGetInstanceCount(multimesh gdnative.RID) gdnative.Int {
 	log.Println("Calling VisualServer.MultimeshGetInstanceCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(multimesh)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(multimesh)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "multimesh_get_instance_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "multimesh_get_instance_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) MultimeshGetMesh(multimesh *RID) *RID {
+	Args: [{ false multimesh RID}], Returns: RID
+*/
+
+func (o *visualServer) MultimeshGetMesh(multimesh gdnative.RID) gdnative.RID {
 	log.Println("Calling VisualServer.MultimeshGetMesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(multimesh)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(multimesh)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "multimesh_get_mesh")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "multimesh_get_mesh", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) MultimeshGetVisibleInstances(multimesh *RID) gdnative.Int {
+	Args: [{ false multimesh RID}], Returns: int
+*/
+
+func (o *visualServer) MultimeshGetVisibleInstances(multimesh gdnative.RID) gdnative.Int {
 	log.Println("Calling VisualServer.MultimeshGetVisibleInstances()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(multimesh)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(multimesh)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "multimesh_get_visible_instances")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "multimesh_get_visible_instances", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) MultimeshInstanceGetColor(multimesh *RID, index gdnative.Int) *Color {
+	Args: [{ false multimesh RID} { false index int}], Returns: Color
+*/
+
+func (o *visualServer) MultimeshInstanceGetColor(multimesh gdnative.RID, index gdnative.Int) gdnative.Color {
 	log.Println("Calling VisualServer.MultimeshInstanceGetColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(multimesh)
-	goArguments[1] = reflect.ValueOf(index)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(multimesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(index)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "multimesh_instance_get_color")
 
 	// Call the parent method.
+	// Color
+	retPtr := gdnative.NewEmptyColor()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "multimesh_instance_get_color", goArguments, "*Color")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewColorFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Color)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) MultimeshInstanceGetTransform(multimesh *RID, index gdnative.Int) *Transform {
+	Args: [{ false multimesh RID} { false index int}], Returns: Transform
+*/
+
+func (o *visualServer) MultimeshInstanceGetTransform(multimesh gdnative.RID, index gdnative.Int) gdnative.Transform {
 	log.Println("Calling VisualServer.MultimeshInstanceGetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(multimesh)
-	goArguments[1] = reflect.ValueOf(index)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(multimesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(index)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "multimesh_instance_get_transform")
 
 	// Call the parent method.
+	// Transform
+	retPtr := gdnative.NewEmptyTransform()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "multimesh_instance_get_transform", goArguments, "*Transform")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransformFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) MultimeshInstanceGetTransform2D(multimesh *RID, index gdnative.Int) *Transform2D {
+	Args: [{ false multimesh RID} { false index int}], Returns: Transform2D
+*/
+
+func (o *visualServer) MultimeshInstanceGetTransform2D(multimesh gdnative.RID, index gdnative.Int) gdnative.Transform2D {
 	log.Println("Calling VisualServer.MultimeshInstanceGetTransform2D()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(multimesh)
-	goArguments[1] = reflect.ValueOf(index)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(multimesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(index)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "multimesh_instance_get_transform_2d")
 
 	// Call the parent method.
+	// Transform2D
+	retPtr := gdnative.NewEmptyTransform2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "multimesh_instance_get_transform_2d", goArguments, "*Transform2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransform2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) MultimeshInstanceSetColor(multimesh *RID, index gdnative.Int, color *Color) {
+	Args: [{ false multimesh RID} { false index int} { false color Color}], Returns: void
+*/
+
+func (o *visualServer) MultimeshInstanceSetColor(multimesh gdnative.RID, index gdnative.Int, color gdnative.Color) {
 	log.Println("Calling VisualServer.MultimeshInstanceSetColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(multimesh)
-	goArguments[1] = reflect.ValueOf(index)
-	goArguments[2] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(multimesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(index)
+	ptrArguments[2] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "multimesh_instance_set_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "multimesh_instance_set_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) MultimeshInstanceSetTransform(multimesh *RID, index gdnative.Int, transform *Transform) {
+	Args: [{ false multimesh RID} { false index int} { false transform Transform}], Returns: void
+*/
+
+func (o *visualServer) MultimeshInstanceSetTransform(multimesh gdnative.RID, index gdnative.Int, transform gdnative.Transform) {
 	log.Println("Calling VisualServer.MultimeshInstanceSetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(multimesh)
-	goArguments[1] = reflect.ValueOf(index)
-	goArguments[2] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(multimesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(index)
+	ptrArguments[2] = gdnative.NewPointerFromTransform(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "multimesh_instance_set_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "multimesh_instance_set_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) MultimeshInstanceSetTransform2D(multimesh *RID, index gdnative.Int, transform *Transform2D) {
+	Args: [{ false multimesh RID} { false index int} { false transform Transform2D}], Returns: void
+*/
+
+func (o *visualServer) MultimeshInstanceSetTransform2D(multimesh gdnative.RID, index gdnative.Int, transform gdnative.Transform2D) {
 	log.Println("Calling VisualServer.MultimeshInstanceSetTransform2D()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(multimesh)
-	goArguments[1] = reflect.ValueOf(index)
-	goArguments[2] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(multimesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(index)
+	ptrArguments[2] = gdnative.NewPointerFromTransform2D(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "multimesh_instance_set_transform_2d")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "multimesh_instance_set_transform_2d", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) MultimeshSetMesh(multimesh *RID, mesh *RID) {
+	Args: [{ false multimesh RID} { false mesh RID}], Returns: void
+*/
+
+func (o *visualServer) MultimeshSetMesh(multimesh gdnative.RID, mesh gdnative.RID) {
 	log.Println("Calling VisualServer.MultimeshSetMesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(multimesh)
-	goArguments[1] = reflect.ValueOf(mesh)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(multimesh)
+	ptrArguments[1] = gdnative.NewPointerFromRid(mesh)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "multimesh_set_mesh")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "multimesh_set_mesh", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) MultimeshSetVisibleInstances(multimesh *RID, visible gdnative.Int) {
+	Args: [{ false multimesh RID} { false visible int}], Returns: void
+*/
+
+func (o *visualServer) MultimeshSetVisibleInstances(multimesh gdnative.RID, visible gdnative.Int) {
 	log.Println("Calling VisualServer.MultimeshSetVisibleInstances()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(multimesh)
-	goArguments[1] = reflect.ValueOf(visible)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(multimesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(visible)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "multimesh_set_visible_instances")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "multimesh_set_visible_instances", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) OmniLightCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *visualServer) OmniLightCreate() gdnative.RID {
 	log.Println("Calling VisualServer.OmniLightCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "omni_light_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "omni_light_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *visualServer) ParticlesCreate() gdnative.RID {
 	log.Println("Calling VisualServer.ParticlesCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "particles_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesGetCurrentAabb(particles *RID) *AABB {
+	Args: [{ false particles RID}], Returns: AABB
+*/
+
+func (o *visualServer) ParticlesGetCurrentAabb(particles gdnative.RID) gdnative.AABB {
 	log.Println("Calling VisualServer.ParticlesGetCurrentAabb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(particles)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_get_current_aabb")
 
 	// Call the parent method.
+	// AABB
+	retPtr := gdnative.NewEmptyAabb()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "particles_get_current_aabb", goArguments, "*AABB")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewAabbFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*AABB)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesGetEmitting(particles *RID) gdnative.Bool {
+	Args: [{ false particles RID}], Returns: bool
+*/
+
+func (o *visualServer) ParticlesGetEmitting(particles gdnative.RID) gdnative.Bool {
 	log.Println("Calling VisualServer.ParticlesGetEmitting()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(particles)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_get_emitting")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "particles_get_emitting", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesRestart(particles *RID) {
+	Args: [{ false particles RID}], Returns: void
+*/
+
+func (o *visualServer) ParticlesRestart(particles gdnative.RID) {
 	log.Println("Calling VisualServer.ParticlesRestart()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(particles)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_restart")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "particles_restart", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesSetAmount(particles *RID, amount gdnative.Int) {
+	Args: [{ false particles RID} { false amount int}], Returns: void
+*/
+
+func (o *visualServer) ParticlesSetAmount(particles gdnative.RID, amount gdnative.Int) {
 	log.Println("Calling VisualServer.ParticlesSetAmount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(particles)
-	goArguments[1] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+	ptrArguments[1] = gdnative.NewPointerFromInt(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_amount")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "particles_set_amount", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesSetCustomAabb(particles *RID, aabb *AABB) {
+	Args: [{ false particles RID} { false aabb AABB}], Returns: void
+*/
+
+func (o *visualServer) ParticlesSetCustomAabb(particles gdnative.RID, aabb gdnative.AABB) {
 	log.Println("Calling VisualServer.ParticlesSetCustomAabb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(particles)
-	goArguments[1] = reflect.ValueOf(aabb)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+	ptrArguments[1] = gdnative.NewPointerFromAabb(aabb)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_custom_aabb")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "particles_set_custom_aabb", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesSetDrawOrder(particles *RID, order gdnative.Int) {
+	Args: [{ false particles RID} { false order int}], Returns: void
+*/
+
+func (o *visualServer) ParticlesSetDrawOrder(particles gdnative.RID, order gdnative.Int) {
 	log.Println("Calling VisualServer.ParticlesSetDrawOrder()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(particles)
-	goArguments[1] = reflect.ValueOf(order)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+	ptrArguments[1] = gdnative.NewPointerFromInt(order)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_draw_order")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "particles_set_draw_order", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesSetDrawPassMesh(particles *RID, pass gdnative.Int, mesh *RID) {
+	Args: [{ false particles RID} { false pass int} { false mesh RID}], Returns: void
+*/
+
+func (o *visualServer) ParticlesSetDrawPassMesh(particles gdnative.RID, pass gdnative.Int, mesh gdnative.RID) {
 	log.Println("Calling VisualServer.ParticlesSetDrawPassMesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(particles)
-	goArguments[1] = reflect.ValueOf(pass)
-	goArguments[2] = reflect.ValueOf(mesh)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+	ptrArguments[1] = gdnative.NewPointerFromInt(pass)
+	ptrArguments[2] = gdnative.NewPointerFromRid(mesh)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_draw_pass_mesh")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "particles_set_draw_pass_mesh", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesSetDrawPasses(particles *RID, count gdnative.Int) {
+	Args: [{ false particles RID} { false count int}], Returns: void
+*/
+
+func (o *visualServer) ParticlesSetDrawPasses(particles gdnative.RID, count gdnative.Int) {
 	log.Println("Calling VisualServer.ParticlesSetDrawPasses()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(particles)
-	goArguments[1] = reflect.ValueOf(count)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+	ptrArguments[1] = gdnative.NewPointerFromInt(count)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_draw_passes")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "particles_set_draw_passes", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesSetEmissionTransform(particles *RID, transform *Transform) {
+	Args: [{ false particles RID} { false transform Transform}], Returns: void
+*/
+
+func (o *visualServer) ParticlesSetEmissionTransform(particles gdnative.RID, transform gdnative.Transform) {
 	log.Println("Calling VisualServer.ParticlesSetEmissionTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(particles)
-	goArguments[1] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+	ptrArguments[1] = gdnative.NewPointerFromTransform(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_emission_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "particles_set_emission_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesSetEmitting(particles *RID, emitting gdnative.Bool) {
+	Args: [{ false particles RID} { false emitting bool}], Returns: void
+*/
+
+func (o *visualServer) ParticlesSetEmitting(particles gdnative.RID, emitting gdnative.Bool) {
 	log.Println("Calling VisualServer.ParticlesSetEmitting()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(particles)
-	goArguments[1] = reflect.ValueOf(emitting)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+	ptrArguments[1] = gdnative.NewPointerFromBool(emitting)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_emitting")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "particles_set_emitting", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesSetExplosivenessRatio(particles *RID, ratio gdnative.Float) {
+	Args: [{ false particles RID} { false ratio float}], Returns: void
+*/
+
+func (o *visualServer) ParticlesSetExplosivenessRatio(particles gdnative.RID, ratio gdnative.Float) {
 	log.Println("Calling VisualServer.ParticlesSetExplosivenessRatio()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(particles)
-	goArguments[1] = reflect.ValueOf(ratio)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(ratio)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_explosiveness_ratio")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "particles_set_explosiveness_ratio", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesSetFixedFps(particles *RID, fps gdnative.Int) {
+	Args: [{ false particles RID} { false fps int}], Returns: void
+*/
+
+func (o *visualServer) ParticlesSetFixedFps(particles gdnative.RID, fps gdnative.Int) {
 	log.Println("Calling VisualServer.ParticlesSetFixedFps()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(particles)
-	goArguments[1] = reflect.ValueOf(fps)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+	ptrArguments[1] = gdnative.NewPointerFromInt(fps)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_fixed_fps")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "particles_set_fixed_fps", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesSetFractionalDelta(particles *RID, enable gdnative.Bool) {
+	Args: [{ false particles RID} { false enable bool}], Returns: void
+*/
+
+func (o *visualServer) ParticlesSetFractionalDelta(particles gdnative.RID, enable gdnative.Bool) {
 	log.Println("Calling VisualServer.ParticlesSetFractionalDelta()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(particles)
-	goArguments[1] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_fractional_delta")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "particles_set_fractional_delta", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesSetLifetime(particles *RID, lifetime gdnative.Float) {
+	Args: [{ false particles RID} { false lifetime float}], Returns: void
+*/
+
+func (o *visualServer) ParticlesSetLifetime(particles gdnative.RID, lifetime gdnative.Float) {
 	log.Println("Calling VisualServer.ParticlesSetLifetime()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(particles)
-	goArguments[1] = reflect.ValueOf(lifetime)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(lifetime)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_lifetime")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "particles_set_lifetime", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesSetOneShot(particles *RID, oneShot gdnative.Bool) {
+	Args: [{ false particles RID} { false one_shot bool}], Returns: void
+*/
+
+func (o *visualServer) ParticlesSetOneShot(particles gdnative.RID, oneShot gdnative.Bool) {
 	log.Println("Calling VisualServer.ParticlesSetOneShot()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(particles)
-	goArguments[1] = reflect.ValueOf(oneShot)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+	ptrArguments[1] = gdnative.NewPointerFromBool(oneShot)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_one_shot")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "particles_set_one_shot", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesSetPreProcessTime(particles *RID, time gdnative.Float) {
+	Args: [{ false particles RID} { false time float}], Returns: void
+*/
+
+func (o *visualServer) ParticlesSetPreProcessTime(particles gdnative.RID, time gdnative.Float) {
 	log.Println("Calling VisualServer.ParticlesSetPreProcessTime()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(particles)
-	goArguments[1] = reflect.ValueOf(time)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(time)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_pre_process_time")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "particles_set_pre_process_time", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesSetProcessMaterial(particles *RID, material *RID) {
+	Args: [{ false particles RID} { false material RID}], Returns: void
+*/
+
+func (o *visualServer) ParticlesSetProcessMaterial(particles gdnative.RID, material gdnative.RID) {
 	log.Println("Calling VisualServer.ParticlesSetProcessMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(particles)
-	goArguments[1] = reflect.ValueOf(material)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+	ptrArguments[1] = gdnative.NewPointerFromRid(material)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_process_material")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "particles_set_process_material", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesSetRandomnessRatio(particles *RID, ratio gdnative.Float) {
+	Args: [{ false particles RID} { false ratio float}], Returns: void
+*/
+
+func (o *visualServer) ParticlesSetRandomnessRatio(particles gdnative.RID, ratio gdnative.Float) {
 	log.Println("Calling VisualServer.ParticlesSetRandomnessRatio()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(particles)
-	goArguments[1] = reflect.ValueOf(ratio)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(ratio)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_randomness_ratio")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "particles_set_randomness_ratio", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesSetSpeedScale(particles *RID, scale gdnative.Float) {
+	Args: [{ false particles RID} { false scale float}], Returns: void
+*/
+
+func (o *visualServer) ParticlesSetSpeedScale(particles gdnative.RID, scale gdnative.Float) {
 	log.Println("Calling VisualServer.ParticlesSetSpeedScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(particles)
-	goArguments[1] = reflect.ValueOf(scale)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(scale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_speed_scale")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "particles_set_speed_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ParticlesSetUseLocalCoordinates(particles *RID, enable gdnative.Bool) {
+	Args: [{ false particles RID} { false enable bool}], Returns: void
+*/
+
+func (o *visualServer) ParticlesSetUseLocalCoordinates(particles gdnative.RID, enable gdnative.Bool) {
 	log.Println("Calling VisualServer.ParticlesSetUseLocalCoordinates()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(particles)
-	goArguments[1] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_use_local_coordinates")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "particles_set_use_local_coordinates", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ReflectionProbeCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *visualServer) ReflectionProbeCreate() gdnative.RID {
 	log.Println("Calling VisualServer.ReflectionProbeCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "reflection_probe_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "reflection_probe_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) ReflectionProbeSetAsInterior(probe *RID, enable gdnative.Bool) {
+	Args: [{ false probe RID} { false enable bool}], Returns: void
+*/
+
+func (o *visualServer) ReflectionProbeSetAsInterior(probe gdnative.RID, enable gdnative.Bool) {
 	log.Println("Calling VisualServer.ReflectionProbeSetAsInterior()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(probe)
-	goArguments[1] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "reflection_probe_set_as_interior")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "reflection_probe_set_as_interior", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ReflectionProbeSetCullMask(probe *RID, layers gdnative.Int) {
+	Args: [{ false probe RID} { false layers int}], Returns: void
+*/
+
+func (o *visualServer) ReflectionProbeSetCullMask(probe gdnative.RID, layers gdnative.Int) {
 	log.Println("Calling VisualServer.ReflectionProbeSetCullMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(probe)
-	goArguments[1] = reflect.ValueOf(layers)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
+	ptrArguments[1] = gdnative.NewPointerFromInt(layers)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "reflection_probe_set_cull_mask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "reflection_probe_set_cull_mask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ReflectionProbeSetEnableBoxProjection(probe *RID, enable gdnative.Bool) {
+	Args: [{ false probe RID} { false enable bool}], Returns: void
+*/
+
+func (o *visualServer) ReflectionProbeSetEnableBoxProjection(probe gdnative.RID, enable gdnative.Bool) {
 	log.Println("Calling VisualServer.ReflectionProbeSetEnableBoxProjection()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(probe)
-	goArguments[1] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "reflection_probe_set_enable_box_projection")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "reflection_probe_set_enable_box_projection", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ReflectionProbeSetEnableShadows(probe *RID, enable gdnative.Bool) {
+	Args: [{ false probe RID} { false enable bool}], Returns: void
+*/
+
+func (o *visualServer) ReflectionProbeSetEnableShadows(probe gdnative.RID, enable gdnative.Bool) {
 	log.Println("Calling VisualServer.ReflectionProbeSetEnableShadows()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(probe)
-	goArguments[1] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "reflection_probe_set_enable_shadows")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "reflection_probe_set_enable_shadows", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ReflectionProbeSetExtents(probe *RID, extents *Vector3) {
+	Args: [{ false probe RID} { false extents Vector3}], Returns: void
+*/
+
+func (o *visualServer) ReflectionProbeSetExtents(probe gdnative.RID, extents gdnative.Vector3) {
 	log.Println("Calling VisualServer.ReflectionProbeSetExtents()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(probe)
-	goArguments[1] = reflect.ValueOf(extents)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
+	ptrArguments[1] = gdnative.NewPointerFromVector3(extents)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "reflection_probe_set_extents")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "reflection_probe_set_extents", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ReflectionProbeSetIntensity(probe *RID, intensity gdnative.Float) {
+	Args: [{ false probe RID} { false intensity float}], Returns: void
+*/
+
+func (o *visualServer) ReflectionProbeSetIntensity(probe gdnative.RID, intensity gdnative.Float) {
 	log.Println("Calling VisualServer.ReflectionProbeSetIntensity()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(probe)
-	goArguments[1] = reflect.ValueOf(intensity)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(intensity)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "reflection_probe_set_intensity")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "reflection_probe_set_intensity", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ReflectionProbeSetInteriorAmbient(probe *RID, color *Color) {
+	Args: [{ false probe RID} { false color Color}], Returns: void
+*/
+
+func (o *visualServer) ReflectionProbeSetInteriorAmbient(probe gdnative.RID, color gdnative.Color) {
 	log.Println("Calling VisualServer.ReflectionProbeSetInteriorAmbient()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(probe)
-	goArguments[1] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "reflection_probe_set_interior_ambient")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "reflection_probe_set_interior_ambient", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ReflectionProbeSetInteriorAmbientEnergy(probe *RID, energy gdnative.Float) {
+	Args: [{ false probe RID} { false energy float}], Returns: void
+*/
+
+func (o *visualServer) ReflectionProbeSetInteriorAmbientEnergy(probe gdnative.RID, energy gdnative.Float) {
 	log.Println("Calling VisualServer.ReflectionProbeSetInteriorAmbientEnergy()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(probe)
-	goArguments[1] = reflect.ValueOf(energy)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(energy)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "reflection_probe_set_interior_ambient_energy")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "reflection_probe_set_interior_ambient_energy", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ReflectionProbeSetInteriorAmbientProbeContribution(probe *RID, contrib gdnative.Float) {
+	Args: [{ false probe RID} { false contrib float}], Returns: void
+*/
+
+func (o *visualServer) ReflectionProbeSetInteriorAmbientProbeContribution(probe gdnative.RID, contrib gdnative.Float) {
 	log.Println("Calling VisualServer.ReflectionProbeSetInteriorAmbientProbeContribution()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(probe)
-	goArguments[1] = reflect.ValueOf(contrib)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(contrib)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "reflection_probe_set_interior_ambient_probe_contribution")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "reflection_probe_set_interior_ambient_probe_contribution", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ReflectionProbeSetMaxDistance(probe *RID, distance gdnative.Float) {
+	Args: [{ false probe RID} { false distance float}], Returns: void
+*/
+
+func (o *visualServer) ReflectionProbeSetMaxDistance(probe gdnative.RID, distance gdnative.Float) {
 	log.Println("Calling VisualServer.ReflectionProbeSetMaxDistance()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(probe)
-	goArguments[1] = reflect.ValueOf(distance)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(distance)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "reflection_probe_set_max_distance")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "reflection_probe_set_max_distance", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ReflectionProbeSetOriginOffset(probe *RID, offset *Vector3) {
+	Args: [{ false probe RID} { false offset Vector3}], Returns: void
+*/
+
+func (o *visualServer) ReflectionProbeSetOriginOffset(probe gdnative.RID, offset gdnative.Vector3) {
 	log.Println("Calling VisualServer.ReflectionProbeSetOriginOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(probe)
-	goArguments[1] = reflect.ValueOf(offset)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
+	ptrArguments[1] = gdnative.NewPointerFromVector3(offset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "reflection_probe_set_origin_offset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "reflection_probe_set_origin_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ReflectionProbeSetUpdateMode(probe *RID, mode gdnative.Int) {
+	Args: [{ false probe RID} { false mode int}], Returns: void
+*/
+
+func (o *visualServer) ReflectionProbeSetUpdateMode(probe gdnative.RID, mode gdnative.Int) {
 	log.Println("Calling VisualServer.ReflectionProbeSetUpdateMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(probe)
-	goArguments[1] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "reflection_probe_set_update_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "reflection_probe_set_update_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Schedules a callback to the corresponding named 'method' on 'where' after a frame has been drawn. The callback method must use only 1 argument which will be called with 'userdata'.
+        Schedules a callback to the corresponding named 'method' on 'where' after a frame has been drawn. The callback method must use only 1 argument which will be called with 'userdata'.
+	Args: [{ false where Object} { false method String} { false userdata Variant}], Returns: void
 */
-func (o *visualServer) RequestFrameDrawnCallback(where *Object, method gdnative.String, userdata *Variant) {
+
+func (o *visualServer) RequestFrameDrawnCallback(where object.Object, method gdnative.String, userdata gdnative.Variant) {
 	log.Println("Calling VisualServer.RequestFrameDrawnCallback()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(where)
-	goArguments[1] = reflect.ValueOf(method)
-	goArguments[2] = reflect.ValueOf(userdata)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromObject(where.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromString(method)
+	ptrArguments[2] = gdnative.NewPointerFromVariant(userdata)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "request_frame_drawn_callback")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "request_frame_drawn_callback", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ScenarioCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *visualServer) ScenarioCreate() gdnative.RID {
 	log.Println("Calling VisualServer.ScenarioCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "scenario_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "scenario_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) ScenarioSetDebug(scenario *RID, debugMode gdnative.Int) {
+	Args: [{ false scenario RID} { false debug_mode int}], Returns: void
+*/
+
+func (o *visualServer) ScenarioSetDebug(scenario gdnative.RID, debugMode gdnative.Int) {
 	log.Println("Calling VisualServer.ScenarioSetDebug()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(scenario)
-	goArguments[1] = reflect.ValueOf(debugMode)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(scenario)
+	ptrArguments[1] = gdnative.NewPointerFromInt(debugMode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "scenario_set_debug")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "scenario_set_debug", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ScenarioSetEnvironment(scenario *RID, environment *RID) {
+	Args: [{ false scenario RID} { false environment RID}], Returns: void
+*/
+
+func (o *visualServer) ScenarioSetEnvironment(scenario gdnative.RID, environment gdnative.RID) {
 	log.Println("Calling VisualServer.ScenarioSetEnvironment()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(scenario)
-	goArguments[1] = reflect.ValueOf(environment)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(scenario)
+	ptrArguments[1] = gdnative.NewPointerFromRid(environment)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "scenario_set_environment")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "scenario_set_environment", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ScenarioSetFallbackEnvironment(scenario *RID, environment *RID) {
+	Args: [{ false scenario RID} { false environment RID}], Returns: void
+*/
+
+func (o *visualServer) ScenarioSetFallbackEnvironment(scenario gdnative.RID, environment gdnative.RID) {
 	log.Println("Calling VisualServer.ScenarioSetFallbackEnvironment()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(scenario)
-	goArguments[1] = reflect.ValueOf(environment)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(scenario)
+	ptrArguments[1] = gdnative.NewPointerFromRid(environment)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "scenario_set_fallback_environment")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "scenario_set_fallback_environment", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ScenarioSetReflectionAtlasSize(scenario *RID, pSize gdnative.Int, subdiv gdnative.Int) {
+	Args: [{ false scenario RID} { false p_size int} { false subdiv int}], Returns: void
+*/
+
+func (o *visualServer) ScenarioSetReflectionAtlasSize(scenario gdnative.RID, pSize gdnative.Int, subdiv gdnative.Int) {
 	log.Println("Calling VisualServer.ScenarioSetReflectionAtlasSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(scenario)
-	goArguments[1] = reflect.ValueOf(pSize)
-	goArguments[2] = reflect.ValueOf(subdiv)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(scenario)
+	ptrArguments[1] = gdnative.NewPointerFromInt(pSize)
+	ptrArguments[2] = gdnative.NewPointerFromInt(subdiv)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "scenario_set_reflection_atlas_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "scenario_set_reflection_atlas_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a boot image. The color defines the background color and if scale is [code]true[/code], the image will be scaled to fit the screen size.
+        Sets a boot image. The color defines the background color and if scale is [code]true[/code], the image will be scaled to fit the screen size.
+	Args: [{ false image Image} { false color Color} { false scale bool}], Returns: void
 */
-func (o *visualServer) SetBootImage(image *Image, color *Color, scale gdnative.Bool) {
+
+func (o *visualServer) SetBootImage(image image.Image, color gdnative.Color, scale gdnative.Bool) {
 	log.Println("Calling VisualServer.SetBootImage()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(image)
-	goArguments[1] = reflect.ValueOf(color)
-	goArguments[2] = reflect.ValueOf(scale)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromObject(image.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+	ptrArguments[2] = gdnative.NewPointerFromBool(scale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "set_boot_image")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_boot_image", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false generate bool}], Returns: void
+*/
+
 func (o *visualServer) SetDebugGenerateWireframes(generate gdnative.Bool) {
 	log.Println("Calling VisualServer.SetDebugGenerateWireframes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(generate)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(generate)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "set_debug_generate_wireframes")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_debug_generate_wireframes", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) SetDefaultClearColor(color *Color) {
+	Args: [{ false color Color}], Returns: void
+*/
+
+func (o *visualServer) SetDefaultClearColor(color gdnative.Color) {
 	log.Println("Calling VisualServer.SetDefaultClearColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "set_default_clear_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_default_clear_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Creates an empty shader.
+        Creates an empty shader.
+	Args: [], Returns: RID
 */
-func (o *visualServer) ShaderCreate() *RID {
+
+func (o *visualServer) ShaderCreate() gdnative.RID {
 	log.Println("Calling VisualServer.ShaderCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "shader_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "shader_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a shader's code.
+        Returns a shader's code.
+	Args: [{ false shader RID}], Returns: String
 */
-func (o *visualServer) ShaderGetCode(shader *RID) gdnative.String {
+
+func (o *visualServer) ShaderGetCode(shader gdnative.RID) gdnative.String {
 	log.Println("Calling VisualServer.ShaderGetCode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(shader)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(shader)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "shader_get_code")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "shader_get_code", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a default texture from a shader searched by name.
+        Returns a default texture from a shader searched by name.
+	Args: [{ false shader RID} { false name String}], Returns: RID
 */
-func (o *visualServer) ShaderGetDefaultTextureParam(shader *RID, name gdnative.String) *RID {
+
+func (o *visualServer) ShaderGetDefaultTextureParam(shader gdnative.RID, name gdnative.String) gdnative.RID {
 	log.Println("Calling VisualServer.ShaderGetDefaultTextureParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(shader)
-	goArguments[1] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(shader)
+	ptrArguments[1] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "shader_get_default_texture_param")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "shader_get_default_texture_param", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the parameters of a shader.
+        Returns the parameters of a shader.
+	Args: [{ false shader RID}], Returns: Array
 */
-func (o *visualServer) ShaderGetParamList(shader *RID) *Array {
+
+func (o *visualServer) ShaderGetParamList(shader gdnative.RID) gdnative.Array {
 	log.Println("Calling VisualServer.ShaderGetParamList()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(shader)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(shader)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "shader_get_param_list")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "shader_get_param_list", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets a shader's code.
+        Sets a shader's code.
+	Args: [{ false shader RID} { false code String}], Returns: void
 */
-func (o *visualServer) ShaderSetCode(shader *RID, code gdnative.String) {
+
+func (o *visualServer) ShaderSetCode(shader gdnative.RID, code gdnative.String) {
 	log.Println("Calling VisualServer.ShaderSetCode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(shader)
-	goArguments[1] = reflect.ValueOf(code)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(shader)
+	ptrArguments[1] = gdnative.NewPointerFromString(code)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "shader_set_code")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "shader_set_code", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a shader's default texture. Overwrites the texture given by name.
+        Sets a shader's default texture. Overwrites the texture given by name.
+	Args: [{ false shader RID} { false name String} { false texture RID}], Returns: void
 */
-func (o *visualServer) ShaderSetDefaultTextureParam(shader *RID, name gdnative.String, texture *RID) {
+
+func (o *visualServer) ShaderSetDefaultTextureParam(shader gdnative.RID, name gdnative.String, texture gdnative.RID) {
 	log.Println("Calling VisualServer.ShaderSetDefaultTextureParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(shader)
-	goArguments[1] = reflect.ValueOf(name)
-	goArguments[2] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(shader)
+	ptrArguments[1] = gdnative.NewPointerFromString(name)
+	ptrArguments[2] = gdnative.NewPointerFromRid(texture)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "shader_set_default_texture_param")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "shader_set_default_texture_param", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) SkeletonAllocate(skeleton *RID, bones gdnative.Int, is2DSkeleton gdnative.Bool) {
+	Args: [{ false skeleton RID} { false bones int} {False true is_2d_skeleton bool}], Returns: void
+*/
+
+func (o *visualServer) SkeletonAllocate(skeleton gdnative.RID, bones gdnative.Int, is2DSkeleton gdnative.Bool) {
 	log.Println("Calling VisualServer.SkeletonAllocate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(skeleton)
-	goArguments[1] = reflect.ValueOf(bones)
-	goArguments[2] = reflect.ValueOf(is2DSkeleton)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(skeleton)
+	ptrArguments[1] = gdnative.NewPointerFromInt(bones)
+	ptrArguments[2] = gdnative.NewPointerFromBool(is2DSkeleton)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "skeleton_allocate")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "skeleton_allocate", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) SkeletonBoneGetTransform(skeleton *RID, bone gdnative.Int) *Transform {
+	Args: [{ false skeleton RID} { false bone int}], Returns: Transform
+*/
+
+func (o *visualServer) SkeletonBoneGetTransform(skeleton gdnative.RID, bone gdnative.Int) gdnative.Transform {
 	log.Println("Calling VisualServer.SkeletonBoneGetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(skeleton)
-	goArguments[1] = reflect.ValueOf(bone)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(skeleton)
+	ptrArguments[1] = gdnative.NewPointerFromInt(bone)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "skeleton_bone_get_transform")
 
 	// Call the parent method.
+	// Transform
+	retPtr := gdnative.NewEmptyTransform()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "skeleton_bone_get_transform", goArguments, "*Transform")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransformFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) SkeletonBoneGetTransform2D(skeleton *RID, bone gdnative.Int) *Transform2D {
+	Args: [{ false skeleton RID} { false bone int}], Returns: Transform2D
+*/
+
+func (o *visualServer) SkeletonBoneGetTransform2D(skeleton gdnative.RID, bone gdnative.Int) gdnative.Transform2D {
 	log.Println("Calling VisualServer.SkeletonBoneGetTransform2D()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(skeleton)
-	goArguments[1] = reflect.ValueOf(bone)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(skeleton)
+	ptrArguments[1] = gdnative.NewPointerFromInt(bone)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "skeleton_bone_get_transform_2d")
 
 	// Call the parent method.
+	// Transform2D
+	retPtr := gdnative.NewEmptyTransform2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "skeleton_bone_get_transform_2d", goArguments, "*Transform2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransform2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) SkeletonBoneSetTransform(skeleton *RID, bone gdnative.Int, transform *Transform) {
+	Args: [{ false skeleton RID} { false bone int} { false transform Transform}], Returns: void
+*/
+
+func (o *visualServer) SkeletonBoneSetTransform(skeleton gdnative.RID, bone gdnative.Int, transform gdnative.Transform) {
 	log.Println("Calling VisualServer.SkeletonBoneSetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(skeleton)
-	goArguments[1] = reflect.ValueOf(bone)
-	goArguments[2] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(skeleton)
+	ptrArguments[1] = gdnative.NewPointerFromInt(bone)
+	ptrArguments[2] = gdnative.NewPointerFromTransform(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "skeleton_bone_set_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "skeleton_bone_set_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) SkeletonBoneSetTransform2D(skeleton *RID, bone gdnative.Int, transform *Transform2D) {
+	Args: [{ false skeleton RID} { false bone int} { false transform Transform2D}], Returns: void
+*/
+
+func (o *visualServer) SkeletonBoneSetTransform2D(skeleton gdnative.RID, bone gdnative.Int, transform gdnative.Transform2D) {
 	log.Println("Calling VisualServer.SkeletonBoneSetTransform2D()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(skeleton)
-	goArguments[1] = reflect.ValueOf(bone)
-	goArguments[2] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(skeleton)
+	ptrArguments[1] = gdnative.NewPointerFromInt(bone)
+	ptrArguments[2] = gdnative.NewPointerFromTransform2D(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "skeleton_bone_set_transform_2d")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "skeleton_bone_set_transform_2d", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) SkeletonCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *visualServer) SkeletonCreate() gdnative.RID {
 	log.Println("Calling VisualServer.SkeletonCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "skeleton_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "skeleton_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *visualServer) SkeletonGetBoneCount(skeleton *RID) gdnative.Int {
+	Args: [{ false skeleton RID}], Returns: int
+*/
+
+func (o *visualServer) SkeletonGetBoneCount(skeleton gdnative.RID) gdnative.Int {
 	log.Println("Calling VisualServer.SkeletonGetBoneCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(skeleton)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(skeleton)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "skeleton_get_bone_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "skeleton_get_bone_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Creates an empty sky.
+        Creates an empty sky.
+	Args: [], Returns: RID
 */
-func (o *visualServer) SkyCreate() *RID {
+
+func (o *visualServer) SkyCreate() gdnative.RID {
 	log.Println("Calling VisualServer.SkyCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "sky_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "sky_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets a sky's texture.
+        Sets a sky's texture.
+	Args: [{ false sky RID} { false cube_map RID} { false radiance_size int}], Returns: void
 */
-func (o *visualServer) SkySetTexture(sky *RID, cubeMap *RID, radianceSize gdnative.Int) {
+
+func (o *visualServer) SkySetTexture(sky gdnative.RID, cubeMap gdnative.RID, radianceSize gdnative.Int) {
 	log.Println("Calling VisualServer.SkySetTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(sky)
-	goArguments[1] = reflect.ValueOf(cubeMap)
-	goArguments[2] = reflect.ValueOf(radianceSize)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(sky)
+	ptrArguments[1] = gdnative.NewPointerFromRid(cubeMap)
+	ptrArguments[2] = gdnative.NewPointerFromInt(radianceSize)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "sky_set_texture")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "sky_set_texture", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) SpotLightCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *visualServer) SpotLightCreate() gdnative.RID {
 	log.Println("Calling VisualServer.SpotLightCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "spot_light_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "spot_light_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Allocates space for a texture's image or video.
+        Allocates space for a texture's image or video.
+	Args: [{ false texture RID} { false width int} { false height int} { false format int} {7 true flags int}], Returns: void
 */
-func (o *visualServer) TextureAllocate(texture *RID, width gdnative.Int, height gdnative.Int, format gdnative.Int, flags gdnative.Int) {
+
+func (o *visualServer) TextureAllocate(texture gdnative.RID, width gdnative.Int, height gdnative.Int, format gdnative.Int, flags gdnative.Int) {
 	log.Println("Calling VisualServer.TextureAllocate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(texture)
-	goArguments[1] = reflect.ValueOf(width)
-	goArguments[2] = reflect.ValueOf(height)
-	goArguments[3] = reflect.ValueOf(format)
-	goArguments[4] = reflect.ValueOf(flags)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromRid(texture)
+	ptrArguments[1] = gdnative.NewPointerFromInt(width)
+	ptrArguments[2] = gdnative.NewPointerFromInt(height)
+	ptrArguments[3] = gdnative.NewPointerFromInt(format)
+	ptrArguments[4] = gdnative.NewPointerFromInt(flags)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "texture_allocate")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "texture_allocate", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Creates an empty texture.
+        Creates an empty texture.
+	Args: [], Returns: RID
 */
-func (o *visualServer) TextureCreate() *RID {
+
+func (o *visualServer) TextureCreate() gdnative.RID {
 	log.Println("Calling VisualServer.TextureCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "texture_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "texture_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Creates a texture, allocates the space for an image, and fills in the image.
+        Creates a texture, allocates the space for an image, and fills in the image.
+	Args: [{ false image Image} {7 true flags int}], Returns: RID
 */
-func (o *visualServer) TextureCreateFromImage(image *Image, flags gdnative.Int) *RID {
+
+func (o *visualServer) TextureCreateFromImage(image image.Image, flags gdnative.Int) gdnative.RID {
 	log.Println("Calling VisualServer.TextureCreateFromImage()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(image)
-	goArguments[1] = reflect.ValueOf(flags)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromObject(image.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromInt(flags)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "texture_create_from_image")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "texture_create_from_image", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a list of all the textures and their information.
+        Returns a list of all the textures and their information.
+	Args: [], Returns: Array
 */
-func (o *visualServer) TextureDebugUsage() *Array {
+
+func (o *visualServer) TextureDebugUsage() gdnative.Array {
 	log.Println("Calling VisualServer.TextureDebugUsage()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "texture_debug_usage")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "texture_debug_usage", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a copy of a texture's image unless it's a CubeMap, in which case it returns the [RID] of the image at one of the cubes sides.
+        Returns a copy of a texture's image unless it's a CubeMap, in which case it returns the [RID] of the image at one of the cubes sides.
+	Args: [{ false texture RID} {0 true cube_side int}], Returns: Image
 */
-func (o *visualServer) TextureGetData(texture *RID, cubeSide gdnative.Int) *Image {
+
+func (o *visualServer) TextureGetData(texture gdnative.RID, cubeSide gdnative.Int) image.Image {
 	log.Println("Calling VisualServer.TextureGetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(texture)
-	goArguments[1] = reflect.ValueOf(cubeSide)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(texture)
+	ptrArguments[1] = gdnative.NewPointerFromInt(cubeSide)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "texture_get_data")
 
 	// Call the parent method.
+	// Image
+	retPtr := image.NewEmptyImage()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "texture_get_data", goArguments, "*Image")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := image.NewImageFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Image)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the flags of a texture.
+        Returns the flags of a texture.
+	Args: [{ false texture RID}], Returns: int
 */
-func (o *visualServer) TextureGetFlags(texture *RID) gdnative.Int {
+
+func (o *visualServer) TextureGetFlags(texture gdnative.RID) gdnative.Int {
 	log.Println("Calling VisualServer.TextureGetFlags()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(texture)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "texture_get_flags")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "texture_get_flags", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the format of the texture's image.
+        Returns the format of the texture's image.
+	Args: [{ false texture RID}], Returns: enum.Image::Format
 */
-func (o *visualServer) TextureGetFormat(texture *RID) gdnative.Int {
-	log.Println("Calling VisualServer.TextureGetFormat()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texture)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "texture_get_format", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Returns the texture's height.
+        Returns the texture's height.
+	Args: [{ false texture RID}], Returns: int
 */
-func (o *visualServer) TextureGetHeight(texture *RID) gdnative.Int {
+
+func (o *visualServer) TextureGetHeight(texture gdnative.RID) gdnative.Int {
 	log.Println("Calling VisualServer.TextureGetHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(texture)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "texture_get_height")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "texture_get_height", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the texture's path.
+        Returns the texture's path.
+	Args: [{ false texture RID}], Returns: String
 */
-func (o *visualServer) TextureGetPath(texture *RID) gdnative.String {
+
+func (o *visualServer) TextureGetPath(texture gdnative.RID) gdnative.String {
 	log.Println("Calling VisualServer.TextureGetPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(texture)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "texture_get_path")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "texture_get_path", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the opengl id of the texture's image.
+        Returns the opengl id of the texture's image.
+	Args: [{ false texture RID}], Returns: int
 */
-func (o *visualServer) TextureGetTexid(texture *RID) gdnative.Int {
+
+func (o *visualServer) TextureGetTexid(texture gdnative.RID) gdnative.Int {
 	log.Println("Calling VisualServer.TextureGetTexid()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(texture)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "texture_get_texid")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "texture_get_texid", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the texture's width.
+        Returns the texture's width.
+	Args: [{ false texture RID}], Returns: int
 */
-func (o *visualServer) TextureGetWidth(texture *RID) gdnative.Int {
+
+func (o *visualServer) TextureGetWidth(texture gdnative.RID) gdnative.Int {
 	log.Println("Calling VisualServer.TextureGetWidth()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(texture)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "texture_get_width")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "texture_get_width", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets the texture's image data. If it's a CubeMap, it sets the image data at a cube side.
+        Sets the texture's image data. If it's a CubeMap, it sets the image data at a cube side.
+	Args: [{ false texture RID} { false image Image} {0 true cube_side int}], Returns: void
 */
-func (o *visualServer) TextureSetData(texture *RID, image *Image, cubeSide gdnative.Int) {
+
+func (o *visualServer) TextureSetData(texture gdnative.RID, image image.Image, cubeSide gdnative.Int) {
 	log.Println("Calling VisualServer.TextureSetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(texture)
-	goArguments[1] = reflect.ValueOf(image)
-	goArguments[2] = reflect.ValueOf(cubeSide)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(texture)
+	ptrArguments[1] = gdnative.NewPointerFromObject(image.GetOwner())
+	ptrArguments[2] = gdnative.NewPointerFromInt(cubeSide)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "texture_set_data")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "texture_set_data", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the texture's flags. See [enum TextureFlags] for options
+        Sets the texture's flags. See [enum TextureFlags] for options
+	Args: [{ false texture RID} { false flags int}], Returns: void
 */
-func (o *visualServer) TextureSetFlags(texture *RID, flags gdnative.Int) {
+
+func (o *visualServer) TextureSetFlags(texture gdnative.RID, flags gdnative.Int) {
 	log.Println("Calling VisualServer.TextureSetFlags()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(texture)
-	goArguments[1] = reflect.ValueOf(flags)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(texture)
+	ptrArguments[1] = gdnative.NewPointerFromInt(flags)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "texture_set_flags")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "texture_set_flags", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the texture's path.
+        Sets the texture's path.
+	Args: [{ false texture RID} { false path String}], Returns: void
 */
-func (o *visualServer) TextureSetPath(texture *RID, path gdnative.String) {
+
+func (o *visualServer) TextureSetPath(texture gdnative.RID, path gdnative.String) {
 	log.Println("Calling VisualServer.TextureSetPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(texture)
-	goArguments[1] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(texture)
+	ptrArguments[1] = gdnative.NewPointerFromString(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "texture_set_path")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "texture_set_path", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]true[/code], sets internal processes to shrink all image data to half the size.
+        If [code]true[/code], sets internal processes to shrink all image data to half the size.
+	Args: [{ false shrink bool}], Returns: void
 */
+
 func (o *visualServer) TextureSetShrinkAllX2OnSetData(shrink gdnative.Bool) {
 	log.Println("Calling VisualServer.TextureSetShrinkAllX2OnSetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(shrink)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(shrink)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "texture_set_shrink_all_x2_on_set_data")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "texture_set_shrink_all_x2_on_set_data", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Overwrites the texture's width and height.
+        Overwrites the texture's width and height.
+	Args: [{ false texture RID} { false width int} { false height int}], Returns: void
 */
-func (o *visualServer) TextureSetSizeOverride(texture *RID, width gdnative.Int, height gdnative.Int) {
+
+func (o *visualServer) TextureSetSizeOverride(texture gdnative.RID, width gdnative.Int, height gdnative.Int) {
 	log.Println("Calling VisualServer.TextureSetSizeOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(texture)
-	goArguments[1] = reflect.ValueOf(width)
-	goArguments[2] = reflect.ValueOf(height)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(texture)
+	ptrArguments[1] = gdnative.NewPointerFromInt(width)
+	ptrArguments[2] = gdnative.NewPointerFromInt(height)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "texture_set_size_override")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "texture_set_size_override", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]true[/code], the image will be stored in the texture's images array if overwritten.
+        If [code]true[/code], the image will be stored in the texture's images array if overwritten.
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *visualServer) TexturesKeepOriginal(enable gdnative.Bool) {
 	log.Println("Calling VisualServer.TexturesKeepOriginal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "textures_keep_original")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "textures_keep_original", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a viewport's camera.
+        Sets a viewport's camera.
+	Args: [{ false viewport RID} { false camera RID}], Returns: void
 */
-func (o *visualServer) ViewportAttachCamera(viewport *RID, camera *RID) {
+
+func (o *visualServer) ViewportAttachCamera(viewport gdnative.RID, camera gdnative.RID) {
 	log.Println("Calling VisualServer.ViewportAttachCamera()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(camera)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromRid(camera)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_attach_camera")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_attach_camera", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a viewport's canvas.
+        Sets a viewport's canvas.
+	Args: [{ false viewport RID} { false canvas RID}], Returns: void
 */
-func (o *visualServer) ViewportAttachCanvas(viewport *RID, canvas *RID) {
+
+func (o *visualServer) ViewportAttachCanvas(viewport gdnative.RID, canvas gdnative.RID) {
 	log.Println("Calling VisualServer.ViewportAttachCanvas()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(canvas)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromRid(canvas)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_attach_canvas")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_attach_canvas", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Attaches a viewport to a screen.
+        Attaches a viewport to a screen.
+	Args: [{ false viewport RID} {(0, 0, 0, 0) true rect Rect2} {0 true screen int}], Returns: void
 */
-func (o *visualServer) ViewportAttachToScreen(viewport *RID, rect *Rect2, screen gdnative.Int) {
+
+func (o *visualServer) ViewportAttachToScreen(viewport gdnative.RID, rect gdnative.Rect2, screen gdnative.Int) {
 	log.Println("Calling VisualServer.ViewportAttachToScreen()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(rect)
-	goArguments[2] = reflect.ValueOf(screen)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromRect2(rect)
+	ptrArguments[2] = gdnative.NewPointerFromInt(screen)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_attach_to_screen")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_attach_to_screen", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Creates an empty viewport.
+        Creates an empty viewport.
+	Args: [], Returns: RID
 */
-func (o *visualServer) ViewportCreate() *RID {
+
+func (o *visualServer) ViewportCreate() gdnative.RID {
 	log.Println("Calling VisualServer.ViewportCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "viewport_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Detaches the viewport from the screen.
+        Detaches the viewport from the screen.
+	Args: [{ false viewport RID}], Returns: void
 */
-func (o *visualServer) ViewportDetach(viewport *RID) {
+
+func (o *visualServer) ViewportDetach(viewport gdnative.RID) {
 	log.Println("Calling VisualServer.ViewportDetach()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(viewport)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_detach")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_detach", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns a viewport's render info. for options see VIEWPORT_RENDER_INFO* constants.
+        Returns a viewport's render info. for options see VIEWPORT_RENDER_INFO* constants.
+	Args: [{ false viewport RID} { false info int}], Returns: int
 */
-func (o *visualServer) ViewportGetRenderInfo(viewport *RID, info gdnative.Int) gdnative.Int {
+
+func (o *visualServer) ViewportGetRenderInfo(viewport gdnative.RID, info gdnative.Int) gdnative.Int {
 	log.Println("Calling VisualServer.ViewportGetRenderInfo()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(info)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromInt(info)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_get_render_info")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "viewport_get_render_info", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the viewport's last rendered frame.
+        Returns the viewport's last rendered frame.
+	Args: [{ false viewport RID}], Returns: RID
 */
-func (o *visualServer) ViewportGetTexture(viewport *RID) *RID {
+
+func (o *visualServer) ViewportGetTexture(viewport gdnative.RID) gdnative.RID {
 	log.Println("Calling VisualServer.ViewportGetTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(viewport)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_get_texture")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "viewport_get_texture", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Detaches a viewport from a canvas and vice versa.
+        Detaches a viewport from a canvas and vice versa.
+	Args: [{ false viewport RID} { false canvas RID}], Returns: void
 */
-func (o *visualServer) ViewportRemoveCanvas(viewport *RID, canvas *RID) {
+
+func (o *visualServer) ViewportRemoveCanvas(viewport gdnative.RID, canvas gdnative.RID) {
 	log.Println("Calling VisualServer.ViewportRemoveCanvas()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(canvas)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromRid(canvas)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_remove_canvas")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_remove_canvas", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]true[/code], sets the viewport active, else sets it inactive.
+        If [code]true[/code], sets the viewport active, else sets it inactive.
+	Args: [{ false viewport RID} { false active bool}], Returns: void
 */
-func (o *visualServer) ViewportSetActive(viewport *RID, active gdnative.Bool) {
+
+func (o *visualServer) ViewportSetActive(viewport gdnative.RID, active gdnative.Bool) {
 	log.Println("Calling VisualServer.ViewportSetActive()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(active)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromBool(active)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_active")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_active", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the renderlayer for a viewport's canvas.
+        Sets the renderlayer for a viewport's canvas.
+	Args: [{ false viewport RID} { false canvas RID} { false layer int}], Returns: void
 */
-func (o *visualServer) ViewportSetCanvasLayer(viewport *RID, canvas *RID, layer gdnative.Int) {
+
+func (o *visualServer) ViewportSetCanvasLayer(viewport gdnative.RID, canvas gdnative.RID, layer gdnative.Int) {
 	log.Println("Calling VisualServer.ViewportSetCanvasLayer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(canvas)
-	goArguments[2] = reflect.ValueOf(layer)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromRid(canvas)
+	ptrArguments[2] = gdnative.NewPointerFromInt(layer)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_canvas_layer")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_canvas_layer", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the transformation of a viewport's canvas.
+        Sets the transformation of a viewport's canvas.
+	Args: [{ false viewport RID} { false canvas RID} { false offset Transform2D}], Returns: void
 */
-func (o *visualServer) ViewportSetCanvasTransform(viewport *RID, canvas *RID, offset *Transform2D) {
+
+func (o *visualServer) ViewportSetCanvasTransform(viewport gdnative.RID, canvas gdnative.RID, offset gdnative.Transform2D) {
 	log.Println("Calling VisualServer.ViewportSetCanvasTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(canvas)
-	goArguments[2] = reflect.ValueOf(offset)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromRid(canvas)
+	ptrArguments[2] = gdnative.NewPointerFromTransform2D(offset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_canvas_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_canvas_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the clear mode of a viewport. See VIEWPORT_CLEAR_MODE_* constants for options.
+        Sets the clear mode of a viewport. See VIEWPORT_CLEAR_MODE_* constants for options.
+	Args: [{ false viewport RID} { false clear_mode int}], Returns: void
 */
-func (o *visualServer) ViewportSetClearMode(viewport *RID, clearMode gdnative.Int) {
+
+func (o *visualServer) ViewportSetClearMode(viewport gdnative.RID, clearMode gdnative.Int) {
 	log.Println("Calling VisualServer.ViewportSetClearMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(clearMode)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromInt(clearMode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_clear_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_clear_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the debug draw mode of a viewport. See VIEWPORT_DEBUG_DRAW_* constants for options.
+        Sets the debug draw mode of a viewport. See VIEWPORT_DEBUG_DRAW_* constants for options.
+	Args: [{ false viewport RID} { false draw int}], Returns: void
 */
-func (o *visualServer) ViewportSetDebugDraw(viewport *RID, draw gdnative.Int) {
+
+func (o *visualServer) ViewportSetDebugDraw(viewport gdnative.RID, draw gdnative.Int) {
 	log.Println("Calling VisualServer.ViewportSetDebugDraw()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(draw)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromInt(draw)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_debug_draw")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_debug_draw", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]true[/code] a viewport's 3D rendering should be disabled.
+        If [code]true[/code] a viewport's 3D rendering should be disabled.
+	Args: [{ false viewport RID} { false disabled bool}], Returns: void
 */
-func (o *visualServer) ViewportSetDisable3D(viewport *RID, disabled gdnative.Bool) {
+
+func (o *visualServer) ViewportSetDisable3D(viewport gdnative.RID, disabled gdnative.Bool) {
 	log.Println("Calling VisualServer.ViewportSetDisable3D()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(disabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromBool(disabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_disable_3d")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_disable_3d", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]true[/code] rendering of a viewport's environment should be disabled.
+        If [code]true[/code] rendering of a viewport's environment should be disabled.
+	Args: [{ false viewport RID} { false disabled bool}], Returns: void
 */
-func (o *visualServer) ViewportSetDisableEnvironment(viewport *RID, disabled gdnative.Bool) {
+
+func (o *visualServer) ViewportSetDisableEnvironment(viewport gdnative.RID, disabled gdnative.Bool) {
 	log.Println("Calling VisualServer.ViewportSetDisableEnvironment()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(disabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromBool(disabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_disable_environment")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_disable_environment", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the viewport's global transformation matrix.
+        Sets the viewport's global transformation matrix.
+	Args: [{ false viewport RID} { false transform Transform2D}], Returns: void
 */
-func (o *visualServer) ViewportSetGlobalCanvasTransform(viewport *RID, transform *Transform2D) {
+
+func (o *visualServer) ViewportSetGlobalCanvasTransform(viewport gdnative.RID, transform gdnative.Transform2D) {
 	log.Println("Calling VisualServer.ViewportSetGlobalCanvasTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromTransform2D(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_global_canvas_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_global_canvas_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]true[/code] the viewport should render to hdr.
+        If [code]true[/code] the viewport should render to hdr.
+	Args: [{ false viewport RID} { false enabled bool}], Returns: void
 */
-func (o *visualServer) ViewportSetHdr(viewport *RID, enabled gdnative.Bool) {
+
+func (o *visualServer) ViewportSetHdr(viewport gdnative.RID, enabled gdnative.Bool) {
 	log.Println("Calling VisualServer.ViewportSetHdr()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_hdr")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_hdr", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]true[/code] the viewport's canvas should not be rendered.
+        If [code]true[/code] the viewport's canvas should not be rendered.
+	Args: [{ false viewport RID} { false hidden bool}], Returns: void
 */
-func (o *visualServer) ViewportSetHideCanvas(viewport *RID, hidden gdnative.Bool) {
+
+func (o *visualServer) ViewportSetHideCanvas(viewport gdnative.RID, hidden gdnative.Bool) {
 	log.Println("Calling VisualServer.ViewportSetHideCanvas()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(hidden)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromBool(hidden)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_hide_canvas")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_hide_canvas", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *visualServer) ViewportSetHideScenario(viewport *RID, hidden gdnative.Bool) {
+	Args: [{ false viewport RID} { false hidden bool}], Returns: void
+*/
+
+func (o *visualServer) ViewportSetHideScenario(viewport gdnative.RID, hidden gdnative.Bool) {
 	log.Println("Calling VisualServer.ViewportSetHideScenario()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(hidden)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromBool(hidden)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_hide_scenario")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_hide_scenario", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the anti-aliasing mode. see [enum ViewportMSAA] for options.
+        Sets the anti-aliasing mode. see [enum ViewportMSAA] for options.
+	Args: [{ false viewport RID} { false msaa int}], Returns: void
 */
-func (o *visualServer) ViewportSetMsaa(viewport *RID, msaa gdnative.Int) {
+
+func (o *visualServer) ViewportSetMsaa(viewport gdnative.RID, msaa gdnative.Int) {
 	log.Println("Calling VisualServer.ViewportSetMsaa()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(msaa)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromInt(msaa)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_msaa")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_msaa", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the viewport's parent to another viewport.
+        Sets the viewport's parent to another viewport.
+	Args: [{ false viewport RID} { false parent_viewport RID}], Returns: void
 */
-func (o *visualServer) ViewportSetParentViewport(viewport *RID, parentViewport *RID) {
+
+func (o *visualServer) ViewportSetParentViewport(viewport gdnative.RID, parentViewport gdnative.RID) {
 	log.Println("Calling VisualServer.ViewportSetParentViewport()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(parentViewport)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromRid(parentViewport)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_parent_viewport")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_parent_viewport", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a viewport's scenario. The scenario contains information about the [enum ScenarioDebugMode], environment information, reflection atlas etc.
+        Sets a viewport's scenario. The scenario contains information about the [enum ScenarioDebugMode], environment information, reflection atlas etc.
+	Args: [{ false viewport RID} { false scenario RID}], Returns: void
 */
-func (o *visualServer) ViewportSetScenario(viewport *RID, scenario *RID) {
+
+func (o *visualServer) ViewportSetScenario(viewport gdnative.RID, scenario gdnative.RID) {
 	log.Println("Calling VisualServer.ViewportSetScenario()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(scenario)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromRid(scenario)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_scenario")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_scenario", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the shadow atlas quadrant's subdivision.
+        Sets the shadow atlas quadrant's subdivision.
+	Args: [{ false viewport RID} { false quadrant int} { false subdivision int}], Returns: void
 */
-func (o *visualServer) ViewportSetShadowAtlasQuadrantSubdivision(viewport *RID, quadrant gdnative.Int, subdivision gdnative.Int) {
+
+func (o *visualServer) ViewportSetShadowAtlasQuadrantSubdivision(viewport gdnative.RID, quadrant gdnative.Int, subdivision gdnative.Int) {
 	log.Println("Calling VisualServer.ViewportSetShadowAtlasQuadrantSubdivision()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(quadrant)
-	goArguments[2] = reflect.ValueOf(subdivision)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromInt(quadrant)
+	ptrArguments[2] = gdnative.NewPointerFromInt(subdivision)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_shadow_atlas_quadrant_subdivision")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_shadow_atlas_quadrant_subdivision", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the size of the shadow atlas's images.
+        Sets the size of the shadow atlas's images.
+	Args: [{ false viewport RID} { false size int}], Returns: void
 */
-func (o *visualServer) ViewportSetShadowAtlasSize(viewport *RID, size gdnative.Int) {
+
+func (o *visualServer) ViewportSetShadowAtlasSize(viewport gdnative.RID, size gdnative.Int) {
 	log.Println("Calling VisualServer.ViewportSetShadowAtlasSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromInt(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_shadow_atlas_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_shadow_atlas_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the viewport's width and height.
+        Sets the viewport's width and height.
+	Args: [{ false viewport RID} { false width int} { false height int}], Returns: void
 */
-func (o *visualServer) ViewportSetSize(viewport *RID, width gdnative.Int, height gdnative.Int) {
+
+func (o *visualServer) ViewportSetSize(viewport gdnative.RID, width gdnative.Int, height gdnative.Int) {
 	log.Println("Calling VisualServer.ViewportSetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(width)
-	goArguments[2] = reflect.ValueOf(height)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromInt(width)
+	ptrArguments[2] = gdnative.NewPointerFromInt(height)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]true[/code] the viewport should render its background as transparent.
+        If [code]true[/code] the viewport should render its background as transparent.
+	Args: [{ false viewport RID} { false enabled bool}], Returns: void
 */
-func (o *visualServer) ViewportSetTransparentBackground(viewport *RID, enabled gdnative.Bool) {
+
+func (o *visualServer) ViewportSetTransparentBackground(viewport gdnative.RID, enabled gdnative.Bool) {
 	log.Println("Calling VisualServer.ViewportSetTransparentBackground()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_transparent_background")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_transparent_background", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets when the viewport should be updated. See VIEWPORT_UPDATE_MODE_* constants for options.
+        Sets when the viewport should be updated. See VIEWPORT_UPDATE_MODE_* constants for options.
+	Args: [{ false viewport RID} { false update_mode int}], Returns: void
 */
-func (o *visualServer) ViewportSetUpdateMode(viewport *RID, updateMode gdnative.Int) {
+
+func (o *visualServer) ViewportSetUpdateMode(viewport gdnative.RID, updateMode gdnative.Int) {
 	log.Println("Calling VisualServer.ViewportSetUpdateMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(updateMode)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromInt(updateMode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_update_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_update_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets what should be rendered in the viewport. See VIEWPORT_USAGE_* constants for options.
+        Sets what should be rendered in the viewport. See VIEWPORT_USAGE_* constants for options.
+	Args: [{ false viewport RID} { false usage int}], Returns: void
 */
-func (o *visualServer) ViewportSetUsage(viewport *RID, usage gdnative.Int) {
+
+func (o *visualServer) ViewportSetUsage(viewport gdnative.RID, usage gdnative.Int) {
 	log.Println("Calling VisualServer.ViewportSetUsage()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(usage)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromInt(usage)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_usage")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_usage", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]true[/code] the viewport should use augmented or virtual reality technologies. See [ARVRInterface].
+        If [code]true[/code] the viewport should use augmented or virtual reality technologies. See [ARVRInterface].
+	Args: [{ false viewport RID} { false use_arvr bool}], Returns: void
 */
-func (o *visualServer) ViewportSetUseArvr(viewport *RID, useArvr gdnative.Bool) {
+
+func (o *visualServer) ViewportSetUseArvr(viewport gdnative.RID, useArvr gdnative.Bool) {
 	log.Println("Calling VisualServer.ViewportSetUseArvr()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(useArvr)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromBool(useArvr)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_use_arvr")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_use_arvr", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]true[/code] the viewport's rendering should be flipped vertically.
+        If [code]true[/code] the viewport's rendering should be flipped vertically.
+	Args: [{ false viewport RID} { false enabled bool}], Returns: void
 */
-func (o *visualServer) ViewportSetVflip(viewport *RID, enabled gdnative.Bool) {
+
+func (o *visualServer) ViewportSetVflip(viewport gdnative.RID, enabled gdnative.Bool) {
 	log.Println("Calling VisualServer.ViewportSetVflip()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(viewport)
-	goArguments[1] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(viewport)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "viewport_set_vflip")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "viewport_set_vflip", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }

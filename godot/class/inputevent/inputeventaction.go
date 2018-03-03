@@ -2,7 +2,6 @@ package inputevent
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -16,6 +15,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewInputEventActionFromPointer(ptr gdnative.Pointer) *InputEventAction {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := InputEventAction{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Contains a generic action which can be targeted from several type of inputs. Actions can be created from the project settings menu [code]Project > Project Settings > Input Map[/code]. See [method Node._input].
 */
@@ -28,64 +36,71 @@ func (o *InputEventAction) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *InputEventAction) GetAction() gdnative.String {
 	log.Println("Calling InputEventAction.GetAction()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventAction", "get_action")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_action", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false action String}], Returns: void
 */
+
 func (o *InputEventAction) SetAction(action gdnative.String) {
 	log.Println("Calling InputEventAction.SetAction()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(action)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(action)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventAction", "set_action")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_action", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false pressed bool}], Returns: void
 */
+
 func (o *InputEventAction) SetPressed(pressed gdnative.Bool) {
 	log.Println("Calling InputEventAction.SetPressed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pressed)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(pressed)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventAction", "set_pressed")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_pressed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   InputEventActionImplementer is an interface for InputEventAction objects.
-*/
-type InputEventActionImplementer interface {
-	Class
 }

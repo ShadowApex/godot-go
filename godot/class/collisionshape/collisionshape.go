@@ -2,9 +2,13 @@ package collisionshape
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/shape"
+	"github.com/shadowapex/godot-go/godot/class/spatial"
+
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +20,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewCollisionShapeFromPointer(ptr gdnative.Pointer) *CollisionShape {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := CollisionShape{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Editor facility for creating and editing collision shapes in 3D space. You can use this node to represent all sorts of collision shapes, for example, add this to an [Area] to give it a detection shape, or add it to a [PhysicsBody] to give create solid object. [b]IMPORTANT[/b]: this is an Editor-only helper to create shapes, use [method get_shape] to get the actual shape.
 */
 type CollisionShape struct {
-	Spatial
+	spatial.Spatial
 }
 
 func (o *CollisionShape) BaseClass() string {
@@ -28,119 +41,140 @@ func (o *CollisionShape) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Shape
 */
-func (o *CollisionShape) GetShape() *Shape {
+
+func (o *CollisionShape) GetShape() shape.Shape {
 	log.Println("Calling CollisionShape.GetShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionShape", "get_shape")
 
 	// Call the parent method.
+	// Shape
+	retPtr := shape.NewEmptyShape()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_shape", goArguments, "*Shape")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := shape.NewShapeFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Shape)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *CollisionShape) IsDisabled() gdnative.Bool {
 	log.Println("Calling CollisionShape.IsDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionShape", "is_disabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_disabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets the collision shape's shape to the addition of all its convexed [MeshInstance] siblings geometry.
+        Sets the collision shape's shape to the addition of all its convexed [MeshInstance] siblings geometry.
+	Args: [], Returns: void
 */
+
 func (o *CollisionShape) MakeConvexFromBrothers() {
 	log.Println("Calling CollisionShape.MakeConvexFromBrothers()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionShape", "make_convex_from_brothers")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "make_convex_from_brothers", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If this method exists within a script it will be called whenever the shape resource has been modified.
+        If this method exists within a script it will be called whenever the shape resource has been modified.
+	Args: [{ false resource Resource}], Returns: void
 */
-func (o *CollisionShape) ResourceChanged(resource *Resource) {
+
+func (o *CollisionShape) ResourceChanged(resource resource.Resource) {
 	log.Println("Calling CollisionShape.ResourceChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(resource)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(resource.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionShape", "resource_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "resource_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *CollisionShape) SetDisabled(enable gdnative.Bool) {
 	log.Println("Calling CollisionShape.SetDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionShape", "set_disabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_disabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false shape Shape}], Returns: void
 */
-func (o *CollisionShape) SetShape(shape *Shape) {
+
+func (o *CollisionShape) SetShape(shape shape.Shape) {
 	log.Println("Calling CollisionShape.SetShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(shape)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(shape.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionShape", "set_shape")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_shape", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   CollisionShapeImplementer is an interface for CollisionShape objects.
-*/
-type CollisionShapeImplementer interface {
-	Class
 }

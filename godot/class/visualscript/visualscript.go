@@ -2,9 +2,9 @@ package visualscript
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/script"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewVisualScriptFromPointer(ptr gdnative.Pointer) *VisualScript {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := VisualScript{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
 type VisualScript struct {
-	Script
+	script.Script
 }
 
 func (o *VisualScript) BaseClass() string {
@@ -28,919 +37,1103 @@ func (o *VisualScript) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Dictionary
 */
-func (o *VisualScript) X_GetData() *Dictionary {
+
+func (o *VisualScript) X_GetData() gdnative.Dictionary {
 	log.Println("Calling VisualScript.X_GetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "_get_data")
 
 	// Call the parent method.
+	// Dictionary
+	retPtr := gdnative.NewEmptyDictionary()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_data", goArguments, "*Dictionary")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewDictionaryFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Dictionary)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 int}], Returns: void
 */
+
 func (o *VisualScript) X_NodePortsChanged(arg0 gdnative.Int) {
 	log.Println("Calling VisualScript.X_NodePortsChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "_node_ports_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_node_ports_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false data Dictionary}], Returns: void
 */
-func (o *VisualScript) X_SetData(data *Dictionary) {
+
+func (o *VisualScript) X_SetData(data gdnative.Dictionary) {
 	log.Println("Calling VisualScript.X_SetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(data)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromDictionary(data)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "_set_data")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_data", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String}], Returns: void
 */
+
 func (o *VisualScript) AddCustomSignal(name gdnative.String) {
 	log.Println("Calling VisualScript.AddCustomSignal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "add_custom_signal")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_custom_signal", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String}], Returns: void
 */
+
 func (o *VisualScript) AddFunction(name gdnative.String) {
 	log.Println("Calling VisualScript.AddFunction()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "add_function")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_function", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false func String} { false id int} { false node VisualScriptNode} {(0, 0) true position Vector2}], Returns: void
 */
-func (o *VisualScript) AddNode(function gdnative.String, id gdnative.Int, node *VisualScriptNode, position *Vector2) {
+
+func (o *VisualScript) AddNode(function gdnative.String, id gdnative.Int, node VisualScriptNode, position gdnative.Vector2) {
 	log.Println("Calling VisualScript.AddNode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(function)
-	goArguments[1] = reflect.ValueOf(id)
-	goArguments[2] = reflect.ValueOf(node)
-	goArguments[3] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromString(function)
+	ptrArguments[1] = gdnative.NewPointerFromInt(id)
+	ptrArguments[2] = gdnative.NewPointerFromObject(node.GetOwner())
+	ptrArguments[3] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "add_node")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_node", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String} {Null true default_value Variant} {False true export bool}], Returns: void
 */
-func (o *VisualScript) AddVariable(name gdnative.String, defaultValue *Variant, export gdnative.Bool) {
+
+func (o *VisualScript) AddVariable(name gdnative.String, defaultValue gdnative.Variant, export gdnative.Bool) {
 	log.Println("Calling VisualScript.AddVariable()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(defaultValue)
-	goArguments[2] = reflect.ValueOf(export)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(defaultValue)
+	ptrArguments[2] = gdnative.NewPointerFromBool(export)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "add_variable")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_variable", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String} { false type int} { false argname String} {-1 true index int}], Returns: void
 */
+
 func (o *VisualScript) CustomSignalAddArgument(name gdnative.String, aType gdnative.Int, argname gdnative.String, index gdnative.Int) {
 	log.Println("Calling VisualScript.CustomSignalAddArgument()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(aType)
-	goArguments[2] = reflect.ValueOf(argname)
-	goArguments[3] = reflect.ValueOf(index)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromInt(aType)
+	ptrArguments[2] = gdnative.NewPointerFromString(argname)
+	ptrArguments[3] = gdnative.NewPointerFromInt(index)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "custom_signal_add_argument")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "custom_signal_add_argument", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String}], Returns: int
 */
+
 func (o *VisualScript) CustomSignalGetArgumentCount(name gdnative.String) gdnative.Int {
 	log.Println("Calling VisualScript.CustomSignalGetArgumentCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "custom_signal_get_argument_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "custom_signal_get_argument_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String} { false argidx int}], Returns: String
 */
+
 func (o *VisualScript) CustomSignalGetArgumentName(name gdnative.String, argidx gdnative.Int) gdnative.String {
 	log.Println("Calling VisualScript.CustomSignalGetArgumentName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(argidx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromInt(argidx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "custom_signal_get_argument_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "custom_signal_get_argument_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String} { false argidx int}], Returns: enum.Variant::Type
 */
-func (o *VisualScript) CustomSignalGetArgumentType(name gdnative.String, argidx gdnative.Int) gdnative.Int {
-	log.Println("Calling VisualScript.CustomSignalGetArgumentType()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(argidx)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "custom_signal_get_argument_type", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String} { false argidx int}], Returns: void
 */
+
 func (o *VisualScript) CustomSignalRemoveArgument(name gdnative.String, argidx gdnative.Int) {
 	log.Println("Calling VisualScript.CustomSignalRemoveArgument()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(argidx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromInt(argidx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "custom_signal_remove_argument")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "custom_signal_remove_argument", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String} { false argidx int} { false argname String}], Returns: void
 */
+
 func (o *VisualScript) CustomSignalSetArgumentName(name gdnative.String, argidx gdnative.Int, argname gdnative.String) {
 	log.Println("Calling VisualScript.CustomSignalSetArgumentName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(argidx)
-	goArguments[2] = reflect.ValueOf(argname)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromInt(argidx)
+	ptrArguments[2] = gdnative.NewPointerFromString(argname)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "custom_signal_set_argument_name")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "custom_signal_set_argument_name", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String} { false argidx int} { false type int}], Returns: void
 */
+
 func (o *VisualScript) CustomSignalSetArgumentType(name gdnative.String, argidx gdnative.Int, aType gdnative.Int) {
 	log.Println("Calling VisualScript.CustomSignalSetArgumentType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(argidx)
-	goArguments[2] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromInt(argidx)
+	ptrArguments[2] = gdnative.NewPointerFromInt(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "custom_signal_set_argument_type")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "custom_signal_set_argument_type", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String} { false argidx int} { false withidx int}], Returns: void
 */
+
 func (o *VisualScript) CustomSignalSwapArgument(name gdnative.String, argidx gdnative.Int, withidx gdnative.Int) {
 	log.Println("Calling VisualScript.CustomSignalSwapArgument()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(argidx)
-	goArguments[2] = reflect.ValueOf(withidx)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromInt(argidx)
+	ptrArguments[2] = gdnative.NewPointerFromInt(withidx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "custom_signal_swap_argument")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "custom_signal_swap_argument", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false func String} { false from_node int} { false from_port int} { false to_node int} { false to_port int}], Returns: void
 */
+
 func (o *VisualScript) DataConnect(function gdnative.String, fromNode gdnative.Int, fromPort gdnative.Int, toNode gdnative.Int, toPort gdnative.Int) {
 	log.Println("Calling VisualScript.DataConnect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(function)
-	goArguments[1] = reflect.ValueOf(fromNode)
-	goArguments[2] = reflect.ValueOf(fromPort)
-	goArguments[3] = reflect.ValueOf(toNode)
-	goArguments[4] = reflect.ValueOf(toPort)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromString(function)
+	ptrArguments[1] = gdnative.NewPointerFromInt(fromNode)
+	ptrArguments[2] = gdnative.NewPointerFromInt(fromPort)
+	ptrArguments[3] = gdnative.NewPointerFromInt(toNode)
+	ptrArguments[4] = gdnative.NewPointerFromInt(toPort)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "data_connect")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "data_connect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false func String} { false from_node int} { false from_port int} { false to_node int} { false to_port int}], Returns: void
 */
+
 func (o *VisualScript) DataDisconnect(function gdnative.String, fromNode gdnative.Int, fromPort gdnative.Int, toNode gdnative.Int, toPort gdnative.Int) {
 	log.Println("Calling VisualScript.DataDisconnect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(function)
-	goArguments[1] = reflect.ValueOf(fromNode)
-	goArguments[2] = reflect.ValueOf(fromPort)
-	goArguments[3] = reflect.ValueOf(toNode)
-	goArguments[4] = reflect.ValueOf(toPort)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromString(function)
+	ptrArguments[1] = gdnative.NewPointerFromInt(fromNode)
+	ptrArguments[2] = gdnative.NewPointerFromInt(fromPort)
+	ptrArguments[3] = gdnative.NewPointerFromInt(toNode)
+	ptrArguments[4] = gdnative.NewPointerFromInt(toPort)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "data_disconnect")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "data_disconnect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String}], Returns: int
 */
+
 func (o *VisualScript) GetFunctionNodeId(name gdnative.String) gdnative.Int {
 	log.Println("Calling VisualScript.GetFunctionNodeId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "get_function_node_id")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_function_node_id", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String}], Returns: Vector2
 */
-func (o *VisualScript) GetFunctionScroll(name gdnative.String) *Vector2 {
+
+func (o *VisualScript) GetFunctionScroll(name gdnative.String) gdnative.Vector2 {
 	log.Println("Calling VisualScript.GetFunctionScroll()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "get_function_scroll")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_function_scroll", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false func String} { false id int}], Returns: VisualScriptNode
 */
-func (o *VisualScript) GetNode(function gdnative.String, id gdnative.Int) *VisualScriptNode {
+
+func (o *VisualScript) GetNode(function gdnative.String, id gdnative.Int) VisualScriptNode {
 	log.Println("Calling VisualScript.GetNode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(function)
-	goArguments[1] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(function)
+	ptrArguments[1] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "get_node")
 
 	// Call the parent method.
+	// VisualScriptNode
+	retPtr := NewEmptyVisualScriptNode()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node", goArguments, "*VisualScriptNode")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewVisualScriptNodeFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*VisualScriptNode)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false func String} { false id int}], Returns: Vector2
 */
-func (o *VisualScript) GetNodePosition(function gdnative.String, id gdnative.Int) *Vector2 {
+
+func (o *VisualScript) GetNodePosition(function gdnative.String, id gdnative.Int) gdnative.Vector2 {
 	log.Println("Calling VisualScript.GetNodePosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(function)
-	goArguments[1] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(function)
+	ptrArguments[1] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "get_node_position")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_position", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String}], Returns: Variant
 */
-func (o *VisualScript) GetVariableDefaultValue(name gdnative.String) *Variant {
+
+func (o *VisualScript) GetVariableDefaultValue(name gdnative.String) gdnative.Variant {
 	log.Println("Calling VisualScript.GetVariableDefaultValue()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "get_variable_default_value")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_variable_default_value", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String}], Returns: bool
 */
+
 func (o *VisualScript) GetVariableExport(name gdnative.String) gdnative.Bool {
 	log.Println("Calling VisualScript.GetVariableExport()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "get_variable_export")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_variable_export", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String}], Returns: Dictionary
 */
-func (o *VisualScript) GetVariableInfo(name gdnative.String) *Dictionary {
+
+func (o *VisualScript) GetVariableInfo(name gdnative.String) gdnative.Dictionary {
 	log.Println("Calling VisualScript.GetVariableInfo()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "get_variable_info")
 
 	// Call the parent method.
+	// Dictionary
+	retPtr := gdnative.NewEmptyDictionary()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_variable_info", goArguments, "*Dictionary")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewDictionaryFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Dictionary)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String}], Returns: bool
 */
+
 func (o *VisualScript) HasCustomSignal(name gdnative.String) gdnative.Bool {
 	log.Println("Calling VisualScript.HasCustomSignal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "has_custom_signal")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_custom_signal", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false func String} { false from_node int} { false from_port int} { false to_node int} { false to_port int}], Returns: bool
 */
+
 func (o *VisualScript) HasDataConnection(function gdnative.String, fromNode gdnative.Int, fromPort gdnative.Int, toNode gdnative.Int, toPort gdnative.Int) gdnative.Bool {
 	log.Println("Calling VisualScript.HasDataConnection()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(function)
-	goArguments[1] = reflect.ValueOf(fromNode)
-	goArguments[2] = reflect.ValueOf(fromPort)
-	goArguments[3] = reflect.ValueOf(toNode)
-	goArguments[4] = reflect.ValueOf(toPort)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromString(function)
+	ptrArguments[1] = gdnative.NewPointerFromInt(fromNode)
+	ptrArguments[2] = gdnative.NewPointerFromInt(fromPort)
+	ptrArguments[3] = gdnative.NewPointerFromInt(toNode)
+	ptrArguments[4] = gdnative.NewPointerFromInt(toPort)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "has_data_connection")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_data_connection", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String}], Returns: bool
 */
+
 func (o *VisualScript) HasFunction(name gdnative.String) gdnative.Bool {
 	log.Println("Calling VisualScript.HasFunction()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "has_function")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_function", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false func String} { false id int}], Returns: bool
 */
+
 func (o *VisualScript) HasNode(function gdnative.String, id gdnative.Int) gdnative.Bool {
 	log.Println("Calling VisualScript.HasNode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(function)
-	goArguments[1] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(function)
+	ptrArguments[1] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "has_node")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_node", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false func String} { false from_node int} { false from_output int} { false to_node int}], Returns: bool
 */
+
 func (o *VisualScript) HasSequenceConnection(function gdnative.String, fromNode gdnative.Int, fromOutput gdnative.Int, toNode gdnative.Int) gdnative.Bool {
 	log.Println("Calling VisualScript.HasSequenceConnection()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(function)
-	goArguments[1] = reflect.ValueOf(fromNode)
-	goArguments[2] = reflect.ValueOf(fromOutput)
-	goArguments[3] = reflect.ValueOf(toNode)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromString(function)
+	ptrArguments[1] = gdnative.NewPointerFromInt(fromNode)
+	ptrArguments[2] = gdnative.NewPointerFromInt(fromOutput)
+	ptrArguments[3] = gdnative.NewPointerFromInt(toNode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "has_sequence_connection")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_sequence_connection", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String}], Returns: bool
 */
+
 func (o *VisualScript) HasVariable(name gdnative.String) gdnative.Bool {
 	log.Println("Calling VisualScript.HasVariable()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "has_variable")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_variable", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String}], Returns: void
 */
+
 func (o *VisualScript) RemoveCustomSignal(name gdnative.String) {
 	log.Println("Calling VisualScript.RemoveCustomSignal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "remove_custom_signal")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_custom_signal", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String}], Returns: void
 */
+
 func (o *VisualScript) RemoveFunction(name gdnative.String) {
 	log.Println("Calling VisualScript.RemoveFunction()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "remove_function")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_function", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false func String} { false id int}], Returns: void
 */
+
 func (o *VisualScript) RemoveNode(function gdnative.String, id gdnative.Int) {
 	log.Println("Calling VisualScript.RemoveNode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(function)
-	goArguments[1] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(function)
+	ptrArguments[1] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "remove_node")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_node", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String}], Returns: void
 */
+
 func (o *VisualScript) RemoveVariable(name gdnative.String) {
 	log.Println("Calling VisualScript.RemoveVariable()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "remove_variable")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_variable", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String} { false new_name String}], Returns: void
 */
+
 func (o *VisualScript) RenameCustomSignal(name gdnative.String, newName gdnative.String) {
 	log.Println("Calling VisualScript.RenameCustomSignal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(newName)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromString(newName)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "rename_custom_signal")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "rename_custom_signal", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String} { false new_name String}], Returns: void
 */
+
 func (o *VisualScript) RenameFunction(name gdnative.String, newName gdnative.String) {
 	log.Println("Calling VisualScript.RenameFunction()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(newName)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromString(newName)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "rename_function")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "rename_function", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String} { false new_name String}], Returns: void
 */
+
 func (o *VisualScript) RenameVariable(name gdnative.String, newName gdnative.String) {
 	log.Println("Calling VisualScript.RenameVariable()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(newName)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromString(newName)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "rename_variable")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "rename_variable", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false func String} { false from_node int} { false from_output int} { false to_node int}], Returns: void
 */
+
 func (o *VisualScript) SequenceConnect(function gdnative.String, fromNode gdnative.Int, fromOutput gdnative.Int, toNode gdnative.Int) {
 	log.Println("Calling VisualScript.SequenceConnect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(function)
-	goArguments[1] = reflect.ValueOf(fromNode)
-	goArguments[2] = reflect.ValueOf(fromOutput)
-	goArguments[3] = reflect.ValueOf(toNode)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromString(function)
+	ptrArguments[1] = gdnative.NewPointerFromInt(fromNode)
+	ptrArguments[2] = gdnative.NewPointerFromInt(fromOutput)
+	ptrArguments[3] = gdnative.NewPointerFromInt(toNode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "sequence_connect")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "sequence_connect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false func String} { false from_node int} { false from_output int} { false to_node int}], Returns: void
 */
+
 func (o *VisualScript) SequenceDisconnect(function gdnative.String, fromNode gdnative.Int, fromOutput gdnative.Int, toNode gdnative.Int) {
 	log.Println("Calling VisualScript.SequenceDisconnect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(function)
-	goArguments[1] = reflect.ValueOf(fromNode)
-	goArguments[2] = reflect.ValueOf(fromOutput)
-	goArguments[3] = reflect.ValueOf(toNode)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromString(function)
+	ptrArguments[1] = gdnative.NewPointerFromInt(fromNode)
+	ptrArguments[2] = gdnative.NewPointerFromInt(fromOutput)
+	ptrArguments[3] = gdnative.NewPointerFromInt(toNode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "sequence_disconnect")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "sequence_disconnect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String} { false ofs Vector2}], Returns: void
 */
-func (o *VisualScript) SetFunctionScroll(name gdnative.String, ofs *Vector2) {
+
+func (o *VisualScript) SetFunctionScroll(name gdnative.String, ofs gdnative.Vector2) {
 	log.Println("Calling VisualScript.SetFunctionScroll()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(ofs)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(ofs)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "set_function_scroll")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_function_scroll", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false type String}], Returns: void
 */
+
 func (o *VisualScript) SetInstanceBaseType(aType gdnative.String) {
 	log.Println("Calling VisualScript.SetInstanceBaseType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "set_instance_base_type")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_instance_base_type", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false func String} { false id int} { false position Vector2}], Returns: void
 */
-func (o *VisualScript) SetNodePosition(function gdnative.String, id gdnative.Int, position *Vector2) {
+
+func (o *VisualScript) SetNodePosition(function gdnative.String, id gdnative.Int, position gdnative.Vector2) {
 	log.Println("Calling VisualScript.SetNodePosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(function)
-	goArguments[1] = reflect.ValueOf(id)
-	goArguments[2] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(function)
+	ptrArguments[1] = gdnative.NewPointerFromInt(id)
+	ptrArguments[2] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "set_node_position")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_node_position", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String} { false value Variant}], Returns: void
 */
-func (o *VisualScript) SetVariableDefaultValue(name gdnative.String, value *Variant) {
+
+func (o *VisualScript) SetVariableDefaultValue(name gdnative.String, value gdnative.Variant) {
 	log.Println("Calling VisualScript.SetVariableDefaultValue()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "set_variable_default_value")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_variable_default_value", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String} { false enable bool}], Returns: void
 */
+
 func (o *VisualScript) SetVariableExport(name gdnative.String, enable gdnative.Bool) {
 	log.Println("Calling VisualScript.SetVariableExport()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "set_variable_export")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_variable_export", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String} { false value Dictionary}], Returns: void
 */
-func (o *VisualScript) SetVariableInfo(name gdnative.String, value *Dictionary) {
+
+func (o *VisualScript) SetVariableInfo(name gdnative.String, value gdnative.Dictionary) {
 	log.Println("Calling VisualScript.SetVariableInfo()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(name)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromDictionary(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "set_variable_info")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_variable_info", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   VisualScriptImplementer is an interface for VisualScript objects.
-*/
-type VisualScriptImplementer interface {
-	Class
 }

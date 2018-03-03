@@ -2,9 +2,15 @@ package basebutton
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/control"
+	"github.com/shadowapex/godot-go/godot/class/inputevent"
+
+	"github.com/shadowapex/godot-go/godot/class/buttongroup"
+
+	"github.com/shadowapex/godot-go/godot/class/shortcut"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +22,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewBaseButtonFromPointer(ptr gdnative.Pointer) *BaseButton {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := BaseButton{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 BaseButton is the abstract base class for buttons, so it shouldn't be used directly (it doesn't display anything). Other types of buttons inherit from it.
 */
 type BaseButton struct {
-	Control
+	control.Control
 }
 
 func (o *BaseButton) BaseClass() string {
@@ -28,385 +43,413 @@ func (o *BaseButton) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *BaseButton) X_GuiInput(arg0 *InputEvent) {
+
+func (o *BaseButton) X_GuiInput(arg0 inputevent.InputEvent) {
 	log.Println("Calling BaseButton.X_GuiInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "_gui_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_gui_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Called when button is pressed.
+        Called when button is pressed.
+	Args: [], Returns: void
 */
+
 func (o *BaseButton) X_Pressed() {
 	log.Println("Calling BaseButton.X_Pressed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "_pressed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_pressed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Called when button is toggled (only if toggle_mode is active).
+        Called when button is toggled (only if toggle_mode is active).
+	Args: [{ false button_pressed bool}], Returns: void
 */
+
 func (o *BaseButton) X_Toggled(buttonPressed gdnative.Bool) {
 	log.Println("Calling BaseButton.X_Toggled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(buttonPressed)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(buttonPressed)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "_toggled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_toggled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *BaseButton) X_UnhandledInput(arg0 *InputEvent) {
+
+func (o *BaseButton) X_UnhandledInput(arg0 inputevent.InputEvent) {
 	log.Println("Calling BaseButton.X_UnhandledInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "_unhandled_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_unhandled_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.BaseButton::ActionMode
 */
-func (o *BaseButton) GetActionMode() gdnative.Int {
-	log.Println("Calling BaseButton.GetActionMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_action_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: ButtonGroup
 */
-func (o *BaseButton) GetButtonGroup() *ButtonGroup {
+
+func (o *BaseButton) GetButtonGroup() buttongroup.ButtonGroup {
 	log.Println("Calling BaseButton.GetButtonGroup()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "get_button_group")
 
 	// Call the parent method.
+	// ButtonGroup
+	retPtr := buttongroup.NewEmptyButtonGroup()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_button_group", goArguments, "*ButtonGroup")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := buttongroup.NewButtonGroupFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*ButtonGroup)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the visual state used to draw the button. This is useful mainly when implementing your own draw code by either overriding _draw() or connecting to "draw" signal. The visual state of the button is defined by the DRAW_* enum.
+        Return the visual state used to draw the button. This is useful mainly when implementing your own draw code by either overriding _draw() or connecting to "draw" signal. The visual state of the button is defined by the DRAW_* enum.
+	Args: [], Returns: enum.BaseButton::DrawMode
 */
-func (o *BaseButton) GetDrawMode() gdnative.Int {
-	log.Println("Calling BaseButton.GetDrawMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_draw_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Control::FocusMode
 */
-func (o *BaseButton) GetEnabledFocusMode() gdnative.Int {
-	log.Println("Calling BaseButton.GetEnabledFocusMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_enabled_focus_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: ShortCut
 */
-func (o *BaseButton) GetShortcut() *ShortCut {
+
+func (o *BaseButton) GetShortcut() shortcut.ShortCut {
 	log.Println("Calling BaseButton.GetShortcut()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "get_shortcut")
 
 	// Call the parent method.
+	// ShortCut
+	retPtr := shortcut.NewEmptyShortCut()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_shortcut", goArguments, "*ShortCut")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := shortcut.NewShortCutFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*ShortCut)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *BaseButton) IsDisabled() gdnative.Bool {
 	log.Println("Calling BaseButton.IsDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "is_disabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_disabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return true if mouse entered the button before it exit.
+        Return true if mouse entered the button before it exit.
+	Args: [], Returns: bool
 */
+
 func (o *BaseButton) IsHovered() gdnative.Bool {
 	log.Println("Calling BaseButton.IsHovered()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "is_hovered")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_hovered", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *BaseButton) IsPressed() gdnative.Bool {
 	log.Println("Calling BaseButton.IsPressed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "is_pressed")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_pressed", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *BaseButton) IsToggleMode() gdnative.Bool {
 	log.Println("Calling BaseButton.IsToggleMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "is_toggle_mode")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_toggle_mode", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *BaseButton) SetActionMode(mode gdnative.Int) {
 	log.Println("Calling BaseButton.SetActionMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "set_action_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_action_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false button_group ButtonGroup}], Returns: void
 */
-func (o *BaseButton) SetButtonGroup(buttonGroup *ButtonGroup) {
+
+func (o *BaseButton) SetButtonGroup(buttonGroup buttongroup.ButtonGroup) {
 	log.Println("Calling BaseButton.SetButtonGroup()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(buttonGroup)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(buttonGroup.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "set_button_group")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_button_group", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false disabled bool}], Returns: void
 */
+
 func (o *BaseButton) SetDisabled(disabled gdnative.Bool) {
 	log.Println("Calling BaseButton.SetDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(disabled)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(disabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "set_disabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_disabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *BaseButton) SetEnabledFocusMode(mode gdnative.Int) {
 	log.Println("Calling BaseButton.SetEnabledFocusMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "set_enabled_focus_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_enabled_focus_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false pressed bool}], Returns: void
 */
+
 func (o *BaseButton) SetPressed(pressed gdnative.Bool) {
 	log.Println("Calling BaseButton.SetPressed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pressed)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(pressed)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "set_pressed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_pressed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false shortcut ShortCut}], Returns: void
 */
-func (o *BaseButton) SetShortcut(shortcut *ShortCut) {
+
+func (o *BaseButton) SetShortcut(shortcut shortcut.ShortCut) {
 	log.Println("Calling BaseButton.SetShortcut()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(shortcut)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(shortcut.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "set_shortcut")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_shortcut", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enabled bool}], Returns: void
 */
+
 func (o *BaseButton) SetToggleMode(enabled gdnative.Bool) {
 	log.Println("Calling BaseButton.SetToggleMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "set_toggle_mode")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_toggle_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   BaseButtonImplementer is an interface for BaseButton objects.
-*/
-type BaseButtonImplementer interface {
-	Class
 }

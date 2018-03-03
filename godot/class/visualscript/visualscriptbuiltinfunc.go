@@ -2,7 +2,6 @@ package visualscript
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -16,6 +15,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewVisualScriptBuiltinFuncFromPointer(ptr gdnative.Pointer) *VisualScriptBuiltinFunc {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := VisualScriptBuiltinFunc{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
@@ -28,46 +36,28 @@ func (o *VisualScriptBuiltinFunc) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.VisualScriptBuiltinFunc::BuiltinFunc
 */
-func (o *VisualScriptBuiltinFunc) GetFunc() gdnative.Int {
-	log.Println("Calling VisualScriptBuiltinFunc.GetFunc()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_func", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false which int}], Returns: void
 */
+
 func (o *VisualScriptBuiltinFunc) SetFunc(which gdnative.Int) {
 	log.Println("Calling VisualScriptBuiltinFunc.SetFunc()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(which)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(which)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptBuiltinFunc", "set_func")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_func", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   VisualScriptBuiltinFuncImplementer is an interface for VisualScriptBuiltinFunc objects.
-*/
-type VisualScriptBuiltinFuncImplementer interface {
-	Class
 }

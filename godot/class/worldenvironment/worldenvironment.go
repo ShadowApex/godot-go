@@ -2,7 +2,11 @@ package worldenvironment
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/environment"
+	"github.com/shadowapex/godot-go/godot/class/node"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewWorldEnvironmentFromPointer(ptr gdnative.Pointer) *WorldEnvironment {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := WorldEnvironment{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 The [code]WorldEnvironment[/code] node is used to configure the default [Environment] for the scene. The parameters defined in the [code]WorldEnvironment[/code] can be overridden by an [Environment] node set on the current [Camera]. Additionally, only one [code]WorldEnvironment[/code] may be instanced in a given scene at a time. The [code]WorldEnvironment[/code] allows the user to specify default lighting parameters (e.g. ambient lighting), various post-processing effects (e.g. SSAO, DOF, Tonemapping), and how to draw the background (e.g. solid color, skybox). Usually, these are added in order to improve the realism/color balance of the scene.
 */
 type WorldEnvironment struct {
-	Node
+	node.Node
 }
 
 func (o *WorldEnvironment) BaseClass() string {
@@ -26,46 +39,49 @@ func (o *WorldEnvironment) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Environment
 */
-func (o *WorldEnvironment) GetEnvironment() *Environment {
+
+func (o *WorldEnvironment) GetEnvironment() environment.Environment {
 	log.Println("Calling WorldEnvironment.GetEnvironment()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("WorldEnvironment", "get_environment")
 
 	// Call the parent method.
+	// Environment
+	retPtr := environment.NewEmptyEnvironment()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_environment", goArguments, "*Environment")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := environment.NewEnvironmentFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Environment)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false env Environment}], Returns: void
 */
-func (o *WorldEnvironment) SetEnvironment(env *Environment) {
+
+func (o *WorldEnvironment) SetEnvironment(env environment.Environment) {
 	log.Println("Calling WorldEnvironment.SetEnvironment()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(env)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(env.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("WorldEnvironment", "set_environment")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_environment", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   WorldEnvironmentImplementer is an interface for WorldEnvironment objects.
-*/
-type WorldEnvironmentImplementer interface {
-	Class
 }

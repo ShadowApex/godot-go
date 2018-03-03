@@ -2,9 +2,9 @@ package gridcontainer
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/container"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewGridContainerFromPointer(ptr gdnative.Pointer) *GridContainer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := GridContainer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Grid container will arrange its children in a grid like structure, the grid columns are specified using the [method set_columns] method and the number of rows will be equal to the number of children in the container divided by the number of columns, for example: if the container has 5 children, and 2 columns, there will be 3 rows in the container. Notice that grid layout will preserve the columns and rows for every size of the container.
 */
 type GridContainer struct {
-	Container
+	container.Container
 }
 
 func (o *GridContainer) BaseClass() string {
@@ -28,46 +37,49 @@ func (o *GridContainer) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *GridContainer) GetColumns() gdnative.Int {
 	log.Println("Calling GridContainer.GetColumns()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridContainer", "get_columns")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_columns", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false columns int}], Returns: void
 */
+
 func (o *GridContainer) SetColumns(columns gdnative.Int) {
 	log.Println("Calling GridContainer.SetColumns()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(columns)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(columns)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GridContainer", "set_columns")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_columns", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   GridContainerImplementer is an interface for GridContainer objects.
-*/
-type GridContainerImplementer interface {
-	Class
 }

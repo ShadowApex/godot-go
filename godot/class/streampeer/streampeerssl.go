@@ -2,7 +2,6 @@ package streampeer
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -15,6 +14,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewStreamPeerSSLFromPointer(ptr gdnative.Pointer) *StreamPeerSSL {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := StreamPeerSSL{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 /*
 SSL Stream peer. This object can be used to connect to SSL servers.
@@ -29,105 +37,57 @@ func (o *StreamPeerSSL) BaseClass() string {
 
 /*
 
- */
-func (o *StreamPeerSSL) AcceptStream(stream *StreamPeer) gdnative.Int {
-	log.Println("Calling StreamPeerSSL.AcceptStream()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(stream)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "accept_stream", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
+	Args: [{ false stream StreamPeer}], Returns: enum.Error
+*/
 
 /*
-   Connect to a peer using an underlying [StreamPeer] "stream", when "validate_certs" is true, [code]StreamPeerSSL[/code] will validate that the certificate presented by the peer matches the "for_hostname".
+        Connect to a peer using an underlying [StreamPeer] "stream", when "validate_certs" is true, [code]StreamPeerSSL[/code] will validate that the certificate presented by the peer matches the "for_hostname".
+	Args: [{ false stream StreamPeer} {False true validate_certs bool} { true for_hostname String}], Returns: enum.Error
 */
-func (o *StreamPeerSSL) ConnectToStream(stream *StreamPeer, validateCerts gdnative.Bool, forHostname gdnative.String) gdnative.Int {
-	log.Println("Calling StreamPeerSSL.ConnectToStream()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(stream)
-	goArguments[1] = reflect.ValueOf(validateCerts)
-	goArguments[2] = reflect.ValueOf(forHostname)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "connect_to_stream", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Disconnect from host.
+        Disconnect from host.
+	Args: [], Returns: void
 */
+
 func (o *StreamPeerSSL) DisconnectFromStream() {
 	log.Println("Calling StreamPeerSSL.DisconnectFromStream()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerSSL", "disconnect_from_stream")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "disconnect_from_stream", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Return the status of the connection, one of STATUS_* enum.
+        Return the status of the connection, one of STATUS_* enum.
+	Args: [], Returns: enum.StreamPeerSSL::Status
 */
-func (o *StreamPeerSSL) GetStatus() gdnative.Int {
-	log.Println("Calling StreamPeerSSL.GetStatus()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_status", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Poll the connection to check for incoming bytes. Call this right before "get_available_bytes()" for it to work properly.
+        Poll the connection to check for incoming bytes. Call this right before "get_available_bytes()" for it to work properly.
+	Args: [], Returns: void
 */
+
 func (o *StreamPeerSSL) Poll() {
 	log.Println("Calling StreamPeerSSL.Poll()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerSSL", "poll")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "poll", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   StreamPeerSSLImplementer is an interface for StreamPeerSSL objects.
-*/
-type StreamPeerSSLImplementer interface {
-	Class
 }

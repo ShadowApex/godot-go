@@ -2,7 +2,9 @@ package concavepolygonshape
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/shape"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewConcavePolygonShapeFromPointer(ptr gdnative.Pointer) *ConcavePolygonShape {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ConcavePolygonShape{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Concave polygon shape resource, which can be set into a [PhysicsBody] or area. This shape is created by feeding a list of triangles.
 */
 type ConcavePolygonShape struct {
-	Shape
+	shape.Shape
 }
 
 func (o *ConcavePolygonShape) BaseClass() string {
@@ -26,46 +37,49 @@ func (o *ConcavePolygonShape) BaseClass() string {
 }
 
 /*
-   Return the faces (an array of triangles).
+        Return the faces (an array of triangles).
+	Args: [], Returns: PoolVector3Array
 */
-func (o *ConcavePolygonShape) GetFaces() *PoolVector3Array {
+
+func (o *ConcavePolygonShape) GetFaces() gdnative.PoolVector3Array {
 	log.Println("Calling ConcavePolygonShape.GetFaces()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ConcavePolygonShape", "get_faces")
 
 	// Call the parent method.
+	// PoolVector3Array
+	retPtr := gdnative.NewEmptyPoolVector3Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_faces", goArguments, "*PoolVector3Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector3ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector3Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Set the faces (an array of triangles).
+        Set the faces (an array of triangles).
+	Args: [{ false faces PoolVector3Array}], Returns: void
 */
-func (o *ConcavePolygonShape) SetFaces(faces *PoolVector3Array) {
+
+func (o *ConcavePolygonShape) SetFaces(faces gdnative.PoolVector3Array) {
 	log.Println("Calling ConcavePolygonShape.SetFaces()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(faces)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector3Array(faces)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ConcavePolygonShape", "set_faces")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_faces", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ConcavePolygonShapeImplementer is an interface for ConcavePolygonShape objects.
-*/
-type ConcavePolygonShapeImplementer interface {
-	Class
 }

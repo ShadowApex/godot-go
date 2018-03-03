@@ -2,9 +2,9 @@ package backbuffercopy
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/node2d"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewBackBufferCopyFromPointer(ptr gdnative.Pointer) *BackBufferCopy {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := BackBufferCopy{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Node for back-buffering the currently displayed screen. The region defined in the BackBufferCopy node is bufferized with the content of the screen it covers, or the entire screen according to the copy mode set. Accessing this buffer is done with the texscreen() shader instruction.
 */
 type BackBufferCopy struct {
-	Node2D
+	node2d.Node2D
 }
 
 func (o *BackBufferCopy) BaseClass() string {
@@ -28,84 +37,76 @@ func (o *BackBufferCopy) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.BackBufferCopy::CopyMode
 */
-func (o *BackBufferCopy) GetCopyMode() gdnative.Int {
-	log.Println("Calling BackBufferCopy.GetCopyMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_copy_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Rect2
 */
-func (o *BackBufferCopy) GetRect() *Rect2 {
+
+func (o *BackBufferCopy) GetRect() gdnative.Rect2 {
 	log.Println("Calling BackBufferCopy.GetRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BackBufferCopy", "get_rect")
 
 	// Call the parent method.
+	// Rect2
+	retPtr := gdnative.NewEmptyRect2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_rect", goArguments, "*Rect2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRect2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Rect2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false copy_mode int}], Returns: void
 */
+
 func (o *BackBufferCopy) SetCopyMode(copyMode gdnative.Int) {
 	log.Println("Calling BackBufferCopy.SetCopyMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(copyMode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(copyMode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BackBufferCopy", "set_copy_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_copy_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false rect Rect2}], Returns: void
 */
-func (o *BackBufferCopy) SetRect(rect *Rect2) {
+
+func (o *BackBufferCopy) SetRect(rect gdnative.Rect2) {
 	log.Println("Calling BackBufferCopy.SetRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(rect)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRect2(rect)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BackBufferCopy", "set_rect")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_rect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   BackBufferCopyImplementer is an interface for BackBufferCopy objects.
-*/
-type BackBufferCopyImplementer interface {
-	Class
 }

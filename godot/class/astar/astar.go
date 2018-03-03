@@ -2,7 +2,9 @@ package astar
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewAStarFromPointer(ptr gdnative.Pointer) *AStar {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := AStar{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 A* (A star) is a computer algorithm that is widely used in pathfinding and graph traversal, the process of plotting an efficiently directed path between multiple points. It enjoys widespread use due to its performance and accuracy. Godot's A* implementation make use of vectors as points. You must add points manually with [method AStar.add_point] and create segments manually with [method AStar.connect_points]. So you can test if there is a path between two points with the [method AStar.are_points_connected] function, get the list of existing ids in the found path with [method AStar.get_id_path], or the points list with [method AStar.get_point_path].
 */
 type AStar struct {
-	Reference
+	reference.Reference
 }
 
 func (o *AStar) BaseClass() string {
@@ -26,416 +37,515 @@ func (o *AStar) BaseClass() string {
 }
 
 /*
-   Called when computing the cost between two connected points.
+        Called when computing the cost between two connected points.
+	Args: [{ false from_id int} { false to_id int}], Returns: float
 */
+
 func (o *AStar) X_ComputeCost(fromId gdnative.Int, toId gdnative.Int) gdnative.Float {
 	log.Println("Calling AStar.X_ComputeCost()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(fromId)
-	goArguments[1] = reflect.ValueOf(toId)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(fromId)
+	ptrArguments[1] = gdnative.NewPointerFromInt(toId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "_compute_cost")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_compute_cost", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Called when estimating the cost between a point and the path's ending point.
+        Called when estimating the cost between a point and the path's ending point.
+	Args: [{ false from_id int} { false to_id int}], Returns: float
 */
+
 func (o *AStar) X_EstimateCost(fromId gdnative.Int, toId gdnative.Int) gdnative.Float {
 	log.Println("Calling AStar.X_EstimateCost()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(fromId)
-	goArguments[1] = reflect.ValueOf(toId)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(fromId)
+	ptrArguments[1] = gdnative.NewPointerFromInt(toId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "_estimate_cost")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_estimate_cost", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Adds a new point at the given position with the given identifier. The algorithm prefers points with lower [code]weight_scale[/code] to form a path. The [code]id[/code] must be 0 or larger, and the [code]weight_scale[/code] must be 1 or larger. [codeblock] var as = AStar.new() as.add_point(1, Vector3(1,0,0), 4) # Adds the point (1,0,0) with weight_scale=4 and id=1 [/codeblock] If there already exists a point for the given id, its position and weight scale are updated to the given values.
+        Adds a new point at the given position with the given identifier. The algorithm prefers points with lower [code]weight_scale[/code] to form a path. The [code]id[/code] must be 0 or larger, and the [code]weight_scale[/code] must be 1 or larger. [codeblock] var as = AStar.new() as.add_point(1, Vector3(1,0,0), 4) # Adds the point (1,0,0) with weight_scale=4 and id=1 [/codeblock] If there already exists a point for the given id, its position and weight scale are updated to the given values.
+	Args: [{ false id int} { false position Vector3} {1 true weight_scale float}], Returns: void
 */
-func (o *AStar) AddPoint(id gdnative.Int, position *Vector3, weightScale gdnative.Float) {
+
+func (o *AStar) AddPoint(id gdnative.Int, position gdnative.Vector3, weightScale gdnative.Float) {
 	log.Println("Calling AStar.AddPoint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(position)
-	goArguments[2] = reflect.ValueOf(weightScale)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromVector3(position)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(weightScale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "add_point")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_point", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns whether there is a connection/segment between the given points.
+        Returns whether there is a connection/segment between the given points.
+	Args: [{ false id int} { false to_id int}], Returns: bool
 */
+
 func (o *AStar) ArePointsConnected(id gdnative.Int, toId gdnative.Int) gdnative.Bool {
 	log.Println("Calling AStar.ArePointsConnected()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(toId)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromInt(toId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "are_points_connected")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "are_points_connected", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Clears all the points and segments.
+        Clears all the points and segments.
+	Args: [], Returns: void
 */
+
 func (o *AStar) Clear() {
 	log.Println("Calling AStar.Clear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Creates a segment between the given points. [codeblock] var as = AStar.new() as.add_point(1, Vector3(1,1,0)) as.add_point(2, Vector3(0,5,0)) as.connect_points(1, 2, false) # If bidirectional=false it's only possible to go from point 1 to point 2 # and not from point 2 to point 1. [/codeblock]
+        Creates a segment between the given points. [codeblock] var as = AStar.new() as.add_point(1, Vector3(1,1,0)) as.add_point(2, Vector3(0,5,0)) as.connect_points(1, 2, false) # If bidirectional=false it's only possible to go from point 1 to point 2 # and not from point 2 to point 1. [/codeblock]
+	Args: [{ false id int} { false to_id int} {True true bidirectional bool}], Returns: void
 */
+
 func (o *AStar) ConnectPoints(id gdnative.Int, toId gdnative.Int, bidirectional gdnative.Bool) {
 	log.Println("Calling AStar.ConnectPoints()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(toId)
-	goArguments[2] = reflect.ValueOf(bidirectional)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromInt(toId)
+	ptrArguments[2] = gdnative.NewPointerFromBool(bidirectional)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "connect_points")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "connect_points", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Deletes the segment between the given points.
+        Deletes the segment between the given points.
+	Args: [{ false id int} { false to_id int}], Returns: void
 */
+
 func (o *AStar) DisconnectPoints(id gdnative.Int, toId gdnative.Int) {
 	log.Println("Calling AStar.DisconnectPoints()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(toId)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromInt(toId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "disconnect_points")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "disconnect_points", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the next available point id with no point associated to it.
+        Returns the next available point id with no point associated to it.
+	Args: [], Returns: int
 */
+
 func (o *AStar) GetAvailablePointId() gdnative.Int {
 	log.Println("Calling AStar.GetAvailablePointId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "get_available_point_id")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_available_point_id", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the id of the closest point to [code]to_position[/code]. Returns -1 if there are no points in the points pool.
+        Returns the id of the closest point to [code]to_position[/code]. Returns -1 if there are no points in the points pool.
+	Args: [{ false to_position Vector3}], Returns: int
 */
-func (o *AStar) GetClosestPoint(toPosition *Vector3) gdnative.Int {
+
+func (o *AStar) GetClosestPoint(toPosition gdnative.Vector3) gdnative.Int {
 	log.Println("Calling AStar.GetClosestPoint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(toPosition)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(toPosition)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "get_closest_point")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_closest_point", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the closest position to [code]to_position[/code] that resides inside a segment between two connected points. [codeblock] var as = AStar.new() as.add_point(1, Vector3(0,0,0)) as.add_point(2, Vector3(0,5,0)) as.connect_points(1, 2) var res = as.get_closest_position_in_segment(Vector3(3,3,0)) # returns (0, 3, 0) [/codeblock] The result is in the segment that goes from [code]y=0[/code] to [code]y=5[/code]. It's the closest position in the segment to the given point.
+        Returns the closest position to [code]to_position[/code] that resides inside a segment between two connected points. [codeblock] var as = AStar.new() as.add_point(1, Vector3(0,0,0)) as.add_point(2, Vector3(0,5,0)) as.connect_points(1, 2) var res = as.get_closest_position_in_segment(Vector3(3,3,0)) # returns (0, 3, 0) [/codeblock] The result is in the segment that goes from [code]y=0[/code] to [code]y=5[/code]. It's the closest position in the segment to the given point.
+	Args: [{ false to_position Vector3}], Returns: Vector3
 */
-func (o *AStar) GetClosestPositionInSegment(toPosition *Vector3) *Vector3 {
+
+func (o *AStar) GetClosestPositionInSegment(toPosition gdnative.Vector3) gdnative.Vector3 {
 	log.Println("Calling AStar.GetClosestPositionInSegment()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(toPosition)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(toPosition)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "get_closest_position_in_segment")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_closest_position_in_segment", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns an array with the ids of the points that form the path found by AStar between the given points. The array is ordered from the starting point to the ending point of the path. [codeblock] var as = AStar.new() as.add_point(1, Vector3(0,0,0)) as.add_point(2, Vector3(0,1,0), 1) # default weight is 1 as.add_point(3, Vector3(1,1,0)) as.add_point(4, Vector3(2,0,0)) as.connect_points(1, 2, false) as.connect_points(2, 3, false) as.connect_points(4, 3, false) as.connect_points(1, 4, false) as.connect_points(5, 4, false) var res = as.get_id_path(1, 3) # returns [1, 2, 3] [/codeblock] If you change the 2nd point's weight to 3, then the result will be [code][1, 4, 3][/code] instead, because now even though the distance is longer, it's "easier" to get through point 4 than through point 2.
+        Returns an array with the ids of the points that form the path found by AStar between the given points. The array is ordered from the starting point to the ending point of the path. [codeblock] var as = AStar.new() as.add_point(1, Vector3(0,0,0)) as.add_point(2, Vector3(0,1,0), 1) # default weight is 1 as.add_point(3, Vector3(1,1,0)) as.add_point(4, Vector3(2,0,0)) as.connect_points(1, 2, false) as.connect_points(2, 3, false) as.connect_points(4, 3, false) as.connect_points(1, 4, false) as.connect_points(5, 4, false) var res = as.get_id_path(1, 3) # returns [1, 2, 3] [/codeblock] If you change the 2nd point's weight to 3, then the result will be [code][1, 4, 3][/code] instead, because now even though the distance is longer, it's "easier" to get through point 4 than through point 2.
+	Args: [{ false from_id int} { false to_id int}], Returns: PoolIntArray
 */
-func (o *AStar) GetIdPath(fromId gdnative.Int, toId gdnative.Int) *PoolIntArray {
+
+func (o *AStar) GetIdPath(fromId gdnative.Int, toId gdnative.Int) gdnative.PoolIntArray {
 	log.Println("Calling AStar.GetIdPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(fromId)
-	goArguments[1] = reflect.ValueOf(toId)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(fromId)
+	ptrArguments[1] = gdnative.NewPointerFromInt(toId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "get_id_path")
 
 	// Call the parent method.
+	// PoolIntArray
+	retPtr := gdnative.NewEmptyPoolIntArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_id_path", goArguments, "*PoolIntArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns an array with the ids of the points that form the connect with the given point. [codeblock] var as = AStar.new() as.add_point(1, Vector3(0,0,0)) as.add_point(2, Vector3(0,1,0)) as.add_point(3, Vector3(1,1,0)) as.add_point(4, Vector3(2,0,0)) as.connect_points(1, 2, true) as.connect_points(1, 3, true) var neighbors = as.get_point_connections(1) # returns [2, 3] [/codeblock]
+        Returns an array with the ids of the points that form the connect with the given point. [codeblock] var as = AStar.new() as.add_point(1, Vector3(0,0,0)) as.add_point(2, Vector3(0,1,0)) as.add_point(3, Vector3(1,1,0)) as.add_point(4, Vector3(2,0,0)) as.connect_points(1, 2, true) as.connect_points(1, 3, true) var neighbors = as.get_point_connections(1) # returns [2, 3] [/codeblock]
+	Args: [{ false id int}], Returns: PoolIntArray
 */
-func (o *AStar) GetPointConnections(id gdnative.Int) *PoolIntArray {
+
+func (o *AStar) GetPointConnections(id gdnative.Int) gdnative.PoolIntArray {
 	log.Println("Calling AStar.GetPointConnections()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "get_point_connections")
 
 	// Call the parent method.
+	// PoolIntArray
+	retPtr := gdnative.NewEmptyPoolIntArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_point_connections", goArguments, "*PoolIntArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns an array with the points that are in the path found by AStar between the given points. The array is ordered from the starting point to the ending point of the path.
+        Returns an array with the points that are in the path found by AStar between the given points. The array is ordered from the starting point to the ending point of the path.
+	Args: [{ false from_id int} { false to_id int}], Returns: PoolVector3Array
 */
-func (o *AStar) GetPointPath(fromId gdnative.Int, toId gdnative.Int) *PoolVector3Array {
+
+func (o *AStar) GetPointPath(fromId gdnative.Int, toId gdnative.Int) gdnative.PoolVector3Array {
 	log.Println("Calling AStar.GetPointPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(fromId)
-	goArguments[1] = reflect.ValueOf(toId)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(fromId)
+	ptrArguments[1] = gdnative.NewPointerFromInt(toId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "get_point_path")
 
 	// Call the parent method.
+	// PoolVector3Array
+	retPtr := gdnative.NewEmptyPoolVector3Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_point_path", goArguments, "*PoolVector3Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector3ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector3Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the position of the point associated with the given id.
+        Returns the position of the point associated with the given id.
+	Args: [{ false id int}], Returns: Vector3
 */
-func (o *AStar) GetPointPosition(id gdnative.Int) *Vector3 {
+
+func (o *AStar) GetPointPosition(id gdnative.Int) gdnative.Vector3 {
 	log.Println("Calling AStar.GetPointPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "get_point_position")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_point_position", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the weight scale of the point associated with the given id.
+        Returns the weight scale of the point associated with the given id.
+	Args: [{ false id int}], Returns: float
 */
+
 func (o *AStar) GetPointWeightScale(id gdnative.Int) gdnative.Float {
 	log.Println("Calling AStar.GetPointWeightScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "get_point_weight_scale")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_point_weight_scale", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns an array of all points.
+        Returns an array of all points.
+	Args: [], Returns: Array
 */
-func (o *AStar) GetPoints() *Array {
+
+func (o *AStar) GetPoints() gdnative.Array {
 	log.Println("Calling AStar.GetPoints()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "get_points")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_points", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns whether a point associated with the given id exists.
+        Returns whether a point associated with the given id exists.
+	Args: [{ false id int}], Returns: bool
 */
+
 func (o *AStar) HasPoint(id gdnative.Int) gdnative.Bool {
 	log.Println("Calling AStar.HasPoint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "has_point")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "has_point", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Removes the point associated with the given id from the points pool.
+        Removes the point associated with the given id from the points pool.
+	Args: [{ false id int}], Returns: void
 */
+
 func (o *AStar) RemovePoint(id gdnative.Int) {
 	log.Println("Calling AStar.RemovePoint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "remove_point")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_point", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the position for the point with the given id.
+        Sets the position for the point with the given id.
+	Args: [{ false id int} { false position Vector3}], Returns: void
 */
-func (o *AStar) SetPointPosition(id gdnative.Int, position *Vector3) {
+
+func (o *AStar) SetPointPosition(id gdnative.Int, position gdnative.Vector3) {
 	log.Println("Calling AStar.SetPointPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromVector3(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "set_point_position")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_point_position", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the [code]weight_scale[/code] for the point with the given id.
+        Sets the [code]weight_scale[/code] for the point with the given id.
+	Args: [{ false id int} { false weight_scale float}], Returns: void
 */
+
 func (o *AStar) SetPointWeightScale(id gdnative.Int, weightScale gdnative.Float) {
 	log.Println("Calling AStar.SetPointWeightScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(weightScale)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(weightScale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AStar", "set_point_weight_scale")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_point_weight_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   AStarImplementer is an interface for AStar objects.
-*/
-type AStarImplementer interface {
-	Class
 }

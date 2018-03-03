@@ -2,9 +2,9 @@ package encodedobjectasid
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewEncodedObjectAsIDFromPointer(ptr gdnative.Pointer) *EncodedObjectAsID {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := EncodedObjectAsID{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type EncodedObjectAsID struct {
-	Reference
+	reference.Reference
 }
 
 func (o *EncodedObjectAsID) BaseClass() string {
@@ -29,45 +38,48 @@ func (o *EncodedObjectAsID) BaseClass() string {
 
 /*
 
- */
+	Args: [], Returns: int
+*/
+
 func (o *EncodedObjectAsID) GetObjectId() gdnative.Int {
 	log.Println("Calling EncodedObjectAsID.GetObjectId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EncodedObjectAsID", "get_object_id")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_object_id", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false id int}], Returns: void
+*/
+
 func (o *EncodedObjectAsID) SetObjectId(id gdnative.Int) {
 	log.Println("Calling EncodedObjectAsID.SetObjectId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EncodedObjectAsID", "set_object_id")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_object_id", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   EncodedObjectAsIDImplementer is an interface for EncodedObjectAsID objects.
-*/
-type EncodedObjectAsIDImplementer interface {
-	Class
 }

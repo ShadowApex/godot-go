@@ -2,7 +2,11 @@ package world2d
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/physics"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewWorld2DFromPointer(ptr gdnative.Pointer) *World2D {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := World2D{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Class that has everything pertaining to a 2D world. A physics space, a visual scenario and a sound space. 2D nodes register their resources into the current 2D world.
 */
 type World2D struct {
-	Resource
+	resource.Resource
 }
 
 func (o *World2D) BaseClass() string {
@@ -26,68 +39,79 @@ func (o *World2D) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: RID
 */
-func (o *World2D) GetCanvas() *RID {
+
+func (o *World2D) GetCanvas() gdnative.RID {
 	log.Println("Calling World2D.GetCanvas()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("World2D", "get_canvas")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_canvas", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Physics2DDirectSpaceState
 */
-func (o *World2D) GetDirectSpaceState() *Physics2DDirectSpaceState {
+
+func (o *World2D) GetDirectSpaceState() physics.Physics2DDirectSpaceState {
 	log.Println("Calling World2D.GetDirectSpaceState()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("World2D", "get_direct_space_state")
 
 	// Call the parent method.
+	// Physics2DDirectSpaceState
+	retPtr := physics.NewEmptyPhysics2DDirectSpaceState()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_direct_space_state", goArguments, "*Physics2DDirectSpaceState")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := physics.NewPhysics2DDirectSpaceStateFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Physics2DDirectSpaceState)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: RID
 */
-func (o *World2D) GetSpace() *RID {
+
+func (o *World2D) GetSpace() gdnative.RID {
 	log.Println("Calling World2D.GetSpace()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("World2D", "get_space")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_space", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   World2DImplementer is an interface for World2D objects.
-*/
-type World2DImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

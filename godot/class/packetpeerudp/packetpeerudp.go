@@ -2,9 +2,9 @@ package packetpeerudp
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/packetpeer"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPacketPeerUDPFromPointer(ptr gdnative.Pointer) *PacketPeerUDP {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := PacketPeerUDP{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 UDP packet peer. Can be used to send raw UDP packets as well as [Variant]s.
 */
 type PacketPeerUDP struct {
-	PacketPeer
+	packetpeer.PacketPeer
 }
 
 func (o *PacketPeerUDP) BaseClass() string {
@@ -28,150 +37,115 @@ func (o *PacketPeerUDP) BaseClass() string {
 }
 
 /*
-   Close the UDP socket the [code]PacketPeerUDP[/code] is currently listening on.
+        Close the UDP socket the [code]PacketPeerUDP[/code] is currently listening on.
+	Args: [], Returns: void
 */
+
 func (o *PacketPeerUDP) Close() {
 	log.Println("Calling PacketPeerUDP.Close()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PacketPeerUDP", "close")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "close", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Return the IP of the remote peer that sent the last packet(that was received with [method get_packet] or [method get_var]).
+        Return the IP of the remote peer that sent the last packet(that was received with [method get_packet] or [method get_var]).
+	Args: [], Returns: String
 */
+
 func (o *PacketPeerUDP) GetPacketIp() gdnative.String {
 	log.Println("Calling PacketPeerUDP.GetPacketIp()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PacketPeerUDP", "get_packet_ip")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_packet_ip", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the port of the remote peer that sent the last packet(that was received with [method get_packet] or [method get_var]).
+        Return the port of the remote peer that sent the last packet(that was received with [method get_packet] or [method get_var]).
+	Args: [], Returns: int
 */
+
 func (o *PacketPeerUDP) GetPacketPort() gdnative.Int {
 	log.Println("Calling PacketPeerUDP.GetPacketPort()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PacketPeerUDP", "get_packet_port")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_packet_port", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return whether this [code]PacketPeerUDP[/code] is listening.
+        Return whether this [code]PacketPeerUDP[/code] is listening.
+	Args: [], Returns: bool
 */
+
 func (o *PacketPeerUDP) IsListening() gdnative.Bool {
 	log.Println("Calling PacketPeerUDP.IsListening()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PacketPeerUDP", "is_listening")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_listening", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Make this [code]PacketPeerUDP[/code] listen on the "port" binding to "bind_address" with a buffer size "recv_buf_size". If "bind_address" is set as "*" (default), the peer will listen on all available addresses (both IPv4 and IPv6). If "bind_address" is set as "0.0.0.0" (for IPv4) or "::" (for IPv6), the peer will listen on all available addresses matching that IP type. If "bind_address" is set to any valid address (e.g. "192.168.1.101", "::1", etc), the peer will only listen on the interface with that addresses (or fail if no interface with the given address exists).
+        Make this [code]PacketPeerUDP[/code] listen on the "port" binding to "bind_address" with a buffer size "recv_buf_size". If "bind_address" is set as "*" (default), the peer will listen on all available addresses (both IPv4 and IPv6). If "bind_address" is set as "0.0.0.0" (for IPv4) or "::" (for IPv6), the peer will listen on all available addresses matching that IP type. If "bind_address" is set to any valid address (e.g. "192.168.1.101", "::1", etc), the peer will only listen on the interface with that addresses (or fail if no interface with the given address exists).
+	Args: [{ false port int} {* true bind_address String} {65536 true recv_buf_size int}], Returns: enum.Error
 */
-func (o *PacketPeerUDP) Listen(port gdnative.Int, bindAddress gdnative.String, recvBufSize gdnative.Int) gdnative.Int {
-	log.Println("Calling PacketPeerUDP.Listen()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(port)
-	goArguments[1] = reflect.ValueOf(bindAddress)
-	goArguments[2] = reflect.ValueOf(recvBufSize)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "listen", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Set the destination address and port for sending packets and variables, a hostname will be resolved using if valid.
+        Set the destination address and port for sending packets and variables, a hostname will be resolved using if valid.
+	Args: [{ false host String} { false port int}], Returns: enum.Error
 */
-func (o *PacketPeerUDP) SetDestAddress(host gdnative.String, port gdnative.Int) gdnative.Int {
-	log.Println("Calling PacketPeerUDP.SetDestAddress()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(host)
-	goArguments[1] = reflect.ValueOf(port)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "set_dest_address", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Wait for a packet to arrive on the listening port, see [method listen].
+        Wait for a packet to arrive on the listening port, see [method listen].
+	Args: [], Returns: enum.Error
 */
-func (o *PacketPeerUDP) Wait() gdnative.Int {
-	log.Println("Calling PacketPeerUDP.Wait()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "wait", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   PacketPeerUDPImplementer is an interface for PacketPeerUDP objects.
-*/
-type PacketPeerUDPImplementer interface {
-	Class
-}

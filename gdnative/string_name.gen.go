@@ -38,6 +38,14 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewEmptyStringName will return a pointer to an empty
+// initialized StringName. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyStringName() Pointer {
+	var obj C.godot_string_name
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromStringName will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromStringName(obj StringName) Pointer {

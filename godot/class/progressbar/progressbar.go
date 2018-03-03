@@ -2,9 +2,9 @@ package progressbar
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/ranges"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewProgressBarFromPointer(ptr gdnative.Pointer) *ProgressBar {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ProgressBar{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 General purpose progress bar. Shows fill percentage from right to left.
 */
 type ProgressBar struct {
-	Range
+	ranges.Range
 }
 
 func (o *ProgressBar) BaseClass() string {
@@ -28,46 +37,49 @@ func (o *ProgressBar) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *ProgressBar) IsPercentVisible() gdnative.Bool {
 	log.Println("Calling ProgressBar.IsPercentVisible()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProgressBar", "is_percent_visible")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_percent_visible", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false visible bool}], Returns: void
 */
+
 func (o *ProgressBar) SetPercentVisible(visible gdnative.Bool) {
 	log.Println("Calling ProgressBar.SetPercentVisible()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(visible)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(visible)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProgressBar", "set_percent_visible")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_percent_visible", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ProgressBarImplementer is an interface for ProgressBar objects.
-*/
-type ProgressBarImplementer interface {
-	Class
 }

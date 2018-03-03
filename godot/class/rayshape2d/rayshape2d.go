@@ -2,7 +2,9 @@ package rayshape2d
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/shape2d"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewRayShape2DFromPointer(ptr gdnative.Pointer) *RayShape2D {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := RayShape2D{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Ray shape for 2D collisions. A ray is not really a collision body, instead it tries to separate itself from whatever is touching its far endpoint. It's often useful for characters.
 */
 type RayShape2D struct {
-	Shape2D
+	shape2d.Shape2D
 }
 
 func (o *RayShape2D) BaseClass() string {
@@ -26,46 +37,49 @@ func (o *RayShape2D) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *RayShape2D) GetLength() gdnative.Float {
 	log.Println("Calling RayShape2D.GetLength()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayShape2D", "get_length")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_length", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false length float}], Returns: void
 */
+
 func (o *RayShape2D) SetLength(length gdnative.Float) {
 	log.Println("Calling RayShape2D.SetLength()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(length)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(length)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RayShape2D", "set_length")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_length", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   RayShape2DImplementer is an interface for RayShape2D objects.
-*/
-type RayShape2DImplementer interface {
-	Class
 }

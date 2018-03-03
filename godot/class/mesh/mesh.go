@@ -2,7 +2,13 @@ package mesh
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/resource"
+	"github.com/shadowapex/godot-go/godot/class/shape"
+
+	"github.com/shadowapex/godot-go/godot/class/trianglemesh"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +20,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewMeshFromPointer(ptr gdnative.Pointer) *Mesh {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Mesh{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Mesh is a type of [Resource] that contains vertex-array based geometry, divided in [i]surfaces[/i]. Each surface contains a completely separate array and a material used to draw it. Design wise, a mesh with multiple surfaces is preferred to a single surface, because objects created in 3D editing software commonly contain multiple materials.
 */
 type Mesh struct {
-	Resource
+	resource.Resource
 }
 
 func (o *Mesh) BaseClass() string {
@@ -26,147 +41,180 @@ func (o *Mesh) BaseClass() string {
 }
 
 /*
-   Calculate a [ConvexPolygonShape] from the mesh.
+        Calculate a [ConvexPolygonShape] from the mesh.
+	Args: [], Returns: Shape
 */
-func (o *Mesh) CreateConvexShape() *Shape {
+
+func (o *Mesh) CreateConvexShape() shape.Shape {
 	log.Println("Calling Mesh.CreateConvexShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Mesh", "create_convex_shape")
 
 	// Call the parent method.
+	// Shape
+	retPtr := shape.NewEmptyShape()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "create_convex_shape", goArguments, "*Shape")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := shape.NewShapeFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Shape)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Calculate an outline mesh at a defined offset (margin) from the original mesh. Note: Typically returns the vertices in reverse order (e.g. clockwise to anti-clockwise).
+        Calculate an outline mesh at a defined offset (margin) from the original mesh. Note: Typically returns the vertices in reverse order (e.g. clockwise to anti-clockwise).
+	Args: [{ false margin float}], Returns: Mesh
 */
-func (o *Mesh) CreateOutline(margin gdnative.Float) *Mesh {
+
+func (o *Mesh) CreateOutline(margin gdnative.Float) Mesh {
 	log.Println("Calling Mesh.CreateOutline()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(margin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Mesh", "create_outline")
 
 	// Call the parent method.
+	// Mesh
+	retPtr := NewEmptyMesh()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "create_outline", goArguments, "*Mesh")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewMeshFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Mesh)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Calculate a [ConcavePolygonShape] from the mesh.
+        Calculate a [ConcavePolygonShape] from the mesh.
+	Args: [], Returns: Shape
 */
-func (o *Mesh) CreateTrimeshShape() *Shape {
+
+func (o *Mesh) CreateTrimeshShape() shape.Shape {
 	log.Println("Calling Mesh.CreateTrimeshShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Mesh", "create_trimesh_shape")
 
 	// Call the parent method.
+	// Shape
+	retPtr := shape.NewEmptyShape()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "create_trimesh_shape", goArguments, "*Shape")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := shape.NewShapeFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Shape)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Generate a [TriangleMesh] from the mesh.
+        Generate a [TriangleMesh] from the mesh.
+	Args: [], Returns: TriangleMesh
 */
-func (o *Mesh) GenerateTriangleMesh() *TriangleMesh {
+
+func (o *Mesh) GenerateTriangleMesh() trianglemesh.TriangleMesh {
 	log.Println("Calling Mesh.GenerateTriangleMesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Mesh", "generate_triangle_mesh")
 
 	// Call the parent method.
+	// TriangleMesh
+	retPtr := trianglemesh.NewEmptyTriangleMesh()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "generate_triangle_mesh", goArguments, "*TriangleMesh")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := trianglemesh.NewTriangleMeshFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*TriangleMesh)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns all the vertices that make up the faces of the mesh. Each three vertices represent one triangle.
+        Returns all the vertices that make up the faces of the mesh. Each three vertices represent one triangle.
+	Args: [], Returns: PoolVector3Array
 */
-func (o *Mesh) GetFaces() *PoolVector3Array {
+
+func (o *Mesh) GetFaces() gdnative.PoolVector3Array {
 	log.Println("Calling Mesh.GetFaces()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Mesh", "get_faces")
 
 	// Call the parent method.
+	// PoolVector3Array
+	retPtr := gdnative.NewEmptyPoolVector3Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_faces", goArguments, "*PoolVector3Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector3ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector3Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *Mesh) GetLightmapSizeHint() *Vector2 {
+
+func (o *Mesh) GetLightmapSizeHint() gdnative.Vector2 {
 	log.Println("Calling Mesh.GetLightmapSizeHint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Mesh", "get_lightmap_size_hint")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_lightmap_size_hint", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false size Vector2}], Returns: void
 */
-func (o *Mesh) SetLightmapSizeHint(size *Vector2) {
+
+func (o *Mesh) SetLightmapSizeHint(size gdnative.Vector2) {
 	log.Println("Calling Mesh.SetLightmapSizeHint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Mesh", "set_lightmap_size_hint")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_lightmap_size_hint", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   MeshImplementer is an interface for Mesh objects.
-*/
-type MeshImplementer interface {
-	Class
 }

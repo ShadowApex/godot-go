@@ -2,7 +2,21 @@ package canvasitem
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/font"
+	"github.com/shadowapex/godot-go/godot/class/node"
+
+	"github.com/shadowapex/godot-go/godot/class/texture"
+
+	"github.com/shadowapex/godot-go/godot/class/stylebox"
+
+	"github.com/shadowapex/godot-go/godot/class/material"
+
+	"github.com/shadowapex/godot-go/godot/class/world2d"
+
+	"github.com/shadowapex/godot-go/godot/class/inputevent"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +28,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewCanvasItemFromPointer(ptr gdnative.Pointer) *CanvasItem {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := CanvasItem{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Base class of anything 2D. Canvas items are laid out in a tree and children inherit and extend the transform of their parent. CanvasItem is extended by [Control], for anything GUI related, and by [Node2D] for anything 2D engine related. Any CanvasItem can draw. For this, the "update" function must be called, then NOTIFICATION_DRAW will be received on idle time to request redraw. Because of this, canvas items don't need to be redraw on every frame, improving the performance significantly. Several functions for drawing on the CanvasItem are provided (see draw_* functions). They can only be used inside the notification, signal or _draw() overrides function, though. Canvas items are draw in tree order. By default, children are on top of their parents so a root CanvasItem will be drawn behind everything (this can be changed per item though). Canvas items can also be hidden (hiding also their subtree). They provide many means for changing standard parameters such as opacity (for it and the subtree) and self opacity, blend mode. Ultimately, a transform notification can be requested, which will notify the node that its global position changed in case the parent tree changed.
 */
 type CanvasItem struct {
-	Node
+	node.Node
 }
 
 func (o *CanvasItem) BaseClass() string {
@@ -26,1487 +49,1852 @@ func (o *CanvasItem) BaseClass() string {
 }
 
 /*
-   Called (if exists) to draw the canvas item.
+        Called (if exists) to draw the canvas item.
+	Args: [], Returns: void
 */
+
 func (o *CanvasItem) X_Draw() {
 	log.Println("Calling CanvasItem.X_Draw()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_draw")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_draw", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Rect2
 */
-func (o *CanvasItem) X_EditGetItemAndChildrenRect() *Rect2 {
+
+func (o *CanvasItem) X_EditGetItemAndChildrenRect() gdnative.Rect2 {
 	log.Println("Calling CanvasItem.X_EditGetItemAndChildrenRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_get_item_and_children_rect")
 
 	// Call the parent method.
+	// Rect2
+	retPtr := gdnative.NewEmptyRect2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_edit_get_item_and_children_rect", goArguments, "*Rect2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRect2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Rect2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *CanvasItem) X_EditGetPivot() *Vector2 {
+
+func (o *CanvasItem) X_EditGetPivot() gdnative.Vector2 {
 	log.Println("Calling CanvasItem.X_EditGetPivot()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_get_pivot")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_edit_get_pivot", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *CanvasItem) X_EditGetPosition() *Vector2 {
+
+func (o *CanvasItem) X_EditGetPosition() gdnative.Vector2 {
 	log.Println("Calling CanvasItem.X_EditGetPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_get_position")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_edit_get_position", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Rect2
 */
-func (o *CanvasItem) X_EditGetRect() *Rect2 {
+
+func (o *CanvasItem) X_EditGetRect() gdnative.Rect2 {
 	log.Println("Calling CanvasItem.X_EditGetRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_get_rect")
 
 	// Call the parent method.
+	// Rect2
+	retPtr := gdnative.NewEmptyRect2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_edit_get_rect", goArguments, "*Rect2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRect2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Rect2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *CanvasItem) X_EditGetRotation() gdnative.Float {
 	log.Println("Calling CanvasItem.X_EditGetRotation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_get_rotation")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_edit_get_rotation", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Dictionary
 */
-func (o *CanvasItem) X_EditGetState() *Dictionary {
+
+func (o *CanvasItem) X_EditGetState() gdnative.Dictionary {
 	log.Println("Calling CanvasItem.X_EditGetState()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_get_state")
 
 	// Call the parent method.
+	// Dictionary
+	retPtr := gdnative.NewEmptyDictionary()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_edit_get_state", goArguments, "*Dictionary")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewDictionaryFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Dictionary)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false pivot Vector2}], Returns: void
 */
-func (o *CanvasItem) X_EditSetPivot(pivot *Vector2) {
+
+func (o *CanvasItem) X_EditSetPivot(pivot gdnative.Vector2) {
 	log.Println("Calling CanvasItem.X_EditSetPivot()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pivot)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(pivot)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_set_pivot")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_edit_set_pivot", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false position Vector2}], Returns: void
 */
-func (o *CanvasItem) X_EditSetPosition(position *Vector2) {
+
+func (o *CanvasItem) X_EditSetPosition(position gdnative.Vector2) {
 	log.Println("Calling CanvasItem.X_EditSetPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_set_position")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_edit_set_position", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false rect Rect2}], Returns: void
 */
-func (o *CanvasItem) X_EditSetRect(rect *Rect2) {
+
+func (o *CanvasItem) X_EditSetRect(rect gdnative.Rect2) {
 	log.Println("Calling CanvasItem.X_EditSetRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(rect)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRect2(rect)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_set_rect")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_edit_set_rect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false degrees float}], Returns: void
 */
+
 func (o *CanvasItem) X_EditSetRotation(degrees gdnative.Float) {
 	log.Println("Calling CanvasItem.X_EditSetRotation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(degrees)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(degrees)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_set_rotation")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_edit_set_rotation", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false state Dictionary}], Returns: void
 */
-func (o *CanvasItem) X_EditSetState(state *Dictionary) {
+
+func (o *CanvasItem) X_EditSetState(state gdnative.Dictionary) {
 	log.Println("Calling CanvasItem.X_EditSetState()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(state)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromDictionary(state)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_set_state")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_edit_set_state", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *CanvasItem) X_EditUsePivot() gdnative.Bool {
 	log.Println("Calling CanvasItem.X_EditUsePivot()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_use_pivot")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_edit_use_pivot", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *CanvasItem) X_EditUsePosition() gdnative.Bool {
 	log.Println("Calling CanvasItem.X_EditUsePosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_use_position")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_edit_use_position", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *CanvasItem) X_EditUseRect() gdnative.Bool {
 	log.Println("Calling CanvasItem.X_EditUseRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_use_rect")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_edit_use_rect", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *CanvasItem) X_EditUseRotation() gdnative.Bool {
 	log.Println("Calling CanvasItem.X_EditUseRotation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_use_rotation")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_edit_use_rotation", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *CanvasItem) X_IsOnTop() gdnative.Bool {
 	log.Println("Calling CanvasItem.X_IsOnTop()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_is_on_top")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_is_on_top", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false on_top bool}], Returns: void
 */
+
 func (o *CanvasItem) X_SetOnTop(onTop gdnative.Bool) {
 	log.Println("Calling CanvasItem.X_SetOnTop()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(onTop)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(onTop)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_set_on_top")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_on_top", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *CanvasItem) X_ToplevelRaiseSelf() {
 	log.Println("Calling CanvasItem.X_ToplevelRaiseSelf()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_toplevel_raise_self")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_toplevel_raise_self", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *CanvasItem) X_UpdateCallback() {
 	log.Println("Calling CanvasItem.X_UpdateCallback()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "_update_callback")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_update_callback", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Draws a string character using a custom font. Returns the advance, depending on the char width and kerning with an optional next char.
+        Draws a string character using a custom font. Returns the advance, depending on the char width and kerning with an optional next char.
+	Args: [{ false font Font} { false position Vector2} { false char String} { false next String} {1,1,1,1 true modulate Color}], Returns: float
 */
-func (o *CanvasItem) DrawChar(font *Font, position *Vector2, char gdnative.String, next gdnative.String, modulate *Color) gdnative.Float {
+
+func (o *CanvasItem) DrawChar(font font.Font, position gdnative.Vector2, char gdnative.String, next gdnative.String, modulate gdnative.Color) gdnative.Float {
 	log.Println("Calling CanvasItem.DrawChar()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(font)
-	goArguments[1] = reflect.ValueOf(position)
-	goArguments[2] = reflect.ValueOf(char)
-	goArguments[3] = reflect.ValueOf(next)
-	goArguments[4] = reflect.ValueOf(modulate)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromObject(font.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromVector2(position)
+	ptrArguments[2] = gdnative.NewPointerFromString(char)
+	ptrArguments[3] = gdnative.NewPointerFromString(next)
+	ptrArguments[4] = gdnative.NewPointerFromColor(modulate)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_char")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "draw_char", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Draws a colored circle.
+        Draws a colored circle.
+	Args: [{ false position Vector2} { false radius float} { false color Color}], Returns: void
 */
-func (o *CanvasItem) DrawCircle(position *Vector2, radius gdnative.Float, color *Color) {
+
+func (o *CanvasItem) DrawCircle(position gdnative.Vector2, radius gdnative.Float, color gdnative.Color) {
 	log.Println("Calling CanvasItem.DrawCircle()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(position)
-	goArguments[1] = reflect.ValueOf(radius)
-	goArguments[2] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(radius)
+	ptrArguments[2] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_circle")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw_circle", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Draws a colored polygon of any amount of points, convex or concave.
+        Draws a colored polygon of any amount of points, convex or concave.
+	Args: [{ false points PoolVector2Array} { false color Color} {[] true uvs PoolVector2Array} {Null true texture Texture} {Null true normal_map Texture} {False true antialiased bool}], Returns: void
 */
-func (o *CanvasItem) DrawColoredPolygon(points *PoolVector2Array, color *Color, uvs *PoolVector2Array, texture *Texture, normalMap *Texture, antialiased gdnative.Bool) {
+
+func (o *CanvasItem) DrawColoredPolygon(points gdnative.PoolVector2Array, color gdnative.Color, uvs gdnative.PoolVector2Array, texture texture.Texture, normalMap texture.Texture, antialiased gdnative.Bool) {
 	log.Println("Calling CanvasItem.DrawColoredPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 6, 6)
-	goArguments[0] = reflect.ValueOf(points)
-	goArguments[1] = reflect.ValueOf(color)
-	goArguments[2] = reflect.ValueOf(uvs)
-	goArguments[3] = reflect.ValueOf(texture)
-	goArguments[4] = reflect.ValueOf(normalMap)
-	goArguments[5] = reflect.ValueOf(antialiased)
+	ptrArguments := make([]gdnative.Pointer, 6, 6)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(points)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+	ptrArguments[2] = gdnative.NewPointerFromPoolVector2Array(uvs)
+	ptrArguments[3] = gdnative.NewPointerFromObject(texture.GetOwner())
+	ptrArguments[4] = gdnative.NewPointerFromObject(normalMap.GetOwner())
+	ptrArguments[5] = gdnative.NewPointerFromBool(antialiased)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_colored_polygon")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw_colored_polygon", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Draws a line from a 2D point to another, with a given color and width. It can be optionally antialiased.
+        Draws a line from a 2D point to another, with a given color and width. It can be optionally antialiased.
+	Args: [{ false from Vector2} { false to Vector2} { false color Color} {1 true width float} {False true antialiased bool}], Returns: void
 */
-func (o *CanvasItem) DrawLine(from *Vector2, to *Vector2, color *Color, width gdnative.Float, antialiased gdnative.Bool) {
+
+func (o *CanvasItem) DrawLine(from gdnative.Vector2, to gdnative.Vector2, color gdnative.Color, width gdnative.Float, antialiased gdnative.Bool) {
 	log.Println("Calling CanvasItem.DrawLine()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(from)
-	goArguments[1] = reflect.ValueOf(to)
-	goArguments[2] = reflect.ValueOf(color)
-	goArguments[3] = reflect.ValueOf(width)
-	goArguments[4] = reflect.ValueOf(antialiased)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(from)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(to)
+	ptrArguments[2] = gdnative.NewPointerFromColor(color)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[4] = gdnative.NewPointerFromBool(antialiased)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_line")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw_line", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Draws multiple, parallel lines with a uniform [code]color[/code] and [code]width[/code] and optional antialiasing.
+        Draws multiple, parallel lines with a uniform [code]color[/code] and [code]width[/code] and optional antialiasing.
+	Args: [{ false points PoolVector2Array} { false color Color} {1 true width float} {False true antialiased bool}], Returns: void
 */
-func (o *CanvasItem) DrawMultiline(points *PoolVector2Array, color *Color, width gdnative.Float, antialiased gdnative.Bool) {
+
+func (o *CanvasItem) DrawMultiline(points gdnative.PoolVector2Array, color gdnative.Color, width gdnative.Float, antialiased gdnative.Bool) {
 	log.Println("Calling CanvasItem.DrawMultiline()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(points)
-	goArguments[1] = reflect.ValueOf(color)
-	goArguments[2] = reflect.ValueOf(width)
-	goArguments[3] = reflect.ValueOf(antialiased)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(points)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[3] = gdnative.NewPointerFromBool(antialiased)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_multiline")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw_multiline", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Draws multiple, parallel lines with a uniform [code]width[/code], segment-by-segment coloring, and optional antialiasing. Colors assigned to line segments match by index between [code]points[/code] and [code]colors[/code].
+        Draws multiple, parallel lines with a uniform [code]width[/code], segment-by-segment coloring, and optional antialiasing. Colors assigned to line segments match by index between [code]points[/code] and [code]colors[/code].
+	Args: [{ false points PoolVector2Array} { false colors PoolColorArray} {1 true width float} {False true antialiased bool}], Returns: void
 */
-func (o *CanvasItem) DrawMultilineColors(points *PoolVector2Array, colors *PoolColorArray, width gdnative.Float, antialiased gdnative.Bool) {
+
+func (o *CanvasItem) DrawMultilineColors(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Float, antialiased gdnative.Bool) {
 	log.Println("Calling CanvasItem.DrawMultilineColors()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(points)
-	goArguments[1] = reflect.ValueOf(colors)
-	goArguments[2] = reflect.ValueOf(width)
-	goArguments[3] = reflect.ValueOf(antialiased)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(points)
+	ptrArguments[1] = gdnative.NewPointerFromPoolColorArray(colors)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[3] = gdnative.NewPointerFromBool(antialiased)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_multiline_colors")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw_multiline_colors", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Draws a polygon of any amount of points, convex or concave.
+        Draws a polygon of any amount of points, convex or concave.
+	Args: [{ false points PoolVector2Array} { false colors PoolColorArray} {[] true uvs PoolVector2Array} {Null true texture Texture} {Null true normal_map Texture} {False true antialiased bool}], Returns: void
 */
-func (o *CanvasItem) DrawPolygon(points *PoolVector2Array, colors *PoolColorArray, uvs *PoolVector2Array, texture *Texture, normalMap *Texture, antialiased gdnative.Bool) {
+
+func (o *CanvasItem) DrawPolygon(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture texture.Texture, normalMap texture.Texture, antialiased gdnative.Bool) {
 	log.Println("Calling CanvasItem.DrawPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 6, 6)
-	goArguments[0] = reflect.ValueOf(points)
-	goArguments[1] = reflect.ValueOf(colors)
-	goArguments[2] = reflect.ValueOf(uvs)
-	goArguments[3] = reflect.ValueOf(texture)
-	goArguments[4] = reflect.ValueOf(normalMap)
-	goArguments[5] = reflect.ValueOf(antialiased)
+	ptrArguments := make([]gdnative.Pointer, 6, 6)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(points)
+	ptrArguments[1] = gdnative.NewPointerFromPoolColorArray(colors)
+	ptrArguments[2] = gdnative.NewPointerFromPoolVector2Array(uvs)
+	ptrArguments[3] = gdnative.NewPointerFromObject(texture.GetOwner())
+	ptrArguments[4] = gdnative.NewPointerFromObject(normalMap.GetOwner())
+	ptrArguments[5] = gdnative.NewPointerFromBool(antialiased)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_polygon")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw_polygon", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Draws interconnected line segments with a uniform [code]color[/code] and [code]width[/code] and optional antialiasing.
+        Draws interconnected line segments with a uniform [code]color[/code] and [code]width[/code] and optional antialiasing.
+	Args: [{ false points PoolVector2Array} { false color Color} {1 true width float} {False true antialiased bool}], Returns: void
 */
-func (o *CanvasItem) DrawPolyline(points *PoolVector2Array, color *Color, width gdnative.Float, antialiased gdnative.Bool) {
+
+func (o *CanvasItem) DrawPolyline(points gdnative.PoolVector2Array, color gdnative.Color, width gdnative.Float, antialiased gdnative.Bool) {
 	log.Println("Calling CanvasItem.DrawPolyline()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(points)
-	goArguments[1] = reflect.ValueOf(color)
-	goArguments[2] = reflect.ValueOf(width)
-	goArguments[3] = reflect.ValueOf(antialiased)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(points)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[3] = gdnative.NewPointerFromBool(antialiased)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_polyline")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw_polyline", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Draws interconnected line segments with a uniform [code]width[/code], segment-by-segment coloring, and optional antialiasing. Colors assigned to line segments match by index between [code]points[/code] and [code]colors[/code].
+        Draws interconnected line segments with a uniform [code]width[/code], segment-by-segment coloring, and optional antialiasing. Colors assigned to line segments match by index between [code]points[/code] and [code]colors[/code].
+	Args: [{ false points PoolVector2Array} { false colors PoolColorArray} {1 true width float} {False true antialiased bool}], Returns: void
 */
-func (o *CanvasItem) DrawPolylineColors(points *PoolVector2Array, colors *PoolColorArray, width gdnative.Float, antialiased gdnative.Bool) {
+
+func (o *CanvasItem) DrawPolylineColors(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Float, antialiased gdnative.Bool) {
 	log.Println("Calling CanvasItem.DrawPolylineColors()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(points)
-	goArguments[1] = reflect.ValueOf(colors)
-	goArguments[2] = reflect.ValueOf(width)
-	goArguments[3] = reflect.ValueOf(antialiased)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(points)
+	ptrArguments[1] = gdnative.NewPointerFromPoolColorArray(colors)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[3] = gdnative.NewPointerFromBool(antialiased)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_polyline_colors")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw_polyline_colors", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Draws a custom primitive, 1 point for a point, 2 points for a line, 3 points for a triangle and 4 points for a quad.
+        Draws a custom primitive, 1 point for a point, 2 points for a line, 3 points for a triangle and 4 points for a quad.
+	Args: [{ false points PoolVector2Array} { false colors PoolColorArray} { false uvs PoolVector2Array} {Null true texture Texture} {1 true width float} {Null true normal_map Texture}], Returns: void
 */
-func (o *CanvasItem) DrawPrimitive(points *PoolVector2Array, colors *PoolColorArray, uvs *PoolVector2Array, texture *Texture, width gdnative.Float, normalMap *Texture) {
+
+func (o *CanvasItem) DrawPrimitive(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture texture.Texture, width gdnative.Float, normalMap texture.Texture) {
 	log.Println("Calling CanvasItem.DrawPrimitive()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 6, 6)
-	goArguments[0] = reflect.ValueOf(points)
-	goArguments[1] = reflect.ValueOf(colors)
-	goArguments[2] = reflect.ValueOf(uvs)
-	goArguments[3] = reflect.ValueOf(texture)
-	goArguments[4] = reflect.ValueOf(width)
-	goArguments[5] = reflect.ValueOf(normalMap)
+	ptrArguments := make([]gdnative.Pointer, 6, 6)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(points)
+	ptrArguments[1] = gdnative.NewPointerFromPoolColorArray(colors)
+	ptrArguments[2] = gdnative.NewPointerFromPoolVector2Array(uvs)
+	ptrArguments[3] = gdnative.NewPointerFromObject(texture.GetOwner())
+	ptrArguments[4] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[5] = gdnative.NewPointerFromObject(normalMap.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_primitive")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw_primitive", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Draws a colored rectangle.
+        Draws a colored rectangle.
+	Args: [{ false rect Rect2} { false color Color} {True true filled bool}], Returns: void
 */
-func (o *CanvasItem) DrawRect(rect *Rect2, color *Color, filled gdnative.Bool) {
+
+func (o *CanvasItem) DrawRect(rect gdnative.Rect2, color gdnative.Color, filled gdnative.Bool) {
 	log.Println("Calling CanvasItem.DrawRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(rect)
-	goArguments[1] = reflect.ValueOf(color)
-	goArguments[2] = reflect.ValueOf(filled)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRect2(rect)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+	ptrArguments[2] = gdnative.NewPointerFromBool(filled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_rect")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw_rect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a custom transform for drawing via components. Anything drawn afterwards will be transformed by this.
+        Sets a custom transform for drawing via components. Anything drawn afterwards will be transformed by this.
+	Args: [{ false position Vector2} { false rotation float} { false scale Vector2}], Returns: void
 */
-func (o *CanvasItem) DrawSetTransform(position *Vector2, rotation gdnative.Float, scale *Vector2) {
+
+func (o *CanvasItem) DrawSetTransform(position gdnative.Vector2, rotation gdnative.Float, scale gdnative.Vector2) {
 	log.Println("Calling CanvasItem.DrawSetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(position)
-	goArguments[1] = reflect.ValueOf(rotation)
-	goArguments[2] = reflect.ValueOf(scale)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(rotation)
+	ptrArguments[2] = gdnative.NewPointerFromVector2(scale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_set_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw_set_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a custom transform for drawing via matrix. Anything drawn afterwards will be transformed by this.
+        Sets a custom transform for drawing via matrix. Anything drawn afterwards will be transformed by this.
+	Args: [{ false xform Transform2D}], Returns: void
 */
-func (o *CanvasItem) DrawSetTransformMatrix(xform *Transform2D) {
+
+func (o *CanvasItem) DrawSetTransformMatrix(xform gdnative.Transform2D) {
 	log.Println("Calling CanvasItem.DrawSetTransformMatrix()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(xform)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromTransform2D(xform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_set_transform_matrix")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw_set_transform_matrix", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Draws a string using a custom font.
+        Draws a string using a custom font.
+	Args: [{ false font Font} { false position Vector2} { false text String} {1,1,1,1 true modulate Color} {-1 true clip_w int}], Returns: void
 */
-func (o *CanvasItem) DrawString(font *Font, position *Vector2, text gdnative.String, modulate *Color, clipW gdnative.Int) {
+
+func (o *CanvasItem) DrawString(font font.Font, position gdnative.Vector2, text gdnative.String, modulate gdnative.Color, clipW gdnative.Int) {
 	log.Println("Calling CanvasItem.DrawString()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(font)
-	goArguments[1] = reflect.ValueOf(position)
-	goArguments[2] = reflect.ValueOf(text)
-	goArguments[3] = reflect.ValueOf(modulate)
-	goArguments[4] = reflect.ValueOf(clipW)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromObject(font.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromVector2(position)
+	ptrArguments[2] = gdnative.NewPointerFromString(text)
+	ptrArguments[3] = gdnative.NewPointerFromColor(modulate)
+	ptrArguments[4] = gdnative.NewPointerFromInt(clipW)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_string")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw_string", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Draws a styled rectangle.
+        Draws a styled rectangle.
+	Args: [{ false style_box StyleBox} { false rect Rect2}], Returns: void
 */
-func (o *CanvasItem) DrawStyleBox(styleBox *StyleBox, rect *Rect2) {
+
+func (o *CanvasItem) DrawStyleBox(styleBox stylebox.StyleBox, rect gdnative.Rect2) {
 	log.Println("Calling CanvasItem.DrawStyleBox()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(styleBox)
-	goArguments[1] = reflect.ValueOf(rect)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromObject(styleBox.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromRect2(rect)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_style_box")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw_style_box", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Draws a texture at a given position.
+        Draws a texture at a given position.
+	Args: [{ false texture Texture} { false position Vector2} {1,1,1,1 true modulate Color} {Null true normal_map Texture}], Returns: void
 */
-func (o *CanvasItem) DrawTexture(texture *Texture, position *Vector2, modulate *Color, normalMap *Texture) {
+
+func (o *CanvasItem) DrawTexture(texture texture.Texture, position gdnative.Vector2, modulate gdnative.Color, normalMap texture.Texture) {
 	log.Println("Calling CanvasItem.DrawTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(texture)
-	goArguments[1] = reflect.ValueOf(position)
-	goArguments[2] = reflect.ValueOf(modulate)
-	goArguments[3] = reflect.ValueOf(normalMap)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromObject(texture.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromVector2(position)
+	ptrArguments[2] = gdnative.NewPointerFromColor(modulate)
+	ptrArguments[3] = gdnative.NewPointerFromObject(normalMap.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_texture")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw_texture", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Draws a textured rectangle at a given position, optionally modulated by a color. Transpose swaps the x and y coordinates when reading the texture.
+        Draws a textured rectangle at a given position, optionally modulated by a color. Transpose swaps the x and y coordinates when reading the texture.
+	Args: [{ false texture Texture} { false rect Rect2} { false tile bool} {1,1,1,1 true modulate Color} {False true transpose bool} {Null true normal_map Texture}], Returns: void
 */
-func (o *CanvasItem) DrawTextureRect(texture *Texture, rect *Rect2, tile gdnative.Bool, modulate *Color, transpose gdnative.Bool, normalMap *Texture) {
+
+func (o *CanvasItem) DrawTextureRect(texture texture.Texture, rect gdnative.Rect2, tile gdnative.Bool, modulate gdnative.Color, transpose gdnative.Bool, normalMap texture.Texture) {
 	log.Println("Calling CanvasItem.DrawTextureRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 6, 6)
-	goArguments[0] = reflect.ValueOf(texture)
-	goArguments[1] = reflect.ValueOf(rect)
-	goArguments[2] = reflect.ValueOf(tile)
-	goArguments[3] = reflect.ValueOf(modulate)
-	goArguments[4] = reflect.ValueOf(transpose)
-	goArguments[5] = reflect.ValueOf(normalMap)
+	ptrArguments := make([]gdnative.Pointer, 6, 6)
+	ptrArguments[0] = gdnative.NewPointerFromObject(texture.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromRect2(rect)
+	ptrArguments[2] = gdnative.NewPointerFromBool(tile)
+	ptrArguments[3] = gdnative.NewPointerFromColor(modulate)
+	ptrArguments[4] = gdnative.NewPointerFromBool(transpose)
+	ptrArguments[5] = gdnative.NewPointerFromObject(normalMap.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_texture_rect")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw_texture_rect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Draws a textured rectangle region at a given position, optionally modulated by a color. Transpose swaps the x and y coordinates when reading the texture.
+        Draws a textured rectangle region at a given position, optionally modulated by a color. Transpose swaps the x and y coordinates when reading the texture.
+	Args: [{ false texture Texture} { false rect Rect2} { false src_rect Rect2} {1,1,1,1 true modulate Color} {False true transpose bool} {Null true normal_map Texture} {True true clip_uv bool}], Returns: void
 */
-func (o *CanvasItem) DrawTextureRectRegion(texture *Texture, rect *Rect2, srcRect *Rect2, modulate *Color, transpose gdnative.Bool, normalMap *Texture, clipUv gdnative.Bool) {
+
+func (o *CanvasItem) DrawTextureRectRegion(texture texture.Texture, rect gdnative.Rect2, srcRect gdnative.Rect2, modulate gdnative.Color, transpose gdnative.Bool, normalMap texture.Texture, clipUv gdnative.Bool) {
 	log.Println("Calling CanvasItem.DrawTextureRectRegion()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 7, 7)
-	goArguments[0] = reflect.ValueOf(texture)
-	goArguments[1] = reflect.ValueOf(rect)
-	goArguments[2] = reflect.ValueOf(srcRect)
-	goArguments[3] = reflect.ValueOf(modulate)
-	goArguments[4] = reflect.ValueOf(transpose)
-	goArguments[5] = reflect.ValueOf(normalMap)
-	goArguments[6] = reflect.ValueOf(clipUv)
+	ptrArguments := make([]gdnative.Pointer, 7, 7)
+	ptrArguments[0] = gdnative.NewPointerFromObject(texture.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromRect2(rect)
+	ptrArguments[2] = gdnative.NewPointerFromRect2(srcRect)
+	ptrArguments[3] = gdnative.NewPointerFromColor(modulate)
+	ptrArguments[4] = gdnative.NewPointerFromBool(transpose)
+	ptrArguments[5] = gdnative.NewPointerFromObject(normalMap.GetOwner())
+	ptrArguments[6] = gdnative.NewPointerFromBool(clipUv)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "draw_texture_rect_region")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "draw_texture_rect_region", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Return the [RID] of the [World2D] canvas where this item is in.
+        Return the [RID] of the [World2D] canvas where this item is in.
+	Args: [], Returns: RID
 */
-func (o *CanvasItem) GetCanvas() *RID {
+
+func (o *CanvasItem) GetCanvas() gdnative.RID {
 	log.Println("Calling CanvasItem.GetCanvas()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "get_canvas")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_canvas", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the canvas item RID used by [VisualServer] for this item.
+        Return the canvas item RID used by [VisualServer] for this item.
+	Args: [], Returns: RID
 */
-func (o *CanvasItem) GetCanvasItem() *RID {
+
+func (o *CanvasItem) GetCanvasItem() gdnative.RID {
 	log.Println("Calling CanvasItem.GetCanvasItem()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "get_canvas_item")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_canvas_item", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the transform matrix of this item's canvas.
+        Get the transform matrix of this item's canvas.
+	Args: [], Returns: Transform2D
 */
-func (o *CanvasItem) GetCanvasTransform() *Transform2D {
+
+func (o *CanvasItem) GetCanvasTransform() gdnative.Transform2D {
 	log.Println("Calling CanvasItem.GetCanvasTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "get_canvas_transform")
 
 	// Call the parent method.
+	// Transform2D
+	retPtr := gdnative.NewEmptyTransform2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_canvas_transform", goArguments, "*Transform2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransform2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the global position of the mouse.
+        Get the global position of the mouse.
+	Args: [], Returns: Vector2
 */
-func (o *CanvasItem) GetGlobalMousePosition() *Vector2 {
+
+func (o *CanvasItem) GetGlobalMousePosition() gdnative.Vector2 {
 	log.Println("Calling CanvasItem.GetGlobalMousePosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "get_global_mouse_position")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_global_mouse_position", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the global transform matrix of this item.
+        Get the global transform matrix of this item.
+	Args: [], Returns: Transform2D
 */
-func (o *CanvasItem) GetGlobalTransform() *Transform2D {
+
+func (o *CanvasItem) GetGlobalTransform() gdnative.Transform2D {
 	log.Println("Calling CanvasItem.GetGlobalTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "get_global_transform")
 
 	// Call the parent method.
+	// Transform2D
+	retPtr := gdnative.NewEmptyTransform2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_global_transform", goArguments, "*Transform2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransform2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the global transform matrix of this item in relation to the canvas.
+        Get the global transform matrix of this item in relation to the canvas.
+	Args: [], Returns: Transform2D
 */
-func (o *CanvasItem) GetGlobalTransformWithCanvas() *Transform2D {
+
+func (o *CanvasItem) GetGlobalTransformWithCanvas() gdnative.Transform2D {
 	log.Println("Calling CanvasItem.GetGlobalTransformWithCanvas()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "get_global_transform_with_canvas")
 
 	// Call the parent method.
+	// Transform2D
+	retPtr := gdnative.NewEmptyTransform2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_global_transform_with_canvas", goArguments, "*Transform2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransform2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *CanvasItem) GetLightMask() gdnative.Int {
 	log.Println("Calling CanvasItem.GetLightMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "get_light_mask")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_light_mask", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the mouse position relative to this item's position.
+        Get the mouse position relative to this item's position.
+	Args: [], Returns: Vector2
 */
-func (o *CanvasItem) GetLocalMousePosition() *Vector2 {
+
+func (o *CanvasItem) GetLocalMousePosition() gdnative.Vector2 {
 	log.Println("Calling CanvasItem.GetLocalMousePosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "get_local_mouse_position")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_local_mouse_position", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Material
 */
-func (o *CanvasItem) GetMaterial() *Material {
+
+func (o *CanvasItem) GetMaterial() material.Material {
 	log.Println("Calling CanvasItem.GetMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "get_material")
 
 	// Call the parent method.
+	// Material
+	retPtr := material.NewEmptyMaterial()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_material", goArguments, "*Material")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := material.NewMaterialFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Material)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Color
 */
-func (o *CanvasItem) GetModulate() *Color {
+
+func (o *CanvasItem) GetModulate() gdnative.Color {
 	log.Println("Calling CanvasItem.GetModulate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "get_modulate")
 
 	// Call the parent method.
+	// Color
+	retPtr := gdnative.NewEmptyColor()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_modulate", goArguments, "*Color")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewColorFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Color)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Color
 */
-func (o *CanvasItem) GetSelfModulate() *Color {
+
+func (o *CanvasItem) GetSelfModulate() gdnative.Color {
 	log.Println("Calling CanvasItem.GetSelfModulate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "get_self_modulate")
 
 	// Call the parent method.
+	// Color
+	retPtr := gdnative.NewEmptyColor()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_self_modulate", goArguments, "*Color")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewColorFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Color)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the transform matrix of this item.
+        Get the transform matrix of this item.
+	Args: [], Returns: Transform2D
 */
-func (o *CanvasItem) GetTransform() *Transform2D {
+
+func (o *CanvasItem) GetTransform() gdnative.Transform2D {
 	log.Println("Calling CanvasItem.GetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "get_transform")
 
 	// Call the parent method.
+	// Transform2D
+	retPtr := gdnative.NewEmptyTransform2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_transform", goArguments, "*Transform2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransform2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *CanvasItem) GetUseParentMaterial() gdnative.Bool {
 	log.Println("Calling CanvasItem.GetUseParentMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "get_use_parent_material")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_use_parent_material", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the viewport's boundaries as a [Rect2].
+        Get the viewport's boundaries as a [Rect2].
+	Args: [], Returns: Rect2
 */
-func (o *CanvasItem) GetViewportRect() *Rect2 {
+
+func (o *CanvasItem) GetViewportRect() gdnative.Rect2 {
 	log.Println("Calling CanvasItem.GetViewportRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "get_viewport_rect")
 
 	// Call the parent method.
+	// Rect2
+	retPtr := gdnative.NewEmptyRect2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_viewport_rect", goArguments, "*Rect2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRect2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Rect2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get this item's transform in relation to the viewport.
+        Get this item's transform in relation to the viewport.
+	Args: [], Returns: Transform2D
 */
-func (o *CanvasItem) GetViewportTransform() *Transform2D {
+
+func (o *CanvasItem) GetViewportTransform() gdnative.Transform2D {
 	log.Println("Calling CanvasItem.GetViewportTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "get_viewport_transform")
 
 	// Call the parent method.
+	// Transform2D
+	retPtr := gdnative.NewEmptyTransform2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_viewport_transform", goArguments, "*Transform2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransform2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the [World2D] where this item is in.
+        Get the [World2D] where this item is in.
+	Args: [], Returns: World2D
 */
-func (o *CanvasItem) GetWorld2D() *World2D {
+
+func (o *CanvasItem) GetWorld2D() world2d.World2D {
 	log.Println("Calling CanvasItem.GetWorld2D()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "get_world_2d")
 
 	// Call the parent method.
+	// World2D
+	retPtr := world2d.NewEmptyWorld2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_world_2d", goArguments, "*World2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := world2d.NewWorld2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*World2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Hide the CanvasItem currently visible.
+        Hide the CanvasItem currently visible.
+	Args: [], Returns: void
 */
+
 func (o *CanvasItem) Hide() {
 	log.Println("Calling CanvasItem.Hide()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "hide")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "hide", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *CanvasItem) IsDrawBehindParentEnabled() gdnative.Bool {
 	log.Println("Calling CanvasItem.IsDrawBehindParentEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "is_draw_behind_parent_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_draw_behind_parent_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if local transform notifications are communicated to children.
+        Returns [code]true[/code] if local transform notifications are communicated to children.
+	Args: [], Returns: bool
 */
+
 func (o *CanvasItem) IsLocalTransformNotificationEnabled() gdnative.Bool {
 	log.Println("Calling CanvasItem.IsLocalTransformNotificationEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "is_local_transform_notification_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_local_transform_notification_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return if set as toplevel. See [method set_as_toplevel].
+        Return if set as toplevel. See [method set_as_toplevel].
+	Args: [], Returns: bool
 */
+
 func (o *CanvasItem) IsSetAsToplevel() gdnative.Bool {
 	log.Println("Calling CanvasItem.IsSetAsToplevel()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "is_set_as_toplevel")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_set_as_toplevel", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if global transform notifications are communicated to children.
+        Returns [code]true[/code] if global transform notifications are communicated to children.
+	Args: [], Returns: bool
 */
+
 func (o *CanvasItem) IsTransformNotificationEnabled() gdnative.Bool {
 	log.Println("Calling CanvasItem.IsTransformNotificationEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "is_transform_notification_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_transform_notification_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *CanvasItem) IsVisible() gdnative.Bool {
 	log.Println("Calling CanvasItem.IsVisible()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "is_visible")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_visible", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the node is present in the [SceneTree], its [member visible] property is [code]true[/code] and its inherited visibility is also [code]true[/code].
+        Returns [code]true[/code] if the node is present in the [SceneTree], its [member visible] property is [code]true[/code] and its inherited visibility is also [code]true[/code].
+	Args: [], Returns: bool
 */
+
 func (o *CanvasItem) IsVisibleInTree() gdnative.Bool {
 	log.Println("Calling CanvasItem.IsVisibleInTree()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "is_visible_in_tree")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_visible_in_tree", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Assigns [code]screen_point[/code] as this node's new local transform.
+        Assigns [code]screen_point[/code] as this node's new local transform.
+	Args: [{ false screen_point Vector2}], Returns: Vector2
 */
-func (o *CanvasItem) MakeCanvasPositionLocal(screenPoint *Vector2) *Vector2 {
+
+func (o *CanvasItem) MakeCanvasPositionLocal(screenPoint gdnative.Vector2) gdnative.Vector2 {
 	log.Println("Calling CanvasItem.MakeCanvasPositionLocal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(screenPoint)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(screenPoint)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "make_canvas_position_local")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "make_canvas_position_local", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Transformations issued by [code]event[/code]'s inputs are applied in local space instead of global space.
+        Transformations issued by [code]event[/code]'s inputs are applied in local space instead of global space.
+	Args: [{ false event InputEvent}], Returns: InputEvent
 */
-func (o *CanvasItem) MakeInputLocal(event *InputEvent) *InputEvent {
+
+func (o *CanvasItem) MakeInputLocal(event inputevent.InputEvent) inputevent.InputEvent {
 	log.Println("Calling CanvasItem.MakeInputLocal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(event)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(event.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "make_input_local")
 
 	// Call the parent method.
+	// InputEvent
+	retPtr := inputevent.NewEmptyInputEvent()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "make_input_local", goArguments, "*InputEvent")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := inputevent.NewInputEventFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*InputEvent)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets as top level. This means that it will not inherit transform from parent canvas items.
+        Sets as top level. This means that it will not inherit transform from parent canvas items.
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *CanvasItem) SetAsToplevel(enable gdnative.Bool) {
 	log.Println("Calling CanvasItem.SetAsToplevel()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "set_as_toplevel")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_as_toplevel", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *CanvasItem) SetDrawBehindParent(enable gdnative.Bool) {
 	log.Println("Calling CanvasItem.SetDrawBehindParent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "set_draw_behind_parent")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_draw_behind_parent", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false light_mask int}], Returns: void
 */
+
 func (o *CanvasItem) SetLightMask(lightMask gdnative.Int) {
 	log.Println("Calling CanvasItem.SetLightMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(lightMask)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(lightMask)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "set_light_mask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_light_mask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false material Material}], Returns: void
 */
-func (o *CanvasItem) SetMaterial(material *Material) {
+
+func (o *CanvasItem) SetMaterial(material material.Material) {
 	log.Println("Calling CanvasItem.SetMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(material)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(material.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "set_material")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_material", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false modulate Color}], Returns: void
 */
-func (o *CanvasItem) SetModulate(modulate *Color) {
+
+func (o *CanvasItem) SetModulate(modulate gdnative.Color) {
 	log.Println("Calling CanvasItem.SetModulate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(modulate)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromColor(modulate)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "set_modulate")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_modulate", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]enable[/code] is [code]true[/code], children will be updated with local transform data.
+        If [code]enable[/code] is [code]true[/code], children will be updated with local transform data.
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *CanvasItem) SetNotifyLocalTransform(enable gdnative.Bool) {
 	log.Println("Calling CanvasItem.SetNotifyLocalTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "set_notify_local_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_notify_local_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]enable[/code] is [code]true[/code], children will be updated with global transform data.
+        If [code]enable[/code] is [code]true[/code], children will be updated with global transform data.
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *CanvasItem) SetNotifyTransform(enable gdnative.Bool) {
 	log.Println("Calling CanvasItem.SetNotifyTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "set_notify_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_notify_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false self_modulate Color}], Returns: void
 */
-func (o *CanvasItem) SetSelfModulate(selfModulate *Color) {
+
+func (o *CanvasItem) SetSelfModulate(selfModulate gdnative.Color) {
 	log.Println("Calling CanvasItem.SetSelfModulate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(selfModulate)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromColor(selfModulate)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "set_self_modulate")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_self_modulate", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *CanvasItem) SetUseParentMaterial(enable gdnative.Bool) {
 	log.Println("Calling CanvasItem.SetUseParentMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "set_use_parent_material")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_use_parent_material", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false visible bool}], Returns: void
 */
+
 func (o *CanvasItem) SetVisible(visible gdnative.Bool) {
 	log.Println("Calling CanvasItem.SetVisible()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(visible)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(visible)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "set_visible")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_visible", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Show the CanvasItem currently hidden.
+        Show the CanvasItem currently hidden.
+	Args: [], Returns: void
 */
+
 func (o *CanvasItem) Show() {
 	log.Println("Calling CanvasItem.Show()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "show")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "show", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Queue the CanvasItem for update. [code]NOTIFICATION_DRAW[/code] will be called on idle time to request redraw.
+        Queue the CanvasItem for update. [code]NOTIFICATION_DRAW[/code] will be called on idle time to request redraw.
+	Args: [], Returns: void
 */
+
 func (o *CanvasItem) Update() {
 	log.Println("Calling CanvasItem.Update()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItem", "update")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "update", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   CanvasItemImplementer is an interface for CanvasItem objects.
-*/
-type CanvasItemImplementer interface {
-	Class
 }

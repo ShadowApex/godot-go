@@ -2,7 +2,9 @@ package colorrect
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/control"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewColorRectFromPointer(ptr gdnative.Pointer) *ColorRect {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ColorRect{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 An object that is represented on the canvas as a rect with color. [Color] is used to set or get color info for the rect.
 */
 type ColorRect struct {
-	Control
+	control.Control
 }
 
 func (o *ColorRect) BaseClass() string {
@@ -26,46 +37,49 @@ func (o *ColorRect) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Color
 */
-func (o *ColorRect) GetFrameColor() *Color {
+
+func (o *ColorRect) GetFrameColor() gdnative.Color {
 	log.Println("Calling ColorRect.GetFrameColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ColorRect", "get_frame_color")
 
 	// Call the parent method.
+	// Color
+	retPtr := gdnative.NewEmptyColor()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_frame_color", goArguments, "*Color")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewColorFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Color)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false color Color}], Returns: void
 */
-func (o *ColorRect) SetFrameColor(color *Color) {
+
+func (o *ColorRect) SetFrameColor(color gdnative.Color) {
 	log.Println("Calling ColorRect.SetFrameColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ColorRect", "set_frame_color")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_frame_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ColorRectImplementer is an interface for ColorRect objects.
-*/
-type ColorRectImplementer interface {
-	Class
 }

@@ -2,7 +2,11 @@ package area2d
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/collisionobject2d"
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewArea2DFromPointer(ptr gdnative.Pointer) *Area2D {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Area2D{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 2D area that detects [CollisionObject2D] nodes overlapping, entering, or exiting. Can also alter or override local physics parameters (gravity, damping).
 */
 type Area2D struct {
-	CollisionObject2D
+	collisionobject2d.CollisionObject2D
 }
 
 func (o *Area2D) BaseClass() string {
@@ -26,818 +39,998 @@ func (o *Area2D) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false id int}], Returns: void
 */
+
 func (o *Area2D) X_AreaEnterTree(id gdnative.Int) {
 	log.Println("Calling Area2D.X_AreaEnterTree()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "_area_enter_tree")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_area_enter_tree", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false id int}], Returns: void
 */
+
 func (o *Area2D) X_AreaExitTree(id gdnative.Int) {
 	log.Println("Calling Area2D.X_AreaExitTree()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "_area_exit_tree")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_area_exit_tree", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 int} { false arg1 RID} { false arg2 int} { false arg3 int} { false arg4 int}], Returns: void
 */
-func (o *Area2D) X_AreaInout(arg0 gdnative.Int, arg1 *RID, arg2 gdnative.Int, arg3 gdnative.Int, arg4 gdnative.Int) {
+
+func (o *Area2D) X_AreaInout(arg0 gdnative.Int, arg1 gdnative.RID, arg2 gdnative.Int, arg3 gdnative.Int, arg4 gdnative.Int) {
 	log.Println("Calling Area2D.X_AreaInout()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(arg0)
-	goArguments[1] = reflect.ValueOf(arg1)
-	goArguments[2] = reflect.ValueOf(arg2)
-	goArguments[3] = reflect.ValueOf(arg3)
-	goArguments[4] = reflect.ValueOf(arg4)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromInt(arg0)
+	ptrArguments[1] = gdnative.NewPointerFromRid(arg1)
+	ptrArguments[2] = gdnative.NewPointerFromInt(arg2)
+	ptrArguments[3] = gdnative.NewPointerFromInt(arg3)
+	ptrArguments[4] = gdnative.NewPointerFromInt(arg4)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "_area_inout")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_area_inout", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false id int}], Returns: void
 */
+
 func (o *Area2D) X_BodyEnterTree(id gdnative.Int) {
 	log.Println("Calling Area2D.X_BodyEnterTree()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "_body_enter_tree")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_body_enter_tree", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false id int}], Returns: void
 */
+
 func (o *Area2D) X_BodyExitTree(id gdnative.Int) {
 	log.Println("Calling Area2D.X_BodyExitTree()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "_body_exit_tree")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_body_exit_tree", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 int} { false arg1 RID} { false arg2 int} { false arg3 int} { false arg4 int}], Returns: void
 */
-func (o *Area2D) X_BodyInout(arg0 gdnative.Int, arg1 *RID, arg2 gdnative.Int, arg3 gdnative.Int, arg4 gdnative.Int) {
+
+func (o *Area2D) X_BodyInout(arg0 gdnative.Int, arg1 gdnative.RID, arg2 gdnative.Int, arg3 gdnative.Int, arg4 gdnative.Int) {
 	log.Println("Calling Area2D.X_BodyInout()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(arg0)
-	goArguments[1] = reflect.ValueOf(arg1)
-	goArguments[2] = reflect.ValueOf(arg2)
-	goArguments[3] = reflect.ValueOf(arg3)
-	goArguments[4] = reflect.ValueOf(arg4)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromInt(arg0)
+	ptrArguments[1] = gdnative.NewPointerFromRid(arg1)
+	ptrArguments[2] = gdnative.NewPointerFromInt(arg2)
+	ptrArguments[3] = gdnative.NewPointerFromInt(arg3)
+	ptrArguments[4] = gdnative.NewPointerFromInt(arg4)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "_body_inout")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_body_inout", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Area2D) GetAngularDamp() gdnative.Float {
 	log.Println("Calling Area2D.GetAngularDamp()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "get_angular_damp")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_angular_damp", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *Area2D) GetAudioBusName() gdnative.String {
 	log.Println("Calling Area2D.GetAudioBusName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "get_audio_bus_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_audio_bus_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *Area2D) GetCollisionLayer() gdnative.Int {
 	log.Println("Calling Area2D.GetCollisionLayer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "get_collision_layer")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collision_layer", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return an individual bit on the layer mask. Describes whether other areas will collide with this one on the given layer.
+        Return an individual bit on the layer mask. Describes whether other areas will collide with this one on the given layer.
+	Args: [{ false bit int}], Returns: bool
 */
+
 func (o *Area2D) GetCollisionLayerBit(bit gdnative.Int) gdnative.Bool {
 	log.Println("Calling Area2D.GetCollisionLayerBit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bit)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bit)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "get_collision_layer_bit")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collision_layer_bit", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *Area2D) GetCollisionMask() gdnative.Int {
 	log.Println("Calling Area2D.GetCollisionMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "get_collision_mask")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collision_mask", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return an individual bit on the collision mask. Describes whether this area will collide with others on the given layer.
+        Return an individual bit on the collision mask. Describes whether this area will collide with others on the given layer.
+	Args: [{ false bit int}], Returns: bool
 */
+
 func (o *Area2D) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
 	log.Println("Calling Area2D.GetCollisionMaskBit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bit)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bit)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "get_collision_mask_bit")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_collision_mask_bit", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Area2D) GetGravity() gdnative.Float {
 	log.Println("Calling Area2D.GetGravity()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "get_gravity")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_gravity", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Area2D) GetGravityDistanceScale() gdnative.Float {
 	log.Println("Calling Area2D.GetGravityDistanceScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "get_gravity_distance_scale")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_gravity_distance_scale", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *Area2D) GetGravityVector() *Vector2 {
+
+func (o *Area2D) GetGravityVector() gdnative.Vector2 {
 	log.Println("Calling Area2D.GetGravityVector()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "get_gravity_vector")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_gravity_vector", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Area2D) GetLinearDamp() gdnative.Float {
 	log.Println("Calling Area2D.GetLinearDamp()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "get_linear_damp")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_linear_damp", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a list of intersecting [code]Area2D[/code]s. For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
+        Returns a list of intersecting [code]Area2D[/code]s. For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
+	Args: [], Returns: Array
 */
-func (o *Area2D) GetOverlappingAreas() *Array {
+
+func (o *Area2D) GetOverlappingAreas() gdnative.Array {
 	log.Println("Calling Area2D.GetOverlappingAreas()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "get_overlapping_areas")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_overlapping_areas", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a list of intersecting [PhysicsBody2D]s. For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
+        Returns a list of intersecting [PhysicsBody2D]s. For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
+	Args: [], Returns: Array
 */
-func (o *Area2D) GetOverlappingBodies() *Array {
+
+func (o *Area2D) GetOverlappingBodies() gdnative.Array {
 	log.Println("Calling Area2D.GetOverlappingBodies()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "get_overlapping_bodies")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_overlapping_bodies", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Area2D) GetPriority() gdnative.Float {
 	log.Println("Calling Area2D.GetPriority()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "get_priority")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_priority", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Area2D::SpaceOverride
 */
-func (o *Area2D) GetSpaceOverrideMode() gdnative.Int {
-	log.Println("Calling Area2D.GetSpaceOverrideMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_space_override_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Area2D) IsGravityAPoint() gdnative.Bool {
 	log.Println("Calling Area2D.IsGravityAPoint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "is_gravity_a_point")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_gravity_a_point", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Area2D) IsMonitorable() gdnative.Bool {
 	log.Println("Calling Area2D.IsMonitorable()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "is_monitorable")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_monitorable", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Area2D) IsMonitoring() gdnative.Bool {
 	log.Println("Calling Area2D.IsMonitoring()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "is_monitoring")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_monitoring", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Area2D) IsOverridingAudioBus() gdnative.Bool {
 	log.Println("Calling Area2D.IsOverridingAudioBus()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "is_overriding_audio_bus")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_overriding_audio_bus", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   If [code]true[/code] the given area overlaps the Area2D. Note that the result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
+        If [code]true[/code] the given area overlaps the Area2D. Note that the result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
+	Args: [{ false area Object}], Returns: bool
 */
-func (o *Area2D) OverlapsArea(area *Object) gdnative.Bool {
+
+func (o *Area2D) OverlapsArea(area object.Object) gdnative.Bool {
 	log.Println("Calling Area2D.OverlapsArea()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(area)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(area.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "overlaps_area")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "overlaps_area", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   If [code]true[/code] the given body overlaps the Area2D. Note that the result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
+        If [code]true[/code] the given body overlaps the Area2D. Note that the result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
+	Args: [{ false body Object}], Returns: bool
 */
-func (o *Area2D) OverlapsBody(body *Object) gdnative.Bool {
+
+func (o *Area2D) OverlapsBody(body object.Object) gdnative.Bool {
 	log.Println("Calling Area2D.OverlapsBody()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(body)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(body.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "overlaps_body")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "overlaps_body", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false angular_damp float}], Returns: void
 */
+
 func (o *Area2D) SetAngularDamp(angularDamp gdnative.Float) {
 	log.Println("Calling Area2D.SetAngularDamp()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(angularDamp)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(angularDamp)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "set_angular_damp")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_angular_damp", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String}], Returns: void
 */
+
 func (o *Area2D) SetAudioBusName(name gdnative.String) {
 	log.Println("Calling Area2D.SetAudioBusName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "set_audio_bus_name")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_audio_bus_name", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Area2D) SetAudioBusOverride(enable gdnative.Bool) {
 	log.Println("Calling Area2D.SetAudioBusOverride()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "set_audio_bus_override")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_audio_bus_override", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false collision_layer int}], Returns: void
 */
+
 func (o *Area2D) SetCollisionLayer(collisionLayer gdnative.Int) {
 	log.Println("Calling Area2D.SetCollisionLayer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(collisionLayer)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(collisionLayer)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "set_collision_layer")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_collision_layer", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set/clear individual bits on the layer mask. This makes getting an area in/out of only one layer easier.
+        Set/clear individual bits on the layer mask. This makes getting an area in/out of only one layer easier.
+	Args: [{ false bit int} { false value bool}], Returns: void
 */
+
 func (o *Area2D) SetCollisionLayerBit(bit gdnative.Int, value gdnative.Bool) {
 	log.Println("Calling Area2D.SetCollisionLayerBit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(bit)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bit)
+	ptrArguments[1] = gdnative.NewPointerFromBool(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "set_collision_layer_bit")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_collision_layer_bit", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false collision_mask int}], Returns: void
 */
+
 func (o *Area2D) SetCollisionMask(collisionMask gdnative.Int) {
 	log.Println("Calling Area2D.SetCollisionMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(collisionMask)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(collisionMask)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "set_collision_mask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_collision_mask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set/clear individual bits on the collision mask. This makes selecting the areas scanned easier.
+        Set/clear individual bits on the collision mask. This makes selecting the areas scanned easier.
+	Args: [{ false bit int} { false value bool}], Returns: void
 */
+
 func (o *Area2D) SetCollisionMaskBit(bit gdnative.Int, value gdnative.Bool) {
 	log.Println("Calling Area2D.SetCollisionMaskBit()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(bit)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bit)
+	ptrArguments[1] = gdnative.NewPointerFromBool(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "set_collision_mask_bit")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_collision_mask_bit", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false gravity float}], Returns: void
 */
+
 func (o *Area2D) SetGravity(gravity gdnative.Float) {
 	log.Println("Calling Area2D.SetGravity()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(gravity)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(gravity)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "set_gravity")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_gravity", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false distance_scale float}], Returns: void
 */
+
 func (o *Area2D) SetGravityDistanceScale(distanceScale gdnative.Float) {
 	log.Println("Calling Area2D.SetGravityDistanceScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(distanceScale)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(distanceScale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "set_gravity_distance_scale")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_gravity_distance_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Area2D) SetGravityIsPoint(enable gdnative.Bool) {
 	log.Println("Calling Area2D.SetGravityIsPoint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "set_gravity_is_point")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_gravity_is_point", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false vector Vector2}], Returns: void
 */
-func (o *Area2D) SetGravityVector(vector *Vector2) {
+
+func (o *Area2D) SetGravityVector(vector gdnative.Vector2) {
 	log.Println("Calling Area2D.SetGravityVector()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(vector)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(vector)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "set_gravity_vector")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_gravity_vector", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false linear_damp float}], Returns: void
 */
+
 func (o *Area2D) SetLinearDamp(linearDamp gdnative.Float) {
 	log.Println("Calling Area2D.SetLinearDamp()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(linearDamp)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(linearDamp)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "set_linear_damp")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_linear_damp", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Area2D) SetMonitorable(enable gdnative.Bool) {
 	log.Println("Calling Area2D.SetMonitorable()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "set_monitorable")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_monitorable", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Area2D) SetMonitoring(enable gdnative.Bool) {
 	log.Println("Calling Area2D.SetMonitoring()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "set_monitoring")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_monitoring", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false priority float}], Returns: void
 */
+
 func (o *Area2D) SetPriority(priority gdnative.Float) {
 	log.Println("Calling Area2D.SetPriority()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(priority)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(priority)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "set_priority")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_priority", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false space_override_mode int}], Returns: void
 */
+
 func (o *Area2D) SetSpaceOverrideMode(spaceOverrideMode gdnative.Int) {
 	log.Println("Calling Area2D.SetSpaceOverrideMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(spaceOverrideMode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(spaceOverrideMode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "set_space_override_mode")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_space_override_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   Area2DImplementer is an interface for Area2D objects.
-*/
-type Area2DImplementer interface {
-	Class
 }

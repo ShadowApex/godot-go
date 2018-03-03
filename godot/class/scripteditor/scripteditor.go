@@ -2,7 +2,19 @@ package scripteditor
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
+	"github.com/shadowapex/godot-go/godot/class/panelcontainer"
+
+	"github.com/shadowapex/godot-go/godot/class/reference"
+
+	"github.com/shadowapex/godot-go/godot/class/resource"
+
+	"github.com/shadowapex/godot-go/godot/class/script"
+
+	"github.com/shadowapex/godot-go/godot/class/inputevent"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +26,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewScriptEditorFromPointer(ptr gdnative.Pointer) *ScriptEditor {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ScriptEditor{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type ScriptEditor struct {
-	PanelContainer
+	panelcontainer.PanelContainer
 }
 
 func (o *ScriptEditor) BaseClass() string {
@@ -26,913 +47,1116 @@ func (o *ScriptEditor) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 Object} { false arg1 String} { false arg2 PoolStringArray}], Returns: void
 */
-func (o *ScriptEditor) X_AddCallback(arg0 *Object, arg1 gdnative.String, arg2 *PoolStringArray) {
+
+func (o *ScriptEditor) X_AddCallback(arg0 object.Object, arg1 gdnative.String, arg2 gdnative.PoolStringArray) {
 	log.Println("Calling ScriptEditor.X_AddCallback()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(arg0)
-	goArguments[1] = reflect.ValueOf(arg1)
-	goArguments[2] = reflect.ValueOf(arg2)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromString(arg1)
+	ptrArguments[2] = gdnative.NewPointerFromPoolStringArray(arg2)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_add_callback")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_add_callback", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_AutosaveScripts() {
 	log.Println("Calling ScriptEditor.X_AutosaveScripts()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_autosave_scripts")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_autosave_scripts", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 bool} { false arg1 bool}], Returns: void
 */
+
 func (o *ScriptEditor) X_Breaked(arg0 gdnative.Bool, arg1 gdnative.Bool) {
 	log.Println("Calling ScriptEditor.X_Breaked()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(arg0)
-	goArguments[1] = reflect.ValueOf(arg1)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromBool(arg0)
+	ptrArguments[1] = gdnative.NewPointerFromBool(arg1)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_breaked")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_breaked", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_CloseAllTabs() {
 	log.Println("Calling ScriptEditor.X_CloseAllTabs()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_close_all_tabs")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_close_all_tabs", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_CloseCurrentTab() {
 	log.Println("Calling ScriptEditor.X_CloseCurrentTab()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_close_current_tab")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_close_current_tab", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 String}], Returns: void
 */
+
 func (o *ScriptEditor) X_CloseDiscardCurrentTab(arg0 gdnative.String) {
 	log.Println("Calling ScriptEditor.X_CloseDiscardCurrentTab()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_close_discard_current_tab")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_close_discard_current_tab", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_CloseDocsTab() {
 	log.Println("Calling ScriptEditor.X_CloseDocsTab()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_close_docs_tab")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_close_docs_tab", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_CloseOtherTabs() {
 	log.Println("Calling ScriptEditor.X_CloseOtherTabs()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_close_other_tabs")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_close_other_tabs", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_CopyScriptPath() {
 	log.Println("Calling ScriptEditor.X_CopyScriptPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_copy_script_path")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_copy_script_path", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_EditorPause() {
 	log.Println("Calling ScriptEditor.X_EditorPause()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_editor_pause")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_editor_pause", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_EditorPlay() {
 	log.Println("Calling ScriptEditor.X_EditorPlay()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_editor_play")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_editor_play", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_EditorSettingsChanged() {
 	log.Println("Calling ScriptEditor.X_EditorSettingsChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_editor_settings_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_editor_settings_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_EditorStop() {
 	log.Println("Calling ScriptEditor.X_EditorStop()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_editor_stop")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_editor_stop", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 String}], Returns: void
 */
+
 func (o *ScriptEditor) X_FileDialogAction(arg0 gdnative.String) {
 	log.Println("Calling ScriptEditor.X_FileDialogAction()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_file_dialog_action")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_file_dialog_action", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 String} { false arg1 Object}], Returns: String
 */
-func (o *ScriptEditor) X_GetDebugTooltip(arg0 gdnative.String, arg1 *Object) gdnative.String {
+
+func (o *ScriptEditor) X_GetDebugTooltip(arg0 gdnative.String, arg1 object.Object) gdnative.String {
 	log.Println("Calling ScriptEditor.X_GetDebugTooltip()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(arg0)
-	goArguments[1] = reflect.ValueOf(arg1)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(arg0)
+	ptrArguments[1] = gdnative.NewPointerFromObject(arg1.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_get_debug_tooltip")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_debug_tooltip", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 Reference} { false arg1 int}], Returns: void
 */
-func (o *ScriptEditor) X_GotoScriptLine(arg0 *Reference, arg1 gdnative.Int) {
+
+func (o *ScriptEditor) X_GotoScriptLine(arg0 reference.Reference, arg1 gdnative.Int) {
 	log.Println("Calling ScriptEditor.X_GotoScriptLine()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(arg0)
-	goArguments[1] = reflect.ValueOf(arg1)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+	ptrArguments[1] = gdnative.NewPointerFromInt(arg1)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_goto_script_line")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_goto_script_line", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 int}], Returns: void
 */
+
 func (o *ScriptEditor) X_GotoScriptLine2(arg0 gdnative.Int) {
 	log.Println("Calling ScriptEditor.X_GotoScriptLine2()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_goto_script_line2")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_goto_script_line2", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 String}], Returns: void
 */
+
 func (o *ScriptEditor) X_HelpClassGoto(arg0 gdnative.String) {
 	log.Println("Calling ScriptEditor.X_HelpClassGoto()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_help_class_goto")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_help_class_goto", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 String}], Returns: void
 */
+
 func (o *ScriptEditor) X_HelpClassOpen(arg0 gdnative.String) {
 	log.Println("Calling ScriptEditor.X_HelpClassOpen()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_help_class_open")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_help_class_open", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 String}], Returns: void
 */
+
 func (o *ScriptEditor) X_HelpIndex(arg0 gdnative.String) {
 	log.Println("Calling ScriptEditor.X_HelpIndex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_help_index")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_help_index", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 int}], Returns: void
 */
+
 func (o *ScriptEditor) X_HelpOverviewSelected(arg0 gdnative.Int) {
 	log.Println("Calling ScriptEditor.X_HelpOverviewSelected()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_help_overview_selected")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_help_overview_selected", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 String}], Returns: void
 */
+
 func (o *ScriptEditor) X_HelpSearch(arg0 gdnative.String) {
 	log.Println("Calling ScriptEditor.X_HelpSearch()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_help_search")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_help_search", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_HistoryBack() {
 	log.Println("Calling ScriptEditor.X_HistoryBack()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_history_back")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_history_back", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_HistoryForward() {
 	log.Println("Calling ScriptEditor.X_HistoryForward()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_history_forward")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_history_forward", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_LiveAutoReloadRunningScripts() {
 	log.Println("Calling ScriptEditor.X_LiveAutoReloadRunningScripts()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_live_auto_reload_running_scripts")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_live_auto_reload_running_scripts", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 int}], Returns: void
 */
+
 func (o *ScriptEditor) X_MembersOverviewSelected(arg0 gdnative.Int) {
 	log.Println("Calling ScriptEditor.X_MembersOverviewSelected()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_members_overview_selected")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_members_overview_selected", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 int}], Returns: void
 */
+
 func (o *ScriptEditor) X_MenuOption(arg0 gdnative.Int) {
 	log.Println("Calling ScriptEditor.X_MenuOption()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_menu_option")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_menu_option", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 int}], Returns: void
 */
+
 func (o *ScriptEditor) X_OpenRecentScript(arg0 gdnative.Int) {
 	log.Println("Calling ScriptEditor.X_OpenRecentScript()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_open_recent_script")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_open_recent_script", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_ReloadScripts() {
 	log.Println("Calling ScriptEditor.X_ReloadScripts()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_reload_scripts")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_reload_scripts", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 String}], Returns: void
 */
+
 func (o *ScriptEditor) X_RequestHelp(arg0 gdnative.String) {
 	log.Println("Calling ScriptEditor.X_RequestHelp()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_request_help")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_request_help", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 Resource}], Returns: void
 */
-func (o *ScriptEditor) X_ResSavedCallback(arg0 *Resource) {
+
+func (o *ScriptEditor) X_ResSavedCallback(arg0 resource.Resource) {
 	log.Println("Calling ScriptEditor.X_ResSavedCallback()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_res_saved_callback")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_res_saved_callback", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 String}], Returns: void
 */
+
 func (o *ScriptEditor) X_ResaveScripts(arg0 gdnative.String) {
 	log.Println("Calling ScriptEditor.X_ResaveScripts()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_resave_scripts")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_resave_scripts", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_SaveHistory() {
 	log.Println("Calling ScriptEditor.X_SaveHistory()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_save_history")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_save_history", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_ScriptChanged() {
 	log.Println("Calling ScriptEditor.X_ScriptChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_script_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_script_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 Script}], Returns: void
 */
-func (o *ScriptEditor) X_ScriptCreated(arg0 *Script) {
+
+func (o *ScriptEditor) X_ScriptCreated(arg0 script.Script) {
 	log.Println("Calling ScriptEditor.X_ScriptCreated()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_script_created")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_script_created", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *ScriptEditor) X_ScriptListGuiInput(arg0 *InputEvent) {
+
+func (o *ScriptEditor) X_ScriptListGuiInput(arg0 inputevent.InputEvent) {
 	log.Println("Calling ScriptEditor.X_ScriptListGuiInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_script_list_gui_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_script_list_gui_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 int}], Returns: void
 */
+
 func (o *ScriptEditor) X_ScriptSelected(arg0 gdnative.Int) {
 	log.Println("Calling ScriptEditor.X_ScriptSelected()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_script_selected")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_script_selected", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 float}], Returns: void
 */
+
 func (o *ScriptEditor) X_ScriptSplitDragged(arg0 gdnative.Float) {
 	log.Println("Calling ScriptEditor.X_ScriptSplitDragged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_script_split_dragged")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_script_split_dragged", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 bool}], Returns: void
 */
+
 func (o *ScriptEditor) X_ShowDebugger(arg0 gdnative.Bool) {
 	log.Println("Calling ScriptEditor.X_ShowDebugger()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_show_debugger")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_show_debugger", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 int}], Returns: void
 */
+
 func (o *ScriptEditor) X_TabChanged(arg0 gdnative.Int) {
 	log.Println("Calling ScriptEditor.X_TabChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(arg0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_tab_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_tab_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_TreeChanged() {
 	log.Println("Calling ScriptEditor.X_TreeChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_tree_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_tree_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *ScriptEditor) X_UnhandledInput(arg0 *InputEvent) {
+
+func (o *ScriptEditor) X_UnhandledInput(arg0 inputevent.InputEvent) {
 	log.Println("Calling ScriptEditor.X_UnhandledInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(arg0)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(arg0.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_unhandled_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_unhandled_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_UpdateRecentScripts() {
 	log.Println("Calling ScriptEditor.X_UpdateRecentScripts()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_update_recent_scripts")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_update_recent_scripts", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *ScriptEditor) X_UpdateScriptNames() {
 	log.Println("Calling ScriptEditor.X_UpdateScriptNames()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "_update_script_names")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_update_script_names", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *ScriptEditor) CanDropDataFw(point *Vector2, data *Variant, from *Object) gdnative.Bool {
+	Args: [{ false point Vector2} { false data Variant} { false from Object}], Returns: bool
+*/
+
+func (o *ScriptEditor) CanDropDataFw(point gdnative.Vector2, data gdnative.Variant, from object.Object) gdnative.Bool {
 	log.Println("Calling ScriptEditor.CanDropDataFw()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(point)
-	goArguments[1] = reflect.ValueOf(data)
-	goArguments[2] = reflect.ValueOf(from)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(point)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(data)
+	ptrArguments[2] = gdnative.NewPointerFromObject(from.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "can_drop_data_fw")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "can_drop_data_fw", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *ScriptEditor) DropDataFw(point *Vector2, data *Variant, from *Object) {
+	Args: [{ false point Vector2} { false data Variant} { false from Object}], Returns: void
+*/
+
+func (o *ScriptEditor) DropDataFw(point gdnative.Vector2, data gdnative.Variant, from object.Object) {
 	log.Println("Calling ScriptEditor.DropDataFw()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(point)
-	goArguments[1] = reflect.ValueOf(data)
-	goArguments[2] = reflect.ValueOf(from)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(point)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(data)
+	ptrArguments[2] = gdnative.NewPointerFromObject(from.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "drop_data_fw")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "drop_data_fw", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns a [Script] that is currently active in editor.
+        Returns a [Script] that is currently active in editor.
+	Args: [], Returns: Script
 */
-func (o *ScriptEditor) GetCurrentScript() *Script {
+
+func (o *ScriptEditor) GetCurrentScript() script.Script {
 	log.Println("Calling ScriptEditor.GetCurrentScript()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "get_current_script")
 
 	// Call the parent method.
+	// Script
+	retPtr := script.NewEmptyScript()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_current_script", goArguments, "*Script")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := script.NewScriptFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Script)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *ScriptEditor) GetDragDataFw(point *Vector2, from *Object) *Variant {
+	Args: [{ false point Vector2} { false from Object}], Returns: Variant
+*/
+
+func (o *ScriptEditor) GetDragDataFw(point gdnative.Vector2, from object.Object) gdnative.Variant {
 	log.Println("Calling ScriptEditor.GetDragDataFw()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(point)
-	goArguments[1] = reflect.ValueOf(from)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(point)
+	ptrArguments[1] = gdnative.NewPointerFromObject(from.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "get_drag_data_fw")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_drag_data_fw", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns an array with all [Script] objects which are currently open in editor.
+        Returns an array with all [Script] objects which are currently open in editor.
+	Args: [], Returns: Array
 */
-func (o *ScriptEditor) GetOpenScripts() *Array {
+
+func (o *ScriptEditor) GetOpenScripts() gdnative.Array {
 	log.Println("Calling ScriptEditor.GetOpenScripts()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "get_open_scripts")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_open_scripts", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false base_name String} { false base_path String}], Returns: void
+*/
+
 func (o *ScriptEditor) OpenScriptCreateDialog(baseName gdnative.String, basePath gdnative.String) {
 	log.Println("Calling ScriptEditor.OpenScriptCreateDialog()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(baseName)
-	goArguments[1] = reflect.ValueOf(basePath)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(baseName)
+	ptrArguments[1] = gdnative.NewPointerFromString(basePath)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ScriptEditor", "open_script_create_dialog")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "open_script_create_dialog", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ScriptEditorImplementer is an interface for ScriptEditor objects.
-*/
-type ScriptEditorImplementer interface {
-	Class
 }

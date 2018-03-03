@@ -2,9 +2,9 @@ package texture
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/ranges"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewTextureProgressFromPointer(ptr gdnative.Pointer) *TextureProgress {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := TextureProgress{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 TextureProgress works like [ProgressBar] but it uses up to 3 textures instead of Godot's [Theme] resource. Works horizontally, vertically, and radially.
 */
 type TextureProgress struct {
-	Range
+	ranges.Range
 }
 
 func (o *TextureProgress) BaseClass() string {
@@ -28,352 +37,435 @@ func (o *TextureProgress) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *TextureProgress) GetFillDegrees() gdnative.Float {
 	log.Println("Calling TextureProgress.GetFillDegrees()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureProgress", "get_fill_degrees")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_fill_degrees", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *TextureProgress) GetFillMode() gdnative.Int {
 	log.Println("Calling TextureProgress.GetFillMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureProgress", "get_fill_mode")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_fill_mode", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TextureProgress) GetNinePatchStretch() gdnative.Bool {
 	log.Println("Calling TextureProgress.GetNinePatchStretch()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureProgress", "get_nine_patch_stretch")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_nine_patch_stretch", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Texture
 */
-func (o *TextureProgress) GetOverTexture() *Texture {
+
+func (o *TextureProgress) GetOverTexture() Texture {
 	log.Println("Calling TextureProgress.GetOverTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureProgress", "get_over_texture")
 
 	// Call the parent method.
+	// Texture
+	retPtr := NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_over_texture", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Texture
 */
-func (o *TextureProgress) GetProgressTexture() *Texture {
+
+func (o *TextureProgress) GetProgressTexture() Texture {
 	log.Println("Calling TextureProgress.GetProgressTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureProgress", "get_progress_texture")
 
 	// Call the parent method.
+	// Texture
+	retPtr := NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_progress_texture", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *TextureProgress) GetRadialCenterOffset() *Vector2 {
+
+func (o *TextureProgress) GetRadialCenterOffset() gdnative.Vector2 {
 	log.Println("Calling TextureProgress.GetRadialCenterOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureProgress", "get_radial_center_offset")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_radial_center_offset", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *TextureProgress) GetRadialInitialAngle() gdnative.Float {
 	log.Println("Calling TextureProgress.GetRadialInitialAngle()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureProgress", "get_radial_initial_angle")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_radial_initial_angle", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin int}], Returns: int
 */
+
 func (o *TextureProgress) GetStretchMargin(margin gdnative.Int) gdnative.Int {
 	log.Println("Calling TextureProgress.GetStretchMargin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureProgress", "get_stretch_margin")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_stretch_margin", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Texture
 */
-func (o *TextureProgress) GetUnderTexture() *Texture {
+
+func (o *TextureProgress) GetUnderTexture() Texture {
 	log.Println("Calling TextureProgress.GetUnderTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureProgress", "get_under_texture")
 
 	// Call the parent method.
+	// Texture
+	retPtr := NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_under_texture", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode float}], Returns: void
 */
+
 func (o *TextureProgress) SetFillDegrees(mode gdnative.Float) {
 	log.Println("Calling TextureProgress.SetFillDegrees()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureProgress", "set_fill_degrees")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_fill_degrees", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *TextureProgress) SetFillMode(mode gdnative.Int) {
 	log.Println("Calling TextureProgress.SetFillMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureProgress", "set_fill_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_fill_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false stretch bool}], Returns: void
 */
+
 func (o *TextureProgress) SetNinePatchStretch(stretch gdnative.Bool) {
 	log.Println("Calling TextureProgress.SetNinePatchStretch()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(stretch)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(stretch)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureProgress", "set_nine_patch_stretch")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_nine_patch_stretch", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false tex Texture}], Returns: void
 */
-func (o *TextureProgress) SetOverTexture(tex *Texture) {
+
+func (o *TextureProgress) SetOverTexture(tex Texture) {
 	log.Println("Calling TextureProgress.SetOverTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(tex)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(tex.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureProgress", "set_over_texture")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_over_texture", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false tex Texture}], Returns: void
 */
-func (o *TextureProgress) SetProgressTexture(tex *Texture) {
+
+func (o *TextureProgress) SetProgressTexture(tex Texture) {
 	log.Println("Calling TextureProgress.SetProgressTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(tex)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(tex.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureProgress", "set_progress_texture")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_progress_texture", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode Vector2}], Returns: void
 */
-func (o *TextureProgress) SetRadialCenterOffset(mode *Vector2) {
+
+func (o *TextureProgress) SetRadialCenterOffset(mode gdnative.Vector2) {
 	log.Println("Calling TextureProgress.SetRadialCenterOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureProgress", "set_radial_center_offset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_radial_center_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode float}], Returns: void
 */
+
 func (o *TextureProgress) SetRadialInitialAngle(mode gdnative.Float) {
 	log.Println("Calling TextureProgress.SetRadialInitialAngle()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureProgress", "set_radial_initial_angle")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_radial_initial_angle", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin int} { false value int}], Returns: void
 */
+
 func (o *TextureProgress) SetStretchMargin(margin gdnative.Int, value gdnative.Int) {
 	log.Println("Calling TextureProgress.SetStretchMargin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(margin)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+	ptrArguments[1] = gdnative.NewPointerFromInt(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureProgress", "set_stretch_margin")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_stretch_margin", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false tex Texture}], Returns: void
 */
-func (o *TextureProgress) SetUnderTexture(tex *Texture) {
+
+func (o *TextureProgress) SetUnderTexture(tex Texture) {
 	log.Println("Calling TextureProgress.SetUnderTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(tex)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(tex.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureProgress", "set_under_texture")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_under_texture", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   TextureProgressImplementer is an interface for TextureProgress objects.
-*/
-type TextureProgressImplementer interface {
-	Class
 }

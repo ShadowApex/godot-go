@@ -2,9 +2,9 @@ package inputevent
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewInputEventFromPointer(ptr gdnative.Pointer) *InputEvent {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := InputEvent{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Base class of all sort of input event. See [method Node._input].
 */
 type InputEvent struct {
-	Resource
+	resource.Resource
 }
 
 func (o *InputEvent) BaseClass() string {
@@ -28,253 +37,316 @@ func (o *InputEvent) BaseClass() string {
 }
 
 /*
-   Returns [code]true[/code] if this event matches [code]event[/code].
+        Returns [code]true[/code] if this event matches [code]event[/code].
+	Args: [{ false event InputEvent}], Returns: bool
 */
-func (o *InputEvent) ActionMatch(event *InputEvent) gdnative.Bool {
+
+func (o *InputEvent) ActionMatch(event InputEvent) gdnative.Bool {
 	log.Println("Calling InputEvent.ActionMatch()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(event)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(event.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEvent", "action_match")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "action_match", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a [String] representation of the event.
+        Returns a [String] representation of the event.
+	Args: [], Returns: String
 */
+
 func (o *InputEvent) AsText() gdnative.String {
 	log.Println("Calling InputEvent.AsText()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEvent", "as_text")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "as_text", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *InputEvent) GetDevice() gdnative.Int {
 	log.Println("Calling InputEvent.GetDevice()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEvent", "get_device")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_device", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if this input event matches a pre-defined action of any type.
+        Returns [code]true[/code] if this input event matches a pre-defined action of any type.
+	Args: [{ false action String}], Returns: bool
 */
+
 func (o *InputEvent) IsAction(action gdnative.String) gdnative.Bool {
 	log.Println("Calling InputEvent.IsAction()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(action)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(action)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEvent", "is_action")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_action", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the given action is being pressed (and is not an echo event for KEY events). Not relevant for the event types [code]MOUSE_MOTION[/code], [code]SCREEN_DRAG[/code] or [code]NONE[/code].
+        Returns [code]true[/code] if the given action is being pressed (and is not an echo event for KEY events). Not relevant for the event types [code]MOUSE_MOTION[/code], [code]SCREEN_DRAG[/code] or [code]NONE[/code].
+	Args: [{ false action String}], Returns: bool
 */
+
 func (o *InputEvent) IsActionPressed(action gdnative.String) gdnative.Bool {
 	log.Println("Calling InputEvent.IsActionPressed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(action)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(action)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEvent", "is_action_pressed")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_action_pressed", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the given action is released (i.e. not pressed). Not relevant for the event types [code]MOUSE_MOTION[/code], [code]SCREEN_DRAG[/code] or [code]NONE[/code].
+        Returns [code]true[/code] if the given action is released (i.e. not pressed). Not relevant for the event types [code]MOUSE_MOTION[/code], [code]SCREEN_DRAG[/code] or [code]NONE[/code].
+	Args: [{ false action String}], Returns: bool
 */
+
 func (o *InputEvent) IsActionReleased(action gdnative.String) gdnative.Bool {
 	log.Println("Calling InputEvent.IsActionReleased()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(action)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(action)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEvent", "is_action_released")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_action_released", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if this input event's type is one of the [code]InputEvent[/code] constants.
+        Returns [code]true[/code] if this input event's type is one of the [code]InputEvent[/code] constants.
+	Args: [], Returns: bool
 */
+
 func (o *InputEvent) IsActionType() gdnative.Bool {
 	log.Println("Calling InputEvent.IsActionType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEvent", "is_action_type")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_action_type", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if this input event is an echo event (only for events of type KEY).
+        Returns [code]true[/code] if this input event is an echo event (only for events of type KEY).
+	Args: [], Returns: bool
 */
+
 func (o *InputEvent) IsEcho() gdnative.Bool {
 	log.Println("Calling InputEvent.IsEcho()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEvent", "is_echo")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_echo", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if this input event is pressed. Not relevant for the event types [code]MOUSE_MOTION[/code], [code]SCREEN_DRAG[/code] or [code]NONE[/code].
+        Returns [code]true[/code] if this input event is pressed. Not relevant for the event types [code]MOUSE_MOTION[/code], [code]SCREEN_DRAG[/code] or [code]NONE[/code].
+	Args: [], Returns: bool
 */
+
 func (o *InputEvent) IsPressed() gdnative.Bool {
 	log.Println("Calling InputEvent.IsPressed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEvent", "is_pressed")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_pressed", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false device int}], Returns: void
 */
+
 func (o *InputEvent) SetDevice(device gdnative.Int) {
 	log.Println("Calling InputEvent.SetDevice()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(device)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(device)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEvent", "set_device")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_device", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *InputEvent) ShortcutMatch(event *InputEvent) gdnative.Bool {
+	Args: [{ false event InputEvent}], Returns: bool
+*/
+
+func (o *InputEvent) ShortcutMatch(event InputEvent) gdnative.Bool {
 	log.Println("Calling InputEvent.ShortcutMatch()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(event)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(event.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEvent", "shortcut_match")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "shortcut_match", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *InputEvent) XformedBy(xform *Transform2D, localOfs *Vector2) *InputEvent {
+	Args: [{ false xform Transform2D} {(0, 0) true local_ofs Vector2}], Returns: InputEvent
+*/
+
+func (o *InputEvent) XformedBy(xform gdnative.Transform2D, localOfs gdnative.Vector2) InputEvent {
 	log.Println("Calling InputEvent.XformedBy()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(xform)
-	goArguments[1] = reflect.ValueOf(localOfs)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromTransform2D(xform)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(localOfs)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEvent", "xformed_by")
 
 	// Call the parent method.
+	// InputEvent
+	retPtr := NewEmptyInputEvent()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "xformed_by", goArguments, "*InputEvent")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewInputEventFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*InputEvent)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   InputEventImplementer is an interface for InputEvent objects.
-*/
-type InputEventImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

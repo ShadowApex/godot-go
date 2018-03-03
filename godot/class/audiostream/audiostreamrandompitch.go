@@ -2,7 +2,6 @@ package audiostream
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
 )
@@ -16,6 +15,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewAudioStreamRandomPitchFromPointer(ptr gdnative.Pointer) *AudioStreamRandomPitch {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := AudioStreamRandomPitch{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Randomly varies pitch on each start.
 */
@@ -28,84 +36,97 @@ func (o *AudioStreamRandomPitch) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: AudioStream
 */
-func (o *AudioStreamRandomPitch) GetAudioStream() *AudioStream {
+
+func (o *AudioStreamRandomPitch) GetAudioStream() AudioStream {
 	log.Println("Calling AudioStreamRandomPitch.GetAudioStream()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamRandomPitch", "get_audio_stream")
 
 	// Call the parent method.
+	// AudioStream
+	retPtr := NewEmptyAudioStream()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_audio_stream", goArguments, "*AudioStream")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewAudioStreamFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*AudioStream)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioStreamRandomPitch) GetRandomPitch() gdnative.Float {
 	log.Println("Calling AudioStreamRandomPitch.GetRandomPitch()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamRandomPitch", "get_random_pitch")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_random_pitch", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false stream AudioStream}], Returns: void
 */
-func (o *AudioStreamRandomPitch) SetAudioStream(stream *AudioStream) {
+
+func (o *AudioStreamRandomPitch) SetAudioStream(stream AudioStream) {
 	log.Println("Calling AudioStreamRandomPitch.SetAudioStream()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(stream)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(stream.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamRandomPitch", "set_audio_stream")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_audio_stream", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false scale float}], Returns: void
 */
+
 func (o *AudioStreamRandomPitch) SetRandomPitch(scale gdnative.Float) {
 	log.Println("Calling AudioStreamRandomPitch.SetRandomPitch()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(scale)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(scale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamRandomPitch", "set_random_pitch")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_random_pitch", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   AudioStreamRandomPitchImplementer is an interface for AudioStreamRandomPitch objects.
-*/
-type AudioStreamRandomPitchImplementer interface {
-	Class
 }

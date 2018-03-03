@@ -2,9 +2,9 @@ package dynamicfont
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/font"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewDynamicFontFromPointer(ptr gdnative.Pointer) *DynamicFont {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := DynamicFont{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 DynamicFont renders vector font files (such as TTF or OTF) dynamically at runtime instead of using a prerendered texture atlas like [BitmapFont]. This trades the faster loading time of [BitmapFont]s for the ability to change font parameters like size and spacing during runtime. [DynamicFontData] is used for referencing the font file paths.
 */
 type DynamicFont struct {
-	Font
+	font.Font
 }
 
 func (o *DynamicFont) BaseClass() string {
@@ -28,296 +37,363 @@ func (o *DynamicFont) BaseClass() string {
 }
 
 /*
-   Adds a fallback font.
+        Adds a fallback font.
+	Args: [{ false data DynamicFontData}], Returns: void
 */
-func (o *DynamicFont) AddFallback(data *DynamicFontData) {
+
+func (o *DynamicFont) AddFallback(data DynamicFontData) {
 	log.Println("Calling DynamicFont.AddFallback()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(data)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(data.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DynamicFont", "add_fallback")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_fallback", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the fallback font at index [code]idx[/code].
+        Returns the fallback font at index [code]idx[/code].
+	Args: [{ false idx int}], Returns: DynamicFontData
 */
-func (o *DynamicFont) GetFallback(idx gdnative.Int) *DynamicFontData {
+
+func (o *DynamicFont) GetFallback(idx gdnative.Int) DynamicFontData {
 	log.Println("Calling DynamicFont.GetFallback()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DynamicFont", "get_fallback")
 
 	// Call the parent method.
+	// DynamicFontData
+	retPtr := NewEmptyDynamicFontData()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_fallback", goArguments, "*DynamicFontData")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewDynamicFontDataFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*DynamicFontData)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the number of fallback fonts.
+        Returns the number of fallback fonts.
+	Args: [], Returns: int
 */
+
 func (o *DynamicFont) GetFallbackCount() gdnative.Int {
 	log.Println("Calling DynamicFont.GetFallbackCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DynamicFont", "get_fallback_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_fallback_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: DynamicFontData
 */
-func (o *DynamicFont) GetFontData() *DynamicFontData {
+
+func (o *DynamicFont) GetFontData() DynamicFontData {
 	log.Println("Calling DynamicFont.GetFontData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DynamicFont", "get_font_data")
 
 	// Call the parent method.
+	// DynamicFontData
+	retPtr := NewEmptyDynamicFontData()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_font_data", goArguments, "*DynamicFontData")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewDynamicFontDataFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*DynamicFontData)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *DynamicFont) GetSize() gdnative.Int {
 	log.Println("Calling DynamicFont.GetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DynamicFont", "get_size")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_size", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false type int}], Returns: int
 */
+
 func (o *DynamicFont) GetSpacing(aType gdnative.Int) gdnative.Int {
 	log.Println("Calling DynamicFont.GetSpacing()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DynamicFont", "get_spacing")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_spacing", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *DynamicFont) GetUseFilter() gdnative.Bool {
 	log.Println("Calling DynamicFont.GetUseFilter()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DynamicFont", "get_use_filter")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_use_filter", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *DynamicFont) GetUseMipmaps() gdnative.Bool {
 	log.Println("Calling DynamicFont.GetUseMipmaps()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DynamicFont", "get_use_mipmaps")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_use_mipmaps", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Removes the fallback font at index [code]idx[/code].
+        Removes the fallback font at index [code]idx[/code].
+	Args: [{ false idx int}], Returns: void
 */
+
 func (o *DynamicFont) RemoveFallback(idx gdnative.Int) {
 	log.Println("Calling DynamicFont.RemoveFallback()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DynamicFont", "remove_fallback")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_fallback", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the fallback font at index [code]idx[/code].
+        Sets the fallback font at index [code]idx[/code].
+	Args: [{ false idx int} { false data DynamicFontData}], Returns: void
 */
-func (o *DynamicFont) SetFallback(idx gdnative.Int, data *DynamicFontData) {
+
+func (o *DynamicFont) SetFallback(idx gdnative.Int, data DynamicFontData) {
 	log.Println("Calling DynamicFont.SetFallback()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(data)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromObject(data.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DynamicFont", "set_fallback")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_fallback", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false data DynamicFontData}], Returns: void
 */
-func (o *DynamicFont) SetFontData(data *DynamicFontData) {
+
+func (o *DynamicFont) SetFontData(data DynamicFontData) {
 	log.Println("Calling DynamicFont.SetFontData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(data)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(data.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DynamicFont", "set_font_data")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_font_data", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false data int}], Returns: void
 */
+
 func (o *DynamicFont) SetSize(data gdnative.Int) {
 	log.Println("Calling DynamicFont.SetSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(data)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(data)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DynamicFont", "set_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false type int} { false value int}], Returns: void
 */
+
 func (o *DynamicFont) SetSpacing(aType gdnative.Int, value gdnative.Int) {
 	log.Println("Calling DynamicFont.SetSpacing()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(aType)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(aType)
+	ptrArguments[1] = gdnative.NewPointerFromInt(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DynamicFont", "set_spacing")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_spacing", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *DynamicFont) SetUseFilter(enable gdnative.Bool) {
 	log.Println("Calling DynamicFont.SetUseFilter()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DynamicFont", "set_use_filter")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_use_filter", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *DynamicFont) SetUseMipmaps(enable gdnative.Bool) {
 	log.Println("Calling DynamicFont.SetUseMipmaps()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DynamicFont", "set_use_mipmaps")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_use_mipmaps", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   DynamicFontImplementer is an interface for DynamicFont objects.
-*/
-type DynamicFontImplementer interface {
-	Class
 }

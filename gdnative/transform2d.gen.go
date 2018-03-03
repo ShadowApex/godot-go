@@ -38,6 +38,14 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewEmptyTransform2D will return a pointer to an empty
+// initialized Transform2D. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyTransform2D() Pointer {
+	var obj C.godot_transform2d
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromTransform2D will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromTransform2D(obj Transform2D) Pointer {

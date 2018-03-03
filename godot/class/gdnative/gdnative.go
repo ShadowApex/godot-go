@@ -2,9 +2,11 @@ package gdnative
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/gdnativelibrary"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewGDNativeFromPointer(ptr gdnative.Pointer) *GDNative {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := GDNative{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
 type GDNative struct {
-	Reference
+	reference.Reference
 }
 
 func (o *GDNative) BaseClass() string {
@@ -28,109 +39,130 @@ func (o *GDNative) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false calling_type String} { false procedure_name String} { false arguments Array}], Returns: Variant
 */
-func (o *GDNative) CallNative(callingType gdnative.String, procedureName gdnative.String, arguments *Array) *Variant {
+
+func (o *GDNative) CallNative(callingType gdnative.String, procedureName gdnative.String, arguments gdnative.Array) gdnative.Variant {
 	log.Println("Calling GDNative.CallNative()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(callingType)
-	goArguments[1] = reflect.ValueOf(procedureName)
-	goArguments[2] = reflect.ValueOf(arguments)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(callingType)
+	ptrArguments[1] = gdnative.NewPointerFromString(procedureName)
+	ptrArguments[2] = gdnative.NewPointerFromArray(arguments)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDNative", "call_native")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "call_native", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: GDNativeLibrary
 */
-func (o *GDNative) GetLibrary() *GDNativeLibrary {
+
+func (o *GDNative) GetLibrary() gdnativelibrary.GDNativeLibrary {
 	log.Println("Calling GDNative.GetLibrary()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDNative", "get_library")
 
 	// Call the parent method.
+	// GDNativeLibrary
+	retPtr := gdnativelibrary.NewEmptyGDNativeLibrary()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_library", goArguments, "*GDNativeLibrary")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnativelibrary.NewGdNativeLibraryFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*GDNativeLibrary)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *GDNative) Initialize() gdnative.Bool {
 	log.Println("Calling GDNative.Initialize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDNative", "initialize")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "initialize", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false library GDNativeLibrary}], Returns: void
 */
-func (o *GDNative) SetLibrary(library *GDNativeLibrary) {
+
+func (o *GDNative) SetLibrary(library gdnativelibrary.GDNativeLibrary) {
 	log.Println("Calling GDNative.SetLibrary()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(library)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(library.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDNative", "set_library")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_library", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *GDNative) Terminate() gdnative.Bool {
 	log.Println("Calling GDNative.Terminate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GDNative", "terminate")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "terminate", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   GDNativeImplementer is an interface for GDNative objects.
-*/
-type GDNativeImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

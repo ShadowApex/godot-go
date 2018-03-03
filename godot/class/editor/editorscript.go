@@ -2,7 +2,13 @@ package editor
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
+	"github.com/shadowapex/godot-go/godot/class/reference"
+
+	"github.com/shadowapex/godot-go/godot/class/node"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +20,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewEditorScriptFromPointer(ptr gdnative.Pointer) *EditorScript {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := EditorScript{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Scripts extending this class and implementing its [code]_run()[/code] method can be executed from the Script Editor's [code]File -> Run[/code] menu option (or by pressing [code]CTRL+Shift+X[/code]) while the editor is running. This is useful for adding custom in-editor functionality to Godot. For more complex additions, consider using [EditorPlugin]s instead. Note that extending scripts need to have [code]tool mode[/code] enabled. Example script: [codeblock] tool extends EditorScript func _run(): print("Hello from the Godot Editor!") [/codeblock] Note that the script is run in the Editor context, which means the output is visible in the console window started with the Editor (STDOUT) instead of the usual Godot [i]Output[/i] dock.
 */
 type EditorScript struct {
-	Reference
+	reference.Reference
 }
 
 func (o *EditorScript) BaseClass() string {
@@ -26,83 +41,96 @@ func (o *EditorScript) BaseClass() string {
 }
 
 /*
-   This method is executed by the Editor when [code]File -> Run[/code] is used.
+        This method is executed by the Editor when [code]File -> Run[/code] is used.
+	Args: [], Returns: void
 */
+
 func (o *EditorScript) X_Run() {
 	log.Println("Calling EditorScript.X_Run()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorScript", "_run")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_run", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds [code]node[/code] as a child of the root node in the editor context. WARNING: The implementation of this method is currently disabled.
+        Adds [code]node[/code] as a child of the root node in the editor context. WARNING: The implementation of this method is currently disabled.
+	Args: [{ false node Object}], Returns: void
 */
-func (o *EditorScript) AddRootNode(node *Object) {
+
+func (o *EditorScript) AddRootNode(node object.Object) {
 	log.Println("Calling EditorScript.AddRootNode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(node)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(node.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorScript", "add_root_node")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_root_node", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the [EditorInterface] singleton instance.
+        Returns the [EditorInterface] singleton instance.
+	Args: [], Returns: EditorInterface
 */
-func (o *EditorScript) GetEditorInterface() *EditorInterface {
+
+func (o *EditorScript) GetEditorInterface() EditorInterface {
 	log.Println("Calling EditorScript.GetEditorInterface()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorScript", "get_editor_interface")
 
 	// Call the parent method.
+	// EditorInterface
+	retPtr := NewEmptyEditorInterface()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_editor_interface", goArguments, "*EditorInterface")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewEditorInterfaceFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*EditorInterface)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the Editor's currently active scene.
+        Returns the Editor's currently active scene.
+	Args: [], Returns: Node
 */
-func (o *EditorScript) GetScene() *Node {
+
+func (o *EditorScript) GetScene() node.Node {
 	log.Println("Calling EditorScript.GetScene()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorScript", "get_scene")
 
 	// Call the parent method.
+	// Node
+	retPtr := node.NewEmptyNode()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_scene", goArguments, "*Node")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := node.NewNodeFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Node)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   EditorScriptImplementer is an interface for EditorScript objects.
-*/
-type EditorScriptImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

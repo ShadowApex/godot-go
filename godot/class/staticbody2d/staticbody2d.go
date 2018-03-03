@@ -2,7 +2,9 @@ package staticbody2d
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/physics"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewStaticBody2DFromPointer(ptr gdnative.Pointer) *StaticBody2D {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := StaticBody2D{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Static body for 2D Physics. A StaticBody2D is a body that is not intended to move. It is ideal for implementing objects in the environment, such as walls or platforms. Additionally, a constant linear or angular velocity can be set for the static body, which will affect colliding bodies as if it were moving (for example, a conveyor belt).
 */
 type StaticBody2D struct {
-	PhysicsBody2D
+	physics.PhysicsBody2D
 }
 
 func (o *StaticBody2D) BaseClass() string {
@@ -26,160 +37,193 @@ func (o *StaticBody2D) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *StaticBody2D) GetBounce() gdnative.Float {
 	log.Println("Calling StaticBody2D.GetBounce()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StaticBody2D", "get_bounce")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bounce", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *StaticBody2D) GetConstantAngularVelocity() gdnative.Float {
 	log.Println("Calling StaticBody2D.GetConstantAngularVelocity()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StaticBody2D", "get_constant_angular_velocity")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_constant_angular_velocity", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *StaticBody2D) GetConstantLinearVelocity() *Vector2 {
+
+func (o *StaticBody2D) GetConstantLinearVelocity() gdnative.Vector2 {
 	log.Println("Calling StaticBody2D.GetConstantLinearVelocity()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StaticBody2D", "get_constant_linear_velocity")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_constant_linear_velocity", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *StaticBody2D) GetFriction() gdnative.Float {
 	log.Println("Calling StaticBody2D.GetFriction()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StaticBody2D", "get_friction")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_friction", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false bounce float}], Returns: void
 */
+
 func (o *StaticBody2D) SetBounce(bounce gdnative.Float) {
 	log.Println("Calling StaticBody2D.SetBounce()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bounce)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(bounce)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StaticBody2D", "set_bounce")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_bounce", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false vel float}], Returns: void
 */
+
 func (o *StaticBody2D) SetConstantAngularVelocity(vel gdnative.Float) {
 	log.Println("Calling StaticBody2D.SetConstantAngularVelocity()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(vel)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(vel)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StaticBody2D", "set_constant_angular_velocity")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_constant_angular_velocity", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false vel Vector2}], Returns: void
 */
-func (o *StaticBody2D) SetConstantLinearVelocity(vel *Vector2) {
+
+func (o *StaticBody2D) SetConstantLinearVelocity(vel gdnative.Vector2) {
 	log.Println("Calling StaticBody2D.SetConstantLinearVelocity()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(vel)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(vel)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StaticBody2D", "set_constant_linear_velocity")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_constant_linear_velocity", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false friction float}], Returns: void
 */
+
 func (o *StaticBody2D) SetFriction(friction gdnative.Float) {
 	log.Println("Calling StaticBody2D.SetFriction()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(friction)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(friction)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StaticBody2D", "set_friction")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_friction", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   StaticBody2DImplementer is an interface for StaticBody2D objects.
-*/
-type StaticBody2DImplementer interface {
-	Class
 }

@@ -2,9 +2,11 @@ package tcp_server
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/reference"
+	"github.com/shadowapex/godot-go/godot/class/streampeer"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewTCP_ServerFromPointer(ptr gdnative.Pointer) *TCP_Server {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := TCP_Server{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 TCP Server class. Listens to connections on a port and returns a [StreamPeerTCP] when got a connection.
 */
 type TCP_Server struct {
-	Reference
+	reference.Reference
 }
 
 func (o *TCP_Server) BaseClass() string {
@@ -28,87 +39,79 @@ func (o *TCP_Server) BaseClass() string {
 }
 
 /*
-   Return true if a connection is available for taking.
+        Return true if a connection is available for taking.
+	Args: [], Returns: bool
 */
+
 func (o *TCP_Server) IsConnectionAvailable() gdnative.Bool {
 	log.Println("Calling TCP_Server.IsConnectionAvailable()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TCP_Server", "is_connection_available")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_connection_available", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Listen on the "port" binding to "bind_address". If "bind_address" is set as "*" (default), the server will listen on all available addresses (both IPv4 and IPv6). If "bind_address" is set as "0.0.0.0" (for IPv4) or "::" (for IPv6), the server will listen on all available addresses matching that IP type. If "bind_address" is set to any valid address (e.g. "192.168.1.101", "::1", etc), the server will only listen on the interface with that addresses (or fail if no interface with the given address exists).
+        Listen on the "port" binding to "bind_address". If "bind_address" is set as "*" (default), the server will listen on all available addresses (both IPv4 and IPv6). If "bind_address" is set as "0.0.0.0" (for IPv4) or "::" (for IPv6), the server will listen on all available addresses matching that IP type. If "bind_address" is set to any valid address (e.g. "192.168.1.101", "::1", etc), the server will only listen on the interface with that addresses (or fail if no interface with the given address exists).
+	Args: [{ false port int} {* true bind_address String}], Returns: enum.Error
 */
-func (o *TCP_Server) Listen(port gdnative.Int, bindAddress gdnative.String) gdnative.Int {
-	log.Println("Calling TCP_Server.Listen()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(port)
-	goArguments[1] = reflect.ValueOf(bindAddress)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "listen", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Stop listening.
+        Stop listening.
+	Args: [], Returns: void
 */
+
 func (o *TCP_Server) Stop() {
 	log.Println("Calling TCP_Server.Stop()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TCP_Server", "stop")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "stop", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If a connection is available, return a StreamPeerTCP with the connection/
+        If a connection is available, return a StreamPeerTCP with the connection/
+	Args: [], Returns: StreamPeerTCP
 */
-func (o *TCP_Server) TakeConnection() *StreamPeerTCP {
+
+func (o *TCP_Server) TakeConnection() streampeer.StreamPeerTCP {
 	log.Println("Calling TCP_Server.TakeConnection()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TCP_Server", "take_connection")
 
 	// Call the parent method.
+	// StreamPeerTCP
+	retPtr := streampeer.NewEmptyStreamPeerTCP()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "take_connection", goArguments, "*StreamPeerTCP")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := streampeer.NewStreamPeerTcpFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*StreamPeerTCP)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   TCP_ServerImplementer is an interface for TCP_Server objects.
-*/
-type TCP_ServerImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

@@ -2,9 +2,9 @@ package dynamicfont
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewDynamicFontDataFromPointer(ptr gdnative.Pointer) *DynamicFontData {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := DynamicFontData{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Used with [DynamicFont] to describe the location of a vector font file for dynamic rendering at runtime.
 */
 type DynamicFontData struct {
-	Resource
+	resource.Resource
 }
 
 func (o *DynamicFontData) BaseClass() string {
@@ -28,46 +37,49 @@ func (o *DynamicFontData) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: String
 */
+
 func (o *DynamicFontData) GetFontPath() gdnative.String {
 	log.Println("Calling DynamicFontData.GetFontPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DynamicFontData", "get_font_path")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_font_path", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false path String}], Returns: void
 */
+
 func (o *DynamicFontData) SetFontPath(path gdnative.String) {
 	log.Println("Calling DynamicFontData.SetFontPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DynamicFontData", "set_font_path")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_font_path", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   DynamicFontDataImplementer is an interface for DynamicFontData objects.
-*/
-type DynamicFontDataImplementer interface {
-	Class
 }

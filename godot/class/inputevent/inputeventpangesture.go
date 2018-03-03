@@ -2,7 +2,8 @@ package inputevent
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
 )
 
 /*------------------------------------------------------------------------------
@@ -13,6 +14,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewInputEventPanGestureFromPointer(ptr gdnative.Pointer) *InputEventPanGesture {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := InputEventPanGesture{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 /*
 
@@ -26,46 +36,49 @@ func (o *InputEventPanGesture) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *InputEventPanGesture) GetDelta() *Vector2 {
+
+func (o *InputEventPanGesture) GetDelta() gdnative.Vector2 {
 	log.Println("Calling InputEventPanGesture.GetDelta()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventPanGesture", "get_delta")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_delta", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false delta Vector2}], Returns: void
 */
-func (o *InputEventPanGesture) SetDelta(delta *Vector2) {
+
+func (o *InputEventPanGesture) SetDelta(delta gdnative.Vector2) {
 	log.Println("Calling InputEventPanGesture.SetDelta()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(delta)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(delta)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("InputEventPanGesture", "set_delta")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_delta", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   InputEventPanGestureImplementer is an interface for InputEventPanGesture objects.
-*/
-type InputEventPanGestureImplementer interface {
-	Class
 }

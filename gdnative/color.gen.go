@@ -38,6 +38,14 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewEmptyColor will return a pointer to an empty
+// initialized Color. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyColor() Pointer {
+	var obj C.godot_color
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromColor will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromColor(obj Color) Pointer {

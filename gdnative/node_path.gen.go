@@ -38,6 +38,14 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewEmptyNodePath will return a pointer to an empty
+// initialized NodePath. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyNodePath() Pointer {
+	var obj C.godot_node_path
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromNodePath will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromNodePath(obj NodePath) Pointer {

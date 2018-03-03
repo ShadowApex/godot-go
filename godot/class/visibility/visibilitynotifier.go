@@ -2,9 +2,9 @@ package visibility
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/spatial"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewVisibilityNotifierFromPointer(ptr gdnative.Pointer) *VisibilityNotifier {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := VisibilityNotifier{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 The VisibilityNotifier detects when it is visible on the screen. It also notifies when its bounding rectangle enters or exits the screen or a [Camera]'s view.
 */
 type VisibilityNotifier struct {
-	Spatial
+	spatial.Spatial
 }
 
 func (o *VisibilityNotifier) BaseClass() string {
@@ -28,66 +37,75 @@ func (o *VisibilityNotifier) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: AABB
 */
-func (o *VisibilityNotifier) GetAabb() *AABB {
+
+func (o *VisibilityNotifier) GetAabb() gdnative.AABB {
 	log.Println("Calling VisibilityNotifier.GetAabb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisibilityNotifier", "get_aabb")
 
 	// Call the parent method.
+	// AABB
+	retPtr := gdnative.NewEmptyAabb()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_aabb", goArguments, "*AABB")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewAabbFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*AABB)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   If [code]true[/code] the bounding box is on the screen.
+        If [code]true[/code] the bounding box is on the screen.
+	Args: [], Returns: bool
 */
+
 func (o *VisibilityNotifier) IsOnScreen() gdnative.Bool {
 	log.Println("Calling VisibilityNotifier.IsOnScreen()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisibilityNotifier", "is_on_screen")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_on_screen", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false rect AABB}], Returns: void
 */
-func (o *VisibilityNotifier) SetAabb(rect *AABB) {
+
+func (o *VisibilityNotifier) SetAabb(rect gdnative.AABB) {
 	log.Println("Calling VisibilityNotifier.SetAabb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(rect)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromAabb(rect)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisibilityNotifier", "set_aabb")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_aabb", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   VisibilityNotifierImplementer is an interface for VisibilityNotifier objects.
-*/
-type VisibilityNotifierImplementer interface {
-	Class
 }

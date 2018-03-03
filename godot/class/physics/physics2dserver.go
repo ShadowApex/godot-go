@@ -2,9 +2,10 @@ package physics
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -15,6 +16,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func Newphysics2DServerFromPointer(ptr gdnative.Pointer) *physics2DServer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := physics2DServer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 func newSingletonPhysics2DServer() *physics2DServer {
 	obj := &physics2DServer{}
@@ -32,7 +42,7 @@ var Physics2DServer = newSingletonPhysics2DServer()
 Physics 2D Server is the server responsible for all 2D physics. It can create many kinds of physics objects, but does not insert them on the node tree.
 */
 type physics2DServer struct {
-	Object
+	object.Object
 }
 
 func (o *physics2DServer) BaseClass() string {
@@ -40,1873 +50,2225 @@ func (o *physics2DServer) BaseClass() string {
 }
 
 /*
-   Adds a shape to the area, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
+        Adds a shape to the area, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
+	Args: [{ false area RID} { false shape RID} {((1, 0), (0, 1), (0, 0)) true transform Transform2D}], Returns: void
 */
-func (o *physics2DServer) AreaAddShape(area *RID, shape *RID, transform *Transform2D) {
+
+func (o *physics2DServer) AreaAddShape(area gdnative.RID, shape gdnative.RID, transform gdnative.Transform2D) {
 	log.Println("Calling Physics2DServer.AreaAddShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(area)
-	goArguments[1] = reflect.ValueOf(shape)
-	goArguments[2] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+	ptrArguments[1] = gdnative.NewPointerFromRid(shape)
+	ptrArguments[2] = gdnative.NewPointerFromTransform2D(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_add_shape")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "area_add_shape", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Assigns the area to a descendant of [Object], so it can exist in the node tree.
+        Assigns the area to a descendant of [Object], so it can exist in the node tree.
+	Args: [{ false area RID} { false id int}], Returns: void
 */
-func (o *physics2DServer) AreaAttachObjectInstanceId(area *RID, id gdnative.Int) {
+
+func (o *physics2DServer) AreaAttachObjectInstanceId(area gdnative.RID, id gdnative.Int) {
 	log.Println("Calling Physics2DServer.AreaAttachObjectInstanceId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(area)
-	goArguments[1] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+	ptrArguments[1] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_attach_object_instance_id")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "area_attach_object_instance_id", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Removes all shapes from an area. It does not delete the shapes, so they can be reassigned later.
+        Removes all shapes from an area. It does not delete the shapes, so they can be reassigned later.
+	Args: [{ false area RID}], Returns: void
 */
-func (o *physics2DServer) AreaClearShapes(area *RID) {
+
+func (o *physics2DServer) AreaClearShapes(area gdnative.RID) {
 	log.Println("Calling Physics2DServer.AreaClearShapes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(area)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_clear_shapes")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "area_clear_shapes", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Creates an [Area2D].
+        Creates an [Area2D].
+	Args: [], Returns: RID
 */
-func (o *physics2DServer) AreaCreate() *RID {
+
+func (o *physics2DServer) AreaCreate() gdnative.RID {
 	log.Println("Calling Physics2DServer.AreaCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "area_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Gets the instance ID of the object the area is assigned to.
+        Gets the instance ID of the object the area is assigned to.
+	Args: [{ false area RID}], Returns: int
 */
-func (o *physics2DServer) AreaGetObjectInstanceId(area *RID) gdnative.Int {
+
+func (o *physics2DServer) AreaGetObjectInstanceId(area gdnative.RID) gdnative.Int {
 	log.Println("Calling Physics2DServer.AreaGetObjectInstanceId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(area)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_get_object_instance_id")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "area_get_object_instance_id", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns an area parameter value. A list of available parameters is on the AREA_PARAM_* constants.
+        Returns an area parameter value. A list of available parameters is on the AREA_PARAM_* constants.
+	Args: [{ false area RID} { false param int}], Returns: Variant
 */
-func (o *physics2DServer) AreaGetParam(area *RID, param gdnative.Int) *Variant {
+
+func (o *physics2DServer) AreaGetParam(area gdnative.RID, param gdnative.Int) gdnative.Variant {
 	log.Println("Calling Physics2DServer.AreaGetParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(area)
-	goArguments[1] = reflect.ValueOf(param)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+	ptrArguments[1] = gdnative.NewPointerFromInt(param)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_get_param")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "area_get_param", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the [RID] of the nth shape of an area.
+        Returns the [RID] of the nth shape of an area.
+	Args: [{ false area RID} { false shape_idx int}], Returns: RID
 */
-func (o *physics2DServer) AreaGetShape(area *RID, shapeIdx gdnative.Int) *RID {
+
+func (o *physics2DServer) AreaGetShape(area gdnative.RID, shapeIdx gdnative.Int) gdnative.RID {
 	log.Println("Calling Physics2DServer.AreaGetShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(area)
-	goArguments[1] = reflect.ValueOf(shapeIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_get_shape")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "area_get_shape", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the number of shapes assigned to an area.
+        Returns the number of shapes assigned to an area.
+	Args: [{ false area RID}], Returns: int
 */
-func (o *physics2DServer) AreaGetShapeCount(area *RID) gdnative.Int {
+
+func (o *physics2DServer) AreaGetShapeCount(area gdnative.RID) gdnative.Int {
 	log.Println("Calling Physics2DServer.AreaGetShapeCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(area)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_get_shape_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "area_get_shape_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the transform matrix of a shape within an area.
+        Returns the transform matrix of a shape within an area.
+	Args: [{ false area RID} { false shape_idx int}], Returns: Transform2D
 */
-func (o *physics2DServer) AreaGetShapeTransform(area *RID, shapeIdx gdnative.Int) *Transform2D {
+
+func (o *physics2DServer) AreaGetShapeTransform(area gdnative.RID, shapeIdx gdnative.Int) gdnative.Transform2D {
 	log.Println("Calling Physics2DServer.AreaGetShapeTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(area)
-	goArguments[1] = reflect.ValueOf(shapeIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_get_shape_transform")
 
 	// Call the parent method.
+	// Transform2D
+	retPtr := gdnative.NewEmptyTransform2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "area_get_shape_transform", goArguments, "*Transform2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransform2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the space assigned to the area.
+        Returns the space assigned to the area.
+	Args: [{ false area RID}], Returns: RID
 */
-func (o *physics2DServer) AreaGetSpace(area *RID) *RID {
+
+func (o *physics2DServer) AreaGetSpace(area gdnative.RID) gdnative.RID {
 	log.Println("Calling Physics2DServer.AreaGetSpace()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(area)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_get_space")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "area_get_space", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the space override mode for the area.
+        Returns the space override mode for the area.
+	Args: [{ false area RID}], Returns: enum.Physics2DServer::AreaSpaceOverrideMode
 */
-func (o *physics2DServer) AreaGetSpaceOverrideMode(area *RID) gdnative.Int {
-	log.Println("Calling Physics2DServer.AreaGetSpaceOverrideMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(area)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "area_get_space_override_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Returns the transform matrix for an area.
+        Returns the transform matrix for an area.
+	Args: [{ false area RID}], Returns: Transform2D
 */
-func (o *physics2DServer) AreaGetTransform(area *RID) *Transform2D {
+
+func (o *physics2DServer) AreaGetTransform(area gdnative.RID) gdnative.Transform2D {
 	log.Println("Calling Physics2DServer.AreaGetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(area)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_get_transform")
 
 	// Call the parent method.
+	// Transform2D
+	retPtr := gdnative.NewEmptyTransform2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "area_get_transform", goArguments, "*Transform2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransform2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Removes a shape from an area. It does not delete the shape, so it can be reassigned later.
+        Removes a shape from an area. It does not delete the shape, so it can be reassigned later.
+	Args: [{ false area RID} { false shape_idx int}], Returns: void
 */
-func (o *physics2DServer) AreaRemoveShape(area *RID, shapeIdx gdnative.Int) {
+
+func (o *physics2DServer) AreaRemoveShape(area gdnative.RID, shapeIdx gdnative.Int) {
 	log.Println("Calling Physics2DServer.AreaRemoveShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(area)
-	goArguments[1] = reflect.ValueOf(shapeIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_remove_shape")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "area_remove_shape", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Assigns the area to one or many physics layers.
+        Assigns the area to one or many physics layers.
+	Args: [{ false area RID} { false layer int}], Returns: void
 */
-func (o *physics2DServer) AreaSetCollisionLayer(area *RID, layer gdnative.Int) {
+
+func (o *physics2DServer) AreaSetCollisionLayer(area gdnative.RID, layer gdnative.Int) {
 	log.Println("Calling Physics2DServer.AreaSetCollisionLayer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(area)
-	goArguments[1] = reflect.ValueOf(layer)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+	ptrArguments[1] = gdnative.NewPointerFromInt(layer)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_set_collision_layer")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "area_set_collision_layer", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets which physics layers the area will monitor.
+        Sets which physics layers the area will monitor.
+	Args: [{ false area RID} { false mask int}], Returns: void
 */
-func (o *physics2DServer) AreaSetCollisionMask(area *RID, mask gdnative.Int) {
+
+func (o *physics2DServer) AreaSetCollisionMask(area gdnative.RID, mask gdnative.Int) {
 	log.Println("Calling Physics2DServer.AreaSetCollisionMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(area)
-	goArguments[1] = reflect.ValueOf(mask)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mask)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_set_collision_mask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "area_set_collision_mask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the function to call when any body/area enters or exits the area. This callback will be called for any object interacting with the area, and takes five parameters: 1: AREA_BODY_ADDED or AREA_BODY_REMOVED, depending on whether the object entered or exited the area. 2: [RID] of the object that entered/exited the area. 3: Instance ID of the object that entered/exited the area. 4: The shape index of the object that entered/exited the area. 5: The shape index of the area where the object entered/exited.
+        Sets the function to call when any body/area enters or exits the area. This callback will be called for any object interacting with the area, and takes five parameters: 1: AREA_BODY_ADDED or AREA_BODY_REMOVED, depending on whether the object entered or exited the area. 2: [RID] of the object that entered/exited the area. 3: Instance ID of the object that entered/exited the area. 4: The shape index of the object that entered/exited the area. 5: The shape index of the area where the object entered/exited.
+	Args: [{ false area RID} { false receiver Object} { false method String}], Returns: void
 */
-func (o *physics2DServer) AreaSetMonitorCallback(area *RID, receiver *Object, method gdnative.String) {
+
+func (o *physics2DServer) AreaSetMonitorCallback(area gdnative.RID, receiver object.Object, method gdnative.String) {
 	log.Println("Calling Physics2DServer.AreaSetMonitorCallback()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(area)
-	goArguments[1] = reflect.ValueOf(receiver)
-	goArguments[2] = reflect.ValueOf(method)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+	ptrArguments[1] = gdnative.NewPointerFromObject(receiver.GetOwner())
+	ptrArguments[2] = gdnative.NewPointerFromString(method)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_set_monitor_callback")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "area_set_monitor_callback", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the value for an area parameter. A list of available parameters is on the AREA_PARAM_* constants.
+        Sets the value for an area parameter. A list of available parameters is on the AREA_PARAM_* constants.
+	Args: [{ false area RID} { false param int} { false value Variant}], Returns: void
 */
-func (o *physics2DServer) AreaSetParam(area *RID, param gdnative.Int, value *Variant) {
+
+func (o *physics2DServer) AreaSetParam(area gdnative.RID, param gdnative.Int, value gdnative.Variant) {
 	log.Println("Calling Physics2DServer.AreaSetParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(area)
-	goArguments[1] = reflect.ValueOf(param)
-	goArguments[2] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+	ptrArguments[1] = gdnative.NewPointerFromInt(param)
+	ptrArguments[2] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_set_param")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "area_set_param", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Substitutes a given area shape by another. The old shape is selected by its index, the new one by its [RID].
+        Substitutes a given area shape by another. The old shape is selected by its index, the new one by its [RID].
+	Args: [{ false area RID} { false shape_idx int} { false shape RID}], Returns: void
 */
-func (o *physics2DServer) AreaSetShape(area *RID, shapeIdx gdnative.Int, shape *RID) {
+
+func (o *physics2DServer) AreaSetShape(area gdnative.RID, shapeIdx gdnative.Int, shape gdnative.RID) {
 	log.Println("Calling Physics2DServer.AreaSetShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(area)
-	goArguments[1] = reflect.ValueOf(shapeIdx)
-	goArguments[2] = reflect.ValueOf(shape)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeIdx)
+	ptrArguments[2] = gdnative.NewPointerFromRid(shape)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_set_shape")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "area_set_shape", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Disables a given shape in an area.
+        Disables a given shape in an area.
+	Args: [{ false area RID} { false shape_idx int} { false disable bool}], Returns: void
 */
-func (o *physics2DServer) AreaSetShapeDisabled(area *RID, shapeIdx gdnative.Int, disable gdnative.Bool) {
+
+func (o *physics2DServer) AreaSetShapeDisabled(area gdnative.RID, shapeIdx gdnative.Int, disable gdnative.Bool) {
 	log.Println("Calling Physics2DServer.AreaSetShapeDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(area)
-	goArguments[1] = reflect.ValueOf(shapeIdx)
-	goArguments[2] = reflect.ValueOf(disable)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeIdx)
+	ptrArguments[2] = gdnative.NewPointerFromBool(disable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_set_shape_disabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "area_set_shape_disabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the transform matrix for an area shape.
+        Sets the transform matrix for an area shape.
+	Args: [{ false area RID} { false shape_idx int} { false transform Transform2D}], Returns: void
 */
-func (o *physics2DServer) AreaSetShapeTransform(area *RID, shapeIdx gdnative.Int, transform *Transform2D) {
+
+func (o *physics2DServer) AreaSetShapeTransform(area gdnative.RID, shapeIdx gdnative.Int, transform gdnative.Transform2D) {
 	log.Println("Calling Physics2DServer.AreaSetShapeTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(area)
-	goArguments[1] = reflect.ValueOf(shapeIdx)
-	goArguments[2] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeIdx)
+	ptrArguments[2] = gdnative.NewPointerFromTransform2D(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_set_shape_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "area_set_shape_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Assigns a space to the area.
+        Assigns a space to the area.
+	Args: [{ false area RID} { false space RID}], Returns: void
 */
-func (o *physics2DServer) AreaSetSpace(area *RID, space *RID) {
+
+func (o *physics2DServer) AreaSetSpace(area gdnative.RID, space gdnative.RID) {
 	log.Println("Calling Physics2DServer.AreaSetSpace()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(area)
-	goArguments[1] = reflect.ValueOf(space)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+	ptrArguments[1] = gdnative.NewPointerFromRid(space)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_set_space")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "area_set_space", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the space override mode for the area. The modes are described in the constants AREA_SPACE_OVERRIDE_*.
+        Sets the space override mode for the area. The modes are described in the constants AREA_SPACE_OVERRIDE_*.
+	Args: [{ false area RID} { false mode int}], Returns: void
 */
-func (o *physics2DServer) AreaSetSpaceOverrideMode(area *RID, mode gdnative.Int) {
+
+func (o *physics2DServer) AreaSetSpaceOverrideMode(area gdnative.RID, mode gdnative.Int) {
 	log.Println("Calling Physics2DServer.AreaSetSpaceOverrideMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(area)
-	goArguments[1] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_set_space_override_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "area_set_space_override_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the transform matrix for an area.
+        Sets the transform matrix for an area.
+	Args: [{ false area RID} { false transform Transform2D}], Returns: void
 */
-func (o *physics2DServer) AreaSetTransform(area *RID, transform *Transform2D) {
+
+func (o *physics2DServer) AreaSetTransform(area gdnative.RID, transform gdnative.Transform2D) {
 	log.Println("Calling Physics2DServer.AreaSetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(area)
-	goArguments[1] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+	ptrArguments[1] = gdnative.NewPointerFromTransform2D(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_set_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "area_set_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a body to the list of bodies exempt from collisions.
+        Adds a body to the list of bodies exempt from collisions.
+	Args: [{ false body RID} { false excepted_body RID}], Returns: void
 */
-func (o *physics2DServer) BodyAddCollisionException(body *RID, exceptedBody *RID) {
+
+func (o *physics2DServer) BodyAddCollisionException(body gdnative.RID, exceptedBody gdnative.RID) {
 	log.Println("Calling Physics2DServer.BodyAddCollisionException()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(exceptedBody)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromRid(exceptedBody)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_add_collision_exception")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_add_collision_exception", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a positioned force to the applied force and torque. As with [method body_apply_impulse], both the force and the offset from the body origin are in global coordinates. A force differs from an impulse in that, while the two are forces, the impulse clears itself after being applied.
+        Adds a positioned force to the applied force and torque. As with [method body_apply_impulse], both the force and the offset from the body origin are in global coordinates. A force differs from an impulse in that, while the two are forces, the impulse clears itself after being applied.
+	Args: [{ false body RID} { false offset Vector2} { false force Vector2}], Returns: void
 */
-func (o *physics2DServer) BodyAddForce(body *RID, offset *Vector2, force *Vector2) {
+
+func (o *physics2DServer) BodyAddForce(body gdnative.RID, offset gdnative.Vector2, force gdnative.Vector2) {
 	log.Println("Calling Physics2DServer.BodyAddForce()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(offset)
-	goArguments[2] = reflect.ValueOf(force)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(offset)
+	ptrArguments[2] = gdnative.NewPointerFromVector2(force)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_add_force")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_add_force", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a shape to the body, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
+        Adds a shape to the body, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
+	Args: [{ false body RID} { false shape RID} {((1, 0), (0, 1), (0, 0)) true transform Transform2D}], Returns: void
 */
-func (o *physics2DServer) BodyAddShape(body *RID, shape *RID, transform *Transform2D) {
+
+func (o *physics2DServer) BodyAddShape(body gdnative.RID, shape gdnative.RID, transform gdnative.Transform2D) {
 	log.Println("Calling Physics2DServer.BodyAddShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(shape)
-	goArguments[2] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromRid(shape)
+	ptrArguments[2] = gdnative.NewPointerFromTransform2D(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_add_shape")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_add_shape", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a positioned impulse to the applied force and torque. Both the force and the offset from the body origin are in global coordinates.
+        Adds a positioned impulse to the applied force and torque. Both the force and the offset from the body origin are in global coordinates.
+	Args: [{ false body RID} { false position Vector2} { false impulse Vector2}], Returns: void
 */
-func (o *physics2DServer) BodyApplyImpulse(body *RID, position *Vector2, impulse *Vector2) {
+
+func (o *physics2DServer) BodyApplyImpulse(body gdnative.RID, position gdnative.Vector2, impulse gdnative.Vector2) {
 	log.Println("Calling Physics2DServer.BodyApplyImpulse()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(position)
-	goArguments[2] = reflect.ValueOf(impulse)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(position)
+	ptrArguments[2] = gdnative.NewPointerFromVector2(impulse)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_apply_impulse")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_apply_impulse", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Assigns the area to a descendant of [Object], so it can exist in the node tree.
+        Assigns the area to a descendant of [Object], so it can exist in the node tree.
+	Args: [{ false body RID} { false id int}], Returns: void
 */
-func (o *physics2DServer) BodyAttachObjectInstanceId(body *RID, id gdnative.Int) {
+
+func (o *physics2DServer) BodyAttachObjectInstanceId(body gdnative.RID, id gdnative.Int) {
 	log.Println("Calling Physics2DServer.BodyAttachObjectInstanceId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_attach_object_instance_id")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_attach_object_instance_id", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Removes all shapes from a body.
+        Removes all shapes from a body.
+	Args: [{ false body RID}], Returns: void
 */
-func (o *physics2DServer) BodyClearShapes(body *RID) {
+
+func (o *physics2DServer) BodyClearShapes(body gdnative.RID) {
 	log.Println("Calling Physics2DServer.BodyClearShapes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(body)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_clear_shapes")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_clear_shapes", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Creates a physics body. The first parameter can be any value from constants BODY_MODE*, for the type of body created. Additionally, the body can be created in sleeping state to save processing time.
+        Creates a physics body. The first parameter can be any value from constants BODY_MODE*, for the type of body created. Additionally, the body can be created in sleeping state to save processing time.
+	Args: [], Returns: RID
 */
-func (o *physics2DServer) BodyCreate() *RID {
+
+func (o *physics2DServer) BodyCreate() gdnative.RID {
 	log.Println("Calling Physics2DServer.BodyCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "body_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the physics layer or layers a body belongs to.
+        Returns the physics layer or layers a body belongs to.
+	Args: [{ false body RID}], Returns: int
 */
-func (o *physics2DServer) BodyGetCollisionLayer(body *RID) gdnative.Int {
+
+func (o *physics2DServer) BodyGetCollisionLayer(body gdnative.RID) gdnative.Int {
 	log.Println("Calling Physics2DServer.BodyGetCollisionLayer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(body)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_get_collision_layer")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "body_get_collision_layer", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the physics layer or layers a body can collide with.
+        Returns the physics layer or layers a body can collide with.
+	Args: [{ false body RID}], Returns: int
 */
-func (o *physics2DServer) BodyGetCollisionMask(body *RID) gdnative.Int {
+
+func (o *physics2DServer) BodyGetCollisionMask(body gdnative.RID) gdnative.Int {
 	log.Println("Calling Physics2DServer.BodyGetCollisionMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(body)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_get_collision_mask")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "body_get_collision_mask", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the continuous collision detection mode.
+        Returns the continuous collision detection mode.
+	Args: [{ false body RID}], Returns: enum.Physics2DServer::CCDMode
 */
-func (o *physics2DServer) BodyGetContinuousCollisionDetectionMode(body *RID) gdnative.Int {
-	log.Println("Calling Physics2DServer.BodyGetContinuousCollisionDetectionMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(body)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "body_get_continuous_collision_detection_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Returns the [Physics2DDirectBodyState] of the body.
+        Returns the [Physics2DDirectBodyState] of the body.
+	Args: [{ false body RID}], Returns: Physics2DDirectBodyState
 */
-func (o *physics2DServer) BodyGetDirectState(body *RID) *Physics2DDirectBodyState {
+
+func (o *physics2DServer) BodyGetDirectState(body gdnative.RID) Physics2DDirectBodyState {
 	log.Println("Calling Physics2DServer.BodyGetDirectState()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(body)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_get_direct_state")
 
 	// Call the parent method.
+	// Physics2DDirectBodyState
+	retPtr := NewEmptyPhysics2DDirectBodyState()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "body_get_direct_state", goArguments, "*Physics2DDirectBodyState")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewPhysics2DDirectBodyStateFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Physics2DDirectBodyState)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the maximum contacts that can be reported. See [method body_set_max_contacts_reported].
+        Returns the maximum contacts that can be reported. See [method body_set_max_contacts_reported].
+	Args: [{ false body RID}], Returns: int
 */
-func (o *physics2DServer) BodyGetMaxContactsReported(body *RID) gdnative.Int {
+
+func (o *physics2DServer) BodyGetMaxContactsReported(body gdnative.RID) gdnative.Int {
 	log.Println("Calling Physics2DServer.BodyGetMaxContactsReported()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(body)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_get_max_contacts_reported")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "body_get_max_contacts_reported", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the body mode.
+        Returns the body mode.
+	Args: [{ false body RID}], Returns: enum.Physics2DServer::BodyMode
 */
-func (o *physics2DServer) BodyGetMode(body *RID) gdnative.Int {
-	log.Println("Calling Physics2DServer.BodyGetMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(body)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "body_get_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Gets the instance ID of the object the area is assigned to.
+        Gets the instance ID of the object the area is assigned to.
+	Args: [{ false body RID}], Returns: int
 */
-func (o *physics2DServer) BodyGetObjectInstanceId(body *RID) gdnative.Int {
+
+func (o *physics2DServer) BodyGetObjectInstanceId(body gdnative.RID) gdnative.Int {
 	log.Println("Calling Physics2DServer.BodyGetObjectInstanceId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(body)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_get_object_instance_id")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "body_get_object_instance_id", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the value of a body parameter. A list of available parameters is on the BODY_PARAM_* constants.
+        Returns the value of a body parameter. A list of available parameters is on the BODY_PARAM_* constants.
+	Args: [{ false body RID} { false param int}], Returns: float
 */
-func (o *physics2DServer) BodyGetParam(body *RID, param gdnative.Int) gdnative.Float {
+
+func (o *physics2DServer) BodyGetParam(body gdnative.RID, param gdnative.Int) gdnative.Float {
 	log.Println("Calling Physics2DServer.BodyGetParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(param)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(param)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_get_param")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "body_get_param", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the [RID] of the nth shape of a body.
+        Returns the [RID] of the nth shape of a body.
+	Args: [{ false body RID} { false shape_idx int}], Returns: RID
 */
-func (o *physics2DServer) BodyGetShape(body *RID, shapeIdx gdnative.Int) *RID {
+
+func (o *physics2DServer) BodyGetShape(body gdnative.RID, shapeIdx gdnative.Int) gdnative.RID {
 	log.Println("Calling Physics2DServer.BodyGetShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(shapeIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_get_shape")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "body_get_shape", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the number of shapes assigned to a body.
+        Returns the number of shapes assigned to a body.
+	Args: [{ false body RID}], Returns: int
 */
-func (o *physics2DServer) BodyGetShapeCount(body *RID) gdnative.Int {
+
+func (o *physics2DServer) BodyGetShapeCount(body gdnative.RID) gdnative.Int {
 	log.Println("Calling Physics2DServer.BodyGetShapeCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(body)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_get_shape_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "body_get_shape_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the metadata of a shape of a body.
+        Returns the metadata of a shape of a body.
+	Args: [{ false body RID} { false shape_idx int}], Returns: Variant
 */
-func (o *physics2DServer) BodyGetShapeMetadata(body *RID, shapeIdx gdnative.Int) *Variant {
+
+func (o *physics2DServer) BodyGetShapeMetadata(body gdnative.RID, shapeIdx gdnative.Int) gdnative.Variant {
 	log.Println("Calling Physics2DServer.BodyGetShapeMetadata()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(shapeIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_get_shape_metadata")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "body_get_shape_metadata", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the transform matrix of a body shape.
+        Returns the transform matrix of a body shape.
+	Args: [{ false body RID} { false shape_idx int}], Returns: Transform2D
 */
-func (o *physics2DServer) BodyGetShapeTransform(body *RID, shapeIdx gdnative.Int) *Transform2D {
+
+func (o *physics2DServer) BodyGetShapeTransform(body gdnative.RID, shapeIdx gdnative.Int) gdnative.Transform2D {
 	log.Println("Calling Physics2DServer.BodyGetShapeTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(shapeIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_get_shape_transform")
 
 	// Call the parent method.
+	// Transform2D
+	retPtr := gdnative.NewEmptyTransform2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "body_get_shape_transform", goArguments, "*Transform2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransform2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the [RID] of the space assigned to a body.
+        Returns the [RID] of the space assigned to a body.
+	Args: [{ false body RID}], Returns: RID
 */
-func (o *physics2DServer) BodyGetSpace(body *RID) *RID {
+
+func (o *physics2DServer) BodyGetSpace(body gdnative.RID) gdnative.RID {
 	log.Println("Calling Physics2DServer.BodyGetSpace()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(body)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_get_space")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "body_get_space", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a body state.
+        Returns a body state.
+	Args: [{ false body RID} { false state int}], Returns: Variant
 */
-func (o *physics2DServer) BodyGetState(body *RID, state gdnative.Int) *Variant {
+
+func (o *physics2DServer) BodyGetState(body gdnative.RID, state gdnative.Int) gdnative.Variant {
 	log.Println("Calling Physics2DServer.BodyGetState()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(state)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(state)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_get_state")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "body_get_state", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns whether a body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]).
+        Returns whether a body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]).
+	Args: [{ false body RID}], Returns: bool
 */
-func (o *physics2DServer) BodyIsOmittingForceIntegration(body *RID) gdnative.Bool {
+
+func (o *physics2DServer) BodyIsOmittingForceIntegration(body gdnative.RID) gdnative.Bool {
 	log.Println("Calling Physics2DServer.BodyIsOmittingForceIntegration()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(body)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_is_omitting_force_integration")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "body_is_omitting_force_integration", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Removes a body from the list of bodies exempt from collisions.
+        Removes a body from the list of bodies exempt from collisions.
+	Args: [{ false body RID} { false excepted_body RID}], Returns: void
 */
-func (o *physics2DServer) BodyRemoveCollisionException(body *RID, exceptedBody *RID) {
+
+func (o *physics2DServer) BodyRemoveCollisionException(body gdnative.RID, exceptedBody gdnative.RID) {
 	log.Println("Calling Physics2DServer.BodyRemoveCollisionException()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(exceptedBody)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromRid(exceptedBody)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_remove_collision_exception")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_remove_collision_exception", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Removes a shape from a body. The shape is not deleted, so it can be reused afterwards.
+        Removes a shape from a body. The shape is not deleted, so it can be reused afterwards.
+	Args: [{ false body RID} { false shape_idx int}], Returns: void
 */
-func (o *physics2DServer) BodyRemoveShape(body *RID, shapeIdx gdnative.Int) {
+
+func (o *physics2DServer) BodyRemoveShape(body gdnative.RID, shapeIdx gdnative.Int) {
 	log.Println("Calling Physics2DServer.BodyRemoveShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(shapeIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_remove_shape")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_remove_shape", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets an axis velocity. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior.
+        Sets an axis velocity. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior.
+	Args: [{ false body RID} { false axis_velocity Vector2}], Returns: void
 */
-func (o *physics2DServer) BodySetAxisVelocity(body *RID, axisVelocity *Vector2) {
+
+func (o *physics2DServer) BodySetAxisVelocity(body gdnative.RID, axisVelocity gdnative.Vector2) {
 	log.Println("Calling Physics2DServer.BodySetAxisVelocity()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(axisVelocity)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(axisVelocity)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_set_axis_velocity")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_set_axis_velocity", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the physics layer or layers a body belongs to.
+        Sets the physics layer or layers a body belongs to.
+	Args: [{ false body RID} { false layer int}], Returns: void
 */
-func (o *physics2DServer) BodySetCollisionLayer(body *RID, layer gdnative.Int) {
+
+func (o *physics2DServer) BodySetCollisionLayer(body gdnative.RID, layer gdnative.Int) {
 	log.Println("Calling Physics2DServer.BodySetCollisionLayer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(layer)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(layer)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_set_collision_layer")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_set_collision_layer", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the physics layer or layers a body can collide with.
+        Sets the physics layer or layers a body can collide with.
+	Args: [{ false body RID} { false mask int}], Returns: void
 */
-func (o *physics2DServer) BodySetCollisionMask(body *RID, mask gdnative.Int) {
+
+func (o *physics2DServer) BodySetCollisionMask(body gdnative.RID, mask gdnative.Int) {
 	log.Println("Calling Physics2DServer.BodySetCollisionMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(mask)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mask)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_set_collision_mask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_set_collision_mask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the continuous collision detection mode from any of the CCD_MODE_* constants. Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided.
+        Sets the continuous collision detection mode from any of the CCD_MODE_* constants. Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided.
+	Args: [{ false body RID} { false mode int}], Returns: void
 */
-func (o *physics2DServer) BodySetContinuousCollisionDetectionMode(body *RID, mode gdnative.Int) {
+
+func (o *physics2DServer) BodySetContinuousCollisionDetectionMode(body gdnative.RID, mode gdnative.Int) {
 	log.Println("Calling Physics2DServer.BodySetContinuousCollisionDetectionMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_set_continuous_collision_detection_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_set_continuous_collision_detection_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the function used to calculate physics for an object, if that object allows it (see [method body_set_omit_force integration]).
+        Sets the function used to calculate physics for an object, if that object allows it (see [method body_set_omit_force integration]).
+	Args: [{ false body RID} { false receiver Object} { false method String} {Null true userdata Variant}], Returns: void
 */
-func (o *physics2DServer) BodySetForceIntegrationCallback(body *RID, receiver *Object, method gdnative.String, userdata *Variant) {
+
+func (o *physics2DServer) BodySetForceIntegrationCallback(body gdnative.RID, receiver object.Object, method gdnative.String, userdata gdnative.Variant) {
 	log.Println("Calling Physics2DServer.BodySetForceIntegrationCallback()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(receiver)
-	goArguments[2] = reflect.ValueOf(method)
-	goArguments[3] = reflect.ValueOf(userdata)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromObject(receiver.GetOwner())
+	ptrArguments[2] = gdnative.NewPointerFromString(method)
+	ptrArguments[3] = gdnative.NewPointerFromVariant(userdata)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_set_force_integration_callback")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_set_force_integration_callback", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the maximum contacts to report. Bodies can keep a log of the contacts with other bodies, this is enabled by setting the maximum amount of contacts reported to a number greater than 0.
+        Sets the maximum contacts to report. Bodies can keep a log of the contacts with other bodies, this is enabled by setting the maximum amount of contacts reported to a number greater than 0.
+	Args: [{ false body RID} { false amount int}], Returns: void
 */
-func (o *physics2DServer) BodySetMaxContactsReported(body *RID, amount gdnative.Int) {
+
+func (o *physics2DServer) BodySetMaxContactsReported(body gdnative.RID, amount gdnative.Int) {
 	log.Println("Calling Physics2DServer.BodySetMaxContactsReported()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(amount)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(amount)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_set_max_contacts_reported")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_set_max_contacts_reported", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the body mode, from one of the constants BODY_MODE*.
+        Sets the body mode, from one of the constants BODY_MODE*.
+	Args: [{ false body RID} { false mode int}], Returns: void
 */
-func (o *physics2DServer) BodySetMode(body *RID, mode gdnative.Int) {
+
+func (o *physics2DServer) BodySetMode(body gdnative.RID, mode gdnative.Int) {
 	log.Println("Calling Physics2DServer.BodySetMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_set_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_set_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets whether a body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]).
+        Sets whether a body uses a callback function to calculate its own physics (see [method body_set_force_integration_callback]).
+	Args: [{ false body RID} { false enable bool}], Returns: void
 */
-func (o *physics2DServer) BodySetOmitForceIntegration(body *RID, enable gdnative.Bool) {
+
+func (o *physics2DServer) BodySetOmitForceIntegration(body gdnative.RID, enable gdnative.Bool) {
 	log.Println("Calling Physics2DServer.BodySetOmitForceIntegration()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_set_omit_force_integration")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_set_omit_force_integration", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a body parameter. A list of available parameters is on the BODY_PARAM_* constants.
+        Sets a body parameter. A list of available parameters is on the BODY_PARAM_* constants.
+	Args: [{ false body RID} { false param int} { false value float}], Returns: void
 */
-func (o *physics2DServer) BodySetParam(body *RID, param gdnative.Int, value gdnative.Float) {
+
+func (o *physics2DServer) BodySetParam(body gdnative.RID, param gdnative.Int, value gdnative.Float) {
 	log.Println("Calling Physics2DServer.BodySetParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(param)
-	goArguments[2] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(param)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_set_param")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_set_param", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Substitutes a given body shape by another. The old shape is selected by its index, the new one by its [RID].
+        Substitutes a given body shape by another. The old shape is selected by its index, the new one by its [RID].
+	Args: [{ false body RID} { false shape_idx int} { false shape RID}], Returns: void
 */
-func (o *physics2DServer) BodySetShape(body *RID, shapeIdx gdnative.Int, shape *RID) {
+
+func (o *physics2DServer) BodySetShape(body gdnative.RID, shapeIdx gdnative.Int, shape gdnative.RID) {
 	log.Println("Calling Physics2DServer.BodySetShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(shapeIdx)
-	goArguments[2] = reflect.ValueOf(shape)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeIdx)
+	ptrArguments[2] = gdnative.NewPointerFromRid(shape)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_set_shape")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_set_shape", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Enables one way collision on body if [code]enable[/code] is [code]true[/code].
+        Enables one way collision on body if [code]enable[/code] is [code]true[/code].
+	Args: [{ false body RID} { false shape_idx int} { false enable bool}], Returns: void
 */
-func (o *physics2DServer) BodySetShapeAsOneWayCollision(body *RID, shapeIdx gdnative.Int, enable gdnative.Bool) {
+
+func (o *physics2DServer) BodySetShapeAsOneWayCollision(body gdnative.RID, shapeIdx gdnative.Int, enable gdnative.Bool) {
 	log.Println("Calling Physics2DServer.BodySetShapeAsOneWayCollision()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(shapeIdx)
-	goArguments[2] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeIdx)
+	ptrArguments[2] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_set_shape_as_one_way_collision")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_set_shape_as_one_way_collision", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Disables shape in body if [code]disable[/code] is [code]true[/code].
+        Disables shape in body if [code]disable[/code] is [code]true[/code].
+	Args: [{ false body RID} { false shape_idx int} { false disable bool}], Returns: void
 */
-func (o *physics2DServer) BodySetShapeDisabled(body *RID, shapeIdx gdnative.Int, disable gdnative.Bool) {
+
+func (o *physics2DServer) BodySetShapeDisabled(body gdnative.RID, shapeIdx gdnative.Int, disable gdnative.Bool) {
 	log.Println("Calling Physics2DServer.BodySetShapeDisabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(shapeIdx)
-	goArguments[2] = reflect.ValueOf(disable)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeIdx)
+	ptrArguments[2] = gdnative.NewPointerFromBool(disable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_set_shape_disabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_set_shape_disabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets metadata of a shape within a body. This metadata is different from [method Object.set_meta], and can be retrieved on shape queries.
+        Sets metadata of a shape within a body. This metadata is different from [method Object.set_meta], and can be retrieved on shape queries.
+	Args: [{ false body RID} { false shape_idx int} { false metadata Variant}], Returns: void
 */
-func (o *physics2DServer) BodySetShapeMetadata(body *RID, shapeIdx gdnative.Int, metadata *Variant) {
+
+func (o *physics2DServer) BodySetShapeMetadata(body gdnative.RID, shapeIdx gdnative.Int, metadata gdnative.Variant) {
 	log.Println("Calling Physics2DServer.BodySetShapeMetadata()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(shapeIdx)
-	goArguments[2] = reflect.ValueOf(metadata)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeIdx)
+	ptrArguments[2] = gdnative.NewPointerFromVariant(metadata)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_set_shape_metadata")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_set_shape_metadata", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the transform matrix for a body shape.
+        Sets the transform matrix for a body shape.
+	Args: [{ false body RID} { false shape_idx int} { false transform Transform2D}], Returns: void
 */
-func (o *physics2DServer) BodySetShapeTransform(body *RID, shapeIdx gdnative.Int, transform *Transform2D) {
+
+func (o *physics2DServer) BodySetShapeTransform(body gdnative.RID, shapeIdx gdnative.Int, transform gdnative.Transform2D) {
 	log.Println("Calling Physics2DServer.BodySetShapeTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(shapeIdx)
-	goArguments[2] = reflect.ValueOf(transform)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(shapeIdx)
+	ptrArguments[2] = gdnative.NewPointerFromTransform2D(transform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_set_shape_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_set_shape_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Assigns a space to the body (see [method create_space]).
+        Assigns a space to the body (see [method create_space]).
+	Args: [{ false body RID} { false space RID}], Returns: void
 */
-func (o *physics2DServer) BodySetSpace(body *RID, space *RID) {
+
+func (o *physics2DServer) BodySetSpace(body gdnative.RID, space gdnative.RID) {
 	log.Println("Calling Physics2DServer.BodySetSpace()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(space)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromRid(space)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_set_space")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_set_space", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets a body state (see BODY_STATE* constants).
+        Sets a body state (see BODY_STATE* constants).
+	Args: [{ false body RID} { false state int} { false value Variant}], Returns: void
 */
-func (o *physics2DServer) BodySetState(body *RID, state gdnative.Int, value *Variant) {
+
+func (o *physics2DServer) BodySetState(body gdnative.RID, state gdnative.Int, value gdnative.Variant) {
 	log.Println("Calling Physics2DServer.BodySetState()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(state)
-	goArguments[2] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromInt(state)
+	ptrArguments[2] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_set_state")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "body_set_state", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns whether a body can move from a given point in a given direction. Apart from the boolean return value, a [Physics2DTestMotionResult] can be passed to return additional information in.
+        Returns whether a body can move from a given point in a given direction. Apart from the boolean return value, a [Physics2DTestMotionResult] can be passed to return additional information in.
+	Args: [{ false body RID} { false from Transform2D} { false motion Vector2} {0.08 true margin float} {Null true result Physics2DTestMotionResult}], Returns: bool
 */
-func (o *physics2DServer) BodyTestMotion(body *RID, from *Transform2D, motion *Vector2, margin gdnative.Float, result *Physics2DTestMotionResult) gdnative.Bool {
+
+func (o *physics2DServer) BodyTestMotion(body gdnative.RID, from gdnative.Transform2D, motion gdnative.Vector2, margin gdnative.Float, result Physics2DTestMotionResult) gdnative.Bool {
 	log.Println("Calling Physics2DServer.BodyTestMotion()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(body)
-	goArguments[1] = reflect.ValueOf(from)
-	goArguments[2] = reflect.ValueOf(motion)
-	goArguments[3] = reflect.ValueOf(margin)
-	goArguments[4] = reflect.ValueOf(result)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+	ptrArguments[1] = gdnative.NewPointerFromTransform2D(from)
+	ptrArguments[2] = gdnative.NewPointerFromVector2(motion)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(margin)
+	ptrArguments[4] = gdnative.NewPointerFromObject(result.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_test_motion")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "body_test_motion", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *physics2DServer) CapsuleShapeCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *physics2DServer) CapsuleShapeCreate() gdnative.RID {
 	log.Println("Calling Physics2DServer.CapsuleShapeCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "capsule_shape_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "capsule_shape_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *physics2DServer) CircleShapeCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *physics2DServer) CircleShapeCreate() gdnative.RID {
 	log.Println("Calling Physics2DServer.CircleShapeCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "circle_shape_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "circle_shape_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *physics2DServer) ConcavePolygonShapeCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *physics2DServer) ConcavePolygonShapeCreate() gdnative.RID {
 	log.Println("Calling Physics2DServer.ConcavePolygonShapeCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "concave_polygon_shape_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "concave_polygon_shape_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *physics2DServer) ConvexPolygonShapeCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *physics2DServer) ConvexPolygonShapeCreate() gdnative.RID {
 	log.Println("Calling Physics2DServer.ConvexPolygonShapeCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "convex_polygon_shape_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "convex_polygon_shape_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Creates a damped spring joint between two bodies. If not specified, the second body is assumed to be the joint itself.
+        Creates a damped spring joint between two bodies. If not specified, the second body is assumed to be the joint itself.
+	Args: [{ false anchor_a Vector2} { false anchor_b Vector2} { false body_a RID} {[RID] true body_b RID}], Returns: RID
 */
-func (o *physics2DServer) DampedSpringJointCreate(anchorA *Vector2, anchorB *Vector2, bodyA *RID, bodyB *RID) *RID {
+
+func (o *physics2DServer) DampedSpringJointCreate(anchorA gdnative.Vector2, anchorB gdnative.Vector2, bodyA gdnative.RID, bodyB gdnative.RID) gdnative.RID {
 	log.Println("Calling Physics2DServer.DampedSpringJointCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(anchorA)
-	goArguments[1] = reflect.ValueOf(anchorB)
-	goArguments[2] = reflect.ValueOf(bodyA)
-	goArguments[3] = reflect.ValueOf(bodyB)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(anchorA)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(anchorB)
+	ptrArguments[2] = gdnative.NewPointerFromRid(bodyA)
+	ptrArguments[3] = gdnative.NewPointerFromRid(bodyB)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "damped_spring_joint_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "damped_spring_joint_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the value of a damped spring joint parameter.
+        Returns the value of a damped spring joint parameter.
+	Args: [{ false joint RID} { false param int}], Returns: float
 */
-func (o *physics2DServer) DampedStringJointGetParam(joint *RID, param gdnative.Int) gdnative.Float {
+
+func (o *physics2DServer) DampedStringJointGetParam(joint gdnative.RID, param gdnative.Int) gdnative.Float {
 	log.Println("Calling Physics2DServer.DampedStringJointGetParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(joint)
-	goArguments[1] = reflect.ValueOf(param)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(joint)
+	ptrArguments[1] = gdnative.NewPointerFromInt(param)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "damped_string_joint_get_param")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "damped_string_joint_get_param", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets a damped spring joint parameter. Parameters are explained in the DAMPED_STRING* constants.
+        Sets a damped spring joint parameter. Parameters are explained in the DAMPED_STRING* constants.
+	Args: [{ false joint RID} { false param int} { false value float}], Returns: void
 */
-func (o *physics2DServer) DampedStringJointSetParam(joint *RID, param gdnative.Int, value gdnative.Float) {
+
+func (o *physics2DServer) DampedStringJointSetParam(joint gdnative.RID, param gdnative.Int, value gdnative.Float) {
 	log.Println("Calling Physics2DServer.DampedStringJointSetParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(joint)
-	goArguments[1] = reflect.ValueOf(param)
-	goArguments[2] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(joint)
+	ptrArguments[1] = gdnative.NewPointerFromInt(param)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "damped_string_joint_set_param")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "damped_string_joint_set_param", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Destroys any of the objects created by Physics2DServer. If the [RID] passed is not one of the objects that can be created by Physics2DServer, an error will be sent to the console.
+        Destroys any of the objects created by Physics2DServer. If the [RID] passed is not one of the objects that can be created by Physics2DServer, an error will be sent to the console.
+	Args: [{ false rid RID}], Returns: void
 */
-func (o *physics2DServer) FreeRid(rid *RID) {
+
+func (o *physics2DServer) FreeRid(rid gdnative.RID) {
 	log.Println("Calling Physics2DServer.FreeRid()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(rid)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(rid)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "free_rid")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "free_rid", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns information about the current state of the 2D physics engine. The states are listed under the INFO_* constants.
+        Returns information about the current state of the 2D physics engine. The states are listed under the INFO_* constants.
+	Args: [{ false process_info int}], Returns: int
 */
+
 func (o *physics2DServer) GetProcessInfo(processInfo gdnative.Int) gdnative.Int {
 	log.Println("Calling Physics2DServer.GetProcessInfo()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(processInfo)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(processInfo)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "get_process_info")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_process_info", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Creates a groove joint between two bodies. If not specified, the bodyies are assumed to be the joint itself.
+        Creates a groove joint between two bodies. If not specified, the bodyies are assumed to be the joint itself.
+	Args: [{ false groove1_a Vector2} { false groove2_a Vector2} { false anchor_b Vector2} {[RID] true body_a RID} {[RID] true body_b RID}], Returns: RID
 */
-func (o *physics2DServer) GrooveJointCreate(groove1A *Vector2, groove2A *Vector2, anchorB *Vector2, bodyA *RID, bodyB *RID) *RID {
+
+func (o *physics2DServer) GrooveJointCreate(groove1A gdnative.Vector2, groove2A gdnative.Vector2, anchorB gdnative.Vector2, bodyA gdnative.RID, bodyB gdnative.RID) gdnative.RID {
 	log.Println("Calling Physics2DServer.GrooveJointCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 5, 5)
-	goArguments[0] = reflect.ValueOf(groove1A)
-	goArguments[1] = reflect.ValueOf(groove2A)
-	goArguments[2] = reflect.ValueOf(anchorB)
-	goArguments[3] = reflect.ValueOf(bodyA)
-	goArguments[4] = reflect.ValueOf(bodyB)
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(groove1A)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(groove2A)
+	ptrArguments[2] = gdnative.NewPointerFromVector2(anchorB)
+	ptrArguments[3] = gdnative.NewPointerFromRid(bodyA)
+	ptrArguments[4] = gdnative.NewPointerFromRid(bodyB)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "groove_joint_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "groove_joint_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the value of a joint parameter.
+        Returns the value of a joint parameter.
+	Args: [{ false joint RID} { false param int}], Returns: float
 */
-func (o *physics2DServer) JointGetParam(joint *RID, param gdnative.Int) gdnative.Float {
+
+func (o *physics2DServer) JointGetParam(joint gdnative.RID, param gdnative.Int) gdnative.Float {
 	log.Println("Calling Physics2DServer.JointGetParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(joint)
-	goArguments[1] = reflect.ValueOf(param)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(joint)
+	ptrArguments[1] = gdnative.NewPointerFromInt(param)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "joint_get_param")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "joint_get_param", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the type of a joint (see JOINT_* constants).
+        Returns the type of a joint (see JOINT_* constants).
+	Args: [{ false joint RID}], Returns: enum.Physics2DServer::JointType
 */
-func (o *physics2DServer) JointGetType(joint *RID) gdnative.Int {
-	log.Println("Calling Physics2DServer.JointGetType()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(joint)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "joint_get_type", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Sets a joint parameter. Parameters are explained in the JOINT_PARAM* constants.
+        Sets a joint parameter. Parameters are explained in the JOINT_PARAM* constants.
+	Args: [{ false joint RID} { false param int} { false value float}], Returns: void
 */
-func (o *physics2DServer) JointSetParam(joint *RID, param gdnative.Int, value gdnative.Float) {
+
+func (o *physics2DServer) JointSetParam(joint gdnative.RID, param gdnative.Int, value gdnative.Float) {
 	log.Println("Calling Physics2DServer.JointSetParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(joint)
-	goArguments[1] = reflect.ValueOf(param)
-	goArguments[2] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(joint)
+	ptrArguments[1] = gdnative.NewPointerFromInt(param)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "joint_set_param")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "joint_set_param", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *physics2DServer) LineShapeCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *physics2DServer) LineShapeCreate() gdnative.RID {
 	log.Println("Calling Physics2DServer.LineShapeCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "line_shape_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "line_shape_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Creates a pin joint between two bodies. If not specified, the second body is assumed to be the joint itself.
+        Creates a pin joint between two bodies. If not specified, the second body is assumed to be the joint itself.
+	Args: [{ false anchor Vector2} { false body_a RID} {[RID] true body_b RID}], Returns: RID
 */
-func (o *physics2DServer) PinJointCreate(anchor *Vector2, bodyA *RID, bodyB *RID) *RID {
+
+func (o *physics2DServer) PinJointCreate(anchor gdnative.Vector2, bodyA gdnative.RID, bodyB gdnative.RID) gdnative.RID {
 	log.Println("Calling Physics2DServer.PinJointCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(anchor)
-	goArguments[1] = reflect.ValueOf(bodyA)
-	goArguments[2] = reflect.ValueOf(bodyB)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(anchor)
+	ptrArguments[1] = gdnative.NewPointerFromRid(bodyA)
+	ptrArguments[2] = gdnative.NewPointerFromRid(bodyB)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "pin_joint_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "pin_joint_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *physics2DServer) RayShapeCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *physics2DServer) RayShapeCreate() gdnative.RID {
 	log.Println("Calling Physics2DServer.RayShapeCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "ray_shape_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "ray_shape_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *physics2DServer) RectangleShapeCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *physics2DServer) RectangleShapeCreate() gdnative.RID {
 	log.Println("Calling Physics2DServer.RectangleShapeCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "rectangle_shape_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "rectangle_shape_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *physics2DServer) SegmentShapeCreate() *RID {
+	Args: [], Returns: RID
+*/
+
+func (o *physics2DServer) SegmentShapeCreate() gdnative.RID {
 	log.Println("Calling Physics2DServer.SegmentShapeCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "segment_shape_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "segment_shape_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Activates or deactivates the 2D physics engine.
+        Activates or deactivates the 2D physics engine.
+	Args: [{ false active bool}], Returns: void
 */
+
 func (o *physics2DServer) SetActive(active gdnative.Bool) {
 	log.Println("Calling Physics2DServer.SetActive()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(active)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(active)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "set_active")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_active", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the shape data.
+        Returns the shape data.
+	Args: [{ false shape RID}], Returns: Variant
 */
-func (o *physics2DServer) ShapeGetData(shape *RID) *Variant {
+
+func (o *physics2DServer) ShapeGetData(shape gdnative.RID) gdnative.Variant {
 	log.Println("Calling Physics2DServer.ShapeGetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(shape)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(shape)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "shape_get_data")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "shape_get_data", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the type of shape (see SHAPE_* constants).
+        Returns the type of shape (see SHAPE_* constants).
+	Args: [{ false shape RID}], Returns: enum.Physics2DServer::ShapeType
 */
-func (o *physics2DServer) ShapeGetType(shape *RID) gdnative.Int {
-	log.Println("Calling Physics2DServer.ShapeGetType()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(shape)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "shape_get_type", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Sets the shape data that defines its shape and size. The data to be passed depends on the kind of shape created [method shape_get_type].
+        Sets the shape data that defines its shape and size. The data to be passed depends on the kind of shape created [method shape_get_type].
+	Args: [{ false shape RID} { false data Variant}], Returns: void
 */
-func (o *physics2DServer) ShapeSetData(shape *RID, data *Variant) {
+
+func (o *physics2DServer) ShapeSetData(shape gdnative.RID, data gdnative.Variant) {
 	log.Println("Calling Physics2DServer.ShapeSetData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(shape)
-	goArguments[1] = reflect.ValueOf(data)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(shape)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(data)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "shape_set_data")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "shape_set_data", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Creates a space. A space is a collection of parameters for the physics engine that can be assigned to an area or a body. It can be assigned to an area with [method area_set_space], or to a body with [method body_set_space].
+        Creates a space. A space is a collection of parameters for the physics engine that can be assigned to an area or a body. It can be assigned to an area with [method area_set_space], or to a body with [method body_set_space].
+	Args: [], Returns: RID
 */
-func (o *physics2DServer) SpaceCreate() *RID {
+
+func (o *physics2DServer) SpaceCreate() gdnative.RID {
 	log.Println("Calling Physics2DServer.SpaceCreate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "space_create")
 
 	// Call the parent method.
+	// RID
+	retPtr := gdnative.NewEmptyRid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "space_create", goArguments, "*RID")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRidFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*RID)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the state of a space, a [Physics2DDirectSpaceState]. This object can be used to make collision/intersection queries.
+        Returns the state of a space, a [Physics2DDirectSpaceState]. This object can be used to make collision/intersection queries.
+	Args: [{ false space RID}], Returns: Physics2DDirectSpaceState
 */
-func (o *physics2DServer) SpaceGetDirectState(space *RID) *Physics2DDirectSpaceState {
+
+func (o *physics2DServer) SpaceGetDirectState(space gdnative.RID) Physics2DDirectSpaceState {
 	log.Println("Calling Physics2DServer.SpaceGetDirectState()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(space)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(space)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "space_get_direct_state")
 
 	// Call the parent method.
+	// Physics2DDirectSpaceState
+	retPtr := NewEmptyPhysics2DDirectSpaceState()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "space_get_direct_state", goArguments, "*Physics2DDirectSpaceState")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewPhysics2DDirectSpaceStateFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Physics2DDirectSpaceState)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the value of a space parameter.
+        Returns the value of a space parameter.
+	Args: [{ false space RID} { false param int}], Returns: float
 */
-func (o *physics2DServer) SpaceGetParam(space *RID, param gdnative.Int) gdnative.Float {
+
+func (o *physics2DServer) SpaceGetParam(space gdnative.RID, param gdnative.Int) gdnative.Float {
 	log.Println("Calling Physics2DServer.SpaceGetParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(space)
-	goArguments[1] = reflect.ValueOf(param)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(space)
+	ptrArguments[1] = gdnative.NewPointerFromInt(param)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "space_get_param")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "space_get_param", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns whether the space is active.
+        Returns whether the space is active.
+	Args: [{ false space RID}], Returns: bool
 */
-func (o *physics2DServer) SpaceIsActive(space *RID) gdnative.Bool {
+
+func (o *physics2DServer) SpaceIsActive(space gdnative.RID) gdnative.Bool {
 	log.Println("Calling Physics2DServer.SpaceIsActive()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(space)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(space)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "space_is_active")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "space_is_active", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Marks a space as active. It will not have an effect, unless it is assigned to an area or body.
+        Marks a space as active. It will not have an effect, unless it is assigned to an area or body.
+	Args: [{ false space RID} { false active bool}], Returns: void
 */
-func (o *physics2DServer) SpaceSetActive(space *RID, active gdnative.Bool) {
+
+func (o *physics2DServer) SpaceSetActive(space gdnative.RID, active gdnative.Bool) {
 	log.Println("Calling Physics2DServer.SpaceSetActive()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(space)
-	goArguments[1] = reflect.ValueOf(active)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(space)
+	ptrArguments[1] = gdnative.NewPointerFromBool(active)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "space_set_active")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "space_set_active", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the value for a space parameter. A list of available parameters is on the SPACE_PARAM_* constants.
+        Sets the value for a space parameter. A list of available parameters is on the SPACE_PARAM_* constants.
+	Args: [{ false space RID} { false param int} { false value float}], Returns: void
 */
-func (o *physics2DServer) SpaceSetParam(space *RID, param gdnative.Int, value gdnative.Float) {
+
+func (o *physics2DServer) SpaceSetParam(space gdnative.RID, param gdnative.Int, value gdnative.Float) {
 	log.Println("Calling Physics2DServer.SpaceSetParam()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(space)
-	goArguments[1] = reflect.ValueOf(param)
-	goArguments[2] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromRid(space)
+	ptrArguments[1] = gdnative.NewPointerFromInt(param)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "space_set_param")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "space_set_param", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }

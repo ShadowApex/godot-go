@@ -2,7 +2,11 @@ package bakedlightmapdata
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/resource"
+	"github.com/shadowapex/godot-go/godot/class/texture"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewBakedLightmapDataFromPointer(ptr gdnative.Pointer) *BakedLightmapData {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := BakedLightmapData{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type BakedLightmapData struct {
-	Resource
+	resource.Resource
 }
 
 func (o *BakedLightmapData) BaseClass() string {
@@ -26,335 +39,414 @@ func (o *BakedLightmapData) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Array
 */
-func (o *BakedLightmapData) X_GetUserData() *Array {
+
+func (o *BakedLightmapData) X_GetUserData() gdnative.Array {
 	log.Println("Calling BakedLightmapData.X_GetUserData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmapData", "_get_user_data")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_user_data", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false data Array}], Returns: void
 */
-func (o *BakedLightmapData) X_SetUserData(data *Array) {
+
+func (o *BakedLightmapData) X_SetUserData(data gdnative.Array) {
 	log.Println("Calling BakedLightmapData.X_SetUserData()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(data)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromArray(data)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmapData", "_set_user_data")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_user_data", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *BakedLightmapData) AddUser(path *NodePath, lightmap *Texture, instance gdnative.Int) {
+	Args: [{ false path NodePath} { false lightmap Texture} { false instance int}], Returns: void
+*/
+
+func (o *BakedLightmapData) AddUser(path gdnative.NodePath, lightmap texture.Texture, instance gdnative.Int) {
 	log.Println("Calling BakedLightmapData.AddUser()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(path)
-	goArguments[1] = reflect.ValueOf(lightmap)
-	goArguments[2] = reflect.ValueOf(instance)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(path)
+	ptrArguments[1] = gdnative.NewPointerFromObject(lightmap.GetOwner())
+	ptrArguments[2] = gdnative.NewPointerFromInt(instance)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmapData", "add_user")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_user", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *BakedLightmapData) ClearUsers() {
 	log.Println("Calling BakedLightmapData.ClearUsers()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmapData", "clear_users")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear_users", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: AABB
 */
-func (o *BakedLightmapData) GetBounds() *AABB {
+
+func (o *BakedLightmapData) GetBounds() gdnative.AABB {
 	log.Println("Calling BakedLightmapData.GetBounds()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmapData", "get_bounds")
 
 	// Call the parent method.
+	// AABB
+	retPtr := gdnative.NewEmptyAabb()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_bounds", goArguments, "*AABB")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewAabbFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*AABB)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Transform
 */
-func (o *BakedLightmapData) GetCellSpaceTransform() *Transform {
+
+func (o *BakedLightmapData) GetCellSpaceTransform() gdnative.Transform {
 	log.Println("Calling BakedLightmapData.GetCellSpaceTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmapData", "get_cell_space_transform")
 
 	// Call the parent method.
+	// Transform
+	retPtr := gdnative.NewEmptyTransform()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_cell_space_transform", goArguments, "*Transform")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransformFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *BakedLightmapData) GetCellSubdiv() gdnative.Int {
 	log.Println("Calling BakedLightmapData.GetCellSubdiv()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmapData", "get_cell_subdiv")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_cell_subdiv", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *BakedLightmapData) GetEnergy() gdnative.Float {
 	log.Println("Calling BakedLightmapData.GetEnergy()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmapData", "get_energy")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_energy", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolByteArray
 */
-func (o *BakedLightmapData) GetOctree() *PoolByteArray {
+
+func (o *BakedLightmapData) GetOctree() gdnative.PoolByteArray {
 	log.Println("Calling BakedLightmapData.GetOctree()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmapData", "get_octree")
 
 	// Call the parent method.
+	// PoolByteArray
+	retPtr := gdnative.NewEmptyPoolByteArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_octree", goArguments, "*PoolByteArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolByteArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolByteArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: int
+*/
+
 func (o *BakedLightmapData) GetUserCount() gdnative.Int {
 	log.Println("Calling BakedLightmapData.GetUserCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmapData", "get_user_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_user_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *BakedLightmapData) GetUserLightmap(userIdx gdnative.Int) *Texture {
+	Args: [{ false user_idx int}], Returns: Texture
+*/
+
+func (o *BakedLightmapData) GetUserLightmap(userIdx gdnative.Int) texture.Texture {
 	log.Println("Calling BakedLightmapData.GetUserLightmap()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(userIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(userIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmapData", "get_user_lightmap")
 
 	// Call the parent method.
+	// Texture
+	retPtr := texture.NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_user_lightmap", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := texture.NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *BakedLightmapData) GetUserPath(userIdx gdnative.Int) *NodePath {
+	Args: [{ false user_idx int}], Returns: NodePath
+*/
+
+func (o *BakedLightmapData) GetUserPath(userIdx gdnative.Int) gdnative.NodePath {
 	log.Println("Calling BakedLightmapData.GetUserPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(userIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(userIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmapData", "get_user_path")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_user_path", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false bounds AABB}], Returns: void
 */
-func (o *BakedLightmapData) SetBounds(bounds *AABB) {
+
+func (o *BakedLightmapData) SetBounds(bounds gdnative.AABB) {
 	log.Println("Calling BakedLightmapData.SetBounds()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bounds)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromAabb(bounds)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmapData", "set_bounds")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_bounds", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false xform Transform}], Returns: void
 */
-func (o *BakedLightmapData) SetCellSpaceTransform(xform *Transform) {
+
+func (o *BakedLightmapData) SetCellSpaceTransform(xform gdnative.Transform) {
 	log.Println("Calling BakedLightmapData.SetCellSpaceTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(xform)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromTransform(xform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmapData", "set_cell_space_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_cell_space_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false cell_subdiv int}], Returns: void
 */
+
 func (o *BakedLightmapData) SetCellSubdiv(cellSubdiv gdnative.Int) {
 	log.Println("Calling BakedLightmapData.SetCellSubdiv()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(cellSubdiv)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(cellSubdiv)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmapData", "set_cell_subdiv")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_cell_subdiv", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false energy float}], Returns: void
 */
+
 func (o *BakedLightmapData) SetEnergy(energy gdnative.Float) {
 	log.Println("Calling BakedLightmapData.SetEnergy()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(energy)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(energy)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmapData", "set_energy")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_energy", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false octree PoolByteArray}], Returns: void
 */
-func (o *BakedLightmapData) SetOctree(octree *PoolByteArray) {
+
+func (o *BakedLightmapData) SetOctree(octree gdnative.PoolByteArray) {
 	log.Println("Calling BakedLightmapData.SetOctree()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(octree)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolByteArray(octree)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmapData", "set_octree")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_octree", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   BakedLightmapDataImplementer is an interface for BakedLightmapData objects.
-*/
-type BakedLightmapDataImplementer interface {
-	Class
 }

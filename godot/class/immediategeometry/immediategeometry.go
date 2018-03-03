@@ -2,7 +2,11 @@ package immediategeometry
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/geometryinstance"
+	"github.com/shadowapex/godot-go/godot/class/texture"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewImmediateGeometryFromPointer(ptr gdnative.Pointer) *ImmediateGeometry {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ImmediateGeometry{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Draws simple geometry from code. Uses a drawing mode similar to OpenGL 1.x.
 */
 type ImmediateGeometry struct {
-	GeometryInstance
+	geometryinstance.GeometryInstance
 }
 
 func (o *ImmediateGeometry) BaseClass() string {
@@ -26,190 +39,223 @@ func (o *ImmediateGeometry) BaseClass() string {
 }
 
 /*
-   Simple helper to draw a uvsphere, with given latitudes, longitude and radius.
+        Simple helper to draw a uvsphere, with given latitudes, longitude and radius.
+	Args: [{ false lats int} { false lons int} { false radius float} {True true add_uv bool}], Returns: void
 */
+
 func (o *ImmediateGeometry) AddSphere(lats gdnative.Int, lons gdnative.Int, radius gdnative.Float, addUv gdnative.Bool) {
 	log.Println("Calling ImmediateGeometry.AddSphere()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(lats)
-	goArguments[1] = reflect.ValueOf(lons)
-	goArguments[2] = reflect.ValueOf(radius)
-	goArguments[3] = reflect.ValueOf(addUv)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromInt(lats)
+	ptrArguments[1] = gdnative.NewPointerFromInt(lons)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(radius)
+	ptrArguments[3] = gdnative.NewPointerFromBool(addUv)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ImmediateGeometry", "add_sphere")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_sphere", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Adds a vertex with the currently set color/uv/etc.
+        Adds a vertex with the currently set color/uv/etc.
+	Args: [{ false position Vector3}], Returns: void
 */
-func (o *ImmediateGeometry) AddVertex(position *Vector3) {
+
+func (o *ImmediateGeometry) AddVertex(position gdnative.Vector3) {
 	log.Println("Calling ImmediateGeometry.AddVertex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ImmediateGeometry", "add_vertex")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_vertex", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Begin drawing (And optionally pass a texture override). When done call end(). For more information on how this works, search for glBegin() glEnd() references. For the type of primitive, use the [Mesh].PRIMITIVE_* enumerations.
+        Begin drawing (And optionally pass a texture override). When done call end(). For more information on how this works, search for glBegin() glEnd() references. For the type of primitive, use the [Mesh].PRIMITIVE_* enumerations.
+	Args: [{ false primitive int} {[Object:null] true texture Texture}], Returns: void
 */
-func (o *ImmediateGeometry) Begin(primitive gdnative.Int, texture *Texture) {
+
+func (o *ImmediateGeometry) Begin(primitive gdnative.Int, texture texture.Texture) {
 	log.Println("Calling ImmediateGeometry.Begin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(primitive)
-	goArguments[1] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(primitive)
+	ptrArguments[1] = gdnative.NewPointerFromObject(texture.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ImmediateGeometry", "begin")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "begin", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Clears everything that was drawn using begin/end.
+        Clears everything that was drawn using begin/end.
+	Args: [], Returns: void
 */
+
 func (o *ImmediateGeometry) Clear() {
 	log.Println("Calling ImmediateGeometry.Clear()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ImmediateGeometry", "clear")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Ends a drawing context and displays the results.
+        Ends a drawing context and displays the results.
+	Args: [], Returns: void
 */
+
 func (o *ImmediateGeometry) End() {
 	log.Println("Calling ImmediateGeometry.End()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ImmediateGeometry", "end")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "end", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   The current drawing color.
+        The current drawing color.
+	Args: [{ false color Color}], Returns: void
 */
-func (o *ImmediateGeometry) SetColor(color *Color) {
+
+func (o *ImmediateGeometry) SetColor(color gdnative.Color) {
 	log.Println("Calling ImmediateGeometry.SetColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ImmediateGeometry", "set_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   The next vertex's normal.
+        The next vertex's normal.
+	Args: [{ false normal Vector3}], Returns: void
 */
-func (o *ImmediateGeometry) SetNormal(normal *Vector3) {
+
+func (o *ImmediateGeometry) SetNormal(normal gdnative.Vector3) {
 	log.Println("Calling ImmediateGeometry.SetNormal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(normal)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(normal)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ImmediateGeometry", "set_normal")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_normal", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   The next vertex's tangent (and binormal facing).
+        The next vertex's tangent (and binormal facing).
+	Args: [{ false tangent Plane}], Returns: void
 */
-func (o *ImmediateGeometry) SetTangent(tangent *Plane) {
+
+func (o *ImmediateGeometry) SetTangent(tangent gdnative.Plane) {
 	log.Println("Calling ImmediateGeometry.SetTangent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(tangent)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPlane(tangent)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ImmediateGeometry", "set_tangent")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_tangent", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   The next vertex's UV.
+        The next vertex's UV.
+	Args: [{ false uv Vector2}], Returns: void
 */
-func (o *ImmediateGeometry) SetUv(uv *Vector2) {
+
+func (o *ImmediateGeometry) SetUv(uv gdnative.Vector2) {
 	log.Println("Calling ImmediateGeometry.SetUv()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(uv)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(uv)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ImmediateGeometry", "set_uv")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_uv", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   The next vertex's second layer UV.
+        The next vertex's second layer UV.
+	Args: [{ false uv Vector2}], Returns: void
 */
-func (o *ImmediateGeometry) SetUv2(uv *Vector2) {
+
+func (o *ImmediateGeometry) SetUv2(uv gdnative.Vector2) {
 	log.Println("Calling ImmediateGeometry.SetUv2()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(uv)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(uv)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ImmediateGeometry", "set_uv2")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_uv2", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ImmediateGeometryImplementer is an interface for ImmediateGeometry objects.
-*/
-type ImmediateGeometryImplementer interface {
-	Class
 }

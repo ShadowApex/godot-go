@@ -2,9 +2,9 @@ package parallaxbackground
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/canvaslayer"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewParallaxBackgroundFromPointer(ptr gdnative.Pointer) *ParallaxBackground {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ParallaxBackground{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 A ParallaxBackground uses one or more [ParallaxLayer] child nodes to create a parallax effect. Each [ParallaxLayer] can move at a different speed using [member ParallaxLayer.motion_offset]. This creates an illusion of depth in a 2D game. If not used with a [Camera2D], you must manually calculate the [member scroll_offset].
 */
 type ParallaxBackground struct {
-	CanvasLayer
+	canvaslayer.CanvasLayer
 }
 
 func (o *ParallaxBackground) BaseClass() string {
@@ -28,255 +37,312 @@ func (o *ParallaxBackground) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false arg0 Transform2D} { false arg1 Vector2}], Returns: void
 */
-func (o *ParallaxBackground) X_CameraMoved(arg0 *Transform2D, arg1 *Vector2) {
+
+func (o *ParallaxBackground) X_CameraMoved(arg0 gdnative.Transform2D, arg1 gdnative.Vector2) {
 	log.Println("Calling ParallaxBackground.X_CameraMoved()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(arg0)
-	goArguments[1] = reflect.ValueOf(arg1)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromTransform2D(arg0)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(arg1)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxBackground", "_camera_moved")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_camera_moved", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *ParallaxBackground) GetLimitBegin() *Vector2 {
+
+func (o *ParallaxBackground) GetLimitBegin() gdnative.Vector2 {
 	log.Println("Calling ParallaxBackground.GetLimitBegin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxBackground", "get_limit_begin")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_limit_begin", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *ParallaxBackground) GetLimitEnd() *Vector2 {
+
+func (o *ParallaxBackground) GetLimitEnd() gdnative.Vector2 {
 	log.Println("Calling ParallaxBackground.GetLimitEnd()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxBackground", "get_limit_end")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_limit_end", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *ParallaxBackground) GetScrollBaseOffset() *Vector2 {
+
+func (o *ParallaxBackground) GetScrollBaseOffset() gdnative.Vector2 {
 	log.Println("Calling ParallaxBackground.GetScrollBaseOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxBackground", "get_scroll_base_offset")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_scroll_base_offset", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *ParallaxBackground) GetScrollBaseScale() *Vector2 {
+
+func (o *ParallaxBackground) GetScrollBaseScale() gdnative.Vector2 {
 	log.Println("Calling ParallaxBackground.GetScrollBaseScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxBackground", "get_scroll_base_scale")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_scroll_base_scale", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *ParallaxBackground) GetScrollOffset() *Vector2 {
+
+func (o *ParallaxBackground) GetScrollOffset() gdnative.Vector2 {
 	log.Println("Calling ParallaxBackground.GetScrollOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxBackground", "get_scroll_offset")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_scroll_offset", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *ParallaxBackground) IsIgnoreCameraZoom() gdnative.Bool {
 	log.Println("Calling ParallaxBackground.IsIgnoreCameraZoom()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxBackground", "is_ignore_camera_zoom")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_ignore_camera_zoom", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false ignore bool}], Returns: void
 */
+
 func (o *ParallaxBackground) SetIgnoreCameraZoom(ignore gdnative.Bool) {
 	log.Println("Calling ParallaxBackground.SetIgnoreCameraZoom()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ignore)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(ignore)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxBackground", "set_ignore_camera_zoom")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_ignore_camera_zoom", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false ofs Vector2}], Returns: void
 */
-func (o *ParallaxBackground) SetLimitBegin(ofs *Vector2) {
+
+func (o *ParallaxBackground) SetLimitBegin(ofs gdnative.Vector2) {
 	log.Println("Calling ParallaxBackground.SetLimitBegin()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ofs)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(ofs)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxBackground", "set_limit_begin")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_limit_begin", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false ofs Vector2}], Returns: void
 */
-func (o *ParallaxBackground) SetLimitEnd(ofs *Vector2) {
+
+func (o *ParallaxBackground) SetLimitEnd(ofs gdnative.Vector2) {
 	log.Println("Calling ParallaxBackground.SetLimitEnd()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ofs)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(ofs)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxBackground", "set_limit_end")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_limit_end", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false ofs Vector2}], Returns: void
 */
-func (o *ParallaxBackground) SetScrollBaseOffset(ofs *Vector2) {
+
+func (o *ParallaxBackground) SetScrollBaseOffset(ofs gdnative.Vector2) {
 	log.Println("Calling ParallaxBackground.SetScrollBaseOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ofs)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(ofs)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxBackground", "set_scroll_base_offset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_scroll_base_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false scale Vector2}], Returns: void
 */
-func (o *ParallaxBackground) SetScrollBaseScale(scale *Vector2) {
+
+func (o *ParallaxBackground) SetScrollBaseScale(scale gdnative.Vector2) {
 	log.Println("Calling ParallaxBackground.SetScrollBaseScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(scale)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(scale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxBackground", "set_scroll_base_scale")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_scroll_base_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false ofs Vector2}], Returns: void
 */
-func (o *ParallaxBackground) SetScrollOffset(ofs *Vector2) {
+
+func (o *ParallaxBackground) SetScrollOffset(ofs gdnative.Vector2) {
 	log.Println("Calling ParallaxBackground.SetScrollOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ofs)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(ofs)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParallaxBackground", "set_scroll_offset")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_scroll_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ParallaxBackgroundImplementer is an interface for ParallaxBackground objects.
-*/
-type ParallaxBackgroundImplementer interface {
-	Class
 }

@@ -44,6 +44,14 @@ import "C"
 {{ range $i, $typedef := $view.TypeDefinitions -}}
 	{{/* Handle struct definitions */}}
 	{{ if or (eq $typedef.Base "struct") (eq $typedef.Base "void") }}
+		// NewEmpty{{ $typedef.GoName }} will return a pointer to an empty
+		// initialized {{ $typedef.GoName }}. This is primarily used in 
+		// conjunction with MethodBindPtrCall.
+		func NewEmpty{{ $typedef.GoName }}() Pointer {
+			var obj C.{{ $typedef.Name }}
+			return Pointer{base: unsafe.Pointer(&obj)}
+		}
+
 		// NewPointerFrom{{ $typedef.GoName }} will return an unsafe pointer to the given
 		// object. This is primarily used in conjunction with MethodBindPtrCall.
 		func NewPointerFrom{{ $typedef.GoName }}(obj {{ $typedef.GoName }}) Pointer {
@@ -170,6 +178,14 @@ import "C"
 	{{ if and ($typedef.SimpleType) (ne $typedef.Base "void") }}
 		{{/* This segment handles godot_pool_*_access type definitions */}}
 		{{ if ($view.IsGodotBaseType $typedef) }}
+			// NewEmpty{{ $typedef.GoName }} will return a pointer to an empty
+			// initialized {{ $typedef.GoName }}. This is primarily used in 
+			// conjunction with MethodBindPtrCall.
+			func NewEmpty{{ $typedef.GoName }}() Pointer {
+				var obj C.{{ $typedef.Name }}
+				return Pointer{base: unsafe.Pointer(&obj)}
+			}
+
 			// NewPointerFrom{{ $typedef.GoName }} will return an unsafe pointer to the given
 			// object. This is primarily used in conjunction with MethodBindPtrCall.
 			func NewPointerFrom{{ $typedef.GoName }}(obj {{ $typedef.GoName }}) Pointer {
@@ -197,6 +213,14 @@ import "C"
 			}
 		{{/* This segment handles base types like godot_bool */}}
 		{{ else }}
+			// NewEmpty{{ $typedef.GoName }} will return a pointer to an empty
+			// initialized {{ $typedef.GoName }}. This is primarily used in 
+			// conjunction with MethodBindPtrCall.
+			func NewEmpty{{ $typedef.GoName }}() Pointer {
+				var obj C.{{ $typedef.Name }}
+				return Pointer{base: unsafe.Pointer(&obj)}
+			}
+
 			// NewPointerFrom{{ $typedef.GoName }} will return an unsafe pointer to the given
 			// object. This is primarily used in conjunction with MethodBindPtrCall.
 			func NewPointerFrom{{ $typedef.GoName }}(obj {{ $typedef.GoName }}) Pointer {

@@ -2,7 +2,11 @@ package arraymesh
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/material"
+	"github.com/shadowapex/godot-go/godot/class/mesh"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewArrayMeshFromPointer(ptr gdnative.Pointer) *ArrayMesh {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ArrayMesh{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type ArrayMesh struct {
-	Mesh
+	mesh.Mesh
 }
 
 func (o *ArrayMesh) BaseClass() string {
@@ -27,500 +40,555 @@ func (o *ArrayMesh) BaseClass() string {
 
 /*
 
- */
+	Args: [{ false name String}], Returns: void
+*/
+
 func (o *ArrayMesh) AddBlendShape(name gdnative.String) {
 	log.Println("Calling ArrayMesh.AddBlendShape()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "add_blend_shape")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_blend_shape", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Create a new surface ([method get_surface_count] that will become surf_idx for this. Surfaces are created to be rendered using a "primitive", which may be PRIMITIVE_POINTS, PRIMITIVE_LINES, PRIMITIVE_LINE_STRIP, PRIMITIVE_LINE_LOOP, PRIMITIVE_TRIANGLES, PRIMITIVE_TRIANGLE_STRIP, PRIMITIVE_TRIANGLE_FAN. (As a note, when using indices, it is recommended to only use just points, lines or triangles).
+        Create a new surface ([method get_surface_count] that will become surf_idx for this. Surfaces are created to be rendered using a "primitive", which may be PRIMITIVE_POINTS, PRIMITIVE_LINES, PRIMITIVE_LINE_STRIP, PRIMITIVE_LINE_LOOP, PRIMITIVE_TRIANGLES, PRIMITIVE_TRIANGLE_STRIP, PRIMITIVE_TRIANGLE_FAN. (As a note, when using indices, it is recommended to only use just points, lines or triangles).
+	Args: [{ false primitive int} { false arrays Array} {[] true blend_shapes Array} {97792 true compress_flags int}], Returns: void
 */
-func (o *ArrayMesh) AddSurfaceFromArrays(primitive gdnative.Int, arrays *Array, blendShapes *Array, compressFlags gdnative.Int) {
+
+func (o *ArrayMesh) AddSurfaceFromArrays(primitive gdnative.Int, arrays gdnative.Array, blendShapes gdnative.Array, compressFlags gdnative.Int) {
 	log.Println("Calling ArrayMesh.AddSurfaceFromArrays()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(primitive)
-	goArguments[1] = reflect.ValueOf(arrays)
-	goArguments[2] = reflect.ValueOf(blendShapes)
-	goArguments[3] = reflect.ValueOf(compressFlags)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromInt(primitive)
+	ptrArguments[1] = gdnative.NewPointerFromArray(arrays)
+	ptrArguments[2] = gdnative.NewPointerFromArray(blendShapes)
+	ptrArguments[3] = gdnative.NewPointerFromInt(compressFlags)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "add_surface_from_arrays")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_surface_from_arrays", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *ArrayMesh) CenterGeometry() {
 	log.Println("Calling ArrayMesh.CenterGeometry()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "center_geometry")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "center_geometry", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *ArrayMesh) ClearBlendShapes() {
 	log.Println("Calling ArrayMesh.ClearBlendShapes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "clear_blend_shapes")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear_blend_shapes", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [], Returns: int
+*/
+
 func (o *ArrayMesh) GetBlendShapeCount() gdnative.Int {
 	log.Println("Calling ArrayMesh.GetBlendShapeCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "get_blend_shape_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_blend_shape_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.Mesh::BlendShapeMode
 */
-func (o *ArrayMesh) GetBlendShapeMode() gdnative.Int {
-	log.Println("Calling ArrayMesh.GetBlendShapeMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_blend_shape_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
 
- */
+	Args: [{ false index int}], Returns: String
+*/
+
 func (o *ArrayMesh) GetBlendShapeName(index gdnative.Int) gdnative.String {
 	log.Println("Calling ArrayMesh.GetBlendShapeName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(index)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(index)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "get_blend_shape_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_blend_shape_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: AABB
 */
-func (o *ArrayMesh) GetCustomAabb() *AABB {
+
+func (o *ArrayMesh) GetCustomAabb() gdnative.AABB {
 	log.Println("Calling ArrayMesh.GetCustomAabb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "get_custom_aabb")
 
 	// Call the parent method.
+	// AABB
+	retPtr := gdnative.NewEmptyAabb()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_custom_aabb", goArguments, "*AABB")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewAabbFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*AABB)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the amount of surfaces that the [code]ArrayMesh[/code] holds.
+        Return the amount of surfaces that the [code]ArrayMesh[/code] holds.
+	Args: [], Returns: int
 */
+
 func (o *ArrayMesh) GetSurfaceCount() gdnative.Int {
 	log.Println("Calling ArrayMesh.GetSurfaceCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "get_surface_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_surface_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *ArrayMesh) LightmapUnwrap(arg0 *Transform, arg1 gdnative.Float) gdnative.Int {
-	log.Println("Calling ArrayMesh.LightmapUnwrap()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(arg0)
-	goArguments[1] = reflect.ValueOf(arg1)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "lightmap_unwrap", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
+	Args: [{ false arg0 Transform} { false arg1 float}], Returns: enum.Error
+*/
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *ArrayMesh) RegenNormalmaps() {
 	log.Println("Calling ArrayMesh.RegenNormalmaps()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "regen_normalmaps")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "regen_normalmaps", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *ArrayMesh) SetBlendShapeMode(mode gdnative.Int) {
 	log.Println("Calling ArrayMesh.SetBlendShapeMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "set_blend_shape_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_blend_shape_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false aabb AABB}], Returns: void
 */
-func (o *ArrayMesh) SetCustomAabb(aabb *AABB) {
+
+func (o *ArrayMesh) SetCustomAabb(aabb gdnative.AABB) {
 	log.Println("Calling ArrayMesh.SetCustomAabb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(aabb)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromAabb(aabb)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "set_custom_aabb")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_custom_aabb", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Return the length in indices of the index array in the requested surface (see [method add_surface]).
+        Return the length in indices of the index array in the requested surface (see [method add_surface]).
+	Args: [{ false surf_idx int}], Returns: int
 */
+
 func (o *ArrayMesh) SurfaceGetArrayIndexLen(surfIdx gdnative.Int) gdnative.Int {
 	log.Println("Calling ArrayMesh.SurfaceGetArrayIndexLen()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(surfIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(surfIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "surface_get_array_index_len")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "surface_get_array_index_len", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the length in vertices of the vertex array in the requested surface (see [method add_surface]).
+        Return the length in vertices of the vertex array in the requested surface (see [method add_surface]).
+	Args: [{ false surf_idx int}], Returns: int
 */
+
 func (o *ArrayMesh) SurfaceGetArrayLen(surfIdx gdnative.Int) gdnative.Int {
 	log.Println("Calling ArrayMesh.SurfaceGetArrayLen()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(surfIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(surfIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "surface_get_array_len")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "surface_get_array_len", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *ArrayMesh) SurfaceGetArrays(surfIdx gdnative.Int) *Array {
+	Args: [{ false surf_idx int}], Returns: Array
+*/
+
+func (o *ArrayMesh) SurfaceGetArrays(surfIdx gdnative.Int) gdnative.Array {
 	log.Println("Calling ArrayMesh.SurfaceGetArrays()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(surfIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(surfIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "surface_get_arrays")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "surface_get_arrays", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *ArrayMesh) SurfaceGetBlendShapeArrays(surfIdx gdnative.Int) *Array {
+	Args: [{ false surf_idx int}], Returns: Array
+*/
+
+func (o *ArrayMesh) SurfaceGetBlendShapeArrays(surfIdx gdnative.Int) gdnative.Array {
 	log.Println("Calling ArrayMesh.SurfaceGetBlendShapeArrays()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(surfIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(surfIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "surface_get_blend_shape_arrays")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "surface_get_blend_shape_arrays", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the format mask of the requested surface (see [method add_surface]).
+        Return the format mask of the requested surface (see [method add_surface]).
+	Args: [{ false surf_idx int}], Returns: int
 */
+
 func (o *ArrayMesh) SurfaceGetFormat(surfIdx gdnative.Int) gdnative.Int {
 	log.Println("Calling ArrayMesh.SurfaceGetFormat()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(surfIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(surfIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "surface_get_format")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "surface_get_format", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return a [Material] in a given surface. Surface is rendered using this material.
+        Return a [Material] in a given surface. Surface is rendered using this material.
+	Args: [{ false surf_idx int}], Returns: Material
 */
-func (o *ArrayMesh) SurfaceGetMaterial(surfIdx gdnative.Int) *Material {
+
+func (o *ArrayMesh) SurfaceGetMaterial(surfIdx gdnative.Int) material.Material {
 	log.Println("Calling ArrayMesh.SurfaceGetMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(surfIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(surfIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "surface_get_material")
 
 	// Call the parent method.
+	// Material
+	retPtr := material.NewEmptyMaterial()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "surface_get_material", goArguments, "*Material")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := material.NewMaterialFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Material)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [{ false surf_idx int}], Returns: String
+*/
+
 func (o *ArrayMesh) SurfaceGetName(surfIdx gdnative.Int) gdnative.String {
 	log.Println("Calling ArrayMesh.SurfaceGetName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(surfIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(surfIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "surface_get_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "surface_get_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the primitive type of the requested surface (see [method add_surface]).
+        Return the primitive type of the requested surface (see [method add_surface]).
+	Args: [{ false surf_idx int}], Returns: enum.Mesh::PrimitiveType
 */
-func (o *ArrayMesh) SurfaceGetPrimitiveType(surfIdx gdnative.Int) gdnative.Int {
-	log.Println("Calling ArrayMesh.SurfaceGetPrimitiveType()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(surfIdx)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "surface_get_primitive_type", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Remove a surface at position surf_idx, shifting greater surfaces one surf_idx slot down.
+        Remove a surface at position surf_idx, shifting greater surfaces one surf_idx slot down.
+	Args: [{ false surf_idx int}], Returns: void
 */
+
 func (o *ArrayMesh) SurfaceRemove(surfIdx gdnative.Int) {
 	log.Println("Calling ArrayMesh.SurfaceRemove()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(surfIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(surfIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "surface_remove")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "surface_remove", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *ArrayMesh) SurfaceSetMaterial(surfIdx gdnative.Int, material *Material) {
+	Args: [{ false surf_idx int} { false material Material}], Returns: void
+*/
+
+func (o *ArrayMesh) SurfaceSetMaterial(surfIdx gdnative.Int, material material.Material) {
 	log.Println("Calling ArrayMesh.SurfaceSetMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(surfIdx)
-	goArguments[1] = reflect.ValueOf(material)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(surfIdx)
+	ptrArguments[1] = gdnative.NewPointerFromObject(material.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "surface_set_material")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "surface_set_material", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Set a [Material] for a given surface. Surface will be rendered using this material.
+        Set a [Material] for a given surface. Surface will be rendered using this material.
+	Args: [{ false surf_idx int} { false name String}], Returns: void
 */
+
 func (o *ArrayMesh) SurfaceSetName(surfIdx gdnative.Int, name gdnative.String) {
 	log.Println("Calling ArrayMesh.SurfaceSetName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(surfIdx)
-	goArguments[1] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(surfIdx)
+	ptrArguments[1] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "surface_set_name")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "surface_set_name", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *ArrayMesh) SurfaceUpdateRegion(surfIdx gdnative.Int, offset gdnative.Int, data *PoolByteArray) {
+	Args: [{ false surf_idx int} { false offset int} { false data PoolByteArray}], Returns: void
+*/
+
+func (o *ArrayMesh) SurfaceUpdateRegion(surfIdx gdnative.Int, offset gdnative.Int, data gdnative.PoolByteArray) {
 	log.Println("Calling ArrayMesh.SurfaceUpdateRegion()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(surfIdx)
-	goArguments[1] = reflect.ValueOf(offset)
-	goArguments[2] = reflect.ValueOf(data)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(surfIdx)
+	ptrArguments[1] = gdnative.NewPointerFromInt(offset)
+	ptrArguments[2] = gdnative.NewPointerFromPoolByteArray(data)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "surface_update_region")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "surface_update_region", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ArrayMeshImplementer is an interface for ArrayMesh objects.
-*/
-type ArrayMeshImplementer interface {
-	Class
 }

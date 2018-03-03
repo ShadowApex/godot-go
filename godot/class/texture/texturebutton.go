@@ -2,9 +2,11 @@ package texture
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/basebutton"
+	"github.com/shadowapex/godot-go/godot/class/bitmap"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewTextureButtonFromPointer(ptr gdnative.Pointer) *TextureButton {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := TextureButton{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 [code]TextureButton[/code] has the same functionality as [Button], except it uses sprites instead of Godot's [Theme] resource. It is faster to create, but it doesn't support localization like more complex Controls. The Normal state's texture is required. Others are optional.
 */
 type TextureButton struct {
-	BaseButton
+	basebutton.BaseButton
 }
 
 func (o *TextureButton) BaseClass() string {
@@ -28,312 +39,364 @@ func (o *TextureButton) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: BitMap
 */
-func (o *TextureButton) GetClickMask() *BitMap {
+
+func (o *TextureButton) GetClickMask() bitmap.BitMap {
 	log.Println("Calling TextureButton.GetClickMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureButton", "get_click_mask")
 
 	// Call the parent method.
+	// BitMap
+	retPtr := bitmap.NewEmptyBitMap()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_click_mask", goArguments, "*BitMap")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := bitmap.NewBitMapFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*BitMap)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Texture
 */
-func (o *TextureButton) GetDisabledTexture() *Texture {
+
+func (o *TextureButton) GetDisabledTexture() Texture {
 	log.Println("Calling TextureButton.GetDisabledTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureButton", "get_disabled_texture")
 
 	// Call the parent method.
+	// Texture
+	retPtr := NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_disabled_texture", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *TextureButton) GetExpand() gdnative.Bool {
 	log.Println("Calling TextureButton.GetExpand()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureButton", "get_expand")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_expand", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Texture
 */
-func (o *TextureButton) GetFocusedTexture() *Texture {
+
+func (o *TextureButton) GetFocusedTexture() Texture {
 	log.Println("Calling TextureButton.GetFocusedTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureButton", "get_focused_texture")
 
 	// Call the parent method.
+	// Texture
+	retPtr := NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_focused_texture", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Texture
 */
-func (o *TextureButton) GetHoverTexture() *Texture {
+
+func (o *TextureButton) GetHoverTexture() Texture {
 	log.Println("Calling TextureButton.GetHoverTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureButton", "get_hover_texture")
 
 	// Call the parent method.
+	// Texture
+	retPtr := NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_hover_texture", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Texture
 */
-func (o *TextureButton) GetNormalTexture() *Texture {
+
+func (o *TextureButton) GetNormalTexture() Texture {
 	log.Println("Calling TextureButton.GetNormalTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureButton", "get_normal_texture")
 
 	// Call the parent method.
+	// Texture
+	retPtr := NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_normal_texture", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Texture
 */
-func (o *TextureButton) GetPressedTexture() *Texture {
+
+func (o *TextureButton) GetPressedTexture() Texture {
 	log.Println("Calling TextureButton.GetPressedTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureButton", "get_pressed_texture")
 
 	// Call the parent method.
+	// Texture
+	retPtr := NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_pressed_texture", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.TextureButton::StretchMode
 */
-func (o *TextureButton) GetStretchMode() gdnative.Int {
-	log.Println("Calling TextureButton.GetStretchMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_stretch_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mask BitMap}], Returns: void
 */
-func (o *TextureButton) SetClickMask(mask *BitMap) {
+
+func (o *TextureButton) SetClickMask(mask bitmap.BitMap) {
 	log.Println("Calling TextureButton.SetClickMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mask)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(mask.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureButton", "set_click_mask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_click_mask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false texture Texture}], Returns: void
 */
-func (o *TextureButton) SetDisabledTexture(texture *Texture) {
+
+func (o *TextureButton) SetDisabledTexture(texture Texture) {
 	log.Println("Calling TextureButton.SetDisabledTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(texture.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureButton", "set_disabled_texture")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_disabled_texture", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false p_expand bool}], Returns: void
 */
+
 func (o *TextureButton) SetExpand(pExpand gdnative.Bool) {
 	log.Println("Calling TextureButton.SetExpand()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pExpand)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(pExpand)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureButton", "set_expand")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_expand", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false texture Texture}], Returns: void
 */
-func (o *TextureButton) SetFocusedTexture(texture *Texture) {
+
+func (o *TextureButton) SetFocusedTexture(texture Texture) {
 	log.Println("Calling TextureButton.SetFocusedTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(texture.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureButton", "set_focused_texture")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_focused_texture", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false texture Texture}], Returns: void
 */
-func (o *TextureButton) SetHoverTexture(texture *Texture) {
+
+func (o *TextureButton) SetHoverTexture(texture Texture) {
 	log.Println("Calling TextureButton.SetHoverTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(texture.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureButton", "set_hover_texture")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_hover_texture", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false texture Texture}], Returns: void
 */
-func (o *TextureButton) SetNormalTexture(texture *Texture) {
+
+func (o *TextureButton) SetNormalTexture(texture Texture) {
 	log.Println("Calling TextureButton.SetNormalTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(texture.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureButton", "set_normal_texture")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_normal_texture", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false texture Texture}], Returns: void
 */
-func (o *TextureButton) SetPressedTexture(texture *Texture) {
+
+func (o *TextureButton) SetPressedTexture(texture Texture) {
 	log.Println("Calling TextureButton.SetPressedTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(texture.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureButton", "set_pressed_texture")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_pressed_texture", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false p_mode int}], Returns: void
 */
+
 func (o *TextureButton) SetStretchMode(pMode gdnative.Int) {
 	log.Println("Calling TextureButton.SetStretchMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(pMode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(pMode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureButton", "set_stretch_mode")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_stretch_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   TextureButtonImplementer is an interface for TextureButton objects.
-*/
-type TextureButtonImplementer interface {
-	Class
 }

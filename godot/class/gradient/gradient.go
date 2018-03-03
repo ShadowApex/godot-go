@@ -2,7 +2,9 @@ package gradient
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewGradientFromPointer(ptr gdnative.Pointer) *Gradient {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Gradient{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Given a set of colors, this node will interpolate them in order, meaning, that if you have color 1, color 2 and color3, the ramp will interpolate (generate the colors between two colors) from color 1 to color 2 and from color 2 to color 3. Initially the ramp will have 2 colors (black and white), one (black) at ramp lower offset offset 0 and the other (white) at the ramp higher offset 1.
 */
 type Gradient struct {
-	Resource
+	resource.Resource
 }
 
 func (o *Gradient) BaseClass() string {
@@ -26,242 +37,295 @@ func (o *Gradient) BaseClass() string {
 }
 
 /*
-   Adds the specified color to the end of the ramp, with the specified offset
+        Adds the specified color to the end of the ramp, with the specified offset
+	Args: [{ false offset float} { false color Color}], Returns: void
 */
-func (o *Gradient) AddPoint(offset gdnative.Float, color *Color) {
+
+func (o *Gradient) AddPoint(offset gdnative.Float, color gdnative.Color) {
 	log.Println("Calling Gradient.AddPoint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(offset)
-	goArguments[1] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(offset)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Gradient", "add_point")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_point", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the color of the ramp color at index [i]point[/i]
+        Returns the color of the ramp color at index [i]point[/i]
+	Args: [{ false point int}], Returns: Color
 */
-func (o *Gradient) GetColor(point gdnative.Int) *Color {
+
+func (o *Gradient) GetColor(point gdnative.Int) gdnative.Color {
 	log.Println("Calling Gradient.GetColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(point)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(point)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Gradient", "get_color")
 
 	// Call the parent method.
+	// Color
+	retPtr := gdnative.NewEmptyColor()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_color", goArguments, "*Color")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewColorFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Color)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolColorArray
 */
-func (o *Gradient) GetColors() *PoolColorArray {
+
+func (o *Gradient) GetColors() gdnative.PoolColorArray {
 	log.Println("Calling Gradient.GetColors()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Gradient", "get_colors")
 
 	// Call the parent method.
+	// PoolColorArray
+	retPtr := gdnative.NewEmptyPoolColorArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_colors", goArguments, "*PoolColorArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolColorArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolColorArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the offset of the ramp color at index [i]point[/i]
+        Returns the offset of the ramp color at index [i]point[/i]
+	Args: [{ false point int}], Returns: float
 */
+
 func (o *Gradient) GetOffset(point gdnative.Int) gdnative.Float {
 	log.Println("Calling Gradient.GetOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(point)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(point)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Gradient", "get_offset")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_offset", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: PoolRealArray
 */
-func (o *Gradient) GetOffsets() *PoolRealArray {
+
+func (o *Gradient) GetOffsets() gdnative.PoolRealArray {
 	log.Println("Calling Gradient.GetOffsets()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Gradient", "get_offsets")
 
 	// Call the parent method.
+	// PoolRealArray
+	retPtr := gdnative.NewEmptyPoolRealArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_offsets", goArguments, "*PoolRealArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolRealArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolRealArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the number of colors in the ramp
+        Returns the number of colors in the ramp
+	Args: [], Returns: int
 */
+
 func (o *Gradient) GetPointCount() gdnative.Int {
 	log.Println("Calling Gradient.GetPointCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Gradient", "get_point_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_point_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the interpolated color specified by [i]offset[/i]
+        Returns the interpolated color specified by [i]offset[/i]
+	Args: [{ false offset float}], Returns: Color
 */
-func (o *Gradient) Interpolate(offset gdnative.Float) *Color {
+
+func (o *Gradient) Interpolate(offset gdnative.Float) gdnative.Color {
 	log.Println("Calling Gradient.Interpolate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(offset)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(offset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Gradient", "interpolate")
 
 	// Call the parent method.
+	// Color
+	retPtr := gdnative.NewEmptyColor()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "interpolate", goArguments, "*Color")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewColorFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Color)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Removes the color at the index [i]offset[/i]
+        Removes the color at the index [i]offset[/i]
+	Args: [{ false offset int}], Returns: void
 */
+
 func (o *Gradient) RemovePoint(offset gdnative.Int) {
 	log.Println("Calling Gradient.RemovePoint()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(offset)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(offset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Gradient", "remove_point")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_point", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the color of the ramp color at index [i]point[/i]
+        Sets the color of the ramp color at index [i]point[/i]
+	Args: [{ false point int} { false color Color}], Returns: void
 */
-func (o *Gradient) SetColor(point gdnative.Int, color *Color) {
+
+func (o *Gradient) SetColor(point gdnative.Int, color gdnative.Color) {
 	log.Println("Calling Gradient.SetColor()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(point)
-	goArguments[1] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(point)
+	ptrArguments[1] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Gradient", "set_color")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_color", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false colors PoolColorArray}], Returns: void
 */
-func (o *Gradient) SetColors(colors *PoolColorArray) {
+
+func (o *Gradient) SetColors(colors gdnative.PoolColorArray) {
 	log.Println("Calling Gradient.SetColors()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(colors)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolColorArray(colors)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Gradient", "set_colors")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_colors", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the offset for the ramp color at index [i]point[/i]
+        Sets the offset for the ramp color at index [i]point[/i]
+	Args: [{ false point int} { false offset float}], Returns: void
 */
+
 func (o *Gradient) SetOffset(point gdnative.Int, offset gdnative.Float) {
 	log.Println("Calling Gradient.SetOffset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(point)
-	goArguments[1] = reflect.ValueOf(offset)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(point)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(offset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Gradient", "set_offset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_offset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false offsets PoolRealArray}], Returns: void
 */
-func (o *Gradient) SetOffsets(offsets *PoolRealArray) {
+
+func (o *Gradient) SetOffsets(offsets gdnative.PoolRealArray) {
 	log.Println("Calling Gradient.SetOffsets()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(offsets)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolRealArray(offsets)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Gradient", "set_offsets")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_offsets", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   GradientImplementer is an interface for Gradient objects.
-*/
-type GradientImplementer interface {
-	Class
 }

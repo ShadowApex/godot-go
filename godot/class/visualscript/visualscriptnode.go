@@ -2,9 +2,9 @@ package visualscript
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewVisualScriptNodeFromPointer(ptr gdnative.Pointer) *VisualScriptNode {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := VisualScriptNode{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Undocumented
 */
 type VisualScriptNode struct {
-	Resource
+	resource.Resource
 }
 
 func (o *VisualScriptNode) BaseClass() string {
@@ -28,123 +37,146 @@ func (o *VisualScriptNode) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Array
 */
-func (o *VisualScriptNode) X_GetDefaultInputValues() *Array {
+
+func (o *VisualScriptNode) X_GetDefaultInputValues() gdnative.Array {
 	log.Println("Calling VisualScriptNode.X_GetDefaultInputValues()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptNode", "_get_default_input_values")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_default_input_values", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false values Array}], Returns: void
 */
-func (o *VisualScriptNode) X_SetDefaultInputValues(values *Array) {
+
+func (o *VisualScriptNode) X_SetDefaultInputValues(values gdnative.Array) {
 	log.Println("Calling VisualScriptNode.X_SetDefaultInputValues()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(values)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromArray(values)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptNode", "_set_default_input_values")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_default_input_values", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false port_idx int}], Returns: Variant
 */
-func (o *VisualScriptNode) GetDefaultInputValue(portIdx gdnative.Int) *Variant {
+
+func (o *VisualScriptNode) GetDefaultInputValue(portIdx gdnative.Int) gdnative.Variant {
 	log.Println("Calling VisualScriptNode.GetDefaultInputValue()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(portIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(portIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptNode", "get_default_input_value")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_default_input_value", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: VisualScript
 */
-func (o *VisualScriptNode) GetVisualScript() *VisualScript {
+
+func (o *VisualScriptNode) GetVisualScript() VisualScript {
 	log.Println("Calling VisualScriptNode.GetVisualScript()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptNode", "get_visual_script")
 
 	// Call the parent method.
+	// VisualScript
+	retPtr := NewEmptyVisualScript()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_visual_script", goArguments, "*VisualScript")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewVisualScriptFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*VisualScript)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *VisualScriptNode) PortsChangedNotify() {
 	log.Println("Calling VisualScriptNode.PortsChangedNotify()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptNode", "ports_changed_notify")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "ports_changed_notify", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false port_idx int} { false value Variant}], Returns: void
 */
-func (o *VisualScriptNode) SetDefaultInputValue(portIdx gdnative.Int, value *Variant) {
+
+func (o *VisualScriptNode) SetDefaultInputValue(portIdx gdnative.Int, value gdnative.Variant) {
 	log.Println("Calling VisualScriptNode.SetDefaultInputValue()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(portIdx)
-	goArguments[1] = reflect.ValueOf(value)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(portIdx)
+	ptrArguments[1] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptNode", "set_default_input_value")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_default_input_value", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   VisualScriptNodeImplementer is an interface for VisualScriptNode objects.
-*/
-type VisualScriptNodeImplementer interface {
-	Class
 }

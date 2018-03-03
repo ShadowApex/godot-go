@@ -2,7 +2,11 @@ package navigationmesh
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/mesh"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewNavigationMeshFromPointer(ptr gdnative.Pointer) *NavigationMesh {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := NavigationMesh{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type NavigationMesh struct {
-	Resource
+	resource.Resource
 }
 
 func (o *NavigationMesh) BaseClass() string {
@@ -26,824 +39,1031 @@ func (o *NavigationMesh) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Array
 */
-func (o *NavigationMesh) X_GetPolygons() *Array {
+
+func (o *NavigationMesh) X_GetPolygons() gdnative.Array {
 	log.Println("Calling NavigationMesh.X_GetPolygons()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "_get_polygons")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_polygons", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false polygons Array}], Returns: void
 */
-func (o *NavigationMesh) X_SetPolygons(polygons *Array) {
+
+func (o *NavigationMesh) X_SetPolygons(polygons gdnative.Array) {
 	log.Println("Calling NavigationMesh.X_SetPolygons()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(polygons)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromArray(polygons)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "_set_polygons")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_polygons", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *NavigationMesh) AddPolygon(polygon *PoolIntArray) {
+	Args: [{ false polygon PoolIntArray}], Returns: void
+*/
+
+func (o *NavigationMesh) AddPolygon(polygon gdnative.PoolIntArray) {
 	log.Println("Calling NavigationMesh.AddPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(polygon)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolIntArray(polygon)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "add_polygon")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_polygon", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *NavigationMesh) ClearPolygons() {
 	log.Println("Calling NavigationMesh.ClearPolygons()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "clear_polygons")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear_polygons", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *NavigationMesh) CreateFromMesh(mesh *Mesh) {
+	Args: [{ false mesh Mesh}], Returns: void
+*/
+
+func (o *NavigationMesh) CreateFromMesh(mesh mesh.Mesh) {
 	log.Println("Calling NavigationMesh.CreateFromMesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mesh)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(mesh.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "create_from_mesh")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "create_from_mesh", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *NavigationMesh) GetAgentHeight() gdnative.Float {
 	log.Println("Calling NavigationMesh.GetAgentHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_agent_height")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_agent_height", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *NavigationMesh) GetAgentMaxClimb() gdnative.Float {
 	log.Println("Calling NavigationMesh.GetAgentMaxClimb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_agent_max_climb")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_agent_max_climb", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *NavigationMesh) GetAgentMaxSlope() gdnative.Float {
 	log.Println("Calling NavigationMesh.GetAgentMaxSlope()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_agent_max_slope")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_agent_max_slope", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *NavigationMesh) GetAgentRadius() gdnative.Float {
 	log.Println("Calling NavigationMesh.GetAgentRadius()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_agent_radius")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_agent_radius", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *NavigationMesh) GetCellHeight() gdnative.Float {
 	log.Println("Calling NavigationMesh.GetCellHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_cell_height")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_cell_height", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *NavigationMesh) GetCellSize() gdnative.Float {
 	log.Println("Calling NavigationMesh.GetCellSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_cell_size")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_cell_size", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *NavigationMesh) GetDetailSampleDistance() gdnative.Float {
 	log.Println("Calling NavigationMesh.GetDetailSampleDistance()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_detail_sample_distance")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_detail_sample_distance", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *NavigationMesh) GetDetailSampleMaxError() gdnative.Float {
 	log.Println("Calling NavigationMesh.GetDetailSampleMaxError()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_detail_sample_max_error")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_detail_sample_max_error", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *NavigationMesh) GetEdgeMaxError() gdnative.Float {
 	log.Println("Calling NavigationMesh.GetEdgeMaxError()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_edge_max_error")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_edge_max_error", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *NavigationMesh) GetEdgeMaxLength() gdnative.Float {
 	log.Println("Calling NavigationMesh.GetEdgeMaxLength()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_edge_max_length")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_edge_max_length", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *NavigationMesh) GetFilterLedgeSpans() gdnative.Bool {
 	log.Println("Calling NavigationMesh.GetFilterLedgeSpans()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_filter_ledge_spans")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_filter_ledge_spans", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *NavigationMesh) GetFilterLowHangingObstacles() gdnative.Bool {
 	log.Println("Calling NavigationMesh.GetFilterLowHangingObstacles()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_filter_low_hanging_obstacles")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_filter_low_hanging_obstacles", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *NavigationMesh) GetFilterWalkableLowHeightSpans() gdnative.Bool {
 	log.Println("Calling NavigationMesh.GetFilterWalkableLowHeightSpans()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_filter_walkable_low_height_spans")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_filter_walkable_low_height_spans", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *NavigationMesh) GetPolygon(idx gdnative.Int) *PoolIntArray {
+	Args: [{ false idx int}], Returns: PoolIntArray
+*/
+
+func (o *NavigationMesh) GetPolygon(idx gdnative.Int) gdnative.PoolIntArray {
 	log.Println("Calling NavigationMesh.GetPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_polygon")
 
 	// Call the parent method.
+	// PoolIntArray
+	retPtr := gdnative.NewEmptyPoolIntArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_polygon", goArguments, "*PoolIntArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: int
+*/
+
 func (o *NavigationMesh) GetPolygonCount() gdnative.Int {
 	log.Println("Calling NavigationMesh.GetPolygonCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_polygon_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_polygon_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *NavigationMesh) GetRegionMergeSize() gdnative.Float {
 	log.Println("Calling NavigationMesh.GetRegionMergeSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_region_merge_size")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_region_merge_size", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *NavigationMesh) GetRegionMinSize() gdnative.Float {
 	log.Println("Calling NavigationMesh.GetRegionMinSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_region_min_size")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_region_min_size", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *NavigationMesh) GetSamplePartitionType() gdnative.Int {
 	log.Println("Calling NavigationMesh.GetSamplePartitionType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_sample_partition_type")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_sample_partition_type", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *NavigationMesh) GetVertices() *PoolVector3Array {
+	Args: [], Returns: PoolVector3Array
+*/
+
+func (o *NavigationMesh) GetVertices() gdnative.PoolVector3Array {
 	log.Println("Calling NavigationMesh.GetVertices()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_vertices")
 
 	// Call the parent method.
+	// PoolVector3Array
+	retPtr := gdnative.NewEmptyPoolVector3Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_vertices", goArguments, "*PoolVector3Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector3ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector3Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *NavigationMesh) GetVertsPerPoly() gdnative.Float {
 	log.Println("Calling NavigationMesh.GetVertsPerPoly()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "get_verts_per_poly")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_verts_per_poly", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false agent_height float}], Returns: void
 */
+
 func (o *NavigationMesh) SetAgentHeight(agentHeight gdnative.Float) {
 	log.Println("Calling NavigationMesh.SetAgentHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(agentHeight)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(agentHeight)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_agent_height")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_agent_height", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false agent_max_climb float}], Returns: void
 */
+
 func (o *NavigationMesh) SetAgentMaxClimb(agentMaxClimb gdnative.Float) {
 	log.Println("Calling NavigationMesh.SetAgentMaxClimb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(agentMaxClimb)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(agentMaxClimb)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_agent_max_climb")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_agent_max_climb", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false agent_max_slope float}], Returns: void
 */
+
 func (o *NavigationMesh) SetAgentMaxSlope(agentMaxSlope gdnative.Float) {
 	log.Println("Calling NavigationMesh.SetAgentMaxSlope()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(agentMaxSlope)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(agentMaxSlope)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_agent_max_slope")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_agent_max_slope", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false agent_radius float}], Returns: void
 */
+
 func (o *NavigationMesh) SetAgentRadius(agentRadius gdnative.Float) {
 	log.Println("Calling NavigationMesh.SetAgentRadius()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(agentRadius)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(agentRadius)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_agent_radius")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_agent_radius", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false cell_height float}], Returns: void
 */
+
 func (o *NavigationMesh) SetCellHeight(cellHeight gdnative.Float) {
 	log.Println("Calling NavigationMesh.SetCellHeight()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(cellHeight)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(cellHeight)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_cell_height")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_cell_height", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false cell_size float}], Returns: void
 */
+
 func (o *NavigationMesh) SetCellSize(cellSize gdnative.Float) {
 	log.Println("Calling NavigationMesh.SetCellSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(cellSize)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(cellSize)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_cell_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_cell_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false detail_sample_dist float}], Returns: void
 */
+
 func (o *NavigationMesh) SetDetailSampleDistance(detailSampleDist gdnative.Float) {
 	log.Println("Calling NavigationMesh.SetDetailSampleDistance()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(detailSampleDist)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(detailSampleDist)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_detail_sample_distance")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_detail_sample_distance", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false detail_sample_max_error float}], Returns: void
 */
+
 func (o *NavigationMesh) SetDetailSampleMaxError(detailSampleMaxError gdnative.Float) {
 	log.Println("Calling NavigationMesh.SetDetailSampleMaxError()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(detailSampleMaxError)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(detailSampleMaxError)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_detail_sample_max_error")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_detail_sample_max_error", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false edge_max_error float}], Returns: void
 */
+
 func (o *NavigationMesh) SetEdgeMaxError(edgeMaxError gdnative.Float) {
 	log.Println("Calling NavigationMesh.SetEdgeMaxError()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(edgeMaxError)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(edgeMaxError)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_edge_max_error")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_edge_max_error", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false edge_max_length float}], Returns: void
 */
+
 func (o *NavigationMesh) SetEdgeMaxLength(edgeMaxLength gdnative.Float) {
 	log.Println("Calling NavigationMesh.SetEdgeMaxLength()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(edgeMaxLength)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(edgeMaxLength)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_edge_max_length")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_edge_max_length", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false filter_ledge_spans bool}], Returns: void
 */
+
 func (o *NavigationMesh) SetFilterLedgeSpans(filterLedgeSpans gdnative.Bool) {
 	log.Println("Calling NavigationMesh.SetFilterLedgeSpans()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(filterLedgeSpans)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(filterLedgeSpans)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_filter_ledge_spans")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_filter_ledge_spans", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false filter_low_hanging_obstacles bool}], Returns: void
 */
+
 func (o *NavigationMesh) SetFilterLowHangingObstacles(filterLowHangingObstacles gdnative.Bool) {
 	log.Println("Calling NavigationMesh.SetFilterLowHangingObstacles()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(filterLowHangingObstacles)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(filterLowHangingObstacles)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_filter_low_hanging_obstacles")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_filter_low_hanging_obstacles", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false filter_walkable_low_height_spans bool}], Returns: void
 */
+
 func (o *NavigationMesh) SetFilterWalkableLowHeightSpans(filterWalkableLowHeightSpans gdnative.Bool) {
 	log.Println("Calling NavigationMesh.SetFilterWalkableLowHeightSpans()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(filterWalkableLowHeightSpans)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(filterWalkableLowHeightSpans)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_filter_walkable_low_height_spans")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_filter_walkable_low_height_spans", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false region_merge_size float}], Returns: void
 */
+
 func (o *NavigationMesh) SetRegionMergeSize(regionMergeSize gdnative.Float) {
 	log.Println("Calling NavigationMesh.SetRegionMergeSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(regionMergeSize)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(regionMergeSize)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_region_merge_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_region_merge_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false region_min_size float}], Returns: void
 */
+
 func (o *NavigationMesh) SetRegionMinSize(regionMinSize gdnative.Float) {
 	log.Println("Calling NavigationMesh.SetRegionMinSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(regionMinSize)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(regionMinSize)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_region_min_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_region_min_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false sample_partition_type int}], Returns: void
 */
+
 func (o *NavigationMesh) SetSamplePartitionType(samplePartitionType gdnative.Int) {
 	log.Println("Calling NavigationMesh.SetSamplePartitionType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(samplePartitionType)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(samplePartitionType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_sample_partition_type")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_sample_partition_type", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *NavigationMesh) SetVertices(vertices *PoolVector3Array) {
+	Args: [{ false vertices PoolVector3Array}], Returns: void
+*/
+
+func (o *NavigationMesh) SetVertices(vertices gdnative.PoolVector3Array) {
 	log.Println("Calling NavigationMesh.SetVertices()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(vertices)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector3Array(vertices)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_vertices")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_vertices", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false verts_per_poly float}], Returns: void
 */
+
 func (o *NavigationMesh) SetVertsPerPoly(vertsPerPoly gdnative.Float) {
 	log.Println("Calling NavigationMesh.SetVertsPerPoly()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(vertsPerPoly)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(vertsPerPoly)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_verts_per_poly")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_verts_per_poly", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   NavigationMeshImplementer is an interface for NavigationMesh objects.
-*/
-type NavigationMeshImplementer interface {
-	Class
 }

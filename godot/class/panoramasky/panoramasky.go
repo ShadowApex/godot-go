@@ -2,7 +2,11 @@ package panoramasky
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/sky"
+	"github.com/shadowapex/godot-go/godot/class/texture"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPanoramaSkyFromPointer(ptr gdnative.Pointer) *PanoramaSky {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := PanoramaSky{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type PanoramaSky struct {
-	Sky
+	sky.Sky
 }
 
 func (o *PanoramaSky) BaseClass() string {
@@ -26,46 +39,49 @@ func (o *PanoramaSky) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Texture
 */
-func (o *PanoramaSky) GetPanorama() *Texture {
+
+func (o *PanoramaSky) GetPanorama() texture.Texture {
 	log.Println("Calling PanoramaSky.GetPanorama()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PanoramaSky", "get_panorama")
 
 	// Call the parent method.
+	// Texture
+	retPtr := texture.NewEmptyTexture()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_panorama", goArguments, "*Texture")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := texture.NewTextureFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Texture)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false texture Texture}], Returns: void
 */
-func (o *PanoramaSky) SetPanorama(texture *Texture) {
+
+func (o *PanoramaSky) SetPanorama(texture texture.Texture) {
 	log.Println("Calling PanoramaSky.SetPanorama()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(texture.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PanoramaSky", "set_panorama")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_panorama", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   PanoramaSkyImplementer is an interface for PanoramaSky objects.
-*/
-type PanoramaSkyImplementer interface {
-	Class
 }

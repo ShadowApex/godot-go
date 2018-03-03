@@ -2,7 +2,11 @@ package primitivemesh
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/material"
+	"github.com/shadowapex/godot-go/godot/class/mesh"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPrimitiveMeshFromPointer(ptr gdnative.Pointer) *PrimitiveMesh {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := PrimitiveMesh{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Base class for all primitive meshes. Handles applying a [Material] to a primitive mesh.
 */
 type PrimitiveMesh struct {
-	Mesh
+	mesh.Mesh
 }
 
 func (o *PrimitiveMesh) BaseClass() string {
@@ -26,83 +39,96 @@ func (o *PrimitiveMesh) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *PrimitiveMesh) X_Update() {
 	log.Println("Calling PrimitiveMesh.X_Update()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PrimitiveMesh", "_update")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_update", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Material
 */
-func (o *PrimitiveMesh) GetMaterial() *Material {
+
+func (o *PrimitiveMesh) GetMaterial() material.Material {
 	log.Println("Calling PrimitiveMesh.GetMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PrimitiveMesh", "get_material")
 
 	// Call the parent method.
+	// Material
+	retPtr := material.NewEmptyMaterial()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_material", goArguments, "*Material")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := material.NewMaterialFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Material)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *PrimitiveMesh) GetMeshArrays() *Array {
+	Args: [], Returns: Array
+*/
+
+func (o *PrimitiveMesh) GetMeshArrays() gdnative.Array {
 	log.Println("Calling PrimitiveMesh.GetMeshArrays()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PrimitiveMesh", "get_mesh_arrays")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_mesh_arrays", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false material Material}], Returns: void
 */
-func (o *PrimitiveMesh) SetMaterial(material *Material) {
+
+func (o *PrimitiveMesh) SetMaterial(material material.Material) {
 	log.Println("Calling PrimitiveMesh.SetMaterial()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(material)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(material.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PrimitiveMesh", "set_material")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_material", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   PrimitiveMeshImplementer is an interface for PrimitiveMesh objects.
-*/
-type PrimitiveMeshImplementer interface {
-	Class
 }

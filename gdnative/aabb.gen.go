@@ -38,6 +38,14 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewEmptyAabb will return a pointer to an empty
+// initialized Aabb. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyAabb() Pointer {
+	var obj C.godot_aabb
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromAabb will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromAabb(obj Aabb) Pointer {

@@ -2,9 +2,11 @@ package lightoccluder2d
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/node2d"
+	"github.com/shadowapex/godot-go/godot/class/occluderpolygon2d"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewLightOccluder2DFromPointer(ptr gdnative.Pointer) *LightOccluder2D {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := LightOccluder2D{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Occludes light cast by a Light2D, casting shadows. The LightOccluder2D must be provided with an [OccluderPolygon2D] in order for the shadow to be computed.
 */
 type LightOccluder2D struct {
-	Node2D
+	node2d.Node2D
 }
 
 func (o *LightOccluder2D) BaseClass() string {
@@ -28,101 +39,118 @@ func (o *LightOccluder2D) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *LightOccluder2D) X_PolyChanged() {
 	log.Println("Calling LightOccluder2D.X_PolyChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LightOccluder2D", "_poly_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_poly_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *LightOccluder2D) GetOccluderLightMask() gdnative.Int {
 	log.Println("Calling LightOccluder2D.GetOccluderLightMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LightOccluder2D", "get_occluder_light_mask")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_occluder_light_mask", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: OccluderPolygon2D
 */
-func (o *LightOccluder2D) GetOccluderPolygon() *OccluderPolygon2D {
+
+func (o *LightOccluder2D) GetOccluderPolygon() occluderpolygon2d.OccluderPolygon2D {
 	log.Println("Calling LightOccluder2D.GetOccluderPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LightOccluder2D", "get_occluder_polygon")
 
 	// Call the parent method.
+	// OccluderPolygon2D
+	retPtr := occluderpolygon2d.NewEmptyOccluderPolygon2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_occluder_polygon", goArguments, "*OccluderPolygon2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := occluderpolygon2d.NewOccluderPolygon2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*OccluderPolygon2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mask int}], Returns: void
 */
+
 func (o *LightOccluder2D) SetOccluderLightMask(mask gdnative.Int) {
 	log.Println("Calling LightOccluder2D.SetOccluderLightMask()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mask)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mask)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LightOccluder2D", "set_occluder_light_mask")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_occluder_light_mask", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false polygon OccluderPolygon2D}], Returns: void
 */
-func (o *LightOccluder2D) SetOccluderPolygon(polygon *OccluderPolygon2D) {
+
+func (o *LightOccluder2D) SetOccluderPolygon(polygon occluderpolygon2d.OccluderPolygon2D) {
 	log.Println("Calling LightOccluder2D.SetOccluderPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(polygon)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(polygon.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LightOccluder2D", "set_occluder_polygon")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_occluder_polygon", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   LightOccluder2DImplementer is an interface for LightOccluder2D objects.
-*/
-type LightOccluder2DImplementer interface {
-	Class
 }

@@ -2,9 +2,9 @@ package popup
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/control"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPopupFromPointer(ptr gdnative.Pointer) *Popup {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Popup{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Popup is a base [Control] used to show dialogs and popups. It's a subwindow and modal by default (see [Control]) and has helpers for custom popup behavior.
 */
 type Popup struct {
-	Control
+	control.Control
 }
 
 func (o *Popup) BaseClass() string {
@@ -28,118 +37,137 @@ func (o *Popup) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Popup) IsExclusive() gdnative.Bool {
 	log.Println("Calling Popup.IsExclusive()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Popup", "is_exclusive")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_exclusive", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Popup (show the control in modal form).
+        Popup (show the control in modal form).
+	Args: [{(0, 0, 0, 0) true bounds Rect2}], Returns: void
 */
-func (o *Popup) Popup(bounds *Rect2) {
+
+func (o *Popup) Popup(bounds gdnative.Rect2) {
 	log.Println("Calling Popup.Popup()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bounds)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRect2(bounds)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Popup", "popup")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "popup", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Popup (show the control in modal form) in the center of the screen, at the current size, or at a size determined by "size".
+        Popup (show the control in modal form) in the center of the screen, at the current size, or at a size determined by "size".
+	Args: [{(0, 0) true size Vector2}], Returns: void
 */
-func (o *Popup) PopupCentered(size *Vector2) {
+
+func (o *Popup) PopupCentered(size gdnative.Vector2) {
 	log.Println("Calling Popup.PopupCentered()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Popup", "popup_centered")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "popup_centered", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Popup (show the control in modal form) in the center of the screen, ensuring the size is never smaller than [code]minsize[/code].
+        Popup (show the control in modal form) in the center of the screen, ensuring the size is never smaller than [code]minsize[/code].
+	Args: [{(0, 0) true minsize Vector2}], Returns: void
 */
-func (o *Popup) PopupCenteredMinsize(minsize *Vector2) {
+
+func (o *Popup) PopupCenteredMinsize(minsize gdnative.Vector2) {
 	log.Println("Calling Popup.PopupCenteredMinsize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(minsize)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(minsize)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Popup", "popup_centered_minsize")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "popup_centered_minsize", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Popup (show the control in modal form) in the center of the screen, scaled at a ratio of size of the screen.
+        Popup (show the control in modal form) in the center of the screen, scaled at a ratio of size of the screen.
+	Args: [{0.75 true ratio float}], Returns: void
 */
+
 func (o *Popup) PopupCenteredRatio(ratio gdnative.Float) {
 	log.Println("Calling Popup.PopupCenteredRatio()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ratio)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(ratio)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Popup", "popup_centered_ratio")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "popup_centered_ratio", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Popup) SetExclusive(enable gdnative.Bool) {
 	log.Println("Calling Popup.SetExclusive()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Popup", "set_exclusive")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_exclusive", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   PopupImplementer is an interface for Popup objects.
-*/
-type PopupImplementer interface {
-	Class
 }

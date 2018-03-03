@@ -2,7 +2,10 @@ package stylebox
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -13,6 +16,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewStyleBoxTextureFromPointer(ptr gdnative.Pointer) *StyleBoxTexture {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := StyleBoxTexture{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 /*
 Texture Based 3x3 scale style. This stylebox performs a 3x3 scaling of a texture, where only the center cell is fully stretched. This allows for the easy creation of bordered styles.
@@ -26,393 +38,442 @@ func (o *StyleBoxTexture) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin int}], Returns: float
 */
+
 func (o *StyleBoxTexture) GetExpandMarginSize(margin gdnative.Int) gdnative.Float {
 	log.Println("Calling StyleBoxTexture.GetExpandMarginSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "get_expand_margin_size")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_expand_margin_size", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.StyleBoxTexture::AxisStretchMode
 */
-func (o *StyleBoxTexture) GetHAxisStretchMode() gdnative.Int {
-	log.Println("Calling StyleBoxTexture.GetHAxisStretchMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_h_axis_stretch_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin int}], Returns: float
 */
+
 func (o *StyleBoxTexture) GetMarginSize(margin gdnative.Int) gdnative.Float {
 	log.Println("Calling StyleBoxTexture.GetMarginSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(margin)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "get_margin_size")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_margin_size", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Color
 */
-func (o *StyleBoxTexture) GetModulate() *Color {
+
+func (o *StyleBoxTexture) GetModulate() gdnative.Color {
 	log.Println("Calling StyleBoxTexture.GetModulate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "get_modulate")
 
 	// Call the parent method.
+	// Color
+	retPtr := gdnative.NewEmptyColor()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_modulate", goArguments, "*Color")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewColorFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Color)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Resource
 */
-func (o *StyleBoxTexture) GetNormalMap() *Resource {
+
+func (o *StyleBoxTexture) GetNormalMap() resource.Resource {
 	log.Println("Calling StyleBoxTexture.GetNormalMap()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "get_normal_map")
 
 	// Call the parent method.
+	// Resource
+	retPtr := resource.NewEmptyResource()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_normal_map", goArguments, "*Resource")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := resource.NewResourceFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Resource)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Rect2
 */
-func (o *StyleBoxTexture) GetRegionRect() *Rect2 {
+
+func (o *StyleBoxTexture) GetRegionRect() gdnative.Rect2 {
 	log.Println("Calling StyleBoxTexture.GetRegionRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "get_region_rect")
 
 	// Call the parent method.
+	// Rect2
+	retPtr := gdnative.NewEmptyRect2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_region_rect", goArguments, "*Rect2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewRect2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Rect2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Resource
 */
-func (o *StyleBoxTexture) GetTexture() *Resource {
+
+func (o *StyleBoxTexture) GetTexture() resource.Resource {
 	log.Println("Calling StyleBoxTexture.GetTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "get_texture")
 
 	// Call the parent method.
+	// Resource
+	retPtr := resource.NewEmptyResource()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_texture", goArguments, "*Resource")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := resource.NewResourceFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Resource)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.StyleBoxTexture::AxisStretchMode
 */
-func (o *StyleBoxTexture) GetVAxisStretchMode() gdnative.Int {
-	log.Println("Calling StyleBoxTexture.GetVAxisStretchMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_v_axis_stretch_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *StyleBoxTexture) IsDrawCenterEnabled() gdnative.Bool {
 	log.Println("Calling StyleBoxTexture.IsDrawCenterEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "is_draw_center_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_draw_center_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *StyleBoxTexture) SetDrawCenter(enable gdnative.Bool) {
 	log.Println("Calling StyleBoxTexture.SetDrawCenter()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "set_draw_center")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_draw_center", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false size float}], Returns: void
+*/
+
 func (o *StyleBoxTexture) SetExpandMarginAll(size gdnative.Float) {
 	log.Println("Calling StyleBoxTexture.SetExpandMarginAll()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "set_expand_margin_all")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_expand_margin_all", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false size_left float} { false size_top float} { false size_right float} { false size_bottom float}], Returns: void
+*/
+
 func (o *StyleBoxTexture) SetExpandMarginIndividual(sizeLeft gdnative.Float, sizeTop gdnative.Float, sizeRight gdnative.Float, sizeBottom gdnative.Float) {
 	log.Println("Calling StyleBoxTexture.SetExpandMarginIndividual()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 4, 4)
-	goArguments[0] = reflect.ValueOf(sizeLeft)
-	goArguments[1] = reflect.ValueOf(sizeTop)
-	goArguments[2] = reflect.ValueOf(sizeRight)
-	goArguments[3] = reflect.ValueOf(sizeBottom)
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(sizeLeft)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(sizeTop)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(sizeRight)
+	ptrArguments[3] = gdnative.NewPointerFromFloat(sizeBottom)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "set_expand_margin_individual")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_expand_margin_individual", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin int} { false size float}], Returns: void
 */
+
 func (o *StyleBoxTexture) SetExpandMarginSize(margin gdnative.Int, size gdnative.Float) {
 	log.Println("Calling StyleBoxTexture.SetExpandMarginSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(margin)
-	goArguments[1] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "set_expand_margin_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_expand_margin_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *StyleBoxTexture) SetHAxisStretchMode(mode gdnative.Int) {
 	log.Println("Calling StyleBoxTexture.SetHAxisStretchMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "set_h_axis_stretch_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_h_axis_stretch_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false margin int} { false size float}], Returns: void
 */
+
 func (o *StyleBoxTexture) SetMarginSize(margin gdnative.Int, size gdnative.Float) {
 	log.Println("Calling StyleBoxTexture.SetMarginSize()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(margin)
-	goArguments[1] = reflect.ValueOf(size)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(size)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "set_margin_size")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_margin_size", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false color Color}], Returns: void
 */
-func (o *StyleBoxTexture) SetModulate(color *Color) {
+
+func (o *StyleBoxTexture) SetModulate(color gdnative.Color) {
 	log.Println("Calling StyleBoxTexture.SetModulate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(color)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromColor(color)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "set_modulate")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_modulate", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false normal_map Resource}], Returns: void
 */
-func (o *StyleBoxTexture) SetNormalMap(normalMap *Resource) {
+
+func (o *StyleBoxTexture) SetNormalMap(normalMap resource.Resource) {
 	log.Println("Calling StyleBoxTexture.SetNormalMap()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(normalMap)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(normalMap.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "set_normal_map")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_normal_map", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false region Rect2}], Returns: void
 */
-func (o *StyleBoxTexture) SetRegionRect(region *Rect2) {
+
+func (o *StyleBoxTexture) SetRegionRect(region gdnative.Rect2) {
 	log.Println("Calling StyleBoxTexture.SetRegionRect()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(region)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRect2(region)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "set_region_rect")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_region_rect", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false texture Resource}], Returns: void
 */
-func (o *StyleBoxTexture) SetTexture(texture *Resource) {
+
+func (o *StyleBoxTexture) SetTexture(texture resource.Resource) {
 	log.Println("Calling StyleBoxTexture.SetTexture()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(texture)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(texture.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "set_texture")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_texture", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *StyleBoxTexture) SetVAxisStretchMode(mode gdnative.Int) {
 	log.Println("Calling StyleBoxTexture.SetVAxisStretchMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "set_v_axis_stretch_mode")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_v_axis_stretch_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   StyleBoxTextureImplementer is an interface for StyleBoxTexture objects.
-*/
-type StyleBoxTextureImplementer interface {
-	Class
 }

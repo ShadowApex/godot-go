@@ -2,9 +2,9 @@ package arvr
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewARVRPositionalTrackerFromPointer(ptr gdnative.Pointer) *ARVRPositionalTracker {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ARVRPositionalTracker{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 An instance of this object represents a device that is tracked such as a controller or anchor point. HMDs aren't represented here as they are fully handled internally. As controllers are turned on and the AR/VR interface detects them instances of this object are automatically added to this list of active tracking objects accessible through the ARVRServer The ARVRController and ARVRAnchor both consume objects of this type and should be the objects you use in game. The positional trackers are just the under the hood objects that make this all work and are mostly exposed so GDNative based interfaces can interact with them.
 */
 type ARVRPositionalTracker struct {
-	Object
+	object.Object
 }
 
 func (o *ARVRPositionalTracker) BaseClass() string {
@@ -28,317 +37,352 @@ func (o *ARVRPositionalTracker) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false joy_id int}], Returns: void
 */
+
 func (o *ARVRPositionalTracker) X_SetJoyId(joyId gdnative.Int) {
 	log.Println("Calling ARVRPositionalTracker.X_SetJoyId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(joyId)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(joyId)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRPositionalTracker", "_set_joy_id")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_joy_id", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false name String}], Returns: void
 */
+
 func (o *ARVRPositionalTracker) X_SetName(name gdnative.String) {
 	log.Println("Calling ARVRPositionalTracker.X_SetName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(name)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRPositionalTracker", "_set_name")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_name", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false orientation Basis}], Returns: void
 */
-func (o *ARVRPositionalTracker) X_SetOrientation(orientation *Basis) {
+
+func (o *ARVRPositionalTracker) X_SetOrientation(orientation gdnative.Basis) {
 	log.Println("Calling ARVRPositionalTracker.X_SetOrientation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(orientation)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBasis(orientation)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRPositionalTracker", "_set_orientation")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_orientation", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false rw_position Vector3}], Returns: void
 */
-func (o *ARVRPositionalTracker) X_SetRwPosition(rwPosition *Vector3) {
+
+func (o *ARVRPositionalTracker) X_SetRwPosition(rwPosition gdnative.Vector3) {
 	log.Println("Calling ARVRPositionalTracker.X_SetRwPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(rwPosition)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(rwPosition)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRPositionalTracker", "_set_rw_position")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_rw_position", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false type int}], Returns: void
 */
+
 func (o *ARVRPositionalTracker) X_SetType(aType gdnative.Int) {
 	log.Println("Calling ARVRPositionalTracker.X_SetType()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(aType)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(aType)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRPositionalTracker", "_set_type")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_type", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the hand holding this tracker, if known. See TRACKER_* constants.
+        Returns the hand holding this tracker, if known. See TRACKER_* constants.
+	Args: [], Returns: enum.ARVRPositionalTracker::TrackerHand
 */
-func (o *ARVRPositionalTracker) GetHand() gdnative.Int {
-	log.Println("Calling ARVRPositionalTracker.GetHand()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_hand", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   If this is a controller that is being tracked the controller will also be represented by a joystick entry with this id.
+        If this is a controller that is being tracked the controller will also be represented by a joystick entry with this id.
+	Args: [], Returns: int
 */
+
 func (o *ARVRPositionalTracker) GetJoyId() gdnative.Int {
 	log.Println("Calling ARVRPositionalTracker.GetJoyId()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRPositionalTracker", "get_joy_id")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_joy_id", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the controller or anchor point's name if available.
+        Returns the controller or anchor point's name if available.
+	Args: [], Returns: String
 */
+
 func (o *ARVRPositionalTracker) GetName() gdnative.String {
 	log.Println("Calling ARVRPositionalTracker.GetName()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRPositionalTracker", "get_name")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_name", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the controller's orientation matrix.
+        Returns the controller's orientation matrix.
+	Args: [], Returns: Basis
 */
-func (o *ARVRPositionalTracker) GetOrientation() *Basis {
+
+func (o *ARVRPositionalTracker) GetOrientation() gdnative.Basis {
 	log.Println("Calling ARVRPositionalTracker.GetOrientation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRPositionalTracker", "get_orientation")
 
 	// Call the parent method.
+	// Basis
+	retPtr := gdnative.NewEmptyBasis()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_orientation", goArguments, "*Basis")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBasisFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Basis)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the world-space controller position.
+        Returns the world-space controller position.
+	Args: [], Returns: Vector3
 */
-func (o *ARVRPositionalTracker) GetPosition() *Vector3 {
+
+func (o *ARVRPositionalTracker) GetPosition() gdnative.Vector3 {
 	log.Println("Calling ARVRPositionalTracker.GetPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRPositionalTracker", "get_position")
 
 	// Call the parent method.
+	// Vector3
+	retPtr := gdnative.NewEmptyVector3()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_position", goArguments, "*Vector3")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector3FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector3)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *ARVRPositionalTracker) GetRumble() gdnative.Float {
 	log.Println("Calling ARVRPositionalTracker.GetRumble()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRPositionalTracker", "get_rumble")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_rumble", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if this device tracks orientation.
+        Returns [code]true[/code] if this device tracks orientation.
+	Args: [], Returns: bool
 */
+
 func (o *ARVRPositionalTracker) GetTracksOrientation() gdnative.Bool {
 	log.Println("Calling ARVRPositionalTracker.GetTracksOrientation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRPositionalTracker", "get_tracks_orientation")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tracks_orientation", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if this device tracks position.
+        Returns [code]true[/code] if this device tracks position.
+	Args: [], Returns: bool
 */
+
 func (o *ARVRPositionalTracker) GetTracksPosition() gdnative.Bool {
 	log.Println("Calling ARVRPositionalTracker.GetTracksPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRPositionalTracker", "get_tracks_position")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_tracks_position", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the transform combining this device's orientation and position.
+        Returns the transform combining this device's orientation and position.
+	Args: [{ false adjust_by_reference_frame bool}], Returns: Transform
 */
-func (o *ARVRPositionalTracker) GetTransform(adjustByReferenceFrame gdnative.Bool) *Transform {
+
+func (o *ARVRPositionalTracker) GetTransform(adjustByReferenceFrame gdnative.Bool) gdnative.Transform {
 	log.Println("Calling ARVRPositionalTracker.GetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(adjustByReferenceFrame)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(adjustByReferenceFrame)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRPositionalTracker", "get_transform")
 
 	// Call the parent method.
+	// Transform
+	retPtr := gdnative.NewEmptyTransform()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_transform", goArguments, "*Transform")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransformFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the tracker's type.
+        Returns the tracker's type.
+	Args: [], Returns: enum.ARVRServer::TrackerType
 */
-func (o *ARVRPositionalTracker) GetType() gdnative.Int {
-	log.Println("Calling ARVRPositionalTracker.GetType()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_type", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false rumble float}], Returns: void
 */
+
 func (o *ARVRPositionalTracker) SetRumble(rumble gdnative.Float) {
 	log.Println("Calling ARVRPositionalTracker.SetRumble()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(rumble)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(rumble)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRPositionalTracker", "set_rumble")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_rumble", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ARVRPositionalTrackerImplementer is an interface for ARVRPositionalTracker objects.
-*/
-type ARVRPositionalTrackerImplementer interface {
-	Class
 }

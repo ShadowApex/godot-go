@@ -2,9 +2,11 @@ package navigationmeshinstance
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/navigationmesh"
+	"github.com/shadowapex/godot-go/godot/class/spatial"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewNavigationMeshInstanceFromPointer(ptr gdnative.Pointer) *NavigationMeshInstance {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := NavigationMeshInstance{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type NavigationMeshInstance struct {
-	Spatial
+	spatial.Spatial
 }
 
 func (o *NavigationMeshInstance) BaseClass() string {
@@ -28,84 +39,97 @@ func (o *NavigationMeshInstance) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: NavigationMesh
 */
-func (o *NavigationMeshInstance) GetNavigationMesh() *NavigationMesh {
+
+func (o *NavigationMeshInstance) GetNavigationMesh() navigationmesh.NavigationMesh {
 	log.Println("Calling NavigationMeshInstance.GetNavigationMesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMeshInstance", "get_navigation_mesh")
 
 	// Call the parent method.
+	// NavigationMesh
+	retPtr := navigationmesh.NewEmptyNavigationMesh()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_navigation_mesh", goArguments, "*NavigationMesh")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := navigationmesh.NewNavigationMeshFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NavigationMesh)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *NavigationMeshInstance) IsEnabled() gdnative.Bool {
 	log.Println("Calling NavigationMeshInstance.IsEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMeshInstance", "is_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enabled bool}], Returns: void
 */
+
 func (o *NavigationMeshInstance) SetEnabled(enabled gdnative.Bool) {
 	log.Println("Calling NavigationMeshInstance.SetEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMeshInstance", "set_enabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_enabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false navmesh NavigationMesh}], Returns: void
 */
-func (o *NavigationMeshInstance) SetNavigationMesh(navmesh *NavigationMesh) {
+
+func (o *NavigationMeshInstance) SetNavigationMesh(navmesh navigationmesh.NavigationMesh) {
 	log.Println("Calling NavigationMeshInstance.SetNavigationMesh()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(navmesh)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(navmesh.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationMeshInstance", "set_navigation_mesh")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_navigation_mesh", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   NavigationMeshInstanceImplementer is an interface for NavigationMeshInstance objects.
-*/
-type NavigationMeshInstanceImplementer interface {
-	Class
 }

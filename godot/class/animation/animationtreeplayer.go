@@ -2,7 +2,9 @@ package animation
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/node"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewAnimationTreePlayerFromPointer(ptr gdnative.Pointer) *AnimationTreePlayer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := AnimationTreePlayer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 A node graph tool for blending multiple animations bound to an [AnimationPlayer]. Especially useful for animating characters or other skeleton-based rigs. It can combine several animations to form a desired pose. It takes [Animation]s from an [AnimationPlayer] node and mixes them depending on the graph.
 */
 type AnimationTreePlayer struct {
-	Node
+	node.Node
 }
 
 func (o *AnimationTreePlayer) BaseClass() string {
@@ -26,1278 +37,1497 @@ func (o *AnimationTreePlayer) BaseClass() string {
 }
 
 /*
-   Adds a [code]type[/code] node to the graph with name [code]id[/code].
+        Adds a [code]type[/code] node to the graph with name [code]id[/code].
+	Args: [{ false type int} { false id String}], Returns: void
 */
+
 func (o *AnimationTreePlayer) AddNode(aType gdnative.Int, id gdnative.String) {
 	log.Println("Calling AnimationTreePlayer.AddNode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(aType)
-	goArguments[1] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(aType)
+	ptrArguments[1] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "add_node")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_node", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Shifts position in the animation timeline. Delta is the time in seconds to shift.
+        Shifts position in the animation timeline. Delta is the time in seconds to shift.
+	Args: [{ false delta float}], Returns: void
 */
+
 func (o *AnimationTreePlayer) Advance(delta gdnative.Float) {
 	log.Println("Calling AnimationTreePlayer.Advance()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(delta)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(delta)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "advance")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "advance", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the [AnimationPlayer]'s [Animation] bound to the [code]AnimationTreePlayer[/code]'s animation node with name [code]id[/code].
+        Returns the [AnimationPlayer]'s [Animation] bound to the [code]AnimationTreePlayer[/code]'s animation node with name [code]id[/code].
+	Args: [{ false id String}], Returns: Animation
 */
-func (o *AnimationTreePlayer) AnimationNodeGetAnimation(id gdnative.String) *Animation {
+
+func (o *AnimationTreePlayer) AnimationNodeGetAnimation(id gdnative.String) Animation {
 	log.Println("Calling AnimationTreePlayer.AnimationNodeGetAnimation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "animation_node_get_animation")
 
 	// Call the parent method.
+	// Animation
+	retPtr := NewEmptyAnimation()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "animation_node_get_animation", goArguments, "*Animation")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewAnimationFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Animation)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the name of the [member master_player]'s [Animation] bound to this animation node.
+        Returns the name of the [member master_player]'s [Animation] bound to this animation node.
+	Args: [{ false id String}], Returns: String
 */
+
 func (o *AnimationTreePlayer) AnimationNodeGetMasterAnimation(id gdnative.String) gdnative.String {
 	log.Println("Calling AnimationTreePlayer.AnimationNodeGetMasterAnimation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "animation_node_get_master_animation")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "animation_node_get_master_animation", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Binds a new [Animation] from the [member master_player] to the [code]AnimationTreePlayer[/code]'s animation node with name [code]id[/code].
+        Binds a new [Animation] from the [member master_player] to the [code]AnimationTreePlayer[/code]'s animation node with name [code]id[/code].
+	Args: [{ false id String} { false animation Animation}], Returns: void
 */
-func (o *AnimationTreePlayer) AnimationNodeSetAnimation(id gdnative.String, animation *Animation) {
+
+func (o *AnimationTreePlayer) AnimationNodeSetAnimation(id gdnative.String, animation Animation) {
 	log.Println("Calling AnimationTreePlayer.AnimationNodeSetAnimation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(animation)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromObject(animation.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "animation_node_set_animation")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "animation_node_set_animation", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]enable[/code] is [code]true[/code], the animation node with ID [code]id[/code] turns off the track modifying the property at [code]path[/code]. The modified node's children continue to animate.
+        If [code]enable[/code] is [code]true[/code], the animation node with ID [code]id[/code] turns off the track modifying the property at [code]path[/code]. The modified node's children continue to animate.
+	Args: [{ false id String} { false path NodePath} { false enable bool}], Returns: void
 */
-func (o *AnimationTreePlayer) AnimationNodeSetFilterPath(id gdnative.String, path *NodePath, enable gdnative.Bool) {
+
+func (o *AnimationTreePlayer) AnimationNodeSetFilterPath(id gdnative.String, path gdnative.NodePath, enable gdnative.Bool) {
 	log.Println("Calling AnimationTreePlayer.AnimationNodeSetFilterPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(path)
-	goArguments[2] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromNodePath(path)
+	ptrArguments[2] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "animation_node_set_filter_path")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "animation_node_set_filter_path", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Binds the [Animation] named [code]source[/code] from [member master_player] to the animation node [code]id[/code]. Recalculates caches.
+        Binds the [Animation] named [code]source[/code] from [member master_player] to the animation node [code]id[/code]. Recalculates caches.
+	Args: [{ false id String} { false source String}], Returns: void
 */
+
 func (o *AnimationTreePlayer) AnimationNodeSetMasterAnimation(id gdnative.String, source gdnative.String) {
 	log.Println("Calling AnimationTreePlayer.AnimationNodeSetMasterAnimation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(source)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromString(source)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "animation_node_set_master_animation")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "animation_node_set_master_animation", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns whether node [code]id[/code] and [code]dst_id[/code] are connected at the specified slot.
+        Returns whether node [code]id[/code] and [code]dst_id[/code] are connected at the specified slot.
+	Args: [{ false id String} { false dst_id String} { false dst_input_idx int}], Returns: bool
 */
+
 func (o *AnimationTreePlayer) AreNodesConnected(id gdnative.String, dstId gdnative.String, dstInputIdx gdnative.Int) gdnative.Bool {
 	log.Println("Calling AnimationTreePlayer.AreNodesConnected()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(dstId)
-	goArguments[2] = reflect.ValueOf(dstInputIdx)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromString(dstId)
+	ptrArguments[2] = gdnative.NewPointerFromInt(dstInputIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "are_nodes_connected")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "are_nodes_connected", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the blend amount of a Blend2 node given its name.
+        Returns the blend amount of a Blend2 node given its name.
+	Args: [{ false id String}], Returns: float
 */
+
 func (o *AnimationTreePlayer) Blend2NodeGetAmount(id gdnative.String) gdnative.Float {
 	log.Println("Calling AnimationTreePlayer.Blend2NodeGetAmount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "blend2_node_get_amount")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "blend2_node_get_amount", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets the blend amount of a Blend2 node given its name and value. A Blend2 Node blends two animations with the amount between 0 and 1. At 0, Output is input a. Towards 1, the influence of a gets lessened, the influence of b gets raised. At 1, Output is input b.
+        Sets the blend amount of a Blend2 node given its name and value. A Blend2 Node blends two animations with the amount between 0 and 1. At 0, Output is input a. Towards 1, the influence of a gets lessened, the influence of b gets raised. At 1, Output is input b.
+	Args: [{ false id String} { false blend float}], Returns: void
 */
+
 func (o *AnimationTreePlayer) Blend2NodeSetAmount(id gdnative.String, blend gdnative.Float) {
 	log.Println("Calling AnimationTreePlayer.Blend2NodeSetAmount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(blend)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(blend)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "blend2_node_set_amount")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "blend2_node_set_amount", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]enable[/code] is [code]true[/code], the blend2 node with ID [code]id[/code] turns off the track modifying the property at [code]path[/code]. The modified node's children continue to animate.
+        If [code]enable[/code] is [code]true[/code], the blend2 node with ID [code]id[/code] turns off the track modifying the property at [code]path[/code]. The modified node's children continue to animate.
+	Args: [{ false id String} { false path NodePath} { false enable bool}], Returns: void
 */
-func (o *AnimationTreePlayer) Blend2NodeSetFilterPath(id gdnative.String, path *NodePath, enable gdnative.Bool) {
+
+func (o *AnimationTreePlayer) Blend2NodeSetFilterPath(id gdnative.String, path gdnative.NodePath, enable gdnative.Bool) {
 	log.Println("Calling AnimationTreePlayer.Blend2NodeSetFilterPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(path)
-	goArguments[2] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromNodePath(path)
+	ptrArguments[2] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "blend2_node_set_filter_path")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "blend2_node_set_filter_path", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the blend amount of a Blend3 node given its name.
+        Returns the blend amount of a Blend3 node given its name.
+	Args: [{ false id String}], Returns: float
 */
+
 func (o *AnimationTreePlayer) Blend3NodeGetAmount(id gdnative.String) gdnative.Float {
 	log.Println("Calling AnimationTreePlayer.Blend3NodeGetAmount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "blend3_node_get_amount")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "blend3_node_get_amount", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets the blend amount of a Blend3 node given its name and value. A Blend3 Node blends three animations with the amount between -1 and 1. At -1, Output is input b-. From -1 to 0, the influence of b- gets lessened, the influence of a gets raised and the influence of b+ is 0. At 0, Output is input a. From 0 to 1, the influence of a gets lessened, the influence of b+ gets raised and the influence of b+ is 0. At 1, Output is input b+.
+        Sets the blend amount of a Blend3 node given its name and value. A Blend3 Node blends three animations with the amount between -1 and 1. At -1, Output is input b-. From -1 to 0, the influence of b- gets lessened, the influence of a gets raised and the influence of b+ is 0. At 0, Output is input a. From 0 to 1, the influence of a gets lessened, the influence of b+ gets raised and the influence of b+ is 0. At 1, Output is input b+.
+	Args: [{ false id String} { false blend float}], Returns: void
 */
+
 func (o *AnimationTreePlayer) Blend3NodeSetAmount(id gdnative.String, blend gdnative.Float) {
 	log.Println("Calling AnimationTreePlayer.Blend3NodeSetAmount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(blend)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(blend)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "blend3_node_set_amount")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "blend3_node_set_amount", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the blend amount of a Blend4 node given its name.
+        Returns the blend amount of a Blend4 node given its name.
+	Args: [{ false id String}], Returns: Vector2
 */
-func (o *AnimationTreePlayer) Blend4NodeGetAmount(id gdnative.String) *Vector2 {
+
+func (o *AnimationTreePlayer) Blend4NodeGetAmount(id gdnative.String) gdnative.Vector2 {
 	log.Println("Calling AnimationTreePlayer.Blend4NodeGetAmount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "blend4_node_get_amount")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "blend4_node_get_amount", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets the blend amount of a Blend4 node given its name and value. A Blend4 Node blends two pairs of animations. The two pairs are blended like blend2 and then added together.
+        Sets the blend amount of a Blend4 node given its name and value. A Blend4 Node blends two pairs of animations. The two pairs are blended like blend2 and then added together.
+	Args: [{ false id String} { false blend Vector2}], Returns: void
 */
-func (o *AnimationTreePlayer) Blend4NodeSetAmount(id gdnative.String, blend *Vector2) {
+
+func (o *AnimationTreePlayer) Blend4NodeSetAmount(id gdnative.String, blend gdnative.Vector2) {
 	log.Println("Calling AnimationTreePlayer.Blend4NodeSetAmount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(blend)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(blend)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "blend4_node_set_amount")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "blend4_node_set_amount", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Connects node [code]id[/code] to [code]dst_id[/code] at the specified input slot.
+        Connects node [code]id[/code] to [code]dst_id[/code] at the specified input slot.
+	Args: [{ false id String} { false dst_id String} { false dst_input_idx int}], Returns: enum.Error
 */
-func (o *AnimationTreePlayer) ConnectNodes(id gdnative.String, dstId gdnative.String, dstInputIdx gdnative.Int) gdnative.Int {
-	log.Println("Calling AnimationTreePlayer.ConnectNodes()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(dstId)
-	goArguments[2] = reflect.ValueOf(dstInputIdx)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "connect_nodes", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Disconnects nodes connected to [code]id[/code] at the specified input slot.
+        Disconnects nodes connected to [code]id[/code] at the specified input slot.
+	Args: [{ false id String} { false dst_input_idx int}], Returns: void
 */
+
 func (o *AnimationTreePlayer) DisconnectNodes(id gdnative.String, dstInputIdx gdnative.Int) {
 	log.Println("Calling AnimationTreePlayer.DisconnectNodes()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(dstInputIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromInt(dstInputIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "disconnect_nodes")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "disconnect_nodes", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.AnimationTreePlayer::AnimationProcessMode
 */
-func (o *AnimationTreePlayer) GetAnimationProcessMode() gdnative.Int {
-	log.Println("Calling AnimationTreePlayer.GetAnimationProcessMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_animation_process_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: NodePath
 */
-func (o *AnimationTreePlayer) GetBasePath() *NodePath {
+
+func (o *AnimationTreePlayer) GetBasePath() gdnative.NodePath {
 	log.Println("Calling AnimationTreePlayer.GetBasePath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "get_base_path")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_base_path", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: NodePath
 */
-func (o *AnimationTreePlayer) GetMasterPlayer() *NodePath {
+
+func (o *AnimationTreePlayer) GetMasterPlayer() gdnative.NodePath {
 	log.Println("Calling AnimationTreePlayer.GetMasterPlayer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "get_master_player")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_master_player", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns a [PoolStringArray] containing the name of all nodes.
+        Returns a [PoolStringArray] containing the name of all nodes.
+	Args: [], Returns: PoolStringArray
 */
-func (o *AnimationTreePlayer) GetNodeList() *PoolStringArray {
+
+func (o *AnimationTreePlayer) GetNodeList() gdnative.PoolStringArray {
 	log.Println("Calling AnimationTreePlayer.GetNodeList()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "get_node_list")
 
 	// Call the parent method.
+	// PoolStringArray
+	retPtr := gdnative.NewEmptyPoolStringArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_list", goArguments, "*PoolStringArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolStringArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *AnimationTreePlayer) IsActive() gdnative.Bool {
 	log.Println("Calling AnimationTreePlayer.IsActive()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "is_active")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_active", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns mix amount of a Mix node given its name.
+        Returns mix amount of a Mix node given its name.
+	Args: [{ false id String}], Returns: float
 */
+
 func (o *AnimationTreePlayer) MixNodeGetAmount(id gdnative.String) gdnative.Float {
 	log.Println("Calling AnimationTreePlayer.MixNodeGetAmount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "mix_node_get_amount")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "mix_node_get_amount", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets mix amount of a Mix node given its name and value. A Mix node adds input b to input a by a the amount given by ratio.
+        Sets mix amount of a Mix node given its name and value. A Mix node adds input b to input a by a the amount given by ratio.
+	Args: [{ false id String} { false ratio float}], Returns: void
 */
+
 func (o *AnimationTreePlayer) MixNodeSetAmount(id gdnative.String, ratio gdnative.Float) {
 	log.Println("Calling AnimationTreePlayer.MixNodeSetAmount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(ratio)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(ratio)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "mix_node_set_amount")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "mix_node_set_amount", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Check if a node exists (by name).
+        Check if a node exists (by name).
+	Args: [{ false node String}], Returns: bool
 */
+
 func (o *AnimationTreePlayer) NodeExists(node gdnative.String) gdnative.Bool {
 	log.Println("Calling AnimationTreePlayer.NodeExists()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(node)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(node)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "node_exists")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "node_exists", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the input count for a given node. Different types of nodes have different amount of inputs.
+        Return the input count for a given node. Different types of nodes have different amount of inputs.
+	Args: [{ false id String}], Returns: int
 */
+
 func (o *AnimationTreePlayer) NodeGetInputCount(id gdnative.String) gdnative.Int {
 	log.Println("Calling AnimationTreePlayer.NodeGetInputCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "node_get_input_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "node_get_input_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the input source for a given node input.
+        Return the input source for a given node input.
+	Args: [{ false id String} { false idx int}], Returns: String
 */
+
 func (o *AnimationTreePlayer) NodeGetInputSource(id gdnative.String, idx gdnative.Int) gdnative.String {
 	log.Println("Calling AnimationTreePlayer.NodeGetInputSource()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "node_get_input_source")
 
 	// Call the parent method.
+	// String
+	retPtr := gdnative.NewEmptyString()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "node_get_input_source", goArguments, "gdnative.String")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewStringFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.String)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns position of a node in the graph given its name.
+        Returns position of a node in the graph given its name.
+	Args: [{ false id String}], Returns: Vector2
 */
-func (o *AnimationTreePlayer) NodeGetPosition(id gdnative.String) *Vector2 {
+
+func (o *AnimationTreePlayer) NodeGetPosition(id gdnative.String) gdnative.Vector2 {
 	log.Println("Calling AnimationTreePlayer.NodeGetPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "node_get_position")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "node_get_position", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get the node type, will return from NODE_* enum.
+        Get the node type, will return from NODE_* enum.
+	Args: [{ false id String}], Returns: enum.AnimationTreePlayer::NodeType
 */
-func (o *AnimationTreePlayer) NodeGetType(id gdnative.String) gdnative.Int {
-	log.Println("Calling AnimationTreePlayer.NodeGetType()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "node_get_type", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Rename a node in the graph.
+        Rename a node in the graph.
+	Args: [{ false node String} { false new_name String}], Returns: enum.Error
 */
-func (o *AnimationTreePlayer) NodeRename(node gdnative.String, newName gdnative.String) gdnative.Int {
-	log.Println("Calling AnimationTreePlayer.NodeRename()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(node)
-	goArguments[1] = reflect.ValueOf(newName)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "node_rename", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Sets position of a node in the graph given its name and position.
+        Sets position of a node in the graph given its name and position.
+	Args: [{ false id String} { false screen_position Vector2}], Returns: void
 */
-func (o *AnimationTreePlayer) NodeSetPosition(id gdnative.String, screenPosition *Vector2) {
+
+func (o *AnimationTreePlayer) NodeSetPosition(id gdnative.String, screenPosition gdnative.Vector2) {
 	log.Println("Calling AnimationTreePlayer.NodeSetPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(screenPosition)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromVector2(screenPosition)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "node_set_position")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "node_set_position", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns autostart delay of a OneShot node given its name.
+        Returns autostart delay of a OneShot node given its name.
+	Args: [{ false id String}], Returns: float
 */
+
 func (o *AnimationTreePlayer) OneshotNodeGetAutorestartDelay(id gdnative.String) gdnative.Float {
 	log.Println("Calling AnimationTreePlayer.OneshotNodeGetAutorestartDelay()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "oneshot_node_get_autorestart_delay")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "oneshot_node_get_autorestart_delay", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns autostart random delay of a OneShot node given its name.
+        Returns autostart random delay of a OneShot node given its name.
+	Args: [{ false id String}], Returns: float
 */
+
 func (o *AnimationTreePlayer) OneshotNodeGetAutorestartRandomDelay(id gdnative.String) gdnative.Float {
 	log.Println("Calling AnimationTreePlayer.OneshotNodeGetAutorestartRandomDelay()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "oneshot_node_get_autorestart_random_delay")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "oneshot_node_get_autorestart_random_delay", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns fade in time of a OneShot node given its name.
+        Returns fade in time of a OneShot node given its name.
+	Args: [{ false id String}], Returns: float
 */
+
 func (o *AnimationTreePlayer) OneshotNodeGetFadeinTime(id gdnative.String) gdnative.Float {
 	log.Println("Calling AnimationTreePlayer.OneshotNodeGetFadeinTime()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "oneshot_node_get_fadein_time")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "oneshot_node_get_fadein_time", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns fade out time of a OneShot node given its name.
+        Returns fade out time of a OneShot node given its name.
+	Args: [{ false id String}], Returns: float
 */
+
 func (o *AnimationTreePlayer) OneshotNodeGetFadeoutTime(id gdnative.String) gdnative.Float {
 	log.Println("Calling AnimationTreePlayer.OneshotNodeGetFadeoutTime()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "oneshot_node_get_fadeout_time")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "oneshot_node_get_fadeout_time", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns whether a OneShot node will auto restart given its name.
+        Returns whether a OneShot node will auto restart given its name.
+	Args: [{ false id String}], Returns: bool
 */
+
 func (o *AnimationTreePlayer) OneshotNodeHasAutorestart(id gdnative.String) gdnative.Bool {
 	log.Println("Calling AnimationTreePlayer.OneshotNodeHasAutorestart()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "oneshot_node_has_autorestart")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "oneshot_node_has_autorestart", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns whether a OneShot node is active given its name.
+        Returns whether a OneShot node is active given its name.
+	Args: [{ false id String}], Returns: bool
 */
+
 func (o *AnimationTreePlayer) OneshotNodeIsActive(id gdnative.String) gdnative.Bool {
 	log.Println("Calling AnimationTreePlayer.OneshotNodeIsActive()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "oneshot_node_is_active")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "oneshot_node_is_active", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets autorestart property of a OneShot node given its name and value.
+        Sets autorestart property of a OneShot node given its name and value.
+	Args: [{ false id String} { false enable bool}], Returns: void
 */
+
 func (o *AnimationTreePlayer) OneshotNodeSetAutorestart(id gdnative.String, enable gdnative.Bool) {
 	log.Println("Calling AnimationTreePlayer.OneshotNodeSetAutorestart()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "oneshot_node_set_autorestart")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "oneshot_node_set_autorestart", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets autorestart delay of a OneShot node given its name and value in seconds.
+        Sets autorestart delay of a OneShot node given its name and value in seconds.
+	Args: [{ false id String} { false delay_sec float}], Returns: void
 */
+
 func (o *AnimationTreePlayer) OneshotNodeSetAutorestartDelay(id gdnative.String, delaySec gdnative.Float) {
 	log.Println("Calling AnimationTreePlayer.OneshotNodeSetAutorestartDelay()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(delaySec)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(delaySec)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "oneshot_node_set_autorestart_delay")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "oneshot_node_set_autorestart_delay", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets autorestart random delay of a OneShot node given its name and value in seconds.
+        Sets autorestart random delay of a OneShot node given its name and value in seconds.
+	Args: [{ false id String} { false rand_sec float}], Returns: void
 */
+
 func (o *AnimationTreePlayer) OneshotNodeSetAutorestartRandomDelay(id gdnative.String, randSec gdnative.Float) {
 	log.Println("Calling AnimationTreePlayer.OneshotNodeSetAutorestartRandomDelay()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(randSec)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(randSec)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "oneshot_node_set_autorestart_random_delay")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "oneshot_node_set_autorestart_random_delay", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets fade in time of a OneShot node given its name and value in seconds.
+        Sets fade in time of a OneShot node given its name and value in seconds.
+	Args: [{ false id String} { false time_sec float}], Returns: void
 */
+
 func (o *AnimationTreePlayer) OneshotNodeSetFadeinTime(id gdnative.String, timeSec gdnative.Float) {
 	log.Println("Calling AnimationTreePlayer.OneshotNodeSetFadeinTime()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(timeSec)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(timeSec)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "oneshot_node_set_fadein_time")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "oneshot_node_set_fadein_time", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets fade out time of a OneShot node given its name and value in seconds.
+        Sets fade out time of a OneShot node given its name and value in seconds.
+	Args: [{ false id String} { false time_sec float}], Returns: void
 */
+
 func (o *AnimationTreePlayer) OneshotNodeSetFadeoutTime(id gdnative.String, timeSec gdnative.Float) {
 	log.Println("Calling AnimationTreePlayer.OneshotNodeSetFadeoutTime()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(timeSec)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(timeSec)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "oneshot_node_set_fadeout_time")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "oneshot_node_set_fadeout_time", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   If [code]enable[/code] is [code]true[/code], the oneshot node with ID [code]id[/code] turns off the track modifying the property at [code]path[/code]. The modified node's children continue to animate.
+        If [code]enable[/code] is [code]true[/code], the oneshot node with ID [code]id[/code] turns off the track modifying the property at [code]path[/code]. The modified node's children continue to animate.
+	Args: [{ false id String} { false path NodePath} { false enable bool}], Returns: void
 */
-func (o *AnimationTreePlayer) OneshotNodeSetFilterPath(id gdnative.String, path *NodePath, enable gdnative.Bool) {
+
+func (o *AnimationTreePlayer) OneshotNodeSetFilterPath(id gdnative.String, path gdnative.NodePath, enable gdnative.Bool) {
 	log.Println("Calling AnimationTreePlayer.OneshotNodeSetFilterPath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(path)
-	goArguments[2] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromNodePath(path)
+	ptrArguments[2] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "oneshot_node_set_filter_path")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "oneshot_node_set_filter_path", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Starts a OneShot node given its name.
+        Starts a OneShot node given its name.
+	Args: [{ false id String}], Returns: void
 */
+
 func (o *AnimationTreePlayer) OneshotNodeStart(id gdnative.String) {
 	log.Println("Calling AnimationTreePlayer.OneshotNodeStart()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "oneshot_node_start")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "oneshot_node_start", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Stops the OneShot node with name [code]id[/code].
+        Stops the OneShot node with name [code]id[/code].
+	Args: [{ false id String}], Returns: void
 */
+
 func (o *AnimationTreePlayer) OneshotNodeStop(id gdnative.String) {
 	log.Println("Calling AnimationTreePlayer.OneshotNodeStop()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "oneshot_node_stop")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "oneshot_node_stop", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Manually recalculates the cache of track information generated from animation nodes. Needed when external sources modify the animation nodes' state.
+        Manually recalculates the cache of track information generated from animation nodes. Needed when external sources modify the animation nodes' state.
+	Args: [], Returns: void
 */
+
 func (o *AnimationTreePlayer) RecomputeCaches() {
 	log.Println("Calling AnimationTreePlayer.RecomputeCaches()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "recompute_caches")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "recompute_caches", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Removes the animation node with name [code]id[/code].
+        Removes the animation node with name [code]id[/code].
+	Args: [{ false id String}], Returns: void
 */
+
 func (o *AnimationTreePlayer) RemoveNode(id gdnative.String) {
 	log.Println("Calling AnimationTreePlayer.RemoveNode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "remove_node")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_node", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Resets this [code]AnimationTreePlayer[/code].
+        Resets this [code]AnimationTreePlayer[/code].
+	Args: [], Returns: void
 */
+
 func (o *AnimationTreePlayer) Reset() {
 	log.Println("Calling AnimationTreePlayer.Reset()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "reset")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "reset", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enabled bool}], Returns: void
 */
+
 func (o *AnimationTreePlayer) SetActive(enabled gdnative.Bool) {
 	log.Println("Calling AnimationTreePlayer.SetActive()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "set_active")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_active", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *AnimationTreePlayer) SetAnimationProcessMode(mode gdnative.Int) {
 	log.Println("Calling AnimationTreePlayer.SetAnimationProcessMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "set_animation_process_mode")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_animation_process_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false path NodePath}], Returns: void
 */
-func (o *AnimationTreePlayer) SetBasePath(path *NodePath) {
+
+func (o *AnimationTreePlayer) SetBasePath(path gdnative.NodePath) {
 	log.Println("Calling AnimationTreePlayer.SetBasePath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "set_base_path")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_base_path", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false nodepath NodePath}], Returns: void
 */
-func (o *AnimationTreePlayer) SetMasterPlayer(nodepath *NodePath) {
+
+func (o *AnimationTreePlayer) SetMasterPlayer(nodepath gdnative.NodePath) {
 	log.Println("Calling AnimationTreePlayer.SetMasterPlayer()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(nodepath)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(nodepath)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "set_master_player")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_master_player", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns time scale value of the TimeScale node with name [code]id[/code].
+        Returns time scale value of the TimeScale node with name [code]id[/code].
+	Args: [{ false id String}], Returns: float
 */
+
 func (o *AnimationTreePlayer) TimescaleNodeGetScale(id gdnative.String) gdnative.Float {
 	log.Println("Calling AnimationTreePlayer.TimescaleNodeGetScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "timescale_node_get_scale")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "timescale_node_get_scale", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets the time scale of the TimeScale node with name [code]id[/code] to [code]scale[/code]. The timescale node is used to speed [Animation]s up if the scale is above 1 or slow them down if it is below 1. If applied after a blend or mix, affects all input animations to that blend or mix.
+        Sets the time scale of the TimeScale node with name [code]id[/code] to [code]scale[/code]. The timescale node is used to speed [Animation]s up if the scale is above 1 or slow them down if it is below 1. If applied after a blend or mix, affects all input animations to that blend or mix.
+	Args: [{ false id String} { false scale float}], Returns: void
 */
+
 func (o *AnimationTreePlayer) TimescaleNodeSetScale(id gdnative.String, scale gdnative.Float) {
 	log.Println("Calling AnimationTreePlayer.TimescaleNodeSetScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(scale)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(scale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "timescale_node_set_scale")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "timescale_node_set_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Sets the time seek value of the TimeSeek node with name [code]id[/code] to [code]seconds[/code] This functions as a seek in the [Animation] or the blend or mix of [Animation]s input in it.
+        Sets the time seek value of the TimeSeek node with name [code]id[/code] to [code]seconds[/code] This functions as a seek in the [Animation] or the blend or mix of [Animation]s input in it.
+	Args: [{ false id String} { false seconds float}], Returns: void
 */
+
 func (o *AnimationTreePlayer) TimeseekNodeSeek(id gdnative.String, seconds gdnative.Float) {
 	log.Println("Calling AnimationTreePlayer.TimeseekNodeSeek()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(seconds)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(seconds)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "timeseek_node_seek")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "timeseek_node_seek", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Deletes the input at [code]input_idx[/code] for the transition node with name [code]id[/code].
+        Deletes the input at [code]input_idx[/code] for the transition node with name [code]id[/code].
+	Args: [{ false id String} { false input_idx int}], Returns: void
 */
+
 func (o *AnimationTreePlayer) TransitionNodeDeleteInput(id gdnative.String, inputIdx gdnative.Int) {
 	log.Println("Calling AnimationTreePlayer.TransitionNodeDeleteInput()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(inputIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromInt(inputIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "transition_node_delete_input")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "transition_node_delete_input", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the index of the currently evaluated input for the transition node with name [code]id[/code].
+        Returns the index of the currently evaluated input for the transition node with name [code]id[/code].
+	Args: [{ false id String}], Returns: int
 */
+
 func (o *AnimationTreePlayer) TransitionNodeGetCurrent(id gdnative.String) gdnative.Int {
 	log.Println("Calling AnimationTreePlayer.TransitionNodeGetCurrent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "transition_node_get_current")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "transition_node_get_current", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the number of inputs for the transition node with name [code]id[/code]. You can add inputs by rightclicking on the transition node.
+        Returns the number of inputs for the transition node with name [code]id[/code]. You can add inputs by rightclicking on the transition node.
+	Args: [{ false id String}], Returns: int
 */
+
 func (o *AnimationTreePlayer) TransitionNodeGetInputCount(id gdnative.String) gdnative.Int {
 	log.Println("Calling AnimationTreePlayer.TransitionNodeGetInputCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "transition_node_get_input_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "transition_node_get_input_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the cross fade time for the transition node with name [code]id[/code].
+        Returns the cross fade time for the transition node with name [code]id[/code].
+	Args: [{ false id String}], Returns: float
 */
+
 func (o *AnimationTreePlayer) TransitionNodeGetXfadeTime(id gdnative.String) gdnative.Float {
 	log.Println("Calling AnimationTreePlayer.TransitionNodeGetXfadeTime()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(id)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "transition_node_get_xfade_time")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "transition_node_get_xfade_time", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns [code]true[/code] if the input at [code]input_idx[/code] on transition node with name [code]id[/code] is set to automatically advance to the next input upon completion.
+        Returns [code]true[/code] if the input at [code]input_idx[/code] on transition node with name [code]id[/code] is set to automatically advance to the next input upon completion.
+	Args: [{ false id String} { false input_idx int}], Returns: bool
 */
+
 func (o *AnimationTreePlayer) TransitionNodeHasInputAutoAdvance(id gdnative.String, inputIdx gdnative.Int) gdnative.Bool {
 	log.Println("Calling AnimationTreePlayer.TransitionNodeHasInputAutoAdvance()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(inputIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromInt(inputIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "transition_node_has_input_auto_advance")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "transition_node_has_input_auto_advance", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   The transition node with name [code]id[/code] sets its current input at [code]input_idx[/code].
+        The transition node with name [code]id[/code] sets its current input at [code]input_idx[/code].
+	Args: [{ false id String} { false input_idx int}], Returns: void
 */
+
 func (o *AnimationTreePlayer) TransitionNodeSetCurrent(id gdnative.String, inputIdx gdnative.Int) {
 	log.Println("Calling AnimationTreePlayer.TransitionNodeSetCurrent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(inputIdx)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromInt(inputIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "transition_node_set_current")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "transition_node_set_current", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   The transition node with name [code]id[/code] advances to its next input automatically when the input at [code]input_idx[/code] completes.
+        The transition node with name [code]id[/code] advances to its next input automatically when the input at [code]input_idx[/code] completes.
+	Args: [{ false id String} { false input_idx int} { false enable bool}], Returns: void
 */
+
 func (o *AnimationTreePlayer) TransitionNodeSetInputAutoAdvance(id gdnative.String, inputIdx gdnative.Int, enable gdnative.Bool) {
 	log.Println("Calling AnimationTreePlayer.TransitionNodeSetInputAutoAdvance()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 3, 3)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(inputIdx)
-	goArguments[2] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromInt(inputIdx)
+	ptrArguments[2] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "transition_node_set_input_auto_advance")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "transition_node_set_input_auto_advance", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Resizes the number of inputs available for the transition node with name [code]id[/code].
+        Resizes the number of inputs available for the transition node with name [code]id[/code].
+	Args: [{ false id String} { false count int}], Returns: void
 */
+
 func (o *AnimationTreePlayer) TransitionNodeSetInputCount(id gdnative.String, count gdnative.Int) {
 	log.Println("Calling AnimationTreePlayer.TransitionNodeSetInputCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(count)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromInt(count)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "transition_node_set_input_count")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "transition_node_set_input_count", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   The transition node with name [code]id[/code] sets its cross fade time to [code]time_sec[/code].
+        The transition node with name [code]id[/code] sets its cross fade time to [code]time_sec[/code].
+	Args: [{ false id String} { false time_sec float}], Returns: void
 */
+
 func (o *AnimationTreePlayer) TransitionNodeSetXfadeTime(id gdnative.String, timeSec gdnative.Float) {
 	log.Println("Calling AnimationTreePlayer.TransitionNodeSetXfadeTime()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(id)
-	goArguments[1] = reflect.ValueOf(timeSec)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(timeSec)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "transition_node_set_xfade_time")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "transition_node_set_xfade_time", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   AnimationTreePlayerImplementer is an interface for AnimationTreePlayer objects.
-*/
-type AnimationTreePlayerImplementer interface {
-	Class
 }

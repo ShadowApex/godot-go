@@ -2,7 +2,10 @@ package visualscript
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -13,6 +16,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewVisualScriptPreloadFromPointer(ptr gdnative.Pointer) *VisualScriptPreload {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := VisualScriptPreload{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 /*
 Undocumented
@@ -26,46 +38,49 @@ func (o *VisualScriptPreload) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Resource
 */
-func (o *VisualScriptPreload) GetPreload() *Resource {
+
+func (o *VisualScriptPreload) GetPreload() resource.Resource {
 	log.Println("Calling VisualScriptPreload.GetPreload()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptPreload", "get_preload")
 
 	// Call the parent method.
+	// Resource
+	retPtr := resource.NewEmptyResource()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_preload", goArguments, "*Resource")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := resource.NewResourceFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Resource)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false resource Resource}], Returns: void
 */
-func (o *VisualScriptPreload) SetPreload(resource *Resource) {
+
+func (o *VisualScriptPreload) SetPreload(resource resource.Resource) {
 	log.Println("Calling VisualScriptPreload.SetPreload()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(resource)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(resource.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptPreload", "set_preload")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_preload", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   VisualScriptPreloadImplementer is an interface for VisualScriptPreload objects.
-*/
-type VisualScriptPreloadImplementer interface {
-	Class
 }

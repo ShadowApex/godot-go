@@ -2,9 +2,9 @@ package navigationpolygon
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewNavigationPolygonFromPointer(ptr gdnative.Pointer) *NavigationPolygon {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := NavigationPolygon{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type NavigationPolygon struct {
-	Resource
+	resource.Resource
 }
 
 func (o *NavigationPolygon) BaseClass() string {
@@ -28,347 +37,426 @@ func (o *NavigationPolygon) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Array
 */
-func (o *NavigationPolygon) X_GetOutlines() *Array {
+
+func (o *NavigationPolygon) X_GetOutlines() gdnative.Array {
 	log.Println("Calling NavigationPolygon.X_GetOutlines()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygon", "_get_outlines")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_outlines", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Array
 */
-func (o *NavigationPolygon) X_GetPolygons() *Array {
+
+func (o *NavigationPolygon) X_GetPolygons() gdnative.Array {
 	log.Println("Calling NavigationPolygon.X_GetPolygons()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygon", "_get_polygons")
 
 	// Call the parent method.
+	// Array
+	retPtr := gdnative.NewEmptyArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "_get_polygons", goArguments, "*Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false outlines Array}], Returns: void
 */
-func (o *NavigationPolygon) X_SetOutlines(outlines *Array) {
+
+func (o *NavigationPolygon) X_SetOutlines(outlines gdnative.Array) {
 	log.Println("Calling NavigationPolygon.X_SetOutlines()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(outlines)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromArray(outlines)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygon", "_set_outlines")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_outlines", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false polygons Array}], Returns: void
 */
-func (o *NavigationPolygon) X_SetPolygons(polygons *Array) {
+
+func (o *NavigationPolygon) X_SetPolygons(polygons gdnative.Array) {
 	log.Println("Calling NavigationPolygon.X_SetPolygons()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(polygons)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromArray(polygons)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygon", "_set_polygons")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_set_polygons", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *NavigationPolygon) AddOutline(outline *PoolVector2Array) {
+	Args: [{ false outline PoolVector2Array}], Returns: void
+*/
+
+func (o *NavigationPolygon) AddOutline(outline gdnative.PoolVector2Array) {
 	log.Println("Calling NavigationPolygon.AddOutline()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(outline)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(outline)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygon", "add_outline")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_outline", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *NavigationPolygon) AddOutlineAtIndex(outline *PoolVector2Array, index gdnative.Int) {
+	Args: [{ false outline PoolVector2Array} { false index int}], Returns: void
+*/
+
+func (o *NavigationPolygon) AddOutlineAtIndex(outline gdnative.PoolVector2Array, index gdnative.Int) {
 	log.Println("Calling NavigationPolygon.AddOutlineAtIndex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(outline)
-	goArguments[1] = reflect.ValueOf(index)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(outline)
+	ptrArguments[1] = gdnative.NewPointerFromInt(index)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygon", "add_outline_at_index")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_outline_at_index", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *NavigationPolygon) AddPolygon(polygon *PoolIntArray) {
+	Args: [{ false polygon PoolIntArray}], Returns: void
+*/
+
+func (o *NavigationPolygon) AddPolygon(polygon gdnative.PoolIntArray) {
 	log.Println("Calling NavigationPolygon.AddPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(polygon)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolIntArray(polygon)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygon", "add_polygon")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "add_polygon", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *NavigationPolygon) ClearOutlines() {
 	log.Println("Calling NavigationPolygon.ClearOutlines()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygon", "clear_outlines")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear_outlines", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *NavigationPolygon) ClearPolygons() {
 	log.Println("Calling NavigationPolygon.ClearPolygons()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygon", "clear_polygons")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "clear_polygons", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *NavigationPolygon) GetOutline(idx gdnative.Int) *PoolVector2Array {
+	Args: [{ false idx int}], Returns: PoolVector2Array
+*/
+
+func (o *NavigationPolygon) GetOutline(idx gdnative.Int) gdnative.PoolVector2Array {
 	log.Println("Calling NavigationPolygon.GetOutline()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygon", "get_outline")
 
 	// Call the parent method.
+	// PoolVector2Array
+	retPtr := gdnative.NewEmptyPoolVector2Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_outline", goArguments, "*PoolVector2Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector2Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: int
+*/
+
 func (o *NavigationPolygon) GetOutlineCount() gdnative.Int {
 	log.Println("Calling NavigationPolygon.GetOutlineCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygon", "get_outline_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_outline_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *NavigationPolygon) GetPolygon(idx gdnative.Int) *PoolIntArray {
+	Args: [{ false idx int}], Returns: PoolIntArray
+*/
+
+func (o *NavigationPolygon) GetPolygon(idx gdnative.Int) gdnative.PoolIntArray {
 	log.Println("Calling NavigationPolygon.GetPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygon", "get_polygon")
 
 	// Call the parent method.
+	// PoolIntArray
+	retPtr := gdnative.NewEmptyPoolIntArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_polygon", goArguments, "*PoolIntArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolIntArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: int
+*/
+
 func (o *NavigationPolygon) GetPolygonCount() gdnative.Int {
 	log.Println("Calling NavigationPolygon.GetPolygonCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygon", "get_polygon_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_polygon_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
-func (o *NavigationPolygon) GetVertices() *PoolVector2Array {
+	Args: [], Returns: PoolVector2Array
+*/
+
+func (o *NavigationPolygon) GetVertices() gdnative.PoolVector2Array {
 	log.Println("Calling NavigationPolygon.GetVertices()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygon", "get_vertices")
 
 	// Call the parent method.
+	// PoolVector2Array
+	retPtr := gdnative.NewEmptyPoolVector2Array()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_vertices", goArguments, "*PoolVector2Array")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolVector2Array)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
 
- */
+	Args: [], Returns: void
+*/
+
 func (o *NavigationPolygon) MakePolygonsFromOutlines() {
 	log.Println("Calling NavigationPolygon.MakePolygonsFromOutlines()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygon", "make_polygons_from_outlines")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "make_polygons_from_outlines", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
+	Args: [{ false idx int}], Returns: void
+*/
+
 func (o *NavigationPolygon) RemoveOutline(idx gdnative.Int) {
 	log.Println("Calling NavigationPolygon.RemoveOutline()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(idx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygon", "remove_outline")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "remove_outline", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *NavigationPolygon) SetOutline(idx gdnative.Int, outline *PoolVector2Array) {
+	Args: [{ false idx int} { false outline PoolVector2Array}], Returns: void
+*/
+
+func (o *NavigationPolygon) SetOutline(idx gdnative.Int, outline gdnative.PoolVector2Array) {
 	log.Println("Calling NavigationPolygon.SetOutline()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(idx)
-	goArguments[1] = reflect.ValueOf(outline)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+	ptrArguments[1] = gdnative.NewPointerFromPoolVector2Array(outline)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygon", "set_outline")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_outline", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
 
- */
-func (o *NavigationPolygon) SetVertices(vertices *PoolVector2Array) {
+	Args: [{ false vertices PoolVector2Array}], Returns: void
+*/
+
+func (o *NavigationPolygon) SetVertices(vertices gdnative.PoolVector2Array) {
 	log.Println("Calling NavigationPolygon.SetVertices()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(vertices)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(vertices)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygon", "set_vertices")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_vertices", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   NavigationPolygonImplementer is an interface for NavigationPolygon objects.
-*/
-type NavigationPolygonImplementer interface {
-	Class
 }

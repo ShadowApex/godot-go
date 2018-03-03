@@ -2,7 +2,8 @@ package audioeffect
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
 )
 
 /*------------------------------------------------------------------------------
@@ -13,6 +14,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewAudioEffectAmplifyFromPointer(ptr gdnative.Pointer) *AudioEffectAmplify {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := AudioEffectAmplify{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 /*
 Increases or decreases the volume being routed through the audio bus.
@@ -26,46 +36,49 @@ func (o *AudioEffectAmplify) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *AudioEffectAmplify) GetVolumeDb() gdnative.Float {
 	log.Println("Calling AudioEffectAmplify.GetVolumeDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectAmplify", "get_volume_db")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_volume_db", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false volume float}], Returns: void
 */
+
 func (o *AudioEffectAmplify) SetVolumeDb(volume gdnative.Float) {
 	log.Println("Calling AudioEffectAmplify.SetVolumeDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(volume)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(volume)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectAmplify", "set_volume_db")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_volume_db", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   AudioEffectAmplifyImplementer is an interface for AudioEffectAmplify objects.
-*/
-type AudioEffectAmplifyImplementer interface {
-	Class
 }

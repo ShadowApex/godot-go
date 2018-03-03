@@ -2,7 +2,9 @@ package pinjoint2d
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/joint2d"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPinJoint2DFromPointer(ptr gdnative.Pointer) *PinJoint2D {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := PinJoint2D{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Pin Joint for 2D Rigid Bodies. It pins two bodies (rigid or static) together.
 */
 type PinJoint2D struct {
-	Joint2D
+	joint2d.Joint2D
 }
 
 func (o *PinJoint2D) BaseClass() string {
@@ -26,46 +37,49 @@ func (o *PinJoint2D) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *PinJoint2D) GetSoftness() gdnative.Float {
 	log.Println("Calling PinJoint2D.GetSoftness()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PinJoint2D", "get_softness")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_softness", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false softness float}], Returns: void
 */
+
 func (o *PinJoint2D) SetSoftness(softness gdnative.Float) {
 	log.Println("Calling PinJoint2D.SetSoftness()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(softness)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(softness)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PinJoint2D", "set_softness")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_softness", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   PinJoint2DImplementer is an interface for PinJoint2D objects.
-*/
-type PinJoint2DImplementer interface {
-	Class
 }

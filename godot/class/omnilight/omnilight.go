@@ -2,9 +2,9 @@ package omnilight
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/light"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewOmniLightFromPointer(ptr gdnative.Pointer) *OmniLight {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := OmniLight{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 An OmniDirectional light is a type of [Light] node that emits lights in all directions. The light is attenuated through the distance and this attenuation can be configured by changing the energy, radius and attenuation parameters of [Light].
 */
 type OmniLight struct {
-	Light
+	light.Light
 }
 
 func (o *OmniLight) BaseClass() string {
@@ -28,84 +37,55 @@ func (o *OmniLight) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.OmniLight::ShadowDetail
 */
-func (o *OmniLight) GetShadowDetail() gdnative.Int {
-	log.Println("Calling OmniLight.GetShadowDetail()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_shadow_detail", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: enum.OmniLight::ShadowMode
 */
-func (o *OmniLight) GetShadowMode() gdnative.Int {
-	log.Println("Calling OmniLight.GetShadowMode()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_shadow_mode", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false detail int}], Returns: void
 */
+
 func (o *OmniLight) SetShadowDetail(detail gdnative.Int) {
 	log.Println("Calling OmniLight.SetShadowDetail()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(detail)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(detail)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("OmniLight", "set_shadow_detail")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_shadow_detail", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false mode int}], Returns: void
 */
+
 func (o *OmniLight) SetShadowMode(mode gdnative.Int) {
 	log.Println("Calling OmniLight.SetShadowMode()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(mode)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("OmniLight", "set_shadow_mode")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_shadow_mode", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   OmniLightImplementer is an interface for OmniLight objects.
-*/
-type OmniLightImplementer interface {
-	Class
 }

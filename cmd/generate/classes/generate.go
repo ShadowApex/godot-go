@@ -19,6 +19,7 @@ import (
 	"text/template"
 	"unicode"
 
+	"github.com/kr/pretty"
 	"github.com/pinzolo/casee"
 )
 
@@ -28,6 +29,8 @@ type View struct {
 	API          GDAPI
 	APIs         []GDAPI
 	Package      string
+	PackageMap   map[string]string
+	Imports      map[string]map[string]bool
 	ClassDocs    map[string]string
 	MethodDocs   map[string]map[string]string
 	SingletonMap map[string]bool
@@ -63,6 +66,47 @@ func (v View) UltraTrim(input string) string {
 	final = re_inside_whtsp.ReplaceAllString(final, " ")
 
 	return final
+}
+
+func (v View) GetImports() []string {
+	imports := []string{}
+	for key, _ := range v.Imports[v.API.Name] {
+		imports = append(imports, key)
+	}
+
+	return imports
+}
+
+func (v View) GoName(str string) string {
+	return casee.ToPascalCase(strings.Replace(str, "godot_", "", 1))
+}
+
+func (v View) GoEmptyReturnType(curPkg, str string) string {
+	if v.IsEnum(str) {
+		return "gdnative.NewEmptyVoid"
+	}
+	str = strings.Replace(str, "*", "", 1)
+	str = strings.TrimSpace(str)
+
+	if v.IsGodotClass(str) {
+		if v.ResolvePackage(curPkg, str) == "" {
+			return "NewEmpty" + str
+		}
+		return v.ResolvePackage(curPkg, str) + ".NewEmpty" + str
+	} else {
+		return "gdnative.NewEmpty" + v.GoName(str)
+	}
+}
+
+func (v View) GoNewFromPointerType(str string) string {
+	if strings.Contains(str, "enum") || strings.Contains(str, "Enum") {
+		// TODO: Handle this
+		return "EmptyVoid"
+	}
+	str = strings.Replace(str, "*", "", 1)
+	str = strings.TrimSpace(str)
+	str = casee.ToPascalCase(str)
+	return str
 }
 
 // GoClassName will convert any _<Name> classes into normal CamelCase names.
@@ -115,11 +159,11 @@ func (v View) GoArgName(argString string) string {
 }
 
 // GoValue will convert the Godot value into a valid Go value.
-func (v View) GoValue(returnString string) string {
+func (v View) GoValue(curPkg, returnString string) string {
 	// TODO: Right now we're converting any enum types to int64. We should
 	// look into creating types for each of these maybe? LOL
 	if strings.Contains(returnString, "enum.") {
-		returnString = "int"
+		returnString = "Int"
 	}
 	switch returnString {
 	case "String":
@@ -135,7 +179,10 @@ func (v View) GoValue(returnString string) string {
 	case "void":
 		return ""
 	default:
-		return "*" + returnString
+		if v.ResolvePackage(curPkg, returnString) == "" {
+			return returnString
+		}
+		return v.ResolvePackage(curPkg, returnString) + "." + returnString
 	}
 }
 
@@ -164,6 +211,13 @@ func (v View) IsValidClass(classString, inheritsString string) bool {
 	return true
 }
 
+func (v View) IsEnum(str string) bool {
+	if strings.Contains(str, "enum") || strings.Contains(str, "Enum") {
+		return true
+	}
+	return false
+}
+
 func (v View) SetClassName(classString string, singleton bool) string {
 	if singleton {
 		return casee.ToCamelCase(classString)
@@ -182,6 +236,31 @@ func (v View) PackageName(classString string) string {
 		return "ranges"
 	}
 	return str
+}
+
+// ResolvePackage will look up the api in the package map for the Go package name
+// that we should use.
+func (v View) ResolvePackage(curPkg, api string) string {
+	if apiPkg, ok := v.PackageMap[api]; ok {
+		if curPkg == apiPkg {
+			return ""
+		}
+		return apiPkg
+	}
+	return "gdnative"
+}
+
+// IsGodotClass will determine if the given string is the name of a Godot class
+// API. This is used to check if a type is another class or a gdnative base type.
+func (v View) IsGodotClass(str string) bool {
+	str = strings.Replace(str, "*", "", 1)
+	str = strings.TrimSpace(str)
+	for api, _ := range v.PackageMap {
+		if str == api {
+			return true
+		}
+	}
+	return false
 }
 
 func Generate() {
@@ -289,6 +368,37 @@ func Generate() {
 		"websocket",
 	}
 
+	// Generate a package lookup table for all APIs.
+	view.PackageMap = map[string]string{}
+	for _, api := range view.APIs {
+		packageName := view.PackageName(api.Name)
+		for _, prefix := range prefixes {
+			if strings.HasPrefix(packageName, prefix) {
+				packageName = prefix
+			}
+		}
+		view.PackageMap[api.Name] = packageName
+	}
+
+	// Find all of the imports for each API
+	view.Imports = map[string]map[string]bool{}
+	for _, api := range view.APIs {
+		view.Imports[api.Name] = map[string]bool{}
+		for _, method := range api.Methods {
+			for _, arg := range method.Arguments {
+				if view.IsGodotClass(arg.Type) {
+					pkg := view.PackageMap[arg.Type]
+					view.Imports[api.Name][pkg] = true
+				}
+			}
+			if view.IsGodotClass(method.ReturnType) {
+				pkg := view.PackageMap[method.ReturnType]
+				view.Imports[api.Name][pkg] = true
+			}
+		}
+	}
+	pretty.Println(view.Imports)
+
 	// Loop through all of the APIs and generate packages for them.
 	for _, api := range view.APIs {
 		// Skip classes to generate.
@@ -297,13 +407,8 @@ func Generate() {
 		}
 
 		// Get the package name to generate
-		packageName := view.PackageName(api.Name)
-		outFileName := packageName + ".go"
-		for _, prefix := range prefixes {
-			if strings.HasPrefix(packageName, prefix) {
-				packageName = prefix
-			}
-		}
+		packageName := view.PackageMap[api.Name]
+		outFileName := view.PackageName(api.Name) + ".go"
 
 		// Create the directory structure for the package.
 		err := os.MkdirAll(classPath+"/"+packageName, 0755)

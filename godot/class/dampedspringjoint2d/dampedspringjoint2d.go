@@ -2,7 +2,9 @@ package dampedspringjoint2d
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/joint2d"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewDampedSpringJoint2DFromPointer(ptr gdnative.Pointer) *DampedSpringJoint2D {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := DampedSpringJoint2D{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Damped spring constraint for 2D physics. This resembles a spring joint that always wants to go back to a given length.
 */
 type DampedSpringJoint2D struct {
-	Joint2D
+	joint2d.Joint2D
 }
 
 func (o *DampedSpringJoint2D) BaseClass() string {
@@ -26,160 +37,193 @@ func (o *DampedSpringJoint2D) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *DampedSpringJoint2D) GetDamping() gdnative.Float {
 	log.Println("Calling DampedSpringJoint2D.GetDamping()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DampedSpringJoint2D", "get_damping")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_damping", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *DampedSpringJoint2D) GetLength() gdnative.Float {
 	log.Println("Calling DampedSpringJoint2D.GetLength()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DampedSpringJoint2D", "get_length")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_length", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *DampedSpringJoint2D) GetRestLength() gdnative.Float {
 	log.Println("Calling DampedSpringJoint2D.GetRestLength()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DampedSpringJoint2D", "get_rest_length")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_rest_length", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *DampedSpringJoint2D) GetStiffness() gdnative.Float {
 	log.Println("Calling DampedSpringJoint2D.GetStiffness()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DampedSpringJoint2D", "get_stiffness")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_stiffness", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false damping float}], Returns: void
 */
+
 func (o *DampedSpringJoint2D) SetDamping(damping gdnative.Float) {
 	log.Println("Calling DampedSpringJoint2D.SetDamping()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(damping)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(damping)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DampedSpringJoint2D", "set_damping")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_damping", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false length float}], Returns: void
 */
+
 func (o *DampedSpringJoint2D) SetLength(length gdnative.Float) {
 	log.Println("Calling DampedSpringJoint2D.SetLength()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(length)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(length)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DampedSpringJoint2D", "set_length")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_length", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false rest_length float}], Returns: void
 */
+
 func (o *DampedSpringJoint2D) SetRestLength(restLength gdnative.Float) {
 	log.Println("Calling DampedSpringJoint2D.SetRestLength()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(restLength)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(restLength)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DampedSpringJoint2D", "set_rest_length")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_rest_length", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false stiffness float}], Returns: void
 */
+
 func (o *DampedSpringJoint2D) SetStiffness(stiffness gdnative.Float) {
 	log.Println("Calling DampedSpringJoint2D.SetStiffness()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(stiffness)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(stiffness)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DampedSpringJoint2D", "set_stiffness")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_stiffness", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   DampedSpringJoint2DImplementer is an interface for DampedSpringJoint2D objects.
-*/
-type DampedSpringJoint2DImplementer interface {
-	Class
 }

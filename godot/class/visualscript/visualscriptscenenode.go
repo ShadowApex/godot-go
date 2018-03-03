@@ -2,7 +2,8 @@ package visualscript
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
 )
 
 /*------------------------------------------------------------------------------
@@ -13,6 +14,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewVisualScriptSceneNodeFromPointer(ptr gdnative.Pointer) *VisualScriptSceneNode {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := VisualScriptSceneNode{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 /*
 Undocumented
@@ -26,46 +36,49 @@ func (o *VisualScriptSceneNode) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: NodePath
 */
-func (o *VisualScriptSceneNode) GetNodePath() *NodePath {
+
+func (o *VisualScriptSceneNode) GetNodePath() gdnative.NodePath {
 	log.Println("Calling VisualScriptSceneNode.GetNodePath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptSceneNode", "get_node_path")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_node_path", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false path NodePath}], Returns: void
 */
-func (o *VisualScriptSceneNode) SetNodePath(path *NodePath) {
+
+func (o *VisualScriptSceneNode) SetNodePath(path gdnative.NodePath) {
 	log.Println("Calling VisualScriptSceneNode.SetNodePath()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptSceneNode", "set_node_path")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_node_path", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   VisualScriptSceneNodeImplementer is an interface for VisualScriptSceneNode objects.
-*/
-type VisualScriptSceneNodeImplementer interface {
-	Class
 }

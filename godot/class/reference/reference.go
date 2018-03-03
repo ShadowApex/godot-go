@@ -2,9 +2,9 @@ package reference
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewReferenceFromPointer(ptr gdnative.Pointer) *Reference {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Reference{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Base class for anything that keeps a reference count. Resource and many other helper objects inherit this. References keep an internal reference counter so they are only released when no longer in use.
 */
 type Reference struct {
-	Object
+	object.Object
 }
 
 func (o *Reference) BaseClass() string {
@@ -29,67 +38,78 @@ func (o *Reference) BaseClass() string {
 
 /*
 
- */
+	Args: [], Returns: bool
+*/
+
 func (o *Reference) InitRef() gdnative.Bool {
 	log.Println("Calling Reference.InitRef()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Reference", "init_ref")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "init_ref", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Increase the internal reference counter. Use this only if you really know what you are doing.
+        Increase the internal reference counter. Use this only if you really know what you are doing.
+	Args: [], Returns: bool
 */
+
 func (o *Reference) Reference() gdnative.Bool {
 	log.Println("Calling Reference.Reference()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Reference", "reference")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "reference", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Decrease the internal reference counter. Use this only if you really know what you are doing.
+        Decrease the internal reference counter. Use this only if you really know what you are doing.
+	Args: [], Returns: bool
 */
+
 func (o *Reference) Unreference() gdnative.Bool {
 	log.Println("Calling Reference.Unreference()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Reference", "unreference")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "unreference", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   ReferenceImplementer is an interface for Reference objects.
-*/
-type ReferenceImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

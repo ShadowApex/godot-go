@@ -2,7 +2,9 @@ package weakref
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewWeakRefFromPointer(ptr gdnative.Pointer) *WeakRef {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := WeakRef{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 A weakref can hold a [Reference], without contributing to the reference counter. A weakref can be created from an [Object] using [method @GDScript.weakref]. If this object is not a reference, weakref still works, however, it does not have any effect on the object. Weakrefs are useful in cases where multiple classes have variables that refer to each other. Without weakrefs, using these classes could lead to memory leaks, since both references keep each other from being released. Making part of the variables a weakref can prevent this cyclic dependency, and allows the references to be released.
 */
 type WeakRef struct {
-	Reference
+	reference.Reference
 }
 
 func (o *WeakRef) BaseClass() string {
@@ -26,28 +37,27 @@ func (o *WeakRef) BaseClass() string {
 }
 
 /*
-   Returns the [Object] this weakref is referring to.
+        Returns the [Object] this weakref is referring to.
+	Args: [], Returns: Variant
 */
-func (o *WeakRef) GetRef() *Variant {
+
+func (o *WeakRef) GetRef() gdnative.Variant {
 	log.Println("Calling WeakRef.GetRef()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("WeakRef", "get_ref")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_ref", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
-
-/*
-   WeakRefImplementer is an interface for WeakRef objects.
-*/
-type WeakRefImplementer interface {
-	Class
+	log.Println("  Got return value: ", ret)
+	return ret
 }

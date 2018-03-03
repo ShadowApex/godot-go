@@ -2,7 +2,11 @@ package node2d
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/canvasitem"
+	"github.com/shadowapex/godot-go/godot/class/object"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewNode2DFromPointer(ptr gdnative.Pointer) *Node2D {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Node2D{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 A 2D game object, with a position, rotation and scale. All 2D physics nodes and sprites inherit from Node2D. Use Node2D as a parent node to move, scale and rotate children in a 2D project. Also gives control on the node's render order.
 */
 type Node2D struct {
-	CanvasItem
+	canvasitem.CanvasItem
 }
 
 func (o *Node2D) BaseClass() string {
@@ -26,636 +39,789 @@ func (o *Node2D) BaseClass() string {
 }
 
 /*
-   Multiplies the current scale by the 'ratio' vector.
+        Multiplies the current scale by the 'ratio' vector.
+	Args: [{ false ratio Vector2}], Returns: void
 */
-func (o *Node2D) ApplyScale(ratio *Vector2) {
+
+func (o *Node2D) ApplyScale(ratio gdnative.Vector2) {
 	log.Println("Calling Node2D.ApplyScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(ratio)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(ratio)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "apply_scale")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "apply_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Returns the angle between the node and the 'point' in radians.
+        Returns the angle between the node and the 'point' in radians.
+	Args: [{ false point Vector2}], Returns: float
 */
-func (o *Node2D) GetAngleTo(point *Vector2) gdnative.Float {
+
+func (o *Node2D) GetAngleTo(point gdnative.Vector2) gdnative.Float {
 	log.Println("Calling Node2D.GetAngleTo()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(point)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(point)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "get_angle_to")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_angle_to", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *Node2D) GetGlobalPosition() *Vector2 {
+
+func (o *Node2D) GetGlobalPosition() gdnative.Vector2 {
 	log.Println("Calling Node2D.GetGlobalPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "get_global_position")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_global_position", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Node2D) GetGlobalRotation() gdnative.Float {
 	log.Println("Calling Node2D.GetGlobalRotation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "get_global_rotation")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_global_rotation", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Node2D) GetGlobalRotationDegrees() gdnative.Float {
 	log.Println("Calling Node2D.GetGlobalRotationDegrees()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "get_global_rotation_degrees")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_global_rotation_degrees", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *Node2D) GetGlobalScale() *Vector2 {
+
+func (o *Node2D) GetGlobalScale() gdnative.Vector2 {
 	log.Println("Calling Node2D.GetGlobalScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "get_global_scale")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_global_scale", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *Node2D) GetPosition() *Vector2 {
+
+func (o *Node2D) GetPosition() gdnative.Vector2 {
 	log.Println("Calling Node2D.GetPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "get_position")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_position", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the [Transform2D] relative to this node's parent.
+        Returns the [Transform2D] relative to this node's parent.
+	Args: [{ false parent Object}], Returns: Transform2D
 */
-func (o *Node2D) GetRelativeTransformToParent(parent *Object) *Transform2D {
+
+func (o *Node2D) GetRelativeTransformToParent(parent object.Object) gdnative.Transform2D {
 	log.Println("Calling Node2D.GetRelativeTransformToParent()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(parent)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(parent.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "get_relative_transform_to_parent")
 
 	// Call the parent method.
+	// Transform2D
+	retPtr := gdnative.NewEmptyTransform2D()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_relative_transform_to_parent", goArguments, "*Transform2D")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewTransform2DFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Transform2D)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Node2D) GetRotation() gdnative.Float {
 	log.Println("Calling Node2D.GetRotation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "get_rotation")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_rotation", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: float
 */
+
 func (o *Node2D) GetRotationDegrees() gdnative.Float {
 	log.Println("Calling Node2D.GetRotationDegrees()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "get_rotation_degrees")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_rotation_degrees", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Vector2
 */
-func (o *Node2D) GetScale() *Vector2 {
+
+func (o *Node2D) GetScale() gdnative.Vector2 {
 	log.Println("Calling Node2D.GetScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "get_scale")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_scale", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *Node2D) GetZIndex() gdnative.Int {
 	log.Println("Calling Node2D.GetZIndex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "get_z_index")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_z_index", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Adds the 'offset' vector to the node's global position.
+        Adds the 'offset' vector to the node's global position.
+	Args: [{ false offset Vector2}], Returns: void
 */
-func (o *Node2D) GlobalTranslate(offset *Vector2) {
+
+func (o *Node2D) GlobalTranslate(offset gdnative.Vector2) {
 	log.Println("Calling Node2D.GlobalTranslate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(offset)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(offset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "global_translate")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "global_translate", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *Node2D) IsZRelative() gdnative.Bool {
 	log.Println("Calling Node2D.IsZRelative()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "is_z_relative")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_z_relative", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Rotates the node so it points towards the 'point'.
+        Rotates the node so it points towards the 'point'.
+	Args: [{ false point Vector2}], Returns: void
 */
-func (o *Node2D) LookAt(point *Vector2) {
+
+func (o *Node2D) LookAt(point gdnative.Vector2) {
 	log.Println("Calling Node2D.LookAt()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(point)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(point)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "look_at")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "look_at", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Applies a local translation on the node's X axis based on the [method Node._process]'s [code]delta[/code]. If [code]scaled[/code] is false, normalizes the movement.
+        Applies a local translation on the node's X axis based on the [method Node._process]'s [code]delta[/code]. If [code]scaled[/code] is false, normalizes the movement.
+	Args: [{ false delta float} {False true scaled bool}], Returns: void
 */
+
 func (o *Node2D) MoveLocalX(delta gdnative.Float, scaled gdnative.Bool) {
 	log.Println("Calling Node2D.MoveLocalX()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(delta)
-	goArguments[1] = reflect.ValueOf(scaled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(delta)
+	ptrArguments[1] = gdnative.NewPointerFromBool(scaled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "move_local_x")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "move_local_x", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Applies a local translation on the node's Y axis based on the [method Node._process]'s [code]delta[/code]. If [code]scaled[/code] is false, normalizes the movement.
+        Applies a local translation on the node's Y axis based on the [method Node._process]'s [code]delta[/code]. If [code]scaled[/code] is false, normalizes the movement.
+	Args: [{ false delta float} {False true scaled bool}], Returns: void
 */
+
 func (o *Node2D) MoveLocalY(delta gdnative.Float, scaled gdnative.Bool) {
 	log.Println("Calling Node2D.MoveLocalY()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(delta)
-	goArguments[1] = reflect.ValueOf(scaled)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(delta)
+	ptrArguments[1] = gdnative.NewPointerFromBool(scaled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "move_local_y")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "move_local_y", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Applies a rotation to the node, in radians, starting from its current rotation.
+        Applies a rotation to the node, in radians, starting from its current rotation.
+	Args: [{ false radians float}], Returns: void
 */
+
 func (o *Node2D) Rotate(radians gdnative.Float) {
 	log.Println("Calling Node2D.Rotate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(radians)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(radians)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "rotate")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "rotate", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false position Vector2}], Returns: void
 */
-func (o *Node2D) SetGlobalPosition(position *Vector2) {
+
+func (o *Node2D) SetGlobalPosition(position gdnative.Vector2) {
 	log.Println("Calling Node2D.SetGlobalPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "set_global_position")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_global_position", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false radians float}], Returns: void
 */
+
 func (o *Node2D) SetGlobalRotation(radians gdnative.Float) {
 	log.Println("Calling Node2D.SetGlobalRotation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(radians)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(radians)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "set_global_rotation")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_global_rotation", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false degrees float}], Returns: void
 */
+
 func (o *Node2D) SetGlobalRotationDegrees(degrees gdnative.Float) {
 	log.Println("Calling Node2D.SetGlobalRotationDegrees()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(degrees)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(degrees)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "set_global_rotation_degrees")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_global_rotation_degrees", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false scale Vector2}], Returns: void
 */
-func (o *Node2D) SetGlobalScale(scale *Vector2) {
+
+func (o *Node2D) SetGlobalScale(scale gdnative.Vector2) {
 	log.Println("Calling Node2D.SetGlobalScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(scale)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(scale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "set_global_scale")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_global_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false xform Transform2D}], Returns: void
 */
-func (o *Node2D) SetGlobalTransform(xform *Transform2D) {
+
+func (o *Node2D) SetGlobalTransform(xform gdnative.Transform2D) {
 	log.Println("Calling Node2D.SetGlobalTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(xform)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromTransform2D(xform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "set_global_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_global_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false position Vector2}], Returns: void
 */
-func (o *Node2D) SetPosition(position *Vector2) {
+
+func (o *Node2D) SetPosition(position gdnative.Vector2) {
 	log.Println("Calling Node2D.SetPosition()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(position)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "set_position")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_position", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false radians float}], Returns: void
 */
+
 func (o *Node2D) SetRotation(radians gdnative.Float) {
 	log.Println("Calling Node2D.SetRotation()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(radians)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(radians)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "set_rotation")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_rotation", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false degrees float}], Returns: void
 */
+
 func (o *Node2D) SetRotationDegrees(degrees gdnative.Float) {
 	log.Println("Calling Node2D.SetRotationDegrees()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(degrees)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromFloat(degrees)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "set_rotation_degrees")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_rotation_degrees", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false scale Vector2}], Returns: void
 */
-func (o *Node2D) SetScale(scale *Vector2) {
+
+func (o *Node2D) SetScale(scale gdnative.Vector2) {
 	log.Println("Calling Node2D.SetScale()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(scale)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(scale)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "set_scale")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_scale", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false xform Transform2D}], Returns: void
 */
-func (o *Node2D) SetTransform(xform *Transform2D) {
+
+func (o *Node2D) SetTransform(xform gdnative.Transform2D) {
 	log.Println("Calling Node2D.SetTransform()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(xform)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromTransform2D(xform)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "set_transform")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_transform", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *Node2D) SetZAsRelative(enable gdnative.Bool) {
 	log.Println("Calling Node2D.SetZAsRelative()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "set_z_as_relative")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_z_as_relative", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false z_index int}], Returns: void
 */
+
 func (o *Node2D) SetZIndex(zIndex gdnative.Int) {
 	log.Println("Calling Node2D.SetZIndex()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(zIndex)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(zIndex)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "set_z_index")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_z_index", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Converts a local point's coordinates to global coordinates.
+        Converts a local point's coordinates to global coordinates.
+	Args: [{ false local_point Vector2}], Returns: Vector2
 */
-func (o *Node2D) ToGlobal(localPoint *Vector2) *Vector2 {
+
+func (o *Node2D) ToGlobal(localPoint gdnative.Vector2) gdnative.Vector2 {
 	log.Println("Calling Node2D.ToGlobal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(localPoint)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(localPoint)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "to_global")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "to_global", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Converts a global point's coordinates to local coordinates.
+        Converts a global point's coordinates to local coordinates.
+	Args: [{ false global_point Vector2}], Returns: Vector2
 */
-func (o *Node2D) ToLocal(globalPoint *Vector2) *Vector2 {
+
+func (o *Node2D) ToLocal(globalPoint gdnative.Vector2) gdnative.Vector2 {
 	log.Println("Calling Node2D.ToLocal()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(globalPoint)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(globalPoint)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "to_local")
 
 	// Call the parent method.
+	// Vector2
+	retPtr := gdnative.NewEmptyVector2()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "to_local", goArguments, "*Vector2")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVector2FromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Vector2)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Translates the node by the given [code]offset[/code] in local coordinates.
+        Translates the node by the given [code]offset[/code] in local coordinates.
+	Args: [{ false offset Vector2}], Returns: void
 */
-func (o *Node2D) Translate(offset *Vector2) {
+
+func (o *Node2D) Translate(offset gdnative.Vector2) {
 	log.Println("Calling Node2D.Translate()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(offset)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(offset)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node2D", "translate")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "translate", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   Node2DImplementer is an interface for Node2D objects.
-*/
-type Node2DImplementer interface {
-	Class
 }

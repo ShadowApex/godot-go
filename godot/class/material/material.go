@@ -2,9 +2,9 @@ package material
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/resource"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewMaterialFromPointer(ptr gdnative.Pointer) *Material {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := Material{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 Material is a base [Resource] used for coloring and shading geometry. All materials inherit from it and almost all [VisualInstance] derived nodes carry a Material. A few flags and parameters are shared between all material types and are configured here.
 */
 type Material struct {
-	Resource
+	resource.Resource
 }
 
 func (o *Material) BaseClass() string {
@@ -28,84 +37,97 @@ func (o *Material) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: Material
 */
-func (o *Material) GetNextPass() *Material {
+
+func (o *Material) GetNextPass() Material {
 	log.Println("Calling Material.GetNextPass()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Material", "get_next_pass")
 
 	// Call the parent method.
+	// Material
+	retPtr := NewEmptyMaterial()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_next_pass", goArguments, "*Material")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := NewMaterialFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Material)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: int
 */
+
 func (o *Material) GetRenderPriority() gdnative.Int {
 	log.Println("Calling Material.GetRenderPriority()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Material", "get_render_priority")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_render_priority", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false next_pass Material}], Returns: void
 */
-func (o *Material) SetNextPass(nextPass *Material) {
+
+func (o *Material) SetNextPass(nextPass Material) {
 	log.Println("Calling Material.SetNextPass()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(nextPass)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(nextPass.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Material", "set_next_pass")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_next_pass", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false priority int}], Returns: void
 */
+
 func (o *Material) SetRenderPriority(priority gdnative.Int) {
 	log.Println("Calling Material.SetRenderPriority()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(priority)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(priority)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Material", "set_render_priority")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_render_priority", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   MaterialImplementer is an interface for Material objects.
-*/
-type MaterialImplementer interface {
-	Class
 }

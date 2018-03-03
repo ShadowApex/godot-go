@@ -2,7 +2,8 @@ package audioeffect
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
 )
 
 /*------------------------------------------------------------------------------
@@ -13,6 +14,15 @@ import (
 //   "class.go.tmpl" so they can be included in the generated
 //   code.
 //----------------------------------------------------------------------------*/
+
+func NewAudioEffectEQFromPointer(ptr gdnative.Pointer) *AudioEffectEQ {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := AudioEffectEQ{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
 
 /*
 AudioEffectEQ gives you control over frequencies. Use it to compensate for existing deficiencies in audio. AudioEffectEQ are very useful on the Master Bus to completely master a mix and give it character. They are also very useful when a game is run on a mobile device, to adjust the mix to that kind of speakers (it can be added but disabled when headphones are plugged).
@@ -26,68 +36,77 @@ func (o *AudioEffectEQ) BaseClass() string {
 }
 
 /*
-   Returns the number of bands of the equalizer.
+        Returns the number of bands of the equalizer.
+	Args: [], Returns: int
 */
+
 func (o *AudioEffectEQ) GetBandCount() gdnative.Int {
 	log.Println("Calling AudioEffectEQ.GetBandCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectEQ", "get_band_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_band_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Returns the band's gain at the specified index, in dB.
+        Returns the band's gain at the specified index, in dB.
+	Args: [{ false band_idx int}], Returns: float
 */
+
 func (o *AudioEffectEQ) GetBandGainDb(bandIdx gdnative.Int) gdnative.Float {
 	log.Println("Calling AudioEffectEQ.GetBandGainDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(bandIdx)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bandIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectEQ", "get_band_gain_db")
 
 	// Call the parent method.
+	// float
+	retPtr := gdnative.NewEmptyFloat()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_band_gain_db", goArguments, "gdnative.Float")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewFloatFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Float)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Sets band's gain at the specified index, in dB.
+        Sets band's gain at the specified index, in dB.
+	Args: [{ false band_idx int} { false volume_db float}], Returns: void
 */
+
 func (o *AudioEffectEQ) SetBandGainDb(bandIdx gdnative.Int, volumeDb gdnative.Float) {
 	log.Println("Calling AudioEffectEQ.SetBandGainDb()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 2, 2)
-	goArguments[0] = reflect.ValueOf(bandIdx)
-	goArguments[1] = reflect.ValueOf(volumeDb)
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(bandIdx)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(volumeDb)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectEQ", "set_band_gain_db")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_band_gain_db", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   AudioEffectEQImplementer is an interface for AudioEffectEQ objects.
-*/
-type AudioEffectEQImplementer interface {
-	Class
 }

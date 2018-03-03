@@ -2,7 +2,9 @@ package viewport
 
 import (
 	"log"
-	"reflect"
+
+	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/texture"
 )
 
 /*------------------------------------------------------------------------------
@@ -14,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewViewportTextureFromPointer(ptr gdnative.Pointer) *ViewportTexture {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := ViewportTexture{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type ViewportTexture struct {
-	Texture
+	texture.Texture
 }
 
 func (o *ViewportTexture) BaseClass() string {
@@ -26,46 +37,49 @@ func (o *ViewportTexture) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: NodePath
 */
-func (o *ViewportTexture) GetViewportPathInScene() *NodePath {
+
+func (o *ViewportTexture) GetViewportPathInScene() gdnative.NodePath {
 	log.Println("Calling ViewportTexture.GetViewportPathInScene()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ViewportTexture", "get_viewport_path_in_scene")
 
 	// Call the parent method.
+	// NodePath
+	retPtr := gdnative.NewEmptyNodePath()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_viewport_path_in_scene", goArguments, "*NodePath")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewNodePathFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NodePath)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false path NodePath}], Returns: void
 */
-func (o *ViewportTexture) SetViewportPathInScene(path *NodePath) {
+
+func (o *ViewportTexture) SetViewportPathInScene(path gdnative.NodePath) {
 	log.Println("Calling ViewportTexture.SetViewportPathInScene()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(path)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromNodePath(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ViewportTexture", "set_viewport_path_in_scene")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_viewport_path_in_scene", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   ViewportTextureImplementer is an interface for ViewportTexture objects.
-*/
-type ViewportTextureImplementer interface {
-	Class
 }

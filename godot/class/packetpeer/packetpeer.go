@@ -2,9 +2,9 @@ package packetpeer
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+	"github.com/shadowapex/godot-go/godot/class/reference"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +16,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewPacketPeerFromPointer(ptr gdnative.Pointer) *PacketPeer {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := PacketPeer{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 PacketPeer is an abstraction and base class for packet-based protocols (such as UDP). It provides an API for sending and receiving packets both as raw data or variables. This makes it easy to transfer data over a protocol, without having to encode data as low level bytes or having to worry about network ordering.
 */
 type PacketPeer struct {
-	Reference
+	reference.Reference
 }
 
 func (o *PacketPeer) BaseClass() string {
@@ -28,168 +37,142 @@ func (o *PacketPeer) BaseClass() string {
 }
 
 /*
-   Return the number of packets currently available in the ring-buffer.
+        Return the number of packets currently available in the ring-buffer.
+	Args: [], Returns: int
 */
+
 func (o *PacketPeer) GetAvailablePacketCount() gdnative.Int {
 	log.Println("Calling PacketPeer.GetAvailablePacketCount()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PacketPeer", "get_available_packet_count")
 
 	// Call the parent method.
+	// int
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_available_packet_count", goArguments, "gdnative.Int")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Get a raw packet.
+        Get a raw packet.
+	Args: [], Returns: PoolByteArray
 */
-func (o *PacketPeer) GetPacket() *PoolByteArray {
+
+func (o *PacketPeer) GetPacket() gdnative.PoolByteArray {
 	log.Println("Calling PacketPeer.GetPacket()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PacketPeer", "get_packet")
 
 	// Call the parent method.
+	// PoolByteArray
+	retPtr := gdnative.NewEmptyPoolByteArray()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_packet", goArguments, "*PoolByteArray")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewPoolByteArrayFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*PoolByteArray)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Return the error state of the last packet received (via [method get_packet] and [method get_var]).
+        Return the error state of the last packet received (via [method get_packet] and [method get_var]).
+	Args: [], Returns: enum.Error
 */
-func (o *PacketPeer) GetPacketError() gdnative.Int {
-	log.Println("Calling PacketPeer.GetPacketError()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "get_packet_error", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Get a Variant.
+        Get a Variant.
+	Args: [], Returns: Variant
 */
-func (o *PacketPeer) GetVar() *Variant {
+
+func (o *PacketPeer) GetVar() gdnative.Variant {
 	log.Println("Calling PacketPeer.GetVar()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PacketPeer", "get_var")
 
 	// Call the parent method.
+	// Variant
+	retPtr := gdnative.NewEmptyVariant()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_var", goArguments, "*Variant")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewVariantFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*Variant)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *PacketPeer) IsObjectDecodingAllowed() gdnative.Bool {
 	log.Println("Calling PacketPeer.IsObjectDecodingAllowed()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PacketPeer", "is_object_decoding_allowed")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_object_decoding_allowed", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Send a raw packet.
+        Send a raw packet.
+	Args: [{ false buffer PoolByteArray}], Returns: enum.Error
 */
-func (o *PacketPeer) PutPacket(buffer *PoolByteArray) gdnative.Int {
-	log.Println("Calling PacketPeer.PutPacket()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(buffer)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "put_packet", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Send a Variant as a packet.
+        Send a Variant as a packet.
+	Args: [{ false var Variant}], Returns: enum.Error
 */
-func (o *PacketPeer) PutVar(variable *Variant) gdnative.Int {
-	log.Println("Calling PacketPeer.PutVar()")
-
-	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(variable)
-
-	// Call the parent method.
-
-	goRet := o.callParentMethod(o.BaseClass(), "put_var", goArguments, "gdnative.Int")
-
-	returnValue := goRet.Interface().(gdnative.Int)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
-}
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enable bool}], Returns: void
 */
+
 func (o *PacketPeer) SetAllowObjectDecoding(enable gdnative.Bool) {
 	log.Println("Calling PacketPeer.SetAllowObjectDecoding()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enable)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PacketPeer", "set_allow_object_decoding")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_allow_object_decoding", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   PacketPeerImplementer is an interface for PacketPeer objects.
-*/
-type PacketPeerImplementer interface {
-	Class
 }

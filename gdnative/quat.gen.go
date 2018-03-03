@@ -38,6 +38,14 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewEmptyQuat will return a pointer to an empty
+// initialized Quat. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyQuat() Pointer {
+	var obj C.godot_quat
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
 // NewPointerFromQuat will return an unsafe pointer to the given
 // object. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPointerFromQuat(obj Quat) Pointer {

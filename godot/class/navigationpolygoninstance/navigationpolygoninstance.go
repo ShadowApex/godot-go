@@ -2,9 +2,11 @@ package navigationpolygoninstance
 
 import (
 	"log"
-	"reflect"
 
 	"github.com/shadowapex/godot-go/gdnative"
+
+	"github.com/shadowapex/godot-go/godot/class/navigationpolygon"
+	"github.com/shadowapex/godot-go/godot/class/node2d"
 )
 
 /*------------------------------------------------------------------------------
@@ -16,11 +18,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+func NewNavigationPolygonInstanceFromPointer(ptr gdnative.Pointer) *NavigationPolygonInstance {
+	owner := gdnative.NewObjectFromPointer(ptr)
+	obj := NavigationPolygonInstance{}
+	obj.SetOwner(owner)
+
+	return &obj
+
+}
+
 /*
 
  */
 type NavigationPolygonInstance struct {
-	Node2D
+	node2d.Node2D
 }
 
 func (o *NavigationPolygonInstance) BaseClass() string {
@@ -28,101 +39,118 @@ func (o *NavigationPolygonInstance) BaseClass() string {
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: void
 */
+
 func (o *NavigationPolygonInstance) X_NavpolyChanged() {
 	log.Println("Calling NavigationPolygonInstance.X_NavpolyChanged()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygonInstance", "_navpoly_changed")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "_navpoly_changed", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: NavigationPolygon
 */
-func (o *NavigationPolygonInstance) GetNavigationPolygon() *NavigationPolygon {
+
+func (o *NavigationPolygonInstance) GetNavigationPolygon() navigationpolygon.NavigationPolygon {
 	log.Println("Calling NavigationPolygonInstance.GetNavigationPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygonInstance", "get_navigation_polygon")
 
 	// Call the parent method.
+	// NavigationPolygon
+	retPtr := navigationpolygon.NewEmptyNavigationPolygon()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "get_navigation_polygon", goArguments, "*NavigationPolygon")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := navigationpolygon.NewNavigationPolygonFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(*NavigationPolygon)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [], Returns: bool
 */
+
 func (o *NavigationPolygonInstance) IsEnabled() gdnative.Bool {
 	log.Println("Calling NavigationPolygonInstance.IsEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 0, 0)
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygonInstance", "is_enabled")
 
 	// Call the parent method.
+	// bool
+	retPtr := gdnative.NewEmptyBool()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	goRet := o.callParentMethod(o.BaseClass(), "is_enabled", goArguments, "gdnative.Bool")
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewBoolFromPointer(retPtr)
 
-	returnValue := goRet.Interface().(gdnative.Bool)
-
-	log.Println("  Got return value: ", returnValue)
-	return returnValue
-
+	log.Println("  Got return value: ", ret)
+	return ret
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false enabled bool}], Returns: void
 */
+
 func (o *NavigationPolygonInstance) SetEnabled(enabled gdnative.Bool) {
 	log.Println("Calling NavigationPolygonInstance.SetEnabled()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(enabled)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(enabled)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygonInstance", "set_enabled")
 
 	// Call the parent method.
-
-	o.callParentMethod(o.BaseClass(), "set_enabled", goArguments, "")
-
-	log.Println("  Function successfully completed.")
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
 }
 
 /*
-   Undocumented
+        Undocumented
+	Args: [{ false navpoly NavigationPolygon}], Returns: void
 */
-func (o *NavigationPolygonInstance) SetNavigationPolygon(navpoly *NavigationPolygon) {
+
+func (o *NavigationPolygonInstance) SetNavigationPolygon(navpoly navigationpolygon.NavigationPolygon) {
 	log.Println("Calling NavigationPolygonInstance.SetNavigationPolygon()")
 
 	// Build out the method's arguments
-	goArguments := make([]reflect.Value, 1, 1)
-	goArguments[0] = reflect.ValueOf(navpoly)
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(navpoly.GetOwner())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NavigationPolygonInstance", "set_navigation_polygon")
 
 	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
 
-	o.callParentMethod(o.BaseClass(), "set_navigation_polygon", goArguments, "")
-
-	log.Println("  Function successfully completed.")
-
-}
-
-/*
-   NavigationPolygonInstanceImplementer is an interface for NavigationPolygonInstance objects.
-*/
-type NavigationPolygonInstanceImplementer interface {
-	Class
 }
