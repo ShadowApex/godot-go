@@ -36,6 +36,7 @@ package gdnative
 #include <gdnative_api_struct.gen.h>
 */
 import "C"
+import "unsafe"
 
 // MethodRpcMode is a Go wrapper for the C.godot_method_rpc_mode enum type.
 type MethodRpcMode int
@@ -89,6 +90,18 @@ const (
 	PropertyHintMax
 )
 
+// NewPointerFromPropertyAttributes will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPropertyAttributes(obj PropertyAttributes) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPropertyAttributesFromPointer will return a PropertyAttributes from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPropertyAttributesFromPointer(ptr Pointer) PropertyAttributes {
+	return PropertyAttributes{base: (*C.godot_property_attributes)(ptr.getBase())}
+}
+
 type PropertyAttributes struct {
 	base *C.godot_property_attributes
 
@@ -102,6 +115,18 @@ type PropertyAttributes struct {
 
 func (gdt PropertyAttributes) getBase() *C.godot_property_attributes {
 	return gdt.base
+}
+
+// NewPointerFromSignalArgument will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromSignalArgument(obj SignalArgument) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewSignalArgumentFromPointer will return a SignalArgument from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewSignalArgumentFromPointer(ptr Pointer) SignalArgument {
+	return SignalArgument{base: (*C.godot_signal_argument)(ptr.getBase())}
 }
 
 type SignalArgument struct {
@@ -119,6 +144,18 @@ func (gdt SignalArgument) getBase() *C.godot_signal_argument {
 	return gdt.base
 }
 
+// NewPointerFromSignal will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromSignal(obj Signal) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewSignalFromPointer will return a Signal from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewSignalFromPointer(ptr Pointer) Signal {
+	return Signal{base: (*C.godot_signal)(ptr.getBase())}
+}
+
 type Signal struct {
 	base *C.godot_signal
 
@@ -131,6 +168,18 @@ type Signal struct {
 
 func (gdt Signal) getBase() *C.godot_signal {
 	return gdt.base
+}
+
+// NewPointerFromMethodArg will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromMethodArg(obj MethodArg) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewMethodArgFromPointer will return a MethodArg from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewMethodArgFromPointer(ptr Pointer) MethodArg {
+	return MethodArg{base: (*C.godot_method_arg)(ptr.getBase())}
 }
 
 type MethodArg struct {

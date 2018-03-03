@@ -36,6 +36,19 @@ package gdnative
 #include <gdnative_api_struct.gen.h>
 */
 import "C"
+import "unsafe"
+
+// NewPointerFromString will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromString(obj String) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewStringFromPointer will return a String from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewStringFromPointer(ptr Pointer) String {
+	return String{base: (*C.godot_string)(ptr.getBase())}
+}
 
 type String struct {
 	base *C.godot_string
@@ -1300,6 +1313,18 @@ func (gdt *String) Destroy() {
 	arg0 := gdt.getBase()
 
 	C.go_godot_string_destroy(GDNative.api, arg0)
+}
+
+// NewPointerFromCharString will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromCharString(obj CharString) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewCharStringFromPointer will return a CharString from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewCharStringFromPointer(ptr Pointer) CharString {
+	return CharString{base: (*C.godot_char_string)(ptr.getBase())}
 }
 
 type CharString struct {

@@ -15,7 +15,7 @@ import (
 //----------------------------------------------------------------------------*/
 
 /*
-Pin Joint for 2D Rigid Bodies. It pins 2 bodies (rigid or static) together, or a single body to a fixed position in space.
+Pin Joint for 2D Rigid Bodies. It pins two bodies (rigid or static) together.
 */
 type PinJoint2D struct {
 	Joint2D

@@ -36,6 +36,19 @@ package gdnative
 #include <gdnative_api_struct.gen.h>
 */
 import "C"
+import "unsafe"
+
+// NewPointerFromArvrInterfaceGdnative will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromArvrInterfaceGdnative(obj ArvrInterfaceGdnative) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewArvrInterfaceGdnativeFromPointer will return a ArvrInterfaceGdnative from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewArvrInterfaceGdnativeFromPointer(ptr Pointer) ArvrInterfaceGdnative {
+	return ArvrInterfaceGdnative{base: (*C.godot_arvr_interface_gdnative)(ptr.getBase())}
+}
 
 type ArvrInterfaceGdnative struct {
 	base *C.godot_arvr_interface_gdnative

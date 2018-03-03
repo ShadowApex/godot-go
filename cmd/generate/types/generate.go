@@ -24,6 +24,12 @@ type View struct {
 	IgnoreMethods     []string
 }
 
+// Debug will allow you to log inside the running template.
+func (v View) Debug(itm string) string {
+	log.Println("Template Log:", itm)
+	return ""
+}
+
 // IsValidProperty will determine if we should be generating the given property
 // in our Go structure.
 func (v View) IsValidProperty(prop TypeDef) bool {

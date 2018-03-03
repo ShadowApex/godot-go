@@ -36,6 +36,19 @@ package gdnative
 #include <gdnative_api_struct.gen.h>
 */
 import "C"
+import "unsafe"
+
+// NewPointerFromBasis will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromBasis(obj Basis) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewBasisFromPointer will return a Basis from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewBasisFromPointer(ptr Pointer) Basis {
+	return Basis{base: (*C.godot_basis)(ptr.getBase())}
+}
 
 type Basis struct {
 	base *C.godot_basis

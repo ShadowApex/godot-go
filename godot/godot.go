@@ -221,7 +221,7 @@ func createMethod(classString, methodString string) *gdnative.InstanceMethod {
 		// If we have arguments, append the first argument.
 		for _, arg := range args {
 			// Convert the variant into its base type
-			goArgsSlice = append(goArgsSlice, variantToGoType(arg))
+			goArgsSlice = append(goArgsSlice, VariantToGoType(arg))
 		}
 
 		// Use the method string to get the class name and method name.
@@ -330,7 +330,7 @@ func createMethod(classString, methodString string) *gdnative.InstanceMethod {
 
 // VariantToGoType will check the given variant type and convert it to its
 // actual type. The value is returned as a reflect.Value.
-func variantToGoType(variant gdnative.Variant) reflect.Value {
+func VariantToGoType(variant gdnative.Variant) reflect.Value {
 	switch variant.GetType() {
 	case gdnative.VariantTypeBool:
 		return reflect.ValueOf(variant.AsBool())

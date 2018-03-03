@@ -36,6 +36,19 @@ package gdnative
 #include <gdnative_api_struct.gen.h>
 */
 import "C"
+import "unsafe"
+
+// NewPointerFromTransform2D will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromTransform2D(obj Transform2D) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewTransform2DFromPointer will return a Transform2D from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewTransform2DFromPointer(ptr Pointer) Transform2D {
+	return Transform2D{base: (*C.godot_transform2d)(ptr.getBase())}
+}
 
 type Transform2D struct {
 	base *C.godot_transform2d

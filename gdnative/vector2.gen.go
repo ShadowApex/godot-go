@@ -36,6 +36,19 @@ package gdnative
 #include <gdnative_api_struct.gen.h>
 */
 import "C"
+import "unsafe"
+
+// NewPointerFromVector2 will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromVector2(obj Vector2) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewVector2FromPointer will return a Vector2 from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewVector2FromPointer(ptr Pointer) Vector2 {
+	return Vector2{base: (*C.godot_vector2)(ptr.getBase())}
+}
 
 type Vector2 struct {
 	base *C.godot_vector2

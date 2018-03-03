@@ -36,6 +36,19 @@ package gdnative
 #include <gdnative_api_struct.gen.h>
 */
 import "C"
+import "unsafe"
+
+// NewPointerFromQuat will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromQuat(obj Quat) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewQuatFromPointer will return a Quat from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewQuatFromPointer(ptr Pointer) Quat {
+	return Quat{base: (*C.godot_quat)(ptr.getBase())}
+}
 
 type Quat struct {
 	base *C.godot_quat

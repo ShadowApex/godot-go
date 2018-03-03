@@ -38,6 +38,18 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewPointerFromRid will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromRid(obj Rid) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewRidFromPointer will return a Rid from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewRidFromPointer(ptr Pointer) Rid {
+	return Rid{base: (*C.godot_rid)(ptr.getBase())}
+}
+
 type Rid struct {
 	base *C.godot_rid
 }

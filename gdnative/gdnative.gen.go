@@ -36,6 +36,7 @@ package gdnative
 #include <gdnative_api_struct.gen.h>
 */
 import "C"
+import "unsafe"
 
 // Error is a Go wrapper for the C.godot_error enum type.
 type Error int
@@ -87,25 +88,79 @@ const (
 	ErrPrinterOnFire
 )
 
-// Bool is a Go wrapper for the C.godot_bool type
+// NewPointerFromBool will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromBool(obj Bool) Pointer {
+	base := obj.getBase()
+	return Pointer{base: unsafe.Pointer(&base)}
+}
+
+// NewBoolFromPointer will return a Bool from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewBoolFromPointer(ptr Pointer) Bool {
+	base := ptr.getBase()
+	return Bool(*(*C.godot_bool)(base))
+}
+
+// Bool is a Go wrapper for the base C.godot_bool type
 type Bool bool
 
 func (t Bool) getBase() C.godot_bool {
 	return C.godot_bool(t)
 }
 
-// Int is a Go wrapper for the C.godot_int type
+// NewPointerFromInt will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromInt(obj Int) Pointer {
+	base := obj.getBase()
+	return Pointer{base: unsafe.Pointer(&base)}
+}
+
+// NewIntFromPointer will return a Int from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewIntFromPointer(ptr Pointer) Int {
+	base := ptr.getBase()
+	return Int(*(*C.godot_int)(base))
+}
+
+// Int is a Go wrapper for the base C.godot_int type
 type Int int
 
 func (t Int) getBase() C.godot_int {
 	return C.godot_int(t)
 }
 
-// Real is a Go wrapper for the C.godot_real type
+// NewPointerFromReal will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromReal(obj Real) Pointer {
+	base := obj.getBase()
+	return Pointer{base: unsafe.Pointer(&base)}
+}
+
+// NewRealFromPointer will return a Real from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewRealFromPointer(ptr Pointer) Real {
+	base := ptr.getBase()
+	return Real(*(*C.godot_real)(base))
+}
+
+// Real is a Go wrapper for the base C.godot_real type
 type Real float64
 
 func (t Real) getBase() C.godot_real {
 	return C.godot_real(t)
+}
+
+// NewPointerFromObject will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromObject(obj Object) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewObjectFromPointer will return a Object from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewObjectFromPointer(ptr Pointer) Object {
+	return Object{base: (*C.godot_object)(ptr.getBase())}
 }
 
 type Object struct {
@@ -116,12 +171,36 @@ func (gdt Object) getBase() *C.godot_object {
 	return gdt.base
 }
 
+// NewPointerFromMethodBind will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromMethodBind(obj MethodBind) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewMethodBindFromPointer will return a MethodBind from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewMethodBindFromPointer(ptr Pointer) MethodBind {
+	return MethodBind{base: (*C.godot_method_bind)(ptr.getBase())}
+}
+
 type MethodBind struct {
 	base *C.godot_method_bind
 }
 
 func (gdt MethodBind) getBase() *C.godot_method_bind {
 	return gdt.base
+}
+
+// NewPointerFromGdnativeApiVersion will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromGdnativeApiVersion(obj GdnativeApiVersion) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewGdnativeApiVersionFromPointer will return a GdnativeApiVersion from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewGdnativeApiVersionFromPointer(ptr Pointer) GdnativeApiVersion {
+	return GdnativeApiVersion{base: (*C.godot_gdnative_api_version)(ptr.getBase())}
 }
 
 type GdnativeApiVersion struct {
@@ -133,6 +212,18 @@ type GdnativeApiVersion struct {
 
 func (gdt GdnativeApiVersion) getBase() *C.godot_gdnative_api_version {
 	return gdt.base
+}
+
+// NewPointerFromGdnativeTerminateOptions will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromGdnativeTerminateOptions(obj GdnativeTerminateOptions) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewGdnativeTerminateOptionsFromPointer will return a GdnativeTerminateOptions from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewGdnativeTerminateOptionsFromPointer(ptr Pointer) GdnativeTerminateOptions {
+	return GdnativeTerminateOptions{base: (*C.godot_gdnative_terminate_options)(ptr.getBase())}
 }
 
 type GdnativeTerminateOptions struct {

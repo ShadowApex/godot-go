@@ -36,6 +36,19 @@ package gdnative
 #include <gdnative_api_struct.gen.h>
 */
 import "C"
+import "unsafe"
+
+// NewPointerFromStringName will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromStringName(obj StringName) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewStringNameFromPointer will return a StringName from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewStringNameFromPointer(ptr Pointer) StringName {
+	return StringName{base: (*C.godot_string_name)(ptr.getBase())}
+}
 
 type StringName struct {
 	base *C.godot_string_name

@@ -36,6 +36,19 @@ package gdnative
 #include <gdnative_api_struct.gen.h>
 */
 import "C"
+import "unsafe"
+
+// NewPointerFromDictionary will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromDictionary(obj Dictionary) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewDictionaryFromPointer will return a Dictionary from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewDictionaryFromPointer(ptr Pointer) Dictionary {
+	return Dictionary{base: (*C.godot_dictionary)(ptr.getBase())}
+}
 
 type Dictionary struct {
 	base *C.godot_dictionary

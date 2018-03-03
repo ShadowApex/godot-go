@@ -36,6 +36,19 @@ package gdnative
 #include <gdnative_api_struct.gen.h>
 */
 import "C"
+import "unsafe"
+
+// NewPointerFromTransform will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromTransform(obj Transform) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewTransformFromPointer will return a Transform from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewTransformFromPointer(ptr Pointer) Transform {
+	return Transform{base: (*C.godot_transform)(ptr.getBase())}
+}
 
 type Transform struct {
 	base *C.godot_transform

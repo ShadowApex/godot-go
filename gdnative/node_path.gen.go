@@ -36,6 +36,19 @@ package gdnative
 #include <gdnative_api_struct.gen.h>
 */
 import "C"
+import "unsafe"
+
+// NewPointerFromNodePath will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromNodePath(obj NodePath) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewNodePathFromPointer will return a NodePath from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewNodePathFromPointer(ptr Pointer) NodePath {
+	return NodePath{base: (*C.godot_node_path)(ptr.getBase())}
+}
 
 type NodePath struct {
 	base *C.godot_node_path

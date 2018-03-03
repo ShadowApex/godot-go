@@ -38,6 +38,18 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewPointerFromVariant will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromVariant(obj Variant) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewVariantFromPointer will return a Variant from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewVariantFromPointer(ptr Pointer) Variant {
+	return Variant{base: (*C.godot_variant)(ptr.getBase())}
+}
+
 type Variant struct {
 	base *C.godot_variant
 }
@@ -670,6 +682,18 @@ const (
 	CallErrorCallErrorTooFewArguments
 	CallErrorCallErrorInstanceIsNull
 )
+
+// NewPointerFromVariantCallError will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromVariantCallError(obj VariantCallError) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewVariantCallErrorFromPointer will return a VariantCallError from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewVariantCallErrorFromPointer(ptr Pointer) VariantCallError {
+	return VariantCallError{base: (*C.godot_variant_call_error)(ptr.getBase())}
+}
 
 type VariantCallError struct {
 	base *C.godot_variant_call_error

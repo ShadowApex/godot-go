@@ -36,6 +36,19 @@ package gdnative
 #include <gdnative_api_struct.gen.h>
 */
 import "C"
+import "unsafe"
+
+// NewPointerFromColor will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromColor(obj Color) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewColorFromPointer will return a Color from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewColorFromPointer(ptr Pointer) Color {
+	return Color{base: (*C.godot_color)(ptr.getBase())}
+}
 
 type Color struct {
 	base *C.godot_color

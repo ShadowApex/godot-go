@@ -36,6 +36,19 @@ package gdnative
 #include <gdnative_api_struct.gen.h>
 */
 import "C"
+import "unsafe"
+
+// NewPointerFromPoolArrayReadAccess will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolArrayReadAccess(obj PoolArrayReadAccess) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolArrayReadAccessFromPointer will return a PoolArrayReadAccess from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolArrayReadAccessFromPointer(ptr Pointer) PoolArrayReadAccess {
+	return PoolArrayReadAccess{base: (*C.godot_pool_array_read_access)(ptr.getBase())}
+}
 
 type PoolArrayReadAccess struct {
 	base *C.godot_pool_array_read_access
@@ -45,26 +58,157 @@ func (gdt PoolArrayReadAccess) getBase() *C.godot_pool_array_read_access {
 	return gdt.base
 }
 
-// PoolByteArrayReadAccess is a Go wrapper for the C.godot_pool_byte_array_read_access type
-type PoolByteArrayReadAccess PoolArrayReadAccess
+// NewPointerFromPoolByteArrayReadAccess will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolByteArrayReadAccess(obj PoolByteArrayReadAccess) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
 
-// PoolIntArrayReadAccess is a Go wrapper for the C.godot_pool_int_array_read_access type
-type PoolIntArrayReadAccess PoolArrayReadAccess
+// NewPoolByteArrayReadAccessFromPointer will return a PoolByteArrayReadAccess from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolByteArrayReadAccessFromPointer(ptr Pointer) PoolByteArrayReadAccess {
+	return PoolByteArrayReadAccess{base: (*C.godot_pool_byte_array_read_access)(ptr.getBase())}
+}
 
-// PoolRealArrayReadAccess is a Go wrapper for the C.godot_pool_real_array_read_access type
-type PoolRealArrayReadAccess PoolArrayReadAccess
+type PoolByteArrayReadAccess struct {
+	base *C.godot_pool_byte_array_read_access
+}
 
-// PoolStringArrayReadAccess is a Go wrapper for the C.godot_pool_string_array_read_access type
-type PoolStringArrayReadAccess PoolArrayReadAccess
+func (gdt PoolByteArrayReadAccess) getBase() *C.godot_pool_byte_array_read_access {
+	return gdt.base
+}
 
-// PoolVector2ArrayReadAccess is a Go wrapper for the C.godot_pool_vector2_array_read_access type
-type PoolVector2ArrayReadAccess PoolArrayReadAccess
+// NewPointerFromPoolIntArrayReadAccess will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolIntArrayReadAccess(obj PoolIntArrayReadAccess) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
 
-// PoolVector3ArrayReadAccess is a Go wrapper for the C.godot_pool_vector3_array_read_access type
-type PoolVector3ArrayReadAccess PoolArrayReadAccess
+// NewPoolIntArrayReadAccessFromPointer will return a PoolIntArrayReadAccess from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolIntArrayReadAccessFromPointer(ptr Pointer) PoolIntArrayReadAccess {
+	return PoolIntArrayReadAccess{base: (*C.godot_pool_int_array_read_access)(ptr.getBase())}
+}
 
-// PoolColorArrayReadAccess is a Go wrapper for the C.godot_pool_color_array_read_access type
-type PoolColorArrayReadAccess PoolArrayReadAccess
+type PoolIntArrayReadAccess struct {
+	base *C.godot_pool_int_array_read_access
+}
+
+func (gdt PoolIntArrayReadAccess) getBase() *C.godot_pool_int_array_read_access {
+	return gdt.base
+}
+
+// NewPointerFromPoolRealArrayReadAccess will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolRealArrayReadAccess(obj PoolRealArrayReadAccess) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolRealArrayReadAccessFromPointer will return a PoolRealArrayReadAccess from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolRealArrayReadAccessFromPointer(ptr Pointer) PoolRealArrayReadAccess {
+	return PoolRealArrayReadAccess{base: (*C.godot_pool_real_array_read_access)(ptr.getBase())}
+}
+
+type PoolRealArrayReadAccess struct {
+	base *C.godot_pool_real_array_read_access
+}
+
+func (gdt PoolRealArrayReadAccess) getBase() *C.godot_pool_real_array_read_access {
+	return gdt.base
+}
+
+// NewPointerFromPoolStringArrayReadAccess will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolStringArrayReadAccess(obj PoolStringArrayReadAccess) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolStringArrayReadAccessFromPointer will return a PoolStringArrayReadAccess from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolStringArrayReadAccessFromPointer(ptr Pointer) PoolStringArrayReadAccess {
+	return PoolStringArrayReadAccess{base: (*C.godot_pool_string_array_read_access)(ptr.getBase())}
+}
+
+type PoolStringArrayReadAccess struct {
+	base *C.godot_pool_string_array_read_access
+}
+
+func (gdt PoolStringArrayReadAccess) getBase() *C.godot_pool_string_array_read_access {
+	return gdt.base
+}
+
+// NewPointerFromPoolVector2ArrayReadAccess will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolVector2ArrayReadAccess(obj PoolVector2ArrayReadAccess) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolVector2ArrayReadAccessFromPointer will return a PoolVector2ArrayReadAccess from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolVector2ArrayReadAccessFromPointer(ptr Pointer) PoolVector2ArrayReadAccess {
+	return PoolVector2ArrayReadAccess{base: (*C.godot_pool_vector2_array_read_access)(ptr.getBase())}
+}
+
+type PoolVector2ArrayReadAccess struct {
+	base *C.godot_pool_vector2_array_read_access
+}
+
+func (gdt PoolVector2ArrayReadAccess) getBase() *C.godot_pool_vector2_array_read_access {
+	return gdt.base
+}
+
+// NewPointerFromPoolVector3ArrayReadAccess will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolVector3ArrayReadAccess(obj PoolVector3ArrayReadAccess) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolVector3ArrayReadAccessFromPointer will return a PoolVector3ArrayReadAccess from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolVector3ArrayReadAccessFromPointer(ptr Pointer) PoolVector3ArrayReadAccess {
+	return PoolVector3ArrayReadAccess{base: (*C.godot_pool_vector3_array_read_access)(ptr.getBase())}
+}
+
+type PoolVector3ArrayReadAccess struct {
+	base *C.godot_pool_vector3_array_read_access
+}
+
+func (gdt PoolVector3ArrayReadAccess) getBase() *C.godot_pool_vector3_array_read_access {
+	return gdt.base
+}
+
+// NewPointerFromPoolColorArrayReadAccess will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolColorArrayReadAccess(obj PoolColorArrayReadAccess) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolColorArrayReadAccessFromPointer will return a PoolColorArrayReadAccess from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolColorArrayReadAccessFromPointer(ptr Pointer) PoolColorArrayReadAccess {
+	return PoolColorArrayReadAccess{base: (*C.godot_pool_color_array_read_access)(ptr.getBase())}
+}
+
+type PoolColorArrayReadAccess struct {
+	base *C.godot_pool_color_array_read_access
+}
+
+func (gdt PoolColorArrayReadAccess) getBase() *C.godot_pool_color_array_read_access {
+	return gdt.base
+}
+
+// NewPointerFromPoolArrayWriteAccess will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolArrayWriteAccess(obj PoolArrayWriteAccess) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolArrayWriteAccessFromPointer will return a PoolArrayWriteAccess from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolArrayWriteAccessFromPointer(ptr Pointer) PoolArrayWriteAccess {
+	return PoolArrayWriteAccess{base: (*C.godot_pool_array_write_access)(ptr.getBase())}
+}
 
 type PoolArrayWriteAccess struct {
 	base *C.godot_pool_array_write_access
@@ -74,26 +218,157 @@ func (gdt PoolArrayWriteAccess) getBase() *C.godot_pool_array_write_access {
 	return gdt.base
 }
 
-// PoolByteArrayWriteAccess is a Go wrapper for the C.godot_pool_byte_array_write_access type
-type PoolByteArrayWriteAccess PoolArrayWriteAccess
+// NewPointerFromPoolByteArrayWriteAccess will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolByteArrayWriteAccess(obj PoolByteArrayWriteAccess) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
 
-// PoolIntArrayWriteAccess is a Go wrapper for the C.godot_pool_int_array_write_access type
-type PoolIntArrayWriteAccess PoolArrayWriteAccess
+// NewPoolByteArrayWriteAccessFromPointer will return a PoolByteArrayWriteAccess from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolByteArrayWriteAccessFromPointer(ptr Pointer) PoolByteArrayWriteAccess {
+	return PoolByteArrayWriteAccess{base: (*C.godot_pool_byte_array_write_access)(ptr.getBase())}
+}
 
-// PoolRealArrayWriteAccess is a Go wrapper for the C.godot_pool_real_array_write_access type
-type PoolRealArrayWriteAccess PoolArrayWriteAccess
+type PoolByteArrayWriteAccess struct {
+	base *C.godot_pool_byte_array_write_access
+}
 
-// PoolStringArrayWriteAccess is a Go wrapper for the C.godot_pool_string_array_write_access type
-type PoolStringArrayWriteAccess PoolArrayWriteAccess
+func (gdt PoolByteArrayWriteAccess) getBase() *C.godot_pool_byte_array_write_access {
+	return gdt.base
+}
 
-// PoolVector2ArrayWriteAccess is a Go wrapper for the C.godot_pool_vector2_array_write_access type
-type PoolVector2ArrayWriteAccess PoolArrayWriteAccess
+// NewPointerFromPoolIntArrayWriteAccess will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolIntArrayWriteAccess(obj PoolIntArrayWriteAccess) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
 
-// PoolVector3ArrayWriteAccess is a Go wrapper for the C.godot_pool_vector3_array_write_access type
-type PoolVector3ArrayWriteAccess PoolArrayWriteAccess
+// NewPoolIntArrayWriteAccessFromPointer will return a PoolIntArrayWriteAccess from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolIntArrayWriteAccessFromPointer(ptr Pointer) PoolIntArrayWriteAccess {
+	return PoolIntArrayWriteAccess{base: (*C.godot_pool_int_array_write_access)(ptr.getBase())}
+}
 
-// PoolColorArrayWriteAccess is a Go wrapper for the C.godot_pool_color_array_write_access type
-type PoolColorArrayWriteAccess PoolArrayWriteAccess
+type PoolIntArrayWriteAccess struct {
+	base *C.godot_pool_int_array_write_access
+}
+
+func (gdt PoolIntArrayWriteAccess) getBase() *C.godot_pool_int_array_write_access {
+	return gdt.base
+}
+
+// NewPointerFromPoolRealArrayWriteAccess will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolRealArrayWriteAccess(obj PoolRealArrayWriteAccess) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolRealArrayWriteAccessFromPointer will return a PoolRealArrayWriteAccess from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolRealArrayWriteAccessFromPointer(ptr Pointer) PoolRealArrayWriteAccess {
+	return PoolRealArrayWriteAccess{base: (*C.godot_pool_real_array_write_access)(ptr.getBase())}
+}
+
+type PoolRealArrayWriteAccess struct {
+	base *C.godot_pool_real_array_write_access
+}
+
+func (gdt PoolRealArrayWriteAccess) getBase() *C.godot_pool_real_array_write_access {
+	return gdt.base
+}
+
+// NewPointerFromPoolStringArrayWriteAccess will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolStringArrayWriteAccess(obj PoolStringArrayWriteAccess) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolStringArrayWriteAccessFromPointer will return a PoolStringArrayWriteAccess from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolStringArrayWriteAccessFromPointer(ptr Pointer) PoolStringArrayWriteAccess {
+	return PoolStringArrayWriteAccess{base: (*C.godot_pool_string_array_write_access)(ptr.getBase())}
+}
+
+type PoolStringArrayWriteAccess struct {
+	base *C.godot_pool_string_array_write_access
+}
+
+func (gdt PoolStringArrayWriteAccess) getBase() *C.godot_pool_string_array_write_access {
+	return gdt.base
+}
+
+// NewPointerFromPoolVector2ArrayWriteAccess will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolVector2ArrayWriteAccess(obj PoolVector2ArrayWriteAccess) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolVector2ArrayWriteAccessFromPointer will return a PoolVector2ArrayWriteAccess from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolVector2ArrayWriteAccessFromPointer(ptr Pointer) PoolVector2ArrayWriteAccess {
+	return PoolVector2ArrayWriteAccess{base: (*C.godot_pool_vector2_array_write_access)(ptr.getBase())}
+}
+
+type PoolVector2ArrayWriteAccess struct {
+	base *C.godot_pool_vector2_array_write_access
+}
+
+func (gdt PoolVector2ArrayWriteAccess) getBase() *C.godot_pool_vector2_array_write_access {
+	return gdt.base
+}
+
+// NewPointerFromPoolVector3ArrayWriteAccess will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolVector3ArrayWriteAccess(obj PoolVector3ArrayWriteAccess) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolVector3ArrayWriteAccessFromPointer will return a PoolVector3ArrayWriteAccess from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolVector3ArrayWriteAccessFromPointer(ptr Pointer) PoolVector3ArrayWriteAccess {
+	return PoolVector3ArrayWriteAccess{base: (*C.godot_pool_vector3_array_write_access)(ptr.getBase())}
+}
+
+type PoolVector3ArrayWriteAccess struct {
+	base *C.godot_pool_vector3_array_write_access
+}
+
+func (gdt PoolVector3ArrayWriteAccess) getBase() *C.godot_pool_vector3_array_write_access {
+	return gdt.base
+}
+
+// NewPointerFromPoolColorArrayWriteAccess will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolColorArrayWriteAccess(obj PoolColorArrayWriteAccess) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolColorArrayWriteAccessFromPointer will return a PoolColorArrayWriteAccess from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolColorArrayWriteAccessFromPointer(ptr Pointer) PoolColorArrayWriteAccess {
+	return PoolColorArrayWriteAccess{base: (*C.godot_pool_color_array_write_access)(ptr.getBase())}
+}
+
+type PoolColorArrayWriteAccess struct {
+	base *C.godot_pool_color_array_write_access
+}
+
+func (gdt PoolColorArrayWriteAccess) getBase() *C.godot_pool_color_array_write_access {
+	return gdt.base
+}
+
+// NewPointerFromPoolByteArray will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolByteArray(obj PoolByteArray) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolByteArrayFromPointer will return a PoolByteArray from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolByteArrayFromPointer(ptr Pointer) PoolByteArray {
+	return PoolByteArray{base: (*C.godot_pool_byte_array)(ptr.getBase())}
+}
 
 type PoolByteArray struct {
 	base *C.godot_pool_byte_array
@@ -237,6 +512,18 @@ func (gdt *PoolByteArray) Destroy() {
 	arg0 := gdt.getBase()
 
 	C.go_godot_pool_byte_array_destroy(GDNative.api, arg0)
+}
+
+// NewPointerFromPoolIntArray will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolIntArray(obj PoolIntArray) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolIntArrayFromPointer will return a PoolIntArray from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolIntArrayFromPointer(ptr Pointer) PoolIntArray {
+	return PoolIntArray{base: (*C.godot_pool_int_array)(ptr.getBase())}
 }
 
 type PoolIntArray struct {
@@ -383,6 +670,18 @@ func (gdt *PoolIntArray) Destroy() {
 	C.go_godot_pool_int_array_destroy(GDNative.api, arg0)
 }
 
+// NewPointerFromPoolRealArray will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolRealArray(obj PoolRealArray) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolRealArrayFromPointer will return a PoolRealArray from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolRealArrayFromPointer(ptr Pointer) PoolRealArray {
+	return PoolRealArray{base: (*C.godot_pool_real_array)(ptr.getBase())}
+}
+
 type PoolRealArray struct {
 	base *C.godot_pool_real_array
 }
@@ -525,6 +824,18 @@ func (gdt *PoolRealArray) Destroy() {
 	arg0 := gdt.getBase()
 
 	C.go_godot_pool_real_array_destroy(GDNative.api, arg0)
+}
+
+// NewPointerFromPoolStringArray will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolStringArray(obj PoolStringArray) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolStringArrayFromPointer will return a PoolStringArray from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolStringArrayFromPointer(ptr Pointer) PoolStringArray {
+	return PoolStringArray{base: (*C.godot_pool_string_array)(ptr.getBase())}
 }
 
 type PoolStringArray struct {
@@ -672,6 +983,18 @@ func (gdt *PoolStringArray) Destroy() {
 	C.go_godot_pool_string_array_destroy(GDNative.api, arg0)
 }
 
+// NewPointerFromPoolVector2Array will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolVector2Array(obj PoolVector2Array) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolVector2ArrayFromPointer will return a PoolVector2Array from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolVector2ArrayFromPointer(ptr Pointer) PoolVector2Array {
+	return PoolVector2Array{base: (*C.godot_pool_vector2_array)(ptr.getBase())}
+}
+
 type PoolVector2Array struct {
 	base *C.godot_pool_vector2_array
 }
@@ -817,6 +1140,18 @@ func (gdt *PoolVector2Array) Destroy() {
 	C.go_godot_pool_vector2_array_destroy(GDNative.api, arg0)
 }
 
+// NewPointerFromPoolVector3Array will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolVector3Array(obj PoolVector3Array) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolVector3ArrayFromPointer will return a PoolVector3Array from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolVector3ArrayFromPointer(ptr Pointer) PoolVector3Array {
+	return PoolVector3Array{base: (*C.godot_pool_vector3_array)(ptr.getBase())}
+}
+
 type PoolVector3Array struct {
 	base *C.godot_pool_vector3_array
 }
@@ -960,6 +1295,18 @@ func (gdt *PoolVector3Array) Destroy() {
 	arg0 := gdt.getBase()
 
 	C.go_godot_pool_vector3_array_destroy(GDNative.api, arg0)
+}
+
+// NewPointerFromPoolColorArray will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPoolColorArray(obj PoolColorArray) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPoolColorArrayFromPointer will return a PoolColorArray from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPoolColorArrayFromPointer(ptr Pointer) PoolColorArray {
+	return PoolColorArray{base: (*C.godot_pool_color_array)(ptr.getBase())}
 }
 
 type PoolColorArray struct {

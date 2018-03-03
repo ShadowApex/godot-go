@@ -36,6 +36,19 @@ package gdnative
 #include <gdnative_api_struct.gen.h>
 */
 import "C"
+import "unsafe"
+
+// NewPointerFromPlane will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromPlane(obj Plane) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewPlaneFromPointer will return a Plane from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPlaneFromPointer(ptr Pointer) Plane {
+	return Plane{base: (*C.godot_plane)(ptr.getBase())}
+}
 
 type Plane struct {
 	base *C.godot_plane

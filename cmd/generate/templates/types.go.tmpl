@@ -44,6 +44,18 @@ import "C"
 {{ range $i, $typedef := $view.TypeDefinitions -}}
 	{{/* Handle struct definitions */}}
 	{{ if or (eq $typedef.Base "struct") (eq $typedef.Base "void") }}
+		// NewPointerFrom{{ $typedef.GoName }} will return an unsafe pointer to the given
+		// object. This is primarily used in conjunction with MethodBindPtrCall.
+		func NewPointerFrom{{ $typedef.GoName }}(obj {{ $typedef.GoName }}) Pointer {
+			return Pointer{base: unsafe.Pointer(obj.getBase())}
+		}
+
+		// New{{ $typedef.GoName }}FromPointer will return a {{ $typedef.GoName }} from the 
+		// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+		func New{{ $typedef.GoName }}FromPointer(ptr Pointer) {{ $typedef.GoName }} {
+			return {{ $typedef.GoName }}{base: (*C.{{ $typedef.Name }})(ptr.getBase())}
+		}
+
 		type {{ $typedef.GoName }} struct {
 			base *C.{{ $typedef.Name }}
 			{{/* Handle struct properties */}}
@@ -156,11 +168,50 @@ import "C"
 
 	{{/* Handle base type definitions */}}
 	{{ if and ($typedef.SimpleType) (ne $typedef.Base "void") }}
+		{{/* This segment handles godot_pool_*_access type definitions */}}
 		{{ if ($view.IsGodotBaseType $typedef) }}
-			// {{ $typedef.GoName }} is a Go wrapper for the C.{{ $typedef.Name }} type
-			type {{ $typedef.GoName }} {{ $view.ToGoName $typedef.Base }}
+			// NewPointerFrom{{ $typedef.GoName }} will return an unsafe pointer to the given
+			// object. This is primarily used in conjunction with MethodBindPtrCall.
+			func NewPointerFrom{{ $typedef.GoName }}(obj {{ $typedef.GoName }}) Pointer {
+				return Pointer{base: unsafe.Pointer(obj.getBase())}
+			}
+	
+			// New{{ $typedef.GoName }}FromPointer will return a {{ $typedef.GoName }} from the 
+			// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+			func New{{ $typedef.GoName }}FromPointer(ptr Pointer) {{ $typedef.GoName }} {
+				return {{ $typedef.GoName }}{base: (*C.{{ $typedef.Name }})(ptr.getBase())}
+			}
+	
+			type {{ $typedef.GoName }} struct {
+				base *C.{{ $typedef.Name }}
+				{{/* Handle struct properties */}}
+				{{ range $j, $propdef := $typedef.Properties -}}
+					{{ if ($view.IsValidProperty $propdef) -}}
+						{{ $propdef.GoName }} {{ $view.ToGoName $propdef.Base }}
+					{{ end -}}
+				{{ end -}}
+			}
+	
+			func (gdt {{ $typedef.GoName }}) getBase() *C.{{ $typedef.Name }} {
+				return gdt.base
+			}
+		{{/* This segment handles base types like godot_bool */}}
 		{{ else }}
-			// {{ $typedef.GoName }} is a Go wrapper for the C.{{ $typedef.Name }} type
+			// NewPointerFrom{{ $typedef.GoName }} will return an unsafe pointer to the given
+			// object. This is primarily used in conjunction with MethodBindPtrCall.
+			func NewPointerFrom{{ $typedef.GoName }}(obj {{ $typedef.GoName }}) Pointer {
+				base := obj.getBase()
+				return Pointer{base: unsafe.Pointer(&base)}
+			}
+
+			// New{{ $typedef.GoName }}FromPointer will return a {{ $typedef.GoName }} from the 
+			// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+			func New{{ $typedef.GoName }}FromPointer(ptr Pointer) {{ $typedef.GoName }} {
+				base := ptr.getBase()
+				return {{ $typedef.GoName }}(*(*C.{{ $typedef.Name }})(base))
+			}
+
+			// {{ $typedef.GoName }} is a Go wrapper for the base C.{{ $typedef.Name }} type
 			type {{ $typedef.GoName }} {{ $view.ToGoBaseType $typedef.Base }}
 
 			func (t {{ $typedef.GoName }}) getBase() C.{{ $typedef.Name }} {

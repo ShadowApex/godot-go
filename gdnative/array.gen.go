@@ -38,6 +38,18 @@ package gdnative
 import "C"
 import "unsafe"
 
+// NewPointerFromArray will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromArray(obj Array) Pointer {
+	return Pointer{base: unsafe.Pointer(obj.getBase())}
+}
+
+// NewArrayFromPointer will return a Array from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewArrayFromPointer(ptr Pointer) Array {
+	return Array{base: (*C.godot_array)(ptr.getBase())}
+}
+
 type Array struct {
 	base *C.godot_array
 }
