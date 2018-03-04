@@ -60,7 +60,7 @@ func nativeScriptInit() {
 	)
 }
 
-func simpleConstructor(object gdnative.Object) string {
+func simpleConstructor(object gdnative.Object, methodData string) string {
 	gdnative.Log.Println("Creating new SimpleClass...")
 
 	// Create a new instance of our struct.

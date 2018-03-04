@@ -27,7 +27,21 @@ var GDNative = &gdNative{}
 
 // gdNative is a structure that wraps the GDNativeAPI.
 type gdNative struct {
-	api *C.godot_gdnative_core_api_struct
+	api         *C.godot_gdnative_core_api_struct
+	initialized bool
+}
+
+// IsInitialized will return true if `godot_gdnative_init` was called by Godot.
+func (g *gdNative) IsInitialized() bool {
+	return g.initialized
+}
+
+// CheckInit will check to see if GDNative has initialized. If it is not, it will
+// throw a panic.
+func (g *gdNative) checkInit() {
+	if !g.IsInitialized() {
+		panic("GDNative has not initialized! You cannot call this in init()!")
+	}
 }
 
 // godot_gdnative_init is the library entry point. When the library is loaded
@@ -38,6 +52,7 @@ func godot_gdnative_init(options *C.godot_gdnative_init_options) {
 	// library is loaded. This API struct will have all of the functions
 	// to call.
 	GDNative.api = (*options).api_struct
+	GDNative.initialized = true
 
 	// Configure logging.
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
@@ -72,6 +87,8 @@ func NewEmptyVoid() Pointer {
 
 // GetSingleton will return an instance of the given singleton.
 func GetSingleton(name string) Object {
+	log.Println("Getting singleton:", name)
+	GDNative.checkInit()
 	obj := C.go_godot_global_get_singleton(GDNative.api, C.CString("ARVRServer"))
 	return Object{base: (*C.godot_object)(obj)}
 }
@@ -79,6 +96,7 @@ func GetSingleton(name string) Object {
 // NewMethodBind will return a method binding using the given class name and method
 // name.
 func NewMethodBind(class, method string) MethodBind {
+	GDNative.checkInit()
 	methodBind := C.go_godot_method_bind_get_method(
 		GDNative.api,
 		C.CString(class),
@@ -91,6 +109,7 @@ func NewMethodBind(class, method string) MethodBind {
 // MethodBindPtrCall will call the given method on the given Godot Object. Its return
 // value is given as a pointer, which can be used to convert it to a variant.
 func MethodBindPtrCall(methodBind MethodBind, instance Object, args []Pointer, returns Pointer) Pointer {
+	GDNative.checkInit()
 	// Build out our C arguments array
 	cArgs := C.go_void_build_array(C.int(len(args)))
 	for i, arg := range args {

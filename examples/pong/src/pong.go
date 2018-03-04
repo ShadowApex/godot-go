@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/shadowapex/godot-go/godot"
 	"github.com/shadowapex/godot-go/godot/class"
 )
@@ -30,6 +31,7 @@ func (p *PongClass) CustomThing(myPhrase string) string {
 // The "init()" function is a special Go function that will be called when this library
 // is initialized. Here we can register our Godot classes.
 func init() {
+	fmt.Println("Starting!")
 	// Register will register the given class constructor with Godot.
 	godot.AutoRegister(NewPongClass)
 }

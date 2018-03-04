@@ -25,10 +25,7 @@ func NewIPFromPointer(ptr gdnative.Pointer) ip {
 }
 
 func newSingletonIP() *ip {
-	obj := &ip{}
-	gdObj := gdnative.GetSingleton("IP")
-	obj.SetBaseObject(gdObj)
-	return obj
+	return &ip{}
 }
 
 /*
@@ -41,7 +38,20 @@ IP contains support functions for the Internet Protocol (IP). TCP/IP support is 
 */
 type ip struct {
 	Object
-	owner gdnative.Object
+	owner       gdnative.Object
+	initialized bool
+}
+
+// EnsureSingleton will check to see if we have an object for it. If not, it will fetch its
+// GDNative object and set it.
+func (o *ip) ensureSingleton() {
+	if o.initialized == true {
+		return
+	}
+	log.Println("Singleton not found. Fetching from GDNative...")
+	base := gdnative.GetSingleton("IP")
+	o.SetBaseObject(base)
+	o.initialized = true
 }
 
 func (o *ip) BaseClass() string {
@@ -63,6 +73,7 @@ func (o *ip) GetBaseObject() gdnative.Object {
 	Args: [{ true hostname String}], Returns: void
 */
 func (o *ip) ClearCache(hostname gdnative.String) {
+	o.ensureSingleton()
 	log.Println("Calling IP.ClearCache()")
 
 	// Build out the method's arguments
@@ -84,6 +95,7 @@ func (o *ip) ClearCache(hostname gdnative.String) {
 	Args: [{ false id int}], Returns: void
 */
 func (o *ip) EraseResolveItem(id gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling IP.EraseResolveItem()")
 
 	// Build out the method's arguments
@@ -105,6 +117,7 @@ func (o *ip) EraseResolveItem(id gdnative.Int) {
 	Args: [], Returns: Array
 */
 func (o *ip) GetLocalAddresses() gdnative.Array {
+	o.ensureSingleton()
 	log.Println("Calling IP.GetLocalAddresses()")
 
 	// Build out the method's arguments
@@ -129,6 +142,7 @@ func (o *ip) GetLocalAddresses() gdnative.Array {
 	Args: [{ false id int}], Returns: String
 */
 func (o *ip) GetResolveItemAddress(id gdnative.Int) gdnative.String {
+	o.ensureSingleton()
 	log.Println("Calling IP.GetResolveItemAddress()")
 
 	// Build out the method's arguments
@@ -159,6 +173,7 @@ func (o *ip) GetResolveItemAddress(id gdnative.Int) gdnative.String {
 	Args: [{ false host String} {3 true ip_type int}], Returns: String
 */
 func (o *ip) ResolveHostname(host gdnative.String, ipType gdnative.Int) gdnative.String {
+	o.ensureSingleton()
 	log.Println("Calling IP.ResolveHostname()")
 
 	// Build out the method's arguments
@@ -185,6 +200,7 @@ func (o *ip) ResolveHostname(host gdnative.String, ipType gdnative.Int) gdnative
 	Args: [{ false host String} {3 true ip_type int}], Returns: int
 */
 func (o *ip) ResolveHostnameQueueItem(host gdnative.String, ipType gdnative.Int) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling IP.ResolveHostnameQueueItem()")
 
 	// Build out the method's arguments

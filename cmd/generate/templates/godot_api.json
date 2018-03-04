@@ -38296,6 +38296,240 @@
 		]
 	},
 	{
+		"name": "World",
+		"base_class": "Resource",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": true,
+		"is_reference": true,
+		"constants": {
+		},
+		"properties": [
+			{
+				"name": "environment",
+				"type": "Environment",
+				"getter": "get_environment",
+				"setter": "set_environment",
+				"index": -1
+			},
+			{
+				"name": "fallback_environment",
+				"type": "Environment",
+				"getter": "get_fallback_environment",
+				"setter": "set_fallback_environment",
+				"index": -1
+			},
+			{
+				"name": "space",
+				"type": "RID",
+				"getter": "get_space",
+				"setter": "",
+				"index": -1
+			},
+			{
+				"name": "scenario",
+				"type": "RID",
+				"getter": "get_scenario",
+				"setter": "",
+				"index": -1
+			},
+			{
+				"name": "direct_space_state",
+				"type": "PhysicsDirectSpaceState",
+				"getter": "get_direct_space_state",
+				"setter": "",
+				"index": -1
+			}
+		],
+		"signals": [
+		],
+		"methods": [
+			{
+				"name": "get_space",
+				"return_type": "RID",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_scenario",
+				"return_type": "RID",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_environment",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "env",
+						"type": "Environment",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_environment",
+				"return_type": "Environment",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_fallback_environment",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "env",
+						"type": "Environment",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_fallback_environment",
+				"return_type": "Environment",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_direct_space_state",
+				"return_type": "PhysicsDirectSpaceState",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			}
+		],
+		"enums": [
+		]
+	},
+	{
+		"name": "World2D",
+		"base_class": "Resource",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": true,
+		"is_reference": true,
+		"constants": {
+		},
+		"properties": [
+			{
+				"name": "canvas",
+				"type": "RID",
+				"getter": "get_canvas",
+				"setter": "",
+				"index": -1
+			},
+			{
+				"name": "space",
+				"type": "RID",
+				"getter": "get_space",
+				"setter": "",
+				"index": -1
+			},
+			{
+				"name": "direct_space_state",
+				"type": "Physics2DDirectSpaceState",
+				"getter": "get_direct_space_state",
+				"setter": "",
+				"index": -1
+			}
+		],
+		"signals": [
+		],
+		"methods": [
+			{
+				"name": "get_canvas",
+				"return_type": "RID",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_space",
+				"return_type": "RID",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_direct_space_state",
+				"return_type": "Physics2DDirectSpaceState",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			}
+		],
+		"enums": [
+		]
+	},
+	{
 		"name": "Node",
 		"base_class": "Object",
 		"api_type": "core",
@@ -41972,240 +42206,6 @@
 					"RESULT_REDIRECT_LIMIT_REACHED": 11
 				}
 			}
-		]
-	},
-	{
-		"name": "World",
-		"base_class": "Resource",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": true,
-		"is_reference": true,
-		"constants": {
-		},
-		"properties": [
-			{
-				"name": "environment",
-				"type": "Environment",
-				"getter": "get_environment",
-				"setter": "set_environment",
-				"index": -1
-			},
-			{
-				"name": "fallback_environment",
-				"type": "Environment",
-				"getter": "get_fallback_environment",
-				"setter": "set_fallback_environment",
-				"index": -1
-			},
-			{
-				"name": "space",
-				"type": "RID",
-				"getter": "get_space",
-				"setter": "",
-				"index": -1
-			},
-			{
-				"name": "scenario",
-				"type": "RID",
-				"getter": "get_scenario",
-				"setter": "",
-				"index": -1
-			},
-			{
-				"name": "direct_space_state",
-				"type": "PhysicsDirectSpaceState",
-				"getter": "get_direct_space_state",
-				"setter": "",
-				"index": -1
-			}
-		],
-		"signals": [
-		],
-		"methods": [
-			{
-				"name": "get_space",
-				"return_type": "RID",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_scenario",
-				"return_type": "RID",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_environment",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "env",
-						"type": "Environment",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_environment",
-				"return_type": "Environment",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_fallback_environment",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "env",
-						"type": "Environment",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_fallback_environment",
-				"return_type": "Environment",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_direct_space_state",
-				"return_type": "PhysicsDirectSpaceState",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			}
-		],
-		"enums": [
-		]
-	},
-	{
-		"name": "World2D",
-		"base_class": "Resource",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": true,
-		"is_reference": true,
-		"constants": {
-		},
-		"properties": [
-			{
-				"name": "canvas",
-				"type": "RID",
-				"getter": "get_canvas",
-				"setter": "",
-				"index": -1
-			},
-			{
-				"name": "space",
-				"type": "RID",
-				"getter": "get_space",
-				"setter": "",
-				"index": -1
-			},
-			{
-				"name": "direct_space_state",
-				"type": "Physics2DDirectSpaceState",
-				"getter": "get_direct_space_state",
-				"setter": "",
-				"index": -1
-			}
-		],
-		"signals": [
-		],
-		"methods": [
-			{
-				"name": "get_canvas",
-				"return_type": "RID",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_space",
-				"return_type": "RID",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_direct_space_state",
-				"return_type": "Physics2DDirectSpaceState",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			}
-		],
-		"enums": [
 		]
 	},
 	{

@@ -25,10 +25,7 @@ func NewPhysicsServerFromPointer(ptr gdnative.Pointer) physicsServer {
 }
 
 func newSingletonPhysicsServer() *physicsServer {
-	obj := &physicsServer{}
-	gdObj := gdnative.GetSingleton("PhysicsServer")
-	obj.SetBaseObject(gdObj)
-	return obj
+	return &physicsServer{}
 }
 
 /*
@@ -41,7 +38,20 @@ Everything related to physics in 3D.
 */
 type physicsServer struct {
 	Object
-	owner gdnative.Object
+	owner       gdnative.Object
+	initialized bool
+}
+
+// EnsureSingleton will check to see if we have an object for it. If not, it will fetch its
+// GDNative object and set it.
+func (o *physicsServer) ensureSingleton() {
+	if o.initialized == true {
+		return
+	}
+	log.Println("Singleton not found. Fetching from GDNative...")
+	base := gdnative.GetSingleton("PhysicsServer")
+	o.SetBaseObject(base)
+	o.initialized = true
 }
 
 func (o *physicsServer) BaseClass() string {
@@ -63,6 +73,7 @@ func (o *physicsServer) GetBaseObject() gdnative.Object {
 	Args: [{ false area RID} { false shape RID} {1, 0, 0, 0, 1, 0, 0, 0, 1 - 0, 0, 0 true transform Transform}], Returns: void
 */
 func (o *physicsServer) AreaAddShape(area gdnative.Rid, shape gdnative.Rid, transform gdnative.Transform) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaAddShape()")
 
 	// Build out the method's arguments
@@ -86,6 +97,7 @@ func (o *physicsServer) AreaAddShape(area gdnative.Rid, shape gdnative.Rid, tran
 	Args: [{ false area RID} { false id int}], Returns: void
 */
 func (o *physicsServer) AreaAttachObjectInstanceId(area gdnative.Rid, id gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaAttachObjectInstanceId()")
 
 	// Build out the method's arguments
@@ -108,6 +120,7 @@ func (o *physicsServer) AreaAttachObjectInstanceId(area gdnative.Rid, id gdnativ
 	Args: [{ false area RID}], Returns: void
 */
 func (o *physicsServer) AreaClearShapes(area gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaClearShapes()")
 
 	// Build out the method's arguments
@@ -129,6 +142,7 @@ func (o *physicsServer) AreaClearShapes(area gdnative.Rid) {
 	Args: [], Returns: RID
 */
 func (o *physicsServer) AreaCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaCreate()")
 
 	// Build out the method's arguments
@@ -153,6 +167,7 @@ func (o *physicsServer) AreaCreate() gdnative.Rid {
 	Args: [{ false area RID}], Returns: int
 */
 func (o *physicsServer) AreaGetObjectInstanceId(area gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaGetObjectInstanceId()")
 
 	// Build out the method's arguments
@@ -178,6 +193,7 @@ func (o *physicsServer) AreaGetObjectInstanceId(area gdnative.Rid) gdnative.Int 
 	Args: [{ false area RID} { false param int}], Returns: Variant
 */
 func (o *physicsServer) AreaGetParam(area gdnative.Rid, param gdnative.Int) gdnative.Variant {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaGetParam()")
 
 	// Build out the method's arguments
@@ -204,6 +220,7 @@ func (o *physicsServer) AreaGetParam(area gdnative.Rid, param gdnative.Int) gdna
 	Args: [{ false area RID} { false shape_idx int}], Returns: RID
 */
 func (o *physicsServer) AreaGetShape(area gdnative.Rid, shapeIdx gdnative.Int) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaGetShape()")
 
 	// Build out the method's arguments
@@ -230,6 +247,7 @@ func (o *physicsServer) AreaGetShape(area gdnative.Rid, shapeIdx gdnative.Int) g
 	Args: [{ false area RID}], Returns: int
 */
 func (o *physicsServer) AreaGetShapeCount(area gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaGetShapeCount()")
 
 	// Build out the method's arguments
@@ -255,6 +273,7 @@ func (o *physicsServer) AreaGetShapeCount(area gdnative.Rid) gdnative.Int {
 	Args: [{ false area RID} { false shape_idx int}], Returns: Transform
 */
 func (o *physicsServer) AreaGetShapeTransform(area gdnative.Rid, shapeIdx gdnative.Int) gdnative.Transform {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaGetShapeTransform()")
 
 	// Build out the method's arguments
@@ -281,6 +300,7 @@ func (o *physicsServer) AreaGetShapeTransform(area gdnative.Rid, shapeIdx gdnati
 	Args: [{ false area RID}], Returns: RID
 */
 func (o *physicsServer) AreaGetSpace(area gdnative.Rid) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaGetSpace()")
 
 	// Build out the method's arguments
@@ -311,6 +331,7 @@ func (o *physicsServer) AreaGetSpace(area gdnative.Rid) gdnative.Rid {
 	Args: [{ false area RID}], Returns: Transform
 */
 func (o *physicsServer) AreaGetTransform(area gdnative.Rid) gdnative.Transform {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaGetTransform()")
 
 	// Build out the method's arguments
@@ -336,6 +357,7 @@ func (o *physicsServer) AreaGetTransform(area gdnative.Rid) gdnative.Transform {
 	Args: [{ false area RID}], Returns: bool
 */
 func (o *physicsServer) AreaIsRayPickable(area gdnative.Rid) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaIsRayPickable()")
 
 	// Build out the method's arguments
@@ -361,6 +383,7 @@ func (o *physicsServer) AreaIsRayPickable(area gdnative.Rid) gdnative.Bool {
 	Args: [{ false area RID} { false shape_idx int}], Returns: void
 */
 func (o *physicsServer) AreaRemoveShape(area gdnative.Rid, shapeIdx gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaRemoveShape()")
 
 	// Build out the method's arguments
@@ -383,6 +406,7 @@ func (o *physicsServer) AreaRemoveShape(area gdnative.Rid, shapeIdx gdnative.Int
 	Args: [{ false area RID} { false layer int}], Returns: void
 */
 func (o *physicsServer) AreaSetCollisionLayer(area gdnative.Rid, layer gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaSetCollisionLayer()")
 
 	// Build out the method's arguments
@@ -405,6 +429,7 @@ func (o *physicsServer) AreaSetCollisionLayer(area gdnative.Rid, layer gdnative.
 	Args: [{ false area RID} { false mask int}], Returns: void
 */
 func (o *physicsServer) AreaSetCollisionMask(area gdnative.Rid, mask gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaSetCollisionMask()")
 
 	// Build out the method's arguments
@@ -427,6 +452,7 @@ func (o *physicsServer) AreaSetCollisionMask(area gdnative.Rid, mask gdnative.In
 	Args: [{ false area RID} { false receiver Object} { false method String}], Returns: void
 */
 func (o *physicsServer) AreaSetMonitorCallback(area gdnative.Rid, receiver Object, method gdnative.String) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaSetMonitorCallback()")
 
 	// Build out the method's arguments
@@ -450,6 +476,7 @@ func (o *physicsServer) AreaSetMonitorCallback(area gdnative.Rid, receiver Objec
 	Args: [{ false area RID} { false param int} { false value Variant}], Returns: void
 */
 func (o *physicsServer) AreaSetParam(area gdnative.Rid, param gdnative.Int, value gdnative.Variant) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaSetParam()")
 
 	// Build out the method's arguments
@@ -473,6 +500,7 @@ func (o *physicsServer) AreaSetParam(area gdnative.Rid, param gdnative.Int, valu
 	Args: [{ false area RID} { false enable bool}], Returns: void
 */
 func (o *physicsServer) AreaSetRayPickable(area gdnative.Rid, enable gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaSetRayPickable()")
 
 	// Build out the method's arguments
@@ -495,6 +523,7 @@ func (o *physicsServer) AreaSetRayPickable(area gdnative.Rid, enable gdnative.Bo
 	Args: [{ false area RID} { false shape_idx int} { false shape RID}], Returns: void
 */
 func (o *physicsServer) AreaSetShape(area gdnative.Rid, shapeIdx gdnative.Int, shape gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaSetShape()")
 
 	// Build out the method's arguments
@@ -518,6 +547,7 @@ func (o *physicsServer) AreaSetShape(area gdnative.Rid, shapeIdx gdnative.Int, s
 	Args: [{ false area RID} { false shape_idx int} { false transform Transform}], Returns: void
 */
 func (o *physicsServer) AreaSetShapeTransform(area gdnative.Rid, shapeIdx gdnative.Int, transform gdnative.Transform) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaSetShapeTransform()")
 
 	// Build out the method's arguments
@@ -541,6 +571,7 @@ func (o *physicsServer) AreaSetShapeTransform(area gdnative.Rid, shapeIdx gdnati
 	Args: [{ false area RID} { false space RID}], Returns: void
 */
 func (o *physicsServer) AreaSetSpace(area gdnative.Rid, space gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaSetSpace()")
 
 	// Build out the method's arguments
@@ -563,6 +594,7 @@ func (o *physicsServer) AreaSetSpace(area gdnative.Rid, space gdnative.Rid) {
 	Args: [{ false area RID} { false mode int}], Returns: void
 */
 func (o *physicsServer) AreaSetSpaceOverrideMode(area gdnative.Rid, mode gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaSetSpaceOverrideMode()")
 
 	// Build out the method's arguments
@@ -585,6 +617,7 @@ func (o *physicsServer) AreaSetSpaceOverrideMode(area gdnative.Rid, mode gdnativ
 	Args: [{ false area RID} { false transform Transform}], Returns: void
 */
 func (o *physicsServer) AreaSetTransform(area gdnative.Rid, transform gdnative.Transform) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.AreaSetTransform()")
 
 	// Build out the method's arguments
@@ -607,6 +640,7 @@ func (o *physicsServer) AreaSetTransform(area gdnative.Rid, transform gdnative.T
 	Args: [{ false body RID} { false excepted_body RID}], Returns: void
 */
 func (o *physicsServer) BodyAddCollisionException(body gdnative.Rid, exceptedBody gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyAddCollisionException()")
 
 	// Build out the method's arguments
@@ -629,6 +663,7 @@ func (o *physicsServer) BodyAddCollisionException(body gdnative.Rid, exceptedBod
 	Args: [{ false body RID} { false shape RID} {1, 0, 0, 0, 1, 0, 0, 0, 1 - 0, 0, 0 true transform Transform}], Returns: void
 */
 func (o *physicsServer) BodyAddShape(body gdnative.Rid, shape gdnative.Rid, transform gdnative.Transform) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyAddShape()")
 
 	// Build out the method's arguments
@@ -652,6 +687,7 @@ func (o *physicsServer) BodyAddShape(body gdnative.Rid, shape gdnative.Rid, tran
 	Args: [{ false body RID} { false position Vector3} { false impulse Vector3}], Returns: void
 */
 func (o *physicsServer) BodyApplyImpulse(body gdnative.Rid, position gdnative.Vector3, impulse gdnative.Vector3) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyApplyImpulse()")
 
 	// Build out the method's arguments
@@ -675,6 +711,7 @@ func (o *physicsServer) BodyApplyImpulse(body gdnative.Rid, position gdnative.Ve
 	Args: [{ false body RID} { false impulse Vector3}], Returns: void
 */
 func (o *physicsServer) BodyApplyTorqueImpulse(body gdnative.Rid, impulse gdnative.Vector3) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyApplyTorqueImpulse()")
 
 	// Build out the method's arguments
@@ -697,6 +734,7 @@ func (o *physicsServer) BodyApplyTorqueImpulse(body gdnative.Rid, impulse gdnati
 	Args: [{ false body RID} { false id int}], Returns: void
 */
 func (o *physicsServer) BodyAttachObjectInstanceId(body gdnative.Rid, id gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyAttachObjectInstanceId()")
 
 	// Build out the method's arguments
@@ -719,6 +757,7 @@ func (o *physicsServer) BodyAttachObjectInstanceId(body gdnative.Rid, id gdnativ
 	Args: [{ false body RID}], Returns: void
 */
 func (o *physicsServer) BodyClearShapes(body gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyClearShapes()")
 
 	// Build out the method's arguments
@@ -740,6 +779,7 @@ func (o *physicsServer) BodyClearShapes(body gdnative.Rid) {
 	Args: [{2 true mode int} {False true init_sleeping bool}], Returns: RID
 */
 func (o *physicsServer) BodyCreate(mode gdnative.Int, initSleeping gdnative.Bool) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyCreate()")
 
 	// Build out the method's arguments
@@ -766,6 +806,7 @@ func (o *physicsServer) BodyCreate(mode gdnative.Int, initSleeping gdnative.Bool
 	Args: [{ false body RID}], Returns: int
 */
 func (o *physicsServer) BodyGetCollisionLayer(body gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyGetCollisionLayer()")
 
 	// Build out the method's arguments
@@ -792,6 +833,7 @@ func (o *physicsServer) BodyGetCollisionLayer(body gdnative.Rid) gdnative.Int {
 	Args: [{ false body RID}], Returns: int
 */
 func (o *physicsServer) BodyGetCollisionMask(body gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyGetCollisionMask()")
 
 	// Build out the method's arguments
@@ -817,6 +859,7 @@ func (o *physicsServer) BodyGetCollisionMask(body gdnative.Rid) gdnative.Int {
 	Args: [{ false body RID}], Returns: PhysicsDirectBodyState
 */
 func (o *physicsServer) BodyGetDirectState(body gdnative.Rid) PhysicsDirectBodyState {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyGetDirectState()")
 
 	// Build out the method's arguments
@@ -842,6 +885,7 @@ func (o *physicsServer) BodyGetDirectState(body gdnative.Rid) PhysicsDirectBodyS
 	Args: [{ false body RID}], Returns: float
 */
 func (o *physicsServer) BodyGetKinematicSafeMargin(body gdnative.Rid) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyGetKinematicSafeMargin()")
 
 	// Build out the method's arguments
@@ -867,6 +911,7 @@ func (o *physicsServer) BodyGetKinematicSafeMargin(body gdnative.Rid) gdnative.F
 	Args: [{ false body RID}], Returns: int
 */
 func (o *physicsServer) BodyGetMaxContactsReported(body gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyGetMaxContactsReported()")
 
 	// Build out the method's arguments
@@ -897,6 +942,7 @@ func (o *physicsServer) BodyGetMaxContactsReported(body gdnative.Rid) gdnative.I
 	Args: [{ false body RID}], Returns: int
 */
 func (o *physicsServer) BodyGetObjectInstanceId(body gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyGetObjectInstanceId()")
 
 	// Build out the method's arguments
@@ -922,6 +968,7 @@ func (o *physicsServer) BodyGetObjectInstanceId(body gdnative.Rid) gdnative.Int 
 	Args: [{ false body RID} { false param int}], Returns: float
 */
 func (o *physicsServer) BodyGetParam(body gdnative.Rid, param gdnative.Int) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyGetParam()")
 
 	// Build out the method's arguments
@@ -948,6 +995,7 @@ func (o *physicsServer) BodyGetParam(body gdnative.Rid, param gdnative.Int) gdna
 	Args: [{ false body RID} { false shape_idx int}], Returns: RID
 */
 func (o *physicsServer) BodyGetShape(body gdnative.Rid, shapeIdx gdnative.Int) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyGetShape()")
 
 	// Build out the method's arguments
@@ -974,6 +1022,7 @@ func (o *physicsServer) BodyGetShape(body gdnative.Rid, shapeIdx gdnative.Int) g
 	Args: [{ false body RID}], Returns: int
 */
 func (o *physicsServer) BodyGetShapeCount(body gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyGetShapeCount()")
 
 	// Build out the method's arguments
@@ -999,6 +1048,7 @@ func (o *physicsServer) BodyGetShapeCount(body gdnative.Rid) gdnative.Int {
 	Args: [{ false body RID} { false shape_idx int}], Returns: Transform
 */
 func (o *physicsServer) BodyGetShapeTransform(body gdnative.Rid, shapeIdx gdnative.Int) gdnative.Transform {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyGetShapeTransform()")
 
 	// Build out the method's arguments
@@ -1025,6 +1075,7 @@ func (o *physicsServer) BodyGetShapeTransform(body gdnative.Rid, shapeIdx gdnati
 	Args: [{ false body RID}], Returns: RID
 */
 func (o *physicsServer) BodyGetSpace(body gdnative.Rid) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyGetSpace()")
 
 	// Build out the method's arguments
@@ -1050,6 +1101,7 @@ func (o *physicsServer) BodyGetSpace(body gdnative.Rid) gdnative.Rid {
 	Args: [{ false body RID} { false state int}], Returns: Variant
 */
 func (o *physicsServer) BodyGetState(body gdnative.Rid, state gdnative.Int) gdnative.Variant {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyGetState()")
 
 	// Build out the method's arguments
@@ -1076,6 +1128,7 @@ func (o *physicsServer) BodyGetState(body gdnative.Rid, state gdnative.Int) gdna
 	Args: [{ false body RID} { false axis int}], Returns: bool
 */
 func (o *physicsServer) BodyIsAxisLocked(body gdnative.Rid, axis gdnative.Int) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyIsAxisLocked()")
 
 	// Build out the method's arguments
@@ -1102,6 +1155,7 @@ func (o *physicsServer) BodyIsAxisLocked(body gdnative.Rid, axis gdnative.Int) g
 	Args: [{ false body RID}], Returns: bool
 */
 func (o *physicsServer) BodyIsContinuousCollisionDetectionEnabled(body gdnative.Rid) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyIsContinuousCollisionDetectionEnabled()")
 
 	// Build out the method's arguments
@@ -1127,6 +1181,7 @@ func (o *physicsServer) BodyIsContinuousCollisionDetectionEnabled(body gdnative.
 	Args: [{ false body RID}], Returns: bool
 */
 func (o *physicsServer) BodyIsOmittingForceIntegration(body gdnative.Rid) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyIsOmittingForceIntegration()")
 
 	// Build out the method's arguments
@@ -1152,6 +1207,7 @@ func (o *physicsServer) BodyIsOmittingForceIntegration(body gdnative.Rid) gdnati
 	Args: [{ false body RID}], Returns: bool
 */
 func (o *physicsServer) BodyIsRayPickable(body gdnative.Rid) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyIsRayPickable()")
 
 	// Build out the method's arguments
@@ -1177,6 +1233,7 @@ func (o *physicsServer) BodyIsRayPickable(body gdnative.Rid) gdnative.Bool {
 	Args: [{ false body RID} { false excepted_body RID}], Returns: void
 */
 func (o *physicsServer) BodyRemoveCollisionException(body gdnative.Rid, exceptedBody gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyRemoveCollisionException()")
 
 	// Build out the method's arguments
@@ -1199,6 +1256,7 @@ func (o *physicsServer) BodyRemoveCollisionException(body gdnative.Rid, excepted
 	Args: [{ false body RID} { false shape_idx int}], Returns: void
 */
 func (o *physicsServer) BodyRemoveShape(body gdnative.Rid, shapeIdx gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodyRemoveShape()")
 
 	// Build out the method's arguments
@@ -1221,6 +1279,7 @@ func (o *physicsServer) BodyRemoveShape(body gdnative.Rid, shapeIdx gdnative.Int
 	Args: [{ false body RID} { false axis int} { false lock bool}], Returns: void
 */
 func (o *physicsServer) BodySetAxisLock(body gdnative.Rid, axis gdnative.Int, lock gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodySetAxisLock()")
 
 	// Build out the method's arguments
@@ -1244,6 +1303,7 @@ func (o *physicsServer) BodySetAxisLock(body gdnative.Rid, axis gdnative.Int, lo
 	Args: [{ false body RID} { false axis_velocity Vector3}], Returns: void
 */
 func (o *physicsServer) BodySetAxisVelocity(body gdnative.Rid, axisVelocity gdnative.Vector3) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodySetAxisVelocity()")
 
 	// Build out the method's arguments
@@ -1266,6 +1326,7 @@ func (o *physicsServer) BodySetAxisVelocity(body gdnative.Rid, axisVelocity gdna
 	Args: [{ false body RID} { false layer int}], Returns: void
 */
 func (o *physicsServer) BodySetCollisionLayer(body gdnative.Rid, layer gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodySetCollisionLayer()")
 
 	// Build out the method's arguments
@@ -1288,6 +1349,7 @@ func (o *physicsServer) BodySetCollisionLayer(body gdnative.Rid, layer gdnative.
 	Args: [{ false body RID} { false mask int}], Returns: void
 */
 func (o *physicsServer) BodySetCollisionMask(body gdnative.Rid, mask gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodySetCollisionMask()")
 
 	// Build out the method's arguments
@@ -1310,6 +1372,7 @@ func (o *physicsServer) BodySetCollisionMask(body gdnative.Rid, mask gdnative.In
 	Args: [{ false body RID} { false enable bool}], Returns: void
 */
 func (o *physicsServer) BodySetEnableContinuousCollisionDetection(body gdnative.Rid, enable gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodySetEnableContinuousCollisionDetection()")
 
 	// Build out the method's arguments
@@ -1332,6 +1395,7 @@ func (o *physicsServer) BodySetEnableContinuousCollisionDetection(body gdnative.
 	Args: [{ false body RID} { false receiver Object} { false method String} {Null true userdata Variant}], Returns: void
 */
 func (o *physicsServer) BodySetForceIntegrationCallback(body gdnative.Rid, receiver Object, method gdnative.String, userdata gdnative.Variant) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodySetForceIntegrationCallback()")
 
 	// Build out the method's arguments
@@ -1356,6 +1420,7 @@ func (o *physicsServer) BodySetForceIntegrationCallback(body gdnative.Rid, recei
 	Args: [{ false body RID} { false margin float}], Returns: void
 */
 func (o *physicsServer) BodySetKinematicSafeMargin(body gdnative.Rid, margin gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodySetKinematicSafeMargin()")
 
 	// Build out the method's arguments
@@ -1378,6 +1443,7 @@ func (o *physicsServer) BodySetKinematicSafeMargin(body gdnative.Rid, margin gdn
 	Args: [{ false body RID} { false amount int}], Returns: void
 */
 func (o *physicsServer) BodySetMaxContactsReported(body gdnative.Rid, amount gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodySetMaxContactsReported()")
 
 	// Build out the method's arguments
@@ -1400,6 +1466,7 @@ func (o *physicsServer) BodySetMaxContactsReported(body gdnative.Rid, amount gdn
 	Args: [{ false body RID} { false mode int}], Returns: void
 */
 func (o *physicsServer) BodySetMode(body gdnative.Rid, mode gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodySetMode()")
 
 	// Build out the method's arguments
@@ -1422,6 +1489,7 @@ func (o *physicsServer) BodySetMode(body gdnative.Rid, mode gdnative.Int) {
 	Args: [{ false body RID} { false enable bool}], Returns: void
 */
 func (o *physicsServer) BodySetOmitForceIntegration(body gdnative.Rid, enable gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodySetOmitForceIntegration()")
 
 	// Build out the method's arguments
@@ -1444,6 +1512,7 @@ func (o *physicsServer) BodySetOmitForceIntegration(body gdnative.Rid, enable gd
 	Args: [{ false body RID} { false param int} { false value float}], Returns: void
 */
 func (o *physicsServer) BodySetParam(body gdnative.Rid, param gdnative.Int, value gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodySetParam()")
 
 	// Build out the method's arguments
@@ -1467,6 +1536,7 @@ func (o *physicsServer) BodySetParam(body gdnative.Rid, param gdnative.Int, valu
 	Args: [{ false body RID} { false enable bool}], Returns: void
 */
 func (o *physicsServer) BodySetRayPickable(body gdnative.Rid, enable gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodySetRayPickable()")
 
 	// Build out the method's arguments
@@ -1489,6 +1559,7 @@ func (o *physicsServer) BodySetRayPickable(body gdnative.Rid, enable gdnative.Bo
 	Args: [{ false body RID} { false shape_idx int} { false shape RID}], Returns: void
 */
 func (o *physicsServer) BodySetShape(body gdnative.Rid, shapeIdx gdnative.Int, shape gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodySetShape()")
 
 	// Build out the method's arguments
@@ -1512,6 +1583,7 @@ func (o *physicsServer) BodySetShape(body gdnative.Rid, shapeIdx gdnative.Int, s
 	Args: [{ false body RID} { false shape_idx int} { false transform Transform}], Returns: void
 */
 func (o *physicsServer) BodySetShapeTransform(body gdnative.Rid, shapeIdx gdnative.Int, transform gdnative.Transform) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodySetShapeTransform()")
 
 	// Build out the method's arguments
@@ -1535,6 +1607,7 @@ func (o *physicsServer) BodySetShapeTransform(body gdnative.Rid, shapeIdx gdnati
 	Args: [{ false body RID} { false space RID}], Returns: void
 */
 func (o *physicsServer) BodySetSpace(body gdnative.Rid, space gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodySetSpace()")
 
 	// Build out the method's arguments
@@ -1557,6 +1630,7 @@ func (o *physicsServer) BodySetSpace(body gdnative.Rid, space gdnative.Rid) {
 	Args: [{ false body RID} { false state int} { false value Variant}], Returns: void
 */
 func (o *physicsServer) BodySetState(body gdnative.Rid, state gdnative.Int, value gdnative.Variant) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.BodySetState()")
 
 	// Build out the method's arguments
@@ -1580,6 +1654,7 @@ func (o *physicsServer) BodySetState(body gdnative.Rid, state gdnative.Int, valu
 	Args: [{ false joint RID} { false param int}], Returns: float
 */
 func (o *physicsServer) ConeTwistJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.ConeTwistJointGetParam()")
 
 	// Build out the method's arguments
@@ -1606,6 +1681,7 @@ func (o *physicsServer) ConeTwistJointGetParam(joint gdnative.Rid, param gdnativ
 	Args: [{ false joint RID} { false param int} { false value float}], Returns: void
 */
 func (o *physicsServer) ConeTwistJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.ConeTwistJointSetParam()")
 
 	// Build out the method's arguments
@@ -1629,6 +1705,7 @@ func (o *physicsServer) ConeTwistJointSetParam(joint gdnative.Rid, param gdnativ
 	Args: [{ false rid RID}], Returns: void
 */
 func (o *physicsServer) FreeRid(rid gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.FreeRid()")
 
 	// Build out the method's arguments
@@ -1650,6 +1727,7 @@ func (o *physicsServer) FreeRid(rid gdnative.Rid) {
 	Args: [{ false joint RID} { false axis int} { false flag int}], Returns: bool
 */
 func (o *physicsServer) Generic6DofJointGetFlag(joint gdnative.Rid, axis gdnative.Int, flag gdnative.Int) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.Generic6DofJointGetFlag()")
 
 	// Build out the method's arguments
@@ -1677,6 +1755,7 @@ func (o *physicsServer) Generic6DofJointGetFlag(joint gdnative.Rid, axis gdnativ
 	Args: [{ false joint RID} { false axis int} { false param int}], Returns: float
 */
 func (o *physicsServer) Generic6DofJointGetParam(joint gdnative.Rid, axis gdnative.Int, param gdnative.Int) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.Generic6DofJointGetParam()")
 
 	// Build out the method's arguments
@@ -1704,6 +1783,7 @@ func (o *physicsServer) Generic6DofJointGetParam(joint gdnative.Rid, axis gdnati
 	Args: [{ false joint RID} { false axis int} { false flag int} { false enable bool}], Returns: void
 */
 func (o *physicsServer) Generic6DofJointSetFlag(joint gdnative.Rid, axis gdnative.Int, flag gdnative.Int, enable gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.Generic6DofJointSetFlag()")
 
 	// Build out the method's arguments
@@ -1728,6 +1808,7 @@ func (o *physicsServer) Generic6DofJointSetFlag(joint gdnative.Rid, axis gdnativ
 	Args: [{ false joint RID} { false axis int} { false param int} { false value float}], Returns: void
 */
 func (o *physicsServer) Generic6DofJointSetParam(joint gdnative.Rid, axis gdnative.Int, param gdnative.Int, value gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.Generic6DofJointSetParam()")
 
 	// Build out the method's arguments
@@ -1752,6 +1833,7 @@ func (o *physicsServer) Generic6DofJointSetParam(joint gdnative.Rid, axis gdnati
 	Args: [{ false process_info int}], Returns: int
 */
 func (o *physicsServer) GetProcessInfo(processInfo gdnative.Int) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.GetProcessInfo()")
 
 	// Build out the method's arguments
@@ -1777,6 +1859,7 @@ func (o *physicsServer) GetProcessInfo(processInfo gdnative.Int) gdnative.Int {
 	Args: [{ false joint RID} { false flag int}], Returns: bool
 */
 func (o *physicsServer) HingeJointGetFlag(joint gdnative.Rid, flag gdnative.Int) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.HingeJointGetFlag()")
 
 	// Build out the method's arguments
@@ -1803,6 +1886,7 @@ func (o *physicsServer) HingeJointGetFlag(joint gdnative.Rid, flag gdnative.Int)
 	Args: [{ false joint RID} { false param int}], Returns: float
 */
 func (o *physicsServer) HingeJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.HingeJointGetParam()")
 
 	// Build out the method's arguments
@@ -1829,6 +1913,7 @@ func (o *physicsServer) HingeJointGetParam(joint gdnative.Rid, param gdnative.In
 	Args: [{ false joint RID} { false flag int} { false enabled bool}], Returns: void
 */
 func (o *physicsServer) HingeJointSetFlag(joint gdnative.Rid, flag gdnative.Int, enabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.HingeJointSetFlag()")
 
 	// Build out the method's arguments
@@ -1852,6 +1937,7 @@ func (o *physicsServer) HingeJointSetFlag(joint gdnative.Rid, flag gdnative.Int,
 	Args: [{ false joint RID} { false param int} { false value float}], Returns: void
 */
 func (o *physicsServer) HingeJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.HingeJointSetParam()")
 
 	// Build out the method's arguments
@@ -1875,6 +1961,7 @@ func (o *physicsServer) HingeJointSetParam(joint gdnative.Rid, param gdnative.In
 	Args: [{ false body_A RID} { false local_ref_A Transform} { false body_B RID} { false local_ref_B Transform}], Returns: RID
 */
 func (o *physicsServer) JointCreateConeTwist(bodyA gdnative.Rid, localRefA gdnative.Transform, bodyB gdnative.Rid, localRefB gdnative.Transform) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.JointCreateConeTwist()")
 
 	// Build out the method's arguments
@@ -1903,6 +1990,7 @@ func (o *physicsServer) JointCreateConeTwist(bodyA gdnative.Rid, localRefA gdnat
 	Args: [{ false body_A RID} { false local_ref_A Transform} { false body_B RID} { false local_ref_B Transform}], Returns: RID
 */
 func (o *physicsServer) JointCreateGeneric6Dof(bodyA gdnative.Rid, localRefA gdnative.Transform, bodyB gdnative.Rid, localRefB gdnative.Transform) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.JointCreateGeneric6Dof()")
 
 	// Build out the method's arguments
@@ -1931,6 +2019,7 @@ func (o *physicsServer) JointCreateGeneric6Dof(bodyA gdnative.Rid, localRefA gdn
 	Args: [{ false body_A RID} { false hinge_A Transform} { false body_B RID} { false hinge_B Transform}], Returns: RID
 */
 func (o *physicsServer) JointCreateHinge(bodyA gdnative.Rid, hingeA gdnative.Transform, bodyB gdnative.Rid, hingeB gdnative.Transform) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.JointCreateHinge()")
 
 	// Build out the method's arguments
@@ -1959,6 +2048,7 @@ func (o *physicsServer) JointCreateHinge(bodyA gdnative.Rid, hingeA gdnative.Tra
 	Args: [{ false body_A RID} { false local_A Vector3} { false body_B RID} { false local_B Vector3}], Returns: RID
 */
 func (o *physicsServer) JointCreatePin(bodyA gdnative.Rid, localA gdnative.Vector3, bodyB gdnative.Rid, localB gdnative.Vector3) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.JointCreatePin()")
 
 	// Build out the method's arguments
@@ -1987,6 +2077,7 @@ func (o *physicsServer) JointCreatePin(bodyA gdnative.Rid, localA gdnative.Vecto
 	Args: [{ false body_A RID} { false local_ref_A Transform} { false body_B RID} { false local_ref_B Transform}], Returns: RID
 */
 func (o *physicsServer) JointCreateSlider(bodyA gdnative.Rid, localRefA gdnative.Transform, bodyB gdnative.Rid, localRefB gdnative.Transform) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.JointCreateSlider()")
 
 	// Build out the method's arguments
@@ -2015,6 +2106,7 @@ func (o *physicsServer) JointCreateSlider(bodyA gdnative.Rid, localRefA gdnative
 	Args: [{ false joint RID}], Returns: int
 */
 func (o *physicsServer) JointGetSolverPriority(joint gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.JointGetSolverPriority()")
 
 	// Build out the method's arguments
@@ -2045,6 +2137,7 @@ func (o *physicsServer) JointGetSolverPriority(joint gdnative.Rid) gdnative.Int 
 	Args: [{ false joint RID} { false priority int}], Returns: void
 */
 func (o *physicsServer) JointSetSolverPriority(joint gdnative.Rid, priority gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.JointSetSolverPriority()")
 
 	// Build out the method's arguments
@@ -2067,6 +2160,7 @@ func (o *physicsServer) JointSetSolverPriority(joint gdnative.Rid, priority gdna
 	Args: [{ false joint RID}], Returns: Vector3
 */
 func (o *physicsServer) PinJointGetLocalA(joint gdnative.Rid) gdnative.Vector3 {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.PinJointGetLocalA()")
 
 	// Build out the method's arguments
@@ -2092,6 +2186,7 @@ func (o *physicsServer) PinJointGetLocalA(joint gdnative.Rid) gdnative.Vector3 {
 	Args: [{ false joint RID}], Returns: Vector3
 */
 func (o *physicsServer) PinJointGetLocalB(joint gdnative.Rid) gdnative.Vector3 {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.PinJointGetLocalB()")
 
 	// Build out the method's arguments
@@ -2117,6 +2212,7 @@ func (o *physicsServer) PinJointGetLocalB(joint gdnative.Rid) gdnative.Vector3 {
 	Args: [{ false joint RID} { false param int}], Returns: float
 */
 func (o *physicsServer) PinJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.PinJointGetParam()")
 
 	// Build out the method's arguments
@@ -2143,6 +2239,7 @@ func (o *physicsServer) PinJointGetParam(joint gdnative.Rid, param gdnative.Int)
 	Args: [{ false joint RID} { false local_A Vector3}], Returns: void
 */
 func (o *physicsServer) PinJointSetLocalA(joint gdnative.Rid, localA gdnative.Vector3) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.PinJointSetLocalA()")
 
 	// Build out the method's arguments
@@ -2165,6 +2262,7 @@ func (o *physicsServer) PinJointSetLocalA(joint gdnative.Rid, localA gdnative.Ve
 	Args: [{ false joint RID} { false local_B Vector3}], Returns: void
 */
 func (o *physicsServer) PinJointSetLocalB(joint gdnative.Rid, localB gdnative.Vector3) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.PinJointSetLocalB()")
 
 	// Build out the method's arguments
@@ -2187,6 +2285,7 @@ func (o *physicsServer) PinJointSetLocalB(joint gdnative.Rid, localB gdnative.Ve
 	Args: [{ false joint RID} { false param int} { false value float}], Returns: void
 */
 func (o *physicsServer) PinJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.PinJointSetParam()")
 
 	// Build out the method's arguments
@@ -2210,6 +2309,7 @@ func (o *physicsServer) PinJointSetParam(joint gdnative.Rid, param gdnative.Int,
 	Args: [{ false active bool}], Returns: void
 */
 func (o *physicsServer) SetActive(active gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.SetActive()")
 
 	// Build out the method's arguments
@@ -2231,6 +2331,7 @@ func (o *physicsServer) SetActive(active gdnative.Bool) {
 	Args: [{ false type int}], Returns: RID
 */
 func (o *physicsServer) ShapeCreate(aType gdnative.Int) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.ShapeCreate()")
 
 	// Build out the method's arguments
@@ -2256,6 +2357,7 @@ func (o *physicsServer) ShapeCreate(aType gdnative.Int) gdnative.Rid {
 	Args: [{ false shape RID}], Returns: Variant
 */
 func (o *physicsServer) ShapeGetData(shape gdnative.Rid) gdnative.Variant {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.ShapeGetData()")
 
 	// Build out the method's arguments
@@ -2286,6 +2388,7 @@ func (o *physicsServer) ShapeGetData(shape gdnative.Rid) gdnative.Variant {
 	Args: [{ false shape RID} { false data Variant}], Returns: void
 */
 func (o *physicsServer) ShapeSetData(shape gdnative.Rid, data gdnative.Variant) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.ShapeSetData()")
 
 	// Build out the method's arguments
@@ -2308,6 +2411,7 @@ func (o *physicsServer) ShapeSetData(shape gdnative.Rid, data gdnative.Variant) 
 	Args: [{ false joint RID} { false param int}], Returns: float
 */
 func (o *physicsServer) SliderJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.SliderJointGetParam()")
 
 	// Build out the method's arguments
@@ -2334,6 +2438,7 @@ func (o *physicsServer) SliderJointGetParam(joint gdnative.Rid, param gdnative.I
 	Args: [{ false joint RID} { false param int} { false value float}], Returns: void
 */
 func (o *physicsServer) SliderJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.SliderJointSetParam()")
 
 	// Build out the method's arguments
@@ -2357,6 +2462,7 @@ func (o *physicsServer) SliderJointSetParam(joint gdnative.Rid, param gdnative.I
 	Args: [], Returns: RID
 */
 func (o *physicsServer) SpaceCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.SpaceCreate()")
 
 	// Build out the method's arguments
@@ -2381,6 +2487,7 @@ func (o *physicsServer) SpaceCreate() gdnative.Rid {
 	Args: [{ false space RID}], Returns: PhysicsDirectSpaceState
 */
 func (o *physicsServer) SpaceGetDirectState(space gdnative.Rid) PhysicsDirectSpaceState {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.SpaceGetDirectState()")
 
 	// Build out the method's arguments
@@ -2406,6 +2513,7 @@ func (o *physicsServer) SpaceGetDirectState(space gdnative.Rid) PhysicsDirectSpa
 	Args: [{ false space RID} { false param int}], Returns: float
 */
 func (o *physicsServer) SpaceGetParam(space gdnative.Rid, param gdnative.Int) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.SpaceGetParam()")
 
 	// Build out the method's arguments
@@ -2432,6 +2540,7 @@ func (o *physicsServer) SpaceGetParam(space gdnative.Rid, param gdnative.Int) gd
 	Args: [{ false space RID}], Returns: bool
 */
 func (o *physicsServer) SpaceIsActive(space gdnative.Rid) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.SpaceIsActive()")
 
 	// Build out the method's arguments
@@ -2457,6 +2566,7 @@ func (o *physicsServer) SpaceIsActive(space gdnative.Rid) gdnative.Bool {
 	Args: [{ false space RID} { false active bool}], Returns: void
 */
 func (o *physicsServer) SpaceSetActive(space gdnative.Rid, active gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.SpaceSetActive()")
 
 	// Build out the method's arguments
@@ -2479,6 +2589,7 @@ func (o *physicsServer) SpaceSetActive(space gdnative.Rid, active gdnative.Bool)
 	Args: [{ false space RID} { false param int} { false value float}], Returns: void
 */
 func (o *physicsServer) SpaceSetParam(space gdnative.Rid, param gdnative.Int, value gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling PhysicsServer.SpaceSetParam()")
 
 	// Build out the method's arguments

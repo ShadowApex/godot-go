@@ -28,6 +28,8 @@ type Logger struct {
 
 // Print will print the given message to the Godot debugger and console.
 func (l *Logger) Println(message ...interface{}) {
+	GDNative.checkInit()
+
 	// Convert our message into a Go string.
 	goString := fmt.Sprint(message...)
 
@@ -43,17 +45,20 @@ func (l *Logger) Println(message ...interface{}) {
 
 // Warning will print a warning message to the Godot debugger and console.
 func (l *Logger) Warning(message ...interface{}) {
+	GDNative.checkInit()
 	l.log(false, message...)
 }
 
 // Error will print an error message to the Godot debugger and console.
 func (l *Logger) Error(message ...interface{}) {
+	GDNative.checkInit()
 	l.log(true, message...)
 }
 
 // Write will call Logger.Println from the given bytes, to implement the io.Writer
 // interface.
 func (l *Logger) Write(data []byte) (int, error) {
+	GDNative.checkInit()
 	buffer := bytes.NewBuffer(data)
 	line := strings.TrimRight(buffer.String(), "\n")
 	l.Println(line)

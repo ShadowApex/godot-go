@@ -25,10 +25,7 @@ func NewInputMapFromPointer(ptr gdnative.Pointer) inputMap {
 }
 
 func newSingletonInputMap() *inputMap {
-	obj := &inputMap{}
-	gdObj := gdnative.GetSingleton("InputMap")
-	obj.SetBaseObject(gdObj)
-	return obj
+	return &inputMap{}
 }
 
 /*
@@ -41,7 +38,20 @@ Manages all [InputEventAction] which can be created/modified from the project se
 */
 type inputMap struct {
 	Object
-	owner gdnative.Object
+	owner       gdnative.Object
+	initialized bool
+}
+
+// EnsureSingleton will check to see if we have an object for it. If not, it will fetch its
+// GDNative object and set it.
+func (o *inputMap) ensureSingleton() {
+	if o.initialized == true {
+		return
+	}
+	log.Println("Singleton not found. Fetching from GDNative...")
+	base := gdnative.GetSingleton("InputMap")
+	o.SetBaseObject(base)
+	o.initialized = true
 }
 
 func (o *inputMap) BaseClass() string {
@@ -63,6 +73,7 @@ func (o *inputMap) GetBaseObject() gdnative.Object {
 	Args: [{ false action String} { false event InputEvent}], Returns: void
 */
 func (o *inputMap) ActionAddEvent(action gdnative.String, event InputEvent) {
+	o.ensureSingleton()
 	log.Println("Calling InputMap.ActionAddEvent()")
 
 	// Build out the method's arguments
@@ -85,6 +96,7 @@ func (o *inputMap) ActionAddEvent(action gdnative.String, event InputEvent) {
 	Args: [{ false action String} { false event InputEvent}], Returns: void
 */
 func (o *inputMap) ActionEraseEvent(action gdnative.String, event InputEvent) {
+	o.ensureSingleton()
 	log.Println("Calling InputMap.ActionEraseEvent()")
 
 	// Build out the method's arguments
@@ -107,6 +119,7 @@ func (o *inputMap) ActionEraseEvent(action gdnative.String, event InputEvent) {
 	Args: [{ false action String} { false event InputEvent}], Returns: bool
 */
 func (o *inputMap) ActionHasEvent(action gdnative.String, event InputEvent) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling InputMap.ActionHasEvent()")
 
 	// Build out the method's arguments
@@ -133,6 +146,7 @@ func (o *inputMap) ActionHasEvent(action gdnative.String, event InputEvent) gdna
 	Args: [{ false action String}], Returns: void
 */
 func (o *inputMap) AddAction(action gdnative.String) {
+	o.ensureSingleton()
 	log.Println("Calling InputMap.AddAction()")
 
 	// Build out the method's arguments
@@ -154,6 +168,7 @@ func (o *inputMap) AddAction(action gdnative.String) {
 	Args: [{ false action String}], Returns: void
 */
 func (o *inputMap) EraseAction(action gdnative.String) {
+	o.ensureSingleton()
 	log.Println("Calling InputMap.EraseAction()")
 
 	// Build out the method's arguments
@@ -175,6 +190,7 @@ func (o *inputMap) EraseAction(action gdnative.String) {
 	Args: [{ false event InputEvent} { false action String}], Returns: bool
 */
 func (o *inputMap) EventIsAction(event InputEvent, action gdnative.String) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling InputMap.EventIsAction()")
 
 	// Build out the method's arguments
@@ -201,6 +217,7 @@ func (o *inputMap) EventIsAction(event InputEvent, action gdnative.String) gdnat
 	Args: [{ false action String}], Returns: Array
 */
 func (o *inputMap) GetActionList(action gdnative.String) gdnative.Array {
+	o.ensureSingleton()
 	log.Println("Calling InputMap.GetActionList()")
 
 	// Build out the method's arguments
@@ -226,6 +243,7 @@ func (o *inputMap) GetActionList(action gdnative.String) gdnative.Array {
 	Args: [], Returns: Array
 */
 func (o *inputMap) GetActions() gdnative.Array {
+	o.ensureSingleton()
 	log.Println("Calling InputMap.GetActions()")
 
 	// Build out the method's arguments
@@ -250,6 +268,7 @@ func (o *inputMap) GetActions() gdnative.Array {
 	Args: [{ false action String}], Returns: bool
 */
 func (o *inputMap) HasAction(action gdnative.String) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling InputMap.HasAction()")
 
 	// Build out the method's arguments
@@ -275,6 +294,7 @@ func (o *inputMap) HasAction(action gdnative.String) gdnative.Bool {
 	Args: [], Returns: void
 */
 func (o *inputMap) LoadFromGlobals() {
+	o.ensureSingleton()
 	log.Println("Calling InputMap.LoadFromGlobals()")
 
 	// Build out the method's arguments

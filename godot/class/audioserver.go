@@ -25,10 +25,7 @@ func NewAudioServerFromPointer(ptr gdnative.Pointer) audioServer {
 }
 
 func newSingletonAudioServer() *audioServer {
-	obj := &audioServer{}
-	gdObj := gdnative.GetSingleton("AudioServer")
-	obj.SetBaseObject(gdObj)
-	return obj
+	return &audioServer{}
 }
 
 /*
@@ -41,7 +38,20 @@ AudioServer is a low level server interface for audio access. It is in charge of
 */
 type audioServer struct {
 	Object
-	owner gdnative.Object
+	owner       gdnative.Object
+	initialized bool
+}
+
+// EnsureSingleton will check to see if we have an object for it. If not, it will fetch its
+// GDNative object and set it.
+func (o *audioServer) ensureSingleton() {
+	if o.initialized == true {
+		return
+	}
+	log.Println("Singleton not found. Fetching from GDNative...")
+	base := gdnative.GetSingleton("AudioServer")
+	o.SetBaseObject(base)
+	o.initialized = true
 }
 
 func (o *audioServer) BaseClass() string {
@@ -63,6 +73,7 @@ func (o *audioServer) GetBaseObject() gdnative.Object {
 	Args: [{-1 true at_position int}], Returns: void
 */
 func (o *audioServer) AddBus(atPosition gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.AddBus()")
 
 	// Build out the method's arguments
@@ -84,6 +95,7 @@ func (o *audioServer) AddBus(atPosition gdnative.Int) {
 	Args: [{ false bus_idx int} { false effect AudioEffect} {-1 true at_position int}], Returns: void
 */
 func (o *audioServer) AddBusEffect(busIdx gdnative.Int, effect AudioEffect, atPosition gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.AddBusEffect()")
 
 	// Build out the method's arguments
@@ -107,6 +119,7 @@ func (o *audioServer) AddBusEffect(busIdx gdnative.Int, effect AudioEffect, atPo
 	Args: [], Returns: AudioBusLayout
 */
 func (o *audioServer) GenerateBusLayout() AudioBusLayout {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.GenerateBusLayout()")
 
 	// Build out the method's arguments
@@ -131,6 +144,7 @@ func (o *audioServer) GenerateBusLayout() AudioBusLayout {
 	Args: [], Returns: int
 */
 func (o *audioServer) GetBusCount() gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.GetBusCount()")
 
 	// Build out the method's arguments
@@ -155,6 +169,7 @@ func (o *audioServer) GetBusCount() gdnative.Int {
 	Args: [{ false bus_idx int} { false effect_idx int}], Returns: AudioEffect
 */
 func (o *audioServer) GetBusEffect(busIdx gdnative.Int, effectIdx gdnative.Int) AudioEffect {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.GetBusEffect()")
 
 	// Build out the method's arguments
@@ -181,6 +196,7 @@ func (o *audioServer) GetBusEffect(busIdx gdnative.Int, effectIdx gdnative.Int) 
 	Args: [{ false bus_idx int}], Returns: int
 */
 func (o *audioServer) GetBusEffectCount(busIdx gdnative.Int) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.GetBusEffectCount()")
 
 	// Build out the method's arguments
@@ -206,6 +222,7 @@ func (o *audioServer) GetBusEffectCount(busIdx gdnative.Int) gdnative.Int {
 	Args: [{ false bus_name String}], Returns: int
 */
 func (o *audioServer) GetBusIndex(busName gdnative.String) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.GetBusIndex()")
 
 	// Build out the method's arguments
@@ -231,6 +248,7 @@ func (o *audioServer) GetBusIndex(busName gdnative.String) gdnative.Int {
 	Args: [{ false bus_idx int}], Returns: String
 */
 func (o *audioServer) GetBusName(busIdx gdnative.Int) gdnative.String {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.GetBusName()")
 
 	// Build out the method's arguments
@@ -256,6 +274,7 @@ func (o *audioServer) GetBusName(busIdx gdnative.Int) gdnative.String {
 	Args: [{ false bus_idx int} { false channel int}], Returns: float
 */
 func (o *audioServer) GetBusPeakVolumeLeftDb(busIdx gdnative.Int, channel gdnative.Int) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.GetBusPeakVolumeLeftDb()")
 
 	// Build out the method's arguments
@@ -282,6 +301,7 @@ func (o *audioServer) GetBusPeakVolumeLeftDb(busIdx gdnative.Int, channel gdnati
 	Args: [{ false bus_idx int} { false channel int}], Returns: float
 */
 func (o *audioServer) GetBusPeakVolumeRightDb(busIdx gdnative.Int, channel gdnative.Int) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.GetBusPeakVolumeRightDb()")
 
 	// Build out the method's arguments
@@ -308,6 +328,7 @@ func (o *audioServer) GetBusPeakVolumeRightDb(busIdx gdnative.Int, channel gdnat
 	Args: [{ false bus_idx int}], Returns: String
 */
 func (o *audioServer) GetBusSend(busIdx gdnative.Int) gdnative.String {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.GetBusSend()")
 
 	// Build out the method's arguments
@@ -333,6 +354,7 @@ func (o *audioServer) GetBusSend(busIdx gdnative.Int) gdnative.String {
 	Args: [{ false bus_idx int}], Returns: float
 */
 func (o *audioServer) GetBusVolumeDb(busIdx gdnative.Int) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.GetBusVolumeDb()")
 
 	// Build out the method's arguments
@@ -358,6 +380,7 @@ func (o *audioServer) GetBusVolumeDb(busIdx gdnative.Int) gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *audioServer) GetMixRate() gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.GetMixRate()")
 
 	// Build out the method's arguments
@@ -387,6 +410,7 @@ func (o *audioServer) GetMixRate() gdnative.Float {
 	Args: [{ false bus_idx int}], Returns: bool
 */
 func (o *audioServer) IsBusBypassingEffects(busIdx gdnative.Int) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.IsBusBypassingEffects()")
 
 	// Build out the method's arguments
@@ -412,6 +436,7 @@ func (o *audioServer) IsBusBypassingEffects(busIdx gdnative.Int) gdnative.Bool {
 	Args: [{ false bus_idx int} { false effect_idx int}], Returns: bool
 */
 func (o *audioServer) IsBusEffectEnabled(busIdx gdnative.Int, effectIdx gdnative.Int) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.IsBusEffectEnabled()")
 
 	// Build out the method's arguments
@@ -438,6 +463,7 @@ func (o *audioServer) IsBusEffectEnabled(busIdx gdnative.Int, effectIdx gdnative
 	Args: [{ false bus_idx int}], Returns: bool
 */
 func (o *audioServer) IsBusMute(busIdx gdnative.Int) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.IsBusMute()")
 
 	// Build out the method's arguments
@@ -463,6 +489,7 @@ func (o *audioServer) IsBusMute(busIdx gdnative.Int) gdnative.Bool {
 	Args: [{ false bus_idx int}], Returns: bool
 */
 func (o *audioServer) IsBusSolo(busIdx gdnative.Int) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.IsBusSolo()")
 
 	// Build out the method's arguments
@@ -488,6 +515,7 @@ func (o *audioServer) IsBusSolo(busIdx gdnative.Int) gdnative.Bool {
 	Args: [], Returns: void
 */
 func (o *audioServer) Lock() {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.Lock()")
 
 	// Build out the method's arguments
@@ -508,6 +536,7 @@ func (o *audioServer) Lock() {
 	Args: [{ false index int} { false to_index int}], Returns: void
 */
 func (o *audioServer) MoveBus(index gdnative.Int, toIndex gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.MoveBus()")
 
 	// Build out the method's arguments
@@ -530,6 +559,7 @@ func (o *audioServer) MoveBus(index gdnative.Int, toIndex gdnative.Int) {
 	Args: [{ false index int}], Returns: void
 */
 func (o *audioServer) RemoveBus(index gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.RemoveBus()")
 
 	// Build out the method's arguments
@@ -551,6 +581,7 @@ func (o *audioServer) RemoveBus(index gdnative.Int) {
 	Args: [{ false bus_idx int} { false effect_idx int}], Returns: void
 */
 func (o *audioServer) RemoveBusEffect(busIdx gdnative.Int, effectIdx gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.RemoveBusEffect()")
 
 	// Build out the method's arguments
@@ -573,6 +604,7 @@ func (o *audioServer) RemoveBusEffect(busIdx gdnative.Int, effectIdx gdnative.In
 	Args: [{ false bus_idx int} { false enable bool}], Returns: void
 */
 func (o *audioServer) SetBusBypassEffects(busIdx gdnative.Int, enable gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.SetBusBypassEffects()")
 
 	// Build out the method's arguments
@@ -595,6 +627,7 @@ func (o *audioServer) SetBusBypassEffects(busIdx gdnative.Int, enable gdnative.B
 	Args: [{ false amount int}], Returns: void
 */
 func (o *audioServer) SetBusCount(amount gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.SetBusCount()")
 
 	// Build out the method's arguments
@@ -616,6 +649,7 @@ func (o *audioServer) SetBusCount(amount gdnative.Int) {
 	Args: [{ false bus_idx int} { false effect_idx int} { false enabled bool}], Returns: void
 */
 func (o *audioServer) SetBusEffectEnabled(busIdx gdnative.Int, effectIdx gdnative.Int, enabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.SetBusEffectEnabled()")
 
 	// Build out the method's arguments
@@ -639,6 +673,7 @@ func (o *audioServer) SetBusEffectEnabled(busIdx gdnative.Int, effectIdx gdnativ
 	Args: [{ false bus_layout AudioBusLayout}], Returns: void
 */
 func (o *audioServer) SetBusLayout(busLayout AudioBusLayout) {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.SetBusLayout()")
 
 	// Build out the method's arguments
@@ -660,6 +695,7 @@ func (o *audioServer) SetBusLayout(busLayout AudioBusLayout) {
 	Args: [{ false bus_idx int} { false enable bool}], Returns: void
 */
 func (o *audioServer) SetBusMute(busIdx gdnative.Int, enable gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.SetBusMute()")
 
 	// Build out the method's arguments
@@ -682,6 +718,7 @@ func (o *audioServer) SetBusMute(busIdx gdnative.Int, enable gdnative.Bool) {
 	Args: [{ false bus_idx int} { false name String}], Returns: void
 */
 func (o *audioServer) SetBusName(busIdx gdnative.Int, name gdnative.String) {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.SetBusName()")
 
 	// Build out the method's arguments
@@ -704,6 +741,7 @@ func (o *audioServer) SetBusName(busIdx gdnative.Int, name gdnative.String) {
 	Args: [{ false bus_idx int} { false send String}], Returns: void
 */
 func (o *audioServer) SetBusSend(busIdx gdnative.Int, send gdnative.String) {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.SetBusSend()")
 
 	// Build out the method's arguments
@@ -726,6 +764,7 @@ func (o *audioServer) SetBusSend(busIdx gdnative.Int, send gdnative.String) {
 	Args: [{ false bus_idx int} { false enable bool}], Returns: void
 */
 func (o *audioServer) SetBusSolo(busIdx gdnative.Int, enable gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.SetBusSolo()")
 
 	// Build out the method's arguments
@@ -748,6 +787,7 @@ func (o *audioServer) SetBusSolo(busIdx gdnative.Int, enable gdnative.Bool) {
 	Args: [{ false bus_idx int} { false volume_db float}], Returns: void
 */
 func (o *audioServer) SetBusVolumeDb(busIdx gdnative.Int, volumeDb gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.SetBusVolumeDb()")
 
 	// Build out the method's arguments
@@ -770,6 +810,7 @@ func (o *audioServer) SetBusVolumeDb(busIdx gdnative.Int, volumeDb gdnative.Floa
 	Args: [{ false bus_idx int} { false effect_idx int} { false by_effect_idx int}], Returns: void
 */
 func (o *audioServer) SwapBusEffects(busIdx gdnative.Int, effectIdx gdnative.Int, byEffectIdx gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.SwapBusEffects()")
 
 	// Build out the method's arguments
@@ -793,6 +834,7 @@ func (o *audioServer) SwapBusEffects(busIdx gdnative.Int, effectIdx gdnative.Int
 	Args: [], Returns: void
 */
 func (o *audioServer) Unlock() {
+	o.ensureSingleton()
 	log.Println("Calling AudioServer.Unlock()")
 
 	// Build out the method's arguments

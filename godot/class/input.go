@@ -25,10 +25,7 @@ func NewInputFromPointer(ptr gdnative.Pointer) input {
 }
 
 func newSingletonInput() *input {
-	obj := &input{}
-	gdObj := gdnative.GetSingleton("Input")
-	obj.SetBaseObject(gdObj)
-	return obj
+	return &input{}
 }
 
 /*
@@ -41,7 +38,20 @@ A Singleton that deals with inputs. This includes key presses, mouse buttons and
 */
 type input struct {
 	Object
-	owner gdnative.Object
+	owner       gdnative.Object
+	initialized bool
+}
+
+// EnsureSingleton will check to see if we have an object for it. If not, it will fetch its
+// GDNative object and set it.
+func (o *input) ensureSingleton() {
+	if o.initialized == true {
+		return
+	}
+	log.Println("Singleton not found. Fetching from GDNative...")
+	base := gdnative.GetSingleton("Input")
+	o.SetBaseObject(base)
+	o.initialized = true
 }
 
 func (o *input) BaseClass() string {
@@ -63,6 +73,7 @@ func (o *input) GetBaseObject() gdnative.Object {
 	Args: [{ false action String}], Returns: void
 */
 func (o *input) ActionPress(action gdnative.String) {
+	o.ensureSingleton()
 	log.Println("Calling Input.ActionPress()")
 
 	// Build out the method's arguments
@@ -84,6 +95,7 @@ func (o *input) ActionPress(action gdnative.String) {
 	Args: [{ false action String}], Returns: void
 */
 func (o *input) ActionRelease(action gdnative.String) {
+	o.ensureSingleton()
 	log.Println("Calling Input.ActionRelease()")
 
 	// Build out the method's arguments
@@ -105,6 +117,7 @@ func (o *input) ActionRelease(action gdnative.String) {
 	Args: [{ false mapping String} {False true update_existing bool}], Returns: void
 */
 func (o *input) AddJoyMapping(mapping gdnative.String, updateExisting gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling Input.AddJoyMapping()")
 
 	// Build out the method's arguments
@@ -127,6 +140,7 @@ func (o *input) AddJoyMapping(mapping gdnative.String, updateExisting gdnative.B
 	Args: [], Returns: Vector3
 */
 func (o *input) GetAccelerometer() gdnative.Vector3 {
+	o.ensureSingleton()
 	log.Println("Calling Input.GetAccelerometer()")
 
 	// Build out the method's arguments
@@ -151,6 +165,7 @@ func (o *input) GetAccelerometer() gdnative.Vector3 {
 	Args: [], Returns: Array
 */
 func (o *input) GetConnectedJoypads() gdnative.Array {
+	o.ensureSingleton()
 	log.Println("Calling Input.GetConnectedJoypads()")
 
 	// Build out the method's arguments
@@ -175,6 +190,7 @@ func (o *input) GetConnectedJoypads() gdnative.Array {
 	Args: [], Returns: Vector3
 */
 func (o *input) GetGravity() gdnative.Vector3 {
+	o.ensureSingleton()
 	log.Println("Calling Input.GetGravity()")
 
 	// Build out the method's arguments
@@ -199,6 +215,7 @@ func (o *input) GetGravity() gdnative.Vector3 {
 	Args: [], Returns: Vector3
 */
 func (o *input) GetGyroscope() gdnative.Vector3 {
+	o.ensureSingleton()
 	log.Println("Calling Input.GetGyroscope()")
 
 	// Build out the method's arguments
@@ -223,6 +240,7 @@ func (o *input) GetGyroscope() gdnative.Vector3 {
 	Args: [{ false device int} { false axis int}], Returns: float
 */
 func (o *input) GetJoyAxis(device gdnative.Int, axis gdnative.Int) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling Input.GetJoyAxis()")
 
 	// Build out the method's arguments
@@ -249,6 +267,7 @@ func (o *input) GetJoyAxis(device gdnative.Int, axis gdnative.Int) gdnative.Floa
 	Args: [{ false axis String}], Returns: int
 */
 func (o *input) GetJoyAxisIndexFromString(axis gdnative.String) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling Input.GetJoyAxisIndexFromString()")
 
 	// Build out the method's arguments
@@ -274,6 +293,7 @@ func (o *input) GetJoyAxisIndexFromString(axis gdnative.String) gdnative.Int {
 	Args: [{ false axis_index int}], Returns: String
 */
 func (o *input) GetJoyAxisString(axisIndex gdnative.Int) gdnative.String {
+	o.ensureSingleton()
 	log.Println("Calling Input.GetJoyAxisString()")
 
 	// Build out the method's arguments
@@ -299,6 +319,7 @@ func (o *input) GetJoyAxisString(axisIndex gdnative.Int) gdnative.String {
 	Args: [{ false button String}], Returns: int
 */
 func (o *input) GetJoyButtonIndexFromString(button gdnative.String) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling Input.GetJoyButtonIndexFromString()")
 
 	// Build out the method's arguments
@@ -324,6 +345,7 @@ func (o *input) GetJoyButtonIndexFromString(button gdnative.String) gdnative.Int
 	Args: [{ false button_index int}], Returns: String
 */
 func (o *input) GetJoyButtonString(buttonIndex gdnative.Int) gdnative.String {
+	o.ensureSingleton()
 	log.Println("Calling Input.GetJoyButtonString()")
 
 	// Build out the method's arguments
@@ -349,6 +371,7 @@ func (o *input) GetJoyButtonString(buttonIndex gdnative.Int) gdnative.String {
 	Args: [{ false device int}], Returns: String
 */
 func (o *input) GetJoyGuid(device gdnative.Int) gdnative.String {
+	o.ensureSingleton()
 	log.Println("Calling Input.GetJoyGuid()")
 
 	// Build out the method's arguments
@@ -374,6 +397,7 @@ func (o *input) GetJoyGuid(device gdnative.Int) gdnative.String {
 	Args: [{ false device int}], Returns: String
 */
 func (o *input) GetJoyName(device gdnative.Int) gdnative.String {
+	o.ensureSingleton()
 	log.Println("Calling Input.GetJoyName()")
 
 	// Build out the method's arguments
@@ -399,6 +423,7 @@ func (o *input) GetJoyName(device gdnative.Int) gdnative.String {
 	Args: [{ false device int}], Returns: float
 */
 func (o *input) GetJoyVibrationDuration(device gdnative.Int) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling Input.GetJoyVibrationDuration()")
 
 	// Build out the method's arguments
@@ -424,6 +449,7 @@ func (o *input) GetJoyVibrationDuration(device gdnative.Int) gdnative.Float {
 	Args: [{ false device int}], Returns: Vector2
 */
 func (o *input) GetJoyVibrationStrength(device gdnative.Int) gdnative.Vector2 {
+	o.ensureSingleton()
 	log.Println("Calling Input.GetJoyVibrationStrength()")
 
 	// Build out the method's arguments
@@ -449,6 +475,7 @@ func (o *input) GetJoyVibrationStrength(device gdnative.Int) gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *input) GetLastMouseSpeed() gdnative.Vector2 {
+	o.ensureSingleton()
 	log.Println("Calling Input.GetLastMouseSpeed()")
 
 	// Build out the method's arguments
@@ -473,6 +500,7 @@ func (o *input) GetLastMouseSpeed() gdnative.Vector2 {
 	Args: [], Returns: Vector3
 */
 func (o *input) GetMagnetometer() gdnative.Vector3 {
+	o.ensureSingleton()
 	log.Println("Calling Input.GetMagnetometer()")
 
 	// Build out the method's arguments
@@ -497,6 +525,7 @@ func (o *input) GetMagnetometer() gdnative.Vector3 {
 	Args: [], Returns: int
 */
 func (o *input) GetMouseButtonMask() gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling Input.GetMouseButtonMask()")
 
 	// Build out the method's arguments
@@ -526,6 +555,7 @@ func (o *input) GetMouseButtonMask() gdnative.Int {
 	Args: [{ false action String}], Returns: bool
 */
 func (o *input) IsActionJustPressed(action gdnative.String) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling Input.IsActionJustPressed()")
 
 	// Build out the method's arguments
@@ -551,6 +581,7 @@ func (o *input) IsActionJustPressed(action gdnative.String) gdnative.Bool {
 	Args: [{ false action String}], Returns: bool
 */
 func (o *input) IsActionJustReleased(action gdnative.String) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling Input.IsActionJustReleased()")
 
 	// Build out the method's arguments
@@ -576,6 +607,7 @@ func (o *input) IsActionJustReleased(action gdnative.String) gdnative.Bool {
 	Args: [{ false action String}], Returns: bool
 */
 func (o *input) IsActionPressed(action gdnative.String) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling Input.IsActionPressed()")
 
 	// Build out the method's arguments
@@ -601,6 +633,7 @@ func (o *input) IsActionPressed(action gdnative.String) gdnative.Bool {
 	Args: [{ false device int} { false button int}], Returns: bool
 */
 func (o *input) IsJoyButtonPressed(device gdnative.Int, button gdnative.Int) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling Input.IsJoyButtonPressed()")
 
 	// Build out the method's arguments
@@ -627,6 +660,7 @@ func (o *input) IsJoyButtonPressed(device gdnative.Int, button gdnative.Int) gdn
 	Args: [{ false device int}], Returns: bool
 */
 func (o *input) IsJoyKnown(device gdnative.Int) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling Input.IsJoyKnown()")
 
 	// Build out the method's arguments
@@ -652,6 +686,7 @@ func (o *input) IsJoyKnown(device gdnative.Int) gdnative.Bool {
 	Args: [{ false scancode int}], Returns: bool
 */
 func (o *input) IsKeyPressed(scancode gdnative.Int) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling Input.IsKeyPressed()")
 
 	// Build out the method's arguments
@@ -677,6 +712,7 @@ func (o *input) IsKeyPressed(scancode gdnative.Int) gdnative.Bool {
 	Args: [{ false button int}], Returns: bool
 */
 func (o *input) IsMouseButtonPressed(button gdnative.Int) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling Input.IsMouseButtonPressed()")
 
 	// Build out the method's arguments
@@ -702,6 +738,7 @@ func (o *input) IsMouseButtonPressed(button gdnative.Int) gdnative.Bool {
 	Args: [{ false device int} { false connected bool} { false name String} { false guid String}], Returns: void
 */
 func (o *input) JoyConnectionChanged(device gdnative.Int, connected gdnative.Bool, name gdnative.String, guid gdnative.String) {
+	o.ensureSingleton()
 	log.Println("Calling Input.JoyConnectionChanged()")
 
 	// Build out the method's arguments
@@ -726,6 +763,7 @@ func (o *input) JoyConnectionChanged(device gdnative.Int, connected gdnative.Boo
 	Args: [{ false event InputEvent}], Returns: void
 */
 func (o *input) ParseInputEvent(event InputEvent) {
+	o.ensureSingleton()
 	log.Println("Calling Input.ParseInputEvent()")
 
 	// Build out the method's arguments
@@ -747,6 +785,7 @@ func (o *input) ParseInputEvent(event InputEvent) {
 	Args: [{ false guid String}], Returns: void
 */
 func (o *input) RemoveJoyMapping(guid gdnative.String) {
+	o.ensureSingleton()
 	log.Println("Calling Input.RemoveJoyMapping()")
 
 	// Build out the method's arguments
@@ -768,6 +807,7 @@ func (o *input) RemoveJoyMapping(guid gdnative.String) {
 	Args: [{ false image Resource} {0 true shape int} {(0, 0) true hotspot Vector2}], Returns: void
 */
 func (o *input) SetCustomMouseCursor(image Resource, shape gdnative.Int, hotspot gdnative.Vector2) {
+	o.ensureSingleton()
 	log.Println("Calling Input.SetCustomMouseCursor()")
 
 	// Build out the method's arguments
@@ -791,6 +831,7 @@ func (o *input) SetCustomMouseCursor(image Resource, shape gdnative.Int, hotspot
 	Args: [{ false mode int}], Returns: void
 */
 func (o *input) SetMouseMode(mode gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling Input.SetMouseMode()")
 
 	// Build out the method's arguments
@@ -812,6 +853,7 @@ func (o *input) SetMouseMode(mode gdnative.Int) {
 	Args: [{ false device int} { false weak_magnitude float} { false strong_magnitude float} {0 true duration float}], Returns: void
 */
 func (o *input) StartJoyVibration(device gdnative.Int, weakMagnitude gdnative.Float, strongMagnitude gdnative.Float, duration gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling Input.StartJoyVibration()")
 
 	// Build out the method's arguments
@@ -836,6 +878,7 @@ func (o *input) StartJoyVibration(device gdnative.Int, weakMagnitude gdnative.Fl
 	Args: [{ false device int}], Returns: void
 */
 func (o *input) StopJoyVibration(device gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling Input.StopJoyVibration()")
 
 	// Build out the method's arguments
@@ -857,6 +900,7 @@ func (o *input) StopJoyVibration(device gdnative.Int) {
 	Args: [{ false to Vector2}], Returns: void
 */
 func (o *input) WarpMousePosition(to gdnative.Vector2) {
+	o.ensureSingleton()
 	log.Println("Calling Input.WarpMousePosition()")
 
 	// Build out the method's arguments

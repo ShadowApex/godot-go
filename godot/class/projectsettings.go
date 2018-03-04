@@ -25,10 +25,7 @@ func NewProjectSettingsFromPointer(ptr gdnative.Pointer) projectSettings {
 }
 
 func newSingletonProjectSettings() *projectSettings {
-	obj := &projectSettings{}
-	gdObj := gdnative.GetSingleton("ProjectSettings")
-	obj.SetBaseObject(gdObj)
-	return obj
+	return &projectSettings{}
 }
 
 /*
@@ -41,7 +38,20 @@ Contains global variables accessible from everywhere. Use "ProjectSettings.get_s
 */
 type projectSettings struct {
 	Object
-	owner gdnative.Object
+	owner       gdnative.Object
+	initialized bool
+}
+
+// EnsureSingleton will check to see if we have an object for it. If not, it will fetch its
+// GDNative object and set it.
+func (o *projectSettings) ensureSingleton() {
+	if o.initialized == true {
+		return
+	}
+	log.Println("Singleton not found. Fetching from GDNative...")
+	base := gdnative.GetSingleton("ProjectSettings")
+	o.SetBaseObject(base)
+	o.initialized = true
 }
 
 func (o *projectSettings) BaseClass() string {
@@ -63,6 +73,7 @@ func (o *projectSettings) GetBaseObject() gdnative.Object {
 	Args: [{ false hint Dictionary}], Returns: void
 */
 func (o *projectSettings) AddPropertyInfo(hint gdnative.Dictionary) {
+	o.ensureSingleton()
 	log.Println("Calling ProjectSettings.AddPropertyInfo()")
 
 	// Build out the method's arguments
@@ -84,6 +95,7 @@ func (o *projectSettings) AddPropertyInfo(hint gdnative.Dictionary) {
 	Args: [{ false name String}], Returns: void
 */
 func (o *projectSettings) Clear(name gdnative.String) {
+	o.ensureSingleton()
 	log.Println("Calling ProjectSettings.Clear()")
 
 	// Build out the method's arguments
@@ -105,6 +117,7 @@ func (o *projectSettings) Clear(name gdnative.String) {
 	Args: [{ false name String}], Returns: int
 */
 func (o *projectSettings) GetOrder(name gdnative.String) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling ProjectSettings.GetOrder()")
 
 	// Build out the method's arguments
@@ -130,6 +143,7 @@ func (o *projectSettings) GetOrder(name gdnative.String) gdnative.Int {
 	Args: [{ false name String}], Returns: Variant
 */
 func (o *projectSettings) GetSetting(name gdnative.String) gdnative.Variant {
+	o.ensureSingleton()
 	log.Println("Calling ProjectSettings.GetSetting()")
 
 	// Build out the method's arguments
@@ -155,6 +169,7 @@ func (o *projectSettings) GetSetting(name gdnative.String) gdnative.Variant {
 	Args: [{ false path String}], Returns: String
 */
 func (o *projectSettings) GlobalizePath(path gdnative.String) gdnative.String {
+	o.ensureSingleton()
 	log.Println("Calling ProjectSettings.GlobalizePath()")
 
 	// Build out the method's arguments
@@ -180,6 +195,7 @@ func (o *projectSettings) GlobalizePath(path gdnative.String) gdnative.String {
 	Args: [{ false name String}], Returns: bool
 */
 func (o *projectSettings) HasSetting(name gdnative.String) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling ProjectSettings.HasSetting()")
 
 	// Build out the method's arguments
@@ -205,6 +221,7 @@ func (o *projectSettings) HasSetting(name gdnative.String) gdnative.Bool {
 	Args: [{ false pack String}], Returns: bool
 */
 func (o *projectSettings) LoadResourcePack(pack gdnative.String) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling ProjectSettings.LoadResourcePack()")
 
 	// Build out the method's arguments
@@ -230,6 +247,7 @@ func (o *projectSettings) LoadResourcePack(pack gdnative.String) gdnative.Bool {
 	Args: [{ false path String}], Returns: String
 */
 func (o *projectSettings) LocalizePath(path gdnative.String) gdnative.String {
+	o.ensureSingleton()
 	log.Println("Calling ProjectSettings.LocalizePath()")
 
 	// Build out the method's arguments
@@ -255,6 +273,7 @@ func (o *projectSettings) LocalizePath(path gdnative.String) gdnative.String {
 	Args: [{ false name String}], Returns: bool
 */
 func (o *projectSettings) PropertyCanRevert(name gdnative.String) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling ProjectSettings.PropertyCanRevert()")
 
 	// Build out the method's arguments
@@ -280,6 +299,7 @@ func (o *projectSettings) PropertyCanRevert(name gdnative.String) gdnative.Bool 
 	Args: [{ false name String}], Returns: Variant
 */
 func (o *projectSettings) PropertyGetRevert(name gdnative.String) gdnative.Variant {
+	o.ensureSingleton()
 	log.Println("Calling ProjectSettings.PropertyGetRevert()")
 
 	// Build out the method's arguments
@@ -315,6 +335,7 @@ func (o *projectSettings) PropertyGetRevert(name gdnative.String) gdnative.Varia
 	Args: [{ false name String} { false value Variant}], Returns: void
 */
 func (o *projectSettings) SetInitialValue(name gdnative.String, value gdnative.Variant) {
+	o.ensureSingleton()
 	log.Println("Calling ProjectSettings.SetInitialValue()")
 
 	// Build out the method's arguments
@@ -337,6 +358,7 @@ func (o *projectSettings) SetInitialValue(name gdnative.String, value gdnative.V
 	Args: [{ false name String} { false position int}], Returns: void
 */
 func (o *projectSettings) SetOrder(name gdnative.String, position gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling ProjectSettings.SetOrder()")
 
 	// Build out the method's arguments
@@ -359,6 +381,7 @@ func (o *projectSettings) SetOrder(name gdnative.String, position gdnative.Int) 
 	Args: [{ false name String} { false value Variant}], Returns: void
 */
 func (o *projectSettings) SetSetting(name gdnative.String, value gdnative.Variant) {
+	o.ensureSingleton()
 	log.Println("Calling ProjectSettings.SetSetting()")
 
 	// Build out the method's arguments

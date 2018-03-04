@@ -25,10 +25,7 @@ func NewARVRServerFromPointer(ptr gdnative.Pointer) arvrServer {
 }
 
 func newSingletonARVRServer() *arvrServer {
-	obj := &arvrServer{}
-	gdObj := gdnative.GetSingleton("ARVRServer")
-	obj.SetBaseObject(gdObj)
-	return obj
+	return &arvrServer{}
 }
 
 /*
@@ -41,7 +38,20 @@ The AR/VR Server is the heart of our AR/VR solution and handles all the processi
 */
 type arvrServer struct {
 	Object
-	owner gdnative.Object
+	owner       gdnative.Object
+	initialized bool
+}
+
+// EnsureSingleton will check to see if we have an object for it. If not, it will fetch its
+// GDNative object and set it.
+func (o *arvrServer) ensureSingleton() {
+	if o.initialized == true {
+		return
+	}
+	log.Println("Singleton not found. Fetching from GDNative...")
+	base := gdnative.GetSingleton("ARVRServer")
+	o.SetBaseObject(base)
+	o.initialized = true
 }
 
 func (o *arvrServer) BaseClass() string {
@@ -63,6 +73,7 @@ func (o *arvrServer) GetBaseObject() gdnative.Object {
 	Args: [{ false rotation_mode int} { false keep_height bool}], Returns: void
 */
 func (o *arvrServer) CenterOnHmd(rotationMode gdnative.Int, keepHeight gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling ARVRServer.CenterOnHmd()")
 
 	// Build out the method's arguments
@@ -85,6 +96,7 @@ func (o *arvrServer) CenterOnHmd(rotationMode gdnative.Int, keepHeight gdnative.
 	Args: [{ false name String}], Returns: ARVRInterface
 */
 func (o *arvrServer) FindInterface(name gdnative.String) ARVRInterface {
+	o.ensureSingleton()
 	log.Println("Calling ARVRServer.FindInterface()")
 
 	// Build out the method's arguments
@@ -110,6 +122,7 @@ func (o *arvrServer) FindInterface(name gdnative.String) ARVRInterface {
 	Args: [{ false idx int}], Returns: ARVRInterface
 */
 func (o *arvrServer) GetInterface(idx gdnative.Int) ARVRInterface {
+	o.ensureSingleton()
 	log.Println("Calling ARVRServer.GetInterface()")
 
 	// Build out the method's arguments
@@ -135,6 +148,7 @@ func (o *arvrServer) GetInterface(idx gdnative.Int) ARVRInterface {
 	Args: [], Returns: int
 */
 func (o *arvrServer) GetInterfaceCount() gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling ARVRServer.GetInterfaceCount()")
 
 	// Build out the method's arguments
@@ -159,6 +173,7 @@ func (o *arvrServer) GetInterfaceCount() gdnative.Int {
 	Args: [], Returns: Array
 */
 func (o *arvrServer) GetInterfaces() gdnative.Array {
+	o.ensureSingleton()
 	log.Println("Calling ARVRServer.GetInterfaces()")
 
 	// Build out the method's arguments
@@ -183,6 +198,7 @@ func (o *arvrServer) GetInterfaces() gdnative.Array {
 	Args: [], Returns: Transform
 */
 func (o *arvrServer) GetReferenceFrame() gdnative.Transform {
+	o.ensureSingleton()
 	log.Println("Calling ARVRServer.GetReferenceFrame()")
 
 	// Build out the method's arguments
@@ -207,6 +223,7 @@ func (o *arvrServer) GetReferenceFrame() gdnative.Transform {
 	Args: [{ false idx int}], Returns: ARVRPositionalTracker
 */
 func (o *arvrServer) GetTracker(idx gdnative.Int) ARVRPositionalTracker {
+	o.ensureSingleton()
 	log.Println("Calling ARVRServer.GetTracker()")
 
 	// Build out the method's arguments
@@ -232,6 +249,7 @@ func (o *arvrServer) GetTracker(idx gdnative.Int) ARVRPositionalTracker {
 	Args: [], Returns: int
 */
 func (o *arvrServer) GetTrackerCount() gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling ARVRServer.GetTrackerCount()")
 
 	// Build out the method's arguments
@@ -256,6 +274,7 @@ func (o *arvrServer) GetTrackerCount() gdnative.Int {
 	Args: [], Returns: float
 */
 func (o *arvrServer) GetWorldScale() gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling ARVRServer.GetWorldScale()")
 
 	// Build out the method's arguments
@@ -280,6 +299,7 @@ func (o *arvrServer) GetWorldScale() gdnative.Float {
 	Args: [{ false interface ARVRInterface}], Returns: void
 */
 func (o *arvrServer) SetPrimaryInterface(intrfce ARVRInterface) {
+	o.ensureSingleton()
 	log.Println("Calling ARVRServer.SetPrimaryInterface()")
 
 	// Build out the method's arguments
@@ -301,6 +321,7 @@ func (o *arvrServer) SetPrimaryInterface(intrfce ARVRInterface) {
 	Args: [{ false arg0 float}], Returns: void
 */
 func (o *arvrServer) SetWorldScale(arg0 gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling ARVRServer.SetWorldScale()")
 
 	// Build out the method's arguments

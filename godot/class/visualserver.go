@@ -25,10 +25,7 @@ func NewVisualServerFromPointer(ptr gdnative.Pointer) visualServer {
 }
 
 func newSingletonVisualServer() *visualServer {
-	obj := &visualServer{}
-	gdObj := gdnative.GetSingleton("VisualServer")
-	obj.SetBaseObject(gdObj)
-	return obj
+	return &visualServer{}
 }
 
 /*
@@ -41,7 +38,20 @@ Server for anything visible. The visual server is the API backend for everything
 */
 type visualServer struct {
 	Object
-	owner gdnative.Object
+	owner       gdnative.Object
+	initialized bool
+}
+
+// EnsureSingleton will check to see if we have an object for it. If not, it will fetch its
+// GDNative object and set it.
+func (o *visualServer) ensureSingleton() {
+	if o.initialized == true {
+		return
+	}
+	log.Println("Singleton not found. Fetching from GDNative...")
+	base := gdnative.GetSingleton("VisualServer")
+	o.SetBaseObject(base)
+	o.initialized = true
 }
 
 func (o *visualServer) BaseClass() string {
@@ -63,6 +73,7 @@ func (o *visualServer) GetBaseObject() gdnative.Object {
 	Args: [{ false left RID} { false top RID} { false right RID} { false bottom RID}], Returns: void
 */
 func (o *visualServer) BlackBarsSetImages(left gdnative.Rid, top gdnative.Rid, right gdnative.Rid, bottom gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.BlackBarsSetImages()")
 
 	// Build out the method's arguments
@@ -87,6 +98,7 @@ func (o *visualServer) BlackBarsSetImages(left gdnative.Rid, top gdnative.Rid, r
 	Args: [{ false left int} { false top int} { false right int} { false bottom int}], Returns: void
 */
 func (o *visualServer) BlackBarsSetMargins(left gdnative.Int, top gdnative.Int, right gdnative.Int, bottom gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.BlackBarsSetMargins()")
 
 	// Build out the method's arguments
@@ -111,6 +123,7 @@ func (o *visualServer) BlackBarsSetMargins(left gdnative.Int, top gdnative.Int, 
 	Args: [], Returns: RID
 */
 func (o *visualServer) CameraCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CameraCreate()")
 
 	// Build out the method's arguments
@@ -135,6 +148,7 @@ func (o *visualServer) CameraCreate() gdnative.Rid {
 	Args: [{ false camera RID} { false layers int}], Returns: void
 */
 func (o *visualServer) CameraSetCullMask(camera gdnative.Rid, layers gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CameraSetCullMask()")
 
 	// Build out the method's arguments
@@ -157,6 +171,7 @@ func (o *visualServer) CameraSetCullMask(camera gdnative.Rid, layers gdnative.In
 	Args: [{ false camera RID} { false env RID}], Returns: void
 */
 func (o *visualServer) CameraSetEnvironment(camera gdnative.Rid, env gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CameraSetEnvironment()")
 
 	// Build out the method's arguments
@@ -179,6 +194,7 @@ func (o *visualServer) CameraSetEnvironment(camera gdnative.Rid, env gdnative.Ri
 	Args: [{ false camera RID} { false size float} { false z_near float} { false z_far float}], Returns: void
 */
 func (o *visualServer) CameraSetOrthogonal(camera gdnative.Rid, size gdnative.Float, zNear gdnative.Float, zFar gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CameraSetOrthogonal()")
 
 	// Build out the method's arguments
@@ -203,6 +219,7 @@ func (o *visualServer) CameraSetOrthogonal(camera gdnative.Rid, size gdnative.Fl
 	Args: [{ false camera RID} { false fovy_degrees float} { false z_near float} { false z_far float}], Returns: void
 */
 func (o *visualServer) CameraSetPerspective(camera gdnative.Rid, fovyDegrees gdnative.Float, zNear gdnative.Float, zFar gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CameraSetPerspective()")
 
 	// Build out the method's arguments
@@ -227,6 +244,7 @@ func (o *visualServer) CameraSetPerspective(camera gdnative.Rid, fovyDegrees gdn
 	Args: [{ false camera RID} { false transform Transform}], Returns: void
 */
 func (o *visualServer) CameraSetTransform(camera gdnative.Rid, transform gdnative.Transform) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CameraSetTransform()")
 
 	// Build out the method's arguments
@@ -249,6 +267,7 @@ func (o *visualServer) CameraSetTransform(camera gdnative.Rid, transform gdnativ
 	Args: [{ false camera RID} { false enable bool}], Returns: void
 */
 func (o *visualServer) CameraSetUseVerticalAspect(camera gdnative.Rid, enable gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CameraSetUseVerticalAspect()")
 
 	// Build out the method's arguments
@@ -271,6 +290,7 @@ func (o *visualServer) CameraSetUseVerticalAspect(camera gdnative.Rid, enable gd
 	Args: [], Returns: RID
 */
 func (o *visualServer) CanvasCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasCreate()")
 
 	// Build out the method's arguments
@@ -295,6 +315,7 @@ func (o *visualServer) CanvasCreate() gdnative.Rid {
 	Args: [{ false item RID} { false pos Vector2} { false radius float} { false color Color}], Returns: void
 */
 func (o *visualServer) CanvasItemAddCircle(item gdnative.Rid, pos gdnative.Vector2, radius gdnative.Float, color gdnative.Color) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemAddCircle()")
 
 	// Build out the method's arguments
@@ -319,6 +340,7 @@ func (o *visualServer) CanvasItemAddCircle(item gdnative.Rid, pos gdnative.Vecto
 	Args: [{ false item RID} { false ignore bool}], Returns: void
 */
 func (o *visualServer) CanvasItemAddClipIgnore(item gdnative.Rid, ignore gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemAddClipIgnore()")
 
 	// Build out the method's arguments
@@ -341,6 +363,7 @@ func (o *visualServer) CanvasItemAddClipIgnore(item gdnative.Rid, ignore gdnativ
 	Args: [{ false item RID} { false from Vector2} { false to Vector2} { false color Color} {1 true width float} {False true antialiased bool}], Returns: void
 */
 func (o *visualServer) CanvasItemAddLine(item gdnative.Rid, from gdnative.Vector2, to gdnative.Vector2, color gdnative.Color, width gdnative.Float, antialiased gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemAddLine()")
 
 	// Build out the method's arguments
@@ -367,6 +390,7 @@ func (o *visualServer) CanvasItemAddLine(item gdnative.Rid, from gdnative.Vector
 	Args: [{ false item RID} { false mesh RID} {[RID] true skeleton RID}], Returns: void
 */
 func (o *visualServer) CanvasItemAddMesh(item gdnative.Rid, mesh gdnative.Rid, skeleton gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemAddMesh()")
 
 	// Build out the method's arguments
@@ -390,6 +414,7 @@ func (o *visualServer) CanvasItemAddMesh(item gdnative.Rid, mesh gdnative.Rid, s
 	Args: [{ false item RID} { false mesh RID} {[RID] true skeleton RID}], Returns: void
 */
 func (o *visualServer) CanvasItemAddMultimesh(item gdnative.Rid, mesh gdnative.Rid, skeleton gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemAddMultimesh()")
 
 	// Build out the method's arguments
@@ -413,6 +438,7 @@ func (o *visualServer) CanvasItemAddMultimesh(item gdnative.Rid, mesh gdnative.R
 	Args: [{ false item RID} { false rect Rect2} { false source Rect2} { false texture RID} { false topleft Vector2} { false bottomright Vector2} {0 true x_axis_mode int} {0 true y_axis_mode int} {True true draw_center bool} {1,1,1,1 true modulate Color} {[RID] true normal_map RID}], Returns: void
 */
 func (o *visualServer) CanvasItemAddNinePatch(item gdnative.Rid, rect gdnative.Rect2, source gdnative.Rect2, texture gdnative.Rid, topleft gdnative.Vector2, bottomright gdnative.Vector2, xAxisMode gdnative.Int, yAxisMode gdnative.Int, drawCenter gdnative.Bool, modulate gdnative.Color, normalMap gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemAddNinePatch()")
 
 	// Build out the method's arguments
@@ -444,6 +470,7 @@ func (o *visualServer) CanvasItemAddNinePatch(item gdnative.Rid, rect gdnative.R
 	Args: [{ false item RID} { false particles RID} { false texture RID} { false normal_map RID} { false h_frames int} { false v_frames int}], Returns: void
 */
 func (o *visualServer) CanvasItemAddParticles(item gdnative.Rid, particles gdnative.Rid, texture gdnative.Rid, normalMap gdnative.Rid, hFrames gdnative.Int, vFrames gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemAddParticles()")
 
 	// Build out the method's arguments
@@ -470,6 +497,7 @@ func (o *visualServer) CanvasItemAddParticles(item gdnative.Rid, particles gdnat
 	Args: [{ false item RID} { false points PoolVector2Array} { false colors PoolColorArray} {[] true uvs PoolVector2Array} {[RID] true texture RID} {[RID] true normal_map RID} {False true antialiased bool}], Returns: void
 */
 func (o *visualServer) CanvasItemAddPolygon(item gdnative.Rid, points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture gdnative.Rid, normalMap gdnative.Rid, antialiased gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemAddPolygon()")
 
 	// Build out the method's arguments
@@ -497,6 +525,7 @@ func (o *visualServer) CanvasItemAddPolygon(item gdnative.Rid, points gdnative.P
 	Args: [{ false item RID} { false points PoolVector2Array} { false colors PoolColorArray} {1 true width float} {False true antialiased bool}], Returns: void
 */
 func (o *visualServer) CanvasItemAddPolyline(item gdnative.Rid, points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Float, antialiased gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemAddPolyline()")
 
 	// Build out the method's arguments
@@ -522,6 +551,7 @@ func (o *visualServer) CanvasItemAddPolyline(item gdnative.Rid, points gdnative.
 	Args: [{ false item RID} { false points PoolVector2Array} { false colors PoolColorArray} { false uvs PoolVector2Array} { false texture RID} {1 true width float} {[RID] true normal_map RID}], Returns: void
 */
 func (o *visualServer) CanvasItemAddPrimitive(item gdnative.Rid, points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture gdnative.Rid, width gdnative.Float, normalMap gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemAddPrimitive()")
 
 	// Build out the method's arguments
@@ -549,6 +579,7 @@ func (o *visualServer) CanvasItemAddPrimitive(item gdnative.Rid, points gdnative
 	Args: [{ false item RID} { false rect Rect2} { false color Color}], Returns: void
 */
 func (o *visualServer) CanvasItemAddRect(item gdnative.Rid, rect gdnative.Rect2, color gdnative.Color) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemAddRect()")
 
 	// Build out the method's arguments
@@ -572,6 +603,7 @@ func (o *visualServer) CanvasItemAddRect(item gdnative.Rid, rect gdnative.Rect2,
 	Args: [{ false item RID} { false transform Transform2D}], Returns: void
 */
 func (o *visualServer) CanvasItemAddSetTransform(item gdnative.Rid, transform gdnative.Transform2D) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemAddSetTransform()")
 
 	// Build out the method's arguments
@@ -594,6 +626,7 @@ func (o *visualServer) CanvasItemAddSetTransform(item gdnative.Rid, transform gd
 	Args: [{ false item RID} { false rect Rect2} { false texture RID} {False true tile bool} {1,1,1,1 true modulate Color} {False true transpose bool} {[RID] true normal_map RID}], Returns: void
 */
 func (o *visualServer) CanvasItemAddTextureRect(item gdnative.Rid, rect gdnative.Rect2, texture gdnative.Rid, tile gdnative.Bool, modulate gdnative.Color, transpose gdnative.Bool, normalMap gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemAddTextureRect()")
 
 	// Build out the method's arguments
@@ -621,6 +654,7 @@ func (o *visualServer) CanvasItemAddTextureRect(item gdnative.Rid, rect gdnative
 	Args: [{ false item RID} { false rect Rect2} { false texture RID} { false src_rect Rect2} {1,1,1,1 true modulate Color} {False true transpose bool} {[RID] true normal_map RID} {True true clip_uv bool}], Returns: void
 */
 func (o *visualServer) CanvasItemAddTextureRectRegion(item gdnative.Rid, rect gdnative.Rect2, texture gdnative.Rid, srcRect gdnative.Rect2, modulate gdnative.Color, transpose gdnative.Bool, normalMap gdnative.Rid, clipUv gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemAddTextureRectRegion()")
 
 	// Build out the method's arguments
@@ -649,6 +683,7 @@ func (o *visualServer) CanvasItemAddTextureRectRegion(item gdnative.Rid, rect gd
 	Args: [{ false item RID} { false indices PoolIntArray} { false points PoolVector2Array} { false colors PoolColorArray} {[] true uvs PoolVector2Array} {[RID] true texture RID} {-1 true count int} {[RID] true normal_map RID}], Returns: void
 */
 func (o *visualServer) CanvasItemAddTriangleArray(item gdnative.Rid, indices gdnative.PoolIntArray, points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture gdnative.Rid, count gdnative.Int, normalMap gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemAddTriangleArray()")
 
 	// Build out the method's arguments
@@ -677,6 +712,7 @@ func (o *visualServer) CanvasItemAddTriangleArray(item gdnative.Rid, indices gdn
 	Args: [{ false item RID}], Returns: void
 */
 func (o *visualServer) CanvasItemClear(item gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemClear()")
 
 	// Build out the method's arguments
@@ -698,6 +734,7 @@ func (o *visualServer) CanvasItemClear(item gdnative.Rid) {
 	Args: [], Returns: RID
 */
 func (o *visualServer) CanvasItemCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemCreate()")
 
 	// Build out the method's arguments
@@ -722,6 +759,7 @@ func (o *visualServer) CanvasItemCreate() gdnative.Rid {
 	Args: [{ false item RID} { false clip bool}], Returns: void
 */
 func (o *visualServer) CanvasItemSetClip(item gdnative.Rid, clip gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemSetClip()")
 
 	// Build out the method's arguments
@@ -744,6 +782,7 @@ func (o *visualServer) CanvasItemSetClip(item gdnative.Rid, clip gdnative.Bool) 
 	Args: [{ false item RID} { false enabled bool} { false rect Rect2}], Returns: void
 */
 func (o *visualServer) CanvasItemSetCopyToBackbuffer(item gdnative.Rid, enabled gdnative.Bool, rect gdnative.Rect2) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemSetCopyToBackbuffer()")
 
 	// Build out the method's arguments
@@ -767,6 +806,7 @@ func (o *visualServer) CanvasItemSetCopyToBackbuffer(item gdnative.Rid, enabled 
 	Args: [{ false item RID} { false use_custom_rect bool} {(0, 0, 0, 0) true rect Rect2}], Returns: void
 */
 func (o *visualServer) CanvasItemSetCustomRect(item gdnative.Rid, useCustomRect gdnative.Bool, rect gdnative.Rect2) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemSetCustomRect()")
 
 	// Build out the method's arguments
@@ -790,6 +830,7 @@ func (o *visualServer) CanvasItemSetCustomRect(item gdnative.Rid, useCustomRect 
 	Args: [{ false item RID} { false enabled bool}], Returns: void
 */
 func (o *visualServer) CanvasItemSetDistanceFieldMode(item gdnative.Rid, enabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemSetDistanceFieldMode()")
 
 	// Build out the method's arguments
@@ -812,6 +853,7 @@ func (o *visualServer) CanvasItemSetDistanceFieldMode(item gdnative.Rid, enabled
 	Args: [{ false item RID} { false enabled bool}], Returns: void
 */
 func (o *visualServer) CanvasItemSetDrawBehindParent(item gdnative.Rid, enabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemSetDrawBehindParent()")
 
 	// Build out the method's arguments
@@ -834,6 +876,7 @@ func (o *visualServer) CanvasItemSetDrawBehindParent(item gdnative.Rid, enabled 
 	Args: [{ false item RID} { false index int}], Returns: void
 */
 func (o *visualServer) CanvasItemSetDrawIndex(item gdnative.Rid, index gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemSetDrawIndex()")
 
 	// Build out the method's arguments
@@ -856,6 +899,7 @@ func (o *visualServer) CanvasItemSetDrawIndex(item gdnative.Rid, index gdnative.
 	Args: [{ false item RID} { false mask int}], Returns: void
 */
 func (o *visualServer) CanvasItemSetLightMask(item gdnative.Rid, mask gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemSetLightMask()")
 
 	// Build out the method's arguments
@@ -878,6 +922,7 @@ func (o *visualServer) CanvasItemSetLightMask(item gdnative.Rid, mask gdnative.I
 	Args: [{ false item RID} { false material RID}], Returns: void
 */
 func (o *visualServer) CanvasItemSetMaterial(item gdnative.Rid, material gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemSetMaterial()")
 
 	// Build out the method's arguments
@@ -900,6 +945,7 @@ func (o *visualServer) CanvasItemSetMaterial(item gdnative.Rid, material gdnativ
 	Args: [{ false item RID} { false color Color}], Returns: void
 */
 func (o *visualServer) CanvasItemSetModulate(item gdnative.Rid, color gdnative.Color) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemSetModulate()")
 
 	// Build out the method's arguments
@@ -922,6 +968,7 @@ func (o *visualServer) CanvasItemSetModulate(item gdnative.Rid, color gdnative.C
 	Args: [{ false item RID} { false parent RID}], Returns: void
 */
 func (o *visualServer) CanvasItemSetParent(item gdnative.Rid, parent gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemSetParent()")
 
 	// Build out the method's arguments
@@ -944,6 +991,7 @@ func (o *visualServer) CanvasItemSetParent(item gdnative.Rid, parent gdnative.Ri
 	Args: [{ false item RID} { false color Color}], Returns: void
 */
 func (o *visualServer) CanvasItemSetSelfModulate(item gdnative.Rid, color gdnative.Color) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemSetSelfModulate()")
 
 	// Build out the method's arguments
@@ -966,6 +1014,7 @@ func (o *visualServer) CanvasItemSetSelfModulate(item gdnative.Rid, color gdnati
 	Args: [{ false item RID} { false enabled bool}], Returns: void
 */
 func (o *visualServer) CanvasItemSetSortChildrenByY(item gdnative.Rid, enabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemSetSortChildrenByY()")
 
 	// Build out the method's arguments
@@ -988,6 +1037,7 @@ func (o *visualServer) CanvasItemSetSortChildrenByY(item gdnative.Rid, enabled g
 	Args: [{ false item RID} { false transform Transform2D}], Returns: void
 */
 func (o *visualServer) CanvasItemSetTransform(item gdnative.Rid, transform gdnative.Transform2D) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemSetTransform()")
 
 	// Build out the method's arguments
@@ -1010,6 +1060,7 @@ func (o *visualServer) CanvasItemSetTransform(item gdnative.Rid, transform gdnat
 	Args: [{ false item RID} { false enabled bool}], Returns: void
 */
 func (o *visualServer) CanvasItemSetUseParentMaterial(item gdnative.Rid, enabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemSetUseParentMaterial()")
 
 	// Build out the method's arguments
@@ -1032,6 +1083,7 @@ func (o *visualServer) CanvasItemSetUseParentMaterial(item gdnative.Rid, enabled
 	Args: [{ false item RID} { false visible bool}], Returns: void
 */
 func (o *visualServer) CanvasItemSetVisible(item gdnative.Rid, visible gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemSetVisible()")
 
 	// Build out the method's arguments
@@ -1054,6 +1106,7 @@ func (o *visualServer) CanvasItemSetVisible(item gdnative.Rid, visible gdnative.
 	Args: [{ false item RID} { false enabled bool}], Returns: void
 */
 func (o *visualServer) CanvasItemSetZAsRelativeToParent(item gdnative.Rid, enabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemSetZAsRelativeToParent()")
 
 	// Build out the method's arguments
@@ -1076,6 +1129,7 @@ func (o *visualServer) CanvasItemSetZAsRelativeToParent(item gdnative.Rid, enabl
 	Args: [{ false item RID} { false z_index int}], Returns: void
 */
 func (o *visualServer) CanvasItemSetZIndex(item gdnative.Rid, zIndex gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasItemSetZIndex()")
 
 	// Build out the method's arguments
@@ -1098,6 +1152,7 @@ func (o *visualServer) CanvasItemSetZIndex(item gdnative.Rid, zIndex gdnative.In
 	Args: [{ false light RID} { false canvas RID}], Returns: void
 */
 func (o *visualServer) CanvasLightAttachToCanvas(light gdnative.Rid, canvas gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightAttachToCanvas()")
 
 	// Build out the method's arguments
@@ -1120,6 +1175,7 @@ func (o *visualServer) CanvasLightAttachToCanvas(light gdnative.Rid, canvas gdna
 	Args: [], Returns: RID
 */
 func (o *visualServer) CanvasLightCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightCreate()")
 
 	// Build out the method's arguments
@@ -1144,6 +1200,7 @@ func (o *visualServer) CanvasLightCreate() gdnative.Rid {
 	Args: [{ false occluder RID} { false canvas RID}], Returns: void
 */
 func (o *visualServer) CanvasLightOccluderAttachToCanvas(occluder gdnative.Rid, canvas gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightOccluderAttachToCanvas()")
 
 	// Build out the method's arguments
@@ -1166,6 +1223,7 @@ func (o *visualServer) CanvasLightOccluderAttachToCanvas(occluder gdnative.Rid, 
 	Args: [], Returns: RID
 */
 func (o *visualServer) CanvasLightOccluderCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightOccluderCreate()")
 
 	// Build out the method's arguments
@@ -1190,6 +1248,7 @@ func (o *visualServer) CanvasLightOccluderCreate() gdnative.Rid {
 	Args: [{ false occluder RID} { false enabled bool}], Returns: void
 */
 func (o *visualServer) CanvasLightOccluderSetEnabled(occluder gdnative.Rid, enabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightOccluderSetEnabled()")
 
 	// Build out the method's arguments
@@ -1212,6 +1271,7 @@ func (o *visualServer) CanvasLightOccluderSetEnabled(occluder gdnative.Rid, enab
 	Args: [{ false occluder RID} { false mask int}], Returns: void
 */
 func (o *visualServer) CanvasLightOccluderSetLightMask(occluder gdnative.Rid, mask gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightOccluderSetLightMask()")
 
 	// Build out the method's arguments
@@ -1234,6 +1294,7 @@ func (o *visualServer) CanvasLightOccluderSetLightMask(occluder gdnative.Rid, ma
 	Args: [{ false occluder RID} { false polygon RID}], Returns: void
 */
 func (o *visualServer) CanvasLightOccluderSetPolygon(occluder gdnative.Rid, polygon gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightOccluderSetPolygon()")
 
 	// Build out the method's arguments
@@ -1256,6 +1317,7 @@ func (o *visualServer) CanvasLightOccluderSetPolygon(occluder gdnative.Rid, poly
 	Args: [{ false occluder RID} { false transform Transform2D}], Returns: void
 */
 func (o *visualServer) CanvasLightOccluderSetTransform(occluder gdnative.Rid, transform gdnative.Transform2D) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightOccluderSetTransform()")
 
 	// Build out the method's arguments
@@ -1278,6 +1340,7 @@ func (o *visualServer) CanvasLightOccluderSetTransform(occluder gdnative.Rid, tr
 	Args: [{ false light RID} { false color Color}], Returns: void
 */
 func (o *visualServer) CanvasLightSetColor(light gdnative.Rid, color gdnative.Color) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetColor()")
 
 	// Build out the method's arguments
@@ -1300,6 +1363,7 @@ func (o *visualServer) CanvasLightSetColor(light gdnative.Rid, color gdnative.Co
 	Args: [{ false light RID} { false enabled bool}], Returns: void
 */
 func (o *visualServer) CanvasLightSetEnabled(light gdnative.Rid, enabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetEnabled()")
 
 	// Build out the method's arguments
@@ -1322,6 +1386,7 @@ func (o *visualServer) CanvasLightSetEnabled(light gdnative.Rid, enabled gdnativ
 	Args: [{ false light RID} { false energy float}], Returns: void
 */
 func (o *visualServer) CanvasLightSetEnergy(light gdnative.Rid, energy gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetEnergy()")
 
 	// Build out the method's arguments
@@ -1344,6 +1409,7 @@ func (o *visualServer) CanvasLightSetEnergy(light gdnative.Rid, energy gdnative.
 	Args: [{ false light RID} { false height float}], Returns: void
 */
 func (o *visualServer) CanvasLightSetHeight(light gdnative.Rid, height gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetHeight()")
 
 	// Build out the method's arguments
@@ -1366,6 +1432,7 @@ func (o *visualServer) CanvasLightSetHeight(light gdnative.Rid, height gdnative.
 	Args: [{ false light RID} { false mask int}], Returns: void
 */
 func (o *visualServer) CanvasLightSetItemCullMask(light gdnative.Rid, mask gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetItemCullMask()")
 
 	// Build out the method's arguments
@@ -1388,6 +1455,7 @@ func (o *visualServer) CanvasLightSetItemCullMask(light gdnative.Rid, mask gdnat
 	Args: [{ false light RID} { false mask int}], Returns: void
 */
 func (o *visualServer) CanvasLightSetItemShadowCullMask(light gdnative.Rid, mask gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetItemShadowCullMask()")
 
 	// Build out the method's arguments
@@ -1410,6 +1478,7 @@ func (o *visualServer) CanvasLightSetItemShadowCullMask(light gdnative.Rid, mask
 	Args: [{ false light RID} { false min_layer int} { false max_layer int}], Returns: void
 */
 func (o *visualServer) CanvasLightSetLayerRange(light gdnative.Rid, minLayer gdnative.Int, maxLayer gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetLayerRange()")
 
 	// Build out the method's arguments
@@ -1433,6 +1502,7 @@ func (o *visualServer) CanvasLightSetLayerRange(light gdnative.Rid, minLayer gdn
 	Args: [{ false light RID} { false mode int}], Returns: void
 */
 func (o *visualServer) CanvasLightSetMode(light gdnative.Rid, mode gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetMode()")
 
 	// Build out the method's arguments
@@ -1455,6 +1525,7 @@ func (o *visualServer) CanvasLightSetMode(light gdnative.Rid, mode gdnative.Int)
 	Args: [{ false light RID} { false scale float}], Returns: void
 */
 func (o *visualServer) CanvasLightSetScale(light gdnative.Rid, scale gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetScale()")
 
 	// Build out the method's arguments
@@ -1477,6 +1548,7 @@ func (o *visualServer) CanvasLightSetScale(light gdnative.Rid, scale gdnative.Fl
 	Args: [{ false light RID} { false size int}], Returns: void
 */
 func (o *visualServer) CanvasLightSetShadowBufferSize(light gdnative.Rid, size gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetShadowBufferSize()")
 
 	// Build out the method's arguments
@@ -1499,6 +1571,7 @@ func (o *visualServer) CanvasLightSetShadowBufferSize(light gdnative.Rid, size g
 	Args: [{ false light RID} { false color Color}], Returns: void
 */
 func (o *visualServer) CanvasLightSetShadowColor(light gdnative.Rid, color gdnative.Color) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetShadowColor()")
 
 	// Build out the method's arguments
@@ -1521,6 +1594,7 @@ func (o *visualServer) CanvasLightSetShadowColor(light gdnative.Rid, color gdnat
 	Args: [{ false light RID} { false enabled bool}], Returns: void
 */
 func (o *visualServer) CanvasLightSetShadowEnabled(light gdnative.Rid, enabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetShadowEnabled()")
 
 	// Build out the method's arguments
@@ -1543,6 +1617,7 @@ func (o *visualServer) CanvasLightSetShadowEnabled(light gdnative.Rid, enabled g
 	Args: [{ false light RID} { false filter int}], Returns: void
 */
 func (o *visualServer) CanvasLightSetShadowFilter(light gdnative.Rid, filter gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetShadowFilter()")
 
 	// Build out the method's arguments
@@ -1565,6 +1640,7 @@ func (o *visualServer) CanvasLightSetShadowFilter(light gdnative.Rid, filter gdn
 	Args: [{ false light RID} { false length float}], Returns: void
 */
 func (o *visualServer) CanvasLightSetShadowGradientLength(light gdnative.Rid, length gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetShadowGradientLength()")
 
 	// Build out the method's arguments
@@ -1587,6 +1663,7 @@ func (o *visualServer) CanvasLightSetShadowGradientLength(light gdnative.Rid, le
 	Args: [{ false light RID} { false smooth float}], Returns: void
 */
 func (o *visualServer) CanvasLightSetShadowSmooth(light gdnative.Rid, smooth gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetShadowSmooth()")
 
 	// Build out the method's arguments
@@ -1609,6 +1686,7 @@ func (o *visualServer) CanvasLightSetShadowSmooth(light gdnative.Rid, smooth gdn
 	Args: [{ false light RID} { false texture RID}], Returns: void
 */
 func (o *visualServer) CanvasLightSetTexture(light gdnative.Rid, texture gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetTexture()")
 
 	// Build out the method's arguments
@@ -1631,6 +1709,7 @@ func (o *visualServer) CanvasLightSetTexture(light gdnative.Rid, texture gdnativ
 	Args: [{ false light RID} { false offset Vector2}], Returns: void
 */
 func (o *visualServer) CanvasLightSetTextureOffset(light gdnative.Rid, offset gdnative.Vector2) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetTextureOffset()")
 
 	// Build out the method's arguments
@@ -1653,6 +1732,7 @@ func (o *visualServer) CanvasLightSetTextureOffset(light gdnative.Rid, offset gd
 	Args: [{ false light RID} { false transform Transform2D}], Returns: void
 */
 func (o *visualServer) CanvasLightSetTransform(light gdnative.Rid, transform gdnative.Transform2D) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetTransform()")
 
 	// Build out the method's arguments
@@ -1675,6 +1755,7 @@ func (o *visualServer) CanvasLightSetTransform(light gdnative.Rid, transform gdn
 	Args: [{ false light RID} { false min_z int} { false max_z int}], Returns: void
 */
 func (o *visualServer) CanvasLightSetZRange(light gdnative.Rid, minZ gdnative.Int, maxZ gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasLightSetZRange()")
 
 	// Build out the method's arguments
@@ -1698,6 +1779,7 @@ func (o *visualServer) CanvasLightSetZRange(light gdnative.Rid, minZ gdnative.In
 	Args: [], Returns: RID
 */
 func (o *visualServer) CanvasOccluderPolygonCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasOccluderPolygonCreate()")
 
 	// Build out the method's arguments
@@ -1722,6 +1804,7 @@ func (o *visualServer) CanvasOccluderPolygonCreate() gdnative.Rid {
 	Args: [{ false occluder_polygon RID} { false mode int}], Returns: void
 */
 func (o *visualServer) CanvasOccluderPolygonSetCullMode(occluderPolygon gdnative.Rid, mode gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasOccluderPolygonSetCullMode()")
 
 	// Build out the method's arguments
@@ -1744,6 +1827,7 @@ func (o *visualServer) CanvasOccluderPolygonSetCullMode(occluderPolygon gdnative
 	Args: [{ false occluder_polygon RID} { false shape PoolVector2Array} { false closed bool}], Returns: void
 */
 func (o *visualServer) CanvasOccluderPolygonSetShape(occluderPolygon gdnative.Rid, shape gdnative.PoolVector2Array, closed gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasOccluderPolygonSetShape()")
 
 	// Build out the method's arguments
@@ -1767,6 +1851,7 @@ func (o *visualServer) CanvasOccluderPolygonSetShape(occluderPolygon gdnative.Ri
 	Args: [{ false occluder_polygon RID} { false shape PoolVector2Array}], Returns: void
 */
 func (o *visualServer) CanvasOccluderPolygonSetShapeAsLines(occluderPolygon gdnative.Rid, shape gdnative.PoolVector2Array) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasOccluderPolygonSetShapeAsLines()")
 
 	// Build out the method's arguments
@@ -1789,6 +1874,7 @@ func (o *visualServer) CanvasOccluderPolygonSetShapeAsLines(occluderPolygon gdna
 	Args: [{ false canvas RID} { false item RID} { false mirroring Vector2}], Returns: void
 */
 func (o *visualServer) CanvasSetItemMirroring(canvas gdnative.Rid, item gdnative.Rid, mirroring gdnative.Vector2) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasSetItemMirroring()")
 
 	// Build out the method's arguments
@@ -1812,6 +1898,7 @@ func (o *visualServer) CanvasSetItemMirroring(canvas gdnative.Rid, item gdnative
 	Args: [{ false canvas RID} { false color Color}], Returns: void
 */
 func (o *visualServer) CanvasSetModulate(canvas gdnative.Rid, color gdnative.Color) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.CanvasSetModulate()")
 
 	// Build out the method's arguments
@@ -1834,6 +1921,7 @@ func (o *visualServer) CanvasSetModulate(canvas gdnative.Rid, color gdnative.Col
 	Args: [], Returns: RID
 */
 func (o *visualServer) DirectionalLightCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.DirectionalLightCreate()")
 
 	// Build out the method's arguments
@@ -1858,6 +1946,7 @@ func (o *visualServer) DirectionalLightCreate() gdnative.Rid {
 	Args: [], Returns: RID
 */
 func (o *visualServer) EnvironmentCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.EnvironmentCreate()")
 
 	// Build out the method's arguments
@@ -1882,6 +1971,7 @@ func (o *visualServer) EnvironmentCreate() gdnative.Rid {
 	Args: [{ false env RID} { false enable bool} { false brightness float} { false contrast float} { false saturation float} { false ramp RID}], Returns: void
 */
 func (o *visualServer) EnvironmentSetAdjustment(env gdnative.Rid, enable gdnative.Bool, brightness gdnative.Float, contrast gdnative.Float, saturation gdnative.Float, ramp gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.EnvironmentSetAdjustment()")
 
 	// Build out the method's arguments
@@ -1908,6 +1998,7 @@ func (o *visualServer) EnvironmentSetAdjustment(env gdnative.Rid, enable gdnativ
 	Args: [{ false env RID} { false color Color} {1 true energy float} {0 true sky_contibution float}], Returns: void
 */
 func (o *visualServer) EnvironmentSetAmbientLight(env gdnative.Rid, color gdnative.Color, energy gdnative.Float, skyContibution gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.EnvironmentSetAmbientLight()")
 
 	// Build out the method's arguments
@@ -1932,6 +2023,7 @@ func (o *visualServer) EnvironmentSetAmbientLight(env gdnative.Rid, color gdnati
 	Args: [{ false env RID} { false bg int}], Returns: void
 */
 func (o *visualServer) EnvironmentSetBackground(env gdnative.Rid, bg gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.EnvironmentSetBackground()")
 
 	// Build out the method's arguments
@@ -1954,6 +2046,7 @@ func (o *visualServer) EnvironmentSetBackground(env gdnative.Rid, bg gdnative.In
 	Args: [{ false env RID} { false color Color}], Returns: void
 */
 func (o *visualServer) EnvironmentSetBgColor(env gdnative.Rid, color gdnative.Color) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.EnvironmentSetBgColor()")
 
 	// Build out the method's arguments
@@ -1976,6 +2069,7 @@ func (o *visualServer) EnvironmentSetBgColor(env gdnative.Rid, color gdnative.Co
 	Args: [{ false env RID} { false energy float}], Returns: void
 */
 func (o *visualServer) EnvironmentSetBgEnergy(env gdnative.Rid, energy gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.EnvironmentSetBgEnergy()")
 
 	// Build out the method's arguments
@@ -1998,6 +2092,7 @@ func (o *visualServer) EnvironmentSetBgEnergy(env gdnative.Rid, energy gdnative.
 	Args: [{ false env RID} { false max_layer int}], Returns: void
 */
 func (o *visualServer) EnvironmentSetCanvasMaxLayer(env gdnative.Rid, maxLayer gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.EnvironmentSetCanvasMaxLayer()")
 
 	// Build out the method's arguments
@@ -2020,6 +2115,7 @@ func (o *visualServer) EnvironmentSetCanvasMaxLayer(env gdnative.Rid, maxLayer g
 	Args: [{ false env RID} { false enable bool} { false distance float} { false transition float} { false far_amount float} { false quality int}], Returns: void
 */
 func (o *visualServer) EnvironmentSetDofBlurFar(env gdnative.Rid, enable gdnative.Bool, distance gdnative.Float, transition gdnative.Float, farAmount gdnative.Float, quality gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.EnvironmentSetDofBlurFar()")
 
 	// Build out the method's arguments
@@ -2046,6 +2142,7 @@ func (o *visualServer) EnvironmentSetDofBlurFar(env gdnative.Rid, enable gdnativ
 	Args: [{ false env RID} { false enable bool} { false distance float} { false transition float} { false far_amount float} { false quality int}], Returns: void
 */
 func (o *visualServer) EnvironmentSetDofBlurNear(env gdnative.Rid, enable gdnative.Bool, distance gdnative.Float, transition gdnative.Float, farAmount gdnative.Float, quality gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.EnvironmentSetDofBlurNear()")
 
 	// Build out the method's arguments
@@ -2072,6 +2169,7 @@ func (o *visualServer) EnvironmentSetDofBlurNear(env gdnative.Rid, enable gdnati
 	Args: [{ false env RID} { false enable bool} { false color Color} { false sun_color Color} { false sun_amount float}], Returns: void
 */
 func (o *visualServer) EnvironmentSetFog(env gdnative.Rid, enable gdnative.Bool, color gdnative.Color, sunColor gdnative.Color, sunAmount gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.EnvironmentSetFog()")
 
 	// Build out the method's arguments
@@ -2097,6 +2195,7 @@ func (o *visualServer) EnvironmentSetFog(env gdnative.Rid, enable gdnative.Bool,
 	Args: [{ false env RID} { false enable bool} { false depth_begin float} { false depth_curve float} { false transmit bool} { false transmit_curve float}], Returns: void
 */
 func (o *visualServer) EnvironmentSetFogDepth(env gdnative.Rid, enable gdnative.Bool, depthBegin gdnative.Float, depthCurve gdnative.Float, transmit gdnative.Bool, transmitCurve gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.EnvironmentSetFogDepth()")
 
 	// Build out the method's arguments
@@ -2123,6 +2222,7 @@ func (o *visualServer) EnvironmentSetFogDepth(env gdnative.Rid, enable gdnative.
 	Args: [{ false env RID} { false enable bool} { false min_height float} { false max_height float} { false height_curve float}], Returns: void
 */
 func (o *visualServer) EnvironmentSetFogHeight(env gdnative.Rid, enable gdnative.Bool, minHeight gdnative.Float, maxHeight gdnative.Float, heightCurve gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.EnvironmentSetFogHeight()")
 
 	// Build out the method's arguments
@@ -2148,6 +2248,7 @@ func (o *visualServer) EnvironmentSetFogHeight(env gdnative.Rid, enable gdnative
 	Args: [{ false env RID} { false enable bool} { false level_flags int} { false intensity float} { false strength float} { false bloom_threshold float} { false blend_mode int} { false hdr_bleed_threshold float} { false hdr_bleed_scale float} { false bicubic_upscale bool}], Returns: void
 */
 func (o *visualServer) EnvironmentSetGlow(env gdnative.Rid, enable gdnative.Bool, levelFlags gdnative.Int, intensity gdnative.Float, strength gdnative.Float, bloomThreshold gdnative.Float, blendMode gdnative.Int, hdrBleedThreshold gdnative.Float, hdrBleedScale gdnative.Float, bicubicUpscale gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.EnvironmentSetGlow()")
 
 	// Build out the method's arguments
@@ -2178,6 +2279,7 @@ func (o *visualServer) EnvironmentSetGlow(env gdnative.Rid, enable gdnative.Bool
 	Args: [{ false env RID} { false sky RID}], Returns: void
 */
 func (o *visualServer) EnvironmentSetSky(env gdnative.Rid, sky gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.EnvironmentSetSky()")
 
 	// Build out the method's arguments
@@ -2200,6 +2302,7 @@ func (o *visualServer) EnvironmentSetSky(env gdnative.Rid, sky gdnative.Rid) {
 	Args: [{ false env RID} { false scale float}], Returns: void
 */
 func (o *visualServer) EnvironmentSetSkyCustomFov(env gdnative.Rid, scale gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.EnvironmentSetSkyCustomFov()")
 
 	// Build out the method's arguments
@@ -2222,6 +2325,7 @@ func (o *visualServer) EnvironmentSetSkyCustomFov(env gdnative.Rid, scale gdnati
 	Args: [{ false env RID} { false enable bool} { false radius float} { false intensity float} { false radius2 float} { false intensity2 float} { false bias float} { false light_affect float} { false color Color} { false quality int} { false blur int} { false bilateral_sharpness float}], Returns: void
 */
 func (o *visualServer) EnvironmentSetSsao(env gdnative.Rid, enable gdnative.Bool, radius gdnative.Float, intensity gdnative.Float, radius2 gdnative.Float, intensity2 gdnative.Float, bias gdnative.Float, lightAffect gdnative.Float, color gdnative.Color, quality gdnative.Int, blur gdnative.Int, bilateralSharpness gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.EnvironmentSetSsao()")
 
 	// Build out the method's arguments
@@ -2254,6 +2358,7 @@ func (o *visualServer) EnvironmentSetSsao(env gdnative.Rid, enable gdnative.Bool
 	Args: [{ false env RID} { false enable bool} { false max_steps int} { false fade_in float} { false fade_out float} { false depth_tolerance float} { false roughness bool}], Returns: void
 */
 func (o *visualServer) EnvironmentSetSsr(env gdnative.Rid, enable gdnative.Bool, maxSteps gdnative.Int, fadeIn gdnative.Float, fadeOut gdnative.Float, depthTolerance gdnative.Float, roughness gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.EnvironmentSetSsr()")
 
 	// Build out the method's arguments
@@ -2281,6 +2386,7 @@ func (o *visualServer) EnvironmentSetSsr(env gdnative.Rid, enable gdnative.Bool,
 	Args: [{ false env RID} { false tone_mapper int} { false exposure float} { false white float} { false auto_exposure bool} { false min_luminance float} { false max_luminance float} { false auto_exp_speed float} { false auto_exp_grey float}], Returns: void
 */
 func (o *visualServer) EnvironmentSetTonemap(env gdnative.Rid, toneMapper gdnative.Int, exposure gdnative.Float, white gdnative.Float, autoExposure gdnative.Bool, minLuminance gdnative.Float, maxLuminance gdnative.Float, autoExpSpeed gdnative.Float, autoExpGrey gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.EnvironmentSetTonemap()")
 
 	// Build out the method's arguments
@@ -2310,6 +2416,7 @@ func (o *visualServer) EnvironmentSetTonemap(env gdnative.Rid, toneMapper gdnati
 	Args: [], Returns: void
 */
 func (o *visualServer) Finish() {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.Finish()")
 
 	// Build out the method's arguments
@@ -2330,6 +2437,7 @@ func (o *visualServer) Finish() {
 	Args: [{True true swap_buffers bool}], Returns: void
 */
 func (o *visualServer) ForceDraw(swapBuffers gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ForceDraw()")
 
 	// Build out the method's arguments
@@ -2351,6 +2459,7 @@ func (o *visualServer) ForceDraw(swapBuffers gdnative.Bool) {
 	Args: [], Returns: void
 */
 func (o *visualServer) ForceSync() {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ForceSync()")
 
 	// Build out the method's arguments
@@ -2371,6 +2480,7 @@ func (o *visualServer) ForceSync() {
 	Args: [{ false rid RID}], Returns: void
 */
 func (o *visualServer) FreeRid(rid gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.FreeRid()")
 
 	// Build out the method's arguments
@@ -2392,6 +2502,7 @@ func (o *visualServer) FreeRid(rid gdnative.Rid) {
 	Args: [{ false info int}], Returns: int
 */
 func (o *visualServer) GetRenderInfo(info gdnative.Int) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GetRenderInfo()")
 
 	// Build out the method's arguments
@@ -2417,6 +2528,7 @@ func (o *visualServer) GetRenderInfo(info gdnative.Int) gdnative.Int {
 	Args: [], Returns: RID
 */
 func (o *visualServer) GetTestCube() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GetTestCube()")
 
 	// Build out the method's arguments
@@ -2441,6 +2553,7 @@ func (o *visualServer) GetTestCube() gdnative.Rid {
 	Args: [], Returns: RID
 */
 func (o *visualServer) GetTestTexture() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GetTestTexture()")
 
 	// Build out the method's arguments
@@ -2465,6 +2578,7 @@ func (o *visualServer) GetTestTexture() gdnative.Rid {
 	Args: [], Returns: RID
 */
 func (o *visualServer) GetWhiteTexture() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GetWhiteTexture()")
 
 	// Build out the method's arguments
@@ -2489,6 +2603,7 @@ func (o *visualServer) GetWhiteTexture() gdnative.Rid {
 	Args: [], Returns: RID
 */
 func (o *visualServer) GiProbeCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeCreate()")
 
 	// Build out the method's arguments
@@ -2513,6 +2628,7 @@ func (o *visualServer) GiProbeCreate() gdnative.Rid {
 	Args: [{ false arg0 RID}], Returns: float
 */
 func (o *visualServer) GiProbeGetBias(arg0 gdnative.Rid) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeGetBias()")
 
 	// Build out the method's arguments
@@ -2538,6 +2654,7 @@ func (o *visualServer) GiProbeGetBias(arg0 gdnative.Rid) gdnative.Float {
 	Args: [{ false probe RID}], Returns: AABB
 */
 func (o *visualServer) GiProbeGetBounds(probe gdnative.Rid) gdnative.Aabb {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeGetBounds()")
 
 	// Build out the method's arguments
@@ -2563,6 +2680,7 @@ func (o *visualServer) GiProbeGetBounds(probe gdnative.Rid) gdnative.Aabb {
 	Args: [{ false probe RID}], Returns: float
 */
 func (o *visualServer) GiProbeGetCellSize(probe gdnative.Rid) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeGetCellSize()")
 
 	// Build out the method's arguments
@@ -2588,6 +2706,7 @@ func (o *visualServer) GiProbeGetCellSize(probe gdnative.Rid) gdnative.Float {
 	Args: [{ false arg0 RID}], Returns: PoolIntArray
 */
 func (o *visualServer) GiProbeGetDynamicData(arg0 gdnative.Rid) gdnative.PoolIntArray {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeGetDynamicData()")
 
 	// Build out the method's arguments
@@ -2613,6 +2732,7 @@ func (o *visualServer) GiProbeGetDynamicData(arg0 gdnative.Rid) gdnative.PoolInt
 	Args: [{ false arg0 RID}], Returns: int
 */
 func (o *visualServer) GiProbeGetDynamicRange(arg0 gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeGetDynamicRange()")
 
 	// Build out the method's arguments
@@ -2638,6 +2758,7 @@ func (o *visualServer) GiProbeGetDynamicRange(arg0 gdnative.Rid) gdnative.Int {
 	Args: [{ false arg0 RID}], Returns: float
 */
 func (o *visualServer) GiProbeGetEnergy(arg0 gdnative.Rid) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeGetEnergy()")
 
 	// Build out the method's arguments
@@ -2663,6 +2784,7 @@ func (o *visualServer) GiProbeGetEnergy(arg0 gdnative.Rid) gdnative.Float {
 	Args: [{ false arg0 RID}], Returns: float
 */
 func (o *visualServer) GiProbeGetNormalBias(arg0 gdnative.Rid) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeGetNormalBias()")
 
 	// Build out the method's arguments
@@ -2688,6 +2810,7 @@ func (o *visualServer) GiProbeGetNormalBias(arg0 gdnative.Rid) gdnative.Float {
 	Args: [{ false arg0 RID}], Returns: float
 */
 func (o *visualServer) GiProbeGetPropagation(arg0 gdnative.Rid) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeGetPropagation()")
 
 	// Build out the method's arguments
@@ -2713,6 +2836,7 @@ func (o *visualServer) GiProbeGetPropagation(arg0 gdnative.Rid) gdnative.Float {
 	Args: [{ false arg0 RID}], Returns: Transform
 */
 func (o *visualServer) GiProbeGetToCellXform(arg0 gdnative.Rid) gdnative.Transform {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeGetToCellXform()")
 
 	// Build out the method's arguments
@@ -2738,6 +2862,7 @@ func (o *visualServer) GiProbeGetToCellXform(arg0 gdnative.Rid) gdnative.Transfo
 	Args: [{ false arg0 RID}], Returns: bool
 */
 func (o *visualServer) GiProbeIsCompressed(arg0 gdnative.Rid) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeIsCompressed()")
 
 	// Build out the method's arguments
@@ -2763,6 +2888,7 @@ func (o *visualServer) GiProbeIsCompressed(arg0 gdnative.Rid) gdnative.Bool {
 	Args: [{ false arg0 RID}], Returns: bool
 */
 func (o *visualServer) GiProbeIsInterior(arg0 gdnative.Rid) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeIsInterior()")
 
 	// Build out the method's arguments
@@ -2788,6 +2914,7 @@ func (o *visualServer) GiProbeIsInterior(arg0 gdnative.Rid) gdnative.Bool {
 	Args: [{ false bias RID} { false arg1 float}], Returns: void
 */
 func (o *visualServer) GiProbeSetBias(bias gdnative.Rid, arg1 gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeSetBias()")
 
 	// Build out the method's arguments
@@ -2810,6 +2937,7 @@ func (o *visualServer) GiProbeSetBias(bias gdnative.Rid, arg1 gdnative.Float) {
 	Args: [{ false probe RID} { false bounds AABB}], Returns: void
 */
 func (o *visualServer) GiProbeSetBounds(probe gdnative.Rid, bounds gdnative.Aabb) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeSetBounds()")
 
 	// Build out the method's arguments
@@ -2832,6 +2960,7 @@ func (o *visualServer) GiProbeSetBounds(probe gdnative.Rid, bounds gdnative.Aabb
 	Args: [{ false probe RID} { false range float}], Returns: void
 */
 func (o *visualServer) GiProbeSetCellSize(probe gdnative.Rid, rng gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeSetCellSize()")
 
 	// Build out the method's arguments
@@ -2854,6 +2983,7 @@ func (o *visualServer) GiProbeSetCellSize(probe gdnative.Rid, rng gdnative.Float
 	Args: [{ false enable RID} { false arg1 bool}], Returns: void
 */
 func (o *visualServer) GiProbeSetCompress(enable gdnative.Rid, arg1 gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeSetCompress()")
 
 	// Build out the method's arguments
@@ -2876,6 +3006,7 @@ func (o *visualServer) GiProbeSetCompress(enable gdnative.Rid, arg1 gdnative.Boo
 	Args: [{ false data RID} { false arg1 PoolIntArray}], Returns: void
 */
 func (o *visualServer) GiProbeSetDynamicData(data gdnative.Rid, arg1 gdnative.PoolIntArray) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeSetDynamicData()")
 
 	// Build out the method's arguments
@@ -2898,6 +3029,7 @@ func (o *visualServer) GiProbeSetDynamicData(data gdnative.Rid, arg1 gdnative.Po
 	Args: [{ false range RID} { false arg1 int}], Returns: void
 */
 func (o *visualServer) GiProbeSetDynamicRange(rng gdnative.Rid, arg1 gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeSetDynamicRange()")
 
 	// Build out the method's arguments
@@ -2920,6 +3052,7 @@ func (o *visualServer) GiProbeSetDynamicRange(rng gdnative.Rid, arg1 gdnative.In
 	Args: [{ false energy RID} { false arg1 float}], Returns: void
 */
 func (o *visualServer) GiProbeSetEnergy(energy gdnative.Rid, arg1 gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeSetEnergy()")
 
 	// Build out the method's arguments
@@ -2942,6 +3075,7 @@ func (o *visualServer) GiProbeSetEnergy(energy gdnative.Rid, arg1 gdnative.Float
 	Args: [{ false enable RID} { false arg1 bool}], Returns: void
 */
 func (o *visualServer) GiProbeSetInterior(enable gdnative.Rid, arg1 gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeSetInterior()")
 
 	// Build out the method's arguments
@@ -2964,6 +3098,7 @@ func (o *visualServer) GiProbeSetInterior(enable gdnative.Rid, arg1 gdnative.Boo
 	Args: [{ false bias RID} { false arg1 float}], Returns: void
 */
 func (o *visualServer) GiProbeSetNormalBias(bias gdnative.Rid, arg1 gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeSetNormalBias()")
 
 	// Build out the method's arguments
@@ -2986,6 +3121,7 @@ func (o *visualServer) GiProbeSetNormalBias(bias gdnative.Rid, arg1 gdnative.Flo
 	Args: [{ false propagation RID} { false arg1 float}], Returns: void
 */
 func (o *visualServer) GiProbeSetPropagation(propagation gdnative.Rid, arg1 gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeSetPropagation()")
 
 	// Build out the method's arguments
@@ -3008,6 +3144,7 @@ func (o *visualServer) GiProbeSetPropagation(propagation gdnative.Rid, arg1 gdna
 	Args: [{ false xform RID} { false arg1 Transform}], Returns: void
 */
 func (o *visualServer) GiProbeSetToCellXform(xform gdnative.Rid, arg1 gdnative.Transform) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.GiProbeSetToCellXform()")
 
 	// Build out the method's arguments
@@ -3030,6 +3167,7 @@ func (o *visualServer) GiProbeSetToCellXform(xform gdnative.Rid, arg1 gdnative.T
 	Args: [], Returns: bool
 */
 func (o *visualServer) HasChanged() gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.HasChanged()")
 
 	// Build out the method's arguments
@@ -3054,6 +3192,7 @@ func (o *visualServer) HasChanged() gdnative.Bool {
 	Args: [{ false feature int}], Returns: bool
 */
 func (o *visualServer) HasFeature(feature gdnative.Int) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.HasFeature()")
 
 	// Build out the method's arguments
@@ -3079,6 +3218,7 @@ func (o *visualServer) HasFeature(feature gdnative.Int) gdnative.Bool {
 	Args: [{ false feature String}], Returns: bool
 */
 func (o *visualServer) HasOsFeature(feature gdnative.String) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.HasOsFeature()")
 
 	// Build out the method's arguments
@@ -3104,6 +3244,7 @@ func (o *visualServer) HasOsFeature(feature gdnative.String) gdnative.Bool {
 	Args: [{ false immediate RID} { false primitive int} {[RID] true texture RID}], Returns: void
 */
 func (o *visualServer) ImmediateBegin(immediate gdnative.Rid, primitive gdnative.Int, texture gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ImmediateBegin()")
 
 	// Build out the method's arguments
@@ -3127,6 +3268,7 @@ func (o *visualServer) ImmediateBegin(immediate gdnative.Rid, primitive gdnative
 	Args: [{ false immediate RID}], Returns: void
 */
 func (o *visualServer) ImmediateClear(immediate gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ImmediateClear()")
 
 	// Build out the method's arguments
@@ -3148,6 +3290,7 @@ func (o *visualServer) ImmediateClear(immediate gdnative.Rid) {
 	Args: [{ false immediate RID} { false color Color}], Returns: void
 */
 func (o *visualServer) ImmediateColor(immediate gdnative.Rid, color gdnative.Color) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ImmediateColor()")
 
 	// Build out the method's arguments
@@ -3170,6 +3313,7 @@ func (o *visualServer) ImmediateColor(immediate gdnative.Rid, color gdnative.Col
 	Args: [], Returns: RID
 */
 func (o *visualServer) ImmediateCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ImmediateCreate()")
 
 	// Build out the method's arguments
@@ -3194,6 +3338,7 @@ func (o *visualServer) ImmediateCreate() gdnative.Rid {
 	Args: [{ false immediate RID}], Returns: void
 */
 func (o *visualServer) ImmediateEnd(immediate gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ImmediateEnd()")
 
 	// Build out the method's arguments
@@ -3215,6 +3360,7 @@ func (o *visualServer) ImmediateEnd(immediate gdnative.Rid) {
 	Args: [{ false immediate RID}], Returns: RID
 */
 func (o *visualServer) ImmediateGetMaterial(immediate gdnative.Rid) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ImmediateGetMaterial()")
 
 	// Build out the method's arguments
@@ -3240,6 +3386,7 @@ func (o *visualServer) ImmediateGetMaterial(immediate gdnative.Rid) gdnative.Rid
 	Args: [{ false immediate RID} { false normal Vector3}], Returns: void
 */
 func (o *visualServer) ImmediateNormal(immediate gdnative.Rid, normal gdnative.Vector3) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ImmediateNormal()")
 
 	// Build out the method's arguments
@@ -3262,6 +3409,7 @@ func (o *visualServer) ImmediateNormal(immediate gdnative.Rid, normal gdnative.V
 	Args: [{ false immediate RID} { false material RID}], Returns: void
 */
 func (o *visualServer) ImmediateSetMaterial(immediate gdnative.Rid, material gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ImmediateSetMaterial()")
 
 	// Build out the method's arguments
@@ -3284,6 +3432,7 @@ func (o *visualServer) ImmediateSetMaterial(immediate gdnative.Rid, material gdn
 	Args: [{ false immediate RID} { false tangent Plane}], Returns: void
 */
 func (o *visualServer) ImmediateTangent(immediate gdnative.Rid, tangent gdnative.Plane) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ImmediateTangent()")
 
 	// Build out the method's arguments
@@ -3306,6 +3455,7 @@ func (o *visualServer) ImmediateTangent(immediate gdnative.Rid, tangent gdnative
 	Args: [{ false immediate RID} { false tex_uv Vector2}], Returns: void
 */
 func (o *visualServer) ImmediateUv(immediate gdnative.Rid, texUv gdnative.Vector2) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ImmediateUv()")
 
 	// Build out the method's arguments
@@ -3328,6 +3478,7 @@ func (o *visualServer) ImmediateUv(immediate gdnative.Rid, texUv gdnative.Vector
 	Args: [{ false immediate RID} { false tex_uv Vector2}], Returns: void
 */
 func (o *visualServer) ImmediateUv2(immediate gdnative.Rid, texUv gdnative.Vector2) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ImmediateUv2()")
 
 	// Build out the method's arguments
@@ -3350,6 +3501,7 @@ func (o *visualServer) ImmediateUv2(immediate gdnative.Rid, texUv gdnative.Vecto
 	Args: [{ false immediate RID} { false vertex Vector3}], Returns: void
 */
 func (o *visualServer) ImmediateVertex(immediate gdnative.Rid, vertex gdnative.Vector3) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ImmediateVertex()")
 
 	// Build out the method's arguments
@@ -3372,6 +3524,7 @@ func (o *visualServer) ImmediateVertex(immediate gdnative.Rid, vertex gdnative.V
 	Args: [{ false immediate RID} { false vertex Vector2}], Returns: void
 */
 func (o *visualServer) ImmediateVertex2D(immediate gdnative.Rid, vertex gdnative.Vector2) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ImmediateVertex2D()")
 
 	// Build out the method's arguments
@@ -3394,6 +3547,7 @@ func (o *visualServer) ImmediateVertex2D(immediate gdnative.Rid, vertex gdnative
 	Args: [], Returns: void
 */
 func (o *visualServer) Init() {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.Init()")
 
 	// Build out the method's arguments
@@ -3414,6 +3568,7 @@ func (o *visualServer) Init() {
 	Args: [{ false instance RID} { false id int}], Returns: void
 */
 func (o *visualServer) InstanceAttachObjectInstanceId(instance gdnative.Rid, id gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceAttachObjectInstanceId()")
 
 	// Build out the method's arguments
@@ -3436,6 +3591,7 @@ func (o *visualServer) InstanceAttachObjectInstanceId(instance gdnative.Rid, id 
 	Args: [{ false instance RID} { false skeleton RID}], Returns: void
 */
 func (o *visualServer) InstanceAttachSkeleton(instance gdnative.Rid, skeleton gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceAttachSkeleton()")
 
 	// Build out the method's arguments
@@ -3458,6 +3614,7 @@ func (o *visualServer) InstanceAttachSkeleton(instance gdnative.Rid, skeleton gd
 	Args: [], Returns: RID
 */
 func (o *visualServer) InstanceCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceCreate()")
 
 	// Build out the method's arguments
@@ -3482,6 +3639,7 @@ func (o *visualServer) InstanceCreate() gdnative.Rid {
 	Args: [{ false base RID} { false scenario RID}], Returns: RID
 */
 func (o *visualServer) InstanceCreate2(base gdnative.Rid, scenario gdnative.Rid) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceCreate2()")
 
 	// Build out the method's arguments
@@ -3508,6 +3666,7 @@ func (o *visualServer) InstanceCreate2(base gdnative.Rid, scenario gdnative.Rid)
 	Args: [{ false instance RID} { false as_lod_of_instance RID}], Returns: void
 */
 func (o *visualServer) InstanceGeometrySetAsInstanceLod(instance gdnative.Rid, asLodOfInstance gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceGeometrySetAsInstanceLod()")
 
 	// Build out the method's arguments
@@ -3530,6 +3689,7 @@ func (o *visualServer) InstanceGeometrySetAsInstanceLod(instance gdnative.Rid, a
 	Args: [{ false instance RID} { false shadow_casting_setting int}], Returns: void
 */
 func (o *visualServer) InstanceGeometrySetCastShadowsSetting(instance gdnative.Rid, shadowCastingSetting gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceGeometrySetCastShadowsSetting()")
 
 	// Build out the method's arguments
@@ -3552,6 +3712,7 @@ func (o *visualServer) InstanceGeometrySetCastShadowsSetting(instance gdnative.R
 	Args: [{ false instance RID} { false min float} { false max float} { false min_margin float} { false max_margin float}], Returns: void
 */
 func (o *visualServer) InstanceGeometrySetDrawRange(instance gdnative.Rid, min gdnative.Float, max gdnative.Float, minMargin gdnative.Float, maxMargin gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceGeometrySetDrawRange()")
 
 	// Build out the method's arguments
@@ -3577,6 +3738,7 @@ func (o *visualServer) InstanceGeometrySetDrawRange(instance gdnative.Rid, min g
 	Args: [{ false instance RID} { false flag int} { false enabled bool}], Returns: void
 */
 func (o *visualServer) InstanceGeometrySetFlag(instance gdnative.Rid, flag gdnative.Int, enabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceGeometrySetFlag()")
 
 	// Build out the method's arguments
@@ -3600,6 +3762,7 @@ func (o *visualServer) InstanceGeometrySetFlag(instance gdnative.Rid, flag gdnat
 	Args: [{ false instance RID} { false material RID}], Returns: void
 */
 func (o *visualServer) InstanceGeometrySetMaterialOverride(instance gdnative.Rid, material gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceGeometrySetMaterialOverride()")
 
 	// Build out the method's arguments
@@ -3622,6 +3785,7 @@ func (o *visualServer) InstanceGeometrySetMaterialOverride(instance gdnative.Rid
 	Args: [{ false instance RID} { false base RID}], Returns: void
 */
 func (o *visualServer) InstanceSetBase(instance gdnative.Rid, base gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceSetBase()")
 
 	// Build out the method's arguments
@@ -3644,6 +3808,7 @@ func (o *visualServer) InstanceSetBase(instance gdnative.Rid, base gdnative.Rid)
 	Args: [{ false instance RID} { false shape int} { false weight float}], Returns: void
 */
 func (o *visualServer) InstanceSetBlendShapeWeight(instance gdnative.Rid, shape gdnative.Int, weight gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceSetBlendShapeWeight()")
 
 	// Build out the method's arguments
@@ -3667,6 +3832,7 @@ func (o *visualServer) InstanceSetBlendShapeWeight(instance gdnative.Rid, shape 
 	Args: [{ false instance RID} { false aabb AABB}], Returns: void
 */
 func (o *visualServer) InstanceSetCustomAabb(instance gdnative.Rid, aabb gdnative.Aabb) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceSetCustomAabb()")
 
 	// Build out the method's arguments
@@ -3689,6 +3855,7 @@ func (o *visualServer) InstanceSetCustomAabb(instance gdnative.Rid, aabb gdnativ
 	Args: [{ false instance RID} { false enabled bool}], Returns: void
 */
 func (o *visualServer) InstanceSetExterior(instance gdnative.Rid, enabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceSetExterior()")
 
 	// Build out the method's arguments
@@ -3711,6 +3878,7 @@ func (o *visualServer) InstanceSetExterior(instance gdnative.Rid, enabled gdnati
 	Args: [{ false instance RID} { false margin float}], Returns: void
 */
 func (o *visualServer) InstanceSetExtraVisibilityMargin(instance gdnative.Rid, margin gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceSetExtraVisibilityMargin()")
 
 	// Build out the method's arguments
@@ -3733,6 +3901,7 @@ func (o *visualServer) InstanceSetExtraVisibilityMargin(instance gdnative.Rid, m
 	Args: [{ false instance RID} { false mask int}], Returns: void
 */
 func (o *visualServer) InstanceSetLayerMask(instance gdnative.Rid, mask gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceSetLayerMask()")
 
 	// Build out the method's arguments
@@ -3755,6 +3924,7 @@ func (o *visualServer) InstanceSetLayerMask(instance gdnative.Rid, mask gdnative
 	Args: [{ false instance RID} { false scenario RID}], Returns: void
 */
 func (o *visualServer) InstanceSetScenario(instance gdnative.Rid, scenario gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceSetScenario()")
 
 	// Build out the method's arguments
@@ -3777,6 +3947,7 @@ func (o *visualServer) InstanceSetScenario(instance gdnative.Rid, scenario gdnat
 	Args: [{ false instance RID} { false surface int} { false material RID}], Returns: void
 */
 func (o *visualServer) InstanceSetSurfaceMaterial(instance gdnative.Rid, surface gdnative.Int, material gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceSetSurfaceMaterial()")
 
 	// Build out the method's arguments
@@ -3800,6 +3971,7 @@ func (o *visualServer) InstanceSetSurfaceMaterial(instance gdnative.Rid, surface
 	Args: [{ false instance RID} { false transform Transform}], Returns: void
 */
 func (o *visualServer) InstanceSetTransform(instance gdnative.Rid, transform gdnative.Transform) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceSetTransform()")
 
 	// Build out the method's arguments
@@ -3822,6 +3994,7 @@ func (o *visualServer) InstanceSetTransform(instance gdnative.Rid, transform gdn
 	Args: [{ false instance RID} { false lightmap_instance RID} { false lightmap RID}], Returns: void
 */
 func (o *visualServer) InstanceSetUseLightmap(instance gdnative.Rid, lightmapInstance gdnative.Rid, lightmap gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceSetUseLightmap()")
 
 	// Build out the method's arguments
@@ -3845,6 +4018,7 @@ func (o *visualServer) InstanceSetUseLightmap(instance gdnative.Rid, lightmapIns
 	Args: [{ false instance RID} { false visible bool}], Returns: void
 */
 func (o *visualServer) InstanceSetVisible(instance gdnative.Rid, visible gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstanceSetVisible()")
 
 	// Build out the method's arguments
@@ -3867,6 +4041,7 @@ func (o *visualServer) InstanceSetVisible(instance gdnative.Rid, visible gdnativ
 	Args: [{ false aabb AABB} {[RID] true scenario RID}], Returns: Array
 */
 func (o *visualServer) InstancesCullAabb(aabb gdnative.Aabb, scenario gdnative.Rid) gdnative.Array {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstancesCullAabb()")
 
 	// Build out the method's arguments
@@ -3893,6 +4068,7 @@ func (o *visualServer) InstancesCullAabb(aabb gdnative.Aabb, scenario gdnative.R
 	Args: [{ false convex Array} {[RID] true scenario RID}], Returns: Array
 */
 func (o *visualServer) InstancesCullConvex(convex gdnative.Array, scenario gdnative.Rid) gdnative.Array {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstancesCullConvex()")
 
 	// Build out the method's arguments
@@ -3919,6 +4095,7 @@ func (o *visualServer) InstancesCullConvex(convex gdnative.Array, scenario gdnat
 	Args: [{ false from Vector3} { false to Vector3} {[RID] true scenario RID}], Returns: Array
 */
 func (o *visualServer) InstancesCullRay(from gdnative.Vector3, to gdnative.Vector3, scenario gdnative.Rid) gdnative.Array {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.InstancesCullRay()")
 
 	// Build out the method's arguments
@@ -3946,6 +4123,7 @@ func (o *visualServer) InstancesCullRay(from gdnative.Vector3, to gdnative.Vecto
 	Args: [{ false light RID} { false enable bool}], Returns: void
 */
 func (o *visualServer) LightDirectionalSetBlendSplits(light gdnative.Rid, enable gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightDirectionalSetBlendSplits()")
 
 	// Build out the method's arguments
@@ -3968,6 +4146,7 @@ func (o *visualServer) LightDirectionalSetBlendSplits(light gdnative.Rid, enable
 	Args: [{ false light RID} { false range_mode int}], Returns: void
 */
 func (o *visualServer) LightDirectionalSetShadowDepthRangeMode(light gdnative.Rid, rangeMode gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightDirectionalSetShadowDepthRangeMode()")
 
 	// Build out the method's arguments
@@ -3990,6 +4169,7 @@ func (o *visualServer) LightDirectionalSetShadowDepthRangeMode(light gdnative.Ri
 	Args: [{ false light RID} { false mode int}], Returns: void
 */
 func (o *visualServer) LightDirectionalSetShadowMode(light gdnative.Rid, mode gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightDirectionalSetShadowMode()")
 
 	// Build out the method's arguments
@@ -4012,6 +4192,7 @@ func (o *visualServer) LightDirectionalSetShadowMode(light gdnative.Rid, mode gd
 	Args: [{ false light RID} { false detail int}], Returns: void
 */
 func (o *visualServer) LightOmniSetShadowDetail(light gdnative.Rid, detail gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightOmniSetShadowDetail()")
 
 	// Build out the method's arguments
@@ -4034,6 +4215,7 @@ func (o *visualServer) LightOmniSetShadowDetail(light gdnative.Rid, detail gdnat
 	Args: [{ false light RID} { false mode int}], Returns: void
 */
 func (o *visualServer) LightOmniSetShadowMode(light gdnative.Rid, mode gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightOmniSetShadowMode()")
 
 	// Build out the method's arguments
@@ -4056,6 +4238,7 @@ func (o *visualServer) LightOmniSetShadowMode(light gdnative.Rid, mode gdnative.
 	Args: [{ false light RID} { false color Color}], Returns: void
 */
 func (o *visualServer) LightSetColor(light gdnative.Rid, color gdnative.Color) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightSetColor()")
 
 	// Build out the method's arguments
@@ -4078,6 +4261,7 @@ func (o *visualServer) LightSetColor(light gdnative.Rid, color gdnative.Color) {
 	Args: [{ false light RID} { false mask int}], Returns: void
 */
 func (o *visualServer) LightSetCullMask(light gdnative.Rid, mask gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightSetCullMask()")
 
 	// Build out the method's arguments
@@ -4100,6 +4284,7 @@ func (o *visualServer) LightSetCullMask(light gdnative.Rid, mask gdnative.Int) {
 	Args: [{ false light RID} { false enable bool}], Returns: void
 */
 func (o *visualServer) LightSetNegative(light gdnative.Rid, enable gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightSetNegative()")
 
 	// Build out the method's arguments
@@ -4122,6 +4307,7 @@ func (o *visualServer) LightSetNegative(light gdnative.Rid, enable gdnative.Bool
 	Args: [{ false light RID} { false param int} { false value float}], Returns: void
 */
 func (o *visualServer) LightSetParam(light gdnative.Rid, param gdnative.Int, value gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightSetParam()")
 
 	// Build out the method's arguments
@@ -4145,6 +4331,7 @@ func (o *visualServer) LightSetParam(light gdnative.Rid, param gdnative.Int, val
 	Args: [{ false light RID} { false texture RID}], Returns: void
 */
 func (o *visualServer) LightSetProjector(light gdnative.Rid, texture gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightSetProjector()")
 
 	// Build out the method's arguments
@@ -4167,6 +4354,7 @@ func (o *visualServer) LightSetProjector(light gdnative.Rid, texture gdnative.Ri
 	Args: [{ false light RID} { false enabled bool}], Returns: void
 */
 func (o *visualServer) LightSetReverseCullFaceMode(light gdnative.Rid, enabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightSetReverseCullFaceMode()")
 
 	// Build out the method's arguments
@@ -4189,6 +4377,7 @@ func (o *visualServer) LightSetReverseCullFaceMode(light gdnative.Rid, enabled g
 	Args: [{ false light RID} { false enabled bool}], Returns: void
 */
 func (o *visualServer) LightSetShadow(light gdnative.Rid, enabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightSetShadow()")
 
 	// Build out the method's arguments
@@ -4211,6 +4400,7 @@ func (o *visualServer) LightSetShadow(light gdnative.Rid, enabled gdnative.Bool)
 	Args: [{ false light RID} { false color Color}], Returns: void
 */
 func (o *visualServer) LightSetShadowColor(light gdnative.Rid, color gdnative.Color) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightSetShadowColor()")
 
 	// Build out the method's arguments
@@ -4233,6 +4423,7 @@ func (o *visualServer) LightSetShadowColor(light gdnative.Rid, color gdnative.Co
 	Args: [], Returns: RID
 */
 func (o *visualServer) LightmapCaptureCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightmapCaptureCreate()")
 
 	// Build out the method's arguments
@@ -4257,6 +4448,7 @@ func (o *visualServer) LightmapCaptureCreate() gdnative.Rid {
 	Args: [{ false capture RID}], Returns: AABB
 */
 func (o *visualServer) LightmapCaptureGetBounds(capture gdnative.Rid) gdnative.Aabb {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightmapCaptureGetBounds()")
 
 	// Build out the method's arguments
@@ -4282,6 +4474,7 @@ func (o *visualServer) LightmapCaptureGetBounds(capture gdnative.Rid) gdnative.A
 	Args: [{ false capture RID}], Returns: float
 */
 func (o *visualServer) LightmapCaptureGetEnergy(capture gdnative.Rid) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightmapCaptureGetEnergy()")
 
 	// Build out the method's arguments
@@ -4307,6 +4500,7 @@ func (o *visualServer) LightmapCaptureGetEnergy(capture gdnative.Rid) gdnative.F
 	Args: [{ false capture RID}], Returns: PoolByteArray
 */
 func (o *visualServer) LightmapCaptureGetOctree(capture gdnative.Rid) gdnative.PoolByteArray {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightmapCaptureGetOctree()")
 
 	// Build out the method's arguments
@@ -4332,6 +4526,7 @@ func (o *visualServer) LightmapCaptureGetOctree(capture gdnative.Rid) gdnative.P
 	Args: [{ false capture RID}], Returns: int
 */
 func (o *visualServer) LightmapCaptureGetOctreeCellSubdiv(capture gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightmapCaptureGetOctreeCellSubdiv()")
 
 	// Build out the method's arguments
@@ -4357,6 +4552,7 @@ func (o *visualServer) LightmapCaptureGetOctreeCellSubdiv(capture gdnative.Rid) 
 	Args: [{ false capture RID}], Returns: Transform
 */
 func (o *visualServer) LightmapCaptureGetOctreeCellTransform(capture gdnative.Rid) gdnative.Transform {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightmapCaptureGetOctreeCellTransform()")
 
 	// Build out the method's arguments
@@ -4382,6 +4578,7 @@ func (o *visualServer) LightmapCaptureGetOctreeCellTransform(capture gdnative.Ri
 	Args: [{ false capture RID} { false bounds AABB}], Returns: void
 */
 func (o *visualServer) LightmapCaptureSetBounds(capture gdnative.Rid, bounds gdnative.Aabb) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightmapCaptureSetBounds()")
 
 	// Build out the method's arguments
@@ -4404,6 +4601,7 @@ func (o *visualServer) LightmapCaptureSetBounds(capture gdnative.Rid, bounds gdn
 	Args: [{ false capture RID} { false energy float}], Returns: void
 */
 func (o *visualServer) LightmapCaptureSetEnergy(capture gdnative.Rid, energy gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightmapCaptureSetEnergy()")
 
 	// Build out the method's arguments
@@ -4426,6 +4624,7 @@ func (o *visualServer) LightmapCaptureSetEnergy(capture gdnative.Rid, energy gdn
 	Args: [{ false capture RID} { false octree PoolByteArray}], Returns: void
 */
 func (o *visualServer) LightmapCaptureSetOctree(capture gdnative.Rid, octree gdnative.PoolByteArray) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightmapCaptureSetOctree()")
 
 	// Build out the method's arguments
@@ -4448,6 +4647,7 @@ func (o *visualServer) LightmapCaptureSetOctree(capture gdnative.Rid, octree gdn
 	Args: [{ false capture RID} { false subdiv int}], Returns: void
 */
 func (o *visualServer) LightmapCaptureSetOctreeCellSubdiv(capture gdnative.Rid, subdiv gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightmapCaptureSetOctreeCellSubdiv()")
 
 	// Build out the method's arguments
@@ -4470,6 +4670,7 @@ func (o *visualServer) LightmapCaptureSetOctreeCellSubdiv(capture gdnative.Rid, 
 	Args: [{ false capture RID} { false xform Transform}], Returns: void
 */
 func (o *visualServer) LightmapCaptureSetOctreeCellTransform(capture gdnative.Rid, xform gdnative.Transform) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.LightmapCaptureSetOctreeCellTransform()")
 
 	// Build out the method's arguments
@@ -4492,6 +4693,7 @@ func (o *visualServer) LightmapCaptureSetOctreeCellTransform(capture gdnative.Ri
 	Args: [{ false latitudes int} { false longitudes int} { false radius float}], Returns: RID
 */
 func (o *visualServer) MakeSphereMesh(latitudes gdnative.Int, longitudes gdnative.Int, radius gdnative.Float) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MakeSphereMesh()")
 
 	// Build out the method's arguments
@@ -4519,6 +4721,7 @@ func (o *visualServer) MakeSphereMesh(latitudes gdnative.Int, longitudes gdnativ
 	Args: [], Returns: RID
 */
 func (o *visualServer) MaterialCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MaterialCreate()")
 
 	// Build out the method's arguments
@@ -4543,6 +4746,7 @@ func (o *visualServer) MaterialCreate() gdnative.Rid {
 	Args: [{ false material RID} { false parameter String}], Returns: Variant
 */
 func (o *visualServer) MaterialGetParam(material gdnative.Rid, parameter gdnative.String) gdnative.Variant {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MaterialGetParam()")
 
 	// Build out the method's arguments
@@ -4569,6 +4773,7 @@ func (o *visualServer) MaterialGetParam(material gdnative.Rid, parameter gdnativ
 	Args: [{ false shader_material RID}], Returns: RID
 */
 func (o *visualServer) MaterialGetShader(shaderMaterial gdnative.Rid) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MaterialGetShader()")
 
 	// Build out the method's arguments
@@ -4594,6 +4799,7 @@ func (o *visualServer) MaterialGetShader(shaderMaterial gdnative.Rid) gdnative.R
 	Args: [{ false material RID} { false width float}], Returns: void
 */
 func (o *visualServer) MaterialSetLineWidth(material gdnative.Rid, width gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MaterialSetLineWidth()")
 
 	// Build out the method's arguments
@@ -4616,6 +4822,7 @@ func (o *visualServer) MaterialSetLineWidth(material gdnative.Rid, width gdnativ
 	Args: [{ false material RID} { false next_material RID}], Returns: void
 */
 func (o *visualServer) MaterialSetNextPass(material gdnative.Rid, nextMaterial gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MaterialSetNextPass()")
 
 	// Build out the method's arguments
@@ -4638,6 +4845,7 @@ func (o *visualServer) MaterialSetNextPass(material gdnative.Rid, nextMaterial g
 	Args: [{ false material RID} { false parameter String} { false value Variant}], Returns: void
 */
 func (o *visualServer) MaterialSetParam(material gdnative.Rid, parameter gdnative.String, value gdnative.Variant) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MaterialSetParam()")
 
 	// Build out the method's arguments
@@ -4661,6 +4869,7 @@ func (o *visualServer) MaterialSetParam(material gdnative.Rid, parameter gdnativ
 	Args: [{ false material RID} { false priority int}], Returns: void
 */
 func (o *visualServer) MaterialSetRenderPriority(material gdnative.Rid, priority gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MaterialSetRenderPriority()")
 
 	// Build out the method's arguments
@@ -4683,6 +4892,7 @@ func (o *visualServer) MaterialSetRenderPriority(material gdnative.Rid, priority
 	Args: [{ false shader_material RID} { false shader RID}], Returns: void
 */
 func (o *visualServer) MaterialSetShader(shaderMaterial gdnative.Rid, shader gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MaterialSetShader()")
 
 	// Build out the method's arguments
@@ -4705,6 +4915,7 @@ func (o *visualServer) MaterialSetShader(shaderMaterial gdnative.Rid, shader gdn
 	Args: [{ false mesh RID} { false primtive int} { false arrays Array} {[] true blend_shapes Array} {97792 true compress_format int}], Returns: void
 */
 func (o *visualServer) MeshAddSurfaceFromArrays(mesh gdnative.Rid, primtive gdnative.Int, arrays gdnative.Array, blendShapes gdnative.Array, compressFormat gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshAddSurfaceFromArrays()")
 
 	// Build out the method's arguments
@@ -4730,6 +4941,7 @@ func (o *visualServer) MeshAddSurfaceFromArrays(mesh gdnative.Rid, primtive gdna
 	Args: [{ false mesh RID}], Returns: void
 */
 func (o *visualServer) MeshClear(mesh gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshClear()")
 
 	// Build out the method's arguments
@@ -4751,6 +4963,7 @@ func (o *visualServer) MeshClear(mesh gdnative.Rid) {
 	Args: [], Returns: RID
 */
 func (o *visualServer) MeshCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshCreate()")
 
 	// Build out the method's arguments
@@ -4775,6 +4988,7 @@ func (o *visualServer) MeshCreate() gdnative.Rid {
 	Args: [{ false mesh RID}], Returns: int
 */
 func (o *visualServer) MeshGetBlendShapeCount(mesh gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshGetBlendShapeCount()")
 
 	// Build out the method's arguments
@@ -4805,6 +5019,7 @@ func (o *visualServer) MeshGetBlendShapeCount(mesh gdnative.Rid) gdnative.Int {
 	Args: [{ false mesh RID}], Returns: AABB
 */
 func (o *visualServer) MeshGetCustomAabb(mesh gdnative.Rid) gdnative.Aabb {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshGetCustomAabb()")
 
 	// Build out the method's arguments
@@ -4830,6 +5045,7 @@ func (o *visualServer) MeshGetCustomAabb(mesh gdnative.Rid) gdnative.Aabb {
 	Args: [{ false mesh RID}], Returns: int
 */
 func (o *visualServer) MeshGetSurfaceCount(mesh gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshGetSurfaceCount()")
 
 	// Build out the method's arguments
@@ -4855,6 +5071,7 @@ func (o *visualServer) MeshGetSurfaceCount(mesh gdnative.Rid) gdnative.Int {
 	Args: [{ false mesh RID} { false index int}], Returns: void
 */
 func (o *visualServer) MeshRemoveSurface(mesh gdnative.Rid, index gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshRemoveSurface()")
 
 	// Build out the method's arguments
@@ -4877,6 +5094,7 @@ func (o *visualServer) MeshRemoveSurface(mesh gdnative.Rid, index gdnative.Int) 
 	Args: [{ false mesh RID} { false amount int}], Returns: void
 */
 func (o *visualServer) MeshSetBlendShapeCount(mesh gdnative.Rid, amount gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshSetBlendShapeCount()")
 
 	// Build out the method's arguments
@@ -4899,6 +5117,7 @@ func (o *visualServer) MeshSetBlendShapeCount(mesh gdnative.Rid, amount gdnative
 	Args: [{ false mesh RID} { false mode int}], Returns: void
 */
 func (o *visualServer) MeshSetBlendShapeMode(mesh gdnative.Rid, mode gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshSetBlendShapeMode()")
 
 	// Build out the method's arguments
@@ -4921,6 +5140,7 @@ func (o *visualServer) MeshSetBlendShapeMode(mesh gdnative.Rid, mode gdnative.In
 	Args: [{ false mesh RID} { false aabb AABB}], Returns: void
 */
 func (o *visualServer) MeshSetCustomAabb(mesh gdnative.Rid, aabb gdnative.Aabb) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshSetCustomAabb()")
 
 	// Build out the method's arguments
@@ -4943,6 +5163,7 @@ func (o *visualServer) MeshSetCustomAabb(mesh gdnative.Rid, aabb gdnative.Aabb) 
 	Args: [{ false mesh RID} { false surface int}], Returns: AABB
 */
 func (o *visualServer) MeshSurfaceGetAabb(mesh gdnative.Rid, surface gdnative.Int) gdnative.Aabb {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshSurfaceGetAabb()")
 
 	// Build out the method's arguments
@@ -4969,6 +5190,7 @@ func (o *visualServer) MeshSurfaceGetAabb(mesh gdnative.Rid, surface gdnative.In
 	Args: [{ false mesh RID} { false surface int}], Returns: PoolByteArray
 */
 func (o *visualServer) MeshSurfaceGetArray(mesh gdnative.Rid, surface gdnative.Int) gdnative.PoolByteArray {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshSurfaceGetArray()")
 
 	// Build out the method's arguments
@@ -4995,6 +5217,7 @@ func (o *visualServer) MeshSurfaceGetArray(mesh gdnative.Rid, surface gdnative.I
 	Args: [{ false mesh RID} { false surface int}], Returns: int
 */
 func (o *visualServer) MeshSurfaceGetArrayIndexLen(mesh gdnative.Rid, surface gdnative.Int) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshSurfaceGetArrayIndexLen()")
 
 	// Build out the method's arguments
@@ -5021,6 +5244,7 @@ func (o *visualServer) MeshSurfaceGetArrayIndexLen(mesh gdnative.Rid, surface gd
 	Args: [{ false mesh RID} { false surface int}], Returns: int
 */
 func (o *visualServer) MeshSurfaceGetArrayLen(mesh gdnative.Rid, surface gdnative.Int) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshSurfaceGetArrayLen()")
 
 	// Build out the method's arguments
@@ -5047,6 +5271,7 @@ func (o *visualServer) MeshSurfaceGetArrayLen(mesh gdnative.Rid, surface gdnativ
 	Args: [{ false mesh RID} { false surface int}], Returns: Array
 */
 func (o *visualServer) MeshSurfaceGetArrays(mesh gdnative.Rid, surface gdnative.Int) gdnative.Array {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshSurfaceGetArrays()")
 
 	// Build out the method's arguments
@@ -5073,6 +5298,7 @@ func (o *visualServer) MeshSurfaceGetArrays(mesh gdnative.Rid, surface gdnative.
 	Args: [{ false mesh RID} { false surface int}], Returns: Array
 */
 func (o *visualServer) MeshSurfaceGetBlendShapeArrays(mesh gdnative.Rid, surface gdnative.Int) gdnative.Array {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshSurfaceGetBlendShapeArrays()")
 
 	// Build out the method's arguments
@@ -5099,6 +5325,7 @@ func (o *visualServer) MeshSurfaceGetBlendShapeArrays(mesh gdnative.Rid, surface
 	Args: [{ false mesh RID} { false surface int}], Returns: int
 */
 func (o *visualServer) MeshSurfaceGetFormat(mesh gdnative.Rid, surface gdnative.Int) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshSurfaceGetFormat()")
 
 	// Build out the method's arguments
@@ -5125,6 +5352,7 @@ func (o *visualServer) MeshSurfaceGetFormat(mesh gdnative.Rid, surface gdnative.
 	Args: [{ false mesh RID} { false surface int}], Returns: PoolByteArray
 */
 func (o *visualServer) MeshSurfaceGetIndexArray(mesh gdnative.Rid, surface gdnative.Int) gdnative.PoolByteArray {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshSurfaceGetIndexArray()")
 
 	// Build out the method's arguments
@@ -5151,6 +5379,7 @@ func (o *visualServer) MeshSurfaceGetIndexArray(mesh gdnative.Rid, surface gdnat
 	Args: [{ false mesh RID} { false surface int}], Returns: RID
 */
 func (o *visualServer) MeshSurfaceGetMaterial(mesh gdnative.Rid, surface gdnative.Int) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshSurfaceGetMaterial()")
 
 	// Build out the method's arguments
@@ -5182,6 +5411,7 @@ func (o *visualServer) MeshSurfaceGetMaterial(mesh gdnative.Rid, surface gdnativ
 	Args: [{ false mesh RID} { false surface int}], Returns: Array
 */
 func (o *visualServer) MeshSurfaceGetSkeletonAabb(mesh gdnative.Rid, surface gdnative.Int) gdnative.Array {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshSurfaceGetSkeletonAabb()")
 
 	// Build out the method's arguments
@@ -5208,6 +5438,7 @@ func (o *visualServer) MeshSurfaceGetSkeletonAabb(mesh gdnative.Rid, surface gdn
 	Args: [{ false mesh RID} { false surface int} { false material RID}], Returns: void
 */
 func (o *visualServer) MeshSurfaceSetMaterial(mesh gdnative.Rid, surface gdnative.Int, material gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MeshSurfaceSetMaterial()")
 
 	// Build out the method's arguments
@@ -5231,6 +5462,7 @@ func (o *visualServer) MeshSurfaceSetMaterial(mesh gdnative.Rid, surface gdnativ
 	Args: [{ false multimesh RID} { false instances int} { false transform_format int} { false color_format int}], Returns: void
 */
 func (o *visualServer) MultimeshAllocate(multimesh gdnative.Rid, instances gdnative.Int, transformFormat gdnative.Int, colorFormat gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MultimeshAllocate()")
 
 	// Build out the method's arguments
@@ -5255,6 +5487,7 @@ func (o *visualServer) MultimeshAllocate(multimesh gdnative.Rid, instances gdnat
 	Args: [{ false multimesh RID}], Returns: AABB
 */
 func (o *visualServer) MultimeshGetAabb(multimesh gdnative.Rid) gdnative.Aabb {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MultimeshGetAabb()")
 
 	// Build out the method's arguments
@@ -5280,6 +5513,7 @@ func (o *visualServer) MultimeshGetAabb(multimesh gdnative.Rid) gdnative.Aabb {
 	Args: [{ false multimesh RID}], Returns: int
 */
 func (o *visualServer) MultimeshGetInstanceCount(multimesh gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MultimeshGetInstanceCount()")
 
 	// Build out the method's arguments
@@ -5305,6 +5539,7 @@ func (o *visualServer) MultimeshGetInstanceCount(multimesh gdnative.Rid) gdnativ
 	Args: [{ false multimesh RID}], Returns: RID
 */
 func (o *visualServer) MultimeshGetMesh(multimesh gdnative.Rid) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MultimeshGetMesh()")
 
 	// Build out the method's arguments
@@ -5330,6 +5565,7 @@ func (o *visualServer) MultimeshGetMesh(multimesh gdnative.Rid) gdnative.Rid {
 	Args: [{ false multimesh RID}], Returns: int
 */
 func (o *visualServer) MultimeshGetVisibleInstances(multimesh gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MultimeshGetVisibleInstances()")
 
 	// Build out the method's arguments
@@ -5355,6 +5591,7 @@ func (o *visualServer) MultimeshGetVisibleInstances(multimesh gdnative.Rid) gdna
 	Args: [{ false multimesh RID} { false index int}], Returns: Color
 */
 func (o *visualServer) MultimeshInstanceGetColor(multimesh gdnative.Rid, index gdnative.Int) gdnative.Color {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MultimeshInstanceGetColor()")
 
 	// Build out the method's arguments
@@ -5381,6 +5618,7 @@ func (o *visualServer) MultimeshInstanceGetColor(multimesh gdnative.Rid, index g
 	Args: [{ false multimesh RID} { false index int}], Returns: Transform
 */
 func (o *visualServer) MultimeshInstanceGetTransform(multimesh gdnative.Rid, index gdnative.Int) gdnative.Transform {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MultimeshInstanceGetTransform()")
 
 	// Build out the method's arguments
@@ -5407,6 +5645,7 @@ func (o *visualServer) MultimeshInstanceGetTransform(multimesh gdnative.Rid, ind
 	Args: [{ false multimesh RID} { false index int}], Returns: Transform2D
 */
 func (o *visualServer) MultimeshInstanceGetTransform2D(multimesh gdnative.Rid, index gdnative.Int) gdnative.Transform2D {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MultimeshInstanceGetTransform2D()")
 
 	// Build out the method's arguments
@@ -5433,6 +5672,7 @@ func (o *visualServer) MultimeshInstanceGetTransform2D(multimesh gdnative.Rid, i
 	Args: [{ false multimesh RID} { false index int} { false color Color}], Returns: void
 */
 func (o *visualServer) MultimeshInstanceSetColor(multimesh gdnative.Rid, index gdnative.Int, color gdnative.Color) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MultimeshInstanceSetColor()")
 
 	// Build out the method's arguments
@@ -5456,6 +5696,7 @@ func (o *visualServer) MultimeshInstanceSetColor(multimesh gdnative.Rid, index g
 	Args: [{ false multimesh RID} { false index int} { false transform Transform}], Returns: void
 */
 func (o *visualServer) MultimeshInstanceSetTransform(multimesh gdnative.Rid, index gdnative.Int, transform gdnative.Transform) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MultimeshInstanceSetTransform()")
 
 	// Build out the method's arguments
@@ -5479,6 +5720,7 @@ func (o *visualServer) MultimeshInstanceSetTransform(multimesh gdnative.Rid, ind
 	Args: [{ false multimesh RID} { false index int} { false transform Transform2D}], Returns: void
 */
 func (o *visualServer) MultimeshInstanceSetTransform2D(multimesh gdnative.Rid, index gdnative.Int, transform gdnative.Transform2D) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MultimeshInstanceSetTransform2D()")
 
 	// Build out the method's arguments
@@ -5502,6 +5744,7 @@ func (o *visualServer) MultimeshInstanceSetTransform2D(multimesh gdnative.Rid, i
 	Args: [{ false multimesh RID} { false mesh RID}], Returns: void
 */
 func (o *visualServer) MultimeshSetMesh(multimesh gdnative.Rid, mesh gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MultimeshSetMesh()")
 
 	// Build out the method's arguments
@@ -5524,6 +5767,7 @@ func (o *visualServer) MultimeshSetMesh(multimesh gdnative.Rid, mesh gdnative.Ri
 	Args: [{ false multimesh RID} { false visible int}], Returns: void
 */
 func (o *visualServer) MultimeshSetVisibleInstances(multimesh gdnative.Rid, visible gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.MultimeshSetVisibleInstances()")
 
 	// Build out the method's arguments
@@ -5546,6 +5790,7 @@ func (o *visualServer) MultimeshSetVisibleInstances(multimesh gdnative.Rid, visi
 	Args: [], Returns: RID
 */
 func (o *visualServer) OmniLightCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.OmniLightCreate()")
 
 	// Build out the method's arguments
@@ -5570,6 +5815,7 @@ func (o *visualServer) OmniLightCreate() gdnative.Rid {
 	Args: [], Returns: RID
 */
 func (o *visualServer) ParticlesCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesCreate()")
 
 	// Build out the method's arguments
@@ -5594,6 +5840,7 @@ func (o *visualServer) ParticlesCreate() gdnative.Rid {
 	Args: [{ false particles RID}], Returns: AABB
 */
 func (o *visualServer) ParticlesGetCurrentAabb(particles gdnative.Rid) gdnative.Aabb {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesGetCurrentAabb()")
 
 	// Build out the method's arguments
@@ -5619,6 +5866,7 @@ func (o *visualServer) ParticlesGetCurrentAabb(particles gdnative.Rid) gdnative.
 	Args: [{ false particles RID}], Returns: bool
 */
 func (o *visualServer) ParticlesGetEmitting(particles gdnative.Rid) gdnative.Bool {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesGetEmitting()")
 
 	// Build out the method's arguments
@@ -5644,6 +5892,7 @@ func (o *visualServer) ParticlesGetEmitting(particles gdnative.Rid) gdnative.Boo
 	Args: [{ false particles RID}], Returns: void
 */
 func (o *visualServer) ParticlesRestart(particles gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesRestart()")
 
 	// Build out the method's arguments
@@ -5665,6 +5914,7 @@ func (o *visualServer) ParticlesRestart(particles gdnative.Rid) {
 	Args: [{ false particles RID} { false amount int}], Returns: void
 */
 func (o *visualServer) ParticlesSetAmount(particles gdnative.Rid, amount gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesSetAmount()")
 
 	// Build out the method's arguments
@@ -5687,6 +5937,7 @@ func (o *visualServer) ParticlesSetAmount(particles gdnative.Rid, amount gdnativ
 	Args: [{ false particles RID} { false aabb AABB}], Returns: void
 */
 func (o *visualServer) ParticlesSetCustomAabb(particles gdnative.Rid, aabb gdnative.Aabb) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesSetCustomAabb()")
 
 	// Build out the method's arguments
@@ -5709,6 +5960,7 @@ func (o *visualServer) ParticlesSetCustomAabb(particles gdnative.Rid, aabb gdnat
 	Args: [{ false particles RID} { false order int}], Returns: void
 */
 func (o *visualServer) ParticlesSetDrawOrder(particles gdnative.Rid, order gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesSetDrawOrder()")
 
 	// Build out the method's arguments
@@ -5731,6 +5983,7 @@ func (o *visualServer) ParticlesSetDrawOrder(particles gdnative.Rid, order gdnat
 	Args: [{ false particles RID} { false pass int} { false mesh RID}], Returns: void
 */
 func (o *visualServer) ParticlesSetDrawPassMesh(particles gdnative.Rid, pass gdnative.Int, mesh gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesSetDrawPassMesh()")
 
 	// Build out the method's arguments
@@ -5754,6 +6007,7 @@ func (o *visualServer) ParticlesSetDrawPassMesh(particles gdnative.Rid, pass gdn
 	Args: [{ false particles RID} { false count int}], Returns: void
 */
 func (o *visualServer) ParticlesSetDrawPasses(particles gdnative.Rid, count gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesSetDrawPasses()")
 
 	// Build out the method's arguments
@@ -5776,6 +6030,7 @@ func (o *visualServer) ParticlesSetDrawPasses(particles gdnative.Rid, count gdna
 	Args: [{ false particles RID} { false transform Transform}], Returns: void
 */
 func (o *visualServer) ParticlesSetEmissionTransform(particles gdnative.Rid, transform gdnative.Transform) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesSetEmissionTransform()")
 
 	// Build out the method's arguments
@@ -5798,6 +6053,7 @@ func (o *visualServer) ParticlesSetEmissionTransform(particles gdnative.Rid, tra
 	Args: [{ false particles RID} { false emitting bool}], Returns: void
 */
 func (o *visualServer) ParticlesSetEmitting(particles gdnative.Rid, emitting gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesSetEmitting()")
 
 	// Build out the method's arguments
@@ -5820,6 +6076,7 @@ func (o *visualServer) ParticlesSetEmitting(particles gdnative.Rid, emitting gdn
 	Args: [{ false particles RID} { false ratio float}], Returns: void
 */
 func (o *visualServer) ParticlesSetExplosivenessRatio(particles gdnative.Rid, ratio gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesSetExplosivenessRatio()")
 
 	// Build out the method's arguments
@@ -5842,6 +6099,7 @@ func (o *visualServer) ParticlesSetExplosivenessRatio(particles gdnative.Rid, ra
 	Args: [{ false particles RID} { false fps int}], Returns: void
 */
 func (o *visualServer) ParticlesSetFixedFps(particles gdnative.Rid, fps gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesSetFixedFps()")
 
 	// Build out the method's arguments
@@ -5864,6 +6122,7 @@ func (o *visualServer) ParticlesSetFixedFps(particles gdnative.Rid, fps gdnative
 	Args: [{ false particles RID} { false enable bool}], Returns: void
 */
 func (o *visualServer) ParticlesSetFractionalDelta(particles gdnative.Rid, enable gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesSetFractionalDelta()")
 
 	// Build out the method's arguments
@@ -5886,6 +6145,7 @@ func (o *visualServer) ParticlesSetFractionalDelta(particles gdnative.Rid, enabl
 	Args: [{ false particles RID} { false lifetime float}], Returns: void
 */
 func (o *visualServer) ParticlesSetLifetime(particles gdnative.Rid, lifetime gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesSetLifetime()")
 
 	// Build out the method's arguments
@@ -5908,6 +6168,7 @@ func (o *visualServer) ParticlesSetLifetime(particles gdnative.Rid, lifetime gdn
 	Args: [{ false particles RID} { false one_shot bool}], Returns: void
 */
 func (o *visualServer) ParticlesSetOneShot(particles gdnative.Rid, oneShot gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesSetOneShot()")
 
 	// Build out the method's arguments
@@ -5930,6 +6191,7 @@ func (o *visualServer) ParticlesSetOneShot(particles gdnative.Rid, oneShot gdnat
 	Args: [{ false particles RID} { false time float}], Returns: void
 */
 func (o *visualServer) ParticlesSetPreProcessTime(particles gdnative.Rid, time gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesSetPreProcessTime()")
 
 	// Build out the method's arguments
@@ -5952,6 +6214,7 @@ func (o *visualServer) ParticlesSetPreProcessTime(particles gdnative.Rid, time g
 	Args: [{ false particles RID} { false material RID}], Returns: void
 */
 func (o *visualServer) ParticlesSetProcessMaterial(particles gdnative.Rid, material gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesSetProcessMaterial()")
 
 	// Build out the method's arguments
@@ -5974,6 +6237,7 @@ func (o *visualServer) ParticlesSetProcessMaterial(particles gdnative.Rid, mater
 	Args: [{ false particles RID} { false ratio float}], Returns: void
 */
 func (o *visualServer) ParticlesSetRandomnessRatio(particles gdnative.Rid, ratio gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesSetRandomnessRatio()")
 
 	// Build out the method's arguments
@@ -5996,6 +6260,7 @@ func (o *visualServer) ParticlesSetRandomnessRatio(particles gdnative.Rid, ratio
 	Args: [{ false particles RID} { false scale float}], Returns: void
 */
 func (o *visualServer) ParticlesSetSpeedScale(particles gdnative.Rid, scale gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesSetSpeedScale()")
 
 	// Build out the method's arguments
@@ -6018,6 +6283,7 @@ func (o *visualServer) ParticlesSetSpeedScale(particles gdnative.Rid, scale gdna
 	Args: [{ false particles RID} { false enable bool}], Returns: void
 */
 func (o *visualServer) ParticlesSetUseLocalCoordinates(particles gdnative.Rid, enable gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ParticlesSetUseLocalCoordinates()")
 
 	// Build out the method's arguments
@@ -6040,6 +6306,7 @@ func (o *visualServer) ParticlesSetUseLocalCoordinates(particles gdnative.Rid, e
 	Args: [], Returns: RID
 */
 func (o *visualServer) ReflectionProbeCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ReflectionProbeCreate()")
 
 	// Build out the method's arguments
@@ -6064,6 +6331,7 @@ func (o *visualServer) ReflectionProbeCreate() gdnative.Rid {
 	Args: [{ false probe RID} { false enable bool}], Returns: void
 */
 func (o *visualServer) ReflectionProbeSetAsInterior(probe gdnative.Rid, enable gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ReflectionProbeSetAsInterior()")
 
 	// Build out the method's arguments
@@ -6086,6 +6354,7 @@ func (o *visualServer) ReflectionProbeSetAsInterior(probe gdnative.Rid, enable g
 	Args: [{ false probe RID} { false layers int}], Returns: void
 */
 func (o *visualServer) ReflectionProbeSetCullMask(probe gdnative.Rid, layers gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ReflectionProbeSetCullMask()")
 
 	// Build out the method's arguments
@@ -6108,6 +6377,7 @@ func (o *visualServer) ReflectionProbeSetCullMask(probe gdnative.Rid, layers gdn
 	Args: [{ false probe RID} { false enable bool}], Returns: void
 */
 func (o *visualServer) ReflectionProbeSetEnableBoxProjection(probe gdnative.Rid, enable gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ReflectionProbeSetEnableBoxProjection()")
 
 	// Build out the method's arguments
@@ -6130,6 +6400,7 @@ func (o *visualServer) ReflectionProbeSetEnableBoxProjection(probe gdnative.Rid,
 	Args: [{ false probe RID} { false enable bool}], Returns: void
 */
 func (o *visualServer) ReflectionProbeSetEnableShadows(probe gdnative.Rid, enable gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ReflectionProbeSetEnableShadows()")
 
 	// Build out the method's arguments
@@ -6152,6 +6423,7 @@ func (o *visualServer) ReflectionProbeSetEnableShadows(probe gdnative.Rid, enabl
 	Args: [{ false probe RID} { false extents Vector3}], Returns: void
 */
 func (o *visualServer) ReflectionProbeSetExtents(probe gdnative.Rid, extents gdnative.Vector3) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ReflectionProbeSetExtents()")
 
 	// Build out the method's arguments
@@ -6174,6 +6446,7 @@ func (o *visualServer) ReflectionProbeSetExtents(probe gdnative.Rid, extents gdn
 	Args: [{ false probe RID} { false intensity float}], Returns: void
 */
 func (o *visualServer) ReflectionProbeSetIntensity(probe gdnative.Rid, intensity gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ReflectionProbeSetIntensity()")
 
 	// Build out the method's arguments
@@ -6196,6 +6469,7 @@ func (o *visualServer) ReflectionProbeSetIntensity(probe gdnative.Rid, intensity
 	Args: [{ false probe RID} { false color Color}], Returns: void
 */
 func (o *visualServer) ReflectionProbeSetInteriorAmbient(probe gdnative.Rid, color gdnative.Color) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ReflectionProbeSetInteriorAmbient()")
 
 	// Build out the method's arguments
@@ -6218,6 +6492,7 @@ func (o *visualServer) ReflectionProbeSetInteriorAmbient(probe gdnative.Rid, col
 	Args: [{ false probe RID} { false energy float}], Returns: void
 */
 func (o *visualServer) ReflectionProbeSetInteriorAmbientEnergy(probe gdnative.Rid, energy gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ReflectionProbeSetInteriorAmbientEnergy()")
 
 	// Build out the method's arguments
@@ -6240,6 +6515,7 @@ func (o *visualServer) ReflectionProbeSetInteriorAmbientEnergy(probe gdnative.Ri
 	Args: [{ false probe RID} { false contrib float}], Returns: void
 */
 func (o *visualServer) ReflectionProbeSetInteriorAmbientProbeContribution(probe gdnative.Rid, contrib gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ReflectionProbeSetInteriorAmbientProbeContribution()")
 
 	// Build out the method's arguments
@@ -6262,6 +6538,7 @@ func (o *visualServer) ReflectionProbeSetInteriorAmbientProbeContribution(probe 
 	Args: [{ false probe RID} { false distance float}], Returns: void
 */
 func (o *visualServer) ReflectionProbeSetMaxDistance(probe gdnative.Rid, distance gdnative.Float) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ReflectionProbeSetMaxDistance()")
 
 	// Build out the method's arguments
@@ -6284,6 +6561,7 @@ func (o *visualServer) ReflectionProbeSetMaxDistance(probe gdnative.Rid, distanc
 	Args: [{ false probe RID} { false offset Vector3}], Returns: void
 */
 func (o *visualServer) ReflectionProbeSetOriginOffset(probe gdnative.Rid, offset gdnative.Vector3) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ReflectionProbeSetOriginOffset()")
 
 	// Build out the method's arguments
@@ -6306,6 +6584,7 @@ func (o *visualServer) ReflectionProbeSetOriginOffset(probe gdnative.Rid, offset
 	Args: [{ false probe RID} { false mode int}], Returns: void
 */
 func (o *visualServer) ReflectionProbeSetUpdateMode(probe gdnative.Rid, mode gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ReflectionProbeSetUpdateMode()")
 
 	// Build out the method's arguments
@@ -6328,6 +6607,7 @@ func (o *visualServer) ReflectionProbeSetUpdateMode(probe gdnative.Rid, mode gdn
 	Args: [{ false where Object} { false method String} { false userdata Variant}], Returns: void
 */
 func (o *visualServer) RequestFrameDrawnCallback(where Object, method gdnative.String, userdata gdnative.Variant) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.RequestFrameDrawnCallback()")
 
 	// Build out the method's arguments
@@ -6351,6 +6631,7 @@ func (o *visualServer) RequestFrameDrawnCallback(where Object, method gdnative.S
 	Args: [], Returns: RID
 */
 func (o *visualServer) ScenarioCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ScenarioCreate()")
 
 	// Build out the method's arguments
@@ -6375,6 +6656,7 @@ func (o *visualServer) ScenarioCreate() gdnative.Rid {
 	Args: [{ false scenario RID} { false debug_mode int}], Returns: void
 */
 func (o *visualServer) ScenarioSetDebug(scenario gdnative.Rid, debugMode gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ScenarioSetDebug()")
 
 	// Build out the method's arguments
@@ -6397,6 +6679,7 @@ func (o *visualServer) ScenarioSetDebug(scenario gdnative.Rid, debugMode gdnativ
 	Args: [{ false scenario RID} { false environment RID}], Returns: void
 */
 func (o *visualServer) ScenarioSetEnvironment(scenario gdnative.Rid, environment gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ScenarioSetEnvironment()")
 
 	// Build out the method's arguments
@@ -6419,6 +6702,7 @@ func (o *visualServer) ScenarioSetEnvironment(scenario gdnative.Rid, environment
 	Args: [{ false scenario RID} { false environment RID}], Returns: void
 */
 func (o *visualServer) ScenarioSetFallbackEnvironment(scenario gdnative.Rid, environment gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ScenarioSetFallbackEnvironment()")
 
 	// Build out the method's arguments
@@ -6441,6 +6725,7 @@ func (o *visualServer) ScenarioSetFallbackEnvironment(scenario gdnative.Rid, env
 	Args: [{ false scenario RID} { false p_size int} { false subdiv int}], Returns: void
 */
 func (o *visualServer) ScenarioSetReflectionAtlasSize(scenario gdnative.Rid, pSize gdnative.Int, subdiv gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ScenarioSetReflectionAtlasSize()")
 
 	// Build out the method's arguments
@@ -6464,6 +6749,7 @@ func (o *visualServer) ScenarioSetReflectionAtlasSize(scenario gdnative.Rid, pSi
 	Args: [{ false image Image} { false color Color} { false scale bool}], Returns: void
 */
 func (o *visualServer) SetBootImage(image Image, color gdnative.Color, scale gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.SetBootImage()")
 
 	// Build out the method's arguments
@@ -6487,6 +6773,7 @@ func (o *visualServer) SetBootImage(image Image, color gdnative.Color, scale gdn
 	Args: [{ false generate bool}], Returns: void
 */
 func (o *visualServer) SetDebugGenerateWireframes(generate gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.SetDebugGenerateWireframes()")
 
 	// Build out the method's arguments
@@ -6508,6 +6795,7 @@ func (o *visualServer) SetDebugGenerateWireframes(generate gdnative.Bool) {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *visualServer) SetDefaultClearColor(color gdnative.Color) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.SetDefaultClearColor()")
 
 	// Build out the method's arguments
@@ -6529,6 +6817,7 @@ func (o *visualServer) SetDefaultClearColor(color gdnative.Color) {
 	Args: [], Returns: RID
 */
 func (o *visualServer) ShaderCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ShaderCreate()")
 
 	// Build out the method's arguments
@@ -6553,6 +6842,7 @@ func (o *visualServer) ShaderCreate() gdnative.Rid {
 	Args: [{ false shader RID}], Returns: String
 */
 func (o *visualServer) ShaderGetCode(shader gdnative.Rid) gdnative.String {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ShaderGetCode()")
 
 	// Build out the method's arguments
@@ -6578,6 +6868,7 @@ func (o *visualServer) ShaderGetCode(shader gdnative.Rid) gdnative.String {
 	Args: [{ false shader RID} { false name String}], Returns: RID
 */
 func (o *visualServer) ShaderGetDefaultTextureParam(shader gdnative.Rid, name gdnative.String) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ShaderGetDefaultTextureParam()")
 
 	// Build out the method's arguments
@@ -6604,6 +6895,7 @@ func (o *visualServer) ShaderGetDefaultTextureParam(shader gdnative.Rid, name gd
 	Args: [{ false shader RID}], Returns: Array
 */
 func (o *visualServer) ShaderGetParamList(shader gdnative.Rid) gdnative.Array {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ShaderGetParamList()")
 
 	// Build out the method's arguments
@@ -6629,6 +6921,7 @@ func (o *visualServer) ShaderGetParamList(shader gdnative.Rid) gdnative.Array {
 	Args: [{ false shader RID} { false code String}], Returns: void
 */
 func (o *visualServer) ShaderSetCode(shader gdnative.Rid, code gdnative.String) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ShaderSetCode()")
 
 	// Build out the method's arguments
@@ -6651,6 +6944,7 @@ func (o *visualServer) ShaderSetCode(shader gdnative.Rid, code gdnative.String) 
 	Args: [{ false shader RID} { false name String} { false texture RID}], Returns: void
 */
 func (o *visualServer) ShaderSetDefaultTextureParam(shader gdnative.Rid, name gdnative.String, texture gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ShaderSetDefaultTextureParam()")
 
 	// Build out the method's arguments
@@ -6674,6 +6968,7 @@ func (o *visualServer) ShaderSetDefaultTextureParam(shader gdnative.Rid, name gd
 	Args: [{ false skeleton RID} { false bones int} {False true is_2d_skeleton bool}], Returns: void
 */
 func (o *visualServer) SkeletonAllocate(skeleton gdnative.Rid, bones gdnative.Int, is2DSkeleton gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.SkeletonAllocate()")
 
 	// Build out the method's arguments
@@ -6697,6 +6992,7 @@ func (o *visualServer) SkeletonAllocate(skeleton gdnative.Rid, bones gdnative.In
 	Args: [{ false skeleton RID} { false bone int}], Returns: Transform
 */
 func (o *visualServer) SkeletonBoneGetTransform(skeleton gdnative.Rid, bone gdnative.Int) gdnative.Transform {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.SkeletonBoneGetTransform()")
 
 	// Build out the method's arguments
@@ -6723,6 +7019,7 @@ func (o *visualServer) SkeletonBoneGetTransform(skeleton gdnative.Rid, bone gdna
 	Args: [{ false skeleton RID} { false bone int}], Returns: Transform2D
 */
 func (o *visualServer) SkeletonBoneGetTransform2D(skeleton gdnative.Rid, bone gdnative.Int) gdnative.Transform2D {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.SkeletonBoneGetTransform2D()")
 
 	// Build out the method's arguments
@@ -6749,6 +7046,7 @@ func (o *visualServer) SkeletonBoneGetTransform2D(skeleton gdnative.Rid, bone gd
 	Args: [{ false skeleton RID} { false bone int} { false transform Transform}], Returns: void
 */
 func (o *visualServer) SkeletonBoneSetTransform(skeleton gdnative.Rid, bone gdnative.Int, transform gdnative.Transform) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.SkeletonBoneSetTransform()")
 
 	// Build out the method's arguments
@@ -6772,6 +7070,7 @@ func (o *visualServer) SkeletonBoneSetTransform(skeleton gdnative.Rid, bone gdna
 	Args: [{ false skeleton RID} { false bone int} { false transform Transform2D}], Returns: void
 */
 func (o *visualServer) SkeletonBoneSetTransform2D(skeleton gdnative.Rid, bone gdnative.Int, transform gdnative.Transform2D) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.SkeletonBoneSetTransform2D()")
 
 	// Build out the method's arguments
@@ -6795,6 +7094,7 @@ func (o *visualServer) SkeletonBoneSetTransform2D(skeleton gdnative.Rid, bone gd
 	Args: [], Returns: RID
 */
 func (o *visualServer) SkeletonCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.SkeletonCreate()")
 
 	// Build out the method's arguments
@@ -6819,6 +7119,7 @@ func (o *visualServer) SkeletonCreate() gdnative.Rid {
 	Args: [{ false skeleton RID}], Returns: int
 */
 func (o *visualServer) SkeletonGetBoneCount(skeleton gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.SkeletonGetBoneCount()")
 
 	// Build out the method's arguments
@@ -6844,6 +7145,7 @@ func (o *visualServer) SkeletonGetBoneCount(skeleton gdnative.Rid) gdnative.Int 
 	Args: [], Returns: RID
 */
 func (o *visualServer) SkyCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.SkyCreate()")
 
 	// Build out the method's arguments
@@ -6868,6 +7170,7 @@ func (o *visualServer) SkyCreate() gdnative.Rid {
 	Args: [{ false sky RID} { false cube_map RID} { false radiance_size int}], Returns: void
 */
 func (o *visualServer) SkySetTexture(sky gdnative.Rid, cubeMap gdnative.Rid, radianceSize gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.SkySetTexture()")
 
 	// Build out the method's arguments
@@ -6891,6 +7194,7 @@ func (o *visualServer) SkySetTexture(sky gdnative.Rid, cubeMap gdnative.Rid, rad
 	Args: [], Returns: RID
 */
 func (o *visualServer) SpotLightCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.SpotLightCreate()")
 
 	// Build out the method's arguments
@@ -6915,6 +7219,7 @@ func (o *visualServer) SpotLightCreate() gdnative.Rid {
 	Args: [{ false texture RID} { false width int} { false height int} { false format int} {7 true flags int}], Returns: void
 */
 func (o *visualServer) TextureAllocate(texture gdnative.Rid, width gdnative.Int, height gdnative.Int, format gdnative.Int, flags gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.TextureAllocate()")
 
 	// Build out the method's arguments
@@ -6940,6 +7245,7 @@ func (o *visualServer) TextureAllocate(texture gdnative.Rid, width gdnative.Int,
 	Args: [], Returns: RID
 */
 func (o *visualServer) TextureCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.TextureCreate()")
 
 	// Build out the method's arguments
@@ -6964,6 +7270,7 @@ func (o *visualServer) TextureCreate() gdnative.Rid {
 	Args: [{ false image Image} {7 true flags int}], Returns: RID
 */
 func (o *visualServer) TextureCreateFromImage(image Image, flags gdnative.Int) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.TextureCreateFromImage()")
 
 	// Build out the method's arguments
@@ -6990,6 +7297,7 @@ func (o *visualServer) TextureCreateFromImage(image Image, flags gdnative.Int) g
 	Args: [], Returns: Array
 */
 func (o *visualServer) TextureDebugUsage() gdnative.Array {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.TextureDebugUsage()")
 
 	// Build out the method's arguments
@@ -7014,6 +7322,7 @@ func (o *visualServer) TextureDebugUsage() gdnative.Array {
 	Args: [{ false texture RID} {0 true cube_side int}], Returns: Image
 */
 func (o *visualServer) TextureGetData(texture gdnative.Rid, cubeSide gdnative.Int) Image {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.TextureGetData()")
 
 	// Build out the method's arguments
@@ -7040,6 +7349,7 @@ func (o *visualServer) TextureGetData(texture gdnative.Rid, cubeSide gdnative.In
 	Args: [{ false texture RID}], Returns: int
 */
 func (o *visualServer) TextureGetFlags(texture gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.TextureGetFlags()")
 
 	// Build out the method's arguments
@@ -7070,6 +7380,7 @@ func (o *visualServer) TextureGetFlags(texture gdnative.Rid) gdnative.Int {
 	Args: [{ false texture RID}], Returns: int
 */
 func (o *visualServer) TextureGetHeight(texture gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.TextureGetHeight()")
 
 	// Build out the method's arguments
@@ -7095,6 +7406,7 @@ func (o *visualServer) TextureGetHeight(texture gdnative.Rid) gdnative.Int {
 	Args: [{ false texture RID}], Returns: String
 */
 func (o *visualServer) TextureGetPath(texture gdnative.Rid) gdnative.String {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.TextureGetPath()")
 
 	// Build out the method's arguments
@@ -7120,6 +7432,7 @@ func (o *visualServer) TextureGetPath(texture gdnative.Rid) gdnative.String {
 	Args: [{ false texture RID}], Returns: int
 */
 func (o *visualServer) TextureGetTexid(texture gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.TextureGetTexid()")
 
 	// Build out the method's arguments
@@ -7145,6 +7458,7 @@ func (o *visualServer) TextureGetTexid(texture gdnative.Rid) gdnative.Int {
 	Args: [{ false texture RID}], Returns: int
 */
 func (o *visualServer) TextureGetWidth(texture gdnative.Rid) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.TextureGetWidth()")
 
 	// Build out the method's arguments
@@ -7170,6 +7484,7 @@ func (o *visualServer) TextureGetWidth(texture gdnative.Rid) gdnative.Int {
 	Args: [{ false texture RID} { false image Image} {0 true cube_side int}], Returns: void
 */
 func (o *visualServer) TextureSetData(texture gdnative.Rid, image Image, cubeSide gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.TextureSetData()")
 
 	// Build out the method's arguments
@@ -7193,6 +7508,7 @@ func (o *visualServer) TextureSetData(texture gdnative.Rid, image Image, cubeSid
 	Args: [{ false texture RID} { false flags int}], Returns: void
 */
 func (o *visualServer) TextureSetFlags(texture gdnative.Rid, flags gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.TextureSetFlags()")
 
 	// Build out the method's arguments
@@ -7215,6 +7531,7 @@ func (o *visualServer) TextureSetFlags(texture gdnative.Rid, flags gdnative.Int)
 	Args: [{ false texture RID} { false path String}], Returns: void
 */
 func (o *visualServer) TextureSetPath(texture gdnative.Rid, path gdnative.String) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.TextureSetPath()")
 
 	// Build out the method's arguments
@@ -7237,6 +7554,7 @@ func (o *visualServer) TextureSetPath(texture gdnative.Rid, path gdnative.String
 	Args: [{ false shrink bool}], Returns: void
 */
 func (o *visualServer) TextureSetShrinkAllX2OnSetData(shrink gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.TextureSetShrinkAllX2OnSetData()")
 
 	// Build out the method's arguments
@@ -7258,6 +7576,7 @@ func (o *visualServer) TextureSetShrinkAllX2OnSetData(shrink gdnative.Bool) {
 	Args: [{ false texture RID} { false width int} { false height int}], Returns: void
 */
 func (o *visualServer) TextureSetSizeOverride(texture gdnative.Rid, width gdnative.Int, height gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.TextureSetSizeOverride()")
 
 	// Build out the method's arguments
@@ -7281,6 +7600,7 @@ func (o *visualServer) TextureSetSizeOverride(texture gdnative.Rid, width gdnati
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *visualServer) TexturesKeepOriginal(enable gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.TexturesKeepOriginal()")
 
 	// Build out the method's arguments
@@ -7302,6 +7622,7 @@ func (o *visualServer) TexturesKeepOriginal(enable gdnative.Bool) {
 	Args: [{ false viewport RID} { false camera RID}], Returns: void
 */
 func (o *visualServer) ViewportAttachCamera(viewport gdnative.Rid, camera gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportAttachCamera()")
 
 	// Build out the method's arguments
@@ -7324,6 +7645,7 @@ func (o *visualServer) ViewportAttachCamera(viewport gdnative.Rid, camera gdnati
 	Args: [{ false viewport RID} { false canvas RID}], Returns: void
 */
 func (o *visualServer) ViewportAttachCanvas(viewport gdnative.Rid, canvas gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportAttachCanvas()")
 
 	// Build out the method's arguments
@@ -7346,6 +7668,7 @@ func (o *visualServer) ViewportAttachCanvas(viewport gdnative.Rid, canvas gdnati
 	Args: [{ false viewport RID} {(0, 0, 0, 0) true rect Rect2} {0 true screen int}], Returns: void
 */
 func (o *visualServer) ViewportAttachToScreen(viewport gdnative.Rid, rect gdnative.Rect2, screen gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportAttachToScreen()")
 
 	// Build out the method's arguments
@@ -7369,6 +7692,7 @@ func (o *visualServer) ViewportAttachToScreen(viewport gdnative.Rid, rect gdnati
 	Args: [], Returns: RID
 */
 func (o *visualServer) ViewportCreate() gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportCreate()")
 
 	// Build out the method's arguments
@@ -7393,6 +7717,7 @@ func (o *visualServer) ViewportCreate() gdnative.Rid {
 	Args: [{ false viewport RID}], Returns: void
 */
 func (o *visualServer) ViewportDetach(viewport gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportDetach()")
 
 	// Build out the method's arguments
@@ -7414,6 +7739,7 @@ func (o *visualServer) ViewportDetach(viewport gdnative.Rid) {
 	Args: [{ false viewport RID} { false info int}], Returns: int
 */
 func (o *visualServer) ViewportGetRenderInfo(viewport gdnative.Rid, info gdnative.Int) gdnative.Int {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportGetRenderInfo()")
 
 	// Build out the method's arguments
@@ -7440,6 +7766,7 @@ func (o *visualServer) ViewportGetRenderInfo(viewport gdnative.Rid, info gdnativ
 	Args: [{ false viewport RID}], Returns: RID
 */
 func (o *visualServer) ViewportGetTexture(viewport gdnative.Rid) gdnative.Rid {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportGetTexture()")
 
 	// Build out the method's arguments
@@ -7465,6 +7792,7 @@ func (o *visualServer) ViewportGetTexture(viewport gdnative.Rid) gdnative.Rid {
 	Args: [{ false viewport RID} { false canvas RID}], Returns: void
 */
 func (o *visualServer) ViewportRemoveCanvas(viewport gdnative.Rid, canvas gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportRemoveCanvas()")
 
 	// Build out the method's arguments
@@ -7487,6 +7815,7 @@ func (o *visualServer) ViewportRemoveCanvas(viewport gdnative.Rid, canvas gdnati
 	Args: [{ false viewport RID} { false active bool}], Returns: void
 */
 func (o *visualServer) ViewportSetActive(viewport gdnative.Rid, active gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetActive()")
 
 	// Build out the method's arguments
@@ -7509,6 +7838,7 @@ func (o *visualServer) ViewportSetActive(viewport gdnative.Rid, active gdnative.
 	Args: [{ false viewport RID} { false canvas RID} { false layer int}], Returns: void
 */
 func (o *visualServer) ViewportSetCanvasLayer(viewport gdnative.Rid, canvas gdnative.Rid, layer gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetCanvasLayer()")
 
 	// Build out the method's arguments
@@ -7532,6 +7862,7 @@ func (o *visualServer) ViewportSetCanvasLayer(viewport gdnative.Rid, canvas gdna
 	Args: [{ false viewport RID} { false canvas RID} { false offset Transform2D}], Returns: void
 */
 func (o *visualServer) ViewportSetCanvasTransform(viewport gdnative.Rid, canvas gdnative.Rid, offset gdnative.Transform2D) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetCanvasTransform()")
 
 	// Build out the method's arguments
@@ -7555,6 +7886,7 @@ func (o *visualServer) ViewportSetCanvasTransform(viewport gdnative.Rid, canvas 
 	Args: [{ false viewport RID} { false clear_mode int}], Returns: void
 */
 func (o *visualServer) ViewportSetClearMode(viewport gdnative.Rid, clearMode gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetClearMode()")
 
 	// Build out the method's arguments
@@ -7577,6 +7909,7 @@ func (o *visualServer) ViewportSetClearMode(viewport gdnative.Rid, clearMode gdn
 	Args: [{ false viewport RID} { false draw int}], Returns: void
 */
 func (o *visualServer) ViewportSetDebugDraw(viewport gdnative.Rid, draw gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetDebugDraw()")
 
 	// Build out the method's arguments
@@ -7599,6 +7932,7 @@ func (o *visualServer) ViewportSetDebugDraw(viewport gdnative.Rid, draw gdnative
 	Args: [{ false viewport RID} { false disabled bool}], Returns: void
 */
 func (o *visualServer) ViewportSetDisable3D(viewport gdnative.Rid, disabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetDisable3D()")
 
 	// Build out the method's arguments
@@ -7621,6 +7955,7 @@ func (o *visualServer) ViewportSetDisable3D(viewport gdnative.Rid, disabled gdna
 	Args: [{ false viewport RID} { false disabled bool}], Returns: void
 */
 func (o *visualServer) ViewportSetDisableEnvironment(viewport gdnative.Rid, disabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetDisableEnvironment()")
 
 	// Build out the method's arguments
@@ -7643,6 +7978,7 @@ func (o *visualServer) ViewportSetDisableEnvironment(viewport gdnative.Rid, disa
 	Args: [{ false viewport RID} { false transform Transform2D}], Returns: void
 */
 func (o *visualServer) ViewportSetGlobalCanvasTransform(viewport gdnative.Rid, transform gdnative.Transform2D) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetGlobalCanvasTransform()")
 
 	// Build out the method's arguments
@@ -7665,6 +8001,7 @@ func (o *visualServer) ViewportSetGlobalCanvasTransform(viewport gdnative.Rid, t
 	Args: [{ false viewport RID} { false enabled bool}], Returns: void
 */
 func (o *visualServer) ViewportSetHdr(viewport gdnative.Rid, enabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetHdr()")
 
 	// Build out the method's arguments
@@ -7687,6 +8024,7 @@ func (o *visualServer) ViewportSetHdr(viewport gdnative.Rid, enabled gdnative.Bo
 	Args: [{ false viewport RID} { false hidden bool}], Returns: void
 */
 func (o *visualServer) ViewportSetHideCanvas(viewport gdnative.Rid, hidden gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetHideCanvas()")
 
 	// Build out the method's arguments
@@ -7709,6 +8047,7 @@ func (o *visualServer) ViewportSetHideCanvas(viewport gdnative.Rid, hidden gdnat
 	Args: [{ false viewport RID} { false hidden bool}], Returns: void
 */
 func (o *visualServer) ViewportSetHideScenario(viewport gdnative.Rid, hidden gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetHideScenario()")
 
 	// Build out the method's arguments
@@ -7731,6 +8070,7 @@ func (o *visualServer) ViewportSetHideScenario(viewport gdnative.Rid, hidden gdn
 	Args: [{ false viewport RID} { false msaa int}], Returns: void
 */
 func (o *visualServer) ViewportSetMsaa(viewport gdnative.Rid, msaa gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetMsaa()")
 
 	// Build out the method's arguments
@@ -7753,6 +8093,7 @@ func (o *visualServer) ViewportSetMsaa(viewport gdnative.Rid, msaa gdnative.Int)
 	Args: [{ false viewport RID} { false parent_viewport RID}], Returns: void
 */
 func (o *visualServer) ViewportSetParentViewport(viewport gdnative.Rid, parentViewport gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetParentViewport()")
 
 	// Build out the method's arguments
@@ -7775,6 +8116,7 @@ func (o *visualServer) ViewportSetParentViewport(viewport gdnative.Rid, parentVi
 	Args: [{ false viewport RID} { false scenario RID}], Returns: void
 */
 func (o *visualServer) ViewportSetScenario(viewport gdnative.Rid, scenario gdnative.Rid) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetScenario()")
 
 	// Build out the method's arguments
@@ -7797,6 +8139,7 @@ func (o *visualServer) ViewportSetScenario(viewport gdnative.Rid, scenario gdnat
 	Args: [{ false viewport RID} { false quadrant int} { false subdivision int}], Returns: void
 */
 func (o *visualServer) ViewportSetShadowAtlasQuadrantSubdivision(viewport gdnative.Rid, quadrant gdnative.Int, subdivision gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetShadowAtlasQuadrantSubdivision()")
 
 	// Build out the method's arguments
@@ -7820,6 +8163,7 @@ func (o *visualServer) ViewportSetShadowAtlasQuadrantSubdivision(viewport gdnati
 	Args: [{ false viewport RID} { false size int}], Returns: void
 */
 func (o *visualServer) ViewportSetShadowAtlasSize(viewport gdnative.Rid, size gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetShadowAtlasSize()")
 
 	// Build out the method's arguments
@@ -7842,6 +8186,7 @@ func (o *visualServer) ViewportSetShadowAtlasSize(viewport gdnative.Rid, size gd
 	Args: [{ false viewport RID} { false width int} { false height int}], Returns: void
 */
 func (o *visualServer) ViewportSetSize(viewport gdnative.Rid, width gdnative.Int, height gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetSize()")
 
 	// Build out the method's arguments
@@ -7865,6 +8210,7 @@ func (o *visualServer) ViewportSetSize(viewport gdnative.Rid, width gdnative.Int
 	Args: [{ false viewport RID} { false enabled bool}], Returns: void
 */
 func (o *visualServer) ViewportSetTransparentBackground(viewport gdnative.Rid, enabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetTransparentBackground()")
 
 	// Build out the method's arguments
@@ -7887,6 +8233,7 @@ func (o *visualServer) ViewportSetTransparentBackground(viewport gdnative.Rid, e
 	Args: [{ false viewport RID} { false update_mode int}], Returns: void
 */
 func (o *visualServer) ViewportSetUpdateMode(viewport gdnative.Rid, updateMode gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetUpdateMode()")
 
 	// Build out the method's arguments
@@ -7909,6 +8256,7 @@ func (o *visualServer) ViewportSetUpdateMode(viewport gdnative.Rid, updateMode g
 	Args: [{ false viewport RID} { false usage int}], Returns: void
 */
 func (o *visualServer) ViewportSetUsage(viewport gdnative.Rid, usage gdnative.Int) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetUsage()")
 
 	// Build out the method's arguments
@@ -7931,6 +8279,7 @@ func (o *visualServer) ViewportSetUsage(viewport gdnative.Rid, usage gdnative.In
 	Args: [{ false viewport RID} { false use_arvr bool}], Returns: void
 */
 func (o *visualServer) ViewportSetUseArvr(viewport gdnative.Rid, useArvr gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetUseArvr()")
 
 	// Build out the method's arguments
@@ -7953,6 +8302,7 @@ func (o *visualServer) ViewportSetUseArvr(viewport gdnative.Rid, useArvr gdnativ
 	Args: [{ false viewport RID} { false enabled bool}], Returns: void
 */
 func (o *visualServer) ViewportSetVflip(viewport gdnative.Rid, enabled gdnative.Bool) {
+	o.ensureSingleton()
 	log.Println("Calling VisualServer.ViewportSetVflip()")
 
 	// Build out the method's arguments

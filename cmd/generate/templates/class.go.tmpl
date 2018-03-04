@@ -25,10 +25,7 @@ func New{{ $view.GoValue $API.Name }}FromPointer(ptr gdnative.Pointer) {{ $view.
 
 {{ if $API.Singleton -}}
     func newSingleton{{ $view.GoClassName $API.Name }}() *{{ $view.SetClassName $API.Name $API.Singleton}} {
-        obj := &{{ $view.SetClassName $API.Name $API.Singleton }}{}
-    	gdObj := gdnative.GetSingleton("{{ $API.Name }}")
-	obj.SetBaseObject(gdObj)
-        return obj
+        return &{{ $view.SetClassName $API.Name $API.Singleton }}{}
     }
     /*
     {{ $view.ClassDoc $API.Name }}
@@ -43,7 +40,25 @@ type {{ $view.SetClassName $API.Name $API.Singleton }} struct {
 	{{ $view.SetBaseClassName $API.BaseClass }}
     {{ end -}}
     owner gdnative.Object
+    {{ if $API.Singleton -}}
+	initialized bool
+    {{ end -}}
 }
+
+{{/* Singletons need to check if they've been fetched before. -*/}}
+{{ if $API.Singleton -}}
+    // EnsureSingleton will check to see if we have an object for it. If not, it will fetch its 
+    // GDNative object and set it.
+    func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) ensureSingleton() {
+        if o.initialized == true {
+		return
+	}
+	log.Println("Singleton not found. Fetching from GDNative...")
+    	base := gdnative.GetSingleton("{{ $API.Name }}")
+	o.SetBaseObject(base)
+	o.initialized = true
+    }
+{{ end }}
 
 func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) BaseClass() string {
     return "{{ $API.Name }}"
@@ -67,6 +82,9 @@ func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) GetBaseObject() gdna
         */
 	{{/* Skip ENUM functions for now*/}}{{ if not ($view.IsEnum $method.ReturnType) -}}
 	    func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) {{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $arg.Type }},{{ end }}) {{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ end }} {
+		{{ if $API.Singleton -}}
+			o.ensureSingleton()
+		{{ end -}}
                 log.Println("Calling {{ $API.Name }}.{{ $view.GoMethodName $method.Name }}()")
 
                 // Build out the method's arguments

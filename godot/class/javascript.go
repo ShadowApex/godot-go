@@ -25,10 +25,7 @@ func NewJavaScriptFromPointer(ptr gdnative.Pointer) javaScript {
 }
 
 func newSingletonJavaScript() *javaScript {
-	obj := &javaScript{}
-	gdObj := gdnative.GetSingleton("JavaScript")
-	obj.SetBaseObject(gdObj)
-	return obj
+	return &javaScript{}
 }
 
 /*
@@ -41,7 +38,20 @@ The JavaScript singleton is implemented only in HTML5 export. It's used to acces
 */
 type javaScript struct {
 	Object
-	owner gdnative.Object
+	owner       gdnative.Object
+	initialized bool
+}
+
+// EnsureSingleton will check to see if we have an object for it. If not, it will fetch its
+// GDNative object and set it.
+func (o *javaScript) ensureSingleton() {
+	if o.initialized == true {
+		return
+	}
+	log.Println("Singleton not found. Fetching from GDNative...")
+	base := gdnative.GetSingleton("JavaScript")
+	o.SetBaseObject(base)
+	o.initialized = true
 }
 
 func (o *javaScript) BaseClass() string {
@@ -63,6 +73,7 @@ func (o *javaScript) GetBaseObject() gdnative.Object {
 	Args: [{ false code String} {False true use_global_execution_context bool}], Returns: Variant
 */
 func (o *javaScript) Eval(code gdnative.String, useGlobalExecutionContext gdnative.Bool) gdnative.Variant {
+	o.ensureSingleton()
 	log.Println("Calling JavaScript.Eval()")
 
 	// Build out the method's arguments

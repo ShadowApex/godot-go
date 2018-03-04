@@ -1,6 +1,7 @@
 package godot
 
 import (
+	"fmt"
 	"github.com/pinzolo/casee"
 	"github.com/shadowapex/godot-go/gdnative"
 	"log"
@@ -29,6 +30,7 @@ func autoRegisterClasses() {
 
 	// Loop through our registered classes and register them with the Godot API.
 	for _, constructor := range godotConstructorsToAutoRegister {
+		fmt.Println("Loop with constructor:", constructor)
 		// Use the constructor to build a class to inspect the given structure.
 		class := constructor()
 

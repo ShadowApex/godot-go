@@ -25,10 +25,7 @@ func NewTranslationServerFromPointer(ptr gdnative.Pointer) translationServer {
 }
 
 func newSingletonTranslationServer() *translationServer {
-	obj := &translationServer{}
-	gdObj := gdnative.GetSingleton("TranslationServer")
-	obj.SetBaseObject(gdObj)
-	return obj
+	return &translationServer{}
 }
 
 /*
@@ -41,7 +38,20 @@ var TranslationServer = newSingletonTranslationServer()
  */
 type translationServer struct {
 	Object
-	owner gdnative.Object
+	owner       gdnative.Object
+	initialized bool
+}
+
+// EnsureSingleton will check to see if we have an object for it. If not, it will fetch its
+// GDNative object and set it.
+func (o *translationServer) ensureSingleton() {
+	if o.initialized == true {
+		return
+	}
+	log.Println("Singleton not found. Fetching from GDNative...")
+	base := gdnative.GetSingleton("TranslationServer")
+	o.SetBaseObject(base)
+	o.initialized = true
 }
 
 func (o *translationServer) BaseClass() string {
@@ -63,6 +73,7 @@ func (o *translationServer) GetBaseObject() gdnative.Object {
 	Args: [{ false translation Translation}], Returns: void
 */
 func (o *translationServer) AddTranslation(translation Translation) {
+	o.ensureSingleton()
 	log.Println("Calling TranslationServer.AddTranslation()")
 
 	// Build out the method's arguments
@@ -84,6 +95,7 @@ func (o *translationServer) AddTranslation(translation Translation) {
 	Args: [], Returns: void
 */
 func (o *translationServer) Clear() {
+	o.ensureSingleton()
 	log.Println("Calling TranslationServer.Clear()")
 
 	// Build out the method's arguments
@@ -104,6 +116,7 @@ func (o *translationServer) Clear() {
 	Args: [], Returns: String
 */
 func (o *translationServer) GetLocale() gdnative.String {
+	o.ensureSingleton()
 	log.Println("Calling TranslationServer.GetLocale()")
 
 	// Build out the method's arguments
@@ -128,6 +141,7 @@ func (o *translationServer) GetLocale() gdnative.String {
 	Args: [{ false locale String}], Returns: String
 */
 func (o *translationServer) GetLocaleName(locale gdnative.String) gdnative.String {
+	o.ensureSingleton()
 	log.Println("Calling TranslationServer.GetLocaleName()")
 
 	// Build out the method's arguments
@@ -153,6 +167,7 @@ func (o *translationServer) GetLocaleName(locale gdnative.String) gdnative.Strin
 	Args: [{ false translation Translation}], Returns: void
 */
 func (o *translationServer) RemoveTranslation(translation Translation) {
+	o.ensureSingleton()
 	log.Println("Calling TranslationServer.RemoveTranslation()")
 
 	// Build out the method's arguments
@@ -174,6 +189,7 @@ func (o *translationServer) RemoveTranslation(translation Translation) {
 	Args: [{ false locale String}], Returns: void
 */
 func (o *translationServer) SetLocale(locale gdnative.String) {
+	o.ensureSingleton()
 	log.Println("Calling TranslationServer.SetLocale()")
 
 	// Build out the method's arguments
@@ -195,6 +211,7 @@ func (o *translationServer) SetLocale(locale gdnative.String) {
 	Args: [{ false message String}], Returns: String
 */
 func (o *translationServer) Translate(message gdnative.String) gdnative.String {
+	o.ensureSingleton()
 	log.Println("Calling TranslationServer.Translate()")
 
 	// Build out the method's arguments

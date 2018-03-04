@@ -25,10 +25,7 @@ func NewPerformanceFromPointer(ptr gdnative.Pointer) performance {
 }
 
 func newSingletonPerformance() *performance {
-	obj := &performance{}
-	gdObj := gdnative.GetSingleton("Performance")
-	obj.SetBaseObject(gdObj)
-	return obj
+	return &performance{}
 }
 
 /*
@@ -41,7 +38,20 @@ This class provides access to a number of different monitors related to performa
 */
 type performance struct {
 	Object
-	owner gdnative.Object
+	owner       gdnative.Object
+	initialized bool
+}
+
+// EnsureSingleton will check to see if we have an object for it. If not, it will fetch its
+// GDNative object and set it.
+func (o *performance) ensureSingleton() {
+	if o.initialized == true {
+		return
+	}
+	log.Println("Singleton not found. Fetching from GDNative...")
+	base := gdnative.GetSingleton("Performance")
+	o.SetBaseObject(base)
+	o.initialized = true
 }
 
 func (o *performance) BaseClass() string {
@@ -63,6 +73,7 @@ func (o *performance) GetBaseObject() gdnative.Object {
 	Args: [{ false monitor int}], Returns: float
 */
 func (o *performance) GetMonitor(monitor gdnative.Int) gdnative.Float {
+	o.ensureSingleton()
 	log.Println("Calling Performance.GetMonitor()")
 
 	// Build out the method's arguments
