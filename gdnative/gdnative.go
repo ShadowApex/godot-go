@@ -72,7 +72,7 @@ func NewEmptyVoid() Pointer {
 
 // GetSingleton will return an instance of the given singleton.
 func GetSingleton(name string) Object {
-	obj := C.godot_global_get_singleton(C.CString("ARVRServer"))
+	obj := C.go_godot_global_get_singleton(GDNative.api, C.CString("ARVRServer"))
 	return Object{base: (*C.godot_object)(obj)}
 }
 

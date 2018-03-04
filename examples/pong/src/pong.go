@@ -1,8 +1,6 @@
 package main
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/godot"
 	"github.com/shadowapex/godot-go/godot/class"
 )
