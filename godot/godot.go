@@ -25,6 +25,9 @@ func init() {
 // autoRegisterClasses is the script's entrypoint. It is called by Godot
 // when a script is loaded. It is responsible for registering all the classes.
 func autoRegisterClasses() {
+	// Configure logging.
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
+	log.SetOutput(Log)
 	log.Println("Discovering classes to register with Godot...")
 
 	// Loop through our registered classes and register them with the Godot API.

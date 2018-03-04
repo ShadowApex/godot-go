@@ -37,19 +37,22 @@ func (p *Player) X_Process(delta gdnative.Double) {
 	godot.Log.Println("  Creating vector...")
 	p.velocity = gdnative.NewVector2(0, 0)
 
-	godot.Log.Println("  Checking if action pressed...")
+	godot.Log.Println("  Checking if ui_right pressed...")
 	if class.Input.IsActionPressed("ui_right") {
 		godot.Log.Println("  p.velocity.x += 1...")
 		p.velocity.SetX(p.velocity.GetX() + 1)
 	}
+	godot.Log.Println("  Checking if ui_left pressed...")
 	if class.Input.IsActionPressed("ui_left") {
 		godot.Log.Println("  p.velocity.x -= 1...")
 		p.velocity.SetX(p.velocity.GetX() - 1)
 	}
+	godot.Log.Println("  Checking if ui_down pressed...")
 	if class.Input.IsActionPressed("ui_down") {
 		godot.Log.Println("  p.velocity.y += 1...")
 		p.velocity.SetY(p.velocity.GetY() + 1)
 	}
+	godot.Log.Println("  Checking if ui_up pressed...")
 	if class.Input.IsActionPressed("ui_up") {
 		godot.Log.Println("  p.velocity.y -= 1...")
 		p.velocity.SetY(p.velocity.GetY() - 1)

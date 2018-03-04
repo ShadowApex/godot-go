@@ -397,7 +397,7 @@ func Generate() {
 
 		// Get the package name to generate
 		packageName := view.PackageMap[api.Name]
-		outFileName := view.PackageName(api.Name) + ".go"
+		outFileName := view.PackageName(api.Name) + ".gen.go"
 
 		// Set the current API
 		view.API = api

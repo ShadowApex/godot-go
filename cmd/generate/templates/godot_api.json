@@ -40292,6 +40292,676 @@
 		]
 	},
 	{
+		"name": "World",
+		"base_class": "Resource",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": true,
+		"is_reference": true,
+		"constants": {
+		},
+		"properties": [
+			{
+				"name": "environment",
+				"type": "Environment",
+				"getter": "get_environment",
+				"setter": "set_environment",
+				"index": -1
+			},
+			{
+				"name": "fallback_environment",
+				"type": "Environment",
+				"getter": "get_fallback_environment",
+				"setter": "set_fallback_environment",
+				"index": -1
+			},
+			{
+				"name": "space",
+				"type": "RID",
+				"getter": "get_space",
+				"setter": "",
+				"index": -1
+			},
+			{
+				"name": "scenario",
+				"type": "RID",
+				"getter": "get_scenario",
+				"setter": "",
+				"index": -1
+			},
+			{
+				"name": "direct_space_state",
+				"type": "PhysicsDirectSpaceState",
+				"getter": "get_direct_space_state",
+				"setter": "",
+				"index": -1
+			}
+		],
+		"signals": [
+		],
+		"methods": [
+			{
+				"name": "get_space",
+				"return_type": "RID",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_scenario",
+				"return_type": "RID",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_environment",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "env",
+						"type": "Environment",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_environment",
+				"return_type": "Environment",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_fallback_environment",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "env",
+						"type": "Environment",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_fallback_environment",
+				"return_type": "Environment",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_direct_space_state",
+				"return_type": "PhysicsDirectSpaceState",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			}
+		],
+		"enums": [
+		]
+	},
+	{
+		"name": "World2D",
+		"base_class": "Resource",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": true,
+		"is_reference": true,
+		"constants": {
+		},
+		"properties": [
+			{
+				"name": "canvas",
+				"type": "RID",
+				"getter": "get_canvas",
+				"setter": "",
+				"index": -1
+			},
+			{
+				"name": "space",
+				"type": "RID",
+				"getter": "get_space",
+				"setter": "",
+				"index": -1
+			},
+			{
+				"name": "direct_space_state",
+				"type": "Physics2DDirectSpaceState",
+				"getter": "get_direct_space_state",
+				"setter": "",
+				"index": -1
+			}
+		],
+		"signals": [
+		],
+		"methods": [
+			{
+				"name": "get_canvas",
+				"return_type": "RID",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_space",
+				"return_type": "RID",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_direct_space_state",
+				"return_type": "Physics2DDirectSpaceState",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			}
+		],
+		"enums": [
+		]
+	},
+	{
+		"name": "ViewportTexture",
+		"base_class": "Texture",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": true,
+		"is_reference": true,
+		"constants": {
+		},
+		"properties": [
+			{
+				"name": "viewport_path",
+				"type": "NodePath",
+				"getter": "get_viewport_path_in_scene",
+				"setter": "set_viewport_path_in_scene",
+				"index": -1
+			}
+		],
+		"signals": [
+		],
+		"methods": [
+			{
+				"name": "set_viewport_path_in_scene",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "path",
+						"type": "NodePath",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_viewport_path_in_scene",
+				"return_type": "NodePath",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			}
+		],
+		"enums": [
+		]
+	},
+	{
+		"name": "HTTPRequest",
+		"base_class": "Node",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": true,
+		"is_reference": false,
+		"constants": {
+			"RESULT_SUCCESS": 0,
+			"RESULT_CHUNKED_BODY_SIZE_MISMATCH": 1,
+			"RESULT_CANT_CONNECT": 2,
+			"RESULT_CANT_RESOLVE": 3,
+			"RESULT_CONNECTION_ERROR": 4,
+			"RESULT_SSL_HANDSHAKE_ERROR": 5,
+			"RESULT_NO_RESPONSE": 6,
+			"RESULT_BODY_SIZE_LIMIT_EXCEEDED": 7,
+			"RESULT_REQUEST_FAILED": 8,
+			"RESULT_DOWNLOAD_FILE_CANT_OPEN": 9,
+			"RESULT_DOWNLOAD_FILE_WRITE_ERROR": 10,
+			"RESULT_REDIRECT_LIMIT_REACHED": 11
+		},
+		"properties": [
+			{
+				"name": "download_file",
+				"type": "String",
+				"getter": "get_download_file",
+				"setter": "set_download_file",
+				"index": -1
+			},
+			{
+				"name": "use_threads",
+				"type": "bool",
+				"getter": "is_using_threads",
+				"setter": "set_use_threads",
+				"index": -1
+			},
+			{
+				"name": "body_size_limit",
+				"type": "int",
+				"getter": "get_body_size_limit",
+				"setter": "set_body_size_limit",
+				"index": -1
+			},
+			{
+				"name": "max_redirects",
+				"type": "int",
+				"getter": "get_max_redirects",
+				"setter": "set_max_redirects",
+				"index": -1
+			}
+		],
+		"signals": [
+			{
+				"name": "request_completed",
+				"arguments": [
+					{
+						"name": "result",
+						"type": "int",
+						"default_value": ""
+					},
+					{
+						"name": "response_code",
+						"type": "int",
+						"default_value": ""
+					},
+					{
+						"name": "headers",
+						"type": "PoolStringArray",
+						"default_value": ""
+					},
+					{
+						"name": "body",
+						"type": "PoolByteArray",
+						"default_value": ""
+					}
+				]
+			}
+		],
+		"methods": [
+			{
+				"name": "request",
+				"return_type": "enum.Error",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "url",
+						"type": "String",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "custom_headers",
+						"type": "PoolStringArray",
+						"has_default_value": true,
+						"default_value": "[]"
+					},
+					{
+						"name": "ssl_validate_domain",
+						"type": "bool",
+						"has_default_value": true,
+						"default_value": "True"
+					},
+					{
+						"name": "method",
+						"type": "int",
+						"has_default_value": true,
+						"default_value": "0"
+					},
+					{
+						"name": "request_data",
+						"type": "String",
+						"has_default_value": true,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "cancel_request",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_http_client_status",
+				"return_type": "enum.HTTPClient::Status",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_use_threads",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "enable",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "is_using_threads",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_body_size_limit",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "bytes",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_body_size_limit",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_max_redirects",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "amount",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_max_redirects",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_download_file",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "path",
+						"type": "String",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_download_file",
+				"return_type": "String",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_downloaded_bytes",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_body_size",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "_redirect_request",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "arg0",
+						"type": "String",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "_request_done",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "arg0",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "arg1",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "arg2",
+						"type": "PoolStringArray",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "arg3",
+						"type": "PoolByteArray",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			}
+		],
+		"enums": [
+			{
+				"name": "Result",
+				"values": {
+					"RESULT_SUCCESS": 0,
+					"RESULT_CHUNKED_BODY_SIZE_MISMATCH": 1,
+					"RESULT_CANT_CONNECT": 2,
+					"RESULT_CANT_RESOLVE": 3,
+					"RESULT_CONNECTION_ERROR": 4,
+					"RESULT_SSL_HANDSHAKE_ERROR": 5,
+					"RESULT_NO_RESPONSE": 6,
+					"RESULT_BODY_SIZE_LIMIT_EXCEEDED": 7,
+					"RESULT_REQUEST_FAILED": 8,
+					"RESULT_DOWNLOAD_FILE_CANT_OPEN": 9,
+					"RESULT_DOWNLOAD_FILE_WRITE_ERROR": 10,
+					"RESULT_REDIRECT_LIMIT_REACHED": 11
+				}
+			}
+		]
+	},
+	{
 		"name": "InstancePlaceholder",
 		"base_class": "Node",
 		"api_type": "core",
@@ -41829,240 +42499,6 @@
 		]
 	},
 	{
-		"name": "World",
-		"base_class": "Resource",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": true,
-		"is_reference": true,
-		"constants": {
-		},
-		"properties": [
-			{
-				"name": "environment",
-				"type": "Environment",
-				"getter": "get_environment",
-				"setter": "set_environment",
-				"index": -1
-			},
-			{
-				"name": "fallback_environment",
-				"type": "Environment",
-				"getter": "get_fallback_environment",
-				"setter": "set_fallback_environment",
-				"index": -1
-			},
-			{
-				"name": "space",
-				"type": "RID",
-				"getter": "get_space",
-				"setter": "",
-				"index": -1
-			},
-			{
-				"name": "scenario",
-				"type": "RID",
-				"getter": "get_scenario",
-				"setter": "",
-				"index": -1
-			},
-			{
-				"name": "direct_space_state",
-				"type": "PhysicsDirectSpaceState",
-				"getter": "get_direct_space_state",
-				"setter": "",
-				"index": -1
-			}
-		],
-		"signals": [
-		],
-		"methods": [
-			{
-				"name": "get_space",
-				"return_type": "RID",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_scenario",
-				"return_type": "RID",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_environment",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "env",
-						"type": "Environment",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_environment",
-				"return_type": "Environment",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_fallback_environment",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "env",
-						"type": "Environment",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_fallback_environment",
-				"return_type": "Environment",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_direct_space_state",
-				"return_type": "PhysicsDirectSpaceState",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			}
-		],
-		"enums": [
-		]
-	},
-	{
-		"name": "World2D",
-		"base_class": "Resource",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": true,
-		"is_reference": true,
-		"constants": {
-		},
-		"properties": [
-			{
-				"name": "canvas",
-				"type": "RID",
-				"getter": "get_canvas",
-				"setter": "",
-				"index": -1
-			},
-			{
-				"name": "space",
-				"type": "RID",
-				"getter": "get_space",
-				"setter": "",
-				"index": -1
-			},
-			{
-				"name": "direct_space_state",
-				"type": "Physics2DDirectSpaceState",
-				"getter": "get_direct_space_state",
-				"setter": "",
-				"index": -1
-			}
-		],
-		"signals": [
-		],
-		"methods": [
-			{
-				"name": "get_canvas",
-				"return_type": "RID",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_space",
-				"return_type": "RID",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_direct_space_state",
-				"return_type": "Physics2DDirectSpaceState",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			}
-		],
-		"enums": [
-		]
-	},
-	{
 		"name": "Timer",
 		"base_class": "Node",
 		"api_type": "core",
@@ -42344,442 +42780,6 @@
 				"values": {
 					"TIMER_PROCESS_PHYSICS": 0,
 					"TIMER_PROCESS_IDLE": 1
-				}
-			}
-		]
-	},
-	{
-		"name": "ViewportTexture",
-		"base_class": "Texture",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": true,
-		"is_reference": true,
-		"constants": {
-		},
-		"properties": [
-			{
-				"name": "viewport_path",
-				"type": "NodePath",
-				"getter": "get_viewport_path_in_scene",
-				"setter": "set_viewport_path_in_scene",
-				"index": -1
-			}
-		],
-		"signals": [
-		],
-		"methods": [
-			{
-				"name": "set_viewport_path_in_scene",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "path",
-						"type": "NodePath",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_viewport_path_in_scene",
-				"return_type": "NodePath",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			}
-		],
-		"enums": [
-		]
-	},
-	{
-		"name": "HTTPRequest",
-		"base_class": "Node",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": true,
-		"is_reference": false,
-		"constants": {
-			"RESULT_SUCCESS": 0,
-			"RESULT_CHUNKED_BODY_SIZE_MISMATCH": 1,
-			"RESULT_CANT_CONNECT": 2,
-			"RESULT_CANT_RESOLVE": 3,
-			"RESULT_CONNECTION_ERROR": 4,
-			"RESULT_SSL_HANDSHAKE_ERROR": 5,
-			"RESULT_NO_RESPONSE": 6,
-			"RESULT_BODY_SIZE_LIMIT_EXCEEDED": 7,
-			"RESULT_REQUEST_FAILED": 8,
-			"RESULT_DOWNLOAD_FILE_CANT_OPEN": 9,
-			"RESULT_DOWNLOAD_FILE_WRITE_ERROR": 10,
-			"RESULT_REDIRECT_LIMIT_REACHED": 11
-		},
-		"properties": [
-			{
-				"name": "download_file",
-				"type": "String",
-				"getter": "get_download_file",
-				"setter": "set_download_file",
-				"index": -1
-			},
-			{
-				"name": "use_threads",
-				"type": "bool",
-				"getter": "is_using_threads",
-				"setter": "set_use_threads",
-				"index": -1
-			},
-			{
-				"name": "body_size_limit",
-				"type": "int",
-				"getter": "get_body_size_limit",
-				"setter": "set_body_size_limit",
-				"index": -1
-			},
-			{
-				"name": "max_redirects",
-				"type": "int",
-				"getter": "get_max_redirects",
-				"setter": "set_max_redirects",
-				"index": -1
-			}
-		],
-		"signals": [
-			{
-				"name": "request_completed",
-				"arguments": [
-					{
-						"name": "result",
-						"type": "int",
-						"default_value": ""
-					},
-					{
-						"name": "response_code",
-						"type": "int",
-						"default_value": ""
-					},
-					{
-						"name": "headers",
-						"type": "PoolStringArray",
-						"default_value": ""
-					},
-					{
-						"name": "body",
-						"type": "PoolByteArray",
-						"default_value": ""
-					}
-				]
-			}
-		],
-		"methods": [
-			{
-				"name": "request",
-				"return_type": "enum.Error",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "url",
-						"type": "String",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "custom_headers",
-						"type": "PoolStringArray",
-						"has_default_value": true,
-						"default_value": "[]"
-					},
-					{
-						"name": "ssl_validate_domain",
-						"type": "bool",
-						"has_default_value": true,
-						"default_value": "True"
-					},
-					{
-						"name": "method",
-						"type": "int",
-						"has_default_value": true,
-						"default_value": "0"
-					},
-					{
-						"name": "request_data",
-						"type": "String",
-						"has_default_value": true,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "cancel_request",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_http_client_status",
-				"return_type": "enum.HTTPClient::Status",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_use_threads",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "enable",
-						"type": "bool",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "is_using_threads",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_body_size_limit",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "bytes",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_body_size_limit",
-				"return_type": "int",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_max_redirects",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "amount",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_max_redirects",
-				"return_type": "int",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_download_file",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "path",
-						"type": "String",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_download_file",
-				"return_type": "String",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_downloaded_bytes",
-				"return_type": "int",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_body_size",
-				"return_type": "int",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "_redirect_request",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": true,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "arg0",
-						"type": "String",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "_request_done",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": true,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "arg0",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "arg1",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "arg2",
-						"type": "PoolStringArray",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "arg3",
-						"type": "PoolByteArray",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			}
-		],
-		"enums": [
-			{
-				"name": "Result",
-				"values": {
-					"RESULT_SUCCESS": 0,
-					"RESULT_CHUNKED_BODY_SIZE_MISMATCH": 1,
-					"RESULT_CANT_CONNECT": 2,
-					"RESULT_CANT_RESOLVE": 3,
-					"RESULT_CONNECTION_ERROR": 4,
-					"RESULT_SSL_HANDSHAKE_ERROR": 5,
-					"RESULT_NO_RESPONSE": 6,
-					"RESULT_BODY_SIZE_LIMIT_EXCEEDED": 7,
-					"RESULT_REQUEST_FAILED": 8,
-					"RESULT_DOWNLOAD_FILE_CANT_OPEN": 9,
-					"RESULT_DOWNLOAD_FILE_WRITE_ERROR": 10,
-					"RESULT_REDIRECT_LIMIT_REACHED": 11
 				}
 			}
 		]

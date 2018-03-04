@@ -45,6 +45,7 @@ type input struct {
 // EnsureSingleton will check to see if we have an object for it. If not, it will fetch its
 // GDNative object and set it.
 func (o *input) ensureSingleton() {
+	log.Println("ObjectID:", o.GetBaseObject().ID())
 	if o.initialized == true {
 		return
 	}
@@ -620,6 +621,7 @@ func (o *input) IsActionPressed(action gdnative.String) gdnative.Bool {
 	// Call the parent method.
 	// bool
 	retPtr := gdnative.NewEmptyBool()
+	log.Println("ObjectID:", o.GetBaseObject().ID())
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
