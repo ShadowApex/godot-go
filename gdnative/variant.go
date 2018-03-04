@@ -8,9 +8,9 @@ package gdnative
 */
 import "C"
 
-func NewVariantWithString(str *String) Variant {
+func NewVariantWithString(str String) Variant {
 	var variant C.godot_variant
-	C.go_godot_variant_new_string(GDNative.api, &variant, str.base)
+	C.go_godot_variant_new_string(GDNative.api, &variant, str.getBase())
 
 	return Variant{base: &variant}
 }

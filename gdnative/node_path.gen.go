@@ -55,6 +55,7 @@ func NewPointerFromNodePath(obj NodePath) Pointer {
 // NewNodePathFromPointer will return a NodePath from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewNodePathFromPointer(ptr Pointer) NodePath {
+
 	return NodePath{base: (*C.godot_node_path)(ptr.getBase())}
 }
 
@@ -67,19 +68,19 @@ func (gdt NodePath) getBase() *C.godot_node_path {
 }
 
 // NewNodePath godot_node_path_new [[godot_node_path * r_dest] [const godot_string * p_from]] void
-func NewNodePath(from String) *NodePath {
+func NewNodePath(from String) NodePath {
 	var dest C.godot_node_path
 	arg1 := from.getBase()
 	C.go_godot_node_path_new(GDNative.api, &dest, arg1)
-	return &NodePath{base: &dest}
+	return NodePath{base: &dest}
 }
 
 // NewNodePathCopy godot_node_path_new_copy [[godot_node_path * r_dest] [const godot_node_path * p_src]] void
-func NewNodePathCopy(src NodePath) *NodePath {
+func NewNodePathCopy(src NodePath) NodePath {
 	var dest C.godot_node_path
 	arg1 := src.getBase()
 	C.go_godot_node_path_new_copy(GDNative.api, &dest, arg1)
-	return &NodePath{base: &dest}
+	return NodePath{base: &dest}
 }
 
 // Destroy godot_node_path_destroy [[godot_node_path * p_self]] void
@@ -95,7 +96,9 @@ func (gdt *NodePath) AsString() String {
 
 	ret := C.go_godot_node_path_as_string(GDNative.api, arg0)
 
-	return String{base: &ret}
+	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
+	goWchar := newWcharT(wchar)
+	return String(goWchar.AsString())
 
 }
 
@@ -124,7 +127,9 @@ func (gdt *NodePath) GetName(idx Int) String {
 
 	ret := C.go_godot_node_path_get_name(GDNative.api, arg0, arg1)
 
-	return String{base: &ret}
+	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
+	goWchar := newWcharT(wchar)
+	return String(goWchar.AsString())
 
 }
 
@@ -144,7 +149,9 @@ func (gdt *NodePath) GetSubname(idx Int) String {
 
 	ret := C.go_godot_node_path_get_subname(GDNative.api, arg0, arg1)
 
-	return String{base: &ret}
+	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
+	goWchar := newWcharT(wchar)
+	return String(goWchar.AsString())
 
 }
 
@@ -154,7 +161,9 @@ func (gdt *NodePath) GetConcatenatedSubnames() String {
 
 	ret := C.go_godot_node_path_get_concatenated_subnames(GDNative.api, arg0)
 
-	return String{base: &ret}
+	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
+	goWchar := newWcharT(wchar)
+	return String(goWchar.AsString())
 
 }
 

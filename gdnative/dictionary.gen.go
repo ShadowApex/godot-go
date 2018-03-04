@@ -55,6 +55,7 @@ func NewPointerFromDictionary(obj Dictionary) Pointer {
 // NewDictionaryFromPointer will return a Dictionary from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewDictionaryFromPointer(ptr Pointer) Dictionary {
+
 	return Dictionary{base: (*C.godot_dictionary)(ptr.getBase())}
 }
 
@@ -67,18 +68,18 @@ func (gdt Dictionary) getBase() *C.godot_dictionary {
 }
 
 // NewDictionary godot_dictionary_new [[godot_dictionary * r_dest]] void
-func NewDictionary() *Dictionary {
+func NewDictionary() Dictionary {
 	var dest C.godot_dictionary
 	C.go_godot_dictionary_new(GDNative.api, &dest)
-	return &Dictionary{base: &dest}
+	return Dictionary{base: &dest}
 }
 
 // NewDictionaryCopy godot_dictionary_new_copy [[godot_dictionary * r_dest] [const godot_dictionary * p_src]] void
-func NewDictionaryCopy(src Dictionary) *Dictionary {
+func NewDictionaryCopy(src Dictionary) Dictionary {
 	var dest C.godot_dictionary
 	arg1 := src.getBase()
 	C.go_godot_dictionary_new_copy(GDNative.api, &dest, arg1)
-	return &Dictionary{base: &dest}
+	return Dictionary{base: &dest}
 }
 
 // Destroy godot_dictionary_destroy [[godot_dictionary * p_self]] void
@@ -239,6 +240,8 @@ func (gdt *Dictionary) ToJson() String {
 
 	ret := C.go_godot_dictionary_to_json(GDNative.api, arg0)
 
-	return String{base: &ret}
+	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
+	goWchar := newWcharT(wchar)
+	return String(goWchar.AsString())
 
 }

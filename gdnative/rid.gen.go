@@ -55,6 +55,7 @@ func NewPointerFromRid(obj Rid) Pointer {
 // NewRidFromPointer will return a Rid from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewRidFromPointer(ptr Pointer) Rid {
+
 	return Rid{base: (*C.godot_rid)(ptr.getBase())}
 }
 
@@ -67,10 +68,10 @@ func (gdt Rid) getBase() *C.godot_rid {
 }
 
 // NewRid godot_rid_new [[godot_rid * r_dest]] void
-func NewRid() *Rid {
+func NewRid() Rid {
 	var dest C.godot_rid
 	C.go_godot_rid_new(GDNative.api, &dest)
-	return &Rid{base: &dest}
+	return Rid{base: &dest}
 }
 
 // GetId godot_rid_get_id [[const godot_rid * p_self]] godot_int
@@ -83,11 +84,11 @@ func (gdt *Rid) GetId() Int {
 }
 
 // NewRidWithResource godot_rid_new_with_resource [[godot_rid * r_dest] [const godot_object * p_from]] void
-func NewRidWithResource(from Object) *Rid {
+func NewRidWithResource(from Object) Rid {
 	var dest C.godot_rid
 	arg1 := unsafe.Pointer(from.getBase())
 	C.go_godot_rid_new_with_resource(GDNative.api, &dest, arg1)
-	return &Rid{base: &dest}
+	return Rid{base: &dest}
 }
 
 // OperatorEqual godot_rid_operator_equal [[const godot_rid * p_self] [const godot_rid * p_b]] godot_bool

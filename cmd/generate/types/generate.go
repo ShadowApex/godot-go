@@ -310,6 +310,8 @@ func Generate() {
 	}
 	ignoreMethods := []string{
 		"godot_string_new_with_wide_string",
+		"godot_string_new",
+		"godot_string_new_copy",
 		"godot_string_name_new",
 		"godot_string_name_new_data",
 		"godot_transform2d_new",

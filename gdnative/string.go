@@ -6,6 +6,14 @@ package gdnative
 */
 import "C"
 
-func NewStringWithWideString(str string) *String {
-	return &String{base: stringAsGodotString(str)}
+func NewStringWithWideString(str string) String {
+	return String(str)
+}
+
+func NewString() String {
+	return ""
+}
+
+func NewStringCopy(src String) String {
+	return ""
 }

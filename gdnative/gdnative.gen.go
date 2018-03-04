@@ -192,6 +192,7 @@ func NewPointerFromObject(obj Object) Pointer {
 // NewObjectFromPointer will return a Object from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewObjectFromPointer(ptr Pointer) Object {
+
 	return Object{base: (*C.godot_object)(ptr.getBase())}
 }
 
@@ -220,6 +221,7 @@ func NewPointerFromMethodBind(obj MethodBind) Pointer {
 // NewMethodBindFromPointer will return a MethodBind from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewMethodBindFromPointer(ptr Pointer) MethodBind {
+
 	return MethodBind{base: (*C.godot_method_bind)(ptr.getBase())}
 }
 
@@ -248,6 +250,7 @@ func NewPointerFromGdnativeApiVersion(obj GdnativeApiVersion) Pointer {
 // NewGdnativeApiVersionFromPointer will return a GdnativeApiVersion from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewGdnativeApiVersionFromPointer(ptr Pointer) GdnativeApiVersion {
+
 	return GdnativeApiVersion{base: (*C.godot_gdnative_api_version)(ptr.getBase())}
 }
 
@@ -279,6 +282,7 @@ func NewPointerFromGdnativeTerminateOptions(obj GdnativeTerminateOptions) Pointe
 // NewGdnativeTerminateOptionsFromPointer will return a GdnativeTerminateOptions from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewGdnativeTerminateOptionsFromPointer(ptr Pointer) GdnativeTerminateOptions {
+
 	return GdnativeTerminateOptions{base: (*C.godot_gdnative_terminate_options)(ptr.getBase())}
 }
 

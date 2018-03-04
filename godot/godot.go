@@ -1,7 +1,6 @@
 package godot
 
 import (
-	"fmt"
 	"github.com/pinzolo/casee"
 	"github.com/shadowapex/godot-go/gdnative"
 	"log"
@@ -30,7 +29,6 @@ func autoRegisterClasses() {
 
 	// Loop through our registered classes and register them with the Godot API.
 	for _, constructor := range godotConstructorsToAutoRegister {
-		fmt.Println("Loop with constructor:", constructor)
 		// Use the constructor to build a class to inspect the given structure.
 		class := constructor()
 
@@ -275,7 +273,7 @@ func createMethod(classString, methodString string) *gdnative.InstanceMethod {
 		// Check to see if this returns anything.
 		if len(rawRet) == 0 {
 			nilReturn := gdnative.NewVariantNil()
-			return *nilReturn
+			return nilReturn
 		}
 
 		// Convert our returned value into a Godot Variant.
@@ -284,40 +282,40 @@ func createMethod(classString, methodString string) *gdnative.InstanceMethod {
 		case "bool":
 			base := gdnative.Bool(rawRetInterface.(bool))
 			variant := gdnative.NewVariantBool(base)
-			ret = *variant
+			ret = variant
 		case "int64":
 			base := gdnative.Int64T(rawRetInterface.(int64))
 			variant := gdnative.NewVariantInt(base)
-			ret = *variant
+			ret = variant
 		case "int32":
 			base := gdnative.Int64T(rawRetInterface.(int32))
 			variant := gdnative.NewVariantInt(base)
-			ret = *variant
+			ret = variant
 		case "int":
 			base := gdnative.Int64T(rawRetInterface.(int))
 			variant := gdnative.NewVariantInt(base)
-			ret = *variant
+			ret = variant
 		case "uint64":
 			base := gdnative.Uint64T(rawRetInterface.(uint64))
 			variant := gdnative.NewVariantUint(base)
-			ret = *variant
+			ret = variant
 		case "uint32":
 			base := gdnative.Uint64T(rawRetInterface.(uint32))
 			variant := gdnative.NewVariantUint(base)
-			ret = *variant
+			ret = variant
 		case "uint":
 			base := gdnative.Uint64T(rawRetInterface.(uint))
 			variant := gdnative.NewVariantUint(base)
-			ret = *variant
+			ret = variant
 		case "float64":
 			base := gdnative.Double(rawRetInterface.(float64))
 			variant := gdnative.NewVariantReal(base)
-			ret = *variant
+			ret = variant
 		case "string":
 			base := gdnative.WcharT(rawRetInterface.(string))
 			baseStr := base.AsString()
-			variant := gdnative.NewVariantString(*baseStr)
-			ret = *variant
+			variant := gdnative.NewVariantString(baseStr)
+			ret = variant
 		default:
 			panic("The return was not valid. Should be Godot Variant or built-in Go type. Received: " + regMethod.returns[0].String())
 		}

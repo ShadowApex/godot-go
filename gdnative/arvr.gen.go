@@ -55,6 +55,7 @@ func NewPointerFromArvrInterfaceGdnative(obj ArvrInterfaceGdnative) Pointer {
 // NewArvrInterfaceGdnativeFromPointer will return a ArvrInterfaceGdnative from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewArvrInterfaceGdnativeFromPointer(ptr Pointer) ArvrInterfaceGdnative {
+
 	return ArvrInterfaceGdnative{base: (*C.godot_arvr_interface_gdnative)(ptr.getBase())}
 }
 

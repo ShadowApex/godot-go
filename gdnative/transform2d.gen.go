@@ -55,6 +55,7 @@ func NewPointerFromTransform2D(obj Transform2D) Pointer {
 // NewTransform2DFromPointer will return a Transform2D from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewTransform2DFromPointer(ptr Pointer) Transform2D {
+
 	return Transform2D{base: (*C.godot_transform2d)(ptr.getBase())}
 }
 
@@ -72,7 +73,9 @@ func (gdt *Transform2D) AsString() String {
 
 	ret := C.go_godot_transform2d_as_string(GDNative.api, arg0)
 
-	return String{base: &ret}
+	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
+	goWchar := newWcharT(wchar)
+	return String(goWchar.AsString())
 
 }
 

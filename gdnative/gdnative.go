@@ -240,7 +240,7 @@ func (w WcharT) getBase() *C.wchar_t {
 	return (*C.wchar_t)(wcharString.Pointer())
 }
 
-func (w WcharT) AsString() *String {
+func (w WcharT) AsString() String {
 	return NewStringWithWideString(string(w))
 }
 

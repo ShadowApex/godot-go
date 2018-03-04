@@ -55,6 +55,7 @@ func NewPointerFromQuat(obj Quat) Pointer {
 // NewQuatFromPointer will return a Quat from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewQuatFromPointer(ptr Pointer) Quat {
+
 	return Quat{base: (*C.godot_quat)(ptr.getBase())}
 }
 
@@ -67,23 +68,23 @@ func (gdt Quat) getBase() *C.godot_quat {
 }
 
 // NewQuat godot_quat_new [[godot_quat * r_dest] [const godot_real p_x] [const godot_real p_y] [const godot_real p_z] [const godot_real p_w]] void
-func NewQuat(x Real, y Real, z Real, w Real) *Quat {
+func NewQuat(x Real, y Real, z Real, w Real) Quat {
 	var dest C.godot_quat
 	arg1 := x.getBase()
 	arg2 := y.getBase()
 	arg3 := z.getBase()
 	arg4 := w.getBase()
 	C.go_godot_quat_new(GDNative.api, &dest, arg1, arg2, arg3, arg4)
-	return &Quat{base: &dest}
+	return Quat{base: &dest}
 }
 
 // NewQuatWithAxisAngle godot_quat_new_with_axis_angle [[godot_quat * r_dest] [const godot_vector3 * p_axis] [const godot_real p_angle]] void
-func NewQuatWithAxisAngle(axis Vector3, angle Real) *Quat {
+func NewQuatWithAxisAngle(axis Vector3, angle Real) Quat {
 	var dest C.godot_quat
 	arg1 := axis.getBase()
 	arg2 := angle.getBase()
 	C.go_godot_quat_new_with_axis_angle(GDNative.api, &dest, arg1, arg2)
-	return &Quat{base: &dest}
+	return Quat{base: &dest}
 }
 
 // GetX godot_quat_get_x [[const godot_quat * p_self]] godot_real
@@ -160,7 +161,9 @@ func (gdt *Quat) AsString() String {
 
 	ret := C.go_godot_quat_as_string(GDNative.api, arg0)
 
-	return String{base: &ret}
+	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
+	goWchar := newWcharT(wchar)
+	return String(goWchar.AsString())
 
 }
 

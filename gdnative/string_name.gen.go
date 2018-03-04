@@ -55,6 +55,7 @@ func NewPointerFromStringName(obj StringName) Pointer {
 // NewStringNameFromPointer will return a StringName from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewStringNameFromPointer(ptr Pointer) StringName {
+
 	return StringName{base: (*C.godot_string_name)(ptr.getBase())}
 }
 
@@ -72,7 +73,9 @@ func (gdt *StringName) GetName() String {
 
 	ret := C.go_godot_string_name_get_name(GDNative.api, arg0)
 
-	return String{base: &ret}
+	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
+	goWchar := newWcharT(wchar)
+	return String(goWchar.AsString())
 
 }
 

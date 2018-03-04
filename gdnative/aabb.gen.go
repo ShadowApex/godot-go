@@ -55,6 +55,7 @@ func NewPointerFromAabb(obj Aabb) Pointer {
 // NewAabbFromPointer will return a Aabb from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewAabbFromPointer(ptr Pointer) Aabb {
+
 	return Aabb{base: (*C.godot_aabb)(ptr.getBase())}
 }
 
@@ -67,12 +68,12 @@ func (gdt Aabb) getBase() *C.godot_aabb {
 }
 
 // NewAabb godot_aabb_new [[godot_aabb * r_dest] [const godot_vector3 * p_pos] [const godot_vector3 * p_size]] void
-func NewAabb(pos Vector3, size Vector3) *Aabb {
+func NewAabb(pos Vector3, size Vector3) Aabb {
 	var dest C.godot_aabb
 	arg1 := pos.getBase()
 	arg2 := size.getBase()
 	C.go_godot_aabb_new(GDNative.api, &dest, arg1, arg2)
-	return &Aabb{base: &dest}
+	return Aabb{base: &dest}
 }
 
 // GetPosition godot_aabb_get_position [[const godot_aabb * p_self]] godot_vector3
@@ -117,7 +118,9 @@ func (gdt *Aabb) AsString() String {
 
 	ret := C.go_godot_aabb_as_string(GDNative.api, arg0)
 
-	return String{base: &ret}
+	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
+	goWchar := newWcharT(wchar)
+	return String(goWchar.AsString())
 
 }
 

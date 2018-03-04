@@ -55,6 +55,7 @@ func NewPointerFromPoolArrayReadAccess(obj PoolArrayReadAccess) Pointer {
 // NewPoolArrayReadAccessFromPointer will return a PoolArrayReadAccess from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPoolArrayReadAccessFromPointer(ptr Pointer) PoolArrayReadAccess {
+
 	return PoolArrayReadAccess{base: (*C.godot_pool_array_read_access)(ptr.getBase())}
 }
 
@@ -279,6 +280,7 @@ func NewPointerFromPoolArrayWriteAccess(obj PoolArrayWriteAccess) Pointer {
 // NewPoolArrayWriteAccessFromPointer will return a PoolArrayWriteAccess from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPoolArrayWriteAccessFromPointer(ptr Pointer) PoolArrayWriteAccess {
+
 	return PoolArrayWriteAccess{base: (*C.godot_pool_array_write_access)(ptr.getBase())}
 }
 
@@ -503,6 +505,7 @@ func NewPointerFromPoolByteArray(obj PoolByteArray) Pointer {
 // NewPoolByteArrayFromPointer will return a PoolByteArray from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPoolByteArrayFromPointer(ptr Pointer) PoolByteArray {
+
 	return PoolByteArray{base: (*C.godot_pool_byte_array)(ptr.getBase())}
 }
 
@@ -515,26 +518,26 @@ func (gdt PoolByteArray) getBase() *C.godot_pool_byte_array {
 }
 
 // NewPoolByteArray godot_pool_byte_array_new [[godot_pool_byte_array * r_dest]] void
-func NewPoolByteArray() *PoolByteArray {
+func NewPoolByteArray() PoolByteArray {
 	var dest C.godot_pool_byte_array
 	C.go_godot_pool_byte_array_new(GDNative.api, &dest)
-	return &PoolByteArray{base: &dest}
+	return PoolByteArray{base: &dest}
 }
 
 // NewPoolByteArrayCopy godot_pool_byte_array_new_copy [[godot_pool_byte_array * r_dest] [const godot_pool_byte_array * p_src]] void
-func NewPoolByteArrayCopy(src PoolByteArray) *PoolByteArray {
+func NewPoolByteArrayCopy(src PoolByteArray) PoolByteArray {
 	var dest C.godot_pool_byte_array
 	arg1 := src.getBase()
 	C.go_godot_pool_byte_array_new_copy(GDNative.api, &dest, arg1)
-	return &PoolByteArray{base: &dest}
+	return PoolByteArray{base: &dest}
 }
 
 // NewPoolByteArrayWithArray godot_pool_byte_array_new_with_array [[godot_pool_byte_array * r_dest] [const godot_array * p_a]] void
-func NewPoolByteArrayWithArray(a Array) *PoolByteArray {
+func NewPoolByteArrayWithArray(a Array) PoolByteArray {
 	var dest C.godot_pool_byte_array
 	arg1 := a.getBase()
 	C.go_godot_pool_byte_array_new_with_array(GDNative.api, &dest, arg1)
-	return &PoolByteArray{base: &dest}
+	return PoolByteArray{base: &dest}
 }
 
 // Append godot_pool_byte_array_append [[godot_pool_byte_array * p_self] [const uint8_t p_data]] void
@@ -667,6 +670,7 @@ func NewPointerFromPoolIntArray(obj PoolIntArray) Pointer {
 // NewPoolIntArrayFromPointer will return a PoolIntArray from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPoolIntArrayFromPointer(ptr Pointer) PoolIntArray {
+
 	return PoolIntArray{base: (*C.godot_pool_int_array)(ptr.getBase())}
 }
 
@@ -679,26 +683,26 @@ func (gdt PoolIntArray) getBase() *C.godot_pool_int_array {
 }
 
 // NewPoolIntArray godot_pool_int_array_new [[godot_pool_int_array * r_dest]] void
-func NewPoolIntArray() *PoolIntArray {
+func NewPoolIntArray() PoolIntArray {
 	var dest C.godot_pool_int_array
 	C.go_godot_pool_int_array_new(GDNative.api, &dest)
-	return &PoolIntArray{base: &dest}
+	return PoolIntArray{base: &dest}
 }
 
 // NewPoolIntArrayCopy godot_pool_int_array_new_copy [[godot_pool_int_array * r_dest] [const godot_pool_int_array * p_src]] void
-func NewPoolIntArrayCopy(src PoolIntArray) *PoolIntArray {
+func NewPoolIntArrayCopy(src PoolIntArray) PoolIntArray {
 	var dest C.godot_pool_int_array
 	arg1 := src.getBase()
 	C.go_godot_pool_int_array_new_copy(GDNative.api, &dest, arg1)
-	return &PoolIntArray{base: &dest}
+	return PoolIntArray{base: &dest}
 }
 
 // NewPoolIntArrayWithArray godot_pool_int_array_new_with_array [[godot_pool_int_array * r_dest] [const godot_array * p_a]] void
-func NewPoolIntArrayWithArray(a Array) *PoolIntArray {
+func NewPoolIntArrayWithArray(a Array) PoolIntArray {
 	var dest C.godot_pool_int_array
 	arg1 := a.getBase()
 	C.go_godot_pool_int_array_new_with_array(GDNative.api, &dest, arg1)
-	return &PoolIntArray{base: &dest}
+	return PoolIntArray{base: &dest}
 }
 
 // Append godot_pool_int_array_append [[godot_pool_int_array * p_self] [const godot_int p_data]] void
@@ -831,6 +835,7 @@ func NewPointerFromPoolRealArray(obj PoolRealArray) Pointer {
 // NewPoolRealArrayFromPointer will return a PoolRealArray from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPoolRealArrayFromPointer(ptr Pointer) PoolRealArray {
+
 	return PoolRealArray{base: (*C.godot_pool_real_array)(ptr.getBase())}
 }
 
@@ -843,26 +848,26 @@ func (gdt PoolRealArray) getBase() *C.godot_pool_real_array {
 }
 
 // NewPoolRealArray godot_pool_real_array_new [[godot_pool_real_array * r_dest]] void
-func NewPoolRealArray() *PoolRealArray {
+func NewPoolRealArray() PoolRealArray {
 	var dest C.godot_pool_real_array
 	C.go_godot_pool_real_array_new(GDNative.api, &dest)
-	return &PoolRealArray{base: &dest}
+	return PoolRealArray{base: &dest}
 }
 
 // NewPoolRealArrayCopy godot_pool_real_array_new_copy [[godot_pool_real_array * r_dest] [const godot_pool_real_array * p_src]] void
-func NewPoolRealArrayCopy(src PoolRealArray) *PoolRealArray {
+func NewPoolRealArrayCopy(src PoolRealArray) PoolRealArray {
 	var dest C.godot_pool_real_array
 	arg1 := src.getBase()
 	C.go_godot_pool_real_array_new_copy(GDNative.api, &dest, arg1)
-	return &PoolRealArray{base: &dest}
+	return PoolRealArray{base: &dest}
 }
 
 // NewPoolRealArrayWithArray godot_pool_real_array_new_with_array [[godot_pool_real_array * r_dest] [const godot_array * p_a]] void
-func NewPoolRealArrayWithArray(a Array) *PoolRealArray {
+func NewPoolRealArrayWithArray(a Array) PoolRealArray {
 	var dest C.godot_pool_real_array
 	arg1 := a.getBase()
 	C.go_godot_pool_real_array_new_with_array(GDNative.api, &dest, arg1)
-	return &PoolRealArray{base: &dest}
+	return PoolRealArray{base: &dest}
 }
 
 // Append godot_pool_real_array_append [[godot_pool_real_array * p_self] [const godot_real p_data]] void
@@ -995,6 +1000,7 @@ func NewPointerFromPoolStringArray(obj PoolStringArray) Pointer {
 // NewPoolStringArrayFromPointer will return a PoolStringArray from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPoolStringArrayFromPointer(ptr Pointer) PoolStringArray {
+
 	return PoolStringArray{base: (*C.godot_pool_string_array)(ptr.getBase())}
 }
 
@@ -1007,26 +1013,26 @@ func (gdt PoolStringArray) getBase() *C.godot_pool_string_array {
 }
 
 // NewPoolStringArray godot_pool_string_array_new [[godot_pool_string_array * r_dest]] void
-func NewPoolStringArray() *PoolStringArray {
+func NewPoolStringArray() PoolStringArray {
 	var dest C.godot_pool_string_array
 	C.go_godot_pool_string_array_new(GDNative.api, &dest)
-	return &PoolStringArray{base: &dest}
+	return PoolStringArray{base: &dest}
 }
 
 // NewPoolStringArrayCopy godot_pool_string_array_new_copy [[godot_pool_string_array * r_dest] [const godot_pool_string_array * p_src]] void
-func NewPoolStringArrayCopy(src PoolStringArray) *PoolStringArray {
+func NewPoolStringArrayCopy(src PoolStringArray) PoolStringArray {
 	var dest C.godot_pool_string_array
 	arg1 := src.getBase()
 	C.go_godot_pool_string_array_new_copy(GDNative.api, &dest, arg1)
-	return &PoolStringArray{base: &dest}
+	return PoolStringArray{base: &dest}
 }
 
 // NewPoolStringArrayWithArray godot_pool_string_array_new_with_array [[godot_pool_string_array * r_dest] [const godot_array * p_a]] void
-func NewPoolStringArrayWithArray(a Array) *PoolStringArray {
+func NewPoolStringArrayWithArray(a Array) PoolStringArray {
 	var dest C.godot_pool_string_array
 	arg1 := a.getBase()
 	C.go_godot_pool_string_array_new_with_array(GDNative.api, &dest, arg1)
-	return &PoolStringArray{base: &dest}
+	return PoolStringArray{base: &dest}
 }
 
 // Append godot_pool_string_array_append [[godot_pool_string_array * p_self] [const godot_string * p_data]] void
@@ -1123,7 +1129,9 @@ func (gdt *PoolStringArray) Get(idx Int) String {
 
 	ret := C.go_godot_pool_string_array_get(GDNative.api, arg0, arg1)
 
-	return String{base: &ret}
+	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
+	goWchar := newWcharT(wchar)
+	return String(goWchar.AsString())
 
 }
 
@@ -1160,6 +1168,7 @@ func NewPointerFromPoolVector2Array(obj PoolVector2Array) Pointer {
 // NewPoolVector2ArrayFromPointer will return a PoolVector2Array from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPoolVector2ArrayFromPointer(ptr Pointer) PoolVector2Array {
+
 	return PoolVector2Array{base: (*C.godot_pool_vector2_array)(ptr.getBase())}
 }
 
@@ -1172,26 +1181,26 @@ func (gdt PoolVector2Array) getBase() *C.godot_pool_vector2_array {
 }
 
 // NewPoolVector2Array godot_pool_vector2_array_new [[godot_pool_vector2_array * r_dest]] void
-func NewPoolVector2Array() *PoolVector2Array {
+func NewPoolVector2Array() PoolVector2Array {
 	var dest C.godot_pool_vector2_array
 	C.go_godot_pool_vector2_array_new(GDNative.api, &dest)
-	return &PoolVector2Array{base: &dest}
+	return PoolVector2Array{base: &dest}
 }
 
 // NewPoolVector2ArrayCopy godot_pool_vector2_array_new_copy [[godot_pool_vector2_array * r_dest] [const godot_pool_vector2_array * p_src]] void
-func NewPoolVector2ArrayCopy(src PoolVector2Array) *PoolVector2Array {
+func NewPoolVector2ArrayCopy(src PoolVector2Array) PoolVector2Array {
 	var dest C.godot_pool_vector2_array
 	arg1 := src.getBase()
 	C.go_godot_pool_vector2_array_new_copy(GDNative.api, &dest, arg1)
-	return &PoolVector2Array{base: &dest}
+	return PoolVector2Array{base: &dest}
 }
 
 // NewPoolVector2ArrayWithArray godot_pool_vector2_array_new_with_array [[godot_pool_vector2_array * r_dest] [const godot_array * p_a]] void
-func NewPoolVector2ArrayWithArray(a Array) *PoolVector2Array {
+func NewPoolVector2ArrayWithArray(a Array) PoolVector2Array {
 	var dest C.godot_pool_vector2_array
 	arg1 := a.getBase()
 	C.go_godot_pool_vector2_array_new_with_array(GDNative.api, &dest, arg1)
-	return &PoolVector2Array{base: &dest}
+	return PoolVector2Array{base: &dest}
 }
 
 // Append godot_pool_vector2_array_append [[godot_pool_vector2_array * p_self] [const godot_vector2 * p_data]] void
@@ -1325,6 +1334,7 @@ func NewPointerFromPoolVector3Array(obj PoolVector3Array) Pointer {
 // NewPoolVector3ArrayFromPointer will return a PoolVector3Array from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPoolVector3ArrayFromPointer(ptr Pointer) PoolVector3Array {
+
 	return PoolVector3Array{base: (*C.godot_pool_vector3_array)(ptr.getBase())}
 }
 
@@ -1337,26 +1347,26 @@ func (gdt PoolVector3Array) getBase() *C.godot_pool_vector3_array {
 }
 
 // NewPoolVector3Array godot_pool_vector3_array_new [[godot_pool_vector3_array * r_dest]] void
-func NewPoolVector3Array() *PoolVector3Array {
+func NewPoolVector3Array() PoolVector3Array {
 	var dest C.godot_pool_vector3_array
 	C.go_godot_pool_vector3_array_new(GDNative.api, &dest)
-	return &PoolVector3Array{base: &dest}
+	return PoolVector3Array{base: &dest}
 }
 
 // NewPoolVector3ArrayCopy godot_pool_vector3_array_new_copy [[godot_pool_vector3_array * r_dest] [const godot_pool_vector3_array * p_src]] void
-func NewPoolVector3ArrayCopy(src PoolVector3Array) *PoolVector3Array {
+func NewPoolVector3ArrayCopy(src PoolVector3Array) PoolVector3Array {
 	var dest C.godot_pool_vector3_array
 	arg1 := src.getBase()
 	C.go_godot_pool_vector3_array_new_copy(GDNative.api, &dest, arg1)
-	return &PoolVector3Array{base: &dest}
+	return PoolVector3Array{base: &dest}
 }
 
 // NewPoolVector3ArrayWithArray godot_pool_vector3_array_new_with_array [[godot_pool_vector3_array * r_dest] [const godot_array * p_a]] void
-func NewPoolVector3ArrayWithArray(a Array) *PoolVector3Array {
+func NewPoolVector3ArrayWithArray(a Array) PoolVector3Array {
 	var dest C.godot_pool_vector3_array
 	arg1 := a.getBase()
 	C.go_godot_pool_vector3_array_new_with_array(GDNative.api, &dest, arg1)
-	return &PoolVector3Array{base: &dest}
+	return PoolVector3Array{base: &dest}
 }
 
 // Append godot_pool_vector3_array_append [[godot_pool_vector3_array * p_self] [const godot_vector3 * p_data]] void
@@ -1490,6 +1500,7 @@ func NewPointerFromPoolColorArray(obj PoolColorArray) Pointer {
 // NewPoolColorArrayFromPointer will return a PoolColorArray from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPoolColorArrayFromPointer(ptr Pointer) PoolColorArray {
+
 	return PoolColorArray{base: (*C.godot_pool_color_array)(ptr.getBase())}
 }
 
@@ -1502,26 +1513,26 @@ func (gdt PoolColorArray) getBase() *C.godot_pool_color_array {
 }
 
 // NewPoolColorArray godot_pool_color_array_new [[godot_pool_color_array * r_dest]] void
-func NewPoolColorArray() *PoolColorArray {
+func NewPoolColorArray() PoolColorArray {
 	var dest C.godot_pool_color_array
 	C.go_godot_pool_color_array_new(GDNative.api, &dest)
-	return &PoolColorArray{base: &dest}
+	return PoolColorArray{base: &dest}
 }
 
 // NewPoolColorArrayCopy godot_pool_color_array_new_copy [[godot_pool_color_array * r_dest] [const godot_pool_color_array * p_src]] void
-func NewPoolColorArrayCopy(src PoolColorArray) *PoolColorArray {
+func NewPoolColorArrayCopy(src PoolColorArray) PoolColorArray {
 	var dest C.godot_pool_color_array
 	arg1 := src.getBase()
 	C.go_godot_pool_color_array_new_copy(GDNative.api, &dest, arg1)
-	return &PoolColorArray{base: &dest}
+	return PoolColorArray{base: &dest}
 }
 
 // NewPoolColorArrayWithArray godot_pool_color_array_new_with_array [[godot_pool_color_array * r_dest] [const godot_array * p_a]] void
-func NewPoolColorArrayWithArray(a Array) *PoolColorArray {
+func NewPoolColorArrayWithArray(a Array) PoolColorArray {
 	var dest C.godot_pool_color_array
 	arg1 := a.getBase()
 	C.go_godot_pool_color_array_new_with_array(GDNative.api, &dest, arg1)
-	return &PoolColorArray{base: &dest}
+	return PoolColorArray{base: &dest}
 }
 
 // Append godot_pool_color_array_append [[godot_pool_color_array * p_self] [const godot_color * p_data]] void

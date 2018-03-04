@@ -55,6 +55,7 @@ func NewPointerFromVector3(obj Vector3) Pointer {
 // NewVector3FromPointer will return a Vector3 from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewVector3FromPointer(ptr Pointer) Vector3 {
+
 	return Vector3{base: (*C.godot_vector3)(ptr.getBase())}
 }
 
@@ -67,13 +68,13 @@ func (gdt Vector3) getBase() *C.godot_vector3 {
 }
 
 // NewVector3 godot_vector3_new [[godot_vector3 * r_dest] [const godot_real p_x] [const godot_real p_y] [const godot_real p_z]] void
-func NewVector3(x Real, y Real, z Real) *Vector3 {
+func NewVector3(x Real, y Real, z Real) Vector3 {
 	var dest C.godot_vector3
 	arg1 := x.getBase()
 	arg2 := y.getBase()
 	arg3 := z.getBase()
 	C.go_godot_vector3_new(GDNative.api, &dest, arg1, arg2, arg3)
-	return &Vector3{base: &dest}
+	return Vector3{base: &dest}
 }
 
 // AsString godot_vector3_as_string [[const godot_vector3 * p_self]] godot_string
@@ -82,7 +83,9 @@ func (gdt *Vector3) AsString() String {
 
 	ret := C.go_godot_vector3_as_string(GDNative.api, arg0)
 
-	return String{base: &ret}
+	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
+	goWchar := newWcharT(wchar)
+	return String(goWchar.AsString())
 
 }
 

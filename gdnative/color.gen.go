@@ -55,6 +55,7 @@ func NewPointerFromColor(obj Color) Pointer {
 // NewColorFromPointer will return a Color from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewColorFromPointer(ptr Pointer) Color {
+
 	return Color{base: (*C.godot_color)(ptr.getBase())}
 }
 
@@ -67,24 +68,24 @@ func (gdt Color) getBase() *C.godot_color {
 }
 
 // NewColorRgba godot_color_new_rgba [[godot_color * r_dest] [const godot_real p_r] [const godot_real p_g] [const godot_real p_b] [const godot_real p_a]] void
-func NewColorRgba(r Real, g Real, b Real, a Real) *Color {
+func NewColorRgba(r Real, g Real, b Real, a Real) Color {
 	var dest C.godot_color
 	arg1 := r.getBase()
 	arg2 := g.getBase()
 	arg3 := b.getBase()
 	arg4 := a.getBase()
 	C.go_godot_color_new_rgba(GDNative.api, &dest, arg1, arg2, arg3, arg4)
-	return &Color{base: &dest}
+	return Color{base: &dest}
 }
 
 // NewColorRgb godot_color_new_rgb [[godot_color * r_dest] [const godot_real p_r] [const godot_real p_g] [const godot_real p_b]] void
-func NewColorRgb(r Real, g Real, b Real) *Color {
+func NewColorRgb(r Real, g Real, b Real) Color {
 	var dest C.godot_color
 	arg1 := r.getBase()
 	arg2 := g.getBase()
 	arg3 := b.getBase()
 	C.go_godot_color_new_rgb(GDNative.api, &dest, arg1, arg2, arg3)
-	return &Color{base: &dest}
+	return Color{base: &dest}
 }
 
 // GetR godot_color_get_r [[const godot_color * p_self]] godot_real
@@ -188,7 +189,9 @@ func (gdt *Color) AsString() String {
 
 	ret := C.go_godot_color_as_string(GDNative.api, arg0)
 
-	return String{base: &ret}
+	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
+	goWchar := newWcharT(wchar)
+	return String(goWchar.AsString())
 
 }
 
@@ -269,7 +272,9 @@ func (gdt *Color) ToHtml(withAlpha Bool) String {
 
 	ret := C.go_godot_color_to_html(GDNative.api, arg0, arg1)
 
-	return String{base: &ret}
+	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
+	goWchar := newWcharT(wchar)
+	return String(goWchar.AsString())
 
 }
 

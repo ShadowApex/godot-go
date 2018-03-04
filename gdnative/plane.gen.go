@@ -55,6 +55,7 @@ func NewPointerFromPlane(obj Plane) Pointer {
 // NewPlaneFromPointer will return a Plane from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPlaneFromPointer(ptr Pointer) Plane {
+
 	return Plane{base: (*C.godot_plane)(ptr.getBase())}
 }
 
@@ -67,33 +68,33 @@ func (gdt Plane) getBase() *C.godot_plane {
 }
 
 // NewPlaneWithReals godot_plane_new_with_reals [[godot_plane * r_dest] [const godot_real p_a] [const godot_real p_b] [const godot_real p_c] [const godot_real p_d]] void
-func NewPlaneWithReals(a Real, b Real, c Real, d Real) *Plane {
+func NewPlaneWithReals(a Real, b Real, c Real, d Real) Plane {
 	var dest C.godot_plane
 	arg1 := a.getBase()
 	arg2 := b.getBase()
 	arg3 := c.getBase()
 	arg4 := d.getBase()
 	C.go_godot_plane_new_with_reals(GDNative.api, &dest, arg1, arg2, arg3, arg4)
-	return &Plane{base: &dest}
+	return Plane{base: &dest}
 }
 
 // NewPlaneWithVectors godot_plane_new_with_vectors [[godot_plane * r_dest] [const godot_vector3 * p_v1] [const godot_vector3 * p_v2] [const godot_vector3 * p_v3]] void
-func NewPlaneWithVectors(v1 Vector3, v2 Vector3, v3 Vector3) *Plane {
+func NewPlaneWithVectors(v1 Vector3, v2 Vector3, v3 Vector3) Plane {
 	var dest C.godot_plane
 	arg1 := v1.getBase()
 	arg2 := v2.getBase()
 	arg3 := v3.getBase()
 	C.go_godot_plane_new_with_vectors(GDNative.api, &dest, arg1, arg2, arg3)
-	return &Plane{base: &dest}
+	return Plane{base: &dest}
 }
 
 // NewPlaneWithNormal godot_plane_new_with_normal [[godot_plane * r_dest] [const godot_vector3 * p_normal] [const godot_real p_d]] void
-func NewPlaneWithNormal(normal Vector3, d Real) *Plane {
+func NewPlaneWithNormal(normal Vector3, d Real) Plane {
 	var dest C.godot_plane
 	arg1 := normal.getBase()
 	arg2 := d.getBase()
 	C.go_godot_plane_new_with_normal(GDNative.api, &dest, arg1, arg2)
-	return &Plane{base: &dest}
+	return Plane{base: &dest}
 }
 
 // AsString godot_plane_as_string [[const godot_plane * p_self]] godot_string
@@ -102,7 +103,9 @@ func (gdt *Plane) AsString() String {
 
 	ret := C.go_godot_plane_as_string(GDNative.api, arg0)
 
-	return String{base: &ret}
+	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
+	goWchar := newWcharT(wchar)
+	return String(goWchar.AsString())
 
 }
 

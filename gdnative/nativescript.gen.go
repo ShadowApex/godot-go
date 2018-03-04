@@ -107,6 +107,7 @@ func NewPointerFromPropertyAttributes(obj PropertyAttributes) Pointer {
 // NewPropertyAttributesFromPointer will return a PropertyAttributes from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewPropertyAttributesFromPointer(ptr Pointer) PropertyAttributes {
+
 	return PropertyAttributes{base: (*C.godot_property_attributes)(ptr.getBase())}
 }
 
@@ -142,6 +143,7 @@ func NewPointerFromSignalArgument(obj SignalArgument) Pointer {
 // NewSignalArgumentFromPointer will return a SignalArgument from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewSignalArgumentFromPointer(ptr Pointer) SignalArgument {
+
 	return SignalArgument{base: (*C.godot_signal_argument)(ptr.getBase())}
 }
 
@@ -177,6 +179,7 @@ func NewPointerFromSignal(obj Signal) Pointer {
 // NewSignalFromPointer will return a Signal from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewSignalFromPointer(ptr Pointer) Signal {
+
 	return Signal{base: (*C.godot_signal)(ptr.getBase())}
 }
 
@@ -211,6 +214,7 @@ func NewPointerFromMethodArg(obj MethodArg) Pointer {
 // NewMethodArgFromPointer will return a MethodArg from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewMethodArgFromPointer(ptr Pointer) MethodArg {
+
 	return MethodArg{base: (*C.godot_method_arg)(ptr.getBase())}
 }
 

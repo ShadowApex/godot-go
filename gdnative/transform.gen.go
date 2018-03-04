@@ -55,6 +55,7 @@ func NewPointerFromTransform(obj Transform) Pointer {
 // NewTransformFromPointer will return a Transform from the
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewTransformFromPointer(ptr Pointer) Transform {
+
 	return Transform{base: (*C.godot_transform)(ptr.getBase())}
 }
 
@@ -67,23 +68,23 @@ func (gdt Transform) getBase() *C.godot_transform {
 }
 
 // NewTransformWithAxisOrigin godot_transform_new_with_axis_origin [[godot_transform * r_dest] [const godot_vector3 * p_x_axis] [const godot_vector3 * p_y_axis] [const godot_vector3 * p_z_axis] [const godot_vector3 * p_origin]] void
-func NewTransformWithAxisOrigin(xAxis Vector3, yAxis Vector3, zAxis Vector3, origin Vector3) *Transform {
+func NewTransformWithAxisOrigin(xAxis Vector3, yAxis Vector3, zAxis Vector3, origin Vector3) Transform {
 	var dest C.godot_transform
 	arg1 := xAxis.getBase()
 	arg2 := yAxis.getBase()
 	arg3 := zAxis.getBase()
 	arg4 := origin.getBase()
 	C.go_godot_transform_new_with_axis_origin(GDNative.api, &dest, arg1, arg2, arg3, arg4)
-	return &Transform{base: &dest}
+	return Transform{base: &dest}
 }
 
 // NewTransform godot_transform_new [[godot_transform * r_dest] [const godot_basis * p_basis] [const godot_vector3 * p_origin]] void
-func NewTransform(basis Basis, origin Vector3) *Transform {
+func NewTransform(basis Basis, origin Vector3) Transform {
 	var dest C.godot_transform
 	arg1 := basis.getBase()
 	arg2 := origin.getBase()
 	C.go_godot_transform_new(GDNative.api, &dest, arg1, arg2)
-	return &Transform{base: &dest}
+	return Transform{base: &dest}
 }
 
 // GetBasis godot_transform_get_basis [[const godot_transform * p_self]] godot_basis
@@ -128,7 +129,9 @@ func (gdt *Transform) AsString() String {
 
 	ret := C.go_godot_transform_as_string(GDNative.api, arg0)
 
-	return String{base: &ret}
+	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
+	goWchar := newWcharT(wchar)
+	return String(goWchar.AsString())
 
 }
 
@@ -231,10 +234,10 @@ func (gdt *Transform) XformInvPlane(v Plane) Plane {
 }
 
 // NewTransformIdentity godot_transform_new_identity [[godot_transform * r_dest]] void
-func NewTransformIdentity() *Transform {
+func NewTransformIdentity() Transform {
 	var dest C.godot_transform
 	C.go_godot_transform_new_identity(GDNative.api, &dest)
-	return &Transform{base: &dest}
+	return Transform{base: &dest}
 }
 
 // OperatorEqual godot_transform_operator_equal [[const godot_transform * p_self] [const godot_transform * p_b]] godot_bool

@@ -61,28 +61,47 @@ import "C"
 		// New{{ $typedef.GoName }}FromPointer will return a {{ $typedef.GoName }} from the 
 		// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 		func New{{ $typedef.GoName }}FromPointer(ptr Pointer) {{ $typedef.GoName }} {
-			return {{ $typedef.GoName }}{base: (*C.{{ $typedef.Name }})(ptr.getBase())}
-		}
-
-		type {{ $typedef.GoName }} struct {
-			base *C.{{ $typedef.Name }}
-			{{/* Handle struct properties */}}
-			{{ range $j, $propdef := $typedef.Properties -}}
-				{{ if ($view.IsValidProperty $propdef) -}}
-					{{ $propdef.GoName }} {{ $view.ToGoName $propdef.Base }}
-				{{ end -}}
+			{{/* String structs should be handled differently -*/}}
+			{{ if (eq $typedef.GoName "String") -}}
+				base := (*C.godot_string)(ptr.getBase())
+				wchar := C.go_godot_string_wide_str(GDNative.api, base)
+				goWchar := newWcharT(wchar)
+				return String(goWchar.AsString())
+			{{ else -}}
+				return {{ $typedef.GoName }}{base: (*C.{{ $typedef.Name }})(ptr.getBase())}
 			{{ end -}}
 		}
 
-		func (gdt {{ $typedef.GoName }}) getBase() *C.{{ $typedef.Name }} {
-			return gdt.base
-		}
+		{{/* The String struct is a special case to be compatible with Go strings -*/}}
+		{{ if (eq $typedef.GoName "String") }}
+			type {{ $typedef.GoName }} string 
+
+			func (s String) getBase() *C.godot_string {
+				return stringAsGodotString(string(s))
+			}
+		{{/* Handle all other kinds of Godot structs -*/}}
+		{{ else }}
+			type {{ $typedef.GoName }} struct {
+				base *C.{{ $typedef.Name }}
+				{{/* Handle struct properties */}}
+				{{ range $j, $propdef := $typedef.Properties -}}
+					{{ if ($view.IsValidProperty $propdef) -}}
+						{{ $propdef.GoName }} {{ $view.ToGoName $propdef.Base }}
+					{{ end -}}
+				{{ end -}}
+			}
+
+			func (gdt {{ $typedef.GoName }}) getBase() *C.{{ $typedef.Name }} {
+				return gdt.base
+			}
+		{{ end }}
 
 		{{/* Handle struct methods */}}
 		{{ range $j, $method := ($view.MethodsList $typedef) }}
+			{{/* Handle constructor methods -*/}}
 				// {{ $view.ToGoMethodName $typedef $method }} {{ $method.Name }} {{ $method.Arguments }} {{ $method.ReturnType }}
 			{{ if ($view.MethodIsConstructor $method) -}}
-				func {{ $view.ToGoMethodName $typedef $method }}({{ range $k, $arg := $method.Arguments }}{{ if (ne $k 0) }}{{ $view.ToGoArgName (index $arg 1) }} {{ $view.ToGoArgType (index $arg 0) true }}, {{ end }}{{ end }}) *{{ $typedef.GoName }} {
+				func {{ $view.ToGoMethodName $typedef $method }}({{ range $k, $arg := $method.Arguments }}{{ if (ne $k 0) }}{{ $view.ToGoArgName (index $arg 1) }} {{ $view.ToGoArgType (index $arg 0) true }}, {{ end }}{{ end }}) {{ $typedef.GoName }} {
 				var dest C.{{ $view.StripPointer (index (index $method.Arguments 0) 0) }} {{/* First argument is always the destination */}}
 					{{ range $k, $arg := $method.Arguments -}}
 						{{ if (ne $k 0 ) -}}
@@ -100,8 +119,9 @@ import "C"
 					{{ end -}}
 
 					C.go_{{ $method.Name }}(GDNative.api, {{ range $k, $arg := $method.Arguments }}{{ if (eq $k 0) }}&dest, {{ else }}{{ $view.OutputCArg $arg }}arg{{ $k }}, {{ end }}{{ end }})
-					return &{{ $typedef.GoName }}{base: &dest}
+					return {{ $typedef.GoName }}{base: &dest}
 				}
+			{{/* Handle all other kinds of methods -*/}}
 			{{ else -}}
 				func (gdt *{{ $typedef.GoName }}) {{ $view.ToGoMethodName $typedef $method }}({{ range $k, $arg := $method.Arguments }}{{ if $view.NotSelfArg (index $arg 1) }}{{ $view.ToGoArgName (index $arg 1) }} {{ $view.ToGoArgType (index $arg 0) true }}, {{ end }}{{ end }})  {{ $view.ToGoReturnType $method.ReturnType }} {
 					{{ range $k, $arg := $method.Arguments -}}
@@ -141,7 +161,13 @@ import "C"
 									return {{ $view.ToGoReturnType $method.ReturnType }}{base: ret}
 								{{ end }}
 							{{ else }}
-								return {{ $view.ToGoReturnType $method.ReturnType }}{base: &ret}
+								{{ if (eq $method.ReturnType "godot_string") -}}
+									wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
+									goWchar := newWcharT(wchar)
+									return String(goWchar.AsString())
+								{{ else -}}
+									return {{ $view.ToGoReturnType $method.ReturnType }}{base: &ret}
+								{{ end -}}
 							{{ end }}
 						{{ end -}}
 					{{ else -}}
