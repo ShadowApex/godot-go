@@ -18,13 +18,16 @@ import (
 
 // Log is used to log messages to Godot, and makes them viewable inside the
 // Godot debugger.
-var Log = &logger{}
+var Log = &Logger{StackNum: 2}
 
-// logger is a native Go structure for logging in Godot.
-type logger struct{}
+// Logger is a native Go structure for logging in Godot.
+type Logger struct {
+	// StackNum is how far up the stack logs should show up as.
+	StackNum int
+}
 
 // Print will print the given message to the Godot debugger and console.
-func (l *logger) Println(message ...interface{}) {
+func (l *Logger) Println(message ...interface{}) {
 	// Convert our message into a Go string.
 	goString := fmt.Sprint(message...)
 
@@ -39,18 +42,18 @@ func (l *logger) Println(message ...interface{}) {
 }
 
 // Warning will print a warning message to the Godot debugger and console.
-func (l *logger) Warning(message ...interface{}) {
+func (l *Logger) Warning(message ...interface{}) {
 	l.log(false, message...)
 }
 
 // Error will print an error message to the Godot debugger and console.
-func (l *logger) Error(message ...interface{}) {
+func (l *Logger) Error(message ...interface{}) {
 	l.log(true, message...)
 }
 
-// Write will call logger.Println from the given bytes, to implement the io.Writer
+// Write will call Logger.Println from the given bytes, to implement the io.Writer
 // interface.
-func (l *logger) Write(data []byte) (int, error) {
+func (l *Logger) Write(data []byte) (int, error) {
 	buffer := bytes.NewBuffer(data)
 	line := strings.TrimRight(buffer.String(), "\n")
 	l.Println(line)
@@ -59,12 +62,12 @@ func (l *logger) Write(data []byte) (int, error) {
 }
 
 // log is a helper function that will log either Warnings or Errors in Godot.
-func (l *logger) log(isError bool, message ...interface{}) {
+func (l *Logger) log(isError bool, message ...interface{}) {
 	// Convert the messages into a Go string.
 	goDescription := fmt.Sprint(message...)
 
 	// Get the caller filename and line number.
-	pc, file, no, ok := runtime.Caller(2)
+	pc, file, no, ok := runtime.Caller(l.StackNum)
 	if !ok {
 		fmt.Println("Unable to get caller!")
 		return

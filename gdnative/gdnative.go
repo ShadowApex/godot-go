@@ -70,6 +70,12 @@ func NewEmptyVoid() Pointer {
 	return Pointer{base: unsafe.Pointer(&empty)}
 }
 
+// GetSingleton will return an instance of the given singleton.
+func GetSingleton(name string) Object {
+	obj := C.godot_global_get_singleton(C.CString("ARVRServer"))
+	return Object{base: (*C.godot_object)(obj)}
+}
+
 // NewMethodBind will return a method binding using the given class name and method
 // name.
 func NewMethodBind(class, method string) MethodBind {
@@ -123,6 +129,34 @@ type Double float64
 
 func (d Double) getBase() C.double {
 	return C.double(d)
+}
+
+// NewPointerFromFloat will return an unsafe pointer to the given
+// object. This is primarily used in conjunction with MethodBindPtrCall.
+func NewPointerFromFloat(obj Float) Pointer {
+	base := obj.getBase()
+	return Pointer{base: unsafe.Pointer(&base)}
+}
+
+// NewFloatFromPointer will return a Float from the
+// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
+func NewFloatFromPointer(ptr Pointer) Float {
+	base := ptr.getBase()
+	return Float(*(*C.float)(base))
+}
+
+// NewEmptyFloat will return a pointer to an empty
+// initialized Float. This is primarily used in
+// conjunction with MethodBindPtrCall.
+func NewEmptyFloat() Pointer {
+	var obj C.float
+	return Pointer{base: unsafe.Pointer(&obj)}
+}
+
+type Float float64
+
+func (f Float) getBase() C.float {
+	return C.float(f)
 }
 
 type Int64T int64

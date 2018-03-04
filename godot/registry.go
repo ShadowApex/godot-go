@@ -20,8 +20,8 @@ func AutoRegister(constructor ...ClassConstructor) {
 // inheritance.
 type Class interface {
 	BaseClass() string
-	SetOwner(object gdnative.Object)
-	GetOwner() gdnative.Object
+	SetBaseObject(object gdnative.Object)
+	GetBaseObject() gdnative.Object
 }
 
 // ClassConstructor is any function that will build and return a class to be registered

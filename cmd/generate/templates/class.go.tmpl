@@ -1,11 +1,8 @@
 {{ $view := . }}{{ $API := $view.API -}}
-package {{ $view.Package }}
+package class
 
 import (
 	"github.com/shadowapex/godot-go/gdnative"
-	{{ range $i, $pkg := $view.GetImports }}
-		"github.com/shadowapex/godot-go/godot/class/{{ $pkg }}"
-	{{ end }}
 )
 
 /*------------------------------------------------------------------------------
@@ -17,20 +14,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
-func New{{ $view.SetClassName $API.Name $API.Singleton}}FromPointer(ptr gdnative.Pointer) *{{ $view.SetClassName $API.Name $API.Singleton }} {
+//func New{{ $view.SetClassName $API.Name $API.Singleton}}FromPointer(ptr gdnative.Pointer) {{ $view.SetClassName $API.Name $API.Singleton }} {
+func New{{ $view.GoValue $API.Name }}FromPointer(ptr gdnative.Pointer) {{ $view.SetClassName $API.Name $API.Singleton }} {
 	owner := gdnative.NewObjectFromPointer(ptr)
 	obj := {{ $view.SetClassName $API.Name $API.Singleton }}{}
-	obj.SetOwner(owner)
+	obj.SetBaseObject(owner)
 
-	return &obj
-
+	return obj
 }
 
 {{ if $API.Singleton -}}
     func newSingleton{{ $view.GoClassName $API.Name }}() *{{ $view.SetClassName $API.Name $API.Singleton}} {
         obj := &{{ $view.SetClassName $API.Name $API.Singleton }}{}
-        ptr := C.godot_global_get_singleton(C.CString("{{ $API.Name }}"))
-        obj.owner = (*C.godot_object)(ptr)
+    	gdObj := gdnative.GetSingleton("{{ $API.Name }}")
+	obj.SetBaseObject(gdObj)
         return obj
     }
     /*
@@ -42,19 +39,24 @@ func New{{ $view.SetClassName $API.Name $API.Singleton}}FromPointer(ptr gdnative
 {{ $view.ClassDoc $API.Name }}
 */
 type {{ $view.SetClassName $API.Name $API.Singleton }} struct {
-    {{ if eq $API.Name "Object" }}
-        owner gdnative.Object
-    {{ else }}
-	{{ if eq ($view.ResolvePackage $view.Package ($view.SetBaseClassName $API.BaseClass)) "" }}
-		{{ $view.SetBaseClassName $API.BaseClass }}
-	{{ else }}
-		{{ $view.ResolvePackage $view.Package ($view.SetBaseClassName $API.BaseClass) }}.{{ $view.SetBaseClassName $API.BaseClass }}
-	{{ end }}
-    {{ end }}
+    {{ if ne $API.Name "Object" }}
+	{{ $view.SetBaseClassName $API.BaseClass }}
+    {{ end -}}
+    owner gdnative.Object
 }
 
 func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) BaseClass() string {
     return "{{ $API.Name }}"
+}
+
+// SetBaseObject will internally set the Godot object inside the struct.
+// This is used to call parent methods.
+func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) SetBaseObject(object gdnative.Object) {
+    o.owner = object
+}
+
+func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) GetBaseObject() gdnative.Object {
+    return o.owner
 }
 
 {{ if $API.Methods }}
@@ -63,15 +65,15 @@ func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) BaseClass() string {
         {{ $view.MethodDoc $API.Name $method.Name }}
 	Args: {{ $method.Arguments }}, Returns: {{ $method.ReturnType }}
         */
-	{{/* Skip ENUM functions for now*/}}{{ if not ($view.IsEnum $method.ReturnType) }}
-	    func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) {{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $view.Package $arg.Type }},{{ end }}) {{ if $method.ReturnType }}{{ $view.GoValue $view.Package $method.ReturnType }}{{ end }} {
+	{{/* Skip ENUM functions for now*/}}{{ if not ($view.IsEnum $method.ReturnType) -}}
+	    func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) {{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $arg.Type }},{{ end }}) {{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ end }} {
                 log.Println("Calling {{ $API.Name }}.{{ $view.GoMethodName $method.Name }}()")
 
                 // Build out the method's arguments
                 ptrArguments := make([]gdnative.Pointer, {{ len $method.Arguments }}, {{ len $method.Arguments }})
                 {{ range $k, $arg := $method.Arguments -}}
 	    	    {{ if ($view.IsGodotClass $arg.Type) -}}
-	    	        ptrArguments[{{ $k }}] = gdnative.NewPointerFromObject({{ $view.GoArgName $arg.Name }}.GetOwner())
+			ptrArguments[{{ $k }}] = gdnative.NewPointerFromObject({{ $view.GoArgName $arg.Name }}.GetBaseObject())
 	    	    {{ else -}}
 	    	        ptrArguments[{{ $k }}] = gdnative.NewPointerFrom{{ $view.GoName $arg.Type }}({{ $view.GoArgName $arg.Name }})
 	            {{ end -}}
@@ -82,21 +84,17 @@ func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) BaseClass() string {
 
                 // Call the parent method.
 	        // {{ $method.ReturnType }}
-	        retPtr := {{ $view.GoEmptyReturnType $view.Package $method.ReturnType }}()
-	        gdnative.MethodBindPtrCall(methodBind, o.GetOwner(), ptrArguments, retPtr)
+	        retPtr := {{ $view.GoEmptyReturnType $method.ReturnType }}()
+		gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
                	{{ if $method.ReturnType }}
-	    	    {{ $returnType := $view.GoValue $view.Package $method.ReturnType }}{{ if ne $returnType "" }}
+	    	    {{ $returnType := $view.GoValue $method.ReturnType }}{{ if ne $returnType "" }}
 	    		// If we have a return type, convert it from a pointer into its actual object. 
 			{{ if $view.IsGodotClass $method.ReturnType -}}
-		            {{ if eq ($view.ResolvePackage $view.Package $method.ReturnType) "" -}}
 			        ret := New{{ $view.GoNewFromPointerType $method.ReturnType }}FromPointer(retPtr)
-	                    {{ else -}}
-				ret := {{ $view.ResolvePackage $view.Package $method.ReturnType }}.New{{ $view.GoNewFromPointerType $method.ReturnType }}FromPointer(retPtr)
-			    {{ end -}}
 		        {{ else -}}
 			    ret := gdnative.New{{ $view.GoNewFromPointerType $method.ReturnType }}FromPointer(retPtr)
-		        {{ end }}
+		        {{ end -}}
                         log.Println("  Got return value: ", ret)
 	    		return ret
                     {{ end -}}
@@ -106,16 +104,4 @@ func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) BaseClass() string {
             }
 	{{ end }}
     {{ end }}
-{{ end }}
-
-{{ if eq $API.Name "Object" }}
-    // SetOwner will internally set the Godot object inside the struct.
-    // This is used to call parent methods.
-    func (o *Object) SetOwner(object gdnative.Object) {
-        o.owner = object
-    }
-    
-    func (o *Object) GetOwner() gdnative.Object {
-        return o.owner
-    }
 {{ end }}

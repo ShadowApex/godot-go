@@ -116,7 +116,7 @@ func autoRegisterClasses() {
 
 			// Skip the method if its a Class interface method
 			skip := false
-			for _, exclude := range []string{"BaseClass", "GetOwner", "SetOwner"} {
+			for _, exclude := range []string{"BaseClass", "GetBaseObject", "SetBaseObject"} {
 				if classMethod.Name == exclude {
 					skip = true
 				}
@@ -160,7 +160,7 @@ func createConstructor(classString string, constructor ClassConstructor) *gdnati
 		}
 
 		// Add the Godot object pointer to the class structure.
-		class.SetOwner(object)
+		class.SetBaseObject(object)
 
 		// Add the instance to our instance registry.
 		instanceRegistry[object.ID()] = class

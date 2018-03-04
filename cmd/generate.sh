@@ -28,5 +28,9 @@ else
     echo "The 'godot' binary was not found in \$PATH. Using previously generated godot_api.json in repository..."
 fi
 
+# Cleaning old classes
+echo "Cleaning old generated classes..."
+rm -rf "$PKG_PATH"/godot/class/*
+
 # Run code generation
-go run $PKG_PATH/cmd/generate/main.go
+go run "$PKG_PATH"/cmd/generate/main.go

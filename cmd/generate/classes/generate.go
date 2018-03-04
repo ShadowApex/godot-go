@@ -81,7 +81,7 @@ func (v View) GoName(str string) string {
 	return casee.ToPascalCase(strings.Replace(str, "godot_", "", 1))
 }
 
-func (v View) GoEmptyReturnType(curPkg, str string) string {
+func (v View) GoEmptyReturnType(str string) string {
 	if v.IsEnum(str) {
 		return "gdnative.NewEmptyVoid"
 	}
@@ -89,10 +89,7 @@ func (v View) GoEmptyReturnType(curPkg, str string) string {
 	str = strings.TrimSpace(str)
 
 	if v.IsGodotClass(str) {
-		if v.ResolvePackage(curPkg, str) == "" {
-			return "NewEmpty" + str
-		}
-		return v.ResolvePackage(curPkg, str) + ".NewEmpty" + str
+		return "gdnative.NewEmptyObject"
 	} else {
 		return "gdnative.NewEmpty" + v.GoName(str)
 	}
@@ -105,6 +102,9 @@ func (v View) GoNewFromPointerType(str string) string {
 	}
 	str = strings.Replace(str, "*", "", 1)
 	str = strings.TrimSpace(str)
+	if v.IsGodotClass(str) {
+		return str
+	}
 	str = casee.ToPascalCase(str)
 	return str
 }
@@ -159,30 +159,19 @@ func (v View) GoArgName(argString string) string {
 }
 
 // GoValue will convert the Godot value into a valid Go value.
-func (v View) GoValue(curPkg, returnString string) string {
+func (v View) GoValue(returnString string) string {
 	// TODO: Right now we're converting any enum types to int64. We should
 	// look into creating types for each of these maybe? LOL
 	if strings.Contains(returnString, "enum.") {
 		returnString = "Int"
 	}
-	switch returnString {
-	case "String":
-		return "gdnative.String"
-	case "int":
-		return "gdnative.Int"
-	case "uint":
-		return "gdnative.Uint"
-	case "float":
-		return "gdnative.Float"
-	case "bool":
-		return "gdnative.Bool"
-	case "void":
+	if returnString == "void" {
 		return ""
-	default:
-		if v.ResolvePackage(curPkg, returnString) == "" {
-			return returnString
-		}
-		return v.ResolvePackage(curPkg, returnString) + "." + returnString
+	}
+	if v.IsGodotClass(returnString) {
+		return returnString
+	} else {
+		return "gdnative." + casee.ToPascalCase(returnString)
 	}
 }
 
@@ -410,12 +399,6 @@ func Generate() {
 		packageName := view.PackageMap[api.Name]
 		outFileName := view.PackageName(api.Name) + ".go"
 
-		// Create the directory structure for the package.
-		err := os.MkdirAll(classPath+"/"+packageName, 0755)
-		if err != nil {
-			panic(err)
-		}
-
 		// Set the current API
 		view.API = api
 		view.Package = packageName
@@ -423,16 +406,16 @@ func Generate() {
 		// Write the file using our template.
 		WriteTemplate(
 			packagePath+"/cmd/generate/templates/class.go.tmpl",
-			packagePath+"/godot/class/"+packageName+"/"+outFileName,
+			classPath+"/"+outFileName,
 			view,
 		)
 
 		// Run gofmt on the generated Go file.
 		log.Println("  Running gofmt on output:", outFileName+"...")
-		GoFmt(packagePath + "/godot/class/" + packageName + "/" + outFileName)
+		GoFmt(classPath + "/" + outFileName)
 
 		log.Println("  Running goimports on output:", outFileName+"...")
-		GoImports(packagePath + "/godot/class/" + packageName + "/" + outFileName)
+		GoImports(classPath + "/" + outFileName)
 
 	}
 	log.Println(len(view.APIs))
