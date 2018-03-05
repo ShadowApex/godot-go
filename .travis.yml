@@ -9,7 +9,7 @@ before_install:
     - ln -s $HOME/gopath/src/github.com/ShadowApex $HOME/gopath/src/github.com/shadowapex
 
 install:
-    - go get github.com/pinzolo/casee
+    - go get golang.org/x/tools/cmd/goimports
 
 script:
     - go generate
