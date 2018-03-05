@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *TileMap) BaseClass() string {
 	return "TileMap"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *TileMap) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *TileMap) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *TileMap) X_ClearQuadrants() {
-	log.Println("Calling TileMap.X_ClearQuadrants()")
+	//log.Println("Calling TileMap.X_ClearQuadrants()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *TileMap) X_ClearQuadrants() {
 	Args: [], Returns: int
 */
 func (o *TileMap) X_GetOldCellSize() gdnative.Int {
-	log.Println("Calling TileMap.X_GetOldCellSize()")
+	//log.Println("Calling TileMap.X_GetOldCellSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -86,7 +74,7 @@ func (o *TileMap) X_GetOldCellSize() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -95,7 +83,7 @@ func (o *TileMap) X_GetOldCellSize() gdnative.Int {
 	Args: [], Returns: PoolIntArray
 */
 func (o *TileMap) X_GetTileData() gdnative.PoolIntArray {
-	log.Println("Calling TileMap.X_GetTileData()")
+	//log.Println("Calling TileMap.X_GetTileData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -110,7 +98,7 @@ func (o *TileMap) X_GetTileData() gdnative.PoolIntArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -119,7 +107,7 @@ func (o *TileMap) X_GetTileData() gdnative.PoolIntArray {
 	Args: [], Returns: void
 */
 func (o *TileMap) X_RecreateQuadrants() {
-	log.Println("Calling TileMap.X_RecreateQuadrants()")
+	//log.Println("Calling TileMap.X_RecreateQuadrants()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -139,7 +127,7 @@ func (o *TileMap) X_RecreateQuadrants() {
 	Args: [{ false size int}], Returns: void
 */
 func (o *TileMap) X_SetOldCellSize(size gdnative.Int) {
-	log.Println("Calling TileMap.X_SetOldCellSize()")
+	//log.Println("Calling TileMap.X_SetOldCellSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -160,7 +148,7 @@ func (o *TileMap) X_SetOldCellSize(size gdnative.Int) {
 	Args: [{ false arg0 PoolIntArray}], Returns: void
 */
 func (o *TileMap) X_SetTileData(arg0 gdnative.PoolIntArray) {
-	log.Println("Calling TileMap.X_SetTileData()")
+	//log.Println("Calling TileMap.X_SetTileData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -181,7 +169,7 @@ func (o *TileMap) X_SetTileData(arg0 gdnative.PoolIntArray) {
 	Args: [], Returns: void
 */
 func (o *TileMap) X_UpdateDirtyQuadrants() {
-	log.Println("Calling TileMap.X_UpdateDirtyQuadrants()")
+	//log.Println("Calling TileMap.X_UpdateDirtyQuadrants()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -201,7 +189,7 @@ func (o *TileMap) X_UpdateDirtyQuadrants() {
 	Args: [], Returns: void
 */
 func (o *TileMap) Clear() {
-	log.Println("Calling TileMap.Clear()")
+	//log.Println("Calling TileMap.Clear()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -221,7 +209,7 @@ func (o *TileMap) Clear() {
 	Args: [{ false x int} { false y int}], Returns: int
 */
 func (o *TileMap) GetCell(x gdnative.Int, y gdnative.Int) gdnative.Int {
-	log.Println("Calling TileMap.GetCell()")
+	//log.Println("Calling TileMap.GetCell()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -238,7 +226,7 @@ func (o *TileMap) GetCell(x gdnative.Int, y gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -247,7 +235,7 @@ func (o *TileMap) GetCell(x gdnative.Int, y gdnative.Int) gdnative.Int {
 	Args: [], Returns: Vector2
 */
 func (o *TileMap) GetCellSize() gdnative.Vector2 {
-	log.Println("Calling TileMap.GetCellSize()")
+	//log.Println("Calling TileMap.GetCellSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -262,7 +250,7 @@ func (o *TileMap) GetCellSize() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -271,7 +259,7 @@ func (o *TileMap) GetCellSize() gdnative.Vector2 {
 	Args: [{ false position Vector2}], Returns: int
 */
 func (o *TileMap) GetCellv(position gdnative.Vector2) gdnative.Int {
-	log.Println("Calling TileMap.GetCellv()")
+	//log.Println("Calling TileMap.GetCellv()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -287,7 +275,7 @@ func (o *TileMap) GetCellv(position gdnative.Vector2) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -296,7 +284,7 @@ func (o *TileMap) GetCellv(position gdnative.Vector2) gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *TileMap) GetClipUv() gdnative.Bool {
-	log.Println("Calling TileMap.GetClipUv()")
+	//log.Println("Calling TileMap.GetClipUv()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -311,7 +299,7 @@ func (o *TileMap) GetClipUv() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -320,7 +308,7 @@ func (o *TileMap) GetClipUv() gdnative.Bool {
 	Args: [], Returns: float
 */
 func (o *TileMap) GetCollisionBounce() gdnative.Float {
-	log.Println("Calling TileMap.GetCollisionBounce()")
+	//log.Println("Calling TileMap.GetCollisionBounce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -335,7 +323,7 @@ func (o *TileMap) GetCollisionBounce() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -344,7 +332,7 @@ func (o *TileMap) GetCollisionBounce() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *TileMap) GetCollisionFriction() gdnative.Float {
-	log.Println("Calling TileMap.GetCollisionFriction()")
+	//log.Println("Calling TileMap.GetCollisionFriction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -359,7 +347,7 @@ func (o *TileMap) GetCollisionFriction() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -368,7 +356,7 @@ func (o *TileMap) GetCollisionFriction() gdnative.Float {
 	Args: [], Returns: int
 */
 func (o *TileMap) GetCollisionLayer() gdnative.Int {
-	log.Println("Calling TileMap.GetCollisionLayer()")
+	//log.Println("Calling TileMap.GetCollisionLayer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -383,7 +371,7 @@ func (o *TileMap) GetCollisionLayer() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -392,7 +380,7 @@ func (o *TileMap) GetCollisionLayer() gdnative.Int {
 	Args: [{ false bit int}], Returns: bool
 */
 func (o *TileMap) GetCollisionLayerBit(bit gdnative.Int) gdnative.Bool {
-	log.Println("Calling TileMap.GetCollisionLayerBit()")
+	//log.Println("Calling TileMap.GetCollisionLayerBit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -408,7 +396,7 @@ func (o *TileMap) GetCollisionLayerBit(bit gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -417,7 +405,7 @@ func (o *TileMap) GetCollisionLayerBit(bit gdnative.Int) gdnative.Bool {
 	Args: [], Returns: int
 */
 func (o *TileMap) GetCollisionMask() gdnative.Int {
-	log.Println("Calling TileMap.GetCollisionMask()")
+	//log.Println("Calling TileMap.GetCollisionMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -432,7 +420,7 @@ func (o *TileMap) GetCollisionMask() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -441,7 +429,7 @@ func (o *TileMap) GetCollisionMask() gdnative.Int {
 	Args: [{ false bit int}], Returns: bool
 */
 func (o *TileMap) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
-	log.Println("Calling TileMap.GetCollisionMaskBit()")
+	//log.Println("Calling TileMap.GetCollisionMaskBit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -457,7 +445,7 @@ func (o *TileMap) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -466,7 +454,7 @@ func (o *TileMap) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *TileMap) GetCollisionUseKinematic() gdnative.Bool {
-	log.Println("Calling TileMap.GetCollisionUseKinematic()")
+	//log.Println("Calling TileMap.GetCollisionUseKinematic()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -481,7 +469,7 @@ func (o *TileMap) GetCollisionUseKinematic() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -490,7 +478,7 @@ func (o *TileMap) GetCollisionUseKinematic() gdnative.Bool {
 	Args: [], Returns: Transform2D
 */
 func (o *TileMap) GetCustomTransform() gdnative.Transform2D {
-	log.Println("Calling TileMap.GetCustomTransform()")
+	//log.Println("Calling TileMap.GetCustomTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -505,7 +493,7 @@ func (o *TileMap) GetCustomTransform() gdnative.Transform2D {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransform2DFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -524,7 +512,7 @@ func (o *TileMap) GetCustomTransform() gdnative.Transform2D {
 	Args: [], Returns: int
 */
 func (o *TileMap) GetOccluderLightMask() gdnative.Int {
-	log.Println("Calling TileMap.GetOccluderLightMask()")
+	//log.Println("Calling TileMap.GetOccluderLightMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -539,7 +527,7 @@ func (o *TileMap) GetOccluderLightMask() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -548,7 +536,7 @@ func (o *TileMap) GetOccluderLightMask() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *TileMap) GetQuadrantSize() gdnative.Int {
-	log.Println("Calling TileMap.GetQuadrantSize()")
+	//log.Println("Calling TileMap.GetQuadrantSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -563,7 +551,7 @@ func (o *TileMap) GetQuadrantSize() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -577,7 +565,7 @@ func (o *TileMap) GetQuadrantSize() gdnative.Int {
 	Args: [], Returns: TileSet
 */
 func (o *TileMap) GetTileset() TileSet {
-	log.Println("Calling TileMap.GetTileset()")
+	//log.Println("Calling TileMap.GetTileset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -592,7 +580,7 @@ func (o *TileMap) GetTileset() TileSet {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTileSetFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -601,7 +589,7 @@ func (o *TileMap) GetTileset() TileSet {
 	Args: [], Returns: Array
 */
 func (o *TileMap) GetUsedCells() gdnative.Array {
-	log.Println("Calling TileMap.GetUsedCells()")
+	//log.Println("Calling TileMap.GetUsedCells()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -616,7 +604,7 @@ func (o *TileMap) GetUsedCells() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -625,7 +613,7 @@ func (o *TileMap) GetUsedCells() gdnative.Array {
 	Args: [{ false id int}], Returns: Array
 */
 func (o *TileMap) GetUsedCellsById(id gdnative.Int) gdnative.Array {
-	log.Println("Calling TileMap.GetUsedCellsById()")
+	//log.Println("Calling TileMap.GetUsedCellsById()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -641,7 +629,7 @@ func (o *TileMap) GetUsedCellsById(id gdnative.Int) gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -650,7 +638,7 @@ func (o *TileMap) GetUsedCellsById(id gdnative.Int) gdnative.Array {
 	Args: [], Returns: Rect2
 */
 func (o *TileMap) GetUsedRect() gdnative.Rect2 {
-	log.Println("Calling TileMap.GetUsedRect()")
+	//log.Println("Calling TileMap.GetUsedRect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -665,7 +653,7 @@ func (o *TileMap) GetUsedRect() gdnative.Rect2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRect2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -674,7 +662,7 @@ func (o *TileMap) GetUsedRect() gdnative.Rect2 {
 	Args: [{ false x int} { false y int}], Returns: bool
 */
 func (o *TileMap) IsCellTransposed(x gdnative.Int, y gdnative.Int) gdnative.Bool {
-	log.Println("Calling TileMap.IsCellTransposed()")
+	//log.Println("Calling TileMap.IsCellTransposed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -691,7 +679,7 @@ func (o *TileMap) IsCellTransposed(x gdnative.Int, y gdnative.Int) gdnative.Bool
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -700,7 +688,7 @@ func (o *TileMap) IsCellTransposed(x gdnative.Int, y gdnative.Int) gdnative.Bool
 	Args: [{ false x int} { false y int}], Returns: bool
 */
 func (o *TileMap) IsCellXFlipped(x gdnative.Int, y gdnative.Int) gdnative.Bool {
-	log.Println("Calling TileMap.IsCellXFlipped()")
+	//log.Println("Calling TileMap.IsCellXFlipped()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -717,7 +705,7 @@ func (o *TileMap) IsCellXFlipped(x gdnative.Int, y gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -726,7 +714,7 @@ func (o *TileMap) IsCellXFlipped(x gdnative.Int, y gdnative.Int) gdnative.Bool {
 	Args: [{ false x int} { false y int}], Returns: bool
 */
 func (o *TileMap) IsCellYFlipped(x gdnative.Int, y gdnative.Int) gdnative.Bool {
-	log.Println("Calling TileMap.IsCellYFlipped()")
+	//log.Println("Calling TileMap.IsCellYFlipped()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -743,7 +731,7 @@ func (o *TileMap) IsCellYFlipped(x gdnative.Int, y gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -752,7 +740,7 @@ func (o *TileMap) IsCellYFlipped(x gdnative.Int, y gdnative.Int) gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *TileMap) IsYSortModeEnabled() gdnative.Bool {
-	log.Println("Calling TileMap.IsYSortModeEnabled()")
+	//log.Println("Calling TileMap.IsYSortModeEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -767,7 +755,7 @@ func (o *TileMap) IsYSortModeEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -776,7 +764,7 @@ func (o *TileMap) IsYSortModeEnabled() gdnative.Bool {
 	Args: [{ false map_position Vector2} {False true ignore_half_ofs bool}], Returns: Vector2
 */
 func (o *TileMap) MapToWorld(mapPosition gdnative.Vector2, ignoreHalfOfs gdnative.Bool) gdnative.Vector2 {
-	log.Println("Calling TileMap.MapToWorld()")
+	//log.Println("Calling TileMap.MapToWorld()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -793,7 +781,7 @@ func (o *TileMap) MapToWorld(mapPosition gdnative.Vector2, ignoreHalfOfs gdnativ
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -802,7 +790,7 @@ func (o *TileMap) MapToWorld(mapPosition gdnative.Vector2, ignoreHalfOfs gdnativ
 	Args: [{ false x int} { false y int} { false tile int} {False true flip_x bool} {False true flip_y bool} {False true transpose bool} {(0, 0) true autotile_coord Vector2}], Returns: void
 */
 func (o *TileMap) SetCell(x gdnative.Int, y gdnative.Int, tile gdnative.Int, flipX gdnative.Bool, flipY gdnative.Bool, transpose gdnative.Bool, autotileCoord gdnative.Vector2) {
-	log.Println("Calling TileMap.SetCell()")
+	//log.Println("Calling TileMap.SetCell()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 7, 7)
@@ -829,7 +817,7 @@ func (o *TileMap) SetCell(x gdnative.Int, y gdnative.Int, tile gdnative.Int, fli
 	Args: [{ false size Vector2}], Returns: void
 */
 func (o *TileMap) SetCellSize(size gdnative.Vector2) {
-	log.Println("Calling TileMap.SetCellSize()")
+	//log.Println("Calling TileMap.SetCellSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -850,7 +838,7 @@ func (o *TileMap) SetCellSize(size gdnative.Vector2) {
 	Args: [{ false position Vector2} { false tile int} {False true flip_x bool} {False true flip_y bool} {False true transpose bool}], Returns: void
 */
 func (o *TileMap) SetCellv(position gdnative.Vector2, tile gdnative.Int, flipX gdnative.Bool, flipY gdnative.Bool, transpose gdnative.Bool) {
-	log.Println("Calling TileMap.SetCellv()")
+	//log.Println("Calling TileMap.SetCellv()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 5, 5)
@@ -875,7 +863,7 @@ func (o *TileMap) SetCellv(position gdnative.Vector2, tile gdnative.Int, flipX g
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *TileMap) SetClipUv(enable gdnative.Bool) {
-	log.Println("Calling TileMap.SetClipUv()")
+	//log.Println("Calling TileMap.SetClipUv()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -896,7 +884,7 @@ func (o *TileMap) SetClipUv(enable gdnative.Bool) {
 	Args: [{ false value float}], Returns: void
 */
 func (o *TileMap) SetCollisionBounce(value gdnative.Float) {
-	log.Println("Calling TileMap.SetCollisionBounce()")
+	//log.Println("Calling TileMap.SetCollisionBounce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -917,7 +905,7 @@ func (o *TileMap) SetCollisionBounce(value gdnative.Float) {
 	Args: [{ false value float}], Returns: void
 */
 func (o *TileMap) SetCollisionFriction(value gdnative.Float) {
-	log.Println("Calling TileMap.SetCollisionFriction()")
+	//log.Println("Calling TileMap.SetCollisionFriction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -938,7 +926,7 @@ func (o *TileMap) SetCollisionFriction(value gdnative.Float) {
 	Args: [{ false layer int}], Returns: void
 */
 func (o *TileMap) SetCollisionLayer(layer gdnative.Int) {
-	log.Println("Calling TileMap.SetCollisionLayer()")
+	//log.Println("Calling TileMap.SetCollisionLayer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -959,7 +947,7 @@ func (o *TileMap) SetCollisionLayer(layer gdnative.Int) {
 	Args: [{ false bit int} { false value bool}], Returns: void
 */
 func (o *TileMap) SetCollisionLayerBit(bit gdnative.Int, value gdnative.Bool) {
-	log.Println("Calling TileMap.SetCollisionLayerBit()")
+	//log.Println("Calling TileMap.SetCollisionLayerBit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -981,7 +969,7 @@ func (o *TileMap) SetCollisionLayerBit(bit gdnative.Int, value gdnative.Bool) {
 	Args: [{ false mask int}], Returns: void
 */
 func (o *TileMap) SetCollisionMask(mask gdnative.Int) {
-	log.Println("Calling TileMap.SetCollisionMask()")
+	//log.Println("Calling TileMap.SetCollisionMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1002,7 +990,7 @@ func (o *TileMap) SetCollisionMask(mask gdnative.Int) {
 	Args: [{ false bit int} { false value bool}], Returns: void
 */
 func (o *TileMap) SetCollisionMaskBit(bit gdnative.Int, value gdnative.Bool) {
-	log.Println("Calling TileMap.SetCollisionMaskBit()")
+	//log.Println("Calling TileMap.SetCollisionMaskBit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1024,7 +1012,7 @@ func (o *TileMap) SetCollisionMaskBit(bit gdnative.Int, value gdnative.Bool) {
 	Args: [{ false use_kinematic bool}], Returns: void
 */
 func (o *TileMap) SetCollisionUseKinematic(useKinematic gdnative.Bool) {
-	log.Println("Calling TileMap.SetCollisionUseKinematic()")
+	//log.Println("Calling TileMap.SetCollisionUseKinematic()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1045,7 +1033,7 @@ func (o *TileMap) SetCollisionUseKinematic(useKinematic gdnative.Bool) {
 	Args: [{ false custom_transform Transform2D}], Returns: void
 */
 func (o *TileMap) SetCustomTransform(customTransform gdnative.Transform2D) {
-	log.Println("Calling TileMap.SetCustomTransform()")
+	//log.Println("Calling TileMap.SetCustomTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1066,7 +1054,7 @@ func (o *TileMap) SetCustomTransform(customTransform gdnative.Transform2D) {
 	Args: [{ false half_offset int}], Returns: void
 */
 func (o *TileMap) SetHalfOffset(halfOffset gdnative.Int) {
-	log.Println("Calling TileMap.SetHalfOffset()")
+	//log.Println("Calling TileMap.SetHalfOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1087,7 +1075,7 @@ func (o *TileMap) SetHalfOffset(halfOffset gdnative.Int) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *TileMap) SetMode(mode gdnative.Int) {
-	log.Println("Calling TileMap.SetMode()")
+	//log.Println("Calling TileMap.SetMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1108,7 +1096,7 @@ func (o *TileMap) SetMode(mode gdnative.Int) {
 	Args: [{ false mask int}], Returns: void
 */
 func (o *TileMap) SetOccluderLightMask(mask gdnative.Int) {
-	log.Println("Calling TileMap.SetOccluderLightMask()")
+	//log.Println("Calling TileMap.SetOccluderLightMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1129,7 +1117,7 @@ func (o *TileMap) SetOccluderLightMask(mask gdnative.Int) {
 	Args: [{ false size int}], Returns: void
 */
 func (o *TileMap) SetQuadrantSize(size gdnative.Int) {
-	log.Println("Calling TileMap.SetQuadrantSize()")
+	//log.Println("Calling TileMap.SetQuadrantSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1150,7 +1138,7 @@ func (o *TileMap) SetQuadrantSize(size gdnative.Int) {
 	Args: [{ false origin int}], Returns: void
 */
 func (o *TileMap) SetTileOrigin(origin gdnative.Int) {
-	log.Println("Calling TileMap.SetTileOrigin()")
+	//log.Println("Calling TileMap.SetTileOrigin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1171,7 +1159,7 @@ func (o *TileMap) SetTileOrigin(origin gdnative.Int) {
 	Args: [{ false tileset TileSet}], Returns: void
 */
 func (o *TileMap) SetTileset(tileset TileSet) {
-	log.Println("Calling TileMap.SetTileset()")
+	//log.Println("Calling TileMap.SetTileset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1192,7 +1180,7 @@ func (o *TileMap) SetTileset(tileset TileSet) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *TileMap) SetYSortMode(enable gdnative.Bool) {
-	log.Println("Calling TileMap.SetYSortMode()")
+	//log.Println("Calling TileMap.SetYSortMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1213,7 +1201,7 @@ func (o *TileMap) SetYSortMode(enable gdnative.Bool) {
 	Args: [{ false position Vector2}], Returns: void
 */
 func (o *TileMap) UpdateBitmaskArea(position gdnative.Vector2) {
-	log.Println("Calling TileMap.UpdateBitmaskArea()")
+	//log.Println("Calling TileMap.UpdateBitmaskArea()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1234,7 +1222,7 @@ func (o *TileMap) UpdateBitmaskArea(position gdnative.Vector2) {
 	Args: [{(0, 0) true start Vector2} {(0, 0) true end Vector2}], Returns: void
 */
 func (o *TileMap) UpdateBitmaskRegion(start gdnative.Vector2, end gdnative.Vector2) {
-	log.Println("Calling TileMap.UpdateBitmaskRegion()")
+	//log.Println("Calling TileMap.UpdateBitmaskRegion()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1256,7 +1244,7 @@ func (o *TileMap) UpdateBitmaskRegion(start gdnative.Vector2, end gdnative.Vecto
 	Args: [{ false world_position Vector2}], Returns: Vector2
 */
 func (o *TileMap) WorldToMap(worldPosition gdnative.Vector2) gdnative.Vector2 {
-	log.Println("Calling TileMap.WorldToMap()")
+	//log.Println("Calling TileMap.WorldToMap()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1272,6 +1260,6 @@ func (o *TileMap) WorldToMap(worldPosition gdnative.Vector2) gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

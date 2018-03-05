@@ -33,13 +33,3 @@ type VisualScriptIndexGet struct {
 func (o *VisualScriptIndexGet) BaseClass() string {
 	return "VisualScriptIndexGet"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptIndexGet) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptIndexGet) GetBaseObject() gdnative.Object {
-	return o.owner
-}

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *TextEdit) BaseClass() string {
 	return "TextEdit"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *TextEdit) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *TextEdit) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *TextEdit) X_ClickSelectionHeld() {
-	log.Println("Calling TextEdit.X_ClickSelectionHeld()")
+	//log.Println("Calling TextEdit.X_ClickSelectionHeld()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *TextEdit) X_ClickSelectionHeld() {
 	Args: [], Returns: void
 */
 func (o *TextEdit) X_CursorChangedEmit() {
-	log.Println("Calling TextEdit.X_CursorChangedEmit()")
+	//log.Println("Calling TextEdit.X_CursorChangedEmit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -91,7 +79,7 @@ func (o *TextEdit) X_CursorChangedEmit() {
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
 func (o *TextEdit) X_GuiInput(arg0 InputEvent) {
-	log.Println("Calling TextEdit.X_GuiInput()")
+	//log.Println("Calling TextEdit.X_GuiInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -112,7 +100,7 @@ func (o *TextEdit) X_GuiInput(arg0 InputEvent) {
 	Args: [], Returns: void
 */
 func (o *TextEdit) X_PushCurrentOp() {
-	log.Println("Calling TextEdit.X_PushCurrentOp()")
+	//log.Println("Calling TextEdit.X_PushCurrentOp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -132,7 +120,7 @@ func (o *TextEdit) X_PushCurrentOp() {
 	Args: [{ false arg0 float}], Returns: void
 */
 func (o *TextEdit) X_ScrollMoved(arg0 gdnative.Float) {
-	log.Println("Calling TextEdit.X_ScrollMoved()")
+	//log.Println("Calling TextEdit.X_ScrollMoved()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -153,7 +141,7 @@ func (o *TextEdit) X_ScrollMoved(arg0 gdnative.Float) {
 	Args: [], Returns: void
 */
 func (o *TextEdit) X_TextChangedEmit() {
-	log.Println("Calling TextEdit.X_TextChangedEmit()")
+	//log.Println("Calling TextEdit.X_TextChangedEmit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -173,7 +161,7 @@ func (o *TextEdit) X_TextChangedEmit() {
 	Args: [], Returns: void
 */
 func (o *TextEdit) X_ToggleDrawCaret() {
-	log.Println("Calling TextEdit.X_ToggleDrawCaret()")
+	//log.Println("Calling TextEdit.X_ToggleDrawCaret()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -193,7 +181,7 @@ func (o *TextEdit) X_ToggleDrawCaret() {
 	Args: [], Returns: void
 */
 func (o *TextEdit) X_VScrollInput() {
-	log.Println("Calling TextEdit.X_VScrollInput()")
+	//log.Println("Calling TextEdit.X_VScrollInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -213,7 +201,7 @@ func (o *TextEdit) X_VScrollInput() {
 	Args: [{ false begin_key String} { false end_key String} { false color Color} {False true line_only bool}], Returns: void
 */
 func (o *TextEdit) AddColorRegion(beginKey gdnative.String, endKey gdnative.String, color gdnative.Color, lineOnly gdnative.Bool) {
-	log.Println("Calling TextEdit.AddColorRegion()")
+	//log.Println("Calling TextEdit.AddColorRegion()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -237,7 +225,7 @@ func (o *TextEdit) AddColorRegion(beginKey gdnative.String, endKey gdnative.Stri
 	Args: [{ false keyword String} { false color Color}], Returns: void
 */
 func (o *TextEdit) AddKeywordColor(keyword gdnative.String, color gdnative.Color) {
-	log.Println("Calling TextEdit.AddKeywordColor()")
+	//log.Println("Calling TextEdit.AddKeywordColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -259,7 +247,7 @@ func (o *TextEdit) AddKeywordColor(keyword gdnative.String, color gdnative.Color
 	Args: [{ false line int}], Returns: bool
 */
 func (o *TextEdit) CanFold(line gdnative.Int) gdnative.Bool {
-	log.Println("Calling TextEdit.CanFold()")
+	//log.Println("Calling TextEdit.CanFold()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -275,7 +263,7 @@ func (o *TextEdit) CanFold(line gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -284,7 +272,7 @@ func (o *TextEdit) CanFold(line gdnative.Int) gdnative.Bool {
 	Args: [], Returns: void
 */
 func (o *TextEdit) ClearColors() {
-	log.Println("Calling TextEdit.ClearColors()")
+	//log.Println("Calling TextEdit.ClearColors()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -304,7 +292,7 @@ func (o *TextEdit) ClearColors() {
 	Args: [], Returns: void
 */
 func (o *TextEdit) ClearUndoHistory() {
-	log.Println("Calling TextEdit.ClearUndoHistory()")
+	//log.Println("Calling TextEdit.ClearUndoHistory()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -324,7 +312,7 @@ func (o *TextEdit) ClearUndoHistory() {
 	Args: [], Returns: void
 */
 func (o *TextEdit) Copy() {
-	log.Println("Calling TextEdit.Copy()")
+	//log.Println("Calling TextEdit.Copy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -344,7 +332,7 @@ func (o *TextEdit) Copy() {
 	Args: [], Returns: bool
 */
 func (o *TextEdit) CursorGetBlinkEnabled() gdnative.Bool {
-	log.Println("Calling TextEdit.CursorGetBlinkEnabled()")
+	//log.Println("Calling TextEdit.CursorGetBlinkEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -359,7 +347,7 @@ func (o *TextEdit) CursorGetBlinkEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -368,7 +356,7 @@ func (o *TextEdit) CursorGetBlinkEnabled() gdnative.Bool {
 	Args: [], Returns: float
 */
 func (o *TextEdit) CursorGetBlinkSpeed() gdnative.Float {
-	log.Println("Calling TextEdit.CursorGetBlinkSpeed()")
+	//log.Println("Calling TextEdit.CursorGetBlinkSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -383,7 +371,7 @@ func (o *TextEdit) CursorGetBlinkSpeed() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -392,7 +380,7 @@ func (o *TextEdit) CursorGetBlinkSpeed() gdnative.Float {
 	Args: [], Returns: int
 */
 func (o *TextEdit) CursorGetColumn() gdnative.Int {
-	log.Println("Calling TextEdit.CursorGetColumn()")
+	//log.Println("Calling TextEdit.CursorGetColumn()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -407,7 +395,7 @@ func (o *TextEdit) CursorGetColumn() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -416,7 +404,7 @@ func (o *TextEdit) CursorGetColumn() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *TextEdit) CursorGetLine() gdnative.Int {
-	log.Println("Calling TextEdit.CursorGetLine()")
+	//log.Println("Calling TextEdit.CursorGetLine()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -431,7 +419,7 @@ func (o *TextEdit) CursorGetLine() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -440,7 +428,7 @@ func (o *TextEdit) CursorGetLine() gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *TextEdit) CursorIsBlockMode() gdnative.Bool {
-	log.Println("Calling TextEdit.CursorIsBlockMode()")
+	//log.Println("Calling TextEdit.CursorIsBlockMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -455,7 +443,7 @@ func (o *TextEdit) CursorIsBlockMode() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -464,7 +452,7 @@ func (o *TextEdit) CursorIsBlockMode() gdnative.Bool {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *TextEdit) CursorSetBlinkEnabled(enable gdnative.Bool) {
-	log.Println("Calling TextEdit.CursorSetBlinkEnabled()")
+	//log.Println("Calling TextEdit.CursorSetBlinkEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -485,7 +473,7 @@ func (o *TextEdit) CursorSetBlinkEnabled(enable gdnative.Bool) {
 	Args: [{ false blink_speed float}], Returns: void
 */
 func (o *TextEdit) CursorSetBlinkSpeed(blinkSpeed gdnative.Float) {
-	log.Println("Calling TextEdit.CursorSetBlinkSpeed()")
+	//log.Println("Calling TextEdit.CursorSetBlinkSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -506,7 +494,7 @@ func (o *TextEdit) CursorSetBlinkSpeed(blinkSpeed gdnative.Float) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *TextEdit) CursorSetBlockMode(enable gdnative.Bool) {
-	log.Println("Calling TextEdit.CursorSetBlockMode()")
+	//log.Println("Calling TextEdit.CursorSetBlockMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -527,7 +515,7 @@ func (o *TextEdit) CursorSetBlockMode(enable gdnative.Bool) {
 	Args: [{ false column int} {True true adjust_viewport bool}], Returns: void
 */
 func (o *TextEdit) CursorSetColumn(column gdnative.Int, adjustViewport gdnative.Bool) {
-	log.Println("Calling TextEdit.CursorSetColumn()")
+	//log.Println("Calling TextEdit.CursorSetColumn()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -549,7 +537,7 @@ func (o *TextEdit) CursorSetColumn(column gdnative.Int, adjustViewport gdnative.
 	Args: [{ false line int} {True true adjust_viewport bool} {True true can_be_hidden bool}], Returns: void
 */
 func (o *TextEdit) CursorSetLine(line gdnative.Int, adjustViewport gdnative.Bool, canBeHidden gdnative.Bool) {
-	log.Println("Calling TextEdit.CursorSetLine()")
+	//log.Println("Calling TextEdit.CursorSetLine()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -572,7 +560,7 @@ func (o *TextEdit) CursorSetLine(line gdnative.Int, adjustViewport gdnative.Bool
 	Args: [], Returns: void
 */
 func (o *TextEdit) Cut() {
-	log.Println("Calling TextEdit.Cut()")
+	//log.Println("Calling TextEdit.Cut()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -592,7 +580,7 @@ func (o *TextEdit) Cut() {
 	Args: [], Returns: void
 */
 func (o *TextEdit) Deselect() {
-	log.Println("Calling TextEdit.Deselect()")
+	//log.Println("Calling TextEdit.Deselect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -612,7 +600,7 @@ func (o *TextEdit) Deselect() {
 	Args: [], Returns: void
 */
 func (o *TextEdit) FoldAllLines() {
-	log.Println("Calling TextEdit.FoldAllLines()")
+	//log.Println("Calling TextEdit.FoldAllLines()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -632,7 +620,7 @@ func (o *TextEdit) FoldAllLines() {
 	Args: [{ false line int}], Returns: void
 */
 func (o *TextEdit) FoldLine(line gdnative.Int) {
-	log.Println("Calling TextEdit.FoldLine()")
+	//log.Println("Calling TextEdit.FoldLine()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -653,7 +641,7 @@ func (o *TextEdit) FoldLine(line gdnative.Int) {
 	Args: [{ false line int}], Returns: String
 */
 func (o *TextEdit) GetLine(line gdnative.Int) gdnative.String {
-	log.Println("Calling TextEdit.GetLine()")
+	//log.Println("Calling TextEdit.GetLine()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -669,7 +657,7 @@ func (o *TextEdit) GetLine(line gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -678,7 +666,7 @@ func (o *TextEdit) GetLine(line gdnative.Int) gdnative.String {
 	Args: [], Returns: int
 */
 func (o *TextEdit) GetLineCount() gdnative.Int {
-	log.Println("Calling TextEdit.GetLineCount()")
+	//log.Println("Calling TextEdit.GetLineCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -693,7 +681,7 @@ func (o *TextEdit) GetLineCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -702,7 +690,7 @@ func (o *TextEdit) GetLineCount() gdnative.Int {
 	Args: [], Returns: PopupMenu
 */
 func (o *TextEdit) GetMenu() PopupMenu {
-	log.Println("Calling TextEdit.GetMenu()")
+	//log.Println("Calling TextEdit.GetMenu()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -717,7 +705,7 @@ func (o *TextEdit) GetMenu() PopupMenu {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewPopupMenuFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -726,7 +714,7 @@ func (o *TextEdit) GetMenu() PopupMenu {
 	Args: [], Returns: int
 */
 func (o *TextEdit) GetSelectionFromColumn() gdnative.Int {
-	log.Println("Calling TextEdit.GetSelectionFromColumn()")
+	//log.Println("Calling TextEdit.GetSelectionFromColumn()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -741,7 +729,7 @@ func (o *TextEdit) GetSelectionFromColumn() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -750,7 +738,7 @@ func (o *TextEdit) GetSelectionFromColumn() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *TextEdit) GetSelectionFromLine() gdnative.Int {
-	log.Println("Calling TextEdit.GetSelectionFromLine()")
+	//log.Println("Calling TextEdit.GetSelectionFromLine()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -765,7 +753,7 @@ func (o *TextEdit) GetSelectionFromLine() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -774,7 +762,7 @@ func (o *TextEdit) GetSelectionFromLine() gdnative.Int {
 	Args: [], Returns: String
 */
 func (o *TextEdit) GetSelectionText() gdnative.String {
-	log.Println("Calling TextEdit.GetSelectionText()")
+	//log.Println("Calling TextEdit.GetSelectionText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -789,7 +777,7 @@ func (o *TextEdit) GetSelectionText() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -798,7 +786,7 @@ func (o *TextEdit) GetSelectionText() gdnative.String {
 	Args: [], Returns: int
 */
 func (o *TextEdit) GetSelectionToColumn() gdnative.Int {
-	log.Println("Calling TextEdit.GetSelectionToColumn()")
+	//log.Println("Calling TextEdit.GetSelectionToColumn()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -813,7 +801,7 @@ func (o *TextEdit) GetSelectionToColumn() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -822,7 +810,7 @@ func (o *TextEdit) GetSelectionToColumn() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *TextEdit) GetSelectionToLine() gdnative.Int {
-	log.Println("Calling TextEdit.GetSelectionToLine()")
+	//log.Println("Calling TextEdit.GetSelectionToLine()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -837,7 +825,7 @@ func (o *TextEdit) GetSelectionToLine() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -846,7 +834,7 @@ func (o *TextEdit) GetSelectionToLine() gdnative.Int {
 	Args: [], Returns: String
 */
 func (o *TextEdit) GetText() gdnative.String {
-	log.Println("Calling TextEdit.GetText()")
+	//log.Println("Calling TextEdit.GetText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -861,7 +849,7 @@ func (o *TextEdit) GetText() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -870,7 +858,7 @@ func (o *TextEdit) GetText() gdnative.String {
 	Args: [], Returns: float
 */
 func (o *TextEdit) GetVScrollSpeed() gdnative.Float {
-	log.Println("Calling TextEdit.GetVScrollSpeed()")
+	//log.Println("Calling TextEdit.GetVScrollSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -885,7 +873,7 @@ func (o *TextEdit) GetVScrollSpeed() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -894,7 +882,7 @@ func (o *TextEdit) GetVScrollSpeed() gdnative.Float {
 	Args: [], Returns: String
 */
 func (o *TextEdit) GetWordUnderCursor() gdnative.String {
-	log.Println("Calling TextEdit.GetWordUnderCursor()")
+	//log.Println("Calling TextEdit.GetWordUnderCursor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -909,7 +897,7 @@ func (o *TextEdit) GetWordUnderCursor() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -918,7 +906,7 @@ func (o *TextEdit) GetWordUnderCursor() gdnative.String {
 	Args: [{ false text String}], Returns: void
 */
 func (o *TextEdit) InsertTextAtCursor(text gdnative.String) {
-	log.Println("Calling TextEdit.InsertTextAtCursor()")
+	//log.Println("Calling TextEdit.InsertTextAtCursor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -939,7 +927,7 @@ func (o *TextEdit) InsertTextAtCursor(text gdnative.String) {
 	Args: [], Returns: bool
 */
 func (o *TextEdit) IsContextMenuEnabled() gdnative.Bool {
-	log.Println("Calling TextEdit.IsContextMenuEnabled()")
+	//log.Println("Calling TextEdit.IsContextMenuEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -954,7 +942,7 @@ func (o *TextEdit) IsContextMenuEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -963,7 +951,7 @@ func (o *TextEdit) IsContextMenuEnabled() gdnative.Bool {
 	Args: [{ false line int}], Returns: bool
 */
 func (o *TextEdit) IsFolded(line gdnative.Int) gdnative.Bool {
-	log.Println("Calling TextEdit.IsFolded()")
+	//log.Println("Calling TextEdit.IsFolded()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -979,7 +967,7 @@ func (o *TextEdit) IsFolded(line gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -988,7 +976,7 @@ func (o *TextEdit) IsFolded(line gdnative.Int) gdnative.Bool {
 	Args: [], Returns: int
 */
 func (o *TextEdit) IsHidingEnabled() gdnative.Int {
-	log.Println("Calling TextEdit.IsHidingEnabled()")
+	//log.Println("Calling TextEdit.IsHidingEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1003,7 +991,7 @@ func (o *TextEdit) IsHidingEnabled() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1012,7 +1000,7 @@ func (o *TextEdit) IsHidingEnabled() gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *TextEdit) IsHighlightAllOccurrencesEnabled() gdnative.Bool {
-	log.Println("Calling TextEdit.IsHighlightAllOccurrencesEnabled()")
+	//log.Println("Calling TextEdit.IsHighlightAllOccurrencesEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1027,7 +1015,7 @@ func (o *TextEdit) IsHighlightAllOccurrencesEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1036,7 +1024,7 @@ func (o *TextEdit) IsHighlightAllOccurrencesEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *TextEdit) IsHighlightCurrentLineEnabled() gdnative.Bool {
-	log.Println("Calling TextEdit.IsHighlightCurrentLineEnabled()")
+	//log.Println("Calling TextEdit.IsHighlightCurrentLineEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1051,7 +1039,7 @@ func (o *TextEdit) IsHighlightCurrentLineEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1060,7 +1048,7 @@ func (o *TextEdit) IsHighlightCurrentLineEnabled() gdnative.Bool {
 	Args: [{ false line int}], Returns: bool
 */
 func (o *TextEdit) IsLineHidden(line gdnative.Int) gdnative.Bool {
-	log.Println("Calling TextEdit.IsLineHidden()")
+	//log.Println("Calling TextEdit.IsLineHidden()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1076,7 +1064,7 @@ func (o *TextEdit) IsLineHidden(line gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1085,7 +1073,7 @@ func (o *TextEdit) IsLineHidden(line gdnative.Int) gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *TextEdit) IsOverridingSelectedFontColor() gdnative.Bool {
-	log.Println("Calling TextEdit.IsOverridingSelectedFontColor()")
+	//log.Println("Calling TextEdit.IsOverridingSelectedFontColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1100,7 +1088,7 @@ func (o *TextEdit) IsOverridingSelectedFontColor() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1109,7 +1097,7 @@ func (o *TextEdit) IsOverridingSelectedFontColor() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *TextEdit) IsReadonly() gdnative.Bool {
-	log.Println("Calling TextEdit.IsReadonly()")
+	//log.Println("Calling TextEdit.IsReadonly()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1124,7 +1112,7 @@ func (o *TextEdit) IsReadonly() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1133,7 +1121,7 @@ func (o *TextEdit) IsReadonly() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *TextEdit) IsRightClickMovingCaret() gdnative.Bool {
-	log.Println("Calling TextEdit.IsRightClickMovingCaret()")
+	//log.Println("Calling TextEdit.IsRightClickMovingCaret()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1148,7 +1136,7 @@ func (o *TextEdit) IsRightClickMovingCaret() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1157,7 +1145,7 @@ func (o *TextEdit) IsRightClickMovingCaret() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *TextEdit) IsSelectionActive() gdnative.Bool {
-	log.Println("Calling TextEdit.IsSelectionActive()")
+	//log.Println("Calling TextEdit.IsSelectionActive()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1172,7 +1160,7 @@ func (o *TextEdit) IsSelectionActive() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1181,7 +1169,7 @@ func (o *TextEdit) IsSelectionActive() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *TextEdit) IsShowLineNumbersEnabled() gdnative.Bool {
-	log.Println("Calling TextEdit.IsShowLineNumbersEnabled()")
+	//log.Println("Calling TextEdit.IsShowLineNumbersEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1196,7 +1184,7 @@ func (o *TextEdit) IsShowLineNumbersEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1205,7 +1193,7 @@ func (o *TextEdit) IsShowLineNumbersEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *TextEdit) IsSmoothScrollEnabled() gdnative.Bool {
-	log.Println("Calling TextEdit.IsSmoothScrollEnabled()")
+	//log.Println("Calling TextEdit.IsSmoothScrollEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1220,7 +1208,7 @@ func (o *TextEdit) IsSmoothScrollEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1229,7 +1217,7 @@ func (o *TextEdit) IsSmoothScrollEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *TextEdit) IsSyntaxColoringEnabled() gdnative.Bool {
-	log.Println("Calling TextEdit.IsSyntaxColoringEnabled()")
+	//log.Println("Calling TextEdit.IsSyntaxColoringEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1244,7 +1232,7 @@ func (o *TextEdit) IsSyntaxColoringEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1253,7 +1241,7 @@ func (o *TextEdit) IsSyntaxColoringEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *TextEdit) IsWrapping() gdnative.Bool {
-	log.Println("Calling TextEdit.IsWrapping()")
+	//log.Println("Calling TextEdit.IsWrapping()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1268,7 +1256,7 @@ func (o *TextEdit) IsWrapping() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1277,7 +1265,7 @@ func (o *TextEdit) IsWrapping() gdnative.Bool {
 	Args: [{ false option int}], Returns: void
 */
 func (o *TextEdit) MenuOption(option gdnative.Int) {
-	log.Println("Calling TextEdit.MenuOption()")
+	//log.Println("Calling TextEdit.MenuOption()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1298,7 +1286,7 @@ func (o *TextEdit) MenuOption(option gdnative.Int) {
 	Args: [], Returns: void
 */
 func (o *TextEdit) Paste() {
-	log.Println("Calling TextEdit.Paste()")
+	//log.Println("Calling TextEdit.Paste()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1318,7 +1306,7 @@ func (o *TextEdit) Paste() {
 	Args: [], Returns: void
 */
 func (o *TextEdit) Redo() {
-	log.Println("Calling TextEdit.Redo()")
+	//log.Println("Calling TextEdit.Redo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1338,7 +1326,7 @@ func (o *TextEdit) Redo() {
 	Args: [{ false key String} { false flags int} { false from_line int} { false from_column int}], Returns: PoolIntArray
 */
 func (o *TextEdit) Search(key gdnative.String, flags gdnative.Int, fromLine gdnative.Int, fromColumn gdnative.Int) gdnative.PoolIntArray {
-	log.Println("Calling TextEdit.Search()")
+	//log.Println("Calling TextEdit.Search()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -1357,7 +1345,7 @@ func (o *TextEdit) Search(key gdnative.String, flags gdnative.Int, fromLine gdna
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1366,7 +1354,7 @@ func (o *TextEdit) Search(key gdnative.String, flags gdnative.Int, fromLine gdna
 	Args: [{ false from_line int} { false from_column int} { false to_line int} { false to_column int}], Returns: void
 */
 func (o *TextEdit) Select(fromLine gdnative.Int, fromColumn gdnative.Int, toLine gdnative.Int, toColumn gdnative.Int) {
-	log.Println("Calling TextEdit.Select()")
+	//log.Println("Calling TextEdit.Select()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -1390,7 +1378,7 @@ func (o *TextEdit) Select(fromLine gdnative.Int, fromColumn gdnative.Int, toLine
 	Args: [], Returns: void
 */
 func (o *TextEdit) SelectAll() {
-	log.Println("Calling TextEdit.SelectAll()")
+	//log.Println("Calling TextEdit.SelectAll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1410,7 +1398,7 @@ func (o *TextEdit) SelectAll() {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *TextEdit) SetContextMenuEnabled(enable gdnative.Bool) {
-	log.Println("Calling TextEdit.SetContextMenuEnabled()")
+	//log.Println("Calling TextEdit.SetContextMenuEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1431,7 +1419,7 @@ func (o *TextEdit) SetContextMenuEnabled(enable gdnative.Bool) {
 	Args: [{ false enable int}], Returns: void
 */
 func (o *TextEdit) SetHidingEnabled(enable gdnative.Int) {
-	log.Println("Calling TextEdit.SetHidingEnabled()")
+	//log.Println("Calling TextEdit.SetHidingEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1452,7 +1440,7 @@ func (o *TextEdit) SetHidingEnabled(enable gdnative.Int) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *TextEdit) SetHighlightAllOccurrences(enable gdnative.Bool) {
-	log.Println("Calling TextEdit.SetHighlightAllOccurrences()")
+	//log.Println("Calling TextEdit.SetHighlightAllOccurrences()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1473,7 +1461,7 @@ func (o *TextEdit) SetHighlightAllOccurrences(enable gdnative.Bool) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *TextEdit) SetHighlightCurrentLine(enabled gdnative.Bool) {
-	log.Println("Calling TextEdit.SetHighlightCurrentLine()")
+	//log.Println("Calling TextEdit.SetHighlightCurrentLine()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1494,7 +1482,7 @@ func (o *TextEdit) SetHighlightCurrentLine(enabled gdnative.Bool) {
 	Args: [{ false line int} { false enable bool}], Returns: void
 */
 func (o *TextEdit) SetLineAsHidden(line gdnative.Int, enable gdnative.Bool) {
-	log.Println("Calling TextEdit.SetLineAsHidden()")
+	//log.Println("Calling TextEdit.SetLineAsHidden()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1516,7 +1504,7 @@ func (o *TextEdit) SetLineAsHidden(line gdnative.Int, enable gdnative.Bool) {
 	Args: [{ false override bool}], Returns: void
 */
 func (o *TextEdit) SetOverrideSelectedFontColor(override gdnative.Bool) {
-	log.Println("Calling TextEdit.SetOverrideSelectedFontColor()")
+	//log.Println("Calling TextEdit.SetOverrideSelectedFontColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1537,7 +1525,7 @@ func (o *TextEdit) SetOverrideSelectedFontColor(override gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *TextEdit) SetReadonly(enable gdnative.Bool) {
-	log.Println("Calling TextEdit.SetReadonly()")
+	//log.Println("Calling TextEdit.SetReadonly()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1558,7 +1546,7 @@ func (o *TextEdit) SetReadonly(enable gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *TextEdit) SetRightClickMovesCaret(enable gdnative.Bool) {
-	log.Println("Calling TextEdit.SetRightClickMovesCaret()")
+	//log.Println("Calling TextEdit.SetRightClickMovesCaret()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1579,7 +1567,7 @@ func (o *TextEdit) SetRightClickMovesCaret(enable gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *TextEdit) SetShowLineNumbers(enable gdnative.Bool) {
-	log.Println("Calling TextEdit.SetShowLineNumbers()")
+	//log.Println("Calling TextEdit.SetShowLineNumbers()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1600,7 +1588,7 @@ func (o *TextEdit) SetShowLineNumbers(enable gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *TextEdit) SetSmoothScrollEnable(enable gdnative.Bool) {
-	log.Println("Calling TextEdit.SetSmoothScrollEnable()")
+	//log.Println("Calling TextEdit.SetSmoothScrollEnable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1621,7 +1609,7 @@ func (o *TextEdit) SetSmoothScrollEnable(enable gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *TextEdit) SetSyntaxColoring(enable gdnative.Bool) {
-	log.Println("Calling TextEdit.SetSyntaxColoring()")
+	//log.Println("Calling TextEdit.SetSyntaxColoring()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1642,7 +1630,7 @@ func (o *TextEdit) SetSyntaxColoring(enable gdnative.Bool) {
 	Args: [{ false text String}], Returns: void
 */
 func (o *TextEdit) SetText(text gdnative.String) {
-	log.Println("Calling TextEdit.SetText()")
+	//log.Println("Calling TextEdit.SetText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1663,7 +1651,7 @@ func (o *TextEdit) SetText(text gdnative.String) {
 	Args: [{ false speed float}], Returns: void
 */
 func (o *TextEdit) SetVScrollSpeed(speed gdnative.Float) {
-	log.Println("Calling TextEdit.SetVScrollSpeed()")
+	//log.Println("Calling TextEdit.SetVScrollSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1684,7 +1672,7 @@ func (o *TextEdit) SetVScrollSpeed(speed gdnative.Float) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *TextEdit) SetWrap(enable gdnative.Bool) {
-	log.Println("Calling TextEdit.SetWrap()")
+	//log.Println("Calling TextEdit.SetWrap()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1705,7 +1693,7 @@ func (o *TextEdit) SetWrap(enable gdnative.Bool) {
 	Args: [{ false line int}], Returns: void
 */
 func (o *TextEdit) ToggleFoldLine(line gdnative.Int) {
-	log.Println("Calling TextEdit.ToggleFoldLine()")
+	//log.Println("Calling TextEdit.ToggleFoldLine()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1726,7 +1714,7 @@ func (o *TextEdit) ToggleFoldLine(line gdnative.Int) {
 	Args: [], Returns: void
 */
 func (o *TextEdit) Undo() {
-	log.Println("Calling TextEdit.Undo()")
+	//log.Println("Calling TextEdit.Undo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1746,7 +1734,7 @@ func (o *TextEdit) Undo() {
 	Args: [{ false line int}], Returns: void
 */
 func (o *TextEdit) UnfoldLine(line gdnative.Int) {
-	log.Println("Calling TextEdit.UnfoldLine()")
+	//log.Println("Calling TextEdit.UnfoldLine()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1767,7 +1755,7 @@ func (o *TextEdit) UnfoldLine(line gdnative.Int) {
 	Args: [], Returns: void
 */
 func (o *TextEdit) UnhideAllLines() {
-	log.Println("Calling TextEdit.UnhideAllLines()")
+	//log.Println("Calling TextEdit.UnhideAllLines()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *PlaneMesh) BaseClass() string {
 	return "PlaneMesh"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *PlaneMesh) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *PlaneMesh) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Vector2
 */
 func (o *PlaneMesh) GetSize() gdnative.Vector2 {
-	log.Println("Calling PlaneMesh.GetSize()")
+	//log.Println("Calling PlaneMesh.GetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *PlaneMesh) GetSize() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *PlaneMesh) GetSize() gdnative.Vector2 {
 	Args: [], Returns: int
 */
 func (o *PlaneMesh) GetSubdivideDepth() gdnative.Int {
-	log.Println("Calling PlaneMesh.GetSubdivideDepth()")
+	//log.Println("Calling PlaneMesh.GetSubdivideDepth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *PlaneMesh) GetSubdivideDepth() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *PlaneMesh) GetSubdivideDepth() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *PlaneMesh) GetSubdivideWidth() gdnative.Int {
-	log.Println("Calling PlaneMesh.GetSubdivideWidth()")
+	//log.Println("Calling PlaneMesh.GetSubdivideWidth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *PlaneMesh) GetSubdivideWidth() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *PlaneMesh) GetSubdivideWidth() gdnative.Int {
 	Args: [{ false size Vector2}], Returns: void
 */
 func (o *PlaneMesh) SetSize(size gdnative.Vector2) {
-	log.Println("Calling PlaneMesh.SetSize()")
+	//log.Println("Calling PlaneMesh.SetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -144,7 +132,7 @@ func (o *PlaneMesh) SetSize(size gdnative.Vector2) {
 	Args: [{ false subdivide int}], Returns: void
 */
 func (o *PlaneMesh) SetSubdivideDepth(subdivide gdnative.Int) {
-	log.Println("Calling PlaneMesh.SetSubdivideDepth()")
+	//log.Println("Calling PlaneMesh.SetSubdivideDepth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -165,7 +153,7 @@ func (o *PlaneMesh) SetSubdivideDepth(subdivide gdnative.Int) {
 	Args: [{ false subdivide int}], Returns: void
 */
 func (o *PlaneMesh) SetSubdivideWidth(subdivide gdnative.Int) {
-	log.Println("Calling PlaneMesh.SetSubdivideWidth()")
+	//log.Println("Calling PlaneMesh.SetSubdivideWidth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

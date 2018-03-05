@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *InputEventJoypadButton) BaseClass() string {
 	return "InputEventJoypadButton"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *InputEventJoypadButton) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *InputEventJoypadButton) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: int
 */
 func (o *InputEventJoypadButton) GetButtonIndex() gdnative.Int {
-	log.Println("Calling InputEventJoypadButton.GetButtonIndex()")
+	//log.Println("Calling InputEventJoypadButton.GetButtonIndex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *InputEventJoypadButton) GetButtonIndex() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *InputEventJoypadButton) GetButtonIndex() gdnative.Int {
 	Args: [], Returns: float
 */
 func (o *InputEventJoypadButton) GetPressure() gdnative.Float {
-	log.Println("Calling InputEventJoypadButton.GetPressure()")
+	//log.Println("Calling InputEventJoypadButton.GetPressure()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *InputEventJoypadButton) GetPressure() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *InputEventJoypadButton) GetPressure() gdnative.Float {
 	Args: [{ false button_index int}], Returns: void
 */
 func (o *InputEventJoypadButton) SetButtonIndex(buttonIndex gdnative.Int) {
-	log.Println("Calling InputEventJoypadButton.SetButtonIndex()")
+	//log.Println("Calling InputEventJoypadButton.SetButtonIndex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -120,7 +108,7 @@ func (o *InputEventJoypadButton) SetButtonIndex(buttonIndex gdnative.Int) {
 	Args: [{ false pressed bool}], Returns: void
 */
 func (o *InputEventJoypadButton) SetPressed(pressed gdnative.Bool) {
-	log.Println("Calling InputEventJoypadButton.SetPressed()")
+	//log.Println("Calling InputEventJoypadButton.SetPressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -141,7 +129,7 @@ func (o *InputEventJoypadButton) SetPressed(pressed gdnative.Bool) {
 	Args: [{ false pressure float}], Returns: void
 */
 func (o *InputEventJoypadButton) SetPressure(pressure gdnative.Float) {
-	log.Println("Calling InputEventJoypadButton.SetPressure()")
+	//log.Println("Calling InputEventJoypadButton.SetPressure()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

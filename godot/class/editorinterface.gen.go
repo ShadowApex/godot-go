@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *EditorInterface) BaseClass() string {
 	return "EditorInterface"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *EditorInterface) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *EditorInterface) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Edits the given [Resource].
 	Args: [{ false resource Resource}], Returns: void
 */
 func (o *EditorInterface) EditResource(resource Resource) {
-	log.Println("Calling EditorInterface.EditResource()")
+	//log.Println("Calling EditorInterface.EditResource()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *EditorInterface) EditResource(resource Resource) {
 	Args: [], Returns: Control
 */
 func (o *EditorInterface) GetBaseControl() Control {
-	log.Println("Calling EditorInterface.GetBaseControl()")
+	//log.Println("Calling EditorInterface.GetBaseControl()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -87,7 +75,7 @@ func (o *EditorInterface) GetBaseControl() Control {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewControlFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -96,7 +84,7 @@ func (o *EditorInterface) GetBaseControl() Control {
 	Args: [], Returns: Node
 */
 func (o *EditorInterface) GetEditedSceneRoot() Node {
-	log.Println("Calling EditorInterface.GetEditedSceneRoot()")
+	//log.Println("Calling EditorInterface.GetEditedSceneRoot()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -111,7 +99,7 @@ func (o *EditorInterface) GetEditedSceneRoot() Node {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewNodeFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -120,7 +108,7 @@ func (o *EditorInterface) GetEditedSceneRoot() Node {
 	Args: [], Returns: EditorSettings
 */
 func (o *EditorInterface) GetEditorSettings() EditorSettings {
-	log.Println("Calling EditorInterface.GetEditorSettings()")
+	//log.Println("Calling EditorInterface.GetEditorSettings()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -135,7 +123,7 @@ func (o *EditorInterface) GetEditorSettings() EditorSettings {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewEditorSettingsFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -144,7 +132,7 @@ func (o *EditorInterface) GetEditorSettings() EditorSettings {
 	Args: [], Returns: Control
 */
 func (o *EditorInterface) GetEditorViewport() Control {
-	log.Println("Calling EditorInterface.GetEditorViewport()")
+	//log.Println("Calling EditorInterface.GetEditorViewport()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -159,7 +147,7 @@ func (o *EditorInterface) GetEditorViewport() Control {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewControlFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -168,7 +156,7 @@ func (o *EditorInterface) GetEditorViewport() Control {
 	Args: [], Returns: Array
 */
 func (o *EditorInterface) GetOpenScenes() gdnative.Array {
-	log.Println("Calling EditorInterface.GetOpenScenes()")
+	//log.Println("Calling EditorInterface.GetOpenScenes()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -183,7 +171,7 @@ func (o *EditorInterface) GetOpenScenes() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -192,7 +180,7 @@ func (o *EditorInterface) GetOpenScenes() gdnative.Array {
 	Args: [], Returns: EditorFileSystem
 */
 func (o *EditorInterface) GetResourceFilesystem() EditorFileSystem {
-	log.Println("Calling EditorInterface.GetResourceFilesystem()")
+	//log.Println("Calling EditorInterface.GetResourceFilesystem()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -207,7 +195,7 @@ func (o *EditorInterface) GetResourceFilesystem() EditorFileSystem {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewEditorFileSystemFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -216,7 +204,7 @@ func (o *EditorInterface) GetResourceFilesystem() EditorFileSystem {
 	Args: [], Returns: EditorResourcePreview
 */
 func (o *EditorInterface) GetResourcePreviewer() EditorResourcePreview {
-	log.Println("Calling EditorInterface.GetResourcePreviewer()")
+	//log.Println("Calling EditorInterface.GetResourcePreviewer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -231,7 +219,7 @@ func (o *EditorInterface) GetResourcePreviewer() EditorResourcePreview {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewEditorResourcePreviewFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -240,7 +228,7 @@ func (o *EditorInterface) GetResourcePreviewer() EditorResourcePreview {
 	Args: [], Returns: ScriptEditor
 */
 func (o *EditorInterface) GetScriptEditor() ScriptEditor {
-	log.Println("Calling EditorInterface.GetScriptEditor()")
+	//log.Println("Calling EditorInterface.GetScriptEditor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -255,7 +243,7 @@ func (o *EditorInterface) GetScriptEditor() ScriptEditor {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewScriptEditorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -264,7 +252,7 @@ func (o *EditorInterface) GetScriptEditor() ScriptEditor {
 	Args: [], Returns: String
 */
 func (o *EditorInterface) GetSelectedPath() gdnative.String {
-	log.Println("Calling EditorInterface.GetSelectedPath()")
+	//log.Println("Calling EditorInterface.GetSelectedPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -279,7 +267,7 @@ func (o *EditorInterface) GetSelectedPath() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -288,7 +276,7 @@ func (o *EditorInterface) GetSelectedPath() gdnative.String {
 	Args: [], Returns: EditorSelection
 */
 func (o *EditorInterface) GetSelection() EditorSelection {
-	log.Println("Calling EditorInterface.GetSelection()")
+	//log.Println("Calling EditorInterface.GetSelection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -303,7 +291,7 @@ func (o *EditorInterface) GetSelection() EditorSelection {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewEditorSelectionFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -312,7 +300,7 @@ func (o *EditorInterface) GetSelection() EditorSelection {
 	Args: [{ false object Object} { true for_property String}], Returns: void
 */
 func (o *EditorInterface) InspectObject(object Object, forProperty gdnative.String) {
-	log.Println("Calling EditorInterface.InspectObject()")
+	//log.Println("Calling EditorInterface.InspectObject()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -334,7 +322,7 @@ func (o *EditorInterface) InspectObject(object Object, forProperty gdnative.Stri
 	Args: [{ false plugin String}], Returns: bool
 */
 func (o *EditorInterface) IsPluginEnabled(plugin gdnative.String) gdnative.Bool {
-	log.Println("Calling EditorInterface.IsPluginEnabled()")
+	//log.Println("Calling EditorInterface.IsPluginEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -350,7 +338,7 @@ func (o *EditorInterface) IsPluginEnabled(plugin gdnative.String) gdnative.Bool 
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -359,7 +347,7 @@ func (o *EditorInterface) IsPluginEnabled(plugin gdnative.String) gdnative.Bool 
 	Args: [{ false meshes Array} { false preview_size int}], Returns: Array
 */
 func (o *EditorInterface) MakeMeshPreviews(meshes gdnative.Array, previewSize gdnative.Int) gdnative.Array {
-	log.Println("Calling EditorInterface.MakeMeshPreviews()")
+	//log.Println("Calling EditorInterface.MakeMeshPreviews()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -376,7 +364,7 @@ func (o *EditorInterface) MakeMeshPreviews(meshes gdnative.Array, previewSize gd
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -385,7 +373,7 @@ func (o *EditorInterface) MakeMeshPreviews(meshes gdnative.Array, previewSize gd
 	Args: [{ false scene_filepath String}], Returns: void
 */
 func (o *EditorInterface) OpenSceneFromPath(sceneFilepath gdnative.String) {
-	log.Println("Calling EditorInterface.OpenSceneFromPath()")
+	//log.Println("Calling EditorInterface.OpenSceneFromPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -406,7 +394,7 @@ func (o *EditorInterface) OpenSceneFromPath(sceneFilepath gdnative.String) {
 	Args: [{ false scene_filepath String}], Returns: void
 */
 func (o *EditorInterface) ReloadSceneFromPath(sceneFilepath gdnative.String) {
-	log.Println("Calling EditorInterface.ReloadSceneFromPath()")
+	//log.Println("Calling EditorInterface.ReloadSceneFromPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -432,7 +420,7 @@ func (o *EditorInterface) ReloadSceneFromPath(sceneFilepath gdnative.String) {
 	Args: [{ false path String} {True true with_preview bool}], Returns: void
 */
 func (o *EditorInterface) SaveSceneAs(path gdnative.String, withPreview gdnative.Bool) {
-	log.Println("Calling EditorInterface.SaveSceneAs()")
+	//log.Println("Calling EditorInterface.SaveSceneAs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -454,7 +442,7 @@ func (o *EditorInterface) SaveSceneAs(path gdnative.String, withPreview gdnative
 	Args: [{ false p_file String}], Returns: void
 */
 func (o *EditorInterface) SelectFile(pFile gdnative.String) {
-	log.Println("Calling EditorInterface.SelectFile()")
+	//log.Println("Calling EditorInterface.SelectFile()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -475,7 +463,7 @@ func (o *EditorInterface) SelectFile(pFile gdnative.String) {
 	Args: [{ false plugin String} { false enabled bool}], Returns: void
 */
 func (o *EditorInterface) SetPluginEnabled(plugin gdnative.String, enabled gdnative.Bool) {
-	log.Println("Calling EditorInterface.SetPluginEnabled()")
+	//log.Println("Calling EditorInterface.SetPluginEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)

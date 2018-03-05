@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ProceduralSky) BaseClass() string {
 	return "ProceduralSky"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ProceduralSky) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ProceduralSky) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false image Image}], Returns: void
 */
 func (o *ProceduralSky) X_ThreadDone(image Image) {
-	log.Println("Calling ProceduralSky.X_ThreadDone()")
+	//log.Println("Calling ProceduralSky.X_ThreadDone()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *ProceduralSky) X_ThreadDone(image Image) {
 	Args: [], Returns: void
 */
 func (o *ProceduralSky) X_UpdateSky() {
-	log.Println("Calling ProceduralSky.X_UpdateSky()")
+	//log.Println("Calling ProceduralSky.X_UpdateSky()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -92,7 +80,7 @@ func (o *ProceduralSky) X_UpdateSky() {
 	Args: [], Returns: Color
 */
 func (o *ProceduralSky) GetGroundBottomColor() gdnative.Color {
-	log.Println("Calling ProceduralSky.GetGroundBottomColor()")
+	//log.Println("Calling ProceduralSky.GetGroundBottomColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -107,7 +95,7 @@ func (o *ProceduralSky) GetGroundBottomColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -116,7 +104,7 @@ func (o *ProceduralSky) GetGroundBottomColor() gdnative.Color {
 	Args: [], Returns: float
 */
 func (o *ProceduralSky) GetGroundCurve() gdnative.Float {
-	log.Println("Calling ProceduralSky.GetGroundCurve()")
+	//log.Println("Calling ProceduralSky.GetGroundCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -131,7 +119,7 @@ func (o *ProceduralSky) GetGroundCurve() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -140,7 +128,7 @@ func (o *ProceduralSky) GetGroundCurve() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *ProceduralSky) GetGroundEnergy() gdnative.Float {
-	log.Println("Calling ProceduralSky.GetGroundEnergy()")
+	//log.Println("Calling ProceduralSky.GetGroundEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -155,7 +143,7 @@ func (o *ProceduralSky) GetGroundEnergy() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -164,7 +152,7 @@ func (o *ProceduralSky) GetGroundEnergy() gdnative.Float {
 	Args: [], Returns: Color
 */
 func (o *ProceduralSky) GetGroundHorizonColor() gdnative.Color {
-	log.Println("Calling ProceduralSky.GetGroundHorizonColor()")
+	//log.Println("Calling ProceduralSky.GetGroundHorizonColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -179,7 +167,7 @@ func (o *ProceduralSky) GetGroundHorizonColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -188,7 +176,7 @@ func (o *ProceduralSky) GetGroundHorizonColor() gdnative.Color {
 	Args: [], Returns: float
 */
 func (o *ProceduralSky) GetSkyCurve() gdnative.Float {
-	log.Println("Calling ProceduralSky.GetSkyCurve()")
+	//log.Println("Calling ProceduralSky.GetSkyCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -203,7 +191,7 @@ func (o *ProceduralSky) GetSkyCurve() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -212,7 +200,7 @@ func (o *ProceduralSky) GetSkyCurve() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *ProceduralSky) GetSkyEnergy() gdnative.Float {
-	log.Println("Calling ProceduralSky.GetSkyEnergy()")
+	//log.Println("Calling ProceduralSky.GetSkyEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -227,7 +215,7 @@ func (o *ProceduralSky) GetSkyEnergy() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -236,7 +224,7 @@ func (o *ProceduralSky) GetSkyEnergy() gdnative.Float {
 	Args: [], Returns: Color
 */
 func (o *ProceduralSky) GetSkyHorizonColor() gdnative.Color {
-	log.Println("Calling ProceduralSky.GetSkyHorizonColor()")
+	//log.Println("Calling ProceduralSky.GetSkyHorizonColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -251,7 +239,7 @@ func (o *ProceduralSky) GetSkyHorizonColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -260,7 +248,7 @@ func (o *ProceduralSky) GetSkyHorizonColor() gdnative.Color {
 	Args: [], Returns: Color
 */
 func (o *ProceduralSky) GetSkyTopColor() gdnative.Color {
-	log.Println("Calling ProceduralSky.GetSkyTopColor()")
+	//log.Println("Calling ProceduralSky.GetSkyTopColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -275,7 +263,7 @@ func (o *ProceduralSky) GetSkyTopColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -284,7 +272,7 @@ func (o *ProceduralSky) GetSkyTopColor() gdnative.Color {
 	Args: [], Returns: float
 */
 func (o *ProceduralSky) GetSunAngleMax() gdnative.Float {
-	log.Println("Calling ProceduralSky.GetSunAngleMax()")
+	//log.Println("Calling ProceduralSky.GetSunAngleMax()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -299,7 +287,7 @@ func (o *ProceduralSky) GetSunAngleMax() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -308,7 +296,7 @@ func (o *ProceduralSky) GetSunAngleMax() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *ProceduralSky) GetSunAngleMin() gdnative.Float {
-	log.Println("Calling ProceduralSky.GetSunAngleMin()")
+	//log.Println("Calling ProceduralSky.GetSunAngleMin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -323,7 +311,7 @@ func (o *ProceduralSky) GetSunAngleMin() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -332,7 +320,7 @@ func (o *ProceduralSky) GetSunAngleMin() gdnative.Float {
 	Args: [], Returns: Color
 */
 func (o *ProceduralSky) GetSunColor() gdnative.Color {
-	log.Println("Calling ProceduralSky.GetSunColor()")
+	//log.Println("Calling ProceduralSky.GetSunColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -347,7 +335,7 @@ func (o *ProceduralSky) GetSunColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -356,7 +344,7 @@ func (o *ProceduralSky) GetSunColor() gdnative.Color {
 	Args: [], Returns: float
 */
 func (o *ProceduralSky) GetSunCurve() gdnative.Float {
-	log.Println("Calling ProceduralSky.GetSunCurve()")
+	//log.Println("Calling ProceduralSky.GetSunCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -371,7 +359,7 @@ func (o *ProceduralSky) GetSunCurve() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -380,7 +368,7 @@ func (o *ProceduralSky) GetSunCurve() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *ProceduralSky) GetSunEnergy() gdnative.Float {
-	log.Println("Calling ProceduralSky.GetSunEnergy()")
+	//log.Println("Calling ProceduralSky.GetSunEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -395,7 +383,7 @@ func (o *ProceduralSky) GetSunEnergy() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -404,7 +392,7 @@ func (o *ProceduralSky) GetSunEnergy() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *ProceduralSky) GetSunLatitude() gdnative.Float {
-	log.Println("Calling ProceduralSky.GetSunLatitude()")
+	//log.Println("Calling ProceduralSky.GetSunLatitude()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -419,7 +407,7 @@ func (o *ProceduralSky) GetSunLatitude() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -428,7 +416,7 @@ func (o *ProceduralSky) GetSunLatitude() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *ProceduralSky) GetSunLongitude() gdnative.Float {
-	log.Println("Calling ProceduralSky.GetSunLongitude()")
+	//log.Println("Calling ProceduralSky.GetSunLongitude()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -443,7 +431,7 @@ func (o *ProceduralSky) GetSunLongitude() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -457,7 +445,7 @@ func (o *ProceduralSky) GetSunLongitude() gdnative.Float {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *ProceduralSky) SetGroundBottomColor(color gdnative.Color) {
-	log.Println("Calling ProceduralSky.SetGroundBottomColor()")
+	//log.Println("Calling ProceduralSky.SetGroundBottomColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -478,7 +466,7 @@ func (o *ProceduralSky) SetGroundBottomColor(color gdnative.Color) {
 	Args: [{ false curve float}], Returns: void
 */
 func (o *ProceduralSky) SetGroundCurve(curve gdnative.Float) {
-	log.Println("Calling ProceduralSky.SetGroundCurve()")
+	//log.Println("Calling ProceduralSky.SetGroundCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -499,7 +487,7 @@ func (o *ProceduralSky) SetGroundCurve(curve gdnative.Float) {
 	Args: [{ false energy float}], Returns: void
 */
 func (o *ProceduralSky) SetGroundEnergy(energy gdnative.Float) {
-	log.Println("Calling ProceduralSky.SetGroundEnergy()")
+	//log.Println("Calling ProceduralSky.SetGroundEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -520,7 +508,7 @@ func (o *ProceduralSky) SetGroundEnergy(energy gdnative.Float) {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *ProceduralSky) SetGroundHorizonColor(color gdnative.Color) {
-	log.Println("Calling ProceduralSky.SetGroundHorizonColor()")
+	//log.Println("Calling ProceduralSky.SetGroundHorizonColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -541,7 +529,7 @@ func (o *ProceduralSky) SetGroundHorizonColor(color gdnative.Color) {
 	Args: [{ false curve float}], Returns: void
 */
 func (o *ProceduralSky) SetSkyCurve(curve gdnative.Float) {
-	log.Println("Calling ProceduralSky.SetSkyCurve()")
+	//log.Println("Calling ProceduralSky.SetSkyCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -562,7 +550,7 @@ func (o *ProceduralSky) SetSkyCurve(curve gdnative.Float) {
 	Args: [{ false energy float}], Returns: void
 */
 func (o *ProceduralSky) SetSkyEnergy(energy gdnative.Float) {
-	log.Println("Calling ProceduralSky.SetSkyEnergy()")
+	//log.Println("Calling ProceduralSky.SetSkyEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -583,7 +571,7 @@ func (o *ProceduralSky) SetSkyEnergy(energy gdnative.Float) {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *ProceduralSky) SetSkyHorizonColor(color gdnative.Color) {
-	log.Println("Calling ProceduralSky.SetSkyHorizonColor()")
+	//log.Println("Calling ProceduralSky.SetSkyHorizonColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -604,7 +592,7 @@ func (o *ProceduralSky) SetSkyHorizonColor(color gdnative.Color) {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *ProceduralSky) SetSkyTopColor(color gdnative.Color) {
-	log.Println("Calling ProceduralSky.SetSkyTopColor()")
+	//log.Println("Calling ProceduralSky.SetSkyTopColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -625,7 +613,7 @@ func (o *ProceduralSky) SetSkyTopColor(color gdnative.Color) {
 	Args: [{ false degrees float}], Returns: void
 */
 func (o *ProceduralSky) SetSunAngleMax(degrees gdnative.Float) {
-	log.Println("Calling ProceduralSky.SetSunAngleMax()")
+	//log.Println("Calling ProceduralSky.SetSunAngleMax()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -646,7 +634,7 @@ func (o *ProceduralSky) SetSunAngleMax(degrees gdnative.Float) {
 	Args: [{ false degrees float}], Returns: void
 */
 func (o *ProceduralSky) SetSunAngleMin(degrees gdnative.Float) {
-	log.Println("Calling ProceduralSky.SetSunAngleMin()")
+	//log.Println("Calling ProceduralSky.SetSunAngleMin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -667,7 +655,7 @@ func (o *ProceduralSky) SetSunAngleMin(degrees gdnative.Float) {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *ProceduralSky) SetSunColor(color gdnative.Color) {
-	log.Println("Calling ProceduralSky.SetSunColor()")
+	//log.Println("Calling ProceduralSky.SetSunColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -688,7 +676,7 @@ func (o *ProceduralSky) SetSunColor(color gdnative.Color) {
 	Args: [{ false curve float}], Returns: void
 */
 func (o *ProceduralSky) SetSunCurve(curve gdnative.Float) {
-	log.Println("Calling ProceduralSky.SetSunCurve()")
+	//log.Println("Calling ProceduralSky.SetSunCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -709,7 +697,7 @@ func (o *ProceduralSky) SetSunCurve(curve gdnative.Float) {
 	Args: [{ false energy float}], Returns: void
 */
 func (o *ProceduralSky) SetSunEnergy(energy gdnative.Float) {
-	log.Println("Calling ProceduralSky.SetSunEnergy()")
+	//log.Println("Calling ProceduralSky.SetSunEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -730,7 +718,7 @@ func (o *ProceduralSky) SetSunEnergy(energy gdnative.Float) {
 	Args: [{ false degrees float}], Returns: void
 */
 func (o *ProceduralSky) SetSunLatitude(degrees gdnative.Float) {
-	log.Println("Calling ProceduralSky.SetSunLatitude()")
+	//log.Println("Calling ProceduralSky.SetSunLatitude()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -751,7 +739,7 @@ func (o *ProceduralSky) SetSunLatitude(degrees gdnative.Float) {
 	Args: [{ false degrees float}], Returns: void
 */
 func (o *ProceduralSky) SetSunLongitude(degrees gdnative.Float) {
-	log.Println("Calling ProceduralSky.SetSunLongitude()")
+	//log.Println("Calling ProceduralSky.SetSunLongitude()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -772,7 +760,7 @@ func (o *ProceduralSky) SetSunLongitude(degrees gdnative.Float) {
 	Args: [{ false size int}], Returns: void
 */
 func (o *ProceduralSky) SetTextureSize(size gdnative.Int) {
-	log.Println("Calling ProceduralSky.SetTextureSize()")
+	//log.Println("Calling ProceduralSky.SetTextureSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *QuadMesh) BaseClass() string {
 	return "QuadMesh"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *QuadMesh) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *QuadMesh) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Vector2
 */
 func (o *QuadMesh) GetSize() gdnative.Vector2 {
-	log.Println("Calling QuadMesh.GetSize()")
+	//log.Println("Calling QuadMesh.GetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *QuadMesh) GetSize() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *QuadMesh) GetSize() gdnative.Vector2 {
 	Args: [{ false size Vector2}], Returns: void
 */
 func (o *QuadMesh) SetSize(size gdnative.Vector2) {
-	log.Println("Calling QuadMesh.SetSize()")
+	//log.Println("Calling QuadMesh.SetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

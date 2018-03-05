@@ -33,13 +33,3 @@ type ARVRCamera struct {
 func (o *ARVRCamera) BaseClass() string {
 	return "ARVRCamera"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ARVRCamera) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ARVRCamera) GetBaseObject() gdnative.Object {
-	return o.owner
-}

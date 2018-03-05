@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *AnimationPlayer) BaseClass() string {
 	return "AnimationPlayer"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AnimationPlayer) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AnimationPlayer) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *AnimationPlayer) X_AnimationChanged() {
-	log.Println("Calling AnimationPlayer.X_AnimationChanged()")
+	//log.Println("Calling AnimationPlayer.X_AnimationChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *AnimationPlayer) X_AnimationChanged() {
 	Args: [{ false arg0 Object}], Returns: void
 */
 func (o *AnimationPlayer) X_NodeRemoved(arg0 Object) {
-	log.Println("Calling AnimationPlayer.X_NodeRemoved()")
+	//log.Println("Calling AnimationPlayer.X_NodeRemoved()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -97,7 +85,7 @@ func (o *AnimationPlayer) X_NodeRemoved(arg0 Object) {
 	Args: [{ false delta float}], Returns: void
 */
 func (o *AnimationPlayer) Advance(delta gdnative.Float) {
-	log.Println("Calling AnimationPlayer.Advance()")
+	//log.Println("Calling AnimationPlayer.Advance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -118,7 +106,7 @@ func (o *AnimationPlayer) Advance(delta gdnative.Float) {
 	Args: [{ false anim_from String}], Returns: String
 */
 func (o *AnimationPlayer) AnimationGetNext(animFrom gdnative.String) gdnative.String {
-	log.Println("Calling AnimationPlayer.AnimationGetNext()")
+	//log.Println("Calling AnimationPlayer.AnimationGetNext()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -134,7 +122,7 @@ func (o *AnimationPlayer) AnimationGetNext(animFrom gdnative.String) gdnative.St
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -143,7 +131,7 @@ func (o *AnimationPlayer) AnimationGetNext(animFrom gdnative.String) gdnative.St
 	Args: [{ false anim_from String} { false anim_to String}], Returns: void
 */
 func (o *AnimationPlayer) AnimationSetNext(animFrom gdnative.String, animTo gdnative.String) {
-	log.Println("Calling AnimationPlayer.AnimationSetNext()")
+	//log.Println("Calling AnimationPlayer.AnimationSetNext()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -165,7 +153,7 @@ func (o *AnimationPlayer) AnimationSetNext(animFrom gdnative.String, animTo gdna
 	Args: [], Returns: void
 */
 func (o *AnimationPlayer) ClearCaches() {
-	log.Println("Calling AnimationPlayer.ClearCaches()")
+	//log.Println("Calling AnimationPlayer.ClearCaches()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -185,7 +173,7 @@ func (o *AnimationPlayer) ClearCaches() {
 	Args: [], Returns: void
 */
 func (o *AnimationPlayer) ClearQueue() {
-	log.Println("Calling AnimationPlayer.ClearQueue()")
+	//log.Println("Calling AnimationPlayer.ClearQueue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -205,7 +193,7 @@ func (o *AnimationPlayer) ClearQueue() {
 	Args: [{ false animation Animation}], Returns: String
 */
 func (o *AnimationPlayer) FindAnimation(animation Animation) gdnative.String {
-	log.Println("Calling AnimationPlayer.FindAnimation()")
+	//log.Println("Calling AnimationPlayer.FindAnimation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -221,7 +209,7 @@ func (o *AnimationPlayer) FindAnimation(animation Animation) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -230,7 +218,7 @@ func (o *AnimationPlayer) FindAnimation(animation Animation) gdnative.String {
 	Args: [{ false name String}], Returns: Animation
 */
 func (o *AnimationPlayer) GetAnimation(name gdnative.String) Animation {
-	log.Println("Calling AnimationPlayer.GetAnimation()")
+	//log.Println("Calling AnimationPlayer.GetAnimation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -246,7 +234,7 @@ func (o *AnimationPlayer) GetAnimation(name gdnative.String) Animation {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewAnimationFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -255,7 +243,7 @@ func (o *AnimationPlayer) GetAnimation(name gdnative.String) Animation {
 	Args: [], Returns: PoolStringArray
 */
 func (o *AnimationPlayer) GetAnimationList() gdnative.PoolStringArray {
-	log.Println("Calling AnimationPlayer.GetAnimationList()")
+	//log.Println("Calling AnimationPlayer.GetAnimationList()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -270,7 +258,7 @@ func (o *AnimationPlayer) GetAnimationList() gdnative.PoolStringArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -284,7 +272,7 @@ func (o *AnimationPlayer) GetAnimationList() gdnative.PoolStringArray {
 	Args: [], Returns: String
 */
 func (o *AnimationPlayer) GetAssignedAnimation() gdnative.String {
-	log.Println("Calling AnimationPlayer.GetAssignedAnimation()")
+	//log.Println("Calling AnimationPlayer.GetAssignedAnimation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -299,7 +287,7 @@ func (o *AnimationPlayer) GetAssignedAnimation() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -308,7 +296,7 @@ func (o *AnimationPlayer) GetAssignedAnimation() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *AnimationPlayer) GetAutoplay() gdnative.String {
-	log.Println("Calling AnimationPlayer.GetAutoplay()")
+	//log.Println("Calling AnimationPlayer.GetAutoplay()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -323,7 +311,7 @@ func (o *AnimationPlayer) GetAutoplay() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -332,7 +320,7 @@ func (o *AnimationPlayer) GetAutoplay() gdnative.String {
 	Args: [{ false anim_from String} { false anim_to String}], Returns: float
 */
 func (o *AnimationPlayer) GetBlendTime(animFrom gdnative.String, animTo gdnative.String) gdnative.Float {
-	log.Println("Calling AnimationPlayer.GetBlendTime()")
+	//log.Println("Calling AnimationPlayer.GetBlendTime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -349,7 +337,7 @@ func (o *AnimationPlayer) GetBlendTime(animFrom gdnative.String, animTo gdnative
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -358,7 +346,7 @@ func (o *AnimationPlayer) GetBlendTime(animFrom gdnative.String, animTo gdnative
 	Args: [], Returns: String
 */
 func (o *AnimationPlayer) GetCurrentAnimation() gdnative.String {
-	log.Println("Calling AnimationPlayer.GetCurrentAnimation()")
+	//log.Println("Calling AnimationPlayer.GetCurrentAnimation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -373,7 +361,7 @@ func (o *AnimationPlayer) GetCurrentAnimation() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -382,7 +370,7 @@ func (o *AnimationPlayer) GetCurrentAnimation() gdnative.String {
 	Args: [], Returns: float
 */
 func (o *AnimationPlayer) GetCurrentAnimationLength() gdnative.Float {
-	log.Println("Calling AnimationPlayer.GetCurrentAnimationLength()")
+	//log.Println("Calling AnimationPlayer.GetCurrentAnimationLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -397,7 +385,7 @@ func (o *AnimationPlayer) GetCurrentAnimationLength() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -406,7 +394,7 @@ func (o *AnimationPlayer) GetCurrentAnimationLength() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AnimationPlayer) GetCurrentAnimationPosition() gdnative.Float {
-	log.Println("Calling AnimationPlayer.GetCurrentAnimationPosition()")
+	//log.Println("Calling AnimationPlayer.GetCurrentAnimationPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -421,7 +409,7 @@ func (o *AnimationPlayer) GetCurrentAnimationPosition() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -430,7 +418,7 @@ func (o *AnimationPlayer) GetCurrentAnimationPosition() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AnimationPlayer) GetDefaultBlendTime() gdnative.Float {
-	log.Println("Calling AnimationPlayer.GetDefaultBlendTime()")
+	//log.Println("Calling AnimationPlayer.GetDefaultBlendTime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -445,7 +433,7 @@ func (o *AnimationPlayer) GetDefaultBlendTime() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -454,7 +442,7 @@ func (o *AnimationPlayer) GetDefaultBlendTime() gdnative.Float {
 	Args: [], Returns: NodePath
 */
 func (o *AnimationPlayer) GetRoot() gdnative.NodePath {
-	log.Println("Calling AnimationPlayer.GetRoot()")
+	//log.Println("Calling AnimationPlayer.GetRoot()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -469,7 +457,7 @@ func (o *AnimationPlayer) GetRoot() gdnative.NodePath {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewNodePathFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -478,7 +466,7 @@ func (o *AnimationPlayer) GetRoot() gdnative.NodePath {
 	Args: [], Returns: float
 */
 func (o *AnimationPlayer) GetSpeedScale() gdnative.Float {
-	log.Println("Calling AnimationPlayer.GetSpeedScale()")
+	//log.Println("Calling AnimationPlayer.GetSpeedScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -493,7 +481,7 @@ func (o *AnimationPlayer) GetSpeedScale() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -502,7 +490,7 @@ func (o *AnimationPlayer) GetSpeedScale() gdnative.Float {
 	Args: [{ false name String}], Returns: bool
 */
 func (o *AnimationPlayer) HasAnimation(name gdnative.String) gdnative.Bool {
-	log.Println("Calling AnimationPlayer.HasAnimation()")
+	//log.Println("Calling AnimationPlayer.HasAnimation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -518,7 +506,7 @@ func (o *AnimationPlayer) HasAnimation(name gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -527,7 +515,7 @@ func (o *AnimationPlayer) HasAnimation(name gdnative.String) gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *AnimationPlayer) IsActive() gdnative.Bool {
-	log.Println("Calling AnimationPlayer.IsActive()")
+	//log.Println("Calling AnimationPlayer.IsActive()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -542,7 +530,7 @@ func (o *AnimationPlayer) IsActive() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -551,7 +539,7 @@ func (o *AnimationPlayer) IsActive() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *AnimationPlayer) IsPlaying() gdnative.Bool {
-	log.Println("Calling AnimationPlayer.IsPlaying()")
+	//log.Println("Calling AnimationPlayer.IsPlaying()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -566,7 +554,7 @@ func (o *AnimationPlayer) IsPlaying() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -575,7 +563,7 @@ func (o *AnimationPlayer) IsPlaying() gdnative.Bool {
 	Args: [{ true name String} {-1 true custom_blend float} {1 true custom_speed float} {False true from_end bool}], Returns: void
 */
 func (o *AnimationPlayer) Play(name gdnative.String, customBlend gdnative.Float, customSpeed gdnative.Float, fromEnd gdnative.Bool) {
-	log.Println("Calling AnimationPlayer.Play()")
+	//log.Println("Calling AnimationPlayer.Play()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -599,7 +587,7 @@ func (o *AnimationPlayer) Play(name gdnative.String, customBlend gdnative.Float,
 	Args: [{ true name String} {-1 true custom_blend float}], Returns: void
 */
 func (o *AnimationPlayer) PlayBackwards(name gdnative.String, customBlend gdnative.Float) {
-	log.Println("Calling AnimationPlayer.PlayBackwards()")
+	//log.Println("Calling AnimationPlayer.PlayBackwards()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -621,7 +609,7 @@ func (o *AnimationPlayer) PlayBackwards(name gdnative.String, customBlend gdnati
 	Args: [{ false name String}], Returns: void
 */
 func (o *AnimationPlayer) Queue(name gdnative.String) {
-	log.Println("Calling AnimationPlayer.Queue()")
+	//log.Println("Calling AnimationPlayer.Queue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -642,7 +630,7 @@ func (o *AnimationPlayer) Queue(name gdnative.String) {
 	Args: [{ false name String}], Returns: void
 */
 func (o *AnimationPlayer) RemoveAnimation(name gdnative.String) {
-	log.Println("Calling AnimationPlayer.RemoveAnimation()")
+	//log.Println("Calling AnimationPlayer.RemoveAnimation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -663,7 +651,7 @@ func (o *AnimationPlayer) RemoveAnimation(name gdnative.String) {
 	Args: [{ false name String} { false newname String}], Returns: void
 */
 func (o *AnimationPlayer) RenameAnimation(name gdnative.String, newname gdnative.String) {
-	log.Println("Calling AnimationPlayer.RenameAnimation()")
+	//log.Println("Calling AnimationPlayer.RenameAnimation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -685,7 +673,7 @@ func (o *AnimationPlayer) RenameAnimation(name gdnative.String, newname gdnative
 	Args: [{ false seconds float} {False true update bool}], Returns: void
 */
 func (o *AnimationPlayer) Seek(seconds gdnative.Float, update gdnative.Bool) {
-	log.Println("Calling AnimationPlayer.Seek()")
+	//log.Println("Calling AnimationPlayer.Seek()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -707,7 +695,7 @@ func (o *AnimationPlayer) Seek(seconds gdnative.Float, update gdnative.Bool) {
 	Args: [{ false active bool}], Returns: void
 */
 func (o *AnimationPlayer) SetActive(active gdnative.Bool) {
-	log.Println("Calling AnimationPlayer.SetActive()")
+	//log.Println("Calling AnimationPlayer.SetActive()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -728,7 +716,7 @@ func (o *AnimationPlayer) SetActive(active gdnative.Bool) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *AnimationPlayer) SetAnimationProcessMode(mode gdnative.Int) {
-	log.Println("Calling AnimationPlayer.SetAnimationProcessMode()")
+	//log.Println("Calling AnimationPlayer.SetAnimationProcessMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -749,7 +737,7 @@ func (o *AnimationPlayer) SetAnimationProcessMode(mode gdnative.Int) {
 	Args: [{ false anim String}], Returns: void
 */
 func (o *AnimationPlayer) SetAssignedAnimation(anim gdnative.String) {
-	log.Println("Calling AnimationPlayer.SetAssignedAnimation()")
+	//log.Println("Calling AnimationPlayer.SetAssignedAnimation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -770,7 +758,7 @@ func (o *AnimationPlayer) SetAssignedAnimation(anim gdnative.String) {
 	Args: [{ false name String}], Returns: void
 */
 func (o *AnimationPlayer) SetAutoplay(name gdnative.String) {
-	log.Println("Calling AnimationPlayer.SetAutoplay()")
+	//log.Println("Calling AnimationPlayer.SetAutoplay()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -791,7 +779,7 @@ func (o *AnimationPlayer) SetAutoplay(name gdnative.String) {
 	Args: [{ false anim_from String} { false anim_to String} { false sec float}], Returns: void
 */
 func (o *AnimationPlayer) SetBlendTime(animFrom gdnative.String, animTo gdnative.String, sec gdnative.Float) {
-	log.Println("Calling AnimationPlayer.SetBlendTime()")
+	//log.Println("Calling AnimationPlayer.SetBlendTime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -814,7 +802,7 @@ func (o *AnimationPlayer) SetBlendTime(animFrom gdnative.String, animTo gdnative
 	Args: [{ false anim String}], Returns: void
 */
 func (o *AnimationPlayer) SetCurrentAnimation(anim gdnative.String) {
-	log.Println("Calling AnimationPlayer.SetCurrentAnimation()")
+	//log.Println("Calling AnimationPlayer.SetCurrentAnimation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -835,7 +823,7 @@ func (o *AnimationPlayer) SetCurrentAnimation(anim gdnative.String) {
 	Args: [{ false sec float}], Returns: void
 */
 func (o *AnimationPlayer) SetDefaultBlendTime(sec gdnative.Float) {
-	log.Println("Calling AnimationPlayer.SetDefaultBlendTime()")
+	//log.Println("Calling AnimationPlayer.SetDefaultBlendTime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -856,7 +844,7 @@ func (o *AnimationPlayer) SetDefaultBlendTime(sec gdnative.Float) {
 	Args: [{ false path NodePath}], Returns: void
 */
 func (o *AnimationPlayer) SetRoot(path gdnative.NodePath) {
-	log.Println("Calling AnimationPlayer.SetRoot()")
+	//log.Println("Calling AnimationPlayer.SetRoot()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -877,7 +865,7 @@ func (o *AnimationPlayer) SetRoot(path gdnative.NodePath) {
 	Args: [{ false speed float}], Returns: void
 */
 func (o *AnimationPlayer) SetSpeedScale(speed gdnative.Float) {
-	log.Println("Calling AnimationPlayer.SetSpeedScale()")
+	//log.Println("Calling AnimationPlayer.SetSpeedScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -898,7 +886,7 @@ func (o *AnimationPlayer) SetSpeedScale(speed gdnative.Float) {
 	Args: [{True true reset bool}], Returns: void
 */
 func (o *AnimationPlayer) Stop(reset gdnative.Bool) {
-	log.Println("Calling AnimationPlayer.Stop()")
+	//log.Println("Calling AnimationPlayer.Stop()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

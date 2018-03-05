@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ButtonGroup) BaseClass() string {
 	return "ButtonGroup"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ButtonGroup) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ButtonGroup) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Return the pressed button.
 	Args: [], Returns: BaseButton
 */
 func (o *ButtonGroup) GetPressedButton() BaseButton {
-	log.Println("Calling ButtonGroup.GetPressedButton()")
+	//log.Println("Calling ButtonGroup.GetPressedButton()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,6 +54,6 @@ func (o *ButtonGroup) GetPressedButton() BaseButton {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewBaseButtonFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *KinematicCollision2D) BaseClass() string {
 	return "KinematicCollision2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *KinematicCollision2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *KinematicCollision2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Object
 */
 func (o *KinematicCollision2D) GetCollider() Object {
-	log.Println("Calling KinematicCollision2D.GetCollider()")
+	//log.Println("Calling KinematicCollision2D.GetCollider()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *KinematicCollision2D) GetCollider() Object {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewObjectFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *KinematicCollision2D) GetCollider() Object {
 	Args: [], Returns: int
 */
 func (o *KinematicCollision2D) GetColliderId() gdnative.Int {
-	log.Println("Calling KinematicCollision2D.GetColliderId()")
+	//log.Println("Calling KinematicCollision2D.GetColliderId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *KinematicCollision2D) GetColliderId() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *KinematicCollision2D) GetColliderId() gdnative.Int {
 	Args: [], Returns: Variant
 */
 func (o *KinematicCollision2D) GetColliderMetadata() gdnative.Variant {
-	log.Println("Calling KinematicCollision2D.GetColliderMetadata()")
+	//log.Println("Calling KinematicCollision2D.GetColliderMetadata()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *KinematicCollision2D) GetColliderMetadata() gdnative.Variant {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *KinematicCollision2D) GetColliderMetadata() gdnative.Variant {
 	Args: [], Returns: Object
 */
 func (o *KinematicCollision2D) GetColliderShape() Object {
-	log.Println("Calling KinematicCollision2D.GetColliderShape()")
+	//log.Println("Calling KinematicCollision2D.GetColliderShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *KinematicCollision2D) GetColliderShape() Object {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewObjectFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *KinematicCollision2D) GetColliderShape() Object {
 	Args: [], Returns: int
 */
 func (o *KinematicCollision2D) GetColliderShapeIndex() gdnative.Int {
-	log.Println("Calling KinematicCollision2D.GetColliderShapeIndex()")
+	//log.Println("Calling KinematicCollision2D.GetColliderShapeIndex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *KinematicCollision2D) GetColliderShapeIndex() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *KinematicCollision2D) GetColliderShapeIndex() gdnative.Int {
 	Args: [], Returns: Vector2
 */
 func (o *KinematicCollision2D) GetColliderVelocity() gdnative.Vector2 {
-	log.Println("Calling KinematicCollision2D.GetColliderVelocity()")
+	//log.Println("Calling KinematicCollision2D.GetColliderVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -186,7 +174,7 @@ func (o *KinematicCollision2D) GetColliderVelocity() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -195,7 +183,7 @@ func (o *KinematicCollision2D) GetColliderVelocity() gdnative.Vector2 {
 	Args: [], Returns: Object
 */
 func (o *KinematicCollision2D) GetLocalShape() Object {
-	log.Println("Calling KinematicCollision2D.GetLocalShape()")
+	//log.Println("Calling KinematicCollision2D.GetLocalShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -210,7 +198,7 @@ func (o *KinematicCollision2D) GetLocalShape() Object {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewObjectFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -219,7 +207,7 @@ func (o *KinematicCollision2D) GetLocalShape() Object {
 	Args: [], Returns: Vector2
 */
 func (o *KinematicCollision2D) GetNormal() gdnative.Vector2 {
-	log.Println("Calling KinematicCollision2D.GetNormal()")
+	//log.Println("Calling KinematicCollision2D.GetNormal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -234,7 +222,7 @@ func (o *KinematicCollision2D) GetNormal() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -243,7 +231,7 @@ func (o *KinematicCollision2D) GetNormal() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *KinematicCollision2D) GetPosition() gdnative.Vector2 {
-	log.Println("Calling KinematicCollision2D.GetPosition()")
+	//log.Println("Calling KinematicCollision2D.GetPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -258,7 +246,7 @@ func (o *KinematicCollision2D) GetPosition() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -267,7 +255,7 @@ func (o *KinematicCollision2D) GetPosition() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *KinematicCollision2D) GetRemainder() gdnative.Vector2 {
-	log.Println("Calling KinematicCollision2D.GetRemainder()")
+	//log.Println("Calling KinematicCollision2D.GetRemainder()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -282,7 +270,7 @@ func (o *KinematicCollision2D) GetRemainder() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -291,7 +279,7 @@ func (o *KinematicCollision2D) GetRemainder() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *KinematicCollision2D) GetTravel() gdnative.Vector2 {
-	log.Println("Calling KinematicCollision2D.GetTravel()")
+	//log.Println("Calling KinematicCollision2D.GetTravel()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -306,6 +294,6 @@ func (o *KinematicCollision2D) GetTravel() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

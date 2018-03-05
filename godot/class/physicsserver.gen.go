@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -48,7 +46,7 @@ func (o *physicsServer) ensureSingleton() {
 	if o.initialized == true {
 		return
 	}
-	log.Println("Singleton not found. Fetching from GDNative...")
+	//log.Println("Singleton not found. Fetching from GDNative...")
 	base := gdnative.GetSingleton("PhysicsServer")
 	o.SetBaseObject(base)
 	o.initialized = true
@@ -58,23 +56,13 @@ func (o *physicsServer) BaseClass() string {
 	return "PhysicsServer"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *physicsServer) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *physicsServer) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Adds a shape to the area, along with a transform matrix. Shapes are usually referenced by their index, so you should track which shape has a given index.
 	Args: [{ false area RID} { false shape RID} {1, 0, 0, 0, 1, 0, 0, 0, 1 - 0, 0, 0 true transform Transform}], Returns: void
 */
 func (o *physicsServer) AreaAddShape(area gdnative.Rid, shape gdnative.Rid, transform gdnative.Transform) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaAddShape()")
+	//log.Println("Calling PhysicsServer.AreaAddShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -98,7 +86,7 @@ func (o *physicsServer) AreaAddShape(area gdnative.Rid, shape gdnative.Rid, tran
 */
 func (o *physicsServer) AreaAttachObjectInstanceId(area gdnative.Rid, id gdnative.Int) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaAttachObjectInstanceId()")
+	//log.Println("Calling PhysicsServer.AreaAttachObjectInstanceId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -121,7 +109,7 @@ func (o *physicsServer) AreaAttachObjectInstanceId(area gdnative.Rid, id gdnativ
 */
 func (o *physicsServer) AreaClearShapes(area gdnative.Rid) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaClearShapes()")
+	//log.Println("Calling PhysicsServer.AreaClearShapes()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -143,7 +131,7 @@ func (o *physicsServer) AreaClearShapes(area gdnative.Rid) {
 */
 func (o *physicsServer) AreaCreate() gdnative.Rid {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaCreate()")
+	//log.Println("Calling PhysicsServer.AreaCreate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -158,7 +146,7 @@ func (o *physicsServer) AreaCreate() gdnative.Rid {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -168,7 +156,7 @@ func (o *physicsServer) AreaCreate() gdnative.Rid {
 */
 func (o *physicsServer) AreaGetObjectInstanceId(area gdnative.Rid) gdnative.Int {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaGetObjectInstanceId()")
+	//log.Println("Calling PhysicsServer.AreaGetObjectInstanceId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -184,7 +172,7 @@ func (o *physicsServer) AreaGetObjectInstanceId(area gdnative.Rid) gdnative.Int 
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -194,7 +182,7 @@ func (o *physicsServer) AreaGetObjectInstanceId(area gdnative.Rid) gdnative.Int 
 */
 func (o *physicsServer) AreaGetParam(area gdnative.Rid, param gdnative.Int) gdnative.Variant {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaGetParam()")
+	//log.Println("Calling PhysicsServer.AreaGetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -211,7 +199,7 @@ func (o *physicsServer) AreaGetParam(area gdnative.Rid, param gdnative.Int) gdna
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -221,7 +209,7 @@ func (o *physicsServer) AreaGetParam(area gdnative.Rid, param gdnative.Int) gdna
 */
 func (o *physicsServer) AreaGetShape(area gdnative.Rid, shapeIdx gdnative.Int) gdnative.Rid {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaGetShape()")
+	//log.Println("Calling PhysicsServer.AreaGetShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -238,7 +226,7 @@ func (o *physicsServer) AreaGetShape(area gdnative.Rid, shapeIdx gdnative.Int) g
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -248,7 +236,7 @@ func (o *physicsServer) AreaGetShape(area gdnative.Rid, shapeIdx gdnative.Int) g
 */
 func (o *physicsServer) AreaGetShapeCount(area gdnative.Rid) gdnative.Int {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaGetShapeCount()")
+	//log.Println("Calling PhysicsServer.AreaGetShapeCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -264,7 +252,7 @@ func (o *physicsServer) AreaGetShapeCount(area gdnative.Rid) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -274,7 +262,7 @@ func (o *physicsServer) AreaGetShapeCount(area gdnative.Rid) gdnative.Int {
 */
 func (o *physicsServer) AreaGetShapeTransform(area gdnative.Rid, shapeIdx gdnative.Int) gdnative.Transform {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaGetShapeTransform()")
+	//log.Println("Calling PhysicsServer.AreaGetShapeTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -291,7 +279,7 @@ func (o *physicsServer) AreaGetShapeTransform(area gdnative.Rid, shapeIdx gdnati
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransformFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -301,7 +289,7 @@ func (o *physicsServer) AreaGetShapeTransform(area gdnative.Rid, shapeIdx gdnati
 */
 func (o *physicsServer) AreaGetSpace(area gdnative.Rid) gdnative.Rid {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaGetSpace()")
+	//log.Println("Calling PhysicsServer.AreaGetSpace()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -317,7 +305,7 @@ func (o *physicsServer) AreaGetSpace(area gdnative.Rid) gdnative.Rid {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -332,7 +320,7 @@ func (o *physicsServer) AreaGetSpace(area gdnative.Rid) gdnative.Rid {
 */
 func (o *physicsServer) AreaGetTransform(area gdnative.Rid) gdnative.Transform {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaGetTransform()")
+	//log.Println("Calling PhysicsServer.AreaGetTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -348,7 +336,7 @@ func (o *physicsServer) AreaGetTransform(area gdnative.Rid) gdnative.Transform {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransformFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -358,7 +346,7 @@ func (o *physicsServer) AreaGetTransform(area gdnative.Rid) gdnative.Transform {
 */
 func (o *physicsServer) AreaIsRayPickable(area gdnative.Rid) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaIsRayPickable()")
+	//log.Println("Calling PhysicsServer.AreaIsRayPickable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -374,7 +362,7 @@ func (o *physicsServer) AreaIsRayPickable(area gdnative.Rid) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -384,7 +372,7 @@ func (o *physicsServer) AreaIsRayPickable(area gdnative.Rid) gdnative.Bool {
 */
 func (o *physicsServer) AreaRemoveShape(area gdnative.Rid, shapeIdx gdnative.Int) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaRemoveShape()")
+	//log.Println("Calling PhysicsServer.AreaRemoveShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -407,7 +395,7 @@ func (o *physicsServer) AreaRemoveShape(area gdnative.Rid, shapeIdx gdnative.Int
 */
 func (o *physicsServer) AreaSetCollisionLayer(area gdnative.Rid, layer gdnative.Int) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaSetCollisionLayer()")
+	//log.Println("Calling PhysicsServer.AreaSetCollisionLayer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -430,7 +418,7 @@ func (o *physicsServer) AreaSetCollisionLayer(area gdnative.Rid, layer gdnative.
 */
 func (o *physicsServer) AreaSetCollisionMask(area gdnative.Rid, mask gdnative.Int) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaSetCollisionMask()")
+	//log.Println("Calling PhysicsServer.AreaSetCollisionMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -453,7 +441,7 @@ func (o *physicsServer) AreaSetCollisionMask(area gdnative.Rid, mask gdnative.In
 */
 func (o *physicsServer) AreaSetMonitorCallback(area gdnative.Rid, receiver Object, method gdnative.String) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaSetMonitorCallback()")
+	//log.Println("Calling PhysicsServer.AreaSetMonitorCallback()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -477,7 +465,7 @@ func (o *physicsServer) AreaSetMonitorCallback(area gdnative.Rid, receiver Objec
 */
 func (o *physicsServer) AreaSetParam(area gdnative.Rid, param gdnative.Int, value gdnative.Variant) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaSetParam()")
+	//log.Println("Calling PhysicsServer.AreaSetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -501,7 +489,7 @@ func (o *physicsServer) AreaSetParam(area gdnative.Rid, param gdnative.Int, valu
 */
 func (o *physicsServer) AreaSetRayPickable(area gdnative.Rid, enable gdnative.Bool) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaSetRayPickable()")
+	//log.Println("Calling PhysicsServer.AreaSetRayPickable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -524,7 +512,7 @@ func (o *physicsServer) AreaSetRayPickable(area gdnative.Rid, enable gdnative.Bo
 */
 func (o *physicsServer) AreaSetShape(area gdnative.Rid, shapeIdx gdnative.Int, shape gdnative.Rid) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaSetShape()")
+	//log.Println("Calling PhysicsServer.AreaSetShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -548,7 +536,7 @@ func (o *physicsServer) AreaSetShape(area gdnative.Rid, shapeIdx gdnative.Int, s
 */
 func (o *physicsServer) AreaSetShapeTransform(area gdnative.Rid, shapeIdx gdnative.Int, transform gdnative.Transform) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaSetShapeTransform()")
+	//log.Println("Calling PhysicsServer.AreaSetShapeTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -572,7 +560,7 @@ func (o *physicsServer) AreaSetShapeTransform(area gdnative.Rid, shapeIdx gdnati
 */
 func (o *physicsServer) AreaSetSpace(area gdnative.Rid, space gdnative.Rid) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaSetSpace()")
+	//log.Println("Calling PhysicsServer.AreaSetSpace()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -595,7 +583,7 @@ func (o *physicsServer) AreaSetSpace(area gdnative.Rid, space gdnative.Rid) {
 */
 func (o *physicsServer) AreaSetSpaceOverrideMode(area gdnative.Rid, mode gdnative.Int) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaSetSpaceOverrideMode()")
+	//log.Println("Calling PhysicsServer.AreaSetSpaceOverrideMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -618,7 +606,7 @@ func (o *physicsServer) AreaSetSpaceOverrideMode(area gdnative.Rid, mode gdnativ
 */
 func (o *physicsServer) AreaSetTransform(area gdnative.Rid, transform gdnative.Transform) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.AreaSetTransform()")
+	//log.Println("Calling PhysicsServer.AreaSetTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -641,7 +629,7 @@ func (o *physicsServer) AreaSetTransform(area gdnative.Rid, transform gdnative.T
 */
 func (o *physicsServer) BodyAddCollisionException(body gdnative.Rid, exceptedBody gdnative.Rid) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyAddCollisionException()")
+	//log.Println("Calling PhysicsServer.BodyAddCollisionException()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -664,7 +652,7 @@ func (o *physicsServer) BodyAddCollisionException(body gdnative.Rid, exceptedBod
 */
 func (o *physicsServer) BodyAddShape(body gdnative.Rid, shape gdnative.Rid, transform gdnative.Transform) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyAddShape()")
+	//log.Println("Calling PhysicsServer.BodyAddShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -688,7 +676,7 @@ func (o *physicsServer) BodyAddShape(body gdnative.Rid, shape gdnative.Rid, tran
 */
 func (o *physicsServer) BodyApplyImpulse(body gdnative.Rid, position gdnative.Vector3, impulse gdnative.Vector3) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyApplyImpulse()")
+	//log.Println("Calling PhysicsServer.BodyApplyImpulse()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -712,7 +700,7 @@ func (o *physicsServer) BodyApplyImpulse(body gdnative.Rid, position gdnative.Ve
 */
 func (o *physicsServer) BodyApplyTorqueImpulse(body gdnative.Rid, impulse gdnative.Vector3) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyApplyTorqueImpulse()")
+	//log.Println("Calling PhysicsServer.BodyApplyTorqueImpulse()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -735,7 +723,7 @@ func (o *physicsServer) BodyApplyTorqueImpulse(body gdnative.Rid, impulse gdnati
 */
 func (o *physicsServer) BodyAttachObjectInstanceId(body gdnative.Rid, id gdnative.Int) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyAttachObjectInstanceId()")
+	//log.Println("Calling PhysicsServer.BodyAttachObjectInstanceId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -758,7 +746,7 @@ func (o *physicsServer) BodyAttachObjectInstanceId(body gdnative.Rid, id gdnativ
 */
 func (o *physicsServer) BodyClearShapes(body gdnative.Rid) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyClearShapes()")
+	//log.Println("Calling PhysicsServer.BodyClearShapes()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -780,7 +768,7 @@ func (o *physicsServer) BodyClearShapes(body gdnative.Rid) {
 */
 func (o *physicsServer) BodyCreate(mode gdnative.Int, initSleeping gdnative.Bool) gdnative.Rid {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyCreate()")
+	//log.Println("Calling PhysicsServer.BodyCreate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -797,7 +785,7 @@ func (o *physicsServer) BodyCreate(mode gdnative.Int, initSleeping gdnative.Bool
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -807,7 +795,7 @@ func (o *physicsServer) BodyCreate(mode gdnative.Int, initSleeping gdnative.Bool
 */
 func (o *physicsServer) BodyGetCollisionLayer(body gdnative.Rid) gdnative.Int {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyGetCollisionLayer()")
+	//log.Println("Calling PhysicsServer.BodyGetCollisionLayer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -823,7 +811,7 @@ func (o *physicsServer) BodyGetCollisionLayer(body gdnative.Rid) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -834,7 +822,7 @@ func (o *physicsServer) BodyGetCollisionLayer(body gdnative.Rid) gdnative.Int {
 */
 func (o *physicsServer) BodyGetCollisionMask(body gdnative.Rid) gdnative.Int {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyGetCollisionMask()")
+	//log.Println("Calling PhysicsServer.BodyGetCollisionMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -850,7 +838,7 @@ func (o *physicsServer) BodyGetCollisionMask(body gdnative.Rid) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -860,7 +848,7 @@ func (o *physicsServer) BodyGetCollisionMask(body gdnative.Rid) gdnative.Int {
 */
 func (o *physicsServer) BodyGetDirectState(body gdnative.Rid) PhysicsDirectBodyState {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyGetDirectState()")
+	//log.Println("Calling PhysicsServer.BodyGetDirectState()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -876,7 +864,7 @@ func (o *physicsServer) BodyGetDirectState(body gdnative.Rid) PhysicsDirectBodyS
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewPhysicsDirectBodyStateFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -886,7 +874,7 @@ func (o *physicsServer) BodyGetDirectState(body gdnative.Rid) PhysicsDirectBodyS
 */
 func (o *physicsServer) BodyGetKinematicSafeMargin(body gdnative.Rid) gdnative.Float {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyGetKinematicSafeMargin()")
+	//log.Println("Calling PhysicsServer.BodyGetKinematicSafeMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -902,7 +890,7 @@ func (o *physicsServer) BodyGetKinematicSafeMargin(body gdnative.Rid) gdnative.F
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -912,7 +900,7 @@ func (o *physicsServer) BodyGetKinematicSafeMargin(body gdnative.Rid) gdnative.F
 */
 func (o *physicsServer) BodyGetMaxContactsReported(body gdnative.Rid) gdnative.Int {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyGetMaxContactsReported()")
+	//log.Println("Calling PhysicsServer.BodyGetMaxContactsReported()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -928,7 +916,7 @@ func (o *physicsServer) BodyGetMaxContactsReported(body gdnative.Rid) gdnative.I
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -943,7 +931,7 @@ func (o *physicsServer) BodyGetMaxContactsReported(body gdnative.Rid) gdnative.I
 */
 func (o *physicsServer) BodyGetObjectInstanceId(body gdnative.Rid) gdnative.Int {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyGetObjectInstanceId()")
+	//log.Println("Calling PhysicsServer.BodyGetObjectInstanceId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -959,7 +947,7 @@ func (o *physicsServer) BodyGetObjectInstanceId(body gdnative.Rid) gdnative.Int 
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -969,7 +957,7 @@ func (o *physicsServer) BodyGetObjectInstanceId(body gdnative.Rid) gdnative.Int 
 */
 func (o *physicsServer) BodyGetParam(body gdnative.Rid, param gdnative.Int) gdnative.Float {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyGetParam()")
+	//log.Println("Calling PhysicsServer.BodyGetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -986,7 +974,7 @@ func (o *physicsServer) BodyGetParam(body gdnative.Rid, param gdnative.Int) gdna
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -996,7 +984,7 @@ func (o *physicsServer) BodyGetParam(body gdnative.Rid, param gdnative.Int) gdna
 */
 func (o *physicsServer) BodyGetShape(body gdnative.Rid, shapeIdx gdnative.Int) gdnative.Rid {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyGetShape()")
+	//log.Println("Calling PhysicsServer.BodyGetShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1013,7 +1001,7 @@ func (o *physicsServer) BodyGetShape(body gdnative.Rid, shapeIdx gdnative.Int) g
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1023,7 +1011,7 @@ func (o *physicsServer) BodyGetShape(body gdnative.Rid, shapeIdx gdnative.Int) g
 */
 func (o *physicsServer) BodyGetShapeCount(body gdnative.Rid) gdnative.Int {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyGetShapeCount()")
+	//log.Println("Calling PhysicsServer.BodyGetShapeCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1039,7 +1027,7 @@ func (o *physicsServer) BodyGetShapeCount(body gdnative.Rid) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1049,7 +1037,7 @@ func (o *physicsServer) BodyGetShapeCount(body gdnative.Rid) gdnative.Int {
 */
 func (o *physicsServer) BodyGetShapeTransform(body gdnative.Rid, shapeIdx gdnative.Int) gdnative.Transform {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyGetShapeTransform()")
+	//log.Println("Calling PhysicsServer.BodyGetShapeTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1066,7 +1054,7 @@ func (o *physicsServer) BodyGetShapeTransform(body gdnative.Rid, shapeIdx gdnati
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransformFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1076,7 +1064,7 @@ func (o *physicsServer) BodyGetShapeTransform(body gdnative.Rid, shapeIdx gdnati
 */
 func (o *physicsServer) BodyGetSpace(body gdnative.Rid) gdnative.Rid {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyGetSpace()")
+	//log.Println("Calling PhysicsServer.BodyGetSpace()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1092,7 +1080,7 @@ func (o *physicsServer) BodyGetSpace(body gdnative.Rid) gdnative.Rid {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1102,7 +1090,7 @@ func (o *physicsServer) BodyGetSpace(body gdnative.Rid) gdnative.Rid {
 */
 func (o *physicsServer) BodyGetState(body gdnative.Rid, state gdnative.Int) gdnative.Variant {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyGetState()")
+	//log.Println("Calling PhysicsServer.BodyGetState()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1119,7 +1107,7 @@ func (o *physicsServer) BodyGetState(body gdnative.Rid, state gdnative.Int) gdna
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1129,7 +1117,7 @@ func (o *physicsServer) BodyGetState(body gdnative.Rid, state gdnative.Int) gdna
 */
 func (o *physicsServer) BodyIsAxisLocked(body gdnative.Rid, axis gdnative.Int) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyIsAxisLocked()")
+	//log.Println("Calling PhysicsServer.BodyIsAxisLocked()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1146,7 +1134,7 @@ func (o *physicsServer) BodyIsAxisLocked(body gdnative.Rid, axis gdnative.Int) g
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1156,7 +1144,7 @@ func (o *physicsServer) BodyIsAxisLocked(body gdnative.Rid, axis gdnative.Int) g
 */
 func (o *physicsServer) BodyIsContinuousCollisionDetectionEnabled(body gdnative.Rid) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyIsContinuousCollisionDetectionEnabled()")
+	//log.Println("Calling PhysicsServer.BodyIsContinuousCollisionDetectionEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1172,7 +1160,7 @@ func (o *physicsServer) BodyIsContinuousCollisionDetectionEnabled(body gdnative.
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1182,7 +1170,7 @@ func (o *physicsServer) BodyIsContinuousCollisionDetectionEnabled(body gdnative.
 */
 func (o *physicsServer) BodyIsOmittingForceIntegration(body gdnative.Rid) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyIsOmittingForceIntegration()")
+	//log.Println("Calling PhysicsServer.BodyIsOmittingForceIntegration()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1198,7 +1186,7 @@ func (o *physicsServer) BodyIsOmittingForceIntegration(body gdnative.Rid) gdnati
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1208,7 +1196,7 @@ func (o *physicsServer) BodyIsOmittingForceIntegration(body gdnative.Rid) gdnati
 */
 func (o *physicsServer) BodyIsRayPickable(body gdnative.Rid) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyIsRayPickable()")
+	//log.Println("Calling PhysicsServer.BodyIsRayPickable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1224,7 +1212,7 @@ func (o *physicsServer) BodyIsRayPickable(body gdnative.Rid) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1234,7 +1222,7 @@ func (o *physicsServer) BodyIsRayPickable(body gdnative.Rid) gdnative.Bool {
 */
 func (o *physicsServer) BodyRemoveCollisionException(body gdnative.Rid, exceptedBody gdnative.Rid) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyRemoveCollisionException()")
+	//log.Println("Calling PhysicsServer.BodyRemoveCollisionException()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1257,7 +1245,7 @@ func (o *physicsServer) BodyRemoveCollisionException(body gdnative.Rid, excepted
 */
 func (o *physicsServer) BodyRemoveShape(body gdnative.Rid, shapeIdx gdnative.Int) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodyRemoveShape()")
+	//log.Println("Calling PhysicsServer.BodyRemoveShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1280,7 +1268,7 @@ func (o *physicsServer) BodyRemoveShape(body gdnative.Rid, shapeIdx gdnative.Int
 */
 func (o *physicsServer) BodySetAxisLock(body gdnative.Rid, axis gdnative.Int, lock gdnative.Bool) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodySetAxisLock()")
+	//log.Println("Calling PhysicsServer.BodySetAxisLock()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -1304,7 +1292,7 @@ func (o *physicsServer) BodySetAxisLock(body gdnative.Rid, axis gdnative.Int, lo
 */
 func (o *physicsServer) BodySetAxisVelocity(body gdnative.Rid, axisVelocity gdnative.Vector3) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodySetAxisVelocity()")
+	//log.Println("Calling PhysicsServer.BodySetAxisVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1327,7 +1315,7 @@ func (o *physicsServer) BodySetAxisVelocity(body gdnative.Rid, axisVelocity gdna
 */
 func (o *physicsServer) BodySetCollisionLayer(body gdnative.Rid, layer gdnative.Int) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodySetCollisionLayer()")
+	//log.Println("Calling PhysicsServer.BodySetCollisionLayer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1350,7 +1338,7 @@ func (o *physicsServer) BodySetCollisionLayer(body gdnative.Rid, layer gdnative.
 */
 func (o *physicsServer) BodySetCollisionMask(body gdnative.Rid, mask gdnative.Int) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodySetCollisionMask()")
+	//log.Println("Calling PhysicsServer.BodySetCollisionMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1373,7 +1361,7 @@ func (o *physicsServer) BodySetCollisionMask(body gdnative.Rid, mask gdnative.In
 */
 func (o *physicsServer) BodySetEnableContinuousCollisionDetection(body gdnative.Rid, enable gdnative.Bool) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodySetEnableContinuousCollisionDetection()")
+	//log.Println("Calling PhysicsServer.BodySetEnableContinuousCollisionDetection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1396,7 +1384,7 @@ func (o *physicsServer) BodySetEnableContinuousCollisionDetection(body gdnative.
 */
 func (o *physicsServer) BodySetForceIntegrationCallback(body gdnative.Rid, receiver Object, method gdnative.String, userdata gdnative.Variant) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodySetForceIntegrationCallback()")
+	//log.Println("Calling PhysicsServer.BodySetForceIntegrationCallback()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -1421,7 +1409,7 @@ func (o *physicsServer) BodySetForceIntegrationCallback(body gdnative.Rid, recei
 */
 func (o *physicsServer) BodySetKinematicSafeMargin(body gdnative.Rid, margin gdnative.Float) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodySetKinematicSafeMargin()")
+	//log.Println("Calling PhysicsServer.BodySetKinematicSafeMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1444,7 +1432,7 @@ func (o *physicsServer) BodySetKinematicSafeMargin(body gdnative.Rid, margin gdn
 */
 func (o *physicsServer) BodySetMaxContactsReported(body gdnative.Rid, amount gdnative.Int) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodySetMaxContactsReported()")
+	//log.Println("Calling PhysicsServer.BodySetMaxContactsReported()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1467,7 +1455,7 @@ func (o *physicsServer) BodySetMaxContactsReported(body gdnative.Rid, amount gdn
 */
 func (o *physicsServer) BodySetMode(body gdnative.Rid, mode gdnative.Int) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodySetMode()")
+	//log.Println("Calling PhysicsServer.BodySetMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1490,7 +1478,7 @@ func (o *physicsServer) BodySetMode(body gdnative.Rid, mode gdnative.Int) {
 */
 func (o *physicsServer) BodySetOmitForceIntegration(body gdnative.Rid, enable gdnative.Bool) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodySetOmitForceIntegration()")
+	//log.Println("Calling PhysicsServer.BodySetOmitForceIntegration()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1513,7 +1501,7 @@ func (o *physicsServer) BodySetOmitForceIntegration(body gdnative.Rid, enable gd
 */
 func (o *physicsServer) BodySetParam(body gdnative.Rid, param gdnative.Int, value gdnative.Float) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodySetParam()")
+	//log.Println("Calling PhysicsServer.BodySetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -1537,7 +1525,7 @@ func (o *physicsServer) BodySetParam(body gdnative.Rid, param gdnative.Int, valu
 */
 func (o *physicsServer) BodySetRayPickable(body gdnative.Rid, enable gdnative.Bool) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodySetRayPickable()")
+	//log.Println("Calling PhysicsServer.BodySetRayPickable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1560,7 +1548,7 @@ func (o *physicsServer) BodySetRayPickable(body gdnative.Rid, enable gdnative.Bo
 */
 func (o *physicsServer) BodySetShape(body gdnative.Rid, shapeIdx gdnative.Int, shape gdnative.Rid) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodySetShape()")
+	//log.Println("Calling PhysicsServer.BodySetShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -1584,7 +1572,7 @@ func (o *physicsServer) BodySetShape(body gdnative.Rid, shapeIdx gdnative.Int, s
 */
 func (o *physicsServer) BodySetShapeTransform(body gdnative.Rid, shapeIdx gdnative.Int, transform gdnative.Transform) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodySetShapeTransform()")
+	//log.Println("Calling PhysicsServer.BodySetShapeTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -1608,7 +1596,7 @@ func (o *physicsServer) BodySetShapeTransform(body gdnative.Rid, shapeIdx gdnati
 */
 func (o *physicsServer) BodySetSpace(body gdnative.Rid, space gdnative.Rid) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodySetSpace()")
+	//log.Println("Calling PhysicsServer.BodySetSpace()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1631,7 +1619,7 @@ func (o *physicsServer) BodySetSpace(body gdnative.Rid, space gdnative.Rid) {
 */
 func (o *physicsServer) BodySetState(body gdnative.Rid, state gdnative.Int, value gdnative.Variant) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.BodySetState()")
+	//log.Println("Calling PhysicsServer.BodySetState()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -1655,7 +1643,7 @@ func (o *physicsServer) BodySetState(body gdnative.Rid, state gdnative.Int, valu
 */
 func (o *physicsServer) ConeTwistJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.ConeTwistJointGetParam()")
+	//log.Println("Calling PhysicsServer.ConeTwistJointGetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1672,7 +1660,7 @@ func (o *physicsServer) ConeTwistJointGetParam(joint gdnative.Rid, param gdnativ
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1682,7 +1670,7 @@ func (o *physicsServer) ConeTwistJointGetParam(joint gdnative.Rid, param gdnativ
 */
 func (o *physicsServer) ConeTwistJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.ConeTwistJointSetParam()")
+	//log.Println("Calling PhysicsServer.ConeTwistJointSetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -1706,7 +1694,7 @@ func (o *physicsServer) ConeTwistJointSetParam(joint gdnative.Rid, param gdnativ
 */
 func (o *physicsServer) FreeRid(rid gdnative.Rid) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.FreeRid()")
+	//log.Println("Calling PhysicsServer.FreeRid()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1728,7 +1716,7 @@ func (o *physicsServer) FreeRid(rid gdnative.Rid) {
 */
 func (o *physicsServer) Generic6DofJointGetFlag(joint gdnative.Rid, axis gdnative.Int, flag gdnative.Int) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.Generic6DofJointGetFlag()")
+	//log.Println("Calling PhysicsServer.Generic6DofJointGetFlag()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -1746,7 +1734,7 @@ func (o *physicsServer) Generic6DofJointGetFlag(joint gdnative.Rid, axis gdnativ
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1756,7 +1744,7 @@ func (o *physicsServer) Generic6DofJointGetFlag(joint gdnative.Rid, axis gdnativ
 */
 func (o *physicsServer) Generic6DofJointGetParam(joint gdnative.Rid, axis gdnative.Int, param gdnative.Int) gdnative.Float {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.Generic6DofJointGetParam()")
+	//log.Println("Calling PhysicsServer.Generic6DofJointGetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -1774,7 +1762,7 @@ func (o *physicsServer) Generic6DofJointGetParam(joint gdnative.Rid, axis gdnati
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1784,7 +1772,7 @@ func (o *physicsServer) Generic6DofJointGetParam(joint gdnative.Rid, axis gdnati
 */
 func (o *physicsServer) Generic6DofJointSetFlag(joint gdnative.Rid, axis gdnative.Int, flag gdnative.Int, enable gdnative.Bool) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.Generic6DofJointSetFlag()")
+	//log.Println("Calling PhysicsServer.Generic6DofJointSetFlag()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -1809,7 +1797,7 @@ func (o *physicsServer) Generic6DofJointSetFlag(joint gdnative.Rid, axis gdnativ
 */
 func (o *physicsServer) Generic6DofJointSetParam(joint gdnative.Rid, axis gdnative.Int, param gdnative.Int, value gdnative.Float) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.Generic6DofJointSetParam()")
+	//log.Println("Calling PhysicsServer.Generic6DofJointSetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -1834,7 +1822,7 @@ func (o *physicsServer) Generic6DofJointSetParam(joint gdnative.Rid, axis gdnati
 */
 func (o *physicsServer) GetProcessInfo(processInfo gdnative.Int) gdnative.Int {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.GetProcessInfo()")
+	//log.Println("Calling PhysicsServer.GetProcessInfo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1850,7 +1838,7 @@ func (o *physicsServer) GetProcessInfo(processInfo gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1860,7 +1848,7 @@ func (o *physicsServer) GetProcessInfo(processInfo gdnative.Int) gdnative.Int {
 */
 func (o *physicsServer) HingeJointGetFlag(joint gdnative.Rid, flag gdnative.Int) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.HingeJointGetFlag()")
+	//log.Println("Calling PhysicsServer.HingeJointGetFlag()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1877,7 +1865,7 @@ func (o *physicsServer) HingeJointGetFlag(joint gdnative.Rid, flag gdnative.Int)
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1887,7 +1875,7 @@ func (o *physicsServer) HingeJointGetFlag(joint gdnative.Rid, flag gdnative.Int)
 */
 func (o *physicsServer) HingeJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.HingeJointGetParam()")
+	//log.Println("Calling PhysicsServer.HingeJointGetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1904,7 +1892,7 @@ func (o *physicsServer) HingeJointGetParam(joint gdnative.Rid, param gdnative.In
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1914,7 +1902,7 @@ func (o *physicsServer) HingeJointGetParam(joint gdnative.Rid, param gdnative.In
 */
 func (o *physicsServer) HingeJointSetFlag(joint gdnative.Rid, flag gdnative.Int, enabled gdnative.Bool) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.HingeJointSetFlag()")
+	//log.Println("Calling PhysicsServer.HingeJointSetFlag()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -1938,7 +1926,7 @@ func (o *physicsServer) HingeJointSetFlag(joint gdnative.Rid, flag gdnative.Int,
 */
 func (o *physicsServer) HingeJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.HingeJointSetParam()")
+	//log.Println("Calling PhysicsServer.HingeJointSetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -1962,7 +1950,7 @@ func (o *physicsServer) HingeJointSetParam(joint gdnative.Rid, param gdnative.In
 */
 func (o *physicsServer) JointCreateConeTwist(bodyA gdnative.Rid, localRefA gdnative.Transform, bodyB gdnative.Rid, localRefB gdnative.Transform) gdnative.Rid {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.JointCreateConeTwist()")
+	//log.Println("Calling PhysicsServer.JointCreateConeTwist()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -1981,7 +1969,7 @@ func (o *physicsServer) JointCreateConeTwist(bodyA gdnative.Rid, localRefA gdnat
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1991,7 +1979,7 @@ func (o *physicsServer) JointCreateConeTwist(bodyA gdnative.Rid, localRefA gdnat
 */
 func (o *physicsServer) JointCreateGeneric6Dof(bodyA gdnative.Rid, localRefA gdnative.Transform, bodyB gdnative.Rid, localRefB gdnative.Transform) gdnative.Rid {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.JointCreateGeneric6Dof()")
+	//log.Println("Calling PhysicsServer.JointCreateGeneric6Dof()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -2010,7 +1998,7 @@ func (o *physicsServer) JointCreateGeneric6Dof(bodyA gdnative.Rid, localRefA gdn
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -2020,7 +2008,7 @@ func (o *physicsServer) JointCreateGeneric6Dof(bodyA gdnative.Rid, localRefA gdn
 */
 func (o *physicsServer) JointCreateHinge(bodyA gdnative.Rid, hingeA gdnative.Transform, bodyB gdnative.Rid, hingeB gdnative.Transform) gdnative.Rid {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.JointCreateHinge()")
+	//log.Println("Calling PhysicsServer.JointCreateHinge()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -2039,7 +2027,7 @@ func (o *physicsServer) JointCreateHinge(bodyA gdnative.Rid, hingeA gdnative.Tra
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -2049,7 +2037,7 @@ func (o *physicsServer) JointCreateHinge(bodyA gdnative.Rid, hingeA gdnative.Tra
 */
 func (o *physicsServer) JointCreatePin(bodyA gdnative.Rid, localA gdnative.Vector3, bodyB gdnative.Rid, localB gdnative.Vector3) gdnative.Rid {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.JointCreatePin()")
+	//log.Println("Calling PhysicsServer.JointCreatePin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -2068,7 +2056,7 @@ func (o *physicsServer) JointCreatePin(bodyA gdnative.Rid, localA gdnative.Vecto
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -2078,7 +2066,7 @@ func (o *physicsServer) JointCreatePin(bodyA gdnative.Rid, localA gdnative.Vecto
 */
 func (o *physicsServer) JointCreateSlider(bodyA gdnative.Rid, localRefA gdnative.Transform, bodyB gdnative.Rid, localRefB gdnative.Transform) gdnative.Rid {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.JointCreateSlider()")
+	//log.Println("Calling PhysicsServer.JointCreateSlider()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -2097,7 +2085,7 @@ func (o *physicsServer) JointCreateSlider(bodyA gdnative.Rid, localRefA gdnative
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -2107,7 +2095,7 @@ func (o *physicsServer) JointCreateSlider(bodyA gdnative.Rid, localRefA gdnative
 */
 func (o *physicsServer) JointGetSolverPriority(joint gdnative.Rid) gdnative.Int {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.JointGetSolverPriority()")
+	//log.Println("Calling PhysicsServer.JointGetSolverPriority()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2123,7 +2111,7 @@ func (o *physicsServer) JointGetSolverPriority(joint gdnative.Rid) gdnative.Int 
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -2138,7 +2126,7 @@ func (o *physicsServer) JointGetSolverPriority(joint gdnative.Rid) gdnative.Int 
 */
 func (o *physicsServer) JointSetSolverPriority(joint gdnative.Rid, priority gdnative.Int) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.JointSetSolverPriority()")
+	//log.Println("Calling PhysicsServer.JointSetSolverPriority()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -2161,7 +2149,7 @@ func (o *physicsServer) JointSetSolverPriority(joint gdnative.Rid, priority gdna
 */
 func (o *physicsServer) PinJointGetLocalA(joint gdnative.Rid) gdnative.Vector3 {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.PinJointGetLocalA()")
+	//log.Println("Calling PhysicsServer.PinJointGetLocalA()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2177,7 +2165,7 @@ func (o *physicsServer) PinJointGetLocalA(joint gdnative.Rid) gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -2187,7 +2175,7 @@ func (o *physicsServer) PinJointGetLocalA(joint gdnative.Rid) gdnative.Vector3 {
 */
 func (o *physicsServer) PinJointGetLocalB(joint gdnative.Rid) gdnative.Vector3 {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.PinJointGetLocalB()")
+	//log.Println("Calling PhysicsServer.PinJointGetLocalB()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2203,7 +2191,7 @@ func (o *physicsServer) PinJointGetLocalB(joint gdnative.Rid) gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -2213,7 +2201,7 @@ func (o *physicsServer) PinJointGetLocalB(joint gdnative.Rid) gdnative.Vector3 {
 */
 func (o *physicsServer) PinJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.PinJointGetParam()")
+	//log.Println("Calling PhysicsServer.PinJointGetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -2230,7 +2218,7 @@ func (o *physicsServer) PinJointGetParam(joint gdnative.Rid, param gdnative.Int)
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -2240,7 +2228,7 @@ func (o *physicsServer) PinJointGetParam(joint gdnative.Rid, param gdnative.Int)
 */
 func (o *physicsServer) PinJointSetLocalA(joint gdnative.Rid, localA gdnative.Vector3) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.PinJointSetLocalA()")
+	//log.Println("Calling PhysicsServer.PinJointSetLocalA()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -2263,7 +2251,7 @@ func (o *physicsServer) PinJointSetLocalA(joint gdnative.Rid, localA gdnative.Ve
 */
 func (o *physicsServer) PinJointSetLocalB(joint gdnative.Rid, localB gdnative.Vector3) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.PinJointSetLocalB()")
+	//log.Println("Calling PhysicsServer.PinJointSetLocalB()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -2286,7 +2274,7 @@ func (o *physicsServer) PinJointSetLocalB(joint gdnative.Rid, localB gdnative.Ve
 */
 func (o *physicsServer) PinJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.PinJointSetParam()")
+	//log.Println("Calling PhysicsServer.PinJointSetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -2310,7 +2298,7 @@ func (o *physicsServer) PinJointSetParam(joint gdnative.Rid, param gdnative.Int,
 */
 func (o *physicsServer) SetActive(active gdnative.Bool) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.SetActive()")
+	//log.Println("Calling PhysicsServer.SetActive()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2332,7 +2320,7 @@ func (o *physicsServer) SetActive(active gdnative.Bool) {
 */
 func (o *physicsServer) ShapeCreate(aType gdnative.Int) gdnative.Rid {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.ShapeCreate()")
+	//log.Println("Calling PhysicsServer.ShapeCreate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2348,7 +2336,7 @@ func (o *physicsServer) ShapeCreate(aType gdnative.Int) gdnative.Rid {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -2358,7 +2346,7 @@ func (o *physicsServer) ShapeCreate(aType gdnative.Int) gdnative.Rid {
 */
 func (o *physicsServer) ShapeGetData(shape gdnative.Rid) gdnative.Variant {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.ShapeGetData()")
+	//log.Println("Calling PhysicsServer.ShapeGetData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2374,7 +2362,7 @@ func (o *physicsServer) ShapeGetData(shape gdnative.Rid) gdnative.Variant {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -2389,7 +2377,7 @@ func (o *physicsServer) ShapeGetData(shape gdnative.Rid) gdnative.Variant {
 */
 func (o *physicsServer) ShapeSetData(shape gdnative.Rid, data gdnative.Variant) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.ShapeSetData()")
+	//log.Println("Calling PhysicsServer.ShapeSetData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -2412,7 +2400,7 @@ func (o *physicsServer) ShapeSetData(shape gdnative.Rid, data gdnative.Variant) 
 */
 func (o *physicsServer) SliderJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.SliderJointGetParam()")
+	//log.Println("Calling PhysicsServer.SliderJointGetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -2429,7 +2417,7 @@ func (o *physicsServer) SliderJointGetParam(joint gdnative.Rid, param gdnative.I
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -2439,7 +2427,7 @@ func (o *physicsServer) SliderJointGetParam(joint gdnative.Rid, param gdnative.I
 */
 func (o *physicsServer) SliderJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.SliderJointSetParam()")
+	//log.Println("Calling PhysicsServer.SliderJointSetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -2463,7 +2451,7 @@ func (o *physicsServer) SliderJointSetParam(joint gdnative.Rid, param gdnative.I
 */
 func (o *physicsServer) SpaceCreate() gdnative.Rid {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.SpaceCreate()")
+	//log.Println("Calling PhysicsServer.SpaceCreate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -2478,7 +2466,7 @@ func (o *physicsServer) SpaceCreate() gdnative.Rid {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -2488,7 +2476,7 @@ func (o *physicsServer) SpaceCreate() gdnative.Rid {
 */
 func (o *physicsServer) SpaceGetDirectState(space gdnative.Rid) PhysicsDirectSpaceState {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.SpaceGetDirectState()")
+	//log.Println("Calling PhysicsServer.SpaceGetDirectState()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2504,7 +2492,7 @@ func (o *physicsServer) SpaceGetDirectState(space gdnative.Rid) PhysicsDirectSpa
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewPhysicsDirectSpaceStateFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -2514,7 +2502,7 @@ func (o *physicsServer) SpaceGetDirectState(space gdnative.Rid) PhysicsDirectSpa
 */
 func (o *physicsServer) SpaceGetParam(space gdnative.Rid, param gdnative.Int) gdnative.Float {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.SpaceGetParam()")
+	//log.Println("Calling PhysicsServer.SpaceGetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -2531,7 +2519,7 @@ func (o *physicsServer) SpaceGetParam(space gdnative.Rid, param gdnative.Int) gd
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -2541,7 +2529,7 @@ func (o *physicsServer) SpaceGetParam(space gdnative.Rid, param gdnative.Int) gd
 */
 func (o *physicsServer) SpaceIsActive(space gdnative.Rid) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.SpaceIsActive()")
+	//log.Println("Calling PhysicsServer.SpaceIsActive()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2557,7 +2545,7 @@ func (o *physicsServer) SpaceIsActive(space gdnative.Rid) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -2567,7 +2555,7 @@ func (o *physicsServer) SpaceIsActive(space gdnative.Rid) gdnative.Bool {
 */
 func (o *physicsServer) SpaceSetActive(space gdnative.Rid, active gdnative.Bool) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.SpaceSetActive()")
+	//log.Println("Calling PhysicsServer.SpaceSetActive()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -2590,7 +2578,7 @@ func (o *physicsServer) SpaceSetActive(space gdnative.Rid, active gdnative.Bool)
 */
 func (o *physicsServer) SpaceSetParam(space gdnative.Rid, param gdnative.Int, value gdnative.Float) {
 	o.ensureSingleton()
-	log.Println("Calling PhysicsServer.SpaceSetParam()")
+	//log.Println("Calling PhysicsServer.SpaceSetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)

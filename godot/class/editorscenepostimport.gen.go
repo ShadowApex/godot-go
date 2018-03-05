@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *EditorScenePostImport) BaseClass() string {
 	return "EditorScenePostImport"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *EditorScenePostImport) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *EditorScenePostImport) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [{ false scene Object}], Returns: void
 */
 func (o *EditorScenePostImport) PostImport(scene Object) {
-	log.Println("Calling EditorScenePostImport.PostImport()")
+	//log.Println("Calling EditorScenePostImport.PostImport()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

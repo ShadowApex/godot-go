@@ -33,13 +33,3 @@ type ResourceImporterWebm struct {
 func (o *ResourceImporterWebm) BaseClass() string {
 	return "ResourceImporterWebm"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ResourceImporterWebm) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ResourceImporterWebm) GetBaseObject() gdnative.Object {
-	return o.owner
-}

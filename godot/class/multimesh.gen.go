@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *MultiMesh) BaseClass() string {
 	return "MultiMesh"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *MultiMesh) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *MultiMesh) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: PoolColorArray
 */
 func (o *MultiMesh) X_GetColorArray() gdnative.PoolColorArray {
-	log.Println("Calling MultiMesh.X_GetColorArray()")
+	//log.Println("Calling MultiMesh.X_GetColorArray()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *MultiMesh) X_GetColorArray() gdnative.PoolColorArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolColorArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *MultiMesh) X_GetColorArray() gdnative.PoolColorArray {
 	Args: [], Returns: PoolVector3Array
 */
 func (o *MultiMesh) X_GetTransformArray() gdnative.PoolVector3Array {
-	log.Println("Calling MultiMesh.X_GetTransformArray()")
+	//log.Println("Calling MultiMesh.X_GetTransformArray()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *MultiMesh) X_GetTransformArray() gdnative.PoolVector3Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolVector3ArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *MultiMesh) X_GetTransformArray() gdnative.PoolVector3Array {
 	Args: [{ false arg0 PoolColorArray}], Returns: void
 */
 func (o *MultiMesh) X_SetColorArray(arg0 gdnative.PoolColorArray) {
-	log.Println("Calling MultiMesh.X_SetColorArray()")
+	//log.Println("Calling MultiMesh.X_SetColorArray()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -120,7 +108,7 @@ func (o *MultiMesh) X_SetColorArray(arg0 gdnative.PoolColorArray) {
 	Args: [{ false arg0 PoolVector3Array}], Returns: void
 */
 func (o *MultiMesh) X_SetTransformArray(arg0 gdnative.PoolVector3Array) {
-	log.Println("Calling MultiMesh.X_SetTransformArray()")
+	//log.Println("Calling MultiMesh.X_SetTransformArray()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -141,7 +129,7 @@ func (o *MultiMesh) X_SetTransformArray(arg0 gdnative.PoolVector3Array) {
 	Args: [], Returns: AABB
 */
 func (o *MultiMesh) GetAabb() gdnative.Aabb {
-	log.Println("Calling MultiMesh.GetAabb()")
+	//log.Println("Calling MultiMesh.GetAabb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -156,7 +144,7 @@ func (o *MultiMesh) GetAabb() gdnative.Aabb {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewAabbFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -170,7 +158,7 @@ func (o *MultiMesh) GetAabb() gdnative.Aabb {
 	Args: [{ false instance int}], Returns: Color
 */
 func (o *MultiMesh) GetInstanceColor(instance gdnative.Int) gdnative.Color {
-	log.Println("Calling MultiMesh.GetInstanceColor()")
+	//log.Println("Calling MultiMesh.GetInstanceColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -186,7 +174,7 @@ func (o *MultiMesh) GetInstanceColor(instance gdnative.Int) gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -195,7 +183,7 @@ func (o *MultiMesh) GetInstanceColor(instance gdnative.Int) gdnative.Color {
 	Args: [], Returns: int
 */
 func (o *MultiMesh) GetInstanceCount() gdnative.Int {
-	log.Println("Calling MultiMesh.GetInstanceCount()")
+	//log.Println("Calling MultiMesh.GetInstanceCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -210,7 +198,7 @@ func (o *MultiMesh) GetInstanceCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -219,7 +207,7 @@ func (o *MultiMesh) GetInstanceCount() gdnative.Int {
 	Args: [{ false instance int}], Returns: Transform
 */
 func (o *MultiMesh) GetInstanceTransform(instance gdnative.Int) gdnative.Transform {
-	log.Println("Calling MultiMesh.GetInstanceTransform()")
+	//log.Println("Calling MultiMesh.GetInstanceTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -235,7 +223,7 @@ func (o *MultiMesh) GetInstanceTransform(instance gdnative.Int) gdnative.Transfo
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransformFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -244,7 +232,7 @@ func (o *MultiMesh) GetInstanceTransform(instance gdnative.Int) gdnative.Transfo
 	Args: [], Returns: Mesh
 */
 func (o *MultiMesh) GetMesh() Mesh {
-	log.Println("Calling MultiMesh.GetMesh()")
+	//log.Println("Calling MultiMesh.GetMesh()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -259,7 +247,7 @@ func (o *MultiMesh) GetMesh() Mesh {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewMeshFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -273,7 +261,7 @@ func (o *MultiMesh) GetMesh() Mesh {
 	Args: [{ false format int}], Returns: void
 */
 func (o *MultiMesh) SetColorFormat(format gdnative.Int) {
-	log.Println("Calling MultiMesh.SetColorFormat()")
+	//log.Println("Calling MultiMesh.SetColorFormat()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -294,7 +282,7 @@ func (o *MultiMesh) SetColorFormat(format gdnative.Int) {
 	Args: [{ false instance int} { false color Color}], Returns: void
 */
 func (o *MultiMesh) SetInstanceColor(instance gdnative.Int, color gdnative.Color) {
-	log.Println("Calling MultiMesh.SetInstanceColor()")
+	//log.Println("Calling MultiMesh.SetInstanceColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -316,7 +304,7 @@ func (o *MultiMesh) SetInstanceColor(instance gdnative.Int, color gdnative.Color
 	Args: [{ false count int}], Returns: void
 */
 func (o *MultiMesh) SetInstanceCount(count gdnative.Int) {
-	log.Println("Calling MultiMesh.SetInstanceCount()")
+	//log.Println("Calling MultiMesh.SetInstanceCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -337,7 +325,7 @@ func (o *MultiMesh) SetInstanceCount(count gdnative.Int) {
 	Args: [{ false instance int} { false transform Transform}], Returns: void
 */
 func (o *MultiMesh) SetInstanceTransform(instance gdnative.Int, transform gdnative.Transform) {
-	log.Println("Calling MultiMesh.SetInstanceTransform()")
+	//log.Println("Calling MultiMesh.SetInstanceTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -359,7 +347,7 @@ func (o *MultiMesh) SetInstanceTransform(instance gdnative.Int, transform gdnati
 	Args: [{ false mesh Mesh}], Returns: void
 */
 func (o *MultiMesh) SetMesh(mesh Mesh) {
-	log.Println("Calling MultiMesh.SetMesh()")
+	//log.Println("Calling MultiMesh.SetMesh()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -380,7 +368,7 @@ func (o *MultiMesh) SetMesh(mesh Mesh) {
 	Args: [{ false format int}], Returns: void
 */
 func (o *MultiMesh) SetTransformFormat(format gdnative.Int) {
-	log.Println("Calling MultiMesh.SetTransformFormat()")
+	//log.Println("Calling MultiMesh.SetTransformFormat()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

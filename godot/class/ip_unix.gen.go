@@ -33,13 +33,3 @@ type IP_Unix struct {
 func (o *IP_Unix) BaseClass() string {
 	return "IP_Unix"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *IP_Unix) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *IP_Unix) GetBaseObject() gdnative.Object {
-	return o.owner
-}

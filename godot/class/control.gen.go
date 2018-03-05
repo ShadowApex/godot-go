@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Control) BaseClass() string {
 	return "Control"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Control) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Control) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *Control) X_FontChanged() {
-	log.Println("Calling Control.X_FontChanged()")
+	//log.Println("Calling Control.X_FontChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *Control) X_FontChanged() {
 	Args: [], Returns: Vector2
 */
 func (o *Control) X_GetMinimumSize() gdnative.Vector2 {
-	log.Println("Calling Control.X_GetMinimumSize()")
+	//log.Println("Calling Control.X_GetMinimumSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -86,7 +74,7 @@ func (o *Control) X_GetMinimumSize() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -95,7 +83,7 @@ func (o *Control) X_GetMinimumSize() gdnative.Vector2 {
 	Args: [], Returns: String
 */
 func (o *Control) X_GetTooltip() gdnative.String {
-	log.Println("Calling Control.X_GetTooltip()")
+	//log.Println("Calling Control.X_GetTooltip()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -110,7 +98,7 @@ func (o *Control) X_GetTooltip() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -119,7 +107,7 @@ func (o *Control) X_GetTooltip() gdnative.String {
 	Args: [{ false event InputEvent}], Returns: void
 */
 func (o *Control) X_GuiInput(event InputEvent) {
-	log.Println("Calling Control.X_GuiInput()")
+	//log.Println("Calling Control.X_GuiInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -140,7 +128,7 @@ func (o *Control) X_GuiInput(event InputEvent) {
 	Args: [{ false margin int} { false anchor float}], Returns: void
 */
 func (o *Control) X_SetAnchor(margin gdnative.Int, anchor gdnative.Float) {
-	log.Println("Calling Control.X_SetAnchor()")
+	//log.Println("Calling Control.X_SetAnchor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -162,7 +150,7 @@ func (o *Control) X_SetAnchor(margin gdnative.Int, anchor gdnative.Float) {
 	Args: [], Returns: void
 */
 func (o *Control) X_SizeChanged() {
-	log.Println("Calling Control.X_SizeChanged()")
+	//log.Println("Calling Control.X_SizeChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -182,7 +170,7 @@ func (o *Control) X_SizeChanged() {
 	Args: [], Returns: void
 */
 func (o *Control) X_ThemeChanged() {
-	log.Println("Calling Control.X_ThemeChanged()")
+	//log.Println("Calling Control.X_ThemeChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -202,7 +190,7 @@ func (o *Control) X_ThemeChanged() {
 	Args: [], Returns: void
 */
 func (o *Control) X_UpdateMinimumSize() {
-	log.Println("Calling Control.X_UpdateMinimumSize()")
+	//log.Println("Calling Control.X_UpdateMinimumSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -222,7 +210,7 @@ func (o *Control) X_UpdateMinimumSize() {
 	Args: [], Returns: void
 */
 func (o *Control) AcceptEvent() {
-	log.Println("Calling Control.AcceptEvent()")
+	//log.Println("Calling Control.AcceptEvent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -242,7 +230,7 @@ func (o *Control) AcceptEvent() {
 	Args: [{ false name String} { false color Color}], Returns: void
 */
 func (o *Control) AddColorOverride(name gdnative.String, color gdnative.Color) {
-	log.Println("Calling Control.AddColorOverride()")
+	//log.Println("Calling Control.AddColorOverride()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -264,7 +252,7 @@ func (o *Control) AddColorOverride(name gdnative.String, color gdnative.Color) {
 	Args: [{ false name String} { false constant int}], Returns: void
 */
 func (o *Control) AddConstantOverride(name gdnative.String, constant gdnative.Int) {
-	log.Println("Calling Control.AddConstantOverride()")
+	//log.Println("Calling Control.AddConstantOverride()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -286,7 +274,7 @@ func (o *Control) AddConstantOverride(name gdnative.String, constant gdnative.In
 	Args: [{ false name String} { false font Font}], Returns: void
 */
 func (o *Control) AddFontOverride(name gdnative.String, font Font) {
-	log.Println("Calling Control.AddFontOverride()")
+	//log.Println("Calling Control.AddFontOverride()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -308,7 +296,7 @@ func (o *Control) AddFontOverride(name gdnative.String, font Font) {
 	Args: [{ false name String} { false texture Texture}], Returns: void
 */
 func (o *Control) AddIconOverride(name gdnative.String, texture Texture) {
-	log.Println("Calling Control.AddIconOverride()")
+	//log.Println("Calling Control.AddIconOverride()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -330,7 +318,7 @@ func (o *Control) AddIconOverride(name gdnative.String, texture Texture) {
 	Args: [{ false name String} { false shader Shader}], Returns: void
 */
 func (o *Control) AddShaderOverride(name gdnative.String, shader Shader) {
-	log.Println("Calling Control.AddShaderOverride()")
+	//log.Println("Calling Control.AddShaderOverride()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -352,7 +340,7 @@ func (o *Control) AddShaderOverride(name gdnative.String, shader Shader) {
 	Args: [{ false name String} { false stylebox StyleBox}], Returns: void
 */
 func (o *Control) AddStyleboxOverride(name gdnative.String, stylebox StyleBox) {
-	log.Println("Calling Control.AddStyleboxOverride()")
+	//log.Println("Calling Control.AddStyleboxOverride()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -374,7 +362,7 @@ func (o *Control) AddStyleboxOverride(name gdnative.String, stylebox StyleBox) {
 	Args: [{ false position Vector2} { false data Variant}], Returns: bool
 */
 func (o *Control) CanDropData(position gdnative.Vector2, data gdnative.Variant) gdnative.Bool {
-	log.Println("Calling Control.CanDropData()")
+	//log.Println("Calling Control.CanDropData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -391,7 +379,7 @@ func (o *Control) CanDropData(position gdnative.Vector2, data gdnative.Variant) 
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -400,7 +388,7 @@ func (o *Control) CanDropData(position gdnative.Vector2, data gdnative.Variant) 
 	Args: [{ false position Vector2} { false data Variant}], Returns: void
 */
 func (o *Control) DropData(position gdnative.Vector2, data gdnative.Variant) {
-	log.Println("Calling Control.DropData()")
+	//log.Println("Calling Control.DropData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -422,7 +410,7 @@ func (o *Control) DropData(position gdnative.Vector2, data gdnative.Variant) {
 	Args: [{ false data Variant} { false preview Object}], Returns: void
 */
 func (o *Control) ForceDrag(data gdnative.Variant, preview Object) {
-	log.Println("Calling Control.ForceDrag()")
+	//log.Println("Calling Control.ForceDrag()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -444,7 +432,7 @@ func (o *Control) ForceDrag(data gdnative.Variant, preview Object) {
 	Args: [{ false margin int}], Returns: float
 */
 func (o *Control) GetAnchor(margin gdnative.Int) gdnative.Float {
-	log.Println("Calling Control.GetAnchor()")
+	//log.Println("Calling Control.GetAnchor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -460,7 +448,7 @@ func (o *Control) GetAnchor(margin gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -469,7 +457,7 @@ func (o *Control) GetAnchor(margin gdnative.Int) gdnative.Float {
 	Args: [], Returns: Vector2
 */
 func (o *Control) GetBegin() gdnative.Vector2 {
-	log.Println("Calling Control.GetBegin()")
+	//log.Println("Calling Control.GetBegin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -484,7 +472,7 @@ func (o *Control) GetBegin() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -493,7 +481,7 @@ func (o *Control) GetBegin() gdnative.Vector2 {
 	Args: [{ false name String} { true type String}], Returns: Color
 */
 func (o *Control) GetColor(name gdnative.String, aType gdnative.String) gdnative.Color {
-	log.Println("Calling Control.GetColor()")
+	//log.Println("Calling Control.GetColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -510,7 +498,7 @@ func (o *Control) GetColor(name gdnative.String, aType gdnative.String) gdnative
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -519,7 +507,7 @@ func (o *Control) GetColor(name gdnative.String, aType gdnative.String) gdnative
 	Args: [], Returns: Vector2
 */
 func (o *Control) GetCombinedMinimumSize() gdnative.Vector2 {
-	log.Println("Calling Control.GetCombinedMinimumSize()")
+	//log.Println("Calling Control.GetCombinedMinimumSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -534,7 +522,7 @@ func (o *Control) GetCombinedMinimumSize() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -543,7 +531,7 @@ func (o *Control) GetCombinedMinimumSize() gdnative.Vector2 {
 	Args: [{ false name String} { true type String}], Returns: int
 */
 func (o *Control) GetConstant(name gdnative.String, aType gdnative.String) gdnative.Int {
-	log.Println("Calling Control.GetConstant()")
+	//log.Println("Calling Control.GetConstant()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -560,7 +548,7 @@ func (o *Control) GetConstant(name gdnative.String, aType gdnative.String) gdnat
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -574,7 +562,7 @@ func (o *Control) GetConstant(name gdnative.String, aType gdnative.String) gdnat
 	Args: [], Returns: Vector2
 */
 func (o *Control) GetCustomMinimumSize() gdnative.Vector2 {
-	log.Println("Calling Control.GetCustomMinimumSize()")
+	//log.Println("Calling Control.GetCustomMinimumSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -589,7 +577,7 @@ func (o *Control) GetCustomMinimumSize() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -603,7 +591,7 @@ func (o *Control) GetCustomMinimumSize() gdnative.Vector2 {
 	Args: [{ false position Vector2}], Returns: Object
 */
 func (o *Control) GetDragData(position gdnative.Vector2) Object {
-	log.Println("Calling Control.GetDragData()")
+	//log.Println("Calling Control.GetDragData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -619,7 +607,7 @@ func (o *Control) GetDragData(position gdnative.Vector2) Object {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewObjectFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -628,7 +616,7 @@ func (o *Control) GetDragData(position gdnative.Vector2) Object {
 	Args: [], Returns: Vector2
 */
 func (o *Control) GetEnd() gdnative.Vector2 {
-	log.Println("Calling Control.GetEnd()")
+	//log.Println("Calling Control.GetEnd()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -643,7 +631,7 @@ func (o *Control) GetEnd() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -657,7 +645,7 @@ func (o *Control) GetEnd() gdnative.Vector2 {
 	Args: [{ false margin int}], Returns: NodePath
 */
 func (o *Control) GetFocusNeighbour(margin gdnative.Int) gdnative.NodePath {
-	log.Println("Calling Control.GetFocusNeighbour()")
+	//log.Println("Calling Control.GetFocusNeighbour()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -673,7 +661,7 @@ func (o *Control) GetFocusNeighbour(margin gdnative.Int) gdnative.NodePath {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewNodePathFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -682,7 +670,7 @@ func (o *Control) GetFocusNeighbour(margin gdnative.Int) gdnative.NodePath {
 	Args: [], Returns: NodePath
 */
 func (o *Control) GetFocusNext() gdnative.NodePath {
-	log.Println("Calling Control.GetFocusNext()")
+	//log.Println("Calling Control.GetFocusNext()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -697,7 +685,7 @@ func (o *Control) GetFocusNext() gdnative.NodePath {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewNodePathFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -706,7 +694,7 @@ func (o *Control) GetFocusNext() gdnative.NodePath {
 	Args: [], Returns: Control
 */
 func (o *Control) GetFocusOwner() Control {
-	log.Println("Calling Control.GetFocusOwner()")
+	//log.Println("Calling Control.GetFocusOwner()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -721,7 +709,7 @@ func (o *Control) GetFocusOwner() Control {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewControlFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -730,7 +718,7 @@ func (o *Control) GetFocusOwner() Control {
 	Args: [], Returns: NodePath
 */
 func (o *Control) GetFocusPrevious() gdnative.NodePath {
-	log.Println("Calling Control.GetFocusPrevious()")
+	//log.Println("Calling Control.GetFocusPrevious()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -745,7 +733,7 @@ func (o *Control) GetFocusPrevious() gdnative.NodePath {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewNodePathFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -754,7 +742,7 @@ func (o *Control) GetFocusPrevious() gdnative.NodePath {
 	Args: [{ false name String} { true type String}], Returns: Font
 */
 func (o *Control) GetFont(name gdnative.String, aType gdnative.String) Font {
-	log.Println("Calling Control.GetFont()")
+	//log.Println("Calling Control.GetFont()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -771,7 +759,7 @@ func (o *Control) GetFont(name gdnative.String, aType gdnative.String) Font {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewFontFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -780,7 +768,7 @@ func (o *Control) GetFont(name gdnative.String, aType gdnative.String) Font {
 	Args: [], Returns: Vector2
 */
 func (o *Control) GetGlobalPosition() gdnative.Vector2 {
-	log.Println("Calling Control.GetGlobalPosition()")
+	//log.Println("Calling Control.GetGlobalPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -795,7 +783,7 @@ func (o *Control) GetGlobalPosition() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -804,7 +792,7 @@ func (o *Control) GetGlobalPosition() gdnative.Vector2 {
 	Args: [], Returns: Rect2
 */
 func (o *Control) GetGlobalRect() gdnative.Rect2 {
-	log.Println("Calling Control.GetGlobalRect()")
+	//log.Println("Calling Control.GetGlobalRect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -819,7 +807,7 @@ func (o *Control) GetGlobalRect() gdnative.Rect2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRect2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -833,7 +821,7 @@ func (o *Control) GetGlobalRect() gdnative.Rect2 {
 	Args: [], Returns: int
 */
 func (o *Control) GetHSizeFlags() gdnative.Int {
-	log.Println("Calling Control.GetHSizeFlags()")
+	//log.Println("Calling Control.GetHSizeFlags()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -848,7 +836,7 @@ func (o *Control) GetHSizeFlags() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -857,7 +845,7 @@ func (o *Control) GetHSizeFlags() gdnative.Int {
 	Args: [{ false name String} { true type String}], Returns: Texture
 */
 func (o *Control) GetIcon(name gdnative.String, aType gdnative.String) Texture {
-	log.Println("Calling Control.GetIcon()")
+	//log.Println("Calling Control.GetIcon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -874,7 +862,7 @@ func (o *Control) GetIcon(name gdnative.String, aType gdnative.String) Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -883,7 +871,7 @@ func (o *Control) GetIcon(name gdnative.String, aType gdnative.String) Texture {
 	Args: [{ false margin int}], Returns: float
 */
 func (o *Control) GetMargin(margin gdnative.Int) gdnative.Float {
-	log.Println("Calling Control.GetMargin()")
+	//log.Println("Calling Control.GetMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -899,7 +887,7 @@ func (o *Control) GetMargin(margin gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -908,7 +896,7 @@ func (o *Control) GetMargin(margin gdnative.Int) gdnative.Float {
 	Args: [], Returns: Vector2
 */
 func (o *Control) GetMinimumSize() gdnative.Vector2 {
-	log.Println("Calling Control.GetMinimumSize()")
+	//log.Println("Calling Control.GetMinimumSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -923,7 +911,7 @@ func (o *Control) GetMinimumSize() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -937,7 +925,7 @@ func (o *Control) GetMinimumSize() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *Control) GetParentAreaSize() gdnative.Vector2 {
-	log.Println("Calling Control.GetParentAreaSize()")
+	//log.Println("Calling Control.GetParentAreaSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -952,7 +940,7 @@ func (o *Control) GetParentAreaSize() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -961,7 +949,7 @@ func (o *Control) GetParentAreaSize() gdnative.Vector2 {
 	Args: [], Returns: Control
 */
 func (o *Control) GetParentControl() Control {
-	log.Println("Calling Control.GetParentControl()")
+	//log.Println("Calling Control.GetParentControl()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -976,7 +964,7 @@ func (o *Control) GetParentControl() Control {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewControlFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -985,7 +973,7 @@ func (o *Control) GetParentControl() Control {
 	Args: [], Returns: Vector2
 */
 func (o *Control) GetPivotOffset() gdnative.Vector2 {
-	log.Println("Calling Control.GetPivotOffset()")
+	//log.Println("Calling Control.GetPivotOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1000,7 +988,7 @@ func (o *Control) GetPivotOffset() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1009,7 +997,7 @@ func (o *Control) GetPivotOffset() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *Control) GetPosition() gdnative.Vector2 {
-	log.Println("Calling Control.GetPosition()")
+	//log.Println("Calling Control.GetPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1024,7 +1012,7 @@ func (o *Control) GetPosition() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1033,7 +1021,7 @@ func (o *Control) GetPosition() gdnative.Vector2 {
 	Args: [], Returns: Rect2
 */
 func (o *Control) GetRect() gdnative.Rect2 {
-	log.Println("Calling Control.GetRect()")
+	//log.Println("Calling Control.GetRect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1048,7 +1036,7 @@ func (o *Control) GetRect() gdnative.Rect2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRect2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1057,7 +1045,7 @@ func (o *Control) GetRect() gdnative.Rect2 {
 	Args: [], Returns: float
 */
 func (o *Control) GetRotation() gdnative.Float {
-	log.Println("Calling Control.GetRotation()")
+	//log.Println("Calling Control.GetRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1072,7 +1060,7 @@ func (o *Control) GetRotation() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1081,7 +1069,7 @@ func (o *Control) GetRotation() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Control) GetRotationDegrees() gdnative.Float {
-	log.Println("Calling Control.GetRotationDegrees()")
+	//log.Println("Calling Control.GetRotationDegrees()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1096,7 +1084,7 @@ func (o *Control) GetRotationDegrees() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1105,7 +1093,7 @@ func (o *Control) GetRotationDegrees() gdnative.Float {
 	Args: [], Returns: Vector2
 */
 func (o *Control) GetScale() gdnative.Vector2 {
-	log.Println("Calling Control.GetScale()")
+	//log.Println("Calling Control.GetScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1120,7 +1108,7 @@ func (o *Control) GetScale() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1129,7 +1117,7 @@ func (o *Control) GetScale() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *Control) GetSize() gdnative.Vector2 {
-	log.Println("Calling Control.GetSize()")
+	//log.Println("Calling Control.GetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1144,7 +1132,7 @@ func (o *Control) GetSize() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1153,7 +1141,7 @@ func (o *Control) GetSize() gdnative.Vector2 {
 	Args: [], Returns: float
 */
 func (o *Control) GetStretchRatio() gdnative.Float {
-	log.Println("Calling Control.GetStretchRatio()")
+	//log.Println("Calling Control.GetStretchRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1168,7 +1156,7 @@ func (o *Control) GetStretchRatio() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1177,7 +1165,7 @@ func (o *Control) GetStretchRatio() gdnative.Float {
 	Args: [{ false name String} { true type String}], Returns: StyleBox
 */
 func (o *Control) GetStylebox(name gdnative.String, aType gdnative.String) StyleBox {
-	log.Println("Calling Control.GetStylebox()")
+	//log.Println("Calling Control.GetStylebox()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1194,7 +1182,7 @@ func (o *Control) GetStylebox(name gdnative.String, aType gdnative.String) Style
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewStyleBoxFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1203,7 +1191,7 @@ func (o *Control) GetStylebox(name gdnative.String, aType gdnative.String) Style
 	Args: [], Returns: Theme
 */
 func (o *Control) GetTheme() Theme {
-	log.Println("Calling Control.GetTheme()")
+	//log.Println("Calling Control.GetTheme()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1218,7 +1206,7 @@ func (o *Control) GetTheme() Theme {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewThemeFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1227,7 +1215,7 @@ func (o *Control) GetTheme() Theme {
 	Args: [{(0, 0) true at_position Vector2}], Returns: String
 */
 func (o *Control) GetTooltip(atPosition gdnative.Vector2) gdnative.String {
-	log.Println("Calling Control.GetTooltip()")
+	//log.Println("Calling Control.GetTooltip()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1243,7 +1231,7 @@ func (o *Control) GetTooltip(atPosition gdnative.Vector2) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1257,7 +1245,7 @@ func (o *Control) GetTooltip(atPosition gdnative.Vector2) gdnative.String {
 	Args: [], Returns: int
 */
 func (o *Control) GetVSizeFlags() gdnative.Int {
-	log.Println("Calling Control.GetVSizeFlags()")
+	//log.Println("Calling Control.GetVSizeFlags()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1272,7 +1260,7 @@ func (o *Control) GetVSizeFlags() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1281,7 +1269,7 @@ func (o *Control) GetVSizeFlags() gdnative.Int {
 	Args: [], Returns: void
 */
 func (o *Control) GrabClickFocus() {
-	log.Println("Calling Control.GrabClickFocus()")
+	//log.Println("Calling Control.GrabClickFocus()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1301,7 +1289,7 @@ func (o *Control) GrabClickFocus() {
 	Args: [], Returns: void
 */
 func (o *Control) GrabFocus() {
-	log.Println("Calling Control.GrabFocus()")
+	//log.Println("Calling Control.GrabFocus()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1321,7 +1309,7 @@ func (o *Control) GrabFocus() {
 	Args: [{ false name String} { true type String}], Returns: bool
 */
 func (o *Control) HasColor(name gdnative.String, aType gdnative.String) gdnative.Bool {
-	log.Println("Calling Control.HasColor()")
+	//log.Println("Calling Control.HasColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1338,7 +1326,7 @@ func (o *Control) HasColor(name gdnative.String, aType gdnative.String) gdnative
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1347,7 +1335,7 @@ func (o *Control) HasColor(name gdnative.String, aType gdnative.String) gdnative
 	Args: [{ false name String}], Returns: bool
 */
 func (o *Control) HasColorOverride(name gdnative.String) gdnative.Bool {
-	log.Println("Calling Control.HasColorOverride()")
+	//log.Println("Calling Control.HasColorOverride()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1363,7 +1351,7 @@ func (o *Control) HasColorOverride(name gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1372,7 +1360,7 @@ func (o *Control) HasColorOverride(name gdnative.String) gdnative.Bool {
 	Args: [{ false name String} { true type String}], Returns: bool
 */
 func (o *Control) HasConstant(name gdnative.String, aType gdnative.String) gdnative.Bool {
-	log.Println("Calling Control.HasConstant()")
+	//log.Println("Calling Control.HasConstant()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1389,7 +1377,7 @@ func (o *Control) HasConstant(name gdnative.String, aType gdnative.String) gdnat
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1398,7 +1386,7 @@ func (o *Control) HasConstant(name gdnative.String, aType gdnative.String) gdnat
 	Args: [{ false name String}], Returns: bool
 */
 func (o *Control) HasConstantOverride(name gdnative.String) gdnative.Bool {
-	log.Println("Calling Control.HasConstantOverride()")
+	//log.Println("Calling Control.HasConstantOverride()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1414,7 +1402,7 @@ func (o *Control) HasConstantOverride(name gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1423,7 +1411,7 @@ func (o *Control) HasConstantOverride(name gdnative.String) gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Control) HasFocus() gdnative.Bool {
-	log.Println("Calling Control.HasFocus()")
+	//log.Println("Calling Control.HasFocus()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1438,7 +1426,7 @@ func (o *Control) HasFocus() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1447,7 +1435,7 @@ func (o *Control) HasFocus() gdnative.Bool {
 	Args: [{ false name String} { true type String}], Returns: bool
 */
 func (o *Control) HasFont(name gdnative.String, aType gdnative.String) gdnative.Bool {
-	log.Println("Calling Control.HasFont()")
+	//log.Println("Calling Control.HasFont()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1464,7 +1452,7 @@ func (o *Control) HasFont(name gdnative.String, aType gdnative.String) gdnative.
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1473,7 +1461,7 @@ func (o *Control) HasFont(name gdnative.String, aType gdnative.String) gdnative.
 	Args: [{ false name String}], Returns: bool
 */
 func (o *Control) HasFontOverride(name gdnative.String) gdnative.Bool {
-	log.Println("Calling Control.HasFontOverride()")
+	//log.Println("Calling Control.HasFontOverride()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1489,7 +1477,7 @@ func (o *Control) HasFontOverride(name gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1498,7 +1486,7 @@ func (o *Control) HasFontOverride(name gdnative.String) gdnative.Bool {
 	Args: [{ false name String} { true type String}], Returns: bool
 */
 func (o *Control) HasIcon(name gdnative.String, aType gdnative.String) gdnative.Bool {
-	log.Println("Calling Control.HasIcon()")
+	//log.Println("Calling Control.HasIcon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1515,7 +1503,7 @@ func (o *Control) HasIcon(name gdnative.String, aType gdnative.String) gdnative.
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1524,7 +1512,7 @@ func (o *Control) HasIcon(name gdnative.String, aType gdnative.String) gdnative.
 	Args: [{ false name String}], Returns: bool
 */
 func (o *Control) HasIconOverride(name gdnative.String) gdnative.Bool {
-	log.Println("Calling Control.HasIconOverride()")
+	//log.Println("Calling Control.HasIconOverride()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1540,7 +1528,7 @@ func (o *Control) HasIconOverride(name gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1549,7 +1537,7 @@ func (o *Control) HasIconOverride(name gdnative.String) gdnative.Bool {
 	Args: [{ false point Vector2}], Returns: bool
 */
 func (o *Control) HasPoint(point gdnative.Vector2) gdnative.Bool {
-	log.Println("Calling Control.HasPoint()")
+	//log.Println("Calling Control.HasPoint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1565,7 +1553,7 @@ func (o *Control) HasPoint(point gdnative.Vector2) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1574,7 +1562,7 @@ func (o *Control) HasPoint(point gdnative.Vector2) gdnative.Bool {
 	Args: [{ false name String}], Returns: bool
 */
 func (o *Control) HasShaderOverride(name gdnative.String) gdnative.Bool {
-	log.Println("Calling Control.HasShaderOverride()")
+	//log.Println("Calling Control.HasShaderOverride()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1590,7 +1578,7 @@ func (o *Control) HasShaderOverride(name gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1599,7 +1587,7 @@ func (o *Control) HasShaderOverride(name gdnative.String) gdnative.Bool {
 	Args: [{ false name String} { true type String}], Returns: bool
 */
 func (o *Control) HasStylebox(name gdnative.String, aType gdnative.String) gdnative.Bool {
-	log.Println("Calling Control.HasStylebox()")
+	//log.Println("Calling Control.HasStylebox()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1616,7 +1604,7 @@ func (o *Control) HasStylebox(name gdnative.String, aType gdnative.String) gdnat
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1625,7 +1613,7 @@ func (o *Control) HasStylebox(name gdnative.String, aType gdnative.String) gdnat
 	Args: [{ false name String}], Returns: bool
 */
 func (o *Control) HasStyleboxOverride(name gdnative.String) gdnative.Bool {
-	log.Println("Calling Control.HasStyleboxOverride()")
+	//log.Println("Calling Control.HasStyleboxOverride()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1641,7 +1629,7 @@ func (o *Control) HasStyleboxOverride(name gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1650,7 +1638,7 @@ func (o *Control) HasStyleboxOverride(name gdnative.String) gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Control) IsClippingContents() gdnative.Bool {
-	log.Println("Calling Control.IsClippingContents()")
+	//log.Println("Calling Control.IsClippingContents()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1665,7 +1653,7 @@ func (o *Control) IsClippingContents() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1674,7 +1662,7 @@ func (o *Control) IsClippingContents() gdnative.Bool {
 	Args: [], Returns: void
 */
 func (o *Control) MinimumSizeChanged() {
-	log.Println("Calling Control.MinimumSizeChanged()")
+	//log.Println("Calling Control.MinimumSizeChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1694,7 +1682,7 @@ func (o *Control) MinimumSizeChanged() {
 	Args: [], Returns: void
 */
 func (o *Control) ReleaseFocus() {
-	log.Println("Calling Control.ReleaseFocus()")
+	//log.Println("Calling Control.ReleaseFocus()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1714,7 +1702,7 @@ func (o *Control) ReleaseFocus() {
 	Args: [{ false margin int} { false anchor float} {False true keep_margin bool} {True true push_opposite_anchor bool}], Returns: void
 */
 func (o *Control) SetAnchor(margin gdnative.Int, anchor gdnative.Float, keepMargin gdnative.Bool, pushOppositeAnchor gdnative.Bool) {
-	log.Println("Calling Control.SetAnchor()")
+	//log.Println("Calling Control.SetAnchor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -1738,7 +1726,7 @@ func (o *Control) SetAnchor(margin gdnative.Int, anchor gdnative.Float, keepMarg
 	Args: [{ false margin int} { false anchor float} { false offset float} {False true push_opposite_anchor bool}], Returns: void
 */
 func (o *Control) SetAnchorAndMargin(margin gdnative.Int, anchor gdnative.Float, offset gdnative.Float, pushOppositeAnchor gdnative.Bool) {
-	log.Println("Calling Control.SetAnchorAndMargin()")
+	//log.Println("Calling Control.SetAnchorAndMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -1762,7 +1750,7 @@ func (o *Control) SetAnchorAndMargin(margin gdnative.Int, anchor gdnative.Float,
 	Args: [{ false preset int} {0 true resize_mode int} {0 true margin int}], Returns: void
 */
 func (o *Control) SetAnchorsAndMarginsPreset(preset gdnative.Int, resizeMode gdnative.Int, margin gdnative.Int) {
-	log.Println("Calling Control.SetAnchorsAndMarginsPreset()")
+	//log.Println("Calling Control.SetAnchorsAndMarginsPreset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -1785,7 +1773,7 @@ func (o *Control) SetAnchorsAndMarginsPreset(preset gdnative.Int, resizeMode gdn
 	Args: [{ false preset int} {False true keep_margin bool}], Returns: void
 */
 func (o *Control) SetAnchorsPreset(preset gdnative.Int, keepMargin gdnative.Bool) {
-	log.Println("Calling Control.SetAnchorsPreset()")
+	//log.Println("Calling Control.SetAnchorsPreset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1807,7 +1795,7 @@ func (o *Control) SetAnchorsPreset(preset gdnative.Int, keepMargin gdnative.Bool
 	Args: [{ false position Vector2}], Returns: void
 */
 func (o *Control) SetBegin(position gdnative.Vector2) {
-	log.Println("Calling Control.SetBegin()")
+	//log.Println("Calling Control.SetBegin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1828,7 +1816,7 @@ func (o *Control) SetBegin(position gdnative.Vector2) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Control) SetClipContents(enable gdnative.Bool) {
-	log.Println("Calling Control.SetClipContents()")
+	//log.Println("Calling Control.SetClipContents()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1849,7 +1837,7 @@ func (o *Control) SetClipContents(enable gdnative.Bool) {
 	Args: [{ false size Vector2}], Returns: void
 */
 func (o *Control) SetCustomMinimumSize(size gdnative.Vector2) {
-	log.Println("Calling Control.SetCustomMinimumSize()")
+	//log.Println("Calling Control.SetCustomMinimumSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1870,7 +1858,7 @@ func (o *Control) SetCustomMinimumSize(size gdnative.Vector2) {
 	Args: [{ false shape int}], Returns: void
 */
 func (o *Control) SetDefaultCursorShape(shape gdnative.Int) {
-	log.Println("Calling Control.SetDefaultCursorShape()")
+	//log.Println("Calling Control.SetDefaultCursorShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1891,7 +1879,7 @@ func (o *Control) SetDefaultCursorShape(shape gdnative.Int) {
 	Args: [{ false target Object}], Returns: void
 */
 func (o *Control) SetDragForwarding(target Object) {
-	log.Println("Calling Control.SetDragForwarding()")
+	//log.Println("Calling Control.SetDragForwarding()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1912,7 +1900,7 @@ func (o *Control) SetDragForwarding(target Object) {
 	Args: [{ false control Object}], Returns: void
 */
 func (o *Control) SetDragPreview(control Object) {
-	log.Println("Calling Control.SetDragPreview()")
+	//log.Println("Calling Control.SetDragPreview()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1933,7 +1921,7 @@ func (o *Control) SetDragPreview(control Object) {
 	Args: [{ false position Vector2}], Returns: void
 */
 func (o *Control) SetEnd(position gdnative.Vector2) {
-	log.Println("Calling Control.SetEnd()")
+	//log.Println("Calling Control.SetEnd()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1954,7 +1942,7 @@ func (o *Control) SetEnd(position gdnative.Vector2) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *Control) SetFocusMode(mode gdnative.Int) {
-	log.Println("Calling Control.SetFocusMode()")
+	//log.Println("Calling Control.SetFocusMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1975,7 +1963,7 @@ func (o *Control) SetFocusMode(mode gdnative.Int) {
 	Args: [{ false margin int} { false neighbour NodePath}], Returns: void
 */
 func (o *Control) SetFocusNeighbour(margin gdnative.Int, neighbour gdnative.NodePath) {
-	log.Println("Calling Control.SetFocusNeighbour()")
+	//log.Println("Calling Control.SetFocusNeighbour()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1997,7 +1985,7 @@ func (o *Control) SetFocusNeighbour(margin gdnative.Int, neighbour gdnative.Node
 	Args: [{ false next NodePath}], Returns: void
 */
 func (o *Control) SetFocusNext(next gdnative.NodePath) {
-	log.Println("Calling Control.SetFocusNext()")
+	//log.Println("Calling Control.SetFocusNext()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2018,7 +2006,7 @@ func (o *Control) SetFocusNext(next gdnative.NodePath) {
 	Args: [{ false previous NodePath}], Returns: void
 */
 func (o *Control) SetFocusPrevious(previous gdnative.NodePath) {
-	log.Println("Calling Control.SetFocusPrevious()")
+	//log.Println("Calling Control.SetFocusPrevious()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2039,7 +2027,7 @@ func (o *Control) SetFocusPrevious(previous gdnative.NodePath) {
 	Args: [{ false position Vector2}], Returns: void
 */
 func (o *Control) SetGlobalPosition(position gdnative.Vector2) {
-	log.Println("Calling Control.SetGlobalPosition()")
+	//log.Println("Calling Control.SetGlobalPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2060,7 +2048,7 @@ func (o *Control) SetGlobalPosition(position gdnative.Vector2) {
 	Args: [{ false direction int}], Returns: void
 */
 func (o *Control) SetHGrowDirection(direction gdnative.Int) {
-	log.Println("Calling Control.SetHGrowDirection()")
+	//log.Println("Calling Control.SetHGrowDirection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2081,7 +2069,7 @@ func (o *Control) SetHGrowDirection(direction gdnative.Int) {
 	Args: [{ false flags int}], Returns: void
 */
 func (o *Control) SetHSizeFlags(flags gdnative.Int) {
-	log.Println("Calling Control.SetHSizeFlags()")
+	//log.Println("Calling Control.SetHSizeFlags()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2102,7 +2090,7 @@ func (o *Control) SetHSizeFlags(flags gdnative.Int) {
 	Args: [{ false margin int} { false offset float}], Returns: void
 */
 func (o *Control) SetMargin(margin gdnative.Int, offset gdnative.Float) {
-	log.Println("Calling Control.SetMargin()")
+	//log.Println("Calling Control.SetMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -2124,7 +2112,7 @@ func (o *Control) SetMargin(margin gdnative.Int, offset gdnative.Float) {
 	Args: [{ false preset int} {0 true resize_mode int} {0 true margin int}], Returns: void
 */
 func (o *Control) SetMarginsPreset(preset gdnative.Int, resizeMode gdnative.Int, margin gdnative.Int) {
-	log.Println("Calling Control.SetMarginsPreset()")
+	//log.Println("Calling Control.SetMarginsPreset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -2147,7 +2135,7 @@ func (o *Control) SetMarginsPreset(preset gdnative.Int, resizeMode gdnative.Int,
 	Args: [{ false filter int}], Returns: void
 */
 func (o *Control) SetMouseFilter(filter gdnative.Int) {
-	log.Println("Calling Control.SetMouseFilter()")
+	//log.Println("Calling Control.SetMouseFilter()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2168,7 +2156,7 @@ func (o *Control) SetMouseFilter(filter gdnative.Int) {
 	Args: [{ false pivot_offset Vector2}], Returns: void
 */
 func (o *Control) SetPivotOffset(pivotOffset gdnative.Vector2) {
-	log.Println("Calling Control.SetPivotOffset()")
+	//log.Println("Calling Control.SetPivotOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2189,7 +2177,7 @@ func (o *Control) SetPivotOffset(pivotOffset gdnative.Vector2) {
 	Args: [{ false position Vector2}], Returns: void
 */
 func (o *Control) SetPosition(position gdnative.Vector2) {
-	log.Println("Calling Control.SetPosition()")
+	//log.Println("Calling Control.SetPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2210,7 +2198,7 @@ func (o *Control) SetPosition(position gdnative.Vector2) {
 	Args: [{ false radians float}], Returns: void
 */
 func (o *Control) SetRotation(radians gdnative.Float) {
-	log.Println("Calling Control.SetRotation()")
+	//log.Println("Calling Control.SetRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2231,7 +2219,7 @@ func (o *Control) SetRotation(radians gdnative.Float) {
 	Args: [{ false degrees float}], Returns: void
 */
 func (o *Control) SetRotationDegrees(degrees gdnative.Float) {
-	log.Println("Calling Control.SetRotationDegrees()")
+	//log.Println("Calling Control.SetRotationDegrees()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2252,7 +2240,7 @@ func (o *Control) SetRotationDegrees(degrees gdnative.Float) {
 	Args: [{ false scale Vector2}], Returns: void
 */
 func (o *Control) SetScale(scale gdnative.Vector2) {
-	log.Println("Calling Control.SetScale()")
+	//log.Println("Calling Control.SetScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2273,7 +2261,7 @@ func (o *Control) SetScale(scale gdnative.Vector2) {
 	Args: [{ false size Vector2}], Returns: void
 */
 func (o *Control) SetSize(size gdnative.Vector2) {
-	log.Println("Calling Control.SetSize()")
+	//log.Println("Calling Control.SetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2294,7 +2282,7 @@ func (o *Control) SetSize(size gdnative.Vector2) {
 	Args: [{ false ratio float}], Returns: void
 */
 func (o *Control) SetStretchRatio(ratio gdnative.Float) {
-	log.Println("Calling Control.SetStretchRatio()")
+	//log.Println("Calling Control.SetStretchRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2315,7 +2303,7 @@ func (o *Control) SetStretchRatio(ratio gdnative.Float) {
 	Args: [{ false theme Theme}], Returns: void
 */
 func (o *Control) SetTheme(theme Theme) {
-	log.Println("Calling Control.SetTheme()")
+	//log.Println("Calling Control.SetTheme()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2336,7 +2324,7 @@ func (o *Control) SetTheme(theme Theme) {
 	Args: [{ false tooltip String}], Returns: void
 */
 func (o *Control) SetTooltip(tooltip gdnative.String) {
-	log.Println("Calling Control.SetTooltip()")
+	//log.Println("Calling Control.SetTooltip()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2357,7 +2345,7 @@ func (o *Control) SetTooltip(tooltip gdnative.String) {
 	Args: [{ false direction int}], Returns: void
 */
 func (o *Control) SetVGrowDirection(direction gdnative.Int) {
-	log.Println("Calling Control.SetVGrowDirection()")
+	//log.Println("Calling Control.SetVGrowDirection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2378,7 +2366,7 @@ func (o *Control) SetVGrowDirection(direction gdnative.Int) {
 	Args: [{ false flags int}], Returns: void
 */
 func (o *Control) SetVSizeFlags(flags gdnative.Int) {
-	log.Println("Calling Control.SetVSizeFlags()")
+	//log.Println("Calling Control.SetVSizeFlags()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2399,7 +2387,7 @@ func (o *Control) SetVSizeFlags(flags gdnative.Int) {
 	Args: [{False true exclusive bool}], Returns: void
 */
 func (o *Control) ShowModal(exclusive gdnative.Bool) {
-	log.Println("Calling Control.ShowModal()")
+	//log.Println("Calling Control.ShowModal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2420,7 +2408,7 @@ func (o *Control) ShowModal(exclusive gdnative.Bool) {
 	Args: [{ false to_position Vector2}], Returns: void
 */
 func (o *Control) WarpMouse(toPosition gdnative.Vector2) {
-	log.Println("Calling Control.WarpMouse()")
+	//log.Println("Calling Control.WarpMouse()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

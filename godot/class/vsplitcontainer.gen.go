@@ -33,13 +33,3 @@ type VSplitContainer struct {
 func (o *VSplitContainer) BaseClass() string {
 	return "VSplitContainer"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VSplitContainer) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VSplitContainer) GetBaseObject() gdnative.Object {
-	return o.owner
-}

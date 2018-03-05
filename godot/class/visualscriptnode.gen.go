@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VisualScriptNode) BaseClass() string {
 	return "VisualScriptNode"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptNode) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptNode) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Array
 */
 func (o *VisualScriptNode) X_GetDefaultInputValues() gdnative.Array {
-	log.Println("Calling VisualScriptNode.X_GetDefaultInputValues()")
+	//log.Println("Calling VisualScriptNode.X_GetDefaultInputValues()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VisualScriptNode) X_GetDefaultInputValues() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *VisualScriptNode) X_GetDefaultInputValues() gdnative.Array {
 	Args: [{ false values Array}], Returns: void
 */
 func (o *VisualScriptNode) X_SetDefaultInputValues(values gdnative.Array) {
-	log.Println("Calling VisualScriptNode.X_SetDefaultInputValues()")
+	//log.Println("Calling VisualScriptNode.X_SetDefaultInputValues()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *VisualScriptNode) X_SetDefaultInputValues(values gdnative.Array) {
 	Args: [{ false port_idx int}], Returns: Variant
 */
 func (o *VisualScriptNode) GetDefaultInputValue(portIdx gdnative.Int) gdnative.Variant {
-	log.Println("Calling VisualScriptNode.GetDefaultInputValue()")
+	//log.Println("Calling VisualScriptNode.GetDefaultInputValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -112,7 +100,7 @@ func (o *VisualScriptNode) GetDefaultInputValue(portIdx gdnative.Int) gdnative.V
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -121,7 +109,7 @@ func (o *VisualScriptNode) GetDefaultInputValue(portIdx gdnative.Int) gdnative.V
 	Args: [], Returns: VisualScript
 */
 func (o *VisualScriptNode) GetVisualScript() VisualScript {
-	log.Println("Calling VisualScriptNode.GetVisualScript()")
+	//log.Println("Calling VisualScriptNode.GetVisualScript()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -136,7 +124,7 @@ func (o *VisualScriptNode) GetVisualScript() VisualScript {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewVisualScriptFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -145,7 +133,7 @@ func (o *VisualScriptNode) GetVisualScript() VisualScript {
 	Args: [], Returns: void
 */
 func (o *VisualScriptNode) PortsChangedNotify() {
-	log.Println("Calling VisualScriptNode.PortsChangedNotify()")
+	//log.Println("Calling VisualScriptNode.PortsChangedNotify()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -165,7 +153,7 @@ func (o *VisualScriptNode) PortsChangedNotify() {
 	Args: [{ false port_idx int} { false value Variant}], Returns: void
 */
 func (o *VisualScriptNode) SetDefaultInputValue(portIdx gdnative.Int, value gdnative.Variant) {
-	log.Println("Calling VisualScriptNode.SetDefaultInputValue()")
+	//log.Println("Calling VisualScriptNode.SetDefaultInputValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *SliderJoint) BaseClass() string {
 	return "SliderJoint"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *SliderJoint) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *SliderJoint) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *SliderJoint) X_GetLowerLimitAngular() gdnative.Float {
-	log.Println("Calling SliderJoint.X_GetLowerLimitAngular()")
+	//log.Println("Calling SliderJoint.X_GetLowerLimitAngular()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *SliderJoint) X_GetLowerLimitAngular() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *SliderJoint) X_GetLowerLimitAngular() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *SliderJoint) X_GetUpperLimitAngular() gdnative.Float {
-	log.Println("Calling SliderJoint.X_GetUpperLimitAngular()")
+	//log.Println("Calling SliderJoint.X_GetUpperLimitAngular()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *SliderJoint) X_GetUpperLimitAngular() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *SliderJoint) X_GetUpperLimitAngular() gdnative.Float {
 	Args: [{ false lower_limit_angular float}], Returns: void
 */
 func (o *SliderJoint) X_SetLowerLimitAngular(lowerLimitAngular gdnative.Float) {
-	log.Println("Calling SliderJoint.X_SetLowerLimitAngular()")
+	//log.Println("Calling SliderJoint.X_SetLowerLimitAngular()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -120,7 +108,7 @@ func (o *SliderJoint) X_SetLowerLimitAngular(lowerLimitAngular gdnative.Float) {
 	Args: [{ false upper_limit_angular float}], Returns: void
 */
 func (o *SliderJoint) X_SetUpperLimitAngular(upperLimitAngular gdnative.Float) {
-	log.Println("Calling SliderJoint.X_SetUpperLimitAngular()")
+	//log.Println("Calling SliderJoint.X_SetUpperLimitAngular()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -141,7 +129,7 @@ func (o *SliderJoint) X_SetUpperLimitAngular(upperLimitAngular gdnative.Float) {
 	Args: [{ false param int}], Returns: float
 */
 func (o *SliderJoint) GetParam(param gdnative.Int) gdnative.Float {
-	log.Println("Calling SliderJoint.GetParam()")
+	//log.Println("Calling SliderJoint.GetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -157,7 +145,7 @@ func (o *SliderJoint) GetParam(param gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -166,7 +154,7 @@ func (o *SliderJoint) GetParam(param gdnative.Int) gdnative.Float {
 	Args: [{ false param int} { false value float}], Returns: void
 */
 func (o *SliderJoint) SetParam(param gdnative.Int, value gdnative.Float) {
-	log.Println("Calling SliderJoint.SetParam()")
+	//log.Println("Calling SliderJoint.SetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)

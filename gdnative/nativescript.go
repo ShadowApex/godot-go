@@ -375,7 +375,9 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 	variantArgs := []Variant{}
 
 	// Get the size of each godot_variant object pointer.
-	log.Println("  Getting size of argument pointer")
+	if debug {
+		log.Println("  Getting size of argument pointer")
+	}
 	size := unsafe.Sizeof(*args)
 
 	// Panic if something's wrong.

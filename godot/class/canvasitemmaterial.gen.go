@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,16 +34,6 @@ func (o *CanvasItemMaterial) BaseClass() string {
 	return "CanvasItemMaterial"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *CanvasItemMaterial) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *CanvasItemMaterial) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: enum.CanvasItemMaterial::BlendMode
@@ -61,7 +49,7 @@ func (o *CanvasItemMaterial) GetBaseObject() gdnative.Object {
 	Args: [{ false blend_mode int}], Returns: void
 */
 func (o *CanvasItemMaterial) SetBlendMode(blendMode gdnative.Int) {
-	log.Println("Calling CanvasItemMaterial.SetBlendMode()")
+	//log.Println("Calling CanvasItemMaterial.SetBlendMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -82,7 +70,7 @@ func (o *CanvasItemMaterial) SetBlendMode(blendMode gdnative.Int) {
 	Args: [{ false light_mode int}], Returns: void
 */
 func (o *CanvasItemMaterial) SetLightMode(lightMode gdnative.Int) {
-	log.Println("Calling CanvasItemMaterial.SetLightMode()")
+	//log.Println("Calling CanvasItemMaterial.SetLightMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

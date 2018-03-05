@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Resource) BaseClass() string {
 	return "Resource"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Resource) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Resource) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [], Returns: void
 */
 func (o *Resource) X_SetupLocalToScene() {
-	log.Println("Calling Resource.X_SetupLocalToScene()")
+	//log.Println("Calling Resource.X_SetupLocalToScene()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *Resource) X_SetupLocalToScene() {
 	Args: [{False true subresources bool}], Returns: Resource
 */
 func (o *Resource) Duplicate(subresources gdnative.Bool) Resource {
-	log.Println("Calling Resource.Duplicate()")
+	//log.Println("Calling Resource.Duplicate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -87,7 +75,7 @@ func (o *Resource) Duplicate(subresources gdnative.Bool) Resource {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewResourceFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -96,7 +84,7 @@ func (o *Resource) Duplicate(subresources gdnative.Bool) Resource {
 	Args: [], Returns: Node
 */
 func (o *Resource) GetLocalScene() Node {
-	log.Println("Calling Resource.GetLocalScene()")
+	//log.Println("Calling Resource.GetLocalScene()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -111,7 +99,7 @@ func (o *Resource) GetLocalScene() Node {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewNodeFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -120,7 +108,7 @@ func (o *Resource) GetLocalScene() Node {
 	Args: [], Returns: String
 */
 func (o *Resource) GetName() gdnative.String {
-	log.Println("Calling Resource.GetName()")
+	//log.Println("Calling Resource.GetName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -135,7 +123,7 @@ func (o *Resource) GetName() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -144,7 +132,7 @@ func (o *Resource) GetName() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *Resource) GetPath() gdnative.String {
-	log.Println("Calling Resource.GetPath()")
+	//log.Println("Calling Resource.GetPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -159,7 +147,7 @@ func (o *Resource) GetPath() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -168,7 +156,7 @@ func (o *Resource) GetPath() gdnative.String {
 	Args: [], Returns: RID
 */
 func (o *Resource) GetRid() gdnative.Rid {
-	log.Println("Calling Resource.GetRid()")
+	//log.Println("Calling Resource.GetRid()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -183,7 +171,7 @@ func (o *Resource) GetRid() gdnative.Rid {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -192,7 +180,7 @@ func (o *Resource) GetRid() gdnative.Rid {
 	Args: [], Returns: bool
 */
 func (o *Resource) IsLocalToScene() gdnative.Bool {
-	log.Println("Calling Resource.IsLocalToScene()")
+	//log.Println("Calling Resource.IsLocalToScene()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -207,7 +195,7 @@ func (o *Resource) IsLocalToScene() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -216,7 +204,7 @@ func (o *Resource) IsLocalToScene() gdnative.Bool {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Resource) SetLocalToScene(enable gdnative.Bool) {
-	log.Println("Calling Resource.SetLocalToScene()")
+	//log.Println("Calling Resource.SetLocalToScene()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -237,7 +225,7 @@ func (o *Resource) SetLocalToScene(enable gdnative.Bool) {
 	Args: [{ false name String}], Returns: void
 */
 func (o *Resource) SetName(name gdnative.String) {
-	log.Println("Calling Resource.SetName()")
+	//log.Println("Calling Resource.SetName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -258,7 +246,7 @@ func (o *Resource) SetName(name gdnative.String) {
 	Args: [{ false path String}], Returns: void
 */
 func (o *Resource) SetPath(path gdnative.String) {
-	log.Println("Calling Resource.SetPath()")
+	//log.Println("Calling Resource.SetPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -279,7 +267,7 @@ func (o *Resource) SetPath(path gdnative.String) {
 	Args: [], Returns: void
 */
 func (o *Resource) SetupLocalToScene() {
-	log.Println("Calling Resource.SetupLocalToScene()")
+	//log.Println("Calling Resource.SetupLocalToScene()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -299,7 +287,7 @@ func (o *Resource) SetupLocalToScene() {
 	Args: [{ false path String}], Returns: void
 */
 func (o *Resource) TakeOverPath(path gdnative.String) {
-	log.Println("Calling Resource.TakeOverPath()")
+	//log.Println("Calling Resource.TakeOverPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

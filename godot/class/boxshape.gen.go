@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *BoxShape) BaseClass() string {
 	return "BoxShape"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *BoxShape) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *BoxShape) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Vector3
 */
 func (o *BoxShape) GetExtents() gdnative.Vector3 {
-	log.Println("Calling BoxShape.GetExtents()")
+	//log.Println("Calling BoxShape.GetExtents()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *BoxShape) GetExtents() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *BoxShape) GetExtents() gdnative.Vector3 {
 	Args: [{ false extents Vector3}], Returns: void
 */
 func (o *BoxShape) SetExtents(extents gdnative.Vector3) {
-	log.Println("Calling BoxShape.SetExtents()")
+	//log.Println("Calling BoxShape.SetExtents()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

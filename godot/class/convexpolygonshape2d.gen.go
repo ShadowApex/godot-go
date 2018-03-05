@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ConvexPolygonShape2D) BaseClass() string {
 	return "ConvexPolygonShape2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ConvexPolygonShape2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ConvexPolygonShape2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: PoolVector2Array
 */
 func (o *ConvexPolygonShape2D) GetPoints() gdnative.PoolVector2Array {
-	log.Println("Calling ConvexPolygonShape2D.GetPoints()")
+	//log.Println("Calling ConvexPolygonShape2D.GetPoints()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *ConvexPolygonShape2D) GetPoints() gdnative.PoolVector2Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *ConvexPolygonShape2D) GetPoints() gdnative.PoolVector2Array {
 	Args: [{ false point_cloud PoolVector2Array}], Returns: void
 */
 func (o *ConvexPolygonShape2D) SetPointCloud(pointCloud gdnative.PoolVector2Array) {
-	log.Println("Calling ConvexPolygonShape2D.SetPointCloud()")
+	//log.Println("Calling ConvexPolygonShape2D.SetPointCloud()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *ConvexPolygonShape2D) SetPointCloud(pointCloud gdnative.PoolVector2Arra
 	Args: [{ false points PoolVector2Array}], Returns: void
 */
 func (o *ConvexPolygonShape2D) SetPoints(points gdnative.PoolVector2Array) {
-	log.Println("Calling ConvexPolygonShape2D.SetPoints()")
+	//log.Println("Calling ConvexPolygonShape2D.SetPoints()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

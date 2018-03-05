@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VisualScriptFunctionCall) BaseClass() string {
 	return "VisualScriptFunctionCall"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptFunctionCall) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptFunctionCall) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Dictionary
 */
 func (o *VisualScriptFunctionCall) X_GetArgumentCache() gdnative.Dictionary {
-	log.Println("Calling VisualScriptFunctionCall.X_GetArgumentCache()")
+	//log.Println("Calling VisualScriptFunctionCall.X_GetArgumentCache()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VisualScriptFunctionCall) X_GetArgumentCache() gdnative.Dictionary {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewDictionaryFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *VisualScriptFunctionCall) X_GetArgumentCache() gdnative.Dictionary {
 	Args: [{ false argument_cache Dictionary}], Returns: void
 */
 func (o *VisualScriptFunctionCall) X_SetArgumentCache(argumentCache gdnative.Dictionary) {
-	log.Println("Calling VisualScriptFunctionCall.X_SetArgumentCache()")
+	//log.Println("Calling VisualScriptFunctionCall.X_SetArgumentCache()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *VisualScriptFunctionCall) X_SetArgumentCache(argumentCache gdnative.Dic
 	Args: [], Returns: NodePath
 */
 func (o *VisualScriptFunctionCall) GetBasePath() gdnative.NodePath {
-	log.Println("Calling VisualScriptFunctionCall.GetBasePath()")
+	//log.Println("Calling VisualScriptFunctionCall.GetBasePath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -111,7 +99,7 @@ func (o *VisualScriptFunctionCall) GetBasePath() gdnative.NodePath {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewNodePathFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -120,7 +108,7 @@ func (o *VisualScriptFunctionCall) GetBasePath() gdnative.NodePath {
 	Args: [], Returns: String
 */
 func (o *VisualScriptFunctionCall) GetBaseScript() gdnative.String {
-	log.Println("Calling VisualScriptFunctionCall.GetBaseScript()")
+	//log.Println("Calling VisualScriptFunctionCall.GetBaseScript()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -135,7 +123,7 @@ func (o *VisualScriptFunctionCall) GetBaseScript() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -144,7 +132,7 @@ func (o *VisualScriptFunctionCall) GetBaseScript() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *VisualScriptFunctionCall) GetBaseType() gdnative.String {
-	log.Println("Calling VisualScriptFunctionCall.GetBaseType()")
+	//log.Println("Calling VisualScriptFunctionCall.GetBaseType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -159,7 +147,7 @@ func (o *VisualScriptFunctionCall) GetBaseType() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -178,7 +166,7 @@ func (o *VisualScriptFunctionCall) GetBaseType() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *VisualScriptFunctionCall) GetFunction() gdnative.String {
-	log.Println("Calling VisualScriptFunctionCall.GetFunction()")
+	//log.Println("Calling VisualScriptFunctionCall.GetFunction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -193,7 +181,7 @@ func (o *VisualScriptFunctionCall) GetFunction() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -207,7 +195,7 @@ func (o *VisualScriptFunctionCall) GetFunction() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *VisualScriptFunctionCall) GetSingleton() gdnative.String {
-	log.Println("Calling VisualScriptFunctionCall.GetSingleton()")
+	//log.Println("Calling VisualScriptFunctionCall.GetSingleton()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -222,7 +210,7 @@ func (o *VisualScriptFunctionCall) GetSingleton() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -231,7 +219,7 @@ func (o *VisualScriptFunctionCall) GetSingleton() gdnative.String {
 	Args: [], Returns: int
 */
 func (o *VisualScriptFunctionCall) GetUseDefaultArgs() gdnative.Int {
-	log.Println("Calling VisualScriptFunctionCall.GetUseDefaultArgs()")
+	//log.Println("Calling VisualScriptFunctionCall.GetUseDefaultArgs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -246,7 +234,7 @@ func (o *VisualScriptFunctionCall) GetUseDefaultArgs() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -255,7 +243,7 @@ func (o *VisualScriptFunctionCall) GetUseDefaultArgs() gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *VisualScriptFunctionCall) GetValidate() gdnative.Bool {
-	log.Println("Calling VisualScriptFunctionCall.GetValidate()")
+	//log.Println("Calling VisualScriptFunctionCall.GetValidate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -270,7 +258,7 @@ func (o *VisualScriptFunctionCall) GetValidate() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -279,7 +267,7 @@ func (o *VisualScriptFunctionCall) GetValidate() gdnative.Bool {
 	Args: [{ false base_path NodePath}], Returns: void
 */
 func (o *VisualScriptFunctionCall) SetBasePath(basePath gdnative.NodePath) {
-	log.Println("Calling VisualScriptFunctionCall.SetBasePath()")
+	//log.Println("Calling VisualScriptFunctionCall.SetBasePath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -300,7 +288,7 @@ func (o *VisualScriptFunctionCall) SetBasePath(basePath gdnative.NodePath) {
 	Args: [{ false base_script String}], Returns: void
 */
 func (o *VisualScriptFunctionCall) SetBaseScript(baseScript gdnative.String) {
-	log.Println("Calling VisualScriptFunctionCall.SetBaseScript()")
+	//log.Println("Calling VisualScriptFunctionCall.SetBaseScript()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -321,7 +309,7 @@ func (o *VisualScriptFunctionCall) SetBaseScript(baseScript gdnative.String) {
 	Args: [{ false base_type String}], Returns: void
 */
 func (o *VisualScriptFunctionCall) SetBaseType(baseType gdnative.String) {
-	log.Println("Calling VisualScriptFunctionCall.SetBaseType()")
+	//log.Println("Calling VisualScriptFunctionCall.SetBaseType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -342,7 +330,7 @@ func (o *VisualScriptFunctionCall) SetBaseType(baseType gdnative.String) {
 	Args: [{ false basic_type int}], Returns: void
 */
 func (o *VisualScriptFunctionCall) SetBasicType(basicType gdnative.Int) {
-	log.Println("Calling VisualScriptFunctionCall.SetBasicType()")
+	//log.Println("Calling VisualScriptFunctionCall.SetBasicType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -363,7 +351,7 @@ func (o *VisualScriptFunctionCall) SetBasicType(basicType gdnative.Int) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *VisualScriptFunctionCall) SetCallMode(mode gdnative.Int) {
-	log.Println("Calling VisualScriptFunctionCall.SetCallMode()")
+	//log.Println("Calling VisualScriptFunctionCall.SetCallMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -384,7 +372,7 @@ func (o *VisualScriptFunctionCall) SetCallMode(mode gdnative.Int) {
 	Args: [{ false function String}], Returns: void
 */
 func (o *VisualScriptFunctionCall) SetFunction(function gdnative.String) {
-	log.Println("Calling VisualScriptFunctionCall.SetFunction()")
+	//log.Println("Calling VisualScriptFunctionCall.SetFunction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -405,7 +393,7 @@ func (o *VisualScriptFunctionCall) SetFunction(function gdnative.String) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *VisualScriptFunctionCall) SetRpcCallMode(mode gdnative.Int) {
-	log.Println("Calling VisualScriptFunctionCall.SetRpcCallMode()")
+	//log.Println("Calling VisualScriptFunctionCall.SetRpcCallMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -426,7 +414,7 @@ func (o *VisualScriptFunctionCall) SetRpcCallMode(mode gdnative.Int) {
 	Args: [{ false singleton String}], Returns: void
 */
 func (o *VisualScriptFunctionCall) SetSingleton(singleton gdnative.String) {
-	log.Println("Calling VisualScriptFunctionCall.SetSingleton()")
+	//log.Println("Calling VisualScriptFunctionCall.SetSingleton()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -447,7 +435,7 @@ func (o *VisualScriptFunctionCall) SetSingleton(singleton gdnative.String) {
 	Args: [{ false amount int}], Returns: void
 */
 func (o *VisualScriptFunctionCall) SetUseDefaultArgs(amount gdnative.Int) {
-	log.Println("Calling VisualScriptFunctionCall.SetUseDefaultArgs()")
+	//log.Println("Calling VisualScriptFunctionCall.SetUseDefaultArgs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -468,7 +456,7 @@ func (o *VisualScriptFunctionCall) SetUseDefaultArgs(amount gdnative.Int) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *VisualScriptFunctionCall) SetValidate(enable gdnative.Bool) {
-	log.Println("Calling VisualScriptFunctionCall.SetValidate()")
+	//log.Println("Calling VisualScriptFunctionCall.SetValidate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

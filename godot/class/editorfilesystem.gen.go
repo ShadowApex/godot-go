@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *EditorFileSystem) BaseClass() string {
 	return "EditorFileSystem"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *EditorFileSystem) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *EditorFileSystem) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Get the type of the file, given the full path.
 	Args: [{ false path String}], Returns: String
 */
 func (o *EditorFileSystem) GetFileType(path gdnative.String) gdnative.String {
-	log.Println("Calling EditorFileSystem.GetFileType()")
+	//log.Println("Calling EditorFileSystem.GetFileType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -67,7 +55,7 @@ func (o *EditorFileSystem) GetFileType(path gdnative.String) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -76,7 +64,7 @@ func (o *EditorFileSystem) GetFileType(path gdnative.String) gdnative.String {
 	Args: [], Returns: EditorFileSystemDirectory
 */
 func (o *EditorFileSystem) GetFilesystem() EditorFileSystemDirectory {
-	log.Println("Calling EditorFileSystem.GetFilesystem()")
+	//log.Println("Calling EditorFileSystem.GetFilesystem()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -91,7 +79,7 @@ func (o *EditorFileSystem) GetFilesystem() EditorFileSystemDirectory {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewEditorFileSystemDirectoryFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -100,7 +88,7 @@ func (o *EditorFileSystem) GetFilesystem() EditorFileSystemDirectory {
 	Args: [{ false path String}], Returns: EditorFileSystemDirectory
 */
 func (o *EditorFileSystem) GetFilesystemPath(path gdnative.String) EditorFileSystemDirectory {
-	log.Println("Calling EditorFileSystem.GetFilesystemPath()")
+	//log.Println("Calling EditorFileSystem.GetFilesystemPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -116,7 +104,7 @@ func (o *EditorFileSystem) GetFilesystemPath(path gdnative.String) EditorFileSys
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewEditorFileSystemDirectoryFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -125,7 +113,7 @@ func (o *EditorFileSystem) GetFilesystemPath(path gdnative.String) EditorFileSys
 	Args: [], Returns: float
 */
 func (o *EditorFileSystem) GetScanningProgress() gdnative.Float {
-	log.Println("Calling EditorFileSystem.GetScanningProgress()")
+	//log.Println("Calling EditorFileSystem.GetScanningProgress()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -140,7 +128,7 @@ func (o *EditorFileSystem) GetScanningProgress() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -149,7 +137,7 @@ func (o *EditorFileSystem) GetScanningProgress() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *EditorFileSystem) IsScanning() gdnative.Bool {
-	log.Println("Calling EditorFileSystem.IsScanning()")
+	//log.Println("Calling EditorFileSystem.IsScanning()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -164,7 +152,7 @@ func (o *EditorFileSystem) IsScanning() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -173,7 +161,7 @@ func (o *EditorFileSystem) IsScanning() gdnative.Bool {
 	Args: [], Returns: void
 */
 func (o *EditorFileSystem) Scan() {
-	log.Println("Calling EditorFileSystem.Scan()")
+	//log.Println("Calling EditorFileSystem.Scan()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -193,7 +181,7 @@ func (o *EditorFileSystem) Scan() {
 	Args: [], Returns: void
 */
 func (o *EditorFileSystem) ScanSources() {
-	log.Println("Calling EditorFileSystem.ScanSources()")
+	//log.Println("Calling EditorFileSystem.ScanSources()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -213,7 +201,7 @@ func (o *EditorFileSystem) ScanSources() {
 	Args: [{ false path String}], Returns: void
 */
 func (o *EditorFileSystem) UpdateFile(path gdnative.String) {
-	log.Println("Calling EditorFileSystem.UpdateFile()")
+	//log.Println("Calling EditorFileSystem.UpdateFile()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

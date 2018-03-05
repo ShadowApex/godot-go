@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VisibilityNotifier) BaseClass() string {
 	return "VisibilityNotifier"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisibilityNotifier) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisibilityNotifier) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: AABB
 */
 func (o *VisibilityNotifier) GetAabb() gdnative.Aabb {
-	log.Println("Calling VisibilityNotifier.GetAabb()")
+	//log.Println("Calling VisibilityNotifier.GetAabb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VisibilityNotifier) GetAabb() gdnative.Aabb {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewAabbFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *VisibilityNotifier) GetAabb() gdnative.Aabb {
 	Args: [], Returns: bool
 */
 func (o *VisibilityNotifier) IsOnScreen() gdnative.Bool {
-	log.Println("Calling VisibilityNotifier.IsOnScreen()")
+	//log.Println("Calling VisibilityNotifier.IsOnScreen()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *VisibilityNotifier) IsOnScreen() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *VisibilityNotifier) IsOnScreen() gdnative.Bool {
 	Args: [{ false rect AABB}], Returns: void
 */
 func (o *VisibilityNotifier) SetAabb(rect gdnative.Aabb) {
-	log.Println("Calling VisibilityNotifier.SetAabb()")
+	//log.Println("Calling VisibilityNotifier.SetAabb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

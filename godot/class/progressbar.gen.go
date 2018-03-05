@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ProgressBar) BaseClass() string {
 	return "ProgressBar"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ProgressBar) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ProgressBar) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: bool
 */
 func (o *ProgressBar) IsPercentVisible() gdnative.Bool {
-	log.Println("Calling ProgressBar.IsPercentVisible()")
+	//log.Println("Calling ProgressBar.IsPercentVisible()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *ProgressBar) IsPercentVisible() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *ProgressBar) IsPercentVisible() gdnative.Bool {
 	Args: [{ false visible bool}], Returns: void
 */
 func (o *ProgressBar) SetPercentVisible(visible gdnative.Bool) {
-	log.Println("Calling ProgressBar.SetPercentVisible()")
+	//log.Println("Calling ProgressBar.SetPercentVisible()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

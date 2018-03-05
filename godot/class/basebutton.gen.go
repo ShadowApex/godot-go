@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *BaseButton) BaseClass() string {
 	return "BaseButton"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *BaseButton) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *BaseButton) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
 func (o *BaseButton) X_GuiInput(arg0 InputEvent) {
-	log.Println("Calling BaseButton.X_GuiInput()")
+	//log.Println("Calling BaseButton.X_GuiInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *BaseButton) X_GuiInput(arg0 InputEvent) {
 	Args: [], Returns: void
 */
 func (o *BaseButton) X_Pressed() {
-	log.Println("Calling BaseButton.X_Pressed()")
+	//log.Println("Calling BaseButton.X_Pressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -92,7 +80,7 @@ func (o *BaseButton) X_Pressed() {
 	Args: [{ false button_pressed bool}], Returns: void
 */
 func (o *BaseButton) X_Toggled(buttonPressed gdnative.Bool) {
-	log.Println("Calling BaseButton.X_Toggled()")
+	//log.Println("Calling BaseButton.X_Toggled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -113,7 +101,7 @@ func (o *BaseButton) X_Toggled(buttonPressed gdnative.Bool) {
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
 func (o *BaseButton) X_UnhandledInput(arg0 InputEvent) {
-	log.Println("Calling BaseButton.X_UnhandledInput()")
+	//log.Println("Calling BaseButton.X_UnhandledInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -139,7 +127,7 @@ func (o *BaseButton) X_UnhandledInput(arg0 InputEvent) {
 	Args: [], Returns: ButtonGroup
 */
 func (o *BaseButton) GetButtonGroup() ButtonGroup {
-	log.Println("Calling BaseButton.GetButtonGroup()")
+	//log.Println("Calling BaseButton.GetButtonGroup()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -154,7 +142,7 @@ func (o *BaseButton) GetButtonGroup() ButtonGroup {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewButtonGroupFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -173,7 +161,7 @@ func (o *BaseButton) GetButtonGroup() ButtonGroup {
 	Args: [], Returns: ShortCut
 */
 func (o *BaseButton) GetShortcut() ShortCut {
-	log.Println("Calling BaseButton.GetShortcut()")
+	//log.Println("Calling BaseButton.GetShortcut()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -188,7 +176,7 @@ func (o *BaseButton) GetShortcut() ShortCut {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewShortCutFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -197,7 +185,7 @@ func (o *BaseButton) GetShortcut() ShortCut {
 	Args: [], Returns: bool
 */
 func (o *BaseButton) IsDisabled() gdnative.Bool {
-	log.Println("Calling BaseButton.IsDisabled()")
+	//log.Println("Calling BaseButton.IsDisabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -212,7 +200,7 @@ func (o *BaseButton) IsDisabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -221,7 +209,7 @@ func (o *BaseButton) IsDisabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *BaseButton) IsHovered() gdnative.Bool {
-	log.Println("Calling BaseButton.IsHovered()")
+	//log.Println("Calling BaseButton.IsHovered()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -236,7 +224,7 @@ func (o *BaseButton) IsHovered() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -245,7 +233,7 @@ func (o *BaseButton) IsHovered() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *BaseButton) IsPressed() gdnative.Bool {
-	log.Println("Calling BaseButton.IsPressed()")
+	//log.Println("Calling BaseButton.IsPressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -260,7 +248,7 @@ func (o *BaseButton) IsPressed() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -269,7 +257,7 @@ func (o *BaseButton) IsPressed() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *BaseButton) IsToggleMode() gdnative.Bool {
-	log.Println("Calling BaseButton.IsToggleMode()")
+	//log.Println("Calling BaseButton.IsToggleMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -284,7 +272,7 @@ func (o *BaseButton) IsToggleMode() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -293,7 +281,7 @@ func (o *BaseButton) IsToggleMode() gdnative.Bool {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *BaseButton) SetActionMode(mode gdnative.Int) {
-	log.Println("Calling BaseButton.SetActionMode()")
+	//log.Println("Calling BaseButton.SetActionMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -314,7 +302,7 @@ func (o *BaseButton) SetActionMode(mode gdnative.Int) {
 	Args: [{ false button_group ButtonGroup}], Returns: void
 */
 func (o *BaseButton) SetButtonGroup(buttonGroup ButtonGroup) {
-	log.Println("Calling BaseButton.SetButtonGroup()")
+	//log.Println("Calling BaseButton.SetButtonGroup()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -335,7 +323,7 @@ func (o *BaseButton) SetButtonGroup(buttonGroup ButtonGroup) {
 	Args: [{ false disabled bool}], Returns: void
 */
 func (o *BaseButton) SetDisabled(disabled gdnative.Bool) {
-	log.Println("Calling BaseButton.SetDisabled()")
+	//log.Println("Calling BaseButton.SetDisabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -356,7 +344,7 @@ func (o *BaseButton) SetDisabled(disabled gdnative.Bool) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *BaseButton) SetEnabledFocusMode(mode gdnative.Int) {
-	log.Println("Calling BaseButton.SetEnabledFocusMode()")
+	//log.Println("Calling BaseButton.SetEnabledFocusMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -377,7 +365,7 @@ func (o *BaseButton) SetEnabledFocusMode(mode gdnative.Int) {
 	Args: [{ false pressed bool}], Returns: void
 */
 func (o *BaseButton) SetPressed(pressed gdnative.Bool) {
-	log.Println("Calling BaseButton.SetPressed()")
+	//log.Println("Calling BaseButton.SetPressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -398,7 +386,7 @@ func (o *BaseButton) SetPressed(pressed gdnative.Bool) {
 	Args: [{ false shortcut ShortCut}], Returns: void
 */
 func (o *BaseButton) SetShortcut(shortcut ShortCut) {
-	log.Println("Calling BaseButton.SetShortcut()")
+	//log.Println("Calling BaseButton.SetShortcut()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -419,7 +407,7 @@ func (o *BaseButton) SetShortcut(shortcut ShortCut) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *BaseButton) SetToggleMode(enabled gdnative.Bool) {
-	log.Println("Calling BaseButton.SetToggleMode()")
+	//log.Println("Calling BaseButton.SetToggleMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

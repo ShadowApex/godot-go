@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ProxyTexture) BaseClass() string {
 	return "ProxyTexture"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ProxyTexture) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ProxyTexture) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Texture
 */
 func (o *ProxyTexture) GetBase() Texture {
-	log.Println("Calling ProxyTexture.GetBase()")
+	//log.Println("Calling ProxyTexture.GetBase()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *ProxyTexture) GetBase() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *ProxyTexture) GetBase() Texture {
 	Args: [{ false base Texture}], Returns: void
 */
 func (o *ProxyTexture) SetBase(base Texture) {
-	log.Println("Calling ProxyTexture.SetBase()")
+	//log.Println("Calling ProxyTexture.SetBase()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *SceneTree) BaseClass() string {
 	return "SceneTree"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *SceneTree) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *SceneTree) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false arg0 Object}], Returns: void
 */
 func (o *SceneTree) X_ChangeScene(arg0 Object) {
-	log.Println("Calling SceneTree.X_ChangeScene()")
+	//log.Println("Calling SceneTree.X_ChangeScene()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *SceneTree) X_ChangeScene(arg0 Object) {
 	Args: [], Returns: void
 */
 func (o *SceneTree) X_ConnectedToServer() {
-	log.Println("Calling SceneTree.X_ConnectedToServer()")
+	//log.Println("Calling SceneTree.X_ConnectedToServer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -92,7 +80,7 @@ func (o *SceneTree) X_ConnectedToServer() {
 	Args: [], Returns: void
 */
 func (o *SceneTree) X_ConnectionFailed() {
-	log.Println("Calling SceneTree.X_ConnectionFailed()")
+	//log.Println("Calling SceneTree.X_ConnectionFailed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -112,7 +100,7 @@ func (o *SceneTree) X_ConnectionFailed() {
 	Args: [{ false arg0 int}], Returns: void
 */
 func (o *SceneTree) X_NetworkPeerConnected(arg0 gdnative.Int) {
-	log.Println("Calling SceneTree.X_NetworkPeerConnected()")
+	//log.Println("Calling SceneTree.X_NetworkPeerConnected()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -133,7 +121,7 @@ func (o *SceneTree) X_NetworkPeerConnected(arg0 gdnative.Int) {
 	Args: [{ false arg0 int}], Returns: void
 */
 func (o *SceneTree) X_NetworkPeerDisconnected(arg0 gdnative.Int) {
-	log.Println("Calling SceneTree.X_NetworkPeerDisconnected()")
+	//log.Println("Calling SceneTree.X_NetworkPeerDisconnected()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -154,7 +142,7 @@ func (o *SceneTree) X_NetworkPeerDisconnected(arg0 gdnative.Int) {
 	Args: [], Returns: void
 */
 func (o *SceneTree) X_ServerDisconnected() {
-	log.Println("Calling SceneTree.X_ServerDisconnected()")
+	//log.Println("Calling SceneTree.X_ServerDisconnected()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -174,7 +162,7 @@ func (o *SceneTree) X_ServerDisconnected() {
 	Args: [{ false group String} { false method String}], Returns: Variant
 */
 func (o *SceneTree) CallGroup(group gdnative.String, method gdnative.String) gdnative.Variant {
-	log.Println("Calling SceneTree.CallGroup()")
+	//log.Println("Calling SceneTree.CallGroup()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -191,7 +179,7 @@ func (o *SceneTree) CallGroup(group gdnative.String, method gdnative.String) gdn
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -200,7 +188,7 @@ func (o *SceneTree) CallGroup(group gdnative.String, method gdnative.String) gdn
 	Args: [{ false flags int} { false group String} { false method String}], Returns: Variant
 */
 func (o *SceneTree) CallGroupFlags(flags gdnative.Int, group gdnative.String, method gdnative.String) gdnative.Variant {
-	log.Println("Calling SceneTree.CallGroupFlags()")
+	//log.Println("Calling SceneTree.CallGroupFlags()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -218,7 +206,7 @@ func (o *SceneTree) CallGroupFlags(flags gdnative.Int, group gdnative.String, me
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -237,7 +225,7 @@ func (o *SceneTree) CallGroupFlags(flags gdnative.Int, group gdnative.String, me
 	Args: [{ false time_sec float} {True true pause_mode_process bool}], Returns: SceneTreeTimer
 */
 func (o *SceneTree) CreateTimer(timeSec gdnative.Float, pauseModeProcess gdnative.Bool) SceneTreeTimer {
-	log.Println("Calling SceneTree.CreateTimer()")
+	//log.Println("Calling SceneTree.CreateTimer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -254,7 +242,7 @@ func (o *SceneTree) CreateTimer(timeSec gdnative.Float, pauseModeProcess gdnativ
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewSceneTreeTimerFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -263,7 +251,7 @@ func (o *SceneTree) CreateTimer(timeSec gdnative.Float, pauseModeProcess gdnativ
 	Args: [], Returns: Node
 */
 func (o *SceneTree) GetCurrentScene() Node {
-	log.Println("Calling SceneTree.GetCurrentScene()")
+	//log.Println("Calling SceneTree.GetCurrentScene()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -278,7 +266,7 @@ func (o *SceneTree) GetCurrentScene() Node {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewNodeFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -287,7 +275,7 @@ func (o *SceneTree) GetCurrentScene() Node {
 	Args: [], Returns: Node
 */
 func (o *SceneTree) GetEditedSceneRoot() Node {
-	log.Println("Calling SceneTree.GetEditedSceneRoot()")
+	//log.Println("Calling SceneTree.GetEditedSceneRoot()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -302,7 +290,7 @@ func (o *SceneTree) GetEditedSceneRoot() Node {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewNodeFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -311,7 +299,7 @@ func (o *SceneTree) GetEditedSceneRoot() Node {
 	Args: [], Returns: int
 */
 func (o *SceneTree) GetFrame() gdnative.Int {
-	log.Println("Calling SceneTree.GetFrame()")
+	//log.Println("Calling SceneTree.GetFrame()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -326,7 +314,7 @@ func (o *SceneTree) GetFrame() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -335,7 +323,7 @@ func (o *SceneTree) GetFrame() gdnative.Int {
 	Args: [], Returns: PoolIntArray
 */
 func (o *SceneTree) GetNetworkConnectedPeers() gdnative.PoolIntArray {
-	log.Println("Calling SceneTree.GetNetworkConnectedPeers()")
+	//log.Println("Calling SceneTree.GetNetworkConnectedPeers()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -350,7 +338,7 @@ func (o *SceneTree) GetNetworkConnectedPeers() gdnative.PoolIntArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -359,7 +347,7 @@ func (o *SceneTree) GetNetworkConnectedPeers() gdnative.PoolIntArray {
 	Args: [], Returns: NetworkedMultiplayerPeer
 */
 func (o *SceneTree) GetNetworkPeer() NetworkedMultiplayerPeer {
-	log.Println("Calling SceneTree.GetNetworkPeer()")
+	//log.Println("Calling SceneTree.GetNetworkPeer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -374,7 +362,7 @@ func (o *SceneTree) GetNetworkPeer() NetworkedMultiplayerPeer {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewNetworkedMultiplayerPeerFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -383,7 +371,7 @@ func (o *SceneTree) GetNetworkPeer() NetworkedMultiplayerPeer {
 	Args: [], Returns: int
 */
 func (o *SceneTree) GetNetworkUniqueId() gdnative.Int {
-	log.Println("Calling SceneTree.GetNetworkUniqueId()")
+	//log.Println("Calling SceneTree.GetNetworkUniqueId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -398,7 +386,7 @@ func (o *SceneTree) GetNetworkUniqueId() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -407,7 +395,7 @@ func (o *SceneTree) GetNetworkUniqueId() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *SceneTree) GetNodeCount() gdnative.Int {
-	log.Println("Calling SceneTree.GetNodeCount()")
+	//log.Println("Calling SceneTree.GetNodeCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -422,7 +410,7 @@ func (o *SceneTree) GetNodeCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -431,7 +419,7 @@ func (o *SceneTree) GetNodeCount() gdnative.Int {
 	Args: [{ false group String}], Returns: Array
 */
 func (o *SceneTree) GetNodesInGroup(group gdnative.String) gdnative.Array {
-	log.Println("Calling SceneTree.GetNodesInGroup()")
+	//log.Println("Calling SceneTree.GetNodesInGroup()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -447,7 +435,7 @@ func (o *SceneTree) GetNodesInGroup(group gdnative.String) gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -456,7 +444,7 @@ func (o *SceneTree) GetNodesInGroup(group gdnative.String) gdnative.Array {
 	Args: [], Returns: Viewport
 */
 func (o *SceneTree) GetRoot() Viewport {
-	log.Println("Calling SceneTree.GetRoot()")
+	//log.Println("Calling SceneTree.GetRoot()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -471,7 +459,7 @@ func (o *SceneTree) GetRoot() Viewport {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewViewportFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -480,7 +468,7 @@ func (o *SceneTree) GetRoot() Viewport {
 	Args: [], Returns: int
 */
 func (o *SceneTree) GetRpcSenderId() gdnative.Int {
-	log.Println("Calling SceneTree.GetRpcSenderId()")
+	//log.Println("Calling SceneTree.GetRpcSenderId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -495,7 +483,7 @@ func (o *SceneTree) GetRpcSenderId() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -504,7 +492,7 @@ func (o *SceneTree) GetRpcSenderId() gdnative.Int {
 	Args: [{ false name String}], Returns: bool
 */
 func (o *SceneTree) HasGroup(name gdnative.String) gdnative.Bool {
-	log.Println("Calling SceneTree.HasGroup()")
+	//log.Println("Calling SceneTree.HasGroup()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -520,7 +508,7 @@ func (o *SceneTree) HasGroup(name gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -529,7 +517,7 @@ func (o *SceneTree) HasGroup(name gdnative.String) gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *SceneTree) HasNetworkPeer() gdnative.Bool {
-	log.Println("Calling SceneTree.HasNetworkPeer()")
+	//log.Println("Calling SceneTree.HasNetworkPeer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -544,7 +532,7 @@ func (o *SceneTree) HasNetworkPeer() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -553,7 +541,7 @@ func (o *SceneTree) HasNetworkPeer() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *SceneTree) IsDebuggingCollisionsHint() gdnative.Bool {
-	log.Println("Calling SceneTree.IsDebuggingCollisionsHint()")
+	//log.Println("Calling SceneTree.IsDebuggingCollisionsHint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -568,7 +556,7 @@ func (o *SceneTree) IsDebuggingCollisionsHint() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -577,7 +565,7 @@ func (o *SceneTree) IsDebuggingCollisionsHint() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *SceneTree) IsDebuggingNavigationHint() gdnative.Bool {
-	log.Println("Calling SceneTree.IsDebuggingNavigationHint()")
+	//log.Println("Calling SceneTree.IsDebuggingNavigationHint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -592,7 +580,7 @@ func (o *SceneTree) IsDebuggingNavigationHint() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -601,7 +589,7 @@ func (o *SceneTree) IsDebuggingNavigationHint() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *SceneTree) IsInputHandled() gdnative.Bool {
-	log.Println("Calling SceneTree.IsInputHandled()")
+	//log.Println("Calling SceneTree.IsInputHandled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -616,7 +604,7 @@ func (o *SceneTree) IsInputHandled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -625,7 +613,7 @@ func (o *SceneTree) IsInputHandled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *SceneTree) IsNetworkServer() gdnative.Bool {
-	log.Println("Calling SceneTree.IsNetworkServer()")
+	//log.Println("Calling SceneTree.IsNetworkServer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -640,7 +628,7 @@ func (o *SceneTree) IsNetworkServer() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -649,7 +637,7 @@ func (o *SceneTree) IsNetworkServer() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *SceneTree) IsPaused() gdnative.Bool {
-	log.Println("Calling SceneTree.IsPaused()")
+	//log.Println("Calling SceneTree.IsPaused()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -664,7 +652,7 @@ func (o *SceneTree) IsPaused() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -673,7 +661,7 @@ func (o *SceneTree) IsPaused() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *SceneTree) IsRefusingNewNetworkConnections() gdnative.Bool {
-	log.Println("Calling SceneTree.IsRefusingNewNetworkConnections()")
+	//log.Println("Calling SceneTree.IsRefusingNewNetworkConnections()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -688,7 +676,7 @@ func (o *SceneTree) IsRefusingNewNetworkConnections() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -697,7 +685,7 @@ func (o *SceneTree) IsRefusingNewNetworkConnections() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *SceneTree) IsUsingFontOversampling() gdnative.Bool {
-	log.Println("Calling SceneTree.IsUsingFontOversampling()")
+	//log.Println("Calling SceneTree.IsUsingFontOversampling()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -712,7 +700,7 @@ func (o *SceneTree) IsUsingFontOversampling() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -721,7 +709,7 @@ func (o *SceneTree) IsUsingFontOversampling() gdnative.Bool {
 	Args: [{ false group String} { false notification int}], Returns: void
 */
 func (o *SceneTree) NotifyGroup(group gdnative.String, notification gdnative.Int) {
-	log.Println("Calling SceneTree.NotifyGroup()")
+	//log.Println("Calling SceneTree.NotifyGroup()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -743,7 +731,7 @@ func (o *SceneTree) NotifyGroup(group gdnative.String, notification gdnative.Int
 	Args: [{ false call_flags int} { false group String} { false notification int}], Returns: void
 */
 func (o *SceneTree) NotifyGroupFlags(callFlags gdnative.Int, group gdnative.String, notification gdnative.Int) {
-	log.Println("Calling SceneTree.NotifyGroupFlags()")
+	//log.Println("Calling SceneTree.NotifyGroupFlags()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -766,7 +754,7 @@ func (o *SceneTree) NotifyGroupFlags(callFlags gdnative.Int, group gdnative.Stri
 	Args: [{ false obj Object}], Returns: void
 */
 func (o *SceneTree) QueueDelete(obj Object) {
-	log.Println("Calling SceneTree.QueueDelete()")
+	//log.Println("Calling SceneTree.QueueDelete()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -787,7 +775,7 @@ func (o *SceneTree) QueueDelete(obj Object) {
 	Args: [], Returns: void
 */
 func (o *SceneTree) Quit() {
-	log.Println("Calling SceneTree.Quit()")
+	//log.Println("Calling SceneTree.Quit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -812,7 +800,7 @@ func (o *SceneTree) Quit() {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *SceneTree) SetAutoAcceptQuit(enabled gdnative.Bool) {
-	log.Println("Calling SceneTree.SetAutoAcceptQuit()")
+	//log.Println("Calling SceneTree.SetAutoAcceptQuit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -833,7 +821,7 @@ func (o *SceneTree) SetAutoAcceptQuit(enabled gdnative.Bool) {
 	Args: [{ false child_node Object}], Returns: void
 */
 func (o *SceneTree) SetCurrentScene(childNode Object) {
-	log.Println("Calling SceneTree.SetCurrentScene()")
+	//log.Println("Calling SceneTree.SetCurrentScene()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -854,7 +842,7 @@ func (o *SceneTree) SetCurrentScene(childNode Object) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *SceneTree) SetDebugCollisionsHint(enable gdnative.Bool) {
-	log.Println("Calling SceneTree.SetDebugCollisionsHint()")
+	//log.Println("Calling SceneTree.SetDebugCollisionsHint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -875,7 +863,7 @@ func (o *SceneTree) SetDebugCollisionsHint(enable gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *SceneTree) SetDebugNavigationHint(enable gdnative.Bool) {
-	log.Println("Calling SceneTree.SetDebugNavigationHint()")
+	//log.Println("Calling SceneTree.SetDebugNavigationHint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -896,7 +884,7 @@ func (o *SceneTree) SetDebugNavigationHint(enable gdnative.Bool) {
 	Args: [{ false scene Object}], Returns: void
 */
 func (o *SceneTree) SetEditedSceneRoot(scene Object) {
-	log.Println("Calling SceneTree.SetEditedSceneRoot()")
+	//log.Println("Calling SceneTree.SetEditedSceneRoot()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -917,7 +905,7 @@ func (o *SceneTree) SetEditedSceneRoot(scene Object) {
 	Args: [{ false group String} { false property String} { false value Variant}], Returns: void
 */
 func (o *SceneTree) SetGroup(group gdnative.String, property gdnative.String, value gdnative.Variant) {
-	log.Println("Calling SceneTree.SetGroup()")
+	//log.Println("Calling SceneTree.SetGroup()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -940,7 +928,7 @@ func (o *SceneTree) SetGroup(group gdnative.String, property gdnative.String, va
 	Args: [{ false call_flags int} { false group String} { false property String} { false value Variant}], Returns: void
 */
 func (o *SceneTree) SetGroupFlags(callFlags gdnative.Int, group gdnative.String, property gdnative.String, value gdnative.Variant) {
-	log.Println("Calling SceneTree.SetGroupFlags()")
+	//log.Println("Calling SceneTree.SetGroupFlags()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -964,7 +952,7 @@ func (o *SceneTree) SetGroupFlags(callFlags gdnative.Int, group gdnative.String,
 	Args: [], Returns: void
 */
 func (o *SceneTree) SetInputAsHandled() {
-	log.Println("Calling SceneTree.SetInputAsHandled()")
+	//log.Println("Calling SceneTree.SetInputAsHandled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -984,7 +972,7 @@ func (o *SceneTree) SetInputAsHandled() {
 	Args: [{ false peer NetworkedMultiplayerPeer}], Returns: void
 */
 func (o *SceneTree) SetNetworkPeer(peer NetworkedMultiplayerPeer) {
-	log.Println("Calling SceneTree.SetNetworkPeer()")
+	//log.Println("Calling SceneTree.SetNetworkPeer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1005,7 +993,7 @@ func (o *SceneTree) SetNetworkPeer(peer NetworkedMultiplayerPeer) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *SceneTree) SetPause(enable gdnative.Bool) {
-	log.Println("Calling SceneTree.SetPause()")
+	//log.Println("Calling SceneTree.SetPause()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1026,7 +1014,7 @@ func (o *SceneTree) SetPause(enable gdnative.Bool) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *SceneTree) SetQuitOnGoBack(enabled gdnative.Bool) {
-	log.Println("Calling SceneTree.SetQuitOnGoBack()")
+	//log.Println("Calling SceneTree.SetQuitOnGoBack()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1047,7 +1035,7 @@ func (o *SceneTree) SetQuitOnGoBack(enabled gdnative.Bool) {
 	Args: [{ false refuse bool}], Returns: void
 */
 func (o *SceneTree) SetRefuseNewNetworkConnections(refuse gdnative.Bool) {
-	log.Println("Calling SceneTree.SetRefuseNewNetworkConnections()")
+	//log.Println("Calling SceneTree.SetRefuseNewNetworkConnections()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1068,7 +1056,7 @@ func (o *SceneTree) SetRefuseNewNetworkConnections(refuse gdnative.Bool) {
 	Args: [{ false mode int} { false aspect int} { false minsize Vector2} {1 true shrink float}], Returns: void
 */
 func (o *SceneTree) SetScreenStretch(mode gdnative.Int, aspect gdnative.Int, minsize gdnative.Vector2, shrink gdnative.Float) {
-	log.Println("Calling SceneTree.SetScreenStretch()")
+	//log.Println("Calling SceneTree.SetScreenStretch()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -1092,7 +1080,7 @@ func (o *SceneTree) SetScreenStretch(mode gdnative.Int, aspect gdnative.Int, min
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *SceneTree) SetUseFontOversampling(enable gdnative.Bool) {
-	log.Println("Calling SceneTree.SetUseFontOversampling()")
+	//log.Println("Calling SceneTree.SetUseFontOversampling()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

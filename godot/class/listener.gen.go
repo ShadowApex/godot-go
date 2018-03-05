@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Listener) BaseClass() string {
 	return "Listener"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Listener) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Listener) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [], Returns: void
 */
 func (o *Listener) ClearCurrent() {
-	log.Println("Calling Listener.ClearCurrent()")
+	//log.Println("Calling Listener.ClearCurrent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *Listener) ClearCurrent() {
 	Args: [], Returns: Transform
 */
 func (o *Listener) GetListenerTransform() gdnative.Transform {
-	log.Println("Calling Listener.GetListenerTransform()")
+	//log.Println("Calling Listener.GetListenerTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -86,7 +74,7 @@ func (o *Listener) GetListenerTransform() gdnative.Transform {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransformFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -95,7 +83,7 @@ func (o *Listener) GetListenerTransform() gdnative.Transform {
 	Args: [], Returns: bool
 */
 func (o *Listener) IsCurrent() gdnative.Bool {
-	log.Println("Calling Listener.IsCurrent()")
+	//log.Println("Calling Listener.IsCurrent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -110,7 +98,7 @@ func (o *Listener) IsCurrent() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -119,7 +107,7 @@ func (o *Listener) IsCurrent() gdnative.Bool {
 	Args: [], Returns: void
 */
 func (o *Listener) MakeCurrent() {
-	log.Println("Calling Listener.MakeCurrent()")
+	//log.Println("Calling Listener.MakeCurrent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)

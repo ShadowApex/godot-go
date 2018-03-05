@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ConfigFile) BaseClass() string {
 	return "ConfigFile"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ConfigFile) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ConfigFile) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Deletes the specified section along with all the key-value pairs inside.
 	Args: [{ false section String}], Returns: void
 */
 func (o *ConfigFile) EraseSection(section gdnative.String) {
-	log.Println("Calling ConfigFile.EraseSection()")
+	//log.Println("Calling ConfigFile.EraseSection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *ConfigFile) EraseSection(section gdnative.String) {
 	Args: [{ false section String}], Returns: PoolStringArray
 */
 func (o *ConfigFile) GetSectionKeys(section gdnative.String) gdnative.PoolStringArray {
-	log.Println("Calling ConfigFile.GetSectionKeys()")
+	//log.Println("Calling ConfigFile.GetSectionKeys()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -88,7 +76,7 @@ func (o *ConfigFile) GetSectionKeys(section gdnative.String) gdnative.PoolString
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -97,7 +85,7 @@ func (o *ConfigFile) GetSectionKeys(section gdnative.String) gdnative.PoolString
 	Args: [], Returns: PoolStringArray
 */
 func (o *ConfigFile) GetSections() gdnative.PoolStringArray {
-	log.Println("Calling ConfigFile.GetSections()")
+	//log.Println("Calling ConfigFile.GetSections()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -112,7 +100,7 @@ func (o *ConfigFile) GetSections() gdnative.PoolStringArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -121,7 +109,7 @@ func (o *ConfigFile) GetSections() gdnative.PoolStringArray {
 	Args: [{ false section String} { false key String} {Null true default Variant}], Returns: Variant
 */
 func (o *ConfigFile) GetValue(section gdnative.String, key gdnative.String, aDefault gdnative.Variant) gdnative.Variant {
-	log.Println("Calling ConfigFile.GetValue()")
+	//log.Println("Calling ConfigFile.GetValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -139,7 +127,7 @@ func (o *ConfigFile) GetValue(section gdnative.String, key gdnative.String, aDef
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -148,7 +136,7 @@ func (o *ConfigFile) GetValue(section gdnative.String, key gdnative.String, aDef
 	Args: [{ false section String}], Returns: bool
 */
 func (o *ConfigFile) HasSection(section gdnative.String) gdnative.Bool {
-	log.Println("Calling ConfigFile.HasSection()")
+	//log.Println("Calling ConfigFile.HasSection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -164,7 +152,7 @@ func (o *ConfigFile) HasSection(section gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -173,7 +161,7 @@ func (o *ConfigFile) HasSection(section gdnative.String) gdnative.Bool {
 	Args: [{ false section String} { false key String}], Returns: bool
 */
 func (o *ConfigFile) HasSectionKey(section gdnative.String, key gdnative.String) gdnative.Bool {
-	log.Println("Calling ConfigFile.HasSectionKey()")
+	//log.Println("Calling ConfigFile.HasSectionKey()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -190,7 +178,7 @@ func (o *ConfigFile) HasSectionKey(section gdnative.String, key gdnative.String)
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -209,7 +197,7 @@ func (o *ConfigFile) HasSectionKey(section gdnative.String, key gdnative.String)
 	Args: [{ false section String} { false key String} { false value Variant}], Returns: void
 */
 func (o *ConfigFile) SetValue(section gdnative.String, key gdnative.String, value gdnative.Variant) {
-	log.Println("Calling ConfigFile.SetValue()")
+	//log.Println("Calling ConfigFile.SetValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)

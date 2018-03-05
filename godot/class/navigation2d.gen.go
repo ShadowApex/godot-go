@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Navigation2D) BaseClass() string {
 	return "Navigation2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Navigation2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Navigation2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [{ false to_point Vector2}], Returns: Vector2
 */
 func (o *Navigation2D) GetClosestPoint(toPoint gdnative.Vector2) gdnative.Vector2 {
-	log.Println("Calling Navigation2D.GetClosestPoint()")
+	//log.Println("Calling Navigation2D.GetClosestPoint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -67,7 +55,7 @@ func (o *Navigation2D) GetClosestPoint(toPoint gdnative.Vector2) gdnative.Vector
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -76,7 +64,7 @@ func (o *Navigation2D) GetClosestPoint(toPoint gdnative.Vector2) gdnative.Vector
 	Args: [{ false to_point Vector2}], Returns: Object
 */
 func (o *Navigation2D) GetClosestPointOwner(toPoint gdnative.Vector2) Object {
-	log.Println("Calling Navigation2D.GetClosestPointOwner()")
+	//log.Println("Calling Navigation2D.GetClosestPointOwner()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -92,7 +80,7 @@ func (o *Navigation2D) GetClosestPointOwner(toPoint gdnative.Vector2) Object {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewObjectFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -101,7 +89,7 @@ func (o *Navigation2D) GetClosestPointOwner(toPoint gdnative.Vector2) Object {
 	Args: [{ false start Vector2} { false end Vector2} {True true optimize bool}], Returns: PoolVector2Array
 */
 func (o *Navigation2D) GetSimplePath(start gdnative.Vector2, end gdnative.Vector2, optimize gdnative.Bool) gdnative.PoolVector2Array {
-	log.Println("Calling Navigation2D.GetSimplePath()")
+	//log.Println("Calling Navigation2D.GetSimplePath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -119,7 +107,7 @@ func (o *Navigation2D) GetSimplePath(start gdnative.Vector2, end gdnative.Vector
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -128,7 +116,7 @@ func (o *Navigation2D) GetSimplePath(start gdnative.Vector2, end gdnative.Vector
 	Args: [{ false mesh NavigationPolygon} { false xform Transform2D} {Null true owner Object}], Returns: int
 */
 func (o *Navigation2D) NavpolyAdd(mesh NavigationPolygon, xform gdnative.Transform2D, owner Object) gdnative.Int {
-	log.Println("Calling Navigation2D.NavpolyAdd()")
+	//log.Println("Calling Navigation2D.NavpolyAdd()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -146,7 +134,7 @@ func (o *Navigation2D) NavpolyAdd(mesh NavigationPolygon, xform gdnative.Transfo
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -155,7 +143,7 @@ func (o *Navigation2D) NavpolyAdd(mesh NavigationPolygon, xform gdnative.Transfo
 	Args: [{ false id int}], Returns: void
 */
 func (o *Navigation2D) NavpolyRemove(id gdnative.Int) {
-	log.Println("Calling Navigation2D.NavpolyRemove()")
+	//log.Println("Calling Navigation2D.NavpolyRemove()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -176,7 +164,7 @@ func (o *Navigation2D) NavpolyRemove(id gdnative.Int) {
 	Args: [{ false id int} { false xform Transform2D}], Returns: void
 */
 func (o *Navigation2D) NavpolySetTransform(id gdnative.Int, xform gdnative.Transform2D) {
-	log.Println("Calling Navigation2D.NavpolySetTransform()")
+	//log.Println("Calling Navigation2D.NavpolySetTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)

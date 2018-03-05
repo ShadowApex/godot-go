@@ -33,13 +33,3 @@ type Position2D struct {
 func (o *Position2D) BaseClass() string {
 	return "Position2D"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Position2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Position2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}

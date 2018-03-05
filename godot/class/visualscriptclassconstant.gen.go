@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VisualScriptClassConstant) BaseClass() string {
 	return "VisualScriptClassConstant"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptClassConstant) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptClassConstant) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: String
 */
 func (o *VisualScriptClassConstant) GetBaseType() gdnative.String {
-	log.Println("Calling VisualScriptClassConstant.GetBaseType()")
+	//log.Println("Calling VisualScriptClassConstant.GetBaseType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VisualScriptClassConstant) GetBaseType() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *VisualScriptClassConstant) GetBaseType() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *VisualScriptClassConstant) GetClassConstant() gdnative.String {
-	log.Println("Calling VisualScriptClassConstant.GetClassConstant()")
+	//log.Println("Calling VisualScriptClassConstant.GetClassConstant()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *VisualScriptClassConstant) GetClassConstant() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *VisualScriptClassConstant) GetClassConstant() gdnative.String {
 	Args: [{ false name String}], Returns: void
 */
 func (o *VisualScriptClassConstant) SetBaseType(name gdnative.String) {
-	log.Println("Calling VisualScriptClassConstant.SetBaseType()")
+	//log.Println("Calling VisualScriptClassConstant.SetBaseType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -120,7 +108,7 @@ func (o *VisualScriptClassConstant) SetBaseType(name gdnative.String) {
 	Args: [{ false name String}], Returns: void
 */
 func (o *VisualScriptClassConstant) SetClassConstant(name gdnative.String) {
-	log.Println("Calling VisualScriptClassConstant.SetClassConstant()")
+	//log.Println("Calling VisualScriptClassConstant.SetClassConstant()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

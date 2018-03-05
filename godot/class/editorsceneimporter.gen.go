@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *EditorSceneImporter) BaseClass() string {
 	return "EditorSceneImporter"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *EditorSceneImporter) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *EditorSceneImporter) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [], Returns: Array
 */
 func (o *EditorSceneImporter) X_GetExtensions() gdnative.Array {
-	log.Println("Calling EditorSceneImporter.X_GetExtensions()")
+	//log.Println("Calling EditorSceneImporter.X_GetExtensions()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *EditorSceneImporter) X_GetExtensions() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *EditorSceneImporter) X_GetExtensions() gdnative.Array {
 	Args: [], Returns: int
 */
 func (o *EditorSceneImporter) X_GetImportFlags() gdnative.Int {
-	log.Println("Calling EditorSceneImporter.X_GetImportFlags()")
+	//log.Println("Calling EditorSceneImporter.X_GetImportFlags()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *EditorSceneImporter) X_GetImportFlags() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *EditorSceneImporter) X_GetImportFlags() gdnative.Int {
 	Args: [{ false path String} { false flags int} { false bake_fps int}], Returns: Animation
 */
 func (o *EditorSceneImporter) X_ImportAnimation(path gdnative.String, flags gdnative.Int, bakeFps gdnative.Int) Animation {
-	log.Println("Calling EditorSceneImporter.X_ImportAnimation()")
+	//log.Println("Calling EditorSceneImporter.X_ImportAnimation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -117,7 +105,7 @@ func (o *EditorSceneImporter) X_ImportAnimation(path gdnative.String, flags gdna
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewAnimationFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -126,7 +114,7 @@ func (o *EditorSceneImporter) X_ImportAnimation(path gdnative.String, flags gdna
 	Args: [{ false path String} { false flags int} { false bake_fps int}], Returns: Node
 */
 func (o *EditorSceneImporter) X_ImportScene(path gdnative.String, flags gdnative.Int, bakeFps gdnative.Int) Node {
-	log.Println("Calling EditorSceneImporter.X_ImportScene()")
+	//log.Println("Calling EditorSceneImporter.X_ImportScene()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -144,7 +132,7 @@ func (o *EditorSceneImporter) X_ImportScene(path gdnative.String, flags gdnative
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewNodeFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -153,7 +141,7 @@ func (o *EditorSceneImporter) X_ImportScene(path gdnative.String, flags gdnative
 	Args: [{ false path String} { false flags int} { false bake_fps int}], Returns: Animation
 */
 func (o *EditorSceneImporter) ImportAnimationFromOtherImporter(path gdnative.String, flags gdnative.Int, bakeFps gdnative.Int) Animation {
-	log.Println("Calling EditorSceneImporter.ImportAnimationFromOtherImporter()")
+	//log.Println("Calling EditorSceneImporter.ImportAnimationFromOtherImporter()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -171,7 +159,7 @@ func (o *EditorSceneImporter) ImportAnimationFromOtherImporter(path gdnative.Str
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewAnimationFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -180,7 +168,7 @@ func (o *EditorSceneImporter) ImportAnimationFromOtherImporter(path gdnative.Str
 	Args: [{ false path String} { false flags int} { false bake_fps int}], Returns: Node
 */
 func (o *EditorSceneImporter) ImportSceneFromOtherImporter(path gdnative.String, flags gdnative.Int, bakeFps gdnative.Int) Node {
-	log.Println("Calling EditorSceneImporter.ImportSceneFromOtherImporter()")
+	//log.Println("Calling EditorSceneImporter.ImportSceneFromOtherImporter()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -198,6 +186,6 @@ func (o *EditorSceneImporter) ImportSceneFromOtherImporter(path gdnative.String,
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewNodeFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

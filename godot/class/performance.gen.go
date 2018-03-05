@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -48,7 +46,7 @@ func (o *performance) ensureSingleton() {
 	if o.initialized == true {
 		return
 	}
-	log.Println("Singleton not found. Fetching from GDNative...")
+	//log.Println("Singleton not found. Fetching from GDNative...")
 	base := gdnative.GetSingleton("Performance")
 	o.SetBaseObject(base)
 	o.initialized = true
@@ -58,23 +56,13 @@ func (o *performance) BaseClass() string {
 	return "Performance"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *performance) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *performance) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Returns the value of one of the available monitors. You should provide one of this class's constants as the argument, like this: [codeblock] print(Performance.get_monitor(Performance.TIME_FPS)) # Prints the FPS to the console [/codeblock]
 	Args: [{ false monitor int}], Returns: float
 */
 func (o *performance) GetMonitor(monitor gdnative.Int) gdnative.Float {
 	o.ensureSingleton()
-	log.Println("Calling Performance.GetMonitor()")
+	//log.Println("Calling Performance.GetMonitor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -90,6 +78,6 @@ func (o *performance) GetMonitor(monitor gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

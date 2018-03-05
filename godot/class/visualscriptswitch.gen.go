@@ -33,13 +33,3 @@ type VisualScriptSwitch struct {
 func (o *VisualScriptSwitch) BaseClass() string {
 	return "VisualScriptSwitch"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptSwitch) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptSwitch) GetBaseObject() gdnative.Object {
-	return o.owner
-}

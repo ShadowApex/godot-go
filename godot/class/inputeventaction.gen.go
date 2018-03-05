@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *InputEventAction) BaseClass() string {
 	return "InputEventAction"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *InputEventAction) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *InputEventAction) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: String
 */
 func (o *InputEventAction) GetAction() gdnative.String {
-	log.Println("Calling InputEventAction.GetAction()")
+	//log.Println("Calling InputEventAction.GetAction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *InputEventAction) GetAction() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *InputEventAction) GetAction() gdnative.String {
 	Args: [{ false action String}], Returns: void
 */
 func (o *InputEventAction) SetAction(action gdnative.String) {
-	log.Println("Calling InputEventAction.SetAction()")
+	//log.Println("Calling InputEventAction.SetAction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *InputEventAction) SetAction(action gdnative.String) {
 	Args: [{ false pressed bool}], Returns: void
 */
 func (o *InputEventAction) SetPressed(pressed gdnative.Bool) {
-	log.Println("Calling InputEventAction.SetPressed()")
+	//log.Println("Calling InputEventAction.SetPressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

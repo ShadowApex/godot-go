@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ResourcePreloader) BaseClass() string {
 	return "ResourcePreloader"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ResourcePreloader) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ResourcePreloader) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Array
 */
 func (o *ResourcePreloader) X_GetResources() gdnative.Array {
-	log.Println("Calling ResourcePreloader.X_GetResources()")
+	//log.Println("Calling ResourcePreloader.X_GetResources()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *ResourcePreloader) X_GetResources() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *ResourcePreloader) X_GetResources() gdnative.Array {
 	Args: [{ false arg0 Array}], Returns: void
 */
 func (o *ResourcePreloader) X_SetResources(arg0 gdnative.Array) {
-	log.Println("Calling ResourcePreloader.X_SetResources()")
+	//log.Println("Calling ResourcePreloader.X_SetResources()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *ResourcePreloader) X_SetResources(arg0 gdnative.Array) {
 	Args: [{ false name String} { false resource Resource}], Returns: void
 */
 func (o *ResourcePreloader) AddResource(name gdnative.String, resource Resource) {
-	log.Println("Calling ResourcePreloader.AddResource()")
+	//log.Println("Calling ResourcePreloader.AddResource()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -118,7 +106,7 @@ func (o *ResourcePreloader) AddResource(name gdnative.String, resource Resource)
 	Args: [{ false name String}], Returns: Resource
 */
 func (o *ResourcePreloader) GetResource(name gdnative.String) Resource {
-	log.Println("Calling ResourcePreloader.GetResource()")
+	//log.Println("Calling ResourcePreloader.GetResource()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -134,7 +122,7 @@ func (o *ResourcePreloader) GetResource(name gdnative.String) Resource {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewResourceFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -143,7 +131,7 @@ func (o *ResourcePreloader) GetResource(name gdnative.String) Resource {
 	Args: [], Returns: PoolStringArray
 */
 func (o *ResourcePreloader) GetResourceList() gdnative.PoolStringArray {
-	log.Println("Calling ResourcePreloader.GetResourceList()")
+	//log.Println("Calling ResourcePreloader.GetResourceList()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -158,7 +146,7 @@ func (o *ResourcePreloader) GetResourceList() gdnative.PoolStringArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -167,7 +155,7 @@ func (o *ResourcePreloader) GetResourceList() gdnative.PoolStringArray {
 	Args: [{ false name String}], Returns: bool
 */
 func (o *ResourcePreloader) HasResource(name gdnative.String) gdnative.Bool {
-	log.Println("Calling ResourcePreloader.HasResource()")
+	//log.Println("Calling ResourcePreloader.HasResource()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -183,7 +171,7 @@ func (o *ResourcePreloader) HasResource(name gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -192,7 +180,7 @@ func (o *ResourcePreloader) HasResource(name gdnative.String) gdnative.Bool {
 	Args: [{ false name String}], Returns: void
 */
 func (o *ResourcePreloader) RemoveResource(name gdnative.String) {
-	log.Println("Calling ResourcePreloader.RemoveResource()")
+	//log.Println("Calling ResourcePreloader.RemoveResource()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -213,7 +201,7 @@ func (o *ResourcePreloader) RemoveResource(name gdnative.String) {
 	Args: [{ false name String} { false newname String}], Returns: void
 */
 func (o *ResourcePreloader) RenameResource(name gdnative.String, newname gdnative.String) {
-	log.Println("Calling ResourcePreloader.RenameResource()")
+	//log.Println("Calling ResourcePreloader.RenameResource()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)

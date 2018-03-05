@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VehicleBody) BaseClass() string {
 	return "VehicleBody"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VehicleBody) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VehicleBody) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *VehicleBody) GetBrake() gdnative.Float {
-	log.Println("Calling VehicleBody.GetBrake()")
+	//log.Println("Calling VehicleBody.GetBrake()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VehicleBody) GetBrake() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *VehicleBody) GetBrake() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *VehicleBody) GetEngineForce() gdnative.Float {
-	log.Println("Calling VehicleBody.GetEngineForce()")
+	//log.Println("Calling VehicleBody.GetEngineForce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *VehicleBody) GetEngineForce() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *VehicleBody) GetEngineForce() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *VehicleBody) GetSteering() gdnative.Float {
-	log.Println("Calling VehicleBody.GetSteering()")
+	//log.Println("Calling VehicleBody.GetSteering()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *VehicleBody) GetSteering() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *VehicleBody) GetSteering() gdnative.Float {
 	Args: [{ false brake float}], Returns: void
 */
 func (o *VehicleBody) SetBrake(brake gdnative.Float) {
-	log.Println("Calling VehicleBody.SetBrake()")
+	//log.Println("Calling VehicleBody.SetBrake()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -144,7 +132,7 @@ func (o *VehicleBody) SetBrake(brake gdnative.Float) {
 	Args: [{ false engine_force float}], Returns: void
 */
 func (o *VehicleBody) SetEngineForce(engineForce gdnative.Float) {
-	log.Println("Calling VehicleBody.SetEngineForce()")
+	//log.Println("Calling VehicleBody.SetEngineForce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -165,7 +153,7 @@ func (o *VehicleBody) SetEngineForce(engineForce gdnative.Float) {
 	Args: [{ false steering float}], Returns: void
 */
 func (o *VehicleBody) SetSteering(steering gdnative.Float) {
-	log.Println("Calling VehicleBody.SetSteering()")
+	//log.Println("Calling VehicleBody.SetSteering()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

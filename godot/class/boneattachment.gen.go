@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *BoneAttachment) BaseClass() string {
 	return "BoneAttachment"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *BoneAttachment) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *BoneAttachment) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: String
 */
 func (o *BoneAttachment) GetBoneName() gdnative.String {
-	log.Println("Calling BoneAttachment.GetBoneName()")
+	//log.Println("Calling BoneAttachment.GetBoneName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *BoneAttachment) GetBoneName() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *BoneAttachment) GetBoneName() gdnative.String {
 	Args: [{ false bone_name String}], Returns: void
 */
 func (o *BoneAttachment) SetBoneName(boneName gdnative.String) {
-	log.Println("Calling BoneAttachment.SetBoneName()")
+	//log.Println("Calling BoneAttachment.SetBoneName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

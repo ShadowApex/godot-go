@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VisualScriptPreload) BaseClass() string {
 	return "VisualScriptPreload"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptPreload) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptPreload) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Resource
 */
 func (o *VisualScriptPreload) GetPreload() Resource {
-	log.Println("Calling VisualScriptPreload.GetPreload()")
+	//log.Println("Calling VisualScriptPreload.GetPreload()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VisualScriptPreload) GetPreload() Resource {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewResourceFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *VisualScriptPreload) GetPreload() Resource {
 	Args: [{ false resource Resource}], Returns: void
 */
 func (o *VisualScriptPreload) SetPreload(resource Resource) {
-	log.Println("Calling VisualScriptPreload.SetPreload()")
+	//log.Println("Calling VisualScriptPreload.SetPreload()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

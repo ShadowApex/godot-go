@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *StyleBoxFlat) BaseClass() string {
 	return "StyleBoxFlat"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *StyleBoxFlat) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *StyleBoxFlat) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: int
 */
 func (o *StyleBoxFlat) GetAaSize() gdnative.Int {
-	log.Println("Calling StyleBoxFlat.GetAaSize()")
+	//log.Println("Calling StyleBoxFlat.GetAaSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *StyleBoxFlat) GetAaSize() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *StyleBoxFlat) GetAaSize() gdnative.Int {
 	Args: [], Returns: Color
 */
 func (o *StyleBoxFlat) GetBgColor() gdnative.Color {
-	log.Println("Calling StyleBoxFlat.GetBgColor()")
+	//log.Println("Calling StyleBoxFlat.GetBgColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *StyleBoxFlat) GetBgColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *StyleBoxFlat) GetBgColor() gdnative.Color {
 	Args: [], Returns: bool
 */
 func (o *StyleBoxFlat) GetBorderBlend() gdnative.Bool {
-	log.Println("Calling StyleBoxFlat.GetBorderBlend()")
+	//log.Println("Calling StyleBoxFlat.GetBorderBlend()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *StyleBoxFlat) GetBorderBlend() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *StyleBoxFlat) GetBorderBlend() gdnative.Bool {
 	Args: [], Returns: Color
 */
 func (o *StyleBoxFlat) GetBorderColor() gdnative.Color {
-	log.Println("Calling StyleBoxFlat.GetBorderColor()")
+	//log.Println("Calling StyleBoxFlat.GetBorderColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *StyleBoxFlat) GetBorderColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *StyleBoxFlat) GetBorderColor() gdnative.Color {
 	Args: [{ false margin int}], Returns: int
 */
 func (o *StyleBoxFlat) GetBorderWidth(margin gdnative.Int) gdnative.Int {
-	log.Println("Calling StyleBoxFlat.GetBorderWidth()")
+	//log.Println("Calling StyleBoxFlat.GetBorderWidth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -163,7 +151,7 @@ func (o *StyleBoxFlat) GetBorderWidth(margin gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -172,7 +160,7 @@ func (o *StyleBoxFlat) GetBorderWidth(margin gdnative.Int) gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *StyleBoxFlat) GetBorderWidthMin() gdnative.Int {
-	log.Println("Calling StyleBoxFlat.GetBorderWidthMin()")
+	//log.Println("Calling StyleBoxFlat.GetBorderWidthMin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -187,7 +175,7 @@ func (o *StyleBoxFlat) GetBorderWidthMin() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -196,7 +184,7 @@ func (o *StyleBoxFlat) GetBorderWidthMin() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *StyleBoxFlat) GetCornerDetail() gdnative.Int {
-	log.Println("Calling StyleBoxFlat.GetCornerDetail()")
+	//log.Println("Calling StyleBoxFlat.GetCornerDetail()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -211,7 +199,7 @@ func (o *StyleBoxFlat) GetCornerDetail() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -220,7 +208,7 @@ func (o *StyleBoxFlat) GetCornerDetail() gdnative.Int {
 	Args: [{ false corner int}], Returns: int
 */
 func (o *StyleBoxFlat) GetCornerRadius(corner gdnative.Int) gdnative.Int {
-	log.Println("Calling StyleBoxFlat.GetCornerRadius()")
+	//log.Println("Calling StyleBoxFlat.GetCornerRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -236,7 +224,7 @@ func (o *StyleBoxFlat) GetCornerRadius(corner gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -245,7 +233,7 @@ func (o *StyleBoxFlat) GetCornerRadius(corner gdnative.Int) gdnative.Int {
 	Args: [{ false margin int}], Returns: float
 */
 func (o *StyleBoxFlat) GetExpandMargin(margin gdnative.Int) gdnative.Float {
-	log.Println("Calling StyleBoxFlat.GetExpandMargin()")
+	//log.Println("Calling StyleBoxFlat.GetExpandMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -261,7 +249,7 @@ func (o *StyleBoxFlat) GetExpandMargin(margin gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -270,7 +258,7 @@ func (o *StyleBoxFlat) GetExpandMargin(margin gdnative.Int) gdnative.Float {
 	Args: [], Returns: Color
 */
 func (o *StyleBoxFlat) GetShadowColor() gdnative.Color {
-	log.Println("Calling StyleBoxFlat.GetShadowColor()")
+	//log.Println("Calling StyleBoxFlat.GetShadowColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -285,7 +273,7 @@ func (o *StyleBoxFlat) GetShadowColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -294,7 +282,7 @@ func (o *StyleBoxFlat) GetShadowColor() gdnative.Color {
 	Args: [], Returns: int
 */
 func (o *StyleBoxFlat) GetShadowSize() gdnative.Int {
-	log.Println("Calling StyleBoxFlat.GetShadowSize()")
+	//log.Println("Calling StyleBoxFlat.GetShadowSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -309,7 +297,7 @@ func (o *StyleBoxFlat) GetShadowSize() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -318,7 +306,7 @@ func (o *StyleBoxFlat) GetShadowSize() gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *StyleBoxFlat) IsAntiAliased() gdnative.Bool {
-	log.Println("Calling StyleBoxFlat.IsAntiAliased()")
+	//log.Println("Calling StyleBoxFlat.IsAntiAliased()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -333,7 +321,7 @@ func (o *StyleBoxFlat) IsAntiAliased() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -342,7 +330,7 @@ func (o *StyleBoxFlat) IsAntiAliased() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *StyleBoxFlat) IsDrawCenterEnabled() gdnative.Bool {
-	log.Println("Calling StyleBoxFlat.IsDrawCenterEnabled()")
+	//log.Println("Calling StyleBoxFlat.IsDrawCenterEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -357,7 +345,7 @@ func (o *StyleBoxFlat) IsDrawCenterEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -366,7 +354,7 @@ func (o *StyleBoxFlat) IsDrawCenterEnabled() gdnative.Bool {
 	Args: [{ false size int}], Returns: void
 */
 func (o *StyleBoxFlat) SetAaSize(size gdnative.Int) {
-	log.Println("Calling StyleBoxFlat.SetAaSize()")
+	//log.Println("Calling StyleBoxFlat.SetAaSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -387,7 +375,7 @@ func (o *StyleBoxFlat) SetAaSize(size gdnative.Int) {
 	Args: [{ false anti_aliased bool}], Returns: void
 */
 func (o *StyleBoxFlat) SetAntiAliased(antiAliased gdnative.Bool) {
-	log.Println("Calling StyleBoxFlat.SetAntiAliased()")
+	//log.Println("Calling StyleBoxFlat.SetAntiAliased()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -408,7 +396,7 @@ func (o *StyleBoxFlat) SetAntiAliased(antiAliased gdnative.Bool) {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *StyleBoxFlat) SetBgColor(color gdnative.Color) {
-	log.Println("Calling StyleBoxFlat.SetBgColor()")
+	//log.Println("Calling StyleBoxFlat.SetBgColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -429,7 +417,7 @@ func (o *StyleBoxFlat) SetBgColor(color gdnative.Color) {
 	Args: [{ false blend bool}], Returns: void
 */
 func (o *StyleBoxFlat) SetBorderBlend(blend gdnative.Bool) {
-	log.Println("Calling StyleBoxFlat.SetBorderBlend()")
+	//log.Println("Calling StyleBoxFlat.SetBorderBlend()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -450,7 +438,7 @@ func (o *StyleBoxFlat) SetBorderBlend(blend gdnative.Bool) {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *StyleBoxFlat) SetBorderColor(color gdnative.Color) {
-	log.Println("Calling StyleBoxFlat.SetBorderColor()")
+	//log.Println("Calling StyleBoxFlat.SetBorderColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -471,7 +459,7 @@ func (o *StyleBoxFlat) SetBorderColor(color gdnative.Color) {
 	Args: [{ false margin int} { false width int}], Returns: void
 */
 func (o *StyleBoxFlat) SetBorderWidth(margin gdnative.Int, width gdnative.Int) {
-	log.Println("Calling StyleBoxFlat.SetBorderWidth()")
+	//log.Println("Calling StyleBoxFlat.SetBorderWidth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -493,7 +481,7 @@ func (o *StyleBoxFlat) SetBorderWidth(margin gdnative.Int, width gdnative.Int) {
 	Args: [{ false width int}], Returns: void
 */
 func (o *StyleBoxFlat) SetBorderWidthAll(width gdnative.Int) {
-	log.Println("Calling StyleBoxFlat.SetBorderWidthAll()")
+	//log.Println("Calling StyleBoxFlat.SetBorderWidthAll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -514,7 +502,7 @@ func (o *StyleBoxFlat) SetBorderWidthAll(width gdnative.Int) {
 	Args: [{ false detail int}], Returns: void
 */
 func (o *StyleBoxFlat) SetCornerDetail(detail gdnative.Int) {
-	log.Println("Calling StyleBoxFlat.SetCornerDetail()")
+	//log.Println("Calling StyleBoxFlat.SetCornerDetail()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -535,7 +523,7 @@ func (o *StyleBoxFlat) SetCornerDetail(detail gdnative.Int) {
 	Args: [{ false corner int} { false radius int}], Returns: void
 */
 func (o *StyleBoxFlat) SetCornerRadius(corner gdnative.Int, radius gdnative.Int) {
-	log.Println("Calling StyleBoxFlat.SetCornerRadius()")
+	//log.Println("Calling StyleBoxFlat.SetCornerRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -557,7 +545,7 @@ func (o *StyleBoxFlat) SetCornerRadius(corner gdnative.Int, radius gdnative.Int)
 	Args: [{ false radius int}], Returns: void
 */
 func (o *StyleBoxFlat) SetCornerRadiusAll(radius gdnative.Int) {
-	log.Println("Calling StyleBoxFlat.SetCornerRadiusAll()")
+	//log.Println("Calling StyleBoxFlat.SetCornerRadiusAll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -578,7 +566,7 @@ func (o *StyleBoxFlat) SetCornerRadiusAll(radius gdnative.Int) {
 	Args: [{ false radius_top_left int} { false radius_top_right int} { false radius_bottom_right int} { false radius_bottom_left int}], Returns: void
 */
 func (o *StyleBoxFlat) SetCornerRadiusIndividual(radiusTopLeft gdnative.Int, radiusTopRight gdnative.Int, radiusBottomRight gdnative.Int, radiusBottomLeft gdnative.Int) {
-	log.Println("Calling StyleBoxFlat.SetCornerRadiusIndividual()")
+	//log.Println("Calling StyleBoxFlat.SetCornerRadiusIndividual()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -602,7 +590,7 @@ func (o *StyleBoxFlat) SetCornerRadiusIndividual(radiusTopLeft gdnative.Int, rad
 	Args: [{ false draw_center bool}], Returns: void
 */
 func (o *StyleBoxFlat) SetDrawCenter(drawCenter gdnative.Bool) {
-	log.Println("Calling StyleBoxFlat.SetDrawCenter()")
+	//log.Println("Calling StyleBoxFlat.SetDrawCenter()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -623,7 +611,7 @@ func (o *StyleBoxFlat) SetDrawCenter(drawCenter gdnative.Bool) {
 	Args: [{ false margin int} { false size float}], Returns: void
 */
 func (o *StyleBoxFlat) SetExpandMargin(margin gdnative.Int, size gdnative.Float) {
-	log.Println("Calling StyleBoxFlat.SetExpandMargin()")
+	//log.Println("Calling StyleBoxFlat.SetExpandMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -645,7 +633,7 @@ func (o *StyleBoxFlat) SetExpandMargin(margin gdnative.Int, size gdnative.Float)
 	Args: [{ false size float}], Returns: void
 */
 func (o *StyleBoxFlat) SetExpandMarginAll(size gdnative.Float) {
-	log.Println("Calling StyleBoxFlat.SetExpandMarginAll()")
+	//log.Println("Calling StyleBoxFlat.SetExpandMarginAll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -666,7 +654,7 @@ func (o *StyleBoxFlat) SetExpandMarginAll(size gdnative.Float) {
 	Args: [{ false size_left float} { false size_top float} { false size_right float} { false size_bottom float}], Returns: void
 */
 func (o *StyleBoxFlat) SetExpandMarginIndividual(sizeLeft gdnative.Float, sizeTop gdnative.Float, sizeRight gdnative.Float, sizeBottom gdnative.Float) {
-	log.Println("Calling StyleBoxFlat.SetExpandMarginIndividual()")
+	//log.Println("Calling StyleBoxFlat.SetExpandMarginIndividual()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -690,7 +678,7 @@ func (o *StyleBoxFlat) SetExpandMarginIndividual(sizeLeft gdnative.Float, sizeTo
 	Args: [{ false color Color}], Returns: void
 */
 func (o *StyleBoxFlat) SetShadowColor(color gdnative.Color) {
-	log.Println("Calling StyleBoxFlat.SetShadowColor()")
+	//log.Println("Calling StyleBoxFlat.SetShadowColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -711,7 +699,7 @@ func (o *StyleBoxFlat) SetShadowColor(color gdnative.Color) {
 	Args: [{ false size int}], Returns: void
 */
 func (o *StyleBoxFlat) SetShadowSize(size gdnative.Int) {
-	log.Println("Calling StyleBoxFlat.SetShadowSize()")
+	//log.Println("Calling StyleBoxFlat.SetShadowSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

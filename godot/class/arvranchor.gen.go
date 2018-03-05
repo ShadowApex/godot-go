@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ARVRAnchor) BaseClass() string {
 	return "ARVRAnchor"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ARVRAnchor) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ARVRAnchor) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: int
 */
 func (o *ARVRAnchor) GetAnchorId() gdnative.Int {
-	log.Println("Calling ARVRAnchor.GetAnchorId()")
+	//log.Println("Calling ARVRAnchor.GetAnchorId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *ARVRAnchor) GetAnchorId() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *ARVRAnchor) GetAnchorId() gdnative.Int {
 	Args: [], Returns: String
 */
 func (o *ARVRAnchor) GetAnchorName() gdnative.String {
-	log.Println("Calling ARVRAnchor.GetAnchorName()")
+	//log.Println("Calling ARVRAnchor.GetAnchorName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *ARVRAnchor) GetAnchorName() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *ARVRAnchor) GetAnchorName() gdnative.String {
 	Args: [], Returns: bool
 */
 func (o *ARVRAnchor) GetIsActive() gdnative.Bool {
-	log.Println("Calling ARVRAnchor.GetIsActive()")
+	//log.Println("Calling ARVRAnchor.GetIsActive()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *ARVRAnchor) GetIsActive() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *ARVRAnchor) GetIsActive() gdnative.Bool {
 	Args: [], Returns: Plane
 */
 func (o *ARVRAnchor) GetPlane() gdnative.Plane {
-	log.Println("Calling ARVRAnchor.GetPlane()")
+	//log.Println("Calling ARVRAnchor.GetPlane()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *ARVRAnchor) GetPlane() gdnative.Plane {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPlaneFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *ARVRAnchor) GetPlane() gdnative.Plane {
 	Args: [], Returns: Vector3
 */
 func (o *ARVRAnchor) GetSize() gdnative.Vector3 {
-	log.Println("Calling ARVRAnchor.GetSize()")
+	//log.Println("Calling ARVRAnchor.GetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *ARVRAnchor) GetSize() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *ARVRAnchor) GetSize() gdnative.Vector3 {
 	Args: [{ false anchor_id int}], Returns: void
 */
 func (o *ARVRAnchor) SetAnchorId(anchorId gdnative.Int) {
-	log.Println("Calling ARVRAnchor.SetAnchorId()")
+	//log.Println("Calling ARVRAnchor.SetAnchorId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

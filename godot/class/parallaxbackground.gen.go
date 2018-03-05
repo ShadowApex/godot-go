@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ParallaxBackground) BaseClass() string {
 	return "ParallaxBackground"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ParallaxBackground) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ParallaxBackground) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false arg0 Transform2D} { false arg1 Vector2}], Returns: void
 */
 func (o *ParallaxBackground) X_CameraMoved(arg0 gdnative.Transform2D, arg1 gdnative.Vector2) {
-	log.Println("Calling ParallaxBackground.X_CameraMoved()")
+	//log.Println("Calling ParallaxBackground.X_CameraMoved()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -73,7 +61,7 @@ func (o *ParallaxBackground) X_CameraMoved(arg0 gdnative.Transform2D, arg1 gdnat
 	Args: [], Returns: Vector2
 */
 func (o *ParallaxBackground) GetLimitBegin() gdnative.Vector2 {
-	log.Println("Calling ParallaxBackground.GetLimitBegin()")
+	//log.Println("Calling ParallaxBackground.GetLimitBegin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -88,7 +76,7 @@ func (o *ParallaxBackground) GetLimitBegin() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -97,7 +85,7 @@ func (o *ParallaxBackground) GetLimitBegin() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *ParallaxBackground) GetLimitEnd() gdnative.Vector2 {
-	log.Println("Calling ParallaxBackground.GetLimitEnd()")
+	//log.Println("Calling ParallaxBackground.GetLimitEnd()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -112,7 +100,7 @@ func (o *ParallaxBackground) GetLimitEnd() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -121,7 +109,7 @@ func (o *ParallaxBackground) GetLimitEnd() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *ParallaxBackground) GetScrollBaseOffset() gdnative.Vector2 {
-	log.Println("Calling ParallaxBackground.GetScrollBaseOffset()")
+	//log.Println("Calling ParallaxBackground.GetScrollBaseOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -136,7 +124,7 @@ func (o *ParallaxBackground) GetScrollBaseOffset() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -145,7 +133,7 @@ func (o *ParallaxBackground) GetScrollBaseOffset() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *ParallaxBackground) GetScrollBaseScale() gdnative.Vector2 {
-	log.Println("Calling ParallaxBackground.GetScrollBaseScale()")
+	//log.Println("Calling ParallaxBackground.GetScrollBaseScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -160,7 +148,7 @@ func (o *ParallaxBackground) GetScrollBaseScale() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -169,7 +157,7 @@ func (o *ParallaxBackground) GetScrollBaseScale() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *ParallaxBackground) GetScrollOffset() gdnative.Vector2 {
-	log.Println("Calling ParallaxBackground.GetScrollOffset()")
+	//log.Println("Calling ParallaxBackground.GetScrollOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -184,7 +172,7 @@ func (o *ParallaxBackground) GetScrollOffset() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -193,7 +181,7 @@ func (o *ParallaxBackground) GetScrollOffset() gdnative.Vector2 {
 	Args: [], Returns: bool
 */
 func (o *ParallaxBackground) IsIgnoreCameraZoom() gdnative.Bool {
-	log.Println("Calling ParallaxBackground.IsIgnoreCameraZoom()")
+	//log.Println("Calling ParallaxBackground.IsIgnoreCameraZoom()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -208,7 +196,7 @@ func (o *ParallaxBackground) IsIgnoreCameraZoom() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -217,7 +205,7 @@ func (o *ParallaxBackground) IsIgnoreCameraZoom() gdnative.Bool {
 	Args: [{ false ignore bool}], Returns: void
 */
 func (o *ParallaxBackground) SetIgnoreCameraZoom(ignore gdnative.Bool) {
-	log.Println("Calling ParallaxBackground.SetIgnoreCameraZoom()")
+	//log.Println("Calling ParallaxBackground.SetIgnoreCameraZoom()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -238,7 +226,7 @@ func (o *ParallaxBackground) SetIgnoreCameraZoom(ignore gdnative.Bool) {
 	Args: [{ false ofs Vector2}], Returns: void
 */
 func (o *ParallaxBackground) SetLimitBegin(ofs gdnative.Vector2) {
-	log.Println("Calling ParallaxBackground.SetLimitBegin()")
+	//log.Println("Calling ParallaxBackground.SetLimitBegin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -259,7 +247,7 @@ func (o *ParallaxBackground) SetLimitBegin(ofs gdnative.Vector2) {
 	Args: [{ false ofs Vector2}], Returns: void
 */
 func (o *ParallaxBackground) SetLimitEnd(ofs gdnative.Vector2) {
-	log.Println("Calling ParallaxBackground.SetLimitEnd()")
+	//log.Println("Calling ParallaxBackground.SetLimitEnd()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -280,7 +268,7 @@ func (o *ParallaxBackground) SetLimitEnd(ofs gdnative.Vector2) {
 	Args: [{ false ofs Vector2}], Returns: void
 */
 func (o *ParallaxBackground) SetScrollBaseOffset(ofs gdnative.Vector2) {
-	log.Println("Calling ParallaxBackground.SetScrollBaseOffset()")
+	//log.Println("Calling ParallaxBackground.SetScrollBaseOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -301,7 +289,7 @@ func (o *ParallaxBackground) SetScrollBaseOffset(ofs gdnative.Vector2) {
 	Args: [{ false scale Vector2}], Returns: void
 */
 func (o *ParallaxBackground) SetScrollBaseScale(scale gdnative.Vector2) {
-	log.Println("Calling ParallaxBackground.SetScrollBaseScale()")
+	//log.Println("Calling ParallaxBackground.SetScrollBaseScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -322,7 +310,7 @@ func (o *ParallaxBackground) SetScrollBaseScale(scale gdnative.Vector2) {
 	Args: [{ false ofs Vector2}], Returns: void
 */
 func (o *ParallaxBackground) SetScrollOffset(ofs gdnative.Vector2) {
-	log.Println("Calling ParallaxBackground.SetScrollOffset()")
+	//log.Println("Calling ParallaxBackground.SetScrollOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

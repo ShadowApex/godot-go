@@ -33,13 +33,3 @@ type VideoStream struct {
 func (o *VideoStream) BaseClass() string {
 	return "VideoStream"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VideoStream) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VideoStream) GetBaseObject() gdnative.Object {
-	return o.owner
-}

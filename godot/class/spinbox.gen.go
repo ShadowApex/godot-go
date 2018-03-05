@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *SpinBox) BaseClass() string {
 	return "SpinBox"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *SpinBox) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *SpinBox) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
 func (o *SpinBox) X_GuiInput(arg0 InputEvent) {
-	log.Println("Calling SpinBox.X_GuiInput()")
+	//log.Println("Calling SpinBox.X_GuiInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *SpinBox) X_GuiInput(arg0 InputEvent) {
 	Args: [], Returns: void
 */
 func (o *SpinBox) X_LineEditFocusExit() {
-	log.Println("Calling SpinBox.X_LineEditFocusExit()")
+	//log.Println("Calling SpinBox.X_LineEditFocusExit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -92,7 +80,7 @@ func (o *SpinBox) X_LineEditFocusExit() {
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
 func (o *SpinBox) X_LineEditInput(arg0 InputEvent) {
-	log.Println("Calling SpinBox.X_LineEditInput()")
+	//log.Println("Calling SpinBox.X_LineEditInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -113,7 +101,7 @@ func (o *SpinBox) X_LineEditInput(arg0 InputEvent) {
 	Args: [], Returns: void
 */
 func (o *SpinBox) X_RangeClickTimeout() {
-	log.Println("Calling SpinBox.X_RangeClickTimeout()")
+	//log.Println("Calling SpinBox.X_RangeClickTimeout()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -133,7 +121,7 @@ func (o *SpinBox) X_RangeClickTimeout() {
 	Args: [{ false arg0 String}], Returns: void
 */
 func (o *SpinBox) X_TextEntered(arg0 gdnative.String) {
-	log.Println("Calling SpinBox.X_TextEntered()")
+	//log.Println("Calling SpinBox.X_TextEntered()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -154,7 +142,7 @@ func (o *SpinBox) X_TextEntered(arg0 gdnative.String) {
 	Args: [], Returns: LineEdit
 */
 func (o *SpinBox) GetLineEdit() LineEdit {
-	log.Println("Calling SpinBox.GetLineEdit()")
+	//log.Println("Calling SpinBox.GetLineEdit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -169,7 +157,7 @@ func (o *SpinBox) GetLineEdit() LineEdit {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewLineEditFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -178,7 +166,7 @@ func (o *SpinBox) GetLineEdit() LineEdit {
 	Args: [], Returns: String
 */
 func (o *SpinBox) GetPrefix() gdnative.String {
-	log.Println("Calling SpinBox.GetPrefix()")
+	//log.Println("Calling SpinBox.GetPrefix()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -193,7 +181,7 @@ func (o *SpinBox) GetPrefix() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -202,7 +190,7 @@ func (o *SpinBox) GetPrefix() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *SpinBox) GetSuffix() gdnative.String {
-	log.Println("Calling SpinBox.GetSuffix()")
+	//log.Println("Calling SpinBox.GetSuffix()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -217,7 +205,7 @@ func (o *SpinBox) GetSuffix() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -226,7 +214,7 @@ func (o *SpinBox) GetSuffix() gdnative.String {
 	Args: [], Returns: bool
 */
 func (o *SpinBox) IsEditable() gdnative.Bool {
-	log.Println("Calling SpinBox.IsEditable()")
+	//log.Println("Calling SpinBox.IsEditable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -241,7 +229,7 @@ func (o *SpinBox) IsEditable() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -250,7 +238,7 @@ func (o *SpinBox) IsEditable() gdnative.Bool {
 	Args: [{ false editable bool}], Returns: void
 */
 func (o *SpinBox) SetEditable(editable gdnative.Bool) {
-	log.Println("Calling SpinBox.SetEditable()")
+	//log.Println("Calling SpinBox.SetEditable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -271,7 +259,7 @@ func (o *SpinBox) SetEditable(editable gdnative.Bool) {
 	Args: [{ false prefix String}], Returns: void
 */
 func (o *SpinBox) SetPrefix(prefix gdnative.String) {
-	log.Println("Calling SpinBox.SetPrefix()")
+	//log.Println("Calling SpinBox.SetPrefix()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -292,7 +280,7 @@ func (o *SpinBox) SetPrefix(prefix gdnative.String) {
 	Args: [{ false suffix String}], Returns: void
 */
 func (o *SpinBox) SetSuffix(suffix gdnative.String) {
-	log.Println("Calling SpinBox.SetSuffix()")
+	//log.Println("Calling SpinBox.SetSuffix()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

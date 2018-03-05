@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *PackedDataContainerRef) BaseClass() string {
 	return "PackedDataContainerRef"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *PackedDataContainerRef) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *PackedDataContainerRef) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: bool
 */
 func (o *PackedDataContainerRef) X_IsDictionary() gdnative.Bool {
-	log.Println("Calling PackedDataContainerRef.X_IsDictionary()")
+	//log.Println("Calling PackedDataContainerRef.X_IsDictionary()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *PackedDataContainerRef) X_IsDictionary() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *PackedDataContainerRef) X_IsDictionary() gdnative.Bool {
 	Args: [{ false arg0 Variant}], Returns: Variant
 */
 func (o *PackedDataContainerRef) X_IterGet(arg0 gdnative.Variant) gdnative.Variant {
-	log.Println("Calling PackedDataContainerRef.X_IterGet()")
+	//log.Println("Calling PackedDataContainerRef.X_IterGet()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -91,7 +79,7 @@ func (o *PackedDataContainerRef) X_IterGet(arg0 gdnative.Variant) gdnative.Varia
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -100,7 +88,7 @@ func (o *PackedDataContainerRef) X_IterGet(arg0 gdnative.Variant) gdnative.Varia
 	Args: [{ false arg0 Array}], Returns: Variant
 */
 func (o *PackedDataContainerRef) X_IterInit(arg0 gdnative.Array) gdnative.Variant {
-	log.Println("Calling PackedDataContainerRef.X_IterInit()")
+	//log.Println("Calling PackedDataContainerRef.X_IterInit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -116,7 +104,7 @@ func (o *PackedDataContainerRef) X_IterInit(arg0 gdnative.Array) gdnative.Varian
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -125,7 +113,7 @@ func (o *PackedDataContainerRef) X_IterInit(arg0 gdnative.Array) gdnative.Varian
 	Args: [{ false arg0 Array}], Returns: Variant
 */
 func (o *PackedDataContainerRef) X_IterNext(arg0 gdnative.Array) gdnative.Variant {
-	log.Println("Calling PackedDataContainerRef.X_IterNext()")
+	//log.Println("Calling PackedDataContainerRef.X_IterNext()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -141,7 +129,7 @@ func (o *PackedDataContainerRef) X_IterNext(arg0 gdnative.Array) gdnative.Varian
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -150,7 +138,7 @@ func (o *PackedDataContainerRef) X_IterNext(arg0 gdnative.Array) gdnative.Varian
 	Args: [], Returns: int
 */
 func (o *PackedDataContainerRef) Size() gdnative.Int {
-	log.Println("Calling PackedDataContainerRef.Size()")
+	//log.Println("Calling PackedDataContainerRef.Size()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -165,6 +153,6 @@ func (o *PackedDataContainerRef) Size() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

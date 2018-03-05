@@ -33,13 +33,3 @@ type ReferenceRect struct {
 func (o *ReferenceRect) BaseClass() string {
 	return "ReferenceRect"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ReferenceRect) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ReferenceRect) GetBaseObject() gdnative.Object {
-	return o.owner
-}

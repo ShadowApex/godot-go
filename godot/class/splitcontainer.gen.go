@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *SplitContainer) BaseClass() string {
 	return "SplitContainer"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *SplitContainer) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *SplitContainer) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
 func (o *SplitContainer) X_GuiInput(arg0 InputEvent) {
-	log.Println("Calling SplitContainer.X_GuiInput()")
+	//log.Println("Calling SplitContainer.X_GuiInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -77,7 +65,7 @@ func (o *SplitContainer) X_GuiInput(arg0 InputEvent) {
 	Args: [], Returns: int
 */
 func (o *SplitContainer) GetSplitOffset() gdnative.Int {
-	log.Println("Calling SplitContainer.GetSplitOffset()")
+	//log.Println("Calling SplitContainer.GetSplitOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -92,7 +80,7 @@ func (o *SplitContainer) GetSplitOffset() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -101,7 +89,7 @@ func (o *SplitContainer) GetSplitOffset() gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *SplitContainer) IsCollapsed() gdnative.Bool {
-	log.Println("Calling SplitContainer.IsCollapsed()")
+	//log.Println("Calling SplitContainer.IsCollapsed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -116,7 +104,7 @@ func (o *SplitContainer) IsCollapsed() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -125,7 +113,7 @@ func (o *SplitContainer) IsCollapsed() gdnative.Bool {
 	Args: [{ false collapsed bool}], Returns: void
 */
 func (o *SplitContainer) SetCollapsed(collapsed gdnative.Bool) {
-	log.Println("Calling SplitContainer.SetCollapsed()")
+	//log.Println("Calling SplitContainer.SetCollapsed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -146,7 +134,7 @@ func (o *SplitContainer) SetCollapsed(collapsed gdnative.Bool) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *SplitContainer) SetDraggerVisibility(mode gdnative.Int) {
-	log.Println("Calling SplitContainer.SetDraggerVisibility()")
+	//log.Println("Calling SplitContainer.SetDraggerVisibility()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -167,7 +155,7 @@ func (o *SplitContainer) SetDraggerVisibility(mode gdnative.Int) {
 	Args: [{ false offset int}], Returns: void
 */
 func (o *SplitContainer) SetSplitOffset(offset gdnative.Int) {
-	log.Println("Calling SplitContainer.SetSplitOffset()")
+	//log.Println("Calling SplitContainer.SetSplitOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

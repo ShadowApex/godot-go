@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *NetworkedMultiplayerENet) BaseClass() string {
 	return "NetworkedMultiplayerENet"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *NetworkedMultiplayerENet) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *NetworkedMultiplayerENet) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *NetworkedMultiplayerENet) CloseConnection() {
-	log.Println("Calling NetworkedMultiplayerENet.CloseConnection()")
+	//log.Println("Calling NetworkedMultiplayerENet.CloseConnection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -86,7 +74,7 @@ func (o *NetworkedMultiplayerENet) CloseConnection() {
 	Args: [{ false ip String}], Returns: void
 */
 func (o *NetworkedMultiplayerENet) SetBindIp(ip gdnative.String) {
-	log.Println("Calling NetworkedMultiplayerENet.SetBindIp()")
+	//log.Println("Calling NetworkedMultiplayerENet.SetBindIp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -107,7 +95,7 @@ func (o *NetworkedMultiplayerENet) SetBindIp(ip gdnative.String) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *NetworkedMultiplayerENet) SetCompressionMode(mode gdnative.Int) {
-	log.Println("Calling NetworkedMultiplayerENet.SetCompressionMode()")
+	//log.Println("Calling NetworkedMultiplayerENet.SetCompressionMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

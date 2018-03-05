@@ -33,13 +33,3 @@ type HSeparator struct {
 func (o *HSeparator) BaseClass() string {
 	return "HSeparator"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *HSeparator) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *HSeparator) GetBaseObject() gdnative.Object {
-	return o.owner
-}

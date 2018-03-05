@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ReflectionProbe) BaseClass() string {
 	return "ReflectionProbe"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ReflectionProbe) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ReflectionProbe) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: bool
 */
 func (o *ReflectionProbe) AreShadowsEnabled() gdnative.Bool {
-	log.Println("Calling ReflectionProbe.AreShadowsEnabled()")
+	//log.Println("Calling ReflectionProbe.AreShadowsEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *ReflectionProbe) AreShadowsEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *ReflectionProbe) AreShadowsEnabled() gdnative.Bool {
 	Args: [], Returns: int
 */
 func (o *ReflectionProbe) GetCullMask() gdnative.Int {
-	log.Println("Calling ReflectionProbe.GetCullMask()")
+	//log.Println("Calling ReflectionProbe.GetCullMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *ReflectionProbe) GetCullMask() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *ReflectionProbe) GetCullMask() gdnative.Int {
 	Args: [], Returns: Vector3
 */
 func (o *ReflectionProbe) GetExtents() gdnative.Vector3 {
-	log.Println("Calling ReflectionProbe.GetExtents()")
+	//log.Println("Calling ReflectionProbe.GetExtents()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *ReflectionProbe) GetExtents() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *ReflectionProbe) GetExtents() gdnative.Vector3 {
 	Args: [], Returns: float
 */
 func (o *ReflectionProbe) GetIntensity() gdnative.Float {
-	log.Println("Calling ReflectionProbe.GetIntensity()")
+	//log.Println("Calling ReflectionProbe.GetIntensity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *ReflectionProbe) GetIntensity() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *ReflectionProbe) GetIntensity() gdnative.Float {
 	Args: [], Returns: Color
 */
 func (o *ReflectionProbe) GetInteriorAmbient() gdnative.Color {
-	log.Println("Calling ReflectionProbe.GetInteriorAmbient()")
+	//log.Println("Calling ReflectionProbe.GetInteriorAmbient()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *ReflectionProbe) GetInteriorAmbient() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *ReflectionProbe) GetInteriorAmbient() gdnative.Color {
 	Args: [], Returns: float
 */
 func (o *ReflectionProbe) GetInteriorAmbientEnergy() gdnative.Float {
-	log.Println("Calling ReflectionProbe.GetInteriorAmbientEnergy()")
+	//log.Println("Calling ReflectionProbe.GetInteriorAmbientEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -186,7 +174,7 @@ func (o *ReflectionProbe) GetInteriorAmbientEnergy() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -195,7 +183,7 @@ func (o *ReflectionProbe) GetInteriorAmbientEnergy() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *ReflectionProbe) GetInteriorAmbientProbeContribution() gdnative.Float {
-	log.Println("Calling ReflectionProbe.GetInteriorAmbientProbeContribution()")
+	//log.Println("Calling ReflectionProbe.GetInteriorAmbientProbeContribution()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -210,7 +198,7 @@ func (o *ReflectionProbe) GetInteriorAmbientProbeContribution() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -219,7 +207,7 @@ func (o *ReflectionProbe) GetInteriorAmbientProbeContribution() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *ReflectionProbe) GetMaxDistance() gdnative.Float {
-	log.Println("Calling ReflectionProbe.GetMaxDistance()")
+	//log.Println("Calling ReflectionProbe.GetMaxDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -234,7 +222,7 @@ func (o *ReflectionProbe) GetMaxDistance() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -243,7 +231,7 @@ func (o *ReflectionProbe) GetMaxDistance() gdnative.Float {
 	Args: [], Returns: Vector3
 */
 func (o *ReflectionProbe) GetOriginOffset() gdnative.Vector3 {
-	log.Println("Calling ReflectionProbe.GetOriginOffset()")
+	//log.Println("Calling ReflectionProbe.GetOriginOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -258,7 +246,7 @@ func (o *ReflectionProbe) GetOriginOffset() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -272,7 +260,7 @@ func (o *ReflectionProbe) GetOriginOffset() gdnative.Vector3 {
 	Args: [], Returns: bool
 */
 func (o *ReflectionProbe) IsBoxProjectionEnabled() gdnative.Bool {
-	log.Println("Calling ReflectionProbe.IsBoxProjectionEnabled()")
+	//log.Println("Calling ReflectionProbe.IsBoxProjectionEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -287,7 +275,7 @@ func (o *ReflectionProbe) IsBoxProjectionEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -296,7 +284,7 @@ func (o *ReflectionProbe) IsBoxProjectionEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *ReflectionProbe) IsSetAsInterior() gdnative.Bool {
-	log.Println("Calling ReflectionProbe.IsSetAsInterior()")
+	//log.Println("Calling ReflectionProbe.IsSetAsInterior()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -311,7 +299,7 @@ func (o *ReflectionProbe) IsSetAsInterior() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -320,7 +308,7 @@ func (o *ReflectionProbe) IsSetAsInterior() gdnative.Bool {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *ReflectionProbe) SetAsInterior(enable gdnative.Bool) {
-	log.Println("Calling ReflectionProbe.SetAsInterior()")
+	//log.Println("Calling ReflectionProbe.SetAsInterior()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -341,7 +329,7 @@ func (o *ReflectionProbe) SetAsInterior(enable gdnative.Bool) {
 	Args: [{ false layers int}], Returns: void
 */
 func (o *ReflectionProbe) SetCullMask(layers gdnative.Int) {
-	log.Println("Calling ReflectionProbe.SetCullMask()")
+	//log.Println("Calling ReflectionProbe.SetCullMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -362,7 +350,7 @@ func (o *ReflectionProbe) SetCullMask(layers gdnative.Int) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *ReflectionProbe) SetEnableBoxProjection(enable gdnative.Bool) {
-	log.Println("Calling ReflectionProbe.SetEnableBoxProjection()")
+	//log.Println("Calling ReflectionProbe.SetEnableBoxProjection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -383,7 +371,7 @@ func (o *ReflectionProbe) SetEnableBoxProjection(enable gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *ReflectionProbe) SetEnableShadows(enable gdnative.Bool) {
-	log.Println("Calling ReflectionProbe.SetEnableShadows()")
+	//log.Println("Calling ReflectionProbe.SetEnableShadows()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -404,7 +392,7 @@ func (o *ReflectionProbe) SetEnableShadows(enable gdnative.Bool) {
 	Args: [{ false extents Vector3}], Returns: void
 */
 func (o *ReflectionProbe) SetExtents(extents gdnative.Vector3) {
-	log.Println("Calling ReflectionProbe.SetExtents()")
+	//log.Println("Calling ReflectionProbe.SetExtents()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -425,7 +413,7 @@ func (o *ReflectionProbe) SetExtents(extents gdnative.Vector3) {
 	Args: [{ false intensity float}], Returns: void
 */
 func (o *ReflectionProbe) SetIntensity(intensity gdnative.Float) {
-	log.Println("Calling ReflectionProbe.SetIntensity()")
+	//log.Println("Calling ReflectionProbe.SetIntensity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -446,7 +434,7 @@ func (o *ReflectionProbe) SetIntensity(intensity gdnative.Float) {
 	Args: [{ false ambient Color}], Returns: void
 */
 func (o *ReflectionProbe) SetInteriorAmbient(ambient gdnative.Color) {
-	log.Println("Calling ReflectionProbe.SetInteriorAmbient()")
+	//log.Println("Calling ReflectionProbe.SetInteriorAmbient()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -467,7 +455,7 @@ func (o *ReflectionProbe) SetInteriorAmbient(ambient gdnative.Color) {
 	Args: [{ false ambient_energy float}], Returns: void
 */
 func (o *ReflectionProbe) SetInteriorAmbientEnergy(ambientEnergy gdnative.Float) {
-	log.Println("Calling ReflectionProbe.SetInteriorAmbientEnergy()")
+	//log.Println("Calling ReflectionProbe.SetInteriorAmbientEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -488,7 +476,7 @@ func (o *ReflectionProbe) SetInteriorAmbientEnergy(ambientEnergy gdnative.Float)
 	Args: [{ false ambient_probe_contribution float}], Returns: void
 */
 func (o *ReflectionProbe) SetInteriorAmbientProbeContribution(ambientProbeContribution gdnative.Float) {
-	log.Println("Calling ReflectionProbe.SetInteriorAmbientProbeContribution()")
+	//log.Println("Calling ReflectionProbe.SetInteriorAmbientProbeContribution()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -509,7 +497,7 @@ func (o *ReflectionProbe) SetInteriorAmbientProbeContribution(ambientProbeContri
 	Args: [{ false max_distance float}], Returns: void
 */
 func (o *ReflectionProbe) SetMaxDistance(maxDistance gdnative.Float) {
-	log.Println("Calling ReflectionProbe.SetMaxDistance()")
+	//log.Println("Calling ReflectionProbe.SetMaxDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -530,7 +518,7 @@ func (o *ReflectionProbe) SetMaxDistance(maxDistance gdnative.Float) {
 	Args: [{ false origin_offset Vector3}], Returns: void
 */
 func (o *ReflectionProbe) SetOriginOffset(originOffset gdnative.Vector3) {
-	log.Println("Calling ReflectionProbe.SetOriginOffset()")
+	//log.Println("Calling ReflectionProbe.SetOriginOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -551,7 +539,7 @@ func (o *ReflectionProbe) SetOriginOffset(originOffset gdnative.Vector3) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *ReflectionProbe) SetUpdateMode(mode gdnative.Int) {
-	log.Println("Calling ReflectionProbe.SetUpdateMode()")
+	//log.Println("Calling ReflectionProbe.SetUpdateMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ScrollBar) BaseClass() string {
 	return "ScrollBar"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ScrollBar) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ScrollBar) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *ScrollBar) X_DragSlaveExit() {
-	log.Println("Calling ScrollBar.X_DragSlaveExit()")
+	//log.Println("Calling ScrollBar.X_DragSlaveExit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *ScrollBar) X_DragSlaveExit() {
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
 func (o *ScrollBar) X_DragSlaveInput(arg0 InputEvent) {
-	log.Println("Calling ScrollBar.X_DragSlaveInput()")
+	//log.Println("Calling ScrollBar.X_DragSlaveInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -92,7 +80,7 @@ func (o *ScrollBar) X_DragSlaveInput(arg0 InputEvent) {
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
 func (o *ScrollBar) X_GuiInput(arg0 InputEvent) {
-	log.Println("Calling ScrollBar.X_GuiInput()")
+	//log.Println("Calling ScrollBar.X_GuiInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -113,7 +101,7 @@ func (o *ScrollBar) X_GuiInput(arg0 InputEvent) {
 	Args: [], Returns: float
 */
 func (o *ScrollBar) GetCustomStep() gdnative.Float {
-	log.Println("Calling ScrollBar.GetCustomStep()")
+	//log.Println("Calling ScrollBar.GetCustomStep()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -128,7 +116,7 @@ func (o *ScrollBar) GetCustomStep() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -137,7 +125,7 @@ func (o *ScrollBar) GetCustomStep() gdnative.Float {
 	Args: [{ false step float}], Returns: void
 */
 func (o *ScrollBar) SetCustomStep(step gdnative.Float) {
-	log.Println("Calling ScrollBar.SetCustomStep()")
+	//log.Println("Calling ScrollBar.SetCustomStep()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Spatial) BaseClass() string {
 	return "Spatial"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Spatial) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Spatial) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *Spatial) X_UpdateGizmo() {
-	log.Println("Calling Spatial.X_UpdateGizmo()")
+	//log.Println("Calling Spatial.X_UpdateGizmo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *Spatial) X_UpdateGizmo() {
 	Args: [], Returns: SpatialGizmo
 */
 func (o *Spatial) GetGizmo() SpatialGizmo {
-	log.Println("Calling Spatial.GetGizmo()")
+	//log.Println("Calling Spatial.GetGizmo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -86,7 +74,7 @@ func (o *Spatial) GetGizmo() SpatialGizmo {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewSpatialGizmoFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -95,7 +83,7 @@ func (o *Spatial) GetGizmo() SpatialGizmo {
 	Args: [], Returns: Transform
 */
 func (o *Spatial) GetGlobalTransform() gdnative.Transform {
-	log.Println("Calling Spatial.GetGlobalTransform()")
+	//log.Println("Calling Spatial.GetGlobalTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -110,7 +98,7 @@ func (o *Spatial) GetGlobalTransform() gdnative.Transform {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransformFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -119,7 +107,7 @@ func (o *Spatial) GetGlobalTransform() gdnative.Transform {
 	Args: [], Returns: Spatial
 */
 func (o *Spatial) GetParentSpatial() Spatial {
-	log.Println("Calling Spatial.GetParentSpatial()")
+	//log.Println("Calling Spatial.GetParentSpatial()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -134,7 +122,7 @@ func (o *Spatial) GetParentSpatial() Spatial {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewSpatialFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -143,7 +131,7 @@ func (o *Spatial) GetParentSpatial() Spatial {
 	Args: [], Returns: Vector3
 */
 func (o *Spatial) GetRotation() gdnative.Vector3 {
-	log.Println("Calling Spatial.GetRotation()")
+	//log.Println("Calling Spatial.GetRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -158,7 +146,7 @@ func (o *Spatial) GetRotation() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -167,7 +155,7 @@ func (o *Spatial) GetRotation() gdnative.Vector3 {
 	Args: [], Returns: Vector3
 */
 func (o *Spatial) GetRotationDegrees() gdnative.Vector3 {
-	log.Println("Calling Spatial.GetRotationDegrees()")
+	//log.Println("Calling Spatial.GetRotationDegrees()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -182,7 +170,7 @@ func (o *Spatial) GetRotationDegrees() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -191,7 +179,7 @@ func (o *Spatial) GetRotationDegrees() gdnative.Vector3 {
 	Args: [], Returns: Vector3
 */
 func (o *Spatial) GetScale() gdnative.Vector3 {
-	log.Println("Calling Spatial.GetScale()")
+	//log.Println("Calling Spatial.GetScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -206,7 +194,7 @@ func (o *Spatial) GetScale() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -215,7 +203,7 @@ func (o *Spatial) GetScale() gdnative.Vector3 {
 	Args: [], Returns: Transform
 */
 func (o *Spatial) GetTransform() gdnative.Transform {
-	log.Println("Calling Spatial.GetTransform()")
+	//log.Println("Calling Spatial.GetTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -230,7 +218,7 @@ func (o *Spatial) GetTransform() gdnative.Transform {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransformFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -239,7 +227,7 @@ func (o *Spatial) GetTransform() gdnative.Transform {
 	Args: [], Returns: Vector3
 */
 func (o *Spatial) GetTranslation() gdnative.Vector3 {
-	log.Println("Calling Spatial.GetTranslation()")
+	//log.Println("Calling Spatial.GetTranslation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -254,7 +242,7 @@ func (o *Spatial) GetTranslation() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -263,7 +251,7 @@ func (o *Spatial) GetTranslation() gdnative.Vector3 {
 	Args: [], Returns: World
 */
 func (o *Spatial) GetWorld() World {
-	log.Println("Calling Spatial.GetWorld()")
+	//log.Println("Calling Spatial.GetWorld()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -278,7 +266,7 @@ func (o *Spatial) GetWorld() World {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewWorldFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -287,7 +275,7 @@ func (o *Spatial) GetWorld() World {
 	Args: [{ false axis Vector3} { false angle float}], Returns: void
 */
 func (o *Spatial) GlobalRotate(axis gdnative.Vector3, angle gdnative.Float) {
-	log.Println("Calling Spatial.GlobalRotate()")
+	//log.Println("Calling Spatial.GlobalRotate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -309,7 +297,7 @@ func (o *Spatial) GlobalRotate(axis gdnative.Vector3, angle gdnative.Float) {
 	Args: [{ false scale Vector3}], Returns: void
 */
 func (o *Spatial) GlobalScale(scale gdnative.Vector3) {
-	log.Println("Calling Spatial.GlobalScale()")
+	//log.Println("Calling Spatial.GlobalScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -330,7 +318,7 @@ func (o *Spatial) GlobalScale(scale gdnative.Vector3) {
 	Args: [{ false offset Vector3}], Returns: void
 */
 func (o *Spatial) GlobalTranslate(offset gdnative.Vector3) {
-	log.Println("Calling Spatial.GlobalTranslate()")
+	//log.Println("Calling Spatial.GlobalTranslate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -351,7 +339,7 @@ func (o *Spatial) GlobalTranslate(offset gdnative.Vector3) {
 	Args: [], Returns: void
 */
 func (o *Spatial) Hide() {
-	log.Println("Calling Spatial.Hide()")
+	//log.Println("Calling Spatial.Hide()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -371,7 +359,7 @@ func (o *Spatial) Hide() {
 	Args: [], Returns: bool
 */
 func (o *Spatial) IsLocalTransformNotificationEnabled() gdnative.Bool {
-	log.Println("Calling Spatial.IsLocalTransformNotificationEnabled()")
+	//log.Println("Calling Spatial.IsLocalTransformNotificationEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -386,7 +374,7 @@ func (o *Spatial) IsLocalTransformNotificationEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -395,7 +383,7 @@ func (o *Spatial) IsLocalTransformNotificationEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Spatial) IsSetAsToplevel() gdnative.Bool {
-	log.Println("Calling Spatial.IsSetAsToplevel()")
+	//log.Println("Calling Spatial.IsSetAsToplevel()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -410,7 +398,7 @@ func (o *Spatial) IsSetAsToplevel() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -419,7 +407,7 @@ func (o *Spatial) IsSetAsToplevel() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Spatial) IsTransformNotificationEnabled() gdnative.Bool {
-	log.Println("Calling Spatial.IsTransformNotificationEnabled()")
+	//log.Println("Calling Spatial.IsTransformNotificationEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -434,7 +422,7 @@ func (o *Spatial) IsTransformNotificationEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -443,7 +431,7 @@ func (o *Spatial) IsTransformNotificationEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Spatial) IsVisible() gdnative.Bool {
-	log.Println("Calling Spatial.IsVisible()")
+	//log.Println("Calling Spatial.IsVisible()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -458,7 +446,7 @@ func (o *Spatial) IsVisible() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -467,7 +455,7 @@ func (o *Spatial) IsVisible() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Spatial) IsVisibleInTree() gdnative.Bool {
-	log.Println("Calling Spatial.IsVisibleInTree()")
+	//log.Println("Calling Spatial.IsVisibleInTree()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -482,7 +470,7 @@ func (o *Spatial) IsVisibleInTree() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -491,7 +479,7 @@ func (o *Spatial) IsVisibleInTree() gdnative.Bool {
 	Args: [{ false target Vector3} { false up Vector3}], Returns: void
 */
 func (o *Spatial) LookAt(target gdnative.Vector3, up gdnative.Vector3) {
-	log.Println("Calling Spatial.LookAt()")
+	//log.Println("Calling Spatial.LookAt()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -513,7 +501,7 @@ func (o *Spatial) LookAt(target gdnative.Vector3, up gdnative.Vector3) {
 	Args: [{ false position Vector3} { false target Vector3} { false up Vector3}], Returns: void
 */
 func (o *Spatial) LookAtFromPosition(position gdnative.Vector3, target gdnative.Vector3, up gdnative.Vector3) {
-	log.Println("Calling Spatial.LookAtFromPosition()")
+	//log.Println("Calling Spatial.LookAtFromPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -536,7 +524,7 @@ func (o *Spatial) LookAtFromPosition(position gdnative.Vector3, target gdnative.
 	Args: [], Returns: void
 */
 func (o *Spatial) Orthonormalize() {
-	log.Println("Calling Spatial.Orthonormalize()")
+	//log.Println("Calling Spatial.Orthonormalize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -556,7 +544,7 @@ func (o *Spatial) Orthonormalize() {
 	Args: [{ false axis Vector3} { false angle float}], Returns: void
 */
 func (o *Spatial) Rotate(axis gdnative.Vector3, angle gdnative.Float) {
-	log.Println("Calling Spatial.Rotate()")
+	//log.Println("Calling Spatial.Rotate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -578,7 +566,7 @@ func (o *Spatial) Rotate(axis gdnative.Vector3, angle gdnative.Float) {
 	Args: [{ false axis Vector3} { false angle float}], Returns: void
 */
 func (o *Spatial) RotateObjectLocal(axis gdnative.Vector3, angle gdnative.Float) {
-	log.Println("Calling Spatial.RotateObjectLocal()")
+	//log.Println("Calling Spatial.RotateObjectLocal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -600,7 +588,7 @@ func (o *Spatial) RotateObjectLocal(axis gdnative.Vector3, angle gdnative.Float)
 	Args: [{ false angle float}], Returns: void
 */
 func (o *Spatial) RotateX(angle gdnative.Float) {
-	log.Println("Calling Spatial.RotateX()")
+	//log.Println("Calling Spatial.RotateX()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -621,7 +609,7 @@ func (o *Spatial) RotateX(angle gdnative.Float) {
 	Args: [{ false angle float}], Returns: void
 */
 func (o *Spatial) RotateY(angle gdnative.Float) {
-	log.Println("Calling Spatial.RotateY()")
+	//log.Println("Calling Spatial.RotateY()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -642,7 +630,7 @@ func (o *Spatial) RotateY(angle gdnative.Float) {
 	Args: [{ false angle float}], Returns: void
 */
 func (o *Spatial) RotateZ(angle gdnative.Float) {
-	log.Println("Calling Spatial.RotateZ()")
+	//log.Println("Calling Spatial.RotateZ()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -663,7 +651,7 @@ func (o *Spatial) RotateZ(angle gdnative.Float) {
 	Args: [{ false scale Vector3}], Returns: void
 */
 func (o *Spatial) ScaleObjectLocal(scale gdnative.Vector3) {
-	log.Println("Calling Spatial.ScaleObjectLocal()")
+	//log.Println("Calling Spatial.ScaleObjectLocal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -684,7 +672,7 @@ func (o *Spatial) ScaleObjectLocal(scale gdnative.Vector3) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Spatial) SetAsToplevel(enable gdnative.Bool) {
-	log.Println("Calling Spatial.SetAsToplevel()")
+	//log.Println("Calling Spatial.SetAsToplevel()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -705,7 +693,7 @@ func (o *Spatial) SetAsToplevel(enable gdnative.Bool) {
 	Args: [{ false gizmo SpatialGizmo}], Returns: void
 */
 func (o *Spatial) SetGizmo(gizmo SpatialGizmo) {
-	log.Println("Calling Spatial.SetGizmo()")
+	//log.Println("Calling Spatial.SetGizmo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -726,7 +714,7 @@ func (o *Spatial) SetGizmo(gizmo SpatialGizmo) {
 	Args: [{ false global Transform}], Returns: void
 */
 func (o *Spatial) SetGlobalTransform(global gdnative.Transform) {
-	log.Println("Calling Spatial.SetGlobalTransform()")
+	//log.Println("Calling Spatial.SetGlobalTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -747,7 +735,7 @@ func (o *Spatial) SetGlobalTransform(global gdnative.Transform) {
 	Args: [], Returns: void
 */
 func (o *Spatial) SetIdentity() {
-	log.Println("Calling Spatial.SetIdentity()")
+	//log.Println("Calling Spatial.SetIdentity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -767,7 +755,7 @@ func (o *Spatial) SetIdentity() {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Spatial) SetIgnoreTransformNotification(enabled gdnative.Bool) {
-	log.Println("Calling Spatial.SetIgnoreTransformNotification()")
+	//log.Println("Calling Spatial.SetIgnoreTransformNotification()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -788,7 +776,7 @@ func (o *Spatial) SetIgnoreTransformNotification(enabled gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Spatial) SetNotifyLocalTransform(enable gdnative.Bool) {
-	log.Println("Calling Spatial.SetNotifyLocalTransform()")
+	//log.Println("Calling Spatial.SetNotifyLocalTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -809,7 +797,7 @@ func (o *Spatial) SetNotifyLocalTransform(enable gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Spatial) SetNotifyTransform(enable gdnative.Bool) {
-	log.Println("Calling Spatial.SetNotifyTransform()")
+	//log.Println("Calling Spatial.SetNotifyTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -830,7 +818,7 @@ func (o *Spatial) SetNotifyTransform(enable gdnative.Bool) {
 	Args: [{ false euler Vector3}], Returns: void
 */
 func (o *Spatial) SetRotation(euler gdnative.Vector3) {
-	log.Println("Calling Spatial.SetRotation()")
+	//log.Println("Calling Spatial.SetRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -851,7 +839,7 @@ func (o *Spatial) SetRotation(euler gdnative.Vector3) {
 	Args: [{ false euler_degrees Vector3}], Returns: void
 */
 func (o *Spatial) SetRotationDegrees(eulerDegrees gdnative.Vector3) {
-	log.Println("Calling Spatial.SetRotationDegrees()")
+	//log.Println("Calling Spatial.SetRotationDegrees()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -872,7 +860,7 @@ func (o *Spatial) SetRotationDegrees(eulerDegrees gdnative.Vector3) {
 	Args: [{ false scale Vector3}], Returns: void
 */
 func (o *Spatial) SetScale(scale gdnative.Vector3) {
-	log.Println("Calling Spatial.SetScale()")
+	//log.Println("Calling Spatial.SetScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -893,7 +881,7 @@ func (o *Spatial) SetScale(scale gdnative.Vector3) {
 	Args: [{ false local Transform}], Returns: void
 */
 func (o *Spatial) SetTransform(local gdnative.Transform) {
-	log.Println("Calling Spatial.SetTransform()")
+	//log.Println("Calling Spatial.SetTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -914,7 +902,7 @@ func (o *Spatial) SetTransform(local gdnative.Transform) {
 	Args: [{ false translation Vector3}], Returns: void
 */
 func (o *Spatial) SetTranslation(translation gdnative.Vector3) {
-	log.Println("Calling Spatial.SetTranslation()")
+	//log.Println("Calling Spatial.SetTranslation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -935,7 +923,7 @@ func (o *Spatial) SetTranslation(translation gdnative.Vector3) {
 	Args: [{ false visible bool}], Returns: void
 */
 func (o *Spatial) SetVisible(visible gdnative.Bool) {
-	log.Println("Calling Spatial.SetVisible()")
+	//log.Println("Calling Spatial.SetVisible()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -956,7 +944,7 @@ func (o *Spatial) SetVisible(visible gdnative.Bool) {
 	Args: [], Returns: void
 */
 func (o *Spatial) Show() {
-	log.Println("Calling Spatial.Show()")
+	//log.Println("Calling Spatial.Show()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -976,7 +964,7 @@ func (o *Spatial) Show() {
 	Args: [{ false local_point Vector3}], Returns: Vector3
 */
 func (o *Spatial) ToGlobal(localPoint gdnative.Vector3) gdnative.Vector3 {
-	log.Println("Calling Spatial.ToGlobal()")
+	//log.Println("Calling Spatial.ToGlobal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -992,7 +980,7 @@ func (o *Spatial) ToGlobal(localPoint gdnative.Vector3) gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1001,7 +989,7 @@ func (o *Spatial) ToGlobal(localPoint gdnative.Vector3) gdnative.Vector3 {
 	Args: [{ false global_point Vector3}], Returns: Vector3
 */
 func (o *Spatial) ToLocal(globalPoint gdnative.Vector3) gdnative.Vector3 {
-	log.Println("Calling Spatial.ToLocal()")
+	//log.Println("Calling Spatial.ToLocal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1017,7 +1005,7 @@ func (o *Spatial) ToLocal(globalPoint gdnative.Vector3) gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1026,7 +1014,7 @@ func (o *Spatial) ToLocal(globalPoint gdnative.Vector3) gdnative.Vector3 {
 	Args: [{ false offset Vector3}], Returns: void
 */
 func (o *Spatial) Translate(offset gdnative.Vector3) {
-	log.Println("Calling Spatial.Translate()")
+	//log.Println("Calling Spatial.Translate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1047,7 +1035,7 @@ func (o *Spatial) Translate(offset gdnative.Vector3) {
 	Args: [{ false offset Vector3}], Returns: void
 */
 func (o *Spatial) TranslateObjectLocal(offset gdnative.Vector3) {
-	log.Println("Calling Spatial.TranslateObjectLocal()")
+	//log.Println("Calling Spatial.TranslateObjectLocal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1068,7 +1056,7 @@ func (o *Spatial) TranslateObjectLocal(offset gdnative.Vector3) {
 	Args: [], Returns: void
 */
 func (o *Spatial) UpdateGizmo() {
-	log.Println("Calling Spatial.UpdateGizmo()")
+	//log.Println("Calling Spatial.UpdateGizmo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)

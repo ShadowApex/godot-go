@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *World2D) BaseClass() string {
 	return "World2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *World2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *World2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: RID
 */
 func (o *World2D) GetCanvas() gdnative.Rid {
-	log.Println("Calling World2D.GetCanvas()")
+	//log.Println("Calling World2D.GetCanvas()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *World2D) GetCanvas() gdnative.Rid {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *World2D) GetCanvas() gdnative.Rid {
 	Args: [], Returns: Physics2DDirectSpaceState
 */
 func (o *World2D) GetDirectSpaceState() Physics2DDirectSpaceState {
-	log.Println("Calling World2D.GetDirectSpaceState()")
+	//log.Println("Calling World2D.GetDirectSpaceState()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *World2D) GetDirectSpaceState() Physics2DDirectSpaceState {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewPhysics2DDirectSpaceStateFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *World2D) GetDirectSpaceState() Physics2DDirectSpaceState {
 	Args: [], Returns: RID
 */
 func (o *World2D) GetSpace() gdnative.Rid {
-	log.Println("Calling World2D.GetSpace()")
+	//log.Println("Calling World2D.GetSpace()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,6 +102,6 @@ func (o *World2D) GetSpace() gdnative.Rid {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

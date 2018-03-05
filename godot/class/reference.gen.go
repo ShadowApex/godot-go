@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Reference) BaseClass() string {
 	return "Reference"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Reference) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Reference) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [], Returns: bool
 */
 func (o *Reference) InitRef() gdnative.Bool {
-	log.Println("Calling Reference.InitRef()")
+	//log.Println("Calling Reference.InitRef()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *Reference) InitRef() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *Reference) InitRef() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Reference) Reference() gdnative.Bool {
-	log.Println("Calling Reference.Reference()")
+	//log.Println("Calling Reference.Reference()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *Reference) Reference() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *Reference) Reference() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Reference) Unreference() gdnative.Bool {
-	log.Println("Calling Reference.Unreference()")
+	//log.Println("Calling Reference.Unreference()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,6 +102,6 @@ func (o *Reference) Unreference() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

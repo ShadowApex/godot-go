@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ConfirmationDialog) BaseClass() string {
 	return "ConfirmationDialog"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ConfirmationDialog) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ConfirmationDialog) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Return the cancel button.
 	Args: [], Returns: Button
 */
 func (o *ConfirmationDialog) GetCancel() Button {
-	log.Println("Calling ConfirmationDialog.GetCancel()")
+	//log.Println("Calling ConfirmationDialog.GetCancel()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,6 +54,6 @@ func (o *ConfirmationDialog) GetCancel() Button {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewButtonFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

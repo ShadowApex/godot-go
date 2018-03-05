@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Tween) BaseClass() string {
 	return "Tween"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Tween) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Tween) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false object Object} { false key String} { false first_only bool}], Returns: void
 */
 func (o *Tween) X_Remove(object Object, key gdnative.String, firstOnly gdnative.Bool) {
-	log.Println("Calling Tween.X_Remove()")
+	//log.Println("Calling Tween.X_Remove()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -74,7 +62,7 @@ func (o *Tween) X_Remove(object Object, key gdnative.String, firstOnly gdnative.
 	Args: [{ false object Object} { false method String} { false initial_val Variant} { false target Object} { false target_method String} { false duration float} { false trans_type int} { false ease_type int} {0 true delay float}], Returns: bool
 */
 func (o *Tween) FollowMethod(object Object, method gdnative.String, initialVal gdnative.Variant, target Object, targetMethod gdnative.String, duration gdnative.Float, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Float) gdnative.Bool {
-	log.Println("Calling Tween.FollowMethod()")
+	//log.Println("Calling Tween.FollowMethod()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 9, 9)
@@ -98,7 +86,7 @@ func (o *Tween) FollowMethod(object Object, method gdnative.String, initialVal g
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -107,7 +95,7 @@ func (o *Tween) FollowMethod(object Object, method gdnative.String, initialVal g
 	Args: [{ false object Object} { false property NodePath} { false initial_val Variant} { false target Object} { false target_property NodePath} { false duration float} { false trans_type int} { false ease_type int} {0 true delay float}], Returns: bool
 */
 func (o *Tween) FollowProperty(object Object, property gdnative.NodePath, initialVal gdnative.Variant, target Object, targetProperty gdnative.NodePath, duration gdnative.Float, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Float) gdnative.Bool {
-	log.Println("Calling Tween.FollowProperty()")
+	//log.Println("Calling Tween.FollowProperty()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 9, 9)
@@ -131,7 +119,7 @@ func (o *Tween) FollowProperty(object Object, property gdnative.NodePath, initia
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -140,7 +128,7 @@ func (o *Tween) FollowProperty(object Object, property gdnative.NodePath, initia
 	Args: [], Returns: float
 */
 func (o *Tween) GetRuntime() gdnative.Float {
-	log.Println("Calling Tween.GetRuntime()")
+	//log.Println("Calling Tween.GetRuntime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -155,7 +143,7 @@ func (o *Tween) GetRuntime() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -164,7 +152,7 @@ func (o *Tween) GetRuntime() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Tween) GetSpeedScale() gdnative.Float {
-	log.Println("Calling Tween.GetSpeedScale()")
+	//log.Println("Calling Tween.GetSpeedScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -179,7 +167,7 @@ func (o *Tween) GetSpeedScale() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -193,7 +181,7 @@ func (o *Tween) GetSpeedScale() gdnative.Float {
 	Args: [{ false object Object} { false duration float} { false callback String} {Null true arg1 Variant} {Null true arg2 Variant} {Null true arg3 Variant} {Null true arg4 Variant} {Null true arg5 Variant}], Returns: bool
 */
 func (o *Tween) InterpolateCallback(object Object, duration gdnative.Float, callback gdnative.String, arg1 gdnative.Variant, arg2 gdnative.Variant, arg3 gdnative.Variant, arg4 gdnative.Variant, arg5 gdnative.Variant) gdnative.Bool {
-	log.Println("Calling Tween.InterpolateCallback()")
+	//log.Println("Calling Tween.InterpolateCallback()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 8, 8)
@@ -216,7 +204,7 @@ func (o *Tween) InterpolateCallback(object Object, duration gdnative.Float, call
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -225,7 +213,7 @@ func (o *Tween) InterpolateCallback(object Object, duration gdnative.Float, call
 	Args: [{ false object Object} { false duration float} { false callback String} {Null true arg1 Variant} {Null true arg2 Variant} {Null true arg3 Variant} {Null true arg4 Variant} {Null true arg5 Variant}], Returns: bool
 */
 func (o *Tween) InterpolateDeferredCallback(object Object, duration gdnative.Float, callback gdnative.String, arg1 gdnative.Variant, arg2 gdnative.Variant, arg3 gdnative.Variant, arg4 gdnative.Variant, arg5 gdnative.Variant) gdnative.Bool {
-	log.Println("Calling Tween.InterpolateDeferredCallback()")
+	//log.Println("Calling Tween.InterpolateDeferredCallback()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 8, 8)
@@ -248,7 +236,7 @@ func (o *Tween) InterpolateDeferredCallback(object Object, duration gdnative.Flo
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -257,7 +245,7 @@ func (o *Tween) InterpolateDeferredCallback(object Object, duration gdnative.Flo
 	Args: [{ false object Object} { false method String} { false initial_val Variant} { false final_val Variant} { false duration float} { false trans_type int} { false ease_type int} {0 true delay float}], Returns: bool
 */
 func (o *Tween) InterpolateMethod(object Object, method gdnative.String, initialVal gdnative.Variant, finalVal gdnative.Variant, duration gdnative.Float, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Float) gdnative.Bool {
-	log.Println("Calling Tween.InterpolateMethod()")
+	//log.Println("Calling Tween.InterpolateMethod()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 8, 8)
@@ -280,7 +268,7 @@ func (o *Tween) InterpolateMethod(object Object, method gdnative.String, initial
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -289,7 +277,7 @@ func (o *Tween) InterpolateMethod(object Object, method gdnative.String, initial
 	Args: [{ false object Object} { false property NodePath} { false initial_val Variant} { false final_val Variant} { false duration float} { false trans_type int} { false ease_type int} {0 true delay float}], Returns: bool
 */
 func (o *Tween) InterpolateProperty(object Object, property gdnative.NodePath, initialVal gdnative.Variant, finalVal gdnative.Variant, duration gdnative.Float, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Float) gdnative.Bool {
-	log.Println("Calling Tween.InterpolateProperty()")
+	//log.Println("Calling Tween.InterpolateProperty()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 8, 8)
@@ -312,7 +300,7 @@ func (o *Tween) InterpolateProperty(object Object, property gdnative.NodePath, i
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -321,7 +309,7 @@ func (o *Tween) InterpolateProperty(object Object, property gdnative.NodePath, i
 	Args: [], Returns: bool
 */
 func (o *Tween) IsActive() gdnative.Bool {
-	log.Println("Calling Tween.IsActive()")
+	//log.Println("Calling Tween.IsActive()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -336,7 +324,7 @@ func (o *Tween) IsActive() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -345,7 +333,7 @@ func (o *Tween) IsActive() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Tween) IsRepeat() gdnative.Bool {
-	log.Println("Calling Tween.IsRepeat()")
+	//log.Println("Calling Tween.IsRepeat()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -360,7 +348,7 @@ func (o *Tween) IsRepeat() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -369,7 +357,7 @@ func (o *Tween) IsRepeat() gdnative.Bool {
 	Args: [{ false object Object} { true key String}], Returns: bool
 */
 func (o *Tween) Remove(object Object, key gdnative.String) gdnative.Bool {
-	log.Println("Calling Tween.Remove()")
+	//log.Println("Calling Tween.Remove()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -386,7 +374,7 @@ func (o *Tween) Remove(object Object, key gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -395,7 +383,7 @@ func (o *Tween) Remove(object Object, key gdnative.String) gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Tween) RemoveAll() gdnative.Bool {
-	log.Println("Calling Tween.RemoveAll()")
+	//log.Println("Calling Tween.RemoveAll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -410,7 +398,7 @@ func (o *Tween) RemoveAll() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -419,7 +407,7 @@ func (o *Tween) RemoveAll() gdnative.Bool {
 	Args: [{ false object Object} { true key String}], Returns: bool
 */
 func (o *Tween) Reset(object Object, key gdnative.String) gdnative.Bool {
-	log.Println("Calling Tween.Reset()")
+	//log.Println("Calling Tween.Reset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -436,7 +424,7 @@ func (o *Tween) Reset(object Object, key gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -445,7 +433,7 @@ func (o *Tween) Reset(object Object, key gdnative.String) gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Tween) ResetAll() gdnative.Bool {
-	log.Println("Calling Tween.ResetAll()")
+	//log.Println("Calling Tween.ResetAll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -460,7 +448,7 @@ func (o *Tween) ResetAll() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -469,7 +457,7 @@ func (o *Tween) ResetAll() gdnative.Bool {
 	Args: [{ false object Object} { true key String}], Returns: bool
 */
 func (o *Tween) Resume(object Object, key gdnative.String) gdnative.Bool {
-	log.Println("Calling Tween.Resume()")
+	//log.Println("Calling Tween.Resume()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -486,7 +474,7 @@ func (o *Tween) Resume(object Object, key gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -495,7 +483,7 @@ func (o *Tween) Resume(object Object, key gdnative.String) gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Tween) ResumeAll() gdnative.Bool {
-	log.Println("Calling Tween.ResumeAll()")
+	//log.Println("Calling Tween.ResumeAll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -510,7 +498,7 @@ func (o *Tween) ResumeAll() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -519,7 +507,7 @@ func (o *Tween) ResumeAll() gdnative.Bool {
 	Args: [{ false time float}], Returns: bool
 */
 func (o *Tween) Seek(time gdnative.Float) gdnative.Bool {
-	log.Println("Calling Tween.Seek()")
+	//log.Println("Calling Tween.Seek()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -535,7 +523,7 @@ func (o *Tween) Seek(time gdnative.Float) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -544,7 +532,7 @@ func (o *Tween) Seek(time gdnative.Float) gdnative.Bool {
 	Args: [{ false active bool}], Returns: void
 */
 func (o *Tween) SetActive(active gdnative.Bool) {
-	log.Println("Calling Tween.SetActive()")
+	//log.Println("Calling Tween.SetActive()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -565,7 +553,7 @@ func (o *Tween) SetActive(active gdnative.Bool) {
 	Args: [{ false repeat bool}], Returns: void
 */
 func (o *Tween) SetRepeat(repeat gdnative.Bool) {
-	log.Println("Calling Tween.SetRepeat()")
+	//log.Println("Calling Tween.SetRepeat()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -586,7 +574,7 @@ func (o *Tween) SetRepeat(repeat gdnative.Bool) {
 	Args: [{ false speed float}], Returns: void
 */
 func (o *Tween) SetSpeedScale(speed gdnative.Float) {
-	log.Println("Calling Tween.SetSpeedScale()")
+	//log.Println("Calling Tween.SetSpeedScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -607,7 +595,7 @@ func (o *Tween) SetSpeedScale(speed gdnative.Float) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *Tween) SetTweenProcessMode(mode gdnative.Int) {
-	log.Println("Calling Tween.SetTweenProcessMode()")
+	//log.Println("Calling Tween.SetTweenProcessMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -628,7 +616,7 @@ func (o *Tween) SetTweenProcessMode(mode gdnative.Int) {
 	Args: [], Returns: bool
 */
 func (o *Tween) Start() gdnative.Bool {
-	log.Println("Calling Tween.Start()")
+	//log.Println("Calling Tween.Start()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -643,7 +631,7 @@ func (o *Tween) Start() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -652,7 +640,7 @@ func (o *Tween) Start() gdnative.Bool {
 	Args: [{ false object Object} { true key String}], Returns: bool
 */
 func (o *Tween) Stop(object Object, key gdnative.String) gdnative.Bool {
-	log.Println("Calling Tween.Stop()")
+	//log.Println("Calling Tween.Stop()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -669,7 +657,7 @@ func (o *Tween) Stop(object Object, key gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -678,7 +666,7 @@ func (o *Tween) Stop(object Object, key gdnative.String) gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Tween) StopAll() gdnative.Bool {
-	log.Println("Calling Tween.StopAll()")
+	//log.Println("Calling Tween.StopAll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -693,7 +681,7 @@ func (o *Tween) StopAll() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -702,7 +690,7 @@ func (o *Tween) StopAll() gdnative.Bool {
 	Args: [{ false object Object} { false method String} { false initial Object} { false initial_method String} { false final_val Variant} { false duration float} { false trans_type int} { false ease_type int} {0 true delay float}], Returns: bool
 */
 func (o *Tween) TargetingMethod(object Object, method gdnative.String, initial Object, initialMethod gdnative.String, finalVal gdnative.Variant, duration gdnative.Float, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Float) gdnative.Bool {
-	log.Println("Calling Tween.TargetingMethod()")
+	//log.Println("Calling Tween.TargetingMethod()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 9, 9)
@@ -726,7 +714,7 @@ func (o *Tween) TargetingMethod(object Object, method gdnative.String, initial O
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -735,7 +723,7 @@ func (o *Tween) TargetingMethod(object Object, method gdnative.String, initial O
 	Args: [{ false object Object} { false property NodePath} { false initial Object} { false initial_val NodePath} { false final_val Variant} { false duration float} { false trans_type int} { false ease_type int} {0 true delay float}], Returns: bool
 */
 func (o *Tween) TargetingProperty(object Object, property gdnative.NodePath, initial Object, initialVal gdnative.NodePath, finalVal gdnative.Variant, duration gdnative.Float, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Float) gdnative.Bool {
-	log.Println("Calling Tween.TargetingProperty()")
+	//log.Println("Calling Tween.TargetingProperty()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 9, 9)
@@ -759,7 +747,7 @@ func (o *Tween) TargetingProperty(object Object, property gdnative.NodePath, ini
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -768,7 +756,7 @@ func (o *Tween) TargetingProperty(object Object, property gdnative.NodePath, ini
 	Args: [], Returns: float
 */
 func (o *Tween) Tell() gdnative.Float {
-	log.Println("Calling Tween.Tell()")
+	//log.Println("Calling Tween.Tell()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -783,6 +771,6 @@ func (o *Tween) Tell() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

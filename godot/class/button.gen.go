@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Button) BaseClass() string {
 	return "Button"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Button) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Button) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Texture
 */
 func (o *Button) GetButtonIcon() Texture {
-	log.Println("Calling Button.GetButtonIcon()")
+	//log.Println("Calling Button.GetButtonIcon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *Button) GetButtonIcon() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *Button) GetButtonIcon() Texture {
 	Args: [], Returns: bool
 */
 func (o *Button) GetClipText() gdnative.Bool {
-	log.Println("Calling Button.GetClipText()")
+	//log.Println("Calling Button.GetClipText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *Button) GetClipText() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *Button) GetClipText() gdnative.Bool {
 	Args: [], Returns: String
 */
 func (o *Button) GetText() gdnative.String {
-	log.Println("Calling Button.GetText()")
+	//log.Println("Calling Button.GetText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *Button) GetText() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -128,7 +116,7 @@ func (o *Button) GetText() gdnative.String {
 	Args: [], Returns: bool
 */
 func (o *Button) IsFlat() gdnative.Bool {
-	log.Println("Calling Button.IsFlat()")
+	//log.Println("Calling Button.IsFlat()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -143,7 +131,7 @@ func (o *Button) IsFlat() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -152,7 +140,7 @@ func (o *Button) IsFlat() gdnative.Bool {
 	Args: [{ false texture Texture}], Returns: void
 */
 func (o *Button) SetButtonIcon(texture Texture) {
-	log.Println("Calling Button.SetButtonIcon()")
+	//log.Println("Calling Button.SetButtonIcon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -173,7 +161,7 @@ func (o *Button) SetButtonIcon(texture Texture) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Button) SetClipText(enabled gdnative.Bool) {
-	log.Println("Calling Button.SetClipText()")
+	//log.Println("Calling Button.SetClipText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -194,7 +182,7 @@ func (o *Button) SetClipText(enabled gdnative.Bool) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Button) SetFlat(enabled gdnative.Bool) {
-	log.Println("Calling Button.SetFlat()")
+	//log.Println("Calling Button.SetFlat()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -215,7 +203,7 @@ func (o *Button) SetFlat(enabled gdnative.Bool) {
 	Args: [{ false text String}], Returns: void
 */
 func (o *Button) SetText(text gdnative.String) {
-	log.Println("Calling Button.SetText()")
+	//log.Println("Calling Button.SetText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -236,7 +224,7 @@ func (o *Button) SetText(text gdnative.String) {
 	Args: [{ false align int}], Returns: void
 */
 func (o *Button) SetTextAlign(align gdnative.Int) {
-	log.Println("Calling Button.SetTextAlign()")
+	//log.Println("Calling Button.SetTextAlign()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

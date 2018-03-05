@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,16 +34,6 @@ func (o *OmniLight) BaseClass() string {
 	return "OmniLight"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *OmniLight) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *OmniLight) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: enum.OmniLight::ShadowDetail
@@ -61,7 +49,7 @@ func (o *OmniLight) GetBaseObject() gdnative.Object {
 	Args: [{ false detail int}], Returns: void
 */
 func (o *OmniLight) SetShadowDetail(detail gdnative.Int) {
-	log.Println("Calling OmniLight.SetShadowDetail()")
+	//log.Println("Calling OmniLight.SetShadowDetail()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -82,7 +70,7 @@ func (o *OmniLight) SetShadowDetail(detail gdnative.Int) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *OmniLight) SetShadowMode(mode gdnative.Int) {
-	log.Println("Calling OmniLight.SetShadowMode()")
+	//log.Println("Calling OmniLight.SetShadowMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

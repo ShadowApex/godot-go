@@ -33,13 +33,3 @@ type AudioEffectBandLimitFilter struct {
 func (o *AudioEffectBandLimitFilter) BaseClass() string {
 	return "AudioEffectBandLimitFilter"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AudioEffectBandLimitFilter) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AudioEffectBandLimitFilter) GetBaseObject() gdnative.Object {
-	return o.owner
-}

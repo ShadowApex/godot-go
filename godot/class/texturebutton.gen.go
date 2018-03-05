@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *TextureButton) BaseClass() string {
 	return "TextureButton"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *TextureButton) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *TextureButton) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: BitMap
 */
 func (o *TextureButton) GetClickMask() BitMap {
-	log.Println("Calling TextureButton.GetClickMask()")
+	//log.Println("Calling TextureButton.GetClickMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *TextureButton) GetClickMask() BitMap {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewBitMapFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *TextureButton) GetClickMask() BitMap {
 	Args: [], Returns: Texture
 */
 func (o *TextureButton) GetDisabledTexture() Texture {
-	log.Println("Calling TextureButton.GetDisabledTexture()")
+	//log.Println("Calling TextureButton.GetDisabledTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *TextureButton) GetDisabledTexture() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *TextureButton) GetDisabledTexture() Texture {
 	Args: [], Returns: bool
 */
 func (o *TextureButton) GetExpand() gdnative.Bool {
-	log.Println("Calling TextureButton.GetExpand()")
+	//log.Println("Calling TextureButton.GetExpand()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *TextureButton) GetExpand() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *TextureButton) GetExpand() gdnative.Bool {
 	Args: [], Returns: Texture
 */
 func (o *TextureButton) GetFocusedTexture() Texture {
-	log.Println("Calling TextureButton.GetFocusedTexture()")
+	//log.Println("Calling TextureButton.GetFocusedTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *TextureButton) GetFocusedTexture() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *TextureButton) GetFocusedTexture() Texture {
 	Args: [], Returns: Texture
 */
 func (o *TextureButton) GetHoverTexture() Texture {
-	log.Println("Calling TextureButton.GetHoverTexture()")
+	//log.Println("Calling TextureButton.GetHoverTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *TextureButton) GetHoverTexture() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *TextureButton) GetHoverTexture() Texture {
 	Args: [], Returns: Texture
 */
 func (o *TextureButton) GetNormalTexture() Texture {
-	log.Println("Calling TextureButton.GetNormalTexture()")
+	//log.Println("Calling TextureButton.GetNormalTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -186,7 +174,7 @@ func (o *TextureButton) GetNormalTexture() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -195,7 +183,7 @@ func (o *TextureButton) GetNormalTexture() Texture {
 	Args: [], Returns: Texture
 */
 func (o *TextureButton) GetPressedTexture() Texture {
-	log.Println("Calling TextureButton.GetPressedTexture()")
+	//log.Println("Calling TextureButton.GetPressedTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -210,7 +198,7 @@ func (o *TextureButton) GetPressedTexture() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -224,7 +212,7 @@ func (o *TextureButton) GetPressedTexture() Texture {
 	Args: [{ false mask BitMap}], Returns: void
 */
 func (o *TextureButton) SetClickMask(mask BitMap) {
-	log.Println("Calling TextureButton.SetClickMask()")
+	//log.Println("Calling TextureButton.SetClickMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -245,7 +233,7 @@ func (o *TextureButton) SetClickMask(mask BitMap) {
 	Args: [{ false texture Texture}], Returns: void
 */
 func (o *TextureButton) SetDisabledTexture(texture Texture) {
-	log.Println("Calling TextureButton.SetDisabledTexture()")
+	//log.Println("Calling TextureButton.SetDisabledTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -266,7 +254,7 @@ func (o *TextureButton) SetDisabledTexture(texture Texture) {
 	Args: [{ false p_expand bool}], Returns: void
 */
 func (o *TextureButton) SetExpand(pExpand gdnative.Bool) {
-	log.Println("Calling TextureButton.SetExpand()")
+	//log.Println("Calling TextureButton.SetExpand()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -287,7 +275,7 @@ func (o *TextureButton) SetExpand(pExpand gdnative.Bool) {
 	Args: [{ false texture Texture}], Returns: void
 */
 func (o *TextureButton) SetFocusedTexture(texture Texture) {
-	log.Println("Calling TextureButton.SetFocusedTexture()")
+	//log.Println("Calling TextureButton.SetFocusedTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -308,7 +296,7 @@ func (o *TextureButton) SetFocusedTexture(texture Texture) {
 	Args: [{ false texture Texture}], Returns: void
 */
 func (o *TextureButton) SetHoverTexture(texture Texture) {
-	log.Println("Calling TextureButton.SetHoverTexture()")
+	//log.Println("Calling TextureButton.SetHoverTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -329,7 +317,7 @@ func (o *TextureButton) SetHoverTexture(texture Texture) {
 	Args: [{ false texture Texture}], Returns: void
 */
 func (o *TextureButton) SetNormalTexture(texture Texture) {
-	log.Println("Calling TextureButton.SetNormalTexture()")
+	//log.Println("Calling TextureButton.SetNormalTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -350,7 +338,7 @@ func (o *TextureButton) SetNormalTexture(texture Texture) {
 	Args: [{ false texture Texture}], Returns: void
 */
 func (o *TextureButton) SetPressedTexture(texture Texture) {
-	log.Println("Calling TextureButton.SetPressedTexture()")
+	//log.Println("Calling TextureButton.SetPressedTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -371,7 +359,7 @@ func (o *TextureButton) SetPressedTexture(texture Texture) {
 	Args: [{ false p_mode int}], Returns: void
 */
 func (o *TextureButton) SetStretchMode(pMode gdnative.Int) {
-	log.Println("Calling TextureButton.SetStretchMode()")
+	//log.Println("Calling TextureButton.SetStretchMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

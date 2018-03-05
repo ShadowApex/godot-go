@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *InputEventKey) BaseClass() string {
 	return "InputEventKey"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *InputEventKey) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *InputEventKey) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: int
 */
 func (o *InputEventKey) GetScancode() gdnative.Int {
-	log.Println("Calling InputEventKey.GetScancode()")
+	//log.Println("Calling InputEventKey.GetScancode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *InputEventKey) GetScancode() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *InputEventKey) GetScancode() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *InputEventKey) GetScancodeWithModifiers() gdnative.Int {
-	log.Println("Calling InputEventKey.GetScancodeWithModifiers()")
+	//log.Println("Calling InputEventKey.GetScancodeWithModifiers()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *InputEventKey) GetScancodeWithModifiers() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *InputEventKey) GetScancodeWithModifiers() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *InputEventKey) GetUnicode() gdnative.Int {
-	log.Println("Calling InputEventKey.GetUnicode()")
+	//log.Println("Calling InputEventKey.GetUnicode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *InputEventKey) GetUnicode() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *InputEventKey) GetUnicode() gdnative.Int {
 	Args: [{ false echo bool}], Returns: void
 */
 func (o *InputEventKey) SetEcho(echo gdnative.Bool) {
-	log.Println("Calling InputEventKey.SetEcho()")
+	//log.Println("Calling InputEventKey.SetEcho()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -144,7 +132,7 @@ func (o *InputEventKey) SetEcho(echo gdnative.Bool) {
 	Args: [{ false pressed bool}], Returns: void
 */
 func (o *InputEventKey) SetPressed(pressed gdnative.Bool) {
-	log.Println("Calling InputEventKey.SetPressed()")
+	//log.Println("Calling InputEventKey.SetPressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -165,7 +153,7 @@ func (o *InputEventKey) SetPressed(pressed gdnative.Bool) {
 	Args: [{ false scancode int}], Returns: void
 */
 func (o *InputEventKey) SetScancode(scancode gdnative.Int) {
-	log.Println("Calling InputEventKey.SetScancode()")
+	//log.Println("Calling InputEventKey.SetScancode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -186,7 +174,7 @@ func (o *InputEventKey) SetScancode(scancode gdnative.Int) {
 	Args: [{ false unicode int}], Returns: void
 */
 func (o *InputEventKey) SetUnicode(unicode gdnative.Int) {
-	log.Println("Calling InputEventKey.SetUnicode()")
+	//log.Println("Calling InputEventKey.SetUnicode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

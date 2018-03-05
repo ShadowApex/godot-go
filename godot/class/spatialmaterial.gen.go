@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *SpatialMaterial) BaseClass() string {
 	return "SpatialMaterial"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *SpatialMaterial) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *SpatialMaterial) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Color
 */
 func (o *SpatialMaterial) GetAlbedo() gdnative.Color {
-	log.Println("Calling SpatialMaterial.GetAlbedo()")
+	//log.Println("Calling SpatialMaterial.GetAlbedo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *SpatialMaterial) GetAlbedo() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *SpatialMaterial) GetAlbedo() gdnative.Color {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetAlphaScissorThreshold() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetAlphaScissorThreshold()")
+	//log.Println("Calling SpatialMaterial.GetAlphaScissorThreshold()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *SpatialMaterial) GetAlphaScissorThreshold() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *SpatialMaterial) GetAlphaScissorThreshold() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetAnisotropy() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetAnisotropy()")
+	//log.Println("Calling SpatialMaterial.GetAnisotropy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *SpatialMaterial) GetAnisotropy() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *SpatialMaterial) GetAnisotropy() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetAoLightAffect() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetAoLightAffect()")
+	//log.Println("Calling SpatialMaterial.GetAoLightAffect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *SpatialMaterial) GetAoLightAffect() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -162,7 +150,7 @@ func (o *SpatialMaterial) GetAoLightAffect() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetClearcoat() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetClearcoat()")
+	//log.Println("Calling SpatialMaterial.GetClearcoat()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -177,7 +165,7 @@ func (o *SpatialMaterial) GetClearcoat() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -186,7 +174,7 @@ func (o *SpatialMaterial) GetClearcoat() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetClearcoatGloss() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetClearcoatGloss()")
+	//log.Println("Calling SpatialMaterial.GetClearcoatGloss()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -201,7 +189,7 @@ func (o *SpatialMaterial) GetClearcoatGloss() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -215,7 +203,7 @@ func (o *SpatialMaterial) GetClearcoatGloss() gdnative.Float {
 	Args: [], Returns: int
 */
 func (o *SpatialMaterial) GetDepthDeepParallaxMaxLayers() gdnative.Int {
-	log.Println("Calling SpatialMaterial.GetDepthDeepParallaxMaxLayers()")
+	//log.Println("Calling SpatialMaterial.GetDepthDeepParallaxMaxLayers()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -230,7 +218,7 @@ func (o *SpatialMaterial) GetDepthDeepParallaxMaxLayers() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -239,7 +227,7 @@ func (o *SpatialMaterial) GetDepthDeepParallaxMaxLayers() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *SpatialMaterial) GetDepthDeepParallaxMinLayers() gdnative.Int {
-	log.Println("Calling SpatialMaterial.GetDepthDeepParallaxMinLayers()")
+	//log.Println("Calling SpatialMaterial.GetDepthDeepParallaxMinLayers()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -254,7 +242,7 @@ func (o *SpatialMaterial) GetDepthDeepParallaxMinLayers() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -268,7 +256,7 @@ func (o *SpatialMaterial) GetDepthDeepParallaxMinLayers() gdnative.Int {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetDepthScale() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetDepthScale()")
+	//log.Println("Calling SpatialMaterial.GetDepthScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -283,7 +271,7 @@ func (o *SpatialMaterial) GetDepthScale() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -307,7 +295,7 @@ func (o *SpatialMaterial) GetDepthScale() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetDistanceFadeMaxDistance() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetDistanceFadeMaxDistance()")
+	//log.Println("Calling SpatialMaterial.GetDistanceFadeMaxDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -322,7 +310,7 @@ func (o *SpatialMaterial) GetDistanceFadeMaxDistance() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -331,7 +319,7 @@ func (o *SpatialMaterial) GetDistanceFadeMaxDistance() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetDistanceFadeMinDistance() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetDistanceFadeMinDistance()")
+	//log.Println("Calling SpatialMaterial.GetDistanceFadeMinDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -346,7 +334,7 @@ func (o *SpatialMaterial) GetDistanceFadeMinDistance() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -355,7 +343,7 @@ func (o *SpatialMaterial) GetDistanceFadeMinDistance() gdnative.Float {
 	Args: [], Returns: Color
 */
 func (o *SpatialMaterial) GetEmission() gdnative.Color {
-	log.Println("Calling SpatialMaterial.GetEmission()")
+	//log.Println("Calling SpatialMaterial.GetEmission()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -370,7 +358,7 @@ func (o *SpatialMaterial) GetEmission() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -379,7 +367,7 @@ func (o *SpatialMaterial) GetEmission() gdnative.Color {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetEmissionEnergy() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetEmissionEnergy()")
+	//log.Println("Calling SpatialMaterial.GetEmissionEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -394,7 +382,7 @@ func (o *SpatialMaterial) GetEmissionEnergy() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -408,7 +396,7 @@ func (o *SpatialMaterial) GetEmissionEnergy() gdnative.Float {
 	Args: [{ false feature int}], Returns: bool
 */
 func (o *SpatialMaterial) GetFeature(feature gdnative.Int) gdnative.Bool {
-	log.Println("Calling SpatialMaterial.GetFeature()")
+	//log.Println("Calling SpatialMaterial.GetFeature()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -424,7 +412,7 @@ func (o *SpatialMaterial) GetFeature(feature gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -433,7 +421,7 @@ func (o *SpatialMaterial) GetFeature(feature gdnative.Int) gdnative.Bool {
 	Args: [{ false flag int}], Returns: bool
 */
 func (o *SpatialMaterial) GetFlag(flag gdnative.Int) gdnative.Bool {
-	log.Println("Calling SpatialMaterial.GetFlag()")
+	//log.Println("Calling SpatialMaterial.GetFlag()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -449,7 +437,7 @@ func (o *SpatialMaterial) GetFlag(flag gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -458,7 +446,7 @@ func (o *SpatialMaterial) GetFlag(flag gdnative.Int) gdnative.Bool {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetGrow() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetGrow()")
+	//log.Println("Calling SpatialMaterial.GetGrow()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -473,7 +461,7 @@ func (o *SpatialMaterial) GetGrow() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -482,7 +470,7 @@ func (o *SpatialMaterial) GetGrow() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetLineWidth() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetLineWidth()")
+	//log.Println("Calling SpatialMaterial.GetLineWidth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -497,7 +485,7 @@ func (o *SpatialMaterial) GetLineWidth() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -506,7 +494,7 @@ func (o *SpatialMaterial) GetLineWidth() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetMetallic() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetMetallic()")
+	//log.Println("Calling SpatialMaterial.GetMetallic()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -521,7 +509,7 @@ func (o *SpatialMaterial) GetMetallic() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -535,7 +523,7 @@ func (o *SpatialMaterial) GetMetallic() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetNormalScale() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetNormalScale()")
+	//log.Println("Calling SpatialMaterial.GetNormalScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -550,7 +538,7 @@ func (o *SpatialMaterial) GetNormalScale() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -559,7 +547,7 @@ func (o *SpatialMaterial) GetNormalScale() gdnative.Float {
 	Args: [], Returns: int
 */
 func (o *SpatialMaterial) GetParticlesAnimHFrames() gdnative.Int {
-	log.Println("Calling SpatialMaterial.GetParticlesAnimHFrames()")
+	//log.Println("Calling SpatialMaterial.GetParticlesAnimHFrames()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -574,7 +562,7 @@ func (o *SpatialMaterial) GetParticlesAnimHFrames() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -583,7 +571,7 @@ func (o *SpatialMaterial) GetParticlesAnimHFrames() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *SpatialMaterial) GetParticlesAnimLoop() gdnative.Int {
-	log.Println("Calling SpatialMaterial.GetParticlesAnimLoop()")
+	//log.Println("Calling SpatialMaterial.GetParticlesAnimLoop()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -598,7 +586,7 @@ func (o *SpatialMaterial) GetParticlesAnimLoop() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -607,7 +595,7 @@ func (o *SpatialMaterial) GetParticlesAnimLoop() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *SpatialMaterial) GetParticlesAnimVFrames() gdnative.Int {
-	log.Println("Calling SpatialMaterial.GetParticlesAnimVFrames()")
+	//log.Println("Calling SpatialMaterial.GetParticlesAnimVFrames()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -622,7 +610,7 @@ func (o *SpatialMaterial) GetParticlesAnimVFrames() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -631,7 +619,7 @@ func (o *SpatialMaterial) GetParticlesAnimVFrames() gdnative.Int {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetPointSize() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetPointSize()")
+	//log.Println("Calling SpatialMaterial.GetPointSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -646,7 +634,7 @@ func (o *SpatialMaterial) GetPointSize() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -655,7 +643,7 @@ func (o *SpatialMaterial) GetPointSize() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetProximityFadeDistance() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetProximityFadeDistance()")
+	//log.Println("Calling SpatialMaterial.GetProximityFadeDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -670,7 +658,7 @@ func (o *SpatialMaterial) GetProximityFadeDistance() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -679,7 +667,7 @@ func (o *SpatialMaterial) GetProximityFadeDistance() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetRefraction() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetRefraction()")
+	//log.Println("Calling SpatialMaterial.GetRefraction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -694,7 +682,7 @@ func (o *SpatialMaterial) GetRefraction() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -708,7 +696,7 @@ func (o *SpatialMaterial) GetRefraction() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetRim() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetRim()")
+	//log.Println("Calling SpatialMaterial.GetRim()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -723,7 +711,7 @@ func (o *SpatialMaterial) GetRim() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -732,7 +720,7 @@ func (o *SpatialMaterial) GetRim() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetRimTint() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetRimTint()")
+	//log.Println("Calling SpatialMaterial.GetRimTint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -747,7 +735,7 @@ func (o *SpatialMaterial) GetRimTint() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -756,7 +744,7 @@ func (o *SpatialMaterial) GetRimTint() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetRoughness() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetRoughness()")
+	//log.Println("Calling SpatialMaterial.GetRoughness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -771,7 +759,7 @@ func (o *SpatialMaterial) GetRoughness() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -785,7 +773,7 @@ func (o *SpatialMaterial) GetRoughness() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetSpecular() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetSpecular()")
+	//log.Println("Calling SpatialMaterial.GetSpecular()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -800,7 +788,7 @@ func (o *SpatialMaterial) GetSpecular() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -814,7 +802,7 @@ func (o *SpatialMaterial) GetSpecular() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetSubsurfaceScatteringStrength() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetSubsurfaceScatteringStrength()")
+	//log.Println("Calling SpatialMaterial.GetSubsurfaceScatteringStrength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -829,7 +817,7 @@ func (o *SpatialMaterial) GetSubsurfaceScatteringStrength() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -838,7 +826,7 @@ func (o *SpatialMaterial) GetSubsurfaceScatteringStrength() gdnative.Float {
 	Args: [{ false param int}], Returns: Texture
 */
 func (o *SpatialMaterial) GetTexture(param gdnative.Int) Texture {
-	log.Println("Calling SpatialMaterial.GetTexture()")
+	//log.Println("Calling SpatialMaterial.GetTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -854,7 +842,7 @@ func (o *SpatialMaterial) GetTexture(param gdnative.Int) Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -863,7 +851,7 @@ func (o *SpatialMaterial) GetTexture(param gdnative.Int) Texture {
 	Args: [], Returns: Color
 */
 func (o *SpatialMaterial) GetTransmission() gdnative.Color {
-	log.Println("Calling SpatialMaterial.GetTransmission()")
+	//log.Println("Calling SpatialMaterial.GetTransmission()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -878,7 +866,7 @@ func (o *SpatialMaterial) GetTransmission() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -887,7 +875,7 @@ func (o *SpatialMaterial) GetTransmission() gdnative.Color {
 	Args: [], Returns: Vector3
 */
 func (o *SpatialMaterial) GetUv1Offset() gdnative.Vector3 {
-	log.Println("Calling SpatialMaterial.GetUv1Offset()")
+	//log.Println("Calling SpatialMaterial.GetUv1Offset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -902,7 +890,7 @@ func (o *SpatialMaterial) GetUv1Offset() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -911,7 +899,7 @@ func (o *SpatialMaterial) GetUv1Offset() gdnative.Vector3 {
 	Args: [], Returns: Vector3
 */
 func (o *SpatialMaterial) GetUv1Scale() gdnative.Vector3 {
-	log.Println("Calling SpatialMaterial.GetUv1Scale()")
+	//log.Println("Calling SpatialMaterial.GetUv1Scale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -926,7 +914,7 @@ func (o *SpatialMaterial) GetUv1Scale() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -935,7 +923,7 @@ func (o *SpatialMaterial) GetUv1Scale() gdnative.Vector3 {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetUv1TriplanarBlendSharpness() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetUv1TriplanarBlendSharpness()")
+	//log.Println("Calling SpatialMaterial.GetUv1TriplanarBlendSharpness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -950,7 +938,7 @@ func (o *SpatialMaterial) GetUv1TriplanarBlendSharpness() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -959,7 +947,7 @@ func (o *SpatialMaterial) GetUv1TriplanarBlendSharpness() gdnative.Float {
 	Args: [], Returns: Vector3
 */
 func (o *SpatialMaterial) GetUv2Offset() gdnative.Vector3 {
-	log.Println("Calling SpatialMaterial.GetUv2Offset()")
+	//log.Println("Calling SpatialMaterial.GetUv2Offset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -974,7 +962,7 @@ func (o *SpatialMaterial) GetUv2Offset() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -983,7 +971,7 @@ func (o *SpatialMaterial) GetUv2Offset() gdnative.Vector3 {
 	Args: [], Returns: Vector3
 */
 func (o *SpatialMaterial) GetUv2Scale() gdnative.Vector3 {
-	log.Println("Calling SpatialMaterial.GetUv2Scale()")
+	//log.Println("Calling SpatialMaterial.GetUv2Scale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -998,7 +986,7 @@ func (o *SpatialMaterial) GetUv2Scale() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1007,7 +995,7 @@ func (o *SpatialMaterial) GetUv2Scale() gdnative.Vector3 {
 	Args: [], Returns: float
 */
 func (o *SpatialMaterial) GetUv2TriplanarBlendSharpness() gdnative.Float {
-	log.Println("Calling SpatialMaterial.GetUv2TriplanarBlendSharpness()")
+	//log.Println("Calling SpatialMaterial.GetUv2TriplanarBlendSharpness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1022,7 +1010,7 @@ func (o *SpatialMaterial) GetUv2TriplanarBlendSharpness() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1031,7 +1019,7 @@ func (o *SpatialMaterial) GetUv2TriplanarBlendSharpness() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *SpatialMaterial) IsDepthDeepParallaxEnabled() gdnative.Bool {
-	log.Println("Calling SpatialMaterial.IsDepthDeepParallaxEnabled()")
+	//log.Println("Calling SpatialMaterial.IsDepthDeepParallaxEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1046,7 +1034,7 @@ func (o *SpatialMaterial) IsDepthDeepParallaxEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1055,7 +1043,7 @@ func (o *SpatialMaterial) IsDepthDeepParallaxEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *SpatialMaterial) IsDistanceFadeEnabled() gdnative.Bool {
-	log.Println("Calling SpatialMaterial.IsDistanceFadeEnabled()")
+	//log.Println("Calling SpatialMaterial.IsDistanceFadeEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1070,7 +1058,7 @@ func (o *SpatialMaterial) IsDistanceFadeEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1079,7 +1067,7 @@ func (o *SpatialMaterial) IsDistanceFadeEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *SpatialMaterial) IsGrowEnabled() gdnative.Bool {
-	log.Println("Calling SpatialMaterial.IsGrowEnabled()")
+	//log.Println("Calling SpatialMaterial.IsGrowEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1094,7 +1082,7 @@ func (o *SpatialMaterial) IsGrowEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1103,7 +1091,7 @@ func (o *SpatialMaterial) IsGrowEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *SpatialMaterial) IsProximityFadeEnabled() gdnative.Bool {
-	log.Println("Calling SpatialMaterial.IsProximityFadeEnabled()")
+	//log.Println("Calling SpatialMaterial.IsProximityFadeEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1118,7 +1106,7 @@ func (o *SpatialMaterial) IsProximityFadeEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1127,7 +1115,7 @@ func (o *SpatialMaterial) IsProximityFadeEnabled() gdnative.Bool {
 	Args: [{ false albedo Color}], Returns: void
 */
 func (o *SpatialMaterial) SetAlbedo(albedo gdnative.Color) {
-	log.Println("Calling SpatialMaterial.SetAlbedo()")
+	//log.Println("Calling SpatialMaterial.SetAlbedo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1148,7 +1136,7 @@ func (o *SpatialMaterial) SetAlbedo(albedo gdnative.Color) {
 	Args: [{ false threshold float}], Returns: void
 */
 func (o *SpatialMaterial) SetAlphaScissorThreshold(threshold gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetAlphaScissorThreshold()")
+	//log.Println("Calling SpatialMaterial.SetAlphaScissorThreshold()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1169,7 +1157,7 @@ func (o *SpatialMaterial) SetAlphaScissorThreshold(threshold gdnative.Float) {
 	Args: [{ false anisotropy float}], Returns: void
 */
 func (o *SpatialMaterial) SetAnisotropy(anisotropy gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetAnisotropy()")
+	//log.Println("Calling SpatialMaterial.SetAnisotropy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1190,7 +1178,7 @@ func (o *SpatialMaterial) SetAnisotropy(anisotropy gdnative.Float) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *SpatialMaterial) SetAoLightAffect(amount gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetAoLightAffect()")
+	//log.Println("Calling SpatialMaterial.SetAoLightAffect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1211,7 +1199,7 @@ func (o *SpatialMaterial) SetAoLightAffect(amount gdnative.Float) {
 	Args: [{ false channel int}], Returns: void
 */
 func (o *SpatialMaterial) SetAoTextureChannel(channel gdnative.Int) {
-	log.Println("Calling SpatialMaterial.SetAoTextureChannel()")
+	//log.Println("Calling SpatialMaterial.SetAoTextureChannel()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1232,7 +1220,7 @@ func (o *SpatialMaterial) SetAoTextureChannel(channel gdnative.Int) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *SpatialMaterial) SetBillboardMode(mode gdnative.Int) {
-	log.Println("Calling SpatialMaterial.SetBillboardMode()")
+	//log.Println("Calling SpatialMaterial.SetBillboardMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1253,7 +1241,7 @@ func (o *SpatialMaterial) SetBillboardMode(mode gdnative.Int) {
 	Args: [{ false blend_mode int}], Returns: void
 */
 func (o *SpatialMaterial) SetBlendMode(blendMode gdnative.Int) {
-	log.Println("Calling SpatialMaterial.SetBlendMode()")
+	//log.Println("Calling SpatialMaterial.SetBlendMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1274,7 +1262,7 @@ func (o *SpatialMaterial) SetBlendMode(blendMode gdnative.Int) {
 	Args: [{ false clearcoat float}], Returns: void
 */
 func (o *SpatialMaterial) SetClearcoat(clearcoat gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetClearcoat()")
+	//log.Println("Calling SpatialMaterial.SetClearcoat()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1295,7 +1283,7 @@ func (o *SpatialMaterial) SetClearcoat(clearcoat gdnative.Float) {
 	Args: [{ false clearcoat_gloss float}], Returns: void
 */
 func (o *SpatialMaterial) SetClearcoatGloss(clearcoatGloss gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetClearcoatGloss()")
+	//log.Println("Calling SpatialMaterial.SetClearcoatGloss()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1316,7 +1304,7 @@ func (o *SpatialMaterial) SetClearcoatGloss(clearcoatGloss gdnative.Float) {
 	Args: [{ false cull_mode int}], Returns: void
 */
 func (o *SpatialMaterial) SetCullMode(cullMode gdnative.Int) {
-	log.Println("Calling SpatialMaterial.SetCullMode()")
+	//log.Println("Calling SpatialMaterial.SetCullMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1337,7 +1325,7 @@ func (o *SpatialMaterial) SetCullMode(cullMode gdnative.Int) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *SpatialMaterial) SetDepthDeepParallax(enable gdnative.Bool) {
-	log.Println("Calling SpatialMaterial.SetDepthDeepParallax()")
+	//log.Println("Calling SpatialMaterial.SetDepthDeepParallax()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1358,7 +1346,7 @@ func (o *SpatialMaterial) SetDepthDeepParallax(enable gdnative.Bool) {
 	Args: [{ false layer int}], Returns: void
 */
 func (o *SpatialMaterial) SetDepthDeepParallaxMaxLayers(layer gdnative.Int) {
-	log.Println("Calling SpatialMaterial.SetDepthDeepParallaxMaxLayers()")
+	//log.Println("Calling SpatialMaterial.SetDepthDeepParallaxMaxLayers()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1379,7 +1367,7 @@ func (o *SpatialMaterial) SetDepthDeepParallaxMaxLayers(layer gdnative.Int) {
 	Args: [{ false layer int}], Returns: void
 */
 func (o *SpatialMaterial) SetDepthDeepParallaxMinLayers(layer gdnative.Int) {
-	log.Println("Calling SpatialMaterial.SetDepthDeepParallaxMinLayers()")
+	//log.Println("Calling SpatialMaterial.SetDepthDeepParallaxMinLayers()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1400,7 +1388,7 @@ func (o *SpatialMaterial) SetDepthDeepParallaxMinLayers(layer gdnative.Int) {
 	Args: [{ false depth_draw_mode int}], Returns: void
 */
 func (o *SpatialMaterial) SetDepthDrawMode(depthDrawMode gdnative.Int) {
-	log.Println("Calling SpatialMaterial.SetDepthDrawMode()")
+	//log.Println("Calling SpatialMaterial.SetDepthDrawMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1421,7 +1409,7 @@ func (o *SpatialMaterial) SetDepthDrawMode(depthDrawMode gdnative.Int) {
 	Args: [{ false depth_scale float}], Returns: void
 */
 func (o *SpatialMaterial) SetDepthScale(depthScale gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetDepthScale()")
+	//log.Println("Calling SpatialMaterial.SetDepthScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1442,7 +1430,7 @@ func (o *SpatialMaterial) SetDepthScale(depthScale gdnative.Float) {
 	Args: [{ false detail_blend_mode int}], Returns: void
 */
 func (o *SpatialMaterial) SetDetailBlendMode(detailBlendMode gdnative.Int) {
-	log.Println("Calling SpatialMaterial.SetDetailBlendMode()")
+	//log.Println("Calling SpatialMaterial.SetDetailBlendMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1463,7 +1451,7 @@ func (o *SpatialMaterial) SetDetailBlendMode(detailBlendMode gdnative.Int) {
 	Args: [{ false detail_uv int}], Returns: void
 */
 func (o *SpatialMaterial) SetDetailUv(detailUv gdnative.Int) {
-	log.Println("Calling SpatialMaterial.SetDetailUv()")
+	//log.Println("Calling SpatialMaterial.SetDetailUv()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1484,7 +1472,7 @@ func (o *SpatialMaterial) SetDetailUv(detailUv gdnative.Int) {
 	Args: [{ false diffuse_mode int}], Returns: void
 */
 func (o *SpatialMaterial) SetDiffuseMode(diffuseMode gdnative.Int) {
-	log.Println("Calling SpatialMaterial.SetDiffuseMode()")
+	//log.Println("Calling SpatialMaterial.SetDiffuseMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1505,7 +1493,7 @@ func (o *SpatialMaterial) SetDiffuseMode(diffuseMode gdnative.Int) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *SpatialMaterial) SetDistanceFade(enabled gdnative.Bool) {
-	log.Println("Calling SpatialMaterial.SetDistanceFade()")
+	//log.Println("Calling SpatialMaterial.SetDistanceFade()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1526,7 +1514,7 @@ func (o *SpatialMaterial) SetDistanceFade(enabled gdnative.Bool) {
 	Args: [{ false distance float}], Returns: void
 */
 func (o *SpatialMaterial) SetDistanceFadeMaxDistance(distance gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetDistanceFadeMaxDistance()")
+	//log.Println("Calling SpatialMaterial.SetDistanceFadeMaxDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1547,7 +1535,7 @@ func (o *SpatialMaterial) SetDistanceFadeMaxDistance(distance gdnative.Float) {
 	Args: [{ false distance float}], Returns: void
 */
 func (o *SpatialMaterial) SetDistanceFadeMinDistance(distance gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetDistanceFadeMinDistance()")
+	//log.Println("Calling SpatialMaterial.SetDistanceFadeMinDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1568,7 +1556,7 @@ func (o *SpatialMaterial) SetDistanceFadeMinDistance(distance gdnative.Float) {
 	Args: [{ false emission Color}], Returns: void
 */
 func (o *SpatialMaterial) SetEmission(emission gdnative.Color) {
-	log.Println("Calling SpatialMaterial.SetEmission()")
+	//log.Println("Calling SpatialMaterial.SetEmission()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1589,7 +1577,7 @@ func (o *SpatialMaterial) SetEmission(emission gdnative.Color) {
 	Args: [{ false emission_energy float}], Returns: void
 */
 func (o *SpatialMaterial) SetEmissionEnergy(emissionEnergy gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetEmissionEnergy()")
+	//log.Println("Calling SpatialMaterial.SetEmissionEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1610,7 +1598,7 @@ func (o *SpatialMaterial) SetEmissionEnergy(emissionEnergy gdnative.Float) {
 	Args: [{ false operator int}], Returns: void
 */
 func (o *SpatialMaterial) SetEmissionOperator(operator gdnative.Int) {
-	log.Println("Calling SpatialMaterial.SetEmissionOperator()")
+	//log.Println("Calling SpatialMaterial.SetEmissionOperator()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1631,7 +1619,7 @@ func (o *SpatialMaterial) SetEmissionOperator(operator gdnative.Int) {
 	Args: [{ false feature int} { false enable bool}], Returns: void
 */
 func (o *SpatialMaterial) SetFeature(feature gdnative.Int, enable gdnative.Bool) {
-	log.Println("Calling SpatialMaterial.SetFeature()")
+	//log.Println("Calling SpatialMaterial.SetFeature()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1653,7 +1641,7 @@ func (o *SpatialMaterial) SetFeature(feature gdnative.Int, enable gdnative.Bool)
 	Args: [{ false flag int} { false enable bool}], Returns: void
 */
 func (o *SpatialMaterial) SetFlag(flag gdnative.Int, enable gdnative.Bool) {
-	log.Println("Calling SpatialMaterial.SetFlag()")
+	//log.Println("Calling SpatialMaterial.SetFlag()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1675,7 +1663,7 @@ func (o *SpatialMaterial) SetFlag(flag gdnative.Int, enable gdnative.Bool) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *SpatialMaterial) SetGrow(amount gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetGrow()")
+	//log.Println("Calling SpatialMaterial.SetGrow()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1696,7 +1684,7 @@ func (o *SpatialMaterial) SetGrow(amount gdnative.Float) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *SpatialMaterial) SetGrowEnabled(enable gdnative.Bool) {
-	log.Println("Calling SpatialMaterial.SetGrowEnabled()")
+	//log.Println("Calling SpatialMaterial.SetGrowEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1717,7 +1705,7 @@ func (o *SpatialMaterial) SetGrowEnabled(enable gdnative.Bool) {
 	Args: [{ false line_width float}], Returns: void
 */
 func (o *SpatialMaterial) SetLineWidth(lineWidth gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetLineWidth()")
+	//log.Println("Calling SpatialMaterial.SetLineWidth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1738,7 +1726,7 @@ func (o *SpatialMaterial) SetLineWidth(lineWidth gdnative.Float) {
 	Args: [{ false metallic float}], Returns: void
 */
 func (o *SpatialMaterial) SetMetallic(metallic gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetMetallic()")
+	//log.Println("Calling SpatialMaterial.SetMetallic()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1759,7 +1747,7 @@ func (o *SpatialMaterial) SetMetallic(metallic gdnative.Float) {
 	Args: [{ false channel int}], Returns: void
 */
 func (o *SpatialMaterial) SetMetallicTextureChannel(channel gdnative.Int) {
-	log.Println("Calling SpatialMaterial.SetMetallicTextureChannel()")
+	//log.Println("Calling SpatialMaterial.SetMetallicTextureChannel()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1780,7 +1768,7 @@ func (o *SpatialMaterial) SetMetallicTextureChannel(channel gdnative.Int) {
 	Args: [{ false normal_scale float}], Returns: void
 */
 func (o *SpatialMaterial) SetNormalScale(normalScale gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetNormalScale()")
+	//log.Println("Calling SpatialMaterial.SetNormalScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1801,7 +1789,7 @@ func (o *SpatialMaterial) SetNormalScale(normalScale gdnative.Float) {
 	Args: [{ false frames int}], Returns: void
 */
 func (o *SpatialMaterial) SetParticlesAnimHFrames(frames gdnative.Int) {
-	log.Println("Calling SpatialMaterial.SetParticlesAnimHFrames()")
+	//log.Println("Calling SpatialMaterial.SetParticlesAnimHFrames()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1822,7 +1810,7 @@ func (o *SpatialMaterial) SetParticlesAnimHFrames(frames gdnative.Int) {
 	Args: [{ false frames int}], Returns: void
 */
 func (o *SpatialMaterial) SetParticlesAnimLoop(frames gdnative.Int) {
-	log.Println("Calling SpatialMaterial.SetParticlesAnimLoop()")
+	//log.Println("Calling SpatialMaterial.SetParticlesAnimLoop()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1843,7 +1831,7 @@ func (o *SpatialMaterial) SetParticlesAnimLoop(frames gdnative.Int) {
 	Args: [{ false frames int}], Returns: void
 */
 func (o *SpatialMaterial) SetParticlesAnimVFrames(frames gdnative.Int) {
-	log.Println("Calling SpatialMaterial.SetParticlesAnimVFrames()")
+	//log.Println("Calling SpatialMaterial.SetParticlesAnimVFrames()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1864,7 +1852,7 @@ func (o *SpatialMaterial) SetParticlesAnimVFrames(frames gdnative.Int) {
 	Args: [{ false point_size float}], Returns: void
 */
 func (o *SpatialMaterial) SetPointSize(pointSize gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetPointSize()")
+	//log.Println("Calling SpatialMaterial.SetPointSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1885,7 +1873,7 @@ func (o *SpatialMaterial) SetPointSize(pointSize gdnative.Float) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *SpatialMaterial) SetProximityFade(enabled gdnative.Bool) {
-	log.Println("Calling SpatialMaterial.SetProximityFade()")
+	//log.Println("Calling SpatialMaterial.SetProximityFade()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1906,7 +1894,7 @@ func (o *SpatialMaterial) SetProximityFade(enabled gdnative.Bool) {
 	Args: [{ false distance float}], Returns: void
 */
 func (o *SpatialMaterial) SetProximityFadeDistance(distance gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetProximityFadeDistance()")
+	//log.Println("Calling SpatialMaterial.SetProximityFadeDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1927,7 +1915,7 @@ func (o *SpatialMaterial) SetProximityFadeDistance(distance gdnative.Float) {
 	Args: [{ false refraction float}], Returns: void
 */
 func (o *SpatialMaterial) SetRefraction(refraction gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetRefraction()")
+	//log.Println("Calling SpatialMaterial.SetRefraction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1948,7 +1936,7 @@ func (o *SpatialMaterial) SetRefraction(refraction gdnative.Float) {
 	Args: [{ false channel int}], Returns: void
 */
 func (o *SpatialMaterial) SetRefractionTextureChannel(channel gdnative.Int) {
-	log.Println("Calling SpatialMaterial.SetRefractionTextureChannel()")
+	//log.Println("Calling SpatialMaterial.SetRefractionTextureChannel()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1969,7 +1957,7 @@ func (o *SpatialMaterial) SetRefractionTextureChannel(channel gdnative.Int) {
 	Args: [{ false rim float}], Returns: void
 */
 func (o *SpatialMaterial) SetRim(rim gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetRim()")
+	//log.Println("Calling SpatialMaterial.SetRim()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1990,7 +1978,7 @@ func (o *SpatialMaterial) SetRim(rim gdnative.Float) {
 	Args: [{ false rim_tint float}], Returns: void
 */
 func (o *SpatialMaterial) SetRimTint(rimTint gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetRimTint()")
+	//log.Println("Calling SpatialMaterial.SetRimTint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2011,7 +1999,7 @@ func (o *SpatialMaterial) SetRimTint(rimTint gdnative.Float) {
 	Args: [{ false roughness float}], Returns: void
 */
 func (o *SpatialMaterial) SetRoughness(roughness gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetRoughness()")
+	//log.Println("Calling SpatialMaterial.SetRoughness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2032,7 +2020,7 @@ func (o *SpatialMaterial) SetRoughness(roughness gdnative.Float) {
 	Args: [{ false channel int}], Returns: void
 */
 func (o *SpatialMaterial) SetRoughnessTextureChannel(channel gdnative.Int) {
-	log.Println("Calling SpatialMaterial.SetRoughnessTextureChannel()")
+	//log.Println("Calling SpatialMaterial.SetRoughnessTextureChannel()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2053,7 +2041,7 @@ func (o *SpatialMaterial) SetRoughnessTextureChannel(channel gdnative.Int) {
 	Args: [{ false specular float}], Returns: void
 */
 func (o *SpatialMaterial) SetSpecular(specular gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetSpecular()")
+	//log.Println("Calling SpatialMaterial.SetSpecular()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2074,7 +2062,7 @@ func (o *SpatialMaterial) SetSpecular(specular gdnative.Float) {
 	Args: [{ false specular_mode int}], Returns: void
 */
 func (o *SpatialMaterial) SetSpecularMode(specularMode gdnative.Int) {
-	log.Println("Calling SpatialMaterial.SetSpecularMode()")
+	//log.Println("Calling SpatialMaterial.SetSpecularMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2095,7 +2083,7 @@ func (o *SpatialMaterial) SetSpecularMode(specularMode gdnative.Int) {
 	Args: [{ false strength float}], Returns: void
 */
 func (o *SpatialMaterial) SetSubsurfaceScatteringStrength(strength gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetSubsurfaceScatteringStrength()")
+	//log.Println("Calling SpatialMaterial.SetSubsurfaceScatteringStrength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2116,7 +2104,7 @@ func (o *SpatialMaterial) SetSubsurfaceScatteringStrength(strength gdnative.Floa
 	Args: [{ false param int} { false texture Texture}], Returns: void
 */
 func (o *SpatialMaterial) SetTexture(param gdnative.Int, texture Texture) {
-	log.Println("Calling SpatialMaterial.SetTexture()")
+	//log.Println("Calling SpatialMaterial.SetTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -2138,7 +2126,7 @@ func (o *SpatialMaterial) SetTexture(param gdnative.Int, texture Texture) {
 	Args: [{ false transmission Color}], Returns: void
 */
 func (o *SpatialMaterial) SetTransmission(transmission gdnative.Color) {
-	log.Println("Calling SpatialMaterial.SetTransmission()")
+	//log.Println("Calling SpatialMaterial.SetTransmission()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2159,7 +2147,7 @@ func (o *SpatialMaterial) SetTransmission(transmission gdnative.Color) {
 	Args: [{ false offset Vector3}], Returns: void
 */
 func (o *SpatialMaterial) SetUv1Offset(offset gdnative.Vector3) {
-	log.Println("Calling SpatialMaterial.SetUv1Offset()")
+	//log.Println("Calling SpatialMaterial.SetUv1Offset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2180,7 +2168,7 @@ func (o *SpatialMaterial) SetUv1Offset(offset gdnative.Vector3) {
 	Args: [{ false scale Vector3}], Returns: void
 */
 func (o *SpatialMaterial) SetUv1Scale(scale gdnative.Vector3) {
-	log.Println("Calling SpatialMaterial.SetUv1Scale()")
+	//log.Println("Calling SpatialMaterial.SetUv1Scale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2201,7 +2189,7 @@ func (o *SpatialMaterial) SetUv1Scale(scale gdnative.Vector3) {
 	Args: [{ false sharpness float}], Returns: void
 */
 func (o *SpatialMaterial) SetUv1TriplanarBlendSharpness(sharpness gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetUv1TriplanarBlendSharpness()")
+	//log.Println("Calling SpatialMaterial.SetUv1TriplanarBlendSharpness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2222,7 +2210,7 @@ func (o *SpatialMaterial) SetUv1TriplanarBlendSharpness(sharpness gdnative.Float
 	Args: [{ false offset Vector3}], Returns: void
 */
 func (o *SpatialMaterial) SetUv2Offset(offset gdnative.Vector3) {
-	log.Println("Calling SpatialMaterial.SetUv2Offset()")
+	//log.Println("Calling SpatialMaterial.SetUv2Offset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2243,7 +2231,7 @@ func (o *SpatialMaterial) SetUv2Offset(offset gdnative.Vector3) {
 	Args: [{ false scale Vector3}], Returns: void
 */
 func (o *SpatialMaterial) SetUv2Scale(scale gdnative.Vector3) {
-	log.Println("Calling SpatialMaterial.SetUv2Scale()")
+	//log.Println("Calling SpatialMaterial.SetUv2Scale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2264,7 +2252,7 @@ func (o *SpatialMaterial) SetUv2Scale(scale gdnative.Vector3) {
 	Args: [{ false sharpness float}], Returns: void
 */
 func (o *SpatialMaterial) SetUv2TriplanarBlendSharpness(sharpness gdnative.Float) {
-	log.Println("Calling SpatialMaterial.SetUv2TriplanarBlendSharpness()")
+	//log.Println("Calling SpatialMaterial.SetUv2TriplanarBlendSharpness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

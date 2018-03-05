@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *GDScript) BaseClass() string {
 	return "GDScript"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *GDScript) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *GDScript) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: PoolByteArray
 */
 func (o *GDScript) GetAsByteCode() gdnative.PoolByteArray {
-	log.Println("Calling GDScript.GetAsByteCode()")
+	//log.Println("Calling GDScript.GetAsByteCode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *GDScript) GetAsByteCode() gdnative.PoolByteArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolByteArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *GDScript) GetAsByteCode() gdnative.PoolByteArray {
 	Args: [], Returns: Object
 */
 func (o *GDScript) New() Object {
-	log.Println("Calling GDScript.New()")
+	//log.Println("Calling GDScript.New()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,6 +78,6 @@ func (o *GDScript) New() Object {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewObjectFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

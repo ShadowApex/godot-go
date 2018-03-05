@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *BitmapFont) BaseClass() string {
 	return "BitmapFont"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *BitmapFont) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *BitmapFont) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: PoolIntArray
 */
 func (o *BitmapFont) X_GetChars() gdnative.PoolIntArray {
-	log.Println("Calling BitmapFont.X_GetChars()")
+	//log.Println("Calling BitmapFont.X_GetChars()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *BitmapFont) X_GetChars() gdnative.PoolIntArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *BitmapFont) X_GetChars() gdnative.PoolIntArray {
 	Args: [], Returns: PoolIntArray
 */
 func (o *BitmapFont) X_GetKernings() gdnative.PoolIntArray {
-	log.Println("Calling BitmapFont.X_GetKernings()")
+	//log.Println("Calling BitmapFont.X_GetKernings()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *BitmapFont) X_GetKernings() gdnative.PoolIntArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *BitmapFont) X_GetKernings() gdnative.PoolIntArray {
 	Args: [], Returns: Array
 */
 func (o *BitmapFont) X_GetTextures() gdnative.Array {
-	log.Println("Calling BitmapFont.X_GetTextures()")
+	//log.Println("Calling BitmapFont.X_GetTextures()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *BitmapFont) X_GetTextures() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *BitmapFont) X_GetTextures() gdnative.Array {
 	Args: [{ false arg0 PoolIntArray}], Returns: void
 */
 func (o *BitmapFont) X_SetChars(arg0 gdnative.PoolIntArray) {
-	log.Println("Calling BitmapFont.X_SetChars()")
+	//log.Println("Calling BitmapFont.X_SetChars()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -144,7 +132,7 @@ func (o *BitmapFont) X_SetChars(arg0 gdnative.PoolIntArray) {
 	Args: [{ false arg0 PoolIntArray}], Returns: void
 */
 func (o *BitmapFont) X_SetKernings(arg0 gdnative.PoolIntArray) {
-	log.Println("Calling BitmapFont.X_SetKernings()")
+	//log.Println("Calling BitmapFont.X_SetKernings()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -165,7 +153,7 @@ func (o *BitmapFont) X_SetKernings(arg0 gdnative.PoolIntArray) {
 	Args: [{ false arg0 Array}], Returns: void
 */
 func (o *BitmapFont) X_SetTextures(arg0 gdnative.Array) {
-	log.Println("Calling BitmapFont.X_SetTextures()")
+	//log.Println("Calling BitmapFont.X_SetTextures()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -186,7 +174,7 @@ func (o *BitmapFont) X_SetTextures(arg0 gdnative.Array) {
 	Args: [{ false character int} { false texture int} { false rect Rect2} {(0, 0) true align Vector2} {-1 true advance float}], Returns: void
 */
 func (o *BitmapFont) AddChar(character gdnative.Int, texture gdnative.Int, rect gdnative.Rect2, align gdnative.Vector2, advance gdnative.Float) {
-	log.Println("Calling BitmapFont.AddChar()")
+	//log.Println("Calling BitmapFont.AddChar()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 5, 5)
@@ -211,7 +199,7 @@ func (o *BitmapFont) AddChar(character gdnative.Int, texture gdnative.Int, rect 
 	Args: [{ false char_a int} { false char_b int} { false kerning int}], Returns: void
 */
 func (o *BitmapFont) AddKerningPair(charA gdnative.Int, charB gdnative.Int, kerning gdnative.Int) {
-	log.Println("Calling BitmapFont.AddKerningPair()")
+	//log.Println("Calling BitmapFont.AddKerningPair()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -234,7 +222,7 @@ func (o *BitmapFont) AddKerningPair(charA gdnative.Int, charB gdnative.Int, kern
 	Args: [{ false texture Texture}], Returns: void
 */
 func (o *BitmapFont) AddTexture(texture Texture) {
-	log.Println("Calling BitmapFont.AddTexture()")
+	//log.Println("Calling BitmapFont.AddTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -255,7 +243,7 @@ func (o *BitmapFont) AddTexture(texture Texture) {
 	Args: [], Returns: void
 */
 func (o *BitmapFont) Clear() {
-	log.Println("Calling BitmapFont.Clear()")
+	//log.Println("Calling BitmapFont.Clear()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -280,7 +268,7 @@ func (o *BitmapFont) Clear() {
 	Args: [{ false char int} {0 true next int}], Returns: Vector2
 */
 func (o *BitmapFont) GetCharSize(char gdnative.Int, next gdnative.Int) gdnative.Vector2 {
-	log.Println("Calling BitmapFont.GetCharSize()")
+	//log.Println("Calling BitmapFont.GetCharSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -297,7 +285,7 @@ func (o *BitmapFont) GetCharSize(char gdnative.Int, next gdnative.Int) gdnative.
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -306,7 +294,7 @@ func (o *BitmapFont) GetCharSize(char gdnative.Int, next gdnative.Int) gdnative.
 	Args: [], Returns: BitmapFont
 */
 func (o *BitmapFont) GetFallback() BitmapFont {
-	log.Println("Calling BitmapFont.GetFallback()")
+	//log.Println("Calling BitmapFont.GetFallback()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -321,7 +309,7 @@ func (o *BitmapFont) GetFallback() BitmapFont {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewBitmapFontFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -330,7 +318,7 @@ func (o *BitmapFont) GetFallback() BitmapFont {
 	Args: [{ false char_a int} { false char_b int}], Returns: int
 */
 func (o *BitmapFont) GetKerningPair(charA gdnative.Int, charB gdnative.Int) gdnative.Int {
-	log.Println("Calling BitmapFont.GetKerningPair()")
+	//log.Println("Calling BitmapFont.GetKerningPair()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -347,7 +335,7 @@ func (o *BitmapFont) GetKerningPair(charA gdnative.Int, charB gdnative.Int) gdna
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -356,7 +344,7 @@ func (o *BitmapFont) GetKerningPair(charA gdnative.Int, charB gdnative.Int) gdna
 	Args: [{ false idx int}], Returns: Texture
 */
 func (o *BitmapFont) GetTexture(idx gdnative.Int) Texture {
-	log.Println("Calling BitmapFont.GetTexture()")
+	//log.Println("Calling BitmapFont.GetTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -372,7 +360,7 @@ func (o *BitmapFont) GetTexture(idx gdnative.Int) Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -381,7 +369,7 @@ func (o *BitmapFont) GetTexture(idx gdnative.Int) Texture {
 	Args: [], Returns: int
 */
 func (o *BitmapFont) GetTextureCount() gdnative.Int {
-	log.Println("Calling BitmapFont.GetTextureCount()")
+	//log.Println("Calling BitmapFont.GetTextureCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -396,7 +384,7 @@ func (o *BitmapFont) GetTextureCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -405,7 +393,7 @@ func (o *BitmapFont) GetTextureCount() gdnative.Int {
 	Args: [{ false px float}], Returns: void
 */
 func (o *BitmapFont) SetAscent(px gdnative.Float) {
-	log.Println("Calling BitmapFont.SetAscent()")
+	//log.Println("Calling BitmapFont.SetAscent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -426,7 +414,7 @@ func (o *BitmapFont) SetAscent(px gdnative.Float) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *BitmapFont) SetDistanceFieldHint(enable gdnative.Bool) {
-	log.Println("Calling BitmapFont.SetDistanceFieldHint()")
+	//log.Println("Calling BitmapFont.SetDistanceFieldHint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -447,7 +435,7 @@ func (o *BitmapFont) SetDistanceFieldHint(enable gdnative.Bool) {
 	Args: [{ false fallback BitmapFont}], Returns: void
 */
 func (o *BitmapFont) SetFallback(fallback BitmapFont) {
-	log.Println("Calling BitmapFont.SetFallback()")
+	//log.Println("Calling BitmapFont.SetFallback()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -468,7 +456,7 @@ func (o *BitmapFont) SetFallback(fallback BitmapFont) {
 	Args: [{ false px float}], Returns: void
 */
 func (o *BitmapFont) SetHeight(px gdnative.Float) {
-	log.Println("Calling BitmapFont.SetHeight()")
+	//log.Println("Calling BitmapFont.SetHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

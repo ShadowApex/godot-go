@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *CollisionShape2D) BaseClass() string {
 	return "CollisionShape2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *CollisionShape2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *CollisionShape2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *CollisionShape2D) X_ShapeChanged() {
-	log.Println("Calling CollisionShape2D.X_ShapeChanged()")
+	//log.Println("Calling CollisionShape2D.X_ShapeChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *CollisionShape2D) X_ShapeChanged() {
 	Args: [], Returns: Shape2D
 */
 func (o *CollisionShape2D) GetShape() Shape2D {
-	log.Println("Calling CollisionShape2D.GetShape()")
+	//log.Println("Calling CollisionShape2D.GetShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -86,7 +74,7 @@ func (o *CollisionShape2D) GetShape() Shape2D {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewShape2DFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -95,7 +83,7 @@ func (o *CollisionShape2D) GetShape() Shape2D {
 	Args: [], Returns: bool
 */
 func (o *CollisionShape2D) IsDisabled() gdnative.Bool {
-	log.Println("Calling CollisionShape2D.IsDisabled()")
+	//log.Println("Calling CollisionShape2D.IsDisabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -110,7 +98,7 @@ func (o *CollisionShape2D) IsDisabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -119,7 +107,7 @@ func (o *CollisionShape2D) IsDisabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *CollisionShape2D) IsOneWayCollisionEnabled() gdnative.Bool {
-	log.Println("Calling CollisionShape2D.IsOneWayCollisionEnabled()")
+	//log.Println("Calling CollisionShape2D.IsOneWayCollisionEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -134,7 +122,7 @@ func (o *CollisionShape2D) IsOneWayCollisionEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -143,7 +131,7 @@ func (o *CollisionShape2D) IsOneWayCollisionEnabled() gdnative.Bool {
 	Args: [{ false disabled bool}], Returns: void
 */
 func (o *CollisionShape2D) SetDisabled(disabled gdnative.Bool) {
-	log.Println("Calling CollisionShape2D.SetDisabled()")
+	//log.Println("Calling CollisionShape2D.SetDisabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -164,7 +152,7 @@ func (o *CollisionShape2D) SetDisabled(disabled gdnative.Bool) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *CollisionShape2D) SetOneWayCollision(enabled gdnative.Bool) {
-	log.Println("Calling CollisionShape2D.SetOneWayCollision()")
+	//log.Println("Calling CollisionShape2D.SetOneWayCollision()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -185,7 +173,7 @@ func (o *CollisionShape2D) SetOneWayCollision(enabled gdnative.Bool) {
 	Args: [{ false shape Shape2D}], Returns: void
 */
 func (o *CollisionShape2D) SetShape(shape Shape2D) {
-	log.Println("Calling CollisionShape2D.SetShape()")
+	//log.Println("Calling CollisionShape2D.SetShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

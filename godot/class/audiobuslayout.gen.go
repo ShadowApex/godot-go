@@ -33,13 +33,3 @@ type AudioBusLayout struct {
 func (o *AudioBusLayout) BaseClass() string {
 	return "AudioBusLayout"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AudioBusLayout) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AudioBusLayout) GetBaseObject() gdnative.Object {
-	return o.owner
-}

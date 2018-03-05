@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Popup) BaseClass() string {
 	return "Popup"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Popup) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Popup) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: bool
 */
 func (o *Popup) IsExclusive() gdnative.Bool {
-	log.Println("Calling Popup.IsExclusive()")
+	//log.Println("Calling Popup.IsExclusive()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *Popup) IsExclusive() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *Popup) IsExclusive() gdnative.Bool {
 	Args: [{(0, 0, 0, 0) true bounds Rect2}], Returns: void
 */
 func (o *Popup) Popup(bounds gdnative.Rect2) {
-	log.Println("Calling Popup.Popup()")
+	//log.Println("Calling Popup.Popup()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *Popup) Popup(bounds gdnative.Rect2) {
 	Args: [{(0, 0) true size Vector2}], Returns: void
 */
 func (o *Popup) PopupCentered(size gdnative.Vector2) {
-	log.Println("Calling Popup.PopupCentered()")
+	//log.Println("Calling Popup.PopupCentered()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -117,7 +105,7 @@ func (o *Popup) PopupCentered(size gdnative.Vector2) {
 	Args: [{(0, 0) true minsize Vector2}], Returns: void
 */
 func (o *Popup) PopupCenteredMinsize(minsize gdnative.Vector2) {
-	log.Println("Calling Popup.PopupCenteredMinsize()")
+	//log.Println("Calling Popup.PopupCenteredMinsize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -138,7 +126,7 @@ func (o *Popup) PopupCenteredMinsize(minsize gdnative.Vector2) {
 	Args: [{0.75 true ratio float}], Returns: void
 */
 func (o *Popup) PopupCenteredRatio(ratio gdnative.Float) {
-	log.Println("Calling Popup.PopupCenteredRatio()")
+	//log.Println("Calling Popup.PopupCenteredRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -159,7 +147,7 @@ func (o *Popup) PopupCenteredRatio(ratio gdnative.Float) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Popup) SetExclusive(enable gdnative.Bool) {
-	log.Println("Calling Popup.SetExclusive()")
+	//log.Println("Calling Popup.SetExclusive()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

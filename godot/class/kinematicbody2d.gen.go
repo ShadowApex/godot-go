@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *KinematicBody2D) BaseClass() string {
 	return "KinematicBody2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *KinematicBody2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *KinematicBody2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Returns the velocity of the floor. Only updates when calling [method move_and_slide].
 	Args: [], Returns: Vector2
 */
 func (o *KinematicBody2D) GetFloorVelocity() gdnative.Vector2 {
-	log.Println("Calling KinematicBody2D.GetFloorVelocity()")
+	//log.Println("Calling KinematicBody2D.GetFloorVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *KinematicBody2D) GetFloorVelocity() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *KinematicBody2D) GetFloorVelocity() gdnative.Vector2 {
 	Args: [], Returns: float
 */
 func (o *KinematicBody2D) GetSafeMargin() gdnative.Float {
-	log.Println("Calling KinematicBody2D.GetSafeMargin()")
+	//log.Println("Calling KinematicBody2D.GetSafeMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *KinematicBody2D) GetSafeMargin() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *KinematicBody2D) GetSafeMargin() gdnative.Float {
 	Args: [{ false slide_idx int}], Returns: KinematicCollision2D
 */
 func (o *KinematicBody2D) GetSlideCollision(slideIdx gdnative.Int) KinematicCollision2D {
-	log.Println("Calling KinematicBody2D.GetSlideCollision()")
+	//log.Println("Calling KinematicBody2D.GetSlideCollision()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -115,7 +103,7 @@ func (o *KinematicBody2D) GetSlideCollision(slideIdx gdnative.Int) KinematicColl
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewKinematicCollision2DFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -124,7 +112,7 @@ func (o *KinematicBody2D) GetSlideCollision(slideIdx gdnative.Int) KinematicColl
 	Args: [], Returns: int
 */
 func (o *KinematicBody2D) GetSlideCount() gdnative.Int {
-	log.Println("Calling KinematicBody2D.GetSlideCount()")
+	//log.Println("Calling KinematicBody2D.GetSlideCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -139,7 +127,7 @@ func (o *KinematicBody2D) GetSlideCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -148,7 +136,7 @@ func (o *KinematicBody2D) GetSlideCount() gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *KinematicBody2D) IsOnCeiling() gdnative.Bool {
-	log.Println("Calling KinematicBody2D.IsOnCeiling()")
+	//log.Println("Calling KinematicBody2D.IsOnCeiling()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -163,7 +151,7 @@ func (o *KinematicBody2D) IsOnCeiling() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -172,7 +160,7 @@ func (o *KinematicBody2D) IsOnCeiling() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *KinematicBody2D) IsOnFloor() gdnative.Bool {
-	log.Println("Calling KinematicBody2D.IsOnFloor()")
+	//log.Println("Calling KinematicBody2D.IsOnFloor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -187,7 +175,7 @@ func (o *KinematicBody2D) IsOnFloor() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -196,7 +184,7 @@ func (o *KinematicBody2D) IsOnFloor() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *KinematicBody2D) IsOnWall() gdnative.Bool {
-	log.Println("Calling KinematicBody2D.IsOnWall()")
+	//log.Println("Calling KinematicBody2D.IsOnWall()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -211,7 +199,7 @@ func (o *KinematicBody2D) IsOnWall() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -220,7 +208,7 @@ func (o *KinematicBody2D) IsOnWall() gdnative.Bool {
 	Args: [{ false rel_vec Vector2}], Returns: KinematicCollision2D
 */
 func (o *KinematicBody2D) MoveAndCollide(relVec gdnative.Vector2) KinematicCollision2D {
-	log.Println("Calling KinematicBody2D.MoveAndCollide()")
+	//log.Println("Calling KinematicBody2D.MoveAndCollide()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -236,7 +224,7 @@ func (o *KinematicBody2D) MoveAndCollide(relVec gdnative.Vector2) KinematicColli
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewKinematicCollision2DFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -245,7 +233,7 @@ func (o *KinematicBody2D) MoveAndCollide(relVec gdnative.Vector2) KinematicColli
 	Args: [{ false linear_velocity Vector2} {(0, 0) true floor_normal Vector2} {5 true slope_stop_min_velocity float} {4 true max_bounces int} {0.785398 true floor_max_angle float}], Returns: Vector2
 */
 func (o *KinematicBody2D) MoveAndSlide(linearVelocity gdnative.Vector2, floorNormal gdnative.Vector2, slopeStopMinVelocity gdnative.Float, maxBounces gdnative.Int, floorMaxAngle gdnative.Float) gdnative.Vector2 {
-	log.Println("Calling KinematicBody2D.MoveAndSlide()")
+	//log.Println("Calling KinematicBody2D.MoveAndSlide()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 5, 5)
@@ -265,7 +253,7 @@ func (o *KinematicBody2D) MoveAndSlide(linearVelocity gdnative.Vector2, floorNor
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -274,7 +262,7 @@ func (o *KinematicBody2D) MoveAndSlide(linearVelocity gdnative.Vector2, floorNor
 	Args: [{ false pixels float}], Returns: void
 */
 func (o *KinematicBody2D) SetSafeMargin(pixels gdnative.Float) {
-	log.Println("Calling KinematicBody2D.SetSafeMargin()")
+	//log.Println("Calling KinematicBody2D.SetSafeMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -295,7 +283,7 @@ func (o *KinematicBody2D) SetSafeMargin(pixels gdnative.Float) {
 	Args: [{ false from Transform2D} { false rel_vec Vector2}], Returns: bool
 */
 func (o *KinematicBody2D) TestMove(from gdnative.Transform2D, relVec gdnative.Vector2) gdnative.Bool {
-	log.Println("Calling KinematicBody2D.TestMove()")
+	//log.Println("Calling KinematicBody2D.TestMove()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -312,6 +300,6 @@ func (o *KinematicBody2D) TestMove(from gdnative.Transform2D, relVec gdnative.Ve
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

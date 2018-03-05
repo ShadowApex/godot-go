@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *InputEventMagnifyGesture) BaseClass() string {
 	return "InputEventMagnifyGesture"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *InputEventMagnifyGesture) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *InputEventMagnifyGesture) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *InputEventMagnifyGesture) GetFactor() gdnative.Float {
-	log.Println("Calling InputEventMagnifyGesture.GetFactor()")
+	//log.Println("Calling InputEventMagnifyGesture.GetFactor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *InputEventMagnifyGesture) GetFactor() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *InputEventMagnifyGesture) GetFactor() gdnative.Float {
 	Args: [{ false factor float}], Returns: void
 */
 func (o *InputEventMagnifyGesture) SetFactor(factor gdnative.Float) {
-	log.Println("Calling InputEventMagnifyGesture.SetFactor()")
+	//log.Println("Calling InputEventMagnifyGesture.SetFactor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

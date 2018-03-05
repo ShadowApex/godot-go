@@ -33,13 +33,3 @@ type Shape struct {
 func (o *Shape) BaseClass() string {
 	return "Shape"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Shape) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Shape) GetBaseObject() gdnative.Object {
-	return o.owner
-}

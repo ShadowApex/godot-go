@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *PathFollow) BaseClass() string {
 	return "PathFollow"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *PathFollow) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *PathFollow) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: bool
 */
 func (o *PathFollow) GetCubicInterpolation() gdnative.Bool {
-	log.Println("Calling PathFollow.GetCubicInterpolation()")
+	//log.Println("Calling PathFollow.GetCubicInterpolation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *PathFollow) GetCubicInterpolation() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *PathFollow) GetCubicInterpolation() gdnative.Bool {
 	Args: [], Returns: float
 */
 func (o *PathFollow) GetHOffset() gdnative.Float {
-	log.Println("Calling PathFollow.GetHOffset()")
+	//log.Println("Calling PathFollow.GetHOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *PathFollow) GetHOffset() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *PathFollow) GetHOffset() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *PathFollow) GetOffset() gdnative.Float {
-	log.Println("Calling PathFollow.GetOffset()")
+	//log.Println("Calling PathFollow.GetOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *PathFollow) GetOffset() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -128,7 +116,7 @@ func (o *PathFollow) GetOffset() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *PathFollow) GetUnitOffset() gdnative.Float {
-	log.Println("Calling PathFollow.GetUnitOffset()")
+	//log.Println("Calling PathFollow.GetUnitOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -143,7 +131,7 @@ func (o *PathFollow) GetUnitOffset() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -152,7 +140,7 @@ func (o *PathFollow) GetUnitOffset() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *PathFollow) GetVOffset() gdnative.Float {
-	log.Println("Calling PathFollow.GetVOffset()")
+	//log.Println("Calling PathFollow.GetVOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -167,7 +155,7 @@ func (o *PathFollow) GetVOffset() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -176,7 +164,7 @@ func (o *PathFollow) GetVOffset() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *PathFollow) HasLoop() gdnative.Bool {
-	log.Println("Calling PathFollow.HasLoop()")
+	//log.Println("Calling PathFollow.HasLoop()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -191,7 +179,7 @@ func (o *PathFollow) HasLoop() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -200,7 +188,7 @@ func (o *PathFollow) HasLoop() gdnative.Bool {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *PathFollow) SetCubicInterpolation(enable gdnative.Bool) {
-	log.Println("Calling PathFollow.SetCubicInterpolation()")
+	//log.Println("Calling PathFollow.SetCubicInterpolation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -221,7 +209,7 @@ func (o *PathFollow) SetCubicInterpolation(enable gdnative.Bool) {
 	Args: [{ false h_offset float}], Returns: void
 */
 func (o *PathFollow) SetHOffset(hOffset gdnative.Float) {
-	log.Println("Calling PathFollow.SetHOffset()")
+	//log.Println("Calling PathFollow.SetHOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -242,7 +230,7 @@ func (o *PathFollow) SetHOffset(hOffset gdnative.Float) {
 	Args: [{ false loop bool}], Returns: void
 */
 func (o *PathFollow) SetLoop(loop gdnative.Bool) {
-	log.Println("Calling PathFollow.SetLoop()")
+	//log.Println("Calling PathFollow.SetLoop()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -263,7 +251,7 @@ func (o *PathFollow) SetLoop(loop gdnative.Bool) {
 	Args: [{ false offset float}], Returns: void
 */
 func (o *PathFollow) SetOffset(offset gdnative.Float) {
-	log.Println("Calling PathFollow.SetOffset()")
+	//log.Println("Calling PathFollow.SetOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -284,7 +272,7 @@ func (o *PathFollow) SetOffset(offset gdnative.Float) {
 	Args: [{ false rotation_mode int}], Returns: void
 */
 func (o *PathFollow) SetRotationMode(rotationMode gdnative.Int) {
-	log.Println("Calling PathFollow.SetRotationMode()")
+	//log.Println("Calling PathFollow.SetRotationMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -305,7 +293,7 @@ func (o *PathFollow) SetRotationMode(rotationMode gdnative.Int) {
 	Args: [{ false unit_offset float}], Returns: void
 */
 func (o *PathFollow) SetUnitOffset(unitOffset gdnative.Float) {
-	log.Println("Calling PathFollow.SetUnitOffset()")
+	//log.Println("Calling PathFollow.SetUnitOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -326,7 +314,7 @@ func (o *PathFollow) SetUnitOffset(unitOffset gdnative.Float) {
 	Args: [{ false v_offset float}], Returns: void
 */
 func (o *PathFollow) SetVOffset(vOffset gdnative.Float) {
-	log.Println("Calling PathFollow.SetVOffset()")
+	//log.Println("Calling PathFollow.SetVOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

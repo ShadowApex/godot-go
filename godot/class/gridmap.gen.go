@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *GridMap) BaseClass() string {
 	return "GridMap"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *GridMap) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *GridMap) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *GridMap) X_UpdateOctantsCallback() {
-	log.Println("Calling GridMap.X_UpdateOctantsCallback()")
+	//log.Println("Calling GridMap.X_UpdateOctantsCallback()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *GridMap) X_UpdateOctantsCallback() {
 	Args: [], Returns: void
 */
 func (o *GridMap) Clear() {
-	log.Println("Calling GridMap.Clear()")
+	//log.Println("Calling GridMap.Clear()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -91,7 +79,7 @@ func (o *GridMap) Clear() {
 	Args: [], Returns: void
 */
 func (o *GridMap) ClearBakedMeshes() {
-	log.Println("Calling GridMap.ClearBakedMeshes()")
+	//log.Println("Calling GridMap.ClearBakedMeshes()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -111,7 +99,7 @@ func (o *GridMap) ClearBakedMeshes() {
 	Args: [{ false idx int}], Returns: RID
 */
 func (o *GridMap) GetBakeMeshInstance(idx gdnative.Int) gdnative.Rid {
-	log.Println("Calling GridMap.GetBakeMeshInstance()")
+	//log.Println("Calling GridMap.GetBakeMeshInstance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -127,7 +115,7 @@ func (o *GridMap) GetBakeMeshInstance(idx gdnative.Int) gdnative.Rid {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -136,7 +124,7 @@ func (o *GridMap) GetBakeMeshInstance(idx gdnative.Int) gdnative.Rid {
 	Args: [], Returns: Array
 */
 func (o *GridMap) GetBakeMeshes() gdnative.Array {
-	log.Println("Calling GridMap.GetBakeMeshes()")
+	//log.Println("Calling GridMap.GetBakeMeshes()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -151,7 +139,7 @@ func (o *GridMap) GetBakeMeshes() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -160,7 +148,7 @@ func (o *GridMap) GetBakeMeshes() gdnative.Array {
 	Args: [{ false x int} { false y int} { false z int}], Returns: int
 */
 func (o *GridMap) GetCellItem(x gdnative.Int, y gdnative.Int, z gdnative.Int) gdnative.Int {
-	log.Println("Calling GridMap.GetCellItem()")
+	//log.Println("Calling GridMap.GetCellItem()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -178,7 +166,7 @@ func (o *GridMap) GetCellItem(x gdnative.Int, y gdnative.Int, z gdnative.Int) gd
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -187,7 +175,7 @@ func (o *GridMap) GetCellItem(x gdnative.Int, y gdnative.Int, z gdnative.Int) gd
 	Args: [{ false x int} { false y int} { false z int}], Returns: int
 */
 func (o *GridMap) GetCellItemOrientation(x gdnative.Int, y gdnative.Int, z gdnative.Int) gdnative.Int {
-	log.Println("Calling GridMap.GetCellItemOrientation()")
+	//log.Println("Calling GridMap.GetCellItemOrientation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -205,7 +193,7 @@ func (o *GridMap) GetCellItemOrientation(x gdnative.Int, y gdnative.Int, z gdnat
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -214,7 +202,7 @@ func (o *GridMap) GetCellItemOrientation(x gdnative.Int, y gdnative.Int, z gdnat
 	Args: [], Returns: float
 */
 func (o *GridMap) GetCellScale() gdnative.Float {
-	log.Println("Calling GridMap.GetCellScale()")
+	//log.Println("Calling GridMap.GetCellScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -229,7 +217,7 @@ func (o *GridMap) GetCellScale() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -238,7 +226,7 @@ func (o *GridMap) GetCellScale() gdnative.Float {
 	Args: [], Returns: Vector3
 */
 func (o *GridMap) GetCellSize() gdnative.Vector3 {
-	log.Println("Calling GridMap.GetCellSize()")
+	//log.Println("Calling GridMap.GetCellSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -253,7 +241,7 @@ func (o *GridMap) GetCellSize() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -262,7 +250,7 @@ func (o *GridMap) GetCellSize() gdnative.Vector3 {
 	Args: [], Returns: bool
 */
 func (o *GridMap) GetCenterX() gdnative.Bool {
-	log.Println("Calling GridMap.GetCenterX()")
+	//log.Println("Calling GridMap.GetCenterX()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -277,7 +265,7 @@ func (o *GridMap) GetCenterX() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -286,7 +274,7 @@ func (o *GridMap) GetCenterX() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *GridMap) GetCenterY() gdnative.Bool {
-	log.Println("Calling GridMap.GetCenterY()")
+	//log.Println("Calling GridMap.GetCenterY()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -301,7 +289,7 @@ func (o *GridMap) GetCenterY() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -310,7 +298,7 @@ func (o *GridMap) GetCenterY() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *GridMap) GetCenterZ() gdnative.Bool {
-	log.Println("Calling GridMap.GetCenterZ()")
+	//log.Println("Calling GridMap.GetCenterZ()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -325,7 +313,7 @@ func (o *GridMap) GetCenterZ() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -334,7 +322,7 @@ func (o *GridMap) GetCenterZ() gdnative.Bool {
 	Args: [], Returns: int
 */
 func (o *GridMap) GetCollisionLayer() gdnative.Int {
-	log.Println("Calling GridMap.GetCollisionLayer()")
+	//log.Println("Calling GridMap.GetCollisionLayer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -349,7 +337,7 @@ func (o *GridMap) GetCollisionLayer() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -358,7 +346,7 @@ func (o *GridMap) GetCollisionLayer() gdnative.Int {
 	Args: [{ false bit int}], Returns: bool
 */
 func (o *GridMap) GetCollisionLayerBit(bit gdnative.Int) gdnative.Bool {
-	log.Println("Calling GridMap.GetCollisionLayerBit()")
+	//log.Println("Calling GridMap.GetCollisionLayerBit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -374,7 +362,7 @@ func (o *GridMap) GetCollisionLayerBit(bit gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -383,7 +371,7 @@ func (o *GridMap) GetCollisionLayerBit(bit gdnative.Int) gdnative.Bool {
 	Args: [], Returns: int
 */
 func (o *GridMap) GetCollisionMask() gdnative.Int {
-	log.Println("Calling GridMap.GetCollisionMask()")
+	//log.Println("Calling GridMap.GetCollisionMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -398,7 +386,7 @@ func (o *GridMap) GetCollisionMask() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -407,7 +395,7 @@ func (o *GridMap) GetCollisionMask() gdnative.Int {
 	Args: [{ false bit int}], Returns: bool
 */
 func (o *GridMap) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
-	log.Println("Calling GridMap.GetCollisionMaskBit()")
+	//log.Println("Calling GridMap.GetCollisionMaskBit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -423,7 +411,7 @@ func (o *GridMap) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -432,7 +420,7 @@ func (o *GridMap) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
 	Args: [], Returns: Array
 */
 func (o *GridMap) GetMeshes() gdnative.Array {
-	log.Println("Calling GridMap.GetMeshes()")
+	//log.Println("Calling GridMap.GetMeshes()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -447,7 +435,7 @@ func (o *GridMap) GetMeshes() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -456,7 +444,7 @@ func (o *GridMap) GetMeshes() gdnative.Array {
 	Args: [], Returns: int
 */
 func (o *GridMap) GetOctantSize() gdnative.Int {
-	log.Println("Calling GridMap.GetOctantSize()")
+	//log.Println("Calling GridMap.GetOctantSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -471,7 +459,7 @@ func (o *GridMap) GetOctantSize() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -480,7 +468,7 @@ func (o *GridMap) GetOctantSize() gdnative.Int {
 	Args: [], Returns: MeshLibrary
 */
 func (o *GridMap) GetTheme() MeshLibrary {
-	log.Println("Calling GridMap.GetTheme()")
+	//log.Println("Calling GridMap.GetTheme()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -495,7 +483,7 @@ func (o *GridMap) GetTheme() MeshLibrary {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewMeshLibraryFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -504,7 +492,7 @@ func (o *GridMap) GetTheme() MeshLibrary {
 	Args: [], Returns: Array
 */
 func (o *GridMap) GetUsedCells() gdnative.Array {
-	log.Println("Calling GridMap.GetUsedCells()")
+	//log.Println("Calling GridMap.GetUsedCells()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -519,7 +507,7 @@ func (o *GridMap) GetUsedCells() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -528,7 +516,7 @@ func (o *GridMap) GetUsedCells() gdnative.Array {
 	Args: [{False true gen_lightmap_uv bool} {0.1 true lightmap_uv_texel_size float}], Returns: void
 */
 func (o *GridMap) MakeBakedMeshes(genLightmapUv gdnative.Bool, lightmapUvTexelSize gdnative.Float) {
-	log.Println("Calling GridMap.MakeBakedMeshes()")
+	//log.Println("Calling GridMap.MakeBakedMeshes()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -550,7 +538,7 @@ func (o *GridMap) MakeBakedMeshes(genLightmapUv gdnative.Bool, lightmapUvTexelSi
 	Args: [{ false x int} { false y int} { false z int}], Returns: Vector3
 */
 func (o *GridMap) MapToWorld(x gdnative.Int, y gdnative.Int, z gdnative.Int) gdnative.Vector3 {
-	log.Println("Calling GridMap.MapToWorld()")
+	//log.Println("Calling GridMap.MapToWorld()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -568,7 +556,7 @@ func (o *GridMap) MapToWorld(x gdnative.Int, y gdnative.Int, z gdnative.Int) gdn
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -577,7 +565,7 @@ func (o *GridMap) MapToWorld(x gdnative.Int, y gdnative.Int, z gdnative.Int) gdn
 	Args: [{ false resource Resource}], Returns: void
 */
 func (o *GridMap) ResourceChanged(resource Resource) {
-	log.Println("Calling GridMap.ResourceChanged()")
+	//log.Println("Calling GridMap.ResourceChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -598,7 +586,7 @@ func (o *GridMap) ResourceChanged(resource Resource) {
 	Args: [{ false x int} { false y int} { false z int} { false item int} {0 true orientation int}], Returns: void
 */
 func (o *GridMap) SetCellItem(x gdnative.Int, y gdnative.Int, z gdnative.Int, item gdnative.Int, orientation gdnative.Int) {
-	log.Println("Calling GridMap.SetCellItem()")
+	//log.Println("Calling GridMap.SetCellItem()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 5, 5)
@@ -623,7 +611,7 @@ func (o *GridMap) SetCellItem(x gdnative.Int, y gdnative.Int, z gdnative.Int, it
 	Args: [{ false scale float}], Returns: void
 */
 func (o *GridMap) SetCellScale(scale gdnative.Float) {
-	log.Println("Calling GridMap.SetCellScale()")
+	//log.Println("Calling GridMap.SetCellScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -644,7 +632,7 @@ func (o *GridMap) SetCellScale(scale gdnative.Float) {
 	Args: [{ false size Vector3}], Returns: void
 */
 func (o *GridMap) SetCellSize(size gdnative.Vector3) {
-	log.Println("Calling GridMap.SetCellSize()")
+	//log.Println("Calling GridMap.SetCellSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -665,7 +653,7 @@ func (o *GridMap) SetCellSize(size gdnative.Vector3) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *GridMap) SetCenterX(enable gdnative.Bool) {
-	log.Println("Calling GridMap.SetCenterX()")
+	//log.Println("Calling GridMap.SetCenterX()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -686,7 +674,7 @@ func (o *GridMap) SetCenterX(enable gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *GridMap) SetCenterY(enable gdnative.Bool) {
-	log.Println("Calling GridMap.SetCenterY()")
+	//log.Println("Calling GridMap.SetCenterY()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -707,7 +695,7 @@ func (o *GridMap) SetCenterY(enable gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *GridMap) SetCenterZ(enable gdnative.Bool) {
-	log.Println("Calling GridMap.SetCenterZ()")
+	//log.Println("Calling GridMap.SetCenterZ()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -728,7 +716,7 @@ func (o *GridMap) SetCenterZ(enable gdnative.Bool) {
 	Args: [{ false enabled bool} {True true clipabove bool} {0 true floor int} {0 true axis int}], Returns: void
 */
 func (o *GridMap) SetClip(enabled gdnative.Bool, clipabove gdnative.Bool, floor gdnative.Int, axis gdnative.Int) {
-	log.Println("Calling GridMap.SetClip()")
+	//log.Println("Calling GridMap.SetClip()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -752,7 +740,7 @@ func (o *GridMap) SetClip(enabled gdnative.Bool, clipabove gdnative.Bool, floor 
 	Args: [{ false layer int}], Returns: void
 */
 func (o *GridMap) SetCollisionLayer(layer gdnative.Int) {
-	log.Println("Calling GridMap.SetCollisionLayer()")
+	//log.Println("Calling GridMap.SetCollisionLayer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -773,7 +761,7 @@ func (o *GridMap) SetCollisionLayer(layer gdnative.Int) {
 	Args: [{ false bit int} { false value bool}], Returns: void
 */
 func (o *GridMap) SetCollisionLayerBit(bit gdnative.Int, value gdnative.Bool) {
-	log.Println("Calling GridMap.SetCollisionLayerBit()")
+	//log.Println("Calling GridMap.SetCollisionLayerBit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -795,7 +783,7 @@ func (o *GridMap) SetCollisionLayerBit(bit gdnative.Int, value gdnative.Bool) {
 	Args: [{ false mask int}], Returns: void
 */
 func (o *GridMap) SetCollisionMask(mask gdnative.Int) {
-	log.Println("Calling GridMap.SetCollisionMask()")
+	//log.Println("Calling GridMap.SetCollisionMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -816,7 +804,7 @@ func (o *GridMap) SetCollisionMask(mask gdnative.Int) {
 	Args: [{ false bit int} { false value bool}], Returns: void
 */
 func (o *GridMap) SetCollisionMaskBit(bit gdnative.Int, value gdnative.Bool) {
-	log.Println("Calling GridMap.SetCollisionMaskBit()")
+	//log.Println("Calling GridMap.SetCollisionMaskBit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -838,7 +826,7 @@ func (o *GridMap) SetCollisionMaskBit(bit gdnative.Int, value gdnative.Bool) {
 	Args: [{ false size int}], Returns: void
 */
 func (o *GridMap) SetOctantSize(size gdnative.Int) {
-	log.Println("Calling GridMap.SetOctantSize()")
+	//log.Println("Calling GridMap.SetOctantSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -859,7 +847,7 @@ func (o *GridMap) SetOctantSize(size gdnative.Int) {
 	Args: [{ false theme MeshLibrary}], Returns: void
 */
 func (o *GridMap) SetTheme(theme MeshLibrary) {
-	log.Println("Calling GridMap.SetTheme()")
+	//log.Println("Calling GridMap.SetTheme()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -880,7 +868,7 @@ func (o *GridMap) SetTheme(theme MeshLibrary) {
 	Args: [{ false pos Vector3}], Returns: Vector3
 */
 func (o *GridMap) WorldToMap(pos gdnative.Vector3) gdnative.Vector3 {
-	log.Println("Calling GridMap.WorldToMap()")
+	//log.Println("Calling GridMap.WorldToMap()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -896,6 +884,6 @@ func (o *GridMap) WorldToMap(pos gdnative.Vector3) gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

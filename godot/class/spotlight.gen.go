@@ -33,13 +33,3 @@ type SpotLight struct {
 func (o *SpotLight) BaseClass() string {
 	return "SpotLight"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *SpotLight) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *SpotLight) GetBaseObject() gdnative.Object {
-	return o.owner
-}

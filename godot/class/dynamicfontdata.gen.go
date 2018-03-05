@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *DynamicFontData) BaseClass() string {
 	return "DynamicFontData"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *DynamicFontData) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *DynamicFontData) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: String
 */
 func (o *DynamicFontData) GetFontPath() gdnative.String {
-	log.Println("Calling DynamicFontData.GetFontPath()")
+	//log.Println("Calling DynamicFontData.GetFontPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *DynamicFontData) GetFontPath() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *DynamicFontData) GetFontPath() gdnative.String {
 	Args: [{ false path String}], Returns: void
 */
 func (o *DynamicFontData) SetFontPath(path gdnative.String) {
-	log.Println("Calling DynamicFontData.SetFontPath()")
+	//log.Println("Calling DynamicFontData.SetFontPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

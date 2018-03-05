@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *PinJoint) BaseClass() string {
 	return "PinJoint"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *PinJoint) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *PinJoint) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false param int}], Returns: float
 */
 func (o *PinJoint) GetParam(param gdnative.Int) gdnative.Float {
-	log.Println("Calling PinJoint.GetParam()")
+	//log.Println("Calling PinJoint.GetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -67,7 +55,7 @@ func (o *PinJoint) GetParam(param gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -76,7 +64,7 @@ func (o *PinJoint) GetParam(param gdnative.Int) gdnative.Float {
 	Args: [{ false param int} { false value float}], Returns: void
 */
 func (o *PinJoint) SetParam(param gdnative.Int, value gdnative.Float) {
-	log.Println("Calling PinJoint.SetParam()")
+	//log.Println("Calling PinJoint.SetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)

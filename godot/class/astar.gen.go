@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *AStar) BaseClass() string {
 	return "AStar"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AStar) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AStar) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Called when computing the cost between two connected points.
 	Args: [{ false from_id int} { false to_id int}], Returns: float
 */
 func (o *AStar) X_ComputeCost(fromId gdnative.Int, toId gdnative.Int) gdnative.Float {
-	log.Println("Calling AStar.X_ComputeCost()")
+	//log.Println("Calling AStar.X_ComputeCost()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -68,7 +56,7 @@ func (o *AStar) X_ComputeCost(fromId gdnative.Int, toId gdnative.Int) gdnative.F
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -77,7 +65,7 @@ func (o *AStar) X_ComputeCost(fromId gdnative.Int, toId gdnative.Int) gdnative.F
 	Args: [{ false from_id int} { false to_id int}], Returns: float
 */
 func (o *AStar) X_EstimateCost(fromId gdnative.Int, toId gdnative.Int) gdnative.Float {
-	log.Println("Calling AStar.X_EstimateCost()")
+	//log.Println("Calling AStar.X_EstimateCost()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -94,7 +82,7 @@ func (o *AStar) X_EstimateCost(fromId gdnative.Int, toId gdnative.Int) gdnative.
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -103,7 +91,7 @@ func (o *AStar) X_EstimateCost(fromId gdnative.Int, toId gdnative.Int) gdnative.
 	Args: [{ false id int} { false position Vector3} {1 true weight_scale float}], Returns: void
 */
 func (o *AStar) AddPoint(id gdnative.Int, position gdnative.Vector3, weightScale gdnative.Float) {
-	log.Println("Calling AStar.AddPoint()")
+	//log.Println("Calling AStar.AddPoint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -126,7 +114,7 @@ func (o *AStar) AddPoint(id gdnative.Int, position gdnative.Vector3, weightScale
 	Args: [{ false id int} { false to_id int}], Returns: bool
 */
 func (o *AStar) ArePointsConnected(id gdnative.Int, toId gdnative.Int) gdnative.Bool {
-	log.Println("Calling AStar.ArePointsConnected()")
+	//log.Println("Calling AStar.ArePointsConnected()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -143,7 +131,7 @@ func (o *AStar) ArePointsConnected(id gdnative.Int, toId gdnative.Int) gdnative.
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -152,7 +140,7 @@ func (o *AStar) ArePointsConnected(id gdnative.Int, toId gdnative.Int) gdnative.
 	Args: [], Returns: void
 */
 func (o *AStar) Clear() {
-	log.Println("Calling AStar.Clear()")
+	//log.Println("Calling AStar.Clear()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -172,7 +160,7 @@ func (o *AStar) Clear() {
 	Args: [{ false id int} { false to_id int} {True true bidirectional bool}], Returns: void
 */
 func (o *AStar) ConnectPoints(id gdnative.Int, toId gdnative.Int, bidirectional gdnative.Bool) {
-	log.Println("Calling AStar.ConnectPoints()")
+	//log.Println("Calling AStar.ConnectPoints()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -195,7 +183,7 @@ func (o *AStar) ConnectPoints(id gdnative.Int, toId gdnative.Int, bidirectional 
 	Args: [{ false id int} { false to_id int}], Returns: void
 */
 func (o *AStar) DisconnectPoints(id gdnative.Int, toId gdnative.Int) {
-	log.Println("Calling AStar.DisconnectPoints()")
+	//log.Println("Calling AStar.DisconnectPoints()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -217,7 +205,7 @@ func (o *AStar) DisconnectPoints(id gdnative.Int, toId gdnative.Int) {
 	Args: [], Returns: int
 */
 func (o *AStar) GetAvailablePointId() gdnative.Int {
-	log.Println("Calling AStar.GetAvailablePointId()")
+	//log.Println("Calling AStar.GetAvailablePointId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -232,7 +220,7 @@ func (o *AStar) GetAvailablePointId() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -241,7 +229,7 @@ func (o *AStar) GetAvailablePointId() gdnative.Int {
 	Args: [{ false to_position Vector3}], Returns: int
 */
 func (o *AStar) GetClosestPoint(toPosition gdnative.Vector3) gdnative.Int {
-	log.Println("Calling AStar.GetClosestPoint()")
+	//log.Println("Calling AStar.GetClosestPoint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -257,7 +245,7 @@ func (o *AStar) GetClosestPoint(toPosition gdnative.Vector3) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -266,7 +254,7 @@ func (o *AStar) GetClosestPoint(toPosition gdnative.Vector3) gdnative.Int {
 	Args: [{ false to_position Vector3}], Returns: Vector3
 */
 func (o *AStar) GetClosestPositionInSegment(toPosition gdnative.Vector3) gdnative.Vector3 {
-	log.Println("Calling AStar.GetClosestPositionInSegment()")
+	//log.Println("Calling AStar.GetClosestPositionInSegment()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -282,7 +270,7 @@ func (o *AStar) GetClosestPositionInSegment(toPosition gdnative.Vector3) gdnativ
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -291,7 +279,7 @@ func (o *AStar) GetClosestPositionInSegment(toPosition gdnative.Vector3) gdnativ
 	Args: [{ false from_id int} { false to_id int}], Returns: PoolIntArray
 */
 func (o *AStar) GetIdPath(fromId gdnative.Int, toId gdnative.Int) gdnative.PoolIntArray {
-	log.Println("Calling AStar.GetIdPath()")
+	//log.Println("Calling AStar.GetIdPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -308,7 +296,7 @@ func (o *AStar) GetIdPath(fromId gdnative.Int, toId gdnative.Int) gdnative.PoolI
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -317,7 +305,7 @@ func (o *AStar) GetIdPath(fromId gdnative.Int, toId gdnative.Int) gdnative.PoolI
 	Args: [{ false id int}], Returns: PoolIntArray
 */
 func (o *AStar) GetPointConnections(id gdnative.Int) gdnative.PoolIntArray {
-	log.Println("Calling AStar.GetPointConnections()")
+	//log.Println("Calling AStar.GetPointConnections()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -333,7 +321,7 @@ func (o *AStar) GetPointConnections(id gdnative.Int) gdnative.PoolIntArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolIntArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -342,7 +330,7 @@ func (o *AStar) GetPointConnections(id gdnative.Int) gdnative.PoolIntArray {
 	Args: [{ false from_id int} { false to_id int}], Returns: PoolVector3Array
 */
 func (o *AStar) GetPointPath(fromId gdnative.Int, toId gdnative.Int) gdnative.PoolVector3Array {
-	log.Println("Calling AStar.GetPointPath()")
+	//log.Println("Calling AStar.GetPointPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -359,7 +347,7 @@ func (o *AStar) GetPointPath(fromId gdnative.Int, toId gdnative.Int) gdnative.Po
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolVector3ArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -368,7 +356,7 @@ func (o *AStar) GetPointPath(fromId gdnative.Int, toId gdnative.Int) gdnative.Po
 	Args: [{ false id int}], Returns: Vector3
 */
 func (o *AStar) GetPointPosition(id gdnative.Int) gdnative.Vector3 {
-	log.Println("Calling AStar.GetPointPosition()")
+	//log.Println("Calling AStar.GetPointPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -384,7 +372,7 @@ func (o *AStar) GetPointPosition(id gdnative.Int) gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -393,7 +381,7 @@ func (o *AStar) GetPointPosition(id gdnative.Int) gdnative.Vector3 {
 	Args: [{ false id int}], Returns: float
 */
 func (o *AStar) GetPointWeightScale(id gdnative.Int) gdnative.Float {
-	log.Println("Calling AStar.GetPointWeightScale()")
+	//log.Println("Calling AStar.GetPointWeightScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -409,7 +397,7 @@ func (o *AStar) GetPointWeightScale(id gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -418,7 +406,7 @@ func (o *AStar) GetPointWeightScale(id gdnative.Int) gdnative.Float {
 	Args: [], Returns: Array
 */
 func (o *AStar) GetPoints() gdnative.Array {
-	log.Println("Calling AStar.GetPoints()")
+	//log.Println("Calling AStar.GetPoints()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -433,7 +421,7 @@ func (o *AStar) GetPoints() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -442,7 +430,7 @@ func (o *AStar) GetPoints() gdnative.Array {
 	Args: [{ false id int}], Returns: bool
 */
 func (o *AStar) HasPoint(id gdnative.Int) gdnative.Bool {
-	log.Println("Calling AStar.HasPoint()")
+	//log.Println("Calling AStar.HasPoint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -458,7 +446,7 @@ func (o *AStar) HasPoint(id gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -467,7 +455,7 @@ func (o *AStar) HasPoint(id gdnative.Int) gdnative.Bool {
 	Args: [{ false id int}], Returns: void
 */
 func (o *AStar) RemovePoint(id gdnative.Int) {
-	log.Println("Calling AStar.RemovePoint()")
+	//log.Println("Calling AStar.RemovePoint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -488,7 +476,7 @@ func (o *AStar) RemovePoint(id gdnative.Int) {
 	Args: [{ false id int} { false position Vector3}], Returns: void
 */
 func (o *AStar) SetPointPosition(id gdnative.Int, position gdnative.Vector3) {
-	log.Println("Calling AStar.SetPointPosition()")
+	//log.Println("Calling AStar.SetPointPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -510,7 +498,7 @@ func (o *AStar) SetPointPosition(id gdnative.Int, position gdnative.Vector3) {
 	Args: [{ false id int} { false weight_scale float}], Returns: void
 */
 func (o *AStar) SetPointWeightScale(id gdnative.Int, weightScale gdnative.Float) {
-	log.Println("Calling AStar.SetPointWeightScale()")
+	//log.Println("Calling AStar.SetPointWeightScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)

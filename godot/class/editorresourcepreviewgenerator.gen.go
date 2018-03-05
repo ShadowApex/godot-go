@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *EditorResourcePreviewGenerator) BaseClass() string {
 	return "EditorResourcePreviewGenerator"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *EditorResourcePreviewGenerator) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *EditorResourcePreviewGenerator) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Generate a preview from a given resource. This must be always implemented. Returning an empty texture is an OK way to fail and let another generator take care. Care must be taken because this function is always called from a thread (not the main thread).
 	Args: [{ false from Resource}], Returns: Texture
 */
 func (o *EditorResourcePreviewGenerator) Generate(from Resource) Texture {
-	log.Println("Calling EditorResourcePreviewGenerator.Generate()")
+	//log.Println("Calling EditorResourcePreviewGenerator.Generate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -67,7 +55,7 @@ func (o *EditorResourcePreviewGenerator) Generate(from Resource) Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -76,7 +64,7 @@ func (o *EditorResourcePreviewGenerator) Generate(from Resource) Texture {
 	Args: [{ false path String}], Returns: Texture
 */
 func (o *EditorResourcePreviewGenerator) GenerateFromPath(path gdnative.String) Texture {
-	log.Println("Calling EditorResourcePreviewGenerator.GenerateFromPath()")
+	//log.Println("Calling EditorResourcePreviewGenerator.GenerateFromPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -92,7 +80,7 @@ func (o *EditorResourcePreviewGenerator) GenerateFromPath(path gdnative.String) 
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -101,7 +89,7 @@ func (o *EditorResourcePreviewGenerator) GenerateFromPath(path gdnative.String) 
 	Args: [{ false type String}], Returns: bool
 */
 func (o *EditorResourcePreviewGenerator) Handles(aType gdnative.String) gdnative.Bool {
-	log.Println("Calling EditorResourcePreviewGenerator.Handles()")
+	//log.Println("Calling EditorResourcePreviewGenerator.Handles()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -117,6 +105,6 @@ func (o *EditorResourcePreviewGenerator) Handles(aType gdnative.String) gdnative
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

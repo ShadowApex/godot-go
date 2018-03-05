@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,16 +34,6 @@ func (o *TextureRect) BaseClass() string {
 	return "TextureRect"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *TextureRect) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *TextureRect) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: enum.TextureRect::StretchMode
@@ -56,7 +44,7 @@ func (o *TextureRect) GetBaseObject() gdnative.Object {
 	Args: [], Returns: Texture
 */
 func (o *TextureRect) GetTexture() Texture {
-	log.Println("Calling TextureRect.GetTexture()")
+	//log.Println("Calling TextureRect.GetTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *TextureRect) GetTexture() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -80,7 +68,7 @@ func (o *TextureRect) GetTexture() Texture {
 	Args: [], Returns: bool
 */
 func (o *TextureRect) HasExpand() gdnative.Bool {
-	log.Println("Calling TextureRect.HasExpand()")
+	//log.Println("Calling TextureRect.HasExpand()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -95,7 +83,7 @@ func (o *TextureRect) HasExpand() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -104,7 +92,7 @@ func (o *TextureRect) HasExpand() gdnative.Bool {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *TextureRect) SetExpand(enable gdnative.Bool) {
-	log.Println("Calling TextureRect.SetExpand()")
+	//log.Println("Calling TextureRect.SetExpand()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -125,7 +113,7 @@ func (o *TextureRect) SetExpand(enable gdnative.Bool) {
 	Args: [{ false stretch_mode int}], Returns: void
 */
 func (o *TextureRect) SetStretchMode(stretchMode gdnative.Int) {
-	log.Println("Calling TextureRect.SetStretchMode()")
+	//log.Println("Calling TextureRect.SetStretchMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -146,7 +134,7 @@ func (o *TextureRect) SetStretchMode(stretchMode gdnative.Int) {
 	Args: [{ false texture Texture}], Returns: void
 */
 func (o *TextureRect) SetTexture(texture Texture) {
-	log.Println("Calling TextureRect.SetTexture()")
+	//log.Println("Calling TextureRect.SetTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

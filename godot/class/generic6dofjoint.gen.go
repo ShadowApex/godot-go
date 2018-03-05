@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Generic6DOFJoint) BaseClass() string {
 	return "Generic6DOFJoint"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Generic6DOFJoint) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Generic6DOFJoint) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *Generic6DOFJoint) X_GetAngularHiLimitX() gdnative.Float {
-	log.Println("Calling Generic6DOFJoint.X_GetAngularHiLimitX()")
+	//log.Println("Calling Generic6DOFJoint.X_GetAngularHiLimitX()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *Generic6DOFJoint) X_GetAngularHiLimitX() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *Generic6DOFJoint) X_GetAngularHiLimitX() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Generic6DOFJoint) X_GetAngularHiLimitY() gdnative.Float {
-	log.Println("Calling Generic6DOFJoint.X_GetAngularHiLimitY()")
+	//log.Println("Calling Generic6DOFJoint.X_GetAngularHiLimitY()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *Generic6DOFJoint) X_GetAngularHiLimitY() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *Generic6DOFJoint) X_GetAngularHiLimitY() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Generic6DOFJoint) X_GetAngularHiLimitZ() gdnative.Float {
-	log.Println("Calling Generic6DOFJoint.X_GetAngularHiLimitZ()")
+	//log.Println("Calling Generic6DOFJoint.X_GetAngularHiLimitZ()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *Generic6DOFJoint) X_GetAngularHiLimitZ() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *Generic6DOFJoint) X_GetAngularHiLimitZ() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Generic6DOFJoint) X_GetAngularLoLimitX() gdnative.Float {
-	log.Println("Calling Generic6DOFJoint.X_GetAngularLoLimitX()")
+	//log.Println("Calling Generic6DOFJoint.X_GetAngularLoLimitX()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *Generic6DOFJoint) X_GetAngularLoLimitX() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *Generic6DOFJoint) X_GetAngularLoLimitX() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Generic6DOFJoint) X_GetAngularLoLimitY() gdnative.Float {
-	log.Println("Calling Generic6DOFJoint.X_GetAngularLoLimitY()")
+	//log.Println("Calling Generic6DOFJoint.X_GetAngularLoLimitY()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *Generic6DOFJoint) X_GetAngularLoLimitY() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *Generic6DOFJoint) X_GetAngularLoLimitY() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Generic6DOFJoint) X_GetAngularLoLimitZ() gdnative.Float {
-	log.Println("Calling Generic6DOFJoint.X_GetAngularLoLimitZ()")
+	//log.Println("Calling Generic6DOFJoint.X_GetAngularLoLimitZ()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -186,7 +174,7 @@ func (o *Generic6DOFJoint) X_GetAngularLoLimitZ() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -195,7 +183,7 @@ func (o *Generic6DOFJoint) X_GetAngularLoLimitZ() gdnative.Float {
 	Args: [{ false angle float}], Returns: void
 */
 func (o *Generic6DOFJoint) X_SetAngularHiLimitX(angle gdnative.Float) {
-	log.Println("Calling Generic6DOFJoint.X_SetAngularHiLimitX()")
+	//log.Println("Calling Generic6DOFJoint.X_SetAngularHiLimitX()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -216,7 +204,7 @@ func (o *Generic6DOFJoint) X_SetAngularHiLimitX(angle gdnative.Float) {
 	Args: [{ false angle float}], Returns: void
 */
 func (o *Generic6DOFJoint) X_SetAngularHiLimitY(angle gdnative.Float) {
-	log.Println("Calling Generic6DOFJoint.X_SetAngularHiLimitY()")
+	//log.Println("Calling Generic6DOFJoint.X_SetAngularHiLimitY()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -237,7 +225,7 @@ func (o *Generic6DOFJoint) X_SetAngularHiLimitY(angle gdnative.Float) {
 	Args: [{ false angle float}], Returns: void
 */
 func (o *Generic6DOFJoint) X_SetAngularHiLimitZ(angle gdnative.Float) {
-	log.Println("Calling Generic6DOFJoint.X_SetAngularHiLimitZ()")
+	//log.Println("Calling Generic6DOFJoint.X_SetAngularHiLimitZ()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -258,7 +246,7 @@ func (o *Generic6DOFJoint) X_SetAngularHiLimitZ(angle gdnative.Float) {
 	Args: [{ false angle float}], Returns: void
 */
 func (o *Generic6DOFJoint) X_SetAngularLoLimitX(angle gdnative.Float) {
-	log.Println("Calling Generic6DOFJoint.X_SetAngularLoLimitX()")
+	//log.Println("Calling Generic6DOFJoint.X_SetAngularLoLimitX()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -279,7 +267,7 @@ func (o *Generic6DOFJoint) X_SetAngularLoLimitX(angle gdnative.Float) {
 	Args: [{ false angle float}], Returns: void
 */
 func (o *Generic6DOFJoint) X_SetAngularLoLimitY(angle gdnative.Float) {
-	log.Println("Calling Generic6DOFJoint.X_SetAngularLoLimitY()")
+	//log.Println("Calling Generic6DOFJoint.X_SetAngularLoLimitY()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -300,7 +288,7 @@ func (o *Generic6DOFJoint) X_SetAngularLoLimitY(angle gdnative.Float) {
 	Args: [{ false angle float}], Returns: void
 */
 func (o *Generic6DOFJoint) X_SetAngularLoLimitZ(angle gdnative.Float) {
-	log.Println("Calling Generic6DOFJoint.X_SetAngularLoLimitZ()")
+	//log.Println("Calling Generic6DOFJoint.X_SetAngularLoLimitZ()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -321,7 +309,7 @@ func (o *Generic6DOFJoint) X_SetAngularLoLimitZ(angle gdnative.Float) {
 	Args: [{ false flag int}], Returns: bool
 */
 func (o *Generic6DOFJoint) GetFlagX(flag gdnative.Int) gdnative.Bool {
-	log.Println("Calling Generic6DOFJoint.GetFlagX()")
+	//log.Println("Calling Generic6DOFJoint.GetFlagX()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -337,7 +325,7 @@ func (o *Generic6DOFJoint) GetFlagX(flag gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -346,7 +334,7 @@ func (o *Generic6DOFJoint) GetFlagX(flag gdnative.Int) gdnative.Bool {
 	Args: [{ false flag int}], Returns: bool
 */
 func (o *Generic6DOFJoint) GetFlagY(flag gdnative.Int) gdnative.Bool {
-	log.Println("Calling Generic6DOFJoint.GetFlagY()")
+	//log.Println("Calling Generic6DOFJoint.GetFlagY()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -362,7 +350,7 @@ func (o *Generic6DOFJoint) GetFlagY(flag gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -371,7 +359,7 @@ func (o *Generic6DOFJoint) GetFlagY(flag gdnative.Int) gdnative.Bool {
 	Args: [{ false flag int}], Returns: bool
 */
 func (o *Generic6DOFJoint) GetFlagZ(flag gdnative.Int) gdnative.Bool {
-	log.Println("Calling Generic6DOFJoint.GetFlagZ()")
+	//log.Println("Calling Generic6DOFJoint.GetFlagZ()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -387,7 +375,7 @@ func (o *Generic6DOFJoint) GetFlagZ(flag gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -396,7 +384,7 @@ func (o *Generic6DOFJoint) GetFlagZ(flag gdnative.Int) gdnative.Bool {
 	Args: [{ false param int}], Returns: float
 */
 func (o *Generic6DOFJoint) GetParamX(param gdnative.Int) gdnative.Float {
-	log.Println("Calling Generic6DOFJoint.GetParamX()")
+	//log.Println("Calling Generic6DOFJoint.GetParamX()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -412,7 +400,7 @@ func (o *Generic6DOFJoint) GetParamX(param gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -421,7 +409,7 @@ func (o *Generic6DOFJoint) GetParamX(param gdnative.Int) gdnative.Float {
 	Args: [{ false param int}], Returns: float
 */
 func (o *Generic6DOFJoint) GetParamY(param gdnative.Int) gdnative.Float {
-	log.Println("Calling Generic6DOFJoint.GetParamY()")
+	//log.Println("Calling Generic6DOFJoint.GetParamY()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -437,7 +425,7 @@ func (o *Generic6DOFJoint) GetParamY(param gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -446,7 +434,7 @@ func (o *Generic6DOFJoint) GetParamY(param gdnative.Int) gdnative.Float {
 	Args: [{ false param int}], Returns: float
 */
 func (o *Generic6DOFJoint) GetParamZ(param gdnative.Int) gdnative.Float {
-	log.Println("Calling Generic6DOFJoint.GetParamZ()")
+	//log.Println("Calling Generic6DOFJoint.GetParamZ()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -462,7 +450,7 @@ func (o *Generic6DOFJoint) GetParamZ(param gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -471,7 +459,7 @@ func (o *Generic6DOFJoint) GetParamZ(param gdnative.Int) gdnative.Float {
 	Args: [{ false flag int} { false value bool}], Returns: void
 */
 func (o *Generic6DOFJoint) SetFlagX(flag gdnative.Int, value gdnative.Bool) {
-	log.Println("Calling Generic6DOFJoint.SetFlagX()")
+	//log.Println("Calling Generic6DOFJoint.SetFlagX()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -493,7 +481,7 @@ func (o *Generic6DOFJoint) SetFlagX(flag gdnative.Int, value gdnative.Bool) {
 	Args: [{ false flag int} { false value bool}], Returns: void
 */
 func (o *Generic6DOFJoint) SetFlagY(flag gdnative.Int, value gdnative.Bool) {
-	log.Println("Calling Generic6DOFJoint.SetFlagY()")
+	//log.Println("Calling Generic6DOFJoint.SetFlagY()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -515,7 +503,7 @@ func (o *Generic6DOFJoint) SetFlagY(flag gdnative.Int, value gdnative.Bool) {
 	Args: [{ false flag int} { false value bool}], Returns: void
 */
 func (o *Generic6DOFJoint) SetFlagZ(flag gdnative.Int, value gdnative.Bool) {
-	log.Println("Calling Generic6DOFJoint.SetFlagZ()")
+	//log.Println("Calling Generic6DOFJoint.SetFlagZ()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -537,7 +525,7 @@ func (o *Generic6DOFJoint) SetFlagZ(flag gdnative.Int, value gdnative.Bool) {
 	Args: [{ false param int} { false value float}], Returns: void
 */
 func (o *Generic6DOFJoint) SetParamX(param gdnative.Int, value gdnative.Float) {
-	log.Println("Calling Generic6DOFJoint.SetParamX()")
+	//log.Println("Calling Generic6DOFJoint.SetParamX()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -559,7 +547,7 @@ func (o *Generic6DOFJoint) SetParamX(param gdnative.Int, value gdnative.Float) {
 	Args: [{ false param int} { false value float}], Returns: void
 */
 func (o *Generic6DOFJoint) SetParamY(param gdnative.Int, value gdnative.Float) {
-	log.Println("Calling Generic6DOFJoint.SetParamY()")
+	//log.Println("Calling Generic6DOFJoint.SetParamY()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -581,7 +569,7 @@ func (o *Generic6DOFJoint) SetParamY(param gdnative.Int, value gdnative.Float) {
 	Args: [{ false param int} { false value float}], Returns: void
 */
 func (o *Generic6DOFJoint) SetParamZ(param gdnative.Int, value gdnative.Float) {
-	log.Println("Calling Generic6DOFJoint.SetParamZ()")
+	//log.Println("Calling Generic6DOFJoint.SetParamZ()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)

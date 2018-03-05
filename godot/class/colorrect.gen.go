@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ColorRect) BaseClass() string {
 	return "ColorRect"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ColorRect) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ColorRect) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Color
 */
 func (o *ColorRect) GetFrameColor() gdnative.Color {
-	log.Println("Calling ColorRect.GetFrameColor()")
+	//log.Println("Calling ColorRect.GetFrameColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *ColorRect) GetFrameColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *ColorRect) GetFrameColor() gdnative.Color {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *ColorRect) SetFrameColor(color gdnative.Color) {
-	log.Println("Calling ColorRect.SetFrameColor()")
+	//log.Println("Calling ColorRect.SetFrameColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

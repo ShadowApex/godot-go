@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *RayCast) BaseClass() string {
 	return "RayCast"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *RayCast) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *RayCast) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Adds a collision exception so the ray does not report collisions with the specified node.
 	Args: [{ false node Object}], Returns: void
 */
 func (o *RayCast) AddException(node Object) {
-	log.Println("Calling RayCast.AddException()")
+	//log.Println("Calling RayCast.AddException()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *RayCast) AddException(node Object) {
 	Args: [{ false rid RID}], Returns: void
 */
 func (o *RayCast) AddExceptionRid(rid gdnative.Rid) {
-	log.Println("Calling RayCast.AddExceptionRid()")
+	//log.Println("Calling RayCast.AddExceptionRid()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -93,7 +81,7 @@ func (o *RayCast) AddExceptionRid(rid gdnative.Rid) {
 	Args: [], Returns: void
 */
 func (o *RayCast) ClearExceptions() {
-	log.Println("Calling RayCast.ClearExceptions()")
+	//log.Println("Calling RayCast.ClearExceptions()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -113,7 +101,7 @@ func (o *RayCast) ClearExceptions() {
 	Args: [], Returns: void
 */
 func (o *RayCast) ForceRaycastUpdate() {
-	log.Println("Calling RayCast.ForceRaycastUpdate()")
+	//log.Println("Calling RayCast.ForceRaycastUpdate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -133,7 +121,7 @@ func (o *RayCast) ForceRaycastUpdate() {
 	Args: [], Returns: Vector3
 */
 func (o *RayCast) GetCastTo() gdnative.Vector3 {
-	log.Println("Calling RayCast.GetCastTo()")
+	//log.Println("Calling RayCast.GetCastTo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -148,7 +136,7 @@ func (o *RayCast) GetCastTo() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -157,7 +145,7 @@ func (o *RayCast) GetCastTo() gdnative.Vector3 {
 	Args: [], Returns: Object
 */
 func (o *RayCast) GetCollider() Object {
-	log.Println("Calling RayCast.GetCollider()")
+	//log.Println("Calling RayCast.GetCollider()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -172,7 +160,7 @@ func (o *RayCast) GetCollider() Object {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewObjectFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -181,7 +169,7 @@ func (o *RayCast) GetCollider() Object {
 	Args: [], Returns: int
 */
 func (o *RayCast) GetColliderShape() gdnative.Int {
-	log.Println("Calling RayCast.GetColliderShape()")
+	//log.Println("Calling RayCast.GetColliderShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -196,7 +184,7 @@ func (o *RayCast) GetColliderShape() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -205,7 +193,7 @@ func (o *RayCast) GetColliderShape() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *RayCast) GetCollisionMask() gdnative.Int {
-	log.Println("Calling RayCast.GetCollisionMask()")
+	//log.Println("Calling RayCast.GetCollisionMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -220,7 +208,7 @@ func (o *RayCast) GetCollisionMask() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -229,7 +217,7 @@ func (o *RayCast) GetCollisionMask() gdnative.Int {
 	Args: [{ false bit int}], Returns: bool
 */
 func (o *RayCast) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
-	log.Println("Calling RayCast.GetCollisionMaskBit()")
+	//log.Println("Calling RayCast.GetCollisionMaskBit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -245,7 +233,7 @@ func (o *RayCast) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -254,7 +242,7 @@ func (o *RayCast) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
 	Args: [], Returns: Vector3
 */
 func (o *RayCast) GetCollisionNormal() gdnative.Vector3 {
-	log.Println("Calling RayCast.GetCollisionNormal()")
+	//log.Println("Calling RayCast.GetCollisionNormal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -269,7 +257,7 @@ func (o *RayCast) GetCollisionNormal() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -278,7 +266,7 @@ func (o *RayCast) GetCollisionNormal() gdnative.Vector3 {
 	Args: [], Returns: Vector3
 */
 func (o *RayCast) GetCollisionPoint() gdnative.Vector3 {
-	log.Println("Calling RayCast.GetCollisionPoint()")
+	//log.Println("Calling RayCast.GetCollisionPoint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -293,7 +281,7 @@ func (o *RayCast) GetCollisionPoint() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -302,7 +290,7 @@ func (o *RayCast) GetCollisionPoint() gdnative.Vector3 {
 	Args: [], Returns: bool
 */
 func (o *RayCast) GetExcludeParentBody() gdnative.Bool {
-	log.Println("Calling RayCast.GetExcludeParentBody()")
+	//log.Println("Calling RayCast.GetExcludeParentBody()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -317,7 +305,7 @@ func (o *RayCast) GetExcludeParentBody() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -326,7 +314,7 @@ func (o *RayCast) GetExcludeParentBody() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *RayCast) IsColliding() gdnative.Bool {
-	log.Println("Calling RayCast.IsColliding()")
+	//log.Println("Calling RayCast.IsColliding()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -341,7 +329,7 @@ func (o *RayCast) IsColliding() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -350,7 +338,7 @@ func (o *RayCast) IsColliding() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *RayCast) IsEnabled() gdnative.Bool {
-	log.Println("Calling RayCast.IsEnabled()")
+	//log.Println("Calling RayCast.IsEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -365,7 +353,7 @@ func (o *RayCast) IsEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -374,7 +362,7 @@ func (o *RayCast) IsEnabled() gdnative.Bool {
 	Args: [{ false node Object}], Returns: void
 */
 func (o *RayCast) RemoveException(node Object) {
-	log.Println("Calling RayCast.RemoveException()")
+	//log.Println("Calling RayCast.RemoveException()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -395,7 +383,7 @@ func (o *RayCast) RemoveException(node Object) {
 	Args: [{ false rid RID}], Returns: void
 */
 func (o *RayCast) RemoveExceptionRid(rid gdnative.Rid) {
-	log.Println("Calling RayCast.RemoveExceptionRid()")
+	//log.Println("Calling RayCast.RemoveExceptionRid()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -416,7 +404,7 @@ func (o *RayCast) RemoveExceptionRid(rid gdnative.Rid) {
 	Args: [{ false local_point Vector3}], Returns: void
 */
 func (o *RayCast) SetCastTo(localPoint gdnative.Vector3) {
-	log.Println("Calling RayCast.SetCastTo()")
+	//log.Println("Calling RayCast.SetCastTo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -437,7 +425,7 @@ func (o *RayCast) SetCastTo(localPoint gdnative.Vector3) {
 	Args: [{ false mask int}], Returns: void
 */
 func (o *RayCast) SetCollisionMask(mask gdnative.Int) {
-	log.Println("Calling RayCast.SetCollisionMask()")
+	//log.Println("Calling RayCast.SetCollisionMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -458,7 +446,7 @@ func (o *RayCast) SetCollisionMask(mask gdnative.Int) {
 	Args: [{ false bit int} { false value bool}], Returns: void
 */
 func (o *RayCast) SetCollisionMaskBit(bit gdnative.Int, value gdnative.Bool) {
-	log.Println("Calling RayCast.SetCollisionMaskBit()")
+	//log.Println("Calling RayCast.SetCollisionMaskBit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -480,7 +468,7 @@ func (o *RayCast) SetCollisionMaskBit(bit gdnative.Int, value gdnative.Bool) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *RayCast) SetEnabled(enabled gdnative.Bool) {
-	log.Println("Calling RayCast.SetEnabled()")
+	//log.Println("Calling RayCast.SetEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -501,7 +489,7 @@ func (o *RayCast) SetEnabled(enabled gdnative.Bool) {
 	Args: [{ false mask bool}], Returns: void
 */
 func (o *RayCast) SetExcludeParentBody(mask gdnative.Bool) {
-	log.Println("Calling RayCast.SetExcludeParentBody()")
+	//log.Println("Calling RayCast.SetExcludeParentBody()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

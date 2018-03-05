@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *RemoteTransform) BaseClass() string {
 	return "RemoteTransform"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *RemoteTransform) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *RemoteTransform) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: NodePath
 */
 func (o *RemoteTransform) GetRemoteNode() gdnative.NodePath {
-	log.Println("Calling RemoteTransform.GetRemoteNode()")
+	//log.Println("Calling RemoteTransform.GetRemoteNode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *RemoteTransform) GetRemoteNode() gdnative.NodePath {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewNodePathFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *RemoteTransform) GetRemoteNode() gdnative.NodePath {
 	Args: [], Returns: bool
 */
 func (o *RemoteTransform) GetUpdatePosition() gdnative.Bool {
-	log.Println("Calling RemoteTransform.GetUpdatePosition()")
+	//log.Println("Calling RemoteTransform.GetUpdatePosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *RemoteTransform) GetUpdatePosition() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *RemoteTransform) GetUpdatePosition() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *RemoteTransform) GetUpdateRotation() gdnative.Bool {
-	log.Println("Calling RemoteTransform.GetUpdateRotation()")
+	//log.Println("Calling RemoteTransform.GetUpdateRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *RemoteTransform) GetUpdateRotation() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *RemoteTransform) GetUpdateRotation() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *RemoteTransform) GetUpdateScale() gdnative.Bool {
-	log.Println("Calling RemoteTransform.GetUpdateScale()")
+	//log.Println("Calling RemoteTransform.GetUpdateScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *RemoteTransform) GetUpdateScale() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *RemoteTransform) GetUpdateScale() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *RemoteTransform) GetUseGlobalCoordinates() gdnative.Bool {
-	log.Println("Calling RemoteTransform.GetUseGlobalCoordinates()")
+	//log.Println("Calling RemoteTransform.GetUseGlobalCoordinates()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *RemoteTransform) GetUseGlobalCoordinates() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *RemoteTransform) GetUseGlobalCoordinates() gdnative.Bool {
 	Args: [{ false path NodePath}], Returns: void
 */
 func (o *RemoteTransform) SetRemoteNode(path gdnative.NodePath) {
-	log.Println("Calling RemoteTransform.SetRemoteNode()")
+	//log.Println("Calling RemoteTransform.SetRemoteNode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -192,7 +180,7 @@ func (o *RemoteTransform) SetRemoteNode(path gdnative.NodePath) {
 	Args: [{ false update_remote_position bool}], Returns: void
 */
 func (o *RemoteTransform) SetUpdatePosition(updateRemotePosition gdnative.Bool) {
-	log.Println("Calling RemoteTransform.SetUpdatePosition()")
+	//log.Println("Calling RemoteTransform.SetUpdatePosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -213,7 +201,7 @@ func (o *RemoteTransform) SetUpdatePosition(updateRemotePosition gdnative.Bool) 
 	Args: [{ false update_remote_rotation bool}], Returns: void
 */
 func (o *RemoteTransform) SetUpdateRotation(updateRemoteRotation gdnative.Bool) {
-	log.Println("Calling RemoteTransform.SetUpdateRotation()")
+	//log.Println("Calling RemoteTransform.SetUpdateRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -234,7 +222,7 @@ func (o *RemoteTransform) SetUpdateRotation(updateRemoteRotation gdnative.Bool) 
 	Args: [{ false update_remote_scale bool}], Returns: void
 */
 func (o *RemoteTransform) SetUpdateScale(updateRemoteScale gdnative.Bool) {
-	log.Println("Calling RemoteTransform.SetUpdateScale()")
+	//log.Println("Calling RemoteTransform.SetUpdateScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -255,7 +243,7 @@ func (o *RemoteTransform) SetUpdateScale(updateRemoteScale gdnative.Bool) {
 	Args: [{ false use_global_coordinates bool}], Returns: void
 */
 func (o *RemoteTransform) SetUseGlobalCoordinates(useGlobalCoordinates gdnative.Bool) {
-	log.Println("Calling RemoteTransform.SetUseGlobalCoordinates()")
+	//log.Println("Calling RemoteTransform.SetUseGlobalCoordinates()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

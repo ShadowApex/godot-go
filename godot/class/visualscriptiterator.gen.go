@@ -33,13 +33,3 @@ type VisualScriptIterator struct {
 func (o *VisualScriptIterator) BaseClass() string {
 	return "VisualScriptIterator"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptIterator) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptIterator) GetBaseObject() gdnative.Object {
-	return o.owner
-}

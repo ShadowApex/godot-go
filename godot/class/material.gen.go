@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Material) BaseClass() string {
 	return "Material"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Material) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Material) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Material
 */
 func (o *Material) GetNextPass() Material {
-	log.Println("Calling Material.GetNextPass()")
+	//log.Println("Calling Material.GetNextPass()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *Material) GetNextPass() Material {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewMaterialFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *Material) GetNextPass() Material {
 	Args: [], Returns: int
 */
 func (o *Material) GetRenderPriority() gdnative.Int {
-	log.Println("Calling Material.GetRenderPriority()")
+	//log.Println("Calling Material.GetRenderPriority()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *Material) GetRenderPriority() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *Material) GetRenderPriority() gdnative.Int {
 	Args: [{ false next_pass Material}], Returns: void
 */
 func (o *Material) SetNextPass(nextPass Material) {
-	log.Println("Calling Material.SetNextPass()")
+	//log.Println("Calling Material.SetNextPass()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -120,7 +108,7 @@ func (o *Material) SetNextPass(nextPass Material) {
 	Args: [{ false priority int}], Returns: void
 */
 func (o *Material) SetRenderPriority(priority gdnative.Int) {
-	log.Println("Calling Material.SetRenderPriority()")
+	//log.Println("Calling Material.SetRenderPriority()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

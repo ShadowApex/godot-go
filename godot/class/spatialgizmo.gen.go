@@ -33,13 +33,3 @@ type SpatialGizmo struct {
 func (o *SpatialGizmo) BaseClass() string {
 	return "SpatialGizmo"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *SpatialGizmo) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *SpatialGizmo) GetBaseObject() gdnative.Object {
-	return o.owner
-}

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *DynamicFont) BaseClass() string {
 	return "DynamicFont"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *DynamicFont) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *DynamicFont) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Adds a fallback font.
 	Args: [{ false data DynamicFontData}], Returns: void
 */
 func (o *DynamicFont) AddFallback(data DynamicFontData) {
-	log.Println("Calling DynamicFont.AddFallback()")
+	//log.Println("Calling DynamicFont.AddFallback()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *DynamicFont) AddFallback(data DynamicFontData) {
 	Args: [{ false idx int}], Returns: DynamicFontData
 */
 func (o *DynamicFont) GetFallback(idx gdnative.Int) DynamicFontData {
-	log.Println("Calling DynamicFont.GetFallback()")
+	//log.Println("Calling DynamicFont.GetFallback()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -88,7 +76,7 @@ func (o *DynamicFont) GetFallback(idx gdnative.Int) DynamicFontData {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewDynamicFontDataFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -97,7 +85,7 @@ func (o *DynamicFont) GetFallback(idx gdnative.Int) DynamicFontData {
 	Args: [], Returns: int
 */
 func (o *DynamicFont) GetFallbackCount() gdnative.Int {
-	log.Println("Calling DynamicFont.GetFallbackCount()")
+	//log.Println("Calling DynamicFont.GetFallbackCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -112,7 +100,7 @@ func (o *DynamicFont) GetFallbackCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -121,7 +109,7 @@ func (o *DynamicFont) GetFallbackCount() gdnative.Int {
 	Args: [], Returns: DynamicFontData
 */
 func (o *DynamicFont) GetFontData() DynamicFontData {
-	log.Println("Calling DynamicFont.GetFontData()")
+	//log.Println("Calling DynamicFont.GetFontData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -136,7 +124,7 @@ func (o *DynamicFont) GetFontData() DynamicFontData {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewDynamicFontDataFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -145,7 +133,7 @@ func (o *DynamicFont) GetFontData() DynamicFontData {
 	Args: [], Returns: int
 */
 func (o *DynamicFont) GetSize() gdnative.Int {
-	log.Println("Calling DynamicFont.GetSize()")
+	//log.Println("Calling DynamicFont.GetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -160,7 +148,7 @@ func (o *DynamicFont) GetSize() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -169,7 +157,7 @@ func (o *DynamicFont) GetSize() gdnative.Int {
 	Args: [{ false type int}], Returns: int
 */
 func (o *DynamicFont) GetSpacing(aType gdnative.Int) gdnative.Int {
-	log.Println("Calling DynamicFont.GetSpacing()")
+	//log.Println("Calling DynamicFont.GetSpacing()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -185,7 +173,7 @@ func (o *DynamicFont) GetSpacing(aType gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -194,7 +182,7 @@ func (o *DynamicFont) GetSpacing(aType gdnative.Int) gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *DynamicFont) GetUseFilter() gdnative.Bool {
-	log.Println("Calling DynamicFont.GetUseFilter()")
+	//log.Println("Calling DynamicFont.GetUseFilter()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -209,7 +197,7 @@ func (o *DynamicFont) GetUseFilter() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -218,7 +206,7 @@ func (o *DynamicFont) GetUseFilter() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *DynamicFont) GetUseMipmaps() gdnative.Bool {
-	log.Println("Calling DynamicFont.GetUseMipmaps()")
+	//log.Println("Calling DynamicFont.GetUseMipmaps()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -233,7 +221,7 @@ func (o *DynamicFont) GetUseMipmaps() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -242,7 +230,7 @@ func (o *DynamicFont) GetUseMipmaps() gdnative.Bool {
 	Args: [{ false idx int}], Returns: void
 */
 func (o *DynamicFont) RemoveFallback(idx gdnative.Int) {
-	log.Println("Calling DynamicFont.RemoveFallback()")
+	//log.Println("Calling DynamicFont.RemoveFallback()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -263,7 +251,7 @@ func (o *DynamicFont) RemoveFallback(idx gdnative.Int) {
 	Args: [{ false idx int} { false data DynamicFontData}], Returns: void
 */
 func (o *DynamicFont) SetFallback(idx gdnative.Int, data DynamicFontData) {
-	log.Println("Calling DynamicFont.SetFallback()")
+	//log.Println("Calling DynamicFont.SetFallback()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -285,7 +273,7 @@ func (o *DynamicFont) SetFallback(idx gdnative.Int, data DynamicFontData) {
 	Args: [{ false data DynamicFontData}], Returns: void
 */
 func (o *DynamicFont) SetFontData(data DynamicFontData) {
-	log.Println("Calling DynamicFont.SetFontData()")
+	//log.Println("Calling DynamicFont.SetFontData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -306,7 +294,7 @@ func (o *DynamicFont) SetFontData(data DynamicFontData) {
 	Args: [{ false data int}], Returns: void
 */
 func (o *DynamicFont) SetSize(data gdnative.Int) {
-	log.Println("Calling DynamicFont.SetSize()")
+	//log.Println("Calling DynamicFont.SetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -327,7 +315,7 @@ func (o *DynamicFont) SetSize(data gdnative.Int) {
 	Args: [{ false type int} { false value int}], Returns: void
 */
 func (o *DynamicFont) SetSpacing(aType gdnative.Int, value gdnative.Int) {
-	log.Println("Calling DynamicFont.SetSpacing()")
+	//log.Println("Calling DynamicFont.SetSpacing()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -349,7 +337,7 @@ func (o *DynamicFont) SetSpacing(aType gdnative.Int, value gdnative.Int) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *DynamicFont) SetUseFilter(enable gdnative.Bool) {
-	log.Println("Calling DynamicFont.SetUseFilter()")
+	//log.Println("Calling DynamicFont.SetUseFilter()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -370,7 +358,7 @@ func (o *DynamicFont) SetUseFilter(enable gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *DynamicFont) SetUseMipmaps(enable gdnative.Bool) {
-	log.Println("Calling DynamicFont.SetUseMipmaps()")
+	//log.Println("Calling DynamicFont.SetUseMipmaps()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

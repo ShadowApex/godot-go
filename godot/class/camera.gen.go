@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Camera) BaseClass() string {
 	return "Camera"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Camera) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Camera) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         If this is the current Camera, remove it from being current. If it is inside the node tree, request to make the next Camera current, if any.
 	Args: [], Returns: void
 */
 func (o *Camera) ClearCurrent() {
-	log.Println("Calling Camera.ClearCurrent()")
+	//log.Println("Calling Camera.ClearCurrent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *Camera) ClearCurrent() {
 	Args: [], Returns: Transform
 */
 func (o *Camera) GetCameraTransform() gdnative.Transform {
-	log.Println("Calling Camera.GetCameraTransform()")
+	//log.Println("Calling Camera.GetCameraTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -86,7 +74,7 @@ func (o *Camera) GetCameraTransform() gdnative.Transform {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransformFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -95,7 +83,7 @@ func (o *Camera) GetCameraTransform() gdnative.Transform {
 	Args: [], Returns: int
 */
 func (o *Camera) GetCullMask() gdnative.Int {
-	log.Println("Calling Camera.GetCullMask()")
+	//log.Println("Calling Camera.GetCullMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -110,7 +98,7 @@ func (o *Camera) GetCullMask() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -124,7 +112,7 @@ func (o *Camera) GetCullMask() gdnative.Int {
 	Args: [], Returns: Environment
 */
 func (o *Camera) GetEnvironment() Environment {
-	log.Println("Calling Camera.GetEnvironment()")
+	//log.Println("Calling Camera.GetEnvironment()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -139,7 +127,7 @@ func (o *Camera) GetEnvironment() Environment {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewEnvironmentFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -148,7 +136,7 @@ func (o *Camera) GetEnvironment() Environment {
 	Args: [], Returns: float
 */
 func (o *Camera) GetFov() gdnative.Float {
-	log.Println("Calling Camera.GetFov()")
+	//log.Println("Calling Camera.GetFov()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -163,7 +151,7 @@ func (o *Camera) GetFov() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -172,7 +160,7 @@ func (o *Camera) GetFov() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Camera) GetHOffset() gdnative.Float {
-	log.Println("Calling Camera.GetHOffset()")
+	//log.Println("Calling Camera.GetHOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -187,7 +175,7 @@ func (o *Camera) GetHOffset() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -206,7 +194,7 @@ func (o *Camera) GetHOffset() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Camera) GetSize() gdnative.Float {
-	log.Println("Calling Camera.GetSize()")
+	//log.Println("Calling Camera.GetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -221,7 +209,7 @@ func (o *Camera) GetSize() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -230,7 +218,7 @@ func (o *Camera) GetSize() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Camera) GetVOffset() gdnative.Float {
-	log.Println("Calling Camera.GetVOffset()")
+	//log.Println("Calling Camera.GetVOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -245,7 +233,7 @@ func (o *Camera) GetVOffset() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -254,7 +242,7 @@ func (o *Camera) GetVOffset() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Camera) GetZfar() gdnative.Float {
-	log.Println("Calling Camera.GetZfar()")
+	//log.Println("Calling Camera.GetZfar()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -269,7 +257,7 @@ func (o *Camera) GetZfar() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -278,7 +266,7 @@ func (o *Camera) GetZfar() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Camera) GetZnear() gdnative.Float {
-	log.Println("Calling Camera.GetZnear()")
+	//log.Println("Calling Camera.GetZnear()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -293,7 +281,7 @@ func (o *Camera) GetZnear() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -302,7 +290,7 @@ func (o *Camera) GetZnear() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *Camera) IsCurrent() gdnative.Bool {
-	log.Println("Calling Camera.IsCurrent()")
+	//log.Println("Calling Camera.IsCurrent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -317,7 +305,7 @@ func (o *Camera) IsCurrent() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -326,7 +314,7 @@ func (o *Camera) IsCurrent() gdnative.Bool {
 	Args: [{ false world_point Vector3}], Returns: bool
 */
 func (o *Camera) IsPositionBehind(worldPoint gdnative.Vector3) gdnative.Bool {
-	log.Println("Calling Camera.IsPositionBehind()")
+	//log.Println("Calling Camera.IsPositionBehind()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -342,7 +330,7 @@ func (o *Camera) IsPositionBehind(worldPoint gdnative.Vector3) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -351,7 +339,7 @@ func (o *Camera) IsPositionBehind(worldPoint gdnative.Vector3) gdnative.Bool {
 	Args: [], Returns: void
 */
 func (o *Camera) MakeCurrent() {
-	log.Println("Calling Camera.MakeCurrent()")
+	//log.Println("Calling Camera.MakeCurrent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -371,7 +359,7 @@ func (o *Camera) MakeCurrent() {
 	Args: [{ false screen_point Vector2}], Returns: Vector3
 */
 func (o *Camera) ProjectLocalRayNormal(screenPoint gdnative.Vector2) gdnative.Vector3 {
-	log.Println("Calling Camera.ProjectLocalRayNormal()")
+	//log.Println("Calling Camera.ProjectLocalRayNormal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -387,7 +375,7 @@ func (o *Camera) ProjectLocalRayNormal(screenPoint gdnative.Vector2) gdnative.Ve
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -396,7 +384,7 @@ func (o *Camera) ProjectLocalRayNormal(screenPoint gdnative.Vector2) gdnative.Ve
 	Args: [{ false screen_point Vector2}], Returns: Vector3
 */
 func (o *Camera) ProjectPosition(screenPoint gdnative.Vector2) gdnative.Vector3 {
-	log.Println("Calling Camera.ProjectPosition()")
+	//log.Println("Calling Camera.ProjectPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -412,7 +400,7 @@ func (o *Camera) ProjectPosition(screenPoint gdnative.Vector2) gdnative.Vector3 
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -421,7 +409,7 @@ func (o *Camera) ProjectPosition(screenPoint gdnative.Vector2) gdnative.Vector3 
 	Args: [{ false screen_point Vector2}], Returns: Vector3
 */
 func (o *Camera) ProjectRayNormal(screenPoint gdnative.Vector2) gdnative.Vector3 {
-	log.Println("Calling Camera.ProjectRayNormal()")
+	//log.Println("Calling Camera.ProjectRayNormal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -437,7 +425,7 @@ func (o *Camera) ProjectRayNormal(screenPoint gdnative.Vector2) gdnative.Vector3
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -446,7 +434,7 @@ func (o *Camera) ProjectRayNormal(screenPoint gdnative.Vector2) gdnative.Vector3
 	Args: [{ false screen_point Vector2}], Returns: Vector3
 */
 func (o *Camera) ProjectRayOrigin(screenPoint gdnative.Vector2) gdnative.Vector3 {
-	log.Println("Calling Camera.ProjectRayOrigin()")
+	//log.Println("Calling Camera.ProjectRayOrigin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -462,7 +450,7 @@ func (o *Camera) ProjectRayOrigin(screenPoint gdnative.Vector2) gdnative.Vector3
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -471,7 +459,7 @@ func (o *Camera) ProjectRayOrigin(screenPoint gdnative.Vector2) gdnative.Vector3
 	Args: [{ false mask int}], Returns: void
 */
 func (o *Camera) SetCullMask(mask gdnative.Int) {
-	log.Println("Calling Camera.SetCullMask()")
+	//log.Println("Calling Camera.SetCullMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -492,7 +480,7 @@ func (o *Camera) SetCullMask(mask gdnative.Int) {
 	Args: [{ false arg0 bool}], Returns: void
 */
 func (o *Camera) SetCurrent(arg0 gdnative.Bool) {
-	log.Println("Calling Camera.SetCurrent()")
+	//log.Println("Calling Camera.SetCurrent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -513,7 +501,7 @@ func (o *Camera) SetCurrent(arg0 gdnative.Bool) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *Camera) SetDopplerTracking(mode gdnative.Int) {
-	log.Println("Calling Camera.SetDopplerTracking()")
+	//log.Println("Calling Camera.SetDopplerTracking()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -534,7 +522,7 @@ func (o *Camera) SetDopplerTracking(mode gdnative.Int) {
 	Args: [{ false env Environment}], Returns: void
 */
 func (o *Camera) SetEnvironment(env Environment) {
-	log.Println("Calling Camera.SetEnvironment()")
+	//log.Println("Calling Camera.SetEnvironment()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -555,7 +543,7 @@ func (o *Camera) SetEnvironment(env Environment) {
 	Args: [{ false arg0 float}], Returns: void
 */
 func (o *Camera) SetFov(arg0 gdnative.Float) {
-	log.Println("Calling Camera.SetFov()")
+	//log.Println("Calling Camera.SetFov()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -576,7 +564,7 @@ func (o *Camera) SetFov(arg0 gdnative.Float) {
 	Args: [{ false ofs float}], Returns: void
 */
 func (o *Camera) SetHOffset(ofs gdnative.Float) {
-	log.Println("Calling Camera.SetHOffset()")
+	//log.Println("Calling Camera.SetHOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -597,7 +585,7 @@ func (o *Camera) SetHOffset(ofs gdnative.Float) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *Camera) SetKeepAspectMode(mode gdnative.Int) {
-	log.Println("Calling Camera.SetKeepAspectMode()")
+	//log.Println("Calling Camera.SetKeepAspectMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -618,7 +606,7 @@ func (o *Camera) SetKeepAspectMode(mode gdnative.Int) {
 	Args: [{ false size float} { false z_near float} { false z_far float}], Returns: void
 */
 func (o *Camera) SetOrthogonal(size gdnative.Float, zNear gdnative.Float, zFar gdnative.Float) {
-	log.Println("Calling Camera.SetOrthogonal()")
+	//log.Println("Calling Camera.SetOrthogonal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -641,7 +629,7 @@ func (o *Camera) SetOrthogonal(size gdnative.Float, zNear gdnative.Float, zFar g
 	Args: [{ false fov float} { false z_near float} { false z_far float}], Returns: void
 */
 func (o *Camera) SetPerspective(fov gdnative.Float, zNear gdnative.Float, zFar gdnative.Float) {
-	log.Println("Calling Camera.SetPerspective()")
+	//log.Println("Calling Camera.SetPerspective()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -664,7 +652,7 @@ func (o *Camera) SetPerspective(fov gdnative.Float, zNear gdnative.Float, zFar g
 	Args: [{ false arg0 int}], Returns: void
 */
 func (o *Camera) SetProjection(arg0 gdnative.Int) {
-	log.Println("Calling Camera.SetProjection()")
+	//log.Println("Calling Camera.SetProjection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -685,7 +673,7 @@ func (o *Camera) SetProjection(arg0 gdnative.Int) {
 	Args: [{ false arg0 float}], Returns: void
 */
 func (o *Camera) SetSize(arg0 gdnative.Float) {
-	log.Println("Calling Camera.SetSize()")
+	//log.Println("Calling Camera.SetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -706,7 +694,7 @@ func (o *Camera) SetSize(arg0 gdnative.Float) {
 	Args: [{ false ofs float}], Returns: void
 */
 func (o *Camera) SetVOffset(ofs gdnative.Float) {
-	log.Println("Calling Camera.SetVOffset()")
+	//log.Println("Calling Camera.SetVOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -727,7 +715,7 @@ func (o *Camera) SetVOffset(ofs gdnative.Float) {
 	Args: [{ false arg0 float}], Returns: void
 */
 func (o *Camera) SetZfar(arg0 gdnative.Float) {
-	log.Println("Calling Camera.SetZfar()")
+	//log.Println("Calling Camera.SetZfar()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -748,7 +736,7 @@ func (o *Camera) SetZfar(arg0 gdnative.Float) {
 	Args: [{ false arg0 float}], Returns: void
 */
 func (o *Camera) SetZnear(arg0 gdnative.Float) {
-	log.Println("Calling Camera.SetZnear()")
+	//log.Println("Calling Camera.SetZnear()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -769,7 +757,7 @@ func (o *Camera) SetZnear(arg0 gdnative.Float) {
 	Args: [{ false world_point Vector3}], Returns: Vector2
 */
 func (o *Camera) UnprojectPosition(worldPoint gdnative.Vector3) gdnative.Vector2 {
-	log.Println("Calling Camera.UnprojectPosition()")
+	//log.Println("Calling Camera.UnprojectPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -785,6 +773,6 @@ func (o *Camera) UnprojectPosition(worldPoint gdnative.Vector3) gdnative.Vector2
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

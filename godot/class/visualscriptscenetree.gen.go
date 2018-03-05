@@ -33,13 +33,3 @@ type VisualScriptSceneTree struct {
 func (o *VisualScriptSceneTree) BaseClass() string {
 	return "VisualScriptSceneTree"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptSceneTree) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptSceneTree) GetBaseObject() gdnative.Object {
-	return o.owner
-}

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,16 +34,6 @@ func (o *Label) BaseClass() string {
 	return "Label"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Label) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Label) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: enum.Label::Align
@@ -56,7 +44,7 @@ func (o *Label) GetBaseObject() gdnative.Object {
 	Args: [], Returns: int
 */
 func (o *Label) GetLineCount() gdnative.Int {
-	log.Println("Calling Label.GetLineCount()")
+	//log.Println("Calling Label.GetLineCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *Label) GetLineCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -80,7 +68,7 @@ func (o *Label) GetLineCount() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *Label) GetLineHeight() gdnative.Int {
-	log.Println("Calling Label.GetLineHeight()")
+	//log.Println("Calling Label.GetLineHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -95,7 +83,7 @@ func (o *Label) GetLineHeight() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -104,7 +92,7 @@ func (o *Label) GetLineHeight() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *Label) GetLinesSkipped() gdnative.Int {
-	log.Println("Calling Label.GetLinesSkipped()")
+	//log.Println("Calling Label.GetLinesSkipped()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -119,7 +107,7 @@ func (o *Label) GetLinesSkipped() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -128,7 +116,7 @@ func (o *Label) GetLinesSkipped() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *Label) GetMaxLinesVisible() gdnative.Int {
-	log.Println("Calling Label.GetMaxLinesVisible()")
+	//log.Println("Calling Label.GetMaxLinesVisible()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -143,7 +131,7 @@ func (o *Label) GetMaxLinesVisible() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -152,7 +140,7 @@ func (o *Label) GetMaxLinesVisible() gdnative.Int {
 	Args: [], Returns: float
 */
 func (o *Label) GetPercentVisible() gdnative.Float {
-	log.Println("Calling Label.GetPercentVisible()")
+	//log.Println("Calling Label.GetPercentVisible()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -167,7 +155,7 @@ func (o *Label) GetPercentVisible() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -176,7 +164,7 @@ func (o *Label) GetPercentVisible() gdnative.Float {
 	Args: [], Returns: String
 */
 func (o *Label) GetText() gdnative.String {
-	log.Println("Calling Label.GetText()")
+	//log.Println("Calling Label.GetText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -191,7 +179,7 @@ func (o *Label) GetText() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -200,7 +188,7 @@ func (o *Label) GetText() gdnative.String {
 	Args: [], Returns: int
 */
 func (o *Label) GetTotalCharacterCount() gdnative.Int {
-	log.Println("Calling Label.GetTotalCharacterCount()")
+	//log.Println("Calling Label.GetTotalCharacterCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -215,7 +203,7 @@ func (o *Label) GetTotalCharacterCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -229,7 +217,7 @@ func (o *Label) GetTotalCharacterCount() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *Label) GetVisibleCharacters() gdnative.Int {
-	log.Println("Calling Label.GetVisibleCharacters()")
+	//log.Println("Calling Label.GetVisibleCharacters()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -244,7 +232,7 @@ func (o *Label) GetVisibleCharacters() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -253,7 +241,7 @@ func (o *Label) GetVisibleCharacters() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *Label) GetVisibleLineCount() gdnative.Int {
-	log.Println("Calling Label.GetVisibleLineCount()")
+	//log.Println("Calling Label.GetVisibleLineCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -268,7 +256,7 @@ func (o *Label) GetVisibleLineCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -277,7 +265,7 @@ func (o *Label) GetVisibleLineCount() gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *Label) HasAutowrap() gdnative.Bool {
-	log.Println("Calling Label.HasAutowrap()")
+	//log.Println("Calling Label.HasAutowrap()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -292,7 +280,7 @@ func (o *Label) HasAutowrap() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -301,7 +289,7 @@ func (o *Label) HasAutowrap() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Label) IsClippingText() gdnative.Bool {
-	log.Println("Calling Label.IsClippingText()")
+	//log.Println("Calling Label.IsClippingText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -316,7 +304,7 @@ func (o *Label) IsClippingText() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -325,7 +313,7 @@ func (o *Label) IsClippingText() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Label) IsUppercase() gdnative.Bool {
-	log.Println("Calling Label.IsUppercase()")
+	//log.Println("Calling Label.IsUppercase()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -340,7 +328,7 @@ func (o *Label) IsUppercase() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -349,7 +337,7 @@ func (o *Label) IsUppercase() gdnative.Bool {
 	Args: [{ false align int}], Returns: void
 */
 func (o *Label) SetAlign(align gdnative.Int) {
-	log.Println("Calling Label.SetAlign()")
+	//log.Println("Calling Label.SetAlign()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -370,7 +358,7 @@ func (o *Label) SetAlign(align gdnative.Int) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Label) SetAutowrap(enable gdnative.Bool) {
-	log.Println("Calling Label.SetAutowrap()")
+	//log.Println("Calling Label.SetAutowrap()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -391,7 +379,7 @@ func (o *Label) SetAutowrap(enable gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Label) SetClipText(enable gdnative.Bool) {
-	log.Println("Calling Label.SetClipText()")
+	//log.Println("Calling Label.SetClipText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -412,7 +400,7 @@ func (o *Label) SetClipText(enable gdnative.Bool) {
 	Args: [{ false lines_skipped int}], Returns: void
 */
 func (o *Label) SetLinesSkipped(linesSkipped gdnative.Int) {
-	log.Println("Calling Label.SetLinesSkipped()")
+	//log.Println("Calling Label.SetLinesSkipped()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -433,7 +421,7 @@ func (o *Label) SetLinesSkipped(linesSkipped gdnative.Int) {
 	Args: [{ false lines_visible int}], Returns: void
 */
 func (o *Label) SetMaxLinesVisible(linesVisible gdnative.Int) {
-	log.Println("Calling Label.SetMaxLinesVisible()")
+	//log.Println("Calling Label.SetMaxLinesVisible()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -454,7 +442,7 @@ func (o *Label) SetMaxLinesVisible(linesVisible gdnative.Int) {
 	Args: [{ false percent_visible float}], Returns: void
 */
 func (o *Label) SetPercentVisible(percentVisible gdnative.Float) {
-	log.Println("Calling Label.SetPercentVisible()")
+	//log.Println("Calling Label.SetPercentVisible()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -475,7 +463,7 @@ func (o *Label) SetPercentVisible(percentVisible gdnative.Float) {
 	Args: [{ false text String}], Returns: void
 */
 func (o *Label) SetText(text gdnative.String) {
-	log.Println("Calling Label.SetText()")
+	//log.Println("Calling Label.SetText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -496,7 +484,7 @@ func (o *Label) SetText(text gdnative.String) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Label) SetUppercase(enable gdnative.Bool) {
-	log.Println("Calling Label.SetUppercase()")
+	//log.Println("Calling Label.SetUppercase()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -517,7 +505,7 @@ func (o *Label) SetUppercase(enable gdnative.Bool) {
 	Args: [{ false valign int}], Returns: void
 */
 func (o *Label) SetValign(valign gdnative.Int) {
-	log.Println("Calling Label.SetValign()")
+	//log.Println("Calling Label.SetValign()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -538,7 +526,7 @@ func (o *Label) SetValign(valign gdnative.Int) {
 	Args: [{ false amount int}], Returns: void
 */
 func (o *Label) SetVisibleCharacters(amount gdnative.Int) {
-	log.Println("Calling Label.SetVisibleCharacters()")
+	//log.Println("Calling Label.SetVisibleCharacters()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

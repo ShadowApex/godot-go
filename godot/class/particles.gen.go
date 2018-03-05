@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Particles) BaseClass() string {
 	return "Particles"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Particles) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Particles) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [], Returns: AABB
 */
 func (o *Particles) CaptureAabb() gdnative.Aabb {
-	log.Println("Calling Particles.CaptureAabb()")
+	//log.Println("Calling Particles.CaptureAabb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *Particles) CaptureAabb() gdnative.Aabb {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewAabbFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *Particles) CaptureAabb() gdnative.Aabb {
 	Args: [], Returns: int
 */
 func (o *Particles) GetAmount() gdnative.Int {
-	log.Println("Calling Particles.GetAmount()")
+	//log.Println("Calling Particles.GetAmount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *Particles) GetAmount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -104,7 +92,7 @@ func (o *Particles) GetAmount() gdnative.Int {
 	Args: [{ false pass int}], Returns: Mesh
 */
 func (o *Particles) GetDrawPassMesh(pass gdnative.Int) Mesh {
-	log.Println("Calling Particles.GetDrawPassMesh()")
+	//log.Println("Calling Particles.GetDrawPassMesh()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -120,7 +108,7 @@ func (o *Particles) GetDrawPassMesh(pass gdnative.Int) Mesh {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewMeshFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -129,7 +117,7 @@ func (o *Particles) GetDrawPassMesh(pass gdnative.Int) Mesh {
 	Args: [], Returns: int
 */
 func (o *Particles) GetDrawPasses() gdnative.Int {
-	log.Println("Calling Particles.GetDrawPasses()")
+	//log.Println("Calling Particles.GetDrawPasses()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -144,7 +132,7 @@ func (o *Particles) GetDrawPasses() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -153,7 +141,7 @@ func (o *Particles) GetDrawPasses() gdnative.Int {
 	Args: [], Returns: float
 */
 func (o *Particles) GetExplosivenessRatio() gdnative.Float {
-	log.Println("Calling Particles.GetExplosivenessRatio()")
+	//log.Println("Calling Particles.GetExplosivenessRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -168,7 +156,7 @@ func (o *Particles) GetExplosivenessRatio() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -177,7 +165,7 @@ func (o *Particles) GetExplosivenessRatio() gdnative.Float {
 	Args: [], Returns: int
 */
 func (o *Particles) GetFixedFps() gdnative.Int {
-	log.Println("Calling Particles.GetFixedFps()")
+	//log.Println("Calling Particles.GetFixedFps()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -192,7 +180,7 @@ func (o *Particles) GetFixedFps() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -201,7 +189,7 @@ func (o *Particles) GetFixedFps() gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *Particles) GetFractionalDelta() gdnative.Bool {
-	log.Println("Calling Particles.GetFractionalDelta()")
+	//log.Println("Calling Particles.GetFractionalDelta()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -216,7 +204,7 @@ func (o *Particles) GetFractionalDelta() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -225,7 +213,7 @@ func (o *Particles) GetFractionalDelta() gdnative.Bool {
 	Args: [], Returns: float
 */
 func (o *Particles) GetLifetime() gdnative.Float {
-	log.Println("Calling Particles.GetLifetime()")
+	//log.Println("Calling Particles.GetLifetime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -240,7 +228,7 @@ func (o *Particles) GetLifetime() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -249,7 +237,7 @@ func (o *Particles) GetLifetime() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *Particles) GetOneShot() gdnative.Bool {
-	log.Println("Calling Particles.GetOneShot()")
+	//log.Println("Calling Particles.GetOneShot()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -264,7 +252,7 @@ func (o *Particles) GetOneShot() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -273,7 +261,7 @@ func (o *Particles) GetOneShot() gdnative.Bool {
 	Args: [], Returns: float
 */
 func (o *Particles) GetPreProcessTime() gdnative.Float {
-	log.Println("Calling Particles.GetPreProcessTime()")
+	//log.Println("Calling Particles.GetPreProcessTime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -288,7 +276,7 @@ func (o *Particles) GetPreProcessTime() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -297,7 +285,7 @@ func (o *Particles) GetPreProcessTime() gdnative.Float {
 	Args: [], Returns: Material
 */
 func (o *Particles) GetProcessMaterial() Material {
-	log.Println("Calling Particles.GetProcessMaterial()")
+	//log.Println("Calling Particles.GetProcessMaterial()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -312,7 +300,7 @@ func (o *Particles) GetProcessMaterial() Material {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewMaterialFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -321,7 +309,7 @@ func (o *Particles) GetProcessMaterial() Material {
 	Args: [], Returns: float
 */
 func (o *Particles) GetRandomnessRatio() gdnative.Float {
-	log.Println("Calling Particles.GetRandomnessRatio()")
+	//log.Println("Calling Particles.GetRandomnessRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -336,7 +324,7 @@ func (o *Particles) GetRandomnessRatio() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -345,7 +333,7 @@ func (o *Particles) GetRandomnessRatio() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Particles) GetSpeedScale() gdnative.Float {
-	log.Println("Calling Particles.GetSpeedScale()")
+	//log.Println("Calling Particles.GetSpeedScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -360,7 +348,7 @@ func (o *Particles) GetSpeedScale() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -369,7 +357,7 @@ func (o *Particles) GetSpeedScale() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *Particles) GetUseLocalCoordinates() gdnative.Bool {
-	log.Println("Calling Particles.GetUseLocalCoordinates()")
+	//log.Println("Calling Particles.GetUseLocalCoordinates()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -384,7 +372,7 @@ func (o *Particles) GetUseLocalCoordinates() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -393,7 +381,7 @@ func (o *Particles) GetUseLocalCoordinates() gdnative.Bool {
 	Args: [], Returns: AABB
 */
 func (o *Particles) GetVisibilityAabb() gdnative.Aabb {
-	log.Println("Calling Particles.GetVisibilityAabb()")
+	//log.Println("Calling Particles.GetVisibilityAabb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -408,7 +396,7 @@ func (o *Particles) GetVisibilityAabb() gdnative.Aabb {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewAabbFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -417,7 +405,7 @@ func (o *Particles) GetVisibilityAabb() gdnative.Aabb {
 	Args: [], Returns: bool
 */
 func (o *Particles) IsEmitting() gdnative.Bool {
-	log.Println("Calling Particles.IsEmitting()")
+	//log.Println("Calling Particles.IsEmitting()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -432,7 +420,7 @@ func (o *Particles) IsEmitting() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -441,7 +429,7 @@ func (o *Particles) IsEmitting() gdnative.Bool {
 	Args: [], Returns: void
 */
 func (o *Particles) Restart() {
-	log.Println("Calling Particles.Restart()")
+	//log.Println("Calling Particles.Restart()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -461,7 +449,7 @@ func (o *Particles) Restart() {
 	Args: [{ false amount int}], Returns: void
 */
 func (o *Particles) SetAmount(amount gdnative.Int) {
-	log.Println("Calling Particles.SetAmount()")
+	//log.Println("Calling Particles.SetAmount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -482,7 +470,7 @@ func (o *Particles) SetAmount(amount gdnative.Int) {
 	Args: [{ false order int}], Returns: void
 */
 func (o *Particles) SetDrawOrder(order gdnative.Int) {
-	log.Println("Calling Particles.SetDrawOrder()")
+	//log.Println("Calling Particles.SetDrawOrder()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -503,7 +491,7 @@ func (o *Particles) SetDrawOrder(order gdnative.Int) {
 	Args: [{ false pass int} { false mesh Mesh}], Returns: void
 */
 func (o *Particles) SetDrawPassMesh(pass gdnative.Int, mesh Mesh) {
-	log.Println("Calling Particles.SetDrawPassMesh()")
+	//log.Println("Calling Particles.SetDrawPassMesh()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -525,7 +513,7 @@ func (o *Particles) SetDrawPassMesh(pass gdnative.Int, mesh Mesh) {
 	Args: [{ false passes int}], Returns: void
 */
 func (o *Particles) SetDrawPasses(passes gdnative.Int) {
-	log.Println("Calling Particles.SetDrawPasses()")
+	//log.Println("Calling Particles.SetDrawPasses()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -546,7 +534,7 @@ func (o *Particles) SetDrawPasses(passes gdnative.Int) {
 	Args: [{ false emitting bool}], Returns: void
 */
 func (o *Particles) SetEmitting(emitting gdnative.Bool) {
-	log.Println("Calling Particles.SetEmitting()")
+	//log.Println("Calling Particles.SetEmitting()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -567,7 +555,7 @@ func (o *Particles) SetEmitting(emitting gdnative.Bool) {
 	Args: [{ false ratio float}], Returns: void
 */
 func (o *Particles) SetExplosivenessRatio(ratio gdnative.Float) {
-	log.Println("Calling Particles.SetExplosivenessRatio()")
+	//log.Println("Calling Particles.SetExplosivenessRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -588,7 +576,7 @@ func (o *Particles) SetExplosivenessRatio(ratio gdnative.Float) {
 	Args: [{ false fps int}], Returns: void
 */
 func (o *Particles) SetFixedFps(fps gdnative.Int) {
-	log.Println("Calling Particles.SetFixedFps()")
+	//log.Println("Calling Particles.SetFixedFps()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -609,7 +597,7 @@ func (o *Particles) SetFixedFps(fps gdnative.Int) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Particles) SetFractionalDelta(enable gdnative.Bool) {
-	log.Println("Calling Particles.SetFractionalDelta()")
+	//log.Println("Calling Particles.SetFractionalDelta()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -630,7 +618,7 @@ func (o *Particles) SetFractionalDelta(enable gdnative.Bool) {
 	Args: [{ false secs float}], Returns: void
 */
 func (o *Particles) SetLifetime(secs gdnative.Float) {
-	log.Println("Calling Particles.SetLifetime()")
+	//log.Println("Calling Particles.SetLifetime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -651,7 +639,7 @@ func (o *Particles) SetLifetime(secs gdnative.Float) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Particles) SetOneShot(enable gdnative.Bool) {
-	log.Println("Calling Particles.SetOneShot()")
+	//log.Println("Calling Particles.SetOneShot()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -672,7 +660,7 @@ func (o *Particles) SetOneShot(enable gdnative.Bool) {
 	Args: [{ false secs float}], Returns: void
 */
 func (o *Particles) SetPreProcessTime(secs gdnative.Float) {
-	log.Println("Calling Particles.SetPreProcessTime()")
+	//log.Println("Calling Particles.SetPreProcessTime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -693,7 +681,7 @@ func (o *Particles) SetPreProcessTime(secs gdnative.Float) {
 	Args: [{ false material Material}], Returns: void
 */
 func (o *Particles) SetProcessMaterial(material Material) {
-	log.Println("Calling Particles.SetProcessMaterial()")
+	//log.Println("Calling Particles.SetProcessMaterial()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -714,7 +702,7 @@ func (o *Particles) SetProcessMaterial(material Material) {
 	Args: [{ false ratio float}], Returns: void
 */
 func (o *Particles) SetRandomnessRatio(ratio gdnative.Float) {
-	log.Println("Calling Particles.SetRandomnessRatio()")
+	//log.Println("Calling Particles.SetRandomnessRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -735,7 +723,7 @@ func (o *Particles) SetRandomnessRatio(ratio gdnative.Float) {
 	Args: [{ false scale float}], Returns: void
 */
 func (o *Particles) SetSpeedScale(scale gdnative.Float) {
-	log.Println("Calling Particles.SetSpeedScale()")
+	//log.Println("Calling Particles.SetSpeedScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -756,7 +744,7 @@ func (o *Particles) SetSpeedScale(scale gdnative.Float) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Particles) SetUseLocalCoordinates(enable gdnative.Bool) {
-	log.Println("Calling Particles.SetUseLocalCoordinates()")
+	//log.Println("Calling Particles.SetUseLocalCoordinates()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -777,7 +765,7 @@ func (o *Particles) SetUseLocalCoordinates(enable gdnative.Bool) {
 	Args: [{ false aabb AABB}], Returns: void
 */
 func (o *Particles) SetVisibilityAabb(aabb gdnative.Aabb) {
-	log.Println("Calling Particles.SetVisibilityAabb()")
+	//log.Println("Calling Particles.SetVisibilityAabb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

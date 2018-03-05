@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *EditorPlugin) BaseClass() string {
 	return "EditorPlugin"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *EditorPlugin) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *EditorPlugin) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Add a control to the bottom panel (together with Output, Debug, Animation, etc). Returns a reference to the button added. It's up to you to hide/show the button when needed. If your plugin is being removed, also make sure to remove your control by calling [method remove_control_from_bottom_panel].
 	Args: [{ false control Object} { false title String}], Returns: ToolButton
 */
 func (o *EditorPlugin) AddControlToBottomPanel(control Object, title gdnative.String) ToolButton {
-	log.Println("Calling EditorPlugin.AddControlToBottomPanel()")
+	//log.Println("Calling EditorPlugin.AddControlToBottomPanel()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -68,7 +56,7 @@ func (o *EditorPlugin) AddControlToBottomPanel(control Object, title gdnative.St
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewToolButtonFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -77,7 +65,7 @@ func (o *EditorPlugin) AddControlToBottomPanel(control Object, title gdnative.St
 	Args: [{ false container int} { false control Object}], Returns: void
 */
 func (o *EditorPlugin) AddControlToContainer(container gdnative.Int, control Object) {
-	log.Println("Calling EditorPlugin.AddControlToContainer()")
+	//log.Println("Calling EditorPlugin.AddControlToContainer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -99,7 +87,7 @@ func (o *EditorPlugin) AddControlToContainer(container gdnative.Int, control Obj
 	Args: [{ false slot int} { false control Object}], Returns: void
 */
 func (o *EditorPlugin) AddControlToDock(slot gdnative.Int, control Object) {
-	log.Println("Calling EditorPlugin.AddControlToDock()")
+	//log.Println("Calling EditorPlugin.AddControlToDock()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -121,7 +109,7 @@ func (o *EditorPlugin) AddControlToDock(slot gdnative.Int, control Object) {
 	Args: [{ false type String} { false base String} { false script Script} { false icon Texture}], Returns: void
 */
 func (o *EditorPlugin) AddCustomType(aType gdnative.String, base gdnative.String, script Script, icon Texture) {
-	log.Println("Calling EditorPlugin.AddCustomType()")
+	//log.Println("Calling EditorPlugin.AddCustomType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -145,7 +133,7 @@ func (o *EditorPlugin) AddCustomType(aType gdnative.String, base gdnative.String
 	Args: [{ false exporter EditorExportPlugin}], Returns: void
 */
 func (o *EditorPlugin) AddExportPlugin(exporter EditorExportPlugin) {
-	log.Println("Calling EditorPlugin.AddExportPlugin()")
+	//log.Println("Calling EditorPlugin.AddExportPlugin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -166,7 +154,7 @@ func (o *EditorPlugin) AddExportPlugin(exporter EditorExportPlugin) {
 	Args: [{ false importer EditorImportPlugin}], Returns: void
 */
 func (o *EditorPlugin) AddImportPlugin(importer EditorImportPlugin) {
-	log.Println("Calling EditorPlugin.AddImportPlugin()")
+	//log.Println("Calling EditorPlugin.AddImportPlugin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -187,7 +175,7 @@ func (o *EditorPlugin) AddImportPlugin(importer EditorImportPlugin) {
 	Args: [{ false scene_importer EditorSceneImporter}], Returns: void
 */
 func (o *EditorPlugin) AddSceneImportPlugin(sceneImporter EditorSceneImporter) {
-	log.Println("Calling EditorPlugin.AddSceneImportPlugin()")
+	//log.Println("Calling EditorPlugin.AddSceneImportPlugin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -208,7 +196,7 @@ func (o *EditorPlugin) AddSceneImportPlugin(sceneImporter EditorSceneImporter) {
 	Args: [{ false name String} { false submenu Object}], Returns: void
 */
 func (o *EditorPlugin) AddToolSubmenuItem(name gdnative.String, submenu Object) {
-	log.Println("Calling EditorPlugin.AddToolSubmenuItem()")
+	//log.Println("Calling EditorPlugin.AddToolSubmenuItem()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -230,7 +218,7 @@ func (o *EditorPlugin) AddToolSubmenuItem(name gdnative.String, submenu Object) 
 	Args: [], Returns: void
 */
 func (o *EditorPlugin) ApplyChanges() {
-	log.Println("Calling EditorPlugin.ApplyChanges()")
+	//log.Println("Calling EditorPlugin.ApplyChanges()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -250,7 +238,7 @@ func (o *EditorPlugin) ApplyChanges() {
 	Args: [], Returns: void
 */
 func (o *EditorPlugin) Clear() {
-	log.Println("Calling EditorPlugin.Clear()")
+	//log.Println("Calling EditorPlugin.Clear()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -270,7 +258,7 @@ func (o *EditorPlugin) Clear() {
 	Args: [{ false for_spatial Spatial}], Returns: EditorSpatialGizmo
 */
 func (o *EditorPlugin) CreateSpatialGizmo(forSpatial Spatial) EditorSpatialGizmo {
-	log.Println("Calling EditorPlugin.CreateSpatialGizmo()")
+	//log.Println("Calling EditorPlugin.CreateSpatialGizmo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -286,7 +274,7 @@ func (o *EditorPlugin) CreateSpatialGizmo(forSpatial Spatial) EditorSpatialGizmo
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewEditorSpatialGizmoFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -295,7 +283,7 @@ func (o *EditorPlugin) CreateSpatialGizmo(forSpatial Spatial) EditorSpatialGizmo
 	Args: [{ false object Object}], Returns: void
 */
 func (o *EditorPlugin) Edit(object Object) {
-	log.Println("Calling EditorPlugin.Edit()")
+	//log.Println("Calling EditorPlugin.Edit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -316,7 +304,7 @@ func (o *EditorPlugin) Edit(object Object) {
 	Args: [{ false event InputEvent}], Returns: bool
 */
 func (o *EditorPlugin) ForwardCanvasGuiInput(event InputEvent) gdnative.Bool {
-	log.Println("Calling EditorPlugin.ForwardCanvasGuiInput()")
+	//log.Println("Calling EditorPlugin.ForwardCanvasGuiInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -332,7 +320,7 @@ func (o *EditorPlugin) ForwardCanvasGuiInput(event InputEvent) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -341,7 +329,7 @@ func (o *EditorPlugin) ForwardCanvasGuiInput(event InputEvent) gdnative.Bool {
 	Args: [{ false overlay Control}], Returns: void
 */
 func (o *EditorPlugin) ForwardDrawOverViewport(overlay Control) {
-	log.Println("Calling EditorPlugin.ForwardDrawOverViewport()")
+	//log.Println("Calling EditorPlugin.ForwardDrawOverViewport()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -362,7 +350,7 @@ func (o *EditorPlugin) ForwardDrawOverViewport(overlay Control) {
 	Args: [{ false overlay Control}], Returns: void
 */
 func (o *EditorPlugin) ForwardForceDrawOverViewport(overlay Control) {
-	log.Println("Calling EditorPlugin.ForwardForceDrawOverViewport()")
+	//log.Println("Calling EditorPlugin.ForwardForceDrawOverViewport()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -383,7 +371,7 @@ func (o *EditorPlugin) ForwardForceDrawOverViewport(overlay Control) {
 	Args: [{ false camera Camera} { false event InputEvent}], Returns: bool
 */
 func (o *EditorPlugin) ForwardSpatialGuiInput(camera Camera, event InputEvent) gdnative.Bool {
-	log.Println("Calling EditorPlugin.ForwardSpatialGuiInput()")
+	//log.Println("Calling EditorPlugin.ForwardSpatialGuiInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -400,7 +388,7 @@ func (o *EditorPlugin) ForwardSpatialGuiInput(camera Camera, event InputEvent) g
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -409,7 +397,7 @@ func (o *EditorPlugin) ForwardSpatialGuiInput(camera Camera, event InputEvent) g
 	Args: [], Returns: PoolStringArray
 */
 func (o *EditorPlugin) GetBreakpoints() gdnative.PoolStringArray {
-	log.Println("Calling EditorPlugin.GetBreakpoints()")
+	//log.Println("Calling EditorPlugin.GetBreakpoints()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -424,7 +412,7 @@ func (o *EditorPlugin) GetBreakpoints() gdnative.PoolStringArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -433,7 +421,7 @@ func (o *EditorPlugin) GetBreakpoints() gdnative.PoolStringArray {
 	Args: [], Returns: EditorInterface
 */
 func (o *EditorPlugin) GetEditorInterface() EditorInterface {
-	log.Println("Calling EditorPlugin.GetEditorInterface()")
+	//log.Println("Calling EditorPlugin.GetEditorInterface()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -448,7 +436,7 @@ func (o *EditorPlugin) GetEditorInterface() EditorInterface {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewEditorInterfaceFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -457,7 +445,7 @@ func (o *EditorPlugin) GetEditorInterface() EditorInterface {
 	Args: [], Returns: Object
 */
 func (o *EditorPlugin) GetPluginIcon() Object {
-	log.Println("Calling EditorPlugin.GetPluginIcon()")
+	//log.Println("Calling EditorPlugin.GetPluginIcon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -472,7 +460,7 @@ func (o *EditorPlugin) GetPluginIcon() Object {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewObjectFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -481,7 +469,7 @@ func (o *EditorPlugin) GetPluginIcon() Object {
 	Args: [], Returns: String
 */
 func (o *EditorPlugin) GetPluginName() gdnative.String {
-	log.Println("Calling EditorPlugin.GetPluginName()")
+	//log.Println("Calling EditorPlugin.GetPluginName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -496,7 +484,7 @@ func (o *EditorPlugin) GetPluginName() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -505,7 +493,7 @@ func (o *EditorPlugin) GetPluginName() gdnative.String {
 	Args: [], Returns: Dictionary
 */
 func (o *EditorPlugin) GetState() gdnative.Dictionary {
-	log.Println("Calling EditorPlugin.GetState()")
+	//log.Println("Calling EditorPlugin.GetState()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -520,7 +508,7 @@ func (o *EditorPlugin) GetState() gdnative.Dictionary {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewDictionaryFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -529,7 +517,7 @@ func (o *EditorPlugin) GetState() gdnative.Dictionary {
 	Args: [], Returns: UndoRedo
 */
 func (o *EditorPlugin) GetUndoRedo() UndoRedo {
-	log.Println("Calling EditorPlugin.GetUndoRedo()")
+	//log.Println("Calling EditorPlugin.GetUndoRedo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -544,7 +532,7 @@ func (o *EditorPlugin) GetUndoRedo() UndoRedo {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewUndoRedoFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -553,7 +541,7 @@ func (o *EditorPlugin) GetUndoRedo() UndoRedo {
 	Args: [{ false layout ConfigFile}], Returns: void
 */
 func (o *EditorPlugin) GetWindowLayout(layout ConfigFile) {
-	log.Println("Calling EditorPlugin.GetWindowLayout()")
+	//log.Println("Calling EditorPlugin.GetWindowLayout()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -574,7 +562,7 @@ func (o *EditorPlugin) GetWindowLayout(layout ConfigFile) {
 	Args: [{ false object Object}], Returns: bool
 */
 func (o *EditorPlugin) Handles(object Object) gdnative.Bool {
-	log.Println("Calling EditorPlugin.Handles()")
+	//log.Println("Calling EditorPlugin.Handles()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -590,7 +578,7 @@ func (o *EditorPlugin) Handles(object Object) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -599,7 +587,7 @@ func (o *EditorPlugin) Handles(object Object) gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *EditorPlugin) HasMainScreen() gdnative.Bool {
-	log.Println("Calling EditorPlugin.HasMainScreen()")
+	//log.Println("Calling EditorPlugin.HasMainScreen()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -614,7 +602,7 @@ func (o *EditorPlugin) HasMainScreen() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -623,7 +611,7 @@ func (o *EditorPlugin) HasMainScreen() gdnative.Bool {
 	Args: [], Returns: void
 */
 func (o *EditorPlugin) HideBottomPanel() {
-	log.Println("Calling EditorPlugin.HideBottomPanel()")
+	//log.Println("Calling EditorPlugin.HideBottomPanel()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -643,7 +631,7 @@ func (o *EditorPlugin) HideBottomPanel() {
 	Args: [{ false item Object}], Returns: void
 */
 func (o *EditorPlugin) MakeBottomPanelItemVisible(item Object) {
-	log.Println("Calling EditorPlugin.MakeBottomPanelItemVisible()")
+	//log.Println("Calling EditorPlugin.MakeBottomPanelItemVisible()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -664,7 +652,7 @@ func (o *EditorPlugin) MakeBottomPanelItemVisible(item Object) {
 	Args: [{ false visible bool}], Returns: void
 */
 func (o *EditorPlugin) MakeVisible(visible gdnative.Bool) {
-	log.Println("Calling EditorPlugin.MakeVisible()")
+	//log.Println("Calling EditorPlugin.MakeVisible()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -685,7 +673,7 @@ func (o *EditorPlugin) MakeVisible(visible gdnative.Bool) {
 	Args: [], Returns: void
 */
 func (o *EditorPlugin) QueueSaveLayout() {
-	log.Println("Calling EditorPlugin.QueueSaveLayout()")
+	//log.Println("Calling EditorPlugin.QueueSaveLayout()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -705,7 +693,7 @@ func (o *EditorPlugin) QueueSaveLayout() {
 	Args: [{ false control Object}], Returns: void
 */
 func (o *EditorPlugin) RemoveControlFromBottomPanel(control Object) {
-	log.Println("Calling EditorPlugin.RemoveControlFromBottomPanel()")
+	//log.Println("Calling EditorPlugin.RemoveControlFromBottomPanel()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -726,7 +714,7 @@ func (o *EditorPlugin) RemoveControlFromBottomPanel(control Object) {
 	Args: [{ false container int} { false control Object}], Returns: void
 */
 func (o *EditorPlugin) RemoveControlFromContainer(container gdnative.Int, control Object) {
-	log.Println("Calling EditorPlugin.RemoveControlFromContainer()")
+	//log.Println("Calling EditorPlugin.RemoveControlFromContainer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -748,7 +736,7 @@ func (o *EditorPlugin) RemoveControlFromContainer(container gdnative.Int, contro
 	Args: [{ false control Object}], Returns: void
 */
 func (o *EditorPlugin) RemoveControlFromDocks(control Object) {
-	log.Println("Calling EditorPlugin.RemoveControlFromDocks()")
+	//log.Println("Calling EditorPlugin.RemoveControlFromDocks()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -769,7 +757,7 @@ func (o *EditorPlugin) RemoveControlFromDocks(control Object) {
 	Args: [{ false type String}], Returns: void
 */
 func (o *EditorPlugin) RemoveCustomType(aType gdnative.String) {
-	log.Println("Calling EditorPlugin.RemoveCustomType()")
+	//log.Println("Calling EditorPlugin.RemoveCustomType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -790,7 +778,7 @@ func (o *EditorPlugin) RemoveCustomType(aType gdnative.String) {
 	Args: [{ false exporter EditorExportPlugin}], Returns: void
 */
 func (o *EditorPlugin) RemoveExportPlugin(exporter EditorExportPlugin) {
-	log.Println("Calling EditorPlugin.RemoveExportPlugin()")
+	//log.Println("Calling EditorPlugin.RemoveExportPlugin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -811,7 +799,7 @@ func (o *EditorPlugin) RemoveExportPlugin(exporter EditorExportPlugin) {
 	Args: [{ false importer EditorImportPlugin}], Returns: void
 */
 func (o *EditorPlugin) RemoveImportPlugin(importer EditorImportPlugin) {
-	log.Println("Calling EditorPlugin.RemoveImportPlugin()")
+	//log.Println("Calling EditorPlugin.RemoveImportPlugin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -832,7 +820,7 @@ func (o *EditorPlugin) RemoveImportPlugin(importer EditorImportPlugin) {
 	Args: [{ false scene_importer EditorSceneImporter}], Returns: void
 */
 func (o *EditorPlugin) RemoveSceneImportPlugin(sceneImporter EditorSceneImporter) {
-	log.Println("Calling EditorPlugin.RemoveSceneImportPlugin()")
+	//log.Println("Calling EditorPlugin.RemoveSceneImportPlugin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -853,7 +841,7 @@ func (o *EditorPlugin) RemoveSceneImportPlugin(sceneImporter EditorSceneImporter
 	Args: [], Returns: void
 */
 func (o *EditorPlugin) SaveExternalData() {
-	log.Println("Calling EditorPlugin.SaveExternalData()")
+	//log.Println("Calling EditorPlugin.SaveExternalData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -873,7 +861,7 @@ func (o *EditorPlugin) SaveExternalData() {
 	Args: [], Returns: void
 */
 func (o *EditorPlugin) SetForceDrawOverForwardingEnabled() {
-	log.Println("Calling EditorPlugin.SetForceDrawOverForwardingEnabled()")
+	//log.Println("Calling EditorPlugin.SetForceDrawOverForwardingEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -893,7 +881,7 @@ func (o *EditorPlugin) SetForceDrawOverForwardingEnabled() {
 	Args: [], Returns: void
 */
 func (o *EditorPlugin) SetInputEventForwardingAlwaysEnabled() {
-	log.Println("Calling EditorPlugin.SetInputEventForwardingAlwaysEnabled()")
+	//log.Println("Calling EditorPlugin.SetInputEventForwardingAlwaysEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -913,7 +901,7 @@ func (o *EditorPlugin) SetInputEventForwardingAlwaysEnabled() {
 	Args: [{ false state Dictionary}], Returns: void
 */
 func (o *EditorPlugin) SetState(state gdnative.Dictionary) {
-	log.Println("Calling EditorPlugin.SetState()")
+	//log.Println("Calling EditorPlugin.SetState()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -934,7 +922,7 @@ func (o *EditorPlugin) SetState(state gdnative.Dictionary) {
 	Args: [{ false layout ConfigFile}], Returns: void
 */
 func (o *EditorPlugin) SetWindowLayout(layout ConfigFile) {
-	log.Println("Calling EditorPlugin.SetWindowLayout()")
+	//log.Println("Calling EditorPlugin.SetWindowLayout()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -955,7 +943,7 @@ func (o *EditorPlugin) SetWindowLayout(layout ConfigFile) {
 	Args: [], Returns: int
 */
 func (o *EditorPlugin) UpdateOverlays() gdnative.Int {
-	log.Println("Calling EditorPlugin.UpdateOverlays()")
+	//log.Println("Calling EditorPlugin.UpdateOverlays()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -970,6 +958,6 @@ func (o *EditorPlugin) UpdateOverlays() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

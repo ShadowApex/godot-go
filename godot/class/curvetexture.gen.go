@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *CurveTexture) BaseClass() string {
 	return "CurveTexture"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *CurveTexture) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *CurveTexture) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *CurveTexture) X_Update() {
-	log.Println("Calling CurveTexture.X_Update()")
+	//log.Println("Calling CurveTexture.X_Update()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *CurveTexture) X_Update() {
 	Args: [], Returns: Curve
 */
 func (o *CurveTexture) GetCurve() Curve {
-	log.Println("Calling CurveTexture.GetCurve()")
+	//log.Println("Calling CurveTexture.GetCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -86,7 +74,7 @@ func (o *CurveTexture) GetCurve() Curve {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewCurveFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -95,7 +83,7 @@ func (o *CurveTexture) GetCurve() Curve {
 	Args: [{ false curve Curve}], Returns: void
 */
 func (o *CurveTexture) SetCurve(curve Curve) {
-	log.Println("Calling CurveTexture.SetCurve()")
+	//log.Println("Calling CurveTexture.SetCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -116,7 +104,7 @@ func (o *CurveTexture) SetCurve(curve Curve) {
 	Args: [{ false width int}], Returns: void
 */
 func (o *CurveTexture) SetWidth(width gdnative.Int) {
-	log.Println("Calling CurveTexture.SetWidth()")
+	//log.Println("Calling CurveTexture.SetWidth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

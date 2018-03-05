@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ARVRPositionalTracker) BaseClass() string {
 	return "ARVRPositionalTracker"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ARVRPositionalTracker) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ARVRPositionalTracker) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false joy_id int}], Returns: void
 */
 func (o *ARVRPositionalTracker) X_SetJoyId(joyId gdnative.Int) {
-	log.Println("Calling ARVRPositionalTracker.X_SetJoyId()")
+	//log.Println("Calling ARVRPositionalTracker.X_SetJoyId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *ARVRPositionalTracker) X_SetJoyId(joyId gdnative.Int) {
 	Args: [{ false name String}], Returns: void
 */
 func (o *ARVRPositionalTracker) X_SetName(name gdnative.String) {
-	log.Println("Calling ARVRPositionalTracker.X_SetName()")
+	//log.Println("Calling ARVRPositionalTracker.X_SetName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -93,7 +81,7 @@ func (o *ARVRPositionalTracker) X_SetName(name gdnative.String) {
 	Args: [{ false orientation Basis}], Returns: void
 */
 func (o *ARVRPositionalTracker) X_SetOrientation(orientation gdnative.Basis) {
-	log.Println("Calling ARVRPositionalTracker.X_SetOrientation()")
+	//log.Println("Calling ARVRPositionalTracker.X_SetOrientation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -114,7 +102,7 @@ func (o *ARVRPositionalTracker) X_SetOrientation(orientation gdnative.Basis) {
 	Args: [{ false rw_position Vector3}], Returns: void
 */
 func (o *ARVRPositionalTracker) X_SetRwPosition(rwPosition gdnative.Vector3) {
-	log.Println("Calling ARVRPositionalTracker.X_SetRwPosition()")
+	//log.Println("Calling ARVRPositionalTracker.X_SetRwPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -135,7 +123,7 @@ func (o *ARVRPositionalTracker) X_SetRwPosition(rwPosition gdnative.Vector3) {
 	Args: [{ false type int}], Returns: void
 */
 func (o *ARVRPositionalTracker) X_SetType(aType gdnative.Int) {
-	log.Println("Calling ARVRPositionalTracker.X_SetType()")
+	//log.Println("Calling ARVRPositionalTracker.X_SetType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -161,7 +149,7 @@ func (o *ARVRPositionalTracker) X_SetType(aType gdnative.Int) {
 	Args: [], Returns: int
 */
 func (o *ARVRPositionalTracker) GetJoyId() gdnative.Int {
-	log.Println("Calling ARVRPositionalTracker.GetJoyId()")
+	//log.Println("Calling ARVRPositionalTracker.GetJoyId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -176,7 +164,7 @@ func (o *ARVRPositionalTracker) GetJoyId() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -185,7 +173,7 @@ func (o *ARVRPositionalTracker) GetJoyId() gdnative.Int {
 	Args: [], Returns: String
 */
 func (o *ARVRPositionalTracker) GetName() gdnative.String {
-	log.Println("Calling ARVRPositionalTracker.GetName()")
+	//log.Println("Calling ARVRPositionalTracker.GetName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -200,7 +188,7 @@ func (o *ARVRPositionalTracker) GetName() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -209,7 +197,7 @@ func (o *ARVRPositionalTracker) GetName() gdnative.String {
 	Args: [], Returns: Basis
 */
 func (o *ARVRPositionalTracker) GetOrientation() gdnative.Basis {
-	log.Println("Calling ARVRPositionalTracker.GetOrientation()")
+	//log.Println("Calling ARVRPositionalTracker.GetOrientation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -224,7 +212,7 @@ func (o *ARVRPositionalTracker) GetOrientation() gdnative.Basis {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBasisFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -233,7 +221,7 @@ func (o *ARVRPositionalTracker) GetOrientation() gdnative.Basis {
 	Args: [], Returns: Vector3
 */
 func (o *ARVRPositionalTracker) GetPosition() gdnative.Vector3 {
-	log.Println("Calling ARVRPositionalTracker.GetPosition()")
+	//log.Println("Calling ARVRPositionalTracker.GetPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -248,7 +236,7 @@ func (o *ARVRPositionalTracker) GetPosition() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -257,7 +245,7 @@ func (o *ARVRPositionalTracker) GetPosition() gdnative.Vector3 {
 	Args: [], Returns: float
 */
 func (o *ARVRPositionalTracker) GetRumble() gdnative.Float {
-	log.Println("Calling ARVRPositionalTracker.GetRumble()")
+	//log.Println("Calling ARVRPositionalTracker.GetRumble()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -272,7 +260,7 @@ func (o *ARVRPositionalTracker) GetRumble() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -281,7 +269,7 @@ func (o *ARVRPositionalTracker) GetRumble() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *ARVRPositionalTracker) GetTracksOrientation() gdnative.Bool {
-	log.Println("Calling ARVRPositionalTracker.GetTracksOrientation()")
+	//log.Println("Calling ARVRPositionalTracker.GetTracksOrientation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -296,7 +284,7 @@ func (o *ARVRPositionalTracker) GetTracksOrientation() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -305,7 +293,7 @@ func (o *ARVRPositionalTracker) GetTracksOrientation() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *ARVRPositionalTracker) GetTracksPosition() gdnative.Bool {
-	log.Println("Calling ARVRPositionalTracker.GetTracksPosition()")
+	//log.Println("Calling ARVRPositionalTracker.GetTracksPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -320,7 +308,7 @@ func (o *ARVRPositionalTracker) GetTracksPosition() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -329,7 +317,7 @@ func (o *ARVRPositionalTracker) GetTracksPosition() gdnative.Bool {
 	Args: [{ false adjust_by_reference_frame bool}], Returns: Transform
 */
 func (o *ARVRPositionalTracker) GetTransform(adjustByReferenceFrame gdnative.Bool) gdnative.Transform {
-	log.Println("Calling ARVRPositionalTracker.GetTransform()")
+	//log.Println("Calling ARVRPositionalTracker.GetTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -345,7 +333,7 @@ func (o *ARVRPositionalTracker) GetTransform(adjustByReferenceFrame gdnative.Boo
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransformFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -359,7 +347,7 @@ func (o *ARVRPositionalTracker) GetTransform(adjustByReferenceFrame gdnative.Boo
 	Args: [{ false rumble float}], Returns: void
 */
 func (o *ARVRPositionalTracker) SetRumble(rumble gdnative.Float) {
-	log.Println("Calling ARVRPositionalTracker.SetRumble()")
+	//log.Println("Calling ARVRPositionalTracker.SetRumble()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

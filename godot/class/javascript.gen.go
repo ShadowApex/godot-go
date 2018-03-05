@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -48,7 +46,7 @@ func (o *javaScript) ensureSingleton() {
 	if o.initialized == true {
 		return
 	}
-	log.Println("Singleton not found. Fetching from GDNative...")
+	//log.Println("Singleton not found. Fetching from GDNative...")
 	base := gdnative.GetSingleton("JavaScript")
 	o.SetBaseObject(base)
 	o.initialized = true
@@ -58,23 +56,13 @@ func (o *javaScript) BaseClass() string {
 	return "JavaScript"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *javaScript) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *javaScript) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Execute the string [code]code[/code] as JavaScript code within the browser window. This is a call to the actual global JavaScript function [code]eval()[/code]. If [code]use_global_execution_context[/code] is [code]true[/code], the code will be evaluated in the global execution context. Otherwise, it is evaluated in the execution context of a function within the engine's runtime environment.
 	Args: [{ false code String} {False true use_global_execution_context bool}], Returns: Variant
 */
 func (o *javaScript) Eval(code gdnative.String, useGlobalExecutionContext gdnative.Bool) gdnative.Variant {
 	o.ensureSingleton()
-	log.Println("Calling JavaScript.Eval()")
+	//log.Println("Calling JavaScript.Eval()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -91,6 +79,6 @@ func (o *javaScript) Eval(code gdnative.String, useGlobalExecutionContext gdnati
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

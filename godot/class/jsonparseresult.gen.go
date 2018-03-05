@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,16 +34,6 @@ func (o *JSONParseResult) BaseClass() string {
 	return "JSONParseResult"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *JSONParseResult) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *JSONParseResult) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: enum.Error
@@ -56,7 +44,7 @@ func (o *JSONParseResult) GetBaseObject() gdnative.Object {
 	Args: [], Returns: int
 */
 func (o *JSONParseResult) GetErrorLine() gdnative.Int {
-	log.Println("Calling JSONParseResult.GetErrorLine()")
+	//log.Println("Calling JSONParseResult.GetErrorLine()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *JSONParseResult) GetErrorLine() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -80,7 +68,7 @@ func (o *JSONParseResult) GetErrorLine() gdnative.Int {
 	Args: [], Returns: String
 */
 func (o *JSONParseResult) GetErrorString() gdnative.String {
-	log.Println("Calling JSONParseResult.GetErrorString()")
+	//log.Println("Calling JSONParseResult.GetErrorString()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -95,7 +83,7 @@ func (o *JSONParseResult) GetErrorString() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -104,7 +92,7 @@ func (o *JSONParseResult) GetErrorString() gdnative.String {
 	Args: [], Returns: Variant
 */
 func (o *JSONParseResult) GetResult() gdnative.Variant {
-	log.Println("Calling JSONParseResult.GetResult()")
+	//log.Println("Calling JSONParseResult.GetResult()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -119,7 +107,7 @@ func (o *JSONParseResult) GetResult() gdnative.Variant {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -128,7 +116,7 @@ func (o *JSONParseResult) GetResult() gdnative.Variant {
 	Args: [{ false error int}], Returns: void
 */
 func (o *JSONParseResult) SetError(error gdnative.Int) {
-	log.Println("Calling JSONParseResult.SetError()")
+	//log.Println("Calling JSONParseResult.SetError()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -149,7 +137,7 @@ func (o *JSONParseResult) SetError(error gdnative.Int) {
 	Args: [{ false error_line int}], Returns: void
 */
 func (o *JSONParseResult) SetErrorLine(errorLine gdnative.Int) {
-	log.Println("Calling JSONParseResult.SetErrorLine()")
+	//log.Println("Calling JSONParseResult.SetErrorLine()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -170,7 +158,7 @@ func (o *JSONParseResult) SetErrorLine(errorLine gdnative.Int) {
 	Args: [{ false error_string String}], Returns: void
 */
 func (o *JSONParseResult) SetErrorString(errorString gdnative.String) {
-	log.Println("Calling JSONParseResult.SetErrorString()")
+	//log.Println("Calling JSONParseResult.SetErrorString()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -191,7 +179,7 @@ func (o *JSONParseResult) SetErrorString(errorString gdnative.String) {
 	Args: [{ false result Variant}], Returns: void
 */
 func (o *JSONParseResult) SetResult(result gdnative.Variant) {
-	log.Println("Calling JSONParseResult.SetResult()")
+	//log.Println("Calling JSONParseResult.SetResult()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

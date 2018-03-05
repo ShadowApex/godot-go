@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *AudioStreamOGGVorbis) BaseClass() string {
 	return "AudioStreamOGGVorbis"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AudioStreamOGGVorbis) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AudioStreamOGGVorbis) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: PoolByteArray
 */
 func (o *AudioStreamOGGVorbis) X_GetData() gdnative.PoolByteArray {
-	log.Println("Calling AudioStreamOGGVorbis.X_GetData()")
+	//log.Println("Calling AudioStreamOGGVorbis.X_GetData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *AudioStreamOGGVorbis) X_GetData() gdnative.PoolByteArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolByteArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *AudioStreamOGGVorbis) X_GetData() gdnative.PoolByteArray {
 	Args: [{ false data PoolByteArray}], Returns: void
 */
 func (o *AudioStreamOGGVorbis) X_SetData(data gdnative.PoolByteArray) {
-	log.Println("Calling AudioStreamOGGVorbis.X_SetData()")
+	//log.Println("Calling AudioStreamOGGVorbis.X_SetData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *AudioStreamOGGVorbis) X_SetData(data gdnative.PoolByteArray) {
 	Args: [], Returns: float
 */
 func (o *AudioStreamOGGVorbis) GetLoopOffset() gdnative.Float {
-	log.Println("Calling AudioStreamOGGVorbis.GetLoopOffset()")
+	//log.Println("Calling AudioStreamOGGVorbis.GetLoopOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -111,7 +99,7 @@ func (o *AudioStreamOGGVorbis) GetLoopOffset() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -120,7 +108,7 @@ func (o *AudioStreamOGGVorbis) GetLoopOffset() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *AudioStreamOGGVorbis) HasLoop() gdnative.Bool {
-	log.Println("Calling AudioStreamOGGVorbis.HasLoop()")
+	//log.Println("Calling AudioStreamOGGVorbis.HasLoop()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -135,7 +123,7 @@ func (o *AudioStreamOGGVorbis) HasLoop() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -144,7 +132,7 @@ func (o *AudioStreamOGGVorbis) HasLoop() gdnative.Bool {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *AudioStreamOGGVorbis) SetLoop(enable gdnative.Bool) {
-	log.Println("Calling AudioStreamOGGVorbis.SetLoop()")
+	//log.Println("Calling AudioStreamOGGVorbis.SetLoop()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -165,7 +153,7 @@ func (o *AudioStreamOGGVorbis) SetLoop(enable gdnative.Bool) {
 	Args: [{ false seconds float}], Returns: void
 */
 func (o *AudioStreamOGGVorbis) SetLoopOffset(seconds gdnative.Float) {
-	log.Println("Calling AudioStreamOGGVorbis.SetLoopOffset()")
+	//log.Println("Calling AudioStreamOGGVorbis.SetLoopOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

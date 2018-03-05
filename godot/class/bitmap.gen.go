@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *BitMap) BaseClass() string {
 	return "BitMap"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *BitMap) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *BitMap) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Dictionary
 */
 func (o *BitMap) X_GetData() gdnative.Dictionary {
-	log.Println("Calling BitMap.X_GetData()")
+	//log.Println("Calling BitMap.X_GetData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *BitMap) X_GetData() gdnative.Dictionary {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewDictionaryFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *BitMap) X_GetData() gdnative.Dictionary {
 	Args: [{ false arg0 Dictionary}], Returns: void
 */
 func (o *BitMap) X_SetData(arg0 gdnative.Dictionary) {
-	log.Println("Calling BitMap.X_SetData()")
+	//log.Println("Calling BitMap.X_SetData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *BitMap) X_SetData(arg0 gdnative.Dictionary) {
 	Args: [{ false size Vector2}], Returns: void
 */
 func (o *BitMap) Create(size gdnative.Vector2) {
-	log.Println("Calling BitMap.Create()")
+	//log.Println("Calling BitMap.Create()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -117,7 +105,7 @@ func (o *BitMap) Create(size gdnative.Vector2) {
 	Args: [{ false image Image}], Returns: void
 */
 func (o *BitMap) CreateFromImageAlpha(image Image) {
-	log.Println("Calling BitMap.CreateFromImageAlpha()")
+	//log.Println("Calling BitMap.CreateFromImageAlpha()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -138,7 +126,7 @@ func (o *BitMap) CreateFromImageAlpha(image Image) {
 	Args: [{ false position Vector2}], Returns: bool
 */
 func (o *BitMap) GetBit(position gdnative.Vector2) gdnative.Bool {
-	log.Println("Calling BitMap.GetBit()")
+	//log.Println("Calling BitMap.GetBit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -154,7 +142,7 @@ func (o *BitMap) GetBit(position gdnative.Vector2) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -163,7 +151,7 @@ func (o *BitMap) GetBit(position gdnative.Vector2) gdnative.Bool {
 	Args: [], Returns: Vector2
 */
 func (o *BitMap) GetSize() gdnative.Vector2 {
-	log.Println("Calling BitMap.GetSize()")
+	//log.Println("Calling BitMap.GetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -178,7 +166,7 @@ func (o *BitMap) GetSize() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -187,7 +175,7 @@ func (o *BitMap) GetSize() gdnative.Vector2 {
 	Args: [], Returns: int
 */
 func (o *BitMap) GetTrueBitCount() gdnative.Int {
-	log.Println("Calling BitMap.GetTrueBitCount()")
+	//log.Println("Calling BitMap.GetTrueBitCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -202,7 +190,7 @@ func (o *BitMap) GetTrueBitCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -211,7 +199,7 @@ func (o *BitMap) GetTrueBitCount() gdnative.Int {
 	Args: [{ false position Vector2} { false bit bool}], Returns: void
 */
 func (o *BitMap) SetBit(position gdnative.Vector2, bit gdnative.Bool) {
-	log.Println("Calling BitMap.SetBit()")
+	//log.Println("Calling BitMap.SetBit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -233,7 +221,7 @@ func (o *BitMap) SetBit(position gdnative.Vector2, bit gdnative.Bool) {
 	Args: [{ false p_rect Rect2} { false bit bool}], Returns: void
 */
 func (o *BitMap) SetBitRect(pRect gdnative.Rect2, bit gdnative.Bool) {
-	log.Println("Calling BitMap.SetBitRect()")
+	//log.Println("Calling BitMap.SetBitRect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)

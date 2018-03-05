@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *RigidBody) BaseClass() string {
 	return "RigidBody"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *RigidBody) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *RigidBody) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false arg0 int}], Returns: void
 */
 func (o *RigidBody) X_BodyEnterTree(arg0 gdnative.Int) {
-	log.Println("Calling RigidBody.X_BodyEnterTree()")
+	//log.Println("Calling RigidBody.X_BodyEnterTree()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *RigidBody) X_BodyEnterTree(arg0 gdnative.Int) {
 	Args: [{ false arg0 int}], Returns: void
 */
 func (o *RigidBody) X_BodyExitTree(arg0 gdnative.Int) {
-	log.Println("Calling RigidBody.X_BodyExitTree()")
+	//log.Println("Calling RigidBody.X_BodyExitTree()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -93,7 +81,7 @@ func (o *RigidBody) X_BodyExitTree(arg0 gdnative.Int) {
 	Args: [{ false arg0 Object}], Returns: void
 */
 func (o *RigidBody) X_DirectStateChanged(arg0 Object) {
-	log.Println("Calling RigidBody.X_DirectStateChanged()")
+	//log.Println("Calling RigidBody.X_DirectStateChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -114,7 +102,7 @@ func (o *RigidBody) X_DirectStateChanged(arg0 Object) {
 	Args: [{ false state PhysicsDirectBodyState}], Returns: void
 */
 func (o *RigidBody) X_IntegrateForces(state PhysicsDirectBodyState) {
-	log.Println("Calling RigidBody.X_IntegrateForces()")
+	//log.Println("Calling RigidBody.X_IntegrateForces()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -135,7 +123,7 @@ func (o *RigidBody) X_IntegrateForces(state PhysicsDirectBodyState) {
 	Args: [{ false position Vector3} { false impulse Vector3}], Returns: void
 */
 func (o *RigidBody) ApplyImpulse(position gdnative.Vector3, impulse gdnative.Vector3) {
-	log.Println("Calling RigidBody.ApplyImpulse()")
+	//log.Println("Calling RigidBody.ApplyImpulse()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -157,7 +145,7 @@ func (o *RigidBody) ApplyImpulse(position gdnative.Vector3, impulse gdnative.Vec
 	Args: [], Returns: float
 */
 func (o *RigidBody) GetAngularDamp() gdnative.Float {
-	log.Println("Calling RigidBody.GetAngularDamp()")
+	//log.Println("Calling RigidBody.GetAngularDamp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -172,7 +160,7 @@ func (o *RigidBody) GetAngularDamp() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -181,7 +169,7 @@ func (o *RigidBody) GetAngularDamp() gdnative.Float {
 	Args: [], Returns: Vector3
 */
 func (o *RigidBody) GetAngularVelocity() gdnative.Vector3 {
-	log.Println("Calling RigidBody.GetAngularVelocity()")
+	//log.Println("Calling RigidBody.GetAngularVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -196,7 +184,7 @@ func (o *RigidBody) GetAngularVelocity() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -205,7 +193,7 @@ func (o *RigidBody) GetAngularVelocity() gdnative.Vector3 {
 	Args: [{ false axis int}], Returns: bool
 */
 func (o *RigidBody) GetAxisLock(axis gdnative.Int) gdnative.Bool {
-	log.Println("Calling RigidBody.GetAxisLock()")
+	//log.Println("Calling RigidBody.GetAxisLock()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -221,7 +209,7 @@ func (o *RigidBody) GetAxisLock(axis gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -230,7 +218,7 @@ func (o *RigidBody) GetAxisLock(axis gdnative.Int) gdnative.Bool {
 	Args: [], Returns: float
 */
 func (o *RigidBody) GetBounce() gdnative.Float {
-	log.Println("Calling RigidBody.GetBounce()")
+	//log.Println("Calling RigidBody.GetBounce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -245,7 +233,7 @@ func (o *RigidBody) GetBounce() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -254,7 +242,7 @@ func (o *RigidBody) GetBounce() gdnative.Float {
 	Args: [], Returns: Array
 */
 func (o *RigidBody) GetCollidingBodies() gdnative.Array {
-	log.Println("Calling RigidBody.GetCollidingBodies()")
+	//log.Println("Calling RigidBody.GetCollidingBodies()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -269,7 +257,7 @@ func (o *RigidBody) GetCollidingBodies() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -278,7 +266,7 @@ func (o *RigidBody) GetCollidingBodies() gdnative.Array {
 	Args: [], Returns: float
 */
 func (o *RigidBody) GetFriction() gdnative.Float {
-	log.Println("Calling RigidBody.GetFriction()")
+	//log.Println("Calling RigidBody.GetFriction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -293,7 +281,7 @@ func (o *RigidBody) GetFriction() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -302,7 +290,7 @@ func (o *RigidBody) GetFriction() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *RigidBody) GetGravityScale() gdnative.Float {
-	log.Println("Calling RigidBody.GetGravityScale()")
+	//log.Println("Calling RigidBody.GetGravityScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -317,7 +305,7 @@ func (o *RigidBody) GetGravityScale() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -326,7 +314,7 @@ func (o *RigidBody) GetGravityScale() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *RigidBody) GetLinearDamp() gdnative.Float {
-	log.Println("Calling RigidBody.GetLinearDamp()")
+	//log.Println("Calling RigidBody.GetLinearDamp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -341,7 +329,7 @@ func (o *RigidBody) GetLinearDamp() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -350,7 +338,7 @@ func (o *RigidBody) GetLinearDamp() gdnative.Float {
 	Args: [], Returns: Vector3
 */
 func (o *RigidBody) GetLinearVelocity() gdnative.Vector3 {
-	log.Println("Calling RigidBody.GetLinearVelocity()")
+	//log.Println("Calling RigidBody.GetLinearVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -365,7 +353,7 @@ func (o *RigidBody) GetLinearVelocity() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -374,7 +362,7 @@ func (o *RigidBody) GetLinearVelocity() gdnative.Vector3 {
 	Args: [], Returns: float
 */
 func (o *RigidBody) GetMass() gdnative.Float {
-	log.Println("Calling RigidBody.GetMass()")
+	//log.Println("Calling RigidBody.GetMass()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -389,7 +377,7 @@ func (o *RigidBody) GetMass() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -398,7 +386,7 @@ func (o *RigidBody) GetMass() gdnative.Float {
 	Args: [], Returns: int
 */
 func (o *RigidBody) GetMaxContactsReported() gdnative.Int {
-	log.Println("Calling RigidBody.GetMaxContactsReported()")
+	//log.Println("Calling RigidBody.GetMaxContactsReported()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -413,7 +401,7 @@ func (o *RigidBody) GetMaxContactsReported() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -427,7 +415,7 @@ func (o *RigidBody) GetMaxContactsReported() gdnative.Int {
 	Args: [], Returns: float
 */
 func (o *RigidBody) GetWeight() gdnative.Float {
-	log.Println("Calling RigidBody.GetWeight()")
+	//log.Println("Calling RigidBody.GetWeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -442,7 +430,7 @@ func (o *RigidBody) GetWeight() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -451,7 +439,7 @@ func (o *RigidBody) GetWeight() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *RigidBody) IsAbleToSleep() gdnative.Bool {
-	log.Println("Calling RigidBody.IsAbleToSleep()")
+	//log.Println("Calling RigidBody.IsAbleToSleep()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -466,7 +454,7 @@ func (o *RigidBody) IsAbleToSleep() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -475,7 +463,7 @@ func (o *RigidBody) IsAbleToSleep() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *RigidBody) IsContactMonitorEnabled() gdnative.Bool {
-	log.Println("Calling RigidBody.IsContactMonitorEnabled()")
+	//log.Println("Calling RigidBody.IsContactMonitorEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -490,7 +478,7 @@ func (o *RigidBody) IsContactMonitorEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -499,7 +487,7 @@ func (o *RigidBody) IsContactMonitorEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *RigidBody) IsSleeping() gdnative.Bool {
-	log.Println("Calling RigidBody.IsSleeping()")
+	//log.Println("Calling RigidBody.IsSleeping()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -514,7 +502,7 @@ func (o *RigidBody) IsSleeping() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -523,7 +511,7 @@ func (o *RigidBody) IsSleeping() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *RigidBody) IsUsingContinuousCollisionDetection() gdnative.Bool {
-	log.Println("Calling RigidBody.IsUsingContinuousCollisionDetection()")
+	//log.Println("Calling RigidBody.IsUsingContinuousCollisionDetection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -538,7 +526,7 @@ func (o *RigidBody) IsUsingContinuousCollisionDetection() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -547,7 +535,7 @@ func (o *RigidBody) IsUsingContinuousCollisionDetection() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *RigidBody) IsUsingCustomIntegrator() gdnative.Bool {
-	log.Println("Calling RigidBody.IsUsingCustomIntegrator()")
+	//log.Println("Calling RigidBody.IsUsingCustomIntegrator()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -562,7 +550,7 @@ func (o *RigidBody) IsUsingCustomIntegrator() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -571,7 +559,7 @@ func (o *RigidBody) IsUsingCustomIntegrator() gdnative.Bool {
 	Args: [{ false angular_damp float}], Returns: void
 */
 func (o *RigidBody) SetAngularDamp(angularDamp gdnative.Float) {
-	log.Println("Calling RigidBody.SetAngularDamp()")
+	//log.Println("Calling RigidBody.SetAngularDamp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -592,7 +580,7 @@ func (o *RigidBody) SetAngularDamp(angularDamp gdnative.Float) {
 	Args: [{ false angular_velocity Vector3}], Returns: void
 */
 func (o *RigidBody) SetAngularVelocity(angularVelocity gdnative.Vector3) {
-	log.Println("Calling RigidBody.SetAngularVelocity()")
+	//log.Println("Calling RigidBody.SetAngularVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -613,7 +601,7 @@ func (o *RigidBody) SetAngularVelocity(angularVelocity gdnative.Vector3) {
 	Args: [{ false axis int} { false lock bool}], Returns: void
 */
 func (o *RigidBody) SetAxisLock(axis gdnative.Int, lock gdnative.Bool) {
-	log.Println("Calling RigidBody.SetAxisLock()")
+	//log.Println("Calling RigidBody.SetAxisLock()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -635,7 +623,7 @@ func (o *RigidBody) SetAxisLock(axis gdnative.Int, lock gdnative.Bool) {
 	Args: [{ false axis_velocity Vector3}], Returns: void
 */
 func (o *RigidBody) SetAxisVelocity(axisVelocity gdnative.Vector3) {
-	log.Println("Calling RigidBody.SetAxisVelocity()")
+	//log.Println("Calling RigidBody.SetAxisVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -656,7 +644,7 @@ func (o *RigidBody) SetAxisVelocity(axisVelocity gdnative.Vector3) {
 	Args: [{ false bounce float}], Returns: void
 */
 func (o *RigidBody) SetBounce(bounce gdnative.Float) {
-	log.Println("Calling RigidBody.SetBounce()")
+	//log.Println("Calling RigidBody.SetBounce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -677,7 +665,7 @@ func (o *RigidBody) SetBounce(bounce gdnative.Float) {
 	Args: [{ false able_to_sleep bool}], Returns: void
 */
 func (o *RigidBody) SetCanSleep(ableToSleep gdnative.Bool) {
-	log.Println("Calling RigidBody.SetCanSleep()")
+	//log.Println("Calling RigidBody.SetCanSleep()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -698,7 +686,7 @@ func (o *RigidBody) SetCanSleep(ableToSleep gdnative.Bool) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *RigidBody) SetContactMonitor(enabled gdnative.Bool) {
-	log.Println("Calling RigidBody.SetContactMonitor()")
+	//log.Println("Calling RigidBody.SetContactMonitor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -719,7 +707,7 @@ func (o *RigidBody) SetContactMonitor(enabled gdnative.Bool) {
 	Args: [{ false friction float}], Returns: void
 */
 func (o *RigidBody) SetFriction(friction gdnative.Float) {
-	log.Println("Calling RigidBody.SetFriction()")
+	//log.Println("Calling RigidBody.SetFriction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -740,7 +728,7 @@ func (o *RigidBody) SetFriction(friction gdnative.Float) {
 	Args: [{ false gravity_scale float}], Returns: void
 */
 func (o *RigidBody) SetGravityScale(gravityScale gdnative.Float) {
-	log.Println("Calling RigidBody.SetGravityScale()")
+	//log.Println("Calling RigidBody.SetGravityScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -761,7 +749,7 @@ func (o *RigidBody) SetGravityScale(gravityScale gdnative.Float) {
 	Args: [{ false linear_damp float}], Returns: void
 */
 func (o *RigidBody) SetLinearDamp(linearDamp gdnative.Float) {
-	log.Println("Calling RigidBody.SetLinearDamp()")
+	//log.Println("Calling RigidBody.SetLinearDamp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -782,7 +770,7 @@ func (o *RigidBody) SetLinearDamp(linearDamp gdnative.Float) {
 	Args: [{ false linear_velocity Vector3}], Returns: void
 */
 func (o *RigidBody) SetLinearVelocity(linearVelocity gdnative.Vector3) {
-	log.Println("Calling RigidBody.SetLinearVelocity()")
+	//log.Println("Calling RigidBody.SetLinearVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -803,7 +791,7 @@ func (o *RigidBody) SetLinearVelocity(linearVelocity gdnative.Vector3) {
 	Args: [{ false mass float}], Returns: void
 */
 func (o *RigidBody) SetMass(mass gdnative.Float) {
-	log.Println("Calling RigidBody.SetMass()")
+	//log.Println("Calling RigidBody.SetMass()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -824,7 +812,7 @@ func (o *RigidBody) SetMass(mass gdnative.Float) {
 	Args: [{ false amount int}], Returns: void
 */
 func (o *RigidBody) SetMaxContactsReported(amount gdnative.Int) {
-	log.Println("Calling RigidBody.SetMaxContactsReported()")
+	//log.Println("Calling RigidBody.SetMaxContactsReported()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -845,7 +833,7 @@ func (o *RigidBody) SetMaxContactsReported(amount gdnative.Int) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *RigidBody) SetMode(mode gdnative.Int) {
-	log.Println("Calling RigidBody.SetMode()")
+	//log.Println("Calling RigidBody.SetMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -866,7 +854,7 @@ func (o *RigidBody) SetMode(mode gdnative.Int) {
 	Args: [{ false sleeping bool}], Returns: void
 */
 func (o *RigidBody) SetSleeping(sleeping gdnative.Bool) {
-	log.Println("Calling RigidBody.SetSleeping()")
+	//log.Println("Calling RigidBody.SetSleeping()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -887,7 +875,7 @@ func (o *RigidBody) SetSleeping(sleeping gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *RigidBody) SetUseContinuousCollisionDetection(enable gdnative.Bool) {
-	log.Println("Calling RigidBody.SetUseContinuousCollisionDetection()")
+	//log.Println("Calling RigidBody.SetUseContinuousCollisionDetection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -908,7 +896,7 @@ func (o *RigidBody) SetUseContinuousCollisionDetection(enable gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *RigidBody) SetUseCustomIntegrator(enable gdnative.Bool) {
-	log.Println("Calling RigidBody.SetUseCustomIntegrator()")
+	//log.Println("Calling RigidBody.SetUseCustomIntegrator()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -929,7 +917,7 @@ func (o *RigidBody) SetUseCustomIntegrator(enable gdnative.Bool) {
 	Args: [{ false weight float}], Returns: void
 */
 func (o *RigidBody) SetWeight(weight gdnative.Float) {
-	log.Println("Calling RigidBody.SetWeight()")
+	//log.Println("Calling RigidBody.SetWeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

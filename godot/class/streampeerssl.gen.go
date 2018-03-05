@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,16 +34,6 @@ func (o *StreamPeerSSL) BaseClass() string {
 	return "StreamPeerSSL"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *StreamPeerSSL) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *StreamPeerSSL) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [{ false stream StreamPeer}], Returns: enum.Error
@@ -61,7 +49,7 @@ func (o *StreamPeerSSL) GetBaseObject() gdnative.Object {
 	Args: [], Returns: void
 */
 func (o *StreamPeerSSL) DisconnectFromStream() {
-	log.Println("Calling StreamPeerSSL.DisconnectFromStream()")
+	//log.Println("Calling StreamPeerSSL.DisconnectFromStream()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)

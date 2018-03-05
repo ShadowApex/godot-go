@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Skeleton) BaseClass() string {
 	return "Skeleton"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Skeleton) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Skeleton) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Add a bone, with name "name". [method get_bone_count] will become the bone index.
 	Args: [{ false name String}], Returns: void
 */
 func (o *Skeleton) AddBone(name gdnative.String) {
-	log.Println("Calling Skeleton.AddBone()")
+	//log.Println("Calling Skeleton.AddBone()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *Skeleton) AddBone(name gdnative.String) {
 	Args: [{ false bone_idx int} { false node Object}], Returns: void
 */
 func (o *Skeleton) BindChildNodeToBone(boneIdx gdnative.Int, node Object) {
-	log.Println("Calling Skeleton.BindChildNodeToBone()")
+	//log.Println("Calling Skeleton.BindChildNodeToBone()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -94,7 +82,7 @@ func (o *Skeleton) BindChildNodeToBone(boneIdx gdnative.Int, node Object) {
 	Args: [], Returns: void
 */
 func (o *Skeleton) ClearBones() {
-	log.Println("Calling Skeleton.ClearBones()")
+	//log.Println("Calling Skeleton.ClearBones()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *Skeleton) ClearBones() {
 	Args: [{ false name String}], Returns: int
 */
 func (o *Skeleton) FindBone(name gdnative.String) gdnative.Int {
-	log.Println("Calling Skeleton.FindBone()")
+	//log.Println("Calling Skeleton.FindBone()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -130,7 +118,7 @@ func (o *Skeleton) FindBone(name gdnative.String) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -139,7 +127,7 @@ func (o *Skeleton) FindBone(name gdnative.String) gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *Skeleton) GetBoneCount() gdnative.Int {
-	log.Println("Calling Skeleton.GetBoneCount()")
+	//log.Println("Calling Skeleton.GetBoneCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -154,7 +142,7 @@ func (o *Skeleton) GetBoneCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -163,7 +151,7 @@ func (o *Skeleton) GetBoneCount() gdnative.Int {
 	Args: [{ false bone_idx int}], Returns: Transform
 */
 func (o *Skeleton) GetBoneCustomPose(boneIdx gdnative.Int) gdnative.Transform {
-	log.Println("Calling Skeleton.GetBoneCustomPose()")
+	//log.Println("Calling Skeleton.GetBoneCustomPose()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -179,7 +167,7 @@ func (o *Skeleton) GetBoneCustomPose(boneIdx gdnative.Int) gdnative.Transform {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransformFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -188,7 +176,7 @@ func (o *Skeleton) GetBoneCustomPose(boneIdx gdnative.Int) gdnative.Transform {
 	Args: [{ false bone_idx int}], Returns: Transform
 */
 func (o *Skeleton) GetBoneGlobalPose(boneIdx gdnative.Int) gdnative.Transform {
-	log.Println("Calling Skeleton.GetBoneGlobalPose()")
+	//log.Println("Calling Skeleton.GetBoneGlobalPose()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -204,7 +192,7 @@ func (o *Skeleton) GetBoneGlobalPose(boneIdx gdnative.Int) gdnative.Transform {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransformFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -213,7 +201,7 @@ func (o *Skeleton) GetBoneGlobalPose(boneIdx gdnative.Int) gdnative.Transform {
 	Args: [{ false bone_idx int}], Returns: String
 */
 func (o *Skeleton) GetBoneName(boneIdx gdnative.Int) gdnative.String {
-	log.Println("Calling Skeleton.GetBoneName()")
+	//log.Println("Calling Skeleton.GetBoneName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -229,7 +217,7 @@ func (o *Skeleton) GetBoneName(boneIdx gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -238,7 +226,7 @@ func (o *Skeleton) GetBoneName(boneIdx gdnative.Int) gdnative.String {
 	Args: [{ false bone_idx int}], Returns: int
 */
 func (o *Skeleton) GetBoneParent(boneIdx gdnative.Int) gdnative.Int {
-	log.Println("Calling Skeleton.GetBoneParent()")
+	//log.Println("Calling Skeleton.GetBoneParent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -254,7 +242,7 @@ func (o *Skeleton) GetBoneParent(boneIdx gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -263,7 +251,7 @@ func (o *Skeleton) GetBoneParent(boneIdx gdnative.Int) gdnative.Int {
 	Args: [{ false bone_idx int}], Returns: Transform
 */
 func (o *Skeleton) GetBonePose(boneIdx gdnative.Int) gdnative.Transform {
-	log.Println("Calling Skeleton.GetBonePose()")
+	//log.Println("Calling Skeleton.GetBonePose()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -279,7 +267,7 @@ func (o *Skeleton) GetBonePose(boneIdx gdnative.Int) gdnative.Transform {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransformFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -288,7 +276,7 @@ func (o *Skeleton) GetBonePose(boneIdx gdnative.Int) gdnative.Transform {
 	Args: [{ false bone_idx int}], Returns: Transform
 */
 func (o *Skeleton) GetBoneRest(boneIdx gdnative.Int) gdnative.Transform {
-	log.Println("Calling Skeleton.GetBoneRest()")
+	//log.Println("Calling Skeleton.GetBoneRest()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -304,7 +292,7 @@ func (o *Skeleton) GetBoneRest(boneIdx gdnative.Int) gdnative.Transform {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransformFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -313,7 +301,7 @@ func (o *Skeleton) GetBoneRest(boneIdx gdnative.Int) gdnative.Transform {
 	Args: [{ false bone_idx int}], Returns: Transform
 */
 func (o *Skeleton) GetBoneTransform(boneIdx gdnative.Int) gdnative.Transform {
-	log.Println("Calling Skeleton.GetBoneTransform()")
+	//log.Println("Calling Skeleton.GetBoneTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -329,7 +317,7 @@ func (o *Skeleton) GetBoneTransform(boneIdx gdnative.Int) gdnative.Transform {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransformFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -338,7 +326,7 @@ func (o *Skeleton) GetBoneTransform(boneIdx gdnative.Int) gdnative.Transform {
 	Args: [{ false bone_idx int}], Returns: Array
 */
 func (o *Skeleton) GetBoundChildNodesToBone(boneIdx gdnative.Int) gdnative.Array {
-	log.Println("Calling Skeleton.GetBoundChildNodesToBone()")
+	//log.Println("Calling Skeleton.GetBoundChildNodesToBone()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -354,7 +342,7 @@ func (o *Skeleton) GetBoundChildNodesToBone(boneIdx gdnative.Int) gdnative.Array
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -363,7 +351,7 @@ func (o *Skeleton) GetBoundChildNodesToBone(boneIdx gdnative.Int) gdnative.Array
 	Args: [{ false bone_idx int}], Returns: bool
 */
 func (o *Skeleton) IsBoneRestDisabled(boneIdx gdnative.Int) gdnative.Bool {
-	log.Println("Calling Skeleton.IsBoneRestDisabled()")
+	//log.Println("Calling Skeleton.IsBoneRestDisabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -379,7 +367,7 @@ func (o *Skeleton) IsBoneRestDisabled(boneIdx gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -388,7 +376,7 @@ func (o *Skeleton) IsBoneRestDisabled(boneIdx gdnative.Int) gdnative.Bool {
 	Args: [{ false bone_idx int} { false custom_pose Transform}], Returns: void
 */
 func (o *Skeleton) SetBoneCustomPose(boneIdx gdnative.Int, customPose gdnative.Transform) {
-	log.Println("Calling Skeleton.SetBoneCustomPose()")
+	//log.Println("Calling Skeleton.SetBoneCustomPose()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -410,7 +398,7 @@ func (o *Skeleton) SetBoneCustomPose(boneIdx gdnative.Int, customPose gdnative.T
 	Args: [{ false bone_idx int} { false disable bool}], Returns: void
 */
 func (o *Skeleton) SetBoneDisableRest(boneIdx gdnative.Int, disable gdnative.Bool) {
-	log.Println("Calling Skeleton.SetBoneDisableRest()")
+	//log.Println("Calling Skeleton.SetBoneDisableRest()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -432,7 +420,7 @@ func (o *Skeleton) SetBoneDisableRest(boneIdx gdnative.Int, disable gdnative.Boo
 	Args: [{ false bone_idx int} { false pose Transform}], Returns: void
 */
 func (o *Skeleton) SetBoneGlobalPose(boneIdx gdnative.Int, pose gdnative.Transform) {
-	log.Println("Calling Skeleton.SetBoneGlobalPose()")
+	//log.Println("Calling Skeleton.SetBoneGlobalPose()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -454,7 +442,7 @@ func (o *Skeleton) SetBoneGlobalPose(boneIdx gdnative.Int, pose gdnative.Transfo
 	Args: [{ false bone_idx int} { false parent_idx int}], Returns: void
 */
 func (o *Skeleton) SetBoneParent(boneIdx gdnative.Int, parentIdx gdnative.Int) {
-	log.Println("Calling Skeleton.SetBoneParent()")
+	//log.Println("Calling Skeleton.SetBoneParent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -476,7 +464,7 @@ func (o *Skeleton) SetBoneParent(boneIdx gdnative.Int, parentIdx gdnative.Int) {
 	Args: [{ false bone_idx int} { false pose Transform}], Returns: void
 */
 func (o *Skeleton) SetBonePose(boneIdx gdnative.Int, pose gdnative.Transform) {
-	log.Println("Calling Skeleton.SetBonePose()")
+	//log.Println("Calling Skeleton.SetBonePose()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -498,7 +486,7 @@ func (o *Skeleton) SetBonePose(boneIdx gdnative.Int, pose gdnative.Transform) {
 	Args: [{ false bone_idx int} { false rest Transform}], Returns: void
 */
 func (o *Skeleton) SetBoneRest(boneIdx gdnative.Int, rest gdnative.Transform) {
-	log.Println("Calling Skeleton.SetBoneRest()")
+	//log.Println("Calling Skeleton.SetBoneRest()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -520,7 +508,7 @@ func (o *Skeleton) SetBoneRest(boneIdx gdnative.Int, rest gdnative.Transform) {
 	Args: [{ false bone_idx int} { false node Object}], Returns: void
 */
 func (o *Skeleton) UnbindChildNodeFromBone(boneIdx gdnative.Int, node Object) {
-	log.Println("Calling Skeleton.UnbindChildNodeFromBone()")
+	//log.Println("Calling Skeleton.UnbindChildNodeFromBone()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -542,7 +530,7 @@ func (o *Skeleton) UnbindChildNodeFromBone(boneIdx gdnative.Int, node Object) {
 	Args: [{ false bone_idx int}], Returns: void
 */
 func (o *Skeleton) UnparentBoneAndRest(boneIdx gdnative.Int) {
-	log.Println("Calling Skeleton.UnparentBoneAndRest()")
+	//log.Println("Calling Skeleton.UnparentBoneAndRest()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

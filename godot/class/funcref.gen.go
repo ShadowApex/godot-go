@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *FuncRef) BaseClass() string {
 	return "FuncRef"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *FuncRef) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *FuncRef) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Calls the referenced function previously set by [method set_function] or [method @GDScript.funcref].
 	Args: [], Returns: Variant
 */
 func (o *FuncRef) CallFunc() gdnative.Variant {
-	log.Println("Calling FuncRef.CallFunc()")
+	//log.Println("Calling FuncRef.CallFunc()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *FuncRef) CallFunc() gdnative.Variant {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *FuncRef) CallFunc() gdnative.Variant {
 	Args: [{ false name String}], Returns: void
 */
 func (o *FuncRef) SetFunction(name gdnative.String) {
-	log.Println("Calling FuncRef.SetFunction()")
+	//log.Println("Calling FuncRef.SetFunction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *FuncRef) SetFunction(name gdnative.String) {
 	Args: [{ false instance Object}], Returns: void
 */
 func (o *FuncRef) SetInstance(instance Object) {
-	log.Println("Calling FuncRef.SetInstance()")
+	//log.Println("Calling FuncRef.SetInstance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *AudioStreamPlayer3D) BaseClass() string {
 	return "AudioStreamPlayer3D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AudioStreamPlayer3D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AudioStreamPlayer3D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *AudioStreamPlayer3D) X_BusLayoutChanged() {
-	log.Println("Calling AudioStreamPlayer3D.X_BusLayoutChanged()")
+	//log.Println("Calling AudioStreamPlayer3D.X_BusLayoutChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *AudioStreamPlayer3D) X_BusLayoutChanged() {
 	Args: [], Returns: bool
 */
 func (o *AudioStreamPlayer3D) X_IsActive() gdnative.Bool {
-	log.Println("Calling AudioStreamPlayer3D.X_IsActive()")
+	//log.Println("Calling AudioStreamPlayer3D.X_IsActive()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -86,7 +74,7 @@ func (o *AudioStreamPlayer3D) X_IsActive() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -95,7 +83,7 @@ func (o *AudioStreamPlayer3D) X_IsActive() gdnative.Bool {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *AudioStreamPlayer3D) X_SetPlaying(enable gdnative.Bool) {
-	log.Println("Calling AudioStreamPlayer3D.X_SetPlaying()")
+	//log.Println("Calling AudioStreamPlayer3D.X_SetPlaying()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -116,7 +104,7 @@ func (o *AudioStreamPlayer3D) X_SetPlaying(enable gdnative.Bool) {
 	Args: [], Returns: int
 */
 func (o *AudioStreamPlayer3D) GetAreaMask() gdnative.Int {
-	log.Println("Calling AudioStreamPlayer3D.GetAreaMask()")
+	//log.Println("Calling AudioStreamPlayer3D.GetAreaMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -131,7 +119,7 @@ func (o *AudioStreamPlayer3D) GetAreaMask() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -140,7 +128,7 @@ func (o *AudioStreamPlayer3D) GetAreaMask() gdnative.Int {
 	Args: [], Returns: float
 */
 func (o *AudioStreamPlayer3D) GetAttenuationFilterCutoffHz() gdnative.Float {
-	log.Println("Calling AudioStreamPlayer3D.GetAttenuationFilterCutoffHz()")
+	//log.Println("Calling AudioStreamPlayer3D.GetAttenuationFilterCutoffHz()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -155,7 +143,7 @@ func (o *AudioStreamPlayer3D) GetAttenuationFilterCutoffHz() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -164,7 +152,7 @@ func (o *AudioStreamPlayer3D) GetAttenuationFilterCutoffHz() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioStreamPlayer3D) GetAttenuationFilterDb() gdnative.Float {
-	log.Println("Calling AudioStreamPlayer3D.GetAttenuationFilterDb()")
+	//log.Println("Calling AudioStreamPlayer3D.GetAttenuationFilterDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -179,7 +167,7 @@ func (o *AudioStreamPlayer3D) GetAttenuationFilterDb() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -193,7 +181,7 @@ func (o *AudioStreamPlayer3D) GetAttenuationFilterDb() gdnative.Float {
 	Args: [], Returns: String
 */
 func (o *AudioStreamPlayer3D) GetBus() gdnative.String {
-	log.Println("Calling AudioStreamPlayer3D.GetBus()")
+	//log.Println("Calling AudioStreamPlayer3D.GetBus()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -208,7 +196,7 @@ func (o *AudioStreamPlayer3D) GetBus() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -222,7 +210,7 @@ func (o *AudioStreamPlayer3D) GetBus() gdnative.String {
 	Args: [], Returns: float
 */
 func (o *AudioStreamPlayer3D) GetEmissionAngle() gdnative.Float {
-	log.Println("Calling AudioStreamPlayer3D.GetEmissionAngle()")
+	//log.Println("Calling AudioStreamPlayer3D.GetEmissionAngle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -237,7 +225,7 @@ func (o *AudioStreamPlayer3D) GetEmissionAngle() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -246,7 +234,7 @@ func (o *AudioStreamPlayer3D) GetEmissionAngle() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioStreamPlayer3D) GetEmissionAngleFilterAttenuationDb() gdnative.Float {
-	log.Println("Calling AudioStreamPlayer3D.GetEmissionAngleFilterAttenuationDb()")
+	//log.Println("Calling AudioStreamPlayer3D.GetEmissionAngleFilterAttenuationDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -261,7 +249,7 @@ func (o *AudioStreamPlayer3D) GetEmissionAngleFilterAttenuationDb() gdnative.Flo
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -270,7 +258,7 @@ func (o *AudioStreamPlayer3D) GetEmissionAngleFilterAttenuationDb() gdnative.Flo
 	Args: [], Returns: float
 */
 func (o *AudioStreamPlayer3D) GetMaxDb() gdnative.Float {
-	log.Println("Calling AudioStreamPlayer3D.GetMaxDb()")
+	//log.Println("Calling AudioStreamPlayer3D.GetMaxDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -285,7 +273,7 @@ func (o *AudioStreamPlayer3D) GetMaxDb() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -294,7 +282,7 @@ func (o *AudioStreamPlayer3D) GetMaxDb() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioStreamPlayer3D) GetMaxDistance() gdnative.Float {
-	log.Println("Calling AudioStreamPlayer3D.GetMaxDistance()")
+	//log.Println("Calling AudioStreamPlayer3D.GetMaxDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -309,7 +297,7 @@ func (o *AudioStreamPlayer3D) GetMaxDistance() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -323,7 +311,7 @@ func (o *AudioStreamPlayer3D) GetMaxDistance() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioStreamPlayer3D) GetPlaybackPosition() gdnative.Float {
-	log.Println("Calling AudioStreamPlayer3D.GetPlaybackPosition()")
+	//log.Println("Calling AudioStreamPlayer3D.GetPlaybackPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -338,7 +326,7 @@ func (o *AudioStreamPlayer3D) GetPlaybackPosition() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -347,7 +335,7 @@ func (o *AudioStreamPlayer3D) GetPlaybackPosition() gdnative.Float {
 	Args: [], Returns: AudioStream
 */
 func (o *AudioStreamPlayer3D) GetStream() AudioStream {
-	log.Println("Calling AudioStreamPlayer3D.GetStream()")
+	//log.Println("Calling AudioStreamPlayer3D.GetStream()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -362,7 +350,7 @@ func (o *AudioStreamPlayer3D) GetStream() AudioStream {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewAudioStreamFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -371,7 +359,7 @@ func (o *AudioStreamPlayer3D) GetStream() AudioStream {
 	Args: [], Returns: float
 */
 func (o *AudioStreamPlayer3D) GetUnitDb() gdnative.Float {
-	log.Println("Calling AudioStreamPlayer3D.GetUnitDb()")
+	//log.Println("Calling AudioStreamPlayer3D.GetUnitDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -386,7 +374,7 @@ func (o *AudioStreamPlayer3D) GetUnitDb() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -395,7 +383,7 @@ func (o *AudioStreamPlayer3D) GetUnitDb() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioStreamPlayer3D) GetUnitSize() gdnative.Float {
-	log.Println("Calling AudioStreamPlayer3D.GetUnitSize()")
+	//log.Println("Calling AudioStreamPlayer3D.GetUnitSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -410,7 +398,7 @@ func (o *AudioStreamPlayer3D) GetUnitSize() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -419,7 +407,7 @@ func (o *AudioStreamPlayer3D) GetUnitSize() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *AudioStreamPlayer3D) IsAutoplayEnabled() gdnative.Bool {
-	log.Println("Calling AudioStreamPlayer3D.IsAutoplayEnabled()")
+	//log.Println("Calling AudioStreamPlayer3D.IsAutoplayEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -434,7 +422,7 @@ func (o *AudioStreamPlayer3D) IsAutoplayEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -443,7 +431,7 @@ func (o *AudioStreamPlayer3D) IsAutoplayEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *AudioStreamPlayer3D) IsEmissionAngleEnabled() gdnative.Bool {
-	log.Println("Calling AudioStreamPlayer3D.IsEmissionAngleEnabled()")
+	//log.Println("Calling AudioStreamPlayer3D.IsEmissionAngleEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -458,7 +446,7 @@ func (o *AudioStreamPlayer3D) IsEmissionAngleEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -467,7 +455,7 @@ func (o *AudioStreamPlayer3D) IsEmissionAngleEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *AudioStreamPlayer3D) IsPlaying() gdnative.Bool {
-	log.Println("Calling AudioStreamPlayer3D.IsPlaying()")
+	//log.Println("Calling AudioStreamPlayer3D.IsPlaying()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -482,7 +470,7 @@ func (o *AudioStreamPlayer3D) IsPlaying() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -491,7 +479,7 @@ func (o *AudioStreamPlayer3D) IsPlaying() gdnative.Bool {
 	Args: [{0 true from_position float}], Returns: void
 */
 func (o *AudioStreamPlayer3D) Play(fromPosition gdnative.Float) {
-	log.Println("Calling AudioStreamPlayer3D.Play()")
+	//log.Println("Calling AudioStreamPlayer3D.Play()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -512,7 +500,7 @@ func (o *AudioStreamPlayer3D) Play(fromPosition gdnative.Float) {
 	Args: [{ false to_position float}], Returns: void
 */
 func (o *AudioStreamPlayer3D) Seek(toPosition gdnative.Float) {
-	log.Println("Calling AudioStreamPlayer3D.Seek()")
+	//log.Println("Calling AudioStreamPlayer3D.Seek()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -533,7 +521,7 @@ func (o *AudioStreamPlayer3D) Seek(toPosition gdnative.Float) {
 	Args: [{ false mask int}], Returns: void
 */
 func (o *AudioStreamPlayer3D) SetAreaMask(mask gdnative.Int) {
-	log.Println("Calling AudioStreamPlayer3D.SetAreaMask()")
+	//log.Println("Calling AudioStreamPlayer3D.SetAreaMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -554,7 +542,7 @@ func (o *AudioStreamPlayer3D) SetAreaMask(mask gdnative.Int) {
 	Args: [{ false degrees float}], Returns: void
 */
 func (o *AudioStreamPlayer3D) SetAttenuationFilterCutoffHz(degrees gdnative.Float) {
-	log.Println("Calling AudioStreamPlayer3D.SetAttenuationFilterCutoffHz()")
+	//log.Println("Calling AudioStreamPlayer3D.SetAttenuationFilterCutoffHz()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -575,7 +563,7 @@ func (o *AudioStreamPlayer3D) SetAttenuationFilterCutoffHz(degrees gdnative.Floa
 	Args: [{ false db float}], Returns: void
 */
 func (o *AudioStreamPlayer3D) SetAttenuationFilterDb(db gdnative.Float) {
-	log.Println("Calling AudioStreamPlayer3D.SetAttenuationFilterDb()")
+	//log.Println("Calling AudioStreamPlayer3D.SetAttenuationFilterDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -596,7 +584,7 @@ func (o *AudioStreamPlayer3D) SetAttenuationFilterDb(db gdnative.Float) {
 	Args: [{ false model int}], Returns: void
 */
 func (o *AudioStreamPlayer3D) SetAttenuationModel(model gdnative.Int) {
-	log.Println("Calling AudioStreamPlayer3D.SetAttenuationModel()")
+	//log.Println("Calling AudioStreamPlayer3D.SetAttenuationModel()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -617,7 +605,7 @@ func (o *AudioStreamPlayer3D) SetAttenuationModel(model gdnative.Int) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *AudioStreamPlayer3D) SetAutoplay(enable gdnative.Bool) {
-	log.Println("Calling AudioStreamPlayer3D.SetAutoplay()")
+	//log.Println("Calling AudioStreamPlayer3D.SetAutoplay()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -638,7 +626,7 @@ func (o *AudioStreamPlayer3D) SetAutoplay(enable gdnative.Bool) {
 	Args: [{ false bus String}], Returns: void
 */
 func (o *AudioStreamPlayer3D) SetBus(bus gdnative.String) {
-	log.Println("Calling AudioStreamPlayer3D.SetBus()")
+	//log.Println("Calling AudioStreamPlayer3D.SetBus()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -659,7 +647,7 @@ func (o *AudioStreamPlayer3D) SetBus(bus gdnative.String) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *AudioStreamPlayer3D) SetDopplerTracking(mode gdnative.Int) {
-	log.Println("Calling AudioStreamPlayer3D.SetDopplerTracking()")
+	//log.Println("Calling AudioStreamPlayer3D.SetDopplerTracking()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -680,7 +668,7 @@ func (o *AudioStreamPlayer3D) SetDopplerTracking(mode gdnative.Int) {
 	Args: [{ false degrees float}], Returns: void
 */
 func (o *AudioStreamPlayer3D) SetEmissionAngle(degrees gdnative.Float) {
-	log.Println("Calling AudioStreamPlayer3D.SetEmissionAngle()")
+	//log.Println("Calling AudioStreamPlayer3D.SetEmissionAngle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -701,7 +689,7 @@ func (o *AudioStreamPlayer3D) SetEmissionAngle(degrees gdnative.Float) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *AudioStreamPlayer3D) SetEmissionAngleEnabled(enabled gdnative.Bool) {
-	log.Println("Calling AudioStreamPlayer3D.SetEmissionAngleEnabled()")
+	//log.Println("Calling AudioStreamPlayer3D.SetEmissionAngleEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -722,7 +710,7 @@ func (o *AudioStreamPlayer3D) SetEmissionAngleEnabled(enabled gdnative.Bool) {
 	Args: [{ false db float}], Returns: void
 */
 func (o *AudioStreamPlayer3D) SetEmissionAngleFilterAttenuationDb(db gdnative.Float) {
-	log.Println("Calling AudioStreamPlayer3D.SetEmissionAngleFilterAttenuationDb()")
+	//log.Println("Calling AudioStreamPlayer3D.SetEmissionAngleFilterAttenuationDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -743,7 +731,7 @@ func (o *AudioStreamPlayer3D) SetEmissionAngleFilterAttenuationDb(db gdnative.Fl
 	Args: [{ false max_db float}], Returns: void
 */
 func (o *AudioStreamPlayer3D) SetMaxDb(maxDb gdnative.Float) {
-	log.Println("Calling AudioStreamPlayer3D.SetMaxDb()")
+	//log.Println("Calling AudioStreamPlayer3D.SetMaxDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -764,7 +752,7 @@ func (o *AudioStreamPlayer3D) SetMaxDb(maxDb gdnative.Float) {
 	Args: [{ false metres float}], Returns: void
 */
 func (o *AudioStreamPlayer3D) SetMaxDistance(metres gdnative.Float) {
-	log.Println("Calling AudioStreamPlayer3D.SetMaxDistance()")
+	//log.Println("Calling AudioStreamPlayer3D.SetMaxDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -785,7 +773,7 @@ func (o *AudioStreamPlayer3D) SetMaxDistance(metres gdnative.Float) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *AudioStreamPlayer3D) SetOutOfRangeMode(mode gdnative.Int) {
-	log.Println("Calling AudioStreamPlayer3D.SetOutOfRangeMode()")
+	//log.Println("Calling AudioStreamPlayer3D.SetOutOfRangeMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -806,7 +794,7 @@ func (o *AudioStreamPlayer3D) SetOutOfRangeMode(mode gdnative.Int) {
 	Args: [{ false stream AudioStream}], Returns: void
 */
 func (o *AudioStreamPlayer3D) SetStream(stream AudioStream) {
-	log.Println("Calling AudioStreamPlayer3D.SetStream()")
+	//log.Println("Calling AudioStreamPlayer3D.SetStream()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -827,7 +815,7 @@ func (o *AudioStreamPlayer3D) SetStream(stream AudioStream) {
 	Args: [{ false unit_db float}], Returns: void
 */
 func (o *AudioStreamPlayer3D) SetUnitDb(unitDb gdnative.Float) {
-	log.Println("Calling AudioStreamPlayer3D.SetUnitDb()")
+	//log.Println("Calling AudioStreamPlayer3D.SetUnitDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -848,7 +836,7 @@ func (o *AudioStreamPlayer3D) SetUnitDb(unitDb gdnative.Float) {
 	Args: [{ false unit_size float}], Returns: void
 */
 func (o *AudioStreamPlayer3D) SetUnitSize(unitSize gdnative.Float) {
-	log.Println("Calling AudioStreamPlayer3D.SetUnitSize()")
+	//log.Println("Calling AudioStreamPlayer3D.SetUnitSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -869,7 +857,7 @@ func (o *AudioStreamPlayer3D) SetUnitSize(unitSize gdnative.Float) {
 	Args: [], Returns: void
 */
 func (o *AudioStreamPlayer3D) Stop() {
-	log.Println("Calling AudioStreamPlayer3D.Stop()")
+	//log.Println("Calling AudioStreamPlayer3D.Stop()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)

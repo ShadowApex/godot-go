@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *AudioEffectFilter) BaseClass() string {
 	return "AudioEffectFilter"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AudioEffectFilter) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AudioEffectFilter) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *AudioEffectFilter) GetCutoff() gdnative.Float {
-	log.Println("Calling AudioEffectFilter.GetCutoff()")
+	//log.Println("Calling AudioEffectFilter.GetCutoff()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *AudioEffectFilter) GetCutoff() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -80,7 +68,7 @@ func (o *AudioEffectFilter) GetCutoff() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioEffectFilter) GetGain() gdnative.Float {
-	log.Println("Calling AudioEffectFilter.GetGain()")
+	//log.Println("Calling AudioEffectFilter.GetGain()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -95,7 +83,7 @@ func (o *AudioEffectFilter) GetGain() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -104,7 +92,7 @@ func (o *AudioEffectFilter) GetGain() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioEffectFilter) GetResonance() gdnative.Float {
-	log.Println("Calling AudioEffectFilter.GetResonance()")
+	//log.Println("Calling AudioEffectFilter.GetResonance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -119,7 +107,7 @@ func (o *AudioEffectFilter) GetResonance() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -128,7 +116,7 @@ func (o *AudioEffectFilter) GetResonance() gdnative.Float {
 	Args: [{ false freq float}], Returns: void
 */
 func (o *AudioEffectFilter) SetCutoff(freq gdnative.Float) {
-	log.Println("Calling AudioEffectFilter.SetCutoff()")
+	//log.Println("Calling AudioEffectFilter.SetCutoff()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -149,7 +137,7 @@ func (o *AudioEffectFilter) SetCutoff(freq gdnative.Float) {
 	Args: [{ false amount int}], Returns: void
 */
 func (o *AudioEffectFilter) SetDb(amount gdnative.Int) {
-	log.Println("Calling AudioEffectFilter.SetDb()")
+	//log.Println("Calling AudioEffectFilter.SetDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -170,7 +158,7 @@ func (o *AudioEffectFilter) SetDb(amount gdnative.Int) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *AudioEffectFilter) SetGain(amount gdnative.Float) {
-	log.Println("Calling AudioEffectFilter.SetGain()")
+	//log.Println("Calling AudioEffectFilter.SetGain()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -191,7 +179,7 @@ func (o *AudioEffectFilter) SetGain(amount gdnative.Float) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *AudioEffectFilter) SetResonance(amount gdnative.Float) {
-	log.Println("Calling AudioEffectFilter.SetResonance()")
+	//log.Println("Calling AudioEffectFilter.SetResonance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

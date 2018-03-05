@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *AudioEffectChorus) BaseClass() string {
 	return "AudioEffectChorus"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AudioEffectChorus) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AudioEffectChorus) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *AudioEffectChorus) GetDry() gdnative.Float {
-	log.Println("Calling AudioEffectChorus.GetDry()")
+	//log.Println("Calling AudioEffectChorus.GetDry()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *AudioEffectChorus) GetDry() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *AudioEffectChorus) GetDry() gdnative.Float {
 	Args: [], Returns: int
 */
 func (o *AudioEffectChorus) GetVoiceCount() gdnative.Int {
-	log.Println("Calling AudioEffectChorus.GetVoiceCount()")
+	//log.Println("Calling AudioEffectChorus.GetVoiceCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *AudioEffectChorus) GetVoiceCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *AudioEffectChorus) GetVoiceCount() gdnative.Int {
 	Args: [{ false voice_idx int}], Returns: float
 */
 func (o *AudioEffectChorus) GetVoiceCutoffHz(voiceIdx gdnative.Int) gdnative.Float {
-	log.Println("Calling AudioEffectChorus.GetVoiceCutoffHz()")
+	//log.Println("Calling AudioEffectChorus.GetVoiceCutoffHz()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -115,7 +103,7 @@ func (o *AudioEffectChorus) GetVoiceCutoffHz(voiceIdx gdnative.Int) gdnative.Flo
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -124,7 +112,7 @@ func (o *AudioEffectChorus) GetVoiceCutoffHz(voiceIdx gdnative.Int) gdnative.Flo
 	Args: [{ false voice_idx int}], Returns: float
 */
 func (o *AudioEffectChorus) GetVoiceDelayMs(voiceIdx gdnative.Int) gdnative.Float {
-	log.Println("Calling AudioEffectChorus.GetVoiceDelayMs()")
+	//log.Println("Calling AudioEffectChorus.GetVoiceDelayMs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -140,7 +128,7 @@ func (o *AudioEffectChorus) GetVoiceDelayMs(voiceIdx gdnative.Int) gdnative.Floa
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -149,7 +137,7 @@ func (o *AudioEffectChorus) GetVoiceDelayMs(voiceIdx gdnative.Int) gdnative.Floa
 	Args: [{ false voice_idx int}], Returns: float
 */
 func (o *AudioEffectChorus) GetVoiceDepthMs(voiceIdx gdnative.Int) gdnative.Float {
-	log.Println("Calling AudioEffectChorus.GetVoiceDepthMs()")
+	//log.Println("Calling AudioEffectChorus.GetVoiceDepthMs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -165,7 +153,7 @@ func (o *AudioEffectChorus) GetVoiceDepthMs(voiceIdx gdnative.Int) gdnative.Floa
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -174,7 +162,7 @@ func (o *AudioEffectChorus) GetVoiceDepthMs(voiceIdx gdnative.Int) gdnative.Floa
 	Args: [{ false voice_idx int}], Returns: float
 */
 func (o *AudioEffectChorus) GetVoiceLevelDb(voiceIdx gdnative.Int) gdnative.Float {
-	log.Println("Calling AudioEffectChorus.GetVoiceLevelDb()")
+	//log.Println("Calling AudioEffectChorus.GetVoiceLevelDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -190,7 +178,7 @@ func (o *AudioEffectChorus) GetVoiceLevelDb(voiceIdx gdnative.Int) gdnative.Floa
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -199,7 +187,7 @@ func (o *AudioEffectChorus) GetVoiceLevelDb(voiceIdx gdnative.Int) gdnative.Floa
 	Args: [{ false voice_idx int}], Returns: float
 */
 func (o *AudioEffectChorus) GetVoicePan(voiceIdx gdnative.Int) gdnative.Float {
-	log.Println("Calling AudioEffectChorus.GetVoicePan()")
+	//log.Println("Calling AudioEffectChorus.GetVoicePan()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -215,7 +203,7 @@ func (o *AudioEffectChorus) GetVoicePan(voiceIdx gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -224,7 +212,7 @@ func (o *AudioEffectChorus) GetVoicePan(voiceIdx gdnative.Int) gdnative.Float {
 	Args: [{ false voice_idx int}], Returns: float
 */
 func (o *AudioEffectChorus) GetVoiceRateHz(voiceIdx gdnative.Int) gdnative.Float {
-	log.Println("Calling AudioEffectChorus.GetVoiceRateHz()")
+	//log.Println("Calling AudioEffectChorus.GetVoiceRateHz()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -240,7 +228,7 @@ func (o *AudioEffectChorus) GetVoiceRateHz(voiceIdx gdnative.Int) gdnative.Float
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -249,7 +237,7 @@ func (o *AudioEffectChorus) GetVoiceRateHz(voiceIdx gdnative.Int) gdnative.Float
 	Args: [], Returns: float
 */
 func (o *AudioEffectChorus) GetWet() gdnative.Float {
-	log.Println("Calling AudioEffectChorus.GetWet()")
+	//log.Println("Calling AudioEffectChorus.GetWet()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -264,7 +252,7 @@ func (o *AudioEffectChorus) GetWet() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -273,7 +261,7 @@ func (o *AudioEffectChorus) GetWet() gdnative.Float {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *AudioEffectChorus) SetDry(amount gdnative.Float) {
-	log.Println("Calling AudioEffectChorus.SetDry()")
+	//log.Println("Calling AudioEffectChorus.SetDry()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -294,7 +282,7 @@ func (o *AudioEffectChorus) SetDry(amount gdnative.Float) {
 	Args: [{ false voices int}], Returns: void
 */
 func (o *AudioEffectChorus) SetVoiceCount(voices gdnative.Int) {
-	log.Println("Calling AudioEffectChorus.SetVoiceCount()")
+	//log.Println("Calling AudioEffectChorus.SetVoiceCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -315,7 +303,7 @@ func (o *AudioEffectChorus) SetVoiceCount(voices gdnative.Int) {
 	Args: [{ false voice_idx int} { false cutoff_hz float}], Returns: void
 */
 func (o *AudioEffectChorus) SetVoiceCutoffHz(voiceIdx gdnative.Int, cutoffHz gdnative.Float) {
-	log.Println("Calling AudioEffectChorus.SetVoiceCutoffHz()")
+	//log.Println("Calling AudioEffectChorus.SetVoiceCutoffHz()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -337,7 +325,7 @@ func (o *AudioEffectChorus) SetVoiceCutoffHz(voiceIdx gdnative.Int, cutoffHz gdn
 	Args: [{ false voice_idx int} { false delay_ms float}], Returns: void
 */
 func (o *AudioEffectChorus) SetVoiceDelayMs(voiceIdx gdnative.Int, delayMs gdnative.Float) {
-	log.Println("Calling AudioEffectChorus.SetVoiceDelayMs()")
+	//log.Println("Calling AudioEffectChorus.SetVoiceDelayMs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -359,7 +347,7 @@ func (o *AudioEffectChorus) SetVoiceDelayMs(voiceIdx gdnative.Int, delayMs gdnat
 	Args: [{ false voice_idx int} { false depth_ms float}], Returns: void
 */
 func (o *AudioEffectChorus) SetVoiceDepthMs(voiceIdx gdnative.Int, depthMs gdnative.Float) {
-	log.Println("Calling AudioEffectChorus.SetVoiceDepthMs()")
+	//log.Println("Calling AudioEffectChorus.SetVoiceDepthMs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -381,7 +369,7 @@ func (o *AudioEffectChorus) SetVoiceDepthMs(voiceIdx gdnative.Int, depthMs gdnat
 	Args: [{ false voice_idx int} { false level_db float}], Returns: void
 */
 func (o *AudioEffectChorus) SetVoiceLevelDb(voiceIdx gdnative.Int, levelDb gdnative.Float) {
-	log.Println("Calling AudioEffectChorus.SetVoiceLevelDb()")
+	//log.Println("Calling AudioEffectChorus.SetVoiceLevelDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -403,7 +391,7 @@ func (o *AudioEffectChorus) SetVoiceLevelDb(voiceIdx gdnative.Int, levelDb gdnat
 	Args: [{ false voice_idx int} { false pan float}], Returns: void
 */
 func (o *AudioEffectChorus) SetVoicePan(voiceIdx gdnative.Int, pan gdnative.Float) {
-	log.Println("Calling AudioEffectChorus.SetVoicePan()")
+	//log.Println("Calling AudioEffectChorus.SetVoicePan()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -425,7 +413,7 @@ func (o *AudioEffectChorus) SetVoicePan(voiceIdx gdnative.Int, pan gdnative.Floa
 	Args: [{ false voice_idx int} { false rate_hz float}], Returns: void
 */
 func (o *AudioEffectChorus) SetVoiceRateHz(voiceIdx gdnative.Int, rateHz gdnative.Float) {
-	log.Println("Calling AudioEffectChorus.SetVoiceRateHz()")
+	//log.Println("Calling AudioEffectChorus.SetVoiceRateHz()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -447,7 +435,7 @@ func (o *AudioEffectChorus) SetVoiceRateHz(voiceIdx gdnative.Int, rateHz gdnativ
 	Args: [{ false amount float}], Returns: void
 */
 func (o *AudioEffectChorus) SetWet(amount gdnative.Float) {
-	log.Println("Calling AudioEffectChorus.SetWet()")
+	//log.Println("Calling AudioEffectChorus.SetWet()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

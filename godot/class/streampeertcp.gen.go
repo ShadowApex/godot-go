@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,16 +34,6 @@ func (o *StreamPeerTCP) BaseClass() string {
 	return "StreamPeerTCP"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *StreamPeerTCP) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *StreamPeerTCP) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Connect to the specified host:port pair. A hostname will be resolved if valid. Returns [OK] on success or [FAILED] on failure.
 	Args: [{ false host String} { false port int}], Returns: enum.Error
@@ -56,7 +44,7 @@ func (o *StreamPeerTCP) GetBaseObject() gdnative.Object {
 	Args: [], Returns: void
 */
 func (o *StreamPeerTCP) DisconnectFromHost() {
-	log.Println("Calling StreamPeerTCP.DisconnectFromHost()")
+	//log.Println("Calling StreamPeerTCP.DisconnectFromHost()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -76,7 +64,7 @@ func (o *StreamPeerTCP) DisconnectFromHost() {
 	Args: [], Returns: String
 */
 func (o *StreamPeerTCP) GetConnectedHost() gdnative.String {
-	log.Println("Calling StreamPeerTCP.GetConnectedHost()")
+	//log.Println("Calling StreamPeerTCP.GetConnectedHost()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -91,7 +79,7 @@ func (o *StreamPeerTCP) GetConnectedHost() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -100,7 +88,7 @@ func (o *StreamPeerTCP) GetConnectedHost() gdnative.String {
 	Args: [], Returns: int
 */
 func (o *StreamPeerTCP) GetConnectedPort() gdnative.Int {
-	log.Println("Calling StreamPeerTCP.GetConnectedPort()")
+	//log.Println("Calling StreamPeerTCP.GetConnectedPort()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -115,7 +103,7 @@ func (o *StreamPeerTCP) GetConnectedPort() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -129,7 +117,7 @@ func (o *StreamPeerTCP) GetConnectedPort() gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *StreamPeerTCP) IsConnectedToHost() gdnative.Bool {
-	log.Println("Calling StreamPeerTCP.IsConnectedToHost()")
+	//log.Println("Calling StreamPeerTCP.IsConnectedToHost()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -144,7 +132,7 @@ func (o *StreamPeerTCP) IsConnectedToHost() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -153,7 +141,7 @@ func (o *StreamPeerTCP) IsConnectedToHost() gdnative.Bool {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *StreamPeerTCP) SetNoDelay(enabled gdnative.Bool) {
-	log.Println("Calling StreamPeerTCP.SetNoDelay()")
+	//log.Println("Calling StreamPeerTCP.SetNoDelay()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

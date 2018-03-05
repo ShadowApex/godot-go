@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VisibilityNotifier2D) BaseClass() string {
 	return "VisibilityNotifier2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisibilityNotifier2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisibilityNotifier2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Rect2
 */
 func (o *VisibilityNotifier2D) GetRect() gdnative.Rect2 {
-	log.Println("Calling VisibilityNotifier2D.GetRect()")
+	//log.Println("Calling VisibilityNotifier2D.GetRect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VisibilityNotifier2D) GetRect() gdnative.Rect2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRect2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *VisibilityNotifier2D) GetRect() gdnative.Rect2 {
 	Args: [], Returns: bool
 */
 func (o *VisibilityNotifier2D) IsOnScreen() gdnative.Bool {
-	log.Println("Calling VisibilityNotifier2D.IsOnScreen()")
+	//log.Println("Calling VisibilityNotifier2D.IsOnScreen()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *VisibilityNotifier2D) IsOnScreen() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *VisibilityNotifier2D) IsOnScreen() gdnative.Bool {
 	Args: [{ false rect Rect2}], Returns: void
 */
 func (o *VisibilityNotifier2D) SetRect(rect gdnative.Rect2) {
-	log.Println("Calling VisibilityNotifier2D.SetRect()")
+	//log.Println("Calling VisibilityNotifier2D.SetRect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

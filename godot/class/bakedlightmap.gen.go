@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,16 +34,6 @@ func (o *BakedLightmap) BaseClass() string {
 	return "BakedLightmap"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *BakedLightmap) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *BakedLightmap) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [{Null true from_node Object} {False true create_visual_debug bool}], Returns: enum.BakedLightmap::BakeError
@@ -56,7 +44,7 @@ func (o *BakedLightmap) GetBaseObject() gdnative.Object {
 	Args: [], Returns: void
 */
 func (o *BakedLightmap) DebugBake() {
-	log.Println("Calling BakedLightmap.DebugBake()")
+	//log.Println("Calling BakedLightmap.DebugBake()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -76,7 +64,7 @@ func (o *BakedLightmap) DebugBake() {
 	Args: [], Returns: float
 */
 func (o *BakedLightmap) GetBakeCellSize() gdnative.Float {
-	log.Println("Calling BakedLightmap.GetBakeCellSize()")
+	//log.Println("Calling BakedLightmap.GetBakeCellSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -91,7 +79,7 @@ func (o *BakedLightmap) GetBakeCellSize() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -110,7 +98,7 @@ func (o *BakedLightmap) GetBakeCellSize() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *BakedLightmap) GetCaptureCellSize() gdnative.Float {
-	log.Println("Calling BakedLightmap.GetCaptureCellSize()")
+	//log.Println("Calling BakedLightmap.GetCaptureCellSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -125,7 +113,7 @@ func (o *BakedLightmap) GetCaptureCellSize() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -134,7 +122,7 @@ func (o *BakedLightmap) GetCaptureCellSize() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *BakedLightmap) GetEnergy() gdnative.Float {
-	log.Println("Calling BakedLightmap.GetEnergy()")
+	//log.Println("Calling BakedLightmap.GetEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -149,7 +137,7 @@ func (o *BakedLightmap) GetEnergy() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -158,7 +146,7 @@ func (o *BakedLightmap) GetEnergy() gdnative.Float {
 	Args: [], Returns: Vector3
 */
 func (o *BakedLightmap) GetExtents() gdnative.Vector3 {
-	log.Println("Calling BakedLightmap.GetExtents()")
+	//log.Println("Calling BakedLightmap.GetExtents()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -173,7 +161,7 @@ func (o *BakedLightmap) GetExtents() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -182,7 +170,7 @@ func (o *BakedLightmap) GetExtents() gdnative.Vector3 {
 	Args: [], Returns: String
 */
 func (o *BakedLightmap) GetImagePath() gdnative.String {
-	log.Println("Calling BakedLightmap.GetImagePath()")
+	//log.Println("Calling BakedLightmap.GetImagePath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -197,7 +185,7 @@ func (o *BakedLightmap) GetImagePath() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -206,7 +194,7 @@ func (o *BakedLightmap) GetImagePath() gdnative.String {
 	Args: [], Returns: BakedLightmapData
 */
 func (o *BakedLightmap) GetLightData() BakedLightmapData {
-	log.Println("Calling BakedLightmap.GetLightData()")
+	//log.Println("Calling BakedLightmap.GetLightData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -221,7 +209,7 @@ func (o *BakedLightmap) GetLightData() BakedLightmapData {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewBakedLightmapDataFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -230,7 +218,7 @@ func (o *BakedLightmap) GetLightData() BakedLightmapData {
 	Args: [], Returns: float
 */
 func (o *BakedLightmap) GetPropagation() gdnative.Float {
-	log.Println("Calling BakedLightmap.GetPropagation()")
+	//log.Println("Calling BakedLightmap.GetPropagation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -245,7 +233,7 @@ func (o *BakedLightmap) GetPropagation() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -254,7 +242,7 @@ func (o *BakedLightmap) GetPropagation() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *BakedLightmap) IsHdr() gdnative.Bool {
-	log.Println("Calling BakedLightmap.IsHdr()")
+	//log.Println("Calling BakedLightmap.IsHdr()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -269,7 +257,7 @@ func (o *BakedLightmap) IsHdr() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -278,7 +266,7 @@ func (o *BakedLightmap) IsHdr() gdnative.Bool {
 	Args: [{ false bake_cell_size float}], Returns: void
 */
 func (o *BakedLightmap) SetBakeCellSize(bakeCellSize gdnative.Float) {
-	log.Println("Calling BakedLightmap.SetBakeCellSize()")
+	//log.Println("Calling BakedLightmap.SetBakeCellSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -299,7 +287,7 @@ func (o *BakedLightmap) SetBakeCellSize(bakeCellSize gdnative.Float) {
 	Args: [{ false bake_mode int}], Returns: void
 */
 func (o *BakedLightmap) SetBakeMode(bakeMode gdnative.Int) {
-	log.Println("Calling BakedLightmap.SetBakeMode()")
+	//log.Println("Calling BakedLightmap.SetBakeMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -320,7 +308,7 @@ func (o *BakedLightmap) SetBakeMode(bakeMode gdnative.Int) {
 	Args: [{ false bake_quality int}], Returns: void
 */
 func (o *BakedLightmap) SetBakeQuality(bakeQuality gdnative.Int) {
-	log.Println("Calling BakedLightmap.SetBakeQuality()")
+	//log.Println("Calling BakedLightmap.SetBakeQuality()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -341,7 +329,7 @@ func (o *BakedLightmap) SetBakeQuality(bakeQuality gdnative.Int) {
 	Args: [{ false capture_cell_size float}], Returns: void
 */
 func (o *BakedLightmap) SetCaptureCellSize(captureCellSize gdnative.Float) {
-	log.Println("Calling BakedLightmap.SetCaptureCellSize()")
+	//log.Println("Calling BakedLightmap.SetCaptureCellSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -362,7 +350,7 @@ func (o *BakedLightmap) SetCaptureCellSize(captureCellSize gdnative.Float) {
 	Args: [{ false energy float}], Returns: void
 */
 func (o *BakedLightmap) SetEnergy(energy gdnative.Float) {
-	log.Println("Calling BakedLightmap.SetEnergy()")
+	//log.Println("Calling BakedLightmap.SetEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -383,7 +371,7 @@ func (o *BakedLightmap) SetEnergy(energy gdnative.Float) {
 	Args: [{ false extents Vector3}], Returns: void
 */
 func (o *BakedLightmap) SetExtents(extents gdnative.Vector3) {
-	log.Println("Calling BakedLightmap.SetExtents()")
+	//log.Println("Calling BakedLightmap.SetExtents()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -404,7 +392,7 @@ func (o *BakedLightmap) SetExtents(extents gdnative.Vector3) {
 	Args: [{ false hdr bool}], Returns: void
 */
 func (o *BakedLightmap) SetHdr(hdr gdnative.Bool) {
-	log.Println("Calling BakedLightmap.SetHdr()")
+	//log.Println("Calling BakedLightmap.SetHdr()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -425,7 +413,7 @@ func (o *BakedLightmap) SetHdr(hdr gdnative.Bool) {
 	Args: [{ false image_path String}], Returns: void
 */
 func (o *BakedLightmap) SetImagePath(imagePath gdnative.String) {
-	log.Println("Calling BakedLightmap.SetImagePath()")
+	//log.Println("Calling BakedLightmap.SetImagePath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -446,7 +434,7 @@ func (o *BakedLightmap) SetImagePath(imagePath gdnative.String) {
 	Args: [{ false data BakedLightmapData}], Returns: void
 */
 func (o *BakedLightmap) SetLightData(data BakedLightmapData) {
-	log.Println("Calling BakedLightmap.SetLightData()")
+	//log.Println("Calling BakedLightmap.SetLightData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -467,7 +455,7 @@ func (o *BakedLightmap) SetLightData(data BakedLightmapData) {
 	Args: [{ false propagation float}], Returns: void
 */
 func (o *BakedLightmap) SetPropagation(propagation gdnative.Float) {
-	log.Println("Calling BakedLightmap.SetPropagation()")
+	//log.Println("Calling BakedLightmap.SetPropagation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

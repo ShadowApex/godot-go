@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *PlaneShape) BaseClass() string {
 	return "PlaneShape"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *PlaneShape) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *PlaneShape) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Plane
 */
 func (o *PlaneShape) GetPlane() gdnative.Plane {
-	log.Println("Calling PlaneShape.GetPlane()")
+	//log.Println("Calling PlaneShape.GetPlane()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *PlaneShape) GetPlane() gdnative.Plane {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPlaneFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *PlaneShape) GetPlane() gdnative.Plane {
 	Args: [{ false plane Plane}], Returns: void
 */
 func (o *PlaneShape) SetPlane(plane gdnative.Plane) {
-	log.Println("Calling PlaneShape.SetPlane()")
+	//log.Println("Calling PlaneShape.SetPlane()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *GraphNode) BaseClass() string {
 	return "GraphNode"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *GraphNode) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *GraphNode) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
 func (o *GraphNode) X_GuiInput(arg0 InputEvent) {
-	log.Println("Calling GraphNode.X_GuiInput()")
+	//log.Println("Calling GraphNode.X_GuiInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *GraphNode) X_GuiInput(arg0 InputEvent) {
 	Args: [], Returns: void
 */
 func (o *GraphNode) ClearAllSlots() {
-	log.Println("Calling GraphNode.ClearAllSlots()")
+	//log.Println("Calling GraphNode.ClearAllSlots()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -92,7 +80,7 @@ func (o *GraphNode) ClearAllSlots() {
 	Args: [{ false idx int}], Returns: void
 */
 func (o *GraphNode) ClearSlot(idx gdnative.Int) {
-	log.Println("Calling GraphNode.ClearSlot()")
+	//log.Println("Calling GraphNode.ClearSlot()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -113,7 +101,7 @@ func (o *GraphNode) ClearSlot(idx gdnative.Int) {
 	Args: [{ false idx int}], Returns: Color
 */
 func (o *GraphNode) GetConnectionInputColor(idx gdnative.Int) gdnative.Color {
-	log.Println("Calling GraphNode.GetConnectionInputColor()")
+	//log.Println("Calling GraphNode.GetConnectionInputColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -129,7 +117,7 @@ func (o *GraphNode) GetConnectionInputColor(idx gdnative.Int) gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -138,7 +126,7 @@ func (o *GraphNode) GetConnectionInputColor(idx gdnative.Int) gdnative.Color {
 	Args: [], Returns: int
 */
 func (o *GraphNode) GetConnectionInputCount() gdnative.Int {
-	log.Println("Calling GraphNode.GetConnectionInputCount()")
+	//log.Println("Calling GraphNode.GetConnectionInputCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -153,7 +141,7 @@ func (o *GraphNode) GetConnectionInputCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -162,7 +150,7 @@ func (o *GraphNode) GetConnectionInputCount() gdnative.Int {
 	Args: [{ false idx int}], Returns: Vector2
 */
 func (o *GraphNode) GetConnectionInputPosition(idx gdnative.Int) gdnative.Vector2 {
-	log.Println("Calling GraphNode.GetConnectionInputPosition()")
+	//log.Println("Calling GraphNode.GetConnectionInputPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -178,7 +166,7 @@ func (o *GraphNode) GetConnectionInputPosition(idx gdnative.Int) gdnative.Vector
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -187,7 +175,7 @@ func (o *GraphNode) GetConnectionInputPosition(idx gdnative.Int) gdnative.Vector
 	Args: [{ false idx int}], Returns: int
 */
 func (o *GraphNode) GetConnectionInputType(idx gdnative.Int) gdnative.Int {
-	log.Println("Calling GraphNode.GetConnectionInputType()")
+	//log.Println("Calling GraphNode.GetConnectionInputType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -203,7 +191,7 @@ func (o *GraphNode) GetConnectionInputType(idx gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -212,7 +200,7 @@ func (o *GraphNode) GetConnectionInputType(idx gdnative.Int) gdnative.Int {
 	Args: [{ false idx int}], Returns: Color
 */
 func (o *GraphNode) GetConnectionOutputColor(idx gdnative.Int) gdnative.Color {
-	log.Println("Calling GraphNode.GetConnectionOutputColor()")
+	//log.Println("Calling GraphNode.GetConnectionOutputColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -228,7 +216,7 @@ func (o *GraphNode) GetConnectionOutputColor(idx gdnative.Int) gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -237,7 +225,7 @@ func (o *GraphNode) GetConnectionOutputColor(idx gdnative.Int) gdnative.Color {
 	Args: [], Returns: int
 */
 func (o *GraphNode) GetConnectionOutputCount() gdnative.Int {
-	log.Println("Calling GraphNode.GetConnectionOutputCount()")
+	//log.Println("Calling GraphNode.GetConnectionOutputCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -252,7 +240,7 @@ func (o *GraphNode) GetConnectionOutputCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -261,7 +249,7 @@ func (o *GraphNode) GetConnectionOutputCount() gdnative.Int {
 	Args: [{ false idx int}], Returns: Vector2
 */
 func (o *GraphNode) GetConnectionOutputPosition(idx gdnative.Int) gdnative.Vector2 {
-	log.Println("Calling GraphNode.GetConnectionOutputPosition()")
+	//log.Println("Calling GraphNode.GetConnectionOutputPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -277,7 +265,7 @@ func (o *GraphNode) GetConnectionOutputPosition(idx gdnative.Int) gdnative.Vecto
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -286,7 +274,7 @@ func (o *GraphNode) GetConnectionOutputPosition(idx gdnative.Int) gdnative.Vecto
 	Args: [{ false idx int}], Returns: int
 */
 func (o *GraphNode) GetConnectionOutputType(idx gdnative.Int) gdnative.Int {
-	log.Println("Calling GraphNode.GetConnectionOutputType()")
+	//log.Println("Calling GraphNode.GetConnectionOutputType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -302,7 +290,7 @@ func (o *GraphNode) GetConnectionOutputType(idx gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -311,7 +299,7 @@ func (o *GraphNode) GetConnectionOutputType(idx gdnative.Int) gdnative.Int {
 	Args: [], Returns: Vector2
 */
 func (o *GraphNode) GetOffset() gdnative.Vector2 {
-	log.Println("Calling GraphNode.GetOffset()")
+	//log.Println("Calling GraphNode.GetOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -326,7 +314,7 @@ func (o *GraphNode) GetOffset() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -340,7 +328,7 @@ func (o *GraphNode) GetOffset() gdnative.Vector2 {
 	Args: [{ false idx int}], Returns: Color
 */
 func (o *GraphNode) GetSlotColorLeft(idx gdnative.Int) gdnative.Color {
-	log.Println("Calling GraphNode.GetSlotColorLeft()")
+	//log.Println("Calling GraphNode.GetSlotColorLeft()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -356,7 +344,7 @@ func (o *GraphNode) GetSlotColorLeft(idx gdnative.Int) gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -365,7 +353,7 @@ func (o *GraphNode) GetSlotColorLeft(idx gdnative.Int) gdnative.Color {
 	Args: [{ false idx int}], Returns: Color
 */
 func (o *GraphNode) GetSlotColorRight(idx gdnative.Int) gdnative.Color {
-	log.Println("Calling GraphNode.GetSlotColorRight()")
+	//log.Println("Calling GraphNode.GetSlotColorRight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -381,7 +369,7 @@ func (o *GraphNode) GetSlotColorRight(idx gdnative.Int) gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -390,7 +378,7 @@ func (o *GraphNode) GetSlotColorRight(idx gdnative.Int) gdnative.Color {
 	Args: [{ false idx int}], Returns: int
 */
 func (o *GraphNode) GetSlotTypeLeft(idx gdnative.Int) gdnative.Int {
-	log.Println("Calling GraphNode.GetSlotTypeLeft()")
+	//log.Println("Calling GraphNode.GetSlotTypeLeft()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -406,7 +394,7 @@ func (o *GraphNode) GetSlotTypeLeft(idx gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -415,7 +403,7 @@ func (o *GraphNode) GetSlotTypeLeft(idx gdnative.Int) gdnative.Int {
 	Args: [{ false idx int}], Returns: int
 */
 func (o *GraphNode) GetSlotTypeRight(idx gdnative.Int) gdnative.Int {
-	log.Println("Calling GraphNode.GetSlotTypeRight()")
+	//log.Println("Calling GraphNode.GetSlotTypeRight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -431,7 +419,7 @@ func (o *GraphNode) GetSlotTypeRight(idx gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -440,7 +428,7 @@ func (o *GraphNode) GetSlotTypeRight(idx gdnative.Int) gdnative.Int {
 	Args: [], Returns: String
 */
 func (o *GraphNode) GetTitle() gdnative.String {
-	log.Println("Calling GraphNode.GetTitle()")
+	//log.Println("Calling GraphNode.GetTitle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -455,7 +443,7 @@ func (o *GraphNode) GetTitle() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -464,7 +452,7 @@ func (o *GraphNode) GetTitle() gdnative.String {
 	Args: [], Returns: bool
 */
 func (o *GraphNode) IsCloseButtonVisible() gdnative.Bool {
-	log.Println("Calling GraphNode.IsCloseButtonVisible()")
+	//log.Println("Calling GraphNode.IsCloseButtonVisible()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -479,7 +467,7 @@ func (o *GraphNode) IsCloseButtonVisible() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -488,7 +476,7 @@ func (o *GraphNode) IsCloseButtonVisible() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *GraphNode) IsComment() gdnative.Bool {
-	log.Println("Calling GraphNode.IsComment()")
+	//log.Println("Calling GraphNode.IsComment()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -503,7 +491,7 @@ func (o *GraphNode) IsComment() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -512,7 +500,7 @@ func (o *GraphNode) IsComment() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *GraphNode) IsResizable() gdnative.Bool {
-	log.Println("Calling GraphNode.IsResizable()")
+	//log.Println("Calling GraphNode.IsResizable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -527,7 +515,7 @@ func (o *GraphNode) IsResizable() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -536,7 +524,7 @@ func (o *GraphNode) IsResizable() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *GraphNode) IsSelected() gdnative.Bool {
-	log.Println("Calling GraphNode.IsSelected()")
+	//log.Println("Calling GraphNode.IsSelected()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -551,7 +539,7 @@ func (o *GraphNode) IsSelected() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -560,7 +548,7 @@ func (o *GraphNode) IsSelected() gdnative.Bool {
 	Args: [{ false idx int}], Returns: bool
 */
 func (o *GraphNode) IsSlotEnabledLeft(idx gdnative.Int) gdnative.Bool {
-	log.Println("Calling GraphNode.IsSlotEnabledLeft()")
+	//log.Println("Calling GraphNode.IsSlotEnabledLeft()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -576,7 +564,7 @@ func (o *GraphNode) IsSlotEnabledLeft(idx gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -585,7 +573,7 @@ func (o *GraphNode) IsSlotEnabledLeft(idx gdnative.Int) gdnative.Bool {
 	Args: [{ false idx int}], Returns: bool
 */
 func (o *GraphNode) IsSlotEnabledRight(idx gdnative.Int) gdnative.Bool {
-	log.Println("Calling GraphNode.IsSlotEnabledRight()")
+	//log.Println("Calling GraphNode.IsSlotEnabledRight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -601,7 +589,7 @@ func (o *GraphNode) IsSlotEnabledRight(idx gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -610,7 +598,7 @@ func (o *GraphNode) IsSlotEnabledRight(idx gdnative.Int) gdnative.Bool {
 	Args: [{ false comment bool}], Returns: void
 */
 func (o *GraphNode) SetComment(comment gdnative.Bool) {
-	log.Println("Calling GraphNode.SetComment()")
+	//log.Println("Calling GraphNode.SetComment()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -631,7 +619,7 @@ func (o *GraphNode) SetComment(comment gdnative.Bool) {
 	Args: [{ false offset Vector2}], Returns: void
 */
 func (o *GraphNode) SetOffset(offset gdnative.Vector2) {
-	log.Println("Calling GraphNode.SetOffset()")
+	//log.Println("Calling GraphNode.SetOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -652,7 +640,7 @@ func (o *GraphNode) SetOffset(offset gdnative.Vector2) {
 	Args: [{ false overlay int}], Returns: void
 */
 func (o *GraphNode) SetOverlay(overlay gdnative.Int) {
-	log.Println("Calling GraphNode.SetOverlay()")
+	//log.Println("Calling GraphNode.SetOverlay()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -673,7 +661,7 @@ func (o *GraphNode) SetOverlay(overlay gdnative.Int) {
 	Args: [{ false resizable bool}], Returns: void
 */
 func (o *GraphNode) SetResizable(resizable gdnative.Bool) {
-	log.Println("Calling GraphNode.SetResizable()")
+	//log.Println("Calling GraphNode.SetResizable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -694,7 +682,7 @@ func (o *GraphNode) SetResizable(resizable gdnative.Bool) {
 	Args: [{ false selected bool}], Returns: void
 */
 func (o *GraphNode) SetSelected(selected gdnative.Bool) {
-	log.Println("Calling GraphNode.SetSelected()")
+	//log.Println("Calling GraphNode.SetSelected()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -715,7 +703,7 @@ func (o *GraphNode) SetSelected(selected gdnative.Bool) {
 	Args: [{ false show bool}], Returns: void
 */
 func (o *GraphNode) SetShowCloseButton(show gdnative.Bool) {
-	log.Println("Calling GraphNode.SetShowCloseButton()")
+	//log.Println("Calling GraphNode.SetShowCloseButton()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -736,7 +724,7 @@ func (o *GraphNode) SetShowCloseButton(show gdnative.Bool) {
 	Args: [{ false idx int} { false enable_left bool} { false type_left int} { false color_left Color} { false enable_right bool} { false type_right int} { false color_right Color} {[Object:null] true custom_left Texture} {[Object:null] true custom_right Texture}], Returns: void
 */
 func (o *GraphNode) SetSlot(idx gdnative.Int, enableLeft gdnative.Bool, typeLeft gdnative.Int, colorLeft gdnative.Color, enableRight gdnative.Bool, typeRight gdnative.Int, colorRight gdnative.Color, customLeft Texture, customRight Texture) {
-	log.Println("Calling GraphNode.SetSlot()")
+	//log.Println("Calling GraphNode.SetSlot()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 9, 9)
@@ -765,7 +753,7 @@ func (o *GraphNode) SetSlot(idx gdnative.Int, enableLeft gdnative.Bool, typeLeft
 	Args: [{ false title String}], Returns: void
 */
 func (o *GraphNode) SetTitle(title gdnative.String) {
-	log.Println("Calling GraphNode.SetTitle()")
+	//log.Println("Calling GraphNode.SetTitle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

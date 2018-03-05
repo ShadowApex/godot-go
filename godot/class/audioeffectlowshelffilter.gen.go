@@ -33,13 +33,3 @@ type AudioEffectLowShelfFilter struct {
 func (o *AudioEffectLowShelfFilter) BaseClass() string {
 	return "AudioEffectLowShelfFilter"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AudioEffectLowShelfFilter) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AudioEffectLowShelfFilter) GetBaseObject() gdnative.Object {
-	return o.owner
-}

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,16 +34,6 @@ func (o *VisualScriptBasicTypeConstant) BaseClass() string {
 	return "VisualScriptBasicTypeConstant"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptBasicTypeConstant) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptBasicTypeConstant) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: enum.Variant::Type
@@ -56,7 +44,7 @@ func (o *VisualScriptBasicTypeConstant) GetBaseObject() gdnative.Object {
 	Args: [], Returns: String
 */
 func (o *VisualScriptBasicTypeConstant) GetBasicTypeConstant() gdnative.String {
-	log.Println("Calling VisualScriptBasicTypeConstant.GetBasicTypeConstant()")
+	//log.Println("Calling VisualScriptBasicTypeConstant.GetBasicTypeConstant()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *VisualScriptBasicTypeConstant) GetBasicTypeConstant() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -80,7 +68,7 @@ func (o *VisualScriptBasicTypeConstant) GetBasicTypeConstant() gdnative.String {
 	Args: [{ false name int}], Returns: void
 */
 func (o *VisualScriptBasicTypeConstant) SetBasicType(name gdnative.Int) {
-	log.Println("Calling VisualScriptBasicTypeConstant.SetBasicType()")
+	//log.Println("Calling VisualScriptBasicTypeConstant.SetBasicType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -101,7 +89,7 @@ func (o *VisualScriptBasicTypeConstant) SetBasicType(name gdnative.Int) {
 	Args: [{ false name String}], Returns: void
 */
 func (o *VisualScriptBasicTypeConstant) SetBasicTypeConstant(name gdnative.String) {
-	log.Println("Calling VisualScriptBasicTypeConstant.SetBasicTypeConstant()")
+	//log.Println("Calling VisualScriptBasicTypeConstant.SetBasicTypeConstant()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

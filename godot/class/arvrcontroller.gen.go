@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ARVRController) BaseClass() string {
 	return "ARVRController"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ARVRController) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ARVRController) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: int
 */
 func (o *ARVRController) GetControllerId() gdnative.Int {
-	log.Println("Calling ARVRController.GetControllerId()")
+	//log.Println("Calling ARVRController.GetControllerId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *ARVRController) GetControllerId() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *ARVRController) GetControllerId() gdnative.Int {
 	Args: [], Returns: String
 */
 func (o *ARVRController) GetControllerName() gdnative.String {
-	log.Println("Calling ARVRController.GetControllerName()")
+	//log.Println("Calling ARVRController.GetControllerName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *ARVRController) GetControllerName() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -104,7 +92,7 @@ func (o *ARVRController) GetControllerName() gdnative.String {
 	Args: [], Returns: bool
 */
 func (o *ARVRController) GetIsActive() gdnative.Bool {
-	log.Println("Calling ARVRController.GetIsActive()")
+	//log.Println("Calling ARVRController.GetIsActive()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -119,7 +107,7 @@ func (o *ARVRController) GetIsActive() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -128,7 +116,7 @@ func (o *ARVRController) GetIsActive() gdnative.Bool {
 	Args: [{ false axis int}], Returns: float
 */
 func (o *ARVRController) GetJoystickAxis(axis gdnative.Int) gdnative.Float {
-	log.Println("Calling ARVRController.GetJoystickAxis()")
+	//log.Println("Calling ARVRController.GetJoystickAxis()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -144,7 +132,7 @@ func (o *ARVRController) GetJoystickAxis(axis gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -153,7 +141,7 @@ func (o *ARVRController) GetJoystickAxis(axis gdnative.Int) gdnative.Float {
 	Args: [], Returns: int
 */
 func (o *ARVRController) GetJoystickId() gdnative.Int {
-	log.Println("Calling ARVRController.GetJoystickId()")
+	//log.Println("Calling ARVRController.GetJoystickId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -168,7 +156,7 @@ func (o *ARVRController) GetJoystickId() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -177,7 +165,7 @@ func (o *ARVRController) GetJoystickId() gdnative.Int {
 	Args: [], Returns: float
 */
 func (o *ARVRController) GetRumble() gdnative.Float {
-	log.Println("Calling ARVRController.GetRumble()")
+	//log.Println("Calling ARVRController.GetRumble()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -192,7 +180,7 @@ func (o *ARVRController) GetRumble() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -201,7 +189,7 @@ func (o *ARVRController) GetRumble() gdnative.Float {
 	Args: [{ false button int}], Returns: int
 */
 func (o *ARVRController) IsButtonPressed(button gdnative.Int) gdnative.Int {
-	log.Println("Calling ARVRController.IsButtonPressed()")
+	//log.Println("Calling ARVRController.IsButtonPressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -217,7 +205,7 @@ func (o *ARVRController) IsButtonPressed(button gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -226,7 +214,7 @@ func (o *ARVRController) IsButtonPressed(button gdnative.Int) gdnative.Int {
 	Args: [{ false controller_id int}], Returns: void
 */
 func (o *ARVRController) SetControllerId(controllerId gdnative.Int) {
-	log.Println("Calling ARVRController.SetControllerId()")
+	//log.Println("Calling ARVRController.SetControllerId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -247,7 +235,7 @@ func (o *ARVRController) SetControllerId(controllerId gdnative.Int) {
 	Args: [{ false rumble float}], Returns: void
 */
 func (o *ARVRController) SetRumble(rumble gdnative.Float) {
-	log.Println("Calling ARVRController.SetRumble()")
+	//log.Println("Calling ARVRController.SetRumble()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

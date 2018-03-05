@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *SpriteFrames) BaseClass() string {
 	return "SpriteFrames"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *SpriteFrames) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *SpriteFrames) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Array
 */
 func (o *SpriteFrames) X_GetAnimations() gdnative.Array {
-	log.Println("Calling SpriteFrames.X_GetAnimations()")
+	//log.Println("Calling SpriteFrames.X_GetAnimations()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *SpriteFrames) X_GetAnimations() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *SpriteFrames) X_GetAnimations() gdnative.Array {
 	Args: [], Returns: Array
 */
 func (o *SpriteFrames) X_GetFrames() gdnative.Array {
-	log.Println("Calling SpriteFrames.X_GetFrames()")
+	//log.Println("Calling SpriteFrames.X_GetFrames()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *SpriteFrames) X_GetFrames() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *SpriteFrames) X_GetFrames() gdnative.Array {
 	Args: [{ false arg0 Array}], Returns: void
 */
 func (o *SpriteFrames) X_SetAnimations(arg0 gdnative.Array) {
-	log.Println("Calling SpriteFrames.X_SetAnimations()")
+	//log.Println("Calling SpriteFrames.X_SetAnimations()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -120,7 +108,7 @@ func (o *SpriteFrames) X_SetAnimations(arg0 gdnative.Array) {
 	Args: [{ false arg0 Array}], Returns: void
 */
 func (o *SpriteFrames) X_SetFrames(arg0 gdnative.Array) {
-	log.Println("Calling SpriteFrames.X_SetFrames()")
+	//log.Println("Calling SpriteFrames.X_SetFrames()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -141,7 +129,7 @@ func (o *SpriteFrames) X_SetFrames(arg0 gdnative.Array) {
 	Args: [{ false anim String}], Returns: void
 */
 func (o *SpriteFrames) AddAnimation(anim gdnative.String) {
-	log.Println("Calling SpriteFrames.AddAnimation()")
+	//log.Println("Calling SpriteFrames.AddAnimation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -162,7 +150,7 @@ func (o *SpriteFrames) AddAnimation(anim gdnative.String) {
 	Args: [{ false anim String} { false frame Texture} {-1 true at_position int}], Returns: void
 */
 func (o *SpriteFrames) AddFrame(anim gdnative.String, frame Texture, atPosition gdnative.Int) {
-	log.Println("Calling SpriteFrames.AddFrame()")
+	//log.Println("Calling SpriteFrames.AddFrame()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -185,7 +173,7 @@ func (o *SpriteFrames) AddFrame(anim gdnative.String, frame Texture, atPosition 
 	Args: [{ false anim String}], Returns: void
 */
 func (o *SpriteFrames) Clear(anim gdnative.String) {
-	log.Println("Calling SpriteFrames.Clear()")
+	//log.Println("Calling SpriteFrames.Clear()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -206,7 +194,7 @@ func (o *SpriteFrames) Clear(anim gdnative.String) {
 	Args: [], Returns: void
 */
 func (o *SpriteFrames) ClearAll() {
-	log.Println("Calling SpriteFrames.ClearAll()")
+	//log.Println("Calling SpriteFrames.ClearAll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -226,7 +214,7 @@ func (o *SpriteFrames) ClearAll() {
 	Args: [{ false anim String}], Returns: bool
 */
 func (o *SpriteFrames) GetAnimationLoop(anim gdnative.String) gdnative.Bool {
-	log.Println("Calling SpriteFrames.GetAnimationLoop()")
+	//log.Println("Calling SpriteFrames.GetAnimationLoop()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -242,7 +230,7 @@ func (o *SpriteFrames) GetAnimationLoop(anim gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -251,7 +239,7 @@ func (o *SpriteFrames) GetAnimationLoop(anim gdnative.String) gdnative.Bool {
 	Args: [{ false anim String}], Returns: float
 */
 func (o *SpriteFrames) GetAnimationSpeed(anim gdnative.String) gdnative.Float {
-	log.Println("Calling SpriteFrames.GetAnimationSpeed()")
+	//log.Println("Calling SpriteFrames.GetAnimationSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -267,7 +255,7 @@ func (o *SpriteFrames) GetAnimationSpeed(anim gdnative.String) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -276,7 +264,7 @@ func (o *SpriteFrames) GetAnimationSpeed(anim gdnative.String) gdnative.Float {
 	Args: [{ false anim String} { false idx int}], Returns: Texture
 */
 func (o *SpriteFrames) GetFrame(anim gdnative.String, idx gdnative.Int) Texture {
-	log.Println("Calling SpriteFrames.GetFrame()")
+	//log.Println("Calling SpriteFrames.GetFrame()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -293,7 +281,7 @@ func (o *SpriteFrames) GetFrame(anim gdnative.String, idx gdnative.Int) Texture 
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -302,7 +290,7 @@ func (o *SpriteFrames) GetFrame(anim gdnative.String, idx gdnative.Int) Texture 
 	Args: [{ false anim String}], Returns: int
 */
 func (o *SpriteFrames) GetFrameCount(anim gdnative.String) gdnative.Int {
-	log.Println("Calling SpriteFrames.GetFrameCount()")
+	//log.Println("Calling SpriteFrames.GetFrameCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -318,7 +306,7 @@ func (o *SpriteFrames) GetFrameCount(anim gdnative.String) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -327,7 +315,7 @@ func (o *SpriteFrames) GetFrameCount(anim gdnative.String) gdnative.Int {
 	Args: [{ false anim String}], Returns: bool
 */
 func (o *SpriteFrames) HasAnimation(anim gdnative.String) gdnative.Bool {
-	log.Println("Calling SpriteFrames.HasAnimation()")
+	//log.Println("Calling SpriteFrames.HasAnimation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -343,7 +331,7 @@ func (o *SpriteFrames) HasAnimation(anim gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -352,7 +340,7 @@ func (o *SpriteFrames) HasAnimation(anim gdnative.String) gdnative.Bool {
 	Args: [{ false anim String}], Returns: void
 */
 func (o *SpriteFrames) RemoveAnimation(anim gdnative.String) {
-	log.Println("Calling SpriteFrames.RemoveAnimation()")
+	//log.Println("Calling SpriteFrames.RemoveAnimation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -373,7 +361,7 @@ func (o *SpriteFrames) RemoveAnimation(anim gdnative.String) {
 	Args: [{ false anim String} { false idx int}], Returns: void
 */
 func (o *SpriteFrames) RemoveFrame(anim gdnative.String, idx gdnative.Int) {
-	log.Println("Calling SpriteFrames.RemoveFrame()")
+	//log.Println("Calling SpriteFrames.RemoveFrame()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -395,7 +383,7 @@ func (o *SpriteFrames) RemoveFrame(anim gdnative.String, idx gdnative.Int) {
 	Args: [{ false anim String} { false newname String}], Returns: void
 */
 func (o *SpriteFrames) RenameAnimation(anim gdnative.String, newname gdnative.String) {
-	log.Println("Calling SpriteFrames.RenameAnimation()")
+	//log.Println("Calling SpriteFrames.RenameAnimation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -417,7 +405,7 @@ func (o *SpriteFrames) RenameAnimation(anim gdnative.String, newname gdnative.St
 	Args: [{ false anim String} { false loop bool}], Returns: void
 */
 func (o *SpriteFrames) SetAnimationLoop(anim gdnative.String, loop gdnative.Bool) {
-	log.Println("Calling SpriteFrames.SetAnimationLoop()")
+	//log.Println("Calling SpriteFrames.SetAnimationLoop()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -439,7 +427,7 @@ func (o *SpriteFrames) SetAnimationLoop(anim gdnative.String, loop gdnative.Bool
 	Args: [{ false anim String} { false speed float}], Returns: void
 */
 func (o *SpriteFrames) SetAnimationSpeed(anim gdnative.String, speed gdnative.Float) {
-	log.Println("Calling SpriteFrames.SetAnimationSpeed()")
+	//log.Println("Calling SpriteFrames.SetAnimationSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -461,7 +449,7 @@ func (o *SpriteFrames) SetAnimationSpeed(anim gdnative.String, speed gdnative.Fl
 	Args: [{ false anim String} { false idx int} { false txt Texture}], Returns: void
 */
 func (o *SpriteFrames) SetFrame(anim gdnative.String, idx gdnative.Int, txt Texture) {
-	log.Println("Calling SpriteFrames.SetFrame()")
+	//log.Println("Calling SpriteFrames.SetFrame()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)

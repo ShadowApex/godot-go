@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *AudioEffectEQ) BaseClass() string {
 	return "AudioEffectEQ"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AudioEffectEQ) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AudioEffectEQ) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Returns the number of bands of the equalizer.
 	Args: [], Returns: int
 */
 func (o *AudioEffectEQ) GetBandCount() gdnative.Int {
-	log.Println("Calling AudioEffectEQ.GetBandCount()")
+	//log.Println("Calling AudioEffectEQ.GetBandCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *AudioEffectEQ) GetBandCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *AudioEffectEQ) GetBandCount() gdnative.Int {
 	Args: [{ false band_idx int}], Returns: float
 */
 func (o *AudioEffectEQ) GetBandGainDb(bandIdx gdnative.Int) gdnative.Float {
-	log.Println("Calling AudioEffectEQ.GetBandGainDb()")
+	//log.Println("Calling AudioEffectEQ.GetBandGainDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -91,7 +79,7 @@ func (o *AudioEffectEQ) GetBandGainDb(bandIdx gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -100,7 +88,7 @@ func (o *AudioEffectEQ) GetBandGainDb(bandIdx gdnative.Int) gdnative.Float {
 	Args: [{ false band_idx int} { false volume_db float}], Returns: void
 */
 func (o *AudioEffectEQ) SetBandGainDb(bandIdx gdnative.Int, volumeDb gdnative.Float) {
-	log.Println("Calling AudioEffectEQ.SetBandGainDb()")
+	//log.Println("Calling AudioEffectEQ.SetBandGainDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *InputEventJoypadMotion) BaseClass() string {
 	return "InputEventJoypadMotion"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *InputEventJoypadMotion) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *InputEventJoypadMotion) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: int
 */
 func (o *InputEventJoypadMotion) GetAxis() gdnative.Int {
-	log.Println("Calling InputEventJoypadMotion.GetAxis()")
+	//log.Println("Calling InputEventJoypadMotion.GetAxis()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *InputEventJoypadMotion) GetAxis() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *InputEventJoypadMotion) GetAxis() gdnative.Int {
 	Args: [], Returns: float
 */
 func (o *InputEventJoypadMotion) GetAxisValue() gdnative.Float {
-	log.Println("Calling InputEventJoypadMotion.GetAxisValue()")
+	//log.Println("Calling InputEventJoypadMotion.GetAxisValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *InputEventJoypadMotion) GetAxisValue() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *InputEventJoypadMotion) GetAxisValue() gdnative.Float {
 	Args: [{ false axis int}], Returns: void
 */
 func (o *InputEventJoypadMotion) SetAxis(axis gdnative.Int) {
-	log.Println("Calling InputEventJoypadMotion.SetAxis()")
+	//log.Println("Calling InputEventJoypadMotion.SetAxis()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -120,7 +108,7 @@ func (o *InputEventJoypadMotion) SetAxis(axis gdnative.Int) {
 	Args: [{ false axis_value float}], Returns: void
 */
 func (o *InputEventJoypadMotion) SetAxisValue(axisValue gdnative.Float) {
-	log.Println("Calling InputEventJoypadMotion.SetAxisValue()")
+	//log.Println("Calling InputEventJoypadMotion.SetAxisValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

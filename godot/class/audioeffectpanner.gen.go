@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *AudioEffectPanner) BaseClass() string {
 	return "AudioEffectPanner"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AudioEffectPanner) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AudioEffectPanner) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *AudioEffectPanner) GetPan() gdnative.Float {
-	log.Println("Calling AudioEffectPanner.GetPan()")
+	//log.Println("Calling AudioEffectPanner.GetPan()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *AudioEffectPanner) GetPan() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *AudioEffectPanner) GetPan() gdnative.Float {
 	Args: [{ false cpanume float}], Returns: void
 */
 func (o *AudioEffectPanner) SetPan(cpanume gdnative.Float) {
-	log.Println("Calling AudioEffectPanner.SetPan()")
+	//log.Println("Calling AudioEffectPanner.SetPan()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

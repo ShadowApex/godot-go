@@ -33,13 +33,3 @@ type Physics2DServerSW struct {
 func (o *Physics2DServerSW) BaseClass() string {
 	return "Physics2DServerSW"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Physics2DServerSW) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Physics2DServerSW) GetBaseObject() gdnative.Object {
-	return o.owner
-}

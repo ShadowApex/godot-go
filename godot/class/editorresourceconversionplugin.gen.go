@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *EditorResourceConversionPlugin) BaseClass() string {
 	return "EditorResourceConversionPlugin"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *EditorResourceConversionPlugin) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *EditorResourceConversionPlugin) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [{ false resource Resource}], Returns: Resource
 */
 func (o *EditorResourceConversionPlugin) X_Convert(resource Resource) Resource {
-	log.Println("Calling EditorResourceConversionPlugin.X_Convert()")
+	//log.Println("Calling EditorResourceConversionPlugin.X_Convert()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -67,7 +55,7 @@ func (o *EditorResourceConversionPlugin) X_Convert(resource Resource) Resource {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewResourceFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -76,7 +64,7 @@ func (o *EditorResourceConversionPlugin) X_Convert(resource Resource) Resource {
 	Args: [], Returns: String
 */
 func (o *EditorResourceConversionPlugin) X_ConvertsTo() gdnative.String {
-	log.Println("Calling EditorResourceConversionPlugin.X_ConvertsTo()")
+	//log.Println("Calling EditorResourceConversionPlugin.X_ConvertsTo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -91,6 +79,6 @@ func (o *EditorResourceConversionPlugin) X_ConvertsTo() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

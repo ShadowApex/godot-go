@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *AudioEffectCompressor) BaseClass() string {
 	return "AudioEffectCompressor"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AudioEffectCompressor) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AudioEffectCompressor) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *AudioEffectCompressor) GetAttackUs() gdnative.Float {
-	log.Println("Calling AudioEffectCompressor.GetAttackUs()")
+	//log.Println("Calling AudioEffectCompressor.GetAttackUs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *AudioEffectCompressor) GetAttackUs() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *AudioEffectCompressor) GetAttackUs() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioEffectCompressor) GetGain() gdnative.Float {
-	log.Println("Calling AudioEffectCompressor.GetGain()")
+	//log.Println("Calling AudioEffectCompressor.GetGain()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *AudioEffectCompressor) GetGain() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *AudioEffectCompressor) GetGain() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioEffectCompressor) GetMix() gdnative.Float {
-	log.Println("Calling AudioEffectCompressor.GetMix()")
+	//log.Println("Calling AudioEffectCompressor.GetMix()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *AudioEffectCompressor) GetMix() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *AudioEffectCompressor) GetMix() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioEffectCompressor) GetRatio() gdnative.Float {
-	log.Println("Calling AudioEffectCompressor.GetRatio()")
+	//log.Println("Calling AudioEffectCompressor.GetRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *AudioEffectCompressor) GetRatio() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *AudioEffectCompressor) GetRatio() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioEffectCompressor) GetReleaseMs() gdnative.Float {
-	log.Println("Calling AudioEffectCompressor.GetReleaseMs()")
+	//log.Println("Calling AudioEffectCompressor.GetReleaseMs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *AudioEffectCompressor) GetReleaseMs() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *AudioEffectCompressor) GetReleaseMs() gdnative.Float {
 	Args: [], Returns: String
 */
 func (o *AudioEffectCompressor) GetSidechain() gdnative.String {
-	log.Println("Calling AudioEffectCompressor.GetSidechain()")
+	//log.Println("Calling AudioEffectCompressor.GetSidechain()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -186,7 +174,7 @@ func (o *AudioEffectCompressor) GetSidechain() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -195,7 +183,7 @@ func (o *AudioEffectCompressor) GetSidechain() gdnative.String {
 	Args: [], Returns: float
 */
 func (o *AudioEffectCompressor) GetThreshold() gdnative.Float {
-	log.Println("Calling AudioEffectCompressor.GetThreshold()")
+	//log.Println("Calling AudioEffectCompressor.GetThreshold()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -210,7 +198,7 @@ func (o *AudioEffectCompressor) GetThreshold() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -219,7 +207,7 @@ func (o *AudioEffectCompressor) GetThreshold() gdnative.Float {
 	Args: [{ false attack_us float}], Returns: void
 */
 func (o *AudioEffectCompressor) SetAttackUs(attackUs gdnative.Float) {
-	log.Println("Calling AudioEffectCompressor.SetAttackUs()")
+	//log.Println("Calling AudioEffectCompressor.SetAttackUs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -240,7 +228,7 @@ func (o *AudioEffectCompressor) SetAttackUs(attackUs gdnative.Float) {
 	Args: [{ false gain float}], Returns: void
 */
 func (o *AudioEffectCompressor) SetGain(gain gdnative.Float) {
-	log.Println("Calling AudioEffectCompressor.SetGain()")
+	//log.Println("Calling AudioEffectCompressor.SetGain()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -261,7 +249,7 @@ func (o *AudioEffectCompressor) SetGain(gain gdnative.Float) {
 	Args: [{ false mix float}], Returns: void
 */
 func (o *AudioEffectCompressor) SetMix(mix gdnative.Float) {
-	log.Println("Calling AudioEffectCompressor.SetMix()")
+	//log.Println("Calling AudioEffectCompressor.SetMix()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -282,7 +270,7 @@ func (o *AudioEffectCompressor) SetMix(mix gdnative.Float) {
 	Args: [{ false ratio float}], Returns: void
 */
 func (o *AudioEffectCompressor) SetRatio(ratio gdnative.Float) {
-	log.Println("Calling AudioEffectCompressor.SetRatio()")
+	//log.Println("Calling AudioEffectCompressor.SetRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -303,7 +291,7 @@ func (o *AudioEffectCompressor) SetRatio(ratio gdnative.Float) {
 	Args: [{ false release_ms float}], Returns: void
 */
 func (o *AudioEffectCompressor) SetReleaseMs(releaseMs gdnative.Float) {
-	log.Println("Calling AudioEffectCompressor.SetReleaseMs()")
+	//log.Println("Calling AudioEffectCompressor.SetReleaseMs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -324,7 +312,7 @@ func (o *AudioEffectCompressor) SetReleaseMs(releaseMs gdnative.Float) {
 	Args: [{ false sidechain String}], Returns: void
 */
 func (o *AudioEffectCompressor) SetSidechain(sidechain gdnative.String) {
-	log.Println("Calling AudioEffectCompressor.SetSidechain()")
+	//log.Println("Calling AudioEffectCompressor.SetSidechain()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -345,7 +333,7 @@ func (o *AudioEffectCompressor) SetSidechain(sidechain gdnative.String) {
 	Args: [{ false threshold float}], Returns: void
 */
 func (o *AudioEffectCompressor) SetThreshold(threshold gdnative.Float) {
-	log.Println("Calling AudioEffectCompressor.SetThreshold()")
+	//log.Println("Calling AudioEffectCompressor.SetThreshold()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

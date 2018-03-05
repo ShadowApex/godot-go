@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Light2D) BaseClass() string {
 	return "Light2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Light2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Light2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Color
 */
 func (o *Light2D) GetColor() gdnative.Color {
-	log.Println("Calling Light2D.GetColor()")
+	//log.Println("Calling Light2D.GetColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *Light2D) GetColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *Light2D) GetColor() gdnative.Color {
 	Args: [], Returns: float
 */
 func (o *Light2D) GetEnergy() gdnative.Float {
-	log.Println("Calling Light2D.GetEnergy()")
+	//log.Println("Calling Light2D.GetEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *Light2D) GetEnergy() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *Light2D) GetEnergy() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Light2D) GetHeight() gdnative.Float {
-	log.Println("Calling Light2D.GetHeight()")
+	//log.Println("Calling Light2D.GetHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *Light2D) GetHeight() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *Light2D) GetHeight() gdnative.Float {
 	Args: [], Returns: int
 */
 func (o *Light2D) GetItemCullMask() gdnative.Int {
-	log.Println("Calling Light2D.GetItemCullMask()")
+	//log.Println("Calling Light2D.GetItemCullMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *Light2D) GetItemCullMask() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *Light2D) GetItemCullMask() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *Light2D) GetItemShadowCullMask() gdnative.Int {
-	log.Println("Calling Light2D.GetItemShadowCullMask()")
+	//log.Println("Calling Light2D.GetItemShadowCullMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *Light2D) GetItemShadowCullMask() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *Light2D) GetItemShadowCullMask() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *Light2D) GetLayerRangeMax() gdnative.Int {
-	log.Println("Calling Light2D.GetLayerRangeMax()")
+	//log.Println("Calling Light2D.GetLayerRangeMax()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -186,7 +174,7 @@ func (o *Light2D) GetLayerRangeMax() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -195,7 +183,7 @@ func (o *Light2D) GetLayerRangeMax() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *Light2D) GetLayerRangeMin() gdnative.Int {
-	log.Println("Calling Light2D.GetLayerRangeMin()")
+	//log.Println("Calling Light2D.GetLayerRangeMin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -210,7 +198,7 @@ func (o *Light2D) GetLayerRangeMin() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -224,7 +212,7 @@ func (o *Light2D) GetLayerRangeMin() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *Light2D) GetShadowBufferSize() gdnative.Int {
-	log.Println("Calling Light2D.GetShadowBufferSize()")
+	//log.Println("Calling Light2D.GetShadowBufferSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -239,7 +227,7 @@ func (o *Light2D) GetShadowBufferSize() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -248,7 +236,7 @@ func (o *Light2D) GetShadowBufferSize() gdnative.Int {
 	Args: [], Returns: Color
 */
 func (o *Light2D) GetShadowColor() gdnative.Color {
-	log.Println("Calling Light2D.GetShadowColor()")
+	//log.Println("Calling Light2D.GetShadowColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -263,7 +251,7 @@ func (o *Light2D) GetShadowColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -277,7 +265,7 @@ func (o *Light2D) GetShadowColor() gdnative.Color {
 	Args: [], Returns: float
 */
 func (o *Light2D) GetShadowGradientLength() gdnative.Float {
-	log.Println("Calling Light2D.GetShadowGradientLength()")
+	//log.Println("Calling Light2D.GetShadowGradientLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -292,7 +280,7 @@ func (o *Light2D) GetShadowGradientLength() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -301,7 +289,7 @@ func (o *Light2D) GetShadowGradientLength() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Light2D) GetShadowSmooth() gdnative.Float {
-	log.Println("Calling Light2D.GetShadowSmooth()")
+	//log.Println("Calling Light2D.GetShadowSmooth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -316,7 +304,7 @@ func (o *Light2D) GetShadowSmooth() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -325,7 +313,7 @@ func (o *Light2D) GetShadowSmooth() gdnative.Float {
 	Args: [], Returns: Texture
 */
 func (o *Light2D) GetTexture() Texture {
-	log.Println("Calling Light2D.GetTexture()")
+	//log.Println("Calling Light2D.GetTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -340,7 +328,7 @@ func (o *Light2D) GetTexture() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -349,7 +337,7 @@ func (o *Light2D) GetTexture() Texture {
 	Args: [], Returns: Vector2
 */
 func (o *Light2D) GetTextureOffset() gdnative.Vector2 {
-	log.Println("Calling Light2D.GetTextureOffset()")
+	//log.Println("Calling Light2D.GetTextureOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -364,7 +352,7 @@ func (o *Light2D) GetTextureOffset() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -373,7 +361,7 @@ func (o *Light2D) GetTextureOffset() gdnative.Vector2 {
 	Args: [], Returns: float
 */
 func (o *Light2D) GetTextureScale() gdnative.Float {
-	log.Println("Calling Light2D.GetTextureScale()")
+	//log.Println("Calling Light2D.GetTextureScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -388,7 +376,7 @@ func (o *Light2D) GetTextureScale() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -397,7 +385,7 @@ func (o *Light2D) GetTextureScale() gdnative.Float {
 	Args: [], Returns: int
 */
 func (o *Light2D) GetZRangeMax() gdnative.Int {
-	log.Println("Calling Light2D.GetZRangeMax()")
+	//log.Println("Calling Light2D.GetZRangeMax()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -412,7 +400,7 @@ func (o *Light2D) GetZRangeMax() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -421,7 +409,7 @@ func (o *Light2D) GetZRangeMax() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *Light2D) GetZRangeMin() gdnative.Int {
-	log.Println("Calling Light2D.GetZRangeMin()")
+	//log.Println("Calling Light2D.GetZRangeMin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -436,7 +424,7 @@ func (o *Light2D) GetZRangeMin() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -445,7 +433,7 @@ func (o *Light2D) GetZRangeMin() gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *Light2D) IsEditorOnly() gdnative.Bool {
-	log.Println("Calling Light2D.IsEditorOnly()")
+	//log.Println("Calling Light2D.IsEditorOnly()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -460,7 +448,7 @@ func (o *Light2D) IsEditorOnly() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -469,7 +457,7 @@ func (o *Light2D) IsEditorOnly() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Light2D) IsEnabled() gdnative.Bool {
-	log.Println("Calling Light2D.IsEnabled()")
+	//log.Println("Calling Light2D.IsEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -484,7 +472,7 @@ func (o *Light2D) IsEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -493,7 +481,7 @@ func (o *Light2D) IsEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Light2D) IsShadowEnabled() gdnative.Bool {
-	log.Println("Calling Light2D.IsShadowEnabled()")
+	//log.Println("Calling Light2D.IsShadowEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -508,7 +496,7 @@ func (o *Light2D) IsShadowEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -517,7 +505,7 @@ func (o *Light2D) IsShadowEnabled() gdnative.Bool {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *Light2D) SetColor(color gdnative.Color) {
-	log.Println("Calling Light2D.SetColor()")
+	//log.Println("Calling Light2D.SetColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -538,7 +526,7 @@ func (o *Light2D) SetColor(color gdnative.Color) {
 	Args: [{ false editor_only bool}], Returns: void
 */
 func (o *Light2D) SetEditorOnly(editorOnly gdnative.Bool) {
-	log.Println("Calling Light2D.SetEditorOnly()")
+	//log.Println("Calling Light2D.SetEditorOnly()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -559,7 +547,7 @@ func (o *Light2D) SetEditorOnly(editorOnly gdnative.Bool) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Light2D) SetEnabled(enabled gdnative.Bool) {
-	log.Println("Calling Light2D.SetEnabled()")
+	//log.Println("Calling Light2D.SetEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -580,7 +568,7 @@ func (o *Light2D) SetEnabled(enabled gdnative.Bool) {
 	Args: [{ false energy float}], Returns: void
 */
 func (o *Light2D) SetEnergy(energy gdnative.Float) {
-	log.Println("Calling Light2D.SetEnergy()")
+	//log.Println("Calling Light2D.SetEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -601,7 +589,7 @@ func (o *Light2D) SetEnergy(energy gdnative.Float) {
 	Args: [{ false height float}], Returns: void
 */
 func (o *Light2D) SetHeight(height gdnative.Float) {
-	log.Println("Calling Light2D.SetHeight()")
+	//log.Println("Calling Light2D.SetHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -622,7 +610,7 @@ func (o *Light2D) SetHeight(height gdnative.Float) {
 	Args: [{ false item_cull_mask int}], Returns: void
 */
 func (o *Light2D) SetItemCullMask(itemCullMask gdnative.Int) {
-	log.Println("Calling Light2D.SetItemCullMask()")
+	//log.Println("Calling Light2D.SetItemCullMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -643,7 +631,7 @@ func (o *Light2D) SetItemCullMask(itemCullMask gdnative.Int) {
 	Args: [{ false item_shadow_cull_mask int}], Returns: void
 */
 func (o *Light2D) SetItemShadowCullMask(itemShadowCullMask gdnative.Int) {
-	log.Println("Calling Light2D.SetItemShadowCullMask()")
+	//log.Println("Calling Light2D.SetItemShadowCullMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -664,7 +652,7 @@ func (o *Light2D) SetItemShadowCullMask(itemShadowCullMask gdnative.Int) {
 	Args: [{ false layer int}], Returns: void
 */
 func (o *Light2D) SetLayerRangeMax(layer gdnative.Int) {
-	log.Println("Calling Light2D.SetLayerRangeMax()")
+	//log.Println("Calling Light2D.SetLayerRangeMax()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -685,7 +673,7 @@ func (o *Light2D) SetLayerRangeMax(layer gdnative.Int) {
 	Args: [{ false layer int}], Returns: void
 */
 func (o *Light2D) SetLayerRangeMin(layer gdnative.Int) {
-	log.Println("Calling Light2D.SetLayerRangeMin()")
+	//log.Println("Calling Light2D.SetLayerRangeMin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -706,7 +694,7 @@ func (o *Light2D) SetLayerRangeMin(layer gdnative.Int) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *Light2D) SetMode(mode gdnative.Int) {
-	log.Println("Calling Light2D.SetMode()")
+	//log.Println("Calling Light2D.SetMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -727,7 +715,7 @@ func (o *Light2D) SetMode(mode gdnative.Int) {
 	Args: [{ false size int}], Returns: void
 */
 func (o *Light2D) SetShadowBufferSize(size gdnative.Int) {
-	log.Println("Calling Light2D.SetShadowBufferSize()")
+	//log.Println("Calling Light2D.SetShadowBufferSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -748,7 +736,7 @@ func (o *Light2D) SetShadowBufferSize(size gdnative.Int) {
 	Args: [{ false shadow_color Color}], Returns: void
 */
 func (o *Light2D) SetShadowColor(shadowColor gdnative.Color) {
-	log.Println("Calling Light2D.SetShadowColor()")
+	//log.Println("Calling Light2D.SetShadowColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -769,7 +757,7 @@ func (o *Light2D) SetShadowColor(shadowColor gdnative.Color) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Light2D) SetShadowEnabled(enabled gdnative.Bool) {
-	log.Println("Calling Light2D.SetShadowEnabled()")
+	//log.Println("Calling Light2D.SetShadowEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -790,7 +778,7 @@ func (o *Light2D) SetShadowEnabled(enabled gdnative.Bool) {
 	Args: [{ false filter int}], Returns: void
 */
 func (o *Light2D) SetShadowFilter(filter gdnative.Int) {
-	log.Println("Calling Light2D.SetShadowFilter()")
+	//log.Println("Calling Light2D.SetShadowFilter()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -811,7 +799,7 @@ func (o *Light2D) SetShadowFilter(filter gdnative.Int) {
 	Args: [{ false multiplier float}], Returns: void
 */
 func (o *Light2D) SetShadowGradientLength(multiplier gdnative.Float) {
-	log.Println("Calling Light2D.SetShadowGradientLength()")
+	//log.Println("Calling Light2D.SetShadowGradientLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -832,7 +820,7 @@ func (o *Light2D) SetShadowGradientLength(multiplier gdnative.Float) {
 	Args: [{ false smooth float}], Returns: void
 */
 func (o *Light2D) SetShadowSmooth(smooth gdnative.Float) {
-	log.Println("Calling Light2D.SetShadowSmooth()")
+	//log.Println("Calling Light2D.SetShadowSmooth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -853,7 +841,7 @@ func (o *Light2D) SetShadowSmooth(smooth gdnative.Float) {
 	Args: [{ false texture Texture}], Returns: void
 */
 func (o *Light2D) SetTexture(texture Texture) {
-	log.Println("Calling Light2D.SetTexture()")
+	//log.Println("Calling Light2D.SetTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -874,7 +862,7 @@ func (o *Light2D) SetTexture(texture Texture) {
 	Args: [{ false texture_offset Vector2}], Returns: void
 */
 func (o *Light2D) SetTextureOffset(textureOffset gdnative.Vector2) {
-	log.Println("Calling Light2D.SetTextureOffset()")
+	//log.Println("Calling Light2D.SetTextureOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -895,7 +883,7 @@ func (o *Light2D) SetTextureOffset(textureOffset gdnative.Vector2) {
 	Args: [{ false texture_scale float}], Returns: void
 */
 func (o *Light2D) SetTextureScale(textureScale gdnative.Float) {
-	log.Println("Calling Light2D.SetTextureScale()")
+	//log.Println("Calling Light2D.SetTextureScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -916,7 +904,7 @@ func (o *Light2D) SetTextureScale(textureScale gdnative.Float) {
 	Args: [{ false z int}], Returns: void
 */
 func (o *Light2D) SetZRangeMax(z gdnative.Int) {
-	log.Println("Calling Light2D.SetZRangeMax()")
+	//log.Println("Calling Light2D.SetZRangeMax()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -937,7 +925,7 @@ func (o *Light2D) SetZRangeMax(z gdnative.Int) {
 	Args: [{ false z int}], Returns: void
 */
 func (o *Light2D) SetZRangeMin(z gdnative.Int) {
-	log.Println("Calling Light2D.SetZRangeMin()")
+	//log.Println("Calling Light2D.SetZRangeMin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

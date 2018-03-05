@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *EditorSettings) BaseClass() string {
 	return "EditorSettings"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *EditorSettings) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *EditorSettings) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Add a custom property info to a property. The dictionary must contain: name:[String](the name of the property) and type:[int](see TYPE_* in [@GlobalScope]), and optionally hint:[int](see PROPERTY_HINT_* in [@GlobalScope]), hint_string:[String]. Example: [codeblock] editor_settings.set("category/property_name", 0) var property_info = { "name": "category/property_name", "type": TYPE_INT, "hint": PROPERTY_HINT_ENUM, "hint_string": "one,two,three" } editor_settings.add_property_info(property_info) [/codeblock]
 	Args: [{ false info Dictionary}], Returns: void
 */
 func (o *EditorSettings) AddPropertyInfo(info gdnative.Dictionary) {
-	log.Println("Calling EditorSettings.AddPropertyInfo()")
+	//log.Println("Calling EditorSettings.AddPropertyInfo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *EditorSettings) AddPropertyInfo(info gdnative.Dictionary) {
 	Args: [{ false property String}], Returns: void
 */
 func (o *EditorSettings) Erase(property gdnative.String) {
-	log.Println("Calling EditorSettings.Erase()")
+	//log.Println("Calling EditorSettings.Erase()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -93,7 +81,7 @@ func (o *EditorSettings) Erase(property gdnative.String) {
 	Args: [], Returns: PoolStringArray
 */
 func (o *EditorSettings) GetFavoriteDirs() gdnative.PoolStringArray {
-	log.Println("Calling EditorSettings.GetFavoriteDirs()")
+	//log.Println("Calling EditorSettings.GetFavoriteDirs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -108,7 +96,7 @@ func (o *EditorSettings) GetFavoriteDirs() gdnative.PoolStringArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -117,7 +105,7 @@ func (o *EditorSettings) GetFavoriteDirs() gdnative.PoolStringArray {
 	Args: [], Returns: String
 */
 func (o *EditorSettings) GetProjectSettingsDir() gdnative.String {
-	log.Println("Calling EditorSettings.GetProjectSettingsDir()")
+	//log.Println("Calling EditorSettings.GetProjectSettingsDir()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -132,7 +120,7 @@ func (o *EditorSettings) GetProjectSettingsDir() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -141,7 +129,7 @@ func (o *EditorSettings) GetProjectSettingsDir() gdnative.String {
 	Args: [], Returns: PoolStringArray
 */
 func (o *EditorSettings) GetRecentDirs() gdnative.PoolStringArray {
-	log.Println("Calling EditorSettings.GetRecentDirs()")
+	//log.Println("Calling EditorSettings.GetRecentDirs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -156,7 +144,7 @@ func (o *EditorSettings) GetRecentDirs() gdnative.PoolStringArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -165,7 +153,7 @@ func (o *EditorSettings) GetRecentDirs() gdnative.PoolStringArray {
 	Args: [{ false name String}], Returns: Variant
 */
 func (o *EditorSettings) GetSetting(name gdnative.String) gdnative.Variant {
-	log.Println("Calling EditorSettings.GetSetting()")
+	//log.Println("Calling EditorSettings.GetSetting()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -181,7 +169,7 @@ func (o *EditorSettings) GetSetting(name gdnative.String) gdnative.Variant {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -190,7 +178,7 @@ func (o *EditorSettings) GetSetting(name gdnative.String) gdnative.Variant {
 	Args: [], Returns: String
 */
 func (o *EditorSettings) GetSettingsDir() gdnative.String {
-	log.Println("Calling EditorSettings.GetSettingsDir()")
+	//log.Println("Calling EditorSettings.GetSettingsDir()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -205,7 +193,7 @@ func (o *EditorSettings) GetSettingsDir() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -214,7 +202,7 @@ func (o *EditorSettings) GetSettingsDir() gdnative.String {
 	Args: [{ false name String}], Returns: bool
 */
 func (o *EditorSettings) HasSetting(name gdnative.String) gdnative.Bool {
-	log.Println("Calling EditorSettings.HasSetting()")
+	//log.Println("Calling EditorSettings.HasSetting()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -230,7 +218,7 @@ func (o *EditorSettings) HasSetting(name gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -239,7 +227,7 @@ func (o *EditorSettings) HasSetting(name gdnative.String) gdnative.Bool {
 	Args: [{ false name String}], Returns: bool
 */
 func (o *EditorSettings) PropertyCanRevert(name gdnative.String) gdnative.Bool {
-	log.Println("Calling EditorSettings.PropertyCanRevert()")
+	//log.Println("Calling EditorSettings.PropertyCanRevert()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -255,7 +243,7 @@ func (o *EditorSettings) PropertyCanRevert(name gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -264,7 +252,7 @@ func (o *EditorSettings) PropertyCanRevert(name gdnative.String) gdnative.Bool {
 	Args: [{ false name String}], Returns: Variant
 */
 func (o *EditorSettings) PropertyGetRevert(name gdnative.String) gdnative.Variant {
-	log.Println("Calling EditorSettings.PropertyGetRevert()")
+	//log.Println("Calling EditorSettings.PropertyGetRevert()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -280,7 +268,7 @@ func (o *EditorSettings) PropertyGetRevert(name gdnative.String) gdnative.Varian
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -289,7 +277,7 @@ func (o *EditorSettings) PropertyGetRevert(name gdnative.String) gdnative.Varian
 	Args: [{ false dirs PoolStringArray}], Returns: void
 */
 func (o *EditorSettings) SetFavoriteDirs(dirs gdnative.PoolStringArray) {
-	log.Println("Calling EditorSettings.SetFavoriteDirs()")
+	//log.Println("Calling EditorSettings.SetFavoriteDirs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -310,7 +298,7 @@ func (o *EditorSettings) SetFavoriteDirs(dirs gdnative.PoolStringArray) {
 	Args: [{ false name String} { false value Variant} { false update_current bool}], Returns: void
 */
 func (o *EditorSettings) SetInitialValue(name gdnative.String, value gdnative.Variant, updateCurrent gdnative.Bool) {
-	log.Println("Calling EditorSettings.SetInitialValue()")
+	//log.Println("Calling EditorSettings.SetInitialValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -333,7 +321,7 @@ func (o *EditorSettings) SetInitialValue(name gdnative.String, value gdnative.Va
 	Args: [{ false dirs PoolStringArray}], Returns: void
 */
 func (o *EditorSettings) SetRecentDirs(dirs gdnative.PoolStringArray) {
-	log.Println("Calling EditorSettings.SetRecentDirs()")
+	//log.Println("Calling EditorSettings.SetRecentDirs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -354,7 +342,7 @@ func (o *EditorSettings) SetRecentDirs(dirs gdnative.PoolStringArray) {
 	Args: [{ false name String} { false value Variant}], Returns: void
 */
 func (o *EditorSettings) SetSetting(name gdnative.String, value gdnative.Variant) {
-	log.Println("Calling EditorSettings.SetSetting()")
+	//log.Println("Calling EditorSettings.SetSetting()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)

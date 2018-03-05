@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VideoStreamTheora) BaseClass() string {
 	return "VideoStreamTheora"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VideoStreamTheora) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VideoStreamTheora) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: String
 */
 func (o *VideoStreamTheora) GetFile() gdnative.String {
-	log.Println("Calling VideoStreamTheora.GetFile()")
+	//log.Println("Calling VideoStreamTheora.GetFile()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VideoStreamTheora) GetFile() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *VideoStreamTheora) GetFile() gdnative.String {
 	Args: [{ false file String}], Returns: void
 */
 func (o *VideoStreamTheora) SetFile(file gdnative.String) {
-	log.Println("Calling VideoStreamTheora.SetFile()")
+	//log.Println("Calling VideoStreamTheora.SetFile()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

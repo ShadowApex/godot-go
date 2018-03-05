@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,16 +34,6 @@ func (o *Light) BaseClass() string {
 	return "Light"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Light) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Light) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: enum.Light::BakeMode
@@ -56,7 +44,7 @@ func (o *Light) GetBaseObject() gdnative.Object {
 	Args: [], Returns: Color
 */
 func (o *Light) GetColor() gdnative.Color {
-	log.Println("Calling Light.GetColor()")
+	//log.Println("Calling Light.GetColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *Light) GetColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -80,7 +68,7 @@ func (o *Light) GetColor() gdnative.Color {
 	Args: [], Returns: int
 */
 func (o *Light) GetCullMask() gdnative.Int {
-	log.Println("Calling Light.GetCullMask()")
+	//log.Println("Calling Light.GetCullMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -95,7 +83,7 @@ func (o *Light) GetCullMask() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -104,7 +92,7 @@ func (o *Light) GetCullMask() gdnative.Int {
 	Args: [{ false param int}], Returns: float
 */
 func (o *Light) GetParam(param gdnative.Int) gdnative.Float {
-	log.Println("Calling Light.GetParam()")
+	//log.Println("Calling Light.GetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -120,7 +108,7 @@ func (o *Light) GetParam(param gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -129,7 +117,7 @@ func (o *Light) GetParam(param gdnative.Int) gdnative.Float {
 	Args: [], Returns: Color
 */
 func (o *Light) GetShadowColor() gdnative.Color {
-	log.Println("Calling Light.GetShadowColor()")
+	//log.Println("Calling Light.GetShadowColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -144,7 +132,7 @@ func (o *Light) GetShadowColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -153,7 +141,7 @@ func (o *Light) GetShadowColor() gdnative.Color {
 	Args: [], Returns: bool
 */
 func (o *Light) GetShadowReverseCullFace() gdnative.Bool {
-	log.Println("Calling Light.GetShadowReverseCullFace()")
+	//log.Println("Calling Light.GetShadowReverseCullFace()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -168,7 +156,7 @@ func (o *Light) GetShadowReverseCullFace() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -177,7 +165,7 @@ func (o *Light) GetShadowReverseCullFace() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Light) HasShadow() gdnative.Bool {
-	log.Println("Calling Light.HasShadow()")
+	//log.Println("Calling Light.HasShadow()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -192,7 +180,7 @@ func (o *Light) HasShadow() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -201,7 +189,7 @@ func (o *Light) HasShadow() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Light) IsEditorOnly() gdnative.Bool {
-	log.Println("Calling Light.IsEditorOnly()")
+	//log.Println("Calling Light.IsEditorOnly()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -216,7 +204,7 @@ func (o *Light) IsEditorOnly() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -225,7 +213,7 @@ func (o *Light) IsEditorOnly() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Light) IsNegative() gdnative.Bool {
-	log.Println("Calling Light.IsNegative()")
+	//log.Println("Calling Light.IsNegative()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -240,7 +228,7 @@ func (o *Light) IsNegative() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -249,7 +237,7 @@ func (o *Light) IsNegative() gdnative.Bool {
 	Args: [{ false bake_mode int}], Returns: void
 */
 func (o *Light) SetBakeMode(bakeMode gdnative.Int) {
-	log.Println("Calling Light.SetBakeMode()")
+	//log.Println("Calling Light.SetBakeMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -270,7 +258,7 @@ func (o *Light) SetBakeMode(bakeMode gdnative.Int) {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *Light) SetColor(color gdnative.Color) {
-	log.Println("Calling Light.SetColor()")
+	//log.Println("Calling Light.SetColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -291,7 +279,7 @@ func (o *Light) SetColor(color gdnative.Color) {
 	Args: [{ false cull_mask int}], Returns: void
 */
 func (o *Light) SetCullMask(cullMask gdnative.Int) {
-	log.Println("Calling Light.SetCullMask()")
+	//log.Println("Calling Light.SetCullMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -312,7 +300,7 @@ func (o *Light) SetCullMask(cullMask gdnative.Int) {
 	Args: [{ false editor_only bool}], Returns: void
 */
 func (o *Light) SetEditorOnly(editorOnly gdnative.Bool) {
-	log.Println("Calling Light.SetEditorOnly()")
+	//log.Println("Calling Light.SetEditorOnly()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -333,7 +321,7 @@ func (o *Light) SetEditorOnly(editorOnly gdnative.Bool) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Light) SetNegative(enabled gdnative.Bool) {
-	log.Println("Calling Light.SetNegative()")
+	//log.Println("Calling Light.SetNegative()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -354,7 +342,7 @@ func (o *Light) SetNegative(enabled gdnative.Bool) {
 	Args: [{ false param int} { false value float}], Returns: void
 */
 func (o *Light) SetParam(param gdnative.Int, value gdnative.Float) {
-	log.Println("Calling Light.SetParam()")
+	//log.Println("Calling Light.SetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -376,7 +364,7 @@ func (o *Light) SetParam(param gdnative.Int, value gdnative.Float) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Light) SetShadow(enabled gdnative.Bool) {
-	log.Println("Calling Light.SetShadow()")
+	//log.Println("Calling Light.SetShadow()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -397,7 +385,7 @@ func (o *Light) SetShadow(enabled gdnative.Bool) {
 	Args: [{ false shadow_color Color}], Returns: void
 */
 func (o *Light) SetShadowColor(shadowColor gdnative.Color) {
-	log.Println("Calling Light.SetShadowColor()")
+	//log.Println("Calling Light.SetShadowColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -418,7 +406,7 @@ func (o *Light) SetShadowColor(shadowColor gdnative.Color) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Light) SetShadowReverseCullFace(enable gdnative.Bool) {
-	log.Println("Calling Light.SetShadowReverseCullFace()")
+	//log.Println("Calling Light.SetShadowReverseCullFace()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

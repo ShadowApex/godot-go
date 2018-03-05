@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Node2D) BaseClass() string {
 	return "Node2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Node2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Node2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Multiplies the current scale by the 'ratio' vector.
 	Args: [{ false ratio Vector2}], Returns: void
 */
 func (o *Node2D) ApplyScale(ratio gdnative.Vector2) {
-	log.Println("Calling Node2D.ApplyScale()")
+	//log.Println("Calling Node2D.ApplyScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *Node2D) ApplyScale(ratio gdnative.Vector2) {
 	Args: [{ false point Vector2}], Returns: float
 */
 func (o *Node2D) GetAngleTo(point gdnative.Vector2) gdnative.Float {
-	log.Println("Calling Node2D.GetAngleTo()")
+	//log.Println("Calling Node2D.GetAngleTo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -88,7 +76,7 @@ func (o *Node2D) GetAngleTo(point gdnative.Vector2) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -97,7 +85,7 @@ func (o *Node2D) GetAngleTo(point gdnative.Vector2) gdnative.Float {
 	Args: [], Returns: Vector2
 */
 func (o *Node2D) GetGlobalPosition() gdnative.Vector2 {
-	log.Println("Calling Node2D.GetGlobalPosition()")
+	//log.Println("Calling Node2D.GetGlobalPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -112,7 +100,7 @@ func (o *Node2D) GetGlobalPosition() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -121,7 +109,7 @@ func (o *Node2D) GetGlobalPosition() gdnative.Vector2 {
 	Args: [], Returns: float
 */
 func (o *Node2D) GetGlobalRotation() gdnative.Float {
-	log.Println("Calling Node2D.GetGlobalRotation()")
+	//log.Println("Calling Node2D.GetGlobalRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -136,7 +124,7 @@ func (o *Node2D) GetGlobalRotation() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -145,7 +133,7 @@ func (o *Node2D) GetGlobalRotation() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Node2D) GetGlobalRotationDegrees() gdnative.Float {
-	log.Println("Calling Node2D.GetGlobalRotationDegrees()")
+	//log.Println("Calling Node2D.GetGlobalRotationDegrees()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -160,7 +148,7 @@ func (o *Node2D) GetGlobalRotationDegrees() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -169,7 +157,7 @@ func (o *Node2D) GetGlobalRotationDegrees() gdnative.Float {
 	Args: [], Returns: Vector2
 */
 func (o *Node2D) GetGlobalScale() gdnative.Vector2 {
-	log.Println("Calling Node2D.GetGlobalScale()")
+	//log.Println("Calling Node2D.GetGlobalScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -184,7 +172,7 @@ func (o *Node2D) GetGlobalScale() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -193,7 +181,7 @@ func (o *Node2D) GetGlobalScale() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *Node2D) GetPosition() gdnative.Vector2 {
-	log.Println("Calling Node2D.GetPosition()")
+	//log.Println("Calling Node2D.GetPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -208,7 +196,7 @@ func (o *Node2D) GetPosition() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -217,7 +205,7 @@ func (o *Node2D) GetPosition() gdnative.Vector2 {
 	Args: [{ false parent Object}], Returns: Transform2D
 */
 func (o *Node2D) GetRelativeTransformToParent(parent Object) gdnative.Transform2D {
-	log.Println("Calling Node2D.GetRelativeTransformToParent()")
+	//log.Println("Calling Node2D.GetRelativeTransformToParent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -233,7 +221,7 @@ func (o *Node2D) GetRelativeTransformToParent(parent Object) gdnative.Transform2
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransform2DFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -242,7 +230,7 @@ func (o *Node2D) GetRelativeTransformToParent(parent Object) gdnative.Transform2
 	Args: [], Returns: float
 */
 func (o *Node2D) GetRotation() gdnative.Float {
-	log.Println("Calling Node2D.GetRotation()")
+	//log.Println("Calling Node2D.GetRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -257,7 +245,7 @@ func (o *Node2D) GetRotation() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -266,7 +254,7 @@ func (o *Node2D) GetRotation() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Node2D) GetRotationDegrees() gdnative.Float {
-	log.Println("Calling Node2D.GetRotationDegrees()")
+	//log.Println("Calling Node2D.GetRotationDegrees()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -281,7 +269,7 @@ func (o *Node2D) GetRotationDegrees() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -290,7 +278,7 @@ func (o *Node2D) GetRotationDegrees() gdnative.Float {
 	Args: [], Returns: Vector2
 */
 func (o *Node2D) GetScale() gdnative.Vector2 {
-	log.Println("Calling Node2D.GetScale()")
+	//log.Println("Calling Node2D.GetScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -305,7 +293,7 @@ func (o *Node2D) GetScale() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -314,7 +302,7 @@ func (o *Node2D) GetScale() gdnative.Vector2 {
 	Args: [], Returns: int
 */
 func (o *Node2D) GetZIndex() gdnative.Int {
-	log.Println("Calling Node2D.GetZIndex()")
+	//log.Println("Calling Node2D.GetZIndex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -329,7 +317,7 @@ func (o *Node2D) GetZIndex() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -338,7 +326,7 @@ func (o *Node2D) GetZIndex() gdnative.Int {
 	Args: [{ false offset Vector2}], Returns: void
 */
 func (o *Node2D) GlobalTranslate(offset gdnative.Vector2) {
-	log.Println("Calling Node2D.GlobalTranslate()")
+	//log.Println("Calling Node2D.GlobalTranslate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -359,7 +347,7 @@ func (o *Node2D) GlobalTranslate(offset gdnative.Vector2) {
 	Args: [], Returns: bool
 */
 func (o *Node2D) IsZRelative() gdnative.Bool {
-	log.Println("Calling Node2D.IsZRelative()")
+	//log.Println("Calling Node2D.IsZRelative()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -374,7 +362,7 @@ func (o *Node2D) IsZRelative() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -383,7 +371,7 @@ func (o *Node2D) IsZRelative() gdnative.Bool {
 	Args: [{ false point Vector2}], Returns: void
 */
 func (o *Node2D) LookAt(point gdnative.Vector2) {
-	log.Println("Calling Node2D.LookAt()")
+	//log.Println("Calling Node2D.LookAt()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -404,7 +392,7 @@ func (o *Node2D) LookAt(point gdnative.Vector2) {
 	Args: [{ false delta float} {False true scaled bool}], Returns: void
 */
 func (o *Node2D) MoveLocalX(delta gdnative.Float, scaled gdnative.Bool) {
-	log.Println("Calling Node2D.MoveLocalX()")
+	//log.Println("Calling Node2D.MoveLocalX()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -426,7 +414,7 @@ func (o *Node2D) MoveLocalX(delta gdnative.Float, scaled gdnative.Bool) {
 	Args: [{ false delta float} {False true scaled bool}], Returns: void
 */
 func (o *Node2D) MoveLocalY(delta gdnative.Float, scaled gdnative.Bool) {
-	log.Println("Calling Node2D.MoveLocalY()")
+	//log.Println("Calling Node2D.MoveLocalY()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -448,7 +436,7 @@ func (o *Node2D) MoveLocalY(delta gdnative.Float, scaled gdnative.Bool) {
 	Args: [{ false radians float}], Returns: void
 */
 func (o *Node2D) Rotate(radians gdnative.Float) {
-	log.Println("Calling Node2D.Rotate()")
+	//log.Println("Calling Node2D.Rotate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -469,7 +457,7 @@ func (o *Node2D) Rotate(radians gdnative.Float) {
 	Args: [{ false position Vector2}], Returns: void
 */
 func (o *Node2D) SetGlobalPosition(position gdnative.Vector2) {
-	log.Println("Calling Node2D.SetGlobalPosition()")
+	//log.Println("Calling Node2D.SetGlobalPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -490,7 +478,7 @@ func (o *Node2D) SetGlobalPosition(position gdnative.Vector2) {
 	Args: [{ false radians float}], Returns: void
 */
 func (o *Node2D) SetGlobalRotation(radians gdnative.Float) {
-	log.Println("Calling Node2D.SetGlobalRotation()")
+	//log.Println("Calling Node2D.SetGlobalRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -511,7 +499,7 @@ func (o *Node2D) SetGlobalRotation(radians gdnative.Float) {
 	Args: [{ false degrees float}], Returns: void
 */
 func (o *Node2D) SetGlobalRotationDegrees(degrees gdnative.Float) {
-	log.Println("Calling Node2D.SetGlobalRotationDegrees()")
+	//log.Println("Calling Node2D.SetGlobalRotationDegrees()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -532,7 +520,7 @@ func (o *Node2D) SetGlobalRotationDegrees(degrees gdnative.Float) {
 	Args: [{ false scale Vector2}], Returns: void
 */
 func (o *Node2D) SetGlobalScale(scale gdnative.Vector2) {
-	log.Println("Calling Node2D.SetGlobalScale()")
+	//log.Println("Calling Node2D.SetGlobalScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -553,7 +541,7 @@ func (o *Node2D) SetGlobalScale(scale gdnative.Vector2) {
 	Args: [{ false xform Transform2D}], Returns: void
 */
 func (o *Node2D) SetGlobalTransform(xform gdnative.Transform2D) {
-	log.Println("Calling Node2D.SetGlobalTransform()")
+	//log.Println("Calling Node2D.SetGlobalTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -574,7 +562,7 @@ func (o *Node2D) SetGlobalTransform(xform gdnative.Transform2D) {
 	Args: [{ false position Vector2}], Returns: void
 */
 func (o *Node2D) SetPosition(position gdnative.Vector2) {
-	log.Println("Calling Node2D.SetPosition()")
+	//log.Println("Calling Node2D.SetPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -595,7 +583,7 @@ func (o *Node2D) SetPosition(position gdnative.Vector2) {
 	Args: [{ false radians float}], Returns: void
 */
 func (o *Node2D) SetRotation(radians gdnative.Float) {
-	log.Println("Calling Node2D.SetRotation()")
+	//log.Println("Calling Node2D.SetRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -616,7 +604,7 @@ func (o *Node2D) SetRotation(radians gdnative.Float) {
 	Args: [{ false degrees float}], Returns: void
 */
 func (o *Node2D) SetRotationDegrees(degrees gdnative.Float) {
-	log.Println("Calling Node2D.SetRotationDegrees()")
+	//log.Println("Calling Node2D.SetRotationDegrees()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -637,7 +625,7 @@ func (o *Node2D) SetRotationDegrees(degrees gdnative.Float) {
 	Args: [{ false scale Vector2}], Returns: void
 */
 func (o *Node2D) SetScale(scale gdnative.Vector2) {
-	log.Println("Calling Node2D.SetScale()")
+	//log.Println("Calling Node2D.SetScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -658,7 +646,7 @@ func (o *Node2D) SetScale(scale gdnative.Vector2) {
 	Args: [{ false xform Transform2D}], Returns: void
 */
 func (o *Node2D) SetTransform(xform gdnative.Transform2D) {
-	log.Println("Calling Node2D.SetTransform()")
+	//log.Println("Calling Node2D.SetTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -679,7 +667,7 @@ func (o *Node2D) SetTransform(xform gdnative.Transform2D) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Node2D) SetZAsRelative(enable gdnative.Bool) {
-	log.Println("Calling Node2D.SetZAsRelative()")
+	//log.Println("Calling Node2D.SetZAsRelative()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -700,7 +688,7 @@ func (o *Node2D) SetZAsRelative(enable gdnative.Bool) {
 	Args: [{ false z_index int}], Returns: void
 */
 func (o *Node2D) SetZIndex(zIndex gdnative.Int) {
-	log.Println("Calling Node2D.SetZIndex()")
+	//log.Println("Calling Node2D.SetZIndex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -721,7 +709,7 @@ func (o *Node2D) SetZIndex(zIndex gdnative.Int) {
 	Args: [{ false local_point Vector2}], Returns: Vector2
 */
 func (o *Node2D) ToGlobal(localPoint gdnative.Vector2) gdnative.Vector2 {
-	log.Println("Calling Node2D.ToGlobal()")
+	//log.Println("Calling Node2D.ToGlobal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -737,7 +725,7 @@ func (o *Node2D) ToGlobal(localPoint gdnative.Vector2) gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -746,7 +734,7 @@ func (o *Node2D) ToGlobal(localPoint gdnative.Vector2) gdnative.Vector2 {
 	Args: [{ false global_point Vector2}], Returns: Vector2
 */
 func (o *Node2D) ToLocal(globalPoint gdnative.Vector2) gdnative.Vector2 {
-	log.Println("Calling Node2D.ToLocal()")
+	//log.Println("Calling Node2D.ToLocal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -762,7 +750,7 @@ func (o *Node2D) ToLocal(globalPoint gdnative.Vector2) gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -771,7 +759,7 @@ func (o *Node2D) ToLocal(globalPoint gdnative.Vector2) gdnative.Vector2 {
 	Args: [{ false offset Vector2}], Returns: void
 */
 func (o *Node2D) Translate(offset gdnative.Vector2) {
-	log.Println("Calling Node2D.Translate()")
+	//log.Println("Calling Node2D.Translate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

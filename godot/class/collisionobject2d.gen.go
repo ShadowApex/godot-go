@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *CollisionObject2D) BaseClass() string {
 	return "CollisionObject2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *CollisionObject2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *CollisionObject2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Accepts unhandled [InputEvent]s. [code]shape_idx[/code] is the child index of the clicked [Shape2D]. Connect to the [code]input_event[/code] signal to easily pick up these events.
 	Args: [{ false viewport Object} { false event InputEvent} { false shape_idx int}], Returns: void
 */
 func (o *CollisionObject2D) X_InputEvent(viewport Object, event InputEvent, shapeIdx gdnative.Int) {
-	log.Println("Calling CollisionObject2D.X_InputEvent()")
+	//log.Println("Calling CollisionObject2D.X_InputEvent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -74,7 +62,7 @@ func (o *CollisionObject2D) X_InputEvent(viewport Object, event InputEvent, shap
 	Args: [{ false owner Object}], Returns: int
 */
 func (o *CollisionObject2D) CreateShapeOwner(owner Object) gdnative.Int {
-	log.Println("Calling CollisionObject2D.CreateShapeOwner()")
+	//log.Println("Calling CollisionObject2D.CreateShapeOwner()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -90,7 +78,7 @@ func (o *CollisionObject2D) CreateShapeOwner(owner Object) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *CollisionObject2D) CreateShapeOwner(owner Object) gdnative.Int {
 	Args: [], Returns: RID
 */
 func (o *CollisionObject2D) GetRid() gdnative.Rid {
-	log.Println("Calling CollisionObject2D.GetRid()")
+	//log.Println("Calling CollisionObject2D.GetRid()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *CollisionObject2D) GetRid() gdnative.Rid {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *CollisionObject2D) GetRid() gdnative.Rid {
 	Args: [], Returns: Array
 */
 func (o *CollisionObject2D) GetShapeOwners() gdnative.Array {
-	log.Println("Calling CollisionObject2D.GetShapeOwners()")
+	//log.Println("Calling CollisionObject2D.GetShapeOwners()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *CollisionObject2D) GetShapeOwners() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *CollisionObject2D) GetShapeOwners() gdnative.Array {
 	Args: [], Returns: bool
 */
 func (o *CollisionObject2D) IsPickable() gdnative.Bool {
-	log.Println("Calling CollisionObject2D.IsPickable()")
+	//log.Println("Calling CollisionObject2D.IsPickable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *CollisionObject2D) IsPickable() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *CollisionObject2D) IsPickable() gdnative.Bool {
 	Args: [{ false owner_id int}], Returns: bool
 */
 func (o *CollisionObject2D) IsShapeOwnerDisabled(ownerId gdnative.Int) gdnative.Bool {
-	log.Println("Calling CollisionObject2D.IsShapeOwnerDisabled()")
+	//log.Println("Calling CollisionObject2D.IsShapeOwnerDisabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -187,7 +175,7 @@ func (o *CollisionObject2D) IsShapeOwnerDisabled(ownerId gdnative.Int) gdnative.
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -196,7 +184,7 @@ func (o *CollisionObject2D) IsShapeOwnerDisabled(ownerId gdnative.Int) gdnative.
 	Args: [{ false owner_id int}], Returns: bool
 */
 func (o *CollisionObject2D) IsShapeOwnerOneWayCollisionEnabled(ownerId gdnative.Int) gdnative.Bool {
-	log.Println("Calling CollisionObject2D.IsShapeOwnerOneWayCollisionEnabled()")
+	//log.Println("Calling CollisionObject2D.IsShapeOwnerOneWayCollisionEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -212,7 +200,7 @@ func (o *CollisionObject2D) IsShapeOwnerOneWayCollisionEnabled(ownerId gdnative.
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -221,7 +209,7 @@ func (o *CollisionObject2D) IsShapeOwnerOneWayCollisionEnabled(ownerId gdnative.
 	Args: [{ false owner_id int}], Returns: void
 */
 func (o *CollisionObject2D) RemoveShapeOwner(ownerId gdnative.Int) {
-	log.Println("Calling CollisionObject2D.RemoveShapeOwner()")
+	//log.Println("Calling CollisionObject2D.RemoveShapeOwner()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -242,7 +230,7 @@ func (o *CollisionObject2D) RemoveShapeOwner(ownerId gdnative.Int) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *CollisionObject2D) SetPickable(enabled gdnative.Bool) {
-	log.Println("Calling CollisionObject2D.SetPickable()")
+	//log.Println("Calling CollisionObject2D.SetPickable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -263,7 +251,7 @@ func (o *CollisionObject2D) SetPickable(enabled gdnative.Bool) {
 	Args: [{ false shape_index int}], Returns: int
 */
 func (o *CollisionObject2D) ShapeFindOwner(shapeIndex gdnative.Int) gdnative.Int {
-	log.Println("Calling CollisionObject2D.ShapeFindOwner()")
+	//log.Println("Calling CollisionObject2D.ShapeFindOwner()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -279,7 +267,7 @@ func (o *CollisionObject2D) ShapeFindOwner(shapeIndex gdnative.Int) gdnative.Int
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -288,7 +276,7 @@ func (o *CollisionObject2D) ShapeFindOwner(shapeIndex gdnative.Int) gdnative.Int
 	Args: [{ false owner_id int} { false shape Shape2D}], Returns: void
 */
 func (o *CollisionObject2D) ShapeOwnerAddShape(ownerId gdnative.Int, shape Shape2D) {
-	log.Println("Calling CollisionObject2D.ShapeOwnerAddShape()")
+	//log.Println("Calling CollisionObject2D.ShapeOwnerAddShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -310,7 +298,7 @@ func (o *CollisionObject2D) ShapeOwnerAddShape(ownerId gdnative.Int, shape Shape
 	Args: [{ false owner_id int}], Returns: void
 */
 func (o *CollisionObject2D) ShapeOwnerClearShapes(ownerId gdnative.Int) {
-	log.Println("Calling CollisionObject2D.ShapeOwnerClearShapes()")
+	//log.Println("Calling CollisionObject2D.ShapeOwnerClearShapes()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -331,7 +319,7 @@ func (o *CollisionObject2D) ShapeOwnerClearShapes(ownerId gdnative.Int) {
 	Args: [{ false owner_id int}], Returns: Object
 */
 func (o *CollisionObject2D) ShapeOwnerGetOwner(ownerId gdnative.Int) Object {
-	log.Println("Calling CollisionObject2D.ShapeOwnerGetOwner()")
+	//log.Println("Calling CollisionObject2D.ShapeOwnerGetOwner()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -347,7 +335,7 @@ func (o *CollisionObject2D) ShapeOwnerGetOwner(ownerId gdnative.Int) Object {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewObjectFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -356,7 +344,7 @@ func (o *CollisionObject2D) ShapeOwnerGetOwner(ownerId gdnative.Int) Object {
 	Args: [{ false owner_id int} { false shape_id int}], Returns: Shape2D
 */
 func (o *CollisionObject2D) ShapeOwnerGetShape(ownerId gdnative.Int, shapeId gdnative.Int) Shape2D {
-	log.Println("Calling CollisionObject2D.ShapeOwnerGetShape()")
+	//log.Println("Calling CollisionObject2D.ShapeOwnerGetShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -373,7 +361,7 @@ func (o *CollisionObject2D) ShapeOwnerGetShape(ownerId gdnative.Int, shapeId gdn
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewShape2DFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -382,7 +370,7 @@ func (o *CollisionObject2D) ShapeOwnerGetShape(ownerId gdnative.Int, shapeId gdn
 	Args: [{ false owner_id int}], Returns: int
 */
 func (o *CollisionObject2D) ShapeOwnerGetShapeCount(ownerId gdnative.Int) gdnative.Int {
-	log.Println("Calling CollisionObject2D.ShapeOwnerGetShapeCount()")
+	//log.Println("Calling CollisionObject2D.ShapeOwnerGetShapeCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -398,7 +386,7 @@ func (o *CollisionObject2D) ShapeOwnerGetShapeCount(ownerId gdnative.Int) gdnati
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -407,7 +395,7 @@ func (o *CollisionObject2D) ShapeOwnerGetShapeCount(ownerId gdnative.Int) gdnati
 	Args: [{ false owner_id int} { false shape_id int}], Returns: int
 */
 func (o *CollisionObject2D) ShapeOwnerGetShapeIndex(ownerId gdnative.Int, shapeId gdnative.Int) gdnative.Int {
-	log.Println("Calling CollisionObject2D.ShapeOwnerGetShapeIndex()")
+	//log.Println("Calling CollisionObject2D.ShapeOwnerGetShapeIndex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -424,7 +412,7 @@ func (o *CollisionObject2D) ShapeOwnerGetShapeIndex(ownerId gdnative.Int, shapeI
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -433,7 +421,7 @@ func (o *CollisionObject2D) ShapeOwnerGetShapeIndex(ownerId gdnative.Int, shapeI
 	Args: [{ false owner_id int}], Returns: Transform2D
 */
 func (o *CollisionObject2D) ShapeOwnerGetTransform(ownerId gdnative.Int) gdnative.Transform2D {
-	log.Println("Calling CollisionObject2D.ShapeOwnerGetTransform()")
+	//log.Println("Calling CollisionObject2D.ShapeOwnerGetTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -449,7 +437,7 @@ func (o *CollisionObject2D) ShapeOwnerGetTransform(ownerId gdnative.Int) gdnativ
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransform2DFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -458,7 +446,7 @@ func (o *CollisionObject2D) ShapeOwnerGetTransform(ownerId gdnative.Int) gdnativ
 	Args: [{ false owner_id int} { false shape_id int}], Returns: void
 */
 func (o *CollisionObject2D) ShapeOwnerRemoveShape(ownerId gdnative.Int, shapeId gdnative.Int) {
-	log.Println("Calling CollisionObject2D.ShapeOwnerRemoveShape()")
+	//log.Println("Calling CollisionObject2D.ShapeOwnerRemoveShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -480,7 +468,7 @@ func (o *CollisionObject2D) ShapeOwnerRemoveShape(ownerId gdnative.Int, shapeId 
 	Args: [{ false owner_id int} { false disabled bool}], Returns: void
 */
 func (o *CollisionObject2D) ShapeOwnerSetDisabled(ownerId gdnative.Int, disabled gdnative.Bool) {
-	log.Println("Calling CollisionObject2D.ShapeOwnerSetDisabled()")
+	//log.Println("Calling CollisionObject2D.ShapeOwnerSetDisabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -502,7 +490,7 @@ func (o *CollisionObject2D) ShapeOwnerSetDisabled(ownerId gdnative.Int, disabled
 	Args: [{ false owner_id int} { false enable bool}], Returns: void
 */
 func (o *CollisionObject2D) ShapeOwnerSetOneWayCollision(ownerId gdnative.Int, enable gdnative.Bool) {
-	log.Println("Calling CollisionObject2D.ShapeOwnerSetOneWayCollision()")
+	//log.Println("Calling CollisionObject2D.ShapeOwnerSetOneWayCollision()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -524,7 +512,7 @@ func (o *CollisionObject2D) ShapeOwnerSetOneWayCollision(ownerId gdnative.Int, e
 	Args: [{ false owner_id int} { false transform Transform2D}], Returns: void
 */
 func (o *CollisionObject2D) ShapeOwnerSetTransform(ownerId gdnative.Int, transform gdnative.Transform2D) {
-	log.Println("Calling CollisionObject2D.ShapeOwnerSetTransform()")
+	//log.Println("Calling CollisionObject2D.ShapeOwnerSetTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)

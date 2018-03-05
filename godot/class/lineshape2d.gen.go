@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *LineShape2D) BaseClass() string {
 	return "LineShape2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *LineShape2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *LineShape2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *LineShape2D) GetD() gdnative.Float {
-	log.Println("Calling LineShape2D.GetD()")
+	//log.Println("Calling LineShape2D.GetD()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *LineShape2D) GetD() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *LineShape2D) GetD() gdnative.Float {
 	Args: [], Returns: Vector2
 */
 func (o *LineShape2D) GetNormal() gdnative.Vector2 {
-	log.Println("Calling LineShape2D.GetNormal()")
+	//log.Println("Calling LineShape2D.GetNormal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *LineShape2D) GetNormal() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *LineShape2D) GetNormal() gdnative.Vector2 {
 	Args: [{ false d float}], Returns: void
 */
 func (o *LineShape2D) SetD(d gdnative.Float) {
-	log.Println("Calling LineShape2D.SetD()")
+	//log.Println("Calling LineShape2D.SetD()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -120,7 +108,7 @@ func (o *LineShape2D) SetD(d gdnative.Float) {
 	Args: [{ false normal Vector2}], Returns: void
 */
 func (o *LineShape2D) SetNormal(normal gdnative.Vector2) {
-	log.Println("Calling LineShape2D.SetNormal()")
+	//log.Println("Calling LineShape2D.SetNormal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

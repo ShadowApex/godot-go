@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Path) BaseClass() string {
 	return "Path"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Path) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Path) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *Path) X_CurveChanged() {
-	log.Println("Calling Path.X_CurveChanged()")
+	//log.Println("Calling Path.X_CurveChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *Path) X_CurveChanged() {
 	Args: [], Returns: Curve3D
 */
 func (o *Path) GetCurve() Curve3D {
-	log.Println("Calling Path.GetCurve()")
+	//log.Println("Calling Path.GetCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -86,7 +74,7 @@ func (o *Path) GetCurve() Curve3D {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewCurve3DFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -95,7 +83,7 @@ func (o *Path) GetCurve() Curve3D {
 	Args: [{ false curve Curve3D}], Returns: void
 */
 func (o *Path) SetCurve(curve Curve3D) {
-	log.Println("Calling Path.SetCurve()")
+	//log.Println("Calling Path.SetCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

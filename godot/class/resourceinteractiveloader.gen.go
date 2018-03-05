@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ResourceInteractiveLoader) BaseClass() string {
 	return "ResourceInteractiveLoader"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ResourceInteractiveLoader) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ResourceInteractiveLoader) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Return the loaded resource (only if loaded). Otherwise, returns null.
 	Args: [], Returns: Resource
 */
 func (o *ResourceInteractiveLoader) GetResource() Resource {
-	log.Println("Calling ResourceInteractiveLoader.GetResource()")
+	//log.Println("Calling ResourceInteractiveLoader.GetResource()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *ResourceInteractiveLoader) GetResource() Resource {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewResourceFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *ResourceInteractiveLoader) GetResource() Resource {
 	Args: [], Returns: int
 */
 func (o *ResourceInteractiveLoader) GetStage() gdnative.Int {
-	log.Println("Calling ResourceInteractiveLoader.GetStage()")
+	//log.Println("Calling ResourceInteractiveLoader.GetStage()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *ResourceInteractiveLoader) GetStage() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *ResourceInteractiveLoader) GetStage() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *ResourceInteractiveLoader) GetStageCount() gdnative.Int {
-	log.Println("Calling ResourceInteractiveLoader.GetStageCount()")
+	//log.Println("Calling ResourceInteractiveLoader.GetStageCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *ResourceInteractiveLoader) GetStageCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 

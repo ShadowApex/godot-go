@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *StaticBody2D) BaseClass() string {
 	return "StaticBody2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *StaticBody2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *StaticBody2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *StaticBody2D) GetBounce() gdnative.Float {
-	log.Println("Calling StaticBody2D.GetBounce()")
+	//log.Println("Calling StaticBody2D.GetBounce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *StaticBody2D) GetBounce() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *StaticBody2D) GetBounce() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *StaticBody2D) GetConstantAngularVelocity() gdnative.Float {
-	log.Println("Calling StaticBody2D.GetConstantAngularVelocity()")
+	//log.Println("Calling StaticBody2D.GetConstantAngularVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *StaticBody2D) GetConstantAngularVelocity() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *StaticBody2D) GetConstantAngularVelocity() gdnative.Float {
 	Args: [], Returns: Vector2
 */
 func (o *StaticBody2D) GetConstantLinearVelocity() gdnative.Vector2 {
-	log.Println("Calling StaticBody2D.GetConstantLinearVelocity()")
+	//log.Println("Calling StaticBody2D.GetConstantLinearVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *StaticBody2D) GetConstantLinearVelocity() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *StaticBody2D) GetConstantLinearVelocity() gdnative.Vector2 {
 	Args: [], Returns: float
 */
 func (o *StaticBody2D) GetFriction() gdnative.Float {
-	log.Println("Calling StaticBody2D.GetFriction()")
+	//log.Println("Calling StaticBody2D.GetFriction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *StaticBody2D) GetFriction() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *StaticBody2D) GetFriction() gdnative.Float {
 	Args: [{ false bounce float}], Returns: void
 */
 func (o *StaticBody2D) SetBounce(bounce gdnative.Float) {
-	log.Println("Calling StaticBody2D.SetBounce()")
+	//log.Println("Calling StaticBody2D.SetBounce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -168,7 +156,7 @@ func (o *StaticBody2D) SetBounce(bounce gdnative.Float) {
 	Args: [{ false vel float}], Returns: void
 */
 func (o *StaticBody2D) SetConstantAngularVelocity(vel gdnative.Float) {
-	log.Println("Calling StaticBody2D.SetConstantAngularVelocity()")
+	//log.Println("Calling StaticBody2D.SetConstantAngularVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -189,7 +177,7 @@ func (o *StaticBody2D) SetConstantAngularVelocity(vel gdnative.Float) {
 	Args: [{ false vel Vector2}], Returns: void
 */
 func (o *StaticBody2D) SetConstantLinearVelocity(vel gdnative.Vector2) {
-	log.Println("Calling StaticBody2D.SetConstantLinearVelocity()")
+	//log.Println("Calling StaticBody2D.SetConstantLinearVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -210,7 +198,7 @@ func (o *StaticBody2D) SetConstantLinearVelocity(vel gdnative.Vector2) {
 	Args: [{ false friction float}], Returns: void
 */
 func (o *StaticBody2D) SetFriction(friction gdnative.Float) {
-	log.Println("Calling StaticBody2D.SetFriction()")
+	//log.Println("Calling StaticBody2D.SetFriction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

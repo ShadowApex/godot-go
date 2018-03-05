@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,16 +34,6 @@ func (o *VisualScriptPropertyGet) BaseClass() string {
 	return "VisualScriptPropertyGet"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptPropertyGet) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptPropertyGet) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: enum.Variant::Type
@@ -56,7 +44,7 @@ func (o *VisualScriptPropertyGet) GetBaseObject() gdnative.Object {
 	Args: [{ false type_cache int}], Returns: void
 */
 func (o *VisualScriptPropertyGet) X_SetTypeCache(typeCache gdnative.Int) {
-	log.Println("Calling VisualScriptPropertyGet.X_SetTypeCache()")
+	//log.Println("Calling VisualScriptPropertyGet.X_SetTypeCache()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -77,7 +65,7 @@ func (o *VisualScriptPropertyGet) X_SetTypeCache(typeCache gdnative.Int) {
 	Args: [], Returns: NodePath
 */
 func (o *VisualScriptPropertyGet) GetBasePath() gdnative.NodePath {
-	log.Println("Calling VisualScriptPropertyGet.GetBasePath()")
+	//log.Println("Calling VisualScriptPropertyGet.GetBasePath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -92,7 +80,7 @@ func (o *VisualScriptPropertyGet) GetBasePath() gdnative.NodePath {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewNodePathFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -101,7 +89,7 @@ func (o *VisualScriptPropertyGet) GetBasePath() gdnative.NodePath {
 	Args: [], Returns: String
 */
 func (o *VisualScriptPropertyGet) GetBaseScript() gdnative.String {
-	log.Println("Calling VisualScriptPropertyGet.GetBaseScript()")
+	//log.Println("Calling VisualScriptPropertyGet.GetBaseScript()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -116,7 +104,7 @@ func (o *VisualScriptPropertyGet) GetBaseScript() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -125,7 +113,7 @@ func (o *VisualScriptPropertyGet) GetBaseScript() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *VisualScriptPropertyGet) GetBaseType() gdnative.String {
-	log.Println("Calling VisualScriptPropertyGet.GetBaseType()")
+	//log.Println("Calling VisualScriptPropertyGet.GetBaseType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -140,7 +128,7 @@ func (o *VisualScriptPropertyGet) GetBaseType() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -159,7 +147,7 @@ func (o *VisualScriptPropertyGet) GetBaseType() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *VisualScriptPropertyGet) GetIndex() gdnative.String {
-	log.Println("Calling VisualScriptPropertyGet.GetIndex()")
+	//log.Println("Calling VisualScriptPropertyGet.GetIndex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -174,7 +162,7 @@ func (o *VisualScriptPropertyGet) GetIndex() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -183,7 +171,7 @@ func (o *VisualScriptPropertyGet) GetIndex() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *VisualScriptPropertyGet) GetProperty() gdnative.String {
-	log.Println("Calling VisualScriptPropertyGet.GetProperty()")
+	//log.Println("Calling VisualScriptPropertyGet.GetProperty()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -198,7 +186,7 @@ func (o *VisualScriptPropertyGet) GetProperty() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -207,7 +195,7 @@ func (o *VisualScriptPropertyGet) GetProperty() gdnative.String {
 	Args: [{ false base_path NodePath}], Returns: void
 */
 func (o *VisualScriptPropertyGet) SetBasePath(basePath gdnative.NodePath) {
-	log.Println("Calling VisualScriptPropertyGet.SetBasePath()")
+	//log.Println("Calling VisualScriptPropertyGet.SetBasePath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -228,7 +216,7 @@ func (o *VisualScriptPropertyGet) SetBasePath(basePath gdnative.NodePath) {
 	Args: [{ false base_script String}], Returns: void
 */
 func (o *VisualScriptPropertyGet) SetBaseScript(baseScript gdnative.String) {
-	log.Println("Calling VisualScriptPropertyGet.SetBaseScript()")
+	//log.Println("Calling VisualScriptPropertyGet.SetBaseScript()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -249,7 +237,7 @@ func (o *VisualScriptPropertyGet) SetBaseScript(baseScript gdnative.String) {
 	Args: [{ false base_type String}], Returns: void
 */
 func (o *VisualScriptPropertyGet) SetBaseType(baseType gdnative.String) {
-	log.Println("Calling VisualScriptPropertyGet.SetBaseType()")
+	//log.Println("Calling VisualScriptPropertyGet.SetBaseType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -270,7 +258,7 @@ func (o *VisualScriptPropertyGet) SetBaseType(baseType gdnative.String) {
 	Args: [{ false basic_type int}], Returns: void
 */
 func (o *VisualScriptPropertyGet) SetBasicType(basicType gdnative.Int) {
-	log.Println("Calling VisualScriptPropertyGet.SetBasicType()")
+	//log.Println("Calling VisualScriptPropertyGet.SetBasicType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -291,7 +279,7 @@ func (o *VisualScriptPropertyGet) SetBasicType(basicType gdnative.Int) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *VisualScriptPropertyGet) SetCallMode(mode gdnative.Int) {
-	log.Println("Calling VisualScriptPropertyGet.SetCallMode()")
+	//log.Println("Calling VisualScriptPropertyGet.SetCallMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -312,7 +300,7 @@ func (o *VisualScriptPropertyGet) SetCallMode(mode gdnative.Int) {
 	Args: [{ false index String}], Returns: void
 */
 func (o *VisualScriptPropertyGet) SetIndex(index gdnative.String) {
-	log.Println("Calling VisualScriptPropertyGet.SetIndex()")
+	//log.Println("Calling VisualScriptPropertyGet.SetIndex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -333,7 +321,7 @@ func (o *VisualScriptPropertyGet) SetIndex(index gdnative.String) {
 	Args: [{ false property String}], Returns: void
 */
 func (o *VisualScriptPropertyGet) SetProperty(property gdnative.String) {
-	log.Println("Calling VisualScriptPropertyGet.SetProperty()")
+	//log.Println("Calling VisualScriptPropertyGet.SetProperty()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

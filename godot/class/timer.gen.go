@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Timer) BaseClass() string {
 	return "Timer"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Timer) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Timer) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *Timer) GetTimeLeft() gdnative.Float {
-	log.Println("Calling Timer.GetTimeLeft()")
+	//log.Println("Calling Timer.GetTimeLeft()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *Timer) GetTimeLeft() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -80,7 +68,7 @@ func (o *Timer) GetTimeLeft() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Timer) GetWaitTime() gdnative.Float {
-	log.Println("Calling Timer.GetWaitTime()")
+	//log.Println("Calling Timer.GetWaitTime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -95,7 +83,7 @@ func (o *Timer) GetWaitTime() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -104,7 +92,7 @@ func (o *Timer) GetWaitTime() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *Timer) HasAutostart() gdnative.Bool {
-	log.Println("Calling Timer.HasAutostart()")
+	//log.Println("Calling Timer.HasAutostart()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -119,7 +107,7 @@ func (o *Timer) HasAutostart() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -128,7 +116,7 @@ func (o *Timer) HasAutostart() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Timer) IsOneShot() gdnative.Bool {
-	log.Println("Calling Timer.IsOneShot()")
+	//log.Println("Calling Timer.IsOneShot()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -143,7 +131,7 @@ func (o *Timer) IsOneShot() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -152,7 +140,7 @@ func (o *Timer) IsOneShot() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Timer) IsPaused() gdnative.Bool {
-	log.Println("Calling Timer.IsPaused()")
+	//log.Println("Calling Timer.IsPaused()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -167,7 +155,7 @@ func (o *Timer) IsPaused() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -176,7 +164,7 @@ func (o *Timer) IsPaused() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Timer) IsStopped() gdnative.Bool {
-	log.Println("Calling Timer.IsStopped()")
+	//log.Println("Calling Timer.IsStopped()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -191,7 +179,7 @@ func (o *Timer) IsStopped() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -200,7 +188,7 @@ func (o *Timer) IsStopped() gdnative.Bool {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Timer) SetAutostart(enable gdnative.Bool) {
-	log.Println("Calling Timer.SetAutostart()")
+	//log.Println("Calling Timer.SetAutostart()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -221,7 +209,7 @@ func (o *Timer) SetAutostart(enable gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Timer) SetOneShot(enable gdnative.Bool) {
-	log.Println("Calling Timer.SetOneShot()")
+	//log.Println("Calling Timer.SetOneShot()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -242,7 +230,7 @@ func (o *Timer) SetOneShot(enable gdnative.Bool) {
 	Args: [{ false paused bool}], Returns: void
 */
 func (o *Timer) SetPaused(paused gdnative.Bool) {
-	log.Println("Calling Timer.SetPaused()")
+	//log.Println("Calling Timer.SetPaused()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -263,7 +251,7 @@ func (o *Timer) SetPaused(paused gdnative.Bool) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *Timer) SetTimerProcessMode(mode gdnative.Int) {
-	log.Println("Calling Timer.SetTimerProcessMode()")
+	//log.Println("Calling Timer.SetTimerProcessMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -284,7 +272,7 @@ func (o *Timer) SetTimerProcessMode(mode gdnative.Int) {
 	Args: [{ false time_sec float}], Returns: void
 */
 func (o *Timer) SetWaitTime(timeSec gdnative.Float) {
-	log.Println("Calling Timer.SetWaitTime()")
+	//log.Println("Calling Timer.SetWaitTime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -305,7 +293,7 @@ func (o *Timer) SetWaitTime(timeSec gdnative.Float) {
 	Args: [], Returns: void
 */
 func (o *Timer) Start() {
-	log.Println("Calling Timer.Start()")
+	//log.Println("Calling Timer.Start()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -325,7 +313,7 @@ func (o *Timer) Start() {
 	Args: [], Returns: void
 */
 func (o *Timer) Stop() {
-	log.Println("Calling Timer.Stop()")
+	//log.Println("Calling Timer.Stop()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)

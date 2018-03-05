@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *AcceptDialog) BaseClass() string {
 	return "AcceptDialog"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AcceptDialog) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AcceptDialog) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false arg0 String}], Returns: void
 */
 func (o *AcceptDialog) X_BuiltinTextEntered(arg0 gdnative.String) {
-	log.Println("Calling AcceptDialog.X_BuiltinTextEntered()")
+	//log.Println("Calling AcceptDialog.X_BuiltinTextEntered()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *AcceptDialog) X_BuiltinTextEntered(arg0 gdnative.String) {
 	Args: [{ false arg0 String}], Returns: void
 */
 func (o *AcceptDialog) X_CustomAction(arg0 gdnative.String) {
-	log.Println("Calling AcceptDialog.X_CustomAction()")
+	//log.Println("Calling AcceptDialog.X_CustomAction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -93,7 +81,7 @@ func (o *AcceptDialog) X_CustomAction(arg0 gdnative.String) {
 	Args: [], Returns: void
 */
 func (o *AcceptDialog) X_Ok() {
-	log.Println("Calling AcceptDialog.X_Ok()")
+	//log.Println("Calling AcceptDialog.X_Ok()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -113,7 +101,7 @@ func (o *AcceptDialog) X_Ok() {
 	Args: [{ false text String} {False true right bool} { true action String}], Returns: Button
 */
 func (o *AcceptDialog) AddButton(text gdnative.String, right gdnative.Bool, action gdnative.String) Button {
-	log.Println("Calling AcceptDialog.AddButton()")
+	//log.Println("Calling AcceptDialog.AddButton()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -131,7 +119,7 @@ func (o *AcceptDialog) AddButton(text gdnative.String, right gdnative.Bool, acti
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewButtonFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -140,7 +128,7 @@ func (o *AcceptDialog) AddButton(text gdnative.String, right gdnative.Bool, acti
 	Args: [{ false name String}], Returns: Button
 */
 func (o *AcceptDialog) AddCancel(name gdnative.String) Button {
-	log.Println("Calling AcceptDialog.AddCancel()")
+	//log.Println("Calling AcceptDialog.AddCancel()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -156,7 +144,7 @@ func (o *AcceptDialog) AddCancel(name gdnative.String) Button {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewButtonFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -165,7 +153,7 @@ func (o *AcceptDialog) AddCancel(name gdnative.String) Button {
 	Args: [], Returns: bool
 */
 func (o *AcceptDialog) GetHideOnOk() gdnative.Bool {
-	log.Println("Calling AcceptDialog.GetHideOnOk()")
+	//log.Println("Calling AcceptDialog.GetHideOnOk()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -180,7 +168,7 @@ func (o *AcceptDialog) GetHideOnOk() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -189,7 +177,7 @@ func (o *AcceptDialog) GetHideOnOk() gdnative.Bool {
 	Args: [], Returns: Label
 */
 func (o *AcceptDialog) GetLabel() Label {
-	log.Println("Calling AcceptDialog.GetLabel()")
+	//log.Println("Calling AcceptDialog.GetLabel()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -204,7 +192,7 @@ func (o *AcceptDialog) GetLabel() Label {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewLabelFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -213,7 +201,7 @@ func (o *AcceptDialog) GetLabel() Label {
 	Args: [], Returns: Button
 */
 func (o *AcceptDialog) GetOk() Button {
-	log.Println("Calling AcceptDialog.GetOk()")
+	//log.Println("Calling AcceptDialog.GetOk()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -228,7 +216,7 @@ func (o *AcceptDialog) GetOk() Button {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewButtonFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -237,7 +225,7 @@ func (o *AcceptDialog) GetOk() Button {
 	Args: [], Returns: String
 */
 func (o *AcceptDialog) GetText() gdnative.String {
-	log.Println("Calling AcceptDialog.GetText()")
+	//log.Println("Calling AcceptDialog.GetText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -252,7 +240,7 @@ func (o *AcceptDialog) GetText() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -261,7 +249,7 @@ func (o *AcceptDialog) GetText() gdnative.String {
 	Args: [{ false line_edit Object}], Returns: void
 */
 func (o *AcceptDialog) RegisterTextEnter(lineEdit Object) {
-	log.Println("Calling AcceptDialog.RegisterTextEnter()")
+	//log.Println("Calling AcceptDialog.RegisterTextEnter()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -282,7 +270,7 @@ func (o *AcceptDialog) RegisterTextEnter(lineEdit Object) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *AcceptDialog) SetHideOnOk(enabled gdnative.Bool) {
-	log.Println("Calling AcceptDialog.SetHideOnOk()")
+	//log.Println("Calling AcceptDialog.SetHideOnOk()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -303,7 +291,7 @@ func (o *AcceptDialog) SetHideOnOk(enabled gdnative.Bool) {
 	Args: [{ false text String}], Returns: void
 */
 func (o *AcceptDialog) SetText(text gdnative.String) {
-	log.Println("Calling AcceptDialog.SetText()")
+	//log.Println("Calling AcceptDialog.SetText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

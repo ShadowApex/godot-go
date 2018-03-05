@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *EditorSelection) BaseClass() string {
 	return "EditorSelection"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *EditorSelection) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *EditorSelection) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *EditorSelection) X_EmitChange() {
-	log.Println("Calling EditorSelection.X_EmitChange()")
+	//log.Println("Calling EditorSelection.X_EmitChange()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *EditorSelection) X_EmitChange() {
 	Args: [{ false arg0 Object}], Returns: void
 */
 func (o *EditorSelection) X_NodeRemoved(arg0 Object) {
-	log.Println("Calling EditorSelection.X_NodeRemoved()")
+	//log.Println("Calling EditorSelection.X_NodeRemoved()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -92,7 +80,7 @@ func (o *EditorSelection) X_NodeRemoved(arg0 Object) {
 	Args: [{ false node Object}], Returns: void
 */
 func (o *EditorSelection) AddNode(node Object) {
-	log.Println("Calling EditorSelection.AddNode()")
+	//log.Println("Calling EditorSelection.AddNode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -113,7 +101,7 @@ func (o *EditorSelection) AddNode(node Object) {
 	Args: [], Returns: void
 */
 func (o *EditorSelection) Clear() {
-	log.Println("Calling EditorSelection.Clear()")
+	//log.Println("Calling EditorSelection.Clear()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -133,7 +121,7 @@ func (o *EditorSelection) Clear() {
 	Args: [], Returns: Array
 */
 func (o *EditorSelection) GetSelectedNodes() gdnative.Array {
-	log.Println("Calling EditorSelection.GetSelectedNodes()")
+	//log.Println("Calling EditorSelection.GetSelectedNodes()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -148,7 +136,7 @@ func (o *EditorSelection) GetSelectedNodes() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -157,7 +145,7 @@ func (o *EditorSelection) GetSelectedNodes() gdnative.Array {
 	Args: [], Returns: Array
 */
 func (o *EditorSelection) GetTransformableSelectedNodes() gdnative.Array {
-	log.Println("Calling EditorSelection.GetTransformableSelectedNodes()")
+	//log.Println("Calling EditorSelection.GetTransformableSelectedNodes()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -172,7 +160,7 @@ func (o *EditorSelection) GetTransformableSelectedNodes() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -181,7 +169,7 @@ func (o *EditorSelection) GetTransformableSelectedNodes() gdnative.Array {
 	Args: [{ false node Object}], Returns: void
 */
 func (o *EditorSelection) RemoveNode(node Object) {
-	log.Println("Calling EditorSelection.RemoveNode()")
+	//log.Println("Calling EditorSelection.RemoveNode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

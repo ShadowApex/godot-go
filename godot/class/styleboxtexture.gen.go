@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *StyleBoxTexture) BaseClass() string {
 	return "StyleBoxTexture"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *StyleBoxTexture) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *StyleBoxTexture) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false margin int}], Returns: float
 */
 func (o *StyleBoxTexture) GetExpandMarginSize(margin gdnative.Int) gdnative.Float {
-	log.Println("Calling StyleBoxTexture.GetExpandMarginSize()")
+	//log.Println("Calling StyleBoxTexture.GetExpandMarginSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -67,7 +55,7 @@ func (o *StyleBoxTexture) GetExpandMarginSize(margin gdnative.Int) gdnative.Floa
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -81,7 +69,7 @@ func (o *StyleBoxTexture) GetExpandMarginSize(margin gdnative.Int) gdnative.Floa
 	Args: [{ false margin int}], Returns: float
 */
 func (o *StyleBoxTexture) GetMarginSize(margin gdnative.Int) gdnative.Float {
-	log.Println("Calling StyleBoxTexture.GetMarginSize()")
+	//log.Println("Calling StyleBoxTexture.GetMarginSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -97,7 +85,7 @@ func (o *StyleBoxTexture) GetMarginSize(margin gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -106,7 +94,7 @@ func (o *StyleBoxTexture) GetMarginSize(margin gdnative.Int) gdnative.Float {
 	Args: [], Returns: Color
 */
 func (o *StyleBoxTexture) GetModulate() gdnative.Color {
-	log.Println("Calling StyleBoxTexture.GetModulate()")
+	//log.Println("Calling StyleBoxTexture.GetModulate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -121,7 +109,7 @@ func (o *StyleBoxTexture) GetModulate() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -130,7 +118,7 @@ func (o *StyleBoxTexture) GetModulate() gdnative.Color {
 	Args: [], Returns: Resource
 */
 func (o *StyleBoxTexture) GetNormalMap() Resource {
-	log.Println("Calling StyleBoxTexture.GetNormalMap()")
+	//log.Println("Calling StyleBoxTexture.GetNormalMap()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -145,7 +133,7 @@ func (o *StyleBoxTexture) GetNormalMap() Resource {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewResourceFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -154,7 +142,7 @@ func (o *StyleBoxTexture) GetNormalMap() Resource {
 	Args: [], Returns: Rect2
 */
 func (o *StyleBoxTexture) GetRegionRect() gdnative.Rect2 {
-	log.Println("Calling StyleBoxTexture.GetRegionRect()")
+	//log.Println("Calling StyleBoxTexture.GetRegionRect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -169,7 +157,7 @@ func (o *StyleBoxTexture) GetRegionRect() gdnative.Rect2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRect2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -178,7 +166,7 @@ func (o *StyleBoxTexture) GetRegionRect() gdnative.Rect2 {
 	Args: [], Returns: Resource
 */
 func (o *StyleBoxTexture) GetTexture() Resource {
-	log.Println("Calling StyleBoxTexture.GetTexture()")
+	//log.Println("Calling StyleBoxTexture.GetTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -193,7 +181,7 @@ func (o *StyleBoxTexture) GetTexture() Resource {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewResourceFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -207,7 +195,7 @@ func (o *StyleBoxTexture) GetTexture() Resource {
 	Args: [], Returns: bool
 */
 func (o *StyleBoxTexture) IsDrawCenterEnabled() gdnative.Bool {
-	log.Println("Calling StyleBoxTexture.IsDrawCenterEnabled()")
+	//log.Println("Calling StyleBoxTexture.IsDrawCenterEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -222,7 +210,7 @@ func (o *StyleBoxTexture) IsDrawCenterEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -231,7 +219,7 @@ func (o *StyleBoxTexture) IsDrawCenterEnabled() gdnative.Bool {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *StyleBoxTexture) SetDrawCenter(enable gdnative.Bool) {
-	log.Println("Calling StyleBoxTexture.SetDrawCenter()")
+	//log.Println("Calling StyleBoxTexture.SetDrawCenter()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -252,7 +240,7 @@ func (o *StyleBoxTexture) SetDrawCenter(enable gdnative.Bool) {
 	Args: [{ false size float}], Returns: void
 */
 func (o *StyleBoxTexture) SetExpandMarginAll(size gdnative.Float) {
-	log.Println("Calling StyleBoxTexture.SetExpandMarginAll()")
+	//log.Println("Calling StyleBoxTexture.SetExpandMarginAll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -273,7 +261,7 @@ func (o *StyleBoxTexture) SetExpandMarginAll(size gdnative.Float) {
 	Args: [{ false size_left float} { false size_top float} { false size_right float} { false size_bottom float}], Returns: void
 */
 func (o *StyleBoxTexture) SetExpandMarginIndividual(sizeLeft gdnative.Float, sizeTop gdnative.Float, sizeRight gdnative.Float, sizeBottom gdnative.Float) {
-	log.Println("Calling StyleBoxTexture.SetExpandMarginIndividual()")
+	//log.Println("Calling StyleBoxTexture.SetExpandMarginIndividual()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -297,7 +285,7 @@ func (o *StyleBoxTexture) SetExpandMarginIndividual(sizeLeft gdnative.Float, siz
 	Args: [{ false margin int} { false size float}], Returns: void
 */
 func (o *StyleBoxTexture) SetExpandMarginSize(margin gdnative.Int, size gdnative.Float) {
-	log.Println("Calling StyleBoxTexture.SetExpandMarginSize()")
+	//log.Println("Calling StyleBoxTexture.SetExpandMarginSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -319,7 +307,7 @@ func (o *StyleBoxTexture) SetExpandMarginSize(margin gdnative.Int, size gdnative
 	Args: [{ false mode int}], Returns: void
 */
 func (o *StyleBoxTexture) SetHAxisStretchMode(mode gdnative.Int) {
-	log.Println("Calling StyleBoxTexture.SetHAxisStretchMode()")
+	//log.Println("Calling StyleBoxTexture.SetHAxisStretchMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -340,7 +328,7 @@ func (o *StyleBoxTexture) SetHAxisStretchMode(mode gdnative.Int) {
 	Args: [{ false margin int} { false size float}], Returns: void
 */
 func (o *StyleBoxTexture) SetMarginSize(margin gdnative.Int, size gdnative.Float) {
-	log.Println("Calling StyleBoxTexture.SetMarginSize()")
+	//log.Println("Calling StyleBoxTexture.SetMarginSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -362,7 +350,7 @@ func (o *StyleBoxTexture) SetMarginSize(margin gdnative.Int, size gdnative.Float
 	Args: [{ false color Color}], Returns: void
 */
 func (o *StyleBoxTexture) SetModulate(color gdnative.Color) {
-	log.Println("Calling StyleBoxTexture.SetModulate()")
+	//log.Println("Calling StyleBoxTexture.SetModulate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -383,7 +371,7 @@ func (o *StyleBoxTexture) SetModulate(color gdnative.Color) {
 	Args: [{ false normal_map Resource}], Returns: void
 */
 func (o *StyleBoxTexture) SetNormalMap(normalMap Resource) {
-	log.Println("Calling StyleBoxTexture.SetNormalMap()")
+	//log.Println("Calling StyleBoxTexture.SetNormalMap()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -404,7 +392,7 @@ func (o *StyleBoxTexture) SetNormalMap(normalMap Resource) {
 	Args: [{ false region Rect2}], Returns: void
 */
 func (o *StyleBoxTexture) SetRegionRect(region gdnative.Rect2) {
-	log.Println("Calling StyleBoxTexture.SetRegionRect()")
+	//log.Println("Calling StyleBoxTexture.SetRegionRect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -425,7 +413,7 @@ func (o *StyleBoxTexture) SetRegionRect(region gdnative.Rect2) {
 	Args: [{ false texture Resource}], Returns: void
 */
 func (o *StyleBoxTexture) SetTexture(texture Resource) {
-	log.Println("Calling StyleBoxTexture.SetTexture()")
+	//log.Println("Calling StyleBoxTexture.SetTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -446,7 +434,7 @@ func (o *StyleBoxTexture) SetTexture(texture Resource) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *StyleBoxTexture) SetVAxisStretchMode(mode gdnative.Int) {
-	log.Println("Calling StyleBoxTexture.SetVAxisStretchMode()")
+	//log.Println("Calling StyleBoxTexture.SetVAxisStretchMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

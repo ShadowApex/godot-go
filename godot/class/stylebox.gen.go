@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *StyleBox) BaseClass() string {
 	return "StyleBox"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *StyleBox) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *StyleBox) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [{ false canvas_item RID} { false rect Rect2}], Returns: void
 */
 func (o *StyleBox) Draw(canvasItem gdnative.Rid, rect gdnative.Rect2) {
-	log.Println("Calling StyleBox.Draw()")
+	//log.Println("Calling StyleBox.Draw()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -73,7 +61,7 @@ func (o *StyleBox) Draw(canvasItem gdnative.Rid, rect gdnative.Rect2) {
 	Args: [], Returns: Vector2
 */
 func (o *StyleBox) GetCenterSize() gdnative.Vector2 {
-	log.Println("Calling StyleBox.GetCenterSize()")
+	//log.Println("Calling StyleBox.GetCenterSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -88,7 +76,7 @@ func (o *StyleBox) GetCenterSize() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -97,7 +85,7 @@ func (o *StyleBox) GetCenterSize() gdnative.Vector2 {
 	Args: [{ false margin int}], Returns: float
 */
 func (o *StyleBox) GetDefaultMargin(margin gdnative.Int) gdnative.Float {
-	log.Println("Calling StyleBox.GetDefaultMargin()")
+	//log.Println("Calling StyleBox.GetDefaultMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -113,7 +101,7 @@ func (o *StyleBox) GetDefaultMargin(margin gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -122,7 +110,7 @@ func (o *StyleBox) GetDefaultMargin(margin gdnative.Int) gdnative.Float {
 	Args: [{ false margin int}], Returns: float
 */
 func (o *StyleBox) GetMargin(margin gdnative.Int) gdnative.Float {
-	log.Println("Calling StyleBox.GetMargin()")
+	//log.Println("Calling StyleBox.GetMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -138,7 +126,7 @@ func (o *StyleBox) GetMargin(margin gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *StyleBox) GetMargin(margin gdnative.Int) gdnative.Float {
 	Args: [], Returns: Vector2
 */
 func (o *StyleBox) GetMinimumSize() gdnative.Vector2 {
-	log.Println("Calling StyleBox.GetMinimumSize()")
+	//log.Println("Calling StyleBox.GetMinimumSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *StyleBox) GetMinimumSize() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *StyleBox) GetMinimumSize() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *StyleBox) GetOffset() gdnative.Vector2 {
-	log.Println("Calling StyleBox.GetOffset()")
+	//log.Println("Calling StyleBox.GetOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -186,7 +174,7 @@ func (o *StyleBox) GetOffset() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -195,7 +183,7 @@ func (o *StyleBox) GetOffset() gdnative.Vector2 {
 	Args: [{ false margin int} { false offset float}], Returns: void
 */
 func (o *StyleBox) SetDefaultMargin(margin gdnative.Int, offset gdnative.Float) {
-	log.Println("Calling StyleBox.SetDefaultMargin()")
+	//log.Println("Calling StyleBox.SetDefaultMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -217,7 +205,7 @@ func (o *StyleBox) SetDefaultMargin(margin gdnative.Int, offset gdnative.Float) 
 	Args: [{ false point Vector2} { false rect Rect2}], Returns: bool
 */
 func (o *StyleBox) TestMask(point gdnative.Vector2, rect gdnative.Rect2) gdnative.Bool {
-	log.Println("Calling StyleBox.TestMask()")
+	//log.Println("Calling StyleBox.TestMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -234,6 +222,6 @@ func (o *StyleBox) TestMask(point gdnative.Vector2, rect gdnative.Rect2) gdnativ
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

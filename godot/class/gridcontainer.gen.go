@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *GridContainer) BaseClass() string {
 	return "GridContainer"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *GridContainer) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *GridContainer) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: int
 */
 func (o *GridContainer) GetColumns() gdnative.Int {
-	log.Println("Calling GridContainer.GetColumns()")
+	//log.Println("Calling GridContainer.GetColumns()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *GridContainer) GetColumns() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *GridContainer) GetColumns() gdnative.Int {
 	Args: [{ false columns int}], Returns: void
 */
 func (o *GridContainer) SetColumns(columns gdnative.Int) {
-	log.Println("Calling GridContainer.SetColumns()")
+	//log.Println("Calling GridContainer.SetColumns()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

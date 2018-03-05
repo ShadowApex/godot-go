@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *LightOccluder2D) BaseClass() string {
 	return "LightOccluder2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *LightOccluder2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *LightOccluder2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *LightOccluder2D) X_PolyChanged() {
-	log.Println("Calling LightOccluder2D.X_PolyChanged()")
+	//log.Println("Calling LightOccluder2D.X_PolyChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *LightOccluder2D) X_PolyChanged() {
 	Args: [], Returns: int
 */
 func (o *LightOccluder2D) GetOccluderLightMask() gdnative.Int {
-	log.Println("Calling LightOccluder2D.GetOccluderLightMask()")
+	//log.Println("Calling LightOccluder2D.GetOccluderLightMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -86,7 +74,7 @@ func (o *LightOccluder2D) GetOccluderLightMask() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -95,7 +83,7 @@ func (o *LightOccluder2D) GetOccluderLightMask() gdnative.Int {
 	Args: [], Returns: OccluderPolygon2D
 */
 func (o *LightOccluder2D) GetOccluderPolygon() OccluderPolygon2D {
-	log.Println("Calling LightOccluder2D.GetOccluderPolygon()")
+	//log.Println("Calling LightOccluder2D.GetOccluderPolygon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -110,7 +98,7 @@ func (o *LightOccluder2D) GetOccluderPolygon() OccluderPolygon2D {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewOccluderPolygon2DFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -119,7 +107,7 @@ func (o *LightOccluder2D) GetOccluderPolygon() OccluderPolygon2D {
 	Args: [{ false mask int}], Returns: void
 */
 func (o *LightOccluder2D) SetOccluderLightMask(mask gdnative.Int) {
-	log.Println("Calling LightOccluder2D.SetOccluderLightMask()")
+	//log.Println("Calling LightOccluder2D.SetOccluderLightMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -140,7 +128,7 @@ func (o *LightOccluder2D) SetOccluderLightMask(mask gdnative.Int) {
 	Args: [{ false polygon OccluderPolygon2D}], Returns: void
 */
 func (o *LightOccluder2D) SetOccluderPolygon(polygon OccluderPolygon2D) {
-	log.Println("Calling LightOccluder2D.SetOccluderPolygon()")
+	//log.Println("Calling LightOccluder2D.SetOccluderPolygon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

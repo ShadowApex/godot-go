@@ -33,13 +33,3 @@ type VisualScriptExpression struct {
 func (o *VisualScriptExpression) BaseClass() string {
 	return "VisualScriptExpression"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptExpression) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptExpression) GetBaseObject() gdnative.Object {
-	return o.owner
-}

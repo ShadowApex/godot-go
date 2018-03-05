@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *HTTPClient) BaseClass() string {
 	return "HTTPClient"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *HTTPClient) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *HTTPClient) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Closes the current connection, allowing reuse of this [code]HTTPClient[/code].
 	Args: [], Returns: void
 */
 func (o *HTTPClient) Close() {
-	log.Println("Calling HTTPClient.Close()")
+	//log.Println("Calling HTTPClient.Close()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -76,7 +64,7 @@ func (o *HTTPClient) Close() {
 	Args: [], Returns: StreamPeer
 */
 func (o *HTTPClient) GetConnection() StreamPeer {
-	log.Println("Calling HTTPClient.GetConnection()")
+	//log.Println("Calling HTTPClient.GetConnection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -91,7 +79,7 @@ func (o *HTTPClient) GetConnection() StreamPeer {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewStreamPeerFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -100,7 +88,7 @@ func (o *HTTPClient) GetConnection() StreamPeer {
 	Args: [], Returns: int
 */
 func (o *HTTPClient) GetResponseBodyLength() gdnative.Int {
-	log.Println("Calling HTTPClient.GetResponseBodyLength()")
+	//log.Println("Calling HTTPClient.GetResponseBodyLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -115,7 +103,7 @@ func (o *HTTPClient) GetResponseBodyLength() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -124,7 +112,7 @@ func (o *HTTPClient) GetResponseBodyLength() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *HTTPClient) GetResponseCode() gdnative.Int {
-	log.Println("Calling HTTPClient.GetResponseCode()")
+	//log.Println("Calling HTTPClient.GetResponseCode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -139,7 +127,7 @@ func (o *HTTPClient) GetResponseCode() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -148,7 +136,7 @@ func (o *HTTPClient) GetResponseCode() gdnative.Int {
 	Args: [], Returns: PoolStringArray
 */
 func (o *HTTPClient) GetResponseHeaders() gdnative.PoolStringArray {
-	log.Println("Calling HTTPClient.GetResponseHeaders()")
+	//log.Println("Calling HTTPClient.GetResponseHeaders()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -163,7 +151,7 @@ func (o *HTTPClient) GetResponseHeaders() gdnative.PoolStringArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -172,7 +160,7 @@ func (o *HTTPClient) GetResponseHeaders() gdnative.PoolStringArray {
 	Args: [], Returns: Dictionary
 */
 func (o *HTTPClient) GetResponseHeadersAsDictionary() gdnative.Dictionary {
-	log.Println("Calling HTTPClient.GetResponseHeadersAsDictionary()")
+	//log.Println("Calling HTTPClient.GetResponseHeadersAsDictionary()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -187,7 +175,7 @@ func (o *HTTPClient) GetResponseHeadersAsDictionary() gdnative.Dictionary {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewDictionaryFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -201,7 +189,7 @@ func (o *HTTPClient) GetResponseHeadersAsDictionary() gdnative.Dictionary {
 	Args: [], Returns: bool
 */
 func (o *HTTPClient) HasResponse() gdnative.Bool {
-	log.Println("Calling HTTPClient.HasResponse()")
+	//log.Println("Calling HTTPClient.HasResponse()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -216,7 +204,7 @@ func (o *HTTPClient) HasResponse() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -225,7 +213,7 @@ func (o *HTTPClient) HasResponse() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *HTTPClient) IsBlockingModeEnabled() gdnative.Bool {
-	log.Println("Calling HTTPClient.IsBlockingModeEnabled()")
+	//log.Println("Calling HTTPClient.IsBlockingModeEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -240,7 +228,7 @@ func (o *HTTPClient) IsBlockingModeEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -249,7 +237,7 @@ func (o *HTTPClient) IsBlockingModeEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *HTTPClient) IsResponseChunked() gdnative.Bool {
-	log.Println("Calling HTTPClient.IsResponseChunked()")
+	//log.Println("Calling HTTPClient.IsResponseChunked()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -264,7 +252,7 @@ func (o *HTTPClient) IsResponseChunked() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -278,7 +266,7 @@ func (o *HTTPClient) IsResponseChunked() gdnative.Bool {
 	Args: [{ false fields Dictionary}], Returns: String
 */
 func (o *HTTPClient) QueryStringFromDict(fields gdnative.Dictionary) gdnative.String {
-	log.Println("Calling HTTPClient.QueryStringFromDict()")
+	//log.Println("Calling HTTPClient.QueryStringFromDict()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -294,7 +282,7 @@ func (o *HTTPClient) QueryStringFromDict(fields gdnative.Dictionary) gdnative.St
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -303,7 +291,7 @@ func (o *HTTPClient) QueryStringFromDict(fields gdnative.Dictionary) gdnative.St
 	Args: [], Returns: PoolByteArray
 */
 func (o *HTTPClient) ReadResponseBodyChunk() gdnative.PoolByteArray {
-	log.Println("Calling HTTPClient.ReadResponseBodyChunk()")
+	//log.Println("Calling HTTPClient.ReadResponseBodyChunk()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -318,7 +306,7 @@ func (o *HTTPClient) ReadResponseBodyChunk() gdnative.PoolByteArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolByteArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -337,7 +325,7 @@ func (o *HTTPClient) ReadResponseBodyChunk() gdnative.PoolByteArray {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *HTTPClient) SetBlockingMode(enabled gdnative.Bool) {
-	log.Println("Calling HTTPClient.SetBlockingMode()")
+	//log.Println("Calling HTTPClient.SetBlockingMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -358,7 +346,7 @@ func (o *HTTPClient) SetBlockingMode(enabled gdnative.Bool) {
 	Args: [{ false connection StreamPeer}], Returns: void
 */
 func (o *HTTPClient) SetConnection(connection StreamPeer) {
-	log.Println("Calling HTTPClient.SetConnection()")
+	//log.Println("Calling HTTPClient.SetConnection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -379,7 +367,7 @@ func (o *HTTPClient) SetConnection(connection StreamPeer) {
 	Args: [{ false bytes int}], Returns: void
 */
 func (o *HTTPClient) SetReadChunkSize(bytes gdnative.Int) {
-	log.Println("Calling HTTPClient.SetReadChunkSize()")
+	//log.Println("Calling HTTPClient.SetReadChunkSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *AudioEffectDelay) BaseClass() string {
 	return "AudioEffectDelay"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AudioEffectDelay) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AudioEffectDelay) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *AudioEffectDelay) GetDry() gdnative.Float {
-	log.Println("Calling AudioEffectDelay.GetDry()")
+	//log.Println("Calling AudioEffectDelay.GetDry()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *AudioEffectDelay) GetDry() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *AudioEffectDelay) GetDry() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioEffectDelay) GetFeedbackDelayMs() gdnative.Float {
-	log.Println("Calling AudioEffectDelay.GetFeedbackDelayMs()")
+	//log.Println("Calling AudioEffectDelay.GetFeedbackDelayMs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *AudioEffectDelay) GetFeedbackDelayMs() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *AudioEffectDelay) GetFeedbackDelayMs() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioEffectDelay) GetFeedbackLevelDb() gdnative.Float {
-	log.Println("Calling AudioEffectDelay.GetFeedbackLevelDb()")
+	//log.Println("Calling AudioEffectDelay.GetFeedbackLevelDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *AudioEffectDelay) GetFeedbackLevelDb() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *AudioEffectDelay) GetFeedbackLevelDb() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioEffectDelay) GetFeedbackLowpass() gdnative.Float {
-	log.Println("Calling AudioEffectDelay.GetFeedbackLowpass()")
+	//log.Println("Calling AudioEffectDelay.GetFeedbackLowpass()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *AudioEffectDelay) GetFeedbackLowpass() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *AudioEffectDelay) GetFeedbackLowpass() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioEffectDelay) GetTap1DelayMs() gdnative.Float {
-	log.Println("Calling AudioEffectDelay.GetTap1DelayMs()")
+	//log.Println("Calling AudioEffectDelay.GetTap1DelayMs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *AudioEffectDelay) GetTap1DelayMs() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *AudioEffectDelay) GetTap1DelayMs() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioEffectDelay) GetTap1LevelDb() gdnative.Float {
-	log.Println("Calling AudioEffectDelay.GetTap1LevelDb()")
+	//log.Println("Calling AudioEffectDelay.GetTap1LevelDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -186,7 +174,7 @@ func (o *AudioEffectDelay) GetTap1LevelDb() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -195,7 +183,7 @@ func (o *AudioEffectDelay) GetTap1LevelDb() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioEffectDelay) GetTap1Pan() gdnative.Float {
-	log.Println("Calling AudioEffectDelay.GetTap1Pan()")
+	//log.Println("Calling AudioEffectDelay.GetTap1Pan()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -210,7 +198,7 @@ func (o *AudioEffectDelay) GetTap1Pan() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -219,7 +207,7 @@ func (o *AudioEffectDelay) GetTap1Pan() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioEffectDelay) GetTap2DelayMs() gdnative.Float {
-	log.Println("Calling AudioEffectDelay.GetTap2DelayMs()")
+	//log.Println("Calling AudioEffectDelay.GetTap2DelayMs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -234,7 +222,7 @@ func (o *AudioEffectDelay) GetTap2DelayMs() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -243,7 +231,7 @@ func (o *AudioEffectDelay) GetTap2DelayMs() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioEffectDelay) GetTap2LevelDb() gdnative.Float {
-	log.Println("Calling AudioEffectDelay.GetTap2LevelDb()")
+	//log.Println("Calling AudioEffectDelay.GetTap2LevelDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -258,7 +246,7 @@ func (o *AudioEffectDelay) GetTap2LevelDb() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -267,7 +255,7 @@ func (o *AudioEffectDelay) GetTap2LevelDb() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *AudioEffectDelay) GetTap2Pan() gdnative.Float {
-	log.Println("Calling AudioEffectDelay.GetTap2Pan()")
+	//log.Println("Calling AudioEffectDelay.GetTap2Pan()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -282,7 +270,7 @@ func (o *AudioEffectDelay) GetTap2Pan() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -291,7 +279,7 @@ func (o *AudioEffectDelay) GetTap2Pan() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *AudioEffectDelay) IsFeedbackActive() gdnative.Bool {
-	log.Println("Calling AudioEffectDelay.IsFeedbackActive()")
+	//log.Println("Calling AudioEffectDelay.IsFeedbackActive()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -306,7 +294,7 @@ func (o *AudioEffectDelay) IsFeedbackActive() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -315,7 +303,7 @@ func (o *AudioEffectDelay) IsFeedbackActive() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *AudioEffectDelay) IsTap1Active() gdnative.Bool {
-	log.Println("Calling AudioEffectDelay.IsTap1Active()")
+	//log.Println("Calling AudioEffectDelay.IsTap1Active()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -330,7 +318,7 @@ func (o *AudioEffectDelay) IsTap1Active() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -339,7 +327,7 @@ func (o *AudioEffectDelay) IsTap1Active() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *AudioEffectDelay) IsTap2Active() gdnative.Bool {
-	log.Println("Calling AudioEffectDelay.IsTap2Active()")
+	//log.Println("Calling AudioEffectDelay.IsTap2Active()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -354,7 +342,7 @@ func (o *AudioEffectDelay) IsTap2Active() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -363,7 +351,7 @@ func (o *AudioEffectDelay) IsTap2Active() gdnative.Bool {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *AudioEffectDelay) SetDry(amount gdnative.Float) {
-	log.Println("Calling AudioEffectDelay.SetDry()")
+	//log.Println("Calling AudioEffectDelay.SetDry()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -384,7 +372,7 @@ func (o *AudioEffectDelay) SetDry(amount gdnative.Float) {
 	Args: [{ false amount bool}], Returns: void
 */
 func (o *AudioEffectDelay) SetFeedbackActive(amount gdnative.Bool) {
-	log.Println("Calling AudioEffectDelay.SetFeedbackActive()")
+	//log.Println("Calling AudioEffectDelay.SetFeedbackActive()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -405,7 +393,7 @@ func (o *AudioEffectDelay) SetFeedbackActive(amount gdnative.Bool) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *AudioEffectDelay) SetFeedbackDelayMs(amount gdnative.Float) {
-	log.Println("Calling AudioEffectDelay.SetFeedbackDelayMs()")
+	//log.Println("Calling AudioEffectDelay.SetFeedbackDelayMs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -426,7 +414,7 @@ func (o *AudioEffectDelay) SetFeedbackDelayMs(amount gdnative.Float) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *AudioEffectDelay) SetFeedbackLevelDb(amount gdnative.Float) {
-	log.Println("Calling AudioEffectDelay.SetFeedbackLevelDb()")
+	//log.Println("Calling AudioEffectDelay.SetFeedbackLevelDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -447,7 +435,7 @@ func (o *AudioEffectDelay) SetFeedbackLevelDb(amount gdnative.Float) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *AudioEffectDelay) SetFeedbackLowpass(amount gdnative.Float) {
-	log.Println("Calling AudioEffectDelay.SetFeedbackLowpass()")
+	//log.Println("Calling AudioEffectDelay.SetFeedbackLowpass()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -468,7 +456,7 @@ func (o *AudioEffectDelay) SetFeedbackLowpass(amount gdnative.Float) {
 	Args: [{ false amount bool}], Returns: void
 */
 func (o *AudioEffectDelay) SetTap1Active(amount gdnative.Bool) {
-	log.Println("Calling AudioEffectDelay.SetTap1Active()")
+	//log.Println("Calling AudioEffectDelay.SetTap1Active()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -489,7 +477,7 @@ func (o *AudioEffectDelay) SetTap1Active(amount gdnative.Bool) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *AudioEffectDelay) SetTap1DelayMs(amount gdnative.Float) {
-	log.Println("Calling AudioEffectDelay.SetTap1DelayMs()")
+	//log.Println("Calling AudioEffectDelay.SetTap1DelayMs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -510,7 +498,7 @@ func (o *AudioEffectDelay) SetTap1DelayMs(amount gdnative.Float) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *AudioEffectDelay) SetTap1LevelDb(amount gdnative.Float) {
-	log.Println("Calling AudioEffectDelay.SetTap1LevelDb()")
+	//log.Println("Calling AudioEffectDelay.SetTap1LevelDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -531,7 +519,7 @@ func (o *AudioEffectDelay) SetTap1LevelDb(amount gdnative.Float) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *AudioEffectDelay) SetTap1Pan(amount gdnative.Float) {
-	log.Println("Calling AudioEffectDelay.SetTap1Pan()")
+	//log.Println("Calling AudioEffectDelay.SetTap1Pan()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -552,7 +540,7 @@ func (o *AudioEffectDelay) SetTap1Pan(amount gdnative.Float) {
 	Args: [{ false amount bool}], Returns: void
 */
 func (o *AudioEffectDelay) SetTap2Active(amount gdnative.Bool) {
-	log.Println("Calling AudioEffectDelay.SetTap2Active()")
+	//log.Println("Calling AudioEffectDelay.SetTap2Active()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -573,7 +561,7 @@ func (o *AudioEffectDelay) SetTap2Active(amount gdnative.Bool) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *AudioEffectDelay) SetTap2DelayMs(amount gdnative.Float) {
-	log.Println("Calling AudioEffectDelay.SetTap2DelayMs()")
+	//log.Println("Calling AudioEffectDelay.SetTap2DelayMs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -594,7 +582,7 @@ func (o *AudioEffectDelay) SetTap2DelayMs(amount gdnative.Float) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *AudioEffectDelay) SetTap2LevelDb(amount gdnative.Float) {
-	log.Println("Calling AudioEffectDelay.SetTap2LevelDb()")
+	//log.Println("Calling AudioEffectDelay.SetTap2LevelDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -615,7 +603,7 @@ func (o *AudioEffectDelay) SetTap2LevelDb(amount gdnative.Float) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *AudioEffectDelay) SetTap2Pan(amount gdnative.Float) {
-	log.Println("Calling AudioEffectDelay.SetTap2Pan()")
+	//log.Println("Calling AudioEffectDelay.SetTap2Pan()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Polygon2D) BaseClass() string {
 	return "Polygon2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Polygon2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Polygon2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: bool
 */
 func (o *Polygon2D) GetAntialiased() gdnative.Bool {
-	log.Println("Calling Polygon2D.GetAntialiased()")
+	//log.Println("Calling Polygon2D.GetAntialiased()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *Polygon2D) GetAntialiased() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *Polygon2D) GetAntialiased() gdnative.Bool {
 	Args: [], Returns: Color
 */
 func (o *Polygon2D) GetColor() gdnative.Color {
-	log.Println("Calling Polygon2D.GetColor()")
+	//log.Println("Calling Polygon2D.GetColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *Polygon2D) GetColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *Polygon2D) GetColor() gdnative.Color {
 	Args: [], Returns: bool
 */
 func (o *Polygon2D) GetInvert() gdnative.Bool {
-	log.Println("Calling Polygon2D.GetInvert()")
+	//log.Println("Calling Polygon2D.GetInvert()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *Polygon2D) GetInvert() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *Polygon2D) GetInvert() gdnative.Bool {
 	Args: [], Returns: float
 */
 func (o *Polygon2D) GetInvertBorder() gdnative.Float {
-	log.Println("Calling Polygon2D.GetInvertBorder()")
+	//log.Println("Calling Polygon2D.GetInvertBorder()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *Polygon2D) GetInvertBorder() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *Polygon2D) GetInvertBorder() gdnative.Float {
 	Args: [], Returns: Vector2
 */
 func (o *Polygon2D) GetOffset() gdnative.Vector2 {
-	log.Println("Calling Polygon2D.GetOffset()")
+	//log.Println("Calling Polygon2D.GetOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *Polygon2D) GetOffset() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *Polygon2D) GetOffset() gdnative.Vector2 {
 	Args: [], Returns: PoolVector2Array
 */
 func (o *Polygon2D) GetPolygon() gdnative.PoolVector2Array {
-	log.Println("Calling Polygon2D.GetPolygon()")
+	//log.Println("Calling Polygon2D.GetPolygon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -186,7 +174,7 @@ func (o *Polygon2D) GetPolygon() gdnative.PoolVector2Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -195,7 +183,7 @@ func (o *Polygon2D) GetPolygon() gdnative.PoolVector2Array {
 	Args: [], Returns: Texture
 */
 func (o *Polygon2D) GetTexture() Texture {
-	log.Println("Calling Polygon2D.GetTexture()")
+	//log.Println("Calling Polygon2D.GetTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -210,7 +198,7 @@ func (o *Polygon2D) GetTexture() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -219,7 +207,7 @@ func (o *Polygon2D) GetTexture() Texture {
 	Args: [], Returns: Vector2
 */
 func (o *Polygon2D) GetTextureOffset() gdnative.Vector2 {
-	log.Println("Calling Polygon2D.GetTextureOffset()")
+	//log.Println("Calling Polygon2D.GetTextureOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -234,7 +222,7 @@ func (o *Polygon2D) GetTextureOffset() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -243,7 +231,7 @@ func (o *Polygon2D) GetTextureOffset() gdnative.Vector2 {
 	Args: [], Returns: float
 */
 func (o *Polygon2D) GetTextureRotation() gdnative.Float {
-	log.Println("Calling Polygon2D.GetTextureRotation()")
+	//log.Println("Calling Polygon2D.GetTextureRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -258,7 +246,7 @@ func (o *Polygon2D) GetTextureRotation() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -267,7 +255,7 @@ func (o *Polygon2D) GetTextureRotation() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Polygon2D) GetTextureRotationDegrees() gdnative.Float {
-	log.Println("Calling Polygon2D.GetTextureRotationDegrees()")
+	//log.Println("Calling Polygon2D.GetTextureRotationDegrees()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -282,7 +270,7 @@ func (o *Polygon2D) GetTextureRotationDegrees() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -291,7 +279,7 @@ func (o *Polygon2D) GetTextureRotationDegrees() gdnative.Float {
 	Args: [], Returns: Vector2
 */
 func (o *Polygon2D) GetTextureScale() gdnative.Vector2 {
-	log.Println("Calling Polygon2D.GetTextureScale()")
+	//log.Println("Calling Polygon2D.GetTextureScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -306,7 +294,7 @@ func (o *Polygon2D) GetTextureScale() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -315,7 +303,7 @@ func (o *Polygon2D) GetTextureScale() gdnative.Vector2 {
 	Args: [], Returns: PoolVector2Array
 */
 func (o *Polygon2D) GetUv() gdnative.PoolVector2Array {
-	log.Println("Calling Polygon2D.GetUv()")
+	//log.Println("Calling Polygon2D.GetUv()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -330,7 +318,7 @@ func (o *Polygon2D) GetUv() gdnative.PoolVector2Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -339,7 +327,7 @@ func (o *Polygon2D) GetUv() gdnative.PoolVector2Array {
 	Args: [], Returns: PoolColorArray
 */
 func (o *Polygon2D) GetVertexColors() gdnative.PoolColorArray {
-	log.Println("Calling Polygon2D.GetVertexColors()")
+	//log.Println("Calling Polygon2D.GetVertexColors()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -354,7 +342,7 @@ func (o *Polygon2D) GetVertexColors() gdnative.PoolColorArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolColorArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -363,7 +351,7 @@ func (o *Polygon2D) GetVertexColors() gdnative.PoolColorArray {
 	Args: [{ false antialiased bool}], Returns: void
 */
 func (o *Polygon2D) SetAntialiased(antialiased gdnative.Bool) {
-	log.Println("Calling Polygon2D.SetAntialiased()")
+	//log.Println("Calling Polygon2D.SetAntialiased()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -384,7 +372,7 @@ func (o *Polygon2D) SetAntialiased(antialiased gdnative.Bool) {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *Polygon2D) SetColor(color gdnative.Color) {
-	log.Println("Calling Polygon2D.SetColor()")
+	//log.Println("Calling Polygon2D.SetColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -405,7 +393,7 @@ func (o *Polygon2D) SetColor(color gdnative.Color) {
 	Args: [{ false invert bool}], Returns: void
 */
 func (o *Polygon2D) SetInvert(invert gdnative.Bool) {
-	log.Println("Calling Polygon2D.SetInvert()")
+	//log.Println("Calling Polygon2D.SetInvert()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -426,7 +414,7 @@ func (o *Polygon2D) SetInvert(invert gdnative.Bool) {
 	Args: [{ false invert_border float}], Returns: void
 */
 func (o *Polygon2D) SetInvertBorder(invertBorder gdnative.Float) {
-	log.Println("Calling Polygon2D.SetInvertBorder()")
+	//log.Println("Calling Polygon2D.SetInvertBorder()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -447,7 +435,7 @@ func (o *Polygon2D) SetInvertBorder(invertBorder gdnative.Float) {
 	Args: [{ false offset Vector2}], Returns: void
 */
 func (o *Polygon2D) SetOffset(offset gdnative.Vector2) {
-	log.Println("Calling Polygon2D.SetOffset()")
+	//log.Println("Calling Polygon2D.SetOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -468,7 +456,7 @@ func (o *Polygon2D) SetOffset(offset gdnative.Vector2) {
 	Args: [{ false polygon PoolVector2Array}], Returns: void
 */
 func (o *Polygon2D) SetPolygon(polygon gdnative.PoolVector2Array) {
-	log.Println("Calling Polygon2D.SetPolygon()")
+	//log.Println("Calling Polygon2D.SetPolygon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -489,7 +477,7 @@ func (o *Polygon2D) SetPolygon(polygon gdnative.PoolVector2Array) {
 	Args: [{ false texture Texture}], Returns: void
 */
 func (o *Polygon2D) SetTexture(texture Texture) {
-	log.Println("Calling Polygon2D.SetTexture()")
+	//log.Println("Calling Polygon2D.SetTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -510,7 +498,7 @@ func (o *Polygon2D) SetTexture(texture Texture) {
 	Args: [{ false texture_offset Vector2}], Returns: void
 */
 func (o *Polygon2D) SetTextureOffset(textureOffset gdnative.Vector2) {
-	log.Println("Calling Polygon2D.SetTextureOffset()")
+	//log.Println("Calling Polygon2D.SetTextureOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -531,7 +519,7 @@ func (o *Polygon2D) SetTextureOffset(textureOffset gdnative.Vector2) {
 	Args: [{ false texture_rotation float}], Returns: void
 */
 func (o *Polygon2D) SetTextureRotation(textureRotation gdnative.Float) {
-	log.Println("Calling Polygon2D.SetTextureRotation()")
+	//log.Println("Calling Polygon2D.SetTextureRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -552,7 +540,7 @@ func (o *Polygon2D) SetTextureRotation(textureRotation gdnative.Float) {
 	Args: [{ false texture_rotation float}], Returns: void
 */
 func (o *Polygon2D) SetTextureRotationDegrees(textureRotation gdnative.Float) {
-	log.Println("Calling Polygon2D.SetTextureRotationDegrees()")
+	//log.Println("Calling Polygon2D.SetTextureRotationDegrees()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -573,7 +561,7 @@ func (o *Polygon2D) SetTextureRotationDegrees(textureRotation gdnative.Float) {
 	Args: [{ false texture_scale Vector2}], Returns: void
 */
 func (o *Polygon2D) SetTextureScale(textureScale gdnative.Vector2) {
-	log.Println("Calling Polygon2D.SetTextureScale()")
+	//log.Println("Calling Polygon2D.SetTextureScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -594,7 +582,7 @@ func (o *Polygon2D) SetTextureScale(textureScale gdnative.Vector2) {
 	Args: [{ false uv PoolVector2Array}], Returns: void
 */
 func (o *Polygon2D) SetUv(uv gdnative.PoolVector2Array) {
-	log.Println("Calling Polygon2D.SetUv()")
+	//log.Println("Calling Polygon2D.SetUv()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -615,7 +603,7 @@ func (o *Polygon2D) SetUv(uv gdnative.PoolVector2Array) {
 	Args: [{ false vertex_colors PoolColorArray}], Returns: void
 */
 func (o *Polygon2D) SetVertexColors(vertexColors gdnative.PoolColorArray) {
-	log.Println("Calling Polygon2D.SetVertexColors()")
+	//log.Println("Calling Polygon2D.SetVertexColors()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

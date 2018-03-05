@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *PinJoint2D) BaseClass() string {
 	return "PinJoint2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *PinJoint2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *PinJoint2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *PinJoint2D) GetSoftness() gdnative.Float {
-	log.Println("Calling PinJoint2D.GetSoftness()")
+	//log.Println("Calling PinJoint2D.GetSoftness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *PinJoint2D) GetSoftness() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *PinJoint2D) GetSoftness() gdnative.Float {
 	Args: [{ false softness float}], Returns: void
 */
 func (o *PinJoint2D) SetSoftness(softness gdnative.Float) {
-	log.Println("Calling PinJoint2D.SetSoftness()")
+	//log.Println("Calling PinJoint2D.SetSoftness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *InputEventMouse) BaseClass() string {
 	return "InputEventMouse"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *InputEventMouse) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *InputEventMouse) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: int
 */
 func (o *InputEventMouse) GetButtonMask() gdnative.Int {
-	log.Println("Calling InputEventMouse.GetButtonMask()")
+	//log.Println("Calling InputEventMouse.GetButtonMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *InputEventMouse) GetButtonMask() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *InputEventMouse) GetButtonMask() gdnative.Int {
 	Args: [], Returns: Vector2
 */
 func (o *InputEventMouse) GetGlobalPosition() gdnative.Vector2 {
-	log.Println("Calling InputEventMouse.GetGlobalPosition()")
+	//log.Println("Calling InputEventMouse.GetGlobalPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *InputEventMouse) GetGlobalPosition() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *InputEventMouse) GetGlobalPosition() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *InputEventMouse) GetPosition() gdnative.Vector2 {
-	log.Println("Calling InputEventMouse.GetPosition()")
+	//log.Println("Calling InputEventMouse.GetPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *InputEventMouse) GetPosition() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *InputEventMouse) GetPosition() gdnative.Vector2 {
 	Args: [{ false button_mask int}], Returns: void
 */
 func (o *InputEventMouse) SetButtonMask(buttonMask gdnative.Int) {
-	log.Println("Calling InputEventMouse.SetButtonMask()")
+	//log.Println("Calling InputEventMouse.SetButtonMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -144,7 +132,7 @@ func (o *InputEventMouse) SetButtonMask(buttonMask gdnative.Int) {
 	Args: [{ false global_position Vector2}], Returns: void
 */
 func (o *InputEventMouse) SetGlobalPosition(globalPosition gdnative.Vector2) {
-	log.Println("Calling InputEventMouse.SetGlobalPosition()")
+	//log.Println("Calling InputEventMouse.SetGlobalPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -165,7 +153,7 @@ func (o *InputEventMouse) SetGlobalPosition(globalPosition gdnative.Vector2) {
 	Args: [{ false position Vector2}], Returns: void
 */
 func (o *InputEventMouse) SetPosition(position gdnative.Vector2) {
-	log.Println("Calling InputEventMouse.SetPosition()")
+	//log.Println("Calling InputEventMouse.SetPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,16 +34,6 @@ func (o *VisualScriptInputAction) BaseClass() string {
 	return "VisualScriptInputAction"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptInputAction) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptInputAction) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: enum.VisualScriptInputAction::Mode
@@ -56,7 +44,7 @@ func (o *VisualScriptInputAction) GetBaseObject() gdnative.Object {
 	Args: [], Returns: String
 */
 func (o *VisualScriptInputAction) GetActionName() gdnative.String {
-	log.Println("Calling VisualScriptInputAction.GetActionName()")
+	//log.Println("Calling VisualScriptInputAction.GetActionName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *VisualScriptInputAction) GetActionName() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -80,7 +68,7 @@ func (o *VisualScriptInputAction) GetActionName() gdnative.String {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *VisualScriptInputAction) SetActionMode(mode gdnative.Int) {
-	log.Println("Calling VisualScriptInputAction.SetActionMode()")
+	//log.Println("Calling VisualScriptInputAction.SetActionMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -101,7 +89,7 @@ func (o *VisualScriptInputAction) SetActionMode(mode gdnative.Int) {
 	Args: [{ false name String}], Returns: void
 */
 func (o *VisualScriptInputAction) SetActionName(name gdnative.String) {
-	log.Println("Calling VisualScriptInputAction.SetActionName()")
+	//log.Println("Calling VisualScriptInputAction.SetActionName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

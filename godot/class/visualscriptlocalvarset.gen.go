@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VisualScriptLocalVarSet) BaseClass() string {
 	return "VisualScriptLocalVarSet"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptLocalVarSet) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptLocalVarSet) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: String
 */
 func (o *VisualScriptLocalVarSet) GetVarName() gdnative.String {
-	log.Println("Calling VisualScriptLocalVarSet.GetVarName()")
+	//log.Println("Calling VisualScriptLocalVarSet.GetVarName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VisualScriptLocalVarSet) GetVarName() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -80,7 +68,7 @@ func (o *VisualScriptLocalVarSet) GetVarName() gdnative.String {
 	Args: [{ false name String}], Returns: void
 */
 func (o *VisualScriptLocalVarSet) SetVarName(name gdnative.String) {
-	log.Println("Calling VisualScriptLocalVarSet.SetVarName()")
+	//log.Println("Calling VisualScriptLocalVarSet.SetVarName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -101,7 +89,7 @@ func (o *VisualScriptLocalVarSet) SetVarName(name gdnative.String) {
 	Args: [{ false type int}], Returns: void
 */
 func (o *VisualScriptLocalVarSet) SetVarType(aType gdnative.Int) {
-	log.Println("Calling VisualScriptLocalVarSet.SetVarType()")
+	//log.Println("Calling VisualScriptLocalVarSet.SetVarType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

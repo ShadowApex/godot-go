@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -48,7 +46,7 @@ func (o *translationServer) ensureSingleton() {
 	if o.initialized == true {
 		return
 	}
-	log.Println("Singleton not found. Fetching from GDNative...")
+	//log.Println("Singleton not found. Fetching from GDNative...")
 	base := gdnative.GetSingleton("TranslationServer")
 	o.SetBaseObject(base)
 	o.initialized = true
@@ -58,23 +56,13 @@ func (o *translationServer) BaseClass() string {
 	return "TranslationServer"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *translationServer) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *translationServer) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [{ false translation Translation}], Returns: void
 */
 func (o *translationServer) AddTranslation(translation Translation) {
 	o.ensureSingleton()
-	log.Println("Calling TranslationServer.AddTranslation()")
+	//log.Println("Calling TranslationServer.AddTranslation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *translationServer) AddTranslation(translation Translation) {
 */
 func (o *translationServer) Clear() {
 	o.ensureSingleton()
-	log.Println("Calling TranslationServer.Clear()")
+	//log.Println("Calling TranslationServer.Clear()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -117,7 +105,7 @@ func (o *translationServer) Clear() {
 */
 func (o *translationServer) GetLocale() gdnative.String {
 	o.ensureSingleton()
-	log.Println("Calling TranslationServer.GetLocale()")
+	//log.Println("Calling TranslationServer.GetLocale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -132,7 +120,7 @@ func (o *translationServer) GetLocale() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -142,7 +130,7 @@ func (o *translationServer) GetLocale() gdnative.String {
 */
 func (o *translationServer) GetLocaleName(locale gdnative.String) gdnative.String {
 	o.ensureSingleton()
-	log.Println("Calling TranslationServer.GetLocaleName()")
+	//log.Println("Calling TranslationServer.GetLocaleName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -158,7 +146,7 @@ func (o *translationServer) GetLocaleName(locale gdnative.String) gdnative.Strin
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -168,7 +156,7 @@ func (o *translationServer) GetLocaleName(locale gdnative.String) gdnative.Strin
 */
 func (o *translationServer) RemoveTranslation(translation Translation) {
 	o.ensureSingleton()
-	log.Println("Calling TranslationServer.RemoveTranslation()")
+	//log.Println("Calling TranslationServer.RemoveTranslation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -190,7 +178,7 @@ func (o *translationServer) RemoveTranslation(translation Translation) {
 */
 func (o *translationServer) SetLocale(locale gdnative.String) {
 	o.ensureSingleton()
-	log.Println("Calling TranslationServer.SetLocale()")
+	//log.Println("Calling TranslationServer.SetLocale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -212,7 +200,7 @@ func (o *translationServer) SetLocale(locale gdnative.String) {
 */
 func (o *translationServer) Translate(message gdnative.String) gdnative.String {
 	o.ensureSingleton()
-	log.Println("Calling TranslationServer.Translate()")
+	//log.Println("Calling TranslationServer.Translate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -228,6 +216,6 @@ func (o *translationServer) Translate(message gdnative.String) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

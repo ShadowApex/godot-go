@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *OptionButton) BaseClass() string {
 	return "OptionButton"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *OptionButton) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *OptionButton) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Array
 */
 func (o *OptionButton) X_GetItems() gdnative.Array {
-	log.Println("Calling OptionButton.X_GetItems()")
+	//log.Println("Calling OptionButton.X_GetItems()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *OptionButton) X_GetItems() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *OptionButton) X_GetItems() gdnative.Array {
 	Args: [{ false arg0 int}], Returns: void
 */
 func (o *OptionButton) X_SelectInt(arg0 gdnative.Int) {
-	log.Println("Calling OptionButton.X_SelectInt()")
+	//log.Println("Calling OptionButton.X_SelectInt()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *OptionButton) X_SelectInt(arg0 gdnative.Int) {
 	Args: [{ false arg0 int}], Returns: void
 */
 func (o *OptionButton) X_Selected(arg0 gdnative.Int) {
-	log.Println("Calling OptionButton.X_Selected()")
+	//log.Println("Calling OptionButton.X_Selected()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -117,7 +105,7 @@ func (o *OptionButton) X_Selected(arg0 gdnative.Int) {
 	Args: [{ false arg0 Array}], Returns: void
 */
 func (o *OptionButton) X_SetItems(arg0 gdnative.Array) {
-	log.Println("Calling OptionButton.X_SetItems()")
+	//log.Println("Calling OptionButton.X_SetItems()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -138,7 +126,7 @@ func (o *OptionButton) X_SetItems(arg0 gdnative.Array) {
 	Args: [{ false texture Texture} { false label String} { false id int}], Returns: void
 */
 func (o *OptionButton) AddIconItem(texture Texture, label gdnative.String, id gdnative.Int) {
-	log.Println("Calling OptionButton.AddIconItem()")
+	//log.Println("Calling OptionButton.AddIconItem()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -161,7 +149,7 @@ func (o *OptionButton) AddIconItem(texture Texture, label gdnative.String, id gd
 	Args: [{ false label String} {-1 true id int}], Returns: void
 */
 func (o *OptionButton) AddItem(label gdnative.String, id gdnative.Int) {
-	log.Println("Calling OptionButton.AddItem()")
+	//log.Println("Calling OptionButton.AddItem()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -183,7 +171,7 @@ func (o *OptionButton) AddItem(label gdnative.String, id gdnative.Int) {
 	Args: [], Returns: void
 */
 func (o *OptionButton) AddSeparator() {
-	log.Println("Calling OptionButton.AddSeparator()")
+	//log.Println("Calling OptionButton.AddSeparator()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -203,7 +191,7 @@ func (o *OptionButton) AddSeparator() {
 	Args: [], Returns: void
 */
 func (o *OptionButton) Clear() {
-	log.Println("Calling OptionButton.Clear()")
+	//log.Println("Calling OptionButton.Clear()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -223,7 +211,7 @@ func (o *OptionButton) Clear() {
 	Args: [], Returns: int
 */
 func (o *OptionButton) GetItemCount() gdnative.Int {
-	log.Println("Calling OptionButton.GetItemCount()")
+	//log.Println("Calling OptionButton.GetItemCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -238,7 +226,7 @@ func (o *OptionButton) GetItemCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -247,7 +235,7 @@ func (o *OptionButton) GetItemCount() gdnative.Int {
 	Args: [{ false idx int}], Returns: Texture
 */
 func (o *OptionButton) GetItemIcon(idx gdnative.Int) Texture {
-	log.Println("Calling OptionButton.GetItemIcon()")
+	//log.Println("Calling OptionButton.GetItemIcon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -263,7 +251,7 @@ func (o *OptionButton) GetItemIcon(idx gdnative.Int) Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -272,7 +260,7 @@ func (o *OptionButton) GetItemIcon(idx gdnative.Int) Texture {
 	Args: [{ false idx int}], Returns: int
 */
 func (o *OptionButton) GetItemId(idx gdnative.Int) gdnative.Int {
-	log.Println("Calling OptionButton.GetItemId()")
+	//log.Println("Calling OptionButton.GetItemId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -288,7 +276,7 @@ func (o *OptionButton) GetItemId(idx gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -297,7 +285,7 @@ func (o *OptionButton) GetItemId(idx gdnative.Int) gdnative.Int {
 	Args: [{ false idx int}], Returns: Variant
 */
 func (o *OptionButton) GetItemMetadata(idx gdnative.Int) gdnative.Variant {
-	log.Println("Calling OptionButton.GetItemMetadata()")
+	//log.Println("Calling OptionButton.GetItemMetadata()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -313,7 +301,7 @@ func (o *OptionButton) GetItemMetadata(idx gdnative.Int) gdnative.Variant {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -322,7 +310,7 @@ func (o *OptionButton) GetItemMetadata(idx gdnative.Int) gdnative.Variant {
 	Args: [{ false idx int}], Returns: String
 */
 func (o *OptionButton) GetItemText(idx gdnative.Int) gdnative.String {
-	log.Println("Calling OptionButton.GetItemText()")
+	//log.Println("Calling OptionButton.GetItemText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -338,7 +326,7 @@ func (o *OptionButton) GetItemText(idx gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -347,7 +335,7 @@ func (o *OptionButton) GetItemText(idx gdnative.Int) gdnative.String {
 	Args: [], Returns: PopupMenu
 */
 func (o *OptionButton) GetPopup() PopupMenu {
-	log.Println("Calling OptionButton.GetPopup()")
+	//log.Println("Calling OptionButton.GetPopup()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -362,7 +350,7 @@ func (o *OptionButton) GetPopup() PopupMenu {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewPopupMenuFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -371,7 +359,7 @@ func (o *OptionButton) GetPopup() PopupMenu {
 	Args: [], Returns: int
 */
 func (o *OptionButton) GetSelected() gdnative.Int {
-	log.Println("Calling OptionButton.GetSelected()")
+	//log.Println("Calling OptionButton.GetSelected()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -386,7 +374,7 @@ func (o *OptionButton) GetSelected() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -395,7 +383,7 @@ func (o *OptionButton) GetSelected() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *OptionButton) GetSelectedId() gdnative.Int {
-	log.Println("Calling OptionButton.GetSelectedId()")
+	//log.Println("Calling OptionButton.GetSelectedId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -410,7 +398,7 @@ func (o *OptionButton) GetSelectedId() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -419,7 +407,7 @@ func (o *OptionButton) GetSelectedId() gdnative.Int {
 	Args: [], Returns: Variant
 */
 func (o *OptionButton) GetSelectedMetadata() gdnative.Variant {
-	log.Println("Calling OptionButton.GetSelectedMetadata()")
+	//log.Println("Calling OptionButton.GetSelectedMetadata()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -434,7 +422,7 @@ func (o *OptionButton) GetSelectedMetadata() gdnative.Variant {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -443,7 +431,7 @@ func (o *OptionButton) GetSelectedMetadata() gdnative.Variant {
 	Args: [{ false idx int}], Returns: bool
 */
 func (o *OptionButton) IsItemDisabled(idx gdnative.Int) gdnative.Bool {
-	log.Println("Calling OptionButton.IsItemDisabled()")
+	//log.Println("Calling OptionButton.IsItemDisabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -459,7 +447,7 @@ func (o *OptionButton) IsItemDisabled(idx gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -468,7 +456,7 @@ func (o *OptionButton) IsItemDisabled(idx gdnative.Int) gdnative.Bool {
 	Args: [{ false idx int}], Returns: void
 */
 func (o *OptionButton) RemoveItem(idx gdnative.Int) {
-	log.Println("Calling OptionButton.RemoveItem()")
+	//log.Println("Calling OptionButton.RemoveItem()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -489,7 +477,7 @@ func (o *OptionButton) RemoveItem(idx gdnative.Int) {
 	Args: [{ false idx int}], Returns: void
 */
 func (o *OptionButton) Select(idx gdnative.Int) {
-	log.Println("Calling OptionButton.Select()")
+	//log.Println("Calling OptionButton.Select()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -510,7 +498,7 @@ func (o *OptionButton) Select(idx gdnative.Int) {
 	Args: [{ false idx int} { false disabled bool}], Returns: void
 */
 func (o *OptionButton) SetItemDisabled(idx gdnative.Int, disabled gdnative.Bool) {
-	log.Println("Calling OptionButton.SetItemDisabled()")
+	//log.Println("Calling OptionButton.SetItemDisabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -532,7 +520,7 @@ func (o *OptionButton) SetItemDisabled(idx gdnative.Int, disabled gdnative.Bool)
 	Args: [{ false idx int} { false texture Texture}], Returns: void
 */
 func (o *OptionButton) SetItemIcon(idx gdnative.Int, texture Texture) {
-	log.Println("Calling OptionButton.SetItemIcon()")
+	//log.Println("Calling OptionButton.SetItemIcon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -554,7 +542,7 @@ func (o *OptionButton) SetItemIcon(idx gdnative.Int, texture Texture) {
 	Args: [{ false idx int} { false id int}], Returns: void
 */
 func (o *OptionButton) SetItemId(idx gdnative.Int, id gdnative.Int) {
-	log.Println("Calling OptionButton.SetItemId()")
+	//log.Println("Calling OptionButton.SetItemId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -576,7 +564,7 @@ func (o *OptionButton) SetItemId(idx gdnative.Int, id gdnative.Int) {
 	Args: [{ false idx int} { false metadata Variant}], Returns: void
 */
 func (o *OptionButton) SetItemMetadata(idx gdnative.Int, metadata gdnative.Variant) {
-	log.Println("Calling OptionButton.SetItemMetadata()")
+	//log.Println("Calling OptionButton.SetItemMetadata()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -598,7 +586,7 @@ func (o *OptionButton) SetItemMetadata(idx gdnative.Int, metadata gdnative.Varia
 	Args: [{ false idx int} { false text String}], Returns: void
 */
 func (o *OptionButton) SetItemText(idx gdnative.Int, text gdnative.String) {
-	log.Println("Calling OptionButton.SetItemText()")
+	//log.Println("Calling OptionButton.SetItemText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)

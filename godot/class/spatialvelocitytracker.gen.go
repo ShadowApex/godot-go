@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *SpatialVelocityTracker) BaseClass() string {
 	return "SpatialVelocityTracker"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *SpatialVelocityTracker) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *SpatialVelocityTracker) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [], Returns: Vector3
 */
 func (o *SpatialVelocityTracker) GetTrackedLinearVelocity() gdnative.Vector3 {
-	log.Println("Calling SpatialVelocityTracker.GetTrackedLinearVelocity()")
+	//log.Println("Calling SpatialVelocityTracker.GetTrackedLinearVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *SpatialVelocityTracker) GetTrackedLinearVelocity() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *SpatialVelocityTracker) GetTrackedLinearVelocity() gdnative.Vector3 {
 	Args: [], Returns: bool
 */
 func (o *SpatialVelocityTracker) IsTrackingPhysicsStep() gdnative.Bool {
-	log.Println("Calling SpatialVelocityTracker.IsTrackingPhysicsStep()")
+	//log.Println("Calling SpatialVelocityTracker.IsTrackingPhysicsStep()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *SpatialVelocityTracker) IsTrackingPhysicsStep() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *SpatialVelocityTracker) IsTrackingPhysicsStep() gdnative.Bool {
 	Args: [{ false position Vector3}], Returns: void
 */
 func (o *SpatialVelocityTracker) Reset(position gdnative.Vector3) {
-	log.Println("Calling SpatialVelocityTracker.Reset()")
+	//log.Println("Calling SpatialVelocityTracker.Reset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -120,7 +108,7 @@ func (o *SpatialVelocityTracker) Reset(position gdnative.Vector3) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *SpatialVelocityTracker) SetTrackPhysicsStep(enable gdnative.Bool) {
-	log.Println("Calling SpatialVelocityTracker.SetTrackPhysicsStep()")
+	//log.Println("Calling SpatialVelocityTracker.SetTrackPhysicsStep()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -141,7 +129,7 @@ func (o *SpatialVelocityTracker) SetTrackPhysicsStep(enable gdnative.Bool) {
 	Args: [{ false position Vector3}], Returns: void
 */
 func (o *SpatialVelocityTracker) UpdatePosition(position gdnative.Vector3) {
-	log.Println("Calling SpatialVelocityTracker.UpdatePosition()")
+	//log.Println("Calling SpatialVelocityTracker.UpdatePosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

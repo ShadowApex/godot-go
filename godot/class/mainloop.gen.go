@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *MainLoop) BaseClass() string {
 	return "MainLoop"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *MainLoop) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *MainLoop) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [{ false files PoolStringArray} { false screen int}], Returns: void
 */
 func (o *MainLoop) X_DropFiles(files gdnative.PoolStringArray, screen gdnative.Int) {
-	log.Println("Calling MainLoop.X_DropFiles()")
+	//log.Println("Calling MainLoop.X_DropFiles()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -73,7 +61,7 @@ func (o *MainLoop) X_DropFiles(files gdnative.PoolStringArray, screen gdnative.I
 	Args: [], Returns: void
 */
 func (o *MainLoop) X_Finalize() {
-	log.Println("Calling MainLoop.X_Finalize()")
+	//log.Println("Calling MainLoop.X_Finalize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -93,7 +81,7 @@ func (o *MainLoop) X_Finalize() {
 	Args: [{ false delta float}], Returns: void
 */
 func (o *MainLoop) X_Idle(delta gdnative.Float) {
-	log.Println("Calling MainLoop.X_Idle()")
+	//log.Println("Calling MainLoop.X_Idle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -114,7 +102,7 @@ func (o *MainLoop) X_Idle(delta gdnative.Float) {
 	Args: [], Returns: void
 */
 func (o *MainLoop) X_Initialize() {
-	log.Println("Calling MainLoop.X_Initialize()")
+	//log.Println("Calling MainLoop.X_Initialize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -134,7 +122,7 @@ func (o *MainLoop) X_Initialize() {
 	Args: [{ false ev InputEvent}], Returns: void
 */
 func (o *MainLoop) X_InputEvent(ev InputEvent) {
-	log.Println("Calling MainLoop.X_InputEvent()")
+	//log.Println("Calling MainLoop.X_InputEvent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -155,7 +143,7 @@ func (o *MainLoop) X_InputEvent(ev InputEvent) {
 	Args: [{ false text String}], Returns: void
 */
 func (o *MainLoop) X_InputText(text gdnative.String) {
-	log.Println("Calling MainLoop.X_InputText()")
+	//log.Println("Calling MainLoop.X_InputText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -176,7 +164,7 @@ func (o *MainLoop) X_InputText(text gdnative.String) {
 	Args: [{ false delta float}], Returns: void
 */
 func (o *MainLoop) X_Iteration(delta gdnative.Float) {
-	log.Println("Calling MainLoop.X_Iteration()")
+	//log.Println("Calling MainLoop.X_Iteration()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -197,7 +185,7 @@ func (o *MainLoop) X_Iteration(delta gdnative.Float) {
 	Args: [], Returns: void
 */
 func (o *MainLoop) Finish() {
-	log.Println("Calling MainLoop.Finish()")
+	//log.Println("Calling MainLoop.Finish()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -217,7 +205,7 @@ func (o *MainLoop) Finish() {
 	Args: [{ false delta float}], Returns: bool
 */
 func (o *MainLoop) Idle(delta gdnative.Float) gdnative.Bool {
-	log.Println("Calling MainLoop.Idle()")
+	//log.Println("Calling MainLoop.Idle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -233,7 +221,7 @@ func (o *MainLoop) Idle(delta gdnative.Float) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -242,7 +230,7 @@ func (o *MainLoop) Idle(delta gdnative.Float) gdnative.Bool {
 	Args: [], Returns: void
 */
 func (o *MainLoop) Init() {
-	log.Println("Calling MainLoop.Init()")
+	//log.Println("Calling MainLoop.Init()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -262,7 +250,7 @@ func (o *MainLoop) Init() {
 	Args: [{ false ev InputEvent}], Returns: void
 */
 func (o *MainLoop) InputEvent(ev InputEvent) {
-	log.Println("Calling MainLoop.InputEvent()")
+	//log.Println("Calling MainLoop.InputEvent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -283,7 +271,7 @@ func (o *MainLoop) InputEvent(ev InputEvent) {
 	Args: [{ false text String}], Returns: void
 */
 func (o *MainLoop) InputText(text gdnative.String) {
-	log.Println("Calling MainLoop.InputText()")
+	//log.Println("Calling MainLoop.InputText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -304,7 +292,7 @@ func (o *MainLoop) InputText(text gdnative.String) {
 	Args: [{ false delta float}], Returns: bool
 */
 func (o *MainLoop) Iteration(delta gdnative.Float) gdnative.Bool {
-	log.Println("Calling MainLoop.Iteration()")
+	//log.Println("Calling MainLoop.Iteration()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -320,6 +308,6 @@ func (o *MainLoop) Iteration(delta gdnative.Float) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

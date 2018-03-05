@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *PopupMenu) BaseClass() string {
 	return "PopupMenu"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *PopupMenu) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *PopupMenu) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Array
 */
 func (o *PopupMenu) X_GetItems() gdnative.Array {
-	log.Println("Calling PopupMenu.X_GetItems()")
+	//log.Println("Calling PopupMenu.X_GetItems()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *PopupMenu) X_GetItems() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *PopupMenu) X_GetItems() gdnative.Array {
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
 func (o *PopupMenu) X_GuiInput(arg0 InputEvent) {
-	log.Println("Calling PopupMenu.X_GuiInput()")
+	//log.Println("Calling PopupMenu.X_GuiInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *PopupMenu) X_GuiInput(arg0 InputEvent) {
 	Args: [{ false arg0 Array}], Returns: void
 */
 func (o *PopupMenu) X_SetItems(arg0 gdnative.Array) {
-	log.Println("Calling PopupMenu.X_SetItems()")
+	//log.Println("Calling PopupMenu.X_SetItems()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -117,7 +105,7 @@ func (o *PopupMenu) X_SetItems(arg0 gdnative.Array) {
 	Args: [], Returns: void
 */
 func (o *PopupMenu) X_SubmenuTimeout() {
-	log.Println("Calling PopupMenu.X_SubmenuTimeout()")
+	//log.Println("Calling PopupMenu.X_SubmenuTimeout()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -137,7 +125,7 @@ func (o *PopupMenu) X_SubmenuTimeout() {
 	Args: [{ false label String} {-1 true id int} {0 true accel int}], Returns: void
 */
 func (o *PopupMenu) AddCheckItem(label gdnative.String, id gdnative.Int, accel gdnative.Int) {
-	log.Println("Calling PopupMenu.AddCheckItem()")
+	//log.Println("Calling PopupMenu.AddCheckItem()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -160,7 +148,7 @@ func (o *PopupMenu) AddCheckItem(label gdnative.String, id gdnative.Int, accel g
 	Args: [{ false shortcut ShortCut} {-1 true id int} {False true global bool}], Returns: void
 */
 func (o *PopupMenu) AddCheckShortcut(shortcut ShortCut, id gdnative.Int, global gdnative.Bool) {
-	log.Println("Calling PopupMenu.AddCheckShortcut()")
+	//log.Println("Calling PopupMenu.AddCheckShortcut()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -183,7 +171,7 @@ func (o *PopupMenu) AddCheckShortcut(shortcut ShortCut, id gdnative.Int, global 
 	Args: [{ false texture Texture} { false label String} {-1 true id int} {0 true accel int}], Returns: void
 */
 func (o *PopupMenu) AddIconCheckItem(texture Texture, label gdnative.String, id gdnative.Int, accel gdnative.Int) {
-	log.Println("Calling PopupMenu.AddIconCheckItem()")
+	//log.Println("Calling PopupMenu.AddIconCheckItem()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -207,7 +195,7 @@ func (o *PopupMenu) AddIconCheckItem(texture Texture, label gdnative.String, id 
 	Args: [{ false texture Texture} { false shortcut ShortCut} {-1 true id int} {False true global bool}], Returns: void
 */
 func (o *PopupMenu) AddIconCheckShortcut(texture Texture, shortcut ShortCut, id gdnative.Int, global gdnative.Bool) {
-	log.Println("Calling PopupMenu.AddIconCheckShortcut()")
+	//log.Println("Calling PopupMenu.AddIconCheckShortcut()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -231,7 +219,7 @@ func (o *PopupMenu) AddIconCheckShortcut(texture Texture, shortcut ShortCut, id 
 	Args: [{ false texture Texture} { false label String} {-1 true id int} {0 true accel int}], Returns: void
 */
 func (o *PopupMenu) AddIconItem(texture Texture, label gdnative.String, id gdnative.Int, accel gdnative.Int) {
-	log.Println("Calling PopupMenu.AddIconItem()")
+	//log.Println("Calling PopupMenu.AddIconItem()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -255,7 +243,7 @@ func (o *PopupMenu) AddIconItem(texture Texture, label gdnative.String, id gdnat
 	Args: [{ false texture Texture} { false shortcut ShortCut} {-1 true id int} {False true global bool}], Returns: void
 */
 func (o *PopupMenu) AddIconShortcut(texture Texture, shortcut ShortCut, id gdnative.Int, global gdnative.Bool) {
-	log.Println("Calling PopupMenu.AddIconShortcut()")
+	//log.Println("Calling PopupMenu.AddIconShortcut()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -279,7 +267,7 @@ func (o *PopupMenu) AddIconShortcut(texture Texture, shortcut ShortCut, id gdnat
 	Args: [{ false label String} {-1 true id int} {0 true accel int}], Returns: void
 */
 func (o *PopupMenu) AddItem(label gdnative.String, id gdnative.Int, accel gdnative.Int) {
-	log.Println("Calling PopupMenu.AddItem()")
+	//log.Println("Calling PopupMenu.AddItem()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -302,7 +290,7 @@ func (o *PopupMenu) AddItem(label gdnative.String, id gdnative.Int, accel gdnati
 	Args: [], Returns: void
 */
 func (o *PopupMenu) AddSeparator() {
-	log.Println("Calling PopupMenu.AddSeparator()")
+	//log.Println("Calling PopupMenu.AddSeparator()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -322,7 +310,7 @@ func (o *PopupMenu) AddSeparator() {
 	Args: [{ false shortcut ShortCut} {-1 true id int} {False true global bool}], Returns: void
 */
 func (o *PopupMenu) AddShortcut(shortcut ShortCut, id gdnative.Int, global gdnative.Bool) {
-	log.Println("Calling PopupMenu.AddShortcut()")
+	//log.Println("Calling PopupMenu.AddShortcut()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -345,7 +333,7 @@ func (o *PopupMenu) AddShortcut(shortcut ShortCut, id gdnative.Int, global gdnat
 	Args: [{ false label String} { false submenu String} {-1 true id int}], Returns: void
 */
 func (o *PopupMenu) AddSubmenuItem(label gdnative.String, submenu gdnative.String, id gdnative.Int) {
-	log.Println("Calling PopupMenu.AddSubmenuItem()")
+	//log.Println("Calling PopupMenu.AddSubmenuItem()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -368,7 +356,7 @@ func (o *PopupMenu) AddSubmenuItem(label gdnative.String, submenu gdnative.Strin
 	Args: [], Returns: void
 */
 func (o *PopupMenu) Clear() {
-	log.Println("Calling PopupMenu.Clear()")
+	//log.Println("Calling PopupMenu.Clear()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -388,7 +376,7 @@ func (o *PopupMenu) Clear() {
 	Args: [{ false idx int}], Returns: int
 */
 func (o *PopupMenu) GetItemAccelerator(idx gdnative.Int) gdnative.Int {
-	log.Println("Calling PopupMenu.GetItemAccelerator()")
+	//log.Println("Calling PopupMenu.GetItemAccelerator()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -404,7 +392,7 @@ func (o *PopupMenu) GetItemAccelerator(idx gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -413,7 +401,7 @@ func (o *PopupMenu) GetItemAccelerator(idx gdnative.Int) gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *PopupMenu) GetItemCount() gdnative.Int {
-	log.Println("Calling PopupMenu.GetItemCount()")
+	//log.Println("Calling PopupMenu.GetItemCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -428,7 +416,7 @@ func (o *PopupMenu) GetItemCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -437,7 +425,7 @@ func (o *PopupMenu) GetItemCount() gdnative.Int {
 	Args: [{ false idx int}], Returns: Texture
 */
 func (o *PopupMenu) GetItemIcon(idx gdnative.Int) Texture {
-	log.Println("Calling PopupMenu.GetItemIcon()")
+	//log.Println("Calling PopupMenu.GetItemIcon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -453,7 +441,7 @@ func (o *PopupMenu) GetItemIcon(idx gdnative.Int) Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -462,7 +450,7 @@ func (o *PopupMenu) GetItemIcon(idx gdnative.Int) Texture {
 	Args: [{ false idx int}], Returns: int
 */
 func (o *PopupMenu) GetItemId(idx gdnative.Int) gdnative.Int {
-	log.Println("Calling PopupMenu.GetItemId()")
+	//log.Println("Calling PopupMenu.GetItemId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -478,7 +466,7 @@ func (o *PopupMenu) GetItemId(idx gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -487,7 +475,7 @@ func (o *PopupMenu) GetItemId(idx gdnative.Int) gdnative.Int {
 	Args: [{ false id int}], Returns: int
 */
 func (o *PopupMenu) GetItemIndex(id gdnative.Int) gdnative.Int {
-	log.Println("Calling PopupMenu.GetItemIndex()")
+	//log.Println("Calling PopupMenu.GetItemIndex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -503,7 +491,7 @@ func (o *PopupMenu) GetItemIndex(id gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -512,7 +500,7 @@ func (o *PopupMenu) GetItemIndex(id gdnative.Int) gdnative.Int {
 	Args: [{ false idx int}], Returns: Variant
 */
 func (o *PopupMenu) GetItemMetadata(idx gdnative.Int) gdnative.Variant {
-	log.Println("Calling PopupMenu.GetItemMetadata()")
+	//log.Println("Calling PopupMenu.GetItemMetadata()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -528,7 +516,7 @@ func (o *PopupMenu) GetItemMetadata(idx gdnative.Int) gdnative.Variant {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -537,7 +525,7 @@ func (o *PopupMenu) GetItemMetadata(idx gdnative.Int) gdnative.Variant {
 	Args: [{ false idx int}], Returns: ShortCut
 */
 func (o *PopupMenu) GetItemShortcut(idx gdnative.Int) ShortCut {
-	log.Println("Calling PopupMenu.GetItemShortcut()")
+	//log.Println("Calling PopupMenu.GetItemShortcut()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -553,7 +541,7 @@ func (o *PopupMenu) GetItemShortcut(idx gdnative.Int) ShortCut {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewShortCutFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -562,7 +550,7 @@ func (o *PopupMenu) GetItemShortcut(idx gdnative.Int) ShortCut {
 	Args: [{ false idx int}], Returns: String
 */
 func (o *PopupMenu) GetItemSubmenu(idx gdnative.Int) gdnative.String {
-	log.Println("Calling PopupMenu.GetItemSubmenu()")
+	//log.Println("Calling PopupMenu.GetItemSubmenu()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -578,7 +566,7 @@ func (o *PopupMenu) GetItemSubmenu(idx gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -587,7 +575,7 @@ func (o *PopupMenu) GetItemSubmenu(idx gdnative.Int) gdnative.String {
 	Args: [{ false idx int}], Returns: String
 */
 func (o *PopupMenu) GetItemText(idx gdnative.Int) gdnative.String {
-	log.Println("Calling PopupMenu.GetItemText()")
+	//log.Println("Calling PopupMenu.GetItemText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -603,7 +591,7 @@ func (o *PopupMenu) GetItemText(idx gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -612,7 +600,7 @@ func (o *PopupMenu) GetItemText(idx gdnative.Int) gdnative.String {
 	Args: [{ false idx int}], Returns: String
 */
 func (o *PopupMenu) GetItemTooltip(idx gdnative.Int) gdnative.String {
-	log.Println("Calling PopupMenu.GetItemTooltip()")
+	//log.Println("Calling PopupMenu.GetItemTooltip()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -628,7 +616,7 @@ func (o *PopupMenu) GetItemTooltip(idx gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -637,7 +625,7 @@ func (o *PopupMenu) GetItemTooltip(idx gdnative.Int) gdnative.String {
 	Args: [], Returns: bool
 */
 func (o *PopupMenu) IsHideOnCheckableItemSelection() gdnative.Bool {
-	log.Println("Calling PopupMenu.IsHideOnCheckableItemSelection()")
+	//log.Println("Calling PopupMenu.IsHideOnCheckableItemSelection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -652,7 +640,7 @@ func (o *PopupMenu) IsHideOnCheckableItemSelection() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -661,7 +649,7 @@ func (o *PopupMenu) IsHideOnCheckableItemSelection() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *PopupMenu) IsHideOnItemSelection() gdnative.Bool {
-	log.Println("Calling PopupMenu.IsHideOnItemSelection()")
+	//log.Println("Calling PopupMenu.IsHideOnItemSelection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -676,7 +664,7 @@ func (o *PopupMenu) IsHideOnItemSelection() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -685,7 +673,7 @@ func (o *PopupMenu) IsHideOnItemSelection() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *PopupMenu) IsHideOnStateItemSelection() gdnative.Bool {
-	log.Println("Calling PopupMenu.IsHideOnStateItemSelection()")
+	//log.Println("Calling PopupMenu.IsHideOnStateItemSelection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -700,7 +688,7 @@ func (o *PopupMenu) IsHideOnStateItemSelection() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -709,7 +697,7 @@ func (o *PopupMenu) IsHideOnStateItemSelection() gdnative.Bool {
 	Args: [{ false idx int}], Returns: bool
 */
 func (o *PopupMenu) IsItemCheckable(idx gdnative.Int) gdnative.Bool {
-	log.Println("Calling PopupMenu.IsItemCheckable()")
+	//log.Println("Calling PopupMenu.IsItemCheckable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -725,7 +713,7 @@ func (o *PopupMenu) IsItemCheckable(idx gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -734,7 +722,7 @@ func (o *PopupMenu) IsItemCheckable(idx gdnative.Int) gdnative.Bool {
 	Args: [{ false idx int}], Returns: bool
 */
 func (o *PopupMenu) IsItemChecked(idx gdnative.Int) gdnative.Bool {
-	log.Println("Calling PopupMenu.IsItemChecked()")
+	//log.Println("Calling PopupMenu.IsItemChecked()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -750,7 +738,7 @@ func (o *PopupMenu) IsItemChecked(idx gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -759,7 +747,7 @@ func (o *PopupMenu) IsItemChecked(idx gdnative.Int) gdnative.Bool {
 	Args: [{ false idx int}], Returns: bool
 */
 func (o *PopupMenu) IsItemDisabled(idx gdnative.Int) gdnative.Bool {
-	log.Println("Calling PopupMenu.IsItemDisabled()")
+	//log.Println("Calling PopupMenu.IsItemDisabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -775,7 +763,7 @@ func (o *PopupMenu) IsItemDisabled(idx gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -784,7 +772,7 @@ func (o *PopupMenu) IsItemDisabled(idx gdnative.Int) gdnative.Bool {
 	Args: [{ false idx int}], Returns: bool
 */
 func (o *PopupMenu) IsItemSeparator(idx gdnative.Int) gdnative.Bool {
-	log.Println("Calling PopupMenu.IsItemSeparator()")
+	//log.Println("Calling PopupMenu.IsItemSeparator()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -800,7 +788,7 @@ func (o *PopupMenu) IsItemSeparator(idx gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -809,7 +797,7 @@ func (o *PopupMenu) IsItemSeparator(idx gdnative.Int) gdnative.Bool {
 	Args: [{ false idx int}], Returns: void
 */
 func (o *PopupMenu) RemoveItem(idx gdnative.Int) {
-	log.Println("Calling PopupMenu.RemoveItem()")
+	//log.Println("Calling PopupMenu.RemoveItem()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -830,7 +818,7 @@ func (o *PopupMenu) RemoveItem(idx gdnative.Int) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *PopupMenu) SetHideOnCheckableItemSelection(enable gdnative.Bool) {
-	log.Println("Calling PopupMenu.SetHideOnCheckableItemSelection()")
+	//log.Println("Calling PopupMenu.SetHideOnCheckableItemSelection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -851,7 +839,7 @@ func (o *PopupMenu) SetHideOnCheckableItemSelection(enable gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *PopupMenu) SetHideOnItemSelection(enable gdnative.Bool) {
-	log.Println("Calling PopupMenu.SetHideOnItemSelection()")
+	//log.Println("Calling PopupMenu.SetHideOnItemSelection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -872,7 +860,7 @@ func (o *PopupMenu) SetHideOnItemSelection(enable gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *PopupMenu) SetHideOnStateItemSelection(enable gdnative.Bool) {
-	log.Println("Calling PopupMenu.SetHideOnStateItemSelection()")
+	//log.Println("Calling PopupMenu.SetHideOnStateItemSelection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -893,7 +881,7 @@ func (o *PopupMenu) SetHideOnStateItemSelection(enable gdnative.Bool) {
 	Args: [{ false idx int} { false accel int}], Returns: void
 */
 func (o *PopupMenu) SetItemAccelerator(idx gdnative.Int, accel gdnative.Int) {
-	log.Println("Calling PopupMenu.SetItemAccelerator()")
+	//log.Println("Calling PopupMenu.SetItemAccelerator()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -915,7 +903,7 @@ func (o *PopupMenu) SetItemAccelerator(idx gdnative.Int, accel gdnative.Int) {
 	Args: [{ false idx int} { false enable bool}], Returns: void
 */
 func (o *PopupMenu) SetItemAsCheckable(idx gdnative.Int, enable gdnative.Bool) {
-	log.Println("Calling PopupMenu.SetItemAsCheckable()")
+	//log.Println("Calling PopupMenu.SetItemAsCheckable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -937,7 +925,7 @@ func (o *PopupMenu) SetItemAsCheckable(idx gdnative.Int, enable gdnative.Bool) {
 	Args: [{ false idx int} { false enable bool}], Returns: void
 */
 func (o *PopupMenu) SetItemAsSeparator(idx gdnative.Int, enable gdnative.Bool) {
-	log.Println("Calling PopupMenu.SetItemAsSeparator()")
+	//log.Println("Calling PopupMenu.SetItemAsSeparator()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -959,7 +947,7 @@ func (o *PopupMenu) SetItemAsSeparator(idx gdnative.Int, enable gdnative.Bool) {
 	Args: [{ false idx int} { false checked bool}], Returns: void
 */
 func (o *PopupMenu) SetItemChecked(idx gdnative.Int, checked gdnative.Bool) {
-	log.Println("Calling PopupMenu.SetItemChecked()")
+	//log.Println("Calling PopupMenu.SetItemChecked()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -981,7 +969,7 @@ func (o *PopupMenu) SetItemChecked(idx gdnative.Int, checked gdnative.Bool) {
 	Args: [{ false idx int} { false disabled bool}], Returns: void
 */
 func (o *PopupMenu) SetItemDisabled(idx gdnative.Int, disabled gdnative.Bool) {
-	log.Println("Calling PopupMenu.SetItemDisabled()")
+	//log.Println("Calling PopupMenu.SetItemDisabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1003,7 +991,7 @@ func (o *PopupMenu) SetItemDisabled(idx gdnative.Int, disabled gdnative.Bool) {
 	Args: [{ false idx int} { false icon Texture}], Returns: void
 */
 func (o *PopupMenu) SetItemIcon(idx gdnative.Int, icon Texture) {
-	log.Println("Calling PopupMenu.SetItemIcon()")
+	//log.Println("Calling PopupMenu.SetItemIcon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1025,7 +1013,7 @@ func (o *PopupMenu) SetItemIcon(idx gdnative.Int, icon Texture) {
 	Args: [{ false idx int} { false id int}], Returns: void
 */
 func (o *PopupMenu) SetItemId(idx gdnative.Int, id gdnative.Int) {
-	log.Println("Calling PopupMenu.SetItemId()")
+	//log.Println("Calling PopupMenu.SetItemId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1047,7 +1035,7 @@ func (o *PopupMenu) SetItemId(idx gdnative.Int, id gdnative.Int) {
 	Args: [{ false idx int} { false metadata Variant}], Returns: void
 */
 func (o *PopupMenu) SetItemMetadata(idx gdnative.Int, metadata gdnative.Variant) {
-	log.Println("Calling PopupMenu.SetItemMetadata()")
+	//log.Println("Calling PopupMenu.SetItemMetadata()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1069,7 +1057,7 @@ func (o *PopupMenu) SetItemMetadata(idx gdnative.Int, metadata gdnative.Variant)
 	Args: [{ false idx int} { false state int}], Returns: void
 */
 func (o *PopupMenu) SetItemMultistate(idx gdnative.Int, state gdnative.Int) {
-	log.Println("Calling PopupMenu.SetItemMultistate()")
+	//log.Println("Calling PopupMenu.SetItemMultistate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1091,7 +1079,7 @@ func (o *PopupMenu) SetItemMultistate(idx gdnative.Int, state gdnative.Int) {
 	Args: [{ false idx int} { false shortcut ShortCut} {False true global bool}], Returns: void
 */
 func (o *PopupMenu) SetItemShortcut(idx gdnative.Int, shortcut ShortCut, global gdnative.Bool) {
-	log.Println("Calling PopupMenu.SetItemShortcut()")
+	//log.Println("Calling PopupMenu.SetItemShortcut()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -1114,7 +1102,7 @@ func (o *PopupMenu) SetItemShortcut(idx gdnative.Int, shortcut ShortCut, global 
 	Args: [{ false idx int} { false submenu String}], Returns: void
 */
 func (o *PopupMenu) SetItemSubmenu(idx gdnative.Int, submenu gdnative.String) {
-	log.Println("Calling PopupMenu.SetItemSubmenu()")
+	//log.Println("Calling PopupMenu.SetItemSubmenu()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1136,7 +1124,7 @@ func (o *PopupMenu) SetItemSubmenu(idx gdnative.Int, submenu gdnative.String) {
 	Args: [{ false idx int} { false text String}], Returns: void
 */
 func (o *PopupMenu) SetItemText(idx gdnative.Int, text gdnative.String) {
-	log.Println("Calling PopupMenu.SetItemText()")
+	//log.Println("Calling PopupMenu.SetItemText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1158,7 +1146,7 @@ func (o *PopupMenu) SetItemText(idx gdnative.Int, text gdnative.String) {
 	Args: [{ false idx int} { false tooltip String}], Returns: void
 */
 func (o *PopupMenu) SetItemTooltip(idx gdnative.Int, tooltip gdnative.String) {
-	log.Println("Calling PopupMenu.SetItemTooltip()")
+	//log.Println("Calling PopupMenu.SetItemTooltip()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -1180,7 +1168,7 @@ func (o *PopupMenu) SetItemTooltip(idx gdnative.Int, tooltip gdnative.String) {
 	Args: [{ false idx int}], Returns: void
 */
 func (o *PopupMenu) ToggleItemChecked(idx gdnative.Int) {
-	log.Println("Calling PopupMenu.ToggleItemChecked()")
+	//log.Println("Calling PopupMenu.ToggleItemChecked()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1201,7 +1189,7 @@ func (o *PopupMenu) ToggleItemChecked(idx gdnative.Int) {
 	Args: [{ false idx int}], Returns: void
 */
 func (o *PopupMenu) ToggleItemMultistate(idx gdnative.Int) {
-	log.Println("Calling PopupMenu.ToggleItemMultistate()")
+	//log.Println("Calling PopupMenu.ToggleItemMultistate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

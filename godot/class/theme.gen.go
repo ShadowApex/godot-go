@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Theme) BaseClass() string {
 	return "Theme"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Theme) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Theme) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *Theme) X_EmitThemeChanged() {
-	log.Println("Calling Theme.X_EmitThemeChanged()")
+	//log.Println("Calling Theme.X_EmitThemeChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *Theme) X_EmitThemeChanged() {
 	Args: [{ false name String} { false type String}], Returns: void
 */
 func (o *Theme) ClearColor(name gdnative.String, aType gdnative.String) {
-	log.Println("Calling Theme.ClearColor()")
+	//log.Println("Calling Theme.ClearColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -93,7 +81,7 @@ func (o *Theme) ClearColor(name gdnative.String, aType gdnative.String) {
 	Args: [{ false name String} { false type String}], Returns: void
 */
 func (o *Theme) ClearConstant(name gdnative.String, aType gdnative.String) {
-	log.Println("Calling Theme.ClearConstant()")
+	//log.Println("Calling Theme.ClearConstant()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -115,7 +103,7 @@ func (o *Theme) ClearConstant(name gdnative.String, aType gdnative.String) {
 	Args: [{ false name String} { false type String}], Returns: void
 */
 func (o *Theme) ClearFont(name gdnative.String, aType gdnative.String) {
-	log.Println("Calling Theme.ClearFont()")
+	//log.Println("Calling Theme.ClearFont()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -137,7 +125,7 @@ func (o *Theme) ClearFont(name gdnative.String, aType gdnative.String) {
 	Args: [{ false name String} { false type String}], Returns: void
 */
 func (o *Theme) ClearIcon(name gdnative.String, aType gdnative.String) {
-	log.Println("Calling Theme.ClearIcon()")
+	//log.Println("Calling Theme.ClearIcon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -159,7 +147,7 @@ func (o *Theme) ClearIcon(name gdnative.String, aType gdnative.String) {
 	Args: [{ false name String} { false type String}], Returns: void
 */
 func (o *Theme) ClearStylebox(name gdnative.String, aType gdnative.String) {
-	log.Println("Calling Theme.ClearStylebox()")
+	//log.Println("Calling Theme.ClearStylebox()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -181,7 +169,7 @@ func (o *Theme) ClearStylebox(name gdnative.String, aType gdnative.String) {
 	Args: [], Returns: void
 */
 func (o *Theme) CopyDefaultTheme() {
-	log.Println("Calling Theme.CopyDefaultTheme()")
+	//log.Println("Calling Theme.CopyDefaultTheme()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -201,7 +189,7 @@ func (o *Theme) CopyDefaultTheme() {
 	Args: [{ false name String} { false type String}], Returns: Color
 */
 func (o *Theme) GetColor(name gdnative.String, aType gdnative.String) gdnative.Color {
-	log.Println("Calling Theme.GetColor()")
+	//log.Println("Calling Theme.GetColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -218,7 +206,7 @@ func (o *Theme) GetColor(name gdnative.String, aType gdnative.String) gdnative.C
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -227,7 +215,7 @@ func (o *Theme) GetColor(name gdnative.String, aType gdnative.String) gdnative.C
 	Args: [{ false type String}], Returns: PoolStringArray
 */
 func (o *Theme) GetColorList(aType gdnative.String) gdnative.PoolStringArray {
-	log.Println("Calling Theme.GetColorList()")
+	//log.Println("Calling Theme.GetColorList()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -243,7 +231,7 @@ func (o *Theme) GetColorList(aType gdnative.String) gdnative.PoolStringArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -252,7 +240,7 @@ func (o *Theme) GetColorList(aType gdnative.String) gdnative.PoolStringArray {
 	Args: [{ false name String} { false type String}], Returns: int
 */
 func (o *Theme) GetConstant(name gdnative.String, aType gdnative.String) gdnative.Int {
-	log.Println("Calling Theme.GetConstant()")
+	//log.Println("Calling Theme.GetConstant()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -269,7 +257,7 @@ func (o *Theme) GetConstant(name gdnative.String, aType gdnative.String) gdnativ
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -278,7 +266,7 @@ func (o *Theme) GetConstant(name gdnative.String, aType gdnative.String) gdnativ
 	Args: [{ false type String}], Returns: PoolStringArray
 */
 func (o *Theme) GetConstantList(aType gdnative.String) gdnative.PoolStringArray {
-	log.Println("Calling Theme.GetConstantList()")
+	//log.Println("Calling Theme.GetConstantList()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -294,7 +282,7 @@ func (o *Theme) GetConstantList(aType gdnative.String) gdnative.PoolStringArray 
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -303,7 +291,7 @@ func (o *Theme) GetConstantList(aType gdnative.String) gdnative.PoolStringArray 
 	Args: [], Returns: Font
 */
 func (o *Theme) GetDefaultFont() Font {
-	log.Println("Calling Theme.GetDefaultFont()")
+	//log.Println("Calling Theme.GetDefaultFont()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -318,7 +306,7 @@ func (o *Theme) GetDefaultFont() Font {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewFontFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -327,7 +315,7 @@ func (o *Theme) GetDefaultFont() Font {
 	Args: [{ false name String} { false type String}], Returns: Font
 */
 func (o *Theme) GetFont(name gdnative.String, aType gdnative.String) Font {
-	log.Println("Calling Theme.GetFont()")
+	//log.Println("Calling Theme.GetFont()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -344,7 +332,7 @@ func (o *Theme) GetFont(name gdnative.String, aType gdnative.String) Font {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewFontFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -353,7 +341,7 @@ func (o *Theme) GetFont(name gdnative.String, aType gdnative.String) Font {
 	Args: [{ false type String}], Returns: PoolStringArray
 */
 func (o *Theme) GetFontList(aType gdnative.String) gdnative.PoolStringArray {
-	log.Println("Calling Theme.GetFontList()")
+	//log.Println("Calling Theme.GetFontList()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -369,7 +357,7 @@ func (o *Theme) GetFontList(aType gdnative.String) gdnative.PoolStringArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -378,7 +366,7 @@ func (o *Theme) GetFontList(aType gdnative.String) gdnative.PoolStringArray {
 	Args: [{ false name String} { false type String}], Returns: Texture
 */
 func (o *Theme) GetIcon(name gdnative.String, aType gdnative.String) Texture {
-	log.Println("Calling Theme.GetIcon()")
+	//log.Println("Calling Theme.GetIcon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -395,7 +383,7 @@ func (o *Theme) GetIcon(name gdnative.String, aType gdnative.String) Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -404,7 +392,7 @@ func (o *Theme) GetIcon(name gdnative.String, aType gdnative.String) Texture {
 	Args: [{ false type String}], Returns: PoolStringArray
 */
 func (o *Theme) GetIconList(aType gdnative.String) gdnative.PoolStringArray {
-	log.Println("Calling Theme.GetIconList()")
+	//log.Println("Calling Theme.GetIconList()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -420,7 +408,7 @@ func (o *Theme) GetIconList(aType gdnative.String) gdnative.PoolStringArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -429,7 +417,7 @@ func (o *Theme) GetIconList(aType gdnative.String) gdnative.PoolStringArray {
 	Args: [{ false name String} { false type String}], Returns: StyleBox
 */
 func (o *Theme) GetStylebox(name gdnative.String, aType gdnative.String) StyleBox {
-	log.Println("Calling Theme.GetStylebox()")
+	//log.Println("Calling Theme.GetStylebox()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -446,7 +434,7 @@ func (o *Theme) GetStylebox(name gdnative.String, aType gdnative.String) StyleBo
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewStyleBoxFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -455,7 +443,7 @@ func (o *Theme) GetStylebox(name gdnative.String, aType gdnative.String) StyleBo
 	Args: [{ false type String}], Returns: PoolStringArray
 */
 func (o *Theme) GetStyleboxList(aType gdnative.String) gdnative.PoolStringArray {
-	log.Println("Calling Theme.GetStyleboxList()")
+	//log.Println("Calling Theme.GetStyleboxList()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -471,7 +459,7 @@ func (o *Theme) GetStyleboxList(aType gdnative.String) gdnative.PoolStringArray 
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -480,7 +468,7 @@ func (o *Theme) GetStyleboxList(aType gdnative.String) gdnative.PoolStringArray 
 	Args: [], Returns: PoolStringArray
 */
 func (o *Theme) GetStyleboxTypes() gdnative.PoolStringArray {
-	log.Println("Calling Theme.GetStyleboxTypes()")
+	//log.Println("Calling Theme.GetStyleboxTypes()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -495,7 +483,7 @@ func (o *Theme) GetStyleboxTypes() gdnative.PoolStringArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -504,7 +492,7 @@ func (o *Theme) GetStyleboxTypes() gdnative.PoolStringArray {
 	Args: [{ false type String}], Returns: PoolStringArray
 */
 func (o *Theme) GetTypeList(aType gdnative.String) gdnative.PoolStringArray {
-	log.Println("Calling Theme.GetTypeList()")
+	//log.Println("Calling Theme.GetTypeList()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -520,7 +508,7 @@ func (o *Theme) GetTypeList(aType gdnative.String) gdnative.PoolStringArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -529,7 +517,7 @@ func (o *Theme) GetTypeList(aType gdnative.String) gdnative.PoolStringArray {
 	Args: [{ false name String} { false type String}], Returns: bool
 */
 func (o *Theme) HasColor(name gdnative.String, aType gdnative.String) gdnative.Bool {
-	log.Println("Calling Theme.HasColor()")
+	//log.Println("Calling Theme.HasColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -546,7 +534,7 @@ func (o *Theme) HasColor(name gdnative.String, aType gdnative.String) gdnative.B
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -555,7 +543,7 @@ func (o *Theme) HasColor(name gdnative.String, aType gdnative.String) gdnative.B
 	Args: [{ false name String} { false type String}], Returns: bool
 */
 func (o *Theme) HasConstant(name gdnative.String, aType gdnative.String) gdnative.Bool {
-	log.Println("Calling Theme.HasConstant()")
+	//log.Println("Calling Theme.HasConstant()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -572,7 +560,7 @@ func (o *Theme) HasConstant(name gdnative.String, aType gdnative.String) gdnativ
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -581,7 +569,7 @@ func (o *Theme) HasConstant(name gdnative.String, aType gdnative.String) gdnativ
 	Args: [{ false name String} { false type String}], Returns: bool
 */
 func (o *Theme) HasFont(name gdnative.String, aType gdnative.String) gdnative.Bool {
-	log.Println("Calling Theme.HasFont()")
+	//log.Println("Calling Theme.HasFont()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -598,7 +586,7 @@ func (o *Theme) HasFont(name gdnative.String, aType gdnative.String) gdnative.Bo
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -607,7 +595,7 @@ func (o *Theme) HasFont(name gdnative.String, aType gdnative.String) gdnative.Bo
 	Args: [{ false name String} { false type String}], Returns: bool
 */
 func (o *Theme) HasIcon(name gdnative.String, aType gdnative.String) gdnative.Bool {
-	log.Println("Calling Theme.HasIcon()")
+	//log.Println("Calling Theme.HasIcon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -624,7 +612,7 @@ func (o *Theme) HasIcon(name gdnative.String, aType gdnative.String) gdnative.Bo
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -633,7 +621,7 @@ func (o *Theme) HasIcon(name gdnative.String, aType gdnative.String) gdnative.Bo
 	Args: [{ false name String} { false type String}], Returns: bool
 */
 func (o *Theme) HasStylebox(name gdnative.String, aType gdnative.String) gdnative.Bool {
-	log.Println("Calling Theme.HasStylebox()")
+	//log.Println("Calling Theme.HasStylebox()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -650,7 +638,7 @@ func (o *Theme) HasStylebox(name gdnative.String, aType gdnative.String) gdnativ
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -659,7 +647,7 @@ func (o *Theme) HasStylebox(name gdnative.String, aType gdnative.String) gdnativ
 	Args: [{ false name String} { false type String} { false color Color}], Returns: void
 */
 func (o *Theme) SetColor(name gdnative.String, aType gdnative.String, color gdnative.Color) {
-	log.Println("Calling Theme.SetColor()")
+	//log.Println("Calling Theme.SetColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -682,7 +670,7 @@ func (o *Theme) SetColor(name gdnative.String, aType gdnative.String, color gdna
 	Args: [{ false name String} { false type String} { false constant int}], Returns: void
 */
 func (o *Theme) SetConstant(name gdnative.String, aType gdnative.String, constant gdnative.Int) {
-	log.Println("Calling Theme.SetConstant()")
+	//log.Println("Calling Theme.SetConstant()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -705,7 +693,7 @@ func (o *Theme) SetConstant(name gdnative.String, aType gdnative.String, constan
 	Args: [{ false font Font}], Returns: void
 */
 func (o *Theme) SetDefaultFont(font Font) {
-	log.Println("Calling Theme.SetDefaultFont()")
+	//log.Println("Calling Theme.SetDefaultFont()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -726,7 +714,7 @@ func (o *Theme) SetDefaultFont(font Font) {
 	Args: [{ false name String} { false type String} { false font Font}], Returns: void
 */
 func (o *Theme) SetFont(name gdnative.String, aType gdnative.String, font Font) {
-	log.Println("Calling Theme.SetFont()")
+	//log.Println("Calling Theme.SetFont()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -749,7 +737,7 @@ func (o *Theme) SetFont(name gdnative.String, aType gdnative.String, font Font) 
 	Args: [{ false name String} { false type String} { false texture Texture}], Returns: void
 */
 func (o *Theme) SetIcon(name gdnative.String, aType gdnative.String, texture Texture) {
-	log.Println("Calling Theme.SetIcon()")
+	//log.Println("Calling Theme.SetIcon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -772,7 +760,7 @@ func (o *Theme) SetIcon(name gdnative.String, aType gdnative.String, texture Tex
 	Args: [{ false name String} { false type String} { false texture StyleBox}], Returns: void
 */
 func (o *Theme) SetStylebox(name gdnative.String, aType gdnative.String, texture StyleBox) {
-	log.Println("Calling Theme.SetStylebox()")
+	//log.Println("Calling Theme.SetStylebox()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)

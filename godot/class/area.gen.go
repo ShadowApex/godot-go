@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Area) BaseClass() string {
 	return "Area"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Area) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Area) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false id int}], Returns: void
 */
 func (o *Area) X_AreaEnterTree(id gdnative.Int) {
-	log.Println("Calling Area.X_AreaEnterTree()")
+	//log.Println("Calling Area.X_AreaEnterTree()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *Area) X_AreaEnterTree(id gdnative.Int) {
 	Args: [{ false id int}], Returns: void
 */
 func (o *Area) X_AreaExitTree(id gdnative.Int) {
-	log.Println("Calling Area.X_AreaExitTree()")
+	//log.Println("Calling Area.X_AreaExitTree()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -93,7 +81,7 @@ func (o *Area) X_AreaExitTree(id gdnative.Int) {
 	Args: [{ false arg0 int} { false arg1 RID} { false arg2 int} { false arg3 int} { false arg4 int}], Returns: void
 */
 func (o *Area) X_AreaInout(arg0 gdnative.Int, arg1 gdnative.Rid, arg2 gdnative.Int, arg3 gdnative.Int, arg4 gdnative.Int) {
-	log.Println("Calling Area.X_AreaInout()")
+	//log.Println("Calling Area.X_AreaInout()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 5, 5)
@@ -118,7 +106,7 @@ func (o *Area) X_AreaInout(arg0 gdnative.Int, arg1 gdnative.Rid, arg2 gdnative.I
 	Args: [{ false id int}], Returns: void
 */
 func (o *Area) X_BodyEnterTree(id gdnative.Int) {
-	log.Println("Calling Area.X_BodyEnterTree()")
+	//log.Println("Calling Area.X_BodyEnterTree()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -139,7 +127,7 @@ func (o *Area) X_BodyEnterTree(id gdnative.Int) {
 	Args: [{ false id int}], Returns: void
 */
 func (o *Area) X_BodyExitTree(id gdnative.Int) {
-	log.Println("Calling Area.X_BodyExitTree()")
+	//log.Println("Calling Area.X_BodyExitTree()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -160,7 +148,7 @@ func (o *Area) X_BodyExitTree(id gdnative.Int) {
 	Args: [{ false arg0 int} { false arg1 RID} { false arg2 int} { false arg3 int} { false arg4 int}], Returns: void
 */
 func (o *Area) X_BodyInout(arg0 gdnative.Int, arg1 gdnative.Rid, arg2 gdnative.Int, arg3 gdnative.Int, arg4 gdnative.Int) {
-	log.Println("Calling Area.X_BodyInout()")
+	//log.Println("Calling Area.X_BodyInout()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 5, 5)
@@ -185,7 +173,7 @@ func (o *Area) X_BodyInout(arg0 gdnative.Int, arg1 gdnative.Rid, arg2 gdnative.I
 	Args: [], Returns: float
 */
 func (o *Area) GetAngularDamp() gdnative.Float {
-	log.Println("Calling Area.GetAngularDamp()")
+	//log.Println("Calling Area.GetAngularDamp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -200,7 +188,7 @@ func (o *Area) GetAngularDamp() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -209,7 +197,7 @@ func (o *Area) GetAngularDamp() gdnative.Float {
 	Args: [], Returns: String
 */
 func (o *Area) GetAudioBus() gdnative.String {
-	log.Println("Calling Area.GetAudioBus()")
+	//log.Println("Calling Area.GetAudioBus()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -224,7 +212,7 @@ func (o *Area) GetAudioBus() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -233,7 +221,7 @@ func (o *Area) GetAudioBus() gdnative.String {
 	Args: [], Returns: int
 */
 func (o *Area) GetCollisionLayer() gdnative.Int {
-	log.Println("Calling Area.GetCollisionLayer()")
+	//log.Println("Calling Area.GetCollisionLayer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -248,7 +236,7 @@ func (o *Area) GetCollisionLayer() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -257,7 +245,7 @@ func (o *Area) GetCollisionLayer() gdnative.Int {
 	Args: [{ false bit int}], Returns: bool
 */
 func (o *Area) GetCollisionLayerBit(bit gdnative.Int) gdnative.Bool {
-	log.Println("Calling Area.GetCollisionLayerBit()")
+	//log.Println("Calling Area.GetCollisionLayerBit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -273,7 +261,7 @@ func (o *Area) GetCollisionLayerBit(bit gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -282,7 +270,7 @@ func (o *Area) GetCollisionLayerBit(bit gdnative.Int) gdnative.Bool {
 	Args: [], Returns: int
 */
 func (o *Area) GetCollisionMask() gdnative.Int {
-	log.Println("Calling Area.GetCollisionMask()")
+	//log.Println("Calling Area.GetCollisionMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -297,7 +285,7 @@ func (o *Area) GetCollisionMask() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -306,7 +294,7 @@ func (o *Area) GetCollisionMask() gdnative.Int {
 	Args: [{ false bit int}], Returns: bool
 */
 func (o *Area) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
-	log.Println("Calling Area.GetCollisionMaskBit()")
+	//log.Println("Calling Area.GetCollisionMaskBit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -322,7 +310,7 @@ func (o *Area) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -331,7 +319,7 @@ func (o *Area) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
 	Args: [], Returns: float
 */
 func (o *Area) GetGravity() gdnative.Float {
-	log.Println("Calling Area.GetGravity()")
+	//log.Println("Calling Area.GetGravity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -346,7 +334,7 @@ func (o *Area) GetGravity() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -355,7 +343,7 @@ func (o *Area) GetGravity() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Area) GetGravityDistanceScale() gdnative.Float {
-	log.Println("Calling Area.GetGravityDistanceScale()")
+	//log.Println("Calling Area.GetGravityDistanceScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -370,7 +358,7 @@ func (o *Area) GetGravityDistanceScale() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -379,7 +367,7 @@ func (o *Area) GetGravityDistanceScale() gdnative.Float {
 	Args: [], Returns: Vector3
 */
 func (o *Area) GetGravityVector() gdnative.Vector3 {
-	log.Println("Calling Area.GetGravityVector()")
+	//log.Println("Calling Area.GetGravityVector()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -394,7 +382,7 @@ func (o *Area) GetGravityVector() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -403,7 +391,7 @@ func (o *Area) GetGravityVector() gdnative.Vector3 {
 	Args: [], Returns: float
 */
 func (o *Area) GetLinearDamp() gdnative.Float {
-	log.Println("Calling Area.GetLinearDamp()")
+	//log.Println("Calling Area.GetLinearDamp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -418,7 +406,7 @@ func (o *Area) GetLinearDamp() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -427,7 +415,7 @@ func (o *Area) GetLinearDamp() gdnative.Float {
 	Args: [], Returns: Array
 */
 func (o *Area) GetOverlappingAreas() gdnative.Array {
-	log.Println("Calling Area.GetOverlappingAreas()")
+	//log.Println("Calling Area.GetOverlappingAreas()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -442,7 +430,7 @@ func (o *Area) GetOverlappingAreas() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -451,7 +439,7 @@ func (o *Area) GetOverlappingAreas() gdnative.Array {
 	Args: [], Returns: Array
 */
 func (o *Area) GetOverlappingBodies() gdnative.Array {
-	log.Println("Calling Area.GetOverlappingBodies()")
+	//log.Println("Calling Area.GetOverlappingBodies()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -466,7 +454,7 @@ func (o *Area) GetOverlappingBodies() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -475,7 +463,7 @@ func (o *Area) GetOverlappingBodies() gdnative.Array {
 	Args: [], Returns: float
 */
 func (o *Area) GetPriority() gdnative.Float {
-	log.Println("Calling Area.GetPriority()")
+	//log.Println("Calling Area.GetPriority()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -490,7 +478,7 @@ func (o *Area) GetPriority() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -499,7 +487,7 @@ func (o *Area) GetPriority() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Area) GetReverbAmount() gdnative.Float {
-	log.Println("Calling Area.GetReverbAmount()")
+	//log.Println("Calling Area.GetReverbAmount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -514,7 +502,7 @@ func (o *Area) GetReverbAmount() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -523,7 +511,7 @@ func (o *Area) GetReverbAmount() gdnative.Float {
 	Args: [], Returns: String
 */
 func (o *Area) GetReverbBus() gdnative.String {
-	log.Println("Calling Area.GetReverbBus()")
+	//log.Println("Calling Area.GetReverbBus()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -538,7 +526,7 @@ func (o *Area) GetReverbBus() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -547,7 +535,7 @@ func (o *Area) GetReverbBus() gdnative.String {
 	Args: [], Returns: float
 */
 func (o *Area) GetReverbUniformity() gdnative.Float {
-	log.Println("Calling Area.GetReverbUniformity()")
+	//log.Println("Calling Area.GetReverbUniformity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -562,7 +550,7 @@ func (o *Area) GetReverbUniformity() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -576,7 +564,7 @@ func (o *Area) GetReverbUniformity() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *Area) IsGravityAPoint() gdnative.Bool {
-	log.Println("Calling Area.IsGravityAPoint()")
+	//log.Println("Calling Area.IsGravityAPoint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -591,7 +579,7 @@ func (o *Area) IsGravityAPoint() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -600,7 +588,7 @@ func (o *Area) IsGravityAPoint() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Area) IsMonitorable() gdnative.Bool {
-	log.Println("Calling Area.IsMonitorable()")
+	//log.Println("Calling Area.IsMonitorable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -615,7 +603,7 @@ func (o *Area) IsMonitorable() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -624,7 +612,7 @@ func (o *Area) IsMonitorable() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Area) IsMonitoring() gdnative.Bool {
-	log.Println("Calling Area.IsMonitoring()")
+	//log.Println("Calling Area.IsMonitoring()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -639,7 +627,7 @@ func (o *Area) IsMonitoring() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -648,7 +636,7 @@ func (o *Area) IsMonitoring() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Area) IsOverridingAudioBus() gdnative.Bool {
-	log.Println("Calling Area.IsOverridingAudioBus()")
+	//log.Println("Calling Area.IsOverridingAudioBus()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -663,7 +651,7 @@ func (o *Area) IsOverridingAudioBus() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -672,7 +660,7 @@ func (o *Area) IsOverridingAudioBus() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Area) IsUsingReverbBus() gdnative.Bool {
-	log.Println("Calling Area.IsUsingReverbBus()")
+	//log.Println("Calling Area.IsUsingReverbBus()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -687,7 +675,7 @@ func (o *Area) IsUsingReverbBus() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -696,7 +684,7 @@ func (o *Area) IsUsingReverbBus() gdnative.Bool {
 	Args: [{ false area Object}], Returns: bool
 */
 func (o *Area) OverlapsArea(area Object) gdnative.Bool {
-	log.Println("Calling Area.OverlapsArea()")
+	//log.Println("Calling Area.OverlapsArea()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -712,7 +700,7 @@ func (o *Area) OverlapsArea(area Object) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -721,7 +709,7 @@ func (o *Area) OverlapsArea(area Object) gdnative.Bool {
 	Args: [{ false body Object}], Returns: bool
 */
 func (o *Area) OverlapsBody(body Object) gdnative.Bool {
-	log.Println("Calling Area.OverlapsBody()")
+	//log.Println("Calling Area.OverlapsBody()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -737,7 +725,7 @@ func (o *Area) OverlapsBody(body Object) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -746,7 +734,7 @@ func (o *Area) OverlapsBody(body Object) gdnative.Bool {
 	Args: [{ false angular_damp float}], Returns: void
 */
 func (o *Area) SetAngularDamp(angularDamp gdnative.Float) {
-	log.Println("Calling Area.SetAngularDamp()")
+	//log.Println("Calling Area.SetAngularDamp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -767,7 +755,7 @@ func (o *Area) SetAngularDamp(angularDamp gdnative.Float) {
 	Args: [{ false name String}], Returns: void
 */
 func (o *Area) SetAudioBus(name gdnative.String) {
-	log.Println("Calling Area.SetAudioBus()")
+	//log.Println("Calling Area.SetAudioBus()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -788,7 +776,7 @@ func (o *Area) SetAudioBus(name gdnative.String) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Area) SetAudioBusOverride(enable gdnative.Bool) {
-	log.Println("Calling Area.SetAudioBusOverride()")
+	//log.Println("Calling Area.SetAudioBusOverride()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -809,7 +797,7 @@ func (o *Area) SetAudioBusOverride(enable gdnative.Bool) {
 	Args: [{ false collision_layer int}], Returns: void
 */
 func (o *Area) SetCollisionLayer(collisionLayer gdnative.Int) {
-	log.Println("Calling Area.SetCollisionLayer()")
+	//log.Println("Calling Area.SetCollisionLayer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -830,7 +818,7 @@ func (o *Area) SetCollisionLayer(collisionLayer gdnative.Int) {
 	Args: [{ false bit int} { false value bool}], Returns: void
 */
 func (o *Area) SetCollisionLayerBit(bit gdnative.Int, value gdnative.Bool) {
-	log.Println("Calling Area.SetCollisionLayerBit()")
+	//log.Println("Calling Area.SetCollisionLayerBit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -852,7 +840,7 @@ func (o *Area) SetCollisionLayerBit(bit gdnative.Int, value gdnative.Bool) {
 	Args: [{ false collision_mask int}], Returns: void
 */
 func (o *Area) SetCollisionMask(collisionMask gdnative.Int) {
-	log.Println("Calling Area.SetCollisionMask()")
+	//log.Println("Calling Area.SetCollisionMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -873,7 +861,7 @@ func (o *Area) SetCollisionMask(collisionMask gdnative.Int) {
 	Args: [{ false bit int} { false value bool}], Returns: void
 */
 func (o *Area) SetCollisionMaskBit(bit gdnative.Int, value gdnative.Bool) {
-	log.Println("Calling Area.SetCollisionMaskBit()")
+	//log.Println("Calling Area.SetCollisionMaskBit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -895,7 +883,7 @@ func (o *Area) SetCollisionMaskBit(bit gdnative.Int, value gdnative.Bool) {
 	Args: [{ false gravity float}], Returns: void
 */
 func (o *Area) SetGravity(gravity gdnative.Float) {
-	log.Println("Calling Area.SetGravity()")
+	//log.Println("Calling Area.SetGravity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -916,7 +904,7 @@ func (o *Area) SetGravity(gravity gdnative.Float) {
 	Args: [{ false distance_scale float}], Returns: void
 */
 func (o *Area) SetGravityDistanceScale(distanceScale gdnative.Float) {
-	log.Println("Calling Area.SetGravityDistanceScale()")
+	//log.Println("Calling Area.SetGravityDistanceScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -937,7 +925,7 @@ func (o *Area) SetGravityDistanceScale(distanceScale gdnative.Float) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Area) SetGravityIsPoint(enable gdnative.Bool) {
-	log.Println("Calling Area.SetGravityIsPoint()")
+	//log.Println("Calling Area.SetGravityIsPoint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -958,7 +946,7 @@ func (o *Area) SetGravityIsPoint(enable gdnative.Bool) {
 	Args: [{ false vector Vector3}], Returns: void
 */
 func (o *Area) SetGravityVector(vector gdnative.Vector3) {
-	log.Println("Calling Area.SetGravityVector()")
+	//log.Println("Calling Area.SetGravityVector()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -979,7 +967,7 @@ func (o *Area) SetGravityVector(vector gdnative.Vector3) {
 	Args: [{ false linear_damp float}], Returns: void
 */
 func (o *Area) SetLinearDamp(linearDamp gdnative.Float) {
-	log.Println("Calling Area.SetLinearDamp()")
+	//log.Println("Calling Area.SetLinearDamp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1000,7 +988,7 @@ func (o *Area) SetLinearDamp(linearDamp gdnative.Float) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Area) SetMonitorable(enable gdnative.Bool) {
-	log.Println("Calling Area.SetMonitorable()")
+	//log.Println("Calling Area.SetMonitorable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1021,7 +1009,7 @@ func (o *Area) SetMonitorable(enable gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Area) SetMonitoring(enable gdnative.Bool) {
-	log.Println("Calling Area.SetMonitoring()")
+	//log.Println("Calling Area.SetMonitoring()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1042,7 +1030,7 @@ func (o *Area) SetMonitoring(enable gdnative.Bool) {
 	Args: [{ false priority float}], Returns: void
 */
 func (o *Area) SetPriority(priority gdnative.Float) {
-	log.Println("Calling Area.SetPriority()")
+	//log.Println("Calling Area.SetPriority()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1063,7 +1051,7 @@ func (o *Area) SetPriority(priority gdnative.Float) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *Area) SetReverbAmount(amount gdnative.Float) {
-	log.Println("Calling Area.SetReverbAmount()")
+	//log.Println("Calling Area.SetReverbAmount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1084,7 +1072,7 @@ func (o *Area) SetReverbAmount(amount gdnative.Float) {
 	Args: [{ false name String}], Returns: void
 */
 func (o *Area) SetReverbBus(name gdnative.String) {
-	log.Println("Calling Area.SetReverbBus()")
+	//log.Println("Calling Area.SetReverbBus()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1105,7 +1093,7 @@ func (o *Area) SetReverbBus(name gdnative.String) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *Area) SetReverbUniformity(amount gdnative.Float) {
-	log.Println("Calling Area.SetReverbUniformity()")
+	//log.Println("Calling Area.SetReverbUniformity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1126,7 +1114,7 @@ func (o *Area) SetReverbUniformity(amount gdnative.Float) {
 	Args: [{ false enable int}], Returns: void
 */
 func (o *Area) SetSpaceOverrideMode(enable gdnative.Int) {
-	log.Println("Calling Area.SetSpaceOverrideMode()")
+	//log.Println("Calling Area.SetSpaceOverrideMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1147,7 +1135,7 @@ func (o *Area) SetSpaceOverrideMode(enable gdnative.Int) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Area) SetUseReverbBus(enable gdnative.Bool) {
-	log.Println("Calling Area.SetUseReverbBus()")
+	//log.Println("Calling Area.SetUseReverbBus()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

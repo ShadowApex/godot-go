@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VisualScriptVariableSet) BaseClass() string {
 	return "VisualScriptVariableSet"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptVariableSet) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptVariableSet) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: String
 */
 func (o *VisualScriptVariableSet) GetVariable() gdnative.String {
-	log.Println("Calling VisualScriptVariableSet.GetVariable()")
+	//log.Println("Calling VisualScriptVariableSet.GetVariable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VisualScriptVariableSet) GetVariable() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *VisualScriptVariableSet) GetVariable() gdnative.String {
 	Args: [{ false name String}], Returns: void
 */
 func (o *VisualScriptVariableSet) SetVariable(name gdnative.String) {
-	log.Println("Calling VisualScriptVariableSet.SetVariable()")
+	//log.Println("Calling VisualScriptVariableSet.SetVariable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

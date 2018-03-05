@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Physics2DShapeQueryResult) BaseClass() string {
 	return "Physics2DShapeQueryResult"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Physics2DShapeQueryResult) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Physics2DShapeQueryResult) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [], Returns: int
 */
 func (o *Physics2DShapeQueryResult) GetResultCount() gdnative.Int {
-	log.Println("Calling Physics2DShapeQueryResult.GetResultCount()")
+	//log.Println("Calling Physics2DShapeQueryResult.GetResultCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *Physics2DShapeQueryResult) GetResultCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *Physics2DShapeQueryResult) GetResultCount() gdnative.Int {
 	Args: [{ false idx int}], Returns: Object
 */
 func (o *Physics2DShapeQueryResult) GetResultObject(idx gdnative.Int) Object {
-	log.Println("Calling Physics2DShapeQueryResult.GetResultObject()")
+	//log.Println("Calling Physics2DShapeQueryResult.GetResultObject()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -91,7 +79,7 @@ func (o *Physics2DShapeQueryResult) GetResultObject(idx gdnative.Int) Object {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewObjectFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -100,7 +88,7 @@ func (o *Physics2DShapeQueryResult) GetResultObject(idx gdnative.Int) Object {
 	Args: [{ false idx int}], Returns: int
 */
 func (o *Physics2DShapeQueryResult) GetResultObjectId(idx gdnative.Int) gdnative.Int {
-	log.Println("Calling Physics2DShapeQueryResult.GetResultObjectId()")
+	//log.Println("Calling Physics2DShapeQueryResult.GetResultObjectId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -116,7 +104,7 @@ func (o *Physics2DShapeQueryResult) GetResultObjectId(idx gdnative.Int) gdnative
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -125,7 +113,7 @@ func (o *Physics2DShapeQueryResult) GetResultObjectId(idx gdnative.Int) gdnative
 	Args: [{ false idx int}], Returns: int
 */
 func (o *Physics2DShapeQueryResult) GetResultObjectShape(idx gdnative.Int) gdnative.Int {
-	log.Println("Calling Physics2DShapeQueryResult.GetResultObjectShape()")
+	//log.Println("Calling Physics2DShapeQueryResult.GetResultObjectShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -141,7 +129,7 @@ func (o *Physics2DShapeQueryResult) GetResultObjectShape(idx gdnative.Int) gdnat
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -150,7 +138,7 @@ func (o *Physics2DShapeQueryResult) GetResultObjectShape(idx gdnative.Int) gdnat
 	Args: [{ false idx int}], Returns: RID
 */
 func (o *Physics2DShapeQueryResult) GetResultRid(idx gdnative.Int) gdnative.Rid {
-	log.Println("Calling Physics2DShapeQueryResult.GetResultRid()")
+	//log.Println("Calling Physics2DShapeQueryResult.GetResultRid()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -166,6 +154,6 @@ func (o *Physics2DShapeQueryResult) GetResultRid(idx gdnative.Int) gdnative.Rid 
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

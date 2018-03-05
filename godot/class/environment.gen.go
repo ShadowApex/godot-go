@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Environment) BaseClass() string {
 	return "Environment"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Environment) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Environment) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *Environment) GetAdjustmentBrightness() gdnative.Float {
-	log.Println("Calling Environment.GetAdjustmentBrightness()")
+	//log.Println("Calling Environment.GetAdjustmentBrightness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *Environment) GetAdjustmentBrightness() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *Environment) GetAdjustmentBrightness() gdnative.Float {
 	Args: [], Returns: Texture
 */
 func (o *Environment) GetAdjustmentColorCorrection() Texture {
-	log.Println("Calling Environment.GetAdjustmentColorCorrection()")
+	//log.Println("Calling Environment.GetAdjustmentColorCorrection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *Environment) GetAdjustmentColorCorrection() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *Environment) GetAdjustmentColorCorrection() Texture {
 	Args: [], Returns: float
 */
 func (o *Environment) GetAdjustmentContrast() gdnative.Float {
-	log.Println("Calling Environment.GetAdjustmentContrast()")
+	//log.Println("Calling Environment.GetAdjustmentContrast()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *Environment) GetAdjustmentContrast() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *Environment) GetAdjustmentContrast() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetAdjustmentSaturation() gdnative.Float {
-	log.Println("Calling Environment.GetAdjustmentSaturation()")
+	//log.Println("Calling Environment.GetAdjustmentSaturation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *Environment) GetAdjustmentSaturation() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *Environment) GetAdjustmentSaturation() gdnative.Float {
 	Args: [], Returns: Color
 */
 func (o *Environment) GetAmbientLightColor() gdnative.Color {
-	log.Println("Calling Environment.GetAmbientLightColor()")
+	//log.Println("Calling Environment.GetAmbientLightColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *Environment) GetAmbientLightColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *Environment) GetAmbientLightColor() gdnative.Color {
 	Args: [], Returns: float
 */
 func (o *Environment) GetAmbientLightEnergy() gdnative.Float {
-	log.Println("Calling Environment.GetAmbientLightEnergy()")
+	//log.Println("Calling Environment.GetAmbientLightEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -186,7 +174,7 @@ func (o *Environment) GetAmbientLightEnergy() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -195,7 +183,7 @@ func (o *Environment) GetAmbientLightEnergy() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetAmbientLightSkyContribution() gdnative.Float {
-	log.Println("Calling Environment.GetAmbientLightSkyContribution()")
+	//log.Println("Calling Environment.GetAmbientLightSkyContribution()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -210,7 +198,7 @@ func (o *Environment) GetAmbientLightSkyContribution() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -224,7 +212,7 @@ func (o *Environment) GetAmbientLightSkyContribution() gdnative.Float {
 	Args: [], Returns: Color
 */
 func (o *Environment) GetBgColor() gdnative.Color {
-	log.Println("Calling Environment.GetBgColor()")
+	//log.Println("Calling Environment.GetBgColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -239,7 +227,7 @@ func (o *Environment) GetBgColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -248,7 +236,7 @@ func (o *Environment) GetBgColor() gdnative.Color {
 	Args: [], Returns: float
 */
 func (o *Environment) GetBgEnergy() gdnative.Float {
-	log.Println("Calling Environment.GetBgEnergy()")
+	//log.Println("Calling Environment.GetBgEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -263,7 +251,7 @@ func (o *Environment) GetBgEnergy() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -272,7 +260,7 @@ func (o *Environment) GetBgEnergy() gdnative.Float {
 	Args: [], Returns: int
 */
 func (o *Environment) GetCanvasMaxLayer() gdnative.Int {
-	log.Println("Calling Environment.GetCanvasMaxLayer()")
+	//log.Println("Calling Environment.GetCanvasMaxLayer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -287,7 +275,7 @@ func (o *Environment) GetCanvasMaxLayer() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -296,7 +284,7 @@ func (o *Environment) GetCanvasMaxLayer() gdnative.Int {
 	Args: [], Returns: float
 */
 func (o *Environment) GetDofBlurFarAmount() gdnative.Float {
-	log.Println("Calling Environment.GetDofBlurFarAmount()")
+	//log.Println("Calling Environment.GetDofBlurFarAmount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -311,7 +299,7 @@ func (o *Environment) GetDofBlurFarAmount() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -320,7 +308,7 @@ func (o *Environment) GetDofBlurFarAmount() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetDofBlurFarDistance() gdnative.Float {
-	log.Println("Calling Environment.GetDofBlurFarDistance()")
+	//log.Println("Calling Environment.GetDofBlurFarDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -335,7 +323,7 @@ func (o *Environment) GetDofBlurFarDistance() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -349,7 +337,7 @@ func (o *Environment) GetDofBlurFarDistance() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetDofBlurFarTransition() gdnative.Float {
-	log.Println("Calling Environment.GetDofBlurFarTransition()")
+	//log.Println("Calling Environment.GetDofBlurFarTransition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -364,7 +352,7 @@ func (o *Environment) GetDofBlurFarTransition() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -373,7 +361,7 @@ func (o *Environment) GetDofBlurFarTransition() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetDofBlurNearAmount() gdnative.Float {
-	log.Println("Calling Environment.GetDofBlurNearAmount()")
+	//log.Println("Calling Environment.GetDofBlurNearAmount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -388,7 +376,7 @@ func (o *Environment) GetDofBlurNearAmount() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -397,7 +385,7 @@ func (o *Environment) GetDofBlurNearAmount() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetDofBlurNearDistance() gdnative.Float {
-	log.Println("Calling Environment.GetDofBlurNearDistance()")
+	//log.Println("Calling Environment.GetDofBlurNearDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -412,7 +400,7 @@ func (o *Environment) GetDofBlurNearDistance() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -426,7 +414,7 @@ func (o *Environment) GetDofBlurNearDistance() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetDofBlurNearTransition() gdnative.Float {
-	log.Println("Calling Environment.GetDofBlurNearTransition()")
+	//log.Println("Calling Environment.GetDofBlurNearTransition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -441,7 +429,7 @@ func (o *Environment) GetDofBlurNearTransition() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -450,7 +438,7 @@ func (o *Environment) GetDofBlurNearTransition() gdnative.Float {
 	Args: [], Returns: Color
 */
 func (o *Environment) GetFogColor() gdnative.Color {
-	log.Println("Calling Environment.GetFogColor()")
+	//log.Println("Calling Environment.GetFogColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -465,7 +453,7 @@ func (o *Environment) GetFogColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -474,7 +462,7 @@ func (o *Environment) GetFogColor() gdnative.Color {
 	Args: [], Returns: float
 */
 func (o *Environment) GetFogDepthBegin() gdnative.Float {
-	log.Println("Calling Environment.GetFogDepthBegin()")
+	//log.Println("Calling Environment.GetFogDepthBegin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -489,7 +477,7 @@ func (o *Environment) GetFogDepthBegin() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -498,7 +486,7 @@ func (o *Environment) GetFogDepthBegin() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetFogDepthCurve() gdnative.Float {
-	log.Println("Calling Environment.GetFogDepthCurve()")
+	//log.Println("Calling Environment.GetFogDepthCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -513,7 +501,7 @@ func (o *Environment) GetFogDepthCurve() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -522,7 +510,7 @@ func (o *Environment) GetFogDepthCurve() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetFogHeightCurve() gdnative.Float {
-	log.Println("Calling Environment.GetFogHeightCurve()")
+	//log.Println("Calling Environment.GetFogHeightCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -537,7 +525,7 @@ func (o *Environment) GetFogHeightCurve() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -546,7 +534,7 @@ func (o *Environment) GetFogHeightCurve() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetFogHeightMax() gdnative.Float {
-	log.Println("Calling Environment.GetFogHeightMax()")
+	//log.Println("Calling Environment.GetFogHeightMax()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -561,7 +549,7 @@ func (o *Environment) GetFogHeightMax() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -570,7 +558,7 @@ func (o *Environment) GetFogHeightMax() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetFogHeightMin() gdnative.Float {
-	log.Println("Calling Environment.GetFogHeightMin()")
+	//log.Println("Calling Environment.GetFogHeightMin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -585,7 +573,7 @@ func (o *Environment) GetFogHeightMin() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -594,7 +582,7 @@ func (o *Environment) GetFogHeightMin() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetFogSunAmount() gdnative.Float {
-	log.Println("Calling Environment.GetFogSunAmount()")
+	//log.Println("Calling Environment.GetFogSunAmount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -609,7 +597,7 @@ func (o *Environment) GetFogSunAmount() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -618,7 +606,7 @@ func (o *Environment) GetFogSunAmount() gdnative.Float {
 	Args: [], Returns: Color
 */
 func (o *Environment) GetFogSunColor() gdnative.Color {
-	log.Println("Calling Environment.GetFogSunColor()")
+	//log.Println("Calling Environment.GetFogSunColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -633,7 +621,7 @@ func (o *Environment) GetFogSunColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -642,7 +630,7 @@ func (o *Environment) GetFogSunColor() gdnative.Color {
 	Args: [], Returns: float
 */
 func (o *Environment) GetFogTransmitCurve() gdnative.Float {
-	log.Println("Calling Environment.GetFogTransmitCurve()")
+	//log.Println("Calling Environment.GetFogTransmitCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -657,7 +645,7 @@ func (o *Environment) GetFogTransmitCurve() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -671,7 +659,7 @@ func (o *Environment) GetFogTransmitCurve() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetGlowBloom() gdnative.Float {
-	log.Println("Calling Environment.GetGlowBloom()")
+	//log.Println("Calling Environment.GetGlowBloom()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -686,7 +674,7 @@ func (o *Environment) GetGlowBloom() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -695,7 +683,7 @@ func (o *Environment) GetGlowBloom() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetGlowHdrBleedScale() gdnative.Float {
-	log.Println("Calling Environment.GetGlowHdrBleedScale()")
+	//log.Println("Calling Environment.GetGlowHdrBleedScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -710,7 +698,7 @@ func (o *Environment) GetGlowHdrBleedScale() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -719,7 +707,7 @@ func (o *Environment) GetGlowHdrBleedScale() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetGlowHdrBleedThreshold() gdnative.Float {
-	log.Println("Calling Environment.GetGlowHdrBleedThreshold()")
+	//log.Println("Calling Environment.GetGlowHdrBleedThreshold()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -734,7 +722,7 @@ func (o *Environment) GetGlowHdrBleedThreshold() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -743,7 +731,7 @@ func (o *Environment) GetGlowHdrBleedThreshold() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetGlowIntensity() gdnative.Float {
-	log.Println("Calling Environment.GetGlowIntensity()")
+	//log.Println("Calling Environment.GetGlowIntensity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -758,7 +746,7 @@ func (o *Environment) GetGlowIntensity() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -767,7 +755,7 @@ func (o *Environment) GetGlowIntensity() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetGlowStrength() gdnative.Float {
-	log.Println("Calling Environment.GetGlowStrength()")
+	//log.Println("Calling Environment.GetGlowStrength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -782,7 +770,7 @@ func (o *Environment) GetGlowStrength() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -791,7 +779,7 @@ func (o *Environment) GetGlowStrength() gdnative.Float {
 	Args: [], Returns: Sky
 */
 func (o *Environment) GetSky() Sky {
-	log.Println("Calling Environment.GetSky()")
+	//log.Println("Calling Environment.GetSky()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -806,7 +794,7 @@ func (o *Environment) GetSky() Sky {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewSkyFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -815,7 +803,7 @@ func (o *Environment) GetSky() Sky {
 	Args: [], Returns: float
 */
 func (o *Environment) GetSkyCustomFov() gdnative.Float {
-	log.Println("Calling Environment.GetSkyCustomFov()")
+	//log.Println("Calling Environment.GetSkyCustomFov()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -830,7 +818,7 @@ func (o *Environment) GetSkyCustomFov() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -839,7 +827,7 @@ func (o *Environment) GetSkyCustomFov() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetSsaoBias() gdnative.Float {
-	log.Println("Calling Environment.GetSsaoBias()")
+	//log.Println("Calling Environment.GetSsaoBias()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -854,7 +842,7 @@ func (o *Environment) GetSsaoBias() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -868,7 +856,7 @@ func (o *Environment) GetSsaoBias() gdnative.Float {
 	Args: [], Returns: Color
 */
 func (o *Environment) GetSsaoColor() gdnative.Color {
-	log.Println("Calling Environment.GetSsaoColor()")
+	//log.Println("Calling Environment.GetSsaoColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -883,7 +871,7 @@ func (o *Environment) GetSsaoColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -892,7 +880,7 @@ func (o *Environment) GetSsaoColor() gdnative.Color {
 	Args: [], Returns: float
 */
 func (o *Environment) GetSsaoDirectLightAffect() gdnative.Float {
-	log.Println("Calling Environment.GetSsaoDirectLightAffect()")
+	//log.Println("Calling Environment.GetSsaoDirectLightAffect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -907,7 +895,7 @@ func (o *Environment) GetSsaoDirectLightAffect() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -916,7 +904,7 @@ func (o *Environment) GetSsaoDirectLightAffect() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetSsaoEdgeSharpness() gdnative.Float {
-	log.Println("Calling Environment.GetSsaoEdgeSharpness()")
+	//log.Println("Calling Environment.GetSsaoEdgeSharpness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -931,7 +919,7 @@ func (o *Environment) GetSsaoEdgeSharpness() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -940,7 +928,7 @@ func (o *Environment) GetSsaoEdgeSharpness() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetSsaoIntensity() gdnative.Float {
-	log.Println("Calling Environment.GetSsaoIntensity()")
+	//log.Println("Calling Environment.GetSsaoIntensity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -955,7 +943,7 @@ func (o *Environment) GetSsaoIntensity() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -964,7 +952,7 @@ func (o *Environment) GetSsaoIntensity() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetSsaoIntensity2() gdnative.Float {
-	log.Println("Calling Environment.GetSsaoIntensity2()")
+	//log.Println("Calling Environment.GetSsaoIntensity2()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -979,7 +967,7 @@ func (o *Environment) GetSsaoIntensity2() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -993,7 +981,7 @@ func (o *Environment) GetSsaoIntensity2() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetSsaoRadius() gdnative.Float {
-	log.Println("Calling Environment.GetSsaoRadius()")
+	//log.Println("Calling Environment.GetSsaoRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1008,7 +996,7 @@ func (o *Environment) GetSsaoRadius() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1017,7 +1005,7 @@ func (o *Environment) GetSsaoRadius() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetSsaoRadius2() gdnative.Float {
-	log.Println("Calling Environment.GetSsaoRadius2()")
+	//log.Println("Calling Environment.GetSsaoRadius2()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1032,7 +1020,7 @@ func (o *Environment) GetSsaoRadius2() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1041,7 +1029,7 @@ func (o *Environment) GetSsaoRadius2() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetSsrDepthTolerance() gdnative.Float {
-	log.Println("Calling Environment.GetSsrDepthTolerance()")
+	//log.Println("Calling Environment.GetSsrDepthTolerance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1056,7 +1044,7 @@ func (o *Environment) GetSsrDepthTolerance() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1065,7 +1053,7 @@ func (o *Environment) GetSsrDepthTolerance() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetSsrFadeIn() gdnative.Float {
-	log.Println("Calling Environment.GetSsrFadeIn()")
+	//log.Println("Calling Environment.GetSsrFadeIn()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1080,7 +1068,7 @@ func (o *Environment) GetSsrFadeIn() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1089,7 +1077,7 @@ func (o *Environment) GetSsrFadeIn() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetSsrFadeOut() gdnative.Float {
-	log.Println("Calling Environment.GetSsrFadeOut()")
+	//log.Println("Calling Environment.GetSsrFadeOut()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1104,7 +1092,7 @@ func (o *Environment) GetSsrFadeOut() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1113,7 +1101,7 @@ func (o *Environment) GetSsrFadeOut() gdnative.Float {
 	Args: [], Returns: int
 */
 func (o *Environment) GetSsrMaxSteps() gdnative.Int {
-	log.Println("Calling Environment.GetSsrMaxSteps()")
+	//log.Println("Calling Environment.GetSsrMaxSteps()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1128,7 +1116,7 @@ func (o *Environment) GetSsrMaxSteps() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1137,7 +1125,7 @@ func (o *Environment) GetSsrMaxSteps() gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *Environment) GetTonemapAutoExposure() gdnative.Bool {
-	log.Println("Calling Environment.GetTonemapAutoExposure()")
+	//log.Println("Calling Environment.GetTonemapAutoExposure()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1152,7 +1140,7 @@ func (o *Environment) GetTonemapAutoExposure() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1161,7 +1149,7 @@ func (o *Environment) GetTonemapAutoExposure() gdnative.Bool {
 	Args: [], Returns: float
 */
 func (o *Environment) GetTonemapAutoExposureGrey() gdnative.Float {
-	log.Println("Calling Environment.GetTonemapAutoExposureGrey()")
+	//log.Println("Calling Environment.GetTonemapAutoExposureGrey()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1176,7 +1164,7 @@ func (o *Environment) GetTonemapAutoExposureGrey() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1185,7 +1173,7 @@ func (o *Environment) GetTonemapAutoExposureGrey() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetTonemapAutoExposureMax() gdnative.Float {
-	log.Println("Calling Environment.GetTonemapAutoExposureMax()")
+	//log.Println("Calling Environment.GetTonemapAutoExposureMax()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1200,7 +1188,7 @@ func (o *Environment) GetTonemapAutoExposureMax() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1209,7 +1197,7 @@ func (o *Environment) GetTonemapAutoExposureMax() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetTonemapAutoExposureMin() gdnative.Float {
-	log.Println("Calling Environment.GetTonemapAutoExposureMin()")
+	//log.Println("Calling Environment.GetTonemapAutoExposureMin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1224,7 +1212,7 @@ func (o *Environment) GetTonemapAutoExposureMin() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1233,7 +1221,7 @@ func (o *Environment) GetTonemapAutoExposureMin() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetTonemapAutoExposureSpeed() gdnative.Float {
-	log.Println("Calling Environment.GetTonemapAutoExposureSpeed()")
+	//log.Println("Calling Environment.GetTonemapAutoExposureSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1248,7 +1236,7 @@ func (o *Environment) GetTonemapAutoExposureSpeed() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1257,7 +1245,7 @@ func (o *Environment) GetTonemapAutoExposureSpeed() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetTonemapExposure() gdnative.Float {
-	log.Println("Calling Environment.GetTonemapExposure()")
+	//log.Println("Calling Environment.GetTonemapExposure()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1272,7 +1260,7 @@ func (o *Environment) GetTonemapExposure() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1281,7 +1269,7 @@ func (o *Environment) GetTonemapExposure() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Environment) GetTonemapWhite() gdnative.Float {
-	log.Println("Calling Environment.GetTonemapWhite()")
+	//log.Println("Calling Environment.GetTonemapWhite()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1296,7 +1284,7 @@ func (o *Environment) GetTonemapWhite() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1310,7 +1298,7 @@ func (o *Environment) GetTonemapWhite() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *Environment) IsAdjustmentEnabled() gdnative.Bool {
-	log.Println("Calling Environment.IsAdjustmentEnabled()")
+	//log.Println("Calling Environment.IsAdjustmentEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1325,7 +1313,7 @@ func (o *Environment) IsAdjustmentEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1334,7 +1322,7 @@ func (o *Environment) IsAdjustmentEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Environment) IsDofBlurFarEnabled() gdnative.Bool {
-	log.Println("Calling Environment.IsDofBlurFarEnabled()")
+	//log.Println("Calling Environment.IsDofBlurFarEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1349,7 +1337,7 @@ func (o *Environment) IsDofBlurFarEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1358,7 +1346,7 @@ func (o *Environment) IsDofBlurFarEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Environment) IsDofBlurNearEnabled() gdnative.Bool {
-	log.Println("Calling Environment.IsDofBlurNearEnabled()")
+	//log.Println("Calling Environment.IsDofBlurNearEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1373,7 +1361,7 @@ func (o *Environment) IsDofBlurNearEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1382,7 +1370,7 @@ func (o *Environment) IsDofBlurNearEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Environment) IsFogDepthEnabled() gdnative.Bool {
-	log.Println("Calling Environment.IsFogDepthEnabled()")
+	//log.Println("Calling Environment.IsFogDepthEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1397,7 +1385,7 @@ func (o *Environment) IsFogDepthEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1406,7 +1394,7 @@ func (o *Environment) IsFogDepthEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Environment) IsFogEnabled() gdnative.Bool {
-	log.Println("Calling Environment.IsFogEnabled()")
+	//log.Println("Calling Environment.IsFogEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1421,7 +1409,7 @@ func (o *Environment) IsFogEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1430,7 +1418,7 @@ func (o *Environment) IsFogEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Environment) IsFogHeightEnabled() gdnative.Bool {
-	log.Println("Calling Environment.IsFogHeightEnabled()")
+	//log.Println("Calling Environment.IsFogHeightEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1445,7 +1433,7 @@ func (o *Environment) IsFogHeightEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1454,7 +1442,7 @@ func (o *Environment) IsFogHeightEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Environment) IsFogTransmitEnabled() gdnative.Bool {
-	log.Println("Calling Environment.IsFogTransmitEnabled()")
+	//log.Println("Calling Environment.IsFogTransmitEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1469,7 +1457,7 @@ func (o *Environment) IsFogTransmitEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1478,7 +1466,7 @@ func (o *Environment) IsFogTransmitEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Environment) IsGlowBicubicUpscaleEnabled() gdnative.Bool {
-	log.Println("Calling Environment.IsGlowBicubicUpscaleEnabled()")
+	//log.Println("Calling Environment.IsGlowBicubicUpscaleEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1493,7 +1481,7 @@ func (o *Environment) IsGlowBicubicUpscaleEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1502,7 +1490,7 @@ func (o *Environment) IsGlowBicubicUpscaleEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Environment) IsGlowEnabled() gdnative.Bool {
-	log.Println("Calling Environment.IsGlowEnabled()")
+	//log.Println("Calling Environment.IsGlowEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1517,7 +1505,7 @@ func (o *Environment) IsGlowEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1526,7 +1514,7 @@ func (o *Environment) IsGlowEnabled() gdnative.Bool {
 	Args: [{ false idx int}], Returns: bool
 */
 func (o *Environment) IsGlowLevelEnabled(idx gdnative.Int) gdnative.Bool {
-	log.Println("Calling Environment.IsGlowLevelEnabled()")
+	//log.Println("Calling Environment.IsGlowLevelEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1542,7 +1530,7 @@ func (o *Environment) IsGlowLevelEnabled(idx gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1551,7 +1539,7 @@ func (o *Environment) IsGlowLevelEnabled(idx gdnative.Int) gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Environment) IsSsaoEnabled() gdnative.Bool {
-	log.Println("Calling Environment.IsSsaoEnabled()")
+	//log.Println("Calling Environment.IsSsaoEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1566,7 +1554,7 @@ func (o *Environment) IsSsaoEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1575,7 +1563,7 @@ func (o *Environment) IsSsaoEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Environment) IsSsrEnabled() gdnative.Bool {
-	log.Println("Calling Environment.IsSsrEnabled()")
+	//log.Println("Calling Environment.IsSsrEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1590,7 +1578,7 @@ func (o *Environment) IsSsrEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1599,7 +1587,7 @@ func (o *Environment) IsSsrEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Environment) IsSsrRough() gdnative.Bool {
-	log.Println("Calling Environment.IsSsrRough()")
+	//log.Println("Calling Environment.IsSsrRough()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -1614,7 +1602,7 @@ func (o *Environment) IsSsrRough() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -1623,7 +1611,7 @@ func (o *Environment) IsSsrRough() gdnative.Bool {
 	Args: [{ false brightness float}], Returns: void
 */
 func (o *Environment) SetAdjustmentBrightness(brightness gdnative.Float) {
-	log.Println("Calling Environment.SetAdjustmentBrightness()")
+	//log.Println("Calling Environment.SetAdjustmentBrightness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1644,7 +1632,7 @@ func (o *Environment) SetAdjustmentBrightness(brightness gdnative.Float) {
 	Args: [{ false color_correction Texture}], Returns: void
 */
 func (o *Environment) SetAdjustmentColorCorrection(colorCorrection Texture) {
-	log.Println("Calling Environment.SetAdjustmentColorCorrection()")
+	//log.Println("Calling Environment.SetAdjustmentColorCorrection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1665,7 +1653,7 @@ func (o *Environment) SetAdjustmentColorCorrection(colorCorrection Texture) {
 	Args: [{ false contrast float}], Returns: void
 */
 func (o *Environment) SetAdjustmentContrast(contrast gdnative.Float) {
-	log.Println("Calling Environment.SetAdjustmentContrast()")
+	//log.Println("Calling Environment.SetAdjustmentContrast()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1686,7 +1674,7 @@ func (o *Environment) SetAdjustmentContrast(contrast gdnative.Float) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Environment) SetAdjustmentEnable(enabled gdnative.Bool) {
-	log.Println("Calling Environment.SetAdjustmentEnable()")
+	//log.Println("Calling Environment.SetAdjustmentEnable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1707,7 +1695,7 @@ func (o *Environment) SetAdjustmentEnable(enabled gdnative.Bool) {
 	Args: [{ false saturation float}], Returns: void
 */
 func (o *Environment) SetAdjustmentSaturation(saturation gdnative.Float) {
-	log.Println("Calling Environment.SetAdjustmentSaturation()")
+	//log.Println("Calling Environment.SetAdjustmentSaturation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1728,7 +1716,7 @@ func (o *Environment) SetAdjustmentSaturation(saturation gdnative.Float) {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *Environment) SetAmbientLightColor(color gdnative.Color) {
-	log.Println("Calling Environment.SetAmbientLightColor()")
+	//log.Println("Calling Environment.SetAmbientLightColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1749,7 +1737,7 @@ func (o *Environment) SetAmbientLightColor(color gdnative.Color) {
 	Args: [{ false energy float}], Returns: void
 */
 func (o *Environment) SetAmbientLightEnergy(energy gdnative.Float) {
-	log.Println("Calling Environment.SetAmbientLightEnergy()")
+	//log.Println("Calling Environment.SetAmbientLightEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1770,7 +1758,7 @@ func (o *Environment) SetAmbientLightEnergy(energy gdnative.Float) {
 	Args: [{ false energy float}], Returns: void
 */
 func (o *Environment) SetAmbientLightSkyContribution(energy gdnative.Float) {
-	log.Println("Calling Environment.SetAmbientLightSkyContribution()")
+	//log.Println("Calling Environment.SetAmbientLightSkyContribution()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1791,7 +1779,7 @@ func (o *Environment) SetAmbientLightSkyContribution(energy gdnative.Float) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *Environment) SetBackground(mode gdnative.Int) {
-	log.Println("Calling Environment.SetBackground()")
+	//log.Println("Calling Environment.SetBackground()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1812,7 +1800,7 @@ func (o *Environment) SetBackground(mode gdnative.Int) {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *Environment) SetBgColor(color gdnative.Color) {
-	log.Println("Calling Environment.SetBgColor()")
+	//log.Println("Calling Environment.SetBgColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1833,7 +1821,7 @@ func (o *Environment) SetBgColor(color gdnative.Color) {
 	Args: [{ false energy float}], Returns: void
 */
 func (o *Environment) SetBgEnergy(energy gdnative.Float) {
-	log.Println("Calling Environment.SetBgEnergy()")
+	//log.Println("Calling Environment.SetBgEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1854,7 +1842,7 @@ func (o *Environment) SetBgEnergy(energy gdnative.Float) {
 	Args: [{ false layer int}], Returns: void
 */
 func (o *Environment) SetCanvasMaxLayer(layer gdnative.Int) {
-	log.Println("Calling Environment.SetCanvasMaxLayer()")
+	//log.Println("Calling Environment.SetCanvasMaxLayer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1875,7 +1863,7 @@ func (o *Environment) SetCanvasMaxLayer(layer gdnative.Int) {
 	Args: [{ false intensity float}], Returns: void
 */
 func (o *Environment) SetDofBlurFarAmount(intensity gdnative.Float) {
-	log.Println("Calling Environment.SetDofBlurFarAmount()")
+	//log.Println("Calling Environment.SetDofBlurFarAmount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1896,7 +1884,7 @@ func (o *Environment) SetDofBlurFarAmount(intensity gdnative.Float) {
 	Args: [{ false intensity float}], Returns: void
 */
 func (o *Environment) SetDofBlurFarDistance(intensity gdnative.Float) {
-	log.Println("Calling Environment.SetDofBlurFarDistance()")
+	//log.Println("Calling Environment.SetDofBlurFarDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1917,7 +1905,7 @@ func (o *Environment) SetDofBlurFarDistance(intensity gdnative.Float) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Environment) SetDofBlurFarEnabled(enabled gdnative.Bool) {
-	log.Println("Calling Environment.SetDofBlurFarEnabled()")
+	//log.Println("Calling Environment.SetDofBlurFarEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1938,7 +1926,7 @@ func (o *Environment) SetDofBlurFarEnabled(enabled gdnative.Bool) {
 	Args: [{ false intensity int}], Returns: void
 */
 func (o *Environment) SetDofBlurFarQuality(intensity gdnative.Int) {
-	log.Println("Calling Environment.SetDofBlurFarQuality()")
+	//log.Println("Calling Environment.SetDofBlurFarQuality()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1959,7 +1947,7 @@ func (o *Environment) SetDofBlurFarQuality(intensity gdnative.Int) {
 	Args: [{ false intensity float}], Returns: void
 */
 func (o *Environment) SetDofBlurFarTransition(intensity gdnative.Float) {
-	log.Println("Calling Environment.SetDofBlurFarTransition()")
+	//log.Println("Calling Environment.SetDofBlurFarTransition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -1980,7 +1968,7 @@ func (o *Environment) SetDofBlurFarTransition(intensity gdnative.Float) {
 	Args: [{ false intensity float}], Returns: void
 */
 func (o *Environment) SetDofBlurNearAmount(intensity gdnative.Float) {
-	log.Println("Calling Environment.SetDofBlurNearAmount()")
+	//log.Println("Calling Environment.SetDofBlurNearAmount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2001,7 +1989,7 @@ func (o *Environment) SetDofBlurNearAmount(intensity gdnative.Float) {
 	Args: [{ false intensity float}], Returns: void
 */
 func (o *Environment) SetDofBlurNearDistance(intensity gdnative.Float) {
-	log.Println("Calling Environment.SetDofBlurNearDistance()")
+	//log.Println("Calling Environment.SetDofBlurNearDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2022,7 +2010,7 @@ func (o *Environment) SetDofBlurNearDistance(intensity gdnative.Float) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Environment) SetDofBlurNearEnabled(enabled gdnative.Bool) {
-	log.Println("Calling Environment.SetDofBlurNearEnabled()")
+	//log.Println("Calling Environment.SetDofBlurNearEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2043,7 +2031,7 @@ func (o *Environment) SetDofBlurNearEnabled(enabled gdnative.Bool) {
 	Args: [{ false level int}], Returns: void
 */
 func (o *Environment) SetDofBlurNearQuality(level gdnative.Int) {
-	log.Println("Calling Environment.SetDofBlurNearQuality()")
+	//log.Println("Calling Environment.SetDofBlurNearQuality()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2064,7 +2052,7 @@ func (o *Environment) SetDofBlurNearQuality(level gdnative.Int) {
 	Args: [{ false intensity float}], Returns: void
 */
 func (o *Environment) SetDofBlurNearTransition(intensity gdnative.Float) {
-	log.Println("Calling Environment.SetDofBlurNearTransition()")
+	//log.Println("Calling Environment.SetDofBlurNearTransition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2085,7 +2073,7 @@ func (o *Environment) SetDofBlurNearTransition(intensity gdnative.Float) {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *Environment) SetFogColor(color gdnative.Color) {
-	log.Println("Calling Environment.SetFogColor()")
+	//log.Println("Calling Environment.SetFogColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2106,7 +2094,7 @@ func (o *Environment) SetFogColor(color gdnative.Color) {
 	Args: [{ false distance float}], Returns: void
 */
 func (o *Environment) SetFogDepthBegin(distance gdnative.Float) {
-	log.Println("Calling Environment.SetFogDepthBegin()")
+	//log.Println("Calling Environment.SetFogDepthBegin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2127,7 +2115,7 @@ func (o *Environment) SetFogDepthBegin(distance gdnative.Float) {
 	Args: [{ false curve float}], Returns: void
 */
 func (o *Environment) SetFogDepthCurve(curve gdnative.Float) {
-	log.Println("Calling Environment.SetFogDepthCurve()")
+	//log.Println("Calling Environment.SetFogDepthCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2148,7 +2136,7 @@ func (o *Environment) SetFogDepthCurve(curve gdnative.Float) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Environment) SetFogDepthEnabled(enabled gdnative.Bool) {
-	log.Println("Calling Environment.SetFogDepthEnabled()")
+	//log.Println("Calling Environment.SetFogDepthEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2169,7 +2157,7 @@ func (o *Environment) SetFogDepthEnabled(enabled gdnative.Bool) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Environment) SetFogEnabled(enabled gdnative.Bool) {
-	log.Println("Calling Environment.SetFogEnabled()")
+	//log.Println("Calling Environment.SetFogEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2190,7 +2178,7 @@ func (o *Environment) SetFogEnabled(enabled gdnative.Bool) {
 	Args: [{ false curve float}], Returns: void
 */
 func (o *Environment) SetFogHeightCurve(curve gdnative.Float) {
-	log.Println("Calling Environment.SetFogHeightCurve()")
+	//log.Println("Calling Environment.SetFogHeightCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2211,7 +2199,7 @@ func (o *Environment) SetFogHeightCurve(curve gdnative.Float) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Environment) SetFogHeightEnabled(enabled gdnative.Bool) {
-	log.Println("Calling Environment.SetFogHeightEnabled()")
+	//log.Println("Calling Environment.SetFogHeightEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2232,7 +2220,7 @@ func (o *Environment) SetFogHeightEnabled(enabled gdnative.Bool) {
 	Args: [{ false height float}], Returns: void
 */
 func (o *Environment) SetFogHeightMax(height gdnative.Float) {
-	log.Println("Calling Environment.SetFogHeightMax()")
+	//log.Println("Calling Environment.SetFogHeightMax()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2253,7 +2241,7 @@ func (o *Environment) SetFogHeightMax(height gdnative.Float) {
 	Args: [{ false height float}], Returns: void
 */
 func (o *Environment) SetFogHeightMin(height gdnative.Float) {
-	log.Println("Calling Environment.SetFogHeightMin()")
+	//log.Println("Calling Environment.SetFogHeightMin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2274,7 +2262,7 @@ func (o *Environment) SetFogHeightMin(height gdnative.Float) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *Environment) SetFogSunAmount(amount gdnative.Float) {
-	log.Println("Calling Environment.SetFogSunAmount()")
+	//log.Println("Calling Environment.SetFogSunAmount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2295,7 +2283,7 @@ func (o *Environment) SetFogSunAmount(amount gdnative.Float) {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *Environment) SetFogSunColor(color gdnative.Color) {
-	log.Println("Calling Environment.SetFogSunColor()")
+	//log.Println("Calling Environment.SetFogSunColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2316,7 +2304,7 @@ func (o *Environment) SetFogSunColor(color gdnative.Color) {
 	Args: [{ false curve float}], Returns: void
 */
 func (o *Environment) SetFogTransmitCurve(curve gdnative.Float) {
-	log.Println("Calling Environment.SetFogTransmitCurve()")
+	//log.Println("Calling Environment.SetFogTransmitCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2337,7 +2325,7 @@ func (o *Environment) SetFogTransmitCurve(curve gdnative.Float) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Environment) SetFogTransmitEnabled(enabled gdnative.Bool) {
-	log.Println("Calling Environment.SetFogTransmitEnabled()")
+	//log.Println("Calling Environment.SetFogTransmitEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2358,7 +2346,7 @@ func (o *Environment) SetFogTransmitEnabled(enabled gdnative.Bool) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Environment) SetGlowBicubicUpscale(enabled gdnative.Bool) {
-	log.Println("Calling Environment.SetGlowBicubicUpscale()")
+	//log.Println("Calling Environment.SetGlowBicubicUpscale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2379,7 +2367,7 @@ func (o *Environment) SetGlowBicubicUpscale(enabled gdnative.Bool) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *Environment) SetGlowBlendMode(mode gdnative.Int) {
-	log.Println("Calling Environment.SetGlowBlendMode()")
+	//log.Println("Calling Environment.SetGlowBlendMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2400,7 +2388,7 @@ func (o *Environment) SetGlowBlendMode(mode gdnative.Int) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *Environment) SetGlowBloom(amount gdnative.Float) {
-	log.Println("Calling Environment.SetGlowBloom()")
+	//log.Println("Calling Environment.SetGlowBloom()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2421,7 +2409,7 @@ func (o *Environment) SetGlowBloom(amount gdnative.Float) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Environment) SetGlowEnabled(enabled gdnative.Bool) {
-	log.Println("Calling Environment.SetGlowEnabled()")
+	//log.Println("Calling Environment.SetGlowEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2442,7 +2430,7 @@ func (o *Environment) SetGlowEnabled(enabled gdnative.Bool) {
 	Args: [{ false scale float}], Returns: void
 */
 func (o *Environment) SetGlowHdrBleedScale(scale gdnative.Float) {
-	log.Println("Calling Environment.SetGlowHdrBleedScale()")
+	//log.Println("Calling Environment.SetGlowHdrBleedScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2463,7 +2451,7 @@ func (o *Environment) SetGlowHdrBleedScale(scale gdnative.Float) {
 	Args: [{ false threshold float}], Returns: void
 */
 func (o *Environment) SetGlowHdrBleedThreshold(threshold gdnative.Float) {
-	log.Println("Calling Environment.SetGlowHdrBleedThreshold()")
+	//log.Println("Calling Environment.SetGlowHdrBleedThreshold()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2484,7 +2472,7 @@ func (o *Environment) SetGlowHdrBleedThreshold(threshold gdnative.Float) {
 	Args: [{ false intensity float}], Returns: void
 */
 func (o *Environment) SetGlowIntensity(intensity gdnative.Float) {
-	log.Println("Calling Environment.SetGlowIntensity()")
+	//log.Println("Calling Environment.SetGlowIntensity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2505,7 +2493,7 @@ func (o *Environment) SetGlowIntensity(intensity gdnative.Float) {
 	Args: [{ false idx int} { false enabled bool}], Returns: void
 */
 func (o *Environment) SetGlowLevel(idx gdnative.Int, enabled gdnative.Bool) {
-	log.Println("Calling Environment.SetGlowLevel()")
+	//log.Println("Calling Environment.SetGlowLevel()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -2527,7 +2515,7 @@ func (o *Environment) SetGlowLevel(idx gdnative.Int, enabled gdnative.Bool) {
 	Args: [{ false strength float}], Returns: void
 */
 func (o *Environment) SetGlowStrength(strength gdnative.Float) {
-	log.Println("Calling Environment.SetGlowStrength()")
+	//log.Println("Calling Environment.SetGlowStrength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2548,7 +2536,7 @@ func (o *Environment) SetGlowStrength(strength gdnative.Float) {
 	Args: [{ false sky Sky}], Returns: void
 */
 func (o *Environment) SetSky(sky Sky) {
-	log.Println("Calling Environment.SetSky()")
+	//log.Println("Calling Environment.SetSky()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2569,7 +2557,7 @@ func (o *Environment) SetSky(sky Sky) {
 	Args: [{ false scale float}], Returns: void
 */
 func (o *Environment) SetSkyCustomFov(scale gdnative.Float) {
-	log.Println("Calling Environment.SetSkyCustomFov()")
+	//log.Println("Calling Environment.SetSkyCustomFov()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2590,7 +2578,7 @@ func (o *Environment) SetSkyCustomFov(scale gdnative.Float) {
 	Args: [{ false bias float}], Returns: void
 */
 func (o *Environment) SetSsaoBias(bias gdnative.Float) {
-	log.Println("Calling Environment.SetSsaoBias()")
+	//log.Println("Calling Environment.SetSsaoBias()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2611,7 +2599,7 @@ func (o *Environment) SetSsaoBias(bias gdnative.Float) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *Environment) SetSsaoBlur(mode gdnative.Int) {
-	log.Println("Calling Environment.SetSsaoBlur()")
+	//log.Println("Calling Environment.SetSsaoBlur()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2632,7 +2620,7 @@ func (o *Environment) SetSsaoBlur(mode gdnative.Int) {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *Environment) SetSsaoColor(color gdnative.Color) {
-	log.Println("Calling Environment.SetSsaoColor()")
+	//log.Println("Calling Environment.SetSsaoColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2653,7 +2641,7 @@ func (o *Environment) SetSsaoColor(color gdnative.Color) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *Environment) SetSsaoDirectLightAffect(amount gdnative.Float) {
-	log.Println("Calling Environment.SetSsaoDirectLightAffect()")
+	//log.Println("Calling Environment.SetSsaoDirectLightAffect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2674,7 +2662,7 @@ func (o *Environment) SetSsaoDirectLightAffect(amount gdnative.Float) {
 	Args: [{ false edge_sharpness float}], Returns: void
 */
 func (o *Environment) SetSsaoEdgeSharpness(edgeSharpness gdnative.Float) {
-	log.Println("Calling Environment.SetSsaoEdgeSharpness()")
+	//log.Println("Calling Environment.SetSsaoEdgeSharpness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2695,7 +2683,7 @@ func (o *Environment) SetSsaoEdgeSharpness(edgeSharpness gdnative.Float) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Environment) SetSsaoEnabled(enabled gdnative.Bool) {
-	log.Println("Calling Environment.SetSsaoEnabled()")
+	//log.Println("Calling Environment.SetSsaoEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2716,7 +2704,7 @@ func (o *Environment) SetSsaoEnabled(enabled gdnative.Bool) {
 	Args: [{ false intensity float}], Returns: void
 */
 func (o *Environment) SetSsaoIntensity(intensity gdnative.Float) {
-	log.Println("Calling Environment.SetSsaoIntensity()")
+	//log.Println("Calling Environment.SetSsaoIntensity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2737,7 +2725,7 @@ func (o *Environment) SetSsaoIntensity(intensity gdnative.Float) {
 	Args: [{ false intensity float}], Returns: void
 */
 func (o *Environment) SetSsaoIntensity2(intensity gdnative.Float) {
-	log.Println("Calling Environment.SetSsaoIntensity2()")
+	//log.Println("Calling Environment.SetSsaoIntensity2()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2758,7 +2746,7 @@ func (o *Environment) SetSsaoIntensity2(intensity gdnative.Float) {
 	Args: [{ false quality int}], Returns: void
 */
 func (o *Environment) SetSsaoQuality(quality gdnative.Int) {
-	log.Println("Calling Environment.SetSsaoQuality()")
+	//log.Println("Calling Environment.SetSsaoQuality()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2779,7 +2767,7 @@ func (o *Environment) SetSsaoQuality(quality gdnative.Int) {
 	Args: [{ false radius float}], Returns: void
 */
 func (o *Environment) SetSsaoRadius(radius gdnative.Float) {
-	log.Println("Calling Environment.SetSsaoRadius()")
+	//log.Println("Calling Environment.SetSsaoRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2800,7 +2788,7 @@ func (o *Environment) SetSsaoRadius(radius gdnative.Float) {
 	Args: [{ false radius float}], Returns: void
 */
 func (o *Environment) SetSsaoRadius2(radius gdnative.Float) {
-	log.Println("Calling Environment.SetSsaoRadius2()")
+	//log.Println("Calling Environment.SetSsaoRadius2()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2821,7 +2809,7 @@ func (o *Environment) SetSsaoRadius2(radius gdnative.Float) {
 	Args: [{ false depth_tolerance float}], Returns: void
 */
 func (o *Environment) SetSsrDepthTolerance(depthTolerance gdnative.Float) {
-	log.Println("Calling Environment.SetSsrDepthTolerance()")
+	//log.Println("Calling Environment.SetSsrDepthTolerance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2842,7 +2830,7 @@ func (o *Environment) SetSsrDepthTolerance(depthTolerance gdnative.Float) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Environment) SetSsrEnabled(enabled gdnative.Bool) {
-	log.Println("Calling Environment.SetSsrEnabled()")
+	//log.Println("Calling Environment.SetSsrEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2863,7 +2851,7 @@ func (o *Environment) SetSsrEnabled(enabled gdnative.Bool) {
 	Args: [{ false fade_in float}], Returns: void
 */
 func (o *Environment) SetSsrFadeIn(fadeIn gdnative.Float) {
-	log.Println("Calling Environment.SetSsrFadeIn()")
+	//log.Println("Calling Environment.SetSsrFadeIn()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2884,7 +2872,7 @@ func (o *Environment) SetSsrFadeIn(fadeIn gdnative.Float) {
 	Args: [{ false fade_out float}], Returns: void
 */
 func (o *Environment) SetSsrFadeOut(fadeOut gdnative.Float) {
-	log.Println("Calling Environment.SetSsrFadeOut()")
+	//log.Println("Calling Environment.SetSsrFadeOut()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2905,7 +2893,7 @@ func (o *Environment) SetSsrFadeOut(fadeOut gdnative.Float) {
 	Args: [{ false max_steps int}], Returns: void
 */
 func (o *Environment) SetSsrMaxSteps(maxSteps gdnative.Int) {
-	log.Println("Calling Environment.SetSsrMaxSteps()")
+	//log.Println("Calling Environment.SetSsrMaxSteps()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2926,7 +2914,7 @@ func (o *Environment) SetSsrMaxSteps(maxSteps gdnative.Int) {
 	Args: [{ false rough bool}], Returns: void
 */
 func (o *Environment) SetSsrRough(rough gdnative.Bool) {
-	log.Println("Calling Environment.SetSsrRough()")
+	//log.Println("Calling Environment.SetSsrRough()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2947,7 +2935,7 @@ func (o *Environment) SetSsrRough(rough gdnative.Bool) {
 	Args: [{ false auto_exposure bool}], Returns: void
 */
 func (o *Environment) SetTonemapAutoExposure(autoExposure gdnative.Bool) {
-	log.Println("Calling Environment.SetTonemapAutoExposure()")
+	//log.Println("Calling Environment.SetTonemapAutoExposure()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2968,7 +2956,7 @@ func (o *Environment) SetTonemapAutoExposure(autoExposure gdnative.Bool) {
 	Args: [{ false exposure_grey float}], Returns: void
 */
 func (o *Environment) SetTonemapAutoExposureGrey(exposureGrey gdnative.Float) {
-	log.Println("Calling Environment.SetTonemapAutoExposureGrey()")
+	//log.Println("Calling Environment.SetTonemapAutoExposureGrey()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -2989,7 +2977,7 @@ func (o *Environment) SetTonemapAutoExposureGrey(exposureGrey gdnative.Float) {
 	Args: [{ false exposure_max float}], Returns: void
 */
 func (o *Environment) SetTonemapAutoExposureMax(exposureMax gdnative.Float) {
-	log.Println("Calling Environment.SetTonemapAutoExposureMax()")
+	//log.Println("Calling Environment.SetTonemapAutoExposureMax()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -3010,7 +2998,7 @@ func (o *Environment) SetTonemapAutoExposureMax(exposureMax gdnative.Float) {
 	Args: [{ false exposure_min float}], Returns: void
 */
 func (o *Environment) SetTonemapAutoExposureMin(exposureMin gdnative.Float) {
-	log.Println("Calling Environment.SetTonemapAutoExposureMin()")
+	//log.Println("Calling Environment.SetTonemapAutoExposureMin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -3031,7 +3019,7 @@ func (o *Environment) SetTonemapAutoExposureMin(exposureMin gdnative.Float) {
 	Args: [{ false exposure_speed float}], Returns: void
 */
 func (o *Environment) SetTonemapAutoExposureSpeed(exposureSpeed gdnative.Float) {
-	log.Println("Calling Environment.SetTonemapAutoExposureSpeed()")
+	//log.Println("Calling Environment.SetTonemapAutoExposureSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -3052,7 +3040,7 @@ func (o *Environment) SetTonemapAutoExposureSpeed(exposureSpeed gdnative.Float) 
 	Args: [{ false exposure float}], Returns: void
 */
 func (o *Environment) SetTonemapExposure(exposure gdnative.Float) {
-	log.Println("Calling Environment.SetTonemapExposure()")
+	//log.Println("Calling Environment.SetTonemapExposure()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -3073,7 +3061,7 @@ func (o *Environment) SetTonemapExposure(exposure gdnative.Float) {
 	Args: [{ false white float}], Returns: void
 */
 func (o *Environment) SetTonemapWhite(white gdnative.Float) {
-	log.Println("Calling Environment.SetTonemapWhite()")
+	//log.Println("Calling Environment.SetTonemapWhite()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -3094,7 +3082,7 @@ func (o *Environment) SetTonemapWhite(white gdnative.Float) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *Environment) SetTonemapper(mode gdnative.Int) {
-	log.Println("Calling Environment.SetTonemapper()")
+	//log.Println("Calling Environment.SetTonemapper()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

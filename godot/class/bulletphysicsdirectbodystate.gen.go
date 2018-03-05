@@ -33,13 +33,3 @@ type BulletPhysicsDirectBodyState struct {
 func (o *BulletPhysicsDirectBodyState) BaseClass() string {
 	return "BulletPhysicsDirectBodyState"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *BulletPhysicsDirectBodyState) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *BulletPhysicsDirectBodyState) GetBaseObject() gdnative.Object {
-	return o.owner
-}

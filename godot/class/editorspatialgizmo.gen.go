@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *EditorSpatialGizmo) BaseClass() string {
 	return "EditorSpatialGizmo"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *EditorSpatialGizmo) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *EditorSpatialGizmo) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [{ false segments PoolVector3Array}], Returns: void
 */
 func (o *EditorSpatialGizmo) AddCollisionSegments(segments gdnative.PoolVector3Array) {
-	log.Println("Calling EditorSpatialGizmo.AddCollisionSegments()")
+	//log.Println("Calling EditorSpatialGizmo.AddCollisionSegments()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *EditorSpatialGizmo) AddCollisionSegments(segments gdnative.PoolVector3A
 	Args: [{ false triangles TriangleMesh} { false bounds AABB}], Returns: void
 */
 func (o *EditorSpatialGizmo) AddCollisionTriangles(triangles TriangleMesh, bounds gdnative.Aabb) {
-	log.Println("Calling EditorSpatialGizmo.AddCollisionTriangles()")
+	//log.Println("Calling EditorSpatialGizmo.AddCollisionTriangles()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -94,7 +82,7 @@ func (o *EditorSpatialGizmo) AddCollisionTriangles(triangles TriangleMesh, bound
 	Args: [{ false handles PoolVector3Array} {False true billboard bool} {False true secondary bool}], Returns: void
 */
 func (o *EditorSpatialGizmo) AddHandles(handles gdnative.PoolVector3Array, billboard gdnative.Bool, secondary gdnative.Bool) {
-	log.Println("Calling EditorSpatialGizmo.AddHandles()")
+	//log.Println("Calling EditorSpatialGizmo.AddHandles()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -117,7 +105,7 @@ func (o *EditorSpatialGizmo) AddHandles(handles gdnative.PoolVector3Array, billb
 	Args: [{ false lines PoolVector3Array} { false material Material} {False true billboard bool}], Returns: void
 */
 func (o *EditorSpatialGizmo) AddLines(lines gdnative.PoolVector3Array, material Material, billboard gdnative.Bool) {
-	log.Println("Calling EditorSpatialGizmo.AddLines()")
+	//log.Println("Calling EditorSpatialGizmo.AddLines()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -140,7 +128,7 @@ func (o *EditorSpatialGizmo) AddLines(lines gdnative.PoolVector3Array, material 
 	Args: [{ false mesh ArrayMesh} {False true billboard bool} {[RID] true skeleton RID}], Returns: void
 */
 func (o *EditorSpatialGizmo) AddMesh(mesh ArrayMesh, billboard gdnative.Bool, skeleton gdnative.Rid) {
-	log.Println("Calling EditorSpatialGizmo.AddMesh()")
+	//log.Println("Calling EditorSpatialGizmo.AddMesh()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -163,7 +151,7 @@ func (o *EditorSpatialGizmo) AddMesh(mesh ArrayMesh, billboard gdnative.Bool, sk
 	Args: [{ false material Material} {1 true default_scale float}], Returns: void
 */
 func (o *EditorSpatialGizmo) AddUnscaledBillboard(material Material, defaultScale gdnative.Float) {
-	log.Println("Calling EditorSpatialGizmo.AddUnscaledBillboard()")
+	//log.Println("Calling EditorSpatialGizmo.AddUnscaledBillboard()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -185,7 +173,7 @@ func (o *EditorSpatialGizmo) AddUnscaledBillboard(material Material, defaultScal
 	Args: [], Returns: void
 */
 func (o *EditorSpatialGizmo) Clear() {
-	log.Println("Calling EditorSpatialGizmo.Clear()")
+	//log.Println("Calling EditorSpatialGizmo.Clear()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -205,7 +193,7 @@ func (o *EditorSpatialGizmo) Clear() {
 	Args: [{ false index int} { false restore Variant} { false cancel bool}], Returns: void
 */
 func (o *EditorSpatialGizmo) CommitHandle(index gdnative.Int, restore gdnative.Variant, cancel gdnative.Bool) {
-	log.Println("Calling EditorSpatialGizmo.CommitHandle()")
+	//log.Println("Calling EditorSpatialGizmo.CommitHandle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -228,7 +216,7 @@ func (o *EditorSpatialGizmo) CommitHandle(index gdnative.Int, restore gdnative.V
 	Args: [{ false index int}], Returns: String
 */
 func (o *EditorSpatialGizmo) GetHandleName(index gdnative.Int) gdnative.String {
-	log.Println("Calling EditorSpatialGizmo.GetHandleName()")
+	//log.Println("Calling EditorSpatialGizmo.GetHandleName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -244,7 +232,7 @@ func (o *EditorSpatialGizmo) GetHandleName(index gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -253,7 +241,7 @@ func (o *EditorSpatialGizmo) GetHandleName(index gdnative.Int) gdnative.String {
 	Args: [{ false index int}], Returns: Variant
 */
 func (o *EditorSpatialGizmo) GetHandleValue(index gdnative.Int) gdnative.Variant {
-	log.Println("Calling EditorSpatialGizmo.GetHandleValue()")
+	//log.Println("Calling EditorSpatialGizmo.GetHandleValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -269,7 +257,7 @@ func (o *EditorSpatialGizmo) GetHandleValue(index gdnative.Int) gdnative.Variant
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -278,7 +266,7 @@ func (o *EditorSpatialGizmo) GetHandleValue(index gdnative.Int) gdnative.Variant
 	Args: [], Returns: void
 */
 func (o *EditorSpatialGizmo) Redraw() {
-	log.Println("Calling EditorSpatialGizmo.Redraw()")
+	//log.Println("Calling EditorSpatialGizmo.Redraw()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -298,7 +286,7 @@ func (o *EditorSpatialGizmo) Redraw() {
 	Args: [{ false index int} { false camera Camera} { false point Vector2}], Returns: void
 */
 func (o *EditorSpatialGizmo) SetHandle(index gdnative.Int, camera Camera, point gdnative.Vector2) {
-	log.Println("Calling EditorSpatialGizmo.SetHandle()")
+	//log.Println("Calling EditorSpatialGizmo.SetHandle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -321,7 +309,7 @@ func (o *EditorSpatialGizmo) SetHandle(index gdnative.Int, camera Camera, point 
 	Args: [{ false node Object}], Returns: void
 */
 func (o *EditorSpatialGizmo) SetSpatialNode(node Object) {
-	log.Println("Calling EditorSpatialGizmo.SetSpatialNode()")
+	//log.Println("Calling EditorSpatialGizmo.SetSpatialNode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -33,13 +33,3 @@ type ResourceImporterOGGVorbis struct {
 func (o *ResourceImporterOGGVorbis) BaseClass() string {
 	return "ResourceImporterOGGVorbis"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ResourceImporterOGGVorbis) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ResourceImporterOGGVorbis) GetBaseObject() gdnative.Object {
-	return o.owner
-}

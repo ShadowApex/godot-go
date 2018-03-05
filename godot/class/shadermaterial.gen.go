@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ShaderMaterial) BaseClass() string {
 	return "ShaderMaterial"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ShaderMaterial) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ShaderMaterial) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Shader
 */
 func (o *ShaderMaterial) GetShader() Shader {
-	log.Println("Calling ShaderMaterial.GetShader()")
+	//log.Println("Calling ShaderMaterial.GetShader()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *ShaderMaterial) GetShader() Shader {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewShaderFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *ShaderMaterial) GetShader() Shader {
 	Args: [{ false param String}], Returns: Variant
 */
 func (o *ShaderMaterial) GetShaderParam(param gdnative.String) gdnative.Variant {
-	log.Println("Calling ShaderMaterial.GetShaderParam()")
+	//log.Println("Calling ShaderMaterial.GetShaderParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -91,7 +79,7 @@ func (o *ShaderMaterial) GetShaderParam(param gdnative.String) gdnative.Variant 
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -100,7 +88,7 @@ func (o *ShaderMaterial) GetShaderParam(param gdnative.String) gdnative.Variant 
 	Args: [{ false shader Shader}], Returns: void
 */
 func (o *ShaderMaterial) SetShader(shader Shader) {
-	log.Println("Calling ShaderMaterial.SetShader()")
+	//log.Println("Calling ShaderMaterial.SetShader()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -121,7 +109,7 @@ func (o *ShaderMaterial) SetShader(shader Shader) {
 	Args: [{ false param String} { false value Variant}], Returns: void
 */
 func (o *ShaderMaterial) SetShaderParam(param gdnative.String, value gdnative.Variant) {
-	log.Println("Calling ShaderMaterial.SetShaderParam()")
+	//log.Println("Calling ShaderMaterial.SetShaderParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)

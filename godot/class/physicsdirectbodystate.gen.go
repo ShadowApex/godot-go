@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *PhysicsDirectBodyState) BaseClass() string {
 	return "PhysicsDirectBodyState"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *PhysicsDirectBodyState) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *PhysicsDirectBodyState) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [{ false force Vector3} { false position Vector3}], Returns: void
 */
 func (o *PhysicsDirectBodyState) AddForce(force gdnative.Vector3, position gdnative.Vector3) {
-	log.Println("Calling PhysicsDirectBodyState.AddForce()")
+	//log.Println("Calling PhysicsDirectBodyState.AddForce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -73,7 +61,7 @@ func (o *PhysicsDirectBodyState) AddForce(force gdnative.Vector3, position gdnat
 	Args: [{ false position Vector3} { false j Vector3}], Returns: void
 */
 func (o *PhysicsDirectBodyState) ApplyImpulse(position gdnative.Vector3, j gdnative.Vector3) {
-	log.Println("Calling PhysicsDirectBodyState.ApplyImpulse()")
+	//log.Println("Calling PhysicsDirectBodyState.ApplyImpulse()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -95,7 +83,7 @@ func (o *PhysicsDirectBodyState) ApplyImpulse(position gdnative.Vector3, j gdnat
 	Args: [{ false j Vector3}], Returns: void
 */
 func (o *PhysicsDirectBodyState) ApplyTorqeImpulse(j gdnative.Vector3) {
-	log.Println("Calling PhysicsDirectBodyState.ApplyTorqeImpulse()")
+	//log.Println("Calling PhysicsDirectBodyState.ApplyTorqeImpulse()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -116,7 +104,7 @@ func (o *PhysicsDirectBodyState) ApplyTorqeImpulse(j gdnative.Vector3) {
 	Args: [{ false j Vector3}], Returns: void
 */
 func (o *PhysicsDirectBodyState) ApplyTorqueImpulse(j gdnative.Vector3) {
-	log.Println("Calling PhysicsDirectBodyState.ApplyTorqueImpulse()")
+	//log.Println("Calling PhysicsDirectBodyState.ApplyTorqueImpulse()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -137,7 +125,7 @@ func (o *PhysicsDirectBodyState) ApplyTorqueImpulse(j gdnative.Vector3) {
 	Args: [], Returns: Vector3
 */
 func (o *PhysicsDirectBodyState) GetAngularVelocity() gdnative.Vector3 {
-	log.Println("Calling PhysicsDirectBodyState.GetAngularVelocity()")
+	//log.Println("Calling PhysicsDirectBodyState.GetAngularVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -152,7 +140,7 @@ func (o *PhysicsDirectBodyState) GetAngularVelocity() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -161,7 +149,7 @@ func (o *PhysicsDirectBodyState) GetAngularVelocity() gdnative.Vector3 {
 	Args: [], Returns: Vector3
 */
 func (o *PhysicsDirectBodyState) GetCenterOfMass() gdnative.Vector3 {
-	log.Println("Calling PhysicsDirectBodyState.GetCenterOfMass()")
+	//log.Println("Calling PhysicsDirectBodyState.GetCenterOfMass()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -176,7 +164,7 @@ func (o *PhysicsDirectBodyState) GetCenterOfMass() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -185,7 +173,7 @@ func (o *PhysicsDirectBodyState) GetCenterOfMass() gdnative.Vector3 {
 	Args: [{ false contact_idx int}], Returns: RID
 */
 func (o *PhysicsDirectBodyState) GetContactCollider(contactIdx gdnative.Int) gdnative.Rid {
-	log.Println("Calling PhysicsDirectBodyState.GetContactCollider()")
+	//log.Println("Calling PhysicsDirectBodyState.GetContactCollider()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -201,7 +189,7 @@ func (o *PhysicsDirectBodyState) GetContactCollider(contactIdx gdnative.Int) gdn
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -210,7 +198,7 @@ func (o *PhysicsDirectBodyState) GetContactCollider(contactIdx gdnative.Int) gdn
 	Args: [{ false contact_idx int}], Returns: int
 */
 func (o *PhysicsDirectBodyState) GetContactColliderId(contactIdx gdnative.Int) gdnative.Int {
-	log.Println("Calling PhysicsDirectBodyState.GetContactColliderId()")
+	//log.Println("Calling PhysicsDirectBodyState.GetContactColliderId()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -226,7 +214,7 @@ func (o *PhysicsDirectBodyState) GetContactColliderId(contactIdx gdnative.Int) g
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -235,7 +223,7 @@ func (o *PhysicsDirectBodyState) GetContactColliderId(contactIdx gdnative.Int) g
 	Args: [{ false contact_idx int}], Returns: Object
 */
 func (o *PhysicsDirectBodyState) GetContactColliderObject(contactIdx gdnative.Int) Object {
-	log.Println("Calling PhysicsDirectBodyState.GetContactColliderObject()")
+	//log.Println("Calling PhysicsDirectBodyState.GetContactColliderObject()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -251,7 +239,7 @@ func (o *PhysicsDirectBodyState) GetContactColliderObject(contactIdx gdnative.In
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewObjectFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -260,7 +248,7 @@ func (o *PhysicsDirectBodyState) GetContactColliderObject(contactIdx gdnative.In
 	Args: [{ false contact_idx int}], Returns: Vector3
 */
 func (o *PhysicsDirectBodyState) GetContactColliderPosition(contactIdx gdnative.Int) gdnative.Vector3 {
-	log.Println("Calling PhysicsDirectBodyState.GetContactColliderPosition()")
+	//log.Println("Calling PhysicsDirectBodyState.GetContactColliderPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -276,7 +264,7 @@ func (o *PhysicsDirectBodyState) GetContactColliderPosition(contactIdx gdnative.
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -285,7 +273,7 @@ func (o *PhysicsDirectBodyState) GetContactColliderPosition(contactIdx gdnative.
 	Args: [{ false contact_idx int}], Returns: int
 */
 func (o *PhysicsDirectBodyState) GetContactColliderShape(contactIdx gdnative.Int) gdnative.Int {
-	log.Println("Calling PhysicsDirectBodyState.GetContactColliderShape()")
+	//log.Println("Calling PhysicsDirectBodyState.GetContactColliderShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -301,7 +289,7 @@ func (o *PhysicsDirectBodyState) GetContactColliderShape(contactIdx gdnative.Int
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -310,7 +298,7 @@ func (o *PhysicsDirectBodyState) GetContactColliderShape(contactIdx gdnative.Int
 	Args: [{ false contact_idx int}], Returns: Vector3
 */
 func (o *PhysicsDirectBodyState) GetContactColliderVelocityAtPosition(contactIdx gdnative.Int) gdnative.Vector3 {
-	log.Println("Calling PhysicsDirectBodyState.GetContactColliderVelocityAtPosition()")
+	//log.Println("Calling PhysicsDirectBodyState.GetContactColliderVelocityAtPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -326,7 +314,7 @@ func (o *PhysicsDirectBodyState) GetContactColliderVelocityAtPosition(contactIdx
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -335,7 +323,7 @@ func (o *PhysicsDirectBodyState) GetContactColliderVelocityAtPosition(contactIdx
 	Args: [], Returns: int
 */
 func (o *PhysicsDirectBodyState) GetContactCount() gdnative.Int {
-	log.Println("Calling PhysicsDirectBodyState.GetContactCount()")
+	//log.Println("Calling PhysicsDirectBodyState.GetContactCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -350,7 +338,7 @@ func (o *PhysicsDirectBodyState) GetContactCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -359,7 +347,7 @@ func (o *PhysicsDirectBodyState) GetContactCount() gdnative.Int {
 	Args: [{ false contact_idx int}], Returns: Vector3
 */
 func (o *PhysicsDirectBodyState) GetContactLocalNormal(contactIdx gdnative.Int) gdnative.Vector3 {
-	log.Println("Calling PhysicsDirectBodyState.GetContactLocalNormal()")
+	//log.Println("Calling PhysicsDirectBodyState.GetContactLocalNormal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -375,7 +363,7 @@ func (o *PhysicsDirectBodyState) GetContactLocalNormal(contactIdx gdnative.Int) 
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -384,7 +372,7 @@ func (o *PhysicsDirectBodyState) GetContactLocalNormal(contactIdx gdnative.Int) 
 	Args: [{ false contact_idx int}], Returns: Vector3
 */
 func (o *PhysicsDirectBodyState) GetContactLocalPosition(contactIdx gdnative.Int) gdnative.Vector3 {
-	log.Println("Calling PhysicsDirectBodyState.GetContactLocalPosition()")
+	//log.Println("Calling PhysicsDirectBodyState.GetContactLocalPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -400,7 +388,7 @@ func (o *PhysicsDirectBodyState) GetContactLocalPosition(contactIdx gdnative.Int
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -409,7 +397,7 @@ func (o *PhysicsDirectBodyState) GetContactLocalPosition(contactIdx gdnative.Int
 	Args: [{ false contact_idx int}], Returns: int
 */
 func (o *PhysicsDirectBodyState) GetContactLocalShape(contactIdx gdnative.Int) gdnative.Int {
-	log.Println("Calling PhysicsDirectBodyState.GetContactLocalShape()")
+	//log.Println("Calling PhysicsDirectBodyState.GetContactLocalShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -425,7 +413,7 @@ func (o *PhysicsDirectBodyState) GetContactLocalShape(contactIdx gdnative.Int) g
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -434,7 +422,7 @@ func (o *PhysicsDirectBodyState) GetContactLocalShape(contactIdx gdnative.Int) g
 	Args: [], Returns: Vector3
 */
 func (o *PhysicsDirectBodyState) GetInverseInertia() gdnative.Vector3 {
-	log.Println("Calling PhysicsDirectBodyState.GetInverseInertia()")
+	//log.Println("Calling PhysicsDirectBodyState.GetInverseInertia()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -449,7 +437,7 @@ func (o *PhysicsDirectBodyState) GetInverseInertia() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -458,7 +446,7 @@ func (o *PhysicsDirectBodyState) GetInverseInertia() gdnative.Vector3 {
 	Args: [], Returns: float
 */
 func (o *PhysicsDirectBodyState) GetInverseMass() gdnative.Float {
-	log.Println("Calling PhysicsDirectBodyState.GetInverseMass()")
+	//log.Println("Calling PhysicsDirectBodyState.GetInverseMass()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -473,7 +461,7 @@ func (o *PhysicsDirectBodyState) GetInverseMass() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -482,7 +470,7 @@ func (o *PhysicsDirectBodyState) GetInverseMass() gdnative.Float {
 	Args: [], Returns: Vector3
 */
 func (o *PhysicsDirectBodyState) GetLinearVelocity() gdnative.Vector3 {
-	log.Println("Calling PhysicsDirectBodyState.GetLinearVelocity()")
+	//log.Println("Calling PhysicsDirectBodyState.GetLinearVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -497,7 +485,7 @@ func (o *PhysicsDirectBodyState) GetLinearVelocity() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -506,7 +494,7 @@ func (o *PhysicsDirectBodyState) GetLinearVelocity() gdnative.Vector3 {
 	Args: [], Returns: Basis
 */
 func (o *PhysicsDirectBodyState) GetPrincipalInertiaAxes() gdnative.Basis {
-	log.Println("Calling PhysicsDirectBodyState.GetPrincipalInertiaAxes()")
+	//log.Println("Calling PhysicsDirectBodyState.GetPrincipalInertiaAxes()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -521,7 +509,7 @@ func (o *PhysicsDirectBodyState) GetPrincipalInertiaAxes() gdnative.Basis {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBasisFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -530,7 +518,7 @@ func (o *PhysicsDirectBodyState) GetPrincipalInertiaAxes() gdnative.Basis {
 	Args: [], Returns: PhysicsDirectSpaceState
 */
 func (o *PhysicsDirectBodyState) GetSpaceState() PhysicsDirectSpaceState {
-	log.Println("Calling PhysicsDirectBodyState.GetSpaceState()")
+	//log.Println("Calling PhysicsDirectBodyState.GetSpaceState()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -545,7 +533,7 @@ func (o *PhysicsDirectBodyState) GetSpaceState() PhysicsDirectSpaceState {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewPhysicsDirectSpaceStateFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -554,7 +542,7 @@ func (o *PhysicsDirectBodyState) GetSpaceState() PhysicsDirectSpaceState {
 	Args: [], Returns: float
 */
 func (o *PhysicsDirectBodyState) GetStep() gdnative.Float {
-	log.Println("Calling PhysicsDirectBodyState.GetStep()")
+	//log.Println("Calling PhysicsDirectBodyState.GetStep()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -569,7 +557,7 @@ func (o *PhysicsDirectBodyState) GetStep() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -578,7 +566,7 @@ func (o *PhysicsDirectBodyState) GetStep() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *PhysicsDirectBodyState) GetTotalAngularDamp() gdnative.Float {
-	log.Println("Calling PhysicsDirectBodyState.GetTotalAngularDamp()")
+	//log.Println("Calling PhysicsDirectBodyState.GetTotalAngularDamp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -593,7 +581,7 @@ func (o *PhysicsDirectBodyState) GetTotalAngularDamp() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -602,7 +590,7 @@ func (o *PhysicsDirectBodyState) GetTotalAngularDamp() gdnative.Float {
 	Args: [], Returns: Vector3
 */
 func (o *PhysicsDirectBodyState) GetTotalGravity() gdnative.Vector3 {
-	log.Println("Calling PhysicsDirectBodyState.GetTotalGravity()")
+	//log.Println("Calling PhysicsDirectBodyState.GetTotalGravity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -617,7 +605,7 @@ func (o *PhysicsDirectBodyState) GetTotalGravity() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -626,7 +614,7 @@ func (o *PhysicsDirectBodyState) GetTotalGravity() gdnative.Vector3 {
 	Args: [], Returns: float
 */
 func (o *PhysicsDirectBodyState) GetTotalLinearDamp() gdnative.Float {
-	log.Println("Calling PhysicsDirectBodyState.GetTotalLinearDamp()")
+	//log.Println("Calling PhysicsDirectBodyState.GetTotalLinearDamp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -641,7 +629,7 @@ func (o *PhysicsDirectBodyState) GetTotalLinearDamp() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -650,7 +638,7 @@ func (o *PhysicsDirectBodyState) GetTotalLinearDamp() gdnative.Float {
 	Args: [], Returns: Transform
 */
 func (o *PhysicsDirectBodyState) GetTransform() gdnative.Transform {
-	log.Println("Calling PhysicsDirectBodyState.GetTransform()")
+	//log.Println("Calling PhysicsDirectBodyState.GetTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -665,7 +653,7 @@ func (o *PhysicsDirectBodyState) GetTransform() gdnative.Transform {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransformFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -674,7 +662,7 @@ func (o *PhysicsDirectBodyState) GetTransform() gdnative.Transform {
 	Args: [], Returns: void
 */
 func (o *PhysicsDirectBodyState) IntegrateForces() {
-	log.Println("Calling PhysicsDirectBodyState.IntegrateForces()")
+	//log.Println("Calling PhysicsDirectBodyState.IntegrateForces()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -694,7 +682,7 @@ func (o *PhysicsDirectBodyState) IntegrateForces() {
 	Args: [], Returns: bool
 */
 func (o *PhysicsDirectBodyState) IsSleeping() gdnative.Bool {
-	log.Println("Calling PhysicsDirectBodyState.IsSleeping()")
+	//log.Println("Calling PhysicsDirectBodyState.IsSleeping()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -709,7 +697,7 @@ func (o *PhysicsDirectBodyState) IsSleeping() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -718,7 +706,7 @@ func (o *PhysicsDirectBodyState) IsSleeping() gdnative.Bool {
 	Args: [{ false velocity Vector3}], Returns: void
 */
 func (o *PhysicsDirectBodyState) SetAngularVelocity(velocity gdnative.Vector3) {
-	log.Println("Calling PhysicsDirectBodyState.SetAngularVelocity()")
+	//log.Println("Calling PhysicsDirectBodyState.SetAngularVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -739,7 +727,7 @@ func (o *PhysicsDirectBodyState) SetAngularVelocity(velocity gdnative.Vector3) {
 	Args: [{ false velocity Vector3}], Returns: void
 */
 func (o *PhysicsDirectBodyState) SetLinearVelocity(velocity gdnative.Vector3) {
-	log.Println("Calling PhysicsDirectBodyState.SetLinearVelocity()")
+	//log.Println("Calling PhysicsDirectBodyState.SetLinearVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -760,7 +748,7 @@ func (o *PhysicsDirectBodyState) SetLinearVelocity(velocity gdnative.Vector3) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *PhysicsDirectBodyState) SetSleepState(enabled gdnative.Bool) {
-	log.Println("Calling PhysicsDirectBodyState.SetSleepState()")
+	//log.Println("Calling PhysicsDirectBodyState.SetSleepState()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -781,7 +769,7 @@ func (o *PhysicsDirectBodyState) SetSleepState(enabled gdnative.Bool) {
 	Args: [{ false transform Transform}], Returns: void
 */
 func (o *PhysicsDirectBodyState) SetTransform(transform gdnative.Transform) {
-	log.Println("Calling PhysicsDirectBodyState.SetTransform()")
+	//log.Println("Calling PhysicsDirectBodyState.SetTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Font) BaseClass() string {
 	return "Font"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Font) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Font) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Draw "string" into a canvas item using the font at a given position, with "modulate" color, and optionally clipping the width. "position" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis.
 	Args: [{ false canvas_item RID} { false position Vector2} { false string String} {1,1,1,1 true modulate Color} {-1 true clip_w int}], Returns: void
 */
 func (o *Font) Draw(canvasItem gdnative.Rid, position gdnative.Vector2, string gdnative.String, modulate gdnative.Color, clipW gdnative.Int) {
-	log.Println("Calling Font.Draw()")
+	//log.Println("Calling Font.Draw()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 5, 5)
@@ -76,7 +64,7 @@ func (o *Font) Draw(canvasItem gdnative.Rid, position gdnative.Vector2, string g
 	Args: [{ false canvas_item RID} { false position Vector2} { false char int} {-1 true next int} {1,1,1,1 true modulate Color}], Returns: float
 */
 func (o *Font) DrawChar(canvasItem gdnative.Rid, position gdnative.Vector2, char gdnative.Int, next gdnative.Int, modulate gdnative.Color) gdnative.Float {
-	log.Println("Calling Font.DrawChar()")
+	//log.Println("Calling Font.DrawChar()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 5, 5)
@@ -96,7 +84,7 @@ func (o *Font) DrawChar(canvasItem gdnative.Rid, position gdnative.Vector2, char
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -105,7 +93,7 @@ func (o *Font) DrawChar(canvasItem gdnative.Rid, position gdnative.Vector2, char
 	Args: [], Returns: float
 */
 func (o *Font) GetAscent() gdnative.Float {
-	log.Println("Calling Font.GetAscent()")
+	//log.Println("Calling Font.GetAscent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -120,7 +108,7 @@ func (o *Font) GetAscent() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -129,7 +117,7 @@ func (o *Font) GetAscent() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Font) GetDescent() gdnative.Float {
-	log.Println("Calling Font.GetDescent()")
+	//log.Println("Calling Font.GetDescent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -144,7 +132,7 @@ func (o *Font) GetDescent() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -153,7 +141,7 @@ func (o *Font) GetDescent() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Font) GetHeight() gdnative.Float {
-	log.Println("Calling Font.GetHeight()")
+	//log.Println("Calling Font.GetHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -168,7 +156,7 @@ func (o *Font) GetHeight() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -177,7 +165,7 @@ func (o *Font) GetHeight() gdnative.Float {
 	Args: [{ false string String}], Returns: Vector2
 */
 func (o *Font) GetStringSize(string gdnative.String) gdnative.Vector2 {
-	log.Println("Calling Font.GetStringSize()")
+	//log.Println("Calling Font.GetStringSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -193,7 +181,7 @@ func (o *Font) GetStringSize(string gdnative.String) gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -202,7 +190,7 @@ func (o *Font) GetStringSize(string gdnative.String) gdnative.Vector2 {
 	Args: [], Returns: bool
 */
 func (o *Font) IsDistanceFieldHint() gdnative.Bool {
-	log.Println("Calling Font.IsDistanceFieldHint()")
+	//log.Println("Calling Font.IsDistanceFieldHint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -217,7 +205,7 @@ func (o *Font) IsDistanceFieldHint() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -226,7 +214,7 @@ func (o *Font) IsDistanceFieldHint() gdnative.Bool {
 	Args: [], Returns: void
 */
 func (o *Font) UpdateChanges() {
-	log.Println("Calling Font.UpdateChanges()")
+	//log.Println("Calling Font.UpdateChanges()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)

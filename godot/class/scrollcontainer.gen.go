@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ScrollContainer) BaseClass() string {
 	return "ScrollContainer"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ScrollContainer) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ScrollContainer) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
 func (o *ScrollContainer) X_GuiInput(arg0 InputEvent) {
-	log.Println("Calling ScrollContainer.X_GuiInput()")
+	//log.Println("Calling ScrollContainer.X_GuiInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *ScrollContainer) X_GuiInput(arg0 InputEvent) {
 	Args: [{ false arg0 float}], Returns: void
 */
 func (o *ScrollContainer) X_ScrollMoved(arg0 gdnative.Float) {
-	log.Println("Calling ScrollContainer.X_ScrollMoved()")
+	//log.Println("Calling ScrollContainer.X_ScrollMoved()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -93,7 +81,7 @@ func (o *ScrollContainer) X_ScrollMoved(arg0 gdnative.Float) {
 	Args: [], Returns: void
 */
 func (o *ScrollContainer) X_UpdateScrollbarPosition() {
-	log.Println("Calling ScrollContainer.X_UpdateScrollbarPosition()")
+	//log.Println("Calling ScrollContainer.X_UpdateScrollbarPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -113,7 +101,7 @@ func (o *ScrollContainer) X_UpdateScrollbarPosition() {
 	Args: [], Returns: int
 */
 func (o *ScrollContainer) GetHScroll() gdnative.Int {
-	log.Println("Calling ScrollContainer.GetHScroll()")
+	//log.Println("Calling ScrollContainer.GetHScroll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -128,7 +116,7 @@ func (o *ScrollContainer) GetHScroll() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -137,7 +125,7 @@ func (o *ScrollContainer) GetHScroll() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *ScrollContainer) GetVScroll() gdnative.Int {
-	log.Println("Calling ScrollContainer.GetVScroll()")
+	//log.Println("Calling ScrollContainer.GetVScroll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -152,7 +140,7 @@ func (o *ScrollContainer) GetVScroll() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -161,7 +149,7 @@ func (o *ScrollContainer) GetVScroll() gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *ScrollContainer) IsHScrollEnabled() gdnative.Bool {
-	log.Println("Calling ScrollContainer.IsHScrollEnabled()")
+	//log.Println("Calling ScrollContainer.IsHScrollEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -176,7 +164,7 @@ func (o *ScrollContainer) IsHScrollEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -185,7 +173,7 @@ func (o *ScrollContainer) IsHScrollEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *ScrollContainer) IsVScrollEnabled() gdnative.Bool {
-	log.Println("Calling ScrollContainer.IsVScrollEnabled()")
+	//log.Println("Calling ScrollContainer.IsVScrollEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -200,7 +188,7 @@ func (o *ScrollContainer) IsVScrollEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -209,7 +197,7 @@ func (o *ScrollContainer) IsVScrollEnabled() gdnative.Bool {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *ScrollContainer) SetEnableHScroll(enable gdnative.Bool) {
-	log.Println("Calling ScrollContainer.SetEnableHScroll()")
+	//log.Println("Calling ScrollContainer.SetEnableHScroll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -230,7 +218,7 @@ func (o *ScrollContainer) SetEnableHScroll(enable gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *ScrollContainer) SetEnableVScroll(enable gdnative.Bool) {
-	log.Println("Calling ScrollContainer.SetEnableVScroll()")
+	//log.Println("Calling ScrollContainer.SetEnableVScroll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -251,7 +239,7 @@ func (o *ScrollContainer) SetEnableVScroll(enable gdnative.Bool) {
 	Args: [{ false value int}], Returns: void
 */
 func (o *ScrollContainer) SetHScroll(value gdnative.Int) {
-	log.Println("Calling ScrollContainer.SetHScroll()")
+	//log.Println("Calling ScrollContainer.SetHScroll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -272,7 +260,7 @@ func (o *ScrollContainer) SetHScroll(value gdnative.Int) {
 	Args: [{ false value int}], Returns: void
 */
 func (o *ScrollContainer) SetVScroll(value gdnative.Int) {
-	log.Println("Calling ScrollContainer.SetVScroll()")
+	//log.Println("Calling ScrollContainer.SetVScroll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

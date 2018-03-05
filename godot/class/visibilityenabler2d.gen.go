@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VisibilityEnabler2D) BaseClass() string {
 	return "VisibilityEnabler2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisibilityEnabler2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisibilityEnabler2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false arg0 Object}], Returns: void
 */
 func (o *VisibilityEnabler2D) X_NodeRemoved(arg0 Object) {
-	log.Println("Calling VisibilityEnabler2D.X_NodeRemoved()")
+	//log.Println("Calling VisibilityEnabler2D.X_NodeRemoved()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *VisibilityEnabler2D) X_NodeRemoved(arg0 Object) {
 	Args: [{ false enabler int}], Returns: bool
 */
 func (o *VisibilityEnabler2D) IsEnablerEnabled(enabler gdnative.Int) gdnative.Bool {
-	log.Println("Calling VisibilityEnabler2D.IsEnablerEnabled()")
+	//log.Println("Calling VisibilityEnabler2D.IsEnablerEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -88,7 +76,7 @@ func (o *VisibilityEnabler2D) IsEnablerEnabled(enabler gdnative.Int) gdnative.Bo
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -97,7 +85,7 @@ func (o *VisibilityEnabler2D) IsEnablerEnabled(enabler gdnative.Int) gdnative.Bo
 	Args: [{ false enabler int} { false enabled bool}], Returns: void
 */
 func (o *VisibilityEnabler2D) SetEnabler(enabler gdnative.Int, enabled gdnative.Bool) {
-	log.Println("Calling VisibilityEnabler2D.SetEnabler()")
+	//log.Println("Calling VisibilityEnabler2D.SetEnabler()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)

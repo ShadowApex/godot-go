@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ConcavePolygonShape2D) BaseClass() string {
 	return "ConcavePolygonShape2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ConcavePolygonShape2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ConcavePolygonShape2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: PoolVector2Array
 */
 func (o *ConcavePolygonShape2D) GetSegments() gdnative.PoolVector2Array {
-	log.Println("Calling ConcavePolygonShape2D.GetSegments()")
+	//log.Println("Calling ConcavePolygonShape2D.GetSegments()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *ConcavePolygonShape2D) GetSegments() gdnative.PoolVector2Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *ConcavePolygonShape2D) GetSegments() gdnative.PoolVector2Array {
 	Args: [{ false segments PoolVector2Array}], Returns: void
 */
 func (o *ConcavePolygonShape2D) SetSegments(segments gdnative.PoolVector2Array) {
-	log.Println("Calling ConcavePolygonShape2D.SetSegments()")
+	//log.Println("Calling ConcavePolygonShape2D.SetSegments()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

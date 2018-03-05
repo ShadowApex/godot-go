@@ -33,13 +33,3 @@ type PopupDialog struct {
 func (o *PopupDialog) BaseClass() string {
 	return "PopupDialog"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *PopupDialog) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *PopupDialog) GetBaseObject() gdnative.Object {
-	return o.owner
-}

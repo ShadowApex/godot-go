@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *CubeMesh) BaseClass() string {
 	return "CubeMesh"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *CubeMesh) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *CubeMesh) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Vector3
 */
 func (o *CubeMesh) GetSize() gdnative.Vector3 {
-	log.Println("Calling CubeMesh.GetSize()")
+	//log.Println("Calling CubeMesh.GetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *CubeMesh) GetSize() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *CubeMesh) GetSize() gdnative.Vector3 {
 	Args: [], Returns: int
 */
 func (o *CubeMesh) GetSubdivideDepth() gdnative.Int {
-	log.Println("Calling CubeMesh.GetSubdivideDepth()")
+	//log.Println("Calling CubeMesh.GetSubdivideDepth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *CubeMesh) GetSubdivideDepth() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *CubeMesh) GetSubdivideDepth() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *CubeMesh) GetSubdivideHeight() gdnative.Int {
-	log.Println("Calling CubeMesh.GetSubdivideHeight()")
+	//log.Println("Calling CubeMesh.GetSubdivideHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *CubeMesh) GetSubdivideHeight() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *CubeMesh) GetSubdivideHeight() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *CubeMesh) GetSubdivideWidth() gdnative.Int {
-	log.Println("Calling CubeMesh.GetSubdivideWidth()")
+	//log.Println("Calling CubeMesh.GetSubdivideWidth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *CubeMesh) GetSubdivideWidth() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *CubeMesh) GetSubdivideWidth() gdnative.Int {
 	Args: [{ false size Vector3}], Returns: void
 */
 func (o *CubeMesh) SetSize(size gdnative.Vector3) {
-	log.Println("Calling CubeMesh.SetSize()")
+	//log.Println("Calling CubeMesh.SetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -168,7 +156,7 @@ func (o *CubeMesh) SetSize(size gdnative.Vector3) {
 	Args: [{ false divisions int}], Returns: void
 */
 func (o *CubeMesh) SetSubdivideDepth(divisions gdnative.Int) {
-	log.Println("Calling CubeMesh.SetSubdivideDepth()")
+	//log.Println("Calling CubeMesh.SetSubdivideDepth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -189,7 +177,7 @@ func (o *CubeMesh) SetSubdivideDepth(divisions gdnative.Int) {
 	Args: [{ false divisions int}], Returns: void
 */
 func (o *CubeMesh) SetSubdivideHeight(divisions gdnative.Int) {
-	log.Println("Calling CubeMesh.SetSubdivideHeight()")
+	//log.Println("Calling CubeMesh.SetSubdivideHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -210,7 +198,7 @@ func (o *CubeMesh) SetSubdivideHeight(divisions gdnative.Int) {
 	Args: [{ false subdivide int}], Returns: void
 */
 func (o *CubeMesh) SetSubdivideWidth(subdivide gdnative.Int) {
-	log.Println("Calling CubeMesh.SetSubdivideWidth()")
+	//log.Println("Calling CubeMesh.SetSubdivideWidth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

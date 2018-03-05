@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *GDNativeLibrary) BaseClass() string {
 	return "GDNativeLibrary"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *GDNativeLibrary) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *GDNativeLibrary) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: ConfigFile
 */
 func (o *GDNativeLibrary) GetConfigFile() ConfigFile {
-	log.Println("Calling GDNativeLibrary.GetConfigFile()")
+	//log.Println("Calling GDNativeLibrary.GetConfigFile()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *GDNativeLibrary) GetConfigFile() ConfigFile {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewConfigFileFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *GDNativeLibrary) GetConfigFile() ConfigFile {
 	Args: [], Returns: PoolStringArray
 */
 func (o *GDNativeLibrary) GetCurrentDependencies() gdnative.PoolStringArray {
-	log.Println("Calling GDNativeLibrary.GetCurrentDependencies()")
+	//log.Println("Calling GDNativeLibrary.GetCurrentDependencies()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *GDNativeLibrary) GetCurrentDependencies() gdnative.PoolStringArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *GDNativeLibrary) GetCurrentDependencies() gdnative.PoolStringArray {
 	Args: [], Returns: String
 */
 func (o *GDNativeLibrary) GetCurrentLibraryPath() gdnative.String {
-	log.Println("Calling GDNativeLibrary.GetCurrentLibraryPath()")
+	//log.Println("Calling GDNativeLibrary.GetCurrentLibraryPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *GDNativeLibrary) GetCurrentLibraryPath() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *GDNativeLibrary) GetCurrentLibraryPath() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *GDNativeLibrary) GetSymbolPrefix() gdnative.String {
-	log.Println("Calling GDNativeLibrary.GetSymbolPrefix()")
+	//log.Println("Calling GDNativeLibrary.GetSymbolPrefix()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *GDNativeLibrary) GetSymbolPrefix() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *GDNativeLibrary) GetSymbolPrefix() gdnative.String {
 	Args: [], Returns: bool
 */
 func (o *GDNativeLibrary) IsReloadable() gdnative.Bool {
-	log.Println("Calling GDNativeLibrary.IsReloadable()")
+	//log.Println("Calling GDNativeLibrary.IsReloadable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *GDNativeLibrary) IsReloadable() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *GDNativeLibrary) IsReloadable() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *GDNativeLibrary) IsSingleton() gdnative.Bool {
-	log.Println("Calling GDNativeLibrary.IsSingleton()")
+	//log.Println("Calling GDNativeLibrary.IsSingleton()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -186,7 +174,7 @@ func (o *GDNativeLibrary) IsSingleton() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -195,7 +183,7 @@ func (o *GDNativeLibrary) IsSingleton() gdnative.Bool {
 	Args: [{ false load_once bool}], Returns: void
 */
 func (o *GDNativeLibrary) SetLoadOnce(loadOnce gdnative.Bool) {
-	log.Println("Calling GDNativeLibrary.SetLoadOnce()")
+	//log.Println("Calling GDNativeLibrary.SetLoadOnce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -216,7 +204,7 @@ func (o *GDNativeLibrary) SetLoadOnce(loadOnce gdnative.Bool) {
 	Args: [{ false reloadable bool}], Returns: void
 */
 func (o *GDNativeLibrary) SetReloadable(reloadable gdnative.Bool) {
-	log.Println("Calling GDNativeLibrary.SetReloadable()")
+	//log.Println("Calling GDNativeLibrary.SetReloadable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -237,7 +225,7 @@ func (o *GDNativeLibrary) SetReloadable(reloadable gdnative.Bool) {
 	Args: [{ false singleton bool}], Returns: void
 */
 func (o *GDNativeLibrary) SetSingleton(singleton gdnative.Bool) {
-	log.Println("Calling GDNativeLibrary.SetSingleton()")
+	//log.Println("Calling GDNativeLibrary.SetSingleton()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -258,7 +246,7 @@ func (o *GDNativeLibrary) SetSingleton(singleton gdnative.Bool) {
 	Args: [{ false symbol_prefix String}], Returns: void
 */
 func (o *GDNativeLibrary) SetSymbolPrefix(symbolPrefix gdnative.String) {
-	log.Println("Calling GDNativeLibrary.SetSymbolPrefix()")
+	//log.Println("Calling GDNativeLibrary.SetSymbolPrefix()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -279,7 +267,7 @@ func (o *GDNativeLibrary) SetSymbolPrefix(symbolPrefix gdnative.String) {
 	Args: [], Returns: bool
 */
 func (o *GDNativeLibrary) ShouldLoadOnce() gdnative.Bool {
-	log.Println("Calling GDNativeLibrary.ShouldLoadOnce()")
+	//log.Println("Calling GDNativeLibrary.ShouldLoadOnce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -294,6 +282,6 @@ func (o *GDNativeLibrary) ShouldLoadOnce() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

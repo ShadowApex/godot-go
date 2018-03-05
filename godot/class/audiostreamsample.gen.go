@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *AudioStreamSample) BaseClass() string {
 	return "AudioStreamSample"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AudioStreamSample) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AudioStreamSample) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: PoolByteArray
 */
 func (o *AudioStreamSample) X_GetData() gdnative.PoolByteArray {
-	log.Println("Calling AudioStreamSample.X_GetData()")
+	//log.Println("Calling AudioStreamSample.X_GetData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *AudioStreamSample) X_GetData() gdnative.PoolByteArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolByteArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *AudioStreamSample) X_GetData() gdnative.PoolByteArray {
 	Args: [{ false data PoolByteArray}], Returns: void
 */
 func (o *AudioStreamSample) X_SetData(data gdnative.PoolByteArray) {
-	log.Println("Calling AudioStreamSample.X_SetData()")
+	//log.Println("Calling AudioStreamSample.X_SetData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -101,7 +89,7 @@ func (o *AudioStreamSample) X_SetData(data gdnative.PoolByteArray) {
 	Args: [], Returns: int
 */
 func (o *AudioStreamSample) GetLoopBegin() gdnative.Int {
-	log.Println("Calling AudioStreamSample.GetLoopBegin()")
+	//log.Println("Calling AudioStreamSample.GetLoopBegin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -116,7 +104,7 @@ func (o *AudioStreamSample) GetLoopBegin() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -125,7 +113,7 @@ func (o *AudioStreamSample) GetLoopBegin() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *AudioStreamSample) GetLoopEnd() gdnative.Int {
-	log.Println("Calling AudioStreamSample.GetLoopEnd()")
+	//log.Println("Calling AudioStreamSample.GetLoopEnd()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -140,7 +128,7 @@ func (o *AudioStreamSample) GetLoopEnd() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -154,7 +142,7 @@ func (o *AudioStreamSample) GetLoopEnd() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *AudioStreamSample) GetMixRate() gdnative.Int {
-	log.Println("Calling AudioStreamSample.GetMixRate()")
+	//log.Println("Calling AudioStreamSample.GetMixRate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -169,7 +157,7 @@ func (o *AudioStreamSample) GetMixRate() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -178,7 +166,7 @@ func (o *AudioStreamSample) GetMixRate() gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *AudioStreamSample) IsStereo() gdnative.Bool {
-	log.Println("Calling AudioStreamSample.IsStereo()")
+	//log.Println("Calling AudioStreamSample.IsStereo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -193,7 +181,7 @@ func (o *AudioStreamSample) IsStereo() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -202,7 +190,7 @@ func (o *AudioStreamSample) IsStereo() gdnative.Bool {
 	Args: [{ false format int}], Returns: void
 */
 func (o *AudioStreamSample) SetFormat(format gdnative.Int) {
-	log.Println("Calling AudioStreamSample.SetFormat()")
+	//log.Println("Calling AudioStreamSample.SetFormat()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -223,7 +211,7 @@ func (o *AudioStreamSample) SetFormat(format gdnative.Int) {
 	Args: [{ false loop_begin int}], Returns: void
 */
 func (o *AudioStreamSample) SetLoopBegin(loopBegin gdnative.Int) {
-	log.Println("Calling AudioStreamSample.SetLoopBegin()")
+	//log.Println("Calling AudioStreamSample.SetLoopBegin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -244,7 +232,7 @@ func (o *AudioStreamSample) SetLoopBegin(loopBegin gdnative.Int) {
 	Args: [{ false loop_end int}], Returns: void
 */
 func (o *AudioStreamSample) SetLoopEnd(loopEnd gdnative.Int) {
-	log.Println("Calling AudioStreamSample.SetLoopEnd()")
+	//log.Println("Calling AudioStreamSample.SetLoopEnd()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -265,7 +253,7 @@ func (o *AudioStreamSample) SetLoopEnd(loopEnd gdnative.Int) {
 	Args: [{ false loop_mode int}], Returns: void
 */
 func (o *AudioStreamSample) SetLoopMode(loopMode gdnative.Int) {
-	log.Println("Calling AudioStreamSample.SetLoopMode()")
+	//log.Println("Calling AudioStreamSample.SetLoopMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -286,7 +274,7 @@ func (o *AudioStreamSample) SetLoopMode(loopMode gdnative.Int) {
 	Args: [{ false mix_rate int}], Returns: void
 */
 func (o *AudioStreamSample) SetMixRate(mixRate gdnative.Int) {
-	log.Println("Calling AudioStreamSample.SetMixRate()")
+	//log.Println("Calling AudioStreamSample.SetMixRate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -307,7 +295,7 @@ func (o *AudioStreamSample) SetMixRate(mixRate gdnative.Int) {
 	Args: [{ false stereo bool}], Returns: void
 */
 func (o *AudioStreamSample) SetStereo(stereo gdnative.Bool) {
-	log.Println("Calling AudioStreamSample.SetStereo()")
+	//log.Println("Calling AudioStreamSample.SetStereo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

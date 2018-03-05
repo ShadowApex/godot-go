@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *CapsuleShape) BaseClass() string {
 	return "CapsuleShape"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *CapsuleShape) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *CapsuleShape) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *CapsuleShape) GetHeight() gdnative.Float {
-	log.Println("Calling CapsuleShape.GetHeight()")
+	//log.Println("Calling CapsuleShape.GetHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *CapsuleShape) GetHeight() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *CapsuleShape) GetHeight() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *CapsuleShape) GetRadius() gdnative.Float {
-	log.Println("Calling CapsuleShape.GetRadius()")
+	//log.Println("Calling CapsuleShape.GetRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *CapsuleShape) GetRadius() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *CapsuleShape) GetRadius() gdnative.Float {
 	Args: [{ false height float}], Returns: void
 */
 func (o *CapsuleShape) SetHeight(height gdnative.Float) {
-	log.Println("Calling CapsuleShape.SetHeight()")
+	//log.Println("Calling CapsuleShape.SetHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -120,7 +108,7 @@ func (o *CapsuleShape) SetHeight(height gdnative.Float) {
 	Args: [{ false radius float}], Returns: void
 */
 func (o *CapsuleShape) SetRadius(radius gdnative.Float) {
-	log.Println("Calling CapsuleShape.SetRadius()")
+	//log.Println("Calling CapsuleShape.SetRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -48,7 +46,7 @@ func (o *projectSettings) ensureSingleton() {
 	if o.initialized == true {
 		return
 	}
-	log.Println("Singleton not found. Fetching from GDNative...")
+	//log.Println("Singleton not found. Fetching from GDNative...")
 	base := gdnative.GetSingleton("ProjectSettings")
 	o.SetBaseObject(base)
 	o.initialized = true
@@ -58,23 +56,13 @@ func (o *projectSettings) BaseClass() string {
 	return "ProjectSettings"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *projectSettings) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *projectSettings) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Add a custom property info to a property. The dictionary must contain: name:[String](the name of the property) and type:[int](see TYPE_* in [@GlobalScope]), and optionally hint:[int](see PROPERTY_HINT_* in [@GlobalScope]), hint_string:[String]. Example: [codeblock] ProjectSettings.set("category/property_name", 0) var property_info = { "name": "category/property_name", "type": TYPE_INT, "hint": PROPERTY_HINT_ENUM, "hint_string": "one,two,three" } ProjectSettings.add_property_info(property_info) [/codeblock]
 	Args: [{ false hint Dictionary}], Returns: void
 */
 func (o *projectSettings) AddPropertyInfo(hint gdnative.Dictionary) {
 	o.ensureSingleton()
-	log.Println("Calling ProjectSettings.AddPropertyInfo()")
+	//log.Println("Calling ProjectSettings.AddPropertyInfo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *projectSettings) AddPropertyInfo(hint gdnative.Dictionary) {
 */
 func (o *projectSettings) Clear(name gdnative.String) {
 	o.ensureSingleton()
-	log.Println("Calling ProjectSettings.Clear()")
+	//log.Println("Calling ProjectSettings.Clear()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -118,7 +106,7 @@ func (o *projectSettings) Clear(name gdnative.String) {
 */
 func (o *projectSettings) GetOrder(name gdnative.String) gdnative.Int {
 	o.ensureSingleton()
-	log.Println("Calling ProjectSettings.GetOrder()")
+	//log.Println("Calling ProjectSettings.GetOrder()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -134,7 +122,7 @@ func (o *projectSettings) GetOrder(name gdnative.String) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -144,7 +132,7 @@ func (o *projectSettings) GetOrder(name gdnative.String) gdnative.Int {
 */
 func (o *projectSettings) GetSetting(name gdnative.String) gdnative.Variant {
 	o.ensureSingleton()
-	log.Println("Calling ProjectSettings.GetSetting()")
+	//log.Println("Calling ProjectSettings.GetSetting()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -160,7 +148,7 @@ func (o *projectSettings) GetSetting(name gdnative.String) gdnative.Variant {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -170,7 +158,7 @@ func (o *projectSettings) GetSetting(name gdnative.String) gdnative.Variant {
 */
 func (o *projectSettings) GlobalizePath(path gdnative.String) gdnative.String {
 	o.ensureSingleton()
-	log.Println("Calling ProjectSettings.GlobalizePath()")
+	//log.Println("Calling ProjectSettings.GlobalizePath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -186,7 +174,7 @@ func (o *projectSettings) GlobalizePath(path gdnative.String) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -196,7 +184,7 @@ func (o *projectSettings) GlobalizePath(path gdnative.String) gdnative.String {
 */
 func (o *projectSettings) HasSetting(name gdnative.String) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling ProjectSettings.HasSetting()")
+	//log.Println("Calling ProjectSettings.HasSetting()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -212,7 +200,7 @@ func (o *projectSettings) HasSetting(name gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -222,7 +210,7 @@ func (o *projectSettings) HasSetting(name gdnative.String) gdnative.Bool {
 */
 func (o *projectSettings) LoadResourcePack(pack gdnative.String) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling ProjectSettings.LoadResourcePack()")
+	//log.Println("Calling ProjectSettings.LoadResourcePack()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -238,7 +226,7 @@ func (o *projectSettings) LoadResourcePack(pack gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -248,7 +236,7 @@ func (o *projectSettings) LoadResourcePack(pack gdnative.String) gdnative.Bool {
 */
 func (o *projectSettings) LocalizePath(path gdnative.String) gdnative.String {
 	o.ensureSingleton()
-	log.Println("Calling ProjectSettings.LocalizePath()")
+	//log.Println("Calling ProjectSettings.LocalizePath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -264,7 +252,7 @@ func (o *projectSettings) LocalizePath(path gdnative.String) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -274,7 +262,7 @@ func (o *projectSettings) LocalizePath(path gdnative.String) gdnative.String {
 */
 func (o *projectSettings) PropertyCanRevert(name gdnative.String) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling ProjectSettings.PropertyCanRevert()")
+	//log.Println("Calling ProjectSettings.PropertyCanRevert()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -290,7 +278,7 @@ func (o *projectSettings) PropertyCanRevert(name gdnative.String) gdnative.Bool 
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -300,7 +288,7 @@ func (o *projectSettings) PropertyCanRevert(name gdnative.String) gdnative.Bool 
 */
 func (o *projectSettings) PropertyGetRevert(name gdnative.String) gdnative.Variant {
 	o.ensureSingleton()
-	log.Println("Calling ProjectSettings.PropertyGetRevert()")
+	//log.Println("Calling ProjectSettings.PropertyGetRevert()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -316,7 +304,7 @@ func (o *projectSettings) PropertyGetRevert(name gdnative.String) gdnative.Varia
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -336,7 +324,7 @@ func (o *projectSettings) PropertyGetRevert(name gdnative.String) gdnative.Varia
 */
 func (o *projectSettings) SetInitialValue(name gdnative.String, value gdnative.Variant) {
 	o.ensureSingleton()
-	log.Println("Calling ProjectSettings.SetInitialValue()")
+	//log.Println("Calling ProjectSettings.SetInitialValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -359,7 +347,7 @@ func (o *projectSettings) SetInitialValue(name gdnative.String, value gdnative.V
 */
 func (o *projectSettings) SetOrder(name gdnative.String, position gdnative.Int) {
 	o.ensureSingleton()
-	log.Println("Calling ProjectSettings.SetOrder()")
+	//log.Println("Calling ProjectSettings.SetOrder()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -382,7 +370,7 @@ func (o *projectSettings) SetOrder(name gdnative.String, position gdnative.Int) 
 */
 func (o *projectSettings) SetSetting(name gdnative.String, value gdnative.Variant) {
 	o.ensureSingleton()
-	log.Println("Calling ProjectSettings.SetSetting()")
+	//log.Println("Calling ProjectSettings.SetSetting()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)

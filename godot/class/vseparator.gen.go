@@ -33,13 +33,3 @@ type VSeparator struct {
 func (o *VSeparator) BaseClass() string {
 	return "VSeparator"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VSeparator) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VSeparator) GetBaseObject() gdnative.Object {
-	return o.owner
-}

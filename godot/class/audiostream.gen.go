@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *AudioStream) BaseClass() string {
 	return "AudioStream"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AudioStream) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AudioStream) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [], Returns: float
 */
 func (o *AudioStream) GetLength() gdnative.Float {
-	log.Println("Calling AudioStream.GetLength()")
+	//log.Println("Calling AudioStream.GetLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,6 +54,6 @@ func (o *AudioStream) GetLength() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

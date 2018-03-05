@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Line2D) BaseClass() string {
 	return "Line2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Line2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Line2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *Line2D) X_GradientChanged() {
-	log.Println("Calling Line2D.X_GradientChanged()")
+	//log.Println("Calling Line2D.X_GradientChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *Line2D) X_GradientChanged() {
 	Args: [{ false position Vector2}], Returns: void
 */
 func (o *Line2D) AddPoint(position gdnative.Vector2) {
-	log.Println("Calling Line2D.AddPoint()")
+	//log.Println("Calling Line2D.AddPoint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -97,7 +85,7 @@ func (o *Line2D) AddPoint(position gdnative.Vector2) {
 	Args: [], Returns: Color
 */
 func (o *Line2D) GetDefaultColor() gdnative.Color {
-	log.Println("Calling Line2D.GetDefaultColor()")
+	//log.Println("Calling Line2D.GetDefaultColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -112,7 +100,7 @@ func (o *Line2D) GetDefaultColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -126,7 +114,7 @@ func (o *Line2D) GetDefaultColor() gdnative.Color {
 	Args: [], Returns: Gradient
 */
 func (o *Line2D) GetGradient() Gradient {
-	log.Println("Calling Line2D.GetGradient()")
+	//log.Println("Calling Line2D.GetGradient()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -141,7 +129,7 @@ func (o *Line2D) GetGradient() Gradient {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewGradientFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -155,7 +143,7 @@ func (o *Line2D) GetGradient() Gradient {
 	Args: [], Returns: int
 */
 func (o *Line2D) GetPointCount() gdnative.Int {
-	log.Println("Calling Line2D.GetPointCount()")
+	//log.Println("Calling Line2D.GetPointCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -170,7 +158,7 @@ func (o *Line2D) GetPointCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -179,7 +167,7 @@ func (o *Line2D) GetPointCount() gdnative.Int {
 	Args: [{ false i int}], Returns: Vector2
 */
 func (o *Line2D) GetPointPosition(i gdnative.Int) gdnative.Vector2 {
-	log.Println("Calling Line2D.GetPointPosition()")
+	//log.Println("Calling Line2D.GetPointPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -195,7 +183,7 @@ func (o *Line2D) GetPointPosition(i gdnative.Int) gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -204,7 +192,7 @@ func (o *Line2D) GetPointPosition(i gdnative.Int) gdnative.Vector2 {
 	Args: [], Returns: PoolVector2Array
 */
 func (o *Line2D) GetPoints() gdnative.PoolVector2Array {
-	log.Println("Calling Line2D.GetPoints()")
+	//log.Println("Calling Line2D.GetPoints()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -219,7 +207,7 @@ func (o *Line2D) GetPoints() gdnative.PoolVector2Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -228,7 +216,7 @@ func (o *Line2D) GetPoints() gdnative.PoolVector2Array {
 	Args: [], Returns: int
 */
 func (o *Line2D) GetRoundPrecision() gdnative.Int {
-	log.Println("Calling Line2D.GetRoundPrecision()")
+	//log.Println("Calling Line2D.GetRoundPrecision()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -243,7 +231,7 @@ func (o *Line2D) GetRoundPrecision() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -252,7 +240,7 @@ func (o *Line2D) GetRoundPrecision() gdnative.Int {
 	Args: [], Returns: float
 */
 func (o *Line2D) GetSharpLimit() gdnative.Float {
-	log.Println("Calling Line2D.GetSharpLimit()")
+	//log.Println("Calling Line2D.GetSharpLimit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -267,7 +255,7 @@ func (o *Line2D) GetSharpLimit() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -276,7 +264,7 @@ func (o *Line2D) GetSharpLimit() gdnative.Float {
 	Args: [], Returns: Texture
 */
 func (o *Line2D) GetTexture() Texture {
-	log.Println("Calling Line2D.GetTexture()")
+	//log.Println("Calling Line2D.GetTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -291,7 +279,7 @@ func (o *Line2D) GetTexture() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -305,7 +293,7 @@ func (o *Line2D) GetTexture() Texture {
 	Args: [], Returns: float
 */
 func (o *Line2D) GetWidth() gdnative.Float {
-	log.Println("Calling Line2D.GetWidth()")
+	//log.Println("Calling Line2D.GetWidth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -320,7 +308,7 @@ func (o *Line2D) GetWidth() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -329,7 +317,7 @@ func (o *Line2D) GetWidth() gdnative.Float {
 	Args: [{ false i int}], Returns: void
 */
 func (o *Line2D) RemovePoint(i gdnative.Int) {
-	log.Println("Calling Line2D.RemovePoint()")
+	//log.Println("Calling Line2D.RemovePoint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -350,7 +338,7 @@ func (o *Line2D) RemovePoint(i gdnative.Int) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *Line2D) SetBeginCapMode(mode gdnative.Int) {
-	log.Println("Calling Line2D.SetBeginCapMode()")
+	//log.Println("Calling Line2D.SetBeginCapMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -371,7 +359,7 @@ func (o *Line2D) SetBeginCapMode(mode gdnative.Int) {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *Line2D) SetDefaultColor(color gdnative.Color) {
-	log.Println("Calling Line2D.SetDefaultColor()")
+	//log.Println("Calling Line2D.SetDefaultColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -392,7 +380,7 @@ func (o *Line2D) SetDefaultColor(color gdnative.Color) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *Line2D) SetEndCapMode(mode gdnative.Int) {
-	log.Println("Calling Line2D.SetEndCapMode()")
+	//log.Println("Calling Line2D.SetEndCapMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -413,7 +401,7 @@ func (o *Line2D) SetEndCapMode(mode gdnative.Int) {
 	Args: [{ false color Gradient}], Returns: void
 */
 func (o *Line2D) SetGradient(color Gradient) {
-	log.Println("Calling Line2D.SetGradient()")
+	//log.Println("Calling Line2D.SetGradient()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -434,7 +422,7 @@ func (o *Line2D) SetGradient(color Gradient) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *Line2D) SetJointMode(mode gdnative.Int) {
-	log.Println("Calling Line2D.SetJointMode()")
+	//log.Println("Calling Line2D.SetJointMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -455,7 +443,7 @@ func (o *Line2D) SetJointMode(mode gdnative.Int) {
 	Args: [{ false i int} { false position Vector2}], Returns: void
 */
 func (o *Line2D) SetPointPosition(i gdnative.Int, position gdnative.Vector2) {
-	log.Println("Calling Line2D.SetPointPosition()")
+	//log.Println("Calling Line2D.SetPointPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -477,7 +465,7 @@ func (o *Line2D) SetPointPosition(i gdnative.Int, position gdnative.Vector2) {
 	Args: [{ false points PoolVector2Array}], Returns: void
 */
 func (o *Line2D) SetPoints(points gdnative.PoolVector2Array) {
-	log.Println("Calling Line2D.SetPoints()")
+	//log.Println("Calling Line2D.SetPoints()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -498,7 +486,7 @@ func (o *Line2D) SetPoints(points gdnative.PoolVector2Array) {
 	Args: [{ false precision int}], Returns: void
 */
 func (o *Line2D) SetRoundPrecision(precision gdnative.Int) {
-	log.Println("Calling Line2D.SetRoundPrecision()")
+	//log.Println("Calling Line2D.SetRoundPrecision()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -519,7 +507,7 @@ func (o *Line2D) SetRoundPrecision(precision gdnative.Int) {
 	Args: [{ false limit float}], Returns: void
 */
 func (o *Line2D) SetSharpLimit(limit gdnative.Float) {
-	log.Println("Calling Line2D.SetSharpLimit()")
+	//log.Println("Calling Line2D.SetSharpLimit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -540,7 +528,7 @@ func (o *Line2D) SetSharpLimit(limit gdnative.Float) {
 	Args: [{ false texture Texture}], Returns: void
 */
 func (o *Line2D) SetTexture(texture Texture) {
-	log.Println("Calling Line2D.SetTexture()")
+	//log.Println("Calling Line2D.SetTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -561,7 +549,7 @@ func (o *Line2D) SetTexture(texture Texture) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *Line2D) SetTextureMode(mode gdnative.Int) {
-	log.Println("Calling Line2D.SetTextureMode()")
+	//log.Println("Calling Line2D.SetTextureMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -582,7 +570,7 @@ func (o *Line2D) SetTextureMode(mode gdnative.Int) {
 	Args: [{ false width float}], Returns: void
 */
 func (o *Line2D) SetWidth(width gdnative.Float) {
-	log.Println("Calling Line2D.SetWidth()")
+	//log.Println("Calling Line2D.SetWidth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

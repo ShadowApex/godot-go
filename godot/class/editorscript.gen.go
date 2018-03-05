@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *EditorScript) BaseClass() string {
 	return "EditorScript"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *EditorScript) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *EditorScript) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         This method is executed by the Editor when [code]File -> Run[/code] is used.
 	Args: [], Returns: void
 */
 func (o *EditorScript) X_Run() {
-	log.Println("Calling EditorScript.X_Run()")
+	//log.Println("Calling EditorScript.X_Run()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *EditorScript) X_Run() {
 	Args: [{ false node Object}], Returns: void
 */
 func (o *EditorScript) AddRootNode(node Object) {
-	log.Println("Calling EditorScript.AddRootNode()")
+	//log.Println("Calling EditorScript.AddRootNode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -92,7 +80,7 @@ func (o *EditorScript) AddRootNode(node Object) {
 	Args: [], Returns: EditorInterface
 */
 func (o *EditorScript) GetEditorInterface() EditorInterface {
-	log.Println("Calling EditorScript.GetEditorInterface()")
+	//log.Println("Calling EditorScript.GetEditorInterface()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -107,7 +95,7 @@ func (o *EditorScript) GetEditorInterface() EditorInterface {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewEditorInterfaceFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -116,7 +104,7 @@ func (o *EditorScript) GetEditorInterface() EditorInterface {
 	Args: [], Returns: Node
 */
 func (o *EditorScript) GetScene() Node {
-	log.Println("Calling EditorScript.GetScene()")
+	//log.Println("Calling EditorScript.GetScene()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -131,6 +119,6 @@ func (o *EditorScript) GetScene() Node {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewNodeFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

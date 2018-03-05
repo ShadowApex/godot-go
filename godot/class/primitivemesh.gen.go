@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *PrimitiveMesh) BaseClass() string {
 	return "PrimitiveMesh"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *PrimitiveMesh) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *PrimitiveMesh) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *PrimitiveMesh) X_Update() {
-	log.Println("Calling PrimitiveMesh.X_Update()")
+	//log.Println("Calling PrimitiveMesh.X_Update()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *PrimitiveMesh) X_Update() {
 	Args: [], Returns: Material
 */
 func (o *PrimitiveMesh) GetMaterial() Material {
-	log.Println("Calling PrimitiveMesh.GetMaterial()")
+	//log.Println("Calling PrimitiveMesh.GetMaterial()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -86,7 +74,7 @@ func (o *PrimitiveMesh) GetMaterial() Material {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewMaterialFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -95,7 +83,7 @@ func (o *PrimitiveMesh) GetMaterial() Material {
 	Args: [], Returns: Array
 */
 func (o *PrimitiveMesh) GetMeshArrays() gdnative.Array {
-	log.Println("Calling PrimitiveMesh.GetMeshArrays()")
+	//log.Println("Calling PrimitiveMesh.GetMeshArrays()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -110,7 +98,7 @@ func (o *PrimitiveMesh) GetMeshArrays() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -119,7 +107,7 @@ func (o *PrimitiveMesh) GetMeshArrays() gdnative.Array {
 	Args: [{ false material Material}], Returns: void
 */
 func (o *PrimitiveMesh) SetMaterial(material Material) {
-	log.Println("Calling PrimitiveMesh.SetMaterial()")
+	//log.Println("Calling PrimitiveMesh.SetMaterial()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

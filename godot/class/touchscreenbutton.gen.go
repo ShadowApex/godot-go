@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *TouchScreenButton) BaseClass() string {
 	return "TouchScreenButton"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *TouchScreenButton) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *TouchScreenButton) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
 func (o *TouchScreenButton) X_Input(arg0 InputEvent) {
-	log.Println("Calling TouchScreenButton.X_Input()")
+	//log.Println("Calling TouchScreenButton.X_Input()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *TouchScreenButton) X_Input(arg0 InputEvent) {
 	Args: [], Returns: String
 */
 func (o *TouchScreenButton) GetAction() gdnative.String {
-	log.Println("Calling TouchScreenButton.GetAction()")
+	//log.Println("Calling TouchScreenButton.GetAction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -87,7 +75,7 @@ func (o *TouchScreenButton) GetAction() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -96,7 +84,7 @@ func (o *TouchScreenButton) GetAction() gdnative.String {
 	Args: [], Returns: BitMap
 */
 func (o *TouchScreenButton) GetBitmask() BitMap {
-	log.Println("Calling TouchScreenButton.GetBitmask()")
+	//log.Println("Calling TouchScreenButton.GetBitmask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -111,7 +99,7 @@ func (o *TouchScreenButton) GetBitmask() BitMap {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewBitMapFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -120,7 +108,7 @@ func (o *TouchScreenButton) GetBitmask() BitMap {
 	Args: [], Returns: Shape2D
 */
 func (o *TouchScreenButton) GetShape() Shape2D {
-	log.Println("Calling TouchScreenButton.GetShape()")
+	//log.Println("Calling TouchScreenButton.GetShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -135,7 +123,7 @@ func (o *TouchScreenButton) GetShape() Shape2D {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewShape2DFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -144,7 +132,7 @@ func (o *TouchScreenButton) GetShape() Shape2D {
 	Args: [], Returns: Texture
 */
 func (o *TouchScreenButton) GetTexture() Texture {
-	log.Println("Calling TouchScreenButton.GetTexture()")
+	//log.Println("Calling TouchScreenButton.GetTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -159,7 +147,7 @@ func (o *TouchScreenButton) GetTexture() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -168,7 +156,7 @@ func (o *TouchScreenButton) GetTexture() Texture {
 	Args: [], Returns: Texture
 */
 func (o *TouchScreenButton) GetTexturePressed() Texture {
-	log.Println("Calling TouchScreenButton.GetTexturePressed()")
+	//log.Println("Calling TouchScreenButton.GetTexturePressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -183,7 +171,7 @@ func (o *TouchScreenButton) GetTexturePressed() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -197,7 +185,7 @@ func (o *TouchScreenButton) GetTexturePressed() Texture {
 	Args: [], Returns: bool
 */
 func (o *TouchScreenButton) IsPassbyPressEnabled() gdnative.Bool {
-	log.Println("Calling TouchScreenButton.IsPassbyPressEnabled()")
+	//log.Println("Calling TouchScreenButton.IsPassbyPressEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -212,7 +200,7 @@ func (o *TouchScreenButton) IsPassbyPressEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -221,7 +209,7 @@ func (o *TouchScreenButton) IsPassbyPressEnabled() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *TouchScreenButton) IsPressed() gdnative.Bool {
-	log.Println("Calling TouchScreenButton.IsPressed()")
+	//log.Println("Calling TouchScreenButton.IsPressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -236,7 +224,7 @@ func (o *TouchScreenButton) IsPressed() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -245,7 +233,7 @@ func (o *TouchScreenButton) IsPressed() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *TouchScreenButton) IsShapeCentered() gdnative.Bool {
-	log.Println("Calling TouchScreenButton.IsShapeCentered()")
+	//log.Println("Calling TouchScreenButton.IsShapeCentered()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -260,7 +248,7 @@ func (o *TouchScreenButton) IsShapeCentered() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -269,7 +257,7 @@ func (o *TouchScreenButton) IsShapeCentered() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *TouchScreenButton) IsShapeVisible() gdnative.Bool {
-	log.Println("Calling TouchScreenButton.IsShapeVisible()")
+	//log.Println("Calling TouchScreenButton.IsShapeVisible()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -284,7 +272,7 @@ func (o *TouchScreenButton) IsShapeVisible() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -293,7 +281,7 @@ func (o *TouchScreenButton) IsShapeVisible() gdnative.Bool {
 	Args: [{ false action String}], Returns: void
 */
 func (o *TouchScreenButton) SetAction(action gdnative.String) {
-	log.Println("Calling TouchScreenButton.SetAction()")
+	//log.Println("Calling TouchScreenButton.SetAction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -314,7 +302,7 @@ func (o *TouchScreenButton) SetAction(action gdnative.String) {
 	Args: [{ false bitmask BitMap}], Returns: void
 */
 func (o *TouchScreenButton) SetBitmask(bitmask BitMap) {
-	log.Println("Calling TouchScreenButton.SetBitmask()")
+	//log.Println("Calling TouchScreenButton.SetBitmask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -335,7 +323,7 @@ func (o *TouchScreenButton) SetBitmask(bitmask BitMap) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *TouchScreenButton) SetPassbyPress(enabled gdnative.Bool) {
-	log.Println("Calling TouchScreenButton.SetPassbyPress()")
+	//log.Println("Calling TouchScreenButton.SetPassbyPress()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -356,7 +344,7 @@ func (o *TouchScreenButton) SetPassbyPress(enabled gdnative.Bool) {
 	Args: [{ false shape Shape2D}], Returns: void
 */
 func (o *TouchScreenButton) SetShape(shape Shape2D) {
-	log.Println("Calling TouchScreenButton.SetShape()")
+	//log.Println("Calling TouchScreenButton.SetShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -377,7 +365,7 @@ func (o *TouchScreenButton) SetShape(shape Shape2D) {
 	Args: [{ false bool bool}], Returns: void
 */
 func (o *TouchScreenButton) SetShapeCentered(bool gdnative.Bool) {
-	log.Println("Calling TouchScreenButton.SetShapeCentered()")
+	//log.Println("Calling TouchScreenButton.SetShapeCentered()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -398,7 +386,7 @@ func (o *TouchScreenButton) SetShapeCentered(bool gdnative.Bool) {
 	Args: [{ false bool bool}], Returns: void
 */
 func (o *TouchScreenButton) SetShapeVisible(bool gdnative.Bool) {
-	log.Println("Calling TouchScreenButton.SetShapeVisible()")
+	//log.Println("Calling TouchScreenButton.SetShapeVisible()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -419,7 +407,7 @@ func (o *TouchScreenButton) SetShapeVisible(bool gdnative.Bool) {
 	Args: [{ false texture Texture}], Returns: void
 */
 func (o *TouchScreenButton) SetTexture(texture Texture) {
-	log.Println("Calling TouchScreenButton.SetTexture()")
+	//log.Println("Calling TouchScreenButton.SetTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -440,7 +428,7 @@ func (o *TouchScreenButton) SetTexture(texture Texture) {
 	Args: [{ false texture_pressed Texture}], Returns: void
 */
 func (o *TouchScreenButton) SetTexturePressed(texturePressed Texture) {
-	log.Println("Calling TouchScreenButton.SetTexturePressed()")
+	//log.Println("Calling TouchScreenButton.SetTexturePressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -461,7 +449,7 @@ func (o *TouchScreenButton) SetTexturePressed(texturePressed Texture) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *TouchScreenButton) SetVisibilityMode(mode gdnative.Int) {
-	log.Println("Calling TouchScreenButton.SetVisibilityMode()")
+	//log.Println("Calling TouchScreenButton.SetVisibilityMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *SceneState) BaseClass() string {
 	return "SceneState"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *SceneState) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *SceneState) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Returns the list of bound parameters for the signal at [code]idx[/code].
 	Args: [{ false idx int}], Returns: Array
 */
 func (o *SceneState) GetConnectionBinds(idx gdnative.Int) gdnative.Array {
-	log.Println("Calling SceneState.GetConnectionBinds()")
+	//log.Println("Calling SceneState.GetConnectionBinds()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -67,7 +55,7 @@ func (o *SceneState) GetConnectionBinds(idx gdnative.Int) gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -76,7 +64,7 @@ func (o *SceneState) GetConnectionBinds(idx gdnative.Int) gdnative.Array {
 	Args: [], Returns: int
 */
 func (o *SceneState) GetConnectionCount() gdnative.Int {
-	log.Println("Calling SceneState.GetConnectionCount()")
+	//log.Println("Calling SceneState.GetConnectionCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -91,7 +79,7 @@ func (o *SceneState) GetConnectionCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -100,7 +88,7 @@ func (o *SceneState) GetConnectionCount() gdnative.Int {
 	Args: [{ false idx int}], Returns: int
 */
 func (o *SceneState) GetConnectionFlags(idx gdnative.Int) gdnative.Int {
-	log.Println("Calling SceneState.GetConnectionFlags()")
+	//log.Println("Calling SceneState.GetConnectionFlags()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -116,7 +104,7 @@ func (o *SceneState) GetConnectionFlags(idx gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -125,7 +113,7 @@ func (o *SceneState) GetConnectionFlags(idx gdnative.Int) gdnative.Int {
 	Args: [{ false idx int}], Returns: String
 */
 func (o *SceneState) GetConnectionMethod(idx gdnative.Int) gdnative.String {
-	log.Println("Calling SceneState.GetConnectionMethod()")
+	//log.Println("Calling SceneState.GetConnectionMethod()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -141,7 +129,7 @@ func (o *SceneState) GetConnectionMethod(idx gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -150,7 +138,7 @@ func (o *SceneState) GetConnectionMethod(idx gdnative.Int) gdnative.String {
 	Args: [{ false idx int}], Returns: String
 */
 func (o *SceneState) GetConnectionSignal(idx gdnative.Int) gdnative.String {
-	log.Println("Calling SceneState.GetConnectionSignal()")
+	//log.Println("Calling SceneState.GetConnectionSignal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -166,7 +154,7 @@ func (o *SceneState) GetConnectionSignal(idx gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -175,7 +163,7 @@ func (o *SceneState) GetConnectionSignal(idx gdnative.Int) gdnative.String {
 	Args: [{ false idx int}], Returns: NodePath
 */
 func (o *SceneState) GetConnectionSource(idx gdnative.Int) gdnative.NodePath {
-	log.Println("Calling SceneState.GetConnectionSource()")
+	//log.Println("Calling SceneState.GetConnectionSource()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -191,7 +179,7 @@ func (o *SceneState) GetConnectionSource(idx gdnative.Int) gdnative.NodePath {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewNodePathFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -200,7 +188,7 @@ func (o *SceneState) GetConnectionSource(idx gdnative.Int) gdnative.NodePath {
 	Args: [{ false idx int}], Returns: NodePath
 */
 func (o *SceneState) GetConnectionTarget(idx gdnative.Int) gdnative.NodePath {
-	log.Println("Calling SceneState.GetConnectionTarget()")
+	//log.Println("Calling SceneState.GetConnectionTarget()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -216,7 +204,7 @@ func (o *SceneState) GetConnectionTarget(idx gdnative.Int) gdnative.NodePath {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewNodePathFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -225,7 +213,7 @@ func (o *SceneState) GetConnectionTarget(idx gdnative.Int) gdnative.NodePath {
 	Args: [], Returns: int
 */
 func (o *SceneState) GetNodeCount() gdnative.Int {
-	log.Println("Calling SceneState.GetNodeCount()")
+	//log.Println("Calling SceneState.GetNodeCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -240,7 +228,7 @@ func (o *SceneState) GetNodeCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -249,7 +237,7 @@ func (o *SceneState) GetNodeCount() gdnative.Int {
 	Args: [{ false idx int}], Returns: PoolStringArray
 */
 func (o *SceneState) GetNodeGroups(idx gdnative.Int) gdnative.PoolStringArray {
-	log.Println("Calling SceneState.GetNodeGroups()")
+	//log.Println("Calling SceneState.GetNodeGroups()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -265,7 +253,7 @@ func (o *SceneState) GetNodeGroups(idx gdnative.Int) gdnative.PoolStringArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -274,7 +262,7 @@ func (o *SceneState) GetNodeGroups(idx gdnative.Int) gdnative.PoolStringArray {
 	Args: [{ false idx int}], Returns: int
 */
 func (o *SceneState) GetNodeIndex(idx gdnative.Int) gdnative.Int {
-	log.Println("Calling SceneState.GetNodeIndex()")
+	//log.Println("Calling SceneState.GetNodeIndex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -290,7 +278,7 @@ func (o *SceneState) GetNodeIndex(idx gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -299,7 +287,7 @@ func (o *SceneState) GetNodeIndex(idx gdnative.Int) gdnative.Int {
 	Args: [{ false idx int}], Returns: PackedScene
 */
 func (o *SceneState) GetNodeInstance(idx gdnative.Int) PackedScene {
-	log.Println("Calling SceneState.GetNodeInstance()")
+	//log.Println("Calling SceneState.GetNodeInstance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -315,7 +303,7 @@ func (o *SceneState) GetNodeInstance(idx gdnative.Int) PackedScene {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewPackedSceneFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -324,7 +312,7 @@ func (o *SceneState) GetNodeInstance(idx gdnative.Int) PackedScene {
 	Args: [{ false idx int}], Returns: String
 */
 func (o *SceneState) GetNodeInstancePlaceholder(idx gdnative.Int) gdnative.String {
-	log.Println("Calling SceneState.GetNodeInstancePlaceholder()")
+	//log.Println("Calling SceneState.GetNodeInstancePlaceholder()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -340,7 +328,7 @@ func (o *SceneState) GetNodeInstancePlaceholder(idx gdnative.Int) gdnative.Strin
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -349,7 +337,7 @@ func (o *SceneState) GetNodeInstancePlaceholder(idx gdnative.Int) gdnative.Strin
 	Args: [{ false idx int}], Returns: String
 */
 func (o *SceneState) GetNodeName(idx gdnative.Int) gdnative.String {
-	log.Println("Calling SceneState.GetNodeName()")
+	//log.Println("Calling SceneState.GetNodeName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -365,7 +353,7 @@ func (o *SceneState) GetNodeName(idx gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -374,7 +362,7 @@ func (o *SceneState) GetNodeName(idx gdnative.Int) gdnative.String {
 	Args: [{ false idx int}], Returns: NodePath
 */
 func (o *SceneState) GetNodeOwnerPath(idx gdnative.Int) gdnative.NodePath {
-	log.Println("Calling SceneState.GetNodeOwnerPath()")
+	//log.Println("Calling SceneState.GetNodeOwnerPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -390,7 +378,7 @@ func (o *SceneState) GetNodeOwnerPath(idx gdnative.Int) gdnative.NodePath {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewNodePathFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -399,7 +387,7 @@ func (o *SceneState) GetNodeOwnerPath(idx gdnative.Int) gdnative.NodePath {
 	Args: [{ false idx int} {False true for_parent bool}], Returns: NodePath
 */
 func (o *SceneState) GetNodePath(idx gdnative.Int, forParent gdnative.Bool) gdnative.NodePath {
-	log.Println("Calling SceneState.GetNodePath()")
+	//log.Println("Calling SceneState.GetNodePath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -416,7 +404,7 @@ func (o *SceneState) GetNodePath(idx gdnative.Int, forParent gdnative.Bool) gdna
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewNodePathFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -425,7 +413,7 @@ func (o *SceneState) GetNodePath(idx gdnative.Int, forParent gdnative.Bool) gdna
 	Args: [{ false idx int}], Returns: int
 */
 func (o *SceneState) GetNodePropertyCount(idx gdnative.Int) gdnative.Int {
-	log.Println("Calling SceneState.GetNodePropertyCount()")
+	//log.Println("Calling SceneState.GetNodePropertyCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -441,7 +429,7 @@ func (o *SceneState) GetNodePropertyCount(idx gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -450,7 +438,7 @@ func (o *SceneState) GetNodePropertyCount(idx gdnative.Int) gdnative.Int {
 	Args: [{ false idx int} { false prop_idx int}], Returns: String
 */
 func (o *SceneState) GetNodePropertyName(idx gdnative.Int, propIdx gdnative.Int) gdnative.String {
-	log.Println("Calling SceneState.GetNodePropertyName()")
+	//log.Println("Calling SceneState.GetNodePropertyName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -467,7 +455,7 @@ func (o *SceneState) GetNodePropertyName(idx gdnative.Int, propIdx gdnative.Int)
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -476,7 +464,7 @@ func (o *SceneState) GetNodePropertyName(idx gdnative.Int, propIdx gdnative.Int)
 	Args: [{ false idx int} { false prop_idx int}], Returns: Variant
 */
 func (o *SceneState) GetNodePropertyValue(idx gdnative.Int, propIdx gdnative.Int) gdnative.Variant {
-	log.Println("Calling SceneState.GetNodePropertyValue()")
+	//log.Println("Calling SceneState.GetNodePropertyValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -493,7 +481,7 @@ func (o *SceneState) GetNodePropertyValue(idx gdnative.Int, propIdx gdnative.Int
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -502,7 +490,7 @@ func (o *SceneState) GetNodePropertyValue(idx gdnative.Int, propIdx gdnative.Int
 	Args: [{ false idx int}], Returns: String
 */
 func (o *SceneState) GetNodeType(idx gdnative.Int) gdnative.String {
-	log.Println("Calling SceneState.GetNodeType()")
+	//log.Println("Calling SceneState.GetNodeType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -518,7 +506,7 @@ func (o *SceneState) GetNodeType(idx gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -527,7 +515,7 @@ func (o *SceneState) GetNodeType(idx gdnative.Int) gdnative.String {
 	Args: [{ false idx int}], Returns: bool
 */
 func (o *SceneState) IsNodeInstancePlaceholder(idx gdnative.Int) gdnative.Bool {
-	log.Println("Calling SceneState.IsNodeInstancePlaceholder()")
+	//log.Println("Calling SceneState.IsNodeInstancePlaceholder()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -543,6 +531,6 @@ func (o *SceneState) IsNodeInstancePlaceholder(idx gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

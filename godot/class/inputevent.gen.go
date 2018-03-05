@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *InputEvent) BaseClass() string {
 	return "InputEvent"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *InputEvent) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *InputEvent) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Returns [code]true[/code] if this event matches [code]event[/code].
 	Args: [{ false event InputEvent}], Returns: bool
 */
 func (o *InputEvent) ActionMatch(event InputEvent) gdnative.Bool {
-	log.Println("Calling InputEvent.ActionMatch()")
+	//log.Println("Calling InputEvent.ActionMatch()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -67,7 +55,7 @@ func (o *InputEvent) ActionMatch(event InputEvent) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -76,7 +64,7 @@ func (o *InputEvent) ActionMatch(event InputEvent) gdnative.Bool {
 	Args: [], Returns: String
 */
 func (o *InputEvent) AsText() gdnative.String {
-	log.Println("Calling InputEvent.AsText()")
+	//log.Println("Calling InputEvent.AsText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -91,7 +79,7 @@ func (o *InputEvent) AsText() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -100,7 +88,7 @@ func (o *InputEvent) AsText() gdnative.String {
 	Args: [], Returns: int
 */
 func (o *InputEvent) GetDevice() gdnative.Int {
-	log.Println("Calling InputEvent.GetDevice()")
+	//log.Println("Calling InputEvent.GetDevice()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -115,7 +103,7 @@ func (o *InputEvent) GetDevice() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -124,7 +112,7 @@ func (o *InputEvent) GetDevice() gdnative.Int {
 	Args: [{ false action String}], Returns: bool
 */
 func (o *InputEvent) IsAction(action gdnative.String) gdnative.Bool {
-	log.Println("Calling InputEvent.IsAction()")
+	//log.Println("Calling InputEvent.IsAction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -140,7 +128,7 @@ func (o *InputEvent) IsAction(action gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -149,7 +137,7 @@ func (o *InputEvent) IsAction(action gdnative.String) gdnative.Bool {
 	Args: [{ false action String}], Returns: bool
 */
 func (o *InputEvent) IsActionPressed(action gdnative.String) gdnative.Bool {
-	log.Println("Calling InputEvent.IsActionPressed()")
+	//log.Println("Calling InputEvent.IsActionPressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -165,7 +153,7 @@ func (o *InputEvent) IsActionPressed(action gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -174,7 +162,7 @@ func (o *InputEvent) IsActionPressed(action gdnative.String) gdnative.Bool {
 	Args: [{ false action String}], Returns: bool
 */
 func (o *InputEvent) IsActionReleased(action gdnative.String) gdnative.Bool {
-	log.Println("Calling InputEvent.IsActionReleased()")
+	//log.Println("Calling InputEvent.IsActionReleased()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -190,7 +178,7 @@ func (o *InputEvent) IsActionReleased(action gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -199,7 +187,7 @@ func (o *InputEvent) IsActionReleased(action gdnative.String) gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *InputEvent) IsActionType() gdnative.Bool {
-	log.Println("Calling InputEvent.IsActionType()")
+	//log.Println("Calling InputEvent.IsActionType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -214,7 +202,7 @@ func (o *InputEvent) IsActionType() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -223,7 +211,7 @@ func (o *InputEvent) IsActionType() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *InputEvent) IsEcho() gdnative.Bool {
-	log.Println("Calling InputEvent.IsEcho()")
+	//log.Println("Calling InputEvent.IsEcho()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -238,7 +226,7 @@ func (o *InputEvent) IsEcho() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -247,7 +235,7 @@ func (o *InputEvent) IsEcho() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *InputEvent) IsPressed() gdnative.Bool {
-	log.Println("Calling InputEvent.IsPressed()")
+	//log.Println("Calling InputEvent.IsPressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -262,7 +250,7 @@ func (o *InputEvent) IsPressed() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -271,7 +259,7 @@ func (o *InputEvent) IsPressed() gdnative.Bool {
 	Args: [{ false device int}], Returns: void
 */
 func (o *InputEvent) SetDevice(device gdnative.Int) {
-	log.Println("Calling InputEvent.SetDevice()")
+	//log.Println("Calling InputEvent.SetDevice()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -292,7 +280,7 @@ func (o *InputEvent) SetDevice(device gdnative.Int) {
 	Args: [{ false event InputEvent}], Returns: bool
 */
 func (o *InputEvent) ShortcutMatch(event InputEvent) gdnative.Bool {
-	log.Println("Calling InputEvent.ShortcutMatch()")
+	//log.Println("Calling InputEvent.ShortcutMatch()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -308,7 +296,7 @@ func (o *InputEvent) ShortcutMatch(event InputEvent) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -317,7 +305,7 @@ func (o *InputEvent) ShortcutMatch(event InputEvent) gdnative.Bool {
 	Args: [{ false xform Transform2D} {(0, 0) true local_ofs Vector2}], Returns: InputEvent
 */
 func (o *InputEvent) XformedBy(xform gdnative.Transform2D, localOfs gdnative.Vector2) InputEvent {
-	log.Println("Calling InputEvent.XformedBy()")
+	//log.Println("Calling InputEvent.XformedBy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -334,6 +322,6 @@ func (o *InputEvent) XformedBy(xform gdnative.Transform2D, localOfs gdnative.Vec
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewInputEventFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

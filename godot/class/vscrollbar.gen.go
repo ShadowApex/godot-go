@@ -33,13 +33,3 @@ type VScrollBar struct {
 func (o *VScrollBar) BaseClass() string {
 	return "VScrollBar"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VScrollBar) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VScrollBar) GetBaseObject() gdnative.Object {
-	return o.owner
-}

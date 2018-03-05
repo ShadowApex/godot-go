@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *LargeTexture) BaseClass() string {
 	return "LargeTexture"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *LargeTexture) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *LargeTexture) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Array
 */
 func (o *LargeTexture) X_GetData() gdnative.Array {
-	log.Println("Calling LargeTexture.X_GetData()")
+	//log.Println("Calling LargeTexture.X_GetData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *LargeTexture) X_GetData() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *LargeTexture) X_GetData() gdnative.Array {
 	Args: [{ false data Array}], Returns: void
 */
 func (o *LargeTexture) X_SetData(data gdnative.Array) {
-	log.Println("Calling LargeTexture.X_SetData()")
+	//log.Println("Calling LargeTexture.X_SetData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *LargeTexture) X_SetData(data gdnative.Array) {
 	Args: [{ false ofs Vector2} { false texture Texture}], Returns: int
 */
 func (o *LargeTexture) AddPiece(ofs gdnative.Vector2, texture Texture) gdnative.Int {
-	log.Println("Calling LargeTexture.AddPiece()")
+	//log.Println("Calling LargeTexture.AddPiece()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -113,7 +101,7 @@ func (o *LargeTexture) AddPiece(ofs gdnative.Vector2, texture Texture) gdnative.
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -122,7 +110,7 @@ func (o *LargeTexture) AddPiece(ofs gdnative.Vector2, texture Texture) gdnative.
 	Args: [], Returns: void
 */
 func (o *LargeTexture) Clear() {
-	log.Println("Calling LargeTexture.Clear()")
+	//log.Println("Calling LargeTexture.Clear()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -142,7 +130,7 @@ func (o *LargeTexture) Clear() {
 	Args: [], Returns: int
 */
 func (o *LargeTexture) GetPieceCount() gdnative.Int {
-	log.Println("Calling LargeTexture.GetPieceCount()")
+	//log.Println("Calling LargeTexture.GetPieceCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -157,7 +145,7 @@ func (o *LargeTexture) GetPieceCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -166,7 +154,7 @@ func (o *LargeTexture) GetPieceCount() gdnative.Int {
 	Args: [{ false idx int}], Returns: Vector2
 */
 func (o *LargeTexture) GetPieceOffset(idx gdnative.Int) gdnative.Vector2 {
-	log.Println("Calling LargeTexture.GetPieceOffset()")
+	//log.Println("Calling LargeTexture.GetPieceOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -182,7 +170,7 @@ func (o *LargeTexture) GetPieceOffset(idx gdnative.Int) gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -191,7 +179,7 @@ func (o *LargeTexture) GetPieceOffset(idx gdnative.Int) gdnative.Vector2 {
 	Args: [{ false idx int}], Returns: Texture
 */
 func (o *LargeTexture) GetPieceTexture(idx gdnative.Int) Texture {
-	log.Println("Calling LargeTexture.GetPieceTexture()")
+	//log.Println("Calling LargeTexture.GetPieceTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -207,7 +195,7 @@ func (o *LargeTexture) GetPieceTexture(idx gdnative.Int) Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -216,7 +204,7 @@ func (o *LargeTexture) GetPieceTexture(idx gdnative.Int) Texture {
 	Args: [{ false idx int} { false ofs Vector2}], Returns: void
 */
 func (o *LargeTexture) SetPieceOffset(idx gdnative.Int, ofs gdnative.Vector2) {
-	log.Println("Calling LargeTexture.SetPieceOffset()")
+	//log.Println("Calling LargeTexture.SetPieceOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -238,7 +226,7 @@ func (o *LargeTexture) SetPieceOffset(idx gdnative.Int, ofs gdnative.Vector2) {
 	Args: [{ false idx int} { false texture Texture}], Returns: void
 */
 func (o *LargeTexture) SetPieceTexture(idx gdnative.Int, texture Texture) {
-	log.Println("Calling LargeTexture.SetPieceTexture()")
+	//log.Println("Calling LargeTexture.SetPieceTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -260,7 +248,7 @@ func (o *LargeTexture) SetPieceTexture(idx gdnative.Int, texture Texture) {
 	Args: [{ false size Vector2}], Returns: void
 */
 func (o *LargeTexture) SetSize(size gdnative.Vector2) {
-	log.Println("Calling LargeTexture.SetSize()")
+	//log.Println("Calling LargeTexture.SetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

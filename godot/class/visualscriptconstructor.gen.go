@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VisualScriptConstructor) BaseClass() string {
 	return "VisualScriptConstructor"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptConstructor) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptConstructor) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Dictionary
 */
 func (o *VisualScriptConstructor) GetConstructor() gdnative.Dictionary {
-	log.Println("Calling VisualScriptConstructor.GetConstructor()")
+	//log.Println("Calling VisualScriptConstructor.GetConstructor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VisualScriptConstructor) GetConstructor() gdnative.Dictionary {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewDictionaryFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -80,7 +68,7 @@ func (o *VisualScriptConstructor) GetConstructor() gdnative.Dictionary {
 	Args: [{ false constructor Dictionary}], Returns: void
 */
 func (o *VisualScriptConstructor) SetConstructor(constructor gdnative.Dictionary) {
-	log.Println("Calling VisualScriptConstructor.SetConstructor()")
+	//log.Println("Calling VisualScriptConstructor.SetConstructor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -101,7 +89,7 @@ func (o *VisualScriptConstructor) SetConstructor(constructor gdnative.Dictionary
 	Args: [{ false type int}], Returns: void
 */
 func (o *VisualScriptConstructor) SetConstructorType(aType gdnative.Int) {
-	log.Println("Calling VisualScriptConstructor.SetConstructorType()")
+	//log.Println("Calling VisualScriptConstructor.SetConstructorType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

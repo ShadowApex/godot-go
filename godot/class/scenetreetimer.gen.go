@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *SceneTreeTimer) BaseClass() string {
 	return "SceneTreeTimer"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *SceneTreeTimer) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *SceneTreeTimer) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *SceneTreeTimer) GetTimeLeft() gdnative.Float {
-	log.Println("Calling SceneTreeTimer.GetTimeLeft()")
+	//log.Println("Calling SceneTreeTimer.GetTimeLeft()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *SceneTreeTimer) GetTimeLeft() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *SceneTreeTimer) GetTimeLeft() gdnative.Float {
 	Args: [{ false time float}], Returns: void
 */
 func (o *SceneTreeTimer) SetTimeLeft(time gdnative.Float) {
-	log.Println("Calling SceneTreeTimer.SetTimeLeft()")
+	//log.Println("Calling SceneTreeTimer.SetTimeLeft()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

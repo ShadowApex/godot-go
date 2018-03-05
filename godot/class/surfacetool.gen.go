@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *SurfaceTool) BaseClass() string {
 	return "SurfaceTool"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *SurfaceTool) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *SurfaceTool) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Add an array of bones for the next Vertex to use.
 	Args: [{ false bones PoolIntArray}], Returns: void
 */
 func (o *SurfaceTool) AddBones(bones gdnative.PoolIntArray) {
-	log.Println("Calling SurfaceTool.AddBones()")
+	//log.Println("Calling SurfaceTool.AddBones()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *SurfaceTool) AddBones(bones gdnative.PoolIntArray) {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *SurfaceTool) AddColor(color gdnative.Color) {
-	log.Println("Calling SurfaceTool.AddColor()")
+	//log.Println("Calling SurfaceTool.AddColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -93,7 +81,7 @@ func (o *SurfaceTool) AddColor(color gdnative.Color) {
 	Args: [{ false index int}], Returns: void
 */
 func (o *SurfaceTool) AddIndex(index gdnative.Int) {
-	log.Println("Calling SurfaceTool.AddIndex()")
+	//log.Println("Calling SurfaceTool.AddIndex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -114,7 +102,7 @@ func (o *SurfaceTool) AddIndex(index gdnative.Int) {
 	Args: [{ false normal Vector3}], Returns: void
 */
 func (o *SurfaceTool) AddNormal(normal gdnative.Vector3) {
-	log.Println("Calling SurfaceTool.AddNormal()")
+	//log.Println("Calling SurfaceTool.AddNormal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -135,7 +123,7 @@ func (o *SurfaceTool) AddNormal(normal gdnative.Vector3) {
 	Args: [{ false smooth bool}], Returns: void
 */
 func (o *SurfaceTool) AddSmoothGroup(smooth gdnative.Bool) {
-	log.Println("Calling SurfaceTool.AddSmoothGroup()")
+	//log.Println("Calling SurfaceTool.AddSmoothGroup()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -156,7 +144,7 @@ func (o *SurfaceTool) AddSmoothGroup(smooth gdnative.Bool) {
 	Args: [{ false tangent Plane}], Returns: void
 */
 func (o *SurfaceTool) AddTangent(tangent gdnative.Plane) {
-	log.Println("Calling SurfaceTool.AddTangent()")
+	//log.Println("Calling SurfaceTool.AddTangent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -177,7 +165,7 @@ func (o *SurfaceTool) AddTangent(tangent gdnative.Plane) {
 	Args: [{ false flags int}], Returns: void
 */
 func (o *SurfaceTool) AddToFormat(flags gdnative.Int) {
-	log.Println("Calling SurfaceTool.AddToFormat()")
+	//log.Println("Calling SurfaceTool.AddToFormat()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -198,7 +186,7 @@ func (o *SurfaceTool) AddToFormat(flags gdnative.Int) {
 	Args: [{ false vertexes PoolVector3Array} {[] true uvs PoolVector2Array} {[PoolColorArray] true colors PoolColorArray} {[] true uv2s PoolVector2Array} {[] true normals PoolVector3Array} {[] true tangents Array}], Returns: void
 */
 func (o *SurfaceTool) AddTriangleFan(vertexes gdnative.PoolVector3Array, uvs gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uv2S gdnative.PoolVector2Array, normals gdnative.PoolVector3Array, tangents gdnative.Array) {
-	log.Println("Calling SurfaceTool.AddTriangleFan()")
+	//log.Println("Calling SurfaceTool.AddTriangleFan()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 6, 6)
@@ -224,7 +212,7 @@ func (o *SurfaceTool) AddTriangleFan(vertexes gdnative.PoolVector3Array, uvs gdn
 	Args: [{ false uv Vector2}], Returns: void
 */
 func (o *SurfaceTool) AddUv(uv gdnative.Vector2) {
-	log.Println("Calling SurfaceTool.AddUv()")
+	//log.Println("Calling SurfaceTool.AddUv()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -245,7 +233,7 @@ func (o *SurfaceTool) AddUv(uv gdnative.Vector2) {
 	Args: [{ false uv2 Vector2}], Returns: void
 */
 func (o *SurfaceTool) AddUv2(uv2 gdnative.Vector2) {
-	log.Println("Calling SurfaceTool.AddUv2()")
+	//log.Println("Calling SurfaceTool.AddUv2()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -266,7 +254,7 @@ func (o *SurfaceTool) AddUv2(uv2 gdnative.Vector2) {
 	Args: [{ false vertex Vector3}], Returns: void
 */
 func (o *SurfaceTool) AddVertex(vertex gdnative.Vector3) {
-	log.Println("Calling SurfaceTool.AddVertex()")
+	//log.Println("Calling SurfaceTool.AddVertex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -287,7 +275,7 @@ func (o *SurfaceTool) AddVertex(vertex gdnative.Vector3) {
 	Args: [{ false weights PoolRealArray}], Returns: void
 */
 func (o *SurfaceTool) AddWeights(weights gdnative.PoolRealArray) {
-	log.Println("Calling SurfaceTool.AddWeights()")
+	//log.Println("Calling SurfaceTool.AddWeights()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -308,7 +296,7 @@ func (o *SurfaceTool) AddWeights(weights gdnative.PoolRealArray) {
 	Args: [{ false existing Mesh} { false surface int} { false transform Transform}], Returns: void
 */
 func (o *SurfaceTool) AppendFrom(existing Mesh, surface gdnative.Int, transform gdnative.Transform) {
-	log.Println("Calling SurfaceTool.AppendFrom()")
+	//log.Println("Calling SurfaceTool.AppendFrom()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -331,7 +319,7 @@ func (o *SurfaceTool) AppendFrom(existing Mesh, surface gdnative.Int, transform 
 	Args: [{ false primitive int}], Returns: void
 */
 func (o *SurfaceTool) Begin(primitive gdnative.Int) {
-	log.Println("Calling SurfaceTool.Begin()")
+	//log.Println("Calling SurfaceTool.Begin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -352,7 +340,7 @@ func (o *SurfaceTool) Begin(primitive gdnative.Int) {
 	Args: [], Returns: void
 */
 func (o *SurfaceTool) Clear() {
-	log.Println("Calling SurfaceTool.Clear()")
+	//log.Println("Calling SurfaceTool.Clear()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -372,7 +360,7 @@ func (o *SurfaceTool) Clear() {
 	Args: [{Null true existing ArrayMesh} {97792 true flags int}], Returns: ArrayMesh
 */
 func (o *SurfaceTool) Commit(existing ArrayMesh, flags gdnative.Int) ArrayMesh {
-	log.Println("Calling SurfaceTool.Commit()")
+	//log.Println("Calling SurfaceTool.Commit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -389,7 +377,7 @@ func (o *SurfaceTool) Commit(existing ArrayMesh, flags gdnative.Int) ArrayMesh {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewArrayMeshFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -398,7 +386,7 @@ func (o *SurfaceTool) Commit(existing ArrayMesh, flags gdnative.Int) ArrayMesh {
 	Args: [{ false existing Mesh} { false surface int}], Returns: void
 */
 func (o *SurfaceTool) CreateFrom(existing Mesh, surface gdnative.Int) {
-	log.Println("Calling SurfaceTool.CreateFrom()")
+	//log.Println("Calling SurfaceTool.CreateFrom()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -420,7 +408,7 @@ func (o *SurfaceTool) CreateFrom(existing Mesh, surface gdnative.Int) {
 	Args: [], Returns: void
 */
 func (o *SurfaceTool) Deindex() {
-	log.Println("Calling SurfaceTool.Deindex()")
+	//log.Println("Calling SurfaceTool.Deindex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -440,7 +428,7 @@ func (o *SurfaceTool) Deindex() {
 	Args: [], Returns: void
 */
 func (o *SurfaceTool) GenerateNormals() {
-	log.Println("Calling SurfaceTool.GenerateNormals()")
+	//log.Println("Calling SurfaceTool.GenerateNormals()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -460,7 +448,7 @@ func (o *SurfaceTool) GenerateNormals() {
 	Args: [], Returns: void
 */
 func (o *SurfaceTool) GenerateTangents() {
-	log.Println("Calling SurfaceTool.GenerateTangents()")
+	//log.Println("Calling SurfaceTool.GenerateTangents()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -480,7 +468,7 @@ func (o *SurfaceTool) GenerateTangents() {
 	Args: [], Returns: void
 */
 func (o *SurfaceTool) Index() {
-	log.Println("Calling SurfaceTool.Index()")
+	//log.Println("Calling SurfaceTool.Index()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -500,7 +488,7 @@ func (o *SurfaceTool) Index() {
 	Args: [{ false material Material}], Returns: void
 */
 func (o *SurfaceTool) SetMaterial(material Material) {
-	log.Println("Calling SurfaceTool.SetMaterial()")
+	//log.Println("Calling SurfaceTool.SetMaterial()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

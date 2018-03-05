@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *LinkButton) BaseClass() string {
 	return "LinkButton"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *LinkButton) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *LinkButton) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: String
 */
 func (o *LinkButton) GetText() gdnative.String {
-	log.Println("Calling LinkButton.GetText()")
+	//log.Println("Calling LinkButton.GetText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *LinkButton) GetText() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -80,7 +68,7 @@ func (o *LinkButton) GetText() gdnative.String {
 	Args: [{ false text String}], Returns: void
 */
 func (o *LinkButton) SetText(text gdnative.String) {
-	log.Println("Calling LinkButton.SetText()")
+	//log.Println("Calling LinkButton.SetText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -101,7 +89,7 @@ func (o *LinkButton) SetText(text gdnative.String) {
 	Args: [{ false underline_mode int}], Returns: void
 */
 func (o *LinkButton) SetUnderlineMode(underlineMode gdnative.Int) {
-	log.Println("Calling LinkButton.SetUnderlineMode()")
+	//log.Println("Calling LinkButton.SetUnderlineMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

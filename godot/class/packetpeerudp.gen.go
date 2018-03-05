@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *PacketPeerUDP) BaseClass() string {
 	return "PacketPeerUDP"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *PacketPeerUDP) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *PacketPeerUDP) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Close the UDP socket the [code]PacketPeerUDP[/code] is currently listening on.
 	Args: [], Returns: void
 */
 func (o *PacketPeerUDP) Close() {
-	log.Println("Calling PacketPeerUDP.Close()")
+	//log.Println("Calling PacketPeerUDP.Close()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *PacketPeerUDP) Close() {
 	Args: [], Returns: String
 */
 func (o *PacketPeerUDP) GetPacketIp() gdnative.String {
-	log.Println("Calling PacketPeerUDP.GetPacketIp()")
+	//log.Println("Calling PacketPeerUDP.GetPacketIp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -86,7 +74,7 @@ func (o *PacketPeerUDP) GetPacketIp() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -95,7 +83,7 @@ func (o *PacketPeerUDP) GetPacketIp() gdnative.String {
 	Args: [], Returns: int
 */
 func (o *PacketPeerUDP) GetPacketPort() gdnative.Int {
-	log.Println("Calling PacketPeerUDP.GetPacketPort()")
+	//log.Println("Calling PacketPeerUDP.GetPacketPort()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -110,7 +98,7 @@ func (o *PacketPeerUDP) GetPacketPort() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -119,7 +107,7 @@ func (o *PacketPeerUDP) GetPacketPort() gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *PacketPeerUDP) IsListening() gdnative.Bool {
-	log.Println("Calling PacketPeerUDP.IsListening()")
+	//log.Println("Calling PacketPeerUDP.IsListening()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -134,7 +122,7 @@ func (o *PacketPeerUDP) IsListening() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 

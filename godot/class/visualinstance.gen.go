@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VisualInstance) BaseClass() string {
 	return "VisualInstance"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualInstance) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualInstance) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: RID
 */
 func (o *VisualInstance) X_GetVisualInstanceRid() gdnative.Rid {
-	log.Println("Calling VisualInstance.X_GetVisualInstanceRid()")
+	//log.Println("Calling VisualInstance.X_GetVisualInstanceRid()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VisualInstance) X_GetVisualInstanceRid() gdnative.Rid {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRidFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *VisualInstance) X_GetVisualInstanceRid() gdnative.Rid {
 	Args: [], Returns: AABB
 */
 func (o *VisualInstance) GetAabb() gdnative.Aabb {
-	log.Println("Calling VisualInstance.GetAabb()")
+	//log.Println("Calling VisualInstance.GetAabb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *VisualInstance) GetAabb() gdnative.Aabb {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewAabbFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *VisualInstance) GetAabb() gdnative.Aabb {
 	Args: [], Returns: int
 */
 func (o *VisualInstance) GetLayerMask() gdnative.Int {
-	log.Println("Calling VisualInstance.GetLayerMask()")
+	//log.Println("Calling VisualInstance.GetLayerMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *VisualInstance) GetLayerMask() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *VisualInstance) GetLayerMask() gdnative.Int {
 	Args: [], Returns: AABB
 */
 func (o *VisualInstance) GetTransformedAabb() gdnative.Aabb {
-	log.Println("Calling VisualInstance.GetTransformedAabb()")
+	//log.Println("Calling VisualInstance.GetTransformedAabb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *VisualInstance) GetTransformedAabb() gdnative.Aabb {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewAabbFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *VisualInstance) GetTransformedAabb() gdnative.Aabb {
 	Args: [{ false base RID}], Returns: void
 */
 func (o *VisualInstance) SetBase(base gdnative.Rid) {
-	log.Println("Calling VisualInstance.SetBase()")
+	//log.Println("Calling VisualInstance.SetBase()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -168,7 +156,7 @@ func (o *VisualInstance) SetBase(base gdnative.Rid) {
 	Args: [{ false mask int}], Returns: void
 */
 func (o *VisualInstance) SetLayerMask(mask gdnative.Int) {
-	log.Println("Calling VisualInstance.SetLayerMask()")
+	//log.Println("Calling VisualInstance.SetLayerMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

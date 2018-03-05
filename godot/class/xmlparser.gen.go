@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *XMLParser) BaseClass() string {
 	return "XMLParser"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *XMLParser) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *XMLParser) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Get the amount of attributes in the current element.
 	Args: [], Returns: int
 */
 func (o *XMLParser) GetAttributeCount() gdnative.Int {
-	log.Println("Calling XMLParser.GetAttributeCount()")
+	//log.Println("Calling XMLParser.GetAttributeCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *XMLParser) GetAttributeCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *XMLParser) GetAttributeCount() gdnative.Int {
 	Args: [{ false idx int}], Returns: String
 */
 func (o *XMLParser) GetAttributeName(idx gdnative.Int) gdnative.String {
-	log.Println("Calling XMLParser.GetAttributeName()")
+	//log.Println("Calling XMLParser.GetAttributeName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -91,7 +79,7 @@ func (o *XMLParser) GetAttributeName(idx gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -100,7 +88,7 @@ func (o *XMLParser) GetAttributeName(idx gdnative.Int) gdnative.String {
 	Args: [{ false idx int}], Returns: String
 */
 func (o *XMLParser) GetAttributeValue(idx gdnative.Int) gdnative.String {
-	log.Println("Calling XMLParser.GetAttributeValue()")
+	//log.Println("Calling XMLParser.GetAttributeValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -116,7 +104,7 @@ func (o *XMLParser) GetAttributeValue(idx gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -125,7 +113,7 @@ func (o *XMLParser) GetAttributeValue(idx gdnative.Int) gdnative.String {
 	Args: [], Returns: int
 */
 func (o *XMLParser) GetCurrentLine() gdnative.Int {
-	log.Println("Calling XMLParser.GetCurrentLine()")
+	//log.Println("Calling XMLParser.GetCurrentLine()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -140,7 +128,7 @@ func (o *XMLParser) GetCurrentLine() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -149,7 +137,7 @@ func (o *XMLParser) GetCurrentLine() gdnative.Int {
 	Args: [{ false name String}], Returns: String
 */
 func (o *XMLParser) GetNamedAttributeValue(name gdnative.String) gdnative.String {
-	log.Println("Calling XMLParser.GetNamedAttributeValue()")
+	//log.Println("Calling XMLParser.GetNamedAttributeValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -165,7 +153,7 @@ func (o *XMLParser) GetNamedAttributeValue(name gdnative.String) gdnative.String
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -174,7 +162,7 @@ func (o *XMLParser) GetNamedAttributeValue(name gdnative.String) gdnative.String
 	Args: [{ false name String}], Returns: String
 */
 func (o *XMLParser) GetNamedAttributeValueSafe(name gdnative.String) gdnative.String {
-	log.Println("Calling XMLParser.GetNamedAttributeValueSafe()")
+	//log.Println("Calling XMLParser.GetNamedAttributeValueSafe()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -190,7 +178,7 @@ func (o *XMLParser) GetNamedAttributeValueSafe(name gdnative.String) gdnative.St
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -199,7 +187,7 @@ func (o *XMLParser) GetNamedAttributeValueSafe(name gdnative.String) gdnative.St
 	Args: [], Returns: String
 */
 func (o *XMLParser) GetNodeData() gdnative.String {
-	log.Println("Calling XMLParser.GetNodeData()")
+	//log.Println("Calling XMLParser.GetNodeData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -214,7 +202,7 @@ func (o *XMLParser) GetNodeData() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -223,7 +211,7 @@ func (o *XMLParser) GetNodeData() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *XMLParser) GetNodeName() gdnative.String {
-	log.Println("Calling XMLParser.GetNodeName()")
+	//log.Println("Calling XMLParser.GetNodeName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -238,7 +226,7 @@ func (o *XMLParser) GetNodeName() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -247,7 +235,7 @@ func (o *XMLParser) GetNodeName() gdnative.String {
 	Args: [], Returns: int
 */
 func (o *XMLParser) GetNodeOffset() gdnative.Int {
-	log.Println("Calling XMLParser.GetNodeOffset()")
+	//log.Println("Calling XMLParser.GetNodeOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -262,7 +250,7 @@ func (o *XMLParser) GetNodeOffset() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -276,7 +264,7 @@ func (o *XMLParser) GetNodeOffset() gdnative.Int {
 	Args: [{ false name String}], Returns: bool
 */
 func (o *XMLParser) HasAttribute(name gdnative.String) gdnative.Bool {
-	log.Println("Calling XMLParser.HasAttribute()")
+	//log.Println("Calling XMLParser.HasAttribute()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -292,7 +280,7 @@ func (o *XMLParser) HasAttribute(name gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -301,7 +289,7 @@ func (o *XMLParser) HasAttribute(name gdnative.String) gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *XMLParser) IsEmpty() gdnative.Bool {
-	log.Println("Calling XMLParser.IsEmpty()")
+	//log.Println("Calling XMLParser.IsEmpty()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -316,7 +304,7 @@ func (o *XMLParser) IsEmpty() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -345,7 +333,7 @@ func (o *XMLParser) IsEmpty() gdnative.Bool {
 	Args: [], Returns: void
 */
 func (o *XMLParser) SkipSection() {
-	log.Println("Calling XMLParser.SkipSection()")
+	//log.Println("Calling XMLParser.SkipSection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)

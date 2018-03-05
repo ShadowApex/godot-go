@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Mesh) BaseClass() string {
 	return "Mesh"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Mesh) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Mesh) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Calculate a [ConvexPolygonShape] from the mesh.
 	Args: [], Returns: Shape
 */
 func (o *Mesh) CreateConvexShape() Shape {
-	log.Println("Calling Mesh.CreateConvexShape()")
+	//log.Println("Calling Mesh.CreateConvexShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *Mesh) CreateConvexShape() Shape {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewShapeFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *Mesh) CreateConvexShape() Shape {
 	Args: [{ false margin float}], Returns: Mesh
 */
 func (o *Mesh) CreateOutline(margin gdnative.Float) Mesh {
-	log.Println("Calling Mesh.CreateOutline()")
+	//log.Println("Calling Mesh.CreateOutline()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -91,7 +79,7 @@ func (o *Mesh) CreateOutline(margin gdnative.Float) Mesh {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewMeshFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -100,7 +88,7 @@ func (o *Mesh) CreateOutline(margin gdnative.Float) Mesh {
 	Args: [], Returns: Shape
 */
 func (o *Mesh) CreateTrimeshShape() Shape {
-	log.Println("Calling Mesh.CreateTrimeshShape()")
+	//log.Println("Calling Mesh.CreateTrimeshShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -115,7 +103,7 @@ func (o *Mesh) CreateTrimeshShape() Shape {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewShapeFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -124,7 +112,7 @@ func (o *Mesh) CreateTrimeshShape() Shape {
 	Args: [], Returns: TriangleMesh
 */
 func (o *Mesh) GenerateTriangleMesh() TriangleMesh {
-	log.Println("Calling Mesh.GenerateTriangleMesh()")
+	//log.Println("Calling Mesh.GenerateTriangleMesh()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -139,7 +127,7 @@ func (o *Mesh) GenerateTriangleMesh() TriangleMesh {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTriangleMeshFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -148,7 +136,7 @@ func (o *Mesh) GenerateTriangleMesh() TriangleMesh {
 	Args: [], Returns: PoolVector3Array
 */
 func (o *Mesh) GetFaces() gdnative.PoolVector3Array {
-	log.Println("Calling Mesh.GetFaces()")
+	//log.Println("Calling Mesh.GetFaces()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -163,7 +151,7 @@ func (o *Mesh) GetFaces() gdnative.PoolVector3Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolVector3ArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -172,7 +160,7 @@ func (o *Mesh) GetFaces() gdnative.PoolVector3Array {
 	Args: [], Returns: Vector2
 */
 func (o *Mesh) GetLightmapSizeHint() gdnative.Vector2 {
-	log.Println("Calling Mesh.GetLightmapSizeHint()")
+	//log.Println("Calling Mesh.GetLightmapSizeHint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -187,7 +175,7 @@ func (o *Mesh) GetLightmapSizeHint() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -196,7 +184,7 @@ func (o *Mesh) GetLightmapSizeHint() gdnative.Vector2 {
 	Args: [{ false size Vector2}], Returns: void
 */
 func (o *Mesh) SetLightmapSizeHint(size gdnative.Vector2) {
-	log.Println("Calling Mesh.SetLightmapSizeHint()")
+	//log.Println("Calling Mesh.SetLightmapSizeHint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

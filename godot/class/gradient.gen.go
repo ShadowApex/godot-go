@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Gradient) BaseClass() string {
 	return "Gradient"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Gradient) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Gradient) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Adds the specified color to the end of the ramp, with the specified offset
 	Args: [{ false offset float} { false color Color}], Returns: void
 */
 func (o *Gradient) AddPoint(offset gdnative.Float, color gdnative.Color) {
-	log.Println("Calling Gradient.AddPoint()")
+	//log.Println("Calling Gradient.AddPoint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -73,7 +61,7 @@ func (o *Gradient) AddPoint(offset gdnative.Float, color gdnative.Color) {
 	Args: [{ false point int}], Returns: Color
 */
 func (o *Gradient) GetColor(point gdnative.Int) gdnative.Color {
-	log.Println("Calling Gradient.GetColor()")
+	//log.Println("Calling Gradient.GetColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -89,7 +77,7 @@ func (o *Gradient) GetColor(point gdnative.Int) gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -98,7 +86,7 @@ func (o *Gradient) GetColor(point gdnative.Int) gdnative.Color {
 	Args: [], Returns: PoolColorArray
 */
 func (o *Gradient) GetColors() gdnative.PoolColorArray {
-	log.Println("Calling Gradient.GetColors()")
+	//log.Println("Calling Gradient.GetColors()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -113,7 +101,7 @@ func (o *Gradient) GetColors() gdnative.PoolColorArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolColorArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -122,7 +110,7 @@ func (o *Gradient) GetColors() gdnative.PoolColorArray {
 	Args: [{ false point int}], Returns: float
 */
 func (o *Gradient) GetOffset(point gdnative.Int) gdnative.Float {
-	log.Println("Calling Gradient.GetOffset()")
+	//log.Println("Calling Gradient.GetOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -138,7 +126,7 @@ func (o *Gradient) GetOffset(point gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *Gradient) GetOffset(point gdnative.Int) gdnative.Float {
 	Args: [], Returns: PoolRealArray
 */
 func (o *Gradient) GetOffsets() gdnative.PoolRealArray {
-	log.Println("Calling Gradient.GetOffsets()")
+	//log.Println("Calling Gradient.GetOffsets()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *Gradient) GetOffsets() gdnative.PoolRealArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolRealArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *Gradient) GetOffsets() gdnative.PoolRealArray {
 	Args: [], Returns: int
 */
 func (o *Gradient) GetPointCount() gdnative.Int {
-	log.Println("Calling Gradient.GetPointCount()")
+	//log.Println("Calling Gradient.GetPointCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -186,7 +174,7 @@ func (o *Gradient) GetPointCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -195,7 +183,7 @@ func (o *Gradient) GetPointCount() gdnative.Int {
 	Args: [{ false offset float}], Returns: Color
 */
 func (o *Gradient) Interpolate(offset gdnative.Float) gdnative.Color {
-	log.Println("Calling Gradient.Interpolate()")
+	//log.Println("Calling Gradient.Interpolate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -211,7 +199,7 @@ func (o *Gradient) Interpolate(offset gdnative.Float) gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -220,7 +208,7 @@ func (o *Gradient) Interpolate(offset gdnative.Float) gdnative.Color {
 	Args: [{ false offset int}], Returns: void
 */
 func (o *Gradient) RemovePoint(offset gdnative.Int) {
-	log.Println("Calling Gradient.RemovePoint()")
+	//log.Println("Calling Gradient.RemovePoint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -241,7 +229,7 @@ func (o *Gradient) RemovePoint(offset gdnative.Int) {
 	Args: [{ false point int} { false color Color}], Returns: void
 */
 func (o *Gradient) SetColor(point gdnative.Int, color gdnative.Color) {
-	log.Println("Calling Gradient.SetColor()")
+	//log.Println("Calling Gradient.SetColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -263,7 +251,7 @@ func (o *Gradient) SetColor(point gdnative.Int, color gdnative.Color) {
 	Args: [{ false colors PoolColorArray}], Returns: void
 */
 func (o *Gradient) SetColors(colors gdnative.PoolColorArray) {
-	log.Println("Calling Gradient.SetColors()")
+	//log.Println("Calling Gradient.SetColors()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -284,7 +272,7 @@ func (o *Gradient) SetColors(colors gdnative.PoolColorArray) {
 	Args: [{ false point int} { false offset float}], Returns: void
 */
 func (o *Gradient) SetOffset(point gdnative.Int, offset gdnative.Float) {
-	log.Println("Calling Gradient.SetOffset()")
+	//log.Println("Calling Gradient.SetOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -306,7 +294,7 @@ func (o *Gradient) SetOffset(point gdnative.Int, offset gdnative.Float) {
 	Args: [{ false offsets PoolRealArray}], Returns: void
 */
 func (o *Gradient) SetOffsets(offsets gdnative.PoolRealArray) {
-	log.Println("Calling Gradient.SetOffsets()")
+	//log.Println("Calling Gradient.SetOffsets()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

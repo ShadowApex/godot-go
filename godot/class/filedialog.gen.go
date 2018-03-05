@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *FileDialog) BaseClass() string {
 	return "FileDialog"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *FileDialog) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *FileDialog) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *FileDialog) X_ActionPressed() {
-	log.Println("Calling FileDialog.X_ActionPressed()")
+	//log.Println("Calling FileDialog.X_ActionPressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *FileDialog) X_ActionPressed() {
 	Args: [], Returns: void
 */
 func (o *FileDialog) X_CancelPressed() {
-	log.Println("Calling FileDialog.X_CancelPressed()")
+	//log.Println("Calling FileDialog.X_CancelPressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -91,7 +79,7 @@ func (o *FileDialog) X_CancelPressed() {
 	Args: [{ false arg0 String}], Returns: void
 */
 func (o *FileDialog) X_DirEntered(arg0 gdnative.String) {
-	log.Println("Calling FileDialog.X_DirEntered()")
+	//log.Println("Calling FileDialog.X_DirEntered()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -112,7 +100,7 @@ func (o *FileDialog) X_DirEntered(arg0 gdnative.String) {
 	Args: [{ false arg0 String}], Returns: void
 */
 func (o *FileDialog) X_FileEntered(arg0 gdnative.String) {
-	log.Println("Calling FileDialog.X_FileEntered()")
+	//log.Println("Calling FileDialog.X_FileEntered()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -133,7 +121,7 @@ func (o *FileDialog) X_FileEntered(arg0 gdnative.String) {
 	Args: [{ false arg0 int}], Returns: void
 */
 func (o *FileDialog) X_FilterSelected(arg0 gdnative.Int) {
-	log.Println("Calling FileDialog.X_FilterSelected()")
+	//log.Println("Calling FileDialog.X_FilterSelected()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -154,7 +142,7 @@ func (o *FileDialog) X_FilterSelected(arg0 gdnative.Int) {
 	Args: [], Returns: void
 */
 func (o *FileDialog) X_GoUp() {
-	log.Println("Calling FileDialog.X_GoUp()")
+	//log.Println("Calling FileDialog.X_GoUp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -174,7 +162,7 @@ func (o *FileDialog) X_GoUp() {
 	Args: [], Returns: void
 */
 func (o *FileDialog) X_MakeDir() {
-	log.Println("Calling FileDialog.X_MakeDir()")
+	//log.Println("Calling FileDialog.X_MakeDir()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -194,7 +182,7 @@ func (o *FileDialog) X_MakeDir() {
 	Args: [], Returns: void
 */
 func (o *FileDialog) X_MakeDirConfirm() {
-	log.Println("Calling FileDialog.X_MakeDirConfirm()")
+	//log.Println("Calling FileDialog.X_MakeDirConfirm()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -214,7 +202,7 @@ func (o *FileDialog) X_MakeDirConfirm() {
 	Args: [], Returns: void
 */
 func (o *FileDialog) X_SaveConfirmPressed() {
-	log.Println("Calling FileDialog.X_SaveConfirmPressed()")
+	//log.Println("Calling FileDialog.X_SaveConfirmPressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -234,7 +222,7 @@ func (o *FileDialog) X_SaveConfirmPressed() {
 	Args: [{ false arg0 int}], Returns: void
 */
 func (o *FileDialog) X_SelectDrive(arg0 gdnative.Int) {
-	log.Println("Calling FileDialog.X_SelectDrive()")
+	//log.Println("Calling FileDialog.X_SelectDrive()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -255,7 +243,7 @@ func (o *FileDialog) X_SelectDrive(arg0 gdnative.Int) {
 	Args: [], Returns: void
 */
 func (o *FileDialog) X_TreeDbSelected() {
-	log.Println("Calling FileDialog.X_TreeDbSelected()")
+	//log.Println("Calling FileDialog.X_TreeDbSelected()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -275,7 +263,7 @@ func (o *FileDialog) X_TreeDbSelected() {
 	Args: [], Returns: void
 */
 func (o *FileDialog) X_TreeSelected() {
-	log.Println("Calling FileDialog.X_TreeSelected()")
+	//log.Println("Calling FileDialog.X_TreeSelected()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -295,7 +283,7 @@ func (o *FileDialog) X_TreeSelected() {
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
 func (o *FileDialog) X_UnhandledInput(arg0 InputEvent) {
-	log.Println("Calling FileDialog.X_UnhandledInput()")
+	//log.Println("Calling FileDialog.X_UnhandledInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -316,7 +304,7 @@ func (o *FileDialog) X_UnhandledInput(arg0 InputEvent) {
 	Args: [], Returns: void
 */
 func (o *FileDialog) X_UpdateDir() {
-	log.Println("Calling FileDialog.X_UpdateDir()")
+	//log.Println("Calling FileDialog.X_UpdateDir()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -336,7 +324,7 @@ func (o *FileDialog) X_UpdateDir() {
 	Args: [], Returns: void
 */
 func (o *FileDialog) X_UpdateFileList() {
-	log.Println("Calling FileDialog.X_UpdateFileList()")
+	//log.Println("Calling FileDialog.X_UpdateFileList()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -356,7 +344,7 @@ func (o *FileDialog) X_UpdateFileList() {
 	Args: [{ false filter String}], Returns: void
 */
 func (o *FileDialog) AddFilter(filter gdnative.String) {
-	log.Println("Calling FileDialog.AddFilter()")
+	//log.Println("Calling FileDialog.AddFilter()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -377,7 +365,7 @@ func (o *FileDialog) AddFilter(filter gdnative.String) {
 	Args: [], Returns: void
 */
 func (o *FileDialog) ClearFilters() {
-	log.Println("Calling FileDialog.ClearFilters()")
+	//log.Println("Calling FileDialog.ClearFilters()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -397,7 +385,7 @@ func (o *FileDialog) ClearFilters() {
 	Args: [], Returns: void
 */
 func (o *FileDialog) DeselectItems() {
-	log.Println("Calling FileDialog.DeselectItems()")
+	//log.Println("Calling FileDialog.DeselectItems()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -422,7 +410,7 @@ func (o *FileDialog) DeselectItems() {
 	Args: [], Returns: String
 */
 func (o *FileDialog) GetCurrentDir() gdnative.String {
-	log.Println("Calling FileDialog.GetCurrentDir()")
+	//log.Println("Calling FileDialog.GetCurrentDir()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -437,7 +425,7 @@ func (o *FileDialog) GetCurrentDir() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -446,7 +434,7 @@ func (o *FileDialog) GetCurrentDir() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *FileDialog) GetCurrentFile() gdnative.String {
-	log.Println("Calling FileDialog.GetCurrentFile()")
+	//log.Println("Calling FileDialog.GetCurrentFile()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -461,7 +449,7 @@ func (o *FileDialog) GetCurrentFile() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -470,7 +458,7 @@ func (o *FileDialog) GetCurrentFile() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *FileDialog) GetCurrentPath() gdnative.String {
-	log.Println("Calling FileDialog.GetCurrentPath()")
+	//log.Println("Calling FileDialog.GetCurrentPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -485,7 +473,7 @@ func (o *FileDialog) GetCurrentPath() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -494,7 +482,7 @@ func (o *FileDialog) GetCurrentPath() gdnative.String {
 	Args: [], Returns: PoolStringArray
 */
 func (o *FileDialog) GetFilters() gdnative.PoolStringArray {
-	log.Println("Calling FileDialog.GetFilters()")
+	//log.Println("Calling FileDialog.GetFilters()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -509,7 +497,7 @@ func (o *FileDialog) GetFilters() gdnative.PoolStringArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolStringArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -523,7 +511,7 @@ func (o *FileDialog) GetFilters() gdnative.PoolStringArray {
 	Args: [], Returns: VBoxContainer
 */
 func (o *FileDialog) GetVbox() VBoxContainer {
-	log.Println("Calling FileDialog.GetVbox()")
+	//log.Println("Calling FileDialog.GetVbox()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -538,7 +526,7 @@ func (o *FileDialog) GetVbox() VBoxContainer {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewVBoxContainerFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -547,7 +535,7 @@ func (o *FileDialog) GetVbox() VBoxContainer {
 	Args: [], Returns: void
 */
 func (o *FileDialog) Invalidate() {
-	log.Println("Calling FileDialog.Invalidate()")
+	//log.Println("Calling FileDialog.Invalidate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -567,7 +555,7 @@ func (o *FileDialog) Invalidate() {
 	Args: [], Returns: bool
 */
 func (o *FileDialog) IsModeOverridingTitle() gdnative.Bool {
-	log.Println("Calling FileDialog.IsModeOverridingTitle()")
+	//log.Println("Calling FileDialog.IsModeOverridingTitle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -582,7 +570,7 @@ func (o *FileDialog) IsModeOverridingTitle() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -591,7 +579,7 @@ func (o *FileDialog) IsModeOverridingTitle() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *FileDialog) IsShowingHiddenFiles() gdnative.Bool {
-	log.Println("Calling FileDialog.IsShowingHiddenFiles()")
+	//log.Println("Calling FileDialog.IsShowingHiddenFiles()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -606,7 +594,7 @@ func (o *FileDialog) IsShowingHiddenFiles() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -615,7 +603,7 @@ func (o *FileDialog) IsShowingHiddenFiles() gdnative.Bool {
 	Args: [{ false access int}], Returns: void
 */
 func (o *FileDialog) SetAccess(access gdnative.Int) {
-	log.Println("Calling FileDialog.SetAccess()")
+	//log.Println("Calling FileDialog.SetAccess()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -636,7 +624,7 @@ func (o *FileDialog) SetAccess(access gdnative.Int) {
 	Args: [{ false dir String}], Returns: void
 */
 func (o *FileDialog) SetCurrentDir(dir gdnative.String) {
-	log.Println("Calling FileDialog.SetCurrentDir()")
+	//log.Println("Calling FileDialog.SetCurrentDir()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -657,7 +645,7 @@ func (o *FileDialog) SetCurrentDir(dir gdnative.String) {
 	Args: [{ false file String}], Returns: void
 */
 func (o *FileDialog) SetCurrentFile(file gdnative.String) {
-	log.Println("Calling FileDialog.SetCurrentFile()")
+	//log.Println("Calling FileDialog.SetCurrentFile()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -678,7 +666,7 @@ func (o *FileDialog) SetCurrentFile(file gdnative.String) {
 	Args: [{ false path String}], Returns: void
 */
 func (o *FileDialog) SetCurrentPath(path gdnative.String) {
-	log.Println("Calling FileDialog.SetCurrentPath()")
+	//log.Println("Calling FileDialog.SetCurrentPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -699,7 +687,7 @@ func (o *FileDialog) SetCurrentPath(path gdnative.String) {
 	Args: [{ false filters PoolStringArray}], Returns: void
 */
 func (o *FileDialog) SetFilters(filters gdnative.PoolStringArray) {
-	log.Println("Calling FileDialog.SetFilters()")
+	//log.Println("Calling FileDialog.SetFilters()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -720,7 +708,7 @@ func (o *FileDialog) SetFilters(filters gdnative.PoolStringArray) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *FileDialog) SetMode(mode gdnative.Int) {
-	log.Println("Calling FileDialog.SetMode()")
+	//log.Println("Calling FileDialog.SetMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -741,7 +729,7 @@ func (o *FileDialog) SetMode(mode gdnative.Int) {
 	Args: [{ false override bool}], Returns: void
 */
 func (o *FileDialog) SetModeOverridesTitle(override gdnative.Bool) {
-	log.Println("Calling FileDialog.SetModeOverridesTitle()")
+	//log.Println("Calling FileDialog.SetModeOverridesTitle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -762,7 +750,7 @@ func (o *FileDialog) SetModeOverridesTitle(override gdnative.Bool) {
 	Args: [{ false show bool}], Returns: void
 */
 func (o *FileDialog) SetShowHiddenFiles(show gdnative.Bool) {
-	log.Println("Calling FileDialog.SetShowHiddenFiles()")
+	//log.Println("Calling FileDialog.SetShowHiddenFiles()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

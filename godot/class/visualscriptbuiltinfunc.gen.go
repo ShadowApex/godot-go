@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,16 +34,6 @@ func (o *VisualScriptBuiltinFunc) BaseClass() string {
 	return "VisualScriptBuiltinFunc"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptBuiltinFunc) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptBuiltinFunc) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: enum.VisualScriptBuiltinFunc::BuiltinFunc
@@ -56,7 +44,7 @@ func (o *VisualScriptBuiltinFunc) GetBaseObject() gdnative.Object {
 	Args: [{ false which int}], Returns: void
 */
 func (o *VisualScriptBuiltinFunc) SetFunc(which gdnative.Int) {
-	log.Println("Calling VisualScriptBuiltinFunc.SetFunc()")
+	//log.Println("Calling VisualScriptBuiltinFunc.SetFunc()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

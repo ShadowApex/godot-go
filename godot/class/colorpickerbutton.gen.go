@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ColorPickerButton) BaseClass() string {
 	return "ColorPickerButton"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ColorPickerButton) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ColorPickerButton) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false arg0 Color}], Returns: void
 */
 func (o *ColorPickerButton) X_ColorChanged(arg0 gdnative.Color) {
-	log.Println("Calling ColorPickerButton.X_ColorChanged()")
+	//log.Println("Calling ColorPickerButton.X_ColorChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *ColorPickerButton) X_ColorChanged(arg0 gdnative.Color) {
 	Args: [], Returns: Color
 */
 func (o *ColorPickerButton) GetPickColor() gdnative.Color {
-	log.Println("Calling ColorPickerButton.GetPickColor()")
+	//log.Println("Calling ColorPickerButton.GetPickColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -87,7 +75,7 @@ func (o *ColorPickerButton) GetPickColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -96,7 +84,7 @@ func (o *ColorPickerButton) GetPickColor() gdnative.Color {
 	Args: [], Returns: ColorPicker
 */
 func (o *ColorPickerButton) GetPicker() ColorPicker {
-	log.Println("Calling ColorPickerButton.GetPicker()")
+	//log.Println("Calling ColorPickerButton.GetPicker()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -111,7 +99,7 @@ func (o *ColorPickerButton) GetPicker() ColorPicker {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewColorPickerFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -120,7 +108,7 @@ func (o *ColorPickerButton) GetPicker() ColorPicker {
 	Args: [], Returns: PopupPanel
 */
 func (o *ColorPickerButton) GetPopup() PopupPanel {
-	log.Println("Calling ColorPickerButton.GetPopup()")
+	//log.Println("Calling ColorPickerButton.GetPopup()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -135,7 +123,7 @@ func (o *ColorPickerButton) GetPopup() PopupPanel {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewPopupPanelFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -144,7 +132,7 @@ func (o *ColorPickerButton) GetPopup() PopupPanel {
 	Args: [], Returns: bool
 */
 func (o *ColorPickerButton) IsEditingAlpha() gdnative.Bool {
-	log.Println("Calling ColorPickerButton.IsEditingAlpha()")
+	//log.Println("Calling ColorPickerButton.IsEditingAlpha()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -159,7 +147,7 @@ func (o *ColorPickerButton) IsEditingAlpha() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -168,7 +156,7 @@ func (o *ColorPickerButton) IsEditingAlpha() gdnative.Bool {
 	Args: [{ false show bool}], Returns: void
 */
 func (o *ColorPickerButton) SetEditAlpha(show gdnative.Bool) {
-	log.Println("Calling ColorPickerButton.SetEditAlpha()")
+	//log.Println("Calling ColorPickerButton.SetEditAlpha()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -189,7 +177,7 @@ func (o *ColorPickerButton) SetEditAlpha(show gdnative.Bool) {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *ColorPickerButton) SetPickColor(color gdnative.Color) {
-	log.Println("Calling ColorPickerButton.SetPickColor()")
+	//log.Println("Calling ColorPickerButton.SetPickColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

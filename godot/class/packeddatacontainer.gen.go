@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *PackedDataContainer) BaseClass() string {
 	return "PackedDataContainer"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *PackedDataContainer) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *PackedDataContainer) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: PoolByteArray
 */
 func (o *PackedDataContainer) X_GetData() gdnative.PoolByteArray {
-	log.Println("Calling PackedDataContainer.X_GetData()")
+	//log.Println("Calling PackedDataContainer.X_GetData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *PackedDataContainer) X_GetData() gdnative.PoolByteArray {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolByteArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *PackedDataContainer) X_GetData() gdnative.PoolByteArray {
 	Args: [{ false arg0 Variant}], Returns: Variant
 */
 func (o *PackedDataContainer) X_IterGet(arg0 gdnative.Variant) gdnative.Variant {
-	log.Println("Calling PackedDataContainer.X_IterGet()")
+	//log.Println("Calling PackedDataContainer.X_IterGet()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -91,7 +79,7 @@ func (o *PackedDataContainer) X_IterGet(arg0 gdnative.Variant) gdnative.Variant 
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -100,7 +88,7 @@ func (o *PackedDataContainer) X_IterGet(arg0 gdnative.Variant) gdnative.Variant 
 	Args: [{ false arg0 Array}], Returns: Variant
 */
 func (o *PackedDataContainer) X_IterInit(arg0 gdnative.Array) gdnative.Variant {
-	log.Println("Calling PackedDataContainer.X_IterInit()")
+	//log.Println("Calling PackedDataContainer.X_IterInit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -116,7 +104,7 @@ func (o *PackedDataContainer) X_IterInit(arg0 gdnative.Array) gdnative.Variant {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -125,7 +113,7 @@ func (o *PackedDataContainer) X_IterInit(arg0 gdnative.Array) gdnative.Variant {
 	Args: [{ false arg0 Array}], Returns: Variant
 */
 func (o *PackedDataContainer) X_IterNext(arg0 gdnative.Array) gdnative.Variant {
-	log.Println("Calling PackedDataContainer.X_IterNext()")
+	//log.Println("Calling PackedDataContainer.X_IterNext()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -141,7 +129,7 @@ func (o *PackedDataContainer) X_IterNext(arg0 gdnative.Array) gdnative.Variant {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -150,7 +138,7 @@ func (o *PackedDataContainer) X_IterNext(arg0 gdnative.Array) gdnative.Variant {
 	Args: [{ false arg0 PoolByteArray}], Returns: void
 */
 func (o *PackedDataContainer) X_SetData(arg0 gdnative.PoolByteArray) {
-	log.Println("Calling PackedDataContainer.X_SetData()")
+	//log.Println("Calling PackedDataContainer.X_SetData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -176,7 +164,7 @@ func (o *PackedDataContainer) X_SetData(arg0 gdnative.PoolByteArray) {
 	Args: [], Returns: int
 */
 func (o *PackedDataContainer) Size() gdnative.Int {
-	log.Println("Calling PackedDataContainer.Size()")
+	//log.Println("Calling PackedDataContainer.Size()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -191,6 +179,6 @@ func (o *PackedDataContainer) Size() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

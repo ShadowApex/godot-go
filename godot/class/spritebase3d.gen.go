@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *SpriteBase3D) BaseClass() string {
 	return "SpriteBase3D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *SpriteBase3D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *SpriteBase3D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *SpriteBase3D) X_ImUpdate() {
-	log.Println("Calling SpriteBase3D.X_ImUpdate()")
+	//log.Println("Calling SpriteBase3D.X_ImUpdate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *SpriteBase3D) X_ImUpdate() {
 	Args: [], Returns: void
 */
 func (o *SpriteBase3D) X_QueueUpdate() {
-	log.Println("Calling SpriteBase3D.X_QueueUpdate()")
+	//log.Println("Calling SpriteBase3D.X_QueueUpdate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -101,7 +89,7 @@ func (o *SpriteBase3D) X_QueueUpdate() {
 	Args: [{ false flag int}], Returns: bool
 */
 func (o *SpriteBase3D) GetDrawFlag(flag gdnative.Int) gdnative.Bool {
-	log.Println("Calling SpriteBase3D.GetDrawFlag()")
+	//log.Println("Calling SpriteBase3D.GetDrawFlag()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -117,7 +105,7 @@ func (o *SpriteBase3D) GetDrawFlag(flag gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -126,7 +114,7 @@ func (o *SpriteBase3D) GetDrawFlag(flag gdnative.Int) gdnative.Bool {
 	Args: [], Returns: Rect2
 */
 func (o *SpriteBase3D) GetItemRect() gdnative.Rect2 {
-	log.Println("Calling SpriteBase3D.GetItemRect()")
+	//log.Println("Calling SpriteBase3D.GetItemRect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -141,7 +129,7 @@ func (o *SpriteBase3D) GetItemRect() gdnative.Rect2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRect2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -150,7 +138,7 @@ func (o *SpriteBase3D) GetItemRect() gdnative.Rect2 {
 	Args: [], Returns: Color
 */
 func (o *SpriteBase3D) GetModulate() gdnative.Color {
-	log.Println("Calling SpriteBase3D.GetModulate()")
+	//log.Println("Calling SpriteBase3D.GetModulate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -165,7 +153,7 @@ func (o *SpriteBase3D) GetModulate() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -174,7 +162,7 @@ func (o *SpriteBase3D) GetModulate() gdnative.Color {
 	Args: [], Returns: Vector2
 */
 func (o *SpriteBase3D) GetOffset() gdnative.Vector2 {
-	log.Println("Calling SpriteBase3D.GetOffset()")
+	//log.Println("Calling SpriteBase3D.GetOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -189,7 +177,7 @@ func (o *SpriteBase3D) GetOffset() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -198,7 +186,7 @@ func (o *SpriteBase3D) GetOffset() gdnative.Vector2 {
 	Args: [], Returns: float
 */
 func (o *SpriteBase3D) GetOpacity() gdnative.Float {
-	log.Println("Calling SpriteBase3D.GetOpacity()")
+	//log.Println("Calling SpriteBase3D.GetOpacity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -213,7 +201,7 @@ func (o *SpriteBase3D) GetOpacity() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -222,7 +210,7 @@ func (o *SpriteBase3D) GetOpacity() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *SpriteBase3D) GetPixelSize() gdnative.Float {
-	log.Println("Calling SpriteBase3D.GetPixelSize()")
+	//log.Println("Calling SpriteBase3D.GetPixelSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -237,7 +225,7 @@ func (o *SpriteBase3D) GetPixelSize() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -246,7 +234,7 @@ func (o *SpriteBase3D) GetPixelSize() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *SpriteBase3D) IsCentered() gdnative.Bool {
-	log.Println("Calling SpriteBase3D.IsCentered()")
+	//log.Println("Calling SpriteBase3D.IsCentered()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -261,7 +249,7 @@ func (o *SpriteBase3D) IsCentered() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -270,7 +258,7 @@ func (o *SpriteBase3D) IsCentered() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *SpriteBase3D) IsFlippedH() gdnative.Bool {
-	log.Println("Calling SpriteBase3D.IsFlippedH()")
+	//log.Println("Calling SpriteBase3D.IsFlippedH()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -285,7 +273,7 @@ func (o *SpriteBase3D) IsFlippedH() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -294,7 +282,7 @@ func (o *SpriteBase3D) IsFlippedH() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *SpriteBase3D) IsFlippedV() gdnative.Bool {
-	log.Println("Calling SpriteBase3D.IsFlippedV()")
+	//log.Println("Calling SpriteBase3D.IsFlippedV()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -309,7 +297,7 @@ func (o *SpriteBase3D) IsFlippedV() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -318,7 +306,7 @@ func (o *SpriteBase3D) IsFlippedV() gdnative.Bool {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *SpriteBase3D) SetAlphaCutMode(mode gdnative.Int) {
-	log.Println("Calling SpriteBase3D.SetAlphaCutMode()")
+	//log.Println("Calling SpriteBase3D.SetAlphaCutMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -339,7 +327,7 @@ func (o *SpriteBase3D) SetAlphaCutMode(mode gdnative.Int) {
 	Args: [{ false axis int}], Returns: void
 */
 func (o *SpriteBase3D) SetAxis(axis gdnative.Int) {
-	log.Println("Calling SpriteBase3D.SetAxis()")
+	//log.Println("Calling SpriteBase3D.SetAxis()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -360,7 +348,7 @@ func (o *SpriteBase3D) SetAxis(axis gdnative.Int) {
 	Args: [{ false centered bool}], Returns: void
 */
 func (o *SpriteBase3D) SetCentered(centered gdnative.Bool) {
-	log.Println("Calling SpriteBase3D.SetCentered()")
+	//log.Println("Calling SpriteBase3D.SetCentered()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -381,7 +369,7 @@ func (o *SpriteBase3D) SetCentered(centered gdnative.Bool) {
 	Args: [{ false flag int} { false enabled bool}], Returns: void
 */
 func (o *SpriteBase3D) SetDrawFlag(flag gdnative.Int, enabled gdnative.Bool) {
-	log.Println("Calling SpriteBase3D.SetDrawFlag()")
+	//log.Println("Calling SpriteBase3D.SetDrawFlag()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -403,7 +391,7 @@ func (o *SpriteBase3D) SetDrawFlag(flag gdnative.Int, enabled gdnative.Bool) {
 	Args: [{ false flip_h bool}], Returns: void
 */
 func (o *SpriteBase3D) SetFlipH(flipH gdnative.Bool) {
-	log.Println("Calling SpriteBase3D.SetFlipH()")
+	//log.Println("Calling SpriteBase3D.SetFlipH()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -424,7 +412,7 @@ func (o *SpriteBase3D) SetFlipH(flipH gdnative.Bool) {
 	Args: [{ false flip_v bool}], Returns: void
 */
 func (o *SpriteBase3D) SetFlipV(flipV gdnative.Bool) {
-	log.Println("Calling SpriteBase3D.SetFlipV()")
+	//log.Println("Calling SpriteBase3D.SetFlipV()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -445,7 +433,7 @@ func (o *SpriteBase3D) SetFlipV(flipV gdnative.Bool) {
 	Args: [{ false modulate Color}], Returns: void
 */
 func (o *SpriteBase3D) SetModulate(modulate gdnative.Color) {
-	log.Println("Calling SpriteBase3D.SetModulate()")
+	//log.Println("Calling SpriteBase3D.SetModulate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -466,7 +454,7 @@ func (o *SpriteBase3D) SetModulate(modulate gdnative.Color) {
 	Args: [{ false offset Vector2}], Returns: void
 */
 func (o *SpriteBase3D) SetOffset(offset gdnative.Vector2) {
-	log.Println("Calling SpriteBase3D.SetOffset()")
+	//log.Println("Calling SpriteBase3D.SetOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -487,7 +475,7 @@ func (o *SpriteBase3D) SetOffset(offset gdnative.Vector2) {
 	Args: [{ false opacity float}], Returns: void
 */
 func (o *SpriteBase3D) SetOpacity(opacity gdnative.Float) {
-	log.Println("Calling SpriteBase3D.SetOpacity()")
+	//log.Println("Calling SpriteBase3D.SetOpacity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -508,7 +496,7 @@ func (o *SpriteBase3D) SetOpacity(opacity gdnative.Float) {
 	Args: [{ false pixel_size float}], Returns: void
 */
 func (o *SpriteBase3D) SetPixelSize(pixelSize gdnative.Float) {
-	log.Println("Calling SpriteBase3D.SetPixelSize()")
+	//log.Println("Calling SpriteBase3D.SetPixelSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

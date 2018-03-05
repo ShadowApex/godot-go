@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *SegmentShape2D) BaseClass() string {
 	return "SegmentShape2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *SegmentShape2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *SegmentShape2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Vector2
 */
 func (o *SegmentShape2D) GetA() gdnative.Vector2 {
-	log.Println("Calling SegmentShape2D.GetA()")
+	//log.Println("Calling SegmentShape2D.GetA()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *SegmentShape2D) GetA() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *SegmentShape2D) GetA() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *SegmentShape2D) GetB() gdnative.Vector2 {
-	log.Println("Calling SegmentShape2D.GetB()")
+	//log.Println("Calling SegmentShape2D.GetB()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *SegmentShape2D) GetB() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *SegmentShape2D) GetB() gdnative.Vector2 {
 	Args: [{ false a Vector2}], Returns: void
 */
 func (o *SegmentShape2D) SetA(a gdnative.Vector2) {
-	log.Println("Calling SegmentShape2D.SetA()")
+	//log.Println("Calling SegmentShape2D.SetA()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -120,7 +108,7 @@ func (o *SegmentShape2D) SetA(a gdnative.Vector2) {
 	Args: [{ false b Vector2}], Returns: void
 */
 func (o *SegmentShape2D) SetB(b gdnative.Vector2) {
-	log.Println("Calling SegmentShape2D.SetB()")
+	//log.Println("Calling SegmentShape2D.SetB()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

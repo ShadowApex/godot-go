@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ParallaxLayer) BaseClass() string {
 	return "ParallaxLayer"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ParallaxLayer) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ParallaxLayer) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Vector2
 */
 func (o *ParallaxLayer) GetMirroring() gdnative.Vector2 {
-	log.Println("Calling ParallaxLayer.GetMirroring()")
+	//log.Println("Calling ParallaxLayer.GetMirroring()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *ParallaxLayer) GetMirroring() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *ParallaxLayer) GetMirroring() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *ParallaxLayer) GetMotionOffset() gdnative.Vector2 {
-	log.Println("Calling ParallaxLayer.GetMotionOffset()")
+	//log.Println("Calling ParallaxLayer.GetMotionOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *ParallaxLayer) GetMotionOffset() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *ParallaxLayer) GetMotionOffset() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *ParallaxLayer) GetMotionScale() gdnative.Vector2 {
-	log.Println("Calling ParallaxLayer.GetMotionScale()")
+	//log.Println("Calling ParallaxLayer.GetMotionScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *ParallaxLayer) GetMotionScale() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *ParallaxLayer) GetMotionScale() gdnative.Vector2 {
 	Args: [{ false mirror Vector2}], Returns: void
 */
 func (o *ParallaxLayer) SetMirroring(mirror gdnative.Vector2) {
-	log.Println("Calling ParallaxLayer.SetMirroring()")
+	//log.Println("Calling ParallaxLayer.SetMirroring()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -144,7 +132,7 @@ func (o *ParallaxLayer) SetMirroring(mirror gdnative.Vector2) {
 	Args: [{ false offset Vector2}], Returns: void
 */
 func (o *ParallaxLayer) SetMotionOffset(offset gdnative.Vector2) {
-	log.Println("Calling ParallaxLayer.SetMotionOffset()")
+	//log.Println("Calling ParallaxLayer.SetMotionOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -165,7 +153,7 @@ func (o *ParallaxLayer) SetMotionOffset(offset gdnative.Vector2) {
 	Args: [{ false scale Vector2}], Returns: void
 */
 func (o *ParallaxLayer) SetMotionScale(scale gdnative.Vector2) {
-	log.Println("Calling ParallaxLayer.SetMotionScale()")
+	//log.Println("Calling ParallaxLayer.SetMotionScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

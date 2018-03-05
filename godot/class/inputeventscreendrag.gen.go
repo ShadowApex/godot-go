@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *InputEventScreenDrag) BaseClass() string {
 	return "InputEventScreenDrag"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *InputEventScreenDrag) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *InputEventScreenDrag) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: int
 */
 func (o *InputEventScreenDrag) GetIndex() gdnative.Int {
-	log.Println("Calling InputEventScreenDrag.GetIndex()")
+	//log.Println("Calling InputEventScreenDrag.GetIndex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *InputEventScreenDrag) GetIndex() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *InputEventScreenDrag) GetIndex() gdnative.Int {
 	Args: [], Returns: Vector2
 */
 func (o *InputEventScreenDrag) GetPosition() gdnative.Vector2 {
-	log.Println("Calling InputEventScreenDrag.GetPosition()")
+	//log.Println("Calling InputEventScreenDrag.GetPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *InputEventScreenDrag) GetPosition() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *InputEventScreenDrag) GetPosition() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *InputEventScreenDrag) GetRelative() gdnative.Vector2 {
-	log.Println("Calling InputEventScreenDrag.GetRelative()")
+	//log.Println("Calling InputEventScreenDrag.GetRelative()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *InputEventScreenDrag) GetRelative() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *InputEventScreenDrag) GetRelative() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *InputEventScreenDrag) GetSpeed() gdnative.Vector2 {
-	log.Println("Calling InputEventScreenDrag.GetSpeed()")
+	//log.Println("Calling InputEventScreenDrag.GetSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *InputEventScreenDrag) GetSpeed() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *InputEventScreenDrag) GetSpeed() gdnative.Vector2 {
 	Args: [{ false index int}], Returns: void
 */
 func (o *InputEventScreenDrag) SetIndex(index gdnative.Int) {
-	log.Println("Calling InputEventScreenDrag.SetIndex()")
+	//log.Println("Calling InputEventScreenDrag.SetIndex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -168,7 +156,7 @@ func (o *InputEventScreenDrag) SetIndex(index gdnative.Int) {
 	Args: [{ false position Vector2}], Returns: void
 */
 func (o *InputEventScreenDrag) SetPosition(position gdnative.Vector2) {
-	log.Println("Calling InputEventScreenDrag.SetPosition()")
+	//log.Println("Calling InputEventScreenDrag.SetPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -189,7 +177,7 @@ func (o *InputEventScreenDrag) SetPosition(position gdnative.Vector2) {
 	Args: [{ false relative Vector2}], Returns: void
 */
 func (o *InputEventScreenDrag) SetRelative(relative gdnative.Vector2) {
-	log.Println("Calling InputEventScreenDrag.SetRelative()")
+	//log.Println("Calling InputEventScreenDrag.SetRelative()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -210,7 +198,7 @@ func (o *InputEventScreenDrag) SetRelative(relative gdnative.Vector2) {
 	Args: [{ false speed Vector2}], Returns: void
 */
 func (o *InputEventScreenDrag) SetSpeed(speed gdnative.Vector2) {
-	log.Println("Calling InputEventScreenDrag.SetSpeed()")
+	//log.Println("Calling InputEventScreenDrag.SetSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

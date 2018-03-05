@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ViewportContainer) BaseClass() string {
 	return "ViewportContainer"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ViewportContainer) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ViewportContainer) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false event InputEvent}], Returns: void
 */
 func (o *ViewportContainer) X_Input(event InputEvent) {
-	log.Println("Calling ViewportContainer.X_Input()")
+	//log.Println("Calling ViewportContainer.X_Input()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *ViewportContainer) X_Input(event InputEvent) {
 	Args: [], Returns: int
 */
 func (o *ViewportContainer) GetStretchShrink() gdnative.Int {
-	log.Println("Calling ViewportContainer.GetStretchShrink()")
+	//log.Println("Calling ViewportContainer.GetStretchShrink()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -87,7 +75,7 @@ func (o *ViewportContainer) GetStretchShrink() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -96,7 +84,7 @@ func (o *ViewportContainer) GetStretchShrink() gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *ViewportContainer) IsStretchEnabled() gdnative.Bool {
-	log.Println("Calling ViewportContainer.IsStretchEnabled()")
+	//log.Println("Calling ViewportContainer.IsStretchEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -111,7 +99,7 @@ func (o *ViewportContainer) IsStretchEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -120,7 +108,7 @@ func (o *ViewportContainer) IsStretchEnabled() gdnative.Bool {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *ViewportContainer) SetStretch(enable gdnative.Bool) {
-	log.Println("Calling ViewportContainer.SetStretch()")
+	//log.Println("Calling ViewportContainer.SetStretch()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -141,7 +129,7 @@ func (o *ViewportContainer) SetStretch(enable gdnative.Bool) {
 	Args: [{ false amount int}], Returns: void
 */
 func (o *ViewportContainer) SetStretchShrink(amount gdnative.Int) {
-	log.Println("Calling ViewportContainer.SetStretchShrink()")
+	//log.Println("Calling ViewportContainer.SetStretchShrink()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

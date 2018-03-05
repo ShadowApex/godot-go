@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,16 +34,6 @@ func (o *Sky) BaseClass() string {
 	return "Sky"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Sky) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Sky) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: enum.Sky::RadianceSize
@@ -56,7 +44,7 @@ func (o *Sky) GetBaseObject() gdnative.Object {
 	Args: [{ false size int}], Returns: void
 */
 func (o *Sky) SetRadianceSize(size gdnative.Int) {
-	log.Println("Calling Sky.SetRadianceSize()")
+	//log.Println("Calling Sky.SetRadianceSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

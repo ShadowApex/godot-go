@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Joint2D) BaseClass() string {
 	return "Joint2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Joint2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Joint2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *Joint2D) GetBias() gdnative.Float {
-	log.Println("Calling Joint2D.GetBias()")
+	//log.Println("Calling Joint2D.GetBias()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *Joint2D) GetBias() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *Joint2D) GetBias() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *Joint2D) GetExcludeNodesFromCollision() gdnative.Bool {
-	log.Println("Calling Joint2D.GetExcludeNodesFromCollision()")
+	//log.Println("Calling Joint2D.GetExcludeNodesFromCollision()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *Joint2D) GetExcludeNodesFromCollision() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *Joint2D) GetExcludeNodesFromCollision() gdnative.Bool {
 	Args: [], Returns: NodePath
 */
 func (o *Joint2D) GetNodeA() gdnative.NodePath {
-	log.Println("Calling Joint2D.GetNodeA()")
+	//log.Println("Calling Joint2D.GetNodeA()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *Joint2D) GetNodeA() gdnative.NodePath {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewNodePathFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *Joint2D) GetNodeA() gdnative.NodePath {
 	Args: [], Returns: NodePath
 */
 func (o *Joint2D) GetNodeB() gdnative.NodePath {
-	log.Println("Calling Joint2D.GetNodeB()")
+	//log.Println("Calling Joint2D.GetNodeB()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *Joint2D) GetNodeB() gdnative.NodePath {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewNodePathFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *Joint2D) GetNodeB() gdnative.NodePath {
 	Args: [{ false bias float}], Returns: void
 */
 func (o *Joint2D) SetBias(bias gdnative.Float) {
-	log.Println("Calling Joint2D.SetBias()")
+	//log.Println("Calling Joint2D.SetBias()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -168,7 +156,7 @@ func (o *Joint2D) SetBias(bias gdnative.Float) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *Joint2D) SetExcludeNodesFromCollision(enable gdnative.Bool) {
-	log.Println("Calling Joint2D.SetExcludeNodesFromCollision()")
+	//log.Println("Calling Joint2D.SetExcludeNodesFromCollision()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -189,7 +177,7 @@ func (o *Joint2D) SetExcludeNodesFromCollision(enable gdnative.Bool) {
 	Args: [{ false node NodePath}], Returns: void
 */
 func (o *Joint2D) SetNodeA(node gdnative.NodePath) {
-	log.Println("Calling Joint2D.SetNodeA()")
+	//log.Println("Calling Joint2D.SetNodeA()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -210,7 +198,7 @@ func (o *Joint2D) SetNodeA(node gdnative.NodePath) {
 	Args: [{ false node NodePath}], Returns: void
 */
 func (o *Joint2D) SetNodeB(node gdnative.NodePath) {
-	log.Println("Calling Joint2D.SetNodeB()")
+	//log.Println("Calling Joint2D.SetNodeB()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

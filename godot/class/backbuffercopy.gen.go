@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,16 +34,6 @@ func (o *BackBufferCopy) BaseClass() string {
 	return "BackBufferCopy"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *BackBufferCopy) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *BackBufferCopy) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: enum.BackBufferCopy::CopyMode
@@ -56,7 +44,7 @@ func (o *BackBufferCopy) GetBaseObject() gdnative.Object {
 	Args: [], Returns: Rect2
 */
 func (o *BackBufferCopy) GetRect() gdnative.Rect2 {
-	log.Println("Calling BackBufferCopy.GetRect()")
+	//log.Println("Calling BackBufferCopy.GetRect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *BackBufferCopy) GetRect() gdnative.Rect2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRect2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -80,7 +68,7 @@ func (o *BackBufferCopy) GetRect() gdnative.Rect2 {
 	Args: [{ false copy_mode int}], Returns: void
 */
 func (o *BackBufferCopy) SetCopyMode(copyMode gdnative.Int) {
-	log.Println("Calling BackBufferCopy.SetCopyMode()")
+	//log.Println("Calling BackBufferCopy.SetCopyMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -101,7 +89,7 @@ func (o *BackBufferCopy) SetCopyMode(copyMode gdnative.Int) {
 	Args: [{ false rect Rect2}], Returns: void
 */
 func (o *BackBufferCopy) SetRect(rect gdnative.Rect2) {
-	log.Println("Calling BackBufferCopy.SetRect()")
+	//log.Println("Calling BackBufferCopy.SetRect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

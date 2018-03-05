@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Script) BaseClass() string {
 	return "Script"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Script) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Script) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Returns true if the script can be instanced.
 	Args: [], Returns: bool
 */
 func (o *Script) CanInstance() gdnative.Bool {
-	log.Println("Calling Script.CanInstance()")
+	//log.Println("Calling Script.CanInstance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *Script) CanInstance() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *Script) CanInstance() gdnative.Bool {
 	Args: [], Returns: Script
 */
 func (o *Script) GetBaseScript() Script {
-	log.Println("Calling Script.GetBaseScript()")
+	//log.Println("Calling Script.GetBaseScript()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *Script) GetBaseScript() Script {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewScriptFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *Script) GetBaseScript() Script {
 	Args: [], Returns: String
 */
 func (o *Script) GetInstanceBaseType() gdnative.String {
-	log.Println("Calling Script.GetInstanceBaseType()")
+	//log.Println("Calling Script.GetInstanceBaseType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *Script) GetInstanceBaseType() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *Script) GetInstanceBaseType() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *Script) GetSourceCode() gdnative.String {
-	log.Println("Calling Script.GetSourceCode()")
+	//log.Println("Calling Script.GetSourceCode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *Script) GetSourceCode() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *Script) GetSourceCode() gdnative.String {
 	Args: [{ false signal_name String}], Returns: bool
 */
 func (o *Script) HasScriptSignal(signalName gdnative.String) gdnative.Bool {
-	log.Println("Calling Script.HasScriptSignal()")
+	//log.Println("Calling Script.HasScriptSignal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -163,7 +151,7 @@ func (o *Script) HasScriptSignal(signalName gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -172,7 +160,7 @@ func (o *Script) HasScriptSignal(signalName gdnative.String) gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Script) HasSourceCode() gdnative.Bool {
-	log.Println("Calling Script.HasSourceCode()")
+	//log.Println("Calling Script.HasSourceCode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -187,7 +175,7 @@ func (o *Script) HasSourceCode() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -196,7 +184,7 @@ func (o *Script) HasSourceCode() gdnative.Bool {
 	Args: [{ false base_object Object}], Returns: bool
 */
 func (o *Script) InstanceHas(baseObject Object) gdnative.Bool {
-	log.Println("Calling Script.InstanceHas()")
+	//log.Println("Calling Script.InstanceHas()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -212,7 +200,7 @@ func (o *Script) InstanceHas(baseObject Object) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -221,7 +209,7 @@ func (o *Script) InstanceHas(baseObject Object) gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Script) IsTool() gdnative.Bool {
-	log.Println("Calling Script.IsTool()")
+	//log.Println("Calling Script.IsTool()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -236,7 +224,7 @@ func (o *Script) IsTool() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -250,7 +238,7 @@ func (o *Script) IsTool() gdnative.Bool {
 	Args: [{ false source String}], Returns: void
 */
 func (o *Script) SetSourceCode(source gdnative.String) {
-	log.Println("Calling Script.SetSourceCode()")
+	//log.Println("Calling Script.SetSourceCode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

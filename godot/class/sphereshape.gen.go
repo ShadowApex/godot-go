@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *SphereShape) BaseClass() string {
 	return "SphereShape"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *SphereShape) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *SphereShape) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *SphereShape) GetRadius() gdnative.Float {
-	log.Println("Calling SphereShape.GetRadius()")
+	//log.Println("Calling SphereShape.GetRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *SphereShape) GetRadius() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *SphereShape) GetRadius() gdnative.Float {
 	Args: [{ false radius float}], Returns: void
 */
 func (o *SphereShape) SetRadius(radius gdnative.Float) {
-	log.Println("Calling SphereShape.SetRadius()")
+	//log.Println("Calling SphereShape.SetRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

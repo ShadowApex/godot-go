@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *YSort) BaseClass() string {
 	return "YSort"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *YSort) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *YSort) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: bool
 */
 func (o *YSort) IsSortEnabled() gdnative.Bool {
-	log.Println("Calling YSort.IsSortEnabled()")
+	//log.Println("Calling YSort.IsSortEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *YSort) IsSortEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *YSort) IsSortEnabled() gdnative.Bool {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *YSort) SetSortEnabled(enabled gdnative.Bool) {
-	log.Println("Calling YSort.SetSortEnabled()")
+	//log.Println("Calling YSort.SetSortEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

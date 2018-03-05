@@ -33,13 +33,3 @@ type VisualScriptFunction struct {
 func (o *VisualScriptFunction) BaseClass() string {
 	return "VisualScriptFunction"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptFunction) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptFunction) GetBaseObject() gdnative.Object {
-	return o.owner
-}

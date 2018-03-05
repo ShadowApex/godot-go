@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Shape2D) BaseClass() string {
 	return "Shape2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Shape2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Shape2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Return whether this shape is colliding with another. This method needs the transformation matrix for this shape ([code]local_xform[/code]), the shape to check collisions with ([code]with_shape[/code]), and the transformation matrix of that shape ([code]shape_xform[/code]).
 	Args: [{ false local_xform Transform2D} { false with_shape Shape2D} { false shape_xform Transform2D}], Returns: bool
 */
 func (o *Shape2D) Collide(localXform gdnative.Transform2D, withShape Shape2D, shapeXform gdnative.Transform2D) gdnative.Bool {
-	log.Println("Calling Shape2D.Collide()")
+	//log.Println("Calling Shape2D.Collide()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -69,7 +57,7 @@ func (o *Shape2D) Collide(localXform gdnative.Transform2D, withShape Shape2D, sh
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -78,7 +66,7 @@ func (o *Shape2D) Collide(localXform gdnative.Transform2D, withShape Shape2D, sh
 	Args: [{ false local_xform Transform2D} { false with_shape Shape2D} { false shape_xform Transform2D}], Returns: Variant
 */
 func (o *Shape2D) CollideAndGetContacts(localXform gdnative.Transform2D, withShape Shape2D, shapeXform gdnative.Transform2D) gdnative.Variant {
-	log.Println("Calling Shape2D.CollideAndGetContacts()")
+	//log.Println("Calling Shape2D.CollideAndGetContacts()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -96,7 +84,7 @@ func (o *Shape2D) CollideAndGetContacts(localXform gdnative.Transform2D, withSha
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -105,7 +93,7 @@ func (o *Shape2D) CollideAndGetContacts(localXform gdnative.Transform2D, withSha
 	Args: [{ false local_xform Transform2D} { false local_motion Vector2} { false with_shape Shape2D} { false shape_xform Transform2D} { false shape_motion Vector2}], Returns: bool
 */
 func (o *Shape2D) CollideWithMotion(localXform gdnative.Transform2D, localMotion gdnative.Vector2, withShape Shape2D, shapeXform gdnative.Transform2D, shapeMotion gdnative.Vector2) gdnative.Bool {
-	log.Println("Calling Shape2D.CollideWithMotion()")
+	//log.Println("Calling Shape2D.CollideWithMotion()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 5, 5)
@@ -125,7 +113,7 @@ func (o *Shape2D) CollideWithMotion(localXform gdnative.Transform2D, localMotion
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -134,7 +122,7 @@ func (o *Shape2D) CollideWithMotion(localXform gdnative.Transform2D, localMotion
 	Args: [{ false local_xform Transform2D} { false local_motion Vector2} { false with_shape Shape2D} { false shape_xform Transform2D} { false shape_motion Vector2}], Returns: Variant
 */
 func (o *Shape2D) CollideWithMotionAndGetContacts(localXform gdnative.Transform2D, localMotion gdnative.Vector2, withShape Shape2D, shapeXform gdnative.Transform2D, shapeMotion gdnative.Vector2) gdnative.Variant {
-	log.Println("Calling Shape2D.CollideWithMotionAndGetContacts()")
+	//log.Println("Calling Shape2D.CollideWithMotionAndGetContacts()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 5, 5)
@@ -154,7 +142,7 @@ func (o *Shape2D) CollideWithMotionAndGetContacts(localXform gdnative.Transform2
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -163,7 +151,7 @@ func (o *Shape2D) CollideWithMotionAndGetContacts(localXform gdnative.Transform2
 	Args: [], Returns: float
 */
 func (o *Shape2D) GetCustomSolverBias() gdnative.Float {
-	log.Println("Calling Shape2D.GetCustomSolverBias()")
+	//log.Println("Calling Shape2D.GetCustomSolverBias()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -178,7 +166,7 @@ func (o *Shape2D) GetCustomSolverBias() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -187,7 +175,7 @@ func (o *Shape2D) GetCustomSolverBias() gdnative.Float {
 	Args: [{ false bias float}], Returns: void
 */
 func (o *Shape2D) SetCustomSolverBias(bias gdnative.Float) {
-	log.Println("Calling Shape2D.SetCustomSolverBias()")
+	//log.Println("Calling Shape2D.SetCustomSolverBias()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -33,13 +33,3 @@ type AudioStreamPlayback struct {
 func (o *AudioStreamPlayback) BaseClass() string {
 	return "AudioStreamPlayback"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AudioStreamPlayback) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AudioStreamPlayback) GetBaseObject() gdnative.Object {
-	return o.owner
-}

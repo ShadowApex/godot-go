@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *InputEventScreenTouch) BaseClass() string {
 	return "InputEventScreenTouch"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *InputEventScreenTouch) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *InputEventScreenTouch) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: int
 */
 func (o *InputEventScreenTouch) GetIndex() gdnative.Int {
-	log.Println("Calling InputEventScreenTouch.GetIndex()")
+	//log.Println("Calling InputEventScreenTouch.GetIndex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *InputEventScreenTouch) GetIndex() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *InputEventScreenTouch) GetIndex() gdnative.Int {
 	Args: [], Returns: Vector2
 */
 func (o *InputEventScreenTouch) GetPosition() gdnative.Vector2 {
-	log.Println("Calling InputEventScreenTouch.GetPosition()")
+	//log.Println("Calling InputEventScreenTouch.GetPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *InputEventScreenTouch) GetPosition() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *InputEventScreenTouch) GetPosition() gdnative.Vector2 {
 	Args: [{ false index int}], Returns: void
 */
 func (o *InputEventScreenTouch) SetIndex(index gdnative.Int) {
-	log.Println("Calling InputEventScreenTouch.SetIndex()")
+	//log.Println("Calling InputEventScreenTouch.SetIndex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -120,7 +108,7 @@ func (o *InputEventScreenTouch) SetIndex(index gdnative.Int) {
 	Args: [{ false position Vector2}], Returns: void
 */
 func (o *InputEventScreenTouch) SetPosition(position gdnative.Vector2) {
-	log.Println("Calling InputEventScreenTouch.SetPosition()")
+	//log.Println("Calling InputEventScreenTouch.SetPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -141,7 +129,7 @@ func (o *InputEventScreenTouch) SetPosition(position gdnative.Vector2) {
 	Args: [{ false pressed bool}], Returns: void
 */
 func (o *InputEventScreenTouch) SetPressed(pressed gdnative.Bool) {
-	log.Println("Calling InputEventScreenTouch.SetPressed()")
+	//log.Println("Calling InputEventScreenTouch.SetPressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

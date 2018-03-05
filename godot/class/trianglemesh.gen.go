@@ -33,13 +33,3 @@ type TriangleMesh struct {
 func (o *TriangleMesh) BaseClass() string {
 	return "TriangleMesh"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *TriangleMesh) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *TriangleMesh) GetBaseObject() gdnative.Object {
-	return o.owner
-}

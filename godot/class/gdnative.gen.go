@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *GDNative) BaseClass() string {
 	return "GDNative"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *GDNative) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *GDNative) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false calling_type String} { false procedure_name String} { false arguments Array}], Returns: Variant
 */
 func (o *GDNative) CallNative(callingType gdnative.String, procedureName gdnative.String, arguments gdnative.Array) gdnative.Variant {
-	log.Println("Calling GDNative.CallNative()")
+	//log.Println("Calling GDNative.CallNative()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -69,7 +57,7 @@ func (o *GDNative) CallNative(callingType gdnative.String, procedureName gdnativ
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -78,7 +66,7 @@ func (o *GDNative) CallNative(callingType gdnative.String, procedureName gdnativ
 	Args: [], Returns: GDNativeLibrary
 */
 func (o *GDNative) GetLibrary() GDNativeLibrary {
-	log.Println("Calling GDNative.GetLibrary()")
+	//log.Println("Calling GDNative.GetLibrary()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -93,7 +81,7 @@ func (o *GDNative) GetLibrary() GDNativeLibrary {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewGDNativeLibraryFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -102,7 +90,7 @@ func (o *GDNative) GetLibrary() GDNativeLibrary {
 	Args: [], Returns: bool
 */
 func (o *GDNative) Initialize() gdnative.Bool {
-	log.Println("Calling GDNative.Initialize()")
+	//log.Println("Calling GDNative.Initialize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -117,7 +105,7 @@ func (o *GDNative) Initialize() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -126,7 +114,7 @@ func (o *GDNative) Initialize() gdnative.Bool {
 	Args: [{ false library GDNativeLibrary}], Returns: void
 */
 func (o *GDNative) SetLibrary(library GDNativeLibrary) {
-	log.Println("Calling GDNative.SetLibrary()")
+	//log.Println("Calling GDNative.SetLibrary()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -147,7 +135,7 @@ func (o *GDNative) SetLibrary(library GDNativeLibrary) {
 	Args: [], Returns: bool
 */
 func (o *GDNative) Terminate() gdnative.Bool {
-	log.Println("Calling GDNative.Terminate()")
+	//log.Println("Calling GDNative.Terminate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,6 +150,6 @@ func (o *GDNative) Terminate() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

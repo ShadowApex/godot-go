@@ -33,13 +33,3 @@ type HScrollBar struct {
 func (o *HScrollBar) BaseClass() string {
 	return "HScrollBar"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *HScrollBar) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *HScrollBar) GetBaseObject() gdnative.Object {
-	return o.owner
-}

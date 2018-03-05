@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Curve2D) BaseClass() string {
 	return "Curve2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Curve2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Curve2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Dictionary
 */
 func (o *Curve2D) X_GetData() gdnative.Dictionary {
-	log.Println("Calling Curve2D.X_GetData()")
+	//log.Println("Calling Curve2D.X_GetData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *Curve2D) X_GetData() gdnative.Dictionary {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewDictionaryFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *Curve2D) X_GetData() gdnative.Dictionary {
 	Args: [{ false arg0 Dictionary}], Returns: void
 */
 func (o *Curve2D) X_SetData(arg0 gdnative.Dictionary) {
-	log.Println("Calling Curve2D.X_SetData()")
+	//log.Println("Calling Curve2D.X_SetData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *Curve2D) X_SetData(arg0 gdnative.Dictionary) {
 	Args: [{ false position Vector2} {(0, 0) true in Vector2} {(0, 0) true out Vector2} {-1 true at_position int}], Returns: void
 */
 func (o *Curve2D) AddPoint(position gdnative.Vector2, in gdnative.Vector2, out gdnative.Vector2, atPosition gdnative.Int) {
-	log.Println("Calling Curve2D.AddPoint()")
+	//log.Println("Calling Curve2D.AddPoint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -120,7 +108,7 @@ func (o *Curve2D) AddPoint(position gdnative.Vector2, in gdnative.Vector2, out g
 	Args: [], Returns: void
 */
 func (o *Curve2D) ClearPoints() {
-	log.Println("Calling Curve2D.ClearPoints()")
+	//log.Println("Calling Curve2D.ClearPoints()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -140,7 +128,7 @@ func (o *Curve2D) ClearPoints() {
 	Args: [], Returns: float
 */
 func (o *Curve2D) GetBakeInterval() gdnative.Float {
-	log.Println("Calling Curve2D.GetBakeInterval()")
+	//log.Println("Calling Curve2D.GetBakeInterval()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -155,7 +143,7 @@ func (o *Curve2D) GetBakeInterval() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -164,7 +152,7 @@ func (o *Curve2D) GetBakeInterval() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Curve2D) GetBakedLength() gdnative.Float {
-	log.Println("Calling Curve2D.GetBakedLength()")
+	//log.Println("Calling Curve2D.GetBakedLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -179,7 +167,7 @@ func (o *Curve2D) GetBakedLength() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -188,7 +176,7 @@ func (o *Curve2D) GetBakedLength() gdnative.Float {
 	Args: [], Returns: PoolVector2Array
 */
 func (o *Curve2D) GetBakedPoints() gdnative.PoolVector2Array {
-	log.Println("Calling Curve2D.GetBakedPoints()")
+	//log.Println("Calling Curve2D.GetBakedPoints()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -203,7 +191,7 @@ func (o *Curve2D) GetBakedPoints() gdnative.PoolVector2Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -212,7 +200,7 @@ func (o *Curve2D) GetBakedPoints() gdnative.PoolVector2Array {
 	Args: [], Returns: int
 */
 func (o *Curve2D) GetPointCount() gdnative.Int {
-	log.Println("Calling Curve2D.GetPointCount()")
+	//log.Println("Calling Curve2D.GetPointCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -227,7 +215,7 @@ func (o *Curve2D) GetPointCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -236,7 +224,7 @@ func (o *Curve2D) GetPointCount() gdnative.Int {
 	Args: [{ false idx int}], Returns: Vector2
 */
 func (o *Curve2D) GetPointIn(idx gdnative.Int) gdnative.Vector2 {
-	log.Println("Calling Curve2D.GetPointIn()")
+	//log.Println("Calling Curve2D.GetPointIn()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -252,7 +240,7 @@ func (o *Curve2D) GetPointIn(idx gdnative.Int) gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -261,7 +249,7 @@ func (o *Curve2D) GetPointIn(idx gdnative.Int) gdnative.Vector2 {
 	Args: [{ false idx int}], Returns: Vector2
 */
 func (o *Curve2D) GetPointOut(idx gdnative.Int) gdnative.Vector2 {
-	log.Println("Calling Curve2D.GetPointOut()")
+	//log.Println("Calling Curve2D.GetPointOut()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -277,7 +265,7 @@ func (o *Curve2D) GetPointOut(idx gdnative.Int) gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -286,7 +274,7 @@ func (o *Curve2D) GetPointOut(idx gdnative.Int) gdnative.Vector2 {
 	Args: [{ false idx int}], Returns: Vector2
 */
 func (o *Curve2D) GetPointPosition(idx gdnative.Int) gdnative.Vector2 {
-	log.Println("Calling Curve2D.GetPointPosition()")
+	//log.Println("Calling Curve2D.GetPointPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -302,7 +290,7 @@ func (o *Curve2D) GetPointPosition(idx gdnative.Int) gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -311,7 +299,7 @@ func (o *Curve2D) GetPointPosition(idx gdnative.Int) gdnative.Vector2 {
 	Args: [{ false idx int} { false t float}], Returns: Vector2
 */
 func (o *Curve2D) Interpolate(idx gdnative.Int, t gdnative.Float) gdnative.Vector2 {
-	log.Println("Calling Curve2D.Interpolate()")
+	//log.Println("Calling Curve2D.Interpolate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -328,7 +316,7 @@ func (o *Curve2D) Interpolate(idx gdnative.Int, t gdnative.Float) gdnative.Vecto
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -337,7 +325,7 @@ func (o *Curve2D) Interpolate(idx gdnative.Int, t gdnative.Float) gdnative.Vecto
 	Args: [{ false offset float} {False true cubic bool}], Returns: Vector2
 */
 func (o *Curve2D) InterpolateBaked(offset gdnative.Float, cubic gdnative.Bool) gdnative.Vector2 {
-	log.Println("Calling Curve2D.InterpolateBaked()")
+	//log.Println("Calling Curve2D.InterpolateBaked()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -354,7 +342,7 @@ func (o *Curve2D) InterpolateBaked(offset gdnative.Float, cubic gdnative.Bool) g
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -363,7 +351,7 @@ func (o *Curve2D) InterpolateBaked(offset gdnative.Float, cubic gdnative.Bool) g
 	Args: [{ false fofs float}], Returns: Vector2
 */
 func (o *Curve2D) Interpolatef(fofs gdnative.Float) gdnative.Vector2 {
-	log.Println("Calling Curve2D.Interpolatef()")
+	//log.Println("Calling Curve2D.Interpolatef()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -379,7 +367,7 @@ func (o *Curve2D) Interpolatef(fofs gdnative.Float) gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -388,7 +376,7 @@ func (o *Curve2D) Interpolatef(fofs gdnative.Float) gdnative.Vector2 {
 	Args: [{ false idx int}], Returns: void
 */
 func (o *Curve2D) RemovePoint(idx gdnative.Int) {
-	log.Println("Calling Curve2D.RemovePoint()")
+	//log.Println("Calling Curve2D.RemovePoint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -409,7 +397,7 @@ func (o *Curve2D) RemovePoint(idx gdnative.Int) {
 	Args: [{ false distance float}], Returns: void
 */
 func (o *Curve2D) SetBakeInterval(distance gdnative.Float) {
-	log.Println("Calling Curve2D.SetBakeInterval()")
+	//log.Println("Calling Curve2D.SetBakeInterval()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -430,7 +418,7 @@ func (o *Curve2D) SetBakeInterval(distance gdnative.Float) {
 	Args: [{ false idx int} { false position Vector2}], Returns: void
 */
 func (o *Curve2D) SetPointIn(idx gdnative.Int, position gdnative.Vector2) {
-	log.Println("Calling Curve2D.SetPointIn()")
+	//log.Println("Calling Curve2D.SetPointIn()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -452,7 +440,7 @@ func (o *Curve2D) SetPointIn(idx gdnative.Int, position gdnative.Vector2) {
 	Args: [{ false idx int} { false position Vector2}], Returns: void
 */
 func (o *Curve2D) SetPointOut(idx gdnative.Int, position gdnative.Vector2) {
-	log.Println("Calling Curve2D.SetPointOut()")
+	//log.Println("Calling Curve2D.SetPointOut()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -474,7 +462,7 @@ func (o *Curve2D) SetPointOut(idx gdnative.Int, position gdnative.Vector2) {
 	Args: [{ false idx int} { false position Vector2}], Returns: void
 */
 func (o *Curve2D) SetPointPosition(idx gdnative.Int, position gdnative.Vector2) {
-	log.Println("Calling Curve2D.SetPointPosition()")
+	//log.Println("Calling Curve2D.SetPointPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -496,7 +484,7 @@ func (o *Curve2D) SetPointPosition(idx gdnative.Int, position gdnative.Vector2) 
 	Args: [{5 true max_stages int} {4 true tolerance_degrees float}], Returns: PoolVector2Array
 */
 func (o *Curve2D) Tessellate(maxStages gdnative.Int, toleranceDegrees gdnative.Float) gdnative.PoolVector2Array {
-	log.Println("Calling Curve2D.Tessellate()")
+	//log.Println("Calling Curve2D.Tessellate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -513,6 +501,6 @@ func (o *Curve2D) Tessellate(maxStages gdnative.Int, toleranceDegrees gdnative.F
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolVector2ArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

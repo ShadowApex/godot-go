@@ -33,13 +33,3 @@ type ResourceImporter struct {
 func (o *ResourceImporter) BaseClass() string {
 	return "ResourceImporter"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ResourceImporter) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ResourceImporter) GetBaseObject() gdnative.Object {
-	return o.owner
-}

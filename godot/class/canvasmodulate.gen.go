@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *CanvasModulate) BaseClass() string {
 	return "CanvasModulate"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *CanvasModulate) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *CanvasModulate) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Color
 */
 func (o *CanvasModulate) GetColor() gdnative.Color {
-	log.Println("Calling CanvasModulate.GetColor()")
+	//log.Println("Calling CanvasModulate.GetColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *CanvasModulate) GetColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *CanvasModulate) GetColor() gdnative.Color {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *CanvasModulate) SetColor(color gdnative.Color) {
-	log.Println("Calling CanvasModulate.SetColor()")
+	//log.Println("Calling CanvasModulate.SetColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

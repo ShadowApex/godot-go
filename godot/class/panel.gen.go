@@ -33,13 +33,3 @@ type Panel struct {
 func (o *Panel) BaseClass() string {
 	return "Panel"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Panel) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Panel) GetBaseObject() gdnative.Object {
-	return o.owner
-}

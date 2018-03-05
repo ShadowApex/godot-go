@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *CanvasLayer) BaseClass() string {
 	return "CanvasLayer"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *CanvasLayer) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *CanvasLayer) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Node
 */
 func (o *CanvasLayer) GetCustomViewport() Node {
-	log.Println("Calling CanvasLayer.GetCustomViewport()")
+	//log.Println("Calling CanvasLayer.GetCustomViewport()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *CanvasLayer) GetCustomViewport() Node {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewNodeFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *CanvasLayer) GetCustomViewport() Node {
 	Args: [], Returns: int
 */
 func (o *CanvasLayer) GetLayer() gdnative.Int {
-	log.Println("Calling CanvasLayer.GetLayer()")
+	//log.Println("Calling CanvasLayer.GetLayer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *CanvasLayer) GetLayer() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *CanvasLayer) GetLayer() gdnative.Int {
 	Args: [], Returns: Vector2
 */
 func (o *CanvasLayer) GetOffset() gdnative.Vector2 {
-	log.Println("Calling CanvasLayer.GetOffset()")
+	//log.Println("Calling CanvasLayer.GetOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *CanvasLayer) GetOffset() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *CanvasLayer) GetOffset() gdnative.Vector2 {
 	Args: [], Returns: float
 */
 func (o *CanvasLayer) GetRotation() gdnative.Float {
-	log.Println("Calling CanvasLayer.GetRotation()")
+	//log.Println("Calling CanvasLayer.GetRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *CanvasLayer) GetRotation() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *CanvasLayer) GetRotation() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *CanvasLayer) GetRotationDegrees() gdnative.Float {
-	log.Println("Calling CanvasLayer.GetRotationDegrees()")
+	//log.Println("Calling CanvasLayer.GetRotationDegrees()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *CanvasLayer) GetRotationDegrees() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *CanvasLayer) GetRotationDegrees() gdnative.Float {
 	Args: [], Returns: Vector2
 */
 func (o *CanvasLayer) GetScale() gdnative.Vector2 {
-	log.Println("Calling CanvasLayer.GetScale()")
+	//log.Println("Calling CanvasLayer.GetScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -186,7 +174,7 @@ func (o *CanvasLayer) GetScale() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -195,7 +183,7 @@ func (o *CanvasLayer) GetScale() gdnative.Vector2 {
 	Args: [], Returns: Transform2D
 */
 func (o *CanvasLayer) GetTransform() gdnative.Transform2D {
-	log.Println("Calling CanvasLayer.GetTransform()")
+	//log.Println("Calling CanvasLayer.GetTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -210,7 +198,7 @@ func (o *CanvasLayer) GetTransform() gdnative.Transform2D {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransform2DFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -219,7 +207,7 @@ func (o *CanvasLayer) GetTransform() gdnative.Transform2D {
 	Args: [], Returns: World2D
 */
 func (o *CanvasLayer) GetWorld2D() World2D {
-	log.Println("Calling CanvasLayer.GetWorld2D()")
+	//log.Println("Calling CanvasLayer.GetWorld2D()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -234,7 +222,7 @@ func (o *CanvasLayer) GetWorld2D() World2D {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewWorld2DFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -243,7 +231,7 @@ func (o *CanvasLayer) GetWorld2D() World2D {
 	Args: [{ false viewport Object}], Returns: void
 */
 func (o *CanvasLayer) SetCustomViewport(viewport Object) {
-	log.Println("Calling CanvasLayer.SetCustomViewport()")
+	//log.Println("Calling CanvasLayer.SetCustomViewport()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -264,7 +252,7 @@ func (o *CanvasLayer) SetCustomViewport(viewport Object) {
 	Args: [{ false layer int}], Returns: void
 */
 func (o *CanvasLayer) SetLayer(layer gdnative.Int) {
-	log.Println("Calling CanvasLayer.SetLayer()")
+	//log.Println("Calling CanvasLayer.SetLayer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -285,7 +273,7 @@ func (o *CanvasLayer) SetLayer(layer gdnative.Int) {
 	Args: [{ false offset Vector2}], Returns: void
 */
 func (o *CanvasLayer) SetOffset(offset gdnative.Vector2) {
-	log.Println("Calling CanvasLayer.SetOffset()")
+	//log.Println("Calling CanvasLayer.SetOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -306,7 +294,7 @@ func (o *CanvasLayer) SetOffset(offset gdnative.Vector2) {
 	Args: [{ false radians float}], Returns: void
 */
 func (o *CanvasLayer) SetRotation(radians gdnative.Float) {
-	log.Println("Calling CanvasLayer.SetRotation()")
+	//log.Println("Calling CanvasLayer.SetRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -327,7 +315,7 @@ func (o *CanvasLayer) SetRotation(radians gdnative.Float) {
 	Args: [{ false degrees float}], Returns: void
 */
 func (o *CanvasLayer) SetRotationDegrees(degrees gdnative.Float) {
-	log.Println("Calling CanvasLayer.SetRotationDegrees()")
+	//log.Println("Calling CanvasLayer.SetRotationDegrees()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -348,7 +336,7 @@ func (o *CanvasLayer) SetRotationDegrees(degrees gdnative.Float) {
 	Args: [{ false scale Vector2}], Returns: void
 */
 func (o *CanvasLayer) SetScale(scale gdnative.Vector2) {
-	log.Println("Calling CanvasLayer.SetScale()")
+	//log.Println("Calling CanvasLayer.SetScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -369,7 +357,7 @@ func (o *CanvasLayer) SetScale(scale gdnative.Vector2) {
 	Args: [{ false transform Transform2D}], Returns: void
 */
 func (o *CanvasLayer) SetTransform(transform gdnative.Transform2D) {
-	log.Println("Calling CanvasLayer.SetTransform()")
+	//log.Println("Calling CanvasLayer.SetTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

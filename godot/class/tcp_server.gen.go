@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *TCP_Server) BaseClass() string {
 	return "TCP_Server"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *TCP_Server) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *TCP_Server) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Return true if a connection is available for taking.
 	Args: [], Returns: bool
 */
 func (o *TCP_Server) IsConnectionAvailable() gdnative.Bool {
-	log.Println("Calling TCP_Server.IsConnectionAvailable()")
+	//log.Println("Calling TCP_Server.IsConnectionAvailable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *TCP_Server) IsConnectionAvailable() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -80,7 +68,7 @@ func (o *TCP_Server) IsConnectionAvailable() gdnative.Bool {
 	Args: [], Returns: void
 */
 func (o *TCP_Server) Stop() {
-	log.Println("Calling TCP_Server.Stop()")
+	//log.Println("Calling TCP_Server.Stop()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -100,7 +88,7 @@ func (o *TCP_Server) Stop() {
 	Args: [], Returns: StreamPeerTCP
 */
 func (o *TCP_Server) TakeConnection() StreamPeerTCP {
-	log.Println("Calling TCP_Server.TakeConnection()")
+	//log.Println("Calling TCP_Server.TakeConnection()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -115,6 +103,6 @@ func (o *TCP_Server) TakeConnection() StreamPeerTCP {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewStreamPeerTCPFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

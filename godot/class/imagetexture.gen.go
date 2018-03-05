@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ImageTexture) BaseClass() string {
 	return "ImageTexture"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ImageTexture) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ImageTexture) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false rid RID}], Returns: void
 */
 func (o *ImageTexture) X_ReloadHook(rid gdnative.Rid) {
-	log.Println("Calling ImageTexture.X_ReloadHook()")
+	//log.Println("Calling ImageTexture.X_ReloadHook()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *ImageTexture) X_ReloadHook(rid gdnative.Rid) {
 	Args: [{ false width int} { false height int} { false format int} {7 true flags int}], Returns: void
 */
 func (o *ImageTexture) Create(width gdnative.Int, height gdnative.Int, format gdnative.Int, flags gdnative.Int) {
-	log.Println("Calling ImageTexture.Create()")
+	//log.Println("Calling ImageTexture.Create()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -96,7 +84,7 @@ func (o *ImageTexture) Create(width gdnative.Int, height gdnative.Int, format gd
 	Args: [{ false image Image} {7 true flags int}], Returns: void
 */
 func (o *ImageTexture) CreateFromImage(image Image, flags gdnative.Int) {
-	log.Println("Calling ImageTexture.CreateFromImage()")
+	//log.Println("Calling ImageTexture.CreateFromImage()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -123,7 +111,7 @@ func (o *ImageTexture) CreateFromImage(image Image, flags gdnative.Int) {
 	Args: [], Returns: float
 */
 func (o *ImageTexture) GetLossyStorageQuality() gdnative.Float {
-	log.Println("Calling ImageTexture.GetLossyStorageQuality()")
+	//log.Println("Calling ImageTexture.GetLossyStorageQuality()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *ImageTexture) GetLossyStorageQuality() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -152,7 +140,7 @@ func (o *ImageTexture) GetLossyStorageQuality() gdnative.Float {
 	Args: [{ false path String}], Returns: void
 */
 func (o *ImageTexture) Load(path gdnative.String) {
-	log.Println("Calling ImageTexture.Load()")
+	//log.Println("Calling ImageTexture.Load()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -173,7 +161,7 @@ func (o *ImageTexture) Load(path gdnative.String) {
 	Args: [{ false image Image}], Returns: void
 */
 func (o *ImageTexture) SetData(image Image) {
-	log.Println("Calling ImageTexture.SetData()")
+	//log.Println("Calling ImageTexture.SetData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -194,7 +182,7 @@ func (o *ImageTexture) SetData(image Image) {
 	Args: [{ false quality float}], Returns: void
 */
 func (o *ImageTexture) SetLossyStorageQuality(quality gdnative.Float) {
-	log.Println("Calling ImageTexture.SetLossyStorageQuality()")
+	//log.Println("Calling ImageTexture.SetLossyStorageQuality()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -215,7 +203,7 @@ func (o *ImageTexture) SetLossyStorageQuality(quality gdnative.Float) {
 	Args: [{ false size Vector2}], Returns: void
 */
 func (o *ImageTexture) SetSizeOverride(size gdnative.Vector2) {
-	log.Println("Calling ImageTexture.SetSizeOverride()")
+	//log.Println("Calling ImageTexture.SetSizeOverride()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -236,7 +224,7 @@ func (o *ImageTexture) SetSizeOverride(size gdnative.Vector2) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *ImageTexture) SetStorage(mode gdnative.Int) {
-	log.Println("Calling ImageTexture.SetStorage()")
+	//log.Println("Calling ImageTexture.SetStorage()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

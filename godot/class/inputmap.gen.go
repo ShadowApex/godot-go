@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -48,7 +46,7 @@ func (o *inputMap) ensureSingleton() {
 	if o.initialized == true {
 		return
 	}
-	log.Println("Singleton not found. Fetching from GDNative...")
+	//log.Println("Singleton not found. Fetching from GDNative...")
 	base := gdnative.GetSingleton("InputMap")
 	o.SetBaseObject(base)
 	o.initialized = true
@@ -58,23 +56,13 @@ func (o *inputMap) BaseClass() string {
 	return "InputMap"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *inputMap) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *inputMap) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Adds an [InputEvent] to an action. This [InputEvent] will trigger the action.
 	Args: [{ false action String} { false event InputEvent}], Returns: void
 */
 func (o *inputMap) ActionAddEvent(action gdnative.String, event InputEvent) {
 	o.ensureSingleton()
-	log.Println("Calling InputMap.ActionAddEvent()")
+	//log.Println("Calling InputMap.ActionAddEvent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -97,7 +85,7 @@ func (o *inputMap) ActionAddEvent(action gdnative.String, event InputEvent) {
 */
 func (o *inputMap) ActionEraseEvent(action gdnative.String, event InputEvent) {
 	o.ensureSingleton()
-	log.Println("Calling InputMap.ActionEraseEvent()")
+	//log.Println("Calling InputMap.ActionEraseEvent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -120,7 +108,7 @@ func (o *inputMap) ActionEraseEvent(action gdnative.String, event InputEvent) {
 */
 func (o *inputMap) ActionHasEvent(action gdnative.String, event InputEvent) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling InputMap.ActionHasEvent()")
+	//log.Println("Calling InputMap.ActionHasEvent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -137,7 +125,7 @@ func (o *inputMap) ActionHasEvent(action gdnative.String, event InputEvent) gdna
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *inputMap) ActionHasEvent(action gdnative.String, event InputEvent) gdna
 */
 func (o *inputMap) AddAction(action gdnative.String) {
 	o.ensureSingleton()
-	log.Println("Calling InputMap.AddAction()")
+	//log.Println("Calling InputMap.AddAction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -169,7 +157,7 @@ func (o *inputMap) AddAction(action gdnative.String) {
 */
 func (o *inputMap) EraseAction(action gdnative.String) {
 	o.ensureSingleton()
-	log.Println("Calling InputMap.EraseAction()")
+	//log.Println("Calling InputMap.EraseAction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -191,7 +179,7 @@ func (o *inputMap) EraseAction(action gdnative.String) {
 */
 func (o *inputMap) EventIsAction(event InputEvent, action gdnative.String) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling InputMap.EventIsAction()")
+	//log.Println("Calling InputMap.EventIsAction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -208,7 +196,7 @@ func (o *inputMap) EventIsAction(event InputEvent, action gdnative.String) gdnat
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -218,7 +206,7 @@ func (o *inputMap) EventIsAction(event InputEvent, action gdnative.String) gdnat
 */
 func (o *inputMap) GetActionList(action gdnative.String) gdnative.Array {
 	o.ensureSingleton()
-	log.Println("Calling InputMap.GetActionList()")
+	//log.Println("Calling InputMap.GetActionList()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -234,7 +222,7 @@ func (o *inputMap) GetActionList(action gdnative.String) gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -244,7 +232,7 @@ func (o *inputMap) GetActionList(action gdnative.String) gdnative.Array {
 */
 func (o *inputMap) GetActions() gdnative.Array {
 	o.ensureSingleton()
-	log.Println("Calling InputMap.GetActions()")
+	//log.Println("Calling InputMap.GetActions()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -259,7 +247,7 @@ func (o *inputMap) GetActions() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -269,7 +257,7 @@ func (o *inputMap) GetActions() gdnative.Array {
 */
 func (o *inputMap) HasAction(action gdnative.String) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling InputMap.HasAction()")
+	//log.Println("Calling InputMap.HasAction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -285,7 +273,7 @@ func (o *inputMap) HasAction(action gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -295,7 +283,7 @@ func (o *inputMap) HasAction(action gdnative.String) gdnative.Bool {
 */
 func (o *inputMap) LoadFromGlobals() {
 	o.ensureSingleton()
-	log.Println("Calling InputMap.LoadFromGlobals()")
+	//log.Println("Calling InputMap.LoadFromGlobals()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)

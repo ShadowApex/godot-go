@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *InputEventMouseMotion) BaseClass() string {
 	return "InputEventMouseMotion"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *InputEventMouseMotion) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *InputEventMouseMotion) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Vector2
 */
 func (o *InputEventMouseMotion) GetRelative() gdnative.Vector2 {
-	log.Println("Calling InputEventMouseMotion.GetRelative()")
+	//log.Println("Calling InputEventMouseMotion.GetRelative()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *InputEventMouseMotion) GetRelative() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *InputEventMouseMotion) GetRelative() gdnative.Vector2 {
 	Args: [], Returns: Vector2
 */
 func (o *InputEventMouseMotion) GetSpeed() gdnative.Vector2 {
-	log.Println("Calling InputEventMouseMotion.GetSpeed()")
+	//log.Println("Calling InputEventMouseMotion.GetSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *InputEventMouseMotion) GetSpeed() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *InputEventMouseMotion) GetSpeed() gdnative.Vector2 {
 	Args: [{ false relative Vector2}], Returns: void
 */
 func (o *InputEventMouseMotion) SetRelative(relative gdnative.Vector2) {
-	log.Println("Calling InputEventMouseMotion.SetRelative()")
+	//log.Println("Calling InputEventMouseMotion.SetRelative()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -120,7 +108,7 @@ func (o *InputEventMouseMotion) SetRelative(relative gdnative.Vector2) {
 	Args: [{ false speed Vector2}], Returns: void
 */
 func (o *InputEventMouseMotion) SetSpeed(speed gdnative.Vector2) {
-	log.Println("Calling InputEventMouseMotion.SetSpeed()")
+	//log.Println("Calling InputEventMouseMotion.SetSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

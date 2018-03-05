@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,16 +34,6 @@ func (o *VisualScriptConstant) BaseClass() string {
 	return "VisualScriptConstant"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptConstant) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptConstant) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: enum.Variant::Type
@@ -56,7 +44,7 @@ func (o *VisualScriptConstant) GetBaseObject() gdnative.Object {
 	Args: [], Returns: Variant
 */
 func (o *VisualScriptConstant) GetConstantValue() gdnative.Variant {
-	log.Println("Calling VisualScriptConstant.GetConstantValue()")
+	//log.Println("Calling VisualScriptConstant.GetConstantValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *VisualScriptConstant) GetConstantValue() gdnative.Variant {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -80,7 +68,7 @@ func (o *VisualScriptConstant) GetConstantValue() gdnative.Variant {
 	Args: [{ false type int}], Returns: void
 */
 func (o *VisualScriptConstant) SetConstantType(aType gdnative.Int) {
-	log.Println("Calling VisualScriptConstant.SetConstantType()")
+	//log.Println("Calling VisualScriptConstant.SetConstantType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -101,7 +89,7 @@ func (o *VisualScriptConstant) SetConstantType(aType gdnative.Int) {
 	Args: [{ false value Variant}], Returns: void
 */
 func (o *VisualScriptConstant) SetConstantValue(value gdnative.Variant) {
-	log.Println("Calling VisualScriptConstant.SetConstantValue()")
+	//log.Println("Calling VisualScriptConstant.SetConstantValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ProximityGroup) BaseClass() string {
 	return "ProximityGroup"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ProximityGroup) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ProximityGroup) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false name String} { false params Variant}], Returns: void
 */
 func (o *ProximityGroup) X_ProximityGroupBroadcast(name gdnative.String, params gdnative.Variant) {
-	log.Println("Calling ProximityGroup.X_ProximityGroupBroadcast()")
+	//log.Println("Calling ProximityGroup.X_ProximityGroupBroadcast()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -73,7 +61,7 @@ func (o *ProximityGroup) X_ProximityGroupBroadcast(name gdnative.String, params 
 	Args: [{ false name String} { false parameters Variant}], Returns: void
 */
 func (o *ProximityGroup) Broadcast(name gdnative.String, parameters gdnative.Variant) {
-	log.Println("Calling ProximityGroup.Broadcast()")
+	//log.Println("Calling ProximityGroup.Broadcast()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -100,7 +88,7 @@ func (o *ProximityGroup) Broadcast(name gdnative.String, parameters gdnative.Var
 	Args: [], Returns: Vector3
 */
 func (o *ProximityGroup) GetGridRadius() gdnative.Vector3 {
-	log.Println("Calling ProximityGroup.GetGridRadius()")
+	//log.Println("Calling ProximityGroup.GetGridRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -115,7 +103,7 @@ func (o *ProximityGroup) GetGridRadius() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -124,7 +112,7 @@ func (o *ProximityGroup) GetGridRadius() gdnative.Vector3 {
 	Args: [], Returns: String
 */
 func (o *ProximityGroup) GetGroupName() gdnative.String {
-	log.Println("Calling ProximityGroup.GetGroupName()")
+	//log.Println("Calling ProximityGroup.GetGroupName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -139,7 +127,7 @@ func (o *ProximityGroup) GetGroupName() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -148,7 +136,7 @@ func (o *ProximityGroup) GetGroupName() gdnative.String {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *ProximityGroup) SetDispatchMode(mode gdnative.Int) {
-	log.Println("Calling ProximityGroup.SetDispatchMode()")
+	//log.Println("Calling ProximityGroup.SetDispatchMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -169,7 +157,7 @@ func (o *ProximityGroup) SetDispatchMode(mode gdnative.Int) {
 	Args: [{ false radius Vector3}], Returns: void
 */
 func (o *ProximityGroup) SetGridRadius(radius gdnative.Vector3) {
-	log.Println("Calling ProximityGroup.SetGridRadius()")
+	//log.Println("Calling ProximityGroup.SetGridRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -190,7 +178,7 @@ func (o *ProximityGroup) SetGridRadius(radius gdnative.Vector3) {
 	Args: [{ false name String}], Returns: void
 */
 func (o *ProximityGroup) SetGroupName(name gdnative.String) {
-	log.Println("Calling ProximityGroup.SetGroupName()")
+	//log.Println("Calling ProximityGroup.SetGroupName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

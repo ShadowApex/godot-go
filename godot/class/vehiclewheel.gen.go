@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VehicleWheel) BaseClass() string {
 	return "VehicleWheel"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VehicleWheel) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VehicleWheel) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *VehicleWheel) GetDampingCompression() gdnative.Float {
-	log.Println("Calling VehicleWheel.GetDampingCompression()")
+	//log.Println("Calling VehicleWheel.GetDampingCompression()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VehicleWheel) GetDampingCompression() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *VehicleWheel) GetDampingCompression() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *VehicleWheel) GetDampingRelaxation() gdnative.Float {
-	log.Println("Calling VehicleWheel.GetDampingRelaxation()")
+	//log.Println("Calling VehicleWheel.GetDampingRelaxation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *VehicleWheel) GetDampingRelaxation() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *VehicleWheel) GetDampingRelaxation() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *VehicleWheel) GetFrictionSlip() gdnative.Float {
-	log.Println("Calling VehicleWheel.GetFrictionSlip()")
+	//log.Println("Calling VehicleWheel.GetFrictionSlip()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *VehicleWheel) GetFrictionSlip() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *VehicleWheel) GetFrictionSlip() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *VehicleWheel) GetRadius() gdnative.Float {
-	log.Println("Calling VehicleWheel.GetRadius()")
+	//log.Println("Calling VehicleWheel.GetRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *VehicleWheel) GetRadius() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *VehicleWheel) GetRadius() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *VehicleWheel) GetRollInfluence() gdnative.Float {
-	log.Println("Calling VehicleWheel.GetRollInfluence()")
+	//log.Println("Calling VehicleWheel.GetRollInfluence()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *VehicleWheel) GetRollInfluence() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *VehicleWheel) GetRollInfluence() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *VehicleWheel) GetSkidinfo() gdnative.Float {
-	log.Println("Calling VehicleWheel.GetSkidinfo()")
+	//log.Println("Calling VehicleWheel.GetSkidinfo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -186,7 +174,7 @@ func (o *VehicleWheel) GetSkidinfo() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -195,7 +183,7 @@ func (o *VehicleWheel) GetSkidinfo() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *VehicleWheel) GetSuspensionMaxForce() gdnative.Float {
-	log.Println("Calling VehicleWheel.GetSuspensionMaxForce()")
+	//log.Println("Calling VehicleWheel.GetSuspensionMaxForce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -210,7 +198,7 @@ func (o *VehicleWheel) GetSuspensionMaxForce() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -219,7 +207,7 @@ func (o *VehicleWheel) GetSuspensionMaxForce() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *VehicleWheel) GetSuspensionRestLength() gdnative.Float {
-	log.Println("Calling VehicleWheel.GetSuspensionRestLength()")
+	//log.Println("Calling VehicleWheel.GetSuspensionRestLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -234,7 +222,7 @@ func (o *VehicleWheel) GetSuspensionRestLength() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -243,7 +231,7 @@ func (o *VehicleWheel) GetSuspensionRestLength() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *VehicleWheel) GetSuspensionStiffness() gdnative.Float {
-	log.Println("Calling VehicleWheel.GetSuspensionStiffness()")
+	//log.Println("Calling VehicleWheel.GetSuspensionStiffness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -258,7 +246,7 @@ func (o *VehicleWheel) GetSuspensionStiffness() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -267,7 +255,7 @@ func (o *VehicleWheel) GetSuspensionStiffness() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *VehicleWheel) GetSuspensionTravel() gdnative.Float {
-	log.Println("Calling VehicleWheel.GetSuspensionTravel()")
+	//log.Println("Calling VehicleWheel.GetSuspensionTravel()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -282,7 +270,7 @@ func (o *VehicleWheel) GetSuspensionTravel() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -291,7 +279,7 @@ func (o *VehicleWheel) GetSuspensionTravel() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *VehicleWheel) IsInContact() gdnative.Bool {
-	log.Println("Calling VehicleWheel.IsInContact()")
+	//log.Println("Calling VehicleWheel.IsInContact()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -306,7 +294,7 @@ func (o *VehicleWheel) IsInContact() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -315,7 +303,7 @@ func (o *VehicleWheel) IsInContact() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *VehicleWheel) IsUsedAsSteering() gdnative.Bool {
-	log.Println("Calling VehicleWheel.IsUsedAsSteering()")
+	//log.Println("Calling VehicleWheel.IsUsedAsSteering()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -330,7 +318,7 @@ func (o *VehicleWheel) IsUsedAsSteering() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -339,7 +327,7 @@ func (o *VehicleWheel) IsUsedAsSteering() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *VehicleWheel) IsUsedAsTraction() gdnative.Bool {
-	log.Println("Calling VehicleWheel.IsUsedAsTraction()")
+	//log.Println("Calling VehicleWheel.IsUsedAsTraction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -354,7 +342,7 @@ func (o *VehicleWheel) IsUsedAsTraction() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -363,7 +351,7 @@ func (o *VehicleWheel) IsUsedAsTraction() gdnative.Bool {
 	Args: [{ false length float}], Returns: void
 */
 func (o *VehicleWheel) SetDampingCompression(length gdnative.Float) {
-	log.Println("Calling VehicleWheel.SetDampingCompression()")
+	//log.Println("Calling VehicleWheel.SetDampingCompression()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -384,7 +372,7 @@ func (o *VehicleWheel) SetDampingCompression(length gdnative.Float) {
 	Args: [{ false length float}], Returns: void
 */
 func (o *VehicleWheel) SetDampingRelaxation(length gdnative.Float) {
-	log.Println("Calling VehicleWheel.SetDampingRelaxation()")
+	//log.Println("Calling VehicleWheel.SetDampingRelaxation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -405,7 +393,7 @@ func (o *VehicleWheel) SetDampingRelaxation(length gdnative.Float) {
 	Args: [{ false length float}], Returns: void
 */
 func (o *VehicleWheel) SetFrictionSlip(length gdnative.Float) {
-	log.Println("Calling VehicleWheel.SetFrictionSlip()")
+	//log.Println("Calling VehicleWheel.SetFrictionSlip()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -426,7 +414,7 @@ func (o *VehicleWheel) SetFrictionSlip(length gdnative.Float) {
 	Args: [{ false length float}], Returns: void
 */
 func (o *VehicleWheel) SetRadius(length gdnative.Float) {
-	log.Println("Calling VehicleWheel.SetRadius()")
+	//log.Println("Calling VehicleWheel.SetRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -447,7 +435,7 @@ func (o *VehicleWheel) SetRadius(length gdnative.Float) {
 	Args: [{ false roll_influence float}], Returns: void
 */
 func (o *VehicleWheel) SetRollInfluence(rollInfluence gdnative.Float) {
-	log.Println("Calling VehicleWheel.SetRollInfluence()")
+	//log.Println("Calling VehicleWheel.SetRollInfluence()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -468,7 +456,7 @@ func (o *VehicleWheel) SetRollInfluence(rollInfluence gdnative.Float) {
 	Args: [{ false length float}], Returns: void
 */
 func (o *VehicleWheel) SetSuspensionMaxForce(length gdnative.Float) {
-	log.Println("Calling VehicleWheel.SetSuspensionMaxForce()")
+	//log.Println("Calling VehicleWheel.SetSuspensionMaxForce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -489,7 +477,7 @@ func (o *VehicleWheel) SetSuspensionMaxForce(length gdnative.Float) {
 	Args: [{ false length float}], Returns: void
 */
 func (o *VehicleWheel) SetSuspensionRestLength(length gdnative.Float) {
-	log.Println("Calling VehicleWheel.SetSuspensionRestLength()")
+	//log.Println("Calling VehicleWheel.SetSuspensionRestLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -510,7 +498,7 @@ func (o *VehicleWheel) SetSuspensionRestLength(length gdnative.Float) {
 	Args: [{ false length float}], Returns: void
 */
 func (o *VehicleWheel) SetSuspensionStiffness(length gdnative.Float) {
-	log.Println("Calling VehicleWheel.SetSuspensionStiffness()")
+	//log.Println("Calling VehicleWheel.SetSuspensionStiffness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -531,7 +519,7 @@ func (o *VehicleWheel) SetSuspensionStiffness(length gdnative.Float) {
 	Args: [{ false length float}], Returns: void
 */
 func (o *VehicleWheel) SetSuspensionTravel(length gdnative.Float) {
-	log.Println("Calling VehicleWheel.SetSuspensionTravel()")
+	//log.Println("Calling VehicleWheel.SetSuspensionTravel()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -552,7 +540,7 @@ func (o *VehicleWheel) SetSuspensionTravel(length gdnative.Float) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *VehicleWheel) SetUseAsSteering(enable gdnative.Bool) {
-	log.Println("Calling VehicleWheel.SetUseAsSteering()")
+	//log.Println("Calling VehicleWheel.SetUseAsSteering()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -573,7 +561,7 @@ func (o *VehicleWheel) SetUseAsSteering(enable gdnative.Bool) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *VehicleWheel) SetUseAsTraction(enable gdnative.Bool) {
-	log.Println("Calling VehicleWheel.SetUseAsTraction()")
+	//log.Println("Calling VehicleWheel.SetUseAsTraction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

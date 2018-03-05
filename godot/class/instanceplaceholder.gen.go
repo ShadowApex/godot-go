@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *InstancePlaceholder) BaseClass() string {
 	return "InstancePlaceholder"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *InstancePlaceholder) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *InstancePlaceholder) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Retrieve the path to the [PackedScene] resource file that is loaded by default when calling [method replace_by_instance].
 	Args: [], Returns: String
 */
 func (o *InstancePlaceholder) GetInstancePath() gdnative.String {
-	log.Println("Calling InstancePlaceholder.GetInstancePath()")
+	//log.Println("Calling InstancePlaceholder.GetInstancePath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *InstancePlaceholder) GetInstancePath() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *InstancePlaceholder) GetInstancePath() gdnative.String {
 	Args: [{False true with_order bool}], Returns: Dictionary
 */
 func (o *InstancePlaceholder) GetStoredValues(withOrder gdnative.Bool) gdnative.Dictionary {
-	log.Println("Calling InstancePlaceholder.GetStoredValues()")
+	//log.Println("Calling InstancePlaceholder.GetStoredValues()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -91,7 +79,7 @@ func (o *InstancePlaceholder) GetStoredValues(withOrder gdnative.Bool) gdnative.
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewDictionaryFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -100,7 +88,7 @@ func (o *InstancePlaceholder) GetStoredValues(withOrder gdnative.Bool) gdnative.
 	Args: [{Null true custom_scene PackedScene}], Returns: void
 */
 func (o *InstancePlaceholder) ReplaceByInstance(customScene PackedScene) {
-	log.Println("Calling InstancePlaceholder.ReplaceByInstance()")
+	//log.Println("Calling InstancePlaceholder.ReplaceByInstance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

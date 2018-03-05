@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -48,7 +46,7 @@ func (o *ip) ensureSingleton() {
 	if o.initialized == true {
 		return
 	}
-	log.Println("Singleton not found. Fetching from GDNative...")
+	//log.Println("Singleton not found. Fetching from GDNative...")
 	base := gdnative.GetSingleton("IP")
 	o.SetBaseObject(base)
 	o.initialized = true
@@ -58,23 +56,13 @@ func (o *ip) BaseClass() string {
 	return "IP"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ip) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ip) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Removes all of a "hostname"'s cached references. If no "hostname" is given then all cached IP addresses are removed.
 	Args: [{ true hostname String}], Returns: void
 */
 func (o *ip) ClearCache(hostname gdnative.String) {
 	o.ensureSingleton()
-	log.Println("Calling IP.ClearCache()")
+	//log.Println("Calling IP.ClearCache()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *ip) ClearCache(hostname gdnative.String) {
 */
 func (o *ip) EraseResolveItem(id gdnative.Int) {
 	o.ensureSingleton()
-	log.Println("Calling IP.EraseResolveItem()")
+	//log.Println("Calling IP.EraseResolveItem()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -118,7 +106,7 @@ func (o *ip) EraseResolveItem(id gdnative.Int) {
 */
 func (o *ip) GetLocalAddresses() gdnative.Array {
 	o.ensureSingleton()
-	log.Println("Calling IP.GetLocalAddresses()")
+	//log.Println("Calling IP.GetLocalAddresses()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -133,7 +121,7 @@ func (o *ip) GetLocalAddresses() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -143,7 +131,7 @@ func (o *ip) GetLocalAddresses() gdnative.Array {
 */
 func (o *ip) GetResolveItemAddress(id gdnative.Int) gdnative.String {
 	o.ensureSingleton()
-	log.Println("Calling IP.GetResolveItemAddress()")
+	//log.Println("Calling IP.GetResolveItemAddress()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -159,7 +147,7 @@ func (o *ip) GetResolveItemAddress(id gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -174,7 +162,7 @@ func (o *ip) GetResolveItemAddress(id gdnative.Int) gdnative.String {
 */
 func (o *ip) ResolveHostname(host gdnative.String, ipType gdnative.Int) gdnative.String {
 	o.ensureSingleton()
-	log.Println("Calling IP.ResolveHostname()")
+	//log.Println("Calling IP.ResolveHostname()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -191,7 +179,7 @@ func (o *ip) ResolveHostname(host gdnative.String, ipType gdnative.Int) gdnative
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -201,7 +189,7 @@ func (o *ip) ResolveHostname(host gdnative.String, ipType gdnative.Int) gdnative
 */
 func (o *ip) ResolveHostnameQueueItem(host gdnative.String, ipType gdnative.Int) gdnative.Int {
 	o.ensureSingleton()
-	log.Println("Calling IP.ResolveHostnameQueueItem()")
+	//log.Println("Calling IP.ResolveHostnameQueueItem()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -218,6 +206,6 @@ func (o *ip) ResolveHostnameQueueItem(host gdnative.String, ipType gdnative.Int)
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

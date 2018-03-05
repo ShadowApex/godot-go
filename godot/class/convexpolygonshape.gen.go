@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ConvexPolygonShape) BaseClass() string {
 	return "ConvexPolygonShape"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ConvexPolygonShape) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ConvexPolygonShape) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: PoolVector3Array
 */
 func (o *ConvexPolygonShape) GetPoints() gdnative.PoolVector3Array {
-	log.Println("Calling ConvexPolygonShape.GetPoints()")
+	//log.Println("Calling ConvexPolygonShape.GetPoints()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *ConvexPolygonShape) GetPoints() gdnative.PoolVector3Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewPoolVector3ArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *ConvexPolygonShape) GetPoints() gdnative.PoolVector3Array {
 	Args: [{ false points PoolVector3Array}], Returns: void
 */
 func (o *ConvexPolygonShape) SetPoints(points gdnative.PoolVector3Array) {
-	log.Println("Calling ConvexPolygonShape.SetPoints()")
+	//log.Println("Calling ConvexPolygonShape.SetPoints()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -34,16 +34,6 @@ func (o *PCKPacker) BaseClass() string {
 	return "PCKPacker"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *PCKPacker) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *PCKPacker) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [{ false pck_path String} { false source_path String}], Returns: enum.Error

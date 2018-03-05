@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *MeshInstance) BaseClass() string {
 	return "MeshInstance"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *MeshInstance) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *MeshInstance) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *MeshInstance) X_MeshChanged() {
-	log.Println("Calling MeshInstance.X_MeshChanged()")
+	//log.Println("Calling MeshInstance.X_MeshChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *MeshInstance) X_MeshChanged() {
 	Args: [], Returns: void
 */
 func (o *MeshInstance) CreateConvexCollision() {
-	log.Println("Calling MeshInstance.CreateConvexCollision()")
+	//log.Println("Calling MeshInstance.CreateConvexCollision()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -91,7 +79,7 @@ func (o *MeshInstance) CreateConvexCollision() {
 	Args: [], Returns: void
 */
 func (o *MeshInstance) CreateDebugTangents() {
-	log.Println("Calling MeshInstance.CreateDebugTangents()")
+	//log.Println("Calling MeshInstance.CreateDebugTangents()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -111,7 +99,7 @@ func (o *MeshInstance) CreateDebugTangents() {
 	Args: [], Returns: void
 */
 func (o *MeshInstance) CreateTrimeshCollision() {
-	log.Println("Calling MeshInstance.CreateTrimeshCollision()")
+	//log.Println("Calling MeshInstance.CreateTrimeshCollision()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -131,7 +119,7 @@ func (o *MeshInstance) CreateTrimeshCollision() {
 	Args: [], Returns: Mesh
 */
 func (o *MeshInstance) GetMesh() Mesh {
-	log.Println("Calling MeshInstance.GetMesh()")
+	//log.Println("Calling MeshInstance.GetMesh()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -146,7 +134,7 @@ func (o *MeshInstance) GetMesh() Mesh {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewMeshFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -155,7 +143,7 @@ func (o *MeshInstance) GetMesh() Mesh {
 	Args: [], Returns: NodePath
 */
 func (o *MeshInstance) GetSkeletonPath() gdnative.NodePath {
-	log.Println("Calling MeshInstance.GetSkeletonPath()")
+	//log.Println("Calling MeshInstance.GetSkeletonPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -170,7 +158,7 @@ func (o *MeshInstance) GetSkeletonPath() gdnative.NodePath {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewNodePathFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -179,7 +167,7 @@ func (o *MeshInstance) GetSkeletonPath() gdnative.NodePath {
 	Args: [{ false surface int}], Returns: Material
 */
 func (o *MeshInstance) GetSurfaceMaterial(surface gdnative.Int) Material {
-	log.Println("Calling MeshInstance.GetSurfaceMaterial()")
+	//log.Println("Calling MeshInstance.GetSurfaceMaterial()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -195,7 +183,7 @@ func (o *MeshInstance) GetSurfaceMaterial(surface gdnative.Int) Material {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewMaterialFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -204,7 +192,7 @@ func (o *MeshInstance) GetSurfaceMaterial(surface gdnative.Int) Material {
 	Args: [{ false mesh Mesh}], Returns: void
 */
 func (o *MeshInstance) SetMesh(mesh Mesh) {
-	log.Println("Calling MeshInstance.SetMesh()")
+	//log.Println("Calling MeshInstance.SetMesh()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -225,7 +213,7 @@ func (o *MeshInstance) SetMesh(mesh Mesh) {
 	Args: [{ false skeleton_path NodePath}], Returns: void
 */
 func (o *MeshInstance) SetSkeletonPath(skeletonPath gdnative.NodePath) {
-	log.Println("Calling MeshInstance.SetSkeletonPath()")
+	//log.Println("Calling MeshInstance.SetSkeletonPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -246,7 +234,7 @@ func (o *MeshInstance) SetSkeletonPath(skeletonPath gdnative.NodePath) {
 	Args: [{ false surface int} { false material Material}], Returns: void
 */
 func (o *MeshInstance) SetSurfaceMaterial(surface gdnative.Int, material Material) {
-	log.Println("Calling MeshInstance.SetSurfaceMaterial()")
+	//log.Println("Calling MeshInstance.SetSurfaceMaterial()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)

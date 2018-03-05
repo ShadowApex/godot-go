@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *WindowDialog) BaseClass() string {
 	return "WindowDialog"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *WindowDialog) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *WindowDialog) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *WindowDialog) X_Closed() {
-	log.Println("Calling WindowDialog.X_Closed()")
+	//log.Println("Calling WindowDialog.X_Closed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *WindowDialog) X_Closed() {
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
 func (o *WindowDialog) X_GuiInput(arg0 InputEvent) {
-	log.Println("Calling WindowDialog.X_GuiInput()")
+	//log.Println("Calling WindowDialog.X_GuiInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -92,7 +80,7 @@ func (o *WindowDialog) X_GuiInput(arg0 InputEvent) {
 	Args: [], Returns: TextureButton
 */
 func (o *WindowDialog) GetCloseButton() TextureButton {
-	log.Println("Calling WindowDialog.GetCloseButton()")
+	//log.Println("Calling WindowDialog.GetCloseButton()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -107,7 +95,7 @@ func (o *WindowDialog) GetCloseButton() TextureButton {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureButtonFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -116,7 +104,7 @@ func (o *WindowDialog) GetCloseButton() TextureButton {
 	Args: [], Returns: bool
 */
 func (o *WindowDialog) GetResizable() gdnative.Bool {
-	log.Println("Calling WindowDialog.GetResizable()")
+	//log.Println("Calling WindowDialog.GetResizable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -131,7 +119,7 @@ func (o *WindowDialog) GetResizable() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -140,7 +128,7 @@ func (o *WindowDialog) GetResizable() gdnative.Bool {
 	Args: [], Returns: String
 */
 func (o *WindowDialog) GetTitle() gdnative.String {
-	log.Println("Calling WindowDialog.GetTitle()")
+	//log.Println("Calling WindowDialog.GetTitle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -155,7 +143,7 @@ func (o *WindowDialog) GetTitle() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -164,7 +152,7 @@ func (o *WindowDialog) GetTitle() gdnative.String {
 	Args: [{ false resizable bool}], Returns: void
 */
 func (o *WindowDialog) SetResizable(resizable gdnative.Bool) {
-	log.Println("Calling WindowDialog.SetResizable()")
+	//log.Println("Calling WindowDialog.SetResizable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -185,7 +173,7 @@ func (o *WindowDialog) SetResizable(resizable gdnative.Bool) {
 	Args: [{ false title String}], Returns: void
 */
 func (o *WindowDialog) SetTitle(title gdnative.String) {
-	log.Println("Calling WindowDialog.SetTitle()")
+	//log.Println("Calling WindowDialog.SetTitle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *WeakRef) BaseClass() string {
 	return "WeakRef"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *WeakRef) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *WeakRef) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Returns the [Object] this weakref is referring to.
 	Args: [], Returns: Variant
 */
 func (o *WeakRef) GetRef() gdnative.Variant {
-	log.Println("Calling WeakRef.GetRef()")
+	//log.Println("Calling WeakRef.GetRef()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,6 +54,6 @@ func (o *WeakRef) GetRef() gdnative.Variant {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

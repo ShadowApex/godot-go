@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VisualScriptTypeCast) BaseClass() string {
 	return "VisualScriptTypeCast"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptTypeCast) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptTypeCast) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: String
 */
 func (o *VisualScriptTypeCast) GetBaseScript() gdnative.String {
-	log.Println("Calling VisualScriptTypeCast.GetBaseScript()")
+	//log.Println("Calling VisualScriptTypeCast.GetBaseScript()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VisualScriptTypeCast) GetBaseScript() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *VisualScriptTypeCast) GetBaseScript() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *VisualScriptTypeCast) GetBaseType() gdnative.String {
-	log.Println("Calling VisualScriptTypeCast.GetBaseType()")
+	//log.Println("Calling VisualScriptTypeCast.GetBaseType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *VisualScriptTypeCast) GetBaseType() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *VisualScriptTypeCast) GetBaseType() gdnative.String {
 	Args: [{ false path String}], Returns: void
 */
 func (o *VisualScriptTypeCast) SetBaseScript(path gdnative.String) {
-	log.Println("Calling VisualScriptTypeCast.SetBaseScript()")
+	//log.Println("Calling VisualScriptTypeCast.SetBaseScript()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -120,7 +108,7 @@ func (o *VisualScriptTypeCast) SetBaseScript(path gdnative.String) {
 	Args: [{ false type String}], Returns: void
 */
 func (o *VisualScriptTypeCast) SetBaseType(aType gdnative.String) {
-	log.Println("Calling VisualScriptTypeCast.SetBaseType()")
+	//log.Println("Calling VisualScriptTypeCast.SetBaseType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *MenuButton) BaseClass() string {
 	return "MenuButton"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *MenuButton) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *MenuButton) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Array
 */
 func (o *MenuButton) X_GetItems() gdnative.Array {
-	log.Println("Calling MenuButton.X_GetItems()")
+	//log.Println("Calling MenuButton.X_GetItems()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *MenuButton) X_GetItems() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *MenuButton) X_GetItems() gdnative.Array {
 	Args: [{ false arg0 Array}], Returns: void
 */
 func (o *MenuButton) X_SetItems(arg0 gdnative.Array) {
-	log.Println("Calling MenuButton.X_SetItems()")
+	//log.Println("Calling MenuButton.X_SetItems()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *MenuButton) X_SetItems(arg0 gdnative.Array) {
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
 func (o *MenuButton) X_UnhandledKeyInput(arg0 InputEvent) {
-	log.Println("Calling MenuButton.X_UnhandledKeyInput()")
+	//log.Println("Calling MenuButton.X_UnhandledKeyInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -117,7 +105,7 @@ func (o *MenuButton) X_UnhandledKeyInput(arg0 InputEvent) {
 	Args: [], Returns: PopupMenu
 */
 func (o *MenuButton) GetPopup() PopupMenu {
-	log.Println("Calling MenuButton.GetPopup()")
+	//log.Println("Calling MenuButton.GetPopup()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -132,7 +120,7 @@ func (o *MenuButton) GetPopup() PopupMenu {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewPopupMenuFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -141,7 +129,7 @@ func (o *MenuButton) GetPopup() PopupMenu {
 	Args: [{ false disabled bool}], Returns: void
 */
 func (o *MenuButton) SetDisableShortcuts(disabled gdnative.Bool) {
-	log.Println("Calling MenuButton.SetDisableShortcuts()")
+	//log.Println("Calling MenuButton.SetDisableShortcuts()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

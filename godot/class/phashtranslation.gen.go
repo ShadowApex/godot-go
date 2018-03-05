@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *PHashTranslation) BaseClass() string {
 	return "PHashTranslation"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *PHashTranslation) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *PHashTranslation) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [{ false from Translation}], Returns: void
 */
 func (o *PHashTranslation) Generate(from Translation) {
-	log.Println("Calling PHashTranslation.Generate()")
+	//log.Println("Calling PHashTranslation.Generate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

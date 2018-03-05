@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *GIProbe) BaseClass() string {
 	return "GIProbe"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *GIProbe) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *GIProbe) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [{Null true from_node Object} {False true create_visual_debug bool}], Returns: void
 */
 func (o *GIProbe) Bake(fromNode Object, createVisualDebug gdnative.Bool) {
-	log.Println("Calling GIProbe.Bake()")
+	//log.Println("Calling GIProbe.Bake()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -73,7 +61,7 @@ func (o *GIProbe) Bake(fromNode Object, createVisualDebug gdnative.Bool) {
 	Args: [], Returns: void
 */
 func (o *GIProbe) DebugBake() {
-	log.Println("Calling GIProbe.DebugBake()")
+	//log.Println("Calling GIProbe.DebugBake()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -93,7 +81,7 @@ func (o *GIProbe) DebugBake() {
 	Args: [], Returns: float
 */
 func (o *GIProbe) GetBias() gdnative.Float {
-	log.Println("Calling GIProbe.GetBias()")
+	//log.Println("Calling GIProbe.GetBias()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -108,7 +96,7 @@ func (o *GIProbe) GetBias() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -117,7 +105,7 @@ func (o *GIProbe) GetBias() gdnative.Float {
 	Args: [], Returns: int
 */
 func (o *GIProbe) GetDynamicRange() gdnative.Int {
-	log.Println("Calling GIProbe.GetDynamicRange()")
+	//log.Println("Calling GIProbe.GetDynamicRange()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -132,7 +120,7 @@ func (o *GIProbe) GetDynamicRange() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -141,7 +129,7 @@ func (o *GIProbe) GetDynamicRange() gdnative.Int {
 	Args: [], Returns: float
 */
 func (o *GIProbe) GetEnergy() gdnative.Float {
-	log.Println("Calling GIProbe.GetEnergy()")
+	//log.Println("Calling GIProbe.GetEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -156,7 +144,7 @@ func (o *GIProbe) GetEnergy() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -165,7 +153,7 @@ func (o *GIProbe) GetEnergy() gdnative.Float {
 	Args: [], Returns: Vector3
 */
 func (o *GIProbe) GetExtents() gdnative.Vector3 {
-	log.Println("Calling GIProbe.GetExtents()")
+	//log.Println("Calling GIProbe.GetExtents()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -180,7 +168,7 @@ func (o *GIProbe) GetExtents() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -189,7 +177,7 @@ func (o *GIProbe) GetExtents() gdnative.Vector3 {
 	Args: [], Returns: float
 */
 func (o *GIProbe) GetNormalBias() gdnative.Float {
-	log.Println("Calling GIProbe.GetNormalBias()")
+	//log.Println("Calling GIProbe.GetNormalBias()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -204,7 +192,7 @@ func (o *GIProbe) GetNormalBias() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -213,7 +201,7 @@ func (o *GIProbe) GetNormalBias() gdnative.Float {
 	Args: [], Returns: GIProbeData
 */
 func (o *GIProbe) GetProbeData() GIProbeData {
-	log.Println("Calling GIProbe.GetProbeData()")
+	//log.Println("Calling GIProbe.GetProbeData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -228,7 +216,7 @@ func (o *GIProbe) GetProbeData() GIProbeData {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewGIProbeDataFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -237,7 +225,7 @@ func (o *GIProbe) GetProbeData() GIProbeData {
 	Args: [], Returns: float
 */
 func (o *GIProbe) GetPropagation() gdnative.Float {
-	log.Println("Calling GIProbe.GetPropagation()")
+	//log.Println("Calling GIProbe.GetPropagation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -252,7 +240,7 @@ func (o *GIProbe) GetPropagation() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -266,7 +254,7 @@ func (o *GIProbe) GetPropagation() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *GIProbe) IsCompressed() gdnative.Bool {
-	log.Println("Calling GIProbe.IsCompressed()")
+	//log.Println("Calling GIProbe.IsCompressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -281,7 +269,7 @@ func (o *GIProbe) IsCompressed() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -290,7 +278,7 @@ func (o *GIProbe) IsCompressed() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *GIProbe) IsInterior() gdnative.Bool {
-	log.Println("Calling GIProbe.IsInterior()")
+	//log.Println("Calling GIProbe.IsInterior()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -305,7 +293,7 @@ func (o *GIProbe) IsInterior() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -314,7 +302,7 @@ func (o *GIProbe) IsInterior() gdnative.Bool {
 	Args: [{ false max float}], Returns: void
 */
 func (o *GIProbe) SetBias(max gdnative.Float) {
-	log.Println("Calling GIProbe.SetBias()")
+	//log.Println("Calling GIProbe.SetBias()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -335,7 +323,7 @@ func (o *GIProbe) SetBias(max gdnative.Float) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *GIProbe) SetCompress(enable gdnative.Bool) {
-	log.Println("Calling GIProbe.SetCompress()")
+	//log.Println("Calling GIProbe.SetCompress()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -356,7 +344,7 @@ func (o *GIProbe) SetCompress(enable gdnative.Bool) {
 	Args: [{ false max int}], Returns: void
 */
 func (o *GIProbe) SetDynamicRange(max gdnative.Int) {
-	log.Println("Calling GIProbe.SetDynamicRange()")
+	//log.Println("Calling GIProbe.SetDynamicRange()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -377,7 +365,7 @@ func (o *GIProbe) SetDynamicRange(max gdnative.Int) {
 	Args: [{ false max float}], Returns: void
 */
 func (o *GIProbe) SetEnergy(max gdnative.Float) {
-	log.Println("Calling GIProbe.SetEnergy()")
+	//log.Println("Calling GIProbe.SetEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -398,7 +386,7 @@ func (o *GIProbe) SetEnergy(max gdnative.Float) {
 	Args: [{ false extents Vector3}], Returns: void
 */
 func (o *GIProbe) SetExtents(extents gdnative.Vector3) {
-	log.Println("Calling GIProbe.SetExtents()")
+	//log.Println("Calling GIProbe.SetExtents()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -419,7 +407,7 @@ func (o *GIProbe) SetExtents(extents gdnative.Vector3) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *GIProbe) SetInterior(enable gdnative.Bool) {
-	log.Println("Calling GIProbe.SetInterior()")
+	//log.Println("Calling GIProbe.SetInterior()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -440,7 +428,7 @@ func (o *GIProbe) SetInterior(enable gdnative.Bool) {
 	Args: [{ false max float}], Returns: void
 */
 func (o *GIProbe) SetNormalBias(max gdnative.Float) {
-	log.Println("Calling GIProbe.SetNormalBias()")
+	//log.Println("Calling GIProbe.SetNormalBias()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -461,7 +449,7 @@ func (o *GIProbe) SetNormalBias(max gdnative.Float) {
 	Args: [{ false data GIProbeData}], Returns: void
 */
 func (o *GIProbe) SetProbeData(data GIProbeData) {
-	log.Println("Calling GIProbe.SetProbeData()")
+	//log.Println("Calling GIProbe.SetProbeData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -482,7 +470,7 @@ func (o *GIProbe) SetProbeData(data GIProbeData) {
 	Args: [{ false max float}], Returns: void
 */
 func (o *GIProbe) SetPropagation(max gdnative.Float) {
-	log.Println("Calling GIProbe.SetPropagation()")
+	//log.Println("Calling GIProbe.SetPropagation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -503,7 +491,7 @@ func (o *GIProbe) SetPropagation(max gdnative.Float) {
 	Args: [{ false subdiv int}], Returns: void
 */
 func (o *GIProbe) SetSubdiv(subdiv gdnative.Int) {
-	log.Println("Calling GIProbe.SetSubdiv()")
+	//log.Println("Calling GIProbe.SetSubdiv()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

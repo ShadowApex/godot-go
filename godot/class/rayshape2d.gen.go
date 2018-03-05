@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *RayShape2D) BaseClass() string {
 	return "RayShape2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *RayShape2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *RayShape2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *RayShape2D) GetLength() gdnative.Float {
-	log.Println("Calling RayShape2D.GetLength()")
+	//log.Println("Calling RayShape2D.GetLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *RayShape2D) GetLength() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *RayShape2D) GetLength() gdnative.Float {
 	Args: [{ false length float}], Returns: void
 */
 func (o *RayShape2D) SetLength(length gdnative.Float) {
-	log.Println("Calling RayShape2D.SetLength()")
+	//log.Println("Calling RayShape2D.SetLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

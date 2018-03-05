@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,16 +34,6 @@ func (o *VisualScriptReturn) BaseClass() string {
 	return "VisualScriptReturn"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptReturn) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptReturn) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: enum.Variant::Type
@@ -56,7 +44,7 @@ func (o *VisualScriptReturn) GetBaseObject() gdnative.Object {
 	Args: [], Returns: bool
 */
 func (o *VisualScriptReturn) IsReturnValueEnabled() gdnative.Bool {
-	log.Println("Calling VisualScriptReturn.IsReturnValueEnabled()")
+	//log.Println("Calling VisualScriptReturn.IsReturnValueEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *VisualScriptReturn) IsReturnValueEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -80,7 +68,7 @@ func (o *VisualScriptReturn) IsReturnValueEnabled() gdnative.Bool {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *VisualScriptReturn) SetEnableReturnValue(enable gdnative.Bool) {
-	log.Println("Calling VisualScriptReturn.SetEnableReturnValue()")
+	//log.Println("Calling VisualScriptReturn.SetEnableReturnValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -101,7 +89,7 @@ func (o *VisualScriptReturn) SetEnableReturnValue(enable gdnative.Bool) {
 	Args: [{ false type int}], Returns: void
 */
 func (o *VisualScriptReturn) SetReturnType(aType gdnative.Int) {
-	log.Println("Calling VisualScriptReturn.SetReturnType()")
+	//log.Println("Calling VisualScriptReturn.SetReturnType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

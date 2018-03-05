@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Shader) BaseClass() string {
 	return "Shader"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Shader) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Shader) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: String
 */
 func (o *Shader) GetCode() gdnative.String {
-	log.Println("Calling Shader.GetCode()")
+	//log.Println("Calling Shader.GetCode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *Shader) GetCode() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *Shader) GetCode() gdnative.String {
 	Args: [{ false param String}], Returns: Texture
 */
 func (o *Shader) GetDefaultTextureParam(param gdnative.String) Texture {
-	log.Println("Calling Shader.GetDefaultTextureParam()")
+	//log.Println("Calling Shader.GetDefaultTextureParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -91,7 +79,7 @@ func (o *Shader) GetDefaultTextureParam(param gdnative.String) Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -105,7 +93,7 @@ func (o *Shader) GetDefaultTextureParam(param gdnative.String) Texture {
 	Args: [{ false name String}], Returns: bool
 */
 func (o *Shader) HasParam(name gdnative.String) gdnative.Bool {
-	log.Println("Calling Shader.HasParam()")
+	//log.Println("Calling Shader.HasParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -121,7 +109,7 @@ func (o *Shader) HasParam(name gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -130,7 +118,7 @@ func (o *Shader) HasParam(name gdnative.String) gdnative.Bool {
 	Args: [{ false code String}], Returns: void
 */
 func (o *Shader) SetCode(code gdnative.String) {
-	log.Println("Calling Shader.SetCode()")
+	//log.Println("Calling Shader.SetCode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -151,7 +139,7 @@ func (o *Shader) SetCode(code gdnative.String) {
 	Args: [{ false param String} { false texture Texture}], Returns: void
 */
 func (o *Shader) SetDefaultTextureParam(param gdnative.String, texture Texture) {
-	log.Println("Calling Shader.SetDefaultTextureParam()")
+	//log.Println("Calling Shader.SetDefaultTextureParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)

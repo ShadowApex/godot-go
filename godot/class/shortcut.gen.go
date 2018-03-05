@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ShortCut) BaseClass() string {
 	return "ShortCut"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ShortCut) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ShortCut) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Returns the Shortcut's [InputEvent] as a [String].
 	Args: [], Returns: String
 */
 func (o *ShortCut) GetAsText() gdnative.String {
-	log.Println("Calling ShortCut.GetAsText()")
+	//log.Println("Calling ShortCut.GetAsText()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *ShortCut) GetAsText() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *ShortCut) GetAsText() gdnative.String {
 	Args: [], Returns: InputEvent
 */
 func (o *ShortCut) GetShortcut() InputEvent {
-	log.Println("Calling ShortCut.GetShortcut()")
+	//log.Println("Calling ShortCut.GetShortcut()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *ShortCut) GetShortcut() InputEvent {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewInputEventFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *ShortCut) GetShortcut() InputEvent {
 	Args: [{ false event InputEvent}], Returns: bool
 */
 func (o *ShortCut) IsShortcut(event InputEvent) gdnative.Bool {
-	log.Println("Calling ShortCut.IsShortcut()")
+	//log.Println("Calling ShortCut.IsShortcut()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -115,7 +103,7 @@ func (o *ShortCut) IsShortcut(event InputEvent) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -124,7 +112,7 @@ func (o *ShortCut) IsShortcut(event InputEvent) gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *ShortCut) IsValid() gdnative.Bool {
-	log.Println("Calling ShortCut.IsValid()")
+	//log.Println("Calling ShortCut.IsValid()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -139,7 +127,7 @@ func (o *ShortCut) IsValid() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -148,7 +136,7 @@ func (o *ShortCut) IsValid() gdnative.Bool {
 	Args: [{ false event InputEvent}], Returns: void
 */
 func (o *ShortCut) SetShortcut(event InputEvent) {
-	log.Println("Calling ShortCut.SetShortcut()")
+	//log.Println("Calling ShortCut.SetShortcut()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

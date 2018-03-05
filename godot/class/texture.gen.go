@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Texture) BaseClass() string {
 	return "Texture"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Texture) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Texture) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [{ false canvas_item RID} { false position Vector2} {1,1,1,1 true modulate Color} {False true transpose bool} {Null true normal_map Texture}], Returns: void
 */
 func (o *Texture) Draw(canvasItem gdnative.Rid, position gdnative.Vector2, modulate gdnative.Color, transpose gdnative.Bool, normalMap Texture) {
-	log.Println("Calling Texture.Draw()")
+	//log.Println("Calling Texture.Draw()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 5, 5)
@@ -76,7 +64,7 @@ func (o *Texture) Draw(canvasItem gdnative.Rid, position gdnative.Vector2, modul
 	Args: [{ false canvas_item RID} { false rect Rect2} { false tile bool} {1,1,1,1 true modulate Color} {False true transpose bool} {Null true normal_map Texture}], Returns: void
 */
 func (o *Texture) DrawRect(canvasItem gdnative.Rid, rect gdnative.Rect2, tile gdnative.Bool, modulate gdnative.Color, transpose gdnative.Bool, normalMap Texture) {
-	log.Println("Calling Texture.DrawRect()")
+	//log.Println("Calling Texture.DrawRect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 6, 6)
@@ -102,7 +90,7 @@ func (o *Texture) DrawRect(canvasItem gdnative.Rid, rect gdnative.Rect2, tile gd
 	Args: [{ false canvas_item RID} { false rect Rect2} { false src_rect Rect2} {1,1,1,1 true modulate Color} {False true transpose bool} {Null true normal_map Texture} {True true clip_uv bool}], Returns: void
 */
 func (o *Texture) DrawRectRegion(canvasItem gdnative.Rid, rect gdnative.Rect2, srcRect gdnative.Rect2, modulate gdnative.Color, transpose gdnative.Bool, normalMap Texture, clipUv gdnative.Bool) {
-	log.Println("Calling Texture.DrawRectRegion()")
+	//log.Println("Calling Texture.DrawRectRegion()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 7, 7)
@@ -129,7 +117,7 @@ func (o *Texture) DrawRectRegion(canvasItem gdnative.Rid, rect gdnative.Rect2, s
 	Args: [], Returns: Image
 */
 func (o *Texture) GetData() Image {
-	log.Println("Calling Texture.GetData()")
+	//log.Println("Calling Texture.GetData()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -144,7 +132,7 @@ func (o *Texture) GetData() Image {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewImageFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -153,7 +141,7 @@ func (o *Texture) GetData() Image {
 	Args: [], Returns: int
 */
 func (o *Texture) GetFlags() gdnative.Int {
-	log.Println("Calling Texture.GetFlags()")
+	//log.Println("Calling Texture.GetFlags()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -168,7 +156,7 @@ func (o *Texture) GetFlags() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -177,7 +165,7 @@ func (o *Texture) GetFlags() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *Texture) GetHeight() gdnative.Int {
-	log.Println("Calling Texture.GetHeight()")
+	//log.Println("Calling Texture.GetHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -192,7 +180,7 @@ func (o *Texture) GetHeight() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -201,7 +189,7 @@ func (o *Texture) GetHeight() gdnative.Int {
 	Args: [], Returns: Vector2
 */
 func (o *Texture) GetSize() gdnative.Vector2 {
-	log.Println("Calling Texture.GetSize()")
+	//log.Println("Calling Texture.GetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -216,7 +204,7 @@ func (o *Texture) GetSize() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -225,7 +213,7 @@ func (o *Texture) GetSize() gdnative.Vector2 {
 	Args: [], Returns: int
 */
 func (o *Texture) GetWidth() gdnative.Int {
-	log.Println("Calling Texture.GetWidth()")
+	//log.Println("Calling Texture.GetWidth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -240,7 +228,7 @@ func (o *Texture) GetWidth() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -249,7 +237,7 @@ func (o *Texture) GetWidth() gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *Texture) HasAlpha() gdnative.Bool {
-	log.Println("Calling Texture.HasAlpha()")
+	//log.Println("Calling Texture.HasAlpha()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -264,7 +252,7 @@ func (o *Texture) HasAlpha() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -273,7 +261,7 @@ func (o *Texture) HasAlpha() gdnative.Bool {
 	Args: [{ false flags int}], Returns: void
 */
 func (o *Texture) SetFlags(flags gdnative.Int) {
-	log.Println("Calling Texture.SetFlags()")
+	//log.Println("Calling Texture.SetFlags()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

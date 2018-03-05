@@ -33,13 +33,3 @@ type MarginContainer struct {
 func (o *MarginContainer) BaseClass() string {
 	return "MarginContainer"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *MarginContainer) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *MarginContainer) GetBaseObject() gdnative.Object {
-	return o.owner
-}

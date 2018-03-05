@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -48,7 +46,7 @@ func (o *input) ensureSingleton() {
 	if o.initialized == true {
 		return
 	}
-	log.Println("Singleton not found. Fetching from GDNative...")
+	//log.Println("Singleton not found. Fetching from GDNative...")
 	base := gdnative.GetSingleton("Input")
 	o.SetBaseObject(base)
 	o.initialized = true
@@ -58,23 +56,13 @@ func (o *input) BaseClass() string {
 	return "Input"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *input) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *input) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         This will simulate pressing the specified action.
 	Args: [{ false action String}], Returns: void
 */
 func (o *input) ActionPress(action gdnative.String) {
 	o.ensureSingleton()
-	log.Println("Calling Input.ActionPress()")
+	//log.Println("Calling Input.ActionPress()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *input) ActionPress(action gdnative.String) {
 */
 func (o *input) ActionRelease(action gdnative.String) {
 	o.ensureSingleton()
-	log.Println("Calling Input.ActionRelease()")
+	//log.Println("Calling Input.ActionRelease()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -118,7 +106,7 @@ func (o *input) ActionRelease(action gdnative.String) {
 */
 func (o *input) AddJoyMapping(mapping gdnative.String, updateExisting gdnative.Bool) {
 	o.ensureSingleton()
-	log.Println("Calling Input.AddJoyMapping()")
+	//log.Println("Calling Input.AddJoyMapping()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -141,7 +129,7 @@ func (o *input) AddJoyMapping(mapping gdnative.String, updateExisting gdnative.B
 */
 func (o *input) GetAccelerometer() gdnative.Vector3 {
 	o.ensureSingleton()
-	log.Println("Calling Input.GetAccelerometer()")
+	//log.Println("Calling Input.GetAccelerometer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -156,7 +144,7 @@ func (o *input) GetAccelerometer() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -166,7 +154,7 @@ func (o *input) GetAccelerometer() gdnative.Vector3 {
 */
 func (o *input) GetConnectedJoypads() gdnative.Array {
 	o.ensureSingleton()
-	log.Println("Calling Input.GetConnectedJoypads()")
+	//log.Println("Calling Input.GetConnectedJoypads()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -181,7 +169,7 @@ func (o *input) GetConnectedJoypads() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -191,7 +179,7 @@ func (o *input) GetConnectedJoypads() gdnative.Array {
 */
 func (o *input) GetGravity() gdnative.Vector3 {
 	o.ensureSingleton()
-	log.Println("Calling Input.GetGravity()")
+	//log.Println("Calling Input.GetGravity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -206,7 +194,7 @@ func (o *input) GetGravity() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -216,7 +204,7 @@ func (o *input) GetGravity() gdnative.Vector3 {
 */
 func (o *input) GetGyroscope() gdnative.Vector3 {
 	o.ensureSingleton()
-	log.Println("Calling Input.GetGyroscope()")
+	//log.Println("Calling Input.GetGyroscope()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -231,7 +219,7 @@ func (o *input) GetGyroscope() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -241,7 +229,7 @@ func (o *input) GetGyroscope() gdnative.Vector3 {
 */
 func (o *input) GetJoyAxis(device gdnative.Int, axis gdnative.Int) gdnative.Float {
 	o.ensureSingleton()
-	log.Println("Calling Input.GetJoyAxis()")
+	//log.Println("Calling Input.GetJoyAxis()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -258,7 +246,7 @@ func (o *input) GetJoyAxis(device gdnative.Int, axis gdnative.Int) gdnative.Floa
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -268,7 +256,7 @@ func (o *input) GetJoyAxis(device gdnative.Int, axis gdnative.Int) gdnative.Floa
 */
 func (o *input) GetJoyAxisIndexFromString(axis gdnative.String) gdnative.Int {
 	o.ensureSingleton()
-	log.Println("Calling Input.GetJoyAxisIndexFromString()")
+	//log.Println("Calling Input.GetJoyAxisIndexFromString()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -284,7 +272,7 @@ func (o *input) GetJoyAxisIndexFromString(axis gdnative.String) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -294,7 +282,7 @@ func (o *input) GetJoyAxisIndexFromString(axis gdnative.String) gdnative.Int {
 */
 func (o *input) GetJoyAxisString(axisIndex gdnative.Int) gdnative.String {
 	o.ensureSingleton()
-	log.Println("Calling Input.GetJoyAxisString()")
+	//log.Println("Calling Input.GetJoyAxisString()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -310,7 +298,7 @@ func (o *input) GetJoyAxisString(axisIndex gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -320,7 +308,7 @@ func (o *input) GetJoyAxisString(axisIndex gdnative.Int) gdnative.String {
 */
 func (o *input) GetJoyButtonIndexFromString(button gdnative.String) gdnative.Int {
 	o.ensureSingleton()
-	log.Println("Calling Input.GetJoyButtonIndexFromString()")
+	//log.Println("Calling Input.GetJoyButtonIndexFromString()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -336,7 +324,7 @@ func (o *input) GetJoyButtonIndexFromString(button gdnative.String) gdnative.Int
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -346,7 +334,7 @@ func (o *input) GetJoyButtonIndexFromString(button gdnative.String) gdnative.Int
 */
 func (o *input) GetJoyButtonString(buttonIndex gdnative.Int) gdnative.String {
 	o.ensureSingleton()
-	log.Println("Calling Input.GetJoyButtonString()")
+	//log.Println("Calling Input.GetJoyButtonString()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -362,7 +350,7 @@ func (o *input) GetJoyButtonString(buttonIndex gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -372,7 +360,7 @@ func (o *input) GetJoyButtonString(buttonIndex gdnative.Int) gdnative.String {
 */
 func (o *input) GetJoyGuid(device gdnative.Int) gdnative.String {
 	o.ensureSingleton()
-	log.Println("Calling Input.GetJoyGuid()")
+	//log.Println("Calling Input.GetJoyGuid()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -388,7 +376,7 @@ func (o *input) GetJoyGuid(device gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -398,7 +386,7 @@ func (o *input) GetJoyGuid(device gdnative.Int) gdnative.String {
 */
 func (o *input) GetJoyName(device gdnative.Int) gdnative.String {
 	o.ensureSingleton()
-	log.Println("Calling Input.GetJoyName()")
+	//log.Println("Calling Input.GetJoyName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -414,7 +402,7 @@ func (o *input) GetJoyName(device gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -424,7 +412,7 @@ func (o *input) GetJoyName(device gdnative.Int) gdnative.String {
 */
 func (o *input) GetJoyVibrationDuration(device gdnative.Int) gdnative.Float {
 	o.ensureSingleton()
-	log.Println("Calling Input.GetJoyVibrationDuration()")
+	//log.Println("Calling Input.GetJoyVibrationDuration()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -440,7 +428,7 @@ func (o *input) GetJoyVibrationDuration(device gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -450,7 +438,7 @@ func (o *input) GetJoyVibrationDuration(device gdnative.Int) gdnative.Float {
 */
 func (o *input) GetJoyVibrationStrength(device gdnative.Int) gdnative.Vector2 {
 	o.ensureSingleton()
-	log.Println("Calling Input.GetJoyVibrationStrength()")
+	//log.Println("Calling Input.GetJoyVibrationStrength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -466,7 +454,7 @@ func (o *input) GetJoyVibrationStrength(device gdnative.Int) gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -476,7 +464,7 @@ func (o *input) GetJoyVibrationStrength(device gdnative.Int) gdnative.Vector2 {
 */
 func (o *input) GetLastMouseSpeed() gdnative.Vector2 {
 	o.ensureSingleton()
-	log.Println("Calling Input.GetLastMouseSpeed()")
+	//log.Println("Calling Input.GetLastMouseSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -491,7 +479,7 @@ func (o *input) GetLastMouseSpeed() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -501,7 +489,7 @@ func (o *input) GetLastMouseSpeed() gdnative.Vector2 {
 */
 func (o *input) GetMagnetometer() gdnative.Vector3 {
 	o.ensureSingleton()
-	log.Println("Calling Input.GetMagnetometer()")
+	//log.Println("Calling Input.GetMagnetometer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -516,7 +504,7 @@ func (o *input) GetMagnetometer() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -526,7 +514,7 @@ func (o *input) GetMagnetometer() gdnative.Vector3 {
 */
 func (o *input) GetMouseButtonMask() gdnative.Int {
 	o.ensureSingleton()
-	log.Println("Calling Input.GetMouseButtonMask()")
+	//log.Println("Calling Input.GetMouseButtonMask()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -541,7 +529,7 @@ func (o *input) GetMouseButtonMask() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -556,7 +544,7 @@ func (o *input) GetMouseButtonMask() gdnative.Int {
 */
 func (o *input) IsActionJustPressed(action gdnative.String) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling Input.IsActionJustPressed()")
+	//log.Println("Calling Input.IsActionJustPressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -572,7 +560,7 @@ func (o *input) IsActionJustPressed(action gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -582,7 +570,7 @@ func (o *input) IsActionJustPressed(action gdnative.String) gdnative.Bool {
 */
 func (o *input) IsActionJustReleased(action gdnative.String) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling Input.IsActionJustReleased()")
+	//log.Println("Calling Input.IsActionJustReleased()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -598,7 +586,7 @@ func (o *input) IsActionJustReleased(action gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -608,7 +596,7 @@ func (o *input) IsActionJustReleased(action gdnative.String) gdnative.Bool {
 */
 func (o *input) IsActionPressed(action gdnative.String) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling Input.IsActionPressed()")
+	//log.Println("Calling Input.IsActionPressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -624,7 +612,7 @@ func (o *input) IsActionPressed(action gdnative.String) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -634,7 +622,7 @@ func (o *input) IsActionPressed(action gdnative.String) gdnative.Bool {
 */
 func (o *input) IsJoyButtonPressed(device gdnative.Int, button gdnative.Int) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling Input.IsJoyButtonPressed()")
+	//log.Println("Calling Input.IsJoyButtonPressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -651,7 +639,7 @@ func (o *input) IsJoyButtonPressed(device gdnative.Int, button gdnative.Int) gdn
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -661,7 +649,7 @@ func (o *input) IsJoyButtonPressed(device gdnative.Int, button gdnative.Int) gdn
 */
 func (o *input) IsJoyKnown(device gdnative.Int) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling Input.IsJoyKnown()")
+	//log.Println("Calling Input.IsJoyKnown()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -677,7 +665,7 @@ func (o *input) IsJoyKnown(device gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -687,7 +675,7 @@ func (o *input) IsJoyKnown(device gdnative.Int) gdnative.Bool {
 */
 func (o *input) IsKeyPressed(scancode gdnative.Int) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling Input.IsKeyPressed()")
+	//log.Println("Calling Input.IsKeyPressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -703,7 +691,7 @@ func (o *input) IsKeyPressed(scancode gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -713,7 +701,7 @@ func (o *input) IsKeyPressed(scancode gdnative.Int) gdnative.Bool {
 */
 func (o *input) IsMouseButtonPressed(button gdnative.Int) gdnative.Bool {
 	o.ensureSingleton()
-	log.Println("Calling Input.IsMouseButtonPressed()")
+	//log.Println("Calling Input.IsMouseButtonPressed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -729,7 +717,7 @@ func (o *input) IsMouseButtonPressed(button gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -739,7 +727,7 @@ func (o *input) IsMouseButtonPressed(button gdnative.Int) gdnative.Bool {
 */
 func (o *input) JoyConnectionChanged(device gdnative.Int, connected gdnative.Bool, name gdnative.String, guid gdnative.String) {
 	o.ensureSingleton()
-	log.Println("Calling Input.JoyConnectionChanged()")
+	//log.Println("Calling Input.JoyConnectionChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -764,7 +752,7 @@ func (o *input) JoyConnectionChanged(device gdnative.Int, connected gdnative.Boo
 */
 func (o *input) ParseInputEvent(event InputEvent) {
 	o.ensureSingleton()
-	log.Println("Calling Input.ParseInputEvent()")
+	//log.Println("Calling Input.ParseInputEvent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -786,7 +774,7 @@ func (o *input) ParseInputEvent(event InputEvent) {
 */
 func (o *input) RemoveJoyMapping(guid gdnative.String) {
 	o.ensureSingleton()
-	log.Println("Calling Input.RemoveJoyMapping()")
+	//log.Println("Calling Input.RemoveJoyMapping()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -808,7 +796,7 @@ func (o *input) RemoveJoyMapping(guid gdnative.String) {
 */
 func (o *input) SetCustomMouseCursor(image Resource, shape gdnative.Int, hotspot gdnative.Vector2) {
 	o.ensureSingleton()
-	log.Println("Calling Input.SetCustomMouseCursor()")
+	//log.Println("Calling Input.SetCustomMouseCursor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -832,7 +820,7 @@ func (o *input) SetCustomMouseCursor(image Resource, shape gdnative.Int, hotspot
 */
 func (o *input) SetMouseMode(mode gdnative.Int) {
 	o.ensureSingleton()
-	log.Println("Calling Input.SetMouseMode()")
+	//log.Println("Calling Input.SetMouseMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -854,7 +842,7 @@ func (o *input) SetMouseMode(mode gdnative.Int) {
 */
 func (o *input) StartJoyVibration(device gdnative.Int, weakMagnitude gdnative.Float, strongMagnitude gdnative.Float, duration gdnative.Float) {
 	o.ensureSingleton()
-	log.Println("Calling Input.StartJoyVibration()")
+	//log.Println("Calling Input.StartJoyVibration()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -879,7 +867,7 @@ func (o *input) StartJoyVibration(device gdnative.Int, weakMagnitude gdnative.Fl
 */
 func (o *input) StopJoyVibration(device gdnative.Int) {
 	o.ensureSingleton()
-	log.Println("Calling Input.StopJoyVibration()")
+	//log.Println("Calling Input.StopJoyVibration()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -901,7 +889,7 @@ func (o *input) StopJoyVibration(device gdnative.Int) {
 */
 func (o *input) WarpMousePosition(to gdnative.Vector2) {
 	o.ensureSingleton()
-	log.Println("Calling Input.WarpMousePosition()")
+	//log.Println("Calling Input.WarpMousePosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

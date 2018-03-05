@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -48,7 +46,7 @@ func (o *arvrServer) ensureSingleton() {
 	if o.initialized == true {
 		return
 	}
-	log.Println("Singleton not found. Fetching from GDNative...")
+	//log.Println("Singleton not found. Fetching from GDNative...")
 	base := gdnative.GetSingleton("ARVRServer")
 	o.SetBaseObject(base)
 	o.initialized = true
@@ -58,23 +56,13 @@ func (o *arvrServer) BaseClass() string {
 	return "ARVRServer"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *arvrServer) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *arvrServer) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         This is a really important function to understand correctly. AR and VR platforms all handle positioning slightly differently. For platforms that do not offer spatial tracking our origin point (0,0,0) is the location of our HMD but you have little control over the direction the player is facing in the real world. For platforms that do offer spatial tracking our origin point depends very much on the system. For OpenVR our origin point is usually the center of the tracking space, on the ground. For other platforms its often the location of the tracking camera. This method allows you to center our tracker on the location of the HMD, it will take the current location of the HMD and use that to adjust all our tracking data in essence realigning the real world to your players current position in your game world. For this method to produce usable results tracking information should be available and this often takes a few frames after starting your game. You should call this method after a few seconds have passed, when the user requests a realignment of the display holding a designated button on a controller for a short period of time, and when implementing a teleport mechanism.
 	Args: [{ false rotation_mode int} { false keep_height bool}], Returns: void
 */
 func (o *arvrServer) CenterOnHmd(rotationMode gdnative.Int, keepHeight gdnative.Bool) {
 	o.ensureSingleton()
-	log.Println("Calling ARVRServer.CenterOnHmd()")
+	//log.Println("Calling ARVRServer.CenterOnHmd()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -97,7 +85,7 @@ func (o *arvrServer) CenterOnHmd(rotationMode gdnative.Int, keepHeight gdnative.
 */
 func (o *arvrServer) FindInterface(name gdnative.String) ARVRInterface {
 	o.ensureSingleton()
-	log.Println("Calling ARVRServer.FindInterface()")
+	//log.Println("Calling ARVRServer.FindInterface()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -113,7 +101,7 @@ func (o *arvrServer) FindInterface(name gdnative.String) ARVRInterface {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewARVRInterfaceFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *arvrServer) FindInterface(name gdnative.String) ARVRInterface {
 */
 func (o *arvrServer) GetInterface(idx gdnative.Int) ARVRInterface {
 	o.ensureSingleton()
-	log.Println("Calling ARVRServer.GetInterface()")
+	//log.Println("Calling ARVRServer.GetInterface()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -139,7 +127,7 @@ func (o *arvrServer) GetInterface(idx gdnative.Int) ARVRInterface {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewARVRInterfaceFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -149,7 +137,7 @@ func (o *arvrServer) GetInterface(idx gdnative.Int) ARVRInterface {
 */
 func (o *arvrServer) GetInterfaceCount() gdnative.Int {
 	o.ensureSingleton()
-	log.Println("Calling ARVRServer.GetInterfaceCount()")
+	//log.Println("Calling ARVRServer.GetInterfaceCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -164,7 +152,7 @@ func (o *arvrServer) GetInterfaceCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -174,7 +162,7 @@ func (o *arvrServer) GetInterfaceCount() gdnative.Int {
 */
 func (o *arvrServer) GetInterfaces() gdnative.Array {
 	o.ensureSingleton()
-	log.Println("Calling ARVRServer.GetInterfaces()")
+	//log.Println("Calling ARVRServer.GetInterfaces()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -189,7 +177,7 @@ func (o *arvrServer) GetInterfaces() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -199,7 +187,7 @@ func (o *arvrServer) GetInterfaces() gdnative.Array {
 */
 func (o *arvrServer) GetReferenceFrame() gdnative.Transform {
 	o.ensureSingleton()
-	log.Println("Calling ARVRServer.GetReferenceFrame()")
+	//log.Println("Calling ARVRServer.GetReferenceFrame()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -214,7 +202,7 @@ func (o *arvrServer) GetReferenceFrame() gdnative.Transform {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewTransformFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -224,7 +212,7 @@ func (o *arvrServer) GetReferenceFrame() gdnative.Transform {
 */
 func (o *arvrServer) GetTracker(idx gdnative.Int) ARVRPositionalTracker {
 	o.ensureSingleton()
-	log.Println("Calling ARVRServer.GetTracker()")
+	//log.Println("Calling ARVRServer.GetTracker()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -240,7 +228,7 @@ func (o *arvrServer) GetTracker(idx gdnative.Int) ARVRPositionalTracker {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewARVRPositionalTrackerFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -250,7 +238,7 @@ func (o *arvrServer) GetTracker(idx gdnative.Int) ARVRPositionalTracker {
 */
 func (o *arvrServer) GetTrackerCount() gdnative.Int {
 	o.ensureSingleton()
-	log.Println("Calling ARVRServer.GetTrackerCount()")
+	//log.Println("Calling ARVRServer.GetTrackerCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -265,7 +253,7 @@ func (o *arvrServer) GetTrackerCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -275,7 +263,7 @@ func (o *arvrServer) GetTrackerCount() gdnative.Int {
 */
 func (o *arvrServer) GetWorldScale() gdnative.Float {
 	o.ensureSingleton()
-	log.Println("Calling ARVRServer.GetWorldScale()")
+	//log.Println("Calling ARVRServer.GetWorldScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -290,7 +278,7 @@ func (o *arvrServer) GetWorldScale() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -300,7 +288,7 @@ func (o *arvrServer) GetWorldScale() gdnative.Float {
 */
 func (o *arvrServer) SetPrimaryInterface(intrfce ARVRInterface) {
 	o.ensureSingleton()
-	log.Println("Calling ARVRServer.SetPrimaryInterface()")
+	//log.Println("Calling ARVRServer.SetPrimaryInterface()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -322,7 +310,7 @@ func (o *arvrServer) SetPrimaryInterface(intrfce ARVRInterface) {
 */
 func (o *arvrServer) SetWorldScale(arg0 gdnative.Float) {
 	o.ensureSingleton()
-	log.Println("Calling ARVRServer.SetWorldScale()")
+	//log.Println("Calling ARVRServer.SetWorldScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

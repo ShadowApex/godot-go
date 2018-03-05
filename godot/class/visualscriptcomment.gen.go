@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VisualScriptComment) BaseClass() string {
 	return "VisualScriptComment"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptComment) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptComment) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: String
 */
 func (o *VisualScriptComment) GetDescription() gdnative.String {
-	log.Println("Calling VisualScriptComment.GetDescription()")
+	//log.Println("Calling VisualScriptComment.GetDescription()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VisualScriptComment) GetDescription() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *VisualScriptComment) GetDescription() gdnative.String {
 	Args: [], Returns: Vector2
 */
 func (o *VisualScriptComment) GetSize() gdnative.Vector2 {
-	log.Println("Calling VisualScriptComment.GetSize()")
+	//log.Println("Calling VisualScriptComment.GetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *VisualScriptComment) GetSize() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *VisualScriptComment) GetSize() gdnative.Vector2 {
 	Args: [], Returns: String
 */
 func (o *VisualScriptComment) GetTitle() gdnative.String {
-	log.Println("Calling VisualScriptComment.GetTitle()")
+	//log.Println("Calling VisualScriptComment.GetTitle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *VisualScriptComment) GetTitle() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *VisualScriptComment) GetTitle() gdnative.String {
 	Args: [{ false description String}], Returns: void
 */
 func (o *VisualScriptComment) SetDescription(description gdnative.String) {
-	log.Println("Calling VisualScriptComment.SetDescription()")
+	//log.Println("Calling VisualScriptComment.SetDescription()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -144,7 +132,7 @@ func (o *VisualScriptComment) SetDescription(description gdnative.String) {
 	Args: [{ false size Vector2}], Returns: void
 */
 func (o *VisualScriptComment) SetSize(size gdnative.Vector2) {
-	log.Println("Calling VisualScriptComment.SetSize()")
+	//log.Println("Calling VisualScriptComment.SetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -165,7 +153,7 @@ func (o *VisualScriptComment) SetSize(size gdnative.Vector2) {
 	Args: [{ false title String}], Returns: void
 */
 func (o *VisualScriptComment) SetTitle(title gdnative.String) {
-	log.Println("Calling VisualScriptComment.SetTitle()")
+	//log.Println("Calling VisualScriptComment.SetTitle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

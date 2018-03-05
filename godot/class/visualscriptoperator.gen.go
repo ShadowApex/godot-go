@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,16 +34,6 @@ func (o *VisualScriptOperator) BaseClass() string {
 	return "VisualScriptOperator"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptOperator) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptOperator) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: enum.Variant::Operator
@@ -61,7 +49,7 @@ func (o *VisualScriptOperator) GetBaseObject() gdnative.Object {
 	Args: [{ false op int}], Returns: void
 */
 func (o *VisualScriptOperator) SetOperator(op gdnative.Int) {
-	log.Println("Calling VisualScriptOperator.SetOperator()")
+	//log.Println("Calling VisualScriptOperator.SetOperator()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -82,7 +70,7 @@ func (o *VisualScriptOperator) SetOperator(op gdnative.Int) {
 	Args: [{ false type int}], Returns: void
 */
 func (o *VisualScriptOperator) SetTyped(aType gdnative.Int) {
-	log.Println("Calling VisualScriptOperator.SetTyped()")
+	//log.Println("Calling VisualScriptOperator.SetTyped()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *RegEx) BaseClass() string {
 	return "RegEx"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *RegEx) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *RegEx) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *RegEx) Clear() {
-	log.Println("Calling RegEx.Clear()")
+	//log.Println("Calling RegEx.Clear()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -76,7 +64,7 @@ func (o *RegEx) Clear() {
 	Args: [], Returns: int
 */
 func (o *RegEx) GetGroupCount() gdnative.Int {
-	log.Println("Calling RegEx.GetGroupCount()")
+	//log.Println("Calling RegEx.GetGroupCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -91,7 +79,7 @@ func (o *RegEx) GetGroupCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -100,7 +88,7 @@ func (o *RegEx) GetGroupCount() gdnative.Int {
 	Args: [], Returns: Array
 */
 func (o *RegEx) GetNames() gdnative.Array {
-	log.Println("Calling RegEx.GetNames()")
+	//log.Println("Calling RegEx.GetNames()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -115,7 +103,7 @@ func (o *RegEx) GetNames() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -124,7 +112,7 @@ func (o *RegEx) GetNames() gdnative.Array {
 	Args: [], Returns: String
 */
 func (o *RegEx) GetPattern() gdnative.String {
-	log.Println("Calling RegEx.GetPattern()")
+	//log.Println("Calling RegEx.GetPattern()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -139,7 +127,7 @@ func (o *RegEx) GetPattern() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -148,7 +136,7 @@ func (o *RegEx) GetPattern() gdnative.String {
 	Args: [], Returns: bool
 */
 func (o *RegEx) IsValid() gdnative.Bool {
-	log.Println("Calling RegEx.IsValid()")
+	//log.Println("Calling RegEx.IsValid()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -163,7 +151,7 @@ func (o *RegEx) IsValid() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -172,7 +160,7 @@ func (o *RegEx) IsValid() gdnative.Bool {
 	Args: [{ false subject String} {0 true offset int} {-1 true end int}], Returns: RegExMatch
 */
 func (o *RegEx) Search(subject gdnative.String, offset gdnative.Int, end gdnative.Int) RegExMatch {
-	log.Println("Calling RegEx.Search()")
+	//log.Println("Calling RegEx.Search()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -190,7 +178,7 @@ func (o *RegEx) Search(subject gdnative.String, offset gdnative.Int, end gdnativ
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewRegExMatchFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -199,7 +187,7 @@ func (o *RegEx) Search(subject gdnative.String, offset gdnative.Int, end gdnativ
 	Args: [{ false subject String} {0 true offset int} {-1 true end int}], Returns: Array
 */
 func (o *RegEx) SearchAll(subject gdnative.String, offset gdnative.Int, end gdnative.Int) gdnative.Array {
-	log.Println("Calling RegEx.SearchAll()")
+	//log.Println("Calling RegEx.SearchAll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -217,7 +205,7 @@ func (o *RegEx) SearchAll(subject gdnative.String, offset gdnative.Int, end gdna
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -226,7 +214,7 @@ func (o *RegEx) SearchAll(subject gdnative.String, offset gdnative.Int, end gdna
 	Args: [{ false subject String} { false replacement String} {False true all bool} {0 true offset int} {-1 true end int}], Returns: String
 */
 func (o *RegEx) Sub(subject gdnative.String, replacement gdnative.String, all gdnative.Bool, offset gdnative.Int, end gdnative.Int) gdnative.String {
-	log.Println("Calling RegEx.Sub()")
+	//log.Println("Calling RegEx.Sub()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 5, 5)
@@ -246,6 +234,6 @@ func (o *RegEx) Sub(subject gdnative.String, replacement gdnative.String, all gd
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

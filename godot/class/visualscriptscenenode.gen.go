@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VisualScriptSceneNode) BaseClass() string {
 	return "VisualScriptSceneNode"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptSceneNode) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptSceneNode) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: NodePath
 */
 func (o *VisualScriptSceneNode) GetNodePath() gdnative.NodePath {
-	log.Println("Calling VisualScriptSceneNode.GetNodePath()")
+	//log.Println("Calling VisualScriptSceneNode.GetNodePath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VisualScriptSceneNode) GetNodePath() gdnative.NodePath {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewNodePathFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *VisualScriptSceneNode) GetNodePath() gdnative.NodePath {
 	Args: [{ false path NodePath}], Returns: void
 */
 func (o *VisualScriptSceneNode) SetNodePath(path gdnative.NodePath) {
-	log.Println("Calling VisualScriptSceneNode.SetNodePath()")
+	//log.Println("Calling VisualScriptSceneNode.SetNodePath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

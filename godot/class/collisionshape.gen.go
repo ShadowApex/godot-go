@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *CollisionShape) BaseClass() string {
 	return "CollisionShape"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *CollisionShape) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *CollisionShape) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Shape
 */
 func (o *CollisionShape) GetShape() Shape {
-	log.Println("Calling CollisionShape.GetShape()")
+	//log.Println("Calling CollisionShape.GetShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *CollisionShape) GetShape() Shape {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewShapeFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *CollisionShape) GetShape() Shape {
 	Args: [], Returns: bool
 */
 func (o *CollisionShape) IsDisabled() gdnative.Bool {
-	log.Println("Calling CollisionShape.IsDisabled()")
+	//log.Println("Calling CollisionShape.IsDisabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *CollisionShape) IsDisabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *CollisionShape) IsDisabled() gdnative.Bool {
 	Args: [], Returns: void
 */
 func (o *CollisionShape) MakeConvexFromBrothers() {
-	log.Println("Calling CollisionShape.MakeConvexFromBrothers()")
+	//log.Println("Calling CollisionShape.MakeConvexFromBrothers()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -119,7 +107,7 @@ func (o *CollisionShape) MakeConvexFromBrothers() {
 	Args: [{ false resource Resource}], Returns: void
 */
 func (o *CollisionShape) ResourceChanged(resource Resource) {
-	log.Println("Calling CollisionShape.ResourceChanged()")
+	//log.Println("Calling CollisionShape.ResourceChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -140,7 +128,7 @@ func (o *CollisionShape) ResourceChanged(resource Resource) {
 	Args: [{ false enable bool}], Returns: void
 */
 func (o *CollisionShape) SetDisabled(enable gdnative.Bool) {
-	log.Println("Calling CollisionShape.SetDisabled()")
+	//log.Println("Calling CollisionShape.SetDisabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -161,7 +149,7 @@ func (o *CollisionShape) SetDisabled(enable gdnative.Bool) {
 	Args: [{ false shape Shape}], Returns: void
 */
 func (o *CollisionShape) SetShape(shape Shape) {
-	log.Println("Calling CollisionShape.SetShape()")
+	//log.Println("Calling CollisionShape.SetShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

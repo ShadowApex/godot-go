@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VisualScriptPropertySet) BaseClass() string {
 	return "VisualScriptPropertySet"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptPropertySet) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptPropertySet) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Dictionary
 */
 func (o *VisualScriptPropertySet) X_GetTypeCache() gdnative.Dictionary {
-	log.Println("Calling VisualScriptPropertySet.X_GetTypeCache()")
+	//log.Println("Calling VisualScriptPropertySet.X_GetTypeCache()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VisualScriptPropertySet) X_GetTypeCache() gdnative.Dictionary {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewDictionaryFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *VisualScriptPropertySet) X_GetTypeCache() gdnative.Dictionary {
 	Args: [{ false type_cache Dictionary}], Returns: void
 */
 func (o *VisualScriptPropertySet) X_SetTypeCache(typeCache gdnative.Dictionary) {
-	log.Println("Calling VisualScriptPropertySet.X_SetTypeCache()")
+	//log.Println("Calling VisualScriptPropertySet.X_SetTypeCache()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -101,7 +89,7 @@ func (o *VisualScriptPropertySet) X_SetTypeCache(typeCache gdnative.Dictionary) 
 	Args: [], Returns: NodePath
 */
 func (o *VisualScriptPropertySet) GetBasePath() gdnative.NodePath {
-	log.Println("Calling VisualScriptPropertySet.GetBasePath()")
+	//log.Println("Calling VisualScriptPropertySet.GetBasePath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -116,7 +104,7 @@ func (o *VisualScriptPropertySet) GetBasePath() gdnative.NodePath {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewNodePathFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -125,7 +113,7 @@ func (o *VisualScriptPropertySet) GetBasePath() gdnative.NodePath {
 	Args: [], Returns: String
 */
 func (o *VisualScriptPropertySet) GetBaseScript() gdnative.String {
-	log.Println("Calling VisualScriptPropertySet.GetBaseScript()")
+	//log.Println("Calling VisualScriptPropertySet.GetBaseScript()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -140,7 +128,7 @@ func (o *VisualScriptPropertySet) GetBaseScript() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -149,7 +137,7 @@ func (o *VisualScriptPropertySet) GetBaseScript() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *VisualScriptPropertySet) GetBaseType() gdnative.String {
-	log.Println("Calling VisualScriptPropertySet.GetBaseType()")
+	//log.Println("Calling VisualScriptPropertySet.GetBaseType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -164,7 +152,7 @@ func (o *VisualScriptPropertySet) GetBaseType() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -183,7 +171,7 @@ func (o *VisualScriptPropertySet) GetBaseType() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *VisualScriptPropertySet) GetIndex() gdnative.String {
-	log.Println("Calling VisualScriptPropertySet.GetIndex()")
+	//log.Println("Calling VisualScriptPropertySet.GetIndex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -198,7 +186,7 @@ func (o *VisualScriptPropertySet) GetIndex() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -207,7 +195,7 @@ func (o *VisualScriptPropertySet) GetIndex() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *VisualScriptPropertySet) GetProperty() gdnative.String {
-	log.Println("Calling VisualScriptPropertySet.GetProperty()")
+	//log.Println("Calling VisualScriptPropertySet.GetProperty()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -222,7 +210,7 @@ func (o *VisualScriptPropertySet) GetProperty() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -231,7 +219,7 @@ func (o *VisualScriptPropertySet) GetProperty() gdnative.String {
 	Args: [{ false assign_op int}], Returns: void
 */
 func (o *VisualScriptPropertySet) SetAssignOp(assignOp gdnative.Int) {
-	log.Println("Calling VisualScriptPropertySet.SetAssignOp()")
+	//log.Println("Calling VisualScriptPropertySet.SetAssignOp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -252,7 +240,7 @@ func (o *VisualScriptPropertySet) SetAssignOp(assignOp gdnative.Int) {
 	Args: [{ false base_path NodePath}], Returns: void
 */
 func (o *VisualScriptPropertySet) SetBasePath(basePath gdnative.NodePath) {
-	log.Println("Calling VisualScriptPropertySet.SetBasePath()")
+	//log.Println("Calling VisualScriptPropertySet.SetBasePath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -273,7 +261,7 @@ func (o *VisualScriptPropertySet) SetBasePath(basePath gdnative.NodePath) {
 	Args: [{ false base_script String}], Returns: void
 */
 func (o *VisualScriptPropertySet) SetBaseScript(baseScript gdnative.String) {
-	log.Println("Calling VisualScriptPropertySet.SetBaseScript()")
+	//log.Println("Calling VisualScriptPropertySet.SetBaseScript()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -294,7 +282,7 @@ func (o *VisualScriptPropertySet) SetBaseScript(baseScript gdnative.String) {
 	Args: [{ false base_type String}], Returns: void
 */
 func (o *VisualScriptPropertySet) SetBaseType(baseType gdnative.String) {
-	log.Println("Calling VisualScriptPropertySet.SetBaseType()")
+	//log.Println("Calling VisualScriptPropertySet.SetBaseType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -315,7 +303,7 @@ func (o *VisualScriptPropertySet) SetBaseType(baseType gdnative.String) {
 	Args: [{ false basic_type int}], Returns: void
 */
 func (o *VisualScriptPropertySet) SetBasicType(basicType gdnative.Int) {
-	log.Println("Calling VisualScriptPropertySet.SetBasicType()")
+	//log.Println("Calling VisualScriptPropertySet.SetBasicType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -336,7 +324,7 @@ func (o *VisualScriptPropertySet) SetBasicType(basicType gdnative.Int) {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *VisualScriptPropertySet) SetCallMode(mode gdnative.Int) {
-	log.Println("Calling VisualScriptPropertySet.SetCallMode()")
+	//log.Println("Calling VisualScriptPropertySet.SetCallMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -357,7 +345,7 @@ func (o *VisualScriptPropertySet) SetCallMode(mode gdnative.Int) {
 	Args: [{ false index String}], Returns: void
 */
 func (o *VisualScriptPropertySet) SetIndex(index gdnative.String) {
-	log.Println("Calling VisualScriptPropertySet.SetIndex()")
+	//log.Println("Calling VisualScriptPropertySet.SetIndex()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -378,7 +366,7 @@ func (o *VisualScriptPropertySet) SetIndex(index gdnative.String) {
 	Args: [{ false property String}], Returns: void
 */
 func (o *VisualScriptPropertySet) SetProperty(property gdnative.String) {
-	log.Println("Calling VisualScriptPropertySet.SetProperty()")
+	//log.Println("Calling VisualScriptPropertySet.SetProperty()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

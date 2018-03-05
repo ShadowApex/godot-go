@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Range) BaseClass() string {
 	return "Range"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Range) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Range) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *Range) GetAsRatio() gdnative.Float {
-	log.Println("Calling Range.GetAsRatio()")
+	//log.Println("Calling Range.GetAsRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *Range) GetAsRatio() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *Range) GetAsRatio() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Range) GetMax() gdnative.Float {
-	log.Println("Calling Range.GetMax()")
+	//log.Println("Calling Range.GetMax()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *Range) GetMax() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *Range) GetMax() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Range) GetMin() gdnative.Float {
-	log.Println("Calling Range.GetMin()")
+	//log.Println("Calling Range.GetMin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *Range) GetMin() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *Range) GetMin() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Range) GetPage() gdnative.Float {
-	log.Println("Calling Range.GetPage()")
+	//log.Println("Calling Range.GetPage()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *Range) GetPage() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *Range) GetPage() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Range) GetStep() gdnative.Float {
-	log.Println("Calling Range.GetStep()")
+	//log.Println("Calling Range.GetStep()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *Range) GetStep() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *Range) GetStep() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *Range) GetValue() gdnative.Float {
-	log.Println("Calling Range.GetValue()")
+	//log.Println("Calling Range.GetValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -186,7 +174,7 @@ func (o *Range) GetValue() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -195,7 +183,7 @@ func (o *Range) GetValue() gdnative.Float {
 	Args: [], Returns: bool
 */
 func (o *Range) IsRatioExp() gdnative.Bool {
-	log.Println("Calling Range.IsRatioExp()")
+	//log.Println("Calling Range.IsRatioExp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -210,7 +198,7 @@ func (o *Range) IsRatioExp() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -219,7 +207,7 @@ func (o *Range) IsRatioExp() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Range) IsUsingRoundedValues() gdnative.Bool {
-	log.Println("Calling Range.IsUsingRoundedValues()")
+	//log.Println("Calling Range.IsUsingRoundedValues()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -234,7 +222,7 @@ func (o *Range) IsUsingRoundedValues() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -243,7 +231,7 @@ func (o *Range) IsUsingRoundedValues() gdnative.Bool {
 	Args: [{ false value float}], Returns: void
 */
 func (o *Range) SetAsRatio(value gdnative.Float) {
-	log.Println("Calling Range.SetAsRatio()")
+	//log.Println("Calling Range.SetAsRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -264,7 +252,7 @@ func (o *Range) SetAsRatio(value gdnative.Float) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Range) SetExpRatio(enabled gdnative.Bool) {
-	log.Println("Calling Range.SetExpRatio()")
+	//log.Println("Calling Range.SetExpRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -285,7 +273,7 @@ func (o *Range) SetExpRatio(enabled gdnative.Bool) {
 	Args: [{ false maximum float}], Returns: void
 */
 func (o *Range) SetMax(maximum gdnative.Float) {
-	log.Println("Calling Range.SetMax()")
+	//log.Println("Calling Range.SetMax()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -306,7 +294,7 @@ func (o *Range) SetMax(maximum gdnative.Float) {
 	Args: [{ false minimum float}], Returns: void
 */
 func (o *Range) SetMin(minimum gdnative.Float) {
-	log.Println("Calling Range.SetMin()")
+	//log.Println("Calling Range.SetMin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -327,7 +315,7 @@ func (o *Range) SetMin(minimum gdnative.Float) {
 	Args: [{ false pagesize float}], Returns: void
 */
 func (o *Range) SetPage(pagesize gdnative.Float) {
-	log.Println("Calling Range.SetPage()")
+	//log.Println("Calling Range.SetPage()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -348,7 +336,7 @@ func (o *Range) SetPage(pagesize gdnative.Float) {
 	Args: [{ false step float}], Returns: void
 */
 func (o *Range) SetStep(step gdnative.Float) {
-	log.Println("Calling Range.SetStep()")
+	//log.Println("Calling Range.SetStep()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -369,7 +357,7 @@ func (o *Range) SetStep(step gdnative.Float) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Range) SetUseRoundedValues(enabled gdnative.Bool) {
-	log.Println("Calling Range.SetUseRoundedValues()")
+	//log.Println("Calling Range.SetUseRoundedValues()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -390,7 +378,7 @@ func (o *Range) SetUseRoundedValues(enabled gdnative.Bool) {
 	Args: [{ false value float}], Returns: void
 */
 func (o *Range) SetValue(value gdnative.Float) {
-	log.Println("Calling Range.SetValue()")
+	//log.Println("Calling Range.SetValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -411,7 +399,7 @@ func (o *Range) SetValue(value gdnative.Float) {
 	Args: [{ false with Object}], Returns: void
 */
 func (o *Range) Share(with Object) {
-	log.Println("Calling Range.Share()")
+	//log.Println("Calling Range.Share()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -432,7 +420,7 @@ func (o *Range) Share(with Object) {
 	Args: [], Returns: void
 */
 func (o *Range) Unshare() {
-	log.Println("Calling Range.Unshare()")
+	//log.Println("Calling Range.Unshare()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)

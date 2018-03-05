@@ -33,13 +33,3 @@ type AudioEffectEQ10 struct {
 func (o *AudioEffectEQ10) BaseClass() string {
 	return "AudioEffectEQ10"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AudioEffectEQ10) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AudioEffectEQ10) GetBaseObject() gdnative.Object {
-	return o.owner
-}

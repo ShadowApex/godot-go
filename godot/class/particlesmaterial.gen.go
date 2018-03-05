@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ParticlesMaterial) BaseClass() string {
 	return "ParticlesMaterial"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ParticlesMaterial) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ParticlesMaterial) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Color
 */
 func (o *ParticlesMaterial) GetColor() gdnative.Color {
-	log.Println("Calling ParticlesMaterial.GetColor()")
+	//log.Println("Calling ParticlesMaterial.GetColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *ParticlesMaterial) GetColor() gdnative.Color {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewColorFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *ParticlesMaterial) GetColor() gdnative.Color {
 	Args: [], Returns: Texture
 */
 func (o *ParticlesMaterial) GetColorRamp() Texture {
-	log.Println("Calling ParticlesMaterial.GetColorRamp()")
+	//log.Println("Calling ParticlesMaterial.GetColorRamp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *ParticlesMaterial) GetColorRamp() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *ParticlesMaterial) GetColorRamp() Texture {
 	Args: [], Returns: Vector3
 */
 func (o *ParticlesMaterial) GetEmissionBoxExtents() gdnative.Vector3 {
-	log.Println("Calling ParticlesMaterial.GetEmissionBoxExtents()")
+	//log.Println("Calling ParticlesMaterial.GetEmissionBoxExtents()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *ParticlesMaterial) GetEmissionBoxExtents() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *ParticlesMaterial) GetEmissionBoxExtents() gdnative.Vector3 {
 	Args: [], Returns: Texture
 */
 func (o *ParticlesMaterial) GetEmissionColorTexture() Texture {
-	log.Println("Calling ParticlesMaterial.GetEmissionColorTexture()")
+	//log.Println("Calling ParticlesMaterial.GetEmissionColorTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *ParticlesMaterial) GetEmissionColorTexture() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *ParticlesMaterial) GetEmissionColorTexture() Texture {
 	Args: [], Returns: Texture
 */
 func (o *ParticlesMaterial) GetEmissionNormalTexture() Texture {
-	log.Println("Calling ParticlesMaterial.GetEmissionNormalTexture()")
+	//log.Println("Calling ParticlesMaterial.GetEmissionNormalTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *ParticlesMaterial) GetEmissionNormalTexture() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *ParticlesMaterial) GetEmissionNormalTexture() Texture {
 	Args: [], Returns: int
 */
 func (o *ParticlesMaterial) GetEmissionPointCount() gdnative.Int {
-	log.Println("Calling ParticlesMaterial.GetEmissionPointCount()")
+	//log.Println("Calling ParticlesMaterial.GetEmissionPointCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -186,7 +174,7 @@ func (o *ParticlesMaterial) GetEmissionPointCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -195,7 +183,7 @@ func (o *ParticlesMaterial) GetEmissionPointCount() gdnative.Int {
 	Args: [], Returns: Texture
 */
 func (o *ParticlesMaterial) GetEmissionPointTexture() Texture {
-	log.Println("Calling ParticlesMaterial.GetEmissionPointTexture()")
+	//log.Println("Calling ParticlesMaterial.GetEmissionPointTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -210,7 +198,7 @@ func (o *ParticlesMaterial) GetEmissionPointTexture() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -224,7 +212,7 @@ func (o *ParticlesMaterial) GetEmissionPointTexture() Texture {
 	Args: [], Returns: float
 */
 func (o *ParticlesMaterial) GetEmissionSphereRadius() gdnative.Float {
-	log.Println("Calling ParticlesMaterial.GetEmissionSphereRadius()")
+	//log.Println("Calling ParticlesMaterial.GetEmissionSphereRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -239,7 +227,7 @@ func (o *ParticlesMaterial) GetEmissionSphereRadius() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -248,7 +236,7 @@ func (o *ParticlesMaterial) GetEmissionSphereRadius() gdnative.Float {
 	Args: [{ false flag int}], Returns: bool
 */
 func (o *ParticlesMaterial) GetFlag(flag gdnative.Int) gdnative.Bool {
-	log.Println("Calling ParticlesMaterial.GetFlag()")
+	//log.Println("Calling ParticlesMaterial.GetFlag()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -264,7 +252,7 @@ func (o *ParticlesMaterial) GetFlag(flag gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -273,7 +261,7 @@ func (o *ParticlesMaterial) GetFlag(flag gdnative.Int) gdnative.Bool {
 	Args: [], Returns: float
 */
 func (o *ParticlesMaterial) GetFlatness() gdnative.Float {
-	log.Println("Calling ParticlesMaterial.GetFlatness()")
+	//log.Println("Calling ParticlesMaterial.GetFlatness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -288,7 +276,7 @@ func (o *ParticlesMaterial) GetFlatness() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -297,7 +285,7 @@ func (o *ParticlesMaterial) GetFlatness() gdnative.Float {
 	Args: [], Returns: Vector3
 */
 func (o *ParticlesMaterial) GetGravity() gdnative.Vector3 {
-	log.Println("Calling ParticlesMaterial.GetGravity()")
+	//log.Println("Calling ParticlesMaterial.GetGravity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -312,7 +300,7 @@ func (o *ParticlesMaterial) GetGravity() gdnative.Vector3 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector3FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -321,7 +309,7 @@ func (o *ParticlesMaterial) GetGravity() gdnative.Vector3 {
 	Args: [{ false param int}], Returns: float
 */
 func (o *ParticlesMaterial) GetParam(param gdnative.Int) gdnative.Float {
-	log.Println("Calling ParticlesMaterial.GetParam()")
+	//log.Println("Calling ParticlesMaterial.GetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -337,7 +325,7 @@ func (o *ParticlesMaterial) GetParam(param gdnative.Int) gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -346,7 +334,7 @@ func (o *ParticlesMaterial) GetParam(param gdnative.Int) gdnative.Float {
 	Args: [{ false param int}], Returns: float
 */
 func (o *ParticlesMaterial) GetParamRandomness(param gdnative.Int) gdnative.Float {
-	log.Println("Calling ParticlesMaterial.GetParamRandomness()")
+	//log.Println("Calling ParticlesMaterial.GetParamRandomness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -362,7 +350,7 @@ func (o *ParticlesMaterial) GetParamRandomness(param gdnative.Int) gdnative.Floa
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -371,7 +359,7 @@ func (o *ParticlesMaterial) GetParamRandomness(param gdnative.Int) gdnative.Floa
 	Args: [{ false param int}], Returns: Texture
 */
 func (o *ParticlesMaterial) GetParamTexture(param gdnative.Int) Texture {
-	log.Println("Calling ParticlesMaterial.GetParamTexture()")
+	//log.Println("Calling ParticlesMaterial.GetParamTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -387,7 +375,7 @@ func (o *ParticlesMaterial) GetParamTexture(param gdnative.Int) Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -396,7 +384,7 @@ func (o *ParticlesMaterial) GetParamTexture(param gdnative.Int) Texture {
 	Args: [], Returns: float
 */
 func (o *ParticlesMaterial) GetSpread() gdnative.Float {
-	log.Println("Calling ParticlesMaterial.GetSpread()")
+	//log.Println("Calling ParticlesMaterial.GetSpread()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -411,7 +399,7 @@ func (o *ParticlesMaterial) GetSpread() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -420,7 +408,7 @@ func (o *ParticlesMaterial) GetSpread() gdnative.Float {
 	Args: [], Returns: GradientTexture
 */
 func (o *ParticlesMaterial) GetTrailColorModifier() GradientTexture {
-	log.Println("Calling ParticlesMaterial.GetTrailColorModifier()")
+	//log.Println("Calling ParticlesMaterial.GetTrailColorModifier()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -435,7 +423,7 @@ func (o *ParticlesMaterial) GetTrailColorModifier() GradientTexture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewGradientTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -444,7 +432,7 @@ func (o *ParticlesMaterial) GetTrailColorModifier() GradientTexture {
 	Args: [], Returns: int
 */
 func (o *ParticlesMaterial) GetTrailDivisor() gdnative.Int {
-	log.Println("Calling ParticlesMaterial.GetTrailDivisor()")
+	//log.Println("Calling ParticlesMaterial.GetTrailDivisor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -459,7 +447,7 @@ func (o *ParticlesMaterial) GetTrailDivisor() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -468,7 +456,7 @@ func (o *ParticlesMaterial) GetTrailDivisor() gdnative.Int {
 	Args: [], Returns: CurveTexture
 */
 func (o *ParticlesMaterial) GetTrailSizeModifier() CurveTexture {
-	log.Println("Calling ParticlesMaterial.GetTrailSizeModifier()")
+	//log.Println("Calling ParticlesMaterial.GetTrailSizeModifier()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -483,7 +471,7 @@ func (o *ParticlesMaterial) GetTrailSizeModifier() CurveTexture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewCurveTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -492,7 +480,7 @@ func (o *ParticlesMaterial) GetTrailSizeModifier() CurveTexture {
 	Args: [{ false color Color}], Returns: void
 */
 func (o *ParticlesMaterial) SetColor(color gdnative.Color) {
-	log.Println("Calling ParticlesMaterial.SetColor()")
+	//log.Println("Calling ParticlesMaterial.SetColor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -513,7 +501,7 @@ func (o *ParticlesMaterial) SetColor(color gdnative.Color) {
 	Args: [{ false ramp Texture}], Returns: void
 */
 func (o *ParticlesMaterial) SetColorRamp(ramp Texture) {
-	log.Println("Calling ParticlesMaterial.SetColorRamp()")
+	//log.Println("Calling ParticlesMaterial.SetColorRamp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -534,7 +522,7 @@ func (o *ParticlesMaterial) SetColorRamp(ramp Texture) {
 	Args: [{ false extents Vector3}], Returns: void
 */
 func (o *ParticlesMaterial) SetEmissionBoxExtents(extents gdnative.Vector3) {
-	log.Println("Calling ParticlesMaterial.SetEmissionBoxExtents()")
+	//log.Println("Calling ParticlesMaterial.SetEmissionBoxExtents()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -555,7 +543,7 @@ func (o *ParticlesMaterial) SetEmissionBoxExtents(extents gdnative.Vector3) {
 	Args: [{ false texture Texture}], Returns: void
 */
 func (o *ParticlesMaterial) SetEmissionColorTexture(texture Texture) {
-	log.Println("Calling ParticlesMaterial.SetEmissionColorTexture()")
+	//log.Println("Calling ParticlesMaterial.SetEmissionColorTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -576,7 +564,7 @@ func (o *ParticlesMaterial) SetEmissionColorTexture(texture Texture) {
 	Args: [{ false texture Texture}], Returns: void
 */
 func (o *ParticlesMaterial) SetEmissionNormalTexture(texture Texture) {
-	log.Println("Calling ParticlesMaterial.SetEmissionNormalTexture()")
+	//log.Println("Calling ParticlesMaterial.SetEmissionNormalTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -597,7 +585,7 @@ func (o *ParticlesMaterial) SetEmissionNormalTexture(texture Texture) {
 	Args: [{ false point_count int}], Returns: void
 */
 func (o *ParticlesMaterial) SetEmissionPointCount(pointCount gdnative.Int) {
-	log.Println("Calling ParticlesMaterial.SetEmissionPointCount()")
+	//log.Println("Calling ParticlesMaterial.SetEmissionPointCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -618,7 +606,7 @@ func (o *ParticlesMaterial) SetEmissionPointCount(pointCount gdnative.Int) {
 	Args: [{ false texture Texture}], Returns: void
 */
 func (o *ParticlesMaterial) SetEmissionPointTexture(texture Texture) {
-	log.Println("Calling ParticlesMaterial.SetEmissionPointTexture()")
+	//log.Println("Calling ParticlesMaterial.SetEmissionPointTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -639,7 +627,7 @@ func (o *ParticlesMaterial) SetEmissionPointTexture(texture Texture) {
 	Args: [{ false shape int}], Returns: void
 */
 func (o *ParticlesMaterial) SetEmissionShape(shape gdnative.Int) {
-	log.Println("Calling ParticlesMaterial.SetEmissionShape()")
+	//log.Println("Calling ParticlesMaterial.SetEmissionShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -660,7 +648,7 @@ func (o *ParticlesMaterial) SetEmissionShape(shape gdnative.Int) {
 	Args: [{ false radius float}], Returns: void
 */
 func (o *ParticlesMaterial) SetEmissionSphereRadius(radius gdnative.Float) {
-	log.Println("Calling ParticlesMaterial.SetEmissionSphereRadius()")
+	//log.Println("Calling ParticlesMaterial.SetEmissionSphereRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -681,7 +669,7 @@ func (o *ParticlesMaterial) SetEmissionSphereRadius(radius gdnative.Float) {
 	Args: [{ false flag int} { false enable bool}], Returns: void
 */
 func (o *ParticlesMaterial) SetFlag(flag gdnative.Int, enable gdnative.Bool) {
-	log.Println("Calling ParticlesMaterial.SetFlag()")
+	//log.Println("Calling ParticlesMaterial.SetFlag()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -703,7 +691,7 @@ func (o *ParticlesMaterial) SetFlag(flag gdnative.Int, enable gdnative.Bool) {
 	Args: [{ false amount float}], Returns: void
 */
 func (o *ParticlesMaterial) SetFlatness(amount gdnative.Float) {
-	log.Println("Calling ParticlesMaterial.SetFlatness()")
+	//log.Println("Calling ParticlesMaterial.SetFlatness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -724,7 +712,7 @@ func (o *ParticlesMaterial) SetFlatness(amount gdnative.Float) {
 	Args: [{ false accel_vec Vector3}], Returns: void
 */
 func (o *ParticlesMaterial) SetGravity(accelVec gdnative.Vector3) {
-	log.Println("Calling ParticlesMaterial.SetGravity()")
+	//log.Println("Calling ParticlesMaterial.SetGravity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -745,7 +733,7 @@ func (o *ParticlesMaterial) SetGravity(accelVec gdnative.Vector3) {
 	Args: [{ false param int} { false value float}], Returns: void
 */
 func (o *ParticlesMaterial) SetParam(param gdnative.Int, value gdnative.Float) {
-	log.Println("Calling ParticlesMaterial.SetParam()")
+	//log.Println("Calling ParticlesMaterial.SetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -767,7 +755,7 @@ func (o *ParticlesMaterial) SetParam(param gdnative.Int, value gdnative.Float) {
 	Args: [{ false param int} { false randomness float}], Returns: void
 */
 func (o *ParticlesMaterial) SetParamRandomness(param gdnative.Int, randomness gdnative.Float) {
-	log.Println("Calling ParticlesMaterial.SetParamRandomness()")
+	//log.Println("Calling ParticlesMaterial.SetParamRandomness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -789,7 +777,7 @@ func (o *ParticlesMaterial) SetParamRandomness(param gdnative.Int, randomness gd
 	Args: [{ false param int} { false texture Texture}], Returns: void
 */
 func (o *ParticlesMaterial) SetParamTexture(param gdnative.Int, texture Texture) {
-	log.Println("Calling ParticlesMaterial.SetParamTexture()")
+	//log.Println("Calling ParticlesMaterial.SetParamTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -811,7 +799,7 @@ func (o *ParticlesMaterial) SetParamTexture(param gdnative.Int, texture Texture)
 	Args: [{ false degrees float}], Returns: void
 */
 func (o *ParticlesMaterial) SetSpread(degrees gdnative.Float) {
-	log.Println("Calling ParticlesMaterial.SetSpread()")
+	//log.Println("Calling ParticlesMaterial.SetSpread()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -832,7 +820,7 @@ func (o *ParticlesMaterial) SetSpread(degrees gdnative.Float) {
 	Args: [{ false texture GradientTexture}], Returns: void
 */
 func (o *ParticlesMaterial) SetTrailColorModifier(texture GradientTexture) {
-	log.Println("Calling ParticlesMaterial.SetTrailColorModifier()")
+	//log.Println("Calling ParticlesMaterial.SetTrailColorModifier()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -853,7 +841,7 @@ func (o *ParticlesMaterial) SetTrailColorModifier(texture GradientTexture) {
 	Args: [{ false divisor int}], Returns: void
 */
 func (o *ParticlesMaterial) SetTrailDivisor(divisor gdnative.Int) {
-	log.Println("Calling ParticlesMaterial.SetTrailDivisor()")
+	//log.Println("Calling ParticlesMaterial.SetTrailDivisor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -874,7 +862,7 @@ func (o *ParticlesMaterial) SetTrailDivisor(divisor gdnative.Int) {
 	Args: [{ false texture CurveTexture}], Returns: void
 */
 func (o *ParticlesMaterial) SetTrailSizeModifier(texture CurveTexture) {
-	log.Println("Calling ParticlesMaterial.SetTrailSizeModifier()")
+	//log.Println("Calling ParticlesMaterial.SetTrailSizeModifier()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

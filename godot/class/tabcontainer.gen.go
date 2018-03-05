@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *TabContainer) BaseClass() string {
 	return "TabContainer"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *TabContainer) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *TabContainer) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: void
 */
 func (o *TabContainer) X_ChildRenamedCallback() {
-	log.Println("Calling TabContainer.X_ChildRenamedCallback()")
+	//log.Println("Calling TabContainer.X_ChildRenamedCallback()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -71,7 +59,7 @@ func (o *TabContainer) X_ChildRenamedCallback() {
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
 func (o *TabContainer) X_GuiInput(arg0 InputEvent) {
-	log.Println("Calling TabContainer.X_GuiInput()")
+	//log.Println("Calling TabContainer.X_GuiInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -92,7 +80,7 @@ func (o *TabContainer) X_GuiInput(arg0 InputEvent) {
 	Args: [], Returns: void
 */
 func (o *TabContainer) X_OnThemeChanged() {
-	log.Println("Calling TabContainer.X_OnThemeChanged()")
+	//log.Println("Calling TabContainer.X_OnThemeChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -112,7 +100,7 @@ func (o *TabContainer) X_OnThemeChanged() {
 	Args: [], Returns: void
 */
 func (o *TabContainer) X_UpdateCurrentTab() {
-	log.Println("Calling TabContainer.X_UpdateCurrentTab()")
+	//log.Println("Calling TabContainer.X_UpdateCurrentTab()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -132,7 +120,7 @@ func (o *TabContainer) X_UpdateCurrentTab() {
 	Args: [], Returns: bool
 */
 func (o *TabContainer) AreTabsVisible() gdnative.Bool {
-	log.Println("Calling TabContainer.AreTabsVisible()")
+	//log.Println("Calling TabContainer.AreTabsVisible()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -147,7 +135,7 @@ func (o *TabContainer) AreTabsVisible() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -156,7 +144,7 @@ func (o *TabContainer) AreTabsVisible() gdnative.Bool {
 	Args: [], Returns: int
 */
 func (o *TabContainer) GetCurrentTab() gdnative.Int {
-	log.Println("Calling TabContainer.GetCurrentTab()")
+	//log.Println("Calling TabContainer.GetCurrentTab()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -171,7 +159,7 @@ func (o *TabContainer) GetCurrentTab() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -180,7 +168,7 @@ func (o *TabContainer) GetCurrentTab() gdnative.Int {
 	Args: [], Returns: Control
 */
 func (o *TabContainer) GetCurrentTabControl() Control {
-	log.Println("Calling TabContainer.GetCurrentTabControl()")
+	//log.Println("Calling TabContainer.GetCurrentTabControl()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -195,7 +183,7 @@ func (o *TabContainer) GetCurrentTabControl() Control {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewControlFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -204,7 +192,7 @@ func (o *TabContainer) GetCurrentTabControl() Control {
 	Args: [], Returns: Popup
 */
 func (o *TabContainer) GetPopup() Popup {
-	log.Println("Calling TabContainer.GetPopup()")
+	//log.Println("Calling TabContainer.GetPopup()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -219,7 +207,7 @@ func (o *TabContainer) GetPopup() Popup {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewPopupFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -228,7 +216,7 @@ func (o *TabContainer) GetPopup() Popup {
 	Args: [], Returns: int
 */
 func (o *TabContainer) GetPreviousTab() gdnative.Int {
-	log.Println("Calling TabContainer.GetPreviousTab()")
+	//log.Println("Calling TabContainer.GetPreviousTab()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -243,7 +231,7 @@ func (o *TabContainer) GetPreviousTab() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -257,7 +245,7 @@ func (o *TabContainer) GetPreviousTab() gdnative.Int {
 	Args: [{ false idx int}], Returns: Control
 */
 func (o *TabContainer) GetTabControl(idx gdnative.Int) Control {
-	log.Println("Calling TabContainer.GetTabControl()")
+	//log.Println("Calling TabContainer.GetTabControl()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -273,7 +261,7 @@ func (o *TabContainer) GetTabControl(idx gdnative.Int) Control {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewControlFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -282,7 +270,7 @@ func (o *TabContainer) GetTabControl(idx gdnative.Int) Control {
 	Args: [], Returns: int
 */
 func (o *TabContainer) GetTabCount() gdnative.Int {
-	log.Println("Calling TabContainer.GetTabCount()")
+	//log.Println("Calling TabContainer.GetTabCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -297,7 +285,7 @@ func (o *TabContainer) GetTabCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -306,7 +294,7 @@ func (o *TabContainer) GetTabCount() gdnative.Int {
 	Args: [{ false tab_idx int}], Returns: bool
 */
 func (o *TabContainer) GetTabDisabled(tabIdx gdnative.Int) gdnative.Bool {
-	log.Println("Calling TabContainer.GetTabDisabled()")
+	//log.Println("Calling TabContainer.GetTabDisabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -322,7 +310,7 @@ func (o *TabContainer) GetTabDisabled(tabIdx gdnative.Int) gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -331,7 +319,7 @@ func (o *TabContainer) GetTabDisabled(tabIdx gdnative.Int) gdnative.Bool {
 	Args: [{ false tab_idx int}], Returns: Texture
 */
 func (o *TabContainer) GetTabIcon(tabIdx gdnative.Int) Texture {
-	log.Println("Calling TabContainer.GetTabIcon()")
+	//log.Println("Calling TabContainer.GetTabIcon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -347,7 +335,7 @@ func (o *TabContainer) GetTabIcon(tabIdx gdnative.Int) Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -356,7 +344,7 @@ func (o *TabContainer) GetTabIcon(tabIdx gdnative.Int) Texture {
 	Args: [{ false tab_idx int}], Returns: String
 */
 func (o *TabContainer) GetTabTitle(tabIdx gdnative.Int) gdnative.String {
-	log.Println("Calling TabContainer.GetTabTitle()")
+	//log.Println("Calling TabContainer.GetTabTitle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -372,7 +360,7 @@ func (o *TabContainer) GetTabTitle(tabIdx gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -381,7 +369,7 @@ func (o *TabContainer) GetTabTitle(tabIdx gdnative.Int) gdnative.String {
 	Args: [{ false tab_idx int}], Returns: void
 */
 func (o *TabContainer) SetCurrentTab(tabIdx gdnative.Int) {
-	log.Println("Calling TabContainer.SetCurrentTab()")
+	//log.Println("Calling TabContainer.SetCurrentTab()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -402,7 +390,7 @@ func (o *TabContainer) SetCurrentTab(tabIdx gdnative.Int) {
 	Args: [{ false popup Object}], Returns: void
 */
 func (o *TabContainer) SetPopup(popup Object) {
-	log.Println("Calling TabContainer.SetPopup()")
+	//log.Println("Calling TabContainer.SetPopup()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -423,7 +411,7 @@ func (o *TabContainer) SetPopup(popup Object) {
 	Args: [{ false align int}], Returns: void
 */
 func (o *TabContainer) SetTabAlign(align gdnative.Int) {
-	log.Println("Calling TabContainer.SetTabAlign()")
+	//log.Println("Calling TabContainer.SetTabAlign()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -444,7 +432,7 @@ func (o *TabContainer) SetTabAlign(align gdnative.Int) {
 	Args: [{ false tab_idx int} { false disabled bool}], Returns: void
 */
 func (o *TabContainer) SetTabDisabled(tabIdx gdnative.Int, disabled gdnative.Bool) {
-	log.Println("Calling TabContainer.SetTabDisabled()")
+	//log.Println("Calling TabContainer.SetTabDisabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -466,7 +454,7 @@ func (o *TabContainer) SetTabDisabled(tabIdx gdnative.Int, disabled gdnative.Boo
 	Args: [{ false tab_idx int} { false icon Texture}], Returns: void
 */
 func (o *TabContainer) SetTabIcon(tabIdx gdnative.Int, icon Texture) {
-	log.Println("Calling TabContainer.SetTabIcon()")
+	//log.Println("Calling TabContainer.SetTabIcon()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -488,7 +476,7 @@ func (o *TabContainer) SetTabIcon(tabIdx gdnative.Int, icon Texture) {
 	Args: [{ false tab_idx int} { false title String}], Returns: void
 */
 func (o *TabContainer) SetTabTitle(tabIdx gdnative.Int, title gdnative.String) {
-	log.Println("Calling TabContainer.SetTabTitle()")
+	//log.Println("Calling TabContainer.SetTabTitle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -510,7 +498,7 @@ func (o *TabContainer) SetTabTitle(tabIdx gdnative.Int, title gdnative.String) {
 	Args: [{ false visible bool}], Returns: void
 */
 func (o *TabContainer) SetTabsVisible(visible gdnative.Bool) {
-	log.Println("Calling TabContainer.SetTabsVisible()")
+	//log.Println("Calling TabContainer.SetTabsVisible()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

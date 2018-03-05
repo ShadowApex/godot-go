@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VisualScriptEngineSingleton) BaseClass() string {
 	return "VisualScriptEngineSingleton"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptEngineSingleton) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptEngineSingleton) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: String
 */
 func (o *VisualScriptEngineSingleton) GetSingleton() gdnative.String {
-	log.Println("Calling VisualScriptEngineSingleton.GetSingleton()")
+	//log.Println("Calling VisualScriptEngineSingleton.GetSingleton()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VisualScriptEngineSingleton) GetSingleton() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *VisualScriptEngineSingleton) GetSingleton() gdnative.String {
 	Args: [{ false name String}], Returns: void
 */
 func (o *VisualScriptEngineSingleton) SetSingleton(name gdnative.String) {
-	log.Println("Calling VisualScriptEngineSingleton.SetSingleton()")
+	//log.Println("Calling VisualScriptEngineSingleton.SetSingleton()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

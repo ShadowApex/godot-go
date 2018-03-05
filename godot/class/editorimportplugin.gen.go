@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *EditorImportPlugin) BaseClass() string {
 	return "EditorImportPlugin"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *EditorImportPlugin) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *EditorImportPlugin) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Get the options and default values for the preset at this index. Returns an Array of Dictionaries with the following keys: "name", "default_value", "property_hint" (optional), "hint_string" (optional), "usage" (optional).
 	Args: [{ false preset int}], Returns: Array
 */
 func (o *EditorImportPlugin) GetImportOptions(preset gdnative.Int) gdnative.Array {
-	log.Println("Calling EditorImportPlugin.GetImportOptions()")
+	//log.Println("Calling EditorImportPlugin.GetImportOptions()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -67,7 +55,7 @@ func (o *EditorImportPlugin) GetImportOptions(preset gdnative.Int) gdnative.Arra
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -76,7 +64,7 @@ func (o *EditorImportPlugin) GetImportOptions(preset gdnative.Int) gdnative.Arra
 	Args: [], Returns: int
 */
 func (o *EditorImportPlugin) GetImportOrder() gdnative.Int {
-	log.Println("Calling EditorImportPlugin.GetImportOrder()")
+	//log.Println("Calling EditorImportPlugin.GetImportOrder()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -91,7 +79,7 @@ func (o *EditorImportPlugin) GetImportOrder() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -100,7 +88,7 @@ func (o *EditorImportPlugin) GetImportOrder() gdnative.Int {
 	Args: [], Returns: String
 */
 func (o *EditorImportPlugin) GetImporterName() gdnative.String {
-	log.Println("Calling EditorImportPlugin.GetImporterName()")
+	//log.Println("Calling EditorImportPlugin.GetImporterName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -115,7 +103,7 @@ func (o *EditorImportPlugin) GetImporterName() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -124,7 +112,7 @@ func (o *EditorImportPlugin) GetImporterName() gdnative.String {
 	Args: [{ false option String} { false options Dictionary}], Returns: bool
 */
 func (o *EditorImportPlugin) GetOptionVisibility(option gdnative.String, options gdnative.Dictionary) gdnative.Bool {
-	log.Println("Calling EditorImportPlugin.GetOptionVisibility()")
+	//log.Println("Calling EditorImportPlugin.GetOptionVisibility()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -141,7 +129,7 @@ func (o *EditorImportPlugin) GetOptionVisibility(option gdnative.String, options
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -150,7 +138,7 @@ func (o *EditorImportPlugin) GetOptionVisibility(option gdnative.String, options
 	Args: [], Returns: int
 */
 func (o *EditorImportPlugin) GetPresetCount() gdnative.Int {
-	log.Println("Calling EditorImportPlugin.GetPresetCount()")
+	//log.Println("Calling EditorImportPlugin.GetPresetCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -165,7 +153,7 @@ func (o *EditorImportPlugin) GetPresetCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -174,7 +162,7 @@ func (o *EditorImportPlugin) GetPresetCount() gdnative.Int {
 	Args: [{ false preset int}], Returns: String
 */
 func (o *EditorImportPlugin) GetPresetName(preset gdnative.Int) gdnative.String {
-	log.Println("Calling EditorImportPlugin.GetPresetName()")
+	//log.Println("Calling EditorImportPlugin.GetPresetName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -190,7 +178,7 @@ func (o *EditorImportPlugin) GetPresetName(preset gdnative.Int) gdnative.String 
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -199,7 +187,7 @@ func (o *EditorImportPlugin) GetPresetName(preset gdnative.Int) gdnative.String 
 	Args: [], Returns: float
 */
 func (o *EditorImportPlugin) GetPriority() gdnative.Float {
-	log.Println("Calling EditorImportPlugin.GetPriority()")
+	//log.Println("Calling EditorImportPlugin.GetPriority()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -214,7 +202,7 @@ func (o *EditorImportPlugin) GetPriority() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -223,7 +211,7 @@ func (o *EditorImportPlugin) GetPriority() gdnative.Float {
 	Args: [], Returns: Array
 */
 func (o *EditorImportPlugin) GetRecognizedExtensions() gdnative.Array {
-	log.Println("Calling EditorImportPlugin.GetRecognizedExtensions()")
+	//log.Println("Calling EditorImportPlugin.GetRecognizedExtensions()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -238,7 +226,7 @@ func (o *EditorImportPlugin) GetRecognizedExtensions() gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -247,7 +235,7 @@ func (o *EditorImportPlugin) GetRecognizedExtensions() gdnative.Array {
 	Args: [], Returns: String
 */
 func (o *EditorImportPlugin) GetResourceType() gdnative.String {
-	log.Println("Calling EditorImportPlugin.GetResourceType()")
+	//log.Println("Calling EditorImportPlugin.GetResourceType()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -262,7 +250,7 @@ func (o *EditorImportPlugin) GetResourceType() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -271,7 +259,7 @@ func (o *EditorImportPlugin) GetResourceType() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *EditorImportPlugin) GetSaveExtension() gdnative.String {
-	log.Println("Calling EditorImportPlugin.GetSaveExtension()")
+	//log.Println("Calling EditorImportPlugin.GetSaveExtension()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -286,7 +274,7 @@ func (o *EditorImportPlugin) GetSaveExtension() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -295,7 +283,7 @@ func (o *EditorImportPlugin) GetSaveExtension() gdnative.String {
 	Args: [], Returns: String
 */
 func (o *EditorImportPlugin) GetVisibleName() gdnative.String {
-	log.Println("Calling EditorImportPlugin.GetVisibleName()")
+	//log.Println("Calling EditorImportPlugin.GetVisibleName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -310,7 +298,7 @@ func (o *EditorImportPlugin) GetVisibleName() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -319,7 +307,7 @@ func (o *EditorImportPlugin) GetVisibleName() gdnative.String {
 	Args: [{ false source_file String} { false save_path String} { false options Dictionary} { false r_platform_variants Array} { false r_gen_files Array}], Returns: int
 */
 func (o *EditorImportPlugin) Import(sourceFile gdnative.String, savePath gdnative.String, options gdnative.Dictionary, rPlatformVariants gdnative.Array, rGenFiles gdnative.Array) gdnative.Int {
-	log.Println("Calling EditorImportPlugin.Import()")
+	//log.Println("Calling EditorImportPlugin.Import()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 5, 5)
@@ -339,6 +327,6 @@ func (o *EditorImportPlugin) Import(sourceFile gdnative.String, savePath gdnativ
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

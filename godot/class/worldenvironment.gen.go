@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *WorldEnvironment) BaseClass() string {
 	return "WorldEnvironment"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *WorldEnvironment) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *WorldEnvironment) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Environment
 */
 func (o *WorldEnvironment) GetEnvironment() Environment {
-	log.Println("Calling WorldEnvironment.GetEnvironment()")
+	//log.Println("Calling WorldEnvironment.GetEnvironment()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *WorldEnvironment) GetEnvironment() Environment {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewEnvironmentFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *WorldEnvironment) GetEnvironment() Environment {
 	Args: [{ false env Environment}], Returns: void
 */
 func (o *WorldEnvironment) SetEnvironment(env Environment) {
-	log.Println("Calling WorldEnvironment.SetEnvironment()")
+	//log.Println("Calling WorldEnvironment.SetEnvironment()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

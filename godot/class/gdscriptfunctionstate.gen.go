@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *GDScriptFunctionState) BaseClass() string {
 	return "GDScriptFunctionState"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *GDScriptFunctionState) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *GDScriptFunctionState) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Variant
 */
 func (o *GDScriptFunctionState) X_SignalCallback() gdnative.Variant {
-	log.Println("Calling GDScriptFunctionState.X_SignalCallback()")
+	//log.Println("Calling GDScriptFunctionState.X_SignalCallback()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *GDScriptFunctionState) X_SignalCallback() gdnative.Variant {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *GDScriptFunctionState) X_SignalCallback() gdnative.Variant {
 	Args: [{False true extended_check bool}], Returns: bool
 */
 func (o *GDScriptFunctionState) IsValid(extendedCheck gdnative.Bool) gdnative.Bool {
-	log.Println("Calling GDScriptFunctionState.IsValid()")
+	//log.Println("Calling GDScriptFunctionState.IsValid()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -91,7 +79,7 @@ func (o *GDScriptFunctionState) IsValid(extendedCheck gdnative.Bool) gdnative.Bo
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -100,7 +88,7 @@ func (o *GDScriptFunctionState) IsValid(extendedCheck gdnative.Bool) gdnative.Bo
 	Args: [{Null true arg Variant}], Returns: Variant
 */
 func (o *GDScriptFunctionState) Resume(arg gdnative.Variant) gdnative.Variant {
-	log.Println("Calling GDScriptFunctionState.Resume()")
+	//log.Println("Calling GDScriptFunctionState.Resume()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -116,6 +104,6 @@ func (o *GDScriptFunctionState) Resume(arg gdnative.Variant) gdnative.Variant {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

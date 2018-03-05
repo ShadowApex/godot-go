@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Slider) BaseClass() string {
 	return "Slider"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Slider) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Slider) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
 func (o *Slider) X_GuiInput(arg0 InputEvent) {
-	log.Println("Calling Slider.X_GuiInput()")
+	//log.Println("Calling Slider.X_GuiInput()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *Slider) X_GuiInput(arg0 InputEvent) {
 	Args: [], Returns: int
 */
 func (o *Slider) GetTicks() gdnative.Int {
-	log.Println("Calling Slider.GetTicks()")
+	//log.Println("Calling Slider.GetTicks()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -87,7 +75,7 @@ func (o *Slider) GetTicks() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -96,7 +84,7 @@ func (o *Slider) GetTicks() gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *Slider) GetTicksOnBorders() gdnative.Bool {
-	log.Println("Calling Slider.GetTicksOnBorders()")
+	//log.Println("Calling Slider.GetTicksOnBorders()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -111,7 +99,7 @@ func (o *Slider) GetTicksOnBorders() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -120,7 +108,7 @@ func (o *Slider) GetTicksOnBorders() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Slider) IsEditable() gdnative.Bool {
-	log.Println("Calling Slider.IsEditable()")
+	//log.Println("Calling Slider.IsEditable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -135,7 +123,7 @@ func (o *Slider) IsEditable() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -144,7 +132,7 @@ func (o *Slider) IsEditable() gdnative.Bool {
 	Args: [{ false editable bool}], Returns: void
 */
 func (o *Slider) SetEditable(editable gdnative.Bool) {
-	log.Println("Calling Slider.SetEditable()")
+	//log.Println("Calling Slider.SetEditable()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -165,7 +153,7 @@ func (o *Slider) SetEditable(editable gdnative.Bool) {
 	Args: [{ false count int}], Returns: void
 */
 func (o *Slider) SetTicks(count gdnative.Int) {
-	log.Println("Calling Slider.SetTicks()")
+	//log.Println("Calling Slider.SetTicks()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -186,7 +174,7 @@ func (o *Slider) SetTicks(count gdnative.Int) {
 	Args: [{ false ticks_on_border bool}], Returns: void
 */
 func (o *Slider) SetTicksOnBorders(ticksOnBorder gdnative.Bool) {
-	log.Println("Calling Slider.SetTicksOnBorders()")
+	//log.Println("Calling Slider.SetTicksOnBorders()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

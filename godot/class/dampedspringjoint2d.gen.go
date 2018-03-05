@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *DampedSpringJoint2D) BaseClass() string {
 	return "DampedSpringJoint2D"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *DampedSpringJoint2D) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *DampedSpringJoint2D) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *DampedSpringJoint2D) GetDamping() gdnative.Float {
-	log.Println("Calling DampedSpringJoint2D.GetDamping()")
+	//log.Println("Calling DampedSpringJoint2D.GetDamping()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *DampedSpringJoint2D) GetDamping() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *DampedSpringJoint2D) GetDamping() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *DampedSpringJoint2D) GetLength() gdnative.Float {
-	log.Println("Calling DampedSpringJoint2D.GetLength()")
+	//log.Println("Calling DampedSpringJoint2D.GetLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *DampedSpringJoint2D) GetLength() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *DampedSpringJoint2D) GetLength() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *DampedSpringJoint2D) GetRestLength() gdnative.Float {
-	log.Println("Calling DampedSpringJoint2D.GetRestLength()")
+	//log.Println("Calling DampedSpringJoint2D.GetRestLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *DampedSpringJoint2D) GetRestLength() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *DampedSpringJoint2D) GetRestLength() gdnative.Float {
 	Args: [], Returns: float
 */
 func (o *DampedSpringJoint2D) GetStiffness() gdnative.Float {
-	log.Println("Calling DampedSpringJoint2D.GetStiffness()")
+	//log.Println("Calling DampedSpringJoint2D.GetStiffness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *DampedSpringJoint2D) GetStiffness() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *DampedSpringJoint2D) GetStiffness() gdnative.Float {
 	Args: [{ false damping float}], Returns: void
 */
 func (o *DampedSpringJoint2D) SetDamping(damping gdnative.Float) {
-	log.Println("Calling DampedSpringJoint2D.SetDamping()")
+	//log.Println("Calling DampedSpringJoint2D.SetDamping()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -168,7 +156,7 @@ func (o *DampedSpringJoint2D) SetDamping(damping gdnative.Float) {
 	Args: [{ false length float}], Returns: void
 */
 func (o *DampedSpringJoint2D) SetLength(length gdnative.Float) {
-	log.Println("Calling DampedSpringJoint2D.SetLength()")
+	//log.Println("Calling DampedSpringJoint2D.SetLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -189,7 +177,7 @@ func (o *DampedSpringJoint2D) SetLength(length gdnative.Float) {
 	Args: [{ false rest_length float}], Returns: void
 */
 func (o *DampedSpringJoint2D) SetRestLength(restLength gdnative.Float) {
-	log.Println("Calling DampedSpringJoint2D.SetRestLength()")
+	//log.Println("Calling DampedSpringJoint2D.SetRestLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -210,7 +198,7 @@ func (o *DampedSpringJoint2D) SetRestLength(restLength gdnative.Float) {
 	Args: [{ false stiffness float}], Returns: void
 */
 func (o *DampedSpringJoint2D) SetStiffness(stiffness gdnative.Float) {
-	log.Println("Calling DampedSpringJoint2D.SetStiffness()")
+	//log.Println("Calling DampedSpringJoint2D.SetStiffness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -21,6 +21,14 @@ import (
 	"github.com/vitaminwater/cgo.wchar"
 )
 
+// debug determines whether or not we should log messages
+var debug = false
+
+// EnableDebug will enable logging of GDNative debug messages.
+func EnableDebug() {
+	debug = true
+}
+
 // Set our API to null. This will be set when 'godot_gdnative_init' is called
 // by Godot when the library is loaded.
 var GDNative = &gdNative{}
@@ -57,14 +65,18 @@ func godot_gdnative_init(options *C.godot_gdnative_init_options) {
 	// Configure logging.
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	log.SetOutput(Log)
-	log.Println("Initializing godot-go library.")
+	if debug {
+		log.Println("Initializing godot-go library.")
+	}
 
 	// Find GDNative extensions that we support.
 	for i := 0; i < int(GDNative.api.num_extensions); i++ {
 		extension := C.cgo_get_ext(GDNative.api.extensions, C.int(i))
 		switch extension._type {
 		case C.GDNATIVE_EXT_NATIVESCRIPT:
-			log.Println("Found nativescript extension!")
+			if debug {
+				log.Println("Found nativescript extension!")
+			}
 			NativeScript.api = (*C.godot_gdnative_ext_nativescript_api_struct)(unsafe.Pointer(extension))
 		}
 	}
@@ -75,7 +87,9 @@ func godot_gdnative_init(options *C.godot_gdnative_init_options) {
 // Godot unloads the library, this method will be called.
 //export godot_gdnative_terminate
 func godot_gdnative_terminate(options *C.godot_gdnative_terminate_options) {
-	log.Println("De-initializing Go library.")
+	if debug {
+		log.Println("De-initializing Go library.")
+	}
 	GDNative.api = nil
 	NativeScript.api = nil
 }
@@ -87,7 +101,9 @@ func NewEmptyVoid() Pointer {
 
 // GetSingleton will return an instance of the given singleton.
 func GetSingleton(name String) Object {
-	log.Println("Getting singleton:", name)
+	if debug {
+		log.Println("Getting singleton:", name)
+	}
 	GDNative.checkInit()
 
 	// Create a C string from the name argument.
@@ -115,6 +131,10 @@ func NewMethodBind(class, method string) MethodBind {
 // value is given as a pointer, which can be used to convert it to a variant.
 func MethodBindPtrCall(methodBind MethodBind, instance Object, args []Pointer, returns Pointer) Pointer {
 	GDNative.checkInit()
+	if instance.getBase() == nil {
+		panic("Godot object pointer was nil when calling MethodBindPtrCall")
+	}
+
 	// Build out our C arguments array
 	cArgs := C.go_void_build_array(C.int(len(args)))
 	for i, arg := range args {
@@ -122,14 +142,17 @@ func MethodBindPtrCall(methodBind MethodBind, instance Object, args []Pointer, r
 	}
 
 	// Print all of the shit we're passing
-	log.Println("args: ", cArgs)
 	for i, arg := range args {
-		log.Println("arg", i, ": ", arg.getBase())
+		if debug {
+			log.Println("arg", i, ": ", arg.getBase())
+		}
 	}
-	log.Println("returns: ", returns.getBase())
-
-	log.Println("object: ", unsafe.Pointer(instance.getBase()))
-	log.Println("methodbind: ", unsafe.Pointer(methodBind.getBase()))
+	if debug {
+		log.Println("args: ", cArgs)
+		log.Println("returns: ", returns.getBase())
+		log.Println("object: ", unsafe.Pointer(instance.getBase()))
+		log.Println("methodbind: ", unsafe.Pointer(methodBind.getBase()))
+	}
 
 	// Call the C method
 	C.go_godot_method_bind_ptrcall(
@@ -139,7 +162,9 @@ func MethodBindPtrCall(methodBind MethodBind, instance Object, args []Pointer, r
 		cArgs,
 		returns.getBase(),
 	)
-	log.Println("Finished calling method.")
+	if debug {
+		log.Println("Finished calling method.")
+	}
 
 	return returns
 }

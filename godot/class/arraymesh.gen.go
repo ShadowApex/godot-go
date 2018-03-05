@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *ArrayMesh) BaseClass() string {
 	return "ArrayMesh"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *ArrayMesh) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *ArrayMesh) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [{ false name String}], Returns: void
 */
 func (o *ArrayMesh) AddBlendShape(name gdnative.String) {
-	log.Println("Calling ArrayMesh.AddBlendShape()")
+	//log.Println("Calling ArrayMesh.AddBlendShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -72,7 +60,7 @@ func (o *ArrayMesh) AddBlendShape(name gdnative.String) {
 	Args: [{ false primitive int} { false arrays Array} {[] true blend_shapes Array} {97792 true compress_flags int}], Returns: void
 */
 func (o *ArrayMesh) AddSurfaceFromArrays(primitive gdnative.Int, arrays gdnative.Array, blendShapes gdnative.Array, compressFlags gdnative.Int) {
-	log.Println("Calling ArrayMesh.AddSurfaceFromArrays()")
+	//log.Println("Calling ArrayMesh.AddSurfaceFromArrays()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -96,7 +84,7 @@ func (o *ArrayMesh) AddSurfaceFromArrays(primitive gdnative.Int, arrays gdnative
 	Args: [], Returns: void
 */
 func (o *ArrayMesh) CenterGeometry() {
-	log.Println("Calling ArrayMesh.CenterGeometry()")
+	//log.Println("Calling ArrayMesh.CenterGeometry()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -116,7 +104,7 @@ func (o *ArrayMesh) CenterGeometry() {
 	Args: [], Returns: void
 */
 func (o *ArrayMesh) ClearBlendShapes() {
-	log.Println("Calling ArrayMesh.ClearBlendShapes()")
+	//log.Println("Calling ArrayMesh.ClearBlendShapes()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -136,7 +124,7 @@ func (o *ArrayMesh) ClearBlendShapes() {
 	Args: [], Returns: int
 */
 func (o *ArrayMesh) GetBlendShapeCount() gdnative.Int {
-	log.Println("Calling ArrayMesh.GetBlendShapeCount()")
+	//log.Println("Calling ArrayMesh.GetBlendShapeCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -151,7 +139,7 @@ func (o *ArrayMesh) GetBlendShapeCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -165,7 +153,7 @@ func (o *ArrayMesh) GetBlendShapeCount() gdnative.Int {
 	Args: [{ false index int}], Returns: String
 */
 func (o *ArrayMesh) GetBlendShapeName(index gdnative.Int) gdnative.String {
-	log.Println("Calling ArrayMesh.GetBlendShapeName()")
+	//log.Println("Calling ArrayMesh.GetBlendShapeName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -181,7 +169,7 @@ func (o *ArrayMesh) GetBlendShapeName(index gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -190,7 +178,7 @@ func (o *ArrayMesh) GetBlendShapeName(index gdnative.Int) gdnative.String {
 	Args: [], Returns: AABB
 */
 func (o *ArrayMesh) GetCustomAabb() gdnative.Aabb {
-	log.Println("Calling ArrayMesh.GetCustomAabb()")
+	//log.Println("Calling ArrayMesh.GetCustomAabb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -205,7 +193,7 @@ func (o *ArrayMesh) GetCustomAabb() gdnative.Aabb {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewAabbFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -214,7 +202,7 @@ func (o *ArrayMesh) GetCustomAabb() gdnative.Aabb {
 	Args: [], Returns: int
 */
 func (o *ArrayMesh) GetSurfaceCount() gdnative.Int {
-	log.Println("Calling ArrayMesh.GetSurfaceCount()")
+	//log.Println("Calling ArrayMesh.GetSurfaceCount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -229,7 +217,7 @@ func (o *ArrayMesh) GetSurfaceCount() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -243,7 +231,7 @@ func (o *ArrayMesh) GetSurfaceCount() gdnative.Int {
 	Args: [], Returns: void
 */
 func (o *ArrayMesh) RegenNormalmaps() {
-	log.Println("Calling ArrayMesh.RegenNormalmaps()")
+	//log.Println("Calling ArrayMesh.RegenNormalmaps()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -263,7 +251,7 @@ func (o *ArrayMesh) RegenNormalmaps() {
 	Args: [{ false mode int}], Returns: void
 */
 func (o *ArrayMesh) SetBlendShapeMode(mode gdnative.Int) {
-	log.Println("Calling ArrayMesh.SetBlendShapeMode()")
+	//log.Println("Calling ArrayMesh.SetBlendShapeMode()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -284,7 +272,7 @@ func (o *ArrayMesh) SetBlendShapeMode(mode gdnative.Int) {
 	Args: [{ false aabb AABB}], Returns: void
 */
 func (o *ArrayMesh) SetCustomAabb(aabb gdnative.Aabb) {
-	log.Println("Calling ArrayMesh.SetCustomAabb()")
+	//log.Println("Calling ArrayMesh.SetCustomAabb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -305,7 +293,7 @@ func (o *ArrayMesh) SetCustomAabb(aabb gdnative.Aabb) {
 	Args: [{ false surf_idx int}], Returns: int
 */
 func (o *ArrayMesh) SurfaceGetArrayIndexLen(surfIdx gdnative.Int) gdnative.Int {
-	log.Println("Calling ArrayMesh.SurfaceGetArrayIndexLen()")
+	//log.Println("Calling ArrayMesh.SurfaceGetArrayIndexLen()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -321,7 +309,7 @@ func (o *ArrayMesh) SurfaceGetArrayIndexLen(surfIdx gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -330,7 +318,7 @@ func (o *ArrayMesh) SurfaceGetArrayIndexLen(surfIdx gdnative.Int) gdnative.Int {
 	Args: [{ false surf_idx int}], Returns: int
 */
 func (o *ArrayMesh) SurfaceGetArrayLen(surfIdx gdnative.Int) gdnative.Int {
-	log.Println("Calling ArrayMesh.SurfaceGetArrayLen()")
+	//log.Println("Calling ArrayMesh.SurfaceGetArrayLen()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -346,7 +334,7 @@ func (o *ArrayMesh) SurfaceGetArrayLen(surfIdx gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -355,7 +343,7 @@ func (o *ArrayMesh) SurfaceGetArrayLen(surfIdx gdnative.Int) gdnative.Int {
 	Args: [{ false surf_idx int}], Returns: Array
 */
 func (o *ArrayMesh) SurfaceGetArrays(surfIdx gdnative.Int) gdnative.Array {
-	log.Println("Calling ArrayMesh.SurfaceGetArrays()")
+	//log.Println("Calling ArrayMesh.SurfaceGetArrays()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -371,7 +359,7 @@ func (o *ArrayMesh) SurfaceGetArrays(surfIdx gdnative.Int) gdnative.Array {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -380,7 +368,7 @@ func (o *ArrayMesh) SurfaceGetArrays(surfIdx gdnative.Int) gdnative.Array {
 	Args: [{ false surf_idx int}], Returns: Array
 */
 func (o *ArrayMesh) SurfaceGetBlendShapeArrays(surfIdx gdnative.Int) gdnative.Array {
-	log.Println("Calling ArrayMesh.SurfaceGetBlendShapeArrays()")
+	//log.Println("Calling ArrayMesh.SurfaceGetBlendShapeArrays()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -396,7 +384,7 @@ func (o *ArrayMesh) SurfaceGetBlendShapeArrays(surfIdx gdnative.Int) gdnative.Ar
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -405,7 +393,7 @@ func (o *ArrayMesh) SurfaceGetBlendShapeArrays(surfIdx gdnative.Int) gdnative.Ar
 	Args: [{ false surf_idx int}], Returns: int
 */
 func (o *ArrayMesh) SurfaceGetFormat(surfIdx gdnative.Int) gdnative.Int {
-	log.Println("Calling ArrayMesh.SurfaceGetFormat()")
+	//log.Println("Calling ArrayMesh.SurfaceGetFormat()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -421,7 +409,7 @@ func (o *ArrayMesh) SurfaceGetFormat(surfIdx gdnative.Int) gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -430,7 +418,7 @@ func (o *ArrayMesh) SurfaceGetFormat(surfIdx gdnative.Int) gdnative.Int {
 	Args: [{ false surf_idx int}], Returns: Material
 */
 func (o *ArrayMesh) SurfaceGetMaterial(surfIdx gdnative.Int) Material {
-	log.Println("Calling ArrayMesh.SurfaceGetMaterial()")
+	//log.Println("Calling ArrayMesh.SurfaceGetMaterial()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -446,7 +434,7 @@ func (o *ArrayMesh) SurfaceGetMaterial(surfIdx gdnative.Int) Material {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewMaterialFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -455,7 +443,7 @@ func (o *ArrayMesh) SurfaceGetMaterial(surfIdx gdnative.Int) Material {
 	Args: [{ false surf_idx int}], Returns: String
 */
 func (o *ArrayMesh) SurfaceGetName(surfIdx gdnative.Int) gdnative.String {
-	log.Println("Calling ArrayMesh.SurfaceGetName()")
+	//log.Println("Calling ArrayMesh.SurfaceGetName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -471,7 +459,7 @@ func (o *ArrayMesh) SurfaceGetName(surfIdx gdnative.Int) gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -485,7 +473,7 @@ func (o *ArrayMesh) SurfaceGetName(surfIdx gdnative.Int) gdnative.String {
 	Args: [{ false surf_idx int}], Returns: void
 */
 func (o *ArrayMesh) SurfaceRemove(surfIdx gdnative.Int) {
-	log.Println("Calling ArrayMesh.SurfaceRemove()")
+	//log.Println("Calling ArrayMesh.SurfaceRemove()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -506,7 +494,7 @@ func (o *ArrayMesh) SurfaceRemove(surfIdx gdnative.Int) {
 	Args: [{ false surf_idx int} { false material Material}], Returns: void
 */
 func (o *ArrayMesh) SurfaceSetMaterial(surfIdx gdnative.Int, material Material) {
-	log.Println("Calling ArrayMesh.SurfaceSetMaterial()")
+	//log.Println("Calling ArrayMesh.SurfaceSetMaterial()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -528,7 +516,7 @@ func (o *ArrayMesh) SurfaceSetMaterial(surfIdx gdnative.Int, material Material) 
 	Args: [{ false surf_idx int} { false name String}], Returns: void
 */
 func (o *ArrayMesh) SurfaceSetName(surfIdx gdnative.Int, name gdnative.String) {
-	log.Println("Calling ArrayMesh.SurfaceSetName()")
+	//log.Println("Calling ArrayMesh.SurfaceSetName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -550,7 +538,7 @@ func (o *ArrayMesh) SurfaceSetName(surfIdx gdnative.Int, name gdnative.String) {
 	Args: [{ false surf_idx int} { false offset int} { false data PoolByteArray}], Returns: void
 */
 func (o *ArrayMesh) SurfaceUpdateRegion(surfIdx gdnative.Int, offset gdnative.Int, data gdnative.PoolByteArray) {
-	log.Println("Calling ArrayMesh.SurfaceUpdateRegion()")
+	//log.Println("Calling ArrayMesh.SurfaceUpdateRegion()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)

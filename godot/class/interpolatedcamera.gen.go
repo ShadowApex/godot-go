@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *InterpolatedCamera) BaseClass() string {
 	return "InterpolatedCamera"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *InterpolatedCamera) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *InterpolatedCamera) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *InterpolatedCamera) GetSpeed() gdnative.Float {
-	log.Println("Calling InterpolatedCamera.GetSpeed()")
+	//log.Println("Calling InterpolatedCamera.GetSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *InterpolatedCamera) GetSpeed() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *InterpolatedCamera) GetSpeed() gdnative.Float {
 	Args: [], Returns: NodePath
 */
 func (o *InterpolatedCamera) GetTargetPath() gdnative.NodePath {
-	log.Println("Calling InterpolatedCamera.GetTargetPath()")
+	//log.Println("Calling InterpolatedCamera.GetTargetPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *InterpolatedCamera) GetTargetPath() gdnative.NodePath {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewNodePathFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *InterpolatedCamera) GetTargetPath() gdnative.NodePath {
 	Args: [], Returns: bool
 */
 func (o *InterpolatedCamera) IsInterpolationEnabled() gdnative.Bool {
-	log.Println("Calling InterpolatedCamera.IsInterpolationEnabled()")
+	//log.Println("Calling InterpolatedCamera.IsInterpolationEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *InterpolatedCamera) IsInterpolationEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *InterpolatedCamera) IsInterpolationEnabled() gdnative.Bool {
 	Args: [{ false target_path bool}], Returns: void
 */
 func (o *InterpolatedCamera) SetInterpolationEnabled(targetPath gdnative.Bool) {
-	log.Println("Calling InterpolatedCamera.SetInterpolationEnabled()")
+	//log.Println("Calling InterpolatedCamera.SetInterpolationEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -144,7 +132,7 @@ func (o *InterpolatedCamera) SetInterpolationEnabled(targetPath gdnative.Bool) {
 	Args: [{ false speed float}], Returns: void
 */
 func (o *InterpolatedCamera) SetSpeed(speed gdnative.Float) {
-	log.Println("Calling InterpolatedCamera.SetSpeed()")
+	//log.Println("Calling InterpolatedCamera.SetSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -165,7 +153,7 @@ func (o *InterpolatedCamera) SetSpeed(speed gdnative.Float) {
 	Args: [{ false target Object}], Returns: void
 */
 func (o *InterpolatedCamera) SetTarget(target Object) {
-	log.Println("Calling InterpolatedCamera.SetTarget()")
+	//log.Println("Calling InterpolatedCamera.SetTarget()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -186,7 +174,7 @@ func (o *InterpolatedCamera) SetTarget(target Object) {
 	Args: [{ false target_path NodePath}], Returns: void
 */
 func (o *InterpolatedCamera) SetTargetPath(targetPath gdnative.NodePath) {
-	log.Println("Calling InterpolatedCamera.SetTargetPath()")
+	//log.Println("Calling InterpolatedCamera.SetTargetPath()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

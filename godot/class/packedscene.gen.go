@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *PackedScene) BaseClass() string {
 	return "PackedScene"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *PackedScene) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *PackedScene) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Dictionary
 */
 func (o *PackedScene) X_GetBundledScene() gdnative.Dictionary {
-	log.Println("Calling PackedScene.X_GetBundledScene()")
+	//log.Println("Calling PackedScene.X_GetBundledScene()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *PackedScene) X_GetBundledScene() gdnative.Dictionary {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewDictionaryFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *PackedScene) X_GetBundledScene() gdnative.Dictionary {
 	Args: [{ false arg0 Dictionary}], Returns: void
 */
 func (o *PackedScene) X_SetBundledScene(arg0 gdnative.Dictionary) {
-	log.Println("Calling PackedScene.X_SetBundledScene()")
+	//log.Println("Calling PackedScene.X_SetBundledScene()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -96,7 +84,7 @@ func (o *PackedScene) X_SetBundledScene(arg0 gdnative.Dictionary) {
 	Args: [], Returns: bool
 */
 func (o *PackedScene) CanInstance() gdnative.Bool {
-	log.Println("Calling PackedScene.CanInstance()")
+	//log.Println("Calling PackedScene.CanInstance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -111,7 +99,7 @@ func (o *PackedScene) CanInstance() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -120,7 +108,7 @@ func (o *PackedScene) CanInstance() gdnative.Bool {
 	Args: [], Returns: SceneState
 */
 func (o *PackedScene) GetState() SceneState {
-	log.Println("Calling PackedScene.GetState()")
+	//log.Println("Calling PackedScene.GetState()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -135,7 +123,7 @@ func (o *PackedScene) GetState() SceneState {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewSceneStateFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -144,7 +132,7 @@ func (o *PackedScene) GetState() SceneState {
 	Args: [{0 true edit_state int}], Returns: Node
 */
 func (o *PackedScene) Instance(editState gdnative.Int) Node {
-	log.Println("Calling PackedScene.Instance()")
+	//log.Println("Calling PackedScene.Instance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -160,7 +148,7 @@ func (o *PackedScene) Instance(editState gdnative.Int) Node {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewNodeFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 

@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *NativeScript) BaseClass() string {
 	return "NativeScript"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *NativeScript) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *NativeScript) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: String
 */
 func (o *NativeScript) GetClassName() gdnative.String {
-	log.Println("Calling NativeScript.GetClassName()")
+	//log.Println("Calling NativeScript.GetClassName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *NativeScript) GetClassName() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *NativeScript) GetClassName() gdnative.String {
 	Args: [], Returns: GDNativeLibrary
 */
 func (o *NativeScript) GetLibrary() GDNativeLibrary {
-	log.Println("Calling NativeScript.GetLibrary()")
+	//log.Println("Calling NativeScript.GetLibrary()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *NativeScript) GetLibrary() GDNativeLibrary {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewGDNativeLibraryFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *NativeScript) GetLibrary() GDNativeLibrary {
 	Args: [], Returns: Object
 */
 func (o *NativeScript) New() Object {
-	log.Println("Calling NativeScript.New()")
+	//log.Println("Calling NativeScript.New()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *NativeScript) New() Object {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewObjectFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *NativeScript) New() Object {
 	Args: [{ false class_name String}], Returns: void
 */
 func (o *NativeScript) SetClassName(className gdnative.String) {
-	log.Println("Calling NativeScript.SetClassName()")
+	//log.Println("Calling NativeScript.SetClassName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -144,7 +132,7 @@ func (o *NativeScript) SetClassName(className gdnative.String) {
 	Args: [{ false library GDNativeLibrary}], Returns: void
 */
 func (o *NativeScript) SetLibrary(library GDNativeLibrary) {
-	log.Println("Calling NativeScript.SetLibrary()")
+	//log.Println("Calling NativeScript.SetLibrary()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

@@ -33,13 +33,3 @@ type HSlider struct {
 func (o *HSlider) BaseClass() string {
 	return "HSlider"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *HSlider) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *HSlider) GetBaseObject() gdnative.Object {
-	return o.owner
-}

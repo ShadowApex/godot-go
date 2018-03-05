@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *VisualScriptFunctionState) BaseClass() string {
 	return "VisualScriptFunctionState"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *VisualScriptFunctionState) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *VisualScriptFunctionState) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: Variant
 */
 func (o *VisualScriptFunctionState) X_SignalCallback() gdnative.Variant {
-	log.Println("Calling VisualScriptFunctionState.X_SignalCallback()")
+	//log.Println("Calling VisualScriptFunctionState.X_SignalCallback()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *VisualScriptFunctionState) X_SignalCallback() gdnative.Variant {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *VisualScriptFunctionState) X_SignalCallback() gdnative.Variant {
 	Args: [{ false obj Object} { false signals String} { false args Array}], Returns: void
 */
 func (o *VisualScriptFunctionState) ConnectToSignal(obj Object, signals gdnative.String, args gdnative.Array) {
-	log.Println("Calling VisualScriptFunctionState.ConnectToSignal()")
+	//log.Println("Calling VisualScriptFunctionState.ConnectToSignal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -98,7 +86,7 @@ func (o *VisualScriptFunctionState) ConnectToSignal(obj Object, signals gdnative
 	Args: [], Returns: bool
 */
 func (o *VisualScriptFunctionState) IsValid() gdnative.Bool {
-	log.Println("Calling VisualScriptFunctionState.IsValid()")
+	//log.Println("Calling VisualScriptFunctionState.IsValid()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -113,7 +101,7 @@ func (o *VisualScriptFunctionState) IsValid() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -122,7 +110,7 @@ func (o *VisualScriptFunctionState) IsValid() gdnative.Bool {
 	Args: [{Null true args Array}], Returns: Variant
 */
 func (o *VisualScriptFunctionState) Resume(args gdnative.Array) gdnative.Variant {
-	log.Println("Calling VisualScriptFunctionState.Resume()")
+	//log.Println("Calling VisualScriptFunctionState.Resume()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -138,6 +126,6 @@ func (o *VisualScriptFunctionState) Resume(args gdnative.Array) gdnative.Variant
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

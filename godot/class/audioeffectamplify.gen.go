@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *AudioEffectAmplify) BaseClass() string {
 	return "AudioEffectAmplify"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *AudioEffectAmplify) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *AudioEffectAmplify) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: float
 */
 func (o *AudioEffectAmplify) GetVolumeDb() gdnative.Float {
-	log.Println("Calling AudioEffectAmplify.GetVolumeDb()")
+	//log.Println("Calling AudioEffectAmplify.GetVolumeDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *AudioEffectAmplify) GetVolumeDb() gdnative.Float {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewFloatFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *AudioEffectAmplify) GetVolumeDb() gdnative.Float {
 	Args: [{ false volume float}], Returns: void
 */
 func (o *AudioEffectAmplify) SetVolumeDb(volume gdnative.Float) {
-	log.Println("Calling AudioEffectAmplify.SetVolumeDb()")
+	//log.Println("Calling AudioEffectAmplify.SetVolumeDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

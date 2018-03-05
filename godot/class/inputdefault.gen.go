@@ -33,13 +33,3 @@ type InputDefault struct {
 func (o *InputDefault) BaseClass() string {
 	return "InputDefault"
 }
-
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *InputDefault) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *InputDefault) GetBaseObject() gdnative.Object {
-	return o.owner
-}

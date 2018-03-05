@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *Sprite) BaseClass() string {
 	return "Sprite"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *Sprite) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *Sprite) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Undocumented
 	Args: [], Returns: int
 */
 func (o *Sprite) GetFrame() gdnative.Int {
-	log.Println("Calling Sprite.GetFrame()")
+	//log.Println("Calling Sprite.GetFrame()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -66,7 +54,7 @@ func (o *Sprite) GetFrame() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -75,7 +63,7 @@ func (o *Sprite) GetFrame() gdnative.Int {
 	Args: [], Returns: int
 */
 func (o *Sprite) GetHframes() gdnative.Int {
-	log.Println("Calling Sprite.GetHframes()")
+	//log.Println("Calling Sprite.GetHframes()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -90,7 +78,7 @@ func (o *Sprite) GetHframes() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -99,7 +87,7 @@ func (o *Sprite) GetHframes() gdnative.Int {
 	Args: [], Returns: Texture
 */
 func (o *Sprite) GetNormalMap() Texture {
-	log.Println("Calling Sprite.GetNormalMap()")
+	//log.Println("Calling Sprite.GetNormalMap()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -114,7 +102,7 @@ func (o *Sprite) GetNormalMap() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -123,7 +111,7 @@ func (o *Sprite) GetNormalMap() Texture {
 	Args: [], Returns: Vector2
 */
 func (o *Sprite) GetOffset() gdnative.Vector2 {
-	log.Println("Calling Sprite.GetOffset()")
+	//log.Println("Calling Sprite.GetOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -138,7 +126,7 @@ func (o *Sprite) GetOffset() gdnative.Vector2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVector2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *Sprite) GetOffset() gdnative.Vector2 {
 	Args: [], Returns: Rect2
 */
 func (o *Sprite) GetRegionRect() gdnative.Rect2 {
-	log.Println("Calling Sprite.GetRegionRect()")
+	//log.Println("Calling Sprite.GetRegionRect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -162,7 +150,7 @@ func (o *Sprite) GetRegionRect() gdnative.Rect2 {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewRect2FromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -171,7 +159,7 @@ func (o *Sprite) GetRegionRect() gdnative.Rect2 {
 	Args: [], Returns: Texture
 */
 func (o *Sprite) GetTexture() Texture {
-	log.Println("Calling Sprite.GetTexture()")
+	//log.Println("Calling Sprite.GetTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -186,7 +174,7 @@ func (o *Sprite) GetTexture() Texture {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewTextureFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -195,7 +183,7 @@ func (o *Sprite) GetTexture() Texture {
 	Args: [], Returns: int
 */
 func (o *Sprite) GetVframes() gdnative.Int {
-	log.Println("Calling Sprite.GetVframes()")
+	//log.Println("Calling Sprite.GetVframes()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -210,7 +198,7 @@ func (o *Sprite) GetVframes() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -219,7 +207,7 @@ func (o *Sprite) GetVframes() gdnative.Int {
 	Args: [], Returns: bool
 */
 func (o *Sprite) IsCentered() gdnative.Bool {
-	log.Println("Calling Sprite.IsCentered()")
+	//log.Println("Calling Sprite.IsCentered()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -234,7 +222,7 @@ func (o *Sprite) IsCentered() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -243,7 +231,7 @@ func (o *Sprite) IsCentered() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Sprite) IsFlippedH() gdnative.Bool {
-	log.Println("Calling Sprite.IsFlippedH()")
+	//log.Println("Calling Sprite.IsFlippedH()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -258,7 +246,7 @@ func (o *Sprite) IsFlippedH() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -267,7 +255,7 @@ func (o *Sprite) IsFlippedH() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Sprite) IsFlippedV() gdnative.Bool {
-	log.Println("Calling Sprite.IsFlippedV()")
+	//log.Println("Calling Sprite.IsFlippedV()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -282,7 +270,7 @@ func (o *Sprite) IsFlippedV() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -291,7 +279,7 @@ func (o *Sprite) IsFlippedV() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Sprite) IsRegion() gdnative.Bool {
-	log.Println("Calling Sprite.IsRegion()")
+	//log.Println("Calling Sprite.IsRegion()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -306,7 +294,7 @@ func (o *Sprite) IsRegion() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -315,7 +303,7 @@ func (o *Sprite) IsRegion() gdnative.Bool {
 	Args: [], Returns: bool
 */
 func (o *Sprite) IsRegionFilterClipEnabled() gdnative.Bool {
-	log.Println("Calling Sprite.IsRegionFilterClipEnabled()")
+	//log.Println("Calling Sprite.IsRegionFilterClipEnabled()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -330,7 +318,7 @@ func (o *Sprite) IsRegionFilterClipEnabled() gdnative.Bool {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewBoolFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -339,7 +327,7 @@ func (o *Sprite) IsRegionFilterClipEnabled() gdnative.Bool {
 	Args: [{ false centered bool}], Returns: void
 */
 func (o *Sprite) SetCentered(centered gdnative.Bool) {
-	log.Println("Calling Sprite.SetCentered()")
+	//log.Println("Calling Sprite.SetCentered()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -360,7 +348,7 @@ func (o *Sprite) SetCentered(centered gdnative.Bool) {
 	Args: [{ false flip_h bool}], Returns: void
 */
 func (o *Sprite) SetFlipH(flipH gdnative.Bool) {
-	log.Println("Calling Sprite.SetFlipH()")
+	//log.Println("Calling Sprite.SetFlipH()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -381,7 +369,7 @@ func (o *Sprite) SetFlipH(flipH gdnative.Bool) {
 	Args: [{ false flip_v bool}], Returns: void
 */
 func (o *Sprite) SetFlipV(flipV gdnative.Bool) {
-	log.Println("Calling Sprite.SetFlipV()")
+	//log.Println("Calling Sprite.SetFlipV()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -402,7 +390,7 @@ func (o *Sprite) SetFlipV(flipV gdnative.Bool) {
 	Args: [{ false frame int}], Returns: void
 */
 func (o *Sprite) SetFrame(frame gdnative.Int) {
-	log.Println("Calling Sprite.SetFrame()")
+	//log.Println("Calling Sprite.SetFrame()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -423,7 +411,7 @@ func (o *Sprite) SetFrame(frame gdnative.Int) {
 	Args: [{ false hframes int}], Returns: void
 */
 func (o *Sprite) SetHframes(hframes gdnative.Int) {
-	log.Println("Calling Sprite.SetHframes()")
+	//log.Println("Calling Sprite.SetHframes()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -444,7 +432,7 @@ func (o *Sprite) SetHframes(hframes gdnative.Int) {
 	Args: [{ false normal_map Texture}], Returns: void
 */
 func (o *Sprite) SetNormalMap(normalMap Texture) {
-	log.Println("Calling Sprite.SetNormalMap()")
+	//log.Println("Calling Sprite.SetNormalMap()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -465,7 +453,7 @@ func (o *Sprite) SetNormalMap(normalMap Texture) {
 	Args: [{ false offset Vector2}], Returns: void
 */
 func (o *Sprite) SetOffset(offset gdnative.Vector2) {
-	log.Println("Calling Sprite.SetOffset()")
+	//log.Println("Calling Sprite.SetOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -486,7 +474,7 @@ func (o *Sprite) SetOffset(offset gdnative.Vector2) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Sprite) SetRegion(enabled gdnative.Bool) {
-	log.Println("Calling Sprite.SetRegion()")
+	//log.Println("Calling Sprite.SetRegion()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -507,7 +495,7 @@ func (o *Sprite) SetRegion(enabled gdnative.Bool) {
 	Args: [{ false enabled bool}], Returns: void
 */
 func (o *Sprite) SetRegionFilterClip(enabled gdnative.Bool) {
-	log.Println("Calling Sprite.SetRegionFilterClip()")
+	//log.Println("Calling Sprite.SetRegionFilterClip()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -528,7 +516,7 @@ func (o *Sprite) SetRegionFilterClip(enabled gdnative.Bool) {
 	Args: [{ false rect Rect2}], Returns: void
 */
 func (o *Sprite) SetRegionRect(rect gdnative.Rect2) {
-	log.Println("Calling Sprite.SetRegionRect()")
+	//log.Println("Calling Sprite.SetRegionRect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -549,7 +537,7 @@ func (o *Sprite) SetRegionRect(rect gdnative.Rect2) {
 	Args: [{ false texture Texture}], Returns: void
 */
 func (o *Sprite) SetTexture(texture Texture) {
-	log.Println("Calling Sprite.SetTexture()")
+	//log.Println("Calling Sprite.SetTexture()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -570,7 +558,7 @@ func (o *Sprite) SetTexture(texture Texture) {
 	Args: [{ false vframes int}], Returns: void
 */
 func (o *Sprite) SetVframes(vframes gdnative.Int) {
-	log.Println("Calling Sprite.SetVframes()")
+	//log.Println("Calling Sprite.SetVframes()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

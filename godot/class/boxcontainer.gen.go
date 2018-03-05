@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *BoxContainer) BaseClass() string {
 	return "BoxContainer"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *BoxContainer) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *BoxContainer) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Adds a control to the box as a spacer. If [code]true[/code], [i]begin[/i] will insert the spacer control in front of other children.
 	Args: [{ false begin bool}], Returns: void
 */
 func (o *BoxContainer) AddSpacer(begin gdnative.Bool) {
-	log.Println("Calling BoxContainer.AddSpacer()")
+	//log.Println("Calling BoxContainer.AddSpacer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -77,7 +65,7 @@ func (o *BoxContainer) AddSpacer(begin gdnative.Bool) {
 	Args: [{ false alignment int}], Returns: void
 */
 func (o *BoxContainer) SetAlignment(alignment gdnative.Int) {
-	log.Println("Calling BoxContainer.SetAlignment()")
+	//log.Println("Calling BoxContainer.SetAlignment()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)

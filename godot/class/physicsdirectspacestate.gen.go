@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *PhysicsDirectSpaceState) BaseClass() string {
 	return "PhysicsDirectSpaceState"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *PhysicsDirectSpaceState) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *PhysicsDirectSpaceState) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
         Checks whether the shape can travel to a point. The method will return an array with two floats between 0 and 1, both representing a fraction of [code]motion[/code]. The first is how far the shape can move without triggering a collision, and the second is the point at which a collision will occur. If no collision is detected, the returned array will be [1, 1]. If the shape can not move, the array will be empty ([code]dir.empty()==true[/code]).
 	Args: [{ false shape PhysicsShapeQueryParameters} { false motion Vector3}], Returns: Array
 */
 func (o *PhysicsDirectSpaceState) CastMotion(shape PhysicsShapeQueryParameters, motion gdnative.Vector3) gdnative.Array {
-	log.Println("Calling PhysicsDirectSpaceState.CastMotion()")
+	//log.Println("Calling PhysicsDirectSpaceState.CastMotion()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -68,7 +56,7 @@ func (o *PhysicsDirectSpaceState) CastMotion(shape PhysicsShapeQueryParameters, 
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -77,7 +65,7 @@ func (o *PhysicsDirectSpaceState) CastMotion(shape PhysicsShapeQueryParameters, 
 	Args: [{ false shape PhysicsShapeQueryParameters} {32 true max_results int}], Returns: Array
 */
 func (o *PhysicsDirectSpaceState) CollideShape(shape PhysicsShapeQueryParameters, maxResults gdnative.Int) gdnative.Array {
-	log.Println("Calling PhysicsDirectSpaceState.CollideShape()")
+	//log.Println("Calling PhysicsDirectSpaceState.CollideShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -94,7 +82,7 @@ func (o *PhysicsDirectSpaceState) CollideShape(shape PhysicsShapeQueryParameters
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -103,7 +91,7 @@ func (o *PhysicsDirectSpaceState) CollideShape(shape PhysicsShapeQueryParameters
 	Args: [{ false shape PhysicsShapeQueryParameters}], Returns: Dictionary
 */
 func (o *PhysicsDirectSpaceState) GetRestInfo(shape PhysicsShapeQueryParameters) gdnative.Dictionary {
-	log.Println("Calling PhysicsDirectSpaceState.GetRestInfo()")
+	//log.Println("Calling PhysicsDirectSpaceState.GetRestInfo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -119,7 +107,7 @@ func (o *PhysicsDirectSpaceState) GetRestInfo(shape PhysicsShapeQueryParameters)
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewDictionaryFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -128,7 +116,7 @@ func (o *PhysicsDirectSpaceState) GetRestInfo(shape PhysicsShapeQueryParameters)
 	Args: [{ false from Vector3} { false to Vector3} {[] true exclude Array} {2147483647 true collision_layer int}], Returns: Dictionary
 */
 func (o *PhysicsDirectSpaceState) IntersectRay(from gdnative.Vector3, to gdnative.Vector3, exclude gdnative.Array, collisionLayer gdnative.Int) gdnative.Dictionary {
-	log.Println("Calling PhysicsDirectSpaceState.IntersectRay()")
+	//log.Println("Calling PhysicsDirectSpaceState.IntersectRay()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
@@ -147,7 +135,7 @@ func (o *PhysicsDirectSpaceState) IntersectRay(from gdnative.Vector3, to gdnativ
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewDictionaryFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -156,7 +144,7 @@ func (o *PhysicsDirectSpaceState) IntersectRay(from gdnative.Vector3, to gdnativ
 	Args: [{ false shape PhysicsShapeQueryParameters} {32 true max_results int}], Returns: Array
 */
 func (o *PhysicsDirectSpaceState) IntersectShape(shape PhysicsShapeQueryParameters, maxResults gdnative.Int) gdnative.Array {
-	log.Println("Calling PhysicsDirectSpaceState.IntersectShape()")
+	//log.Println("Calling PhysicsDirectSpaceState.IntersectShape()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -173,6 +161,6 @@ func (o *PhysicsDirectSpaceState) IntersectShape(shape PhysicsShapeQueryParamete
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewArrayFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }

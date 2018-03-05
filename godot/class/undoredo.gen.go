@@ -1,8 +1,6 @@
 package class
 
 import (
-	"log"
-
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -36,22 +34,12 @@ func (o *UndoRedo) BaseClass() string {
 	return "UndoRedo"
 }
 
-// SetBaseObject will internally set the Godot object inside the struct.
-// This is used to call parent methods.
-func (o *UndoRedo) SetBaseObject(object gdnative.Object) {
-	o.owner = object
-}
-
-func (o *UndoRedo) GetBaseObject() gdnative.Object {
-	return o.owner
-}
-
 /*
 
 	Args: [{ false object Object} { false method String}], Returns: Variant
 */
 func (o *UndoRedo) AddDoMethod(object Object, method gdnative.String) gdnative.Variant {
-	log.Println("Calling UndoRedo.AddDoMethod()")
+	//log.Println("Calling UndoRedo.AddDoMethod()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -68,7 +56,7 @@ func (o *UndoRedo) AddDoMethod(object Object, method gdnative.String) gdnative.V
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -77,7 +65,7 @@ func (o *UndoRedo) AddDoMethod(object Object, method gdnative.String) gdnative.V
 	Args: [{ false object Object} { false property String} { false value Variant}], Returns: void
 */
 func (o *UndoRedo) AddDoProperty(object Object, property gdnative.String, value gdnative.Variant) {
-	log.Println("Calling UndoRedo.AddDoProperty()")
+	//log.Println("Calling UndoRedo.AddDoProperty()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -100,7 +88,7 @@ func (o *UndoRedo) AddDoProperty(object Object, property gdnative.String, value 
 	Args: [{ false object Object}], Returns: void
 */
 func (o *UndoRedo) AddDoReference(object Object) {
-	log.Println("Calling UndoRedo.AddDoReference()")
+	//log.Println("Calling UndoRedo.AddDoReference()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -121,7 +109,7 @@ func (o *UndoRedo) AddDoReference(object Object) {
 	Args: [{ false object Object} { false method String}], Returns: Variant
 */
 func (o *UndoRedo) AddUndoMethod(object Object, method gdnative.String) gdnative.Variant {
-	log.Println("Calling UndoRedo.AddUndoMethod()")
+	//log.Println("Calling UndoRedo.AddUndoMethod()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -138,7 +126,7 @@ func (o *UndoRedo) AddUndoMethod(object Object, method gdnative.String) gdnative
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewVariantFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -147,7 +135,7 @@ func (o *UndoRedo) AddUndoMethod(object Object, method gdnative.String) gdnative
 	Args: [{ false object Object} { false property String} { false value Variant}], Returns: void
 */
 func (o *UndoRedo) AddUndoProperty(object Object, property gdnative.String, value gdnative.Variant) {
-	log.Println("Calling UndoRedo.AddUndoProperty()")
+	//log.Println("Calling UndoRedo.AddUndoProperty()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
@@ -170,7 +158,7 @@ func (o *UndoRedo) AddUndoProperty(object Object, property gdnative.String, valu
 	Args: [{ false object Object}], Returns: void
 */
 func (o *UndoRedo) AddUndoReference(object Object) {
-	log.Println("Calling UndoRedo.AddUndoReference()")
+	//log.Println("Calling UndoRedo.AddUndoReference()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
@@ -191,7 +179,7 @@ func (o *UndoRedo) AddUndoReference(object Object) {
 	Args: [], Returns: void
 */
 func (o *UndoRedo) ClearHistory() {
-	log.Println("Calling UndoRedo.ClearHistory()")
+	//log.Println("Calling UndoRedo.ClearHistory()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -211,7 +199,7 @@ func (o *UndoRedo) ClearHistory() {
 	Args: [], Returns: void
 */
 func (o *UndoRedo) CommitAction() {
-	log.Println("Calling UndoRedo.CommitAction()")
+	//log.Println("Calling UndoRedo.CommitAction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -231,7 +219,7 @@ func (o *UndoRedo) CommitAction() {
 	Args: [{ false name String} {0 true merge_mode int}], Returns: void
 */
 func (o *UndoRedo) CreateAction(name gdnative.String, mergeMode gdnative.Int) {
-	log.Println("Calling UndoRedo.CreateAction()")
+	//log.Println("Calling UndoRedo.CreateAction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
@@ -253,7 +241,7 @@ func (o *UndoRedo) CreateAction(name gdnative.String, mergeMode gdnative.Int) {
 	Args: [], Returns: String
 */
 func (o *UndoRedo) GetCurrentActionName() gdnative.String {
-	log.Println("Calling UndoRedo.GetCurrentActionName()")
+	//log.Println("Calling UndoRedo.GetCurrentActionName()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -268,7 +256,7 @@ func (o *UndoRedo) GetCurrentActionName() gdnative.String {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -277,7 +265,7 @@ func (o *UndoRedo) GetCurrentActionName() gdnative.String {
 	Args: [], Returns: int
 */
 func (o *UndoRedo) GetVersion() gdnative.Int {
-	log.Println("Calling UndoRedo.GetVersion()")
+	//log.Println("Calling UndoRedo.GetVersion()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -292,7 +280,7 @@ func (o *UndoRedo) GetVersion() gdnative.Int {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := gdnative.NewIntFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
+	//log.Println("  Got return value: ", ret)
 	return ret
 }
 
@@ -301,7 +289,7 @@ func (o *UndoRedo) GetVersion() gdnative.Int {
 	Args: [], Returns: void
 */
 func (o *UndoRedo) Redo() {
-	log.Println("Calling UndoRedo.Redo()")
+	//log.Println("Calling UndoRedo.Redo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
@@ -321,7 +309,7 @@ func (o *UndoRedo) Redo() {
 	Args: [], Returns: void
 */
 func (o *UndoRedo) Undo() {
-	log.Println("Calling UndoRedo.Undo()")
+	//log.Println("Calling UndoRedo.Undo()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 0, 0)
