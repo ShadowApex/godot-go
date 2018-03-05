@@ -5933,19 +5933,6 @@
 		],
 		"methods": [
 			{
-				"name": "poll",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
 				"name": "accept_stream",
 				"return_type": "enum.Error",
 				"is_editor": false,
@@ -12316,38 +12303,6 @@
 				]
 			},
 			{
-				"name": "set_window_always_on_top",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "enabled",
-						"type": "bool",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "is_window_always_on_top",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
 				"name": "request_attention",
 				"return_type": "void",
 				"is_editor": false,
@@ -15691,6 +15646,38 @@
 			},
 			{
 				"name": "force_draw",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "swap_buffers",
+						"type": "bool",
+						"has_default_value": true,
+						"default_value": "True"
+					}
+				]
+			},
+			{
+				"name": "sync",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "draw",
 				"return_type": "void",
 				"is_editor": false,
 				"is_noscript": false,
@@ -37781,6 +37768,25 @@
 				]
 			},
 			{
+				"name": "apply_torque_impulse",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "j",
+						"type": "Vector3",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
 				"name": "set_sleep_state",
 				"return_type": "void",
 				"is_editor": false,
@@ -38293,6 +38299,1543 @@
 			}
 		],
 		"enums": [
+		]
+	},
+	{
+		"name": "InstancePlaceholder",
+		"base_class": "Node",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": false,
+		"is_reference": false,
+		"constants": {
+		},
+		"properties": [
+		],
+		"signals": [
+		],
+		"methods": [
+			{
+				"name": "get_stored_values",
+				"return_type": "Dictionary",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "with_order",
+						"type": "bool",
+						"has_default_value": true,
+						"default_value": "False"
+					}
+				]
+			},
+			{
+				"name": "replace_by_instance",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "custom_scene",
+						"type": "PackedScene",
+						"has_default_value": true,
+						"default_value": "Null"
+					}
+				]
+			},
+			{
+				"name": "get_instance_path",
+				"return_type": "String",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			}
+		],
+		"enums": [
+		]
+	},
+	{
+		"name": "Viewport",
+		"base_class": "Node",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": true,
+		"is_reference": false,
+		"constants": {
+			"UPDATE_DISABLED": 0,
+			"UPDATE_ONCE": 1,
+			"UPDATE_WHEN_VISIBLE": 2,
+			"UPDATE_ALWAYS": 3,
+			"SHADOW_ATLAS_QUADRANT_SUBDIV_DISABLED": 0,
+			"SHADOW_ATLAS_QUADRANT_SUBDIV_1": 1,
+			"SHADOW_ATLAS_QUADRANT_SUBDIV_4": 2,
+			"SHADOW_ATLAS_QUADRANT_SUBDIV_16": 3,
+			"SHADOW_ATLAS_QUADRANT_SUBDIV_64": 4,
+			"SHADOW_ATLAS_QUADRANT_SUBDIV_256": 5,
+			"SHADOW_ATLAS_QUADRANT_SUBDIV_1024": 6,
+			"SHADOW_ATLAS_QUADRANT_SUBDIV_MAX": 7,
+			"RENDER_INFO_OBJECTS_IN_FRAME": 0,
+			"RENDER_INFO_VERTICES_IN_FRAME": 1,
+			"RENDER_INFO_MATERIAL_CHANGES_IN_FRAME": 2,
+			"RENDER_INFO_SHADER_CHANGES_IN_FRAME": 3,
+			"RENDER_INFO_SURFACE_CHANGES_IN_FRAME": 4,
+			"RENDER_INFO_DRAW_CALLS_IN_FRAME": 5,
+			"RENDER_INFO_MAX": 6,
+			"DEBUG_DRAW_DISABLED": 0,
+			"DEBUG_DRAW_UNSHADED": 1,
+			"DEBUG_DRAW_OVERDRAW": 2,
+			"DEBUG_DRAW_WIREFRAME": 3,
+			"MSAA_DISABLED": 0,
+			"MSAA_2X": 1,
+			"MSAA_4X": 2,
+			"MSAA_8X": 3,
+			"MSAA_16X": 4,
+			"USAGE_2D": 0,
+			"USAGE_2D_NO_SAMPLING": 1,
+			"USAGE_3D": 2,
+			"USAGE_3D_NO_EFFECTS": 3,
+			"CLEAR_MODE_ALWAYS": 0,
+			"CLEAR_MODE_NEVER": 1,
+			"CLEAR_MODE_ONLY_NEXT_FRAME": 2
+		},
+		"properties": [
+			{
+				"name": "arvr",
+				"type": "bool",
+				"getter": "use_arvr",
+				"setter": "set_use_arvr",
+				"index": -1
+			},
+			{
+				"name": "size",
+				"type": "Vector2",
+				"getter": "get_size",
+				"setter": "set_size",
+				"index": -1
+			},
+			{
+				"name": "own_world",
+				"type": "bool",
+				"getter": "is_using_own_world",
+				"setter": "set_use_own_world",
+				"index": -1
+			},
+			{
+				"name": "world",
+				"type": "World",
+				"getter": "get_world",
+				"setter": "set_world",
+				"index": -1
+			},
+			{
+				"name": "world_2d",
+				"type": "World2D",
+				"getter": "get_world_2d",
+				"setter": "set_world_2d",
+				"index": -1
+			},
+			{
+				"name": "transparent_bg",
+				"type": "bool",
+				"getter": "has_transparent_background",
+				"setter": "set_transparent_background",
+				"index": -1
+			},
+			{
+				"name": "msaa",
+				"type": "int",
+				"getter": "get_msaa",
+				"setter": "set_msaa",
+				"index": -1
+			},
+			{
+				"name": "hdr",
+				"type": "bool",
+				"getter": "get_hdr",
+				"setter": "set_hdr",
+				"index": -1
+			},
+			{
+				"name": "disable_3d",
+				"type": "bool",
+				"getter": "is_3d_disabled",
+				"setter": "set_disable_3d",
+				"index": -1
+			},
+			{
+				"name": "usage",
+				"type": "int",
+				"getter": "get_usage",
+				"setter": "set_usage",
+				"index": -1
+			},
+			{
+				"name": "debug_draw",
+				"type": "int",
+				"getter": "get_debug_draw",
+				"setter": "set_debug_draw",
+				"index": -1
+			},
+			{
+				"name": "render_target_v_flip",
+				"type": "bool",
+				"getter": "get_vflip",
+				"setter": "set_vflip",
+				"index": -1
+			},
+			{
+				"name": "render_target_clear_mode",
+				"type": "int",
+				"getter": "get_clear_mode",
+				"setter": "set_clear_mode",
+				"index": -1
+			},
+			{
+				"name": "render_target_update_mode",
+				"type": "int",
+				"getter": "get_update_mode",
+				"setter": "set_update_mode",
+				"index": -1
+			},
+			{
+				"name": "audio_listener_enable_2d",
+				"type": "bool",
+				"getter": "is_audio_listener_2d",
+				"setter": "set_as_audio_listener_2d",
+				"index": -1
+			},
+			{
+				"name": "audio_listener_enable_3d",
+				"type": "bool",
+				"getter": "is_audio_listener",
+				"setter": "set_as_audio_listener",
+				"index": -1
+			},
+			{
+				"name": "physics_object_picking",
+				"type": "bool",
+				"getter": "get_physics_object_picking",
+				"setter": "set_physics_object_picking",
+				"index": -1
+			},
+			{
+				"name": "gui_disable_input",
+				"type": "bool",
+				"getter": "is_input_disabled",
+				"setter": "set_disable_input",
+				"index": -1
+			},
+			{
+				"name": "gui_snap_controls_to_pixels",
+				"type": "bool",
+				"getter": "is_snap_controls_to_pixels_enabled",
+				"setter": "set_snap_controls_to_pixels",
+				"index": -1
+			},
+			{
+				"name": "shadow_atlas_size",
+				"type": "int",
+				"getter": "get_shadow_atlas_size",
+				"setter": "set_shadow_atlas_size",
+				"index": -1
+			},
+			{
+				"name": "shadow_atlas_quad_0",
+				"type": "int",
+				"getter": "get_shadow_atlas_quadrant_subdiv",
+				"setter": "set_shadow_atlas_quadrant_subdiv",
+				"index": 0
+			},
+			{
+				"name": "shadow_atlas_quad_1",
+				"type": "int",
+				"getter": "get_shadow_atlas_quadrant_subdiv",
+				"setter": "set_shadow_atlas_quadrant_subdiv",
+				"index": 1
+			},
+			{
+				"name": "shadow_atlas_quad_2",
+				"type": "int",
+				"getter": "get_shadow_atlas_quadrant_subdiv",
+				"setter": "set_shadow_atlas_quadrant_subdiv",
+				"index": 2
+			},
+			{
+				"name": "shadow_atlas_quad_3",
+				"type": "int",
+				"getter": "get_shadow_atlas_quadrant_subdiv",
+				"setter": "set_shadow_atlas_quadrant_subdiv",
+				"index": 3
+			},
+			{
+				"name": "canvas_transform",
+				"type": "Transform2D",
+				"getter": "get_canvas_transform",
+				"setter": "set_canvas_transform",
+				"index": -1
+			},
+			{
+				"name": "global_canvas_transform",
+				"type": "Transform2D",
+				"getter": "get_global_canvas_transform",
+				"setter": "set_global_canvas_transform",
+				"index": -1
+			}
+		],
+		"signals": [
+			{
+				"name": "size_changed",
+				"arguments": [
+				]
+			}
+		],
+		"methods": [
+			{
+				"name": "set_use_arvr",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "use",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "use_arvr",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_size",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "size",
+						"type": "Vector2",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_size",
+				"return_type": "Vector2",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_world_2d",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "world_2d",
+						"type": "World2D",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_world_2d",
+				"return_type": "World2D",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "find_world_2d",
+				"return_type": "World2D",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_world",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "world",
+						"type": "World",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_world",
+				"return_type": "World",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "find_world",
+				"return_type": "World",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_canvas_transform",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "xform",
+						"type": "Transform2D",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_canvas_transform",
+				"return_type": "Transform2D",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_global_canvas_transform",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "xform",
+						"type": "Transform2D",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_global_canvas_transform",
+				"return_type": "Transform2D",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_final_transform",
+				"return_type": "Transform2D",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_visible_rect",
+				"return_type": "Rect2",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_transparent_background",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "enable",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "has_transparent_background",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "_vp_input",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "arg0",
+						"type": "InputEvent",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "_vp_input_text",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "text",
+						"type": "String",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "_vp_unhandled_input",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "arg0",
+						"type": "InputEvent",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "set_size_override",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "enable",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "size",
+						"type": "Vector2",
+						"has_default_value": true,
+						"default_value": "(-1, -1)"
+					},
+					{
+						"name": "margin",
+						"type": "Vector2",
+						"has_default_value": true,
+						"default_value": "(0, 0)"
+					}
+				]
+			},
+			{
+				"name": "get_size_override",
+				"return_type": "Vector2",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "is_size_override_enabled",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_size_override_stretch",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "enabled",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "is_size_override_stretch_enabled",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_vflip",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "enable",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_vflip",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_clear_mode",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "mode",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_clear_mode",
+				"return_type": "enum.Viewport::ClearMode",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_update_mode",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "mode",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_update_mode",
+				"return_type": "enum.Viewport::UpdateMode",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_msaa",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "msaa",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_msaa",
+				"return_type": "enum.Viewport::MSAA",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_hdr",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "enable",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_hdr",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_usage",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "usage",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_usage",
+				"return_type": "enum.Viewport::Usage",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_debug_draw",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "debug_draw",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_debug_draw",
+				"return_type": "enum.Viewport::DebugDraw",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_render_info",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "info",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_texture",
+				"return_type": "ViewportTexture",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_physics_object_picking",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "enable",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_physics_object_picking",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_viewport_rid",
+				"return_type": "RID",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "input",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "local_event",
+						"type": "InputEvent",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "unhandled_input",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "local_event",
+						"type": "InputEvent",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "update_worlds",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_use_own_world",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "enable",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "is_using_own_world",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_camera",
+				"return_type": "Camera",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_as_audio_listener",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "enable",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "is_audio_listener",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_as_audio_listener_2d",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "enable",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "is_audio_listener_2d",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_attach_to_screen_rect",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "rect",
+						"type": "Rect2",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_mouse_position",
+				"return_type": "Vector2",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "warp_mouse",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "to_position",
+						"type": "Vector2",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "gui_has_modal_stack",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "gui_get_drag_data",
+				"return_type": "Variant",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_disable_input",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "disable",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "is_input_disabled",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_disable_3d",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "disable",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "is_3d_disabled",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "_gui_show_tooltip",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "_gui_remove_focus",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_shadow_atlas_size",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "size",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_shadow_atlas_size",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_snap_controls_to_pixels",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "enabled",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "is_snap_controls_to_pixels_enabled",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_shadow_atlas_quadrant_subdiv",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "quadrant",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "subdiv",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_shadow_atlas_quadrant_subdiv",
+				"return_type": "enum.Viewport::ShadowAtlasQuadrantSubdiv",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "quadrant",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			}
+		],
+		"enums": [
+			{
+				"name": "ClearMode",
+				"values": {
+					"CLEAR_MODE_ALWAYS": 0,
+					"CLEAR_MODE_NEVER": 1,
+					"CLEAR_MODE_ONLY_NEXT_FRAME": 2
+				}
+			},
+			{
+				"name": "RenderInfo",
+				"values": {
+					"RENDER_INFO_OBJECTS_IN_FRAME": 0,
+					"RENDER_INFO_VERTICES_IN_FRAME": 1,
+					"RENDER_INFO_MATERIAL_CHANGES_IN_FRAME": 2,
+					"RENDER_INFO_SHADER_CHANGES_IN_FRAME": 3,
+					"RENDER_INFO_SURFACE_CHANGES_IN_FRAME": 4,
+					"RENDER_INFO_DRAW_CALLS_IN_FRAME": 5,
+					"RENDER_INFO_MAX": 6
+				}
+			},
+			{
+				"name": "Usage",
+				"values": {
+					"USAGE_2D": 0,
+					"USAGE_2D_NO_SAMPLING": 1,
+					"USAGE_3D": 2,
+					"USAGE_3D_NO_EFFECTS": 3
+				}
+			},
+			{
+				"name": "DebugDraw",
+				"values": {
+					"DEBUG_DRAW_DISABLED": 0,
+					"DEBUG_DRAW_UNSHADED": 1,
+					"DEBUG_DRAW_OVERDRAW": 2,
+					"DEBUG_DRAW_WIREFRAME": 3
+				}
+			},
+			{
+				"name": "ShadowAtlasQuadrantSubdiv",
+				"values": {
+					"SHADOW_ATLAS_QUADRANT_SUBDIV_DISABLED": 0,
+					"SHADOW_ATLAS_QUADRANT_SUBDIV_1": 1,
+					"SHADOW_ATLAS_QUADRANT_SUBDIV_4": 2,
+					"SHADOW_ATLAS_QUADRANT_SUBDIV_16": 3,
+					"SHADOW_ATLAS_QUADRANT_SUBDIV_64": 4,
+					"SHADOW_ATLAS_QUADRANT_SUBDIV_256": 5,
+					"SHADOW_ATLAS_QUADRANT_SUBDIV_1024": 6,
+					"SHADOW_ATLAS_QUADRANT_SUBDIV_MAX": 7
+				}
+			},
+			{
+				"name": "UpdateMode",
+				"values": {
+					"UPDATE_DISABLED": 0,
+					"UPDATE_ONCE": 1,
+					"UPDATE_WHEN_VISIBLE": 2,
+					"UPDATE_ALWAYS": 3
+				}
+			},
+			{
+				"name": "MSAA",
+				"values": {
+					"MSAA_DISABLED": 0,
+					"MSAA_2X": 1,
+					"MSAA_4X": 2,
+					"MSAA_8X": 3,
+					"MSAA_16X": 4
+				}
+			}
 		]
 	},
 	{
@@ -40957,1543 +42500,6 @@
 					"RESULT_DOWNLOAD_FILE_CANT_OPEN": 9,
 					"RESULT_DOWNLOAD_FILE_WRITE_ERROR": 10,
 					"RESULT_REDIRECT_LIMIT_REACHED": 11
-				}
-			}
-		]
-	},
-	{
-		"name": "InstancePlaceholder",
-		"base_class": "Node",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": false,
-		"is_reference": false,
-		"constants": {
-		},
-		"properties": [
-		],
-		"signals": [
-		],
-		"methods": [
-			{
-				"name": "get_stored_values",
-				"return_type": "Dictionary",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "with_order",
-						"type": "bool",
-						"has_default_value": true,
-						"default_value": "False"
-					}
-				]
-			},
-			{
-				"name": "replace_by_instance",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "custom_scene",
-						"type": "PackedScene",
-						"has_default_value": true,
-						"default_value": "Null"
-					}
-				]
-			},
-			{
-				"name": "get_instance_path",
-				"return_type": "String",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			}
-		],
-		"enums": [
-		]
-	},
-	{
-		"name": "Viewport",
-		"base_class": "Node",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": true,
-		"is_reference": false,
-		"constants": {
-			"UPDATE_DISABLED": 0,
-			"UPDATE_ONCE": 1,
-			"UPDATE_WHEN_VISIBLE": 2,
-			"UPDATE_ALWAYS": 3,
-			"SHADOW_ATLAS_QUADRANT_SUBDIV_DISABLED": 0,
-			"SHADOW_ATLAS_QUADRANT_SUBDIV_1": 1,
-			"SHADOW_ATLAS_QUADRANT_SUBDIV_4": 2,
-			"SHADOW_ATLAS_QUADRANT_SUBDIV_16": 3,
-			"SHADOW_ATLAS_QUADRANT_SUBDIV_64": 4,
-			"SHADOW_ATLAS_QUADRANT_SUBDIV_256": 5,
-			"SHADOW_ATLAS_QUADRANT_SUBDIV_1024": 6,
-			"SHADOW_ATLAS_QUADRANT_SUBDIV_MAX": 7,
-			"RENDER_INFO_OBJECTS_IN_FRAME": 0,
-			"RENDER_INFO_VERTICES_IN_FRAME": 1,
-			"RENDER_INFO_MATERIAL_CHANGES_IN_FRAME": 2,
-			"RENDER_INFO_SHADER_CHANGES_IN_FRAME": 3,
-			"RENDER_INFO_SURFACE_CHANGES_IN_FRAME": 4,
-			"RENDER_INFO_DRAW_CALLS_IN_FRAME": 5,
-			"RENDER_INFO_MAX": 6,
-			"DEBUG_DRAW_DISABLED": 0,
-			"DEBUG_DRAW_UNSHADED": 1,
-			"DEBUG_DRAW_OVERDRAW": 2,
-			"DEBUG_DRAW_WIREFRAME": 3,
-			"MSAA_DISABLED": 0,
-			"MSAA_2X": 1,
-			"MSAA_4X": 2,
-			"MSAA_8X": 3,
-			"MSAA_16X": 4,
-			"USAGE_2D": 0,
-			"USAGE_2D_NO_SAMPLING": 1,
-			"USAGE_3D": 2,
-			"USAGE_3D_NO_EFFECTS": 3,
-			"CLEAR_MODE_ALWAYS": 0,
-			"CLEAR_MODE_NEVER": 1,
-			"CLEAR_MODE_ONLY_NEXT_FRAME": 2
-		},
-		"properties": [
-			{
-				"name": "arvr",
-				"type": "bool",
-				"getter": "use_arvr",
-				"setter": "set_use_arvr",
-				"index": -1
-			},
-			{
-				"name": "size",
-				"type": "Vector2",
-				"getter": "get_size",
-				"setter": "set_size",
-				"index": -1
-			},
-			{
-				"name": "own_world",
-				"type": "bool",
-				"getter": "is_using_own_world",
-				"setter": "set_use_own_world",
-				"index": -1
-			},
-			{
-				"name": "world",
-				"type": "World",
-				"getter": "get_world",
-				"setter": "set_world",
-				"index": -1
-			},
-			{
-				"name": "world_2d",
-				"type": "World2D",
-				"getter": "get_world_2d",
-				"setter": "set_world_2d",
-				"index": -1
-			},
-			{
-				"name": "transparent_bg",
-				"type": "bool",
-				"getter": "has_transparent_background",
-				"setter": "set_transparent_background",
-				"index": -1
-			},
-			{
-				"name": "msaa",
-				"type": "int",
-				"getter": "get_msaa",
-				"setter": "set_msaa",
-				"index": -1
-			},
-			{
-				"name": "hdr",
-				"type": "bool",
-				"getter": "get_hdr",
-				"setter": "set_hdr",
-				"index": -1
-			},
-			{
-				"name": "disable_3d",
-				"type": "bool",
-				"getter": "is_3d_disabled",
-				"setter": "set_disable_3d",
-				"index": -1
-			},
-			{
-				"name": "usage",
-				"type": "int",
-				"getter": "get_usage",
-				"setter": "set_usage",
-				"index": -1
-			},
-			{
-				"name": "debug_draw",
-				"type": "int",
-				"getter": "get_debug_draw",
-				"setter": "set_debug_draw",
-				"index": -1
-			},
-			{
-				"name": "render_target_v_flip",
-				"type": "bool",
-				"getter": "get_vflip",
-				"setter": "set_vflip",
-				"index": -1
-			},
-			{
-				"name": "render_target_clear_mode",
-				"type": "int",
-				"getter": "get_clear_mode",
-				"setter": "set_clear_mode",
-				"index": -1
-			},
-			{
-				"name": "render_target_update_mode",
-				"type": "int",
-				"getter": "get_update_mode",
-				"setter": "set_update_mode",
-				"index": -1
-			},
-			{
-				"name": "audio_listener_enable_2d",
-				"type": "bool",
-				"getter": "is_audio_listener_2d",
-				"setter": "set_as_audio_listener_2d",
-				"index": -1
-			},
-			{
-				"name": "audio_listener_enable_3d",
-				"type": "bool",
-				"getter": "is_audio_listener",
-				"setter": "set_as_audio_listener",
-				"index": -1
-			},
-			{
-				"name": "physics_object_picking",
-				"type": "bool",
-				"getter": "get_physics_object_picking",
-				"setter": "set_physics_object_picking",
-				"index": -1
-			},
-			{
-				"name": "gui_disable_input",
-				"type": "bool",
-				"getter": "is_input_disabled",
-				"setter": "set_disable_input",
-				"index": -1
-			},
-			{
-				"name": "gui_snap_controls_to_pixels",
-				"type": "bool",
-				"getter": "is_snap_controls_to_pixels_enabled",
-				"setter": "set_snap_controls_to_pixels",
-				"index": -1
-			},
-			{
-				"name": "shadow_atlas_size",
-				"type": "int",
-				"getter": "get_shadow_atlas_size",
-				"setter": "set_shadow_atlas_size",
-				"index": -1
-			},
-			{
-				"name": "shadow_atlas_quad_0",
-				"type": "int",
-				"getter": "get_shadow_atlas_quadrant_subdiv",
-				"setter": "set_shadow_atlas_quadrant_subdiv",
-				"index": 0
-			},
-			{
-				"name": "shadow_atlas_quad_1",
-				"type": "int",
-				"getter": "get_shadow_atlas_quadrant_subdiv",
-				"setter": "set_shadow_atlas_quadrant_subdiv",
-				"index": 1
-			},
-			{
-				"name": "shadow_atlas_quad_2",
-				"type": "int",
-				"getter": "get_shadow_atlas_quadrant_subdiv",
-				"setter": "set_shadow_atlas_quadrant_subdiv",
-				"index": 2
-			},
-			{
-				"name": "shadow_atlas_quad_3",
-				"type": "int",
-				"getter": "get_shadow_atlas_quadrant_subdiv",
-				"setter": "set_shadow_atlas_quadrant_subdiv",
-				"index": 3
-			},
-			{
-				"name": "canvas_transform",
-				"type": "Transform2D",
-				"getter": "get_canvas_transform",
-				"setter": "set_canvas_transform",
-				"index": -1
-			},
-			{
-				"name": "global_canvas_transform",
-				"type": "Transform2D",
-				"getter": "get_global_canvas_transform",
-				"setter": "set_global_canvas_transform",
-				"index": -1
-			}
-		],
-		"signals": [
-			{
-				"name": "size_changed",
-				"arguments": [
-				]
-			}
-		],
-		"methods": [
-			{
-				"name": "set_use_arvr",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "use",
-						"type": "bool",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "use_arvr",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_size",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "size",
-						"type": "Vector2",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_size",
-				"return_type": "Vector2",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_world_2d",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "world_2d",
-						"type": "World2D",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_world_2d",
-				"return_type": "World2D",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "find_world_2d",
-				"return_type": "World2D",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_world",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "world",
-						"type": "World",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_world",
-				"return_type": "World",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "find_world",
-				"return_type": "World",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_canvas_transform",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "xform",
-						"type": "Transform2D",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_canvas_transform",
-				"return_type": "Transform2D",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_global_canvas_transform",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "xform",
-						"type": "Transform2D",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_global_canvas_transform",
-				"return_type": "Transform2D",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_final_transform",
-				"return_type": "Transform2D",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_visible_rect",
-				"return_type": "Rect2",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_transparent_background",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "enable",
-						"type": "bool",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "has_transparent_background",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "_vp_input",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": true,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "arg0",
-						"type": "InputEvent",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "_vp_input_text",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": true,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "text",
-						"type": "String",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "_vp_unhandled_input",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": true,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "arg0",
-						"type": "InputEvent",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "set_size_override",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "enable",
-						"type": "bool",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "size",
-						"type": "Vector2",
-						"has_default_value": true,
-						"default_value": "(-1, -1)"
-					},
-					{
-						"name": "margin",
-						"type": "Vector2",
-						"has_default_value": true,
-						"default_value": "(0, 0)"
-					}
-				]
-			},
-			{
-				"name": "get_size_override",
-				"return_type": "Vector2",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "is_size_override_enabled",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_size_override_stretch",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "enabled",
-						"type": "bool",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "is_size_override_stretch_enabled",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_vflip",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "enable",
-						"type": "bool",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_vflip",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_clear_mode",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "mode",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_clear_mode",
-				"return_type": "enum.Viewport::ClearMode",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_update_mode",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "mode",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_update_mode",
-				"return_type": "enum.Viewport::UpdateMode",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_msaa",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "msaa",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_msaa",
-				"return_type": "enum.Viewport::MSAA",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_hdr",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "enable",
-						"type": "bool",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_hdr",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_usage",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "usage",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_usage",
-				"return_type": "enum.Viewport::Usage",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_debug_draw",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "debug_draw",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_debug_draw",
-				"return_type": "enum.Viewport::DebugDraw",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_render_info",
-				"return_type": "int",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "info",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_texture",
-				"return_type": "ViewportTexture",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_physics_object_picking",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "enable",
-						"type": "bool",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_physics_object_picking",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_viewport_rid",
-				"return_type": "RID",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "input",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "local_event",
-						"type": "InputEvent",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "unhandled_input",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "local_event",
-						"type": "InputEvent",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "update_worlds",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_use_own_world",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "enable",
-						"type": "bool",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "is_using_own_world",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_camera",
-				"return_type": "Camera",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_as_audio_listener",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "enable",
-						"type": "bool",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "is_audio_listener",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_as_audio_listener_2d",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "enable",
-						"type": "bool",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "is_audio_listener_2d",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_attach_to_screen_rect",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "rect",
-						"type": "Rect2",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_mouse_position",
-				"return_type": "Vector2",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "warp_mouse",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "to_position",
-						"type": "Vector2",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "gui_has_modal_stack",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "gui_get_drag_data",
-				"return_type": "Variant",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_disable_input",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "disable",
-						"type": "bool",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "is_input_disabled",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_disable_3d",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "disable",
-						"type": "bool",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "is_3d_disabled",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "_gui_show_tooltip",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": true,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "_gui_remove_focus",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": true,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_shadow_atlas_size",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "size",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_shadow_atlas_size",
-				"return_type": "int",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_snap_controls_to_pixels",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "enabled",
-						"type": "bool",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "is_snap_controls_to_pixels_enabled",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_shadow_atlas_quadrant_subdiv",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "quadrant",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "subdiv",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_shadow_atlas_quadrant_subdiv",
-				"return_type": "enum.Viewport::ShadowAtlasQuadrantSubdiv",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "quadrant",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			}
-		],
-		"enums": [
-			{
-				"name": "ClearMode",
-				"values": {
-					"CLEAR_MODE_ALWAYS": 0,
-					"CLEAR_MODE_NEVER": 1,
-					"CLEAR_MODE_ONLY_NEXT_FRAME": 2
-				}
-			},
-			{
-				"name": "RenderInfo",
-				"values": {
-					"RENDER_INFO_OBJECTS_IN_FRAME": 0,
-					"RENDER_INFO_VERTICES_IN_FRAME": 1,
-					"RENDER_INFO_MATERIAL_CHANGES_IN_FRAME": 2,
-					"RENDER_INFO_SHADER_CHANGES_IN_FRAME": 3,
-					"RENDER_INFO_SURFACE_CHANGES_IN_FRAME": 4,
-					"RENDER_INFO_DRAW_CALLS_IN_FRAME": 5,
-					"RENDER_INFO_MAX": 6
-				}
-			},
-			{
-				"name": "Usage",
-				"values": {
-					"USAGE_2D": 0,
-					"USAGE_2D_NO_SAMPLING": 1,
-					"USAGE_3D": 2,
-					"USAGE_3D_NO_EFFECTS": 3
-				}
-			},
-			{
-				"name": "DebugDraw",
-				"values": {
-					"DEBUG_DRAW_DISABLED": 0,
-					"DEBUG_DRAW_UNSHADED": 1,
-					"DEBUG_DRAW_OVERDRAW": 2,
-					"DEBUG_DRAW_WIREFRAME": 3
-				}
-			},
-			{
-				"name": "ShadowAtlasQuadrantSubdiv",
-				"values": {
-					"SHADOW_ATLAS_QUADRANT_SUBDIV_DISABLED": 0,
-					"SHADOW_ATLAS_QUADRANT_SUBDIV_1": 1,
-					"SHADOW_ATLAS_QUADRANT_SUBDIV_4": 2,
-					"SHADOW_ATLAS_QUADRANT_SUBDIV_16": 3,
-					"SHADOW_ATLAS_QUADRANT_SUBDIV_64": 4,
-					"SHADOW_ATLAS_QUADRANT_SUBDIV_256": 5,
-					"SHADOW_ATLAS_QUADRANT_SUBDIV_1024": 6,
-					"SHADOW_ATLAS_QUADRANT_SUBDIV_MAX": 7
-				}
-			},
-			{
-				"name": "UpdateMode",
-				"values": {
-					"UPDATE_DISABLED": 0,
-					"UPDATE_ONCE": 1,
-					"UPDATE_WHEN_VISIBLE": 2,
-					"UPDATE_ALWAYS": 3
-				}
-			},
-			{
-				"name": "MSAA",
-				"values": {
-					"MSAA_DISABLED": 0,
-					"MSAA_2X": 1,
-					"MSAA_4X": 2,
-					"MSAA_8X": 3,
-					"MSAA_16X": 4
 				}
 			}
 		]
@@ -52315,6 +52321,19 @@
 			},
 			{
 				"name": "_on_theme_changed",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": true,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "_update_current_tab",
 				"return_type": "void",
 				"is_editor": false,
 				"is_noscript": false,
@@ -64339,17 +64358,17 @@
 		},
 		"properties": [
 			{
-				"name": "selected",
-				"type": "int",
-				"getter": "get_selected",
-				"setter": "_select_int",
-				"index": -1
-			},
-			{
 				"name": "items",
 				"type": "Array",
 				"getter": "_get_items",
 				"setter": "_set_items",
+				"index": -1
+			},
+			{
+				"name": "selected",
+				"type": "int",
+				"getter": "get_selected",
+				"setter": "_select_int",
 				"index": -1
 			}
 		],
@@ -121026,13 +121045,6 @@
 				"index": -1
 			},
 			{
-				"name": "pitch_scale",
-				"type": "float",
-				"getter": "get_pitch_scale",
-				"setter": "set_pitch_scale",
-				"index": -1
-			},
-			{
 				"name": "playing",
 				"type": "bool",
 				"getter": "is_playing",
@@ -121122,38 +121134,6 @@
 			},
 			{
 				"name": "get_volume_db",
-				"return_type": "float",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_pitch_scale",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "pitch_scale",
-						"type": "float",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_pitch_scale",
 				"return_type": "float",
 				"is_editor": false,
 				"is_noscript": false,
@@ -121420,13 +121400,6 @@
 				"index": -1
 			},
 			{
-				"name": "pitch_scale",
-				"type": "float",
-				"getter": "get_pitch_scale",
-				"setter": "set_pitch_scale",
-				"index": -1
-			},
-			{
 				"name": "playing",
 				"type": "bool",
 				"getter": "is_playing",
@@ -121530,38 +121503,6 @@
 			},
 			{
 				"name": "get_volume_db",
-				"return_type": "float",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_pitch_scale",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "pitch_scale",
-						"type": "float",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_pitch_scale",
 				"return_type": "float",
 				"is_editor": false,
 				"is_noscript": false,
@@ -121913,13 +121854,6 @@
 				"index": -1
 			},
 			{
-				"name": "pitch_scale",
-				"type": "float",
-				"getter": "get_pitch_scale",
-				"setter": "set_pitch_scale",
-				"index": -1
-			},
-			{
 				"name": "playing",
 				"type": "bool",
 				"getter": "is_playing",
@@ -122129,38 +122063,6 @@
 			},
 			{
 				"name": "get_max_db",
-				"return_type": "float",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_pitch_scale",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "pitch_scale",
-						"type": "float",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_pitch_scale",
 				"return_type": "float",
 				"is_editor": false,
 				"is_noscript": false,
@@ -132744,76 +132646,6 @@
 				]
 			},
 			{
-				"name": "get_class_documentation",
-				"return_type": "String",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_method_documentation",
-				"return_type": "String",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "method",
-						"type": "String",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_signal_documentation",
-				"return_type": "String",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "signal_name",
-						"type": "String",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_property_documentation",
-				"return_type": "String",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "path",
-						"type": "String",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
 				"name": "new",
 				"return_type": "Object",
 				"is_editor": false,
@@ -140100,24 +139932,6 @@
 		]
 	},
 	{
-		"name": "Physics2DDirectBodyStateSW",
-		"base_class": "Physics2DDirectBodyState",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": false,
-		"is_reference": false,
-		"constants": {
-		},
-		"properties": [
-		],
-		"signals": [
-		],
-		"methods": [
-		],
-		"enums": [
-		]
-	},
-	{
 		"name": "_VisualScriptEditor",
 		"base_class": "Object",
 		"api_type": "core",
@@ -140197,6 +140011,24 @@
 		]
 	},
 	{
+		"name": "Physics2DDirectBodyStateSW",
+		"base_class": "Physics2DDirectBodyState",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": false,
+		"is_reference": false,
+		"constants": {
+		},
+		"properties": [
+		],
+		"signals": [
+		],
+		"methods": [
+		],
+		"enums": [
+		]
+	},
+	{
 		"name": "ResourceImporterWebm",
 		"base_class": "ResourceImporter",
 		"api_type": "core",
@@ -140269,367 +140101,6 @@
 			}
 		],
 		"enums": [
-		]
-	},
-	{
-		"name": "WebSocketMultiplayerPeer",
-		"base_class": "NetworkedMultiplayerPeer",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": false,
-		"is_reference": true,
-		"constants": {
-		},
-		"properties": [
-		],
-		"signals": [
-			{
-				"name": "peer_packet",
-				"arguments": [
-					{
-						"name": "peer_source",
-						"type": "int",
-						"default_value": ""
-					}
-				]
-			}
-		],
-		"methods": [
-			{
-				"name": "get_peer",
-				"return_type": "WebSocketPeer",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "peer_id",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			}
-		],
-		"enums": [
-		]
-	},
-	{
-		"name": "WebSocketServer",
-		"base_class": "WebSocketMultiplayerPeer",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": true,
-		"is_reference": true,
-		"constants": {
-		},
-		"properties": [
-		],
-		"signals": [
-			{
-				"name": "data_received",
-				"arguments": [
-					{
-						"name": "id",
-						"type": "int",
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "client_connected",
-				"arguments": [
-					{
-						"name": "id",
-						"type": "int",
-						"default_value": ""
-					},
-					{
-						"name": "protocol",
-						"type": "String",
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "client_disconnected",
-				"arguments": [
-					{
-						"name": "id",
-						"type": "int",
-						"default_value": ""
-					}
-				]
-			}
-		],
-		"methods": [
-			{
-				"name": "is_listening",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "listen",
-				"return_type": "enum.Error",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "port",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "protocols",
-						"type": "PoolStringArray",
-						"has_default_value": true,
-						"default_value": "[]"
-					},
-					{
-						"name": "gd_mp_api",
-						"type": "bool",
-						"has_default_value": true,
-						"default_value": "False"
-					}
-				]
-			},
-			{
-				"name": "stop",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "has_peer",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "id",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			}
-		],
-		"enums": [
-		]
-	},
-	{
-		"name": "WebSocketClient",
-		"base_class": "WebSocketMultiplayerPeer",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": true,
-		"is_reference": true,
-		"constants": {
-		},
-		"properties": [
-		],
-		"signals": [
-			{
-				"name": "connection_established",
-				"arguments": [
-					{
-						"name": "protocol",
-						"type": "String",
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "data_received",
-				"arguments": [
-				]
-			},
-			{
-				"name": "connection_error",
-				"arguments": [
-				]
-			},
-			{
-				"name": "connection_closed",
-				"arguments": [
-				]
-			}
-		],
-		"methods": [
-			{
-				"name": "connect_to_url",
-				"return_type": "enum.Error",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "url",
-						"type": "String",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "protocols",
-						"type": "PoolStringArray",
-						"has_default_value": true,
-						"default_value": "[]"
-					},
-					{
-						"name": "gd_mp_api",
-						"type": "bool",
-						"has_default_value": true,
-						"default_value": "False"
-					}
-				]
-			},
-			{
-				"name": "disconnect_from_host",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			}
-		],
-		"enums": [
-		]
-	},
-	{
-		"name": "WebSocketPeer",
-		"base_class": "PacketPeer",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": true,
-		"is_reference": true,
-		"constants": {
-			"WRITE_MODE_TEXT": 0,
-			"WRITE_MODE_BINARY": 1
-		},
-		"properties": [
-		],
-		"signals": [
-		],
-		"methods": [
-			{
-				"name": "get_write_mode",
-				"return_type": "enum.WebSocketPeer::WriteMode",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_write_mode",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "mode",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "is_connected_to_host",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "was_string_packet",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "close",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			}
-		],
-		"enums": [
-			{
-				"name": "WriteMode",
-				"values": {
-					"WRITE_MODE_TEXT": 0,
-					"WRITE_MODE_BINARY": 1
-				}
-			}
 		]
 	},
 	{

@@ -50,30 +50,6 @@ func (o *NativeScript) GetBaseObject() gdnative.Object {
         Undocumented
 	Args: [], Returns: String
 */
-func (o *NativeScript) GetClassDocumentation() gdnative.String {
-	log.Println("Calling NativeScript.GetClassDocumentation()")
-
-	// Build out the method's arguments
-	ptrArguments := make([]gdnative.Pointer, 0, 0)
-
-	// Get the method bind
-	methodBind := gdnative.NewMethodBind("NativeScript", "get_class_documentation")
-
-	// Call the parent method.
-	// String
-	retPtr := gdnative.NewEmptyString()
-	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
-
-	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
-	return ret
-}
-
-/*
-        Undocumented
-	Args: [], Returns: String
-*/
 func (o *NativeScript) GetClassName() gdnative.String {
 	log.Println("Calling NativeScript.GetClassName()")
 
@@ -114,81 +90,6 @@ func (o *NativeScript) GetLibrary() GDNativeLibrary {
 
 	// If we have a return type, convert it from a pointer into its actual object.
 	ret := NewGDNativeLibraryFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
-	return ret
-}
-
-/*
-        Undocumented
-	Args: [{ false method String}], Returns: String
-*/
-func (o *NativeScript) GetMethodDocumentation(method gdnative.String) gdnative.String {
-	log.Println("Calling NativeScript.GetMethodDocumentation()")
-
-	// Build out the method's arguments
-	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromString(method)
-
-	// Get the method bind
-	methodBind := gdnative.NewMethodBind("NativeScript", "get_method_documentation")
-
-	// Call the parent method.
-	// String
-	retPtr := gdnative.NewEmptyString()
-	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
-
-	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
-	return ret
-}
-
-/*
-        Undocumented
-	Args: [{ false path String}], Returns: String
-*/
-func (o *NativeScript) GetPropertyDocumentation(path gdnative.String) gdnative.String {
-	log.Println("Calling NativeScript.GetPropertyDocumentation()")
-
-	// Build out the method's arguments
-	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromString(path)
-
-	// Get the method bind
-	methodBind := gdnative.NewMethodBind("NativeScript", "get_property_documentation")
-
-	// Call the parent method.
-	// String
-	retPtr := gdnative.NewEmptyString()
-	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
-
-	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewStringFromPointer(retPtr)
-	log.Println("  Got return value: ", ret)
-	return ret
-}
-
-/*
-        Undocumented
-	Args: [{ false signal_name String}], Returns: String
-*/
-func (o *NativeScript) GetSignalDocumentation(signalName gdnative.String) gdnative.String {
-	log.Println("Calling NativeScript.GetSignalDocumentation()")
-
-	// Build out the method's arguments
-	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromString(signalName)
-
-	// Get the method bind
-	methodBind := gdnative.NewMethodBind("NativeScript", "get_signal_documentation")
-
-	// Call the parent method.
-	// String
-	retPtr := gdnative.NewEmptyString()
-	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
-
-	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewStringFromPointer(retPtr)
 	log.Println("  Got return value: ", ret)
 	return ret
 }

@@ -4,6 +4,7 @@ import (
 	"github.com/shadowapex/godot-go/gdnative"
 	"github.com/shadowapex/godot-go/godot"
 	"github.com/shadowapex/godot-go/godot/class"
+	"runtime/debug"
 )
 
 // NewPlayer is a player constructor that we will register with Godot.
@@ -36,6 +37,30 @@ func (p *Player) X_Process(delta gdnative.Double) {
 	godot.Log.Println("X_Process called with delta:", delta)
 	godot.Log.Println("  Creating vector...")
 	p.velocity = gdnative.NewVector2(0, 0)
+
+	// Works
+	godot.Log.Println("Setting mouse mode")
+	class.Input.SetMouseMode(1)
+
+	// Works
+	godot.Log.Println("Getting mouse button mask...")
+	mask := class.Input.GetMouseButtonMask()
+	godot.Log.Println("Got button mask: ", mask)
+
+	// Doesn't work
+	godot.Log.Println("Checking if key pressed")
+	isPressed := class.Input.IsKeyPressed(1)
+	godot.Log.Println("Got key pressed: ", isPressed)
+
+	// Doesn't work
+	godot.Log.Println("Checking if joy is known...")
+	joyKnown := class.Input.IsJoyKnown(1)
+	godot.Log.Println("Got joy known: ", joyKnown)
+
+	// Doesn't work
+	godot.Log.Println("Getting audio bus count...")
+	busCount := class.AudioServer.GetBusCount()
+	godot.Log.Println("Got num buses: ", busCount)
 
 	godot.Log.Println("  Checking if ui_right pressed...")
 	if class.Input.IsActionPressed("ui_right") {
@@ -77,6 +102,7 @@ func (p *Player) X_Process(delta gdnative.Double) {
 }
 
 func init() {
+	debug.SetGCPercent(-1)
 	// AutoRegister our Player class.
 	godot.AutoRegister(NewPlayer)
 }

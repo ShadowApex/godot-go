@@ -109,6 +109,26 @@ func (o *TabContainer) X_OnThemeChanged() {
 
 /*
         Undocumented
+	Args: [], Returns: void
+*/
+func (o *TabContainer) X_UpdateCurrentTab() {
+	log.Println("Calling TabContainer.X_UpdateCurrentTab()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "_update_current_tab")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
+        Undocumented
 	Args: [], Returns: bool
 */
 func (o *TabContainer) AreTabsVisible() gdnative.Bool {

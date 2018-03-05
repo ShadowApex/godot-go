@@ -1942,6 +1942,28 @@ func (o *visualServer) DirectionalLightCreate() gdnative.Rid {
 }
 
 /*
+        Draws a frame.
+	Args: [{True true swap_buffers bool}], Returns: void
+*/
+func (o *visualServer) Draw(swapBuffers gdnative.Bool) {
+	o.ensureSingleton()
+	log.Println("Calling VisualServer.Draw()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(swapBuffers)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "draw")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
 
 	Args: [], Returns: RID
 */
@@ -7212,6 +7234,27 @@ func (o *visualServer) SpotLightCreate() gdnative.Rid {
 	ret := gdnative.NewRidFromPointer(retPtr)
 	log.Println("  Got return value: ", ret)
 	return ret
+}
+
+/*
+
+	Args: [], Returns: void
+*/
+func (o *visualServer) Sync() {
+	o.ensureSingleton()
+	log.Println("Calling VisualServer.Sync()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "sync")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
 }
 
 /*

@@ -29,8 +29,10 @@ else
 fi
 
 # Cleaning old classes
-echo "Cleaning old generated classes..."
-rm -rf "$PKG_PATH"/godot/class/*
+if [[ "$ONLY" == "classes" || "$ONLY" == "" ]]; then
+	echo "Cleaning old generated classes..."
+	rm -rf "$PKG_PATH"/godot/class/*
+fi
 
 # Run code generation
 go run "$PKG_PATH"/cmd/generate/main.go

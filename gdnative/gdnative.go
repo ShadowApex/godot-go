@@ -86,10 +86,15 @@ func NewEmptyVoid() Pointer {
 }
 
 // GetSingleton will return an instance of the given singleton.
-func GetSingleton(name string) Object {
+func GetSingleton(name String) Object {
 	log.Println("Getting singleton:", name)
 	GDNative.checkInit()
-	obj := C.go_godot_global_get_singleton(GDNative.api, C.CString("ARVRServer"))
+
+	// Create a C string from the name argument.
+	cName := C.CString(string(name))
+
+	// Call the C method
+	obj := C.go_godot_global_get_singleton(GDNative.api, cName)
 	return Object{base: (*C.godot_object)(obj)}
 }
 
@@ -116,6 +121,16 @@ func MethodBindPtrCall(methodBind MethodBind, instance Object, args []Pointer, r
 		C.go_void_add_element(cArgs, arg.getBase(), C.int(i))
 	}
 
+	// Print all of the shit we're passing
+	log.Println("args: ", cArgs)
+	for i, arg := range args {
+		log.Println("arg", i, ": ", arg.getBase())
+	}
+	log.Println("returns: ", returns.getBase())
+
+	log.Println("object: ", unsafe.Pointer(instance.getBase()))
+	log.Println("methodbind: ", unsafe.Pointer(methodBind.getBase()))
+
 	// Call the C method
 	C.go_godot_method_bind_ptrcall(
 		GDNative.api,
@@ -124,6 +139,7 @@ func MethodBindPtrCall(methodBind MethodBind, instance Object, args []Pointer, r
 		cArgs,
 		returns.getBase(),
 	)
+	log.Println("Finished calling method.")
 
 	return returns
 }

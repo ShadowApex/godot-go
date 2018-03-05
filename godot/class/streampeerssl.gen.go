@@ -80,23 +80,3 @@ func (o *StreamPeerSSL) DisconnectFromStream() {
         Return the status of the connection, one of STATUS_* enum.
 	Args: [], Returns: enum.StreamPeerSSL::Status
 */
-
-/*
-        Poll the connection to check for incoming bytes. Call this right before "get_available_bytes()" for it to work properly.
-	Args: [], Returns: void
-*/
-func (o *StreamPeerSSL) Poll() {
-	log.Println("Calling StreamPeerSSL.Poll()")
-
-	// Build out the method's arguments
-	ptrArguments := make([]gdnative.Pointer, 0, 0)
-
-	// Get the method bind
-	methodBind := gdnative.NewMethodBind("StreamPeerSSL", "poll")
-
-	// Call the parent method.
-	// void
-	retPtr := gdnative.NewEmptyVoid()
-	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
-
-}

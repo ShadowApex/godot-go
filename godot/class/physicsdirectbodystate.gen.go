@@ -112,6 +112,27 @@ func (o *PhysicsDirectBodyState) ApplyTorqeImpulse(j gdnative.Vector3) {
 }
 
 /*
+
+	Args: [{ false j Vector3}], Returns: void
+*/
+func (o *PhysicsDirectBodyState) ApplyTorqueImpulse(j gdnative.Vector3) {
+	log.Println("Calling PhysicsDirectBodyState.ApplyTorqueImpulse()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector3(j)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsDirectBodyState", "apply_torque_impulse")
+
+	// Call the parent method.
+	// void
+	retPtr := gdnative.NewEmptyVoid()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+}
+
+/*
         Undocumented
 	Args: [], Returns: Vector3
 */
