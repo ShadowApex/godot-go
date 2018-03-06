@@ -100,6 +100,31 @@ var godotConstructorsToAutoRegister = []ClassConstructor{}
 // classRegistry is a mapping of all classes that have been registered in Godot.
 var classRegistry = map[string]*registeredClass{}
 
-// instanceRegistry is a mapping of all instances that have currently been created. This map
+// InstanceRegistry is a mapping of all instances that have currently been created. This map
 // allows instance methods to find which instance they belong to.
-var instanceRegistry = map[string]interface{}{} //TODO: change this to class interface
+var InstanceRegistry = &classInstanceRegistry{registry: map[string]Class{}}
+
+// classInstanceRegistry is a structure for holding on to Class instances that have
+// been constructed.
+type classInstanceRegistry struct {
+	registry map[string]Class
+}
+
+// Add will add the instance to the registry.
+func (i *classInstanceRegistry) Add(instanceID string, class Class) {
+	i.registry[instanceID] = class
+}
+
+// Get will return the instance with the given instance ID.
+func (i *classInstanceRegistry) Get(instanceID string) (Class, bool) {
+	if instance, ok := i.registry[instanceID]; ok {
+		return instance, true
+	}
+	return nil, false
+}
+
+// Delete will delete the given instance from the registry, so it can be
+// garbage collected.
+func (i *classInstanceRegistry) Delete(instanceID string) {
+	delete(i.registry, instanceID)
+}

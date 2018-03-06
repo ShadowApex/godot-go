@@ -99,6 +99,12 @@ func (l *Logger) log(isError bool, message ...interface{}) {
 }
 
 func stringAsGodotString(value string) *C.godot_string {
+	var godotString C.godot_string
+	if value == "" {
+		C.go_godot_string_new(GDNative.api, &godotString)
+		return &godotString
+	}
+
 	// Convert the Go string into a wchar
 	wcharString, err := wchar.FromGoString(value)
 	if err != nil {
@@ -106,7 +112,6 @@ func stringAsGodotString(value string) *C.godot_string {
 	}
 
 	// Build the Godot string with the wchar
-	var godotString C.godot_string
 	C.go_godot_string_new_with_wide_string(
 		GDNative.api,
 		&godotString,

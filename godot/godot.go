@@ -166,7 +166,7 @@ func createConstructor(classString string, constructor ClassConstructor) *gdnati
 		class.SetBaseObject(object)
 
 		// Add the instance to our instance registry.
-		instanceRegistry[object.ID()] = class
+		InstanceRegistry.Add(object.ID(), class)
 
 		// Return the instance string. This will be passed to the method function as userData, so we
 		// can look up the instance in our registry.
@@ -188,8 +188,8 @@ func createDestructor(classString string) *gdnative.InstanceDestroyFunc {
 			log.Println("Destroying object instance:", className, "with instance address:", object.ID())
 		}
 
-		// Unregister it from our instanceRegistry so it can be garbage collected.
-		delete(instanceRegistry, instanceID)
+		// Unregister it from our InstanceRegistry so it can be garbage collected.
+		InstanceRegistry.Delete(instanceID)
 	}
 	destroyFunc.MethodData = classString
 	destroyFunc.FreeFunc = func(methodData string) {}
@@ -205,7 +205,10 @@ func createMethod(classString, methodString string) *gdnative.InstanceMethod {
 		var ret gdnative.Variant
 
 		// Get the object instance based on the instance string given in userData.
-		class := instanceRegistry[instanceString]
+		class, ok := InstanceRegistry.Get(instanceString)
+		if !ok {
+			panic("Method " + classMethod + " was called on instance (" + instanceString + "), but does not exist in the instance registry!")
+		}
 		classValue := reflect.ValueOf(class)
 
 		if debug {

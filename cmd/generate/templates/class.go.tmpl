@@ -112,6 +112,12 @@ func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) GetBaseObject() gdna
 	    		// If we have a return type, convert it from a pointer into its actual object. 
 			{{ if $view.IsGodotClass $method.ReturnType -}}
 			        ret := new{{ $view.GoNewFromPointerType $method.ReturnType }}FromPointer(retPtr)
+
+				// Check to see if we already have an instance of this object in our Go instance registry.
+				if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
+					return instance.({{ $view.GoValue $method.ReturnType }}Implementer)
+				}
+
 				return &ret
 		        {{ else -}}
 			    	ret := gdnative.New{{ $view.GoNewFromPointerType $method.ReturnType }}FromPointer(retPtr)
@@ -131,6 +137,8 @@ func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) GetBaseObject() gdna
 type {{ $view.GoClassName $API.Name }}Implementer interface {
     {{ if ne $API.Name "Object" -}}
 	    {{ $view.GoClassName $API.BaseClass }}Implementer
+    {{ else }}
+	    Class
     {{ end -}}
 	{{ if $API.Methods -}}
 	    {{ range $j, $method := $API.Methods -}}
