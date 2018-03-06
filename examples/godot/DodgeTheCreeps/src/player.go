@@ -61,7 +61,7 @@ func (p *Player) X_Process(delta gdnative.Double) {
 	if p.velocity.Length() > 0 {
 		normal := p.velocity.Normalized()
 		p.velocity = normal.OperatorMultiplyScalar(p.Speed)
-		godot.Log.Println("Animated Sprite ID: ", animatedSprite.GetBaseObject().ID())
+		//godot.Log.Println("Animated Sprite ID: ", animatedSprite.GetBaseObject().ID())
 		//animatedSprite.SetAnimation("right")
 		//animatedSprite.Play("right")
 	} else {
