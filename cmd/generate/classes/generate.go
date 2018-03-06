@@ -252,6 +252,35 @@ func (v View) IsGodotClass(str string) bool {
 	return false
 }
 
+// HasParentMethod checks to see if the given method exists in any of its parents.
+// It will recursively search for any parent with the given method name. This is
+// used to generate interfaces for every Godot class type.
+func (v View) HasParentMethod(base, method string) bool {
+	if base == "" {
+		return false
+	}
+
+	// Look up the base class
+	var baseAPI GDAPI
+	for _, api := range v.APIs {
+		if api.Name == base {
+			baseAPI = api
+		}
+	}
+
+	if v.HasParentMethod(baseAPI.BaseClass, method) {
+		return true
+	}
+
+	for _, m := range baseAPI.Methods {
+		goMethodName := v.GoMethodName(m.Name)
+		if goMethodName == method {
+			return true
+		}
+	}
+	return false
+}
+
 func Generate() {
 
 	// Get the GOPATH so we can locate our templates.
@@ -264,7 +293,7 @@ func Generate() {
 	// Get the docs path so we can parse the documentation.
 	docsPath := packagePath + "/doc/doc/classes"
 	templatePath := packagePath + "/cmd/generate/templates"
-	classPath := packagePath + "/godot/class"
+	classPath := packagePath + "/godot"
 
 	// Get our documentation that was pulled down from generate.sh.
 	docFiles, err := ioutil.ReadDir(docsPath)

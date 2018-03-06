@@ -1,5 +1,5 @@
 {{ $view := . }}{{ $API := $view.API -}}
-package class
+package godot
 
 import (
 	"github.com/shadowapex/godot-go/gdnative"
@@ -125,3 +125,20 @@ func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) GetBaseObject() gdna
 	{{ end }}
     {{ end }}
 {{ end }}
+
+// {{ $view.GoClassName $API.Name }}Implementer is an interface that implements the methods
+// of the {{ $view.GoClassName $API.Name }} class.
+type {{ $view.GoClassName $API.Name }}Implementer interface {
+    {{ if ne $API.Name "Object" -}}
+	    {{ $view.GoClassName $API.BaseClass }}Implementer
+    {{ end -}}
+	{{ if $API.Methods -}}
+	    {{ range $j, $method := $API.Methods -}}
+		{{/* Skip ENUM functions for now*/}}{{ if not ($view.IsEnum $method.ReturnType) -}}
+			{{ if (not ($view.HasParentMethod $API.BaseClass ($view.GoMethodName $method.Name))) -}}
+				{{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $arg.Type }},{{ end }}) {{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ end }}
+			{{ end -}}
+	        {{ end -}}
+	    {{ end -}}
+	{{ end -}}
+}

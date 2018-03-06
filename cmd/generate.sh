@@ -31,7 +31,7 @@ fi
 # Cleaning old classes
 if [[ "$ONLY" == "classes" || "$ONLY" == "" ]]; then
 	echo "Cleaning old generated classes..."
-	rm -rf "$PKG_PATH"/godot/class/*
+	rm -rf "$PKG_PATH"/godot/*.gen.go
 fi
 
 # Run code generation
