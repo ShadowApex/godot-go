@@ -15,7 +15,7 @@ import (
 //----------------------------------------------------------------------------*/
 
 //func New{{ $view.SetClassName $API.Name $API.Singleton}}FromPointer(ptr gdnative.Pointer) {{ $view.SetClassName $API.Name $API.Singleton }} {
-func New{{ $view.GoValue $API.Name }}FromPointer(ptr gdnative.Pointer) {{ $view.SetClassName $API.Name $API.Singleton }} {
+func new{{ $view.GoValue $API.Name }}FromPointer(ptr gdnative.Pointer) {{ $view.SetClassName $API.Name $API.Singleton }} {
 	owner := gdnative.NewObjectFromPointer(ptr)
 	obj := {{ $view.SetClassName $API.Name $API.Singleton }}{}
 	obj.SetBaseObject(owner)
@@ -83,7 +83,7 @@ func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) GetBaseObject() gdna
 	Args: {{ $method.Arguments }}, Returns: {{ $method.ReturnType }}
         */
 	{{/* Skip ENUM functions for now*/}}{{ if not ($view.IsEnum $method.ReturnType) -}}
-	    func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) {{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $arg.Type }},{{ end }}) {{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ end }} {
+	func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) {{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $arg.Type }},{{ end }}) {{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ if ($view.IsGodotClass $method.ReturnType) }}Implementer{{ end }}{{ end }} {
 		{{ if $API.Singleton -}}
 			o.ensureSingleton()
 		{{ end -}}
@@ -111,12 +111,12 @@ func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) GetBaseObject() gdna
 	    	    {{ $returnType := $view.GoValue $method.ReturnType }}{{ if ne $returnType "" }}
 	    		// If we have a return type, convert it from a pointer into its actual object. 
 			{{ if $view.IsGodotClass $method.ReturnType -}}
-			        ret := New{{ $view.GoNewFromPointerType $method.ReturnType }}FromPointer(retPtr)
+			        ret := new{{ $view.GoNewFromPointerType $method.ReturnType }}FromPointer(retPtr)
+				return &ret
 		        {{ else -}}
-			    ret := gdnative.New{{ $view.GoNewFromPointerType $method.ReturnType }}FromPointer(retPtr)
+			    	ret := gdnative.New{{ $view.GoNewFromPointerType $method.ReturnType }}FromPointer(retPtr)
+	    		    	return ret
 		        {{ end -}}
-                        //log.Println("  Got return value: ", ret)
-	    		return ret
                     {{ end -}}
                 {{ else -}}
                     //log.Println("  Function successfully completed.")
@@ -136,7 +136,7 @@ type {{ $view.GoClassName $API.Name }}Implementer interface {
 	    {{ range $j, $method := $API.Methods -}}
 		{{/* Skip ENUM functions for now*/}}{{ if not ($view.IsEnum $method.ReturnType) -}}
 			{{ if (not ($view.HasParentMethod $API.BaseClass ($view.GoMethodName $method.Name))) -}}
-				{{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $arg.Type }},{{ end }}) {{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ end }}
+				{{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $arg.Type }},{{ end }}) {{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ if ($view.IsGodotClass $method.ReturnType) }}Implementer{{ end }}{{ end }}
 			{{ end -}}
 	        {{ end -}}
 	    {{ end -}}

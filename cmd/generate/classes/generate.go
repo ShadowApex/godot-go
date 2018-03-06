@@ -132,6 +132,15 @@ func (v View) GoMethodName(methodString string) string {
 	if isPrivate {
 		return strings.Replace(methodString, "X", "X_", 1)
 	}
+
+	// Check to see if the method name is a class name. If so, we need to change
+	// it because it will affect calling embedded methods with the same name.
+	for _, api := range v.APIs {
+		if api.Name == methodString {
+			methodString = methodString + "Method"
+		}
+	}
+
 	return methodString
 }
 
