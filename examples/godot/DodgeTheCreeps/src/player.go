@@ -26,6 +26,9 @@ type Player struct {
 func (p *Player) X_Ready() {
 	godot.Log.Println("X_Ready called!")
 
+	// Get the node path.
+	nodePath := p.GetPath()
+	godot.Log.Println("Node path: ", nodePath.AsString())
 	// Get the viewport size
 	//p.screenSize = godot.Viewport.GetVisibleRect()
 }
@@ -48,19 +51,21 @@ func (p *Player) X_Process(delta gdnative.Double) {
 	}
 
 	// Get the AnimatedSprite child node.
-	animatedSpriteNode := p.GetChild(0)
+	//nodePath := gdnative.NewNodePath("AnimatedSprite")
+	//animatedSpriteNode := p.GetNode(nodePath)
+	//godot.Log.Println("Fetched Node ID: ", animatedSpriteNode.GetBaseObject().ID())
 
 	// "Cast" the node to an AnimatedSprite
-	animatedSprite := godot.AnimatedSprite{}
-	animatedSprite.SetBaseObject(animatedSpriteNode.GetBaseObject())
+	//animatedSprite := godot.AnimatedSprite{}
+	//animatedSprite.SetBaseObject(animatedSpriteNode.GetBaseObject())
 	if p.velocity.Length() > 0 {
 		normal := p.velocity.Normalized()
 		p.velocity = normal.OperatorMultiplyScalar(p.Speed)
 		godot.Log.Println("Animated Sprite ID: ", animatedSprite.GetBaseObject().ID())
-		animatedSprite.SetAnimation("right")
-		animatedSprite.Play("right")
+		//animatedSprite.SetAnimation("right")
+		//animatedSprite.Play("right")
 	} else {
-		animatedSprite.Stop()
+		//animatedSprite.Stop()
 	}
 
 }
