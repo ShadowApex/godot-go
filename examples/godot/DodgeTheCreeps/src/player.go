@@ -72,6 +72,10 @@ func (p *Player) X_Process(delta gd.Double) {
 	// Set the position based on velocity
 	position := p.GetPosition()
 	newPosition := position.OperatorAdd(velocity.OperatorMultiplyScalar(dt))
+
+	// Clamp our player's position to the size of the screen.
+	newPosition.SetX(godot.Clamp(newPosition.GetX(), 0, p.screenSize.GetX()))
+	newPosition.SetY(godot.Clamp(newPosition.GetY(), 0, p.screenSize.GetY()))
 	p.SetPosition(newPosition)
 }
 
