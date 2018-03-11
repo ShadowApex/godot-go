@@ -68,7 +68,12 @@ import "C"
 				goWchar := newWcharT(wchar)
 				return String(goWchar.AsString())
 			{{ else -}}
-				return {{ $typedef.GoName }}{base: (*C.{{ $typedef.Name }})(ptr.getBase())}
+				{{ if (eq $typedef.GoName "Object") -}}
+					obj := (**C.{{ $typedef.Name }})(ptr.getBase())
+					return {{ $typedef.GoName }}{base: *obj}
+				{{ else -}}
+					return {{ $typedef.GoName }}{base: (*C.{{ $typedef.Name }})(ptr.getBase())}
+				{{ end -}}
 			{{ end -}}
 		}
 
@@ -221,7 +226,8 @@ import "C"
 			// New{{ $typedef.GoName }}FromPointer will return a {{ $typedef.GoName }} from the 
 			// given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 			func New{{ $typedef.GoName }}FromPointer(ptr Pointer) {{ $typedef.GoName }} {
-				return {{ $typedef.GoName }}{base: (*C.{{ $typedef.Name }})(ptr.getBase())}
+				obj := (*C.{{ $typedef.Name }})(ptr.getBase())
+				return {{ $typedef.GoName }}{base: obj}
 			}
 	
 			type {{ $typedef.GoName }} struct {

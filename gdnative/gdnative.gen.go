@@ -193,7 +193,8 @@ func NewPointerFromObject(obj Object) Pointer {
 // given unsafe pointer. This is primarily used in conjunction with MethodBindPtrCall.
 func NewObjectFromPointer(ptr Pointer) Object {
 
-	return Object{base: (*C.godot_object)(ptr.getBase())}
+	obj := (**C.godot_object)(ptr.getBase())
+	return Object{base: *obj}
 }
 
 type Object struct {

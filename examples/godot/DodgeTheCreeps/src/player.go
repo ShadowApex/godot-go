@@ -29,6 +29,21 @@ func (p *Player) X_Ready() {
 	// Get the node path.
 	nodePath := p.GetPath()
 	godot.Log.Println("Node path: ", nodePath.AsString())
+	godot.Log.Println("  Empty:", nodePath.IsEmpty())
+
+	// Get the class type
+	godot.Log.Println("Class: ", p.GetClass())
+	godot.Log.Println("Children:", p.GetChildCount())
+	//child := p.GetChild(1)
+	//godot.Log.Println("  Child name:", child.GetName())
+
+	// Get the animated sprite
+	animatedSpritePath := gdnative.NewNodePath("AnimatedSprite")
+	godot.Log.Println("Animated Sprite path empty:", animatedSpritePath.IsEmpty())
+	animatedSpriteNode := p.GetNode(animatedSpritePath)
+	godot.Log.Println("Animated Sprite ID:", animatedSpriteNode.GetBaseObject().ID())
+	godot.Log.Println("Animated Sprite Class: ", animatedSpriteNode.GetClass())
+
 	// Get the viewport size
 	//p.screenSize = godot.Viewport.GetVisibleRect()
 }
