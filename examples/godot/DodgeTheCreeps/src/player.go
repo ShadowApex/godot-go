@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/shadowapex/godot-go/gdnative"
+	gd "github.com/shadowapex/godot-go/gdnative"
 	"github.com/shadowapex/godot-go/godot"
 	"log"
 )
@@ -18,9 +18,8 @@ func NewPlayer() godot.Class {
 // Player is a structure for the player.
 type Player struct {
 	godot.Area2D
-	Speed          gdnative.Real
-	velocity       gdnative.Vector2
-	screenSize     gdnative.Rect2
+	Speed          gd.Real
+	screenSize     gd.Vector2
 	animatedSprite godot.AnimatedSpriteImplementer
 }
 
@@ -28,43 +27,52 @@ type Player struct {
 func (p *Player) X_Ready() {
 	log.Println("X_Ready called!")
 
+	// Set the speed.
+	p.Speed = 400
+
 	// Get the AnimatedSprite child node.
 	log.Println("Getting animated sprite...")
-	animatedSpritePath := gdnative.NewNodePath("AnimatedSprite")
+	animatedSpritePath := gd.NewNodePath("AnimatedSprite")
 	animatedSpriteNode := p.GetNode(animatedSpritePath)
 	log.Println("Got animated sprite with ID:", animatedSpriteNode.GetBaseObject().ID())
 	p.animatedSprite = animatedSpriteNode.(godot.AnimatedSpriteImplementer)
 
 	// Get the viewport size
-	//p.screenSize = godot.Viewport.GetVisibleRect()
+	viewportRect := p.GetViewportRect()
+	p.screenSize = viewportRect.GetSize()
 }
 
 // X_Process will be called every frame.
-func (p *Player) X_Process(delta gdnative.Double) {
-	p.velocity = gdnative.NewVector2(0, 0)
+func (p *Player) X_Process(delta gd.Double) {
+	dt := gd.Real(delta)
+	velocity := gd.NewVector2(0, 0)
 
 	if godot.Input.IsActionPressed("ui_right") {
-		p.velocity.SetX(p.velocity.GetX() + 1)
+		velocity.SetX(velocity.GetX() + 1)
 	}
 	if godot.Input.IsActionPressed("ui_left") {
-		p.velocity.SetX(p.velocity.GetX() - 1)
+		velocity.SetX(velocity.GetX() - 1)
 	}
 	if godot.Input.IsActionPressed("ui_down") {
-		p.velocity.SetY(p.velocity.GetY() + 1)
+		velocity.SetY(velocity.GetY() + 1)
 	}
 	if godot.Input.IsActionPressed("ui_up") {
-		p.velocity.SetY(p.velocity.GetY() - 1)
+		velocity.SetY(velocity.GetY() - 1)
 	}
 
-	if p.velocity.Length() > 0 {
-		normal := p.velocity.Normalized()
-		p.velocity = normal.OperatorMultiplyScalar(p.Speed)
+	if velocity.Length() > 0 {
+		normal := velocity.Normalized()
+		velocity = normal.OperatorMultiplyScalar(p.Speed)
 		p.animatedSprite.SetAnimation("right")
 		p.animatedSprite.Play("right")
 	} else {
 		p.animatedSprite.Stop()
 	}
 
+	// Set the position based on velocity
+	position := p.GetPosition()
+	newPosition := position.OperatorAdd(velocity.OperatorMultiplyScalar(dt))
+	p.SetPosition(newPosition)
 }
 
 func init() {
