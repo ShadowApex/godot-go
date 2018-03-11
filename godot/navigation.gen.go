@@ -199,7 +199,7 @@ func (o *Navigation) GetUpVector() gdnative.Vector3 {
         Adds a [code]NavigationMesh[/code] to the list of NavigationMesh's in this node. Returns an id. Its position, rotation and scale are associated with the [code]Transform[/code] passed. The [code]Node[/code] (or [code]Object[/code]) that owns this node is an optional parameter.
 	Args: [{ false mesh NavigationMesh} { false xform Transform} {Null true owner Object}], Returns: int
 */
-func (o *Navigation) NavmeshAdd(mesh NavigationMesh, xform gdnative.Transform, owner Object) gdnative.Int {
+func (o *Navigation) NavmeshAdd(mesh NavigationMeshImplementer, xform gdnative.Transform, owner ObjectImplementer) gdnative.Int {
 	//log.Println("Calling Navigation.NavmeshAdd()")
 
 	// Build out the method's arguments
@@ -295,7 +295,7 @@ type NavigationImplementer interface {
 	GetClosestPointToSegment(start gdnative.Vector3, end gdnative.Vector3, useCollision gdnative.Bool) gdnative.Vector3
 	GetSimplePath(start gdnative.Vector3, end gdnative.Vector3, optimize gdnative.Bool) gdnative.PoolVector3Array
 	GetUpVector() gdnative.Vector3
-	NavmeshAdd(mesh NavigationMesh, xform gdnative.Transform, owner Object) gdnative.Int
+	NavmeshAdd(mesh NavigationMeshImplementer, xform gdnative.Transform, owner ObjectImplementer) gdnative.Int
 	NavmeshRemove(id gdnative.Int)
 	NavmeshSetTransform(id gdnative.Int, xform gdnative.Transform)
 	SetUpVector(up gdnative.Vector3)

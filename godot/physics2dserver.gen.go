@@ -566,7 +566,7 @@ func (o *physics2DServer) AreaSetCollisionMask(area gdnative.Rid, mask gdnative.
         Sets the function to call when any body/area enters or exits the area. This callback will be called for any object interacting with the area, and takes five parameters: 1: AREA_BODY_ADDED or AREA_BODY_REMOVED, depending on whether the object entered or exited the area. 2: [RID] of the object that entered/exited the area. 3: Instance ID of the object that entered/exited the area. 4: The shape index of the object that entered/exited the area. 5: The shape index of the area where the object entered/exited.
 	Args: [{ false area RID} { false receiver Object} { false method String}], Returns: void
 */
-func (o *physics2DServer) AreaSetMonitorCallback(area gdnative.Rid, receiver Object, method gdnative.String) {
+func (o *physics2DServer) AreaSetMonitorCallback(area gdnative.Rid, receiver ObjectImplementer, method gdnative.String) {
 	o.ensureSingleton()
 	//log.Println("Calling Physics2DServer.AreaSetMonitorCallback()")
 
@@ -1451,7 +1451,7 @@ func (o *physics2DServer) BodySetContinuousCollisionDetectionMode(body gdnative.
         Sets the function used to calculate physics for an object, if that object allows it (see [method body_set_omit_force integration]).
 	Args: [{ false body RID} { false receiver Object} { false method String} {Null true userdata Variant}], Returns: void
 */
-func (o *physics2DServer) BodySetForceIntegrationCallback(body gdnative.Rid, receiver Object, method gdnative.String, userdata gdnative.Variant) {
+func (o *physics2DServer) BodySetForceIntegrationCallback(body gdnative.Rid, receiver ObjectImplementer, method gdnative.String, userdata gdnative.Variant) {
 	o.ensureSingleton()
 	//log.Println("Calling Physics2DServer.BodySetForceIntegrationCallback()")
 
@@ -1736,7 +1736,7 @@ func (o *physics2DServer) BodySetState(body gdnative.Rid, state gdnative.Int, va
         Returns whether a body can move from a given point in a given direction. Apart from the boolean return value, a [Physics2DTestMotionResult] can be passed to return additional information in.
 	Args: [{ false body RID} { false from Transform2D} { false motion Vector2} {0.08 true margin float} {Null true result Physics2DTestMotionResult}], Returns: bool
 */
-func (o *physics2DServer) BodyTestMotion(body gdnative.Rid, from gdnative.Transform2D, motion gdnative.Vector2, margin gdnative.Float, result Physics2DTestMotionResult) gdnative.Bool {
+func (o *physics2DServer) BodyTestMotion(body gdnative.Rid, from gdnative.Transform2D, motion gdnative.Vector2, margin gdnative.Float, result Physics2DTestMotionResultImplementer) gdnative.Bool {
 	o.ensureSingleton()
 	//log.Println("Calling Physics2DServer.BodyTestMotion()")
 
@@ -2483,7 +2483,7 @@ type Physics2DServerImplementer interface {
 	AreaRemoveShape(area gdnative.Rid, shapeIdx gdnative.Int)
 	AreaSetCollisionLayer(area gdnative.Rid, layer gdnative.Int)
 	AreaSetCollisionMask(area gdnative.Rid, mask gdnative.Int)
-	AreaSetMonitorCallback(area gdnative.Rid, receiver Object, method gdnative.String)
+	AreaSetMonitorCallback(area gdnative.Rid, receiver ObjectImplementer, method gdnative.String)
 	AreaSetParam(area gdnative.Rid, param gdnative.Int, value gdnative.Variant)
 	AreaSetShape(area gdnative.Rid, shapeIdx gdnative.Int, shape gdnative.Rid)
 	AreaSetShapeDisabled(area gdnative.Rid, shapeIdx gdnative.Int, disable gdnative.Bool)
@@ -2517,7 +2517,7 @@ type Physics2DServerImplementer interface {
 	BodySetCollisionLayer(body gdnative.Rid, layer gdnative.Int)
 	BodySetCollisionMask(body gdnative.Rid, mask gdnative.Int)
 	BodySetContinuousCollisionDetectionMode(body gdnative.Rid, mode gdnative.Int)
-	BodySetForceIntegrationCallback(body gdnative.Rid, receiver Object, method gdnative.String, userdata gdnative.Variant)
+	BodySetForceIntegrationCallback(body gdnative.Rid, receiver ObjectImplementer, method gdnative.String, userdata gdnative.Variant)
 	BodySetMaxContactsReported(body gdnative.Rid, amount gdnative.Int)
 	BodySetMode(body gdnative.Rid, mode gdnative.Int)
 	BodySetOmitForceIntegration(body gdnative.Rid, enable gdnative.Bool)
@@ -2529,7 +2529,7 @@ type Physics2DServerImplementer interface {
 	BodySetShapeTransform(body gdnative.Rid, shapeIdx gdnative.Int, transform gdnative.Transform2D)
 	BodySetSpace(body gdnative.Rid, space gdnative.Rid)
 	BodySetState(body gdnative.Rid, state gdnative.Int, value gdnative.Variant)
-	BodyTestMotion(body gdnative.Rid, from gdnative.Transform2D, motion gdnative.Vector2, margin gdnative.Float, result Physics2DTestMotionResult) gdnative.Bool
+	BodyTestMotion(body gdnative.Rid, from gdnative.Transform2D, motion gdnative.Vector2, margin gdnative.Float, result Physics2DTestMotionResultImplementer) gdnative.Bool
 	CapsuleShapeCreate() gdnative.Rid
 	CircleShapeCreate() gdnative.Rid
 	ConcavePolygonShapeCreate() gdnative.Rid

@@ -38,7 +38,7 @@ func (o *CollisionObject) BaseClass() string {
         Accepts unhandled [InputEvent]s. [code]click_position[/code] is the clicked location in world space and [code]click_normal[/code] is the normal vector extending from the clicked surface of the [Shape] at [code]shape_idx[/code]. Connect to the [code]input_event[/code] signal to easily pick up these events.
 	Args: [{ false camera Object} { false event InputEvent} { false click_position Vector3} { false click_normal Vector3} { false shape_idx int}], Returns: void
 */
-func (o *CollisionObject) X_InputEvent(camera Object, event InputEvent, clickPosition gdnative.Vector3, clickNormal gdnative.Vector3, shapeIdx gdnative.Int) {
+func (o *CollisionObject) X_InputEvent(camera ObjectImplementer, event InputEventImplementer, clickPosition gdnative.Vector3, clickNormal gdnative.Vector3, shapeIdx gdnative.Int) {
 	//log.Println("Calling CollisionObject.X_InputEvent()")
 
 	// Build out the method's arguments
@@ -63,7 +63,7 @@ func (o *CollisionObject) X_InputEvent(camera Object, event InputEvent, clickPos
         Creates a new shape owner for the given object. Returns [code]owner_id[/code] of the new owner for future reference.
 	Args: [{ false owner Object}], Returns: int
 */
-func (o *CollisionObject) CreateShapeOwner(owner Object) gdnative.Int {
+func (o *CollisionObject) CreateShapeOwner(owner ObjectImplementer) gdnative.Int {
 	//log.Println("Calling CollisionObject.CreateShapeOwner()")
 
 	// Build out the method's arguments
@@ -290,7 +290,7 @@ func (o *CollisionObject) ShapeFindOwner(shapeIndex gdnative.Int) gdnative.Int {
         Adds a [Shape] to the shape owner.
 	Args: [{ false owner_id int} { false shape Shape}], Returns: void
 */
-func (o *CollisionObject) ShapeOwnerAddShape(ownerId gdnative.Int, shape Shape) {
+func (o *CollisionObject) ShapeOwnerAddShape(ownerId gdnative.Int, shape ShapeImplementer) {
 	//log.Println("Calling CollisionObject.ShapeOwnerAddShape()")
 
 	// Build out the method's arguments
@@ -549,8 +549,8 @@ func (o *CollisionObject) ShapeOwnerSetTransform(ownerId gdnative.Int, transform
 // of the CollisionObject class.
 type CollisionObjectImplementer interface {
 	SpatialImplementer
-	X_InputEvent(camera Object, event InputEvent, clickPosition gdnative.Vector3, clickNormal gdnative.Vector3, shapeIdx gdnative.Int)
-	CreateShapeOwner(owner Object) gdnative.Int
+	X_InputEvent(camera ObjectImplementer, event InputEventImplementer, clickPosition gdnative.Vector3, clickNormal gdnative.Vector3, shapeIdx gdnative.Int)
+	CreateShapeOwner(owner ObjectImplementer) gdnative.Int
 	GetCaptureInputOnDrag() gdnative.Bool
 	GetRid() gdnative.Rid
 	GetShapeOwners() gdnative.Array
@@ -560,7 +560,7 @@ type CollisionObjectImplementer interface {
 	SetCaptureInputOnDrag(enable gdnative.Bool)
 	SetRayPickable(rayPickable gdnative.Bool)
 	ShapeFindOwner(shapeIndex gdnative.Int) gdnative.Int
-	ShapeOwnerAddShape(ownerId gdnative.Int, shape Shape)
+	ShapeOwnerAddShape(ownerId gdnative.Int, shape ShapeImplementer)
 	ShapeOwnerClearShapes(ownerId gdnative.Int)
 	ShapeOwnerGetOwner(ownerId gdnative.Int) ObjectImplementer
 	ShapeOwnerGetShape(ownerId gdnative.Int, shapeId gdnative.Int) ShapeImplementer

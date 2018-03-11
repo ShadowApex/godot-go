@@ -47,7 +47,7 @@ func (o *UndoRedo) BaseClass() string {
 
 	Args: [{ false object Object} { false method String}], Returns: Variant
 */
-func (o *UndoRedo) AddDoMethod(object Object, method gdnative.String) gdnative.Variant {
+func (o *UndoRedo) AddDoMethod(object ObjectImplementer, method gdnative.String) gdnative.Variant {
 	//log.Println("Calling UndoRedo.AddDoMethod()")
 
 	// Build out the method's arguments
@@ -72,7 +72,7 @@ func (o *UndoRedo) AddDoMethod(object Object, method gdnative.String) gdnative.V
         Set a property with a custom value.
 	Args: [{ false object Object} { false property String} { false value Variant}], Returns: void
 */
-func (o *UndoRedo) AddDoProperty(object Object, property gdnative.String, value gdnative.Variant) {
+func (o *UndoRedo) AddDoProperty(object ObjectImplementer, property gdnative.String, value gdnative.Variant) {
 	//log.Println("Calling UndoRedo.AddDoProperty()")
 
 	// Build out the method's arguments
@@ -95,7 +95,7 @@ func (o *UndoRedo) AddDoProperty(object Object, property gdnative.String, value 
         Add a 'do' reference that will be erased if the 'do' history is lost. This is useful mostly for new nodes created for the 'do' call. Do not use for resources.
 	Args: [{ false object Object}], Returns: void
 */
-func (o *UndoRedo) AddDoReference(object Object) {
+func (o *UndoRedo) AddDoReference(object ObjectImplementer) {
 	//log.Println("Calling UndoRedo.AddDoReference()")
 
 	// Build out the method's arguments
@@ -116,7 +116,7 @@ func (o *UndoRedo) AddDoReference(object Object) {
 
 	Args: [{ false object Object} { false method String}], Returns: Variant
 */
-func (o *UndoRedo) AddUndoMethod(object Object, method gdnative.String) gdnative.Variant {
+func (o *UndoRedo) AddUndoMethod(object ObjectImplementer, method gdnative.String) gdnative.Variant {
 	//log.Println("Calling UndoRedo.AddUndoMethod()")
 
 	// Build out the method's arguments
@@ -141,7 +141,7 @@ func (o *UndoRedo) AddUndoMethod(object Object, method gdnative.String) gdnative
         Undo setting of a property with a custom value.
 	Args: [{ false object Object} { false property String} { false value Variant}], Returns: void
 */
-func (o *UndoRedo) AddUndoProperty(object Object, property gdnative.String, value gdnative.Variant) {
+func (o *UndoRedo) AddUndoProperty(object ObjectImplementer, property gdnative.String, value gdnative.Variant) {
 	//log.Println("Calling UndoRedo.AddUndoProperty()")
 
 	// Build out the method's arguments
@@ -164,7 +164,7 @@ func (o *UndoRedo) AddUndoProperty(object Object, property gdnative.String, valu
         Add an 'undo' reference that will be erased if the 'undo' history is lost. This is useful mostly for nodes removed with the 'do' call (not the 'undo' call!).
 	Args: [{ false object Object}], Returns: void
 */
-func (o *UndoRedo) AddUndoReference(object Object) {
+func (o *UndoRedo) AddUndoReference(object ObjectImplementer) {
 	//log.Println("Calling UndoRedo.AddUndoReference()")
 
 	// Build out the method's arguments
@@ -333,12 +333,12 @@ func (o *UndoRedo) Undo() {
 // of the UndoRedo class.
 type UndoRedoImplementer interface {
 	ObjectImplementer
-	AddDoMethod(object Object, method gdnative.String) gdnative.Variant
-	AddDoProperty(object Object, property gdnative.String, value gdnative.Variant)
-	AddDoReference(object Object)
-	AddUndoMethod(object Object, method gdnative.String) gdnative.Variant
-	AddUndoProperty(object Object, property gdnative.String, value gdnative.Variant)
-	AddUndoReference(object Object)
+	AddDoMethod(object ObjectImplementer, method gdnative.String) gdnative.Variant
+	AddDoProperty(object ObjectImplementer, property gdnative.String, value gdnative.Variant)
+	AddDoReference(object ObjectImplementer)
+	AddUndoMethod(object ObjectImplementer, method gdnative.String) gdnative.Variant
+	AddUndoProperty(object ObjectImplementer, property gdnative.String, value gdnative.Variant)
+	AddUndoReference(object ObjectImplementer)
 	ClearHistory()
 	CommitAction()
 	CreateAction(name gdnative.String, mergeMode gdnative.Int)

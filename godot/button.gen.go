@@ -176,7 +176,7 @@ func (o *Button) IsFlat() gdnative.Bool {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *Button) SetButtonIcon(texture Texture) {
+func (o *Button) SetButtonIcon(texture TextureImplementer) {
 	//log.Println("Calling Button.SetButtonIcon()")
 
 	// Build out the method's arguments
@@ -285,7 +285,7 @@ type ButtonImplementer interface {
 	GetClipText() gdnative.Bool
 	GetText() gdnative.String
 	IsFlat() gdnative.Bool
-	SetButtonIcon(texture Texture)
+	SetButtonIcon(texture TextureImplementer)
 	SetClipText(enabled gdnative.Bool)
 	SetFlat(enabled gdnative.Bool)
 	SetText(text gdnative.String)

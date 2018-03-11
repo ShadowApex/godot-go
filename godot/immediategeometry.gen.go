@@ -83,7 +83,7 @@ func (o *ImmediateGeometry) AddVertex(position gdnative.Vector3) {
         Begin drawing (And optionally pass a texture override). When done call end(). For more information on how this works, search for glBegin() glEnd() references. For the type of primitive, use the [Mesh].PRIMITIVE_* enumerations.
 	Args: [{ false primitive int} {[Object:null] true texture Texture}], Returns: void
 */
-func (o *ImmediateGeometry) Begin(primitive gdnative.Int, texture Texture) {
+func (o *ImmediateGeometry) Begin(primitive gdnative.Int, texture TextureImplementer) {
 	//log.Println("Calling ImmediateGeometry.Begin()")
 
 	// Build out the method's arguments
@@ -252,7 +252,7 @@ type ImmediateGeometryImplementer interface {
 	GeometryInstanceImplementer
 	AddSphere(lats gdnative.Int, lons gdnative.Int, radius gdnative.Float, addUv gdnative.Bool)
 	AddVertex(position gdnative.Vector3)
-	Begin(primitive gdnative.Int, texture Texture)
+	Begin(primitive gdnative.Int, texture TextureImplementer)
 	Clear()
 	End()
 	SetColor(color gdnative.Color)

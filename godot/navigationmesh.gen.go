@@ -123,7 +123,7 @@ func (o *NavigationMesh) ClearPolygons() {
 
 	Args: [{ false mesh Mesh}], Returns: void
 */
-func (o *NavigationMesh) CreateFromMesh(mesh Mesh) {
+func (o *NavigationMesh) CreateFromMesh(mesh MeshImplementer) {
 	//log.Println("Calling NavigationMesh.CreateFromMesh()")
 
 	// Build out the method's arguments
@@ -987,7 +987,7 @@ type NavigationMeshImplementer interface {
 	X_SetPolygons(polygons gdnative.Array)
 	AddPolygon(polygon gdnative.PoolIntArray)
 	ClearPolygons()
-	CreateFromMesh(mesh Mesh)
+	CreateFromMesh(mesh MeshImplementer)
 	GetAgentHeight() gdnative.Float
 	GetAgentMaxClimb() gdnative.Float
 	GetAgentMaxSlope() gdnative.Float

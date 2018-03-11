@@ -56,7 +56,7 @@ func (o *Tree) BaseClass() string {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *Tree) X_GuiInput(arg0 InputEvent) {
+func (o *Tree) X_GuiInput(arg0 InputEventImplementer) {
 	//log.Println("Calling Tree.X_GuiInput()")
 
 	// Build out the method's arguments
@@ -244,7 +244,7 @@ func (o *Tree) Clear() {
         Create an item in the tree and add it as the last child of [code]parent[/code]. If parent is not given, it will be added as the root's last child, or it'll the be the root itself if the tree is empty.
 	Args: [{Null true parent Object} {-1 true idx int}], Returns: Object
 */
-func (o *Tree) CreateItem(parent Object, idx gdnative.Int) ObjectImplementer {
+func (o *Tree) CreateItem(parent ObjectImplementer, idx gdnative.Int) ObjectImplementer {
 	//log.Println("Calling Tree.CreateItem()")
 
 	// Build out the method's arguments
@@ -574,7 +574,7 @@ func (o *Tree) GetEditedColumn() gdnative.Int {
         Returns the rectangle area for the specified item. If column is specified, only get the position and size of that column, otherwise get the rectangle containing all columns.
 	Args: [{ false item Object} {-1 true column int}], Returns: Rect2
 */
-func (o *Tree) GetItemAreaRect(item Object, column gdnative.Int) gdnative.Rect2 {
+func (o *Tree) GetItemAreaRect(item ObjectImplementer, column gdnative.Int) gdnative.Rect2 {
 	//log.Println("Calling Tree.GetItemAreaRect()")
 
 	// Build out the method's arguments
@@ -637,7 +637,7 @@ func (o *Tree) GetItemAtPosition(position gdnative.Vector2) TreeItemImplementer 
         Returns the next selected item after the given one.
 	Args: [{ false from Object}], Returns: TreeItem
 */
-func (o *Tree) GetNextSelected(from Object) TreeItemImplementer {
+func (o *Tree) GetNextSelected(from ObjectImplementer) TreeItemImplementer {
 	//log.Println("Calling Tree.GetNextSelected()")
 
 	// Build out the method's arguments
@@ -1129,7 +1129,7 @@ type TreeImplementer interface {
 	X_ValueEditorChanged(arg0 gdnative.Float)
 	AreColumnTitlesVisible() gdnative.Bool
 	Clear()
-	CreateItem(parent Object, idx gdnative.Int) ObjectImplementer
+	CreateItem(parent ObjectImplementer, idx gdnative.Int) ObjectImplementer
 	EnsureCursorIsVisible()
 	GetAllowReselect() gdnative.Bool
 	GetAllowRmbSelect() gdnative.Bool
@@ -1142,9 +1142,9 @@ type TreeImplementer interface {
 	GetDropSectionAtPosition(position gdnative.Vector2) gdnative.Int
 	GetEdited() TreeItemImplementer
 	GetEditedColumn() gdnative.Int
-	GetItemAreaRect(item Object, column gdnative.Int) gdnative.Rect2
+	GetItemAreaRect(item ObjectImplementer, column gdnative.Int) gdnative.Rect2
 	GetItemAtPosition(position gdnative.Vector2) TreeItemImplementer
-	GetNextSelected(from Object) TreeItemImplementer
+	GetNextSelected(from ObjectImplementer) TreeItemImplementer
 	GetPressedButton() gdnative.Int
 	GetRoot() TreeItemImplementer
 	GetScroll() gdnative.Vector2

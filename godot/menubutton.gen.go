@@ -82,7 +82,7 @@ func (o *MenuButton) X_SetItems(arg0 gdnative.Array) {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *MenuButton) X_UnhandledKeyInput(arg0 InputEvent) {
+func (o *MenuButton) X_UnhandledKeyInput(arg0 InputEventImplementer) {
 	//log.Println("Calling MenuButton.X_UnhandledKeyInput()")
 
 	// Build out the method's arguments

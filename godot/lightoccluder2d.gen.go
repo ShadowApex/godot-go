@@ -139,7 +139,7 @@ func (o *LightOccluder2D) SetOccluderLightMask(mask gdnative.Int) {
         Undocumented
 	Args: [{ false polygon OccluderPolygon2D}], Returns: void
 */
-func (o *LightOccluder2D) SetOccluderPolygon(polygon OccluderPolygon2D) {
+func (o *LightOccluder2D) SetOccluderPolygon(polygon OccluderPolygon2DImplementer) {
 	//log.Println("Calling LightOccluder2D.SetOccluderPolygon()")
 
 	// Build out the method's arguments
@@ -164,5 +164,5 @@ type LightOccluder2DImplementer interface {
 	GetOccluderLightMask() gdnative.Int
 	GetOccluderPolygon() OccluderPolygon2DImplementer
 	SetOccluderLightMask(mask gdnative.Int)
-	SetOccluderPolygon(polygon OccluderPolygon2D)
+	SetOccluderPolygon(polygon OccluderPolygon2DImplementer)
 }

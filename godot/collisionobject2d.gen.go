@@ -38,7 +38,7 @@ func (o *CollisionObject2D) BaseClass() string {
         Accepts unhandled [InputEvent]s. [code]shape_idx[/code] is the child index of the clicked [Shape2D]. Connect to the [code]input_event[/code] signal to easily pick up these events.
 	Args: [{ false viewport Object} { false event InputEvent} { false shape_idx int}], Returns: void
 */
-func (o *CollisionObject2D) X_InputEvent(viewport Object, event InputEvent, shapeIdx gdnative.Int) {
+func (o *CollisionObject2D) X_InputEvent(viewport ObjectImplementer, event InputEventImplementer, shapeIdx gdnative.Int) {
 	//log.Println("Calling CollisionObject2D.X_InputEvent()")
 
 	// Build out the method's arguments
@@ -61,7 +61,7 @@ func (o *CollisionObject2D) X_InputEvent(viewport Object, event InputEvent, shap
         Creates a new shape owner for the given object. Returns [code]owner_id[/code] of the new owner for future reference.
 	Args: [{ false owner Object}], Returns: int
 */
-func (o *CollisionObject2D) CreateShapeOwner(owner Object) gdnative.Int {
+func (o *CollisionObject2D) CreateShapeOwner(owner ObjectImplementer) gdnative.Int {
 	//log.Println("Calling CollisionObject2D.CreateShapeOwner()")
 
 	// Build out the method's arguments
@@ -268,7 +268,7 @@ func (o *CollisionObject2D) ShapeFindOwner(shapeIndex gdnative.Int) gdnative.Int
         Adds a [Shape2D] to the shape owner.
 	Args: [{ false owner_id int} { false shape Shape2D}], Returns: void
 */
-func (o *CollisionObject2D) ShapeOwnerAddShape(ownerId gdnative.Int, shape Shape2D) {
+func (o *CollisionObject2D) ShapeOwnerAddShape(ownerId gdnative.Int, shape Shape2DImplementer) {
 	//log.Println("Calling CollisionObject2D.ShapeOwnerAddShape()")
 
 	// Build out the method's arguments
@@ -549,8 +549,8 @@ func (o *CollisionObject2D) ShapeOwnerSetTransform(ownerId gdnative.Int, transfo
 // of the CollisionObject2D class.
 type CollisionObject2DImplementer interface {
 	Node2DImplementer
-	X_InputEvent(viewport Object, event InputEvent, shapeIdx gdnative.Int)
-	CreateShapeOwner(owner Object) gdnative.Int
+	X_InputEvent(viewport ObjectImplementer, event InputEventImplementer, shapeIdx gdnative.Int)
+	CreateShapeOwner(owner ObjectImplementer) gdnative.Int
 	GetRid() gdnative.Rid
 	GetShapeOwners() gdnative.Array
 	IsPickable() gdnative.Bool
@@ -559,7 +559,7 @@ type CollisionObject2DImplementer interface {
 	RemoveShapeOwner(ownerId gdnative.Int)
 	SetPickable(enabled gdnative.Bool)
 	ShapeFindOwner(shapeIndex gdnative.Int) gdnative.Int
-	ShapeOwnerAddShape(ownerId gdnative.Int, shape Shape2D)
+	ShapeOwnerAddShape(ownerId gdnative.Int, shape Shape2DImplementer)
 	ShapeOwnerClearShapes(ownerId gdnative.Int)
 	ShapeOwnerGetOwner(ownerId gdnative.Int) ObjectImplementer
 	ShapeOwnerGetShape(ownerId gdnative.Int, shapeId gdnative.Int) Shape2DImplementer

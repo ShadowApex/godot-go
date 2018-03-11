@@ -38,7 +38,7 @@ func (o *EditorResourcePreviewGenerator) BaseClass() string {
         Generate a preview from a given resource. This must be always implemented. Returning an empty texture is an OK way to fail and let another generator take care. Care must be taken because this function is always called from a thread (not the main thread).
 	Args: [{ false from Resource}], Returns: Texture
 */
-func (o *EditorResourcePreviewGenerator) Generate(from Resource) TextureImplementer {
+func (o *EditorResourcePreviewGenerator) Generate(from ResourceImplementer) TextureImplementer {
 	//log.Println("Calling EditorResourcePreviewGenerator.Generate()")
 
 	// Build out the method's arguments
@@ -138,7 +138,7 @@ func (o *EditorResourcePreviewGenerator) Handles(aType gdnative.String) gdnative
 // of the EditorResourcePreviewGenerator class.
 type EditorResourcePreviewGeneratorImplementer interface {
 	ReferenceImplementer
-	Generate(from Resource) TextureImplementer
+	Generate(from ResourceImplementer) TextureImplementer
 	GenerateFromPath(path gdnative.String) TextureImplementer
 	Handles(aType gdnative.String) gdnative.Bool
 }

@@ -49,7 +49,7 @@ func (o *GIProbe) BaseClass() string {
 
 	Args: [{Null true from_node Object} {False true create_visual_debug bool}], Returns: void
 */
-func (o *GIProbe) Bake(fromNode Object, createVisualDebug gdnative.Bool) {
+func (o *GIProbe) Bake(fromNode ObjectImplementer, createVisualDebug gdnative.Bool) {
 	//log.Println("Calling GIProbe.Bake()")
 
 	// Build out the method's arguments
@@ -482,7 +482,7 @@ func (o *GIProbe) SetNormalBias(max gdnative.Float) {
         Undocumented
 	Args: [{ false data GIProbeData}], Returns: void
 */
-func (o *GIProbe) SetProbeData(data GIProbeData) {
+func (o *GIProbe) SetProbeData(data GIProbeDataImplementer) {
 	//log.Println("Calling GIProbe.SetProbeData()")
 
 	// Build out the method's arguments
@@ -545,7 +545,7 @@ func (o *GIProbe) SetSubdiv(subdiv gdnative.Int) {
 // of the GIProbe class.
 type GIProbeImplementer interface {
 	VisualInstanceImplementer
-	Bake(fromNode Object, createVisualDebug gdnative.Bool)
+	Bake(fromNode ObjectImplementer, createVisualDebug gdnative.Bool)
 	DebugBake()
 	GetBias() gdnative.Float
 	GetDynamicRange() gdnative.Int
@@ -563,7 +563,7 @@ type GIProbeImplementer interface {
 	SetExtents(extents gdnative.Vector3)
 	SetInterior(enable gdnative.Bool)
 	SetNormalBias(max gdnative.Float)
-	SetProbeData(data GIProbeData)
+	SetProbeData(data GIProbeDataImplementer)
 	SetPropagation(max gdnative.Float)
 	SetSubdiv(subdiv gdnative.Int)
 }

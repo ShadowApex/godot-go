@@ -155,7 +155,7 @@ func (o *Viewport) X_GuiShowTooltip() {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *Viewport) X_VpInput(arg0 InputEvent) {
+func (o *Viewport) X_VpInput(arg0 InputEventImplementer) {
 	//log.Println("Calling Viewport.X_VpInput()")
 
 	// Build out the method's arguments
@@ -197,7 +197,7 @@ func (o *Viewport) X_VpInputText(text gdnative.String) {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *Viewport) X_VpUnhandledInput(arg0 InputEvent) {
+func (o *Viewport) X_VpUnhandledInput(arg0 InputEventImplementer) {
 	//log.Println("Calling Viewport.X_VpUnhandledInput()")
 
 	// Build out the method's arguments
@@ -948,7 +948,7 @@ func (o *Viewport) HasTransparentBackground() gdnative.Bool {
 
 	Args: [{ false local_event InputEvent}], Returns: void
 */
-func (o *Viewport) InputMethod(localEvent InputEvent) {
+func (o *Viewport) InputMethod(localEvent InputEventImplementer) {
 	//log.Println("Calling Viewport.InputMethod()")
 
 	// Build out the method's arguments
@@ -1660,7 +1660,7 @@ func (o *Viewport) SetVflip(enable gdnative.Bool) {
         Undocumented
 	Args: [{ false world World}], Returns: void
 */
-func (o *Viewport) SetWorld(world World) {
+func (o *Viewport) SetWorld(world WorldImplementer) {
 	//log.Println("Calling Viewport.SetWorld()")
 
 	// Build out the method's arguments
@@ -1681,7 +1681,7 @@ func (o *Viewport) SetWorld(world World) {
         Undocumented
 	Args: [{ false world_2d World2D}], Returns: void
 */
-func (o *Viewport) SetWorld2D(world2D World2D) {
+func (o *Viewport) SetWorld2D(world2D World2DImplementer) {
 	//log.Println("Calling Viewport.SetWorld2D()")
 
 	// Build out the method's arguments
@@ -1702,7 +1702,7 @@ func (o *Viewport) SetWorld2D(world2D World2D) {
 
 	Args: [{ false local_event InputEvent}], Returns: void
 */
-func (o *Viewport) UnhandledInput(localEvent InputEvent) {
+func (o *Viewport) UnhandledInput(localEvent InputEventImplementer) {
 	//log.Println("Calling Viewport.UnhandledInput()")
 
 	// Build out the method's arguments
@@ -1789,9 +1789,9 @@ type ViewportImplementer interface {
 	NodeImplementer
 	X_GuiRemoveFocus()
 	X_GuiShowTooltip()
-	X_VpInput(arg0 InputEvent)
+	X_VpInput(arg0 InputEventImplementer)
 	X_VpInputText(text gdnative.String)
-	X_VpUnhandledInput(arg0 InputEvent)
+	X_VpUnhandledInput(arg0 InputEventImplementer)
 	FindWorld() WorldImplementer
 	FindWorld2D() World2DImplementer
 	GetCamera() CameraImplementer
@@ -1814,7 +1814,7 @@ type ViewportImplementer interface {
 	GuiGetDragData() gdnative.Variant
 	GuiHasModalStack() gdnative.Bool
 	HasTransparentBackground() gdnative.Bool
-	InputMethod(localEvent InputEvent)
+	InputMethod(localEvent InputEventImplementer)
 	Is3DDisabled() gdnative.Bool
 	IsAudioListener() gdnative.Bool
 	IsAudioListener2D() gdnative.Bool
@@ -1847,9 +1847,9 @@ type ViewportImplementer interface {
 	SetUseArvr(use gdnative.Bool)
 	SetUseOwnWorld(enable gdnative.Bool)
 	SetVflip(enable gdnative.Bool)
-	SetWorld(world World)
-	SetWorld2D(world2D World2D)
-	UnhandledInput(localEvent InputEvent)
+	SetWorld(world WorldImplementer)
+	SetWorld2D(world2D World2DImplementer)
+	UnhandledInput(localEvent InputEventImplementer)
 	UpdateWorlds()
 	UseArvr() gdnative.Bool
 	WarpMouse(toPosition gdnative.Vector2)

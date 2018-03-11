@@ -95,7 +95,7 @@ func (o *Path) GetCurve() Curve3DImplementer {
         Undocumented
 	Args: [{ false curve Curve3D}], Returns: void
 */
-func (o *Path) SetCurve(curve Curve3D) {
+func (o *Path) SetCurve(curve Curve3DImplementer) {
 	//log.Println("Calling Path.SetCurve()")
 
 	// Build out the method's arguments
@@ -118,5 +118,5 @@ type PathImplementer interface {
 	SpatialImplementer
 	X_CurveChanged()
 	GetCurve() Curve3DImplementer
-	SetCurve(curve Curve3D)
+	SetCurve(curve Curve3DImplementer)
 }

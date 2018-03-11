@@ -163,7 +163,7 @@ func (o *PacketPeerStream) SetOutputBufferMaxSize(maxSizeBytes gdnative.Int) {
         Undocumented
 	Args: [{ false peer StreamPeer}], Returns: void
 */
-func (o *PacketPeerStream) SetStreamPeer(peer StreamPeer) {
+func (o *PacketPeerStream) SetStreamPeer(peer StreamPeerImplementer) {
 	//log.Println("Calling PacketPeerStream.SetStreamPeer()")
 
 	// Build out the method's arguments
@@ -189,5 +189,5 @@ type PacketPeerStreamImplementer interface {
 	GetStreamPeer() StreamPeerImplementer
 	SetInputBufferMaxSize(maxSizeBytes gdnative.Int)
 	SetOutputBufferMaxSize(maxSizeBytes gdnative.Int)
-	SetStreamPeer(peer StreamPeer)
+	SetStreamPeer(peer StreamPeerImplementer)
 }

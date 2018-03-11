@@ -121,7 +121,7 @@ func (o *MainLoop) X_Initialize() {
 
 	Args: [{ false ev InputEvent}], Returns: void
 */
-func (o *MainLoop) X_InputEvent(ev InputEvent) {
+func (o *MainLoop) X_InputEvent(ev InputEventImplementer) {
 	//log.Println("Calling MainLoop.X_InputEvent()")
 
 	// Build out the method's arguments
@@ -248,7 +248,7 @@ func (o *MainLoop) Init() {
 
 	Args: [{ false ev InputEvent}], Returns: void
 */
-func (o *MainLoop) InputEventMethod(ev InputEvent) {
+func (o *MainLoop) InputEventMethod(ev InputEventImplementer) {
 	//log.Println("Calling MainLoop.InputEventMethod()")
 
 	// Build out the method's arguments
@@ -318,13 +318,13 @@ type MainLoopImplementer interface {
 	X_Finalize()
 	X_Idle(delta gdnative.Float)
 	X_Initialize()
-	X_InputEvent(ev InputEvent)
+	X_InputEvent(ev InputEventImplementer)
 	X_InputText(text gdnative.String)
 	X_Iteration(delta gdnative.Float)
 	Finish()
 	Idle(delta gdnative.Float) gdnative.Bool
 	Init()
-	InputEventMethod(ev InputEvent)
+	InputEventMethod(ev InputEventImplementer)
 	InputText(text gdnative.String)
 	Iteration(delta gdnative.Float) gdnative.Bool
 }

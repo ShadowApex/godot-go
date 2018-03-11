@@ -47,7 +47,7 @@ func (o *GraphNode) BaseClass() string {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *GraphNode) X_GuiInput(arg0 InputEvent) {
+func (o *GraphNode) X_GuiInput(arg0 InputEventImplementer) {
 	//log.Println("Calling GraphNode.X_GuiInput()")
 
 	// Build out the method's arguments
@@ -730,7 +730,7 @@ func (o *GraphNode) SetShowCloseButton(show gdnative.Bool) {
 
 	Args: [{ false idx int} { false enable_left bool} { false type_left int} { false color_left Color} { false enable_right bool} { false type_right int} { false color_right Color} {[Object:null] true custom_left Texture} {[Object:null] true custom_right Texture}], Returns: void
 */
-func (o *GraphNode) SetSlot(idx gdnative.Int, enableLeft gdnative.Bool, typeLeft gdnative.Int, colorLeft gdnative.Color, enableRight gdnative.Bool, typeRight gdnative.Int, colorRight gdnative.Color, customLeft Texture, customRight Texture) {
+func (o *GraphNode) SetSlot(idx gdnative.Int, enableLeft gdnative.Bool, typeLeft gdnative.Int, colorLeft gdnative.Color, enableRight gdnative.Bool, typeRight gdnative.Int, colorRight gdnative.Color, customLeft TextureImplementer, customRight TextureImplementer) {
 	//log.Println("Calling GraphNode.SetSlot()")
 
 	// Build out the method's arguments
@@ -808,6 +808,6 @@ type GraphNodeImplementer interface {
 	SetResizable(resizable gdnative.Bool)
 	SetSelected(selected gdnative.Bool)
 	SetShowCloseButton(show gdnative.Bool)
-	SetSlot(idx gdnative.Int, enableLeft gdnative.Bool, typeLeft gdnative.Int, colorLeft gdnative.Color, enableRight gdnative.Bool, typeRight gdnative.Int, colorRight gdnative.Color, customLeft Texture, customRight Texture)
+	SetSlot(idx gdnative.Int, enableLeft gdnative.Bool, typeLeft gdnative.Int, colorLeft gdnative.Color, enableRight gdnative.Bool, typeRight gdnative.Int, colorRight gdnative.Color, customLeft TextureImplementer, customRight TextureImplementer)
 	SetTitle(title gdnative.String)
 }

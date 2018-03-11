@@ -7019,7 +7019,7 @@ func (o *visualServer) ReflectionProbeSetUpdateMode(probe gdnative.Rid, mode gdn
         Schedules a callback to the corresponding named 'method' on 'where' after a frame has been drawn. The callback method must use only 1 argument which will be called with 'userdata'.
 	Args: [{ false where Object} { false method String} { false userdata Variant}], Returns: void
 */
-func (o *visualServer) RequestFrameDrawnCallback(where Object, method gdnative.String, userdata gdnative.Variant) {
+func (o *visualServer) RequestFrameDrawnCallback(where ObjectImplementer, method gdnative.String, userdata gdnative.Variant) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.RequestFrameDrawnCallback()")
 
@@ -7160,7 +7160,7 @@ func (o *visualServer) ScenarioSetReflectionAtlasSize(scenario gdnative.Rid, pSi
         Sets a boot image. The color defines the background color and if scale is [code]true[/code], the image will be scaled to fit the screen size.
 	Args: [{ false image Image} { false color Color} { false scale bool}], Returns: void
 */
-func (o *visualServer) SetBootImage(image Image, color gdnative.Color, scale gdnative.Bool) {
+func (o *visualServer) SetBootImage(image ImageImplementer, color gdnative.Color, scale gdnative.Bool) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.SetBootImage()")
 
@@ -7691,7 +7691,7 @@ func (o *visualServer) TextureCreate() gdnative.Rid {
         Creates a texture, allocates the space for an image, and fills in the image.
 	Args: [{ false image Image} {7 true flags int}], Returns: RID
 */
-func (o *visualServer) TextureCreateFromImage(image Image, flags gdnative.Int) gdnative.Rid {
+func (o *visualServer) TextureCreateFromImage(image ImageImplementer, flags gdnative.Int) gdnative.Rid {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.TextureCreateFromImage()")
 
@@ -7931,7 +7931,7 @@ func (o *visualServer) TextureGetWidth(texture gdnative.Rid) gdnative.Int {
         Sets the texture's image data. If it's a CubeMap, it sets the image data at a cube side.
 	Args: [{ false texture RID} { false image Image} {0 true cube_side int}], Returns: void
 */
-func (o *visualServer) TextureSetData(texture gdnative.Rid, image Image, cubeSide gdnative.Int) {
+func (o *visualServer) TextureSetData(texture gdnative.Rid, image ImageImplementer, cubeSide gdnative.Int) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.TextureSetData()")
 
@@ -9039,13 +9039,13 @@ type VisualServerImplementer interface {
 	ReflectionProbeSetMaxDistance(probe gdnative.Rid, distance gdnative.Float)
 	ReflectionProbeSetOriginOffset(probe gdnative.Rid, offset gdnative.Vector3)
 	ReflectionProbeSetUpdateMode(probe gdnative.Rid, mode gdnative.Int)
-	RequestFrameDrawnCallback(where Object, method gdnative.String, userdata gdnative.Variant)
+	RequestFrameDrawnCallback(where ObjectImplementer, method gdnative.String, userdata gdnative.Variant)
 	ScenarioCreate() gdnative.Rid
 	ScenarioSetDebug(scenario gdnative.Rid, debugMode gdnative.Int)
 	ScenarioSetEnvironment(scenario gdnative.Rid, environment gdnative.Rid)
 	ScenarioSetFallbackEnvironment(scenario gdnative.Rid, environment gdnative.Rid)
 	ScenarioSetReflectionAtlasSize(scenario gdnative.Rid, pSize gdnative.Int, subdiv gdnative.Int)
-	SetBootImage(image Image, color gdnative.Color, scale gdnative.Bool)
+	SetBootImage(image ImageImplementer, color gdnative.Color, scale gdnative.Bool)
 	SetDebugGenerateWireframes(generate gdnative.Bool)
 	SetDefaultClearColor(color gdnative.Color)
 	ShaderCreate() gdnative.Rid
@@ -9067,7 +9067,7 @@ type VisualServerImplementer interface {
 	Sync()
 	TextureAllocate(texture gdnative.Rid, width gdnative.Int, height gdnative.Int, format gdnative.Int, flags gdnative.Int)
 	TextureCreate() gdnative.Rid
-	TextureCreateFromImage(image Image, flags gdnative.Int) gdnative.Rid
+	TextureCreateFromImage(image ImageImplementer, flags gdnative.Int) gdnative.Rid
 	TextureDebugUsage() gdnative.Array
 	TextureGetData(texture gdnative.Rid, cubeSide gdnative.Int) ImageImplementer
 	TextureGetFlags(texture gdnative.Rid) gdnative.Int
@@ -9075,7 +9075,7 @@ type VisualServerImplementer interface {
 	TextureGetPath(texture gdnative.Rid) gdnative.String
 	TextureGetTexid(texture gdnative.Rid) gdnative.Int
 	TextureGetWidth(texture gdnative.Rid) gdnative.Int
-	TextureSetData(texture gdnative.Rid, image Image, cubeSide gdnative.Int)
+	TextureSetData(texture gdnative.Rid, image ImageImplementer, cubeSide gdnative.Int)
 	TextureSetFlags(texture gdnative.Rid, flags gdnative.Int)
 	TextureSetPath(texture gdnative.Rid, path gdnative.String)
 	TextureSetShrinkAllX2OnSetData(shrink gdnative.Bool)

@@ -75,7 +75,7 @@ func (o *ProxyTexture) GetBase() TextureImplementer {
         Undocumented
 	Args: [{ false base Texture}], Returns: void
 */
-func (o *ProxyTexture) SetBase(base Texture) {
+func (o *ProxyTexture) SetBase(base TextureImplementer) {
 	//log.Println("Calling ProxyTexture.SetBase()")
 
 	// Build out the method's arguments
@@ -97,5 +97,5 @@ func (o *ProxyTexture) SetBase(base Texture) {
 type ProxyTextureImplementer interface {
 	TextureImplementer
 	GetBase() TextureImplementer
-	SetBase(base Texture)
+	SetBase(base TextureImplementer)
 }

@@ -295,7 +295,7 @@ func (o *SurfaceTool) AddWeights(weights gdnative.PoolRealArray) {
 
 	Args: [{ false existing Mesh} { false surface int} { false transform Transform}], Returns: void
 */
-func (o *SurfaceTool) AppendFrom(existing Mesh, surface gdnative.Int, transform gdnative.Transform) {
+func (o *SurfaceTool) AppendFrom(existing MeshImplementer, surface gdnative.Int, transform gdnative.Transform) {
 	//log.Println("Calling SurfaceTool.AppendFrom()")
 
 	// Build out the method's arguments
@@ -359,7 +359,7 @@ func (o *SurfaceTool) Clear() {
         Returns a constructed [ArrayMesh] from current information passed in. If an existing [ArrayMesh] is passed in as an argument, will add an extra surface to the existing [ArrayMesh].
 	Args: [{Null true existing ArrayMesh} {97792 true flags int}], Returns: ArrayMesh
 */
-func (o *SurfaceTool) Commit(existing ArrayMesh, flags gdnative.Int) ArrayMeshImplementer {
+func (o *SurfaceTool) Commit(existing ArrayMeshImplementer, flags gdnative.Int) ArrayMeshImplementer {
 	//log.Println("Calling SurfaceTool.Commit()")
 
 	// Build out the method's arguments
@@ -398,7 +398,7 @@ func (o *SurfaceTool) Commit(existing ArrayMesh, flags gdnative.Int) ArrayMeshIm
 
 	Args: [{ false existing Mesh} { false surface int}], Returns: void
 */
-func (o *SurfaceTool) CreateFrom(existing Mesh, surface gdnative.Int) {
+func (o *SurfaceTool) CreateFrom(existing MeshImplementer, surface gdnative.Int) {
 	//log.Println("Calling SurfaceTool.CreateFrom()")
 
 	// Build out the method's arguments
@@ -500,7 +500,7 @@ func (o *SurfaceTool) Index() {
         Sets [Material] to be used by the [Mesh] you are constructing.
 	Args: [{ false material Material}], Returns: void
 */
-func (o *SurfaceTool) SetMaterial(material Material) {
+func (o *SurfaceTool) SetMaterial(material MaterialImplementer) {
 	//log.Println("Calling SurfaceTool.SetMaterial()")
 
 	// Build out the method's arguments
@@ -533,14 +533,14 @@ type SurfaceToolImplementer interface {
 	AddUv2(uv2 gdnative.Vector2)
 	AddVertex(vertex gdnative.Vector3)
 	AddWeights(weights gdnative.PoolRealArray)
-	AppendFrom(existing Mesh, surface gdnative.Int, transform gdnative.Transform)
+	AppendFrom(existing MeshImplementer, surface gdnative.Int, transform gdnative.Transform)
 	Begin(primitive gdnative.Int)
 	Clear()
-	Commit(existing ArrayMesh, flags gdnative.Int) ArrayMeshImplementer
-	CreateFrom(existing Mesh, surface gdnative.Int)
+	Commit(existing ArrayMeshImplementer, flags gdnative.Int) ArrayMeshImplementer
+	CreateFrom(existing MeshImplementer, surface gdnative.Int)
 	Deindex()
 	GenerateNormals()
 	GenerateTangents()
 	Index()
-	SetMaterial(material Material)
+	SetMaterial(material MaterialImplementer)
 }

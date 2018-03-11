@@ -47,7 +47,7 @@ func (o *SplitContainer) BaseClass() string {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *SplitContainer) X_GuiInput(arg0 InputEvent) {
+func (o *SplitContainer) X_GuiInput(arg0 InputEventImplementer) {
 	//log.Println("Calling SplitContainer.X_GuiInput()")
 
 	// Build out the method's arguments

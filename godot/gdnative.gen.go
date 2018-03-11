@@ -124,7 +124,7 @@ func (o *GDNative) Initialize() gdnative.Bool {
         Undocumented
 	Args: [{ false library GDNativeLibrary}], Returns: void
 */
-func (o *GDNative) SetLibrary(library GDNativeLibrary) {
+func (o *GDNative) SetLibrary(library GDNativeLibraryImplementer) {
 	//log.Println("Calling GDNative.SetLibrary()")
 
 	// Build out the method's arguments
@@ -171,6 +171,6 @@ type GDNativeImplementer interface {
 	CallNative(callingType gdnative.String, procedureName gdnative.String, arguments gdnative.Array) gdnative.Variant
 	GetLibrary() GDNativeLibraryImplementer
 	Initialize() gdnative.Bool
-	SetLibrary(library GDNativeLibrary)
+	SetLibrary(library GDNativeLibraryImplementer)
 	Terminate() gdnative.Bool
 }

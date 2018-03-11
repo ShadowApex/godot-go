@@ -60,7 +60,7 @@ func (o *inputMap) BaseClass() string {
         Adds an [InputEvent] to an action. This [InputEvent] will trigger the action.
 	Args: [{ false action String} { false event InputEvent}], Returns: void
 */
-func (o *inputMap) ActionAddEvent(action gdnative.String, event InputEvent) {
+func (o *inputMap) ActionAddEvent(action gdnative.String, event InputEventImplementer) {
 	o.ensureSingleton()
 	//log.Println("Calling InputMap.ActionAddEvent()")
 
@@ -83,7 +83,7 @@ func (o *inputMap) ActionAddEvent(action gdnative.String, event InputEvent) {
         Removes an [InputEvent] from an action.
 	Args: [{ false action String} { false event InputEvent}], Returns: void
 */
-func (o *inputMap) ActionEraseEvent(action gdnative.String, event InputEvent) {
+func (o *inputMap) ActionEraseEvent(action gdnative.String, event InputEventImplementer) {
 	o.ensureSingleton()
 	//log.Println("Calling InputMap.ActionEraseEvent()")
 
@@ -106,7 +106,7 @@ func (o *inputMap) ActionEraseEvent(action gdnative.String, event InputEvent) {
         Returns [true] if an action has an [InputEvent] associated with it.
 	Args: [{ false action String} { false event InputEvent}], Returns: bool
 */
-func (o *inputMap) ActionHasEvent(action gdnative.String, event InputEvent) gdnative.Bool {
+func (o *inputMap) ActionHasEvent(action gdnative.String, event InputEventImplementer) gdnative.Bool {
 	o.ensureSingleton()
 	//log.Println("Calling InputMap.ActionHasEvent()")
 
@@ -176,7 +176,7 @@ func (o *inputMap) EraseAction(action gdnative.String) {
         Returns [true] if the given event is part of an existing action. This method ignores keyboard modifiers if the given [InputEvent] is not pressed (for proper release detection). See [method action_has_event] if you don't want this behavior.
 	Args: [{ false event InputEvent} { false action String}], Returns: bool
 */
-func (o *inputMap) EventIsAction(event InputEvent, action gdnative.String) gdnative.Bool {
+func (o *inputMap) EventIsAction(event InputEventImplementer, action gdnative.String) gdnative.Bool {
 	o.ensureSingleton()
 	//log.Println("Calling InputMap.EventIsAction()")
 
@@ -297,12 +297,12 @@ func (o *inputMap) LoadFromGlobals() {
 // of the InputMap class.
 type InputMapImplementer interface {
 	ObjectImplementer
-	ActionAddEvent(action gdnative.String, event InputEvent)
-	ActionEraseEvent(action gdnative.String, event InputEvent)
-	ActionHasEvent(action gdnative.String, event InputEvent) gdnative.Bool
+	ActionAddEvent(action gdnative.String, event InputEventImplementer)
+	ActionEraseEvent(action gdnative.String, event InputEventImplementer)
+	ActionHasEvent(action gdnative.String, event InputEventImplementer) gdnative.Bool
 	AddAction(action gdnative.String)
 	EraseAction(action gdnative.String)
-	EventIsAction(event InputEvent, action gdnative.String) gdnative.Bool
+	EventIsAction(event InputEventImplementer, action gdnative.String) gdnative.Bool
 	GetActionList(action gdnative.String) gdnative.Array
 	GetActions() gdnative.Array
 	HasAction(action gdnative.String) gdnative.Bool

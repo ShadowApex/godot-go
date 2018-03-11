@@ -38,7 +38,7 @@ func (o *RayCast) BaseClass() string {
         Adds a collision exception so the ray does not report collisions with the specified node.
 	Args: [{ false node Object}], Returns: void
 */
-func (o *RayCast) AddException(node Object) {
+func (o *RayCast) AddException(node ObjectImplementer) {
 	//log.Println("Calling RayCast.AddException()")
 
 	// Build out the method's arguments
@@ -365,7 +365,7 @@ func (o *RayCast) IsEnabled() gdnative.Bool {
         Removes a collision exception so the ray does report collisions with the specified node.
 	Args: [{ false node Object}], Returns: void
 */
-func (o *RayCast) RemoveException(node Object) {
+func (o *RayCast) RemoveException(node ObjectImplementer) {
 	//log.Println("Calling RayCast.RemoveException()")
 
 	// Build out the method's arguments
@@ -513,7 +513,7 @@ func (o *RayCast) SetExcludeParentBody(mask gdnative.Bool) {
 // of the RayCast class.
 type RayCastImplementer interface {
 	SpatialImplementer
-	AddException(node Object)
+	AddException(node ObjectImplementer)
 	AddExceptionRid(rid gdnative.Rid)
 	ClearExceptions()
 	ForceRaycastUpdate()
@@ -527,7 +527,7 @@ type RayCastImplementer interface {
 	GetExcludeParentBody() gdnative.Bool
 	IsColliding() gdnative.Bool
 	IsEnabled() gdnative.Bool
-	RemoveException(node Object)
+	RemoveException(node ObjectImplementer)
 	RemoveExceptionRid(rid gdnative.Rid)
 	SetCastTo(localPoint gdnative.Vector3)
 	SetCollisionMask(mask gdnative.Int)

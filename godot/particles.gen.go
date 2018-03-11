@@ -529,7 +529,7 @@ func (o *Particles) SetDrawOrder(order gdnative.Int) {
         Undocumented
 	Args: [{ false pass int} { false mesh Mesh}], Returns: void
 */
-func (o *Particles) SetDrawPassMesh(pass gdnative.Int, mesh Mesh) {
+func (o *Particles) SetDrawPassMesh(pass gdnative.Int, mesh MeshImplementer) {
 	//log.Println("Calling Particles.SetDrawPassMesh()")
 
 	// Build out the method's arguments
@@ -719,7 +719,7 @@ func (o *Particles) SetPreProcessTime(secs gdnative.Float) {
         Undocumented
 	Args: [{ false material Material}], Returns: void
 */
-func (o *Particles) SetProcessMaterial(material Material) {
+func (o *Particles) SetProcessMaterial(material MaterialImplementer) {
 	//log.Println("Calling Particles.SetProcessMaterial()")
 
 	// Build out the method's arguments
@@ -843,7 +843,7 @@ type ParticlesImplementer interface {
 	Restart()
 	SetAmount(amount gdnative.Int)
 	SetDrawOrder(order gdnative.Int)
-	SetDrawPassMesh(pass gdnative.Int, mesh Mesh)
+	SetDrawPassMesh(pass gdnative.Int, mesh MeshImplementer)
 	SetDrawPasses(passes gdnative.Int)
 	SetEmitting(emitting gdnative.Bool)
 	SetExplosivenessRatio(ratio gdnative.Float)
@@ -852,7 +852,7 @@ type ParticlesImplementer interface {
 	SetLifetime(secs gdnative.Float)
 	SetOneShot(enable gdnative.Bool)
 	SetPreProcessTime(secs gdnative.Float)
-	SetProcessMaterial(material Material)
+	SetProcessMaterial(material MaterialImplementer)
 	SetRandomnessRatio(ratio gdnative.Float)
 	SetSpeedScale(scale gdnative.Float)
 	SetUseLocalCoordinates(enable gdnative.Bool)

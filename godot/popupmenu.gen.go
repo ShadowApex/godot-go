@@ -61,7 +61,7 @@ func (o *PopupMenu) X_GetItems() gdnative.Array {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *PopupMenu) X_GuiInput(arg0 InputEvent) {
+func (o *PopupMenu) X_GuiInput(arg0 InputEventImplementer) {
 	//log.Println("Calling PopupMenu.X_GuiInput()")
 
 	// Build out the method's arguments
@@ -146,7 +146,7 @@ func (o *PopupMenu) AddCheckItem(label gdnative.String, id gdnative.Int, accel g
 
 	Args: [{ false shortcut ShortCut} {-1 true id int} {False true global bool}], Returns: void
 */
-func (o *PopupMenu) AddCheckShortcut(shortcut ShortCut, id gdnative.Int, global gdnative.Bool) {
+func (o *PopupMenu) AddCheckShortcut(shortcut ShortCutImplementer, id gdnative.Int, global gdnative.Bool) {
 	//log.Println("Calling PopupMenu.AddCheckShortcut()")
 
 	// Build out the method's arguments
@@ -169,7 +169,7 @@ func (o *PopupMenu) AddCheckShortcut(shortcut ShortCut, id gdnative.Int, global 
         Add a new checkable item with text "label" and icon "texture". An id can optionally be provided, as well as an accelerator. If no id is provided, one will be created from the index. Note that checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually.
 	Args: [{ false texture Texture} { false label String} {-1 true id int} {0 true accel int}], Returns: void
 */
-func (o *PopupMenu) AddIconCheckItem(texture Texture, label gdnative.String, id gdnative.Int, accel gdnative.Int) {
+func (o *PopupMenu) AddIconCheckItem(texture TextureImplementer, label gdnative.String, id gdnative.Int, accel gdnative.Int) {
 	//log.Println("Calling PopupMenu.AddIconCheckItem()")
 
 	// Build out the method's arguments
@@ -193,7 +193,7 @@ func (o *PopupMenu) AddIconCheckItem(texture Texture, label gdnative.String, id 
 
 	Args: [{ false texture Texture} { false shortcut ShortCut} {-1 true id int} {False true global bool}], Returns: void
 */
-func (o *PopupMenu) AddIconCheckShortcut(texture Texture, shortcut ShortCut, id gdnative.Int, global gdnative.Bool) {
+func (o *PopupMenu) AddIconCheckShortcut(texture TextureImplementer, shortcut ShortCutImplementer, id gdnative.Int, global gdnative.Bool) {
 	//log.Println("Calling PopupMenu.AddIconCheckShortcut()")
 
 	// Build out the method's arguments
@@ -217,7 +217,7 @@ func (o *PopupMenu) AddIconCheckShortcut(texture Texture, shortcut ShortCut, id 
         Add a new item with text "label" and icon "texture". An id can optionally be provided, as well as an accelerator keybinding. If no id is provided, one will be created from the index.
 	Args: [{ false texture Texture} { false label String} {-1 true id int} {0 true accel int}], Returns: void
 */
-func (o *PopupMenu) AddIconItem(texture Texture, label gdnative.String, id gdnative.Int, accel gdnative.Int) {
+func (o *PopupMenu) AddIconItem(texture TextureImplementer, label gdnative.String, id gdnative.Int, accel gdnative.Int) {
 	//log.Println("Calling PopupMenu.AddIconItem()")
 
 	// Build out the method's arguments
@@ -241,7 +241,7 @@ func (o *PopupMenu) AddIconItem(texture Texture, label gdnative.String, id gdnat
 
 	Args: [{ false texture Texture} { false shortcut ShortCut} {-1 true id int} {False true global bool}], Returns: void
 */
-func (o *PopupMenu) AddIconShortcut(texture Texture, shortcut ShortCut, id gdnative.Int, global gdnative.Bool) {
+func (o *PopupMenu) AddIconShortcut(texture TextureImplementer, shortcut ShortCutImplementer, id gdnative.Int, global gdnative.Bool) {
 	//log.Println("Calling PopupMenu.AddIconShortcut()")
 
 	// Build out the method's arguments
@@ -308,7 +308,7 @@ func (o *PopupMenu) AddSeparator() {
 
 	Args: [{ false shortcut ShortCut} {-1 true id int} {False true global bool}], Returns: void
 */
-func (o *PopupMenu) AddShortcut(shortcut ShortCut, id gdnative.Int, global gdnative.Bool) {
+func (o *PopupMenu) AddShortcut(shortcut ShortCutImplementer, id gdnative.Int, global gdnative.Bool) {
 	//log.Println("Calling PopupMenu.AddShortcut()")
 
 	// Build out the method's arguments
@@ -1000,7 +1000,7 @@ func (o *PopupMenu) SetItemDisabled(idx gdnative.Int, disabled gdnative.Bool) {
 
 	Args: [{ false idx int} { false icon Texture}], Returns: void
 */
-func (o *PopupMenu) SetItemIcon(idx gdnative.Int, icon Texture) {
+func (o *PopupMenu) SetItemIcon(idx gdnative.Int, icon TextureImplementer) {
 	//log.Println("Calling PopupMenu.SetItemIcon()")
 
 	// Build out the method's arguments
@@ -1088,7 +1088,7 @@ func (o *PopupMenu) SetItemMultistate(idx gdnative.Int, state gdnative.Int) {
 
 	Args: [{ false idx int} { false shortcut ShortCut} {False true global bool}], Returns: void
 */
-func (o *PopupMenu) SetItemShortcut(idx gdnative.Int, shortcut ShortCut, global gdnative.Bool) {
+func (o *PopupMenu) SetItemShortcut(idx gdnative.Int, shortcut ShortCutImplementer, global gdnative.Bool) {
 	//log.Println("Calling PopupMenu.SetItemShortcut()")
 
 	// Build out the method's arguments
@@ -1223,14 +1223,14 @@ type PopupMenuImplementer interface {
 	X_SetItems(arg0 gdnative.Array)
 	X_SubmenuTimeout()
 	AddCheckItem(label gdnative.String, id gdnative.Int, accel gdnative.Int)
-	AddCheckShortcut(shortcut ShortCut, id gdnative.Int, global gdnative.Bool)
-	AddIconCheckItem(texture Texture, label gdnative.String, id gdnative.Int, accel gdnative.Int)
-	AddIconCheckShortcut(texture Texture, shortcut ShortCut, id gdnative.Int, global gdnative.Bool)
-	AddIconItem(texture Texture, label gdnative.String, id gdnative.Int, accel gdnative.Int)
-	AddIconShortcut(texture Texture, shortcut ShortCut, id gdnative.Int, global gdnative.Bool)
+	AddCheckShortcut(shortcut ShortCutImplementer, id gdnative.Int, global gdnative.Bool)
+	AddIconCheckItem(texture TextureImplementer, label gdnative.String, id gdnative.Int, accel gdnative.Int)
+	AddIconCheckShortcut(texture TextureImplementer, shortcut ShortCutImplementer, id gdnative.Int, global gdnative.Bool)
+	AddIconItem(texture TextureImplementer, label gdnative.String, id gdnative.Int, accel gdnative.Int)
+	AddIconShortcut(texture TextureImplementer, shortcut ShortCutImplementer, id gdnative.Int, global gdnative.Bool)
 	AddItem(label gdnative.String, id gdnative.Int, accel gdnative.Int)
 	AddSeparator()
-	AddShortcut(shortcut ShortCut, id gdnative.Int, global gdnative.Bool)
+	AddShortcut(shortcut ShortCutImplementer, id gdnative.Int, global gdnative.Bool)
 	AddSubmenuItem(label gdnative.String, submenu gdnative.String, id gdnative.Int)
 	Clear()
 	GetItemAccelerator(idx gdnative.Int) gdnative.Int
@@ -1259,11 +1259,11 @@ type PopupMenuImplementer interface {
 	SetItemAsSeparator(idx gdnative.Int, enable gdnative.Bool)
 	SetItemChecked(idx gdnative.Int, checked gdnative.Bool)
 	SetItemDisabled(idx gdnative.Int, disabled gdnative.Bool)
-	SetItemIcon(idx gdnative.Int, icon Texture)
+	SetItemIcon(idx gdnative.Int, icon TextureImplementer)
 	SetItemId(idx gdnative.Int, id gdnative.Int)
 	SetItemMetadata(idx gdnative.Int, metadata gdnative.Variant)
 	SetItemMultistate(idx gdnative.Int, state gdnative.Int)
-	SetItemShortcut(idx gdnative.Int, shortcut ShortCut, global gdnative.Bool)
+	SetItemShortcut(idx gdnative.Int, shortcut ShortCutImplementer, global gdnative.Bool)
 	SetItemSubmenu(idx gdnative.Int, submenu gdnative.String)
 	SetItemText(idx gdnative.Int, text gdnative.String)
 	SetItemTooltip(idx gdnative.Int, tooltip gdnative.String)

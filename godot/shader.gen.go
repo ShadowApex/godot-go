@@ -176,7 +176,7 @@ func (o *Shader) SetCode(code gdnative.String) {
 
 	Args: [{ false param String} { false texture Texture}], Returns: void
 */
-func (o *Shader) SetDefaultTextureParam(param gdnative.String, texture Texture) {
+func (o *Shader) SetDefaultTextureParam(param gdnative.String, texture TextureImplementer) {
 	//log.Println("Calling Shader.SetDefaultTextureParam()")
 
 	// Build out the method's arguments
@@ -202,5 +202,5 @@ type ShaderImplementer interface {
 	GetDefaultTextureParam(param gdnative.String) TextureImplementer
 	HasParam(name gdnative.String) gdnative.Bool
 	SetCode(code gdnative.String)
-	SetDefaultTextureParam(param gdnative.String, texture Texture)
+	SetDefaultTextureParam(param gdnative.String, texture TextureImplementer)
 }

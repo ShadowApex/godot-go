@@ -82,7 +82,7 @@ func (o *LineEdit) X_EditorSettingsChanged() {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *LineEdit) X_GuiInput(arg0 InputEvent) {
+func (o *LineEdit) X_GuiInput(arg0 InputEventImplementer) {
 	//log.Println("Calling LineEdit.X_GuiInput()")
 
 	// Build out the method's arguments

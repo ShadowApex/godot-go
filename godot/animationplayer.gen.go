@@ -66,7 +66,7 @@ func (o *AnimationPlayer) X_AnimationChanged() {
         Undocumented
 	Args: [{ false arg0 Object}], Returns: void
 */
-func (o *AnimationPlayer) X_NodeRemoved(arg0 Object) {
+func (o *AnimationPlayer) X_NodeRemoved(arg0 ObjectImplementer) {
 	//log.Println("Calling AnimationPlayer.X_NodeRemoved()")
 
 	// Build out the method's arguments
@@ -87,7 +87,7 @@ func (o *AnimationPlayer) X_NodeRemoved(arg0 Object) {
         Adds [code]animation[/code] to the player accessible with the key [code]name[/code].
 	Args: [{ false name String} { false animation Animation}], Returns: enum.Error
 */
-func (o *AnimationPlayer) AddAnimation(name gdnative.String, animation Animation) gdnative.Error {
+func (o *AnimationPlayer) AddAnimation(name gdnative.String, animation AnimationImplementer) gdnative.Error {
 	//log.Println("Calling AnimationPlayer.AddAnimation()")
 
 	// Build out the method's arguments
@@ -219,7 +219,7 @@ func (o *AnimationPlayer) ClearQueue() {
         Returns the name of [code]animation[/code] or empty string if not found.
 	Args: [{ false animation Animation}], Returns: String
 */
-func (o *AnimationPlayer) FindAnimation(animation Animation) gdnative.String {
+func (o *AnimationPlayer) FindAnimation(animation AnimationImplementer) gdnative.String {
 	//log.Println("Calling AnimationPlayer.FindAnimation()")
 
 	// Build out the method's arguments
@@ -951,13 +951,13 @@ func (o *AnimationPlayer) Stop(reset gdnative.Bool) {
 type AnimationPlayerImplementer interface {
 	NodeImplementer
 	X_AnimationChanged()
-	X_NodeRemoved(arg0 Object)
+	X_NodeRemoved(arg0 ObjectImplementer)
 	Advance(delta gdnative.Float)
 	AnimationGetNext(animFrom gdnative.String) gdnative.String
 	AnimationSetNext(animFrom gdnative.String, animTo gdnative.String)
 	ClearCaches()
 	ClearQueue()
-	FindAnimation(animation Animation) gdnative.String
+	FindAnimation(animation AnimationImplementer) gdnative.String
 	GetAnimation(name gdnative.String) AnimationImplementer
 	GetAnimationList() gdnative.PoolStringArray
 	GetAssignedAnimation() gdnative.String

@@ -720,7 +720,7 @@ func (o *Spatial) SetAsToplevel(enable gdnative.Bool) {
         Undocumented
 	Args: [{ false gizmo SpatialGizmo}], Returns: void
 */
-func (o *Spatial) SetGizmo(gizmo SpatialGizmo) {
+func (o *Spatial) SetGizmo(gizmo SpatialGizmoImplementer) {
 	//log.Println("Calling Spatial.SetGizmo()")
 
 	// Build out the method's arguments
@@ -1130,7 +1130,7 @@ type SpatialImplementer interface {
 	RotateZ(angle gdnative.Float)
 	ScaleObjectLocal(scale gdnative.Vector3)
 	SetAsToplevel(enable gdnative.Bool)
-	SetGizmo(gizmo SpatialGizmo)
+	SetGizmo(gizmo SpatialGizmoImplementer)
 	SetGlobalTransform(global gdnative.Transform)
 	SetIdentity()
 	SetIgnoreTransformNotification(enabled gdnative.Bool)

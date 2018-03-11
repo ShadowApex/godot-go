@@ -517,7 +517,7 @@ func (o *Line2D) SetEndCapMode(mode gdnative.Int) {
         Undocumented
 	Args: [{ false color Gradient}], Returns: void
 */
-func (o *Line2D) SetGradient(color Gradient) {
+func (o *Line2D) SetGradient(color GradientImplementer) {
 	//log.Println("Calling Line2D.SetGradient()")
 
 	// Build out the method's arguments
@@ -644,7 +644,7 @@ func (o *Line2D) SetSharpLimit(limit gdnative.Float) {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *Line2D) SetTexture(texture Texture) {
+func (o *Line2D) SetTexture(texture TextureImplementer) {
 	//log.Println("Calling Line2D.SetTexture()")
 
 	// Build out the method's arguments
@@ -722,13 +722,13 @@ type Line2DImplementer interface {
 	SetBeginCapMode(mode gdnative.Int)
 	SetDefaultColor(color gdnative.Color)
 	SetEndCapMode(mode gdnative.Int)
-	SetGradient(color Gradient)
+	SetGradient(color GradientImplementer)
 	SetJointMode(mode gdnative.Int)
 	SetPointPosition(i gdnative.Int, position gdnative.Vector2)
 	SetPoints(points gdnative.PoolVector2Array)
 	SetRoundPrecision(precision gdnative.Int)
 	SetSharpLimit(limit gdnative.Float)
-	SetTexture(texture Texture)
+	SetTexture(texture TextureImplementer)
 	SetTextureMode(mode gdnative.Int)
 	SetWidth(width gdnative.Float)
 }

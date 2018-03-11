@@ -99,7 +99,7 @@ func (o *RigidBody2D) X_BodyExitTree(arg0 gdnative.Int) {
         Undocumented
 	Args: [{ false arg0 Object}], Returns: void
 */
-func (o *RigidBody2D) X_DirectStateChanged(arg0 Object) {
+func (o *RigidBody2D) X_DirectStateChanged(arg0 ObjectImplementer) {
 	//log.Println("Calling RigidBody2D.X_DirectStateChanged()")
 
 	// Build out the method's arguments
@@ -120,7 +120,7 @@ func (o *RigidBody2D) X_DirectStateChanged(arg0 Object) {
         Allows you to read and safely modify the simulation state for the object. Use this instead of [Node._physics_process] if you need to directly change the body's [code]position[/code] or other physics properties. By default it works in addition to the usual physics behavior, but [member custom_integrator] allows you to disable the default behavior and write custom force integration for a body.
 	Args: [{ false state Physics2DDirectBodyState}], Returns: void
 */
-func (o *RigidBody2D) X_IntegrateForces(state Physics2DDirectBodyState) {
+func (o *RigidBody2D) X_IntegrateForces(state Physics2DDirectBodyStateImplementer) {
 	//log.Println("Calling RigidBody2D.X_IntegrateForces()")
 
 	// Build out the method's arguments
@@ -1065,7 +1065,7 @@ func (o *RigidBody2D) SetWeight(weight gdnative.Float) {
         Returns [code]true[/code] if a collision would result from moving in the given vector. [code]margin[/code] increases the size of the shapes involved in the collision detection, and [code]result[/code] is an object of type [Physics2DTestMotionResult], which contains additional information about the collision (should there be one).
 	Args: [{ false motion Vector2} {0.08 true margin float} {Null true result Physics2DTestMotionResult}], Returns: bool
 */
-func (o *RigidBody2D) TestMotion(motion gdnative.Vector2, margin gdnative.Float, result Physics2DTestMotionResult) gdnative.Bool {
+func (o *RigidBody2D) TestMotion(motion gdnative.Vector2, margin gdnative.Float, result Physics2DTestMotionResultImplementer) gdnative.Bool {
 	//log.Println("Calling RigidBody2D.TestMotion()")
 
 	// Build out the method's arguments
@@ -1093,8 +1093,8 @@ type RigidBody2DImplementer interface {
 	PhysicsBody2DImplementer
 	X_BodyEnterTree(arg0 gdnative.Int)
 	X_BodyExitTree(arg0 gdnative.Int)
-	X_DirectStateChanged(arg0 Object)
-	X_IntegrateForces(state Physics2DDirectBodyState)
+	X_DirectStateChanged(arg0 ObjectImplementer)
+	X_IntegrateForces(state Physics2DDirectBodyStateImplementer)
 	AddForce(offset gdnative.Vector2, force gdnative.Vector2)
 	ApplyImpulse(offset gdnative.Vector2, impulse gdnative.Vector2)
 	GetAngularDamp() gdnative.Float
@@ -1135,5 +1135,5 @@ type RigidBody2DImplementer interface {
 	SetSleeping(sleeping gdnative.Bool)
 	SetUseCustomIntegrator(enable gdnative.Bool)
 	SetWeight(weight gdnative.Float)
-	TestMotion(motion gdnative.Vector2, margin gdnative.Float, result Physics2DTestMotionResult) gdnative.Bool
+	TestMotion(motion gdnative.Vector2, margin gdnative.Float, result Physics2DTestMotionResultImplementer) gdnative.Bool
 }

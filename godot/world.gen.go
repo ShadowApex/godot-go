@@ -195,7 +195,7 @@ func (o *World) GetSpace() gdnative.Rid {
         Undocumented
 	Args: [{ false env Environment}], Returns: void
 */
-func (o *World) SetEnvironment(env Environment) {
+func (o *World) SetEnvironment(env EnvironmentImplementer) {
 	//log.Println("Calling World.SetEnvironment()")
 
 	// Build out the method's arguments
@@ -216,7 +216,7 @@ func (o *World) SetEnvironment(env Environment) {
         Undocumented
 	Args: [{ false env Environment}], Returns: void
 */
-func (o *World) SetFallbackEnvironment(env Environment) {
+func (o *World) SetFallbackEnvironment(env EnvironmentImplementer) {
 	//log.Println("Calling World.SetFallbackEnvironment()")
 
 	// Build out the method's arguments
@@ -242,6 +242,6 @@ type WorldImplementer interface {
 	GetFallbackEnvironment() EnvironmentImplementer
 	GetScenario() gdnative.Rid
 	GetSpace() gdnative.Rid
-	SetEnvironment(env Environment)
-	SetFallbackEnvironment(env Environment)
+	SetEnvironment(env EnvironmentImplementer)
+	SetFallbackEnvironment(env EnvironmentImplementer)
 }

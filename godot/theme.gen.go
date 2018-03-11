@@ -730,7 +730,7 @@ func (o *Theme) SetConstant(name gdnative.String, aType gdnative.String, constan
         Undocumented
 	Args: [{ false font Font}], Returns: void
 */
-func (o *Theme) SetDefaultFont(font Font) {
+func (o *Theme) SetDefaultFont(font FontImplementer) {
 	//log.Println("Calling Theme.SetDefaultFont()")
 
 	// Build out the method's arguments
@@ -751,7 +751,7 @@ func (o *Theme) SetDefaultFont(font Font) {
         Sets Theme's [Font] to [code]font[/code] at [code]name[/code] in [code]type[/code]. Does nothing if Theme does not have [code]type[/code].
 	Args: [{ false name String} { false type String} { false font Font}], Returns: void
 */
-func (o *Theme) SetFont(name gdnative.String, aType gdnative.String, font Font) {
+func (o *Theme) SetFont(name gdnative.String, aType gdnative.String, font FontImplementer) {
 	//log.Println("Calling Theme.SetFont()")
 
 	// Build out the method's arguments
@@ -774,7 +774,7 @@ func (o *Theme) SetFont(name gdnative.String, aType gdnative.String, font Font) 
         Sets Theme's icon [Texture] to [code]texture[/code] at [code]name[/code] in [code]type[/code]. Does nothing if Theme does not have [code]type[/code].
 	Args: [{ false name String} { false type String} { false texture Texture}], Returns: void
 */
-func (o *Theme) SetIcon(name gdnative.String, aType gdnative.String, texture Texture) {
+func (o *Theme) SetIcon(name gdnative.String, aType gdnative.String, texture TextureImplementer) {
 	//log.Println("Calling Theme.SetIcon()")
 
 	// Build out the method's arguments
@@ -797,7 +797,7 @@ func (o *Theme) SetIcon(name gdnative.String, aType gdnative.String, texture Tex
         Sets Theme's [StyleBox] to [code]stylebox[/code] at [code]name[/code] in [code]type[/code]. Does nothing if Theme does not have [code]type[/code].
 	Args: [{ false name String} { false type String} { false texture StyleBox}], Returns: void
 */
-func (o *Theme) SetStylebox(name gdnative.String, aType gdnative.String, texture StyleBox) {
+func (o *Theme) SetStylebox(name gdnative.String, aType gdnative.String, texture StyleBoxImplementer) {
 	//log.Println("Calling Theme.SetStylebox()")
 
 	// Build out the method's arguments
@@ -847,8 +847,8 @@ type ThemeImplementer interface {
 	HasStylebox(name gdnative.String, aType gdnative.String) gdnative.Bool
 	SetColor(name gdnative.String, aType gdnative.String, color gdnative.Color)
 	SetConstant(name gdnative.String, aType gdnative.String, constant gdnative.Int)
-	SetDefaultFont(font Font)
-	SetFont(name gdnative.String, aType gdnative.String, font Font)
-	SetIcon(name gdnative.String, aType gdnative.String, texture Texture)
-	SetStylebox(name gdnative.String, aType gdnative.String, texture StyleBox)
+	SetDefaultFont(font FontImplementer)
+	SetFont(name gdnative.String, aType gdnative.String, font FontImplementer)
+	SetIcon(name gdnative.String, aType gdnative.String, texture TextureImplementer)
+	SetStylebox(name gdnative.String, aType gdnative.String, texture StyleBoxImplementer)
 }

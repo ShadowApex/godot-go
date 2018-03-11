@@ -38,7 +38,7 @@ func (o *InputEvent) BaseClass() string {
         Returns [code]true[/code] if this event matches [code]event[/code].
 	Args: [{ false event InputEvent}], Returns: bool
 */
-func (o *InputEvent) ActionMatch(event InputEvent) gdnative.Bool {
+func (o *InputEvent) ActionMatch(event InputEventImplementer) gdnative.Bool {
 	//log.Println("Calling InputEvent.ActionMatch()")
 
 	// Build out the method's arguments
@@ -270,7 +270,7 @@ func (o *InputEvent) SetDevice(device gdnative.Int) {
 
 	Args: [{ false event InputEvent}], Returns: bool
 */
-func (o *InputEvent) ShortcutMatch(event InputEvent) gdnative.Bool {
+func (o *InputEvent) ShortcutMatch(event InputEventImplementer) gdnative.Bool {
 	//log.Println("Calling InputEvent.ShortcutMatch()")
 
 	// Build out the method's arguments
@@ -333,7 +333,7 @@ func (o *InputEvent) XformedBy(xform gdnative.Transform2D, localOfs gdnative.Vec
 // of the InputEvent class.
 type InputEventImplementer interface {
 	ResourceImplementer
-	ActionMatch(event InputEvent) gdnative.Bool
+	ActionMatch(event InputEventImplementer) gdnative.Bool
 	AsText() gdnative.String
 	GetDevice() gdnative.Int
 	IsAction(action gdnative.String) gdnative.Bool
@@ -343,6 +343,6 @@ type InputEventImplementer interface {
 	IsEcho() gdnative.Bool
 	IsPressed() gdnative.Bool
 	SetDevice(device gdnative.Int)
-	ShortcutMatch(event InputEvent) gdnative.Bool
+	ShortcutMatch(event InputEventImplementer) gdnative.Bool
 	XformedBy(xform gdnative.Transform2D, localOfs gdnative.Vector2) InputEventImplementer
 }

@@ -100,7 +100,7 @@ func (o *TextEdit) X_CursorChangedEmit() {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *TextEdit) X_GuiInput(arg0 InputEvent) {
+func (o *TextEdit) X_GuiInput(arg0 InputEventImplementer) {
 	//log.Println("Calling TextEdit.X_GuiInput()")
 
 	// Build out the method's arguments

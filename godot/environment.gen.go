@@ -1782,7 +1782,7 @@ func (o *Environment) SetAdjustmentBrightness(brightness gdnative.Float) {
         Undocumented
 	Args: [{ false color_correction Texture}], Returns: void
 */
-func (o *Environment) SetAdjustmentColorCorrection(colorCorrection Texture) {
+func (o *Environment) SetAdjustmentColorCorrection(colorCorrection TextureImplementer) {
 	//log.Println("Calling Environment.SetAdjustmentColorCorrection()")
 
 	// Build out the method's arguments
@@ -2686,7 +2686,7 @@ func (o *Environment) SetGlowStrength(strength gdnative.Float) {
         Undocumented
 	Args: [{ false sky Sky}], Returns: void
 */
-func (o *Environment) SetSky(sky Sky) {
+func (o *Environment) SetSky(sky SkyImplementer) {
 	//log.Println("Calling Environment.SetSky()")
 
 	// Build out the method's arguments
@@ -3318,7 +3318,7 @@ type EnvironmentImplementer interface {
 	IsSsrEnabled() gdnative.Bool
 	IsSsrRough() gdnative.Bool
 	SetAdjustmentBrightness(brightness gdnative.Float)
-	SetAdjustmentColorCorrection(colorCorrection Texture)
+	SetAdjustmentColorCorrection(colorCorrection TextureImplementer)
 	SetAdjustmentContrast(contrast gdnative.Float)
 	SetAdjustmentEnable(enabled gdnative.Bool)
 	SetAdjustmentSaturation(saturation gdnative.Float)
@@ -3361,7 +3361,7 @@ type EnvironmentImplementer interface {
 	SetGlowIntensity(intensity gdnative.Float)
 	SetGlowLevel(idx gdnative.Int, enabled gdnative.Bool)
 	SetGlowStrength(strength gdnative.Float)
-	SetSky(sky Sky)
+	SetSky(sky SkyImplementer)
 	SetSkyCustomFov(scale gdnative.Float)
 	SetSsaoBias(bias gdnative.Float)
 	SetSsaoBlur(mode gdnative.Int)

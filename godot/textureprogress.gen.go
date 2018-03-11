@@ -363,7 +363,7 @@ func (o *TextureProgress) SetNinePatchStretch(stretch gdnative.Bool) {
         Undocumented
 	Args: [{ false tex Texture}], Returns: void
 */
-func (o *TextureProgress) SetOverTexture(tex Texture) {
+func (o *TextureProgress) SetOverTexture(tex TextureImplementer) {
 	//log.Println("Calling TextureProgress.SetOverTexture()")
 
 	// Build out the method's arguments
@@ -384,7 +384,7 @@ func (o *TextureProgress) SetOverTexture(tex Texture) {
         Undocumented
 	Args: [{ false tex Texture}], Returns: void
 */
-func (o *TextureProgress) SetProgressTexture(tex Texture) {
+func (o *TextureProgress) SetProgressTexture(tex TextureImplementer) {
 	//log.Println("Calling TextureProgress.SetProgressTexture()")
 
 	// Build out the method's arguments
@@ -469,7 +469,7 @@ func (o *TextureProgress) SetStretchMargin(margin gdnative.Int, value gdnative.I
         Undocumented
 	Args: [{ false tex Texture}], Returns: void
 */
-func (o *TextureProgress) SetUnderTexture(tex Texture) {
+func (o *TextureProgress) SetUnderTexture(tex TextureImplementer) {
 	//log.Println("Calling TextureProgress.SetUnderTexture()")
 
 	// Build out the method's arguments
@@ -502,10 +502,10 @@ type TextureProgressImplementer interface {
 	SetFillDegrees(mode gdnative.Float)
 	SetFillMode(mode gdnative.Int)
 	SetNinePatchStretch(stretch gdnative.Bool)
-	SetOverTexture(tex Texture)
-	SetProgressTexture(tex Texture)
+	SetOverTexture(tex TextureImplementer)
+	SetProgressTexture(tex TextureImplementer)
 	SetRadialCenterOffset(mode gdnative.Vector2)
 	SetRadialInitialAngle(mode gdnative.Float)
 	SetStretchMargin(margin gdnative.Int, value gdnative.Int)
-	SetUnderTexture(tex Texture)
+	SetUnderTexture(tex TextureImplementer)
 }

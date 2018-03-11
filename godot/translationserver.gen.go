@@ -60,7 +60,7 @@ func (o *translationServer) BaseClass() string {
 
 	Args: [{ false translation Translation}], Returns: void
 */
-func (o *translationServer) AddTranslation(translation Translation) {
+func (o *translationServer) AddTranslation(translation TranslationImplementer) {
 	o.ensureSingleton()
 	//log.Println("Calling TranslationServer.AddTranslation()")
 
@@ -152,7 +152,7 @@ func (o *translationServer) GetLocaleName(locale gdnative.String) gdnative.Strin
 
 	Args: [{ false translation Translation}], Returns: void
 */
-func (o *translationServer) RemoveTranslation(translation Translation) {
+func (o *translationServer) RemoveTranslation(translation TranslationImplementer) {
 	o.ensureSingleton()
 	//log.Println("Calling TranslationServer.RemoveTranslation()")
 
@@ -221,11 +221,11 @@ func (o *translationServer) Translate(message gdnative.String) gdnative.String {
 // of the TranslationServer class.
 type TranslationServerImplementer interface {
 	ObjectImplementer
-	AddTranslation(translation Translation)
+	AddTranslation(translation TranslationImplementer)
 	Clear()
 	GetLocale() gdnative.String
 	GetLocaleName(locale gdnative.String) gdnative.String
-	RemoveTranslation(translation Translation)
+	RemoveTranslation(translation TranslationImplementer)
 	SetLocale(locale gdnative.String)
 	Translate(message gdnative.String) gdnative.String
 }

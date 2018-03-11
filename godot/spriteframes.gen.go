@@ -147,7 +147,7 @@ func (o *SpriteFrames) AddAnimation(anim gdnative.String) {
         Adds a frame to the given animation.
 	Args: [{ false anim String} { false frame Texture} {-1 true at_position int}], Returns: void
 */
-func (o *SpriteFrames) AddFrame(anim gdnative.String, frame Texture, atPosition gdnative.Int) {
+func (o *SpriteFrames) AddFrame(anim gdnative.String, frame TextureImplementer, atPosition gdnative.Int) {
 	//log.Println("Calling SpriteFrames.AddFrame()")
 
 	// Build out the method's arguments
@@ -455,7 +455,7 @@ func (o *SpriteFrames) SetAnimationSpeed(anim gdnative.String, speed gdnative.Fl
         Sets the texture of the given frame.
 	Args: [{ false anim String} { false idx int} { false txt Texture}], Returns: void
 */
-func (o *SpriteFrames) SetFrame(anim gdnative.String, idx gdnative.Int, txt Texture) {
+func (o *SpriteFrames) SetFrame(anim gdnative.String, idx gdnative.Int, txt TextureImplementer) {
 	//log.Println("Calling SpriteFrames.SetFrame()")
 
 	// Build out the method's arguments
@@ -483,7 +483,7 @@ type SpriteFramesImplementer interface {
 	X_SetAnimations(arg0 gdnative.Array)
 	X_SetFrames(arg0 gdnative.Array)
 	AddAnimation(anim gdnative.String)
-	AddFrame(anim gdnative.String, frame Texture, atPosition gdnative.Int)
+	AddFrame(anim gdnative.String, frame TextureImplementer, atPosition gdnative.Int)
 	Clear(anim gdnative.String)
 	ClearAll()
 	GetAnimationLoop(anim gdnative.String) gdnative.Bool
@@ -496,5 +496,5 @@ type SpriteFramesImplementer interface {
 	RenameAnimation(anim gdnative.String, newname gdnative.String)
 	SetAnimationLoop(anim gdnative.String, loop gdnative.Bool)
 	SetAnimationSpeed(anim gdnative.String, speed gdnative.Float)
-	SetFrame(anim gdnative.String, idx gdnative.Int, txt Texture)
+	SetFrame(anim gdnative.String, idx gdnative.Int, txt TextureImplementer)
 }

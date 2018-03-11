@@ -403,7 +403,7 @@ func (o *GeometryInstance) SetLodMinHysteresis(mode gdnative.Float) {
         Undocumented
 	Args: [{ false material Material}], Returns: void
 */
-func (o *GeometryInstance) SetMaterialOverride(material Material) {
+func (o *GeometryInstance) SetMaterialOverride(material MaterialImplementer) {
 	//log.Println("Calling GeometryInstance.SetMaterialOverride()")
 
 	// Build out the method's arguments
@@ -438,5 +438,5 @@ type GeometryInstanceImplementer interface {
 	SetLodMaxHysteresis(mode gdnative.Float)
 	SetLodMinDistance(mode gdnative.Float)
 	SetLodMinHysteresis(mode gdnative.Float)
-	SetMaterialOverride(material Material)
+	SetMaterialOverride(material MaterialImplementer)
 }

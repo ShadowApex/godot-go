@@ -38,7 +38,7 @@ func (o *SpinBox) BaseClass() string {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *SpinBox) X_GuiInput(arg0 InputEvent) {
+func (o *SpinBox) X_GuiInput(arg0 InputEventImplementer) {
 	//log.Println("Calling SpinBox.X_GuiInput()")
 
 	// Build out the method's arguments
@@ -79,7 +79,7 @@ func (o *SpinBox) X_LineEditFocusExit() {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *SpinBox) X_LineEditInput(arg0 InputEvent) {
+func (o *SpinBox) X_LineEditInput(arg0 InputEventImplementer) {
 	//log.Println("Calling SpinBox.X_LineEditInput()")
 
 	// Build out the method's arguments
@@ -311,7 +311,7 @@ func (o *SpinBox) SetSuffix(suffix gdnative.String) {
 type SpinBoxImplementer interface {
 	RangeImplementer
 	X_LineEditFocusExit()
-	X_LineEditInput(arg0 InputEvent)
+	X_LineEditInput(arg0 InputEventImplementer)
 	X_RangeClickTimeout()
 	X_TextEntered(arg0 gdnative.String)
 	GetLineEdit() LineEditImplementer

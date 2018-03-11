@@ -679,7 +679,7 @@ func (o *physicsServer) AreaSetCollisionMask(area gdnative.Rid, mask gdnative.In
         Sets the function to call when any body/area enters or exits the area. This callback will be called for any object interacting with the area, and takes five parameters: 1: AREA_BODY_ADDED or AREA_BODY_REMOVED, depending on whether the object entered or exited the area. 2: [RID] of the object that entered/exited the area. 3: Instance ID of the object that entered/exited the area. 4: The shape index of the object that entered/exited the area. 5: The shape index of the area where the object entered/exited.
 	Args: [{ false area RID} { false receiver Object} { false method String}], Returns: void
 */
-func (o *physicsServer) AreaSetMonitorCallback(area gdnative.Rid, receiver Object, method gdnative.String) {
+func (o *physicsServer) AreaSetMonitorCallback(area gdnative.Rid, receiver ObjectImplementer, method gdnative.String) {
 	o.ensureSingleton()
 	//log.Println("Calling PhysicsServer.AreaSetMonitorCallback()")
 
@@ -1639,7 +1639,7 @@ func (o *physicsServer) BodySetEnableContinuousCollisionDetection(body gdnative.
         Sets the function used to calculate physics for an object, if that object allows it (see [method body_set_omit_force integration]).
 	Args: [{ false body RID} { false receiver Object} { false method String} {Null true userdata Variant}], Returns: void
 */
-func (o *physicsServer) BodySetForceIntegrationCallback(body gdnative.Rid, receiver Object, method gdnative.String, userdata gdnative.Variant) {
+func (o *physicsServer) BodySetForceIntegrationCallback(body gdnative.Rid, receiver ObjectImplementer, method gdnative.String, userdata gdnative.Variant) {
 	o.ensureSingleton()
 	//log.Println("Calling PhysicsServer.BodySetForceIntegrationCallback()")
 
@@ -2904,7 +2904,7 @@ type PhysicsServerImplementer interface {
 	AreaRemoveShape(area gdnative.Rid, shapeIdx gdnative.Int)
 	AreaSetCollisionLayer(area gdnative.Rid, layer gdnative.Int)
 	AreaSetCollisionMask(area gdnative.Rid, mask gdnative.Int)
-	AreaSetMonitorCallback(area gdnative.Rid, receiver Object, method gdnative.String)
+	AreaSetMonitorCallback(area gdnative.Rid, receiver ObjectImplementer, method gdnative.String)
 	AreaSetParam(area gdnative.Rid, param gdnative.Int, value gdnative.Variant)
 	AreaSetRayPickable(area gdnative.Rid, enable gdnative.Bool)
 	AreaSetShape(area gdnative.Rid, shapeIdx gdnative.Int, shape gdnative.Rid)
@@ -2942,7 +2942,7 @@ type PhysicsServerImplementer interface {
 	BodySetCollisionLayer(body gdnative.Rid, layer gdnative.Int)
 	BodySetCollisionMask(body gdnative.Rid, mask gdnative.Int)
 	BodySetEnableContinuousCollisionDetection(body gdnative.Rid, enable gdnative.Bool)
-	BodySetForceIntegrationCallback(body gdnative.Rid, receiver Object, method gdnative.String, userdata gdnative.Variant)
+	BodySetForceIntegrationCallback(body gdnative.Rid, receiver ObjectImplementer, method gdnative.String, userdata gdnative.Variant)
 	BodySetKinematicSafeMargin(body gdnative.Rid, margin gdnative.Float)
 	BodySetMaxContactsReported(body gdnative.Rid, amount gdnative.Int)
 	BodySetMode(body gdnative.Rid, mode gdnative.Int)

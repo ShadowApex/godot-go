@@ -189,7 +189,7 @@ func (o *PackedScene) Instance(editState gdnative.Int) NodeImplementer {
         Pack will ignore any sub-nodes not owned by given node. See [method Node.set_owner].
 	Args: [{ false path Object}], Returns: enum.Error
 */
-func (o *PackedScene) Pack(path Object) gdnative.Error {
+func (o *PackedScene) Pack(path ObjectImplementer) gdnative.Error {
 	//log.Println("Calling PackedScene.Pack()")
 
 	// Build out the method's arguments

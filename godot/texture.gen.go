@@ -52,7 +52,7 @@ func (o *Texture) BaseClass() string {
 
 	Args: [{ false canvas_item RID} { false position Vector2} {1,1,1,1 true modulate Color} {False true transpose bool} {Null true normal_map Texture}], Returns: void
 */
-func (o *Texture) Draw(canvasItem gdnative.Rid, position gdnative.Vector2, modulate gdnative.Color, transpose gdnative.Bool, normalMap Texture) {
+func (o *Texture) Draw(canvasItem gdnative.Rid, position gdnative.Vector2, modulate gdnative.Color, transpose gdnative.Bool, normalMap TextureImplementer) {
 	//log.Println("Calling Texture.Draw()")
 
 	// Build out the method's arguments
@@ -77,7 +77,7 @@ func (o *Texture) Draw(canvasItem gdnative.Rid, position gdnative.Vector2, modul
 
 	Args: [{ false canvas_item RID} { false rect Rect2} { false tile bool} {1,1,1,1 true modulate Color} {False true transpose bool} {Null true normal_map Texture}], Returns: void
 */
-func (o *Texture) DrawRect(canvasItem gdnative.Rid, rect gdnative.Rect2, tile gdnative.Bool, modulate gdnative.Color, transpose gdnative.Bool, normalMap Texture) {
+func (o *Texture) DrawRect(canvasItem gdnative.Rid, rect gdnative.Rect2, tile gdnative.Bool, modulate gdnative.Color, transpose gdnative.Bool, normalMap TextureImplementer) {
 	//log.Println("Calling Texture.DrawRect()")
 
 	// Build out the method's arguments
@@ -103,7 +103,7 @@ func (o *Texture) DrawRect(canvasItem gdnative.Rid, rect gdnative.Rect2, tile gd
 
 	Args: [{ false canvas_item RID} { false rect Rect2} { false src_rect Rect2} {1,1,1,1 true modulate Color} {False true transpose bool} {Null true normal_map Texture} {True true clip_uv bool}], Returns: void
 */
-func (o *Texture) DrawRectRegion(canvasItem gdnative.Rid, rect gdnative.Rect2, srcRect gdnative.Rect2, modulate gdnative.Color, transpose gdnative.Bool, normalMap Texture, clipUv gdnative.Bool) {
+func (o *Texture) DrawRectRegion(canvasItem gdnative.Rid, rect gdnative.Rect2, srcRect gdnative.Rect2, modulate gdnative.Color, transpose gdnative.Bool, normalMap TextureImplementer, clipUv gdnative.Bool) {
 	//log.Println("Calling Texture.DrawRectRegion()")
 
 	// Build out the method's arguments
@@ -303,9 +303,9 @@ func (o *Texture) SetFlags(flags gdnative.Int) {
 // of the Texture class.
 type TextureImplementer interface {
 	ResourceImplementer
-	Draw(canvasItem gdnative.Rid, position gdnative.Vector2, modulate gdnative.Color, transpose gdnative.Bool, normalMap Texture)
-	DrawRect(canvasItem gdnative.Rid, rect gdnative.Rect2, tile gdnative.Bool, modulate gdnative.Color, transpose gdnative.Bool, normalMap Texture)
-	DrawRectRegion(canvasItem gdnative.Rid, rect gdnative.Rect2, srcRect gdnative.Rect2, modulate gdnative.Color, transpose gdnative.Bool, normalMap Texture, clipUv gdnative.Bool)
+	Draw(canvasItem gdnative.Rid, position gdnative.Vector2, modulate gdnative.Color, transpose gdnative.Bool, normalMap TextureImplementer)
+	DrawRect(canvasItem gdnative.Rid, rect gdnative.Rect2, tile gdnative.Bool, modulate gdnative.Color, transpose gdnative.Bool, normalMap TextureImplementer)
+	DrawRectRegion(canvasItem gdnative.Rid, rect gdnative.Rect2, srcRect gdnative.Rect2, modulate gdnative.Color, transpose gdnative.Bool, normalMap TextureImplementer, clipUv gdnative.Bool)
 	GetData() ImageImplementer
 	GetFlags() gdnative.Int
 	GetHeight() gdnative.Int

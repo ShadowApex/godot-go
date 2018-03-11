@@ -59,7 +59,7 @@ func (o *TreeItem) BaseClass() string {
         Adds a button with [Texture] [code]button[/code] at column [code]column[/code]. The [code]button_idx[/code] index is used to identify the button when calling other methods. If not specified, the next available index is used, which may be retrieved by calling [code]get_buton_count()[/code] immediately after this method. Optionally, the button can be [code]disabled[/code] and have a [code]tooltip[/code].
 	Args: [{ false column int} { false button Texture} {-1 true button_idx int} {False true disabled bool} { true tooltip String}], Returns: void
 */
-func (o *TreeItem) AddButton(column gdnative.Int, button Texture, buttonIdx gdnative.Int, disabled gdnative.Bool, tooltip gdnative.String) {
+func (o *TreeItem) AddButton(column gdnative.Int, button TextureImplementer, buttonIdx gdnative.Int, disabled gdnative.Bool, tooltip gdnative.String) {
 	//log.Println("Calling TreeItem.AddButton()")
 
 	// Build out the method's arguments
@@ -1010,7 +1010,7 @@ func (o *TreeItem) MoveToTop() {
         Removes the child TreeItem at index [code]index[/code].
 	Args: [{ false child Object}], Returns: void
 */
-func (o *TreeItem) RemoveChild(child Object) {
+func (o *TreeItem) RemoveChild(child ObjectImplementer) {
 	//log.Println("Calling TreeItem.RemoveChild()")
 
 	// Build out the method's arguments
@@ -1052,7 +1052,7 @@ func (o *TreeItem) Select(column gdnative.Int) {
         Sets the given column's button [Texture] at index [code]button_idx[/code] to [code]button[/code].
 	Args: [{ false column int} { false button_idx int} { false button Texture}], Returns: void
 */
-func (o *TreeItem) SetButton(column gdnative.Int, buttonIdx gdnative.Int, button Texture) {
+func (o *TreeItem) SetButton(column gdnative.Int, buttonIdx gdnative.Int, button TextureImplementer) {
 	//log.Println("Calling TreeItem.SetButton()")
 
 	// Build out the method's arguments
@@ -1207,7 +1207,7 @@ func (o *TreeItem) SetCustomColor(column gdnative.Int, color gdnative.Color) {
         Sets the given column's custom draw callback to [code]callback[/code] method on [code]object[/code].
 	Args: [{ false column int} { false object Object} { false callback String}], Returns: void
 */
-func (o *TreeItem) SetCustomDraw(column gdnative.Int, object Object, callback gdnative.String) {
+func (o *TreeItem) SetCustomDraw(column gdnative.Int, object ObjectImplementer, callback gdnative.String) {
 	//log.Println("Calling TreeItem.SetCustomDraw()")
 
 	// Build out the method's arguments
@@ -1316,7 +1316,7 @@ func (o *TreeItem) SetExpandRight(column gdnative.Int, enable gdnative.Bool) {
         Sets the given column's icon [Texture].
 	Args: [{ false column int} { false texture Texture}], Returns: void
 */
-func (o *TreeItem) SetIcon(column gdnative.Int, texture Texture) {
+func (o *TreeItem) SetIcon(column gdnative.Int, texture TextureImplementer) {
 	//log.Println("Calling TreeItem.SetIcon()")
 
 	// Build out the method's arguments
@@ -1539,7 +1539,7 @@ func (o *TreeItem) SetTooltip(column gdnative.Int, tooltip gdnative.String) {
 // of the TreeItem class.
 type TreeItemImplementer interface {
 	ObjectImplementer
-	AddButton(column gdnative.Int, button Texture, buttonIdx gdnative.Int, disabled gdnative.Bool, tooltip gdnative.String)
+	AddButton(column gdnative.Int, button TextureImplementer, buttonIdx gdnative.Int, disabled gdnative.Bool, tooltip gdnative.String)
 	ClearCustomBgColor(column gdnative.Int)
 	ClearCustomColor(column gdnative.Int)
 	Deselect(column gdnative.Int)
@@ -1573,21 +1573,21 @@ type TreeItemImplementer interface {
 	IsSelected(column gdnative.Int) gdnative.Bool
 	MoveToBottom()
 	MoveToTop()
-	RemoveChild(child Object)
+	RemoveChild(child ObjectImplementer)
 	Select(column gdnative.Int)
-	SetButton(column gdnative.Int, buttonIdx gdnative.Int, button Texture)
+	SetButton(column gdnative.Int, buttonIdx gdnative.Int, button TextureImplementer)
 	SetCellMode(column gdnative.Int, mode gdnative.Int)
 	SetChecked(column gdnative.Int, checked gdnative.Bool)
 	SetCollapsed(enable gdnative.Bool)
 	SetCustomAsButton(column gdnative.Int, enable gdnative.Bool)
 	SetCustomBgColor(column gdnative.Int, color gdnative.Color, justOutline gdnative.Bool)
 	SetCustomColor(column gdnative.Int, color gdnative.Color)
-	SetCustomDraw(column gdnative.Int, object Object, callback gdnative.String)
+	SetCustomDraw(column gdnative.Int, object ObjectImplementer, callback gdnative.String)
 	SetCustomMinimumHeight(height gdnative.Int)
 	SetDisableFolding(disable gdnative.Bool)
 	SetEditable(column gdnative.Int, enabled gdnative.Bool)
 	SetExpandRight(column gdnative.Int, enable gdnative.Bool)
-	SetIcon(column gdnative.Int, texture Texture)
+	SetIcon(column gdnative.Int, texture TextureImplementer)
 	SetIconMaxWidth(column gdnative.Int, width gdnative.Int)
 	SetIconRegion(column gdnative.Int, region gdnative.Rect2)
 	SetMetadata(column gdnative.Int, meta gdnative.Variant)

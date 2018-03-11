@@ -447,7 +447,7 @@ func (o *Sprite) SetHframes(hframes gdnative.Int) {
         Undocumented
 	Args: [{ false normal_map Texture}], Returns: void
 */
-func (o *Sprite) SetNormalMap(normalMap Texture) {
+func (o *Sprite) SetNormalMap(normalMap TextureImplementer) {
 	//log.Println("Calling Sprite.SetNormalMap()")
 
 	// Build out the method's arguments
@@ -552,7 +552,7 @@ func (o *Sprite) SetRegionRect(rect gdnative.Rect2) {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *Sprite) SetTexture(texture Texture) {
+func (o *Sprite) SetTexture(texture TextureImplementer) {
 	//log.Println("Calling Sprite.SetTexture()")
 
 	// Build out the method's arguments
@@ -611,11 +611,11 @@ type SpriteImplementer interface {
 	SetFlipV(flipV gdnative.Bool)
 	SetFrame(frame gdnative.Int)
 	SetHframes(hframes gdnative.Int)
-	SetNormalMap(normalMap Texture)
+	SetNormalMap(normalMap TextureImplementer)
 	SetOffset(offset gdnative.Vector2)
 	SetRegion(enabled gdnative.Bool)
 	SetRegionFilterClip(enabled gdnative.Bool)
 	SetRegionRect(rect gdnative.Rect2)
-	SetTexture(texture Texture)
+	SetTexture(texture TextureImplementer)
 	SetVframes(vframes gdnative.Int)
 }

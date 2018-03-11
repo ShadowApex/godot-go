@@ -75,7 +75,7 @@ func (o *RichTextLabel) BaseClass() string {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *RichTextLabel) X_GuiInput(arg0 InputEvent) {
+func (o *RichTextLabel) X_GuiInput(arg0 InputEventImplementer) {
 	//log.Println("Calling RichTextLabel.X_GuiInput()")
 
 	// Build out the method's arguments
@@ -117,7 +117,7 @@ func (o *RichTextLabel) X_ScrollChanged(arg0 gdnative.Float) {
         Adds an image's opening and closing tags to the tag stack.
 	Args: [{ false image Texture}], Returns: void
 */
-func (o *RichTextLabel) AddImage(image Texture) {
+func (o *RichTextLabel) AddImage(image TextureImplementer) {
 	//log.Println("Calling RichTextLabel.AddImage()")
 
 	// Build out the method's arguments
@@ -688,7 +688,7 @@ func (o *RichTextLabel) PushColor(color gdnative.Color) {
         Adds a [code][font][/code] tag to the tag stack. Overrides default fonts for its duration.
 	Args: [{ false font Font}], Returns: void
 */
-func (o *RichTextLabel) PushFont(font Font) {
+func (o *RichTextLabel) PushFont(font FontImplementer) {
 	//log.Println("Calling RichTextLabel.PushFont()")
 
 	// Build out the method's arguments
@@ -1113,7 +1113,7 @@ func (o *RichTextLabel) SetVisibleCharacters(amount gdnative.Int) {
 type RichTextLabelImplementer interface {
 	ControlImplementer
 	X_ScrollChanged(arg0 gdnative.Float)
-	AddImage(image Texture)
+	AddImage(image TextureImplementer)
 	AddText(text gdnative.String)
 	Clear()
 	GetBbcode() gdnative.String
@@ -1136,7 +1136,7 @@ type RichTextLabelImplementer interface {
 	PushAlign(align gdnative.Int)
 	PushCell()
 	PushColor(color gdnative.Color)
-	PushFont(font Font)
+	PushFont(font FontImplementer)
 	PushIndent(level gdnative.Int)
 	PushList(aType gdnative.Int)
 	PushMeta(data gdnative.Variant)

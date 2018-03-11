@@ -477,7 +477,7 @@ func (o *Polygon2D) SetPolygon(polygon gdnative.PoolVector2Array) {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *Polygon2D) SetTexture(texture Texture) {
+func (o *Polygon2D) SetTexture(texture TextureImplementer) {
 	//log.Println("Calling Polygon2D.SetTexture()")
 
 	// Build out the method's arguments
@@ -643,7 +643,7 @@ type Polygon2DImplementer interface {
 	SetInvertBorder(invertBorder gdnative.Float)
 	SetOffset(offset gdnative.Vector2)
 	SetPolygon(polygon gdnative.PoolVector2Array)
-	SetTexture(texture Texture)
+	SetTexture(texture TextureImplementer)
 	SetTextureOffset(textureOffset gdnative.Vector2)
 	SetTextureRotation(textureRotation gdnative.Float)
 	SetTextureRotationDegrees(textureRotation gdnative.Float)

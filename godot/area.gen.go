@@ -691,7 +691,7 @@ func (o *Area) IsUsingReverbBus() gdnative.Bool {
         If [code]true[/code] the given area overlaps the Area. Note that the result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
 	Args: [{ false area Object}], Returns: bool
 */
-func (o *Area) OverlapsArea(area Object) gdnative.Bool {
+func (o *Area) OverlapsArea(area ObjectImplementer) gdnative.Bool {
 	//log.Println("Calling Area.OverlapsArea()")
 
 	// Build out the method's arguments
@@ -715,7 +715,7 @@ func (o *Area) OverlapsArea(area Object) gdnative.Bool {
         If [code]true[/code] the given body overlaps the Area. Note that the result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
 	Args: [{ false body Object}], Returns: bool
 */
-func (o *Area) OverlapsBody(body Object) gdnative.Bool {
+func (o *Area) OverlapsBody(body ObjectImplementer) gdnative.Bool {
 	//log.Println("Calling Area.OverlapsBody()")
 
 	// Build out the method's arguments
@@ -1188,8 +1188,8 @@ type AreaImplementer interface {
 	IsMonitoring() gdnative.Bool
 	IsOverridingAudioBus() gdnative.Bool
 	IsUsingReverbBus() gdnative.Bool
-	OverlapsArea(area Object) gdnative.Bool
-	OverlapsBody(body Object) gdnative.Bool
+	OverlapsArea(area ObjectImplementer) gdnative.Bool
+	OverlapsBody(body ObjectImplementer) gdnative.Bool
 	SetAngularDamp(angularDamp gdnative.Float)
 	SetAudioBus(name gdnative.String)
 	SetAudioBusOverride(enable gdnative.Bool)

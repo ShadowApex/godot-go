@@ -48,7 +48,7 @@ func (o *DynamicFont) BaseClass() string {
         Adds a fallback font.
 	Args: [{ false data DynamicFontData}], Returns: void
 */
-func (o *DynamicFont) AddFallback(data DynamicFontData) {
+func (o *DynamicFont) AddFallback(data DynamicFontDataImplementer) {
 	//log.Println("Calling DynamicFont.AddFallback()")
 
 	// Build out the method's arguments
@@ -281,7 +281,7 @@ func (o *DynamicFont) RemoveFallback(idx gdnative.Int) {
         Sets the fallback font at index [code]idx[/code].
 	Args: [{ false idx int} { false data DynamicFontData}], Returns: void
 */
-func (o *DynamicFont) SetFallback(idx gdnative.Int, data DynamicFontData) {
+func (o *DynamicFont) SetFallback(idx gdnative.Int, data DynamicFontDataImplementer) {
 	//log.Println("Calling DynamicFont.SetFallback()")
 
 	// Build out the method's arguments
@@ -303,7 +303,7 @@ func (o *DynamicFont) SetFallback(idx gdnative.Int, data DynamicFontData) {
         Undocumented
 	Args: [{ false data DynamicFontData}], Returns: void
 */
-func (o *DynamicFont) SetFontData(data DynamicFontData) {
+func (o *DynamicFont) SetFontData(data DynamicFontDataImplementer) {
 	//log.Println("Calling DynamicFont.SetFontData()")
 
 	// Build out the method's arguments
@@ -409,7 +409,7 @@ func (o *DynamicFont) SetUseMipmaps(enable gdnative.Bool) {
 // of the DynamicFont class.
 type DynamicFontImplementer interface {
 	FontImplementer
-	AddFallback(data DynamicFontData)
+	AddFallback(data DynamicFontDataImplementer)
 	GetFallback(idx gdnative.Int) DynamicFontDataImplementer
 	GetFallbackCount() gdnative.Int
 	GetFontData() DynamicFontDataImplementer
@@ -418,8 +418,8 @@ type DynamicFontImplementer interface {
 	GetUseFilter() gdnative.Bool
 	GetUseMipmaps() gdnative.Bool
 	RemoveFallback(idx gdnative.Int)
-	SetFallback(idx gdnative.Int, data DynamicFontData)
-	SetFontData(data DynamicFontData)
+	SetFallback(idx gdnative.Int, data DynamicFontDataImplementer)
+	SetFontData(data DynamicFontDataImplementer)
 	SetSize(data gdnative.Int)
 	SetSpacing(aType gdnative.Int, value gdnative.Int)
 	SetUseFilter(enable gdnative.Bool)

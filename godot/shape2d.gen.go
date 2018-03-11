@@ -38,7 +38,7 @@ func (o *Shape2D) BaseClass() string {
         Return whether this shape is colliding with another. This method needs the transformation matrix for this shape ([code]local_xform[/code]), the shape to check collisions with ([code]with_shape[/code]), and the transformation matrix of that shape ([code]shape_xform[/code]).
 	Args: [{ false local_xform Transform2D} { false with_shape Shape2D} { false shape_xform Transform2D}], Returns: bool
 */
-func (o *Shape2D) Collide(localXform gdnative.Transform2D, withShape Shape2D, shapeXform gdnative.Transform2D) gdnative.Bool {
+func (o *Shape2D) Collide(localXform gdnative.Transform2D, withShape Shape2DImplementer, shapeXform gdnative.Transform2D) gdnative.Bool {
 	//log.Println("Calling Shape2D.Collide()")
 
 	// Build out the method's arguments
@@ -64,7 +64,7 @@ func (o *Shape2D) Collide(localXform gdnative.Transform2D, withShape Shape2D, sh
         Return a list of the points where this shape touches another. If there are no collisions, the list is empty. This method needs the transformation matrix for this shape ([code]local_xform[/code]), the shape to check collisions with ([code]with_shape[/code]), and the transformation matrix of that shape ([code]shape_xform[/code]).
 	Args: [{ false local_xform Transform2D} { false with_shape Shape2D} { false shape_xform Transform2D}], Returns: Variant
 */
-func (o *Shape2D) CollideAndGetContacts(localXform gdnative.Transform2D, withShape Shape2D, shapeXform gdnative.Transform2D) gdnative.Variant {
+func (o *Shape2D) CollideAndGetContacts(localXform gdnative.Transform2D, withShape Shape2DImplementer, shapeXform gdnative.Transform2D) gdnative.Variant {
 	//log.Println("Calling Shape2D.CollideAndGetContacts()")
 
 	// Build out the method's arguments
@@ -90,7 +90,7 @@ func (o *Shape2D) CollideAndGetContacts(localXform gdnative.Transform2D, withSha
         Return whether this shape would collide with another, if a given movement was applied. This method needs the transformation matrix for this shape ([code]local_xform[/code]), the movement to test on this shape ([code]local_motion[/code]), the shape to check collisions with ([code]with_shape[/code]), the transformation matrix of that shape ([code]shape_xform[/code]), and the movement to test onto the other object ([code]shape_motion[/code]).
 	Args: [{ false local_xform Transform2D} { false local_motion Vector2} { false with_shape Shape2D} { false shape_xform Transform2D} { false shape_motion Vector2}], Returns: bool
 */
-func (o *Shape2D) CollideWithMotion(localXform gdnative.Transform2D, localMotion gdnative.Vector2, withShape Shape2D, shapeXform gdnative.Transform2D, shapeMotion gdnative.Vector2) gdnative.Bool {
+func (o *Shape2D) CollideWithMotion(localXform gdnative.Transform2D, localMotion gdnative.Vector2, withShape Shape2DImplementer, shapeXform gdnative.Transform2D, shapeMotion gdnative.Vector2) gdnative.Bool {
 	//log.Println("Calling Shape2D.CollideWithMotion()")
 
 	// Build out the method's arguments
@@ -118,7 +118,7 @@ func (o *Shape2D) CollideWithMotion(localXform gdnative.Transform2D, localMotion
         Return a list of the points where this shape would touch another, if a given movement was applied. If there are no collisions, the list is empty. This method needs the transformation matrix for this shape ([code]local_xform[/code]), the movement to test on this shape ([code]local_motion[/code]), the shape to check collisions with ([code]with_shape[/code]), the transformation matrix of that shape ([code]shape_xform[/code]), and the movement to test onto the other object ([code]shape_motion[/code]).
 	Args: [{ false local_xform Transform2D} { false local_motion Vector2} { false with_shape Shape2D} { false shape_xform Transform2D} { false shape_motion Vector2}], Returns: Variant
 */
-func (o *Shape2D) CollideWithMotionAndGetContacts(localXform gdnative.Transform2D, localMotion gdnative.Vector2, withShape Shape2D, shapeXform gdnative.Transform2D, shapeMotion gdnative.Vector2) gdnative.Variant {
+func (o *Shape2D) CollideWithMotionAndGetContacts(localXform gdnative.Transform2D, localMotion gdnative.Vector2, withShape Shape2DImplementer, shapeXform gdnative.Transform2D, shapeMotion gdnative.Vector2) gdnative.Variant {
 	//log.Println("Calling Shape2D.CollideWithMotionAndGetContacts()")
 
 	// Build out the method's arguments
@@ -190,10 +190,10 @@ func (o *Shape2D) SetCustomSolverBias(bias gdnative.Float) {
 // of the Shape2D class.
 type Shape2DImplementer interface {
 	ResourceImplementer
-	Collide(localXform gdnative.Transform2D, withShape Shape2D, shapeXform gdnative.Transform2D) gdnative.Bool
-	CollideAndGetContacts(localXform gdnative.Transform2D, withShape Shape2D, shapeXform gdnative.Transform2D) gdnative.Variant
-	CollideWithMotion(localXform gdnative.Transform2D, localMotion gdnative.Vector2, withShape Shape2D, shapeXform gdnative.Transform2D, shapeMotion gdnative.Vector2) gdnative.Bool
-	CollideWithMotionAndGetContacts(localXform gdnative.Transform2D, localMotion gdnative.Vector2, withShape Shape2D, shapeXform gdnative.Transform2D, shapeMotion gdnative.Vector2) gdnative.Variant
+	Collide(localXform gdnative.Transform2D, withShape Shape2DImplementer, shapeXform gdnative.Transform2D) gdnative.Bool
+	CollideAndGetContacts(localXform gdnative.Transform2D, withShape Shape2DImplementer, shapeXform gdnative.Transform2D) gdnative.Variant
+	CollideWithMotion(localXform gdnative.Transform2D, localMotion gdnative.Vector2, withShape Shape2DImplementer, shapeXform gdnative.Transform2D, shapeMotion gdnative.Vector2) gdnative.Bool
+	CollideWithMotionAndGetContacts(localXform gdnative.Transform2D, localMotion gdnative.Vector2, withShape Shape2DImplementer, shapeXform gdnative.Transform2D, shapeMotion gdnative.Vector2) gdnative.Variant
 	GetCustomSolverBias() gdnative.Float
 	SetCustomSolverBias(bias gdnative.Float)
 }

@@ -77,7 +77,7 @@ func (o *ItemList) X_GetItems() gdnative.Array {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *ItemList) X_GuiInput(arg0 InputEvent) {
+func (o *ItemList) X_GuiInput(arg0 InputEventImplementer) {
 	//log.Println("Calling ItemList.X_GuiInput()")
 
 	// Build out the method's arguments
@@ -140,7 +140,7 @@ func (o *ItemList) X_SetItems(arg0 gdnative.Array) {
         Adds an item to the item list with no text, only an icon.
 	Args: [{ false icon Texture} {True true selectable bool}], Returns: void
 */
-func (o *ItemList) AddIconItem(icon Texture, selectable gdnative.Bool) {
+func (o *ItemList) AddIconItem(icon TextureImplementer, selectable gdnative.Bool) {
 	//log.Println("Calling ItemList.AddIconItem()")
 
 	// Build out the method's arguments
@@ -162,7 +162,7 @@ func (o *ItemList) AddIconItem(icon Texture, selectable gdnative.Bool) {
         Adds an item to the item list with specified text. Specify an icon of null for a list item with no icon. If selectable is true the list item will be selectable.
 	Args: [{ false text String} {Null true icon Texture} {True true selectable bool}], Returns: void
 */
-func (o *ItemList) AddItem(text gdnative.String, icon Texture, selectable gdnative.Bool) {
+func (o *ItemList) AddItem(text gdnative.String, icon TextureImplementer, selectable gdnative.Bool) {
 	//log.Println("Calling ItemList.AddItem()")
 
 	// Build out the method's arguments
@@ -1074,7 +1074,7 @@ func (o *ItemList) SetItemDisabled(idx gdnative.Int, disabled gdnative.Bool) {
         Set (or replace) icon of the item at the specified index.
 	Args: [{ false idx int} { false icon Texture}], Returns: void
 */
-func (o *ItemList) SetItemIcon(idx gdnative.Int, icon Texture) {
+func (o *ItemList) SetItemIcon(idx gdnative.Int, icon TextureImplementer) {
 	//log.Println("Calling ItemList.SetItemIcon()")
 
 	// Build out the method's arguments
@@ -1356,8 +1356,8 @@ type ItemListImplementer interface {
 	X_GetItems() gdnative.Array
 	X_ScrollChanged(arg0 gdnative.Float)
 	X_SetItems(arg0 gdnative.Array)
-	AddIconItem(icon Texture, selectable gdnative.Bool)
-	AddItem(text gdnative.String, icon Texture, selectable gdnative.Bool)
+	AddIconItem(icon TextureImplementer, selectable gdnative.Bool)
+	AddItem(text gdnative.String, icon TextureImplementer, selectable gdnative.Bool)
 	Clear()
 	EnsureCurrentIsVisible()
 	GetAllowReselect() gdnative.Bool
@@ -1394,7 +1394,7 @@ type ItemListImplementer interface {
 	SetIconScale(scale gdnative.Float)
 	SetItemCustomBgColor(idx gdnative.Int, customBgColor gdnative.Color)
 	SetItemDisabled(idx gdnative.Int, disabled gdnative.Bool)
-	SetItemIcon(idx gdnative.Int, icon Texture)
+	SetItemIcon(idx gdnative.Int, icon TextureImplementer)
 	SetItemIconRegion(idx gdnative.Int, rect gdnative.Rect2)
 	SetItemMetadata(idx gdnative.Int, metadata gdnative.Variant)
 	SetItemSelectable(idx gdnative.Int, selectable gdnative.Bool)

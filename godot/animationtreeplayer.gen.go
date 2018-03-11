@@ -167,7 +167,7 @@ func (o *AnimationTreePlayer) AnimationNodeGetMasterAnimation(id gdnative.String
         Binds a new [Animation] from the [member master_player] to the [code]AnimationTreePlayer[/code]'s animation node with name [code]id[/code].
 	Args: [{ false id String} { false animation Animation}], Returns: void
 */
-func (o *AnimationTreePlayer) AnimationNodeSetAnimation(id gdnative.String, animation Animation) {
+func (o *AnimationTreePlayer) AnimationNodeSetAnimation(id gdnative.String, animation AnimationImplementer) {
 	//log.Println("Calling AnimationTreePlayer.AnimationNodeSetAnimation()")
 
 	// Build out the method's arguments
@@ -1542,7 +1542,7 @@ type AnimationTreePlayerImplementer interface {
 	Advance(delta gdnative.Float)
 	AnimationNodeGetAnimation(id gdnative.String) AnimationImplementer
 	AnimationNodeGetMasterAnimation(id gdnative.String) gdnative.String
-	AnimationNodeSetAnimation(id gdnative.String, animation Animation)
+	AnimationNodeSetAnimation(id gdnative.String, animation AnimationImplementer)
 	AnimationNodeSetFilterPath(id gdnative.String, path gdnative.NodePath, enable gdnative.Bool)
 	AnimationNodeSetMasterAnimation(id gdnative.String, source gdnative.String)
 	AreNodesConnected(id gdnative.String, dstId gdnative.String, dstInputIdx gdnative.Int) gdnative.Bool

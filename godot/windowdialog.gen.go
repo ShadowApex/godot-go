@@ -58,7 +58,7 @@ func (o *WindowDialog) X_Closed() {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *WindowDialog) X_GuiInput(arg0 InputEvent) {
+func (o *WindowDialog) X_GuiInput(arg0 InputEventImplementer) {
 	//log.Println("Calling WindowDialog.X_GuiInput()")
 
 	// Build out the method's arguments

@@ -332,7 +332,7 @@ func (o *MeshLibrary) RemoveItem(id gdnative.Int) {
         Set the mesh of the item.
 	Args: [{ false id int} { false mesh Mesh}], Returns: void
 */
-func (o *MeshLibrary) SetItemMesh(id gdnative.Int, mesh Mesh) {
+func (o *MeshLibrary) SetItemMesh(id gdnative.Int, mesh MeshImplementer) {
 	//log.Println("Calling MeshLibrary.SetItemMesh()")
 
 	// Build out the method's arguments
@@ -376,7 +376,7 @@ func (o *MeshLibrary) SetItemName(id gdnative.Int, name gdnative.String) {
 
 	Args: [{ false id int} { false navmesh NavigationMesh}], Returns: void
 */
-func (o *MeshLibrary) SetItemNavmesh(id gdnative.Int, navmesh NavigationMesh) {
+func (o *MeshLibrary) SetItemNavmesh(id gdnative.Int, navmesh NavigationMeshImplementer) {
 	//log.Println("Calling MeshLibrary.SetItemNavmesh()")
 
 	// Build out the method's arguments
@@ -398,7 +398,7 @@ func (o *MeshLibrary) SetItemNavmesh(id gdnative.Int, navmesh NavigationMesh) {
 
 	Args: [{ false id int} { false texture Texture}], Returns: void
 */
-func (o *MeshLibrary) SetItemPreview(id gdnative.Int, texture Texture) {
+func (o *MeshLibrary) SetItemPreview(id gdnative.Int, texture TextureImplementer) {
 	//log.Println("Calling MeshLibrary.SetItemPreview()")
 
 	// Build out the method's arguments
@@ -453,9 +453,9 @@ type MeshLibraryImplementer interface {
 	GetItemShapes(id gdnative.Int) gdnative.Array
 	GetLastUnusedItemId() gdnative.Int
 	RemoveItem(id gdnative.Int)
-	SetItemMesh(id gdnative.Int, mesh Mesh)
+	SetItemMesh(id gdnative.Int, mesh MeshImplementer)
 	SetItemName(id gdnative.Int, name gdnative.String)
-	SetItemNavmesh(id gdnative.Int, navmesh NavigationMesh)
-	SetItemPreview(id gdnative.Int, texture Texture)
+	SetItemNavmesh(id gdnative.Int, navmesh NavigationMeshImplementer)
+	SetItemPreview(id gdnative.Int, texture TextureImplementer)
 	SetItemShapes(id gdnative.Int, shapes gdnative.Array)
 }

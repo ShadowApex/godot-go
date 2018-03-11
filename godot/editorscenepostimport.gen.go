@@ -38,7 +38,7 @@ func (o *EditorScenePostImport) BaseClass() string {
 
 	Args: [{ false scene Object}], Returns: void
 */
-func (o *EditorScenePostImport) PostImport(scene Object) {
+func (o *EditorScenePostImport) PostImport(scene ObjectImplementer) {
 	//log.Println("Calling EditorScenePostImport.PostImport()")
 
 	// Build out the method's arguments
@@ -59,5 +59,5 @@ func (o *EditorScenePostImport) PostImport(scene Object) {
 // of the EditorScenePostImport class.
 type EditorScenePostImportImplementer interface {
 	ReferenceImplementer
-	PostImport(scene Object)
+	PostImport(scene ObjectImplementer)
 }

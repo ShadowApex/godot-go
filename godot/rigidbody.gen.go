@@ -90,7 +90,7 @@ func (o *RigidBody) X_BodyExitTree(arg0 gdnative.Int) {
         Undocumented
 	Args: [{ false arg0 Object}], Returns: void
 */
-func (o *RigidBody) X_DirectStateChanged(arg0 Object) {
+func (o *RigidBody) X_DirectStateChanged(arg0 ObjectImplementer) {
 	//log.Println("Calling RigidBody.X_DirectStateChanged()")
 
 	// Build out the method's arguments
@@ -111,7 +111,7 @@ func (o *RigidBody) X_DirectStateChanged(arg0 Object) {
         Called during physics processing, allowing you to read and safely modify the simulation state for the object. By default it works in addition to the usual physics behavior, but [method set_use_custom_integrator] allows you to disable the default behavior and do fully custom force integration for a body.
 	Args: [{ false state PhysicsDirectBodyState}], Returns: void
 */
-func (o *RigidBody) X_IntegrateForces(state PhysicsDirectBodyState) {
+func (o *RigidBody) X_IntegrateForces(state PhysicsDirectBodyStateImplementer) {
 	//log.Println("Calling RigidBody.X_IntegrateForces()")
 
 	// Build out the method's arguments
@@ -950,8 +950,8 @@ type RigidBodyImplementer interface {
 	PhysicsBodyImplementer
 	X_BodyEnterTree(arg0 gdnative.Int)
 	X_BodyExitTree(arg0 gdnative.Int)
-	X_DirectStateChanged(arg0 Object)
-	X_IntegrateForces(state PhysicsDirectBodyState)
+	X_DirectStateChanged(arg0 ObjectImplementer)
+	X_IntegrateForces(state PhysicsDirectBodyStateImplementer)
 	ApplyImpulse(position gdnative.Vector3, impulse gdnative.Vector3)
 	GetAngularDamp() gdnative.Float
 	GetAngularVelocity() gdnative.Vector3

@@ -584,7 +584,7 @@ func (o *ArrayMesh) SurfaceRemove(surfIdx gdnative.Int) {
 
 	Args: [{ false surf_idx int} { false material Material}], Returns: void
 */
-func (o *ArrayMesh) SurfaceSetMaterial(surfIdx gdnative.Int, material Material) {
+func (o *ArrayMesh) SurfaceSetMaterial(surfIdx gdnative.Int, material MaterialImplementer) {
 	//log.Println("Calling ArrayMesh.SurfaceSetMaterial()")
 
 	// Build out the method's arguments
@@ -670,7 +670,7 @@ type ArrayMeshImplementer interface {
 	SurfaceGetMaterial(surfIdx gdnative.Int) MaterialImplementer
 	SurfaceGetName(surfIdx gdnative.Int) gdnative.String
 	SurfaceRemove(surfIdx gdnative.Int)
-	SurfaceSetMaterial(surfIdx gdnative.Int, material Material)
+	SurfaceSetMaterial(surfIdx gdnative.Int, material MaterialImplementer)
 	SurfaceSetName(surfIdx gdnative.Int, name gdnative.String)
 	SurfaceUpdateRegion(surfIdx gdnative.Int, offset gdnative.Int, data gdnative.PoolByteArray)
 }

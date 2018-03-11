@@ -98,7 +98,7 @@ func (o *ShortCut) GetShortcut() InputEventImplementer {
         Returns [code]true[/code] if the Shortcut's [InputEvent] equals [code]event[/code].
 	Args: [{ false event InputEvent}], Returns: bool
 */
-func (o *ShortCut) IsShortcut(event InputEvent) gdnative.Bool {
+func (o *ShortCut) IsShortcut(event InputEventImplementer) gdnative.Bool {
 	//log.Println("Calling ShortCut.IsShortcut()")
 
 	// Build out the method's arguments
@@ -145,7 +145,7 @@ func (o *ShortCut) IsValid() gdnative.Bool {
         Undocumented
 	Args: [{ false event InputEvent}], Returns: void
 */
-func (o *ShortCut) SetShortcut(event InputEvent) {
+func (o *ShortCut) SetShortcut(event InputEventImplementer) {
 	//log.Println("Calling ShortCut.SetShortcut()")
 
 	// Build out the method's arguments
@@ -168,7 +168,7 @@ type ShortCutImplementer interface {
 	ResourceImplementer
 	GetAsText() gdnative.String
 	GetShortcut() InputEventImplementer
-	IsShortcut(event InputEvent) gdnative.Bool
+	IsShortcut(event InputEventImplementer) gdnative.Bool
 	IsValid() gdnative.Bool
-	SetShortcut(event InputEvent)
+	SetShortcut(event InputEventImplementer)
 }

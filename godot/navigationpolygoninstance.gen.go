@@ -139,7 +139,7 @@ func (o *NavigationPolygonInstance) SetEnabled(enabled gdnative.Bool) {
         Undocumented
 	Args: [{ false navpoly NavigationPolygon}], Returns: void
 */
-func (o *NavigationPolygonInstance) SetNavigationPolygon(navpoly NavigationPolygon) {
+func (o *NavigationPolygonInstance) SetNavigationPolygon(navpoly NavigationPolygonImplementer) {
 	//log.Println("Calling NavigationPolygonInstance.SetNavigationPolygon()")
 
 	// Build out the method's arguments
@@ -164,5 +164,5 @@ type NavigationPolygonInstanceImplementer interface {
 	GetNavigationPolygon() NavigationPolygonImplementer
 	IsEnabled() gdnative.Bool
 	SetEnabled(enabled gdnative.Bool)
-	SetNavigationPolygon(navpoly NavigationPolygon)
+	SetNavigationPolygon(navpoly NavigationPolygonImplementer)
 }

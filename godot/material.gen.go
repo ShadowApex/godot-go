@@ -98,7 +98,7 @@ func (o *Material) GetRenderPriority() gdnative.Int {
         Undocumented
 	Args: [{ false next_pass Material}], Returns: void
 */
-func (o *Material) SetNextPass(nextPass Material) {
+func (o *Material) SetNextPass(nextPass MaterialImplementer) {
 	//log.Println("Calling Material.SetNextPass()")
 
 	// Build out the method's arguments
@@ -142,6 +142,6 @@ type MaterialImplementer interface {
 	ResourceImplementer
 	GetNextPass() MaterialImplementer
 	GetRenderPriority() gdnative.Int
-	SetNextPass(nextPass Material)
+	SetNextPass(nextPass MaterialImplementer)
 	SetRenderPriority(priority gdnative.Int)
 }

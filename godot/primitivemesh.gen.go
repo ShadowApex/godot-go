@@ -118,7 +118,7 @@ func (o *PrimitiveMesh) GetMeshArrays() gdnative.Array {
         Undocumented
 	Args: [{ false material Material}], Returns: void
 */
-func (o *PrimitiveMesh) SetMaterial(material Material) {
+func (o *PrimitiveMesh) SetMaterial(material MaterialImplementer) {
 	//log.Println("Calling PrimitiveMesh.SetMaterial()")
 
 	// Build out the method's arguments
@@ -142,5 +142,5 @@ type PrimitiveMeshImplementer interface {
 	X_Update()
 	GetMaterial() MaterialImplementer
 	GetMeshArrays() gdnative.Array
-	SetMaterial(material Material)
+	SetMaterial(material MaterialImplementer)
 }

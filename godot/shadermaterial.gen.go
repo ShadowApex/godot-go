@@ -99,7 +99,7 @@ func (o *ShaderMaterial) GetShaderParam(param gdnative.String) gdnative.Variant 
         Undocumented
 	Args: [{ false shader Shader}], Returns: void
 */
-func (o *ShaderMaterial) SetShader(shader Shader) {
+func (o *ShaderMaterial) SetShader(shader ShaderImplementer) {
 	//log.Println("Calling ShaderMaterial.SetShader()")
 
 	// Build out the method's arguments
@@ -144,6 +144,6 @@ type ShaderMaterialImplementer interface {
 	MaterialImplementer
 	GetShader() ShaderImplementer
 	GetShaderParam(param gdnative.String) gdnative.Variant
-	SetShader(shader Shader)
+	SetShader(shader ShaderImplementer)
 	SetShaderParam(param gdnative.String, value gdnative.Variant)
 }

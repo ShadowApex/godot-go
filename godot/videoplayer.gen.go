@@ -511,7 +511,7 @@ func (o *VideoPlayer) SetPaused(paused gdnative.Bool) {
         Undocumented
 	Args: [{ false stream VideoStream}], Returns: void
 */
-func (o *VideoPlayer) SetStream(stream VideoStream) {
+func (o *VideoPlayer) SetStream(stream VideoStreamImplementer) {
 	//log.Println("Calling VideoPlayer.SetStream()")
 
 	// Build out the method's arguments
@@ -635,7 +635,7 @@ type VideoPlayerImplementer interface {
 	SetBus(bus gdnative.String)
 	SetExpand(enable gdnative.Bool)
 	SetPaused(paused gdnative.Bool)
-	SetStream(stream VideoStream)
+	SetStream(stream VideoStreamImplementer)
 	SetStreamPosition(position gdnative.Float)
 	SetVolume(volume gdnative.Float)
 	SetVolumeDb(db gdnative.Float)

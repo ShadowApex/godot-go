@@ -110,7 +110,7 @@ func (o *Animation) Clear() {
         Adds a new track that is a copy of the given track from [code]to_animation[/code].
 	Args: [{ false track int} { false to_animation Animation}], Returns: void
 */
-func (o *Animation) CopyTrack(track gdnative.Int, toAnimation Animation) {
+func (o *Animation) CopyTrack(track gdnative.Int, toAnimation AnimationImplementer) {
 	//log.Println("Calling Animation.CopyTrack()")
 
 	// Build out the method's arguments
@@ -1070,7 +1070,7 @@ type AnimationImplementer interface {
 	ResourceImplementer
 	AddTrack(aType gdnative.Int, atPosition gdnative.Int) gdnative.Int
 	Clear()
-	CopyTrack(track gdnative.Int, toAnimation Animation)
+	CopyTrack(track gdnative.Int, toAnimation AnimationImplementer)
 	FindTrack(path gdnative.NodePath) gdnative.Int
 	GetLength() gdnative.Float
 	GetStep() gdnative.Float

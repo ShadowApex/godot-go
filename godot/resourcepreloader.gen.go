@@ -82,7 +82,7 @@ func (o *ResourcePreloader) X_SetResources(arg0 gdnative.Array) {
 
 	Args: [{ false name String} { false resource Resource}], Returns: void
 */
-func (o *ResourcePreloader) AddResource(name gdnative.String, resource Resource) {
+func (o *ResourcePreloader) AddResource(name gdnative.String, resource ResourceImplementer) {
 	//log.Println("Calling ResourcePreloader.AddResource()")
 
 	// Build out the method's arguments
@@ -234,7 +234,7 @@ type ResourcePreloaderImplementer interface {
 	NodeImplementer
 	X_GetResources() gdnative.Array
 	X_SetResources(arg0 gdnative.Array)
-	AddResource(name gdnative.String, resource Resource)
+	AddResource(name gdnative.String, resource ResourceImplementer)
 	GetResource(name gdnative.String) ResourceImplementer
 	GetResourceList() gdnative.PoolStringArray
 	HasResource(name gdnative.String) gdnative.Bool

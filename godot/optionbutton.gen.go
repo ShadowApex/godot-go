@@ -124,7 +124,7 @@ func (o *OptionButton) X_SetItems(arg0 gdnative.Array) {
         Add an item, with a "texture" icon, text "label" and (optionally) id. If no "id" is passed, "id" becomes the item index. New items are appended at the end.
 	Args: [{ false texture Texture} { false label String} { false id int}], Returns: void
 */
-func (o *OptionButton) AddIconItem(texture Texture, label gdnative.String, id gdnative.Int) {
+func (o *OptionButton) AddIconItem(texture TextureImplementer, label gdnative.String, id gdnative.Int) {
 	//log.Println("Calling OptionButton.AddIconItem()")
 
 	// Build out the method's arguments
@@ -536,7 +536,7 @@ func (o *OptionButton) SetItemDisabled(idx gdnative.Int, disabled gdnative.Bool)
         Set the icon of an item at index "idx".
 	Args: [{ false idx int} { false texture Texture}], Returns: void
 */
-func (o *OptionButton) SetItemIcon(idx gdnative.Int, texture Texture) {
+func (o *OptionButton) SetItemIcon(idx gdnative.Int, texture TextureImplementer) {
 	//log.Println("Calling OptionButton.SetItemIcon()")
 
 	// Build out the method's arguments
@@ -628,7 +628,7 @@ type OptionButtonImplementer interface {
 	X_SelectInt(arg0 gdnative.Int)
 	X_Selected(arg0 gdnative.Int)
 	X_SetItems(arg0 gdnative.Array)
-	AddIconItem(texture Texture, label gdnative.String, id gdnative.Int)
+	AddIconItem(texture TextureImplementer, label gdnative.String, id gdnative.Int)
 	AddItem(label gdnative.String, id gdnative.Int)
 	AddSeparator()
 	Clear()
@@ -645,7 +645,7 @@ type OptionButtonImplementer interface {
 	RemoveItem(idx gdnative.Int)
 	Select(idx gdnative.Int)
 	SetItemDisabled(idx gdnative.Int, disabled gdnative.Bool)
-	SetItemIcon(idx gdnative.Int, texture Texture)
+	SetItemIcon(idx gdnative.Int, texture TextureImplementer)
 	SetItemId(idx gdnative.Int, id gdnative.Int)
 	SetItemMetadata(idx gdnative.Int, metadata gdnative.Variant)
 	SetItemText(idx gdnative.Int, text gdnative.String)

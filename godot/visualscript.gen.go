@@ -145,7 +145,7 @@ func (o *VisualScript) AddFunction(name gdnative.String) {
         Undocumented
 	Args: [{ false func String} { false id int} { false node VisualScriptNode} {(0, 0) true position Vector2}], Returns: void
 */
-func (o *VisualScript) AddNode(function gdnative.String, id gdnative.Int, node VisualScriptNode, position gdnative.Vector2) {
+func (o *VisualScript) AddNode(function gdnative.String, id gdnative.Int, node VisualScriptNodeImplementer, position gdnative.Vector2) {
 	//log.Println("Calling VisualScript.AddNode()")
 
 	// Build out the method's arguments
@@ -1103,7 +1103,7 @@ type VisualScriptImplementer interface {
 	X_SetData(data gdnative.Dictionary)
 	AddCustomSignal(name gdnative.String)
 	AddFunction(name gdnative.String)
-	AddNode(function gdnative.String, id gdnative.Int, node VisualScriptNode, position gdnative.Vector2)
+	AddNode(function gdnative.String, id gdnative.Int, node VisualScriptNodeImplementer, position gdnative.Vector2)
 	AddVariable(name gdnative.String, defaultValue gdnative.Variant, export gdnative.Bool)
 	CustomSignalAddArgument(name gdnative.String, aType gdnative.Int, argname gdnative.String, index gdnative.Int)
 	CustomSignalGetArgumentCount(name gdnative.String) gdnative.Int

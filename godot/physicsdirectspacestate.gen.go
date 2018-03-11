@@ -38,7 +38,7 @@ func (o *PhysicsDirectSpaceState) BaseClass() string {
         Checks whether the shape can travel to a point. The method will return an array with two floats between 0 and 1, both representing a fraction of [code]motion[/code]. The first is how far the shape can move without triggering a collision, and the second is the point at which a collision will occur. If no collision is detected, the returned array will be [1, 1]. If the shape can not move, the array will be empty ([code]dir.empty()==true[/code]).
 	Args: [{ false shape PhysicsShapeQueryParameters} { false motion Vector3}], Returns: Array
 */
-func (o *PhysicsDirectSpaceState) CastMotion(shape PhysicsShapeQueryParameters, motion gdnative.Vector3) gdnative.Array {
+func (o *PhysicsDirectSpaceState) CastMotion(shape PhysicsShapeQueryParametersImplementer, motion gdnative.Vector3) gdnative.Array {
 	//log.Println("Calling PhysicsDirectSpaceState.CastMotion()")
 
 	// Build out the method's arguments
@@ -63,7 +63,7 @@ func (o *PhysicsDirectSpaceState) CastMotion(shape PhysicsShapeQueryParameters, 
         Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters] object, against the space. The resulting array contains a list of points where the shape intersects another. Like with [method intersect_shape], the number of returned results can be limited to save processing time.
 	Args: [{ false shape PhysicsShapeQueryParameters} {32 true max_results int}], Returns: Array
 */
-func (o *PhysicsDirectSpaceState) CollideShape(shape PhysicsShapeQueryParameters, maxResults gdnative.Int) gdnative.Array {
+func (o *PhysicsDirectSpaceState) CollideShape(shape PhysicsShapeQueryParametersImplementer, maxResults gdnative.Int) gdnative.Array {
 	//log.Println("Calling PhysicsDirectSpaceState.CollideShape()")
 
 	// Build out the method's arguments
@@ -88,7 +88,7 @@ func (o *PhysicsDirectSpaceState) CollideShape(shape PhysicsShapeQueryParameters
         Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters] object, against the space. If it collides with more than a shape, the nearest one is selected. The returned object is a dictionary containing the following fields: [code]collider_id[/code]: The colliding object's ID. [code]linear_velocity[/code]: The colliding object's velocity [Vector3]. If the object is an [Area], the result is [code](0, 0, 0)[/code]. [code]normal[/code]: The object's surface normal at the intersection point. [code]point[/code]: The intersection point. [code]rid[/code]: The intersecting object's [RID]. [code]shape[/code]: The shape index of the colliding shape. If the shape did not intersect anything, then an empty dictionary ([code]dir.empty()==true[/code]) is returned instead.
 	Args: [{ false shape PhysicsShapeQueryParameters}], Returns: Dictionary
 */
-func (o *PhysicsDirectSpaceState) GetRestInfo(shape PhysicsShapeQueryParameters) gdnative.Dictionary {
+func (o *PhysicsDirectSpaceState) GetRestInfo(shape PhysicsShapeQueryParametersImplementer) gdnative.Dictionary {
 	//log.Println("Calling PhysicsDirectSpaceState.GetRestInfo()")
 
 	// Build out the method's arguments
@@ -139,7 +139,7 @@ func (o *PhysicsDirectSpaceState) IntersectRay(from gdnative.Vector3, to gdnativ
         Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters] object, against the space. The intersected shapes are returned in an array containing dictionaries with the following fields: [code]collider[/code]: The colliding object. [code]collider_id[/code]: The colliding object's ID. [code]rid[/code]: The intersecting object's [RID]. [code]shape[/code]: The shape index of the colliding shape. The number of intersections can be limited with the second parameter, to reduce the processing time.
 	Args: [{ false shape PhysicsShapeQueryParameters} {32 true max_results int}], Returns: Array
 */
-func (o *PhysicsDirectSpaceState) IntersectShape(shape PhysicsShapeQueryParameters, maxResults gdnative.Int) gdnative.Array {
+func (o *PhysicsDirectSpaceState) IntersectShape(shape PhysicsShapeQueryParametersImplementer, maxResults gdnative.Int) gdnative.Array {
 	//log.Println("Calling PhysicsDirectSpaceState.IntersectShape()")
 
 	// Build out the method's arguments
@@ -164,9 +164,9 @@ func (o *PhysicsDirectSpaceState) IntersectShape(shape PhysicsShapeQueryParamete
 // of the PhysicsDirectSpaceState class.
 type PhysicsDirectSpaceStateImplementer interface {
 	ObjectImplementer
-	CastMotion(shape PhysicsShapeQueryParameters, motion gdnative.Vector3) gdnative.Array
-	CollideShape(shape PhysicsShapeQueryParameters, maxResults gdnative.Int) gdnative.Array
-	GetRestInfo(shape PhysicsShapeQueryParameters) gdnative.Dictionary
+	CastMotion(shape PhysicsShapeQueryParametersImplementer, motion gdnative.Vector3) gdnative.Array
+	CollideShape(shape PhysicsShapeQueryParametersImplementer, maxResults gdnative.Int) gdnative.Array
+	GetRestInfo(shape PhysicsShapeQueryParametersImplementer) gdnative.Dictionary
 	IntersectRay(from gdnative.Vector3, to gdnative.Vector3, exclude gdnative.Array, collisionLayer gdnative.Int) gdnative.Dictionary
-	IntersectShape(shape PhysicsShapeQueryParameters, maxResults gdnative.Int) gdnative.Array
+	IntersectShape(shape PhysicsShapeQueryParametersImplementer, maxResults gdnative.Int) gdnative.Array
 }

@@ -85,7 +85,7 @@ func (o *InstancePlaceholder) GetStoredValues(withOrder gdnative.Bool) gdnative.
         Replace this placeholder by the scene handed as an argument, or the original scene if no argument is given. As for all resources, the scene is loaded only if it's not loaded already. By manually loading the scene beforehand, delays caused by this function can be avoided.
 	Args: [{Null true custom_scene PackedScene}], Returns: void
 */
-func (o *InstancePlaceholder) ReplaceByInstance(customScene PackedScene) {
+func (o *InstancePlaceholder) ReplaceByInstance(customScene PackedSceneImplementer) {
 	//log.Println("Calling InstancePlaceholder.ReplaceByInstance()")
 
 	// Build out the method's arguments
@@ -108,5 +108,5 @@ type InstancePlaceholderImplementer interface {
 	NodeImplementer
 	GetInstancePath() gdnative.String
 	GetStoredValues(withOrder gdnative.Bool) gdnative.Dictionary
-	ReplaceByInstance(customScene PackedScene)
+	ReplaceByInstance(customScene PackedSceneImplementer)
 }

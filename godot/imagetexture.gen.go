@@ -92,7 +92,7 @@ func (o *ImageTexture) Create(width gdnative.Int, height gdnative.Int, format gd
         Create a new [code]ImageTexture[/code] from an [Image] with "flags" from [Texture].FLAG_*.
 	Args: [{ false image Image} {7 true flags int}], Returns: void
 */
-func (o *ImageTexture) CreateFromImage(image Image, flags gdnative.Int) {
+func (o *ImageTexture) CreateFromImage(image ImageImplementer, flags gdnative.Int) {
 	//log.Println("Calling ImageTexture.CreateFromImage()")
 
 	// Build out the method's arguments
@@ -204,7 +204,7 @@ func (o *ImageTexture) Load(path gdnative.String) {
         Set the [Image] of this [code]ImageTexture[/code].
 	Args: [{ false image Image}], Returns: void
 */
-func (o *ImageTexture) SetData(image Image) {
+func (o *ImageTexture) SetData(image ImageImplementer) {
 	//log.Println("Calling ImageTexture.SetData()")
 
 	// Build out the method's arguments
@@ -290,10 +290,10 @@ type ImageTextureImplementer interface {
 	TextureImplementer
 	X_ReloadHook(rid gdnative.Rid)
 	Create(width gdnative.Int, height gdnative.Int, format gdnative.Int, flags gdnative.Int)
-	CreateFromImage(image Image, flags gdnative.Int)
+	CreateFromImage(image ImageImplementer, flags gdnative.Int)
 	GetLossyStorageQuality() gdnative.Float
 	Load(path gdnative.String)
-	SetData(image Image)
+	SetData(image ImageImplementer)
 	SetLossyStorageQuality(quality gdnative.Float)
 	SetSizeOverride(size gdnative.Vector2)
 	SetStorage(mode gdnative.Int)

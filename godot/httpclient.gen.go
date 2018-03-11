@@ -550,7 +550,7 @@ func (o *HTTPClient) SetBlockingMode(enabled gdnative.Bool) {
         Undocumented
 	Args: [{ false connection StreamPeer}], Returns: void
 */
-func (o *HTTPClient) SetConnection(connection StreamPeer) {
+func (o *HTTPClient) SetConnection(connection StreamPeerImplementer) {
 	//log.Println("Calling HTTPClient.SetConnection()")
 
 	// Build out the method's arguments
@@ -604,6 +604,6 @@ type HTTPClientImplementer interface {
 	QueryStringFromDict(fields gdnative.Dictionary) gdnative.String
 	ReadResponseBodyChunk() gdnative.PoolByteArray
 	SetBlockingMode(enabled gdnative.Bool)
-	SetConnection(connection StreamPeer)
+	SetConnection(connection StreamPeerImplementer)
 	SetReadChunkSize(bytes gdnative.Int)
 }

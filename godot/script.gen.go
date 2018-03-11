@@ -191,7 +191,7 @@ func (o *Script) HasSourceCode() gdnative.Bool {
         Returns true if 'base_object' is an instance of this script.
 	Args: [{ false base_object Object}], Returns: bool
 */
-func (o *Script) InstanceHas(baseObject Object) gdnative.Bool {
+func (o *Script) InstanceHas(baseObject ObjectImplementer) gdnative.Bool {
 	//log.Println("Calling Script.InstanceHas()")
 
 	// Build out the method's arguments
@@ -289,7 +289,7 @@ type ScriptImplementer interface {
 	GetSourceCode() gdnative.String
 	HasScriptSignal(signalName gdnative.String) gdnative.Bool
 	HasSourceCode() gdnative.Bool
-	InstanceHas(baseObject Object) gdnative.Bool
+	InstanceHas(baseObject ObjectImplementer) gdnative.Bool
 	IsTool() gdnative.Bool
 	SetSourceCode(source gdnative.String)
 }

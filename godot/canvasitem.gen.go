@@ -488,7 +488,7 @@ func (o *CanvasItem) X_UpdateCallback() {
         Draws a string character using a custom font. Returns the advance, depending on the char width and kerning with an optional next char.
 	Args: [{ false font Font} { false position Vector2} { false char String} { false next String} {1,1,1,1 true modulate Color}], Returns: float
 */
-func (o *CanvasItem) DrawChar(font Font, position gdnative.Vector2, char gdnative.String, next gdnative.String, modulate gdnative.Color) gdnative.Float {
+func (o *CanvasItem) DrawChar(font FontImplementer, position gdnative.Vector2, char gdnative.String, next gdnative.String, modulate gdnative.Color) gdnative.Float {
 	//log.Println("Calling CanvasItem.DrawChar()")
 
 	// Build out the method's arguments
@@ -539,7 +539,7 @@ func (o *CanvasItem) DrawCircle(position gdnative.Vector2, radius gdnative.Float
         Draws a colored polygon of any amount of points, convex or concave.
 	Args: [{ false points PoolVector2Array} { false color Color} {[] true uvs PoolVector2Array} {Null true texture Texture} {Null true normal_map Texture} {False true antialiased bool}], Returns: void
 */
-func (o *CanvasItem) DrawColoredPolygon(points gdnative.PoolVector2Array, color gdnative.Color, uvs gdnative.PoolVector2Array, texture Texture, normalMap Texture, antialiased gdnative.Bool) {
+func (o *CanvasItem) DrawColoredPolygon(points gdnative.PoolVector2Array, color gdnative.Color, uvs gdnative.PoolVector2Array, texture TextureImplementer, normalMap TextureImplementer, antialiased gdnative.Bool) {
 	//log.Println("Calling CanvasItem.DrawColoredPolygon()")
 
 	// Build out the method's arguments
@@ -638,7 +638,7 @@ func (o *CanvasItem) DrawMultilineColors(points gdnative.PoolVector2Array, color
         Draws a polygon of any amount of points, convex or concave.
 	Args: [{ false points PoolVector2Array} { false colors PoolColorArray} {[] true uvs PoolVector2Array} {Null true texture Texture} {Null true normal_map Texture} {False true antialiased bool}], Returns: void
 */
-func (o *CanvasItem) DrawPolygon(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture Texture, normalMap Texture, antialiased gdnative.Bool) {
+func (o *CanvasItem) DrawPolygon(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture TextureImplementer, normalMap TextureImplementer, antialiased gdnative.Bool) {
 	//log.Println("Calling CanvasItem.DrawPolygon()")
 
 	// Build out the method's arguments
@@ -712,7 +712,7 @@ func (o *CanvasItem) DrawPolylineColors(points gdnative.PoolVector2Array, colors
         Draws a custom primitive, 1 point for a point, 2 points for a line, 3 points for a triangle and 4 points for a quad.
 	Args: [{ false points PoolVector2Array} { false colors PoolColorArray} { false uvs PoolVector2Array} {Null true texture Texture} {1 true width float} {Null true normal_map Texture}], Returns: void
 */
-func (o *CanvasItem) DrawPrimitive(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture Texture, width gdnative.Float, normalMap Texture) {
+func (o *CanvasItem) DrawPrimitive(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture TextureImplementer, width gdnative.Float, normalMap TextureImplementer) {
 	//log.Println("Calling CanvasItem.DrawPrimitive()")
 
 	// Build out the method's arguments
@@ -805,7 +805,7 @@ func (o *CanvasItem) DrawSetTransformMatrix(xform gdnative.Transform2D) {
         Draws a string using a custom font.
 	Args: [{ false font Font} { false position Vector2} { false text String} {1,1,1,1 true modulate Color} {-1 true clip_w int}], Returns: void
 */
-func (o *CanvasItem) DrawString(font Font, position gdnative.Vector2, text gdnative.String, modulate gdnative.Color, clipW gdnative.Int) {
+func (o *CanvasItem) DrawString(font FontImplementer, position gdnative.Vector2, text gdnative.String, modulate gdnative.Color, clipW gdnative.Int) {
 	//log.Println("Calling CanvasItem.DrawString()")
 
 	// Build out the method's arguments
@@ -830,7 +830,7 @@ func (o *CanvasItem) DrawString(font Font, position gdnative.Vector2, text gdnat
         Draws a styled rectangle.
 	Args: [{ false style_box StyleBox} { false rect Rect2}], Returns: void
 */
-func (o *CanvasItem) DrawStyleBox(styleBox StyleBox, rect gdnative.Rect2) {
+func (o *CanvasItem) DrawStyleBox(styleBox StyleBoxImplementer, rect gdnative.Rect2) {
 	//log.Println("Calling CanvasItem.DrawStyleBox()")
 
 	// Build out the method's arguments
@@ -852,7 +852,7 @@ func (o *CanvasItem) DrawStyleBox(styleBox StyleBox, rect gdnative.Rect2) {
         Draws a texture at a given position.
 	Args: [{ false texture Texture} { false position Vector2} {1,1,1,1 true modulate Color} {Null true normal_map Texture}], Returns: void
 */
-func (o *CanvasItem) DrawTexture(texture Texture, position gdnative.Vector2, modulate gdnative.Color, normalMap Texture) {
+func (o *CanvasItem) DrawTexture(texture TextureImplementer, position gdnative.Vector2, modulate gdnative.Color, normalMap TextureImplementer) {
 	//log.Println("Calling CanvasItem.DrawTexture()")
 
 	// Build out the method's arguments
@@ -876,7 +876,7 @@ func (o *CanvasItem) DrawTexture(texture Texture, position gdnative.Vector2, mod
         Draws a textured rectangle at a given position, optionally modulated by a color. Transpose swaps the x and y coordinates when reading the texture.
 	Args: [{ false texture Texture} { false rect Rect2} { false tile bool} {1,1,1,1 true modulate Color} {False true transpose bool} {Null true normal_map Texture}], Returns: void
 */
-func (o *CanvasItem) DrawTextureRect(texture Texture, rect gdnative.Rect2, tile gdnative.Bool, modulate gdnative.Color, transpose gdnative.Bool, normalMap Texture) {
+func (o *CanvasItem) DrawTextureRect(texture TextureImplementer, rect gdnative.Rect2, tile gdnative.Bool, modulate gdnative.Color, transpose gdnative.Bool, normalMap TextureImplementer) {
 	//log.Println("Calling CanvasItem.DrawTextureRect()")
 
 	// Build out the method's arguments
@@ -902,7 +902,7 @@ func (o *CanvasItem) DrawTextureRect(texture Texture, rect gdnative.Rect2, tile 
         Draws a textured rectangle region at a given position, optionally modulated by a color. Transpose swaps the x and y coordinates when reading the texture.
 	Args: [{ false texture Texture} { false rect Rect2} { false src_rect Rect2} {1,1,1,1 true modulate Color} {False true transpose bool} {Null true normal_map Texture} {True true clip_uv bool}], Returns: void
 */
-func (o *CanvasItem) DrawTextureRectRegion(texture Texture, rect gdnative.Rect2, srcRect gdnative.Rect2, modulate gdnative.Color, transpose gdnative.Bool, normalMap Texture, clipUv gdnative.Bool) {
+func (o *CanvasItem) DrawTextureRectRegion(texture TextureImplementer, rect gdnative.Rect2, srcRect gdnative.Rect2, modulate gdnative.Color, transpose gdnative.Bool, normalMap TextureImplementer, clipUv gdnative.Bool) {
 	//log.Println("Calling CanvasItem.DrawTextureRectRegion()")
 
 	// Build out the method's arguments
@@ -1507,7 +1507,7 @@ func (o *CanvasItem) MakeCanvasPositionLocal(screenPoint gdnative.Vector2) gdnat
         Transformations issued by [code]event[/code]'s inputs are applied in local space instead of global space.
 	Args: [{ false event InputEvent}], Returns: InputEvent
 */
-func (o *CanvasItem) MakeInputLocal(event InputEvent) InputEventImplementer {
+func (o *CanvasItem) MakeInputLocal(event InputEventImplementer) InputEventImplementer {
 	//log.Println("Calling CanvasItem.MakeInputLocal()")
 
 	// Build out the method's arguments
@@ -1608,7 +1608,7 @@ func (o *CanvasItem) SetLightMask(lightMask gdnative.Int) {
         Undocumented
 	Args: [{ false material Material}], Returns: void
 */
-func (o *CanvasItem) SetMaterial(material Material) {
+func (o *CanvasItem) SetMaterial(material MaterialImplementer) {
 	//log.Println("Calling CanvasItem.SetMaterial()")
 
 	// Build out the method's arguments
@@ -1815,24 +1815,24 @@ type CanvasItemImplementer interface {
 	X_SetOnTop(onTop gdnative.Bool)
 	X_ToplevelRaiseSelf()
 	X_UpdateCallback()
-	DrawChar(font Font, position gdnative.Vector2, char gdnative.String, next gdnative.String, modulate gdnative.Color) gdnative.Float
+	DrawChar(font FontImplementer, position gdnative.Vector2, char gdnative.String, next gdnative.String, modulate gdnative.Color) gdnative.Float
 	DrawCircle(position gdnative.Vector2, radius gdnative.Float, color gdnative.Color)
-	DrawColoredPolygon(points gdnative.PoolVector2Array, color gdnative.Color, uvs gdnative.PoolVector2Array, texture Texture, normalMap Texture, antialiased gdnative.Bool)
+	DrawColoredPolygon(points gdnative.PoolVector2Array, color gdnative.Color, uvs gdnative.PoolVector2Array, texture TextureImplementer, normalMap TextureImplementer, antialiased gdnative.Bool)
 	DrawLine(from gdnative.Vector2, to gdnative.Vector2, color gdnative.Color, width gdnative.Float, antialiased gdnative.Bool)
 	DrawMultiline(points gdnative.PoolVector2Array, color gdnative.Color, width gdnative.Float, antialiased gdnative.Bool)
 	DrawMultilineColors(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Float, antialiased gdnative.Bool)
-	DrawPolygon(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture Texture, normalMap Texture, antialiased gdnative.Bool)
+	DrawPolygon(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture TextureImplementer, normalMap TextureImplementer, antialiased gdnative.Bool)
 	DrawPolyline(points gdnative.PoolVector2Array, color gdnative.Color, width gdnative.Float, antialiased gdnative.Bool)
 	DrawPolylineColors(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Float, antialiased gdnative.Bool)
-	DrawPrimitive(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture Texture, width gdnative.Float, normalMap Texture)
+	DrawPrimitive(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture TextureImplementer, width gdnative.Float, normalMap TextureImplementer)
 	DrawRect(rect gdnative.Rect2, color gdnative.Color, filled gdnative.Bool)
 	DrawSetTransform(position gdnative.Vector2, rotation gdnative.Float, scale gdnative.Vector2)
 	DrawSetTransformMatrix(xform gdnative.Transform2D)
-	DrawString(font Font, position gdnative.Vector2, text gdnative.String, modulate gdnative.Color, clipW gdnative.Int)
-	DrawStyleBox(styleBox StyleBox, rect gdnative.Rect2)
-	DrawTexture(texture Texture, position gdnative.Vector2, modulate gdnative.Color, normalMap Texture)
-	DrawTextureRect(texture Texture, rect gdnative.Rect2, tile gdnative.Bool, modulate gdnative.Color, transpose gdnative.Bool, normalMap Texture)
-	DrawTextureRectRegion(texture Texture, rect gdnative.Rect2, srcRect gdnative.Rect2, modulate gdnative.Color, transpose gdnative.Bool, normalMap Texture, clipUv gdnative.Bool)
+	DrawString(font FontImplementer, position gdnative.Vector2, text gdnative.String, modulate gdnative.Color, clipW gdnative.Int)
+	DrawStyleBox(styleBox StyleBoxImplementer, rect gdnative.Rect2)
+	DrawTexture(texture TextureImplementer, position gdnative.Vector2, modulate gdnative.Color, normalMap TextureImplementer)
+	DrawTextureRect(texture TextureImplementer, rect gdnative.Rect2, tile gdnative.Bool, modulate gdnative.Color, transpose gdnative.Bool, normalMap TextureImplementer)
+	DrawTextureRectRegion(texture TextureImplementer, rect gdnative.Rect2, srcRect gdnative.Rect2, modulate gdnative.Color, transpose gdnative.Bool, normalMap TextureImplementer, clipUv gdnative.Bool)
 	GetCanvas() gdnative.Rid
 	GetCanvasItem() gdnative.Rid
 	GetCanvasTransform() gdnative.Transform2D
@@ -1857,11 +1857,11 @@ type CanvasItemImplementer interface {
 	IsVisible() gdnative.Bool
 	IsVisibleInTree() gdnative.Bool
 	MakeCanvasPositionLocal(screenPoint gdnative.Vector2) gdnative.Vector2
-	MakeInputLocal(event InputEvent) InputEventImplementer
+	MakeInputLocal(event InputEventImplementer) InputEventImplementer
 	SetAsToplevel(enable gdnative.Bool)
 	SetDrawBehindParent(enable gdnative.Bool)
 	SetLightMask(lightMask gdnative.Int)
-	SetMaterial(material Material)
+	SetMaterial(material MaterialImplementer)
 	SetModulate(modulate gdnative.Color)
 	SetNotifyLocalTransform(enable gdnative.Bool)
 	SetNotifyTransform(enable gdnative.Bool)

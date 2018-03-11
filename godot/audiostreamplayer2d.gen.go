@@ -470,7 +470,7 @@ func (o *AudioStreamPlayer2D) SetMaxDistance(pixels gdnative.Float) {
         Undocumented
 	Args: [{ false stream AudioStream}], Returns: void
 */
-func (o *AudioStreamPlayer2D) SetStream(stream AudioStream) {
+func (o *AudioStreamPlayer2D) SetStream(stream AudioStreamImplementer) {
 	//log.Println("Calling AudioStreamPlayer2D.SetStream()")
 
 	// Build out the method's arguments
@@ -551,7 +551,7 @@ type AudioStreamPlayer2DImplementer interface {
 	SetAutoplay(enable gdnative.Bool)
 	SetBus(bus gdnative.String)
 	SetMaxDistance(pixels gdnative.Float)
-	SetStream(stream AudioStream)
+	SetStream(stream AudioStreamImplementer)
 	SetVolumeDb(volumeDb gdnative.Float)
 	Stop()
 }

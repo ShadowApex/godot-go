@@ -58,7 +58,7 @@ func (o *MeshDataTool) Clear() {
 
 	Args: [{ false mesh ArrayMesh}], Returns: enum.Error
 */
-func (o *MeshDataTool) CommitToSurface(mesh ArrayMesh) gdnative.Error {
+func (o *MeshDataTool) CommitToSurface(mesh ArrayMeshImplementer) gdnative.Error {
 	//log.Println("Calling MeshDataTool.CommitToSurface()")
 
 	// Build out the method's arguments
@@ -82,7 +82,7 @@ func (o *MeshDataTool) CommitToSurface(mesh ArrayMesh) gdnative.Error {
 
 	Args: [{ false mesh ArrayMesh} { false surface int}], Returns: enum.Error
 */
-func (o *MeshDataTool) CreateFromSurface(mesh ArrayMesh, surface gdnative.Int) gdnative.Error {
+func (o *MeshDataTool) CreateFromSurface(mesh ArrayMeshImplementer, surface gdnative.Int) gdnative.Error {
 	//log.Println("Calling MeshDataTool.CreateFromSurface()")
 
 	// Build out the method's arguments
@@ -715,7 +715,7 @@ func (o *MeshDataTool) SetFaceMeta(idx gdnative.Int, meta gdnative.Variant) {
 
 	Args: [{ false material Material}], Returns: void
 */
-func (o *MeshDataTool) SetMaterial(material Material) {
+func (o *MeshDataTool) SetMaterial(material MaterialImplementer) {
 	//log.Println("Calling MeshDataTool.SetMaterial()")
 
 	// Build out the method's arguments
@@ -960,7 +960,7 @@ type MeshDataToolImplementer interface {
 	GetVertexWeights(idx gdnative.Int) gdnative.PoolRealArray
 	SetEdgeMeta(idx gdnative.Int, meta gdnative.Variant)
 	SetFaceMeta(idx gdnative.Int, meta gdnative.Variant)
-	SetMaterial(material Material)
+	SetMaterial(material MaterialImplementer)
 	SetVertex(idx gdnative.Int, vertex gdnative.Vector3)
 	SetVertexBones(idx gdnative.Int, bones gdnative.PoolIntArray)
 	SetVertexColor(idx gdnative.Int, color gdnative.Color)

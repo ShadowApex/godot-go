@@ -82,7 +82,7 @@ func (o *PhysicsBody2D) X_SetLayers(mask gdnative.Int) {
         Adds a body to the list of bodies that this body can't collide with.
 	Args: [{ false body Object}], Returns: void
 */
-func (o *PhysicsBody2D) AddCollisionExceptionWith(body Object) {
+func (o *PhysicsBody2D) AddCollisionExceptionWith(body ObjectImplementer) {
 	//log.Println("Calling PhysicsBody2D.AddCollisionExceptionWith()")
 
 	// Build out the method's arguments
@@ -197,7 +197,7 @@ func (o *PhysicsBody2D) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
         Removes a body from the list of bodies that this body can't collide with.
 	Args: [{ false body Object}], Returns: void
 */
-func (o *PhysicsBody2D) RemoveCollisionExceptionWith(body Object) {
+func (o *PhysicsBody2D) RemoveCollisionExceptionWith(body ObjectImplementer) {
 	//log.Println("Calling PhysicsBody2D.RemoveCollisionExceptionWith()")
 
 	// Build out the method's arguments
@@ -306,12 +306,12 @@ type PhysicsBody2DImplementer interface {
 	CollisionObject2DImplementer
 	X_GetLayers() gdnative.Int
 	X_SetLayers(mask gdnative.Int)
-	AddCollisionExceptionWith(body Object)
+	AddCollisionExceptionWith(body ObjectImplementer)
 	GetCollisionLayer() gdnative.Int
 	GetCollisionLayerBit(bit gdnative.Int) gdnative.Bool
 	GetCollisionMask() gdnative.Int
 	GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool
-	RemoveCollisionExceptionWith(body Object)
+	RemoveCollisionExceptionWith(body ObjectImplementer)
 	SetCollisionLayer(layer gdnative.Int)
 	SetCollisionLayerBit(bit gdnative.Int, value gdnative.Bool)
 	SetCollisionMask(mask gdnative.Int)

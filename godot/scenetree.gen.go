@@ -68,7 +68,7 @@ func (o *SceneTree) BaseClass() string {
         Undocumented
 	Args: [{ false arg0 Object}], Returns: void
 */
-func (o *SceneTree) X_ChangeScene(arg0 Object) {
+func (o *SceneTree) X_ChangeScene(arg0 ObjectImplementer) {
 	//log.Println("Calling SceneTree.X_ChangeScene()")
 
 	// Build out the method's arguments
@@ -266,7 +266,7 @@ func (o *SceneTree) ChangeScene(path gdnative.String) gdnative.Error {
 
 	Args: [{ false packed_scene PackedScene}], Returns: enum.Error
 */
-func (o *SceneTree) ChangeSceneTo(packedScene PackedScene) gdnative.Error {
+func (o *SceneTree) ChangeSceneTo(packedScene PackedSceneImplementer) gdnative.Error {
 	//log.Println("Calling SceneTree.ChangeSceneTo()")
 
 	// Build out the method's arguments
@@ -869,7 +869,7 @@ func (o *SceneTree) NotifyGroupFlags(callFlags gdnative.Int, group gdnative.Stri
 
 	Args: [{ false obj Object}], Returns: void
 */
-func (o *SceneTree) QueueDelete(obj Object) {
+func (o *SceneTree) QueueDelete(obj ObjectImplementer) {
 	//log.Println("Calling SceneTree.QueueDelete()")
 
 	// Build out the method's arguments
@@ -954,7 +954,7 @@ func (o *SceneTree) SetAutoAcceptQuit(enabled gdnative.Bool) {
         Undocumented
 	Args: [{ false child_node Object}], Returns: void
 */
-func (o *SceneTree) SetCurrentScene(childNode Object) {
+func (o *SceneTree) SetCurrentScene(childNode ObjectImplementer) {
 	//log.Println("Calling SceneTree.SetCurrentScene()")
 
 	// Build out the method's arguments
@@ -1017,7 +1017,7 @@ func (o *SceneTree) SetDebugNavigationHint(enable gdnative.Bool) {
         Undocumented
 	Args: [{ false scene Object}], Returns: void
 */
-func (o *SceneTree) SetEditedSceneRoot(scene Object) {
+func (o *SceneTree) SetEditedSceneRoot(scene ObjectImplementer) {
 	//log.Println("Calling SceneTree.SetEditedSceneRoot()")
 
 	// Build out the method's arguments
@@ -1105,7 +1105,7 @@ func (o *SceneTree) SetInputAsHandled() {
         Undocumented
 	Args: [{ false peer NetworkedMultiplayerPeer}], Returns: void
 */
-func (o *SceneTree) SetNetworkPeer(peer NetworkedMultiplayerPeer) {
+func (o *SceneTree) SetNetworkPeer(peer NetworkedMultiplayerPeerImplementer) {
 	//log.Println("Calling SceneTree.SetNetworkPeer()")
 
 	// Build out the method's arguments
@@ -1234,7 +1234,7 @@ func (o *SceneTree) SetUseFontOversampling(enable gdnative.Bool) {
 // of the SceneTree class.
 type SceneTreeImplementer interface {
 	MainLoopImplementer
-	X_ChangeScene(arg0 Object)
+	X_ChangeScene(arg0 ObjectImplementer)
 	X_ConnectedToServer()
 	X_ConnectionFailed()
 	X_NetworkPeerConnected(arg0 gdnative.Int)
@@ -1264,17 +1264,17 @@ type SceneTreeImplementer interface {
 	IsUsingFontOversampling() gdnative.Bool
 	NotifyGroup(group gdnative.String, notification gdnative.Int)
 	NotifyGroupFlags(callFlags gdnative.Int, group gdnative.String, notification gdnative.Int)
-	QueueDelete(obj Object)
+	QueueDelete(obj ObjectImplementer)
 	Quit()
 	SetAutoAcceptQuit(enabled gdnative.Bool)
-	SetCurrentScene(childNode Object)
+	SetCurrentScene(childNode ObjectImplementer)
 	SetDebugCollisionsHint(enable gdnative.Bool)
 	SetDebugNavigationHint(enable gdnative.Bool)
-	SetEditedSceneRoot(scene Object)
+	SetEditedSceneRoot(scene ObjectImplementer)
 	SetGroup(group gdnative.String, property gdnative.String, value gdnative.Variant)
 	SetGroupFlags(callFlags gdnative.Int, group gdnative.String, property gdnative.String, value gdnative.Variant)
 	SetInputAsHandled()
-	SetNetworkPeer(peer NetworkedMultiplayerPeer)
+	SetNetworkPeer(peer NetworkedMultiplayerPeerImplementer)
 	SetPause(enable gdnative.Bool)
 	SetQuitOnGoBack(enabled gdnative.Bool)
 	SetRefuseNewNetworkConnections(refuse gdnative.Bool)

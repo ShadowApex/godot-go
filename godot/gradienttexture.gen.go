@@ -95,7 +95,7 @@ func (o *GradientTexture) GetGradient() GradientImplementer {
         Undocumented
 	Args: [{ false gradient Gradient}], Returns: void
 */
-func (o *GradientTexture) SetGradient(gradient Gradient) {
+func (o *GradientTexture) SetGradient(gradient GradientImplementer) {
 	//log.Println("Calling GradientTexture.SetGradient()")
 
 	// Build out the method's arguments
@@ -139,6 +139,6 @@ type GradientTextureImplementer interface {
 	TextureImplementer
 	X_Update()
 	GetGradient() GradientImplementer
-	SetGradient(gradient Gradient)
+	SetGradient(gradient GradientImplementer)
 	SetWidth(width gdnative.Int)
 }

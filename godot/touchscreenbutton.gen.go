@@ -46,7 +46,7 @@ func (o *TouchScreenButton) BaseClass() string {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *TouchScreenButton) X_Input(arg0 InputEvent) {
+func (o *TouchScreenButton) X_Input(arg0 InputEventImplementer) {
 	//log.Println("Calling TouchScreenButton.X_Input()")
 
 	// Build out the method's arguments
@@ -374,7 +374,7 @@ func (o *TouchScreenButton) SetAction(action gdnative.String) {
         Undocumented
 	Args: [{ false bitmask BitMap}], Returns: void
 */
-func (o *TouchScreenButton) SetBitmask(bitmask BitMap) {
+func (o *TouchScreenButton) SetBitmask(bitmask BitMapImplementer) {
 	//log.Println("Calling TouchScreenButton.SetBitmask()")
 
 	// Build out the method's arguments
@@ -416,7 +416,7 @@ func (o *TouchScreenButton) SetPassbyPress(enabled gdnative.Bool) {
         Undocumented
 	Args: [{ false shape Shape2D}], Returns: void
 */
-func (o *TouchScreenButton) SetShape(shape Shape2D) {
+func (o *TouchScreenButton) SetShape(shape Shape2DImplementer) {
 	//log.Println("Calling TouchScreenButton.SetShape()")
 
 	// Build out the method's arguments
@@ -479,7 +479,7 @@ func (o *TouchScreenButton) SetShapeVisible(bool gdnative.Bool) {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *TouchScreenButton) SetTexture(texture Texture) {
+func (o *TouchScreenButton) SetTexture(texture TextureImplementer) {
 	//log.Println("Calling TouchScreenButton.SetTexture()")
 
 	// Build out the method's arguments
@@ -500,7 +500,7 @@ func (o *TouchScreenButton) SetTexture(texture Texture) {
         Undocumented
 	Args: [{ false texture_pressed Texture}], Returns: void
 */
-func (o *TouchScreenButton) SetTexturePressed(texturePressed Texture) {
+func (o *TouchScreenButton) SetTexturePressed(texturePressed TextureImplementer) {
 	//log.Println("Calling TouchScreenButton.SetTexturePressed()")
 
 	// Build out the method's arguments
@@ -552,12 +552,12 @@ type TouchScreenButtonImplementer interface {
 	IsShapeCentered() gdnative.Bool
 	IsShapeVisible() gdnative.Bool
 	SetAction(action gdnative.String)
-	SetBitmask(bitmask BitMap)
+	SetBitmask(bitmask BitMapImplementer)
 	SetPassbyPress(enabled gdnative.Bool)
-	SetShape(shape Shape2D)
+	SetShape(shape Shape2DImplementer)
 	SetShapeCentered(bool gdnative.Bool)
 	SetShapeVisible(bool gdnative.Bool)
-	SetTexture(texture Texture)
-	SetTexturePressed(texturePressed Texture)
+	SetTexture(texture TextureImplementer)
+	SetTexturePressed(texturePressed TextureImplementer)
 	SetVisibilityMode(mode gdnative.Int)
 }

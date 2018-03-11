@@ -97,7 +97,7 @@ func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) GetBaseObject() gdna
         {{ $view.MethodDoc $API.Name $method.Name }}
 	Args: {{ $method.Arguments }}, Returns: {{ $method.ReturnType }}
         */
-	func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) {{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $arg.Type }},{{ end }}) {{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ if ($view.IsGodotClass $method.ReturnType) }}Implementer{{ end }}{{ end }} {
+	func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) {{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $arg.Type }}{{ if $view.IsGodotClass $arg.Type }}Implementer{{ end }},{{ end }}) {{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ if ($view.IsGodotClass $method.ReturnType) }}Implementer{{ end }}{{ end }} {
 		{{ if $API.Singleton -}}
 			o.ensureSingleton()
 		{{ end -}}
@@ -169,7 +169,7 @@ type {{ $view.GoClassName $API.Name }}Implementer interface {
 	    {{ range $j, $method := $API.Methods -}}
 		{{/* Skip ENUM functions for now*/}}{{ if not ($view.IsEnum $method.ReturnType) -}}
 			{{ if (not ($view.HasParentMethod $API.BaseClass ($view.GoMethodName $method.Name))) -}}
-				{{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $arg.Type }},{{ end }}) {{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ if ($view.IsGodotClass $method.ReturnType) }}Implementer{{ end }}{{ end }}
+				{{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $arg.Type }}{{ if $view.IsGodotClass $arg.Type }}Implementer{{ end }},{{ end }}) {{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ if ($view.IsGodotClass $method.ReturnType) }}Implementer{{ end }}{{ end }}
 			{{ end -}}
 	        {{ end -}}
 	    {{ end -}}

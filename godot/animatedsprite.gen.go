@@ -447,7 +447,7 @@ func (o *AnimatedSprite) SetOffset(offset gdnative.Vector2) {
         Undocumented
 	Args: [{ false sprite_frames SpriteFrames}], Returns: void
 */
-func (o *AnimatedSprite) SetSpriteFrames(spriteFrames SpriteFrames) {
+func (o *AnimatedSprite) SetSpriteFrames(spriteFrames SpriteFramesImplementer) {
 	//log.Println("Calling AnimatedSprite.SetSpriteFrames()")
 
 	// Build out the method's arguments
@@ -506,6 +506,6 @@ type AnimatedSpriteImplementer interface {
 	SetFlipV(flipV gdnative.Bool)
 	SetFrame(frame gdnative.Int)
 	SetOffset(offset gdnative.Vector2)
-	SetSpriteFrames(spriteFrames SpriteFrames)
+	SetSpriteFrames(spriteFrames SpriteFramesImplementer)
 	Stop()
 }

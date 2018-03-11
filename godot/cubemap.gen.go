@@ -264,7 +264,7 @@ func (o *CubeMap) SetLossyStorageQuality(quality gdnative.Float) {
         Sets an [Image] for a side of the [code]CubeMap[/code] using one of the [code]SIDE_*[/code] constants or an integer 0-5.
 	Args: [{ false side int} { false image Image}], Returns: void
 */
-func (o *CubeMap) SetSide(side gdnative.Int, image Image) {
+func (o *CubeMap) SetSide(side gdnative.Int, image ImageImplementer) {
 	//log.Println("Calling CubeMap.SetSide()")
 
 	// Build out the method's arguments
@@ -314,6 +314,6 @@ type CubeMapImplementer interface {
 	GetWidth() gdnative.Int
 	SetFlags(flags gdnative.Int)
 	SetLossyStorageQuality(quality gdnative.Float)
-	SetSide(side gdnative.Int, image Image)
+	SetSide(side gdnative.Int, image ImageImplementer)
 	SetStorage(mode gdnative.Int)
 }

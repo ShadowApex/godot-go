@@ -149,7 +149,7 @@ func (o *InterpolatedCamera) SetSpeed(speed gdnative.Float) {
 
 	Args: [{ false target Object}], Returns: void
 */
-func (o *InterpolatedCamera) SetTarget(target Object) {
+func (o *InterpolatedCamera) SetTarget(target ObjectImplementer) {
 	//log.Println("Calling InterpolatedCamera.SetTarget()")
 
 	// Build out the method's arguments
@@ -196,6 +196,6 @@ type InterpolatedCameraImplementer interface {
 	IsInterpolationEnabled() gdnative.Bool
 	SetInterpolationEnabled(targetPath gdnative.Bool)
 	SetSpeed(speed gdnative.Float)
-	SetTarget(target Object)
+	SetTarget(target ObjectImplementer)
 	SetTargetPath(targetPath gdnative.NodePath)
 }

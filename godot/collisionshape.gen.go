@@ -118,7 +118,7 @@ func (o *CollisionShape) MakeConvexFromBrothers() {
         If this method exists within a script it will be called whenever the shape resource has been modified.
 	Args: [{ false resource Resource}], Returns: void
 */
-func (o *CollisionShape) ResourceChanged(resource Resource) {
+func (o *CollisionShape) ResourceChanged(resource ResourceImplementer) {
 	//log.Println("Calling CollisionShape.ResourceChanged()")
 
 	// Build out the method's arguments
@@ -160,7 +160,7 @@ func (o *CollisionShape) SetDisabled(enable gdnative.Bool) {
         Undocumented
 	Args: [{ false shape Shape}], Returns: void
 */
-func (o *CollisionShape) SetShape(shape Shape) {
+func (o *CollisionShape) SetShape(shape ShapeImplementer) {
 	//log.Println("Calling CollisionShape.SetShape()")
 
 	// Build out the method's arguments
@@ -184,7 +184,7 @@ type CollisionShapeImplementer interface {
 	GetShape() ShapeImplementer
 	IsDisabled() gdnative.Bool
 	MakeConvexFromBrothers()
-	ResourceChanged(resource Resource)
+	ResourceChanged(resource ResourceImplementer)
 	SetDisabled(enable gdnative.Bool)
-	SetShape(shape Shape)
+	SetShape(shape ShapeImplementer)
 }

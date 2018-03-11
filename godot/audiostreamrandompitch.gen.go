@@ -98,7 +98,7 @@ func (o *AudioStreamRandomPitch) GetRandomPitch() gdnative.Float {
         Undocumented
 	Args: [{ false stream AudioStream}], Returns: void
 */
-func (o *AudioStreamRandomPitch) SetAudioStream(stream AudioStream) {
+func (o *AudioStreamRandomPitch) SetAudioStream(stream AudioStreamImplementer) {
 	//log.Println("Calling AudioStreamRandomPitch.SetAudioStream()")
 
 	// Build out the method's arguments
@@ -142,6 +142,6 @@ type AudioStreamRandomPitchImplementer interface {
 	AudioStreamImplementer
 	GetAudioStream() AudioStreamImplementer
 	GetRandomPitch() gdnative.Float
-	SetAudioStream(stream AudioStream)
+	SetAudioStream(stream AudioStreamImplementer)
 	SetRandomPitch(scale gdnative.Float)
 }

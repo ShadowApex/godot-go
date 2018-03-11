@@ -298,7 +298,7 @@ func (o *AcceptDialog) GetText() gdnative.String {
         Registers a [LineEdit] in the dialog. When the enter key is pressed, the dialog will be accepted.
 	Args: [{ false line_edit Object}], Returns: void
 */
-func (o *AcceptDialog) RegisterTextEnter(lineEdit Object) {
+func (o *AcceptDialog) RegisterTextEnter(lineEdit ObjectImplementer) {
 	//log.Println("Calling AcceptDialog.RegisterTextEnter()")
 
 	// Build out the method's arguments
@@ -370,7 +370,7 @@ type AcceptDialogImplementer interface {
 	GetLabel() LabelImplementer
 	GetOk() ButtonImplementer
 	GetText() gdnative.String
-	RegisterTextEnter(lineEdit Object)
+	RegisterTextEnter(lineEdit ObjectImplementer)
 	SetHideOnOk(enabled gdnative.Bool)
 	SetText(text gdnative.String)
 }

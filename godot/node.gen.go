@@ -131,7 +131,7 @@ func (o *Node) X_GetImportPath() gdnative.NodePath {
         Called when there is an input event. The input event propagates through the node tree until a node consumes it. It is only called if input processing is enabled, which is done automatically if this method is overridden, and can be toggled with [method set_process_input].
 	Args: [{ false event InputEvent}], Returns: void
 */
-func (o *Node) X_Input(event InputEvent) {
+func (o *Node) X_Input(event InputEventImplementer) {
 	//log.Println("Calling Node.X_Input()")
 
 	// Build out the method's arguments
@@ -235,7 +235,7 @@ func (o *Node) X_SetImportPath(importPath gdnative.NodePath) {
         Propagated to all nodes when the previous InputEvent is not consumed by any nodes. It is only called if unhandled input processing is enabled, which is done automatically if this method is overridden, and can be toggled with [method set_process_unhandled_input].
 	Args: [{ false event InputEvent}], Returns: void
 */
-func (o *Node) X_UnhandledInput(event InputEvent) {
+func (o *Node) X_UnhandledInput(event InputEventImplementer) {
 	//log.Println("Calling Node.X_UnhandledInput()")
 
 	// Build out the method's arguments
@@ -256,7 +256,7 @@ func (o *Node) X_UnhandledInput(event InputEvent) {
 
 	Args: [{ false event InputEventKey}], Returns: void
 */
-func (o *Node) X_UnhandledKeyInput(event InputEventKey) {
+func (o *Node) X_UnhandledKeyInput(event InputEventKeyImplementer) {
 	//log.Println("Calling Node.X_UnhandledKeyInput()")
 
 	// Build out the method's arguments
@@ -277,7 +277,7 @@ func (o *Node) X_UnhandledKeyInput(event InputEventKey) {
         Adds a child node. Nodes can have any number of children, but every child must have a unique name. Child nodes are automatically deleted when the parent node is deleted, so an entire scene can be removed by deleting its topmost node. Setting "legible_unique_name" [code]true[/code] creates child nodes with human-readable names, based on the name of the node being instanced instead of its type.
 	Args: [{ false node Object} {False true legible_unique_name bool}], Returns: void
 */
-func (o *Node) AddChild(node Object, legibleUniqueName gdnative.Bool) {
+func (o *Node) AddChild(node ObjectImplementer, legibleUniqueName gdnative.Bool) {
 	//log.Println("Calling Node.AddChild()")
 
 	// Build out the method's arguments
@@ -299,7 +299,7 @@ func (o *Node) AddChild(node Object, legibleUniqueName gdnative.Bool) {
         Adds a child node. The child is placed below the given node in the list of children. Setting "legible_unique_name" [code]true[/code] creates child nodes with human-readable names, based on the name of the node being instanced instead of its type.
 	Args: [{ false node Object} { false child_node Object} {False true legible_unique_name bool}], Returns: void
 */
-func (o *Node) AddChildBelowNode(node Object, childNode Object, legibleUniqueName gdnative.Bool) {
+func (o *Node) AddChildBelowNode(node ObjectImplementer, childNode ObjectImplementer, legibleUniqueName gdnative.Bool) {
 	//log.Println("Calling Node.AddChildBelowNode()")
 
 	// Build out the method's arguments
@@ -803,7 +803,7 @@ func (o *Node) GetPath() gdnative.NodePath {
         Returns the relative path from the current node to the specified node in "node" argument. Both nodes must be in the same scene, or the function will fail.
 	Args: [{ false node Object}], Returns: NodePath
 */
-func (o *Node) GetPathTo(node Object) gdnative.NodePath {
+func (o *Node) GetPathTo(node ObjectImplementer) gdnative.NodePath {
 	//log.Println("Calling Node.GetPathTo()")
 
 	// Build out the method's arguments
@@ -1064,7 +1064,7 @@ func (o *Node) HasNodeAndResource(path gdnative.NodePath) gdnative.Bool {
         Returns [code]true[/code] if the given node is a direct or indirect child of the current node.
 	Args: [{ false node Object}], Returns: bool
 */
-func (o *Node) IsAParentOf(node Object) gdnative.Bool {
+func (o *Node) IsAParentOf(node ObjectImplementer) gdnative.Bool {
 	//log.Println("Calling Node.IsAParentOf()")
 
 	// Build out the method's arguments
@@ -1111,7 +1111,7 @@ func (o *Node) IsDisplayedFolded() gdnative.Bool {
         Returns [code]true[/code] if the given node occurs later in the scene hierarchy than the current node.
 	Args: [{ false node Object}], Returns: bool
 */
-func (o *Node) IsGreaterThan(node Object) gdnative.Bool {
+func (o *Node) IsGreaterThan(node ObjectImplementer) gdnative.Bool {
 	//log.Println("Calling Node.IsGreaterThan()")
 
 	// Build out the method's arguments
@@ -1366,7 +1366,7 @@ func (o *Node) IsProcessingUnhandledKeyInput() gdnative.Bool {
         Moves a child node to a different position (order) amongst the other children. Since calls, signals, etc are performed by tree order, changing the order of children nodes may be useful.
 	Args: [{ false child_node Object} { false to_position int}], Returns: void
 */
-func (o *Node) MoveChild(childNode Object, toPosition gdnative.Int) {
+func (o *Node) MoveChild(childNode ObjectImplementer, toPosition gdnative.Int) {
 	//log.Println("Calling Node.MoveChild()")
 
 	// Build out the method's arguments
@@ -1532,7 +1532,7 @@ func (o *Node) RemoveAndSkip() {
         Removes a child node. The node is NOT deleted and must be deleted manually.
 	Args: [{ false node Object}], Returns: void
 */
-func (o *Node) RemoveChild(node Object) {
+func (o *Node) RemoveChild(node ObjectImplementer) {
 	//log.Println("Calling Node.RemoveChild()")
 
 	// Build out the method's arguments
@@ -1574,7 +1574,7 @@ func (o *Node) RemoveFromGroup(group gdnative.String) {
         Replaces a node in a scene by the given one. Subscriptions that pass through this node will be lost.
 	Args: [{ false node Object} {False true keep_data bool}], Returns: void
 */
-func (o *Node) ReplaceBy(node Object, keepData gdnative.Bool) {
+func (o *Node) ReplaceBy(node ObjectImplementer, keepData gdnative.Bool) {
 	//log.Println("Calling Node.ReplaceBy()")
 
 	// Build out the method's arguments
@@ -1933,7 +1933,7 @@ func (o *Node) SetNetworkMaster(id gdnative.Int, recursive gdnative.Bool) {
         Undocumented
 	Args: [{ false owner Object}], Returns: void
 */
-func (o *Node) SetOwner(owner Object) {
+func (o *Node) SetOwner(owner ObjectImplementer) {
 	//log.Println("Calling Node.SetOwner()")
 
 	// Build out the method's arguments
@@ -2146,15 +2146,15 @@ type NodeImplementer interface {
 	X_EnterTree()
 	X_ExitTree()
 	X_GetImportPath() gdnative.NodePath
-	X_Input(event InputEvent)
+	X_Input(event InputEventImplementer)
 	X_PhysicsProcess(delta gdnative.Float)
 	X_Process(delta gdnative.Float)
 	X_Ready()
 	X_SetImportPath(importPath gdnative.NodePath)
-	X_UnhandledInput(event InputEvent)
-	X_UnhandledKeyInput(event InputEventKey)
-	AddChild(node Object, legibleUniqueName gdnative.Bool)
-	AddChildBelowNode(node Object, childNode Object, legibleUniqueName gdnative.Bool)
+	X_UnhandledInput(event InputEventImplementer)
+	X_UnhandledKeyInput(event InputEventKeyImplementer)
+	AddChild(node ObjectImplementer, legibleUniqueName gdnative.Bool)
+	AddChildBelowNode(node ObjectImplementer, childNode ObjectImplementer, legibleUniqueName gdnative.Bool)
 	AddToGroup(group gdnative.String, persistent gdnative.Bool)
 	CanProcess() gdnative.Bool
 	Duplicate(flags gdnative.Int) NodeImplementer
@@ -2172,7 +2172,7 @@ type NodeImplementer interface {
 	GetOwner() NodeImplementer
 	GetParent() NodeImplementer
 	GetPath() gdnative.NodePath
-	GetPathTo(node Object) gdnative.NodePath
+	GetPathTo(node ObjectImplementer) gdnative.NodePath
 	GetPhysicsProcessDeltaTime() gdnative.Float
 	GetPositionInParent() gdnative.Int
 	GetProcessDeltaTime() gdnative.Float
@@ -2181,9 +2181,9 @@ type NodeImplementer interface {
 	GetViewport() ViewportImplementer
 	HasNode(path gdnative.NodePath) gdnative.Bool
 	HasNodeAndResource(path gdnative.NodePath) gdnative.Bool
-	IsAParentOf(node Object) gdnative.Bool
+	IsAParentOf(node ObjectImplementer) gdnative.Bool
 	IsDisplayedFolded() gdnative.Bool
-	IsGreaterThan(node Object) gdnative.Bool
+	IsGreaterThan(node ObjectImplementer) gdnative.Bool
 	IsInGroup(group gdnative.String) gdnative.Bool
 	IsInsideTree() gdnative.Bool
 	IsNetworkMaster() gdnative.Bool
@@ -2194,7 +2194,7 @@ type NodeImplementer interface {
 	IsProcessingInternal() gdnative.Bool
 	IsProcessingUnhandledInput() gdnative.Bool
 	IsProcessingUnhandledKeyInput() gdnative.Bool
-	MoveChild(childNode Object, toPosition gdnative.Int)
+	MoveChild(childNode ObjectImplementer, toPosition gdnative.Int)
 	PrintStrayNodes()
 	PrintTree()
 	PropagateCall(method gdnative.String, args gdnative.Array, parentFirst gdnative.Bool)
@@ -2202,9 +2202,9 @@ type NodeImplementer interface {
 	QueueFree()
 	Raise()
 	RemoveAndSkip()
-	RemoveChild(node Object)
+	RemoveChild(node ObjectImplementer)
 	RemoveFromGroup(group gdnative.String)
-	ReplaceBy(node Object, keepData gdnative.Bool)
+	ReplaceBy(node ObjectImplementer, keepData gdnative.Bool)
 	RequestReady()
 	Rpc(method gdnative.String) gdnative.Variant
 	RpcConfig(method gdnative.String, mode gdnative.Int)
@@ -2220,7 +2220,7 @@ type NodeImplementer interface {
 	SetFilename(filename gdnative.String)
 	SetName(name gdnative.String)
 	SetNetworkMaster(id gdnative.Int, recursive gdnative.Bool)
-	SetOwner(owner Object)
+	SetOwner(owner ObjectImplementer)
 	SetPauseMode(mode gdnative.Int)
 	SetPhysicsProcess(enable gdnative.Bool)
 	SetPhysicsProcessInternal(enable gdnative.Bool)

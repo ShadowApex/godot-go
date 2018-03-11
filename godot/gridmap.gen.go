@@ -560,7 +560,7 @@ func (o *GridMap) MapToWorld(x gdnative.Int, y gdnative.Int, z gdnative.Int) gdn
         Undocumented
 	Args: [{ false resource Resource}], Returns: void
 */
-func (o *GridMap) ResourceChanged(resource Resource) {
+func (o *GridMap) ResourceChanged(resource ResourceImplementer) {
 	//log.Println("Calling GridMap.ResourceChanged()")
 
 	// Build out the method's arguments
@@ -842,7 +842,7 @@ func (o *GridMap) SetOctantSize(size gdnative.Int) {
         Undocumented
 	Args: [{ false theme MeshLibrary}], Returns: void
 */
-func (o *GridMap) SetTheme(theme MeshLibrary) {
+func (o *GridMap) SetTheme(theme MeshLibraryImplementer) {
 	//log.Println("Calling GridMap.SetTheme()")
 
 	// Build out the method's arguments
@@ -909,7 +909,7 @@ type GridMapImplementer interface {
 	GetUsedCells() gdnative.Array
 	MakeBakedMeshes(genLightmapUv gdnative.Bool, lightmapUvTexelSize gdnative.Float)
 	MapToWorld(x gdnative.Int, y gdnative.Int, z gdnative.Int) gdnative.Vector3
-	ResourceChanged(resource Resource)
+	ResourceChanged(resource ResourceImplementer)
 	SetCellItem(x gdnative.Int, y gdnative.Int, z gdnative.Int, item gdnative.Int, orientation gdnative.Int)
 	SetCellScale(scale gdnative.Float)
 	SetCellSize(size gdnative.Vector3)
@@ -922,6 +922,6 @@ type GridMapImplementer interface {
 	SetCollisionMask(mask gdnative.Int)
 	SetCollisionMaskBit(bit gdnative.Int, value gdnative.Bool)
 	SetOctantSize(size gdnative.Int)
-	SetTheme(theme MeshLibrary)
+	SetTheme(theme MeshLibraryImplementer)
 	WorldToMap(pos gdnative.Vector3) gdnative.Vector3
 }

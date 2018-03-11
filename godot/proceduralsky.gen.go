@@ -50,7 +50,7 @@ func (o *ProceduralSky) BaseClass() string {
         Undocumented
 	Args: [{ false image Image}], Returns: void
 */
-func (o *ProceduralSky) X_ThreadDone(image Image) {
+func (o *ProceduralSky) X_ThreadDone(image ImageImplementer) {
 	//log.Println("Calling ProceduralSky.X_ThreadDone()")
 
 	// Build out the method's arguments
@@ -795,7 +795,7 @@ func (o *ProceduralSky) SetTextureSize(size gdnative.Int) {
 // of the ProceduralSky class.
 type ProceduralSkyImplementer interface {
 	SkyImplementer
-	X_ThreadDone(image Image)
+	X_ThreadDone(image ImageImplementer)
 	X_UpdateSky()
 	GetGroundBottomColor() gdnative.Color
 	GetGroundCurve() gdnative.Float

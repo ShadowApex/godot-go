@@ -75,7 +75,7 @@ func (o *PanoramaSky) GetPanorama() TextureImplementer {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *PanoramaSky) SetPanorama(texture Texture) {
+func (o *PanoramaSky) SetPanorama(texture TextureImplementer) {
 	//log.Println("Calling PanoramaSky.SetPanorama()")
 
 	// Build out the method's arguments
@@ -97,5 +97,5 @@ func (o *PanoramaSky) SetPanorama(texture Texture) {
 type PanoramaSkyImplementer interface {
 	SkyImplementer
 	GetPanorama() TextureImplementer
-	SetPanorama(texture Texture)
+	SetPanorama(texture TextureImplementer)
 }

@@ -216,7 +216,7 @@ func (o *MeshInstance) GetSurfaceMaterial(surface gdnative.Int) MaterialImplemen
         Undocumented
 	Args: [{ false mesh Mesh}], Returns: void
 */
-func (o *MeshInstance) SetMesh(mesh Mesh) {
+func (o *MeshInstance) SetMesh(mesh MeshImplementer) {
 	//log.Println("Calling MeshInstance.SetMesh()")
 
 	// Build out the method's arguments
@@ -258,7 +258,7 @@ func (o *MeshInstance) SetSkeletonPath(skeletonPath gdnative.NodePath) {
         Sets the [Material] for a surface of the [Mesh] resource.
 	Args: [{ false surface int} { false material Material}], Returns: void
 */
-func (o *MeshInstance) SetSurfaceMaterial(surface gdnative.Int, material Material) {
+func (o *MeshInstance) SetSurfaceMaterial(surface gdnative.Int, material MaterialImplementer) {
 	//log.Println("Calling MeshInstance.SetSurfaceMaterial()")
 
 	// Build out the method's arguments
@@ -287,7 +287,7 @@ type MeshInstanceImplementer interface {
 	GetMesh() MeshImplementer
 	GetSkeletonPath() gdnative.NodePath
 	GetSurfaceMaterial(surface gdnative.Int) MaterialImplementer
-	SetMesh(mesh Mesh)
+	SetMesh(mesh MeshImplementer)
 	SetSkeletonPath(skeletonPath gdnative.NodePath)
-	SetSurfaceMaterial(surface gdnative.Int, material Material)
+	SetSurfaceMaterial(surface gdnative.Int, material MaterialImplementer)
 }

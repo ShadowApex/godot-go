@@ -58,7 +58,7 @@ func (o *Tabs) BaseClass() string {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *Tabs) X_GuiInput(arg0 InputEvent) {
+func (o *Tabs) X_GuiInput(arg0 InputEventImplementer) {
 	//log.Println("Calling Tabs.X_GuiInput()")
 
 	// Build out the method's arguments
@@ -79,7 +79,7 @@ func (o *Tabs) X_GuiInput(arg0 InputEvent) {
 
 	Args: [{ true title String} {[Object:null] true icon Texture}], Returns: void
 */
-func (o *Tabs) AddTab(title gdnative.String, icon Texture) {
+func (o *Tabs) AddTab(title gdnative.String, icon TextureImplementer) {
 	//log.Println("Calling Tabs.AddTab()")
 
 	// Build out the method's arguments
@@ -542,7 +542,7 @@ func (o *Tabs) SetTabDisabled(tabIdx gdnative.Int, disabled gdnative.Bool) {
 
 	Args: [{ false tab_idx int} { false icon Texture}], Returns: void
 */
-func (o *Tabs) SetTabIcon(tabIdx gdnative.Int, icon Texture) {
+func (o *Tabs) SetTabIcon(tabIdx gdnative.Int, icon TextureImplementer) {
 	//log.Println("Calling Tabs.SetTabIcon()")
 
 	// Build out the method's arguments
@@ -586,7 +586,7 @@ func (o *Tabs) SetTabTitle(tabIdx gdnative.Int, title gdnative.String) {
 // of the Tabs class.
 type TabsImplementer interface {
 	ControlImplementer
-	AddTab(title gdnative.String, icon Texture)
+	AddTab(title gdnative.String, icon TextureImplementer)
 	EnsureTabVisible(idx gdnative.Int)
 	GetCurrentTab() gdnative.Int
 	GetOffsetButtonsVisible() gdnative.Bool
@@ -604,6 +604,6 @@ type TabsImplementer interface {
 	SetTabAlign(align gdnative.Int)
 	SetTabCloseDisplayPolicy(policy gdnative.Int)
 	SetTabDisabled(tabIdx gdnative.Int, disabled gdnative.Bool)
-	SetTabIcon(tabIdx gdnative.Int, icon Texture)
+	SetTabIcon(tabIdx gdnative.Int, icon TextureImplementer)
 	SetTabTitle(tabIdx gdnative.Int, title gdnative.String)
 }

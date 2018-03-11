@@ -119,7 +119,7 @@ func (o *NavigationMeshInstance) SetEnabled(enabled gdnative.Bool) {
         Undocumented
 	Args: [{ false navmesh NavigationMesh}], Returns: void
 */
-func (o *NavigationMeshInstance) SetNavigationMesh(navmesh NavigationMesh) {
+func (o *NavigationMeshInstance) SetNavigationMesh(navmesh NavigationMeshImplementer) {
 	//log.Println("Calling NavigationMeshInstance.SetNavigationMesh()")
 
 	// Build out the method's arguments
@@ -143,5 +143,5 @@ type NavigationMeshInstanceImplementer interface {
 	GetNavigationMesh() NavigationMeshImplementer
 	IsEnabled() gdnative.Bool
 	SetEnabled(enabled gdnative.Bool)
-	SetNavigationMesh(navmesh NavigationMesh)
+	SetNavigationMesh(navmesh NavigationMeshImplementer)
 }

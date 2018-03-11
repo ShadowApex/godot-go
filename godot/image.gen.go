@@ -164,7 +164,7 @@ func (o *Image) X_SetData(data gdnative.Dictionary) {
         Alpha-blends [code]src_rect[/code] from [code]src[/code] image to this image at coordinates [code]dest[/code].
 	Args: [{ false src Image} { false src_rect Rect2} { false dst Vector2}], Returns: void
 */
-func (o *Image) BlendRect(src Image, srcRect gdnative.Rect2, dst gdnative.Vector2) {
+func (o *Image) BlendRect(src ImageImplementer, srcRect gdnative.Rect2, dst gdnative.Vector2) {
 	//log.Println("Calling Image.BlendRect()")
 
 	// Build out the method's arguments
@@ -187,7 +187,7 @@ func (o *Image) BlendRect(src Image, srcRect gdnative.Rect2, dst gdnative.Vector
         Alpha-blends [code]src_rect[/code] from [code]src[/code] image to this image using [code]mask[/code] image at coordinates [code]dst[/code]. Alpha channels are required for both [code]src[/code] and [code]mask[/code]. [code]dst[/code] pixels and [code]src[/code] pixels will blend if the corresponding mask pixel's alpha value is not 0. [code]src[/code] image and [code]mask[/code] image [b]must[/b] have the same size (width and height) but they can have different formats.
 	Args: [{ false src Image} { false mask Image} { false src_rect Rect2} { false dst Vector2}], Returns: void
 */
-func (o *Image) BlendRectMask(src Image, mask Image, srcRect gdnative.Rect2, dst gdnative.Vector2) {
+func (o *Image) BlendRectMask(src ImageImplementer, mask ImageImplementer, srcRect gdnative.Rect2, dst gdnative.Vector2) {
 	//log.Println("Calling Image.BlendRectMask()")
 
 	// Build out the method's arguments
@@ -211,7 +211,7 @@ func (o *Image) BlendRectMask(src Image, mask Image, srcRect gdnative.Rect2, dst
         Copies [code]src_rect[/code] from [code]src[/code] image to this image at coordinates [code]dst[/code].
 	Args: [{ false src Image} { false src_rect Rect2} { false dst Vector2}], Returns: void
 */
-func (o *Image) BlitRect(src Image, srcRect gdnative.Rect2, dst gdnative.Vector2) {
+func (o *Image) BlitRect(src ImageImplementer, srcRect gdnative.Rect2, dst gdnative.Vector2) {
 	//log.Println("Calling Image.BlitRect()")
 
 	// Build out the method's arguments
@@ -234,7 +234,7 @@ func (o *Image) BlitRect(src Image, srcRect gdnative.Rect2, dst gdnative.Vector2
         Blits [code]src_rect[/code] area from [code]src[/code] image to this image at the coordinates given by [code]dst[/code]. [code]src[/code] pixel is copied onto [code]dst[/code] if the corresponding [code]mask[/code] pixel's alpha value is not 0. [code]src[/code] image and [code]mask[/code] image [b]must[/b] have the same size (width and height) but they can have different formats.
 	Args: [{ false src Image} { false mask Image} { false src_rect Rect2} { false dst Vector2}], Returns: void
 */
-func (o *Image) BlitRectMask(src Image, mask Image, srcRect gdnative.Rect2, dst gdnative.Vector2) {
+func (o *Image) BlitRectMask(src ImageImplementer, mask ImageImplementer, srcRect gdnative.Rect2, dst gdnative.Vector2) {
 	//log.Println("Calling Image.BlitRectMask()")
 
 	// Build out the method's arguments
@@ -325,7 +325,7 @@ func (o *Image) Convert(format gdnative.Int) {
         Copies [code]src[/code] image to this image.
 	Args: [{ false src Image}], Returns: void
 */
-func (o *Image) CopyFrom(src Image) {
+func (o *Image) CopyFrom(src ImageImplementer) {
 	//log.Println("Calling Image.CopyFrom()")
 
 	// Build out the method's arguments
@@ -1189,13 +1189,13 @@ type ImageImplementer interface {
 	ResourceImplementer
 	X_GetData() gdnative.Dictionary
 	X_SetData(data gdnative.Dictionary)
-	BlendRect(src Image, srcRect gdnative.Rect2, dst gdnative.Vector2)
-	BlendRectMask(src Image, mask Image, srcRect gdnative.Rect2, dst gdnative.Vector2)
-	BlitRect(src Image, srcRect gdnative.Rect2, dst gdnative.Vector2)
-	BlitRectMask(src Image, mask Image, srcRect gdnative.Rect2, dst gdnative.Vector2)
+	BlendRect(src ImageImplementer, srcRect gdnative.Rect2, dst gdnative.Vector2)
+	BlendRectMask(src ImageImplementer, mask ImageImplementer, srcRect gdnative.Rect2, dst gdnative.Vector2)
+	BlitRect(src ImageImplementer, srcRect gdnative.Rect2, dst gdnative.Vector2)
+	BlitRectMask(src ImageImplementer, mask ImageImplementer, srcRect gdnative.Rect2, dst gdnative.Vector2)
 	ClearMipmaps()
 	Convert(format gdnative.Int)
-	CopyFrom(src Image)
+	CopyFrom(src ImageImplementer)
 	Create(width gdnative.Int, height gdnative.Int, useMipmaps gdnative.Bool, format gdnative.Int)
 	CreateFromData(width gdnative.Int, height gdnative.Int, useMipmaps gdnative.Bool, format gdnative.Int, data gdnative.PoolByteArray)
 	Crop(width gdnative.Int, height gdnative.Int)

@@ -561,7 +561,7 @@ func (o *EditorFileDialog) X_SelectDrive(arg0 gdnative.Int) {
         Undocumented
 	Args: [{ false arg0 String} { false arg1 Texture} { false arg2 Variant}], Returns: void
 */
-func (o *EditorFileDialog) X_ThumbnailDone(arg0 gdnative.String, arg1 Texture, arg2 gdnative.Variant) {
+func (o *EditorFileDialog) X_ThumbnailDone(arg0 gdnative.String, arg1 TextureImplementer, arg2 gdnative.Variant) {
 	//log.Println("Calling EditorFileDialog.X_ThumbnailDone()")
 
 	// Build out the method's arguments
@@ -584,7 +584,7 @@ func (o *EditorFileDialog) X_ThumbnailDone(arg0 gdnative.String, arg1 Texture, a
         Undocumented
 	Args: [{ false arg0 String} { false arg1 Texture} { false arg2 Variant}], Returns: void
 */
-func (o *EditorFileDialog) X_ThumbnailResult(arg0 gdnative.String, arg1 Texture, arg2 gdnative.Variant) {
+func (o *EditorFileDialog) X_ThumbnailResult(arg0 gdnative.String, arg1 TextureImplementer, arg2 gdnative.Variant) {
 	//log.Println("Calling EditorFileDialog.X_ThumbnailResult()")
 
 	// Build out the method's arguments
@@ -607,7 +607,7 @@ func (o *EditorFileDialog) X_ThumbnailResult(arg0 gdnative.String, arg1 Texture,
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *EditorFileDialog) X_UnhandledInput(arg0 InputEvent) {
+func (o *EditorFileDialog) X_UnhandledInput(arg0 InputEventImplementer) {
 	//log.Println("Calling EditorFileDialog.X_UnhandledInput()")
 
 	// Build out the method's arguments
@@ -1142,8 +1142,8 @@ type EditorFileDialogImplementer interface {
 	X_RecentSelected(arg0 gdnative.Int)
 	X_SaveConfirmPressed()
 	X_SelectDrive(arg0 gdnative.Int)
-	X_ThumbnailDone(arg0 gdnative.String, arg1 Texture, arg2 gdnative.Variant)
-	X_ThumbnailResult(arg0 gdnative.String, arg1 Texture, arg2 gdnative.Variant)
+	X_ThumbnailDone(arg0 gdnative.String, arg1 TextureImplementer, arg2 gdnative.Variant)
+	X_ThumbnailResult(arg0 gdnative.String, arg1 TextureImplementer, arg2 gdnative.Variant)
 	X_UpdateDir()
 	X_UpdateFileList()
 	AddFilter(filter gdnative.String)

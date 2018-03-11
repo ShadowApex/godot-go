@@ -126,7 +126,7 @@ func (o *Navigation2D) GetSimplePath(start gdnative.Vector2, end gdnative.Vector
 
 	Args: [{ false mesh NavigationPolygon} { false xform Transform2D} {Null true owner Object}], Returns: int
 */
-func (o *Navigation2D) NavpolyAdd(mesh NavigationPolygon, xform gdnative.Transform2D, owner Object) gdnative.Int {
+func (o *Navigation2D) NavpolyAdd(mesh NavigationPolygonImplementer, xform gdnative.Transform2D, owner ObjectImplementer) gdnative.Int {
 	//log.Println("Calling Navigation2D.NavpolyAdd()")
 
 	// Build out the method's arguments
@@ -198,7 +198,7 @@ type Navigation2DImplementer interface {
 	GetClosestPoint(toPoint gdnative.Vector2) gdnative.Vector2
 	GetClosestPointOwner(toPoint gdnative.Vector2) ObjectImplementer
 	GetSimplePath(start gdnative.Vector2, end gdnative.Vector2, optimize gdnative.Bool) gdnative.PoolVector2Array
-	NavpolyAdd(mesh NavigationPolygon, xform gdnative.Transform2D, owner Object) gdnative.Int
+	NavpolyAdd(mesh NavigationPolygonImplementer, xform gdnative.Transform2D, owner ObjectImplementer) gdnative.Int
 	NavpolyRemove(id gdnative.Int)
 	NavpolySetTransform(id gdnative.Int, xform gdnative.Transform2D)
 }

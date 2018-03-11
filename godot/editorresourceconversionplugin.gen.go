@@ -38,7 +38,7 @@ func (o *EditorResourceConversionPlugin) BaseClass() string {
 
 	Args: [{ false resource Resource}], Returns: Resource
 */
-func (o *EditorResourceConversionPlugin) X_Convert(resource Resource) ResourceImplementer {
+func (o *EditorResourceConversionPlugin) X_Convert(resource ResourceImplementer) ResourceImplementer {
 	//log.Println("Calling EditorResourceConversionPlugin.X_Convert()")
 
 	// Build out the method's arguments
@@ -99,6 +99,6 @@ func (o *EditorResourceConversionPlugin) X_ConvertsTo() gdnative.String {
 // of the EditorResourceConversionPlugin class.
 type EditorResourceConversionPluginImplementer interface {
 	ReferenceImplementer
-	X_Convert(resource Resource) ResourceImplementer
+	X_Convert(resource ResourceImplementer) ResourceImplementer
 	X_ConvertsTo() gdnative.String
 }

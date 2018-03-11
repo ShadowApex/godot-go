@@ -67,7 +67,7 @@ func (o *TabContainer) X_ChildRenamedCallback() {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *TabContainer) X_GuiInput(arg0 InputEvent) {
+func (o *TabContainer) X_GuiInput(arg0 InputEventImplementer) {
 	//log.Println("Calling TabContainer.X_GuiInput()")
 
 	// Build out the method's arguments
@@ -462,7 +462,7 @@ func (o *TabContainer) SetCurrentTab(tabIdx gdnative.Int) {
         If set on a [Popup] node instance, a popup menu icon appears in the top-right corner of the [code]TabContainer[/code]. Clicking it will expand the [Popup] node.
 	Args: [{ false popup Object}], Returns: void
 */
-func (o *TabContainer) SetPopup(popup Object) {
+func (o *TabContainer) SetPopup(popup ObjectImplementer) {
 	//log.Println("Calling TabContainer.SetPopup()")
 
 	// Build out the method's arguments
@@ -526,7 +526,7 @@ func (o *TabContainer) SetTabDisabled(tabIdx gdnative.Int, disabled gdnative.Boo
         Sets an icon for the tab at index [code]tab_idx[/code].
 	Args: [{ false tab_idx int} { false icon Texture}], Returns: void
 */
-func (o *TabContainer) SetTabIcon(tabIdx gdnative.Int, icon Texture) {
+func (o *TabContainer) SetTabIcon(tabIdx gdnative.Int, icon TextureImplementer) {
 	//log.Println("Calling TabContainer.SetTabIcon()")
 
 	// Build out the method's arguments
@@ -605,10 +605,10 @@ type TabContainerImplementer interface {
 	GetTabIcon(tabIdx gdnative.Int) TextureImplementer
 	GetTabTitle(tabIdx gdnative.Int) gdnative.String
 	SetCurrentTab(tabIdx gdnative.Int)
-	SetPopup(popup Object)
+	SetPopup(popup ObjectImplementer)
 	SetTabAlign(align gdnative.Int)
 	SetTabDisabled(tabIdx gdnative.Int, disabled gdnative.Bool)
-	SetTabIcon(tabIdx gdnative.Int, icon Texture)
+	SetTabIcon(tabIdx gdnative.Int, icon TextureImplementer)
 	SetTabTitle(tabIdx gdnative.Int, title gdnative.String)
 	SetTabsVisible(visible gdnative.Bool)
 }

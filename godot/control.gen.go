@@ -204,7 +204,7 @@ func (o *Control) X_GetTooltip() gdnative.String {
         The node's parent forwards input events to this method. Use it to process and accept inputs on UI elements. See [method accept_event]. Replaces Godot 2's [code]_input_event[/code].
 	Args: [{ false event InputEvent}], Returns: void
 */
-func (o *Control) X_GuiInput(event InputEvent) {
+func (o *Control) X_GuiInput(event InputEventImplementer) {
 	//log.Println("Calling Control.X_GuiInput()")
 
 	// Build out the method's arguments
@@ -371,7 +371,7 @@ func (o *Control) AddConstantOverride(name gdnative.String, constant gdnative.In
         Overrides the [code]name[/code] font in the [theme] resource the node uses. If [code]font[/code] is empty, Godot clears the override.
 	Args: [{ false name String} { false font Font}], Returns: void
 */
-func (o *Control) AddFontOverride(name gdnative.String, font Font) {
+func (o *Control) AddFontOverride(name gdnative.String, font FontImplementer) {
 	//log.Println("Calling Control.AddFontOverride()")
 
 	// Build out the method's arguments
@@ -393,7 +393,7 @@ func (o *Control) AddFontOverride(name gdnative.String, font Font) {
         Overrides the [code]name[/code] icon in the [theme] resource the node uses. If [code]icon[/code] is empty, Godot clears the override.
 	Args: [{ false name String} { false texture Texture}], Returns: void
 */
-func (o *Control) AddIconOverride(name gdnative.String, texture Texture) {
+func (o *Control) AddIconOverride(name gdnative.String, texture TextureImplementer) {
 	//log.Println("Calling Control.AddIconOverride()")
 
 	// Build out the method's arguments
@@ -415,7 +415,7 @@ func (o *Control) AddIconOverride(name gdnative.String, texture Texture) {
         Overrides the [code]name[/code] shader in the [theme] resource the node uses. If [code]shader[/code] is empty, Godot clears the override.
 	Args: [{ false name String} { false shader Shader}], Returns: void
 */
-func (o *Control) AddShaderOverride(name gdnative.String, shader Shader) {
+func (o *Control) AddShaderOverride(name gdnative.String, shader ShaderImplementer) {
 	//log.Println("Calling Control.AddShaderOverride()")
 
 	// Build out the method's arguments
@@ -437,7 +437,7 @@ func (o *Control) AddShaderOverride(name gdnative.String, shader Shader) {
         Overrides the [code]name[/code] [Stylebox] in the [theme] resource the node uses. If [code]stylebox[/code] is empty, Godot clears the override.
 	Args: [{ false name String} { false stylebox StyleBox}], Returns: void
 */
-func (o *Control) AddStyleboxOverride(name gdnative.String, stylebox StyleBox) {
+func (o *Control) AddStyleboxOverride(name gdnative.String, stylebox StyleBoxImplementer) {
 	//log.Println("Calling Control.AddStyleboxOverride()")
 
 	// Build out the method's arguments
@@ -506,7 +506,7 @@ func (o *Control) DropData(position gdnative.Vector2, data gdnative.Variant) {
         Forces drag and bypasses [method get_drag_data] and [method set_drag_preview] by passing [code]data[/code] and [code]preview[/code]. Drag will start even if the mouse is neither over nor pressed on this control. The methods [method can_drop_data] and [method drop_data] must be implemented on controls that want to recieve drop data.
 	Args: [{ false data Variant} { false preview Object}], Returns: void
 */
-func (o *Control) ForceDrag(data gdnative.Variant, preview Object) {
+func (o *Control) ForceDrag(data gdnative.Variant, preview ObjectImplementer) {
 	//log.Println("Calling Control.ForceDrag()")
 
 	// Build out the method's arguments
@@ -2135,7 +2135,7 @@ func (o *Control) SetDefaultCursorShape(shape gdnative.Int) {
         Forwards the handling of this control's drag and drop to [code]target[/code] control. Forwarding can be implemented in the target control similar to the methods [method get_drag_data], [method can_drop_data], and [method drop_data] but with two differences: 1. The function name must be suffixed with [b]_fw[/b] 2. The function must take an extra argument that is the control doing the forwarding [codeblock] # ThisControl.gd extends Control func _ready(): set_drag_forwarding(target_control) # TargetControl.gd extends Control func can_drop_data_fw(position, data, from_control): return true func drop_data_fw(position, data, from_control): my_handle_data(data) func get_drag_data_fw(position, from_control): set_drag_preview(my_preview) return my_data() [/codeblock]
 	Args: [{ false target Object}], Returns: void
 */
-func (o *Control) SetDragForwarding(target Object) {
+func (o *Control) SetDragForwarding(target ObjectImplementer) {
 	//log.Println("Calling Control.SetDragForwarding()")
 
 	// Build out the method's arguments
@@ -2156,7 +2156,7 @@ func (o *Control) SetDragForwarding(target Object) {
         Shows the given control at the mouse pointer. A good time to call this method is in [method get_drag_data].
 	Args: [{ false control Object}], Returns: void
 */
-func (o *Control) SetDragPreview(control Object) {
+func (o *Control) SetDragPreview(control ObjectImplementer) {
 	//log.Println("Calling Control.SetDragPreview()")
 
 	// Build out the method's arguments
@@ -2559,7 +2559,7 @@ func (o *Control) SetStretchRatio(ratio gdnative.Float) {
         Undocumented
 	Args: [{ false theme Theme}], Returns: void
 */
-func (o *Control) SetTheme(theme Theme) {
+func (o *Control) SetTheme(theme ThemeImplementer) {
 	//log.Println("Calling Control.SetTheme()")
 
 	// Build out the method's arguments
@@ -2688,7 +2688,7 @@ type ControlImplementer interface {
 	X_FontChanged()
 	X_GetMinimumSize() gdnative.Vector2
 	X_GetTooltip() gdnative.String
-	X_GuiInput(event InputEvent)
+	X_GuiInput(event InputEventImplementer)
 	X_SetAnchor(margin gdnative.Int, anchor gdnative.Float)
 	X_SizeChanged()
 	X_ThemeChanged()
@@ -2696,13 +2696,13 @@ type ControlImplementer interface {
 	AcceptEvent()
 	AddColorOverride(name gdnative.String, color gdnative.Color)
 	AddConstantOverride(name gdnative.String, constant gdnative.Int)
-	AddFontOverride(name gdnative.String, font Font)
-	AddIconOverride(name gdnative.String, texture Texture)
-	AddShaderOverride(name gdnative.String, shader Shader)
-	AddStyleboxOverride(name gdnative.String, stylebox StyleBox)
+	AddFontOverride(name gdnative.String, font FontImplementer)
+	AddIconOverride(name gdnative.String, texture TextureImplementer)
+	AddShaderOverride(name gdnative.String, shader ShaderImplementer)
+	AddStyleboxOverride(name gdnative.String, stylebox StyleBoxImplementer)
 	CanDropData(position gdnative.Vector2, data gdnative.Variant) gdnative.Bool
 	DropData(position gdnative.Vector2, data gdnative.Variant)
-	ForceDrag(data gdnative.Variant, preview Object)
+	ForceDrag(data gdnative.Variant, preview ObjectImplementer)
 	GetAnchor(margin gdnative.Int) gdnative.Float
 	GetBegin() gdnative.Vector2
 	GetColor(name gdnative.String, aType gdnative.String) gdnative.Color
@@ -2762,8 +2762,8 @@ type ControlImplementer interface {
 	SetClipContents(enable gdnative.Bool)
 	SetCustomMinimumSize(size gdnative.Vector2)
 	SetDefaultCursorShape(shape gdnative.Int)
-	SetDragForwarding(target Object)
-	SetDragPreview(control Object)
+	SetDragForwarding(target ObjectImplementer)
+	SetDragPreview(control ObjectImplementer)
 	SetEnd(position gdnative.Vector2)
 	SetFocusMode(mode gdnative.Int)
 	SetFocusNeighbour(margin gdnative.Int, neighbour gdnative.NodePath)
@@ -2782,7 +2782,7 @@ type ControlImplementer interface {
 	SetScale(scale gdnative.Vector2)
 	SetSize(size gdnative.Vector2)
 	SetStretchRatio(ratio gdnative.Float)
-	SetTheme(theme Theme)
+	SetTheme(theme ThemeImplementer)
 	SetTooltip(tooltip gdnative.String)
 	SetVGrowDirection(direction gdnative.Int)
 	SetVSizeFlags(flags gdnative.Int)

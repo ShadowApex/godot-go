@@ -156,7 +156,7 @@ func (o *NativeScript) SetClassName(className gdnative.String) {
         Undocumented
 	Args: [{ false library GDNativeLibrary}], Returns: void
 */
-func (o *NativeScript) SetLibrary(library GDNativeLibrary) {
+func (o *NativeScript) SetLibrary(library GDNativeLibraryImplementer) {
 	//log.Println("Calling NativeScript.SetLibrary()")
 
 	// Build out the method's arguments
@@ -181,5 +181,5 @@ type NativeScriptImplementer interface {
 	GetLibrary() GDNativeLibraryImplementer
 	New() ObjectImplementer
 	SetClassName(className gdnative.String)
-	SetLibrary(library GDNativeLibrary)
+	SetLibrary(library GDNativeLibraryImplementer)
 }

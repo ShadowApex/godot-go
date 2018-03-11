@@ -436,7 +436,7 @@ func (o *StyleBoxTexture) SetModulate(color gdnative.Color) {
         Undocumented
 	Args: [{ false normal_map Resource}], Returns: void
 */
-func (o *StyleBoxTexture) SetNormalMap(normalMap Resource) {
+func (o *StyleBoxTexture) SetNormalMap(normalMap ResourceImplementer) {
 	//log.Println("Calling StyleBoxTexture.SetNormalMap()")
 
 	// Build out the method's arguments
@@ -478,7 +478,7 @@ func (o *StyleBoxTexture) SetRegionRect(region gdnative.Rect2) {
         Undocumented
 	Args: [{ false texture Resource}], Returns: void
 */
-func (o *StyleBoxTexture) SetTexture(texture Resource) {
+func (o *StyleBoxTexture) SetTexture(texture ResourceImplementer) {
 	//log.Println("Calling StyleBoxTexture.SetTexture()")
 
 	// Build out the method's arguments
@@ -534,8 +534,8 @@ type StyleBoxTextureImplementer interface {
 	SetHAxisStretchMode(mode gdnative.Int)
 	SetMarginSize(margin gdnative.Int, size gdnative.Float)
 	SetModulate(color gdnative.Color)
-	SetNormalMap(normalMap Resource)
+	SetNormalMap(normalMap ResourceImplementer)
 	SetRegionRect(region gdnative.Rect2)
-	SetTexture(texture Resource)
+	SetTexture(texture ResourceImplementer)
 	SetVAxisStretchMode(mode gdnative.Int)
 }

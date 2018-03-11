@@ -406,7 +406,7 @@ func (o *MultiMesh) SetInstanceTransform(instance gdnative.Int, transform gdnati
         Undocumented
 	Args: [{ false mesh Mesh}], Returns: void
 */
-func (o *MultiMesh) SetMesh(mesh Mesh) {
+func (o *MultiMesh) SetMesh(mesh MeshImplementer) {
 	//log.Println("Calling MultiMesh.SetMesh()")
 
 	// Build out the method's arguments
@@ -461,6 +461,6 @@ type MultiMeshImplementer interface {
 	SetInstanceColor(instance gdnative.Int, color gdnative.Color)
 	SetInstanceCount(count gdnative.Int)
 	SetInstanceTransform(instance gdnative.Int, transform gdnative.Transform)
-	SetMesh(mesh Mesh)
+	SetMesh(mesh MeshImplementer)
 	SetTransformFormat(format gdnative.Int)
 }

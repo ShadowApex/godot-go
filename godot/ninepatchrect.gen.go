@@ -285,7 +285,7 @@ func (o *NinePatchRect) SetRegionRect(rect gdnative.Rect2) {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *NinePatchRect) SetTexture(texture Texture) {
+func (o *NinePatchRect) SetTexture(texture TextureImplementer) {
 	//log.Println("Calling NinePatchRect.SetTexture()")
 
 	// Build out the method's arguments
@@ -335,6 +335,6 @@ type NinePatchRectImplementer interface {
 	SetHAxisStretchMode(mode gdnative.Int)
 	SetPatchMargin(margin gdnative.Int, value gdnative.Int)
 	SetRegionRect(rect gdnative.Rect2)
-	SetTexture(texture Texture)
+	SetTexture(texture TextureImplementer)
 	SetVAxisStretchMode(mode gdnative.Int)
 }

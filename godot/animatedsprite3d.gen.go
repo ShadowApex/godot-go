@@ -271,7 +271,7 @@ func (o *AnimatedSprite3D) SetFrame(frame gdnative.Int) {
         Undocumented
 	Args: [{ false sprite_frames SpriteFrames}], Returns: void
 */
-func (o *AnimatedSprite3D) SetSpriteFrames(spriteFrames SpriteFrames) {
+func (o *AnimatedSprite3D) SetSpriteFrames(spriteFrames SpriteFramesImplementer) {
 	//log.Println("Calling AnimatedSprite3D.SetSpriteFrames()")
 
 	// Build out the method's arguments
@@ -322,6 +322,6 @@ type AnimatedSprite3DImplementer interface {
 	Play(anim gdnative.String)
 	SetAnimation(animation gdnative.String)
 	SetFrame(frame gdnative.Int)
-	SetSpriteFrames(spriteFrames SpriteFrames)
+	SetSpriteFrames(spriteFrames SpriteFramesImplementer)
 	Stop()
 }

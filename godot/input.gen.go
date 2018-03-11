@@ -779,7 +779,7 @@ func (o *input) JoyConnectionChanged(device gdnative.Int, connected gdnative.Boo
 
 	Args: [{ false event InputEvent}], Returns: void
 */
-func (o *input) ParseInputEvent(event InputEvent) {
+func (o *input) ParseInputEvent(event InputEventImplementer) {
 	o.ensureSingleton()
 	//log.Println("Calling Input.ParseInputEvent()")
 
@@ -823,7 +823,7 @@ func (o *input) RemoveJoyMapping(guid gdnative.String) {
         Set a custom mouse cursor image, which is only visible inside the game window. The hotspot can also be specified. See enum [code]CURSOR_*[/code] for the list of shapes.
 	Args: [{ false image Resource} {0 true shape int} {(0, 0) true hotspot Vector2}], Returns: void
 */
-func (o *input) SetCustomMouseCursor(image Resource, shape gdnative.Int, hotspot gdnative.Vector2) {
+func (o *input) SetCustomMouseCursor(image ResourceImplementer, shape gdnative.Int, hotspot gdnative.Vector2) {
 	o.ensureSingleton()
 	//log.Println("Calling Input.SetCustomMouseCursor()")
 
@@ -965,9 +965,9 @@ type InputImplementer interface {
 	IsKeyPressed(scancode gdnative.Int) gdnative.Bool
 	IsMouseButtonPressed(button gdnative.Int) gdnative.Bool
 	JoyConnectionChanged(device gdnative.Int, connected gdnative.Bool, name gdnative.String, guid gdnative.String)
-	ParseInputEvent(event InputEvent)
+	ParseInputEvent(event InputEventImplementer)
 	RemoveJoyMapping(guid gdnative.String)
-	SetCustomMouseCursor(image Resource, shape gdnative.Int, hotspot gdnative.Vector2)
+	SetCustomMouseCursor(image ResourceImplementer, shape gdnative.Int, hotspot gdnative.Vector2)
 	SetMouseMode(mode gdnative.Int)
 	StartJoyVibration(device gdnative.Int, weakMagnitude gdnative.Float, strongMagnitude gdnative.Float, duration gdnative.Float)
 	StopJoyVibration(device gdnative.Int)

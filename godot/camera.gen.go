@@ -599,7 +599,7 @@ func (o *Camera) SetDopplerTracking(mode gdnative.Int) {
         Undocumented
 	Args: [{ false env Environment}], Returns: void
 */
-func (o *Camera) SetEnvironment(env Environment) {
+func (o *Camera) SetEnvironment(env EnvironmentImplementer) {
 	//log.Println("Calling Camera.SetEnvironment()")
 
 	// Build out the method's arguments
@@ -878,7 +878,7 @@ type CameraImplementer interface {
 	SetCullMask(mask gdnative.Int)
 	SetCurrent(arg0 gdnative.Bool)
 	SetDopplerTracking(mode gdnative.Int)
-	SetEnvironment(env Environment)
+	SetEnvironment(env EnvironmentImplementer)
 	SetFov(arg0 gdnative.Float)
 	SetHOffset(ofs gdnative.Float)
 	SetKeepAspectMode(mode gdnative.Int)

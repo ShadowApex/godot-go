@@ -144,7 +144,7 @@ func (o *AtlasTexture) HasFilterClip() gdnative.Bool {
         Undocumented
 	Args: [{ false atlas Texture}], Returns: void
 */
-func (o *AtlasTexture) SetAtlas(atlas Texture) {
+func (o *AtlasTexture) SetAtlas(atlas TextureImplementer) {
 	//log.Println("Calling AtlasTexture.SetAtlas()")
 
 	// Build out the method's arguments
@@ -232,7 +232,7 @@ type AtlasTextureImplementer interface {
 	GetMargin() gdnative.Rect2
 	GetRegion() gdnative.Rect2
 	HasFilterClip() gdnative.Bool
-	SetAtlas(atlas Texture)
+	SetAtlas(atlas TextureImplementer)
 	SetFilterClip(enable gdnative.Bool)
 	SetMargin(margin gdnative.Rect2)
 	SetRegion(region gdnative.Rect2)

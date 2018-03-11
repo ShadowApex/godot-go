@@ -218,7 +218,7 @@ func (o *BitmapFont) AddKerningPair(charA gdnative.Int, charB gdnative.Int, kern
         Adds a texture to the [code]BitmapFont[/code].
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *BitmapFont) AddTexture(texture Texture) {
+func (o *BitmapFont) AddTexture(texture TextureImplementer) {
 	//log.Println("Calling BitmapFont.AddTexture()")
 
 	// Build out the method's arguments
@@ -473,7 +473,7 @@ func (o *BitmapFont) SetDistanceFieldHint(enable gdnative.Bool) {
         Undocumented
 	Args: [{ false fallback BitmapFont}], Returns: void
 */
-func (o *BitmapFont) SetFallback(fallback BitmapFont) {
+func (o *BitmapFont) SetFallback(fallback BitmapFontImplementer) {
 	//log.Println("Calling BitmapFont.SetFallback()")
 
 	// Build out the method's arguments
@@ -523,7 +523,7 @@ type BitmapFontImplementer interface {
 	X_SetTextures(arg0 gdnative.Array)
 	AddChar(character gdnative.Int, texture gdnative.Int, rect gdnative.Rect2, align gdnative.Vector2, advance gdnative.Float)
 	AddKerningPair(charA gdnative.Int, charB gdnative.Int, kerning gdnative.Int)
-	AddTexture(texture Texture)
+	AddTexture(texture TextureImplementer)
 	Clear()
 	GetCharSize(char gdnative.Int, next gdnative.Int) gdnative.Vector2
 	GetFallback() BitmapFontImplementer
@@ -532,6 +532,6 @@ type BitmapFontImplementer interface {
 	GetTextureCount() gdnative.Int
 	SetAscent(px gdnative.Float)
 	SetDistanceFieldHint(enable gdnative.Bool)
-	SetFallback(fallback BitmapFont)
+	SetFallback(fallback BitmapFontImplementer)
 	SetHeight(px gdnative.Float)
 }

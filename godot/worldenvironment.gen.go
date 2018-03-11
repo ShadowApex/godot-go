@@ -75,7 +75,7 @@ func (o *WorldEnvironment) GetEnvironment() EnvironmentImplementer {
         Undocumented
 	Args: [{ false env Environment}], Returns: void
 */
-func (o *WorldEnvironment) SetEnvironment(env Environment) {
+func (o *WorldEnvironment) SetEnvironment(env EnvironmentImplementer) {
 	//log.Println("Calling WorldEnvironment.SetEnvironment()")
 
 	// Build out the method's arguments
@@ -97,5 +97,5 @@ func (o *WorldEnvironment) SetEnvironment(env Environment) {
 type WorldEnvironmentImplementer interface {
 	NodeImplementer
 	GetEnvironment() EnvironmentImplementer
-	SetEnvironment(env Environment)
+	SetEnvironment(env EnvironmentImplementer)
 }

@@ -82,7 +82,7 @@ func (o *BakedLightmapData) X_SetUserData(data gdnative.Array) {
 
 	Args: [{ false path NodePath} { false lightmap Texture} { false instance int}], Returns: void
 */
-func (o *BakedLightmapData) AddUser(path gdnative.NodePath, lightmap Texture, instance gdnative.Int) {
+func (o *BakedLightmapData) AddUser(path gdnative.NodePath, lightmap TextureImplementer, instance gdnative.Int) {
 	//log.Println("Calling BakedLightmapData.AddUser()")
 
 	// Build out the method's arguments
@@ -432,7 +432,7 @@ type BakedLightmapDataImplementer interface {
 	ResourceImplementer
 	X_GetUserData() gdnative.Array
 	X_SetUserData(data gdnative.Array)
-	AddUser(path gdnative.NodePath, lightmap Texture, instance gdnative.Int)
+	AddUser(path gdnative.NodePath, lightmap TextureImplementer, instance gdnative.Int)
 	ClearUsers()
 	GetBounds() gdnative.Aabb
 	GetCellSpaceTransform() gdnative.Transform

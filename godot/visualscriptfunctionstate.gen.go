@@ -61,7 +61,7 @@ func (o *VisualScriptFunctionState) X_SignalCallback() gdnative.Variant {
         Undocumented
 	Args: [{ false obj Object} { false signals String} { false args Array}], Returns: void
 */
-func (o *VisualScriptFunctionState) ConnectToSignal(obj Object, signals gdnative.String, args gdnative.Array) {
+func (o *VisualScriptFunctionState) ConnectToSignal(obj ObjectImplementer, signals gdnative.String, args gdnative.Array) {
 	//log.Println("Calling VisualScriptFunctionState.ConnectToSignal()")
 
 	// Build out the method's arguments
@@ -132,7 +132,7 @@ func (o *VisualScriptFunctionState) Resume(args gdnative.Array) gdnative.Variant
 type VisualScriptFunctionStateImplementer interface {
 	ReferenceImplementer
 	X_SignalCallback() gdnative.Variant
-	ConnectToSignal(obj Object, signals gdnative.String, args gdnative.Array)
+	ConnectToSignal(obj ObjectImplementer, signals gdnative.String, args gdnative.Array)
 	IsValid() gdnative.Bool
 	Resume(args gdnative.Array) gdnative.Variant
 }

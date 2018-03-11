@@ -216,7 +216,7 @@ func (o *PhysicsShapeQueryParameters) SetMargin(margin gdnative.Float) {
 
 	Args: [{ false shape Resource}], Returns: void
 */
-func (o *PhysicsShapeQueryParameters) SetShape(shape Resource) {
+func (o *PhysicsShapeQueryParameters) SetShape(shape ResourceImplementer) {
 	//log.Println("Calling PhysicsShapeQueryParameters.SetShape()")
 
 	// Build out the method's arguments
@@ -287,7 +287,7 @@ type PhysicsShapeQueryParametersImplementer interface {
 	SetCollisionMask(collisionMask gdnative.Int)
 	SetExclude(exclude gdnative.Array)
 	SetMargin(margin gdnative.Float)
-	SetShape(shape Resource)
+	SetShape(shape ResourceImplementer)
 	SetShapeRid(shape gdnative.Rid)
 	SetTransform(transform gdnative.Transform)
 }

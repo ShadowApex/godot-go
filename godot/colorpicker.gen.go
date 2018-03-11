@@ -58,7 +58,7 @@ func (o *ColorPicker) X_AddPresetPressed() {
         Undocumented
 	Args: [{ false arg0 int} { false arg1 Object}], Returns: void
 */
-func (o *ColorPicker) X_HsvDraw(arg0 gdnative.Int, arg1 Object) {
+func (o *ColorPicker) X_HsvDraw(arg0 gdnative.Int, arg1 ObjectImplementer) {
 	//log.Println("Calling ColorPicker.X_HsvDraw()")
 
 	// Build out the method's arguments
@@ -101,7 +101,7 @@ func (o *ColorPicker) X_HtmlEntered(arg0 gdnative.String) {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *ColorPicker) X_PresetInput(arg0 InputEvent) {
+func (o *ColorPicker) X_PresetInput(arg0 InputEventImplementer) {
 	//log.Println("Calling ColorPicker.X_PresetInput()")
 
 	// Build out the method's arguments
@@ -142,7 +142,7 @@ func (o *ColorPicker) X_SampleDraw() {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *ColorPicker) X_ScreenInput(arg0 InputEvent) {
+func (o *ColorPicker) X_ScreenInput(arg0 InputEventImplementer) {
 	//log.Println("Calling ColorPicker.X_ScreenInput()")
 
 	// Build out the method's arguments
@@ -223,7 +223,7 @@ func (o *ColorPicker) X_UpdatePresets() {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *ColorPicker) X_UvInput(arg0 InputEvent) {
+func (o *ColorPicker) X_UvInput(arg0 InputEventImplementer) {
 	//log.Println("Calling ColorPicker.X_UvInput()")
 
 	// Build out the method's arguments
@@ -265,7 +265,7 @@ func (o *ColorPicker) X_ValueChanged(arg0 gdnative.Float) {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *ColorPicker) X_WInput(arg0 InputEvent) {
+func (o *ColorPicker) X_WInput(arg0 InputEventImplementer) {
 	//log.Println("Calling ColorPicker.X_WInput()")
 
 	// Build out the method's arguments
@@ -440,17 +440,17 @@ func (o *ColorPicker) SetRawMode(mode gdnative.Bool) {
 type ColorPickerImplementer interface {
 	BoxContainerImplementer
 	X_AddPresetPressed()
-	X_HsvDraw(arg0 gdnative.Int, arg1 Object)
+	X_HsvDraw(arg0 gdnative.Int, arg1 ObjectImplementer)
 	X_HtmlEntered(arg0 gdnative.String)
-	X_PresetInput(arg0 InputEvent)
+	X_PresetInput(arg0 InputEventImplementer)
 	X_SampleDraw()
-	X_ScreenInput(arg0 InputEvent)
+	X_ScreenInput(arg0 InputEventImplementer)
 	X_ScreenPickPressed()
 	X_TextTypeToggled()
 	X_UpdatePresets()
-	X_UvInput(arg0 InputEvent)
+	X_UvInput(arg0 InputEventImplementer)
 	X_ValueChanged(arg0 gdnative.Float)
-	X_WInput(arg0 InputEvent)
+	X_WInput(arg0 InputEventImplementer)
 	AddPreset(color gdnative.Color)
 	GetPickColor() gdnative.Color
 	IsEditingAlpha() gdnative.Bool

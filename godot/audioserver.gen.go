@@ -91,7 +91,7 @@ func (o *audioServer) AddBus(atPosition gdnative.Int) {
         Adds an [AudioEffect] effect to the bus [code]bus_idx[/code] at [code]at_position[/code].
 	Args: [{ false bus_idx int} { false effect AudioEffect} {-1 true at_position int}], Returns: void
 */
-func (o *audioServer) AddBusEffect(busIdx gdnative.Int, effect AudioEffect, atPosition gdnative.Int) {
+func (o *audioServer) AddBusEffect(busIdx gdnative.Int, effect AudioEffectImplementer, atPosition gdnative.Int) {
 	o.ensureSingleton()
 	//log.Println("Calling AudioServer.AddBusEffect()")
 
@@ -701,7 +701,7 @@ func (o *audioServer) SetBusEffectEnabled(busIdx gdnative.Int, effectIdx gdnativ
         Overwrites the currently used [AudioBusLayout].
 	Args: [{ false bus_layout AudioBusLayout}], Returns: void
 */
-func (o *audioServer) SetBusLayout(busLayout AudioBusLayout) {
+func (o *audioServer) SetBusLayout(busLayout AudioBusLayoutImplementer) {
 	o.ensureSingleton()
 	//log.Println("Calling AudioServer.SetBusLayout()")
 
@@ -884,7 +884,7 @@ func (o *audioServer) Unlock() {
 type AudioServerImplementer interface {
 	ObjectImplementer
 	AddBus(atPosition gdnative.Int)
-	AddBusEffect(busIdx gdnative.Int, effect AudioEffect, atPosition gdnative.Int)
+	AddBusEffect(busIdx gdnative.Int, effect AudioEffectImplementer, atPosition gdnative.Int)
 	GenerateBusLayout() AudioBusLayoutImplementer
 	GetBusCount() gdnative.Int
 	GetBusEffect(busIdx gdnative.Int, effectIdx gdnative.Int) AudioEffectImplementer
@@ -907,7 +907,7 @@ type AudioServerImplementer interface {
 	SetBusBypassEffects(busIdx gdnative.Int, enable gdnative.Bool)
 	SetBusCount(amount gdnative.Int)
 	SetBusEffectEnabled(busIdx gdnative.Int, effectIdx gdnative.Int, enabled gdnative.Bool)
-	SetBusLayout(busLayout AudioBusLayout)
+	SetBusLayout(busLayout AudioBusLayoutImplementer)
 	SetBusMute(busIdx gdnative.Int, enable gdnative.Bool)
 	SetBusName(busIdx gdnative.Int, name gdnative.String)
 	SetBusSend(busIdx gdnative.Int, send gdnative.String)

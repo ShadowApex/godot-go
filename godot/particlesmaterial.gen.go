@@ -637,7 +637,7 @@ func (o *ParticlesMaterial) SetColor(color gdnative.Color) {
         Undocumented
 	Args: [{ false ramp Texture}], Returns: void
 */
-func (o *ParticlesMaterial) SetColorRamp(ramp Texture) {
+func (o *ParticlesMaterial) SetColorRamp(ramp TextureImplementer) {
 	//log.Println("Calling ParticlesMaterial.SetColorRamp()")
 
 	// Build out the method's arguments
@@ -679,7 +679,7 @@ func (o *ParticlesMaterial) SetEmissionBoxExtents(extents gdnative.Vector3) {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *ParticlesMaterial) SetEmissionColorTexture(texture Texture) {
+func (o *ParticlesMaterial) SetEmissionColorTexture(texture TextureImplementer) {
 	//log.Println("Calling ParticlesMaterial.SetEmissionColorTexture()")
 
 	// Build out the method's arguments
@@ -700,7 +700,7 @@ func (o *ParticlesMaterial) SetEmissionColorTexture(texture Texture) {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *ParticlesMaterial) SetEmissionNormalTexture(texture Texture) {
+func (o *ParticlesMaterial) SetEmissionNormalTexture(texture TextureImplementer) {
 	//log.Println("Calling ParticlesMaterial.SetEmissionNormalTexture()")
 
 	// Build out the method's arguments
@@ -742,7 +742,7 @@ func (o *ParticlesMaterial) SetEmissionPointCount(pointCount gdnative.Int) {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *ParticlesMaterial) SetEmissionPointTexture(texture Texture) {
+func (o *ParticlesMaterial) SetEmissionPointTexture(texture TextureImplementer) {
 	//log.Println("Calling ParticlesMaterial.SetEmissionPointTexture()")
 
 	// Build out the method's arguments
@@ -913,7 +913,7 @@ func (o *ParticlesMaterial) SetParamRandomness(param gdnative.Int, randomness gd
         Undocumented
 	Args: [{ false param int} { false texture Texture}], Returns: void
 */
-func (o *ParticlesMaterial) SetParamTexture(param gdnative.Int, texture Texture) {
+func (o *ParticlesMaterial) SetParamTexture(param gdnative.Int, texture TextureImplementer) {
 	//log.Println("Calling ParticlesMaterial.SetParamTexture()")
 
 	// Build out the method's arguments
@@ -956,7 +956,7 @@ func (o *ParticlesMaterial) SetSpread(degrees gdnative.Float) {
         Undocumented
 	Args: [{ false texture GradientTexture}], Returns: void
 */
-func (o *ParticlesMaterial) SetTrailColorModifier(texture GradientTexture) {
+func (o *ParticlesMaterial) SetTrailColorModifier(texture GradientTextureImplementer) {
 	//log.Println("Calling ParticlesMaterial.SetTrailColorModifier()")
 
 	// Build out the method's arguments
@@ -998,7 +998,7 @@ func (o *ParticlesMaterial) SetTrailDivisor(divisor gdnative.Int) {
         Undocumented
 	Args: [{ false texture CurveTexture}], Returns: void
 */
-func (o *ParticlesMaterial) SetTrailSizeModifier(texture CurveTexture) {
+func (o *ParticlesMaterial) SetTrailSizeModifier(texture CurveTextureImplementer) {
 	//log.Println("Calling ParticlesMaterial.SetTrailSizeModifier()")
 
 	// Build out the method's arguments
@@ -1038,12 +1038,12 @@ type ParticlesMaterialImplementer interface {
 	GetTrailDivisor() gdnative.Int
 	GetTrailSizeModifier() CurveTextureImplementer
 	SetColor(color gdnative.Color)
-	SetColorRamp(ramp Texture)
+	SetColorRamp(ramp TextureImplementer)
 	SetEmissionBoxExtents(extents gdnative.Vector3)
-	SetEmissionColorTexture(texture Texture)
-	SetEmissionNormalTexture(texture Texture)
+	SetEmissionColorTexture(texture TextureImplementer)
+	SetEmissionNormalTexture(texture TextureImplementer)
 	SetEmissionPointCount(pointCount gdnative.Int)
-	SetEmissionPointTexture(texture Texture)
+	SetEmissionPointTexture(texture TextureImplementer)
 	SetEmissionShape(shape gdnative.Int)
 	SetEmissionSphereRadius(radius gdnative.Float)
 	SetFlag(flag gdnative.Int, enable gdnative.Bool)
@@ -1051,9 +1051,9 @@ type ParticlesMaterialImplementer interface {
 	SetGravity(accelVec gdnative.Vector3)
 	SetParam(param gdnative.Int, value gdnative.Float)
 	SetParamRandomness(param gdnative.Int, randomness gdnative.Float)
-	SetParamTexture(param gdnative.Int, texture Texture)
+	SetParamTexture(param gdnative.Int, texture TextureImplementer)
 	SetSpread(degrees gdnative.Float)
-	SetTrailColorModifier(texture GradientTexture)
+	SetTrailColorModifier(texture GradientTextureImplementer)
 	SetTrailDivisor(divisor gdnative.Int)
-	SetTrailSizeModifier(texture CurveTexture)
+	SetTrailSizeModifier(texture CurveTextureImplementer)
 }

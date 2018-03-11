@@ -302,7 +302,7 @@ func (o *FileDialog) X_TreeSelected() {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *FileDialog) X_UnhandledInput(arg0 InputEvent) {
+func (o *FileDialog) X_UnhandledInput(arg0 InputEventImplementer) {
 	//log.Println("Calling FileDialog.X_UnhandledInput()")
 
 	// Build out the method's arguments

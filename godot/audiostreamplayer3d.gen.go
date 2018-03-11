@@ -871,7 +871,7 @@ func (o *AudioStreamPlayer3D) SetOutOfRangeMode(mode gdnative.Int) {
         Undocumented
 	Args: [{ false stream AudioStream}], Returns: void
 */
-func (o *AudioStreamPlayer3D) SetStream(stream AudioStream) {
+func (o *AudioStreamPlayer3D) SetStream(stream AudioStreamImplementer) {
 	//log.Println("Calling AudioStreamPlayer3D.SetStream()")
 
 	// Build out the method's arguments
@@ -987,7 +987,7 @@ type AudioStreamPlayer3DImplementer interface {
 	SetMaxDb(maxDb gdnative.Float)
 	SetMaxDistance(metres gdnative.Float)
 	SetOutOfRangeMode(mode gdnative.Int)
-	SetStream(stream AudioStream)
+	SetStream(stream AudioStreamImplementer)
 	SetUnitDb(unitDb gdnative.Float)
 	SetUnitSize(unitSize gdnative.Float)
 	Stop()

@@ -38,7 +38,7 @@ func (o *ViewportContainer) BaseClass() string {
         Undocumented
 	Args: [{ false event InputEvent}], Returns: void
 */
-func (o *ViewportContainer) X_Input(event InputEvent) {
+func (o *ViewportContainer) X_Input(event InputEventImplementer) {
 	//log.Println("Calling ViewportContainer.X_Input()")
 
 	// Build out the method's arguments

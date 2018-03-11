@@ -713,7 +713,7 @@ func (o *Particles2D) SetLifetime(secs gdnative.Float) {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *Particles2D) SetNormalMap(texture Texture) {
+func (o *Particles2D) SetNormalMap(texture TextureImplementer) {
 	//log.Println("Calling Particles2D.SetNormalMap()")
 
 	// Build out the method's arguments
@@ -776,7 +776,7 @@ func (o *Particles2D) SetPreProcessTime(secs gdnative.Float) {
         Undocumented
 	Args: [{ false material Material}], Returns: void
 */
-func (o *Particles2D) SetProcessMaterial(material Material) {
+func (o *Particles2D) SetProcessMaterial(material MaterialImplementer) {
 	//log.Println("Calling Particles2D.SetProcessMaterial()")
 
 	// Build out the method's arguments
@@ -839,7 +839,7 @@ func (o *Particles2D) SetSpeedScale(scale gdnative.Float) {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *Particles2D) SetTexture(texture Texture) {
+func (o *Particles2D) SetTexture(texture TextureImplementer) {
 	//log.Println("Calling Particles2D.SetTexture()")
 
 	// Build out the method's arguments
@@ -950,13 +950,13 @@ type Particles2DImplementer interface {
 	SetFractionalDelta(enable gdnative.Bool)
 	SetHFrames(frames gdnative.Int)
 	SetLifetime(secs gdnative.Float)
-	SetNormalMap(texture Texture)
+	SetNormalMap(texture TextureImplementer)
 	SetOneShot(secs gdnative.Bool)
 	SetPreProcessTime(secs gdnative.Float)
-	SetProcessMaterial(material Material)
+	SetProcessMaterial(material MaterialImplementer)
 	SetRandomnessRatio(ratio gdnative.Float)
 	SetSpeedScale(scale gdnative.Float)
-	SetTexture(texture Texture)
+	SetTexture(texture TextureImplementer)
 	SetUseLocalCoordinates(enable gdnative.Bool)
 	SetVFrames(frames gdnative.Int)
 	SetVisibilityRect(aabb gdnative.Rect2)

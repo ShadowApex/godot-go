@@ -38,7 +38,7 @@ func (o *ScrollContainer) BaseClass() string {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *ScrollContainer) X_GuiInput(arg0 InputEvent) {
+func (o *ScrollContainer) X_GuiInput(arg0 InputEventImplementer) {
 	//log.Println("Calling ScrollContainer.X_GuiInput()")
 
 	// Build out the method's arguments

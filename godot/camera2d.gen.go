@@ -46,7 +46,7 @@ func (o *Camera2D) BaseClass() string {
         Undocumented
 	Args: [{ false arg0 Object}], Returns: void
 */
-func (o *Camera2D) X_MakeCurrent(arg0 Object) {
+func (o *Camera2D) X_MakeCurrent(arg0 ObjectImplementer) {
 	//log.Println("Calling Camera2D.X_MakeCurrent()")
 
 	// Build out the method's arguments
@@ -726,7 +726,7 @@ func (o *Camera2D) SetAnchorMode(anchorMode gdnative.Int) {
         Undocumented
 	Args: [{ false viewport Object}], Returns: void
 */
-func (o *Camera2D) SetCustomViewport(viewport Object) {
+func (o *Camera2D) SetCustomViewport(viewport ObjectImplementer) {
 	//log.Println("Calling Camera2D.SetCustomViewport()")
 
 	// Build out the method's arguments
@@ -1064,7 +1064,7 @@ func (o *Camera2D) SetZoom(zoom gdnative.Vector2) {
 // of the Camera2D class.
 type Camera2DImplementer interface {
 	Node2DImplementer
-	X_MakeCurrent(arg0 Object)
+	X_MakeCurrent(arg0 ObjectImplementer)
 	X_SetCurrent(current gdnative.Bool)
 	X_SetOldSmoothing(followSmoothing gdnative.Float)
 	X_UpdateScroll()
@@ -1093,7 +1093,7 @@ type Camera2DImplementer interface {
 	MakeCurrent()
 	ResetSmoothing()
 	SetAnchorMode(anchorMode gdnative.Int)
-	SetCustomViewport(viewport Object)
+	SetCustomViewport(viewport ObjectImplementer)
 	SetDragMargin(margin gdnative.Int, dragMargin gdnative.Float)
 	SetEnableFollowSmoothing(followSmoothing gdnative.Bool)
 	SetFollowSmoothing(followSmoothing gdnative.Float)

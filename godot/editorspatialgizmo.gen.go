@@ -59,7 +59,7 @@ func (o *EditorSpatialGizmo) AddCollisionSegments(segments gdnative.PoolVector3A
         Add collision triangles to the gizmo for picking. A [TriangleMesh] can be generated from a regular [Mesh] too. Call this function during [method redraw].
 	Args: [{ false triangles TriangleMesh} { false bounds AABB}], Returns: void
 */
-func (o *EditorSpatialGizmo) AddCollisionTriangles(triangles TriangleMesh, bounds gdnative.Aabb) {
+func (o *EditorSpatialGizmo) AddCollisionTriangles(triangles TriangleMeshImplementer, bounds gdnative.Aabb) {
 	//log.Println("Calling EditorSpatialGizmo.AddCollisionTriangles()")
 
 	// Build out the method's arguments
@@ -104,7 +104,7 @@ func (o *EditorSpatialGizmo) AddHandles(handles gdnative.PoolVector3Array, billb
         Add lines to the gizmo (as sets of 2 points), with a given material. The lines are used for visualizing the gizmo. Call this function during [method redraw].
 	Args: [{ false lines PoolVector3Array} { false material Material} {False true billboard bool}], Returns: void
 */
-func (o *EditorSpatialGizmo) AddLines(lines gdnative.PoolVector3Array, material Material, billboard gdnative.Bool) {
+func (o *EditorSpatialGizmo) AddLines(lines gdnative.PoolVector3Array, material MaterialImplementer, billboard gdnative.Bool) {
 	//log.Println("Calling EditorSpatialGizmo.AddLines()")
 
 	// Build out the method's arguments
@@ -127,7 +127,7 @@ func (o *EditorSpatialGizmo) AddLines(lines gdnative.PoolVector3Array, material 
 
 	Args: [{ false mesh ArrayMesh} {False true billboard bool} {[RID] true skeleton RID}], Returns: void
 */
-func (o *EditorSpatialGizmo) AddMesh(mesh ArrayMesh, billboard gdnative.Bool, skeleton gdnative.Rid) {
+func (o *EditorSpatialGizmo) AddMesh(mesh ArrayMeshImplementer, billboard gdnative.Bool, skeleton gdnative.Rid) {
 	//log.Println("Calling EditorSpatialGizmo.AddMesh()")
 
 	// Build out the method's arguments
@@ -150,7 +150,7 @@ func (o *EditorSpatialGizmo) AddMesh(mesh ArrayMesh, billboard gdnative.Bool, sk
         Add an unscaled billboard for visualization. Call this function during [method redraw].
 	Args: [{ false material Material} {1 true default_scale float}], Returns: void
 */
-func (o *EditorSpatialGizmo) AddUnscaledBillboard(material Material, defaultScale gdnative.Float) {
+func (o *EditorSpatialGizmo) AddUnscaledBillboard(material MaterialImplementer, defaultScale gdnative.Float) {
 	//log.Println("Calling EditorSpatialGizmo.AddUnscaledBillboard()")
 
 	// Build out the method's arguments
@@ -283,7 +283,7 @@ func (o *EditorSpatialGizmo) Redraw() {
         This function is used when the user drags a gizmo handle (previously added with [method add_handles]) in screen coordinates. The [Camera] is also provided so screen coordinates can be converted to raycasts.
 	Args: [{ false index int} { false camera Camera} { false point Vector2}], Returns: void
 */
-func (o *EditorSpatialGizmo) SetHandle(index gdnative.Int, camera Camera, point gdnative.Vector2) {
+func (o *EditorSpatialGizmo) SetHandle(index gdnative.Int, camera CameraImplementer, point gdnative.Vector2) {
 	//log.Println("Calling EditorSpatialGizmo.SetHandle()")
 
 	// Build out the method's arguments
@@ -306,7 +306,7 @@ func (o *EditorSpatialGizmo) SetHandle(index gdnative.Int, camera Camera, point 
 
 	Args: [{ false node Object}], Returns: void
 */
-func (o *EditorSpatialGizmo) SetSpatialNode(node Object) {
+func (o *EditorSpatialGizmo) SetSpatialNode(node ObjectImplementer) {
 	//log.Println("Calling EditorSpatialGizmo.SetSpatialNode()")
 
 	// Build out the method's arguments
@@ -328,16 +328,16 @@ func (o *EditorSpatialGizmo) SetSpatialNode(node Object) {
 type EditorSpatialGizmoImplementer interface {
 	SpatialGizmoImplementer
 	AddCollisionSegments(segments gdnative.PoolVector3Array)
-	AddCollisionTriangles(triangles TriangleMesh, bounds gdnative.Aabb)
+	AddCollisionTriangles(triangles TriangleMeshImplementer, bounds gdnative.Aabb)
 	AddHandles(handles gdnative.PoolVector3Array, billboard gdnative.Bool, secondary gdnative.Bool)
-	AddLines(lines gdnative.PoolVector3Array, material Material, billboard gdnative.Bool)
-	AddMesh(mesh ArrayMesh, billboard gdnative.Bool, skeleton gdnative.Rid)
-	AddUnscaledBillboard(material Material, defaultScale gdnative.Float)
+	AddLines(lines gdnative.PoolVector3Array, material MaterialImplementer, billboard gdnative.Bool)
+	AddMesh(mesh ArrayMeshImplementer, billboard gdnative.Bool, skeleton gdnative.Rid)
+	AddUnscaledBillboard(material MaterialImplementer, defaultScale gdnative.Float)
 	Clear()
 	CommitHandle(index gdnative.Int, restore gdnative.Variant, cancel gdnative.Bool)
 	GetHandleName(index gdnative.Int) gdnative.String
 	GetHandleValue(index gdnative.Int) gdnative.Variant
 	Redraw()
-	SetHandle(index gdnative.Int, camera Camera, point gdnative.Vector2)
-	SetSpatialNode(node Object)
+	SetHandle(index gdnative.Int, camera CameraImplementer, point gdnative.Vector2)
+	SetSpatialNode(node ObjectImplementer)
 }

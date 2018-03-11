@@ -56,7 +56,7 @@ func (o *BaseButton) BaseClass() string {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *BaseButton) X_GuiInput(arg0 InputEvent) {
+func (o *BaseButton) X_GuiInput(arg0 InputEventImplementer) {
 	//log.Println("Calling BaseButton.X_GuiInput()")
 
 	// Build out the method's arguments
@@ -118,7 +118,7 @@ func (o *BaseButton) X_Toggled(buttonPressed gdnative.Bool) {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *BaseButton) X_UnhandledInput(arg0 InputEvent) {
+func (o *BaseButton) X_UnhandledInput(arg0 InputEventImplementer) {
 	//log.Println("Calling BaseButton.X_UnhandledInput()")
 
 	// Build out the method's arguments
@@ -395,7 +395,7 @@ func (o *BaseButton) SetActionMode(mode gdnative.Int) {
         Undocumented
 	Args: [{ false button_group ButtonGroup}], Returns: void
 */
-func (o *BaseButton) SetButtonGroup(buttonGroup ButtonGroup) {
+func (o *BaseButton) SetButtonGroup(buttonGroup ButtonGroupImplementer) {
 	//log.Println("Calling BaseButton.SetButtonGroup()")
 
 	// Build out the method's arguments
@@ -479,7 +479,7 @@ func (o *BaseButton) SetPressed(pressed gdnative.Bool) {
         Undocumented
 	Args: [{ false shortcut ShortCut}], Returns: void
 */
-func (o *BaseButton) SetShortcut(shortcut ShortCut) {
+func (o *BaseButton) SetShortcut(shortcut ShortCutImplementer) {
 	//log.Println("Calling BaseButton.SetShortcut()")
 
 	// Build out the method's arguments
@@ -530,10 +530,10 @@ type BaseButtonImplementer interface {
 	IsPressed() gdnative.Bool
 	IsToggleMode() gdnative.Bool
 	SetActionMode(mode gdnative.Int)
-	SetButtonGroup(buttonGroup ButtonGroup)
+	SetButtonGroup(buttonGroup ButtonGroupImplementer)
 	SetDisabled(disabled gdnative.Bool)
 	SetEnabledFocusMode(mode gdnative.Int)
 	SetPressed(pressed gdnative.Bool)
-	SetShortcut(shortcut ShortCut)
+	SetShortcut(shortcut ShortCutImplementer)
 	SetToggleMode(enabled gdnative.Bool)
 }

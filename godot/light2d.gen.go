@@ -893,7 +893,7 @@ func (o *Light2D) SetShadowSmooth(smooth gdnative.Float) {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *Light2D) SetTexture(texture Texture) {
+func (o *Light2D) SetTexture(texture TextureImplementer) {
 	//log.Println("Calling Light2D.SetTexture()")
 
 	// Build out the method's arguments
@@ -1033,7 +1033,7 @@ type Light2DImplementer interface {
 	SetShadowFilter(filter gdnative.Int)
 	SetShadowGradientLength(multiplier gdnative.Float)
 	SetShadowSmooth(smooth gdnative.Float)
-	SetTexture(texture Texture)
+	SetTexture(texture TextureImplementer)
 	SetTextureOffset(textureOffset gdnative.Vector2)
 	SetTextureScale(textureScale gdnative.Float)
 	SetZRangeMax(z gdnative.Int)

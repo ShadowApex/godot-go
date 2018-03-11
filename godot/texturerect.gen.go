@@ -177,7 +177,7 @@ func (o *TextureRect) SetStretchMode(stretchMode gdnative.Int) {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *TextureRect) SetTexture(texture Texture) {
+func (o *TextureRect) SetTexture(texture TextureImplementer) {
 	//log.Println("Calling TextureRect.SetTexture()")
 
 	// Build out the method's arguments
@@ -202,5 +202,5 @@ type TextureRectImplementer interface {
 	HasExpand() gdnative.Bool
 	SetExpand(enable gdnative.Bool)
 	SetStretchMode(stretchMode gdnative.Int)
-	SetTexture(texture Texture)
+	SetTexture(texture TextureImplementer)
 }

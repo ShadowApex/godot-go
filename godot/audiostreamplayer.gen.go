@@ -391,7 +391,7 @@ func (o *AudioStreamPlayer) SetMixTarget(mixTarget gdnative.Int) {
         Undocumented
 	Args: [{ false stream AudioStream}], Returns: void
 */
-func (o *AudioStreamPlayer) SetStream(stream AudioStream) {
+func (o *AudioStreamPlayer) SetStream(stream AudioStreamImplementer) {
 	//log.Println("Calling AudioStreamPlayer.SetStream()")
 
 	// Build out the method's arguments
@@ -467,7 +467,7 @@ type AudioStreamPlayerImplementer interface {
 	SetAutoplay(enable gdnative.Bool)
 	SetBus(bus gdnative.String)
 	SetMixTarget(mixTarget gdnative.Int)
-	SetStream(stream AudioStream)
+	SetStream(stream AudioStreamImplementer)
 	SetVolumeDb(volumeDb gdnative.Float)
 	Stop()
 }

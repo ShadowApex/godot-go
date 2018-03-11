@@ -390,7 +390,7 @@ func (o *Range) SetValue(value gdnative.Float) {
         Binds two Ranges together along with any Ranges previously grouped with either of them. When any of Range's member variables change, it will share the new value with all other Ranges in its group.
 	Args: [{ false with Object}], Returns: void
 */
-func (o *Range) Share(with Object) {
+func (o *Range) Share(with ObjectImplementer) {
 	//log.Println("Calling Range.Share()")
 
 	// Build out the method's arguments
@@ -447,6 +447,6 @@ type RangeImplementer interface {
 	SetStep(step gdnative.Float)
 	SetUseRoundedValues(enabled gdnative.Bool)
 	SetValue(value gdnative.Float)
-	Share(with Object)
+	Share(with ObjectImplementer)
 	Unshare()
 }

@@ -38,7 +38,7 @@ func (o *ScriptEditor) BaseClass() string {
         Undocumented
 	Args: [{ false arg0 Object} { false arg1 String} { false arg2 PoolStringArray}], Returns: void
 */
-func (o *ScriptEditor) X_AddCallback(arg0 Object, arg1 gdnative.String, arg2 gdnative.PoolStringArray) {
+func (o *ScriptEditor) X_AddCallback(arg0 ObjectImplementer, arg1 gdnative.String, arg2 gdnative.PoolStringArray) {
 	//log.Println("Calling ScriptEditor.X_AddCallback()")
 
 	// Build out the method's arguments
@@ -325,7 +325,7 @@ func (o *ScriptEditor) X_FileDialogAction(arg0 gdnative.String) {
         Undocumented
 	Args: [{ false arg0 String} { false arg1 Object}], Returns: String
 */
-func (o *ScriptEditor) X_GetDebugTooltip(arg0 gdnative.String, arg1 Object) gdnative.String {
+func (o *ScriptEditor) X_GetDebugTooltip(arg0 gdnative.String, arg1 ObjectImplementer) gdnative.String {
 	//log.Println("Calling ScriptEditor.X_GetDebugTooltip()")
 
 	// Build out the method's arguments
@@ -350,7 +350,7 @@ func (o *ScriptEditor) X_GetDebugTooltip(arg0 gdnative.String, arg1 Object) gdna
         Undocumented
 	Args: [{ false arg0 Reference} { false arg1 int}], Returns: void
 */
-func (o *ScriptEditor) X_GotoScriptLine(arg0 Reference, arg1 gdnative.Int) {
+func (o *ScriptEditor) X_GotoScriptLine(arg0 ReferenceImplementer, arg1 gdnative.Int) {
 	//log.Println("Calling ScriptEditor.X_GotoScriptLine()")
 
 	// Build out the method's arguments
@@ -662,7 +662,7 @@ func (o *ScriptEditor) X_RequestHelp(arg0 gdnative.String) {
         Undocumented
 	Args: [{ false arg0 Resource}], Returns: void
 */
-func (o *ScriptEditor) X_ResSavedCallback(arg0 Resource) {
+func (o *ScriptEditor) X_ResSavedCallback(arg0 ResourceImplementer) {
 	//log.Println("Calling ScriptEditor.X_ResSavedCallback()")
 
 	// Build out the method's arguments
@@ -744,7 +744,7 @@ func (o *ScriptEditor) X_ScriptChanged() {
         Undocumented
 	Args: [{ false arg0 Script}], Returns: void
 */
-func (o *ScriptEditor) X_ScriptCreated(arg0 Script) {
+func (o *ScriptEditor) X_ScriptCreated(arg0 ScriptImplementer) {
 	//log.Println("Calling ScriptEditor.X_ScriptCreated()")
 
 	// Build out the method's arguments
@@ -765,7 +765,7 @@ func (o *ScriptEditor) X_ScriptCreated(arg0 Script) {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *ScriptEditor) X_ScriptListGuiInput(arg0 InputEvent) {
+func (o *ScriptEditor) X_ScriptListGuiInput(arg0 InputEventImplementer) {
 	//log.Println("Calling ScriptEditor.X_ScriptListGuiInput()")
 
 	// Build out the method's arguments
@@ -890,7 +890,7 @@ func (o *ScriptEditor) X_TreeChanged() {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *ScriptEditor) X_UnhandledInput(arg0 InputEvent) {
+func (o *ScriptEditor) X_UnhandledInput(arg0 InputEventImplementer) {
 	//log.Println("Calling ScriptEditor.X_UnhandledInput()")
 
 	// Build out the method's arguments
@@ -951,7 +951,7 @@ func (o *ScriptEditor) X_UpdateScriptNames() {
 
 	Args: [{ false point Vector2} { false data Variant} { false from Object}], Returns: bool
 */
-func (o *ScriptEditor) CanDropDataFw(point gdnative.Vector2, data gdnative.Variant, from Object) gdnative.Bool {
+func (o *ScriptEditor) CanDropDataFw(point gdnative.Vector2, data gdnative.Variant, from ObjectImplementer) gdnative.Bool {
 	//log.Println("Calling ScriptEditor.CanDropDataFw()")
 
 	// Build out the method's arguments
@@ -977,7 +977,7 @@ func (o *ScriptEditor) CanDropDataFw(point gdnative.Vector2, data gdnative.Varia
 
 	Args: [{ false point Vector2} { false data Variant} { false from Object}], Returns: void
 */
-func (o *ScriptEditor) DropDataFw(point gdnative.Vector2, data gdnative.Variant, from Object) {
+func (o *ScriptEditor) DropDataFw(point gdnative.Vector2, data gdnative.Variant, from ObjectImplementer) {
 	//log.Println("Calling ScriptEditor.DropDataFw()")
 
 	// Build out the method's arguments
@@ -1037,7 +1037,7 @@ func (o *ScriptEditor) GetCurrentScript() ScriptImplementer {
 
 	Args: [{ false point Vector2} { false from Object}], Returns: Variant
 */
-func (o *ScriptEditor) GetDragDataFw(point gdnative.Vector2, from Object) gdnative.Variant {
+func (o *ScriptEditor) GetDragDataFw(point gdnative.Vector2, from ObjectImplementer) gdnative.Variant {
 	//log.Println("Calling ScriptEditor.GetDragDataFw()")
 
 	// Build out the method's arguments
@@ -1107,7 +1107,7 @@ func (o *ScriptEditor) OpenScriptCreateDialog(baseName gdnative.String, basePath
 // of the ScriptEditor class.
 type ScriptEditorImplementer interface {
 	PanelContainerImplementer
-	X_AddCallback(arg0 Object, arg1 gdnative.String, arg2 gdnative.PoolStringArray)
+	X_AddCallback(arg0 ObjectImplementer, arg1 gdnative.String, arg2 gdnative.PoolStringArray)
 	X_AutosaveScripts()
 	X_Breaked(arg0 gdnative.Bool, arg1 gdnative.Bool)
 	X_CloseAllTabs()
@@ -1121,8 +1121,8 @@ type ScriptEditorImplementer interface {
 	X_EditorSettingsChanged()
 	X_EditorStop()
 	X_FileDialogAction(arg0 gdnative.String)
-	X_GetDebugTooltip(arg0 gdnative.String, arg1 Object) gdnative.String
-	X_GotoScriptLine(arg0 Reference, arg1 gdnative.Int)
+	X_GetDebugTooltip(arg0 gdnative.String, arg1 ObjectImplementer) gdnative.String
+	X_GotoScriptLine(arg0 ReferenceImplementer, arg1 gdnative.Int)
 	X_GotoScriptLine2(arg0 gdnative.Int)
 	X_HelpClassGoto(arg0 gdnative.String)
 	X_HelpClassOpen(arg0 gdnative.String)
@@ -1137,12 +1137,12 @@ type ScriptEditorImplementer interface {
 	X_OpenRecentScript(arg0 gdnative.Int)
 	X_ReloadScripts()
 	X_RequestHelp(arg0 gdnative.String)
-	X_ResSavedCallback(arg0 Resource)
+	X_ResSavedCallback(arg0 ResourceImplementer)
 	X_ResaveScripts(arg0 gdnative.String)
 	X_SaveHistory()
 	X_ScriptChanged()
-	X_ScriptCreated(arg0 Script)
-	X_ScriptListGuiInput(arg0 InputEvent)
+	X_ScriptCreated(arg0 ScriptImplementer)
+	X_ScriptListGuiInput(arg0 InputEventImplementer)
 	X_ScriptSelected(arg0 gdnative.Int)
 	X_ScriptSplitDragged(arg0 gdnative.Float)
 	X_ShowDebugger(arg0 gdnative.Bool)
@@ -1150,10 +1150,10 @@ type ScriptEditorImplementer interface {
 	X_TreeChanged()
 	X_UpdateRecentScripts()
 	X_UpdateScriptNames()
-	CanDropDataFw(point gdnative.Vector2, data gdnative.Variant, from Object) gdnative.Bool
-	DropDataFw(point gdnative.Vector2, data gdnative.Variant, from Object)
+	CanDropDataFw(point gdnative.Vector2, data gdnative.Variant, from ObjectImplementer) gdnative.Bool
+	DropDataFw(point gdnative.Vector2, data gdnative.Variant, from ObjectImplementer)
 	GetCurrentScript() ScriptImplementer
-	GetDragDataFw(point gdnative.Vector2, from Object) gdnative.Variant
+	GetDragDataFw(point gdnative.Vector2, from ObjectImplementer) gdnative.Variant
 	GetOpenScripts() gdnative.Array
 	OpenScriptCreateDialog(baseName gdnative.String, basePath gdnative.String)
 }

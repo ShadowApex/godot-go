@@ -2460,7 +2460,7 @@ func (o *SpatialMaterial) SetSubsurfaceScatteringStrength(strength gdnative.Floa
         Undocumented
 	Args: [{ false param int} { false texture Texture}], Returns: void
 */
-func (o *SpatialMaterial) SetTexture(param gdnative.Int, texture Texture) {
+func (o *SpatialMaterial) SetTexture(param gdnative.Int, texture TextureImplementer) {
 	//log.Println("Calling SpatialMaterial.SetTexture()")
 
 	// Build out the method's arguments
@@ -2718,7 +2718,7 @@ type SpatialMaterialImplementer interface {
 	SetSpecular(specular gdnative.Float)
 	SetSpecularMode(specularMode gdnative.Int)
 	SetSubsurfaceScatteringStrength(strength gdnative.Float)
-	SetTexture(param gdnative.Int, texture Texture)
+	SetTexture(param gdnative.Int, texture TextureImplementer)
 	SetTransmission(transmission gdnative.Color)
 	SetUv1Offset(offset gdnative.Vector3)
 	SetUv1Scale(scale gdnative.Vector3)

@@ -82,7 +82,7 @@ func (o *FuncRef) SetFunction(name gdnative.String) {
         The object containing the referenced function. This object must be of a type actually inheriting from [Object], not a built-in type such as [int], [Vector2] or [Dictionary].
 	Args: [{ false instance Object}], Returns: void
 */
-func (o *FuncRef) SetInstance(instance Object) {
+func (o *FuncRef) SetInstance(instance ObjectImplementer) {
 	//log.Println("Calling FuncRef.SetInstance()")
 
 	// Build out the method's arguments
@@ -105,5 +105,5 @@ type FuncRefImplementer interface {
 	ReferenceImplementer
 	CallFunc() gdnative.Variant
 	SetFunction(name gdnative.String)
-	SetInstance(instance Object)
+	SetInstance(instance ObjectImplementer)
 }

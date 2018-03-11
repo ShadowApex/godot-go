@@ -38,7 +38,7 @@ func (o *EditorInterface) BaseClass() string {
         Edits the given [Resource].
 	Args: [{ false resource Resource}], Returns: void
 */
-func (o *EditorInterface) EditResource(resource Resource) {
+func (o *EditorInterface) EditResource(resource ResourceImplementer) {
 	//log.Println("Calling EditorInterface.EditResource()")
 
 	// Build out the method's arguments
@@ -401,7 +401,7 @@ func (o *EditorInterface) GetSelection() EditorSelectionImplementer {
         Shows the given property on the given [code]object[/code] in the Editor's Inspector dock.
 	Args: [{ false object Object} { true for_property String}], Returns: void
 */
-func (o *EditorInterface) InspectObject(object Object, forProperty gdnative.String) {
+func (o *EditorInterface) InspectObject(object ObjectImplementer, forProperty gdnative.String) {
 	//log.Println("Calling EditorInterface.InspectObject()")
 
 	// Build out the method's arguments
@@ -602,7 +602,7 @@ func (o *EditorInterface) SetPluginEnabled(plugin gdnative.String, enabled gdnat
 // of the EditorInterface class.
 type EditorInterfaceImplementer interface {
 	NodeImplementer
-	EditResource(resource Resource)
+	EditResource(resource ResourceImplementer)
 	GetBaseControl() ControlImplementer
 	GetEditedSceneRoot() NodeImplementer
 	GetEditorSettings() EditorSettingsImplementer
@@ -613,7 +613,7 @@ type EditorInterfaceImplementer interface {
 	GetScriptEditor() ScriptEditorImplementer
 	GetSelectedPath() gdnative.String
 	GetSelection() EditorSelectionImplementer
-	InspectObject(object Object, forProperty gdnative.String)
+	InspectObject(object ObjectImplementer, forProperty gdnative.String)
 	IsPluginEnabled(plugin gdnative.String) gdnative.Bool
 	MakeMeshPreviews(meshes gdnative.Array, previewSize gdnative.Int) gdnative.Array
 	OpenSceneFromPath(sceneFilepath gdnative.String)

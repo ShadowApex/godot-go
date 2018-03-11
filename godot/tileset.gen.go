@@ -60,7 +60,7 @@ func (o *TileSet) BaseClass() string {
 
 	Args: [{ false autotile_id int} { false bitmask int} { false tilemap Object} { false tile_location Vector2}], Returns: Vector2
 */
-func (o *TileSet) X_ForwardSubtileSelection(autotileId gdnative.Int, bitmask gdnative.Int, tilemap Object, tileLocation gdnative.Vector2) gdnative.Vector2 {
+func (o *TileSet) X_ForwardSubtileSelection(autotileId gdnative.Int, bitmask gdnative.Int, tilemap ObjectImplementer, tileLocation gdnative.Vector2) gdnative.Vector2 {
 	//log.Println("Calling TileSet.X_ForwardSubtileSelection()")
 
 	// Build out the method's arguments
@@ -290,7 +290,7 @@ func (o *TileSet) RemoveTile(id gdnative.Int) {
 
 	Args: [{ false id int} { false shape Shape2D} { false shape_transform Transform2D} {False true one_way bool} {(0, 0) true autotile_coord Vector2}], Returns: void
 */
-func (o *TileSet) TileAddShape(id gdnative.Int, shape Shape2D, shapeTransform gdnative.Transform2D, oneWay gdnative.Bool, autotileCoord gdnative.Vector2) {
+func (o *TileSet) TileAddShape(id gdnative.Int, shape Shape2DImplementer, shapeTransform gdnative.Transform2D, oneWay gdnative.Bool, autotileCoord gdnative.Vector2) {
 	//log.Println("Calling TileSet.TileAddShape()")
 
 	// Build out the method's arguments
@@ -762,7 +762,7 @@ func (o *TileSet) TileGetTextureOffset(id gdnative.Int) gdnative.Vector2 {
         Set a light occluder for the tile.
 	Args: [{ false id int} { false light_occluder OccluderPolygon2D}], Returns: void
 */
-func (o *TileSet) TileSetLightOccluder(id gdnative.Int, lightOccluder OccluderPolygon2D) {
+func (o *TileSet) TileSetLightOccluder(id gdnative.Int, lightOccluder OccluderPolygon2DImplementer) {
 	//log.Println("Calling TileSet.TileSetLightOccluder()")
 
 	// Build out the method's arguments
@@ -784,7 +784,7 @@ func (o *TileSet) TileSetLightOccluder(id gdnative.Int, lightOccluder OccluderPo
         Set the material of the tile.
 	Args: [{ false id int} { false material ShaderMaterial}], Returns: void
 */
-func (o *TileSet) TileSetMaterial(id gdnative.Int, material ShaderMaterial) {
+func (o *TileSet) TileSetMaterial(id gdnative.Int, material ShaderMaterialImplementer) {
 	//log.Println("Calling TileSet.TileSetMaterial()")
 
 	// Build out the method's arguments
@@ -828,7 +828,7 @@ func (o *TileSet) TileSetName(id gdnative.Int, name gdnative.String) {
         Set a navigation polygon for the tile.
 	Args: [{ false id int} { false navigation_polygon NavigationPolygon}], Returns: void
 */
-func (o *TileSet) TileSetNavigationPolygon(id gdnative.Int, navigationPolygon NavigationPolygon) {
+func (o *TileSet) TileSetNavigationPolygon(id gdnative.Int, navigationPolygon NavigationPolygonImplementer) {
 	//log.Println("Calling TileSet.TileSetNavigationPolygon()")
 
 	// Build out the method's arguments
@@ -872,7 +872,7 @@ func (o *TileSet) TileSetNavigationPolygonOffset(id gdnative.Int, navigationPoly
 
 	Args: [{ false id int} { false normal_map Texture}], Returns: void
 */
-func (o *TileSet) TileSetNormalMap(id gdnative.Int, normalMap Texture) {
+func (o *TileSet) TileSetNormalMap(id gdnative.Int, normalMap TextureImplementer) {
 	//log.Println("Calling TileSet.TileSetNormalMap()")
 
 	// Build out the method's arguments
@@ -938,7 +938,7 @@ func (o *TileSet) TileSetRegion(id gdnative.Int, region gdnative.Rect2) {
 
 	Args: [{ false id int} { false shape_id int} { false shape Shape2D}], Returns: void
 */
-func (o *TileSet) TileSetShape(id gdnative.Int, shapeId gdnative.Int, shape Shape2D) {
+func (o *TileSet) TileSetShape(id gdnative.Int, shapeId gdnative.Int, shape Shape2DImplementer) {
 	//log.Println("Calling TileSet.TileSetShape()")
 
 	// Build out the method's arguments
@@ -1029,7 +1029,7 @@ func (o *TileSet) TileSetShapes(id gdnative.Int, shapes gdnative.Array) {
         Set the texture of the tile.
 	Args: [{ false id int} { false texture Texture}], Returns: void
 */
-func (o *TileSet) TileSetTexture(id gdnative.Int, texture Texture) {
+func (o *TileSet) TileSetTexture(id gdnative.Int, texture TextureImplementer) {
 	//log.Println("Calling TileSet.TileSetTexture()")
 
 	// Build out the method's arguments
@@ -1073,7 +1073,7 @@ func (o *TileSet) TileSetTextureOffset(id gdnative.Int, textureOffset gdnative.V
 // of the TileSet class.
 type TileSetImplementer interface {
 	ResourceImplementer
-	X_ForwardSubtileSelection(autotileId gdnative.Int, bitmask gdnative.Int, tilemap Object, tileLocation gdnative.Vector2) gdnative.Vector2
+	X_ForwardSubtileSelection(autotileId gdnative.Int, bitmask gdnative.Int, tilemap ObjectImplementer, tileLocation gdnative.Vector2) gdnative.Vector2
 	X_IsTileBound(drawnId gdnative.Int, neighborId gdnative.Int) gdnative.Bool
 	AutotileSetBitmaskMode(id gdnative.Int, mode gdnative.Int)
 	Clear()
@@ -1082,7 +1082,7 @@ type TileSetImplementer interface {
 	GetLastUnusedTileId() gdnative.Int
 	GetTilesIds() gdnative.Array
 	RemoveTile(id gdnative.Int)
-	TileAddShape(id gdnative.Int, shape Shape2D, shapeTransform gdnative.Transform2D, oneWay gdnative.Bool, autotileCoord gdnative.Vector2)
+	TileAddShape(id gdnative.Int, shape Shape2DImplementer, shapeTransform gdnative.Transform2D, oneWay gdnative.Bool, autotileCoord gdnative.Vector2)
 	TileGetLightOccluder(id gdnative.Int) OccluderPolygon2DImplementer
 	TileGetMaterial(id gdnative.Int) ShaderMaterialImplementer
 	TileGetName(id gdnative.Int) gdnative.String
@@ -1098,18 +1098,18 @@ type TileSetImplementer interface {
 	TileGetShapes(id gdnative.Int) gdnative.Array
 	TileGetTexture(id gdnative.Int) TextureImplementer
 	TileGetTextureOffset(id gdnative.Int) gdnative.Vector2
-	TileSetLightOccluder(id gdnative.Int, lightOccluder OccluderPolygon2D)
-	TileSetMaterial(id gdnative.Int, material ShaderMaterial)
+	TileSetLightOccluder(id gdnative.Int, lightOccluder OccluderPolygon2DImplementer)
+	TileSetMaterial(id gdnative.Int, material ShaderMaterialImplementer)
 	TileSetName(id gdnative.Int, name gdnative.String)
-	TileSetNavigationPolygon(id gdnative.Int, navigationPolygon NavigationPolygon)
+	TileSetNavigationPolygon(id gdnative.Int, navigationPolygon NavigationPolygonImplementer)
 	TileSetNavigationPolygonOffset(id gdnative.Int, navigationPolygonOffset gdnative.Vector2)
-	TileSetNormalMap(id gdnative.Int, normalMap Texture)
+	TileSetNormalMap(id gdnative.Int, normalMap TextureImplementer)
 	TileSetOccluderOffset(id gdnative.Int, occluderOffset gdnative.Vector2)
 	TileSetRegion(id gdnative.Int, region gdnative.Rect2)
-	TileSetShape(id gdnative.Int, shapeId gdnative.Int, shape Shape2D)
+	TileSetShape(id gdnative.Int, shapeId gdnative.Int, shape Shape2DImplementer)
 	TileSetShapeOneWay(id gdnative.Int, shapeId gdnative.Int, oneWay gdnative.Bool)
 	TileSetShapeTransform(id gdnative.Int, shapeId gdnative.Int, shapeTransform gdnative.Transform2D)
 	TileSetShapes(id gdnative.Int, shapes gdnative.Array)
-	TileSetTexture(id gdnative.Int, texture Texture)
+	TileSetTexture(id gdnative.Int, texture TextureImplementer)
 	TileSetTextureOffset(id gdnative.Int, textureOffset gdnative.Vector2)
 }

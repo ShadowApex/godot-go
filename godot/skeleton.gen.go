@@ -59,7 +59,7 @@ func (o *Skeleton) AddBone(name gdnative.String) {
         Deprecated soon.
 	Args: [{ false bone_idx int} { false node Object}], Returns: void
 */
-func (o *Skeleton) BindChildNodeToBone(boneIdx gdnative.Int, node Object) {
+func (o *Skeleton) BindChildNodeToBone(boneIdx gdnative.Int, node ObjectImplementer) {
 	//log.Println("Calling Skeleton.BindChildNodeToBone()")
 
 	// Build out the method's arguments
@@ -496,7 +496,7 @@ func (o *Skeleton) SetBoneRest(boneIdx gdnative.Int, rest gdnative.Transform) {
         Deprecated soon.
 	Args: [{ false bone_idx int} { false node Object}], Returns: void
 */
-func (o *Skeleton) UnbindChildNodeFromBone(boneIdx gdnative.Int, node Object) {
+func (o *Skeleton) UnbindChildNodeFromBone(boneIdx gdnative.Int, node ObjectImplementer) {
 	//log.Println("Calling Skeleton.UnbindChildNodeFromBone()")
 
 	// Build out the method's arguments
@@ -540,7 +540,7 @@ func (o *Skeleton) UnparentBoneAndRest(boneIdx gdnative.Int) {
 type SkeletonImplementer interface {
 	SpatialImplementer
 	AddBone(name gdnative.String)
-	BindChildNodeToBone(boneIdx gdnative.Int, node Object)
+	BindChildNodeToBone(boneIdx gdnative.Int, node ObjectImplementer)
 	ClearBones()
 	FindBone(name gdnative.String) gdnative.Int
 	GetBoneCount() gdnative.Int
@@ -559,6 +559,6 @@ type SkeletonImplementer interface {
 	SetBoneParent(boneIdx gdnative.Int, parentIdx gdnative.Int)
 	SetBonePose(boneIdx gdnative.Int, pose gdnative.Transform)
 	SetBoneRest(boneIdx gdnative.Int, rest gdnative.Transform)
-	UnbindChildNodeFromBone(boneIdx gdnative.Int, node Object)
+	UnbindChildNodeFromBone(boneIdx gdnative.Int, node ObjectImplementer)
 	UnparentBoneAndRest(boneIdx gdnative.Int)
 }

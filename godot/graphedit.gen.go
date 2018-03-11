@@ -58,7 +58,7 @@ func (o *GraphEdit) X_ConnectionsLayerDraw() {
         Undocumented
 	Args: [{ false arg0 Object}], Returns: void
 */
-func (o *GraphEdit) X_GraphNodeMoved(arg0 Object) {
+func (o *GraphEdit) X_GraphNodeMoved(arg0 ObjectImplementer) {
 	//log.Println("Calling GraphEdit.X_GraphNodeMoved()")
 
 	// Build out the method's arguments
@@ -79,7 +79,7 @@ func (o *GraphEdit) X_GraphNodeMoved(arg0 Object) {
         Undocumented
 	Args: [{ false arg0 Object}], Returns: void
 */
-func (o *GraphEdit) X_GraphNodeRaised(arg0 Object) {
+func (o *GraphEdit) X_GraphNodeRaised(arg0 ObjectImplementer) {
 	//log.Println("Calling GraphEdit.X_GraphNodeRaised()")
 
 	// Build out the method's arguments
@@ -100,7 +100,7 @@ func (o *GraphEdit) X_GraphNodeRaised(arg0 Object) {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *GraphEdit) X_GuiInput(arg0 InputEvent) {
+func (o *GraphEdit) X_GuiInput(arg0 InputEventImplementer) {
 	//log.Println("Calling GraphEdit.X_GuiInput()")
 
 	// Build out the method's arguments
@@ -203,7 +203,7 @@ func (o *GraphEdit) X_TopLayerDraw() {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *GraphEdit) X_TopLayerInput(arg0 InputEvent) {
+func (o *GraphEdit) X_TopLayerInput(arg0 InputEventImplementer) {
 	//log.Println("Calling GraphEdit.X_TopLayerInput()")
 
 	// Build out the method's arguments
@@ -735,7 +735,7 @@ func (o *GraphEdit) SetScrollOfs(ofs gdnative.Vector2) {
         Sets the specified [code]node[/code] as the one selected.
 	Args: [{ false node Object}], Returns: void
 */
-func (o *GraphEdit) SetSelected(node Object) {
+func (o *GraphEdit) SetSelected(node ObjectImplementer) {
 	//log.Println("Calling GraphEdit.SetSelected()")
 
 	// Build out the method's arguments
@@ -820,13 +820,13 @@ func (o *GraphEdit) SetZoom(pZoom gdnative.Float) {
 type GraphEditImplementer interface {
 	ControlImplementer
 	X_ConnectionsLayerDraw()
-	X_GraphNodeMoved(arg0 Object)
-	X_GraphNodeRaised(arg0 Object)
+	X_GraphNodeMoved(arg0 ObjectImplementer)
+	X_GraphNodeRaised(arg0 ObjectImplementer)
 	X_ScrollMoved(arg0 gdnative.Float)
 	X_SnapToggled()
 	X_SnapValueChanged(arg0 gdnative.Float)
 	X_TopLayerDraw()
-	X_TopLayerInput(arg0 InputEvent)
+	X_TopLayerInput(arg0 InputEventImplementer)
 	X_UpdateScrollOffset()
 	X_ZoomMinus()
 	X_ZoomPlus()
@@ -849,7 +849,7 @@ type GraphEditImplementer interface {
 	RemoveValidRightDisconnectType(aType gdnative.Int)
 	SetRightDisconnects(enable gdnative.Bool)
 	SetScrollOfs(ofs gdnative.Vector2)
-	SetSelected(node Object)
+	SetSelected(node ObjectImplementer)
 	SetSnap(pixels gdnative.Int)
 	SetUseSnap(enable gdnative.Bool)
 	SetZoom(pZoom gdnative.Float)

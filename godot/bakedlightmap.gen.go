@@ -66,7 +66,7 @@ func (o *BakedLightmap) BaseClass() string {
 
 	Args: [{Null true from_node Object} {False true create_visual_debug bool}], Returns: enum.BakedLightmap::BakeError
 */
-func (o *BakedLightmap) Bake(fromNode Object, createVisualDebug gdnative.Bool) BakedLightmapBakeError {
+func (o *BakedLightmap) Bake(fromNode ObjectImplementer, createVisualDebug gdnative.Bool) BakedLightmapBakeError {
 	//log.Println("Calling BakedLightmap.Bake()")
 
 	// Build out the method's arguments
@@ -523,7 +523,7 @@ func (o *BakedLightmap) SetImagePath(imagePath gdnative.String) {
         Undocumented
 	Args: [{ false data BakedLightmapData}], Returns: void
 */
-func (o *BakedLightmap) SetLightData(data BakedLightmapData) {
+func (o *BakedLightmap) SetLightData(data BakedLightmapDataImplementer) {
 	//log.Println("Calling BakedLightmap.SetLightData()")
 
 	// Build out the method's arguments
@@ -582,6 +582,6 @@ type BakedLightmapImplementer interface {
 	SetExtents(extents gdnative.Vector3)
 	SetHdr(hdr gdnative.Bool)
 	SetImagePath(imagePath gdnative.String)
-	SetLightData(data BakedLightmapData)
+	SetLightData(data BakedLightmapDataImplementer)
 	SetPropagation(propagation gdnative.Float)
 }

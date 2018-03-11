@@ -260,7 +260,7 @@ func (o *Physics2DShapeQueryParameters) SetMotion(motion gdnative.Vector2) {
         Set the [Shape2D] that will be used for collision/intersection queries.
 	Args: [{ false shape Resource}], Returns: void
 */
-func (o *Physics2DShapeQueryParameters) SetShape(shape Resource) {
+func (o *Physics2DShapeQueryParameters) SetShape(shape ResourceImplementer) {
 	//log.Println("Calling Physics2DShapeQueryParameters.SetShape()")
 
 	// Build out the method's arguments
@@ -333,7 +333,7 @@ type Physics2DShapeQueryParametersImplementer interface {
 	SetExclude(exclude gdnative.Array)
 	SetMargin(margin gdnative.Float)
 	SetMotion(motion gdnative.Vector2)
-	SetShape(shape Resource)
+	SetShape(shape ResourceImplementer)
 	SetShapeRid(shape gdnative.Rid)
 	SetTransform(transform gdnative.Transform2D)
 }

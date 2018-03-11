@@ -198,7 +198,7 @@ func (o *Node2D) GetPosition() gdnative.Vector2 {
         Returns the [Transform2D] relative to this node's parent.
 	Args: [{ false parent Object}], Returns: Transform2D
 */
-func (o *Node2D) GetRelativeTransformToParent(parent Object) gdnative.Transform2D {
+func (o *Node2D) GetRelativeTransformToParent(parent ObjectImplementer) gdnative.Transform2D {
 	//log.Println("Calling Node2D.GetRelativeTransformToParent()")
 
 	// Build out the method's arguments
@@ -772,7 +772,7 @@ type Node2DImplementer interface {
 	GetGlobalRotationDegrees() gdnative.Float
 	GetGlobalScale() gdnative.Vector2
 	GetPosition() gdnative.Vector2
-	GetRelativeTransformToParent(parent Object) gdnative.Transform2D
+	GetRelativeTransformToParent(parent ObjectImplementer) gdnative.Transform2D
 	GetRotation() gdnative.Float
 	GetRotationDegrees() gdnative.Float
 	GetScale() gdnative.Vector2

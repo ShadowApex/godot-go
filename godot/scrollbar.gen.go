@@ -58,7 +58,7 @@ func (o *ScrollBar) X_DragSlaveExit() {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *ScrollBar) X_DragSlaveInput(arg0 InputEvent) {
+func (o *ScrollBar) X_DragSlaveInput(arg0 InputEventImplementer) {
 	//log.Println("Calling ScrollBar.X_DragSlaveInput()")
 
 	// Build out the method's arguments
@@ -79,7 +79,7 @@ func (o *ScrollBar) X_DragSlaveInput(arg0 InputEvent) {
         Undocumented
 	Args: [{ false arg0 InputEvent}], Returns: void
 */
-func (o *ScrollBar) X_GuiInput(arg0 InputEvent) {
+func (o *ScrollBar) X_GuiInput(arg0 InputEventImplementer) {
 	//log.Println("Calling ScrollBar.X_GuiInput()")
 
 	// Build out the method's arguments
@@ -145,7 +145,7 @@ func (o *ScrollBar) SetCustomStep(step gdnative.Float) {
 type ScrollBarImplementer interface {
 	RangeImplementer
 	X_DragSlaveExit()
-	X_DragSlaveInput(arg0 InputEvent)
+	X_DragSlaveInput(arg0 InputEventImplementer)
 	GetCustomStep() gdnative.Float
 	SetCustomStep(step gdnative.Float)
 }

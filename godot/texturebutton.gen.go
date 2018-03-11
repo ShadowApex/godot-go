@@ -319,7 +319,7 @@ func (o *TextureButton) GetStretchMode() TextureButtonStretchMode {
         Undocumented
 	Args: [{ false mask BitMap}], Returns: void
 */
-func (o *TextureButton) SetClickMask(mask BitMap) {
+func (o *TextureButton) SetClickMask(mask BitMapImplementer) {
 	//log.Println("Calling TextureButton.SetClickMask()")
 
 	// Build out the method's arguments
@@ -340,7 +340,7 @@ func (o *TextureButton) SetClickMask(mask BitMap) {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *TextureButton) SetDisabledTexture(texture Texture) {
+func (o *TextureButton) SetDisabledTexture(texture TextureImplementer) {
 	//log.Println("Calling TextureButton.SetDisabledTexture()")
 
 	// Build out the method's arguments
@@ -382,7 +382,7 @@ func (o *TextureButton) SetExpand(pExpand gdnative.Bool) {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *TextureButton) SetFocusedTexture(texture Texture) {
+func (o *TextureButton) SetFocusedTexture(texture TextureImplementer) {
 	//log.Println("Calling TextureButton.SetFocusedTexture()")
 
 	// Build out the method's arguments
@@ -403,7 +403,7 @@ func (o *TextureButton) SetFocusedTexture(texture Texture) {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *TextureButton) SetHoverTexture(texture Texture) {
+func (o *TextureButton) SetHoverTexture(texture TextureImplementer) {
 	//log.Println("Calling TextureButton.SetHoverTexture()")
 
 	// Build out the method's arguments
@@ -424,7 +424,7 @@ func (o *TextureButton) SetHoverTexture(texture Texture) {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *TextureButton) SetNormalTexture(texture Texture) {
+func (o *TextureButton) SetNormalTexture(texture TextureImplementer) {
 	//log.Println("Calling TextureButton.SetNormalTexture()")
 
 	// Build out the method's arguments
@@ -445,7 +445,7 @@ func (o *TextureButton) SetNormalTexture(texture Texture) {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *TextureButton) SetPressedTexture(texture Texture) {
+func (o *TextureButton) SetPressedTexture(texture TextureImplementer) {
 	//log.Println("Calling TextureButton.SetPressedTexture()")
 
 	// Build out the method's arguments
@@ -494,12 +494,12 @@ type TextureButtonImplementer interface {
 	GetHoverTexture() TextureImplementer
 	GetNormalTexture() TextureImplementer
 	GetPressedTexture() TextureImplementer
-	SetClickMask(mask BitMap)
-	SetDisabledTexture(texture Texture)
+	SetClickMask(mask BitMapImplementer)
+	SetDisabledTexture(texture TextureImplementer)
 	SetExpand(pExpand gdnative.Bool)
-	SetFocusedTexture(texture Texture)
-	SetHoverTexture(texture Texture)
-	SetNormalTexture(texture Texture)
-	SetPressedTexture(texture Texture)
+	SetFocusedTexture(texture TextureImplementer)
+	SetHoverTexture(texture TextureImplementer)
+	SetNormalTexture(texture TextureImplementer)
+	SetPressedTexture(texture TextureImplementer)
 	SetStretchMode(pMode gdnative.Int)
 }

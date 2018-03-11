@@ -103,7 +103,7 @@ func (o *BitMap) Create(size gdnative.Vector2) {
         Creates a bitmap that matches the given image dimensions, every element of the bitmap is set to false if the alpha value of the image at that position is equal to [code]threshold[/code] or less, and true in other case.
 	Args: [{ false image Image}], Returns: void
 */
-func (o *BitMap) CreateFromImageAlpha(image Image) {
+func (o *BitMap) CreateFromImageAlpha(image ImageImplementer) {
 	//log.Println("Calling BitMap.CreateFromImageAlpha()")
 
 	// Build out the method's arguments
@@ -241,7 +241,7 @@ type BitMapImplementer interface {
 	X_GetData() gdnative.Dictionary
 	X_SetData(arg0 gdnative.Dictionary)
 	Create(size gdnative.Vector2)
-	CreateFromImageAlpha(image Image)
+	CreateFromImageAlpha(image ImageImplementer)
 	GetBit(position gdnative.Vector2) gdnative.Bool
 	GetSize() gdnative.Vector2
 	GetTrueBitCount() gdnative.Int

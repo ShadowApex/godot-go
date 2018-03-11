@@ -274,7 +274,7 @@ func (o *Sprite3D) SetRegionRect(rect gdnative.Rect2) {
         Undocumented
 	Args: [{ false texture Texture}], Returns: void
 */
-func (o *Sprite3D) SetTexture(texture Texture) {
+func (o *Sprite3D) SetTexture(texture TextureImplementer) {
 	//log.Println("Calling Sprite3D.SetTexture()")
 
 	// Build out the method's arguments
@@ -326,6 +326,6 @@ type Sprite3DImplementer interface {
 	SetHframes(hframes gdnative.Int)
 	SetRegion(enabled gdnative.Bool)
 	SetRegionRect(rect gdnative.Rect2)
-	SetTexture(texture Texture)
+	SetTexture(texture TextureImplementer)
 	SetVframes(vframes gdnative.Int)
 }

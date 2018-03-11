@@ -38,7 +38,7 @@ func (o *EditorResourcePreview) BaseClass() string {
         Undocumented
 	Args: [{ false arg0 String} { false arg1 Texture} { false arg2 int} { false arg3 String} { false arg4 Variant}], Returns: void
 */
-func (o *EditorResourcePreview) X_PreviewReady(arg0 gdnative.String, arg1 Texture, arg2 gdnative.Int, arg3 gdnative.String, arg4 gdnative.Variant) {
+func (o *EditorResourcePreview) X_PreviewReady(arg0 gdnative.String, arg1 TextureImplementer, arg2 gdnative.Int, arg3 gdnative.String, arg4 gdnative.Variant) {
 	//log.Println("Calling EditorResourcePreview.X_PreviewReady()")
 
 	// Build out the method's arguments
@@ -63,7 +63,7 @@ func (o *EditorResourcePreview) X_PreviewReady(arg0 gdnative.String, arg1 Textur
         Create an own, custom preview generator.
 	Args: [{ false generator EditorResourcePreviewGenerator}], Returns: void
 */
-func (o *EditorResourcePreview) AddPreviewGenerator(generator EditorResourcePreviewGenerator) {
+func (o *EditorResourcePreview) AddPreviewGenerator(generator EditorResourcePreviewGeneratorImplementer) {
 	//log.Println("Calling EditorResourcePreview.AddPreviewGenerator()")
 
 	// Build out the method's arguments
@@ -105,7 +105,7 @@ func (o *EditorResourcePreview) CheckForInvalidation(path gdnative.String) {
         Queue a resource being edited for preview (using an instance). Once the preview is ready, your receiver.receiver_func will be called either containing the preview texture or an empty texture (if no preview was possible). Callback must have the format: (path,texture,userdata). Userdata can be anything.
 	Args: [{ false resource Resource} { false receiver Object} { false receiver_func String} { false userdata Variant}], Returns: void
 */
-func (o *EditorResourcePreview) QueueEditedResourcePreview(resource Resource, receiver Object, receiverFunc gdnative.String, userdata gdnative.Variant) {
+func (o *EditorResourcePreview) QueueEditedResourcePreview(resource ResourceImplementer, receiver ObjectImplementer, receiverFunc gdnative.String, userdata gdnative.Variant) {
 	//log.Println("Calling EditorResourcePreview.QueueEditedResourcePreview()")
 
 	// Build out the method's arguments
@@ -129,7 +129,7 @@ func (o *EditorResourcePreview) QueueEditedResourcePreview(resource Resource, re
         Queue a resource file for preview (using a path). Once the preview is ready, your receiver.receiver_func will be called either containing the preview texture or an empty texture (if no preview was possible). Callback must have the format: (path,texture,userdata). Userdata can be anything.
 	Args: [{ false path String} { false receiver Object} { false receiver_func String} { false userdata Variant}], Returns: void
 */
-func (o *EditorResourcePreview) QueueResourcePreview(path gdnative.String, receiver Object, receiverFunc gdnative.String, userdata gdnative.Variant) {
+func (o *EditorResourcePreview) QueueResourcePreview(path gdnative.String, receiver ObjectImplementer, receiverFunc gdnative.String, userdata gdnative.Variant) {
 	//log.Println("Calling EditorResourcePreview.QueueResourcePreview()")
 
 	// Build out the method's arguments
@@ -153,7 +153,7 @@ func (o *EditorResourcePreview) QueueResourcePreview(path gdnative.String, recei
         Remove a custom preview generator.
 	Args: [{ false generator EditorResourcePreviewGenerator}], Returns: void
 */
-func (o *EditorResourcePreview) RemovePreviewGenerator(generator EditorResourcePreviewGenerator) {
+func (o *EditorResourcePreview) RemovePreviewGenerator(generator EditorResourcePreviewGeneratorImplementer) {
 	//log.Println("Calling EditorResourcePreview.RemovePreviewGenerator()")
 
 	// Build out the method's arguments
@@ -174,10 +174,10 @@ func (o *EditorResourcePreview) RemovePreviewGenerator(generator EditorResourceP
 // of the EditorResourcePreview class.
 type EditorResourcePreviewImplementer interface {
 	NodeImplementer
-	X_PreviewReady(arg0 gdnative.String, arg1 Texture, arg2 gdnative.Int, arg3 gdnative.String, arg4 gdnative.Variant)
-	AddPreviewGenerator(generator EditorResourcePreviewGenerator)
+	X_PreviewReady(arg0 gdnative.String, arg1 TextureImplementer, arg2 gdnative.Int, arg3 gdnative.String, arg4 gdnative.Variant)
+	AddPreviewGenerator(generator EditorResourcePreviewGeneratorImplementer)
 	CheckForInvalidation(path gdnative.String)
-	QueueEditedResourcePreview(resource Resource, receiver Object, receiverFunc gdnative.String, userdata gdnative.Variant)
-	QueueResourcePreview(path gdnative.String, receiver Object, receiverFunc gdnative.String, userdata gdnative.Variant)
-	RemovePreviewGenerator(generator EditorResourcePreviewGenerator)
+	QueueEditedResourcePreview(resource ResourceImplementer, receiver ObjectImplementer, receiverFunc gdnative.String, userdata gdnative.Variant)
+	QueueResourcePreview(path gdnative.String, receiver ObjectImplementer, receiverFunc gdnative.String, userdata gdnative.Variant)
+	RemovePreviewGenerator(generator EditorResourcePreviewGeneratorImplementer)
 }

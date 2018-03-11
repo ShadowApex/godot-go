@@ -1228,7 +1228,7 @@ func (o *TileMap) SetTileOrigin(origin gdnative.Int) {
         Undocumented
 	Args: [{ false tileset TileSet}], Returns: void
 */
-func (o *TileMap) SetTileset(tileset TileSet) {
+func (o *TileMap) SetTileset(tileset TileSetImplementer) {
 	//log.Println("Calling TileMap.SetTileset()")
 
 	// Build out the method's arguments
@@ -1385,7 +1385,7 @@ type TileMapImplementer interface {
 	SetOccluderLightMask(mask gdnative.Int)
 	SetQuadrantSize(size gdnative.Int)
 	SetTileOrigin(origin gdnative.Int)
-	SetTileset(tileset TileSet)
+	SetTileset(tileset TileSetImplementer)
 	SetYSortMode(enable gdnative.Bool)
 	UpdateBitmaskArea(position gdnative.Vector2)
 	UpdateBitmaskRegion(start gdnative.Vector2, end gdnative.Vector2)

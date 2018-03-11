@@ -75,7 +75,7 @@ func (o *MultiMeshInstance) GetMultimesh() MultiMeshImplementer {
         Undocumented
 	Args: [{ false multimesh MultiMesh}], Returns: void
 */
-func (o *MultiMeshInstance) SetMultimesh(multimesh MultiMesh) {
+func (o *MultiMeshInstance) SetMultimesh(multimesh MultiMeshImplementer) {
 	//log.Println("Calling MultiMeshInstance.SetMultimesh()")
 
 	// Build out the method's arguments
@@ -97,5 +97,5 @@ func (o *MultiMeshInstance) SetMultimesh(multimesh MultiMesh) {
 type MultiMeshInstanceImplementer interface {
 	GeometryInstanceImplementer
 	GetMultimesh() MultiMeshImplementer
-	SetMultimesh(multimesh MultiMesh)
+	SetMultimesh(multimesh MultiMeshImplementer)
 }

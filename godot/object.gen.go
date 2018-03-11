@@ -284,7 +284,7 @@ func (o *Object) CanTranslateMessages() gdnative.Bool {
         Connects a [code]signal[/code] to a [code]method[/code] on a [code]target[/code] object. Pass optional [code]binds[/code] to the call. Use [code]flags[/code] to set deferred or one shot connections. See [code]CONNECT_*[/code] constants. A [code]signal[/code] can only be connected once to a [code]method[/code]. It will throw an error if already connected. To avoid this, first use [method is_connected] to check for existing connections.
 	Args: [{ false signal String} { false target Object} { false method String} {[] true binds Array} {0 true flags int}], Returns: enum.Error
 */
-func (o *Object) Connect(signal gdnative.String, target Object, method gdnative.String, binds gdnative.Array, flags gdnative.Int) gdnative.Error {
+func (o *Object) Connect(signal gdnative.String, target ObjectImplementer, method gdnative.String, binds gdnative.Array, flags gdnative.Int) gdnative.Error {
 	//log.Println("Calling Object.Connect()")
 
 	// Build out the method's arguments
@@ -312,7 +312,7 @@ func (o *Object) Connect(signal gdnative.String, target Object, method gdnative.
         Disconnects a [code]signal[/code] from a [code]method[/code] on the given [code]target[/code].
 	Args: [{ false signal String} { false target Object} { false method String}], Returns: void
 */
-func (o *Object) Disconnect(signal gdnative.String, target Object, method gdnative.String) {
+func (o *Object) Disconnect(signal gdnative.String, target ObjectImplementer, method gdnative.String) {
 	//log.Println("Calling Object.Disconnect()")
 
 	// Build out the method's arguments
@@ -792,7 +792,7 @@ func (o *Object) IsClass(aType gdnative.String) gdnative.Bool {
         Returns [code]true[/code] if a connection exists for a given [code]signal[/code], [code]target[/code], and [code]method[/code].
 	Args: [{ false signal String} { false target Object} { false method String}], Returns: bool
 */
-func (o *Object) IsConnected(signal gdnative.String, target Object, method gdnative.String) gdnative.Bool {
+func (o *Object) IsConnected(signal gdnative.String, target ObjectImplementer, method gdnative.String) gdnative.Bool {
 	//log.Println("Calling Object.IsConnected()")
 
 	// Build out the method's arguments
@@ -991,7 +991,7 @@ func (o *Object) SetMeta(name gdnative.String, value gdnative.Variant) {
         Set a script into the object, scripts extend the object functionality.
 	Args: [{ false script Reference}], Returns: void
 */
-func (o *Object) SetScript(script Reference) {
+func (o *Object) SetScript(script ReferenceImplementer) {
 	//log.Println("Calling Object.SetScript()")
 
 	// Build out the method's arguments
@@ -1046,7 +1046,7 @@ type ObjectImplementer interface {
 	CallDeferred(method gdnative.String) gdnative.Variant
 	Callv(method gdnative.String, argArray gdnative.Array) gdnative.Variant
 	CanTranslateMessages() gdnative.Bool
-	Disconnect(signal gdnative.String, target Object, method gdnative.String)
+	Disconnect(signal gdnative.String, target ObjectImplementer, method gdnative.String)
 	EmitSignal(signal gdnative.String) gdnative.Variant
 	Free()
 	Get(property gdnative.String) gdnative.Variant
@@ -1066,7 +1066,7 @@ type ObjectImplementer interface {
 	HasUserSignal(signal gdnative.String) gdnative.Bool
 	IsBlockingSignals() gdnative.Bool
 	IsClass(aType gdnative.String) gdnative.Bool
-	IsConnected(signal gdnative.String, target Object, method gdnative.String) gdnative.Bool
+	IsConnected(signal gdnative.String, target ObjectImplementer, method gdnative.String) gdnative.Bool
 	IsQueuedForDeletion() gdnative.Bool
 	Notification(what gdnative.Int, reversed gdnative.Bool)
 	PropertyListChangedNotify()
@@ -1075,6 +1075,6 @@ type ObjectImplementer interface {
 	SetIndexed(property gdnative.NodePath, value gdnative.Variant)
 	SetMessageTranslation(enable gdnative.Bool)
 	SetMeta(name gdnative.String, value gdnative.Variant)
-	SetScript(script Reference)
+	SetScript(script ReferenceImplementer)
 	Tr(message gdnative.String) gdnative.String
 }

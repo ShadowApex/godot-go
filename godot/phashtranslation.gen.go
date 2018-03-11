@@ -38,7 +38,7 @@ func (o *PHashTranslation) BaseClass() string {
 
 	Args: [{ false from Translation}], Returns: void
 */
-func (o *PHashTranslation) Generate(from Translation) {
+func (o *PHashTranslation) Generate(from TranslationImplementer) {
 	//log.Println("Calling PHashTranslation.Generate()")
 
 	// Build out the method's arguments
@@ -59,5 +59,5 @@ func (o *PHashTranslation) Generate(from Translation) {
 // of the PHashTranslation class.
 type PHashTranslationImplementer interface {
 	TranslationImplementer
-	Generate(from Translation)
+	Generate(from TranslationImplementer)
 }

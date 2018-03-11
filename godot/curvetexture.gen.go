@@ -95,7 +95,7 @@ func (o *CurveTexture) GetCurve() CurveImplementer {
         Undocumented
 	Args: [{ false curve Curve}], Returns: void
 */
-func (o *CurveTexture) SetCurve(curve Curve) {
+func (o *CurveTexture) SetCurve(curve CurveImplementer) {
 	//log.Println("Calling CurveTexture.SetCurve()")
 
 	// Build out the method's arguments
@@ -139,6 +139,6 @@ type CurveTextureImplementer interface {
 	TextureImplementer
 	X_Update()
 	GetCurve() CurveImplementer
-	SetCurve(curve Curve)
+	SetCurve(curve CurveImplementer)
 	SetWidth(width gdnative.Int)
 }

@@ -183,7 +183,7 @@ func (o *CollisionShape2D) SetOneWayCollision(enabled gdnative.Bool) {
         Undocumented
 	Args: [{ false shape Shape2D}], Returns: void
 */
-func (o *CollisionShape2D) SetShape(shape Shape2D) {
+func (o *CollisionShape2D) SetShape(shape Shape2DImplementer) {
 	//log.Println("Calling CollisionShape2D.SetShape()")
 
 	// Build out the method's arguments
@@ -210,5 +210,5 @@ type CollisionShape2DImplementer interface {
 	IsOneWayCollisionEnabled() gdnative.Bool
 	SetDisabled(disabled gdnative.Bool)
 	SetOneWayCollision(enabled gdnative.Bool)
-	SetShape(shape Shape2D)
+	SetShape(shape Shape2DImplementer)
 }

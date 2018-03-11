@@ -51,7 +51,7 @@ func (o *VisibilityEnabler2D) BaseClass() string {
         Undocumented
 	Args: [{ false arg0 Object}], Returns: void
 */
-func (o *VisibilityEnabler2D) X_NodeRemoved(arg0 Object) {
+func (o *VisibilityEnabler2D) X_NodeRemoved(arg0 ObjectImplementer) {
 	//log.Println("Calling VisibilityEnabler2D.X_NodeRemoved()")
 
 	// Build out the method's arguments
@@ -118,7 +118,7 @@ func (o *VisibilityEnabler2D) SetEnabler(enabler gdnative.Int, enabled gdnative.
 // of the VisibilityEnabler2D class.
 type VisibilityEnabler2DImplementer interface {
 	VisibilityNotifier2DImplementer
-	X_NodeRemoved(arg0 Object)
+	X_NodeRemoved(arg0 ObjectImplementer)
 	IsEnablerEnabled(enabler gdnative.Int) gdnative.Bool
 	SetEnabler(enabler gdnative.Int, enabled gdnative.Bool)
 }

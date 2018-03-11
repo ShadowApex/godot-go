@@ -48,7 +48,7 @@ func (o *StreamPeerSSL) BaseClass() string {
 
 	Args: [{ false stream StreamPeer}], Returns: enum.Error
 */
-func (o *StreamPeerSSL) AcceptStream(stream StreamPeer) gdnative.Error {
+func (o *StreamPeerSSL) AcceptStream(stream StreamPeerImplementer) gdnative.Error {
 	//log.Println("Calling StreamPeerSSL.AcceptStream()")
 
 	// Build out the method's arguments
@@ -72,7 +72,7 @@ func (o *StreamPeerSSL) AcceptStream(stream StreamPeer) gdnative.Error {
         Connect to a peer using an underlying [StreamPeer] "stream", when "validate_certs" is true, [code]StreamPeerSSL[/code] will validate that the certificate presented by the peer matches the "for_hostname".
 	Args: [{ false stream StreamPeer} {False true validate_certs bool} { true for_hostname String}], Returns: enum.Error
 */
-func (o *StreamPeerSSL) ConnectToStream(stream StreamPeer, validateCerts gdnative.Bool, forHostname gdnative.String) gdnative.Error {
+func (o *StreamPeerSSL) ConnectToStream(stream StreamPeerImplementer, validateCerts gdnative.Bool, forHostname gdnative.String) gdnative.Error {
 	//log.Println("Calling StreamPeerSSL.ConnectToStream()")
 
 	// Build out the method's arguments

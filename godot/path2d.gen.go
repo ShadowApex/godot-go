@@ -95,7 +95,7 @@ func (o *Path2D) GetCurve() Curve2DImplementer {
         Undocumented
 	Args: [{ false curve Curve2D}], Returns: void
 */
-func (o *Path2D) SetCurve(curve Curve2D) {
+func (o *Path2D) SetCurve(curve Curve2DImplementer) {
 	//log.Println("Calling Path2D.SetCurve()")
 
 	// Build out the method's arguments
@@ -118,5 +118,5 @@ type Path2DImplementer interface {
 	Node2DImplementer
 	X_CurveChanged()
 	GetCurve() Curve2DImplementer
-	SetCurve(curve Curve2D)
+	SetCurve(curve Curve2DImplementer)
 }

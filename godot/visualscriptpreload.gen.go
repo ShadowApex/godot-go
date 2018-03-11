@@ -75,7 +75,7 @@ func (o *VisualScriptPreload) GetPreload() ResourceImplementer {
         Undocumented
 	Args: [{ false resource Resource}], Returns: void
 */
-func (o *VisualScriptPreload) SetPreload(resource Resource) {
+func (o *VisualScriptPreload) SetPreload(resource ResourceImplementer) {
 	//log.Println("Calling VisualScriptPreload.SetPreload()")
 
 	// Build out the method's arguments
@@ -97,5 +97,5 @@ func (o *VisualScriptPreload) SetPreload(resource Resource) {
 type VisualScriptPreloadImplementer interface {
 	VisualScriptNodeImplementer
 	GetPreload() ResourceImplementer
-	SetPreload(resource Resource)
+	SetPreload(resource ResourceImplementer)
 }

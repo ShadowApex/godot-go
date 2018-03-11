@@ -250,7 +250,7 @@ func (o *CanvasLayer) GetWorld2D() World2DImplementer {
         Undocumented
 	Args: [{ false viewport Object}], Returns: void
 */
-func (o *CanvasLayer) SetCustomViewport(viewport Object) {
+func (o *CanvasLayer) SetCustomViewport(viewport ObjectImplementer) {
 	//log.Println("Calling CanvasLayer.SetCustomViewport()")
 
 	// Build out the method's arguments
@@ -405,7 +405,7 @@ type CanvasLayerImplementer interface {
 	GetScale() gdnative.Vector2
 	GetTransform() gdnative.Transform2D
 	GetWorld2D() World2DImplementer
-	SetCustomViewport(viewport Object)
+	SetCustomViewport(viewport ObjectImplementer)
 	SetLayer(layer gdnative.Int)
 	SetOffset(offset gdnative.Vector2)
 	SetRotation(radians gdnative.Float)

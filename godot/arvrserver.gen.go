@@ -341,7 +341,7 @@ func (o *arvrServer) GetWorldScale() gdnative.Float {
         Changes the primary interface to the specified interface. Again mostly exposed for GDNative interfaces.
 	Args: [{ false interface ARVRInterface}], Returns: void
 */
-func (o *arvrServer) SetPrimaryInterface(intrfce ARVRInterface) {
+func (o *arvrServer) SetPrimaryInterface(intrfce ARVRInterfaceImplementer) {
 	o.ensureSingleton()
 	//log.Println("Calling ARVRServer.SetPrimaryInterface()")
 
@@ -394,6 +394,6 @@ type ARVRServerImplementer interface {
 	GetTracker(idx gdnative.Int) ARVRPositionalTrackerImplementer
 	GetTrackerCount() gdnative.Int
 	GetWorldScale() gdnative.Float
-	SetPrimaryInterface(intrfce ARVRInterface)
+	SetPrimaryInterface(intrfce ARVRInterfaceImplementer)
 	SetWorldScale(arg0 gdnative.Float)
 }
