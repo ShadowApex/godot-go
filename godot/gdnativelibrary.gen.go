@@ -60,6 +60,14 @@ func (o *GDNativeLibrary) GetConfigFile() ConfigFileImplementer {
 		return instance.(ConfigFileImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "ConfigFile" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ConfigFileImplementer)
+	}
+
 	return &ret
 }
 

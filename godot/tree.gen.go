@@ -250,6 +250,14 @@ func (o *Tree) CreateItem(parent Object, idx gdnative.Int) ObjectImplementer {
 		return instance.(ObjectImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Object" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ObjectImplementer)
+	}
+
 	return &ret
 }
 
@@ -510,6 +518,14 @@ func (o *Tree) GetEdited() TreeItemImplementer {
 		return instance.(TreeItemImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "TreeItem" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(TreeItemImplementer)
+	}
+
 	return &ret
 }
 
@@ -588,6 +604,14 @@ func (o *Tree) GetItemAtPosition(position gdnative.Vector2) TreeItemImplementer 
 		return instance.(TreeItemImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "TreeItem" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(TreeItemImplementer)
+	}
+
 	return &ret
 }
 
@@ -616,6 +640,14 @@ func (o *Tree) GetNextSelected(from Object) TreeItemImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(TreeItemImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "TreeItem" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(TreeItemImplementer)
 	}
 
 	return &ret
@@ -668,6 +700,14 @@ func (o *Tree) GetRoot() TreeItemImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(TreeItemImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "TreeItem" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(TreeItemImplementer)
 	}
 
 	return &ret
@@ -725,6 +765,14 @@ func (o *Tree) GetSelected() TreeItemImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(TreeItemImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "TreeItem" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(TreeItemImplementer)
 	}
 
 	return &ret

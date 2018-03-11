@@ -483,6 +483,14 @@ func (o *VisualScript) GetNode(function gdnative.String, id gdnative.Int) Visual
 		return instance.(VisualScriptNodeImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "VisualScriptNode" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(VisualScriptNodeImplementer)
+	}
+
 	return &ret
 }
 

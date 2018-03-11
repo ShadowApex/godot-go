@@ -17,9 +17,10 @@ func NewPlayer() godot.Class {
 // Player is a structure for the player.
 type Player struct {
 	godot.Area2D
-	Speed      gdnative.Real
-	velocity   gdnative.Vector2
-	screenSize gdnative.Rect2
+	Speed          gdnative.Real
+	velocity       gdnative.Vector2
+	screenSize     gdnative.Rect2
+	animatedSprite *godot.AnimatedSprite
 }
 
 // X_Ready will be called as soon as the player enters the scene.
@@ -39,10 +40,8 @@ func (p *Player) X_Ready() {
 
 	// Get the animated sprite
 	animatedSpritePath := gdnative.NewNodePath("AnimatedSprite")
-	godot.Log.Println("Animated Sprite path empty:", animatedSpritePath.IsEmpty())
 	animatedSpriteNode := p.GetNode(animatedSpritePath)
-	godot.Log.Println("Animated Sprite ID:", animatedSpriteNode.GetBaseObject().ID())
-	godot.Log.Println("Animated Sprite Class: ", animatedSpriteNode.GetClass())
+	p.animatedSprite = animatedSpriteNode.(*godot.AnimatedSprite)
 
 	// Get the viewport size
 	//p.screenSize = godot.Viewport.GetVisibleRect()

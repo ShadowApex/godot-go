@@ -80,6 +80,14 @@ func (o *CollisionShape2D) GetShape() Shape2DImplementer {
 		return instance.(Shape2DImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Shape2D" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(Shape2DImplementer)
+	}
+
 	return &ret
 }
 

@@ -62,6 +62,14 @@ func (o *EditorPlugin) AddControlToBottomPanel(control Object, title gdnative.St
 		return instance.(ToolButtonImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "ToolButton" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ToolButtonImplementer)
+	}
+
 	return &ret
 }
 
@@ -285,6 +293,14 @@ func (o *EditorPlugin) CreateSpatialGizmo(forSpatial Spatial) EditorSpatialGizmo
 		return instance.(EditorSpatialGizmoImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "EditorSpatialGizmo" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(EditorSpatialGizmoImplementer)
+	}
+
 	return &ret
 }
 
@@ -449,6 +465,14 @@ func (o *EditorPlugin) GetEditorInterface() EditorInterfaceImplementer {
 		return instance.(EditorInterfaceImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "EditorInterface" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(EditorInterfaceImplementer)
+	}
+
 	return &ret
 }
 
@@ -476,6 +500,14 @@ func (o *EditorPlugin) GetPluginIcon() ObjectImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(ObjectImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Object" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ObjectImplementer)
 	}
 
 	return &ret
@@ -551,6 +583,14 @@ func (o *EditorPlugin) GetUndoRedo() UndoRedoImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(UndoRedoImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "UndoRedo" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(UndoRedoImplementer)
 	}
 
 	return &ret

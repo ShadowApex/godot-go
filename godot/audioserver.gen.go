@@ -129,6 +129,14 @@ func (o *audioServer) GenerateBusLayout() AudioBusLayoutImplementer {
 		return instance.(AudioBusLayoutImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "AudioBusLayout" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(AudioBusLayoutImplementer)
+	}
+
 	return &ret
 }
 
@@ -183,6 +191,14 @@ func (o *audioServer) GetBusEffect(busIdx gdnative.Int, effectIdx gdnative.Int) 
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(AudioEffectImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "AudioEffect" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(AudioEffectImplementer)
 	}
 
 	return &ret

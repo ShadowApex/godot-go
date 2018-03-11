@@ -83,6 +83,14 @@ func (o *Script) GetBaseScript() ScriptImplementer {
 		return instance.(ScriptImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Script" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ScriptImplementer)
+	}
+
 	return &ret
 }
 

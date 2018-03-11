@@ -81,6 +81,14 @@ func (o *EditorInterface) GetBaseControl() ControlImplementer {
 		return instance.(ControlImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Control" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ControlImplementer)
+	}
+
 	return &ret
 }
 
@@ -108,6 +116,14 @@ func (o *EditorInterface) GetEditedSceneRoot() NodeImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(NodeImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Node" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(NodeImplementer)
 	}
 
 	return &ret
@@ -139,6 +155,14 @@ func (o *EditorInterface) GetEditorSettings() EditorSettingsImplementer {
 		return instance.(EditorSettingsImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "EditorSettings" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(EditorSettingsImplementer)
+	}
+
 	return &ret
 }
 
@@ -166,6 +190,14 @@ func (o *EditorInterface) GetEditorViewport() ControlImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(ControlImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Control" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ControlImplementer)
 	}
 
 	return &ret
@@ -220,6 +252,14 @@ func (o *EditorInterface) GetResourceFilesystem() EditorFileSystemImplementer {
 		return instance.(EditorFileSystemImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "EditorFileSystem" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(EditorFileSystemImplementer)
+	}
+
 	return &ret
 }
 
@@ -249,6 +289,14 @@ func (o *EditorInterface) GetResourcePreviewer() EditorResourcePreviewImplemente
 		return instance.(EditorResourcePreviewImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "EditorResourcePreview" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(EditorResourcePreviewImplementer)
+	}
+
 	return &ret
 }
 
@@ -276,6 +324,14 @@ func (o *EditorInterface) GetScriptEditor() ScriptEditorImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(ScriptEditorImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "ScriptEditor" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ScriptEditorImplementer)
 	}
 
 	return &ret
@@ -328,6 +384,14 @@ func (o *EditorInterface) GetSelection() EditorSelectionImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(EditorSelectionImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "EditorSelection" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(EditorSelectionImplementer)
 	}
 
 	return &ret

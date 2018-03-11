@@ -125,6 +125,14 @@ func (o *AcceptDialog) AddButton(text gdnative.String, right gdnative.Bool, acti
 		return instance.(ButtonImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Button" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ButtonImplementer)
+	}
+
 	return &ret
 }
 
@@ -153,6 +161,14 @@ func (o *AcceptDialog) AddCancel(name gdnative.String) ButtonImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(ButtonImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Button" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ButtonImplementer)
 	}
 
 	return &ret
@@ -207,6 +223,14 @@ func (o *AcceptDialog) GetLabel() LabelImplementer {
 		return instance.(LabelImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Label" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(LabelImplementer)
+	}
+
 	return &ret
 }
 
@@ -234,6 +258,14 @@ func (o *AcceptDialog) GetOk() ButtonImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(ButtonImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Button" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ButtonImplementer)
 	}
 
 	return &ret

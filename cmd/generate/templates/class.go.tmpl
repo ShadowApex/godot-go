@@ -118,6 +118,14 @@ func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) GetBaseObject() gdna
 					return instance.({{ $view.GoValue $method.ReturnType }}Implementer)
 				}
 
+				// Check to see what kind of class this is and create it. This is generally used with
+				// GetNode().
+				className := ret.GetClass()
+				if className != "{{ $method.ReturnType }}" {
+					actualRet := getActualClass(className, ret.GetBaseObject())
+					return actualRet.({{ $view.GoValue $method.ReturnType }}Implementer)
+				}
+
 				return &ret
 		        {{ else -}}
 			    	ret := gdnative.New{{ $view.GoNewFromPointerType $method.ReturnType }}FromPointer(retPtr)

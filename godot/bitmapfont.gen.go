@@ -311,6 +311,14 @@ func (o *BitmapFont) GetFallback() BitmapFontImplementer {
 		return instance.(BitmapFontImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "BitmapFont" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(BitmapFontImplementer)
+	}
+
 	return &ret
 }
 
@@ -364,6 +372,14 @@ func (o *BitmapFont) GetTexture(idx gdnative.Int) TextureImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(TextureImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Texture" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(TextureImplementer)
 	}
 
 	return &ret

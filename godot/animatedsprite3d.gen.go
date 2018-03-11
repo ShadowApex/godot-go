@@ -170,6 +170,14 @@ func (o *AnimatedSprite3D) GetSpriteFrames() SpriteFramesImplementer {
 		return instance.(SpriteFramesImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "SpriteFrames" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(SpriteFramesImplementer)
+	}
+
 	return &ret
 }
 

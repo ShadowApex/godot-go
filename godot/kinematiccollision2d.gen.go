@@ -60,6 +60,14 @@ func (o *KinematicCollision2D) GetCollider() ObjectImplementer {
 		return instance.(ObjectImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Object" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ObjectImplementer)
+	}
+
 	return &ret
 }
 
@@ -135,6 +143,14 @@ func (o *KinematicCollision2D) GetColliderShape() ObjectImplementer {
 		return instance.(ObjectImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Object" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ObjectImplementer)
+	}
+
 	return &ret
 }
 
@@ -208,6 +224,14 @@ func (o *KinematicCollision2D) GetLocalShape() ObjectImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(ObjectImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Object" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ObjectImplementer)
 	}
 
 	return &ret

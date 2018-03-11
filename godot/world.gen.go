@@ -60,6 +60,14 @@ func (o *World) GetDirectSpaceState() PhysicsDirectSpaceStateImplementer {
 		return instance.(PhysicsDirectSpaceStateImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "PhysicsDirectSpaceState" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(PhysicsDirectSpaceStateImplementer)
+	}
+
 	return &ret
 }
 
@@ -89,6 +97,14 @@ func (o *World) GetEnvironment() EnvironmentImplementer {
 		return instance.(EnvironmentImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Environment" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(EnvironmentImplementer)
+	}
+
 	return &ret
 }
 
@@ -116,6 +132,14 @@ func (o *World) GetFallbackEnvironment() EnvironmentImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(EnvironmentImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Environment" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(EnvironmentImplementer)
 	}
 
 	return &ret

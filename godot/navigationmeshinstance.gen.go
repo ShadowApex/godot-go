@@ -60,6 +60,14 @@ func (o *NavigationMeshInstance) GetNavigationMesh() NavigationMeshImplementer {
 		return instance.(NavigationMeshImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "NavigationMesh" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(NavigationMeshImplementer)
+	}
+
 	return &ret
 }
 

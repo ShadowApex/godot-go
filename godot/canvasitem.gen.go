@@ -1124,6 +1124,14 @@ func (o *CanvasItem) GetMaterial() MaterialImplementer {
 		return instance.(MaterialImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Material" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(MaterialImplementer)
+	}
+
 	return &ret
 }
 
@@ -1289,6 +1297,14 @@ func (o *CanvasItem) GetWorld2D() World2DImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(World2DImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "World2D" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(World2DImplementer)
 	}
 
 	return &ret
@@ -1501,6 +1517,14 @@ func (o *CanvasItem) MakeInputLocal(event InputEvent) InputEventImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(InputEventImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "InputEvent" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(InputEventImplementer)
 	}
 
 	return &ret

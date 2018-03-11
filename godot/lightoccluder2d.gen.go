@@ -103,6 +103,14 @@ func (o *LightOccluder2D) GetOccluderPolygon() OccluderPolygon2DImplementer {
 		return instance.(OccluderPolygon2DImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "OccluderPolygon2D" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(OccluderPolygon2DImplementer)
+	}
+
 	return &ret
 }
 

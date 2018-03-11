@@ -528,6 +528,14 @@ func (o *FileDialog) GetVbox() VBoxContainerImplementer {
 		return instance.(VBoxContainerImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "VBoxContainer" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(VBoxContainerImplementer)
+	}
+
 	return &ret
 }
 

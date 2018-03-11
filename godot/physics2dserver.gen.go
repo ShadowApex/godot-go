@@ -837,6 +837,14 @@ func (o *physics2DServer) BodyGetDirectState(body gdnative.Rid) Physics2DDirectB
 		return instance.(Physics2DDirectBodyStateImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Physics2DDirectBodyState" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(Physics2DDirectBodyStateImplementer)
+	}
+
 	return &ret
 }
 
@@ -2105,6 +2113,14 @@ func (o *physics2DServer) SpaceGetDirectState(space gdnative.Rid) Physics2DDirec
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(Physics2DDirectSpaceStateImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Physics2DDirectSpaceState" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(Physics2DDirectSpaceStateImplementer)
 	}
 
 	return &ret

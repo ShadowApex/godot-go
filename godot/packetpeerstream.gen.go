@@ -106,6 +106,14 @@ func (o *PacketPeerStream) GetStreamPeer() StreamPeerImplementer {
 		return instance.(StreamPeerImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "StreamPeer" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(StreamPeerImplementer)
+	}
+
 	return &ret
 }
 

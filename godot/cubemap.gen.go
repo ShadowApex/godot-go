@@ -130,6 +130,14 @@ func (o *CubeMap) GetSide(side gdnative.Int) ImageImplementer {
 		return instance.(ImageImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Image" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ImageImplementer)
+	}
+
 	return &ret
 }
 

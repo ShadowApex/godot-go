@@ -246,6 +246,14 @@ func (o *SceneTree) CreateTimer(timeSec gdnative.Float, pauseModeProcess gdnativ
 		return instance.(SceneTreeTimerImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "SceneTreeTimer" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(SceneTreeTimerImplementer)
+	}
+
 	return &ret
 }
 
@@ -275,6 +283,14 @@ func (o *SceneTree) GetCurrentScene() NodeImplementer {
 		return instance.(NodeImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Node" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(NodeImplementer)
+	}
+
 	return &ret
 }
 
@@ -302,6 +318,14 @@ func (o *SceneTree) GetEditedSceneRoot() NodeImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(NodeImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Node" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(NodeImplementer)
 	}
 
 	return &ret
@@ -377,6 +401,14 @@ func (o *SceneTree) GetNetworkPeer() NetworkedMultiplayerPeerImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(NetworkedMultiplayerPeerImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "NetworkedMultiplayerPeer" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(NetworkedMultiplayerPeerImplementer)
 	}
 
 	return &ret
@@ -476,6 +508,14 @@ func (o *SceneTree) GetRoot() ViewportImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(ViewportImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Viewport" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ViewportImplementer)
 	}
 
 	return &ret

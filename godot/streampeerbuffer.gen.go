@@ -80,6 +80,14 @@ func (o *StreamPeerBuffer) Duplicate() StreamPeerBufferImplementer {
 		return instance.(StreamPeerBufferImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "StreamPeerBuffer" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(StreamPeerBufferImplementer)
+	}
+
 	return &ret
 }
 

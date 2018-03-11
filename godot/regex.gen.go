@@ -180,6 +180,14 @@ func (o *RegEx) Search(subject gdnative.String, offset gdnative.Int, end gdnativ
 		return instance.(RegExMatchImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "RegExMatch" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(RegExMatchImplementer)
+	}
+
 	return &ret
 }
 

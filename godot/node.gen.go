@@ -360,6 +360,14 @@ func (o *Node) Duplicate(flags gdnative.Int) NodeImplementer {
 		return instance.(NodeImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Node" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(NodeImplementer)
+	}
+
 	return &ret
 }
 
@@ -392,6 +400,14 @@ func (o *Node) FindNode(mask gdnative.String, recursive gdnative.Bool, owned gdn
 		return instance.(NodeImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Node" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(NodeImplementer)
+	}
+
 	return &ret
 }
 
@@ -420,6 +436,14 @@ func (o *Node) GetChild(idx gdnative.Int) NodeImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(NodeImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Node" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(NodeImplementer)
 	}
 
 	return &ret
@@ -613,6 +637,14 @@ func (o *Node) GetNode(path gdnative.NodePath) NodeImplementer {
 		return instance.(NodeImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Node" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(NodeImplementer)
+	}
+
 	return &ret
 }
 
@@ -666,6 +698,14 @@ func (o *Node) GetOwner() NodeImplementer {
 		return instance.(NodeImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Node" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(NodeImplementer)
+	}
+
 	return &ret
 }
 
@@ -693,6 +733,14 @@ func (o *Node) GetParent() NodeImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(NodeImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Node" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(NodeImplementer)
 	}
 
 	return &ret
@@ -868,6 +916,14 @@ func (o *Node) GetTree() SceneTreeImplementer {
 		return instance.(SceneTreeImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "SceneTree" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(SceneTreeImplementer)
+	}
+
 	return &ret
 }
 
@@ -895,6 +951,14 @@ func (o *Node) GetViewport() ViewportImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(ViewportImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Viewport" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ViewportImplementer)
 	}
 
 	return &ret

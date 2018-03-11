@@ -299,6 +299,14 @@ func (o *SceneState) GetNodeInstance(idx gdnative.Int) PackedSceneImplementer {
 		return instance.(PackedSceneImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "PackedScene" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(PackedSceneImplementer)
+	}
+
 	return &ret
 }
 

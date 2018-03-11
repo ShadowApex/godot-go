@@ -80,6 +80,14 @@ func (o *Path) GetCurve() Curve3DImplementer {
 		return instance.(Curve3DImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Curve3D" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(Curve3DImplementer)
+	}
+
 	return &ret
 }
 

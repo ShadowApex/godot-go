@@ -254,6 +254,14 @@ func (o *Camera2D) GetCustomViewport() NodeImplementer {
 		return instance.(NodeImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Node" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(NodeImplementer)
+	}
+
 	return &ret
 }
 

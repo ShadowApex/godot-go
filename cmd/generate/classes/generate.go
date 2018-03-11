@@ -456,6 +456,23 @@ func Generate() {
 		GoImports(classPath + "/" + outFileName)
 
 	}
+
+	// Generate the conversion function to convert based on class name.
+	log.Println("Generating conversion functions.")
+	outFileName := "convert.gen.go"
+	WriteTemplate(
+		packagePath+"/cmd/generate/templates/convert.go.tmpl",
+		classPath+"/"+outFileName,
+		view,
+	)
+
+	// Run gofmt and goimports on the conversions
+	log.Println("  Running gofmt on output:", outFileName+"...")
+	GoFmt(classPath + "/" + outFileName)
+
+	log.Println("  Running goimports on output:", outFileName+"...")
+	GoImports(classPath + "/" + outFileName)
+
 	log.Println(len(view.APIs))
 }
 

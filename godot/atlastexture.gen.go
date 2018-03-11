@@ -60,6 +60,14 @@ func (o *AtlasTexture) GetAtlas() TextureImplementer {
 		return instance.(TextureImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Texture" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(TextureImplementer)
+	}
+
 	return &ret
 }
 

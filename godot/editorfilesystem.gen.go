@@ -84,6 +84,14 @@ func (o *EditorFileSystem) GetFilesystem() EditorFileSystemDirectoryImplementer 
 		return instance.(EditorFileSystemDirectoryImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "EditorFileSystemDirectory" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(EditorFileSystemDirectoryImplementer)
+	}
+
 	return &ret
 }
 
@@ -112,6 +120,14 @@ func (o *EditorFileSystem) GetFilesystemPath(path gdnative.String) EditorFileSys
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(EditorFileSystemDirectoryImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "EditorFileSystemDirectory" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(EditorFileSystemDirectoryImplementer)
 	}
 
 	return &ret

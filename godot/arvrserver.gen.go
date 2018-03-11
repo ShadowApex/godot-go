@@ -107,6 +107,14 @@ func (o *arvrServer) FindInterface(name gdnative.String) ARVRInterfaceImplemente
 		return instance.(ARVRInterfaceImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "ARVRInterface" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ARVRInterfaceImplementer)
+	}
+
 	return &ret
 }
 
@@ -136,6 +144,14 @@ func (o *arvrServer) GetInterface(idx gdnative.Int) ARVRInterfaceImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(ARVRInterfaceImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "ARVRInterface" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ARVRInterfaceImplementer)
 	}
 
 	return &ret
@@ -239,6 +255,14 @@ func (o *arvrServer) GetTracker(idx gdnative.Int) ARVRPositionalTrackerImplement
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(ARVRPositionalTrackerImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "ARVRPositionalTracker" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ARVRPositionalTrackerImplementer)
 	}
 
 	return &ret

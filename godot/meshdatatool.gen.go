@@ -330,6 +330,14 @@ func (o *MeshDataTool) GetMaterial() MaterialImplementer {
 		return instance.(MaterialImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Material" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(MaterialImplementer)
+	}
+
 	return &ret
 }
 

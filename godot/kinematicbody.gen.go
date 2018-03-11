@@ -131,6 +131,14 @@ func (o *KinematicBody) GetSlideCollision(slideIdx gdnative.Int) KinematicCollis
 		return instance.(KinematicCollisionImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "KinematicCollision" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(KinematicCollisionImplementer)
+	}
+
 	return &ret
 }
 
@@ -251,6 +259,14 @@ func (o *KinematicBody) MoveAndCollide(relVec gdnative.Vector3) KinematicCollisi
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(KinematicCollisionImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "KinematicCollision" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(KinematicCollisionImplementer)
 	}
 
 	return &ret

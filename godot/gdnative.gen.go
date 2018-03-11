@@ -86,6 +86,14 @@ func (o *GDNative) GetLibrary() GDNativeLibraryImplementer {
 		return instance.(GDNativeLibraryImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "GDNativeLibrary" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(GDNativeLibraryImplementer)
+	}
+
 	return &ret
 }
 

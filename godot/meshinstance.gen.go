@@ -140,6 +140,14 @@ func (o *MeshInstance) GetMesh() MeshImplementer {
 		return instance.(MeshImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Mesh" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(MeshImplementer)
+	}
+
 	return &ret
 }
 
@@ -191,6 +199,14 @@ func (o *MeshInstance) GetSurfaceMaterial(surface gdnative.Int) MaterialImplemen
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(MaterialImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Material" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(MaterialImplementer)
 	}
 
 	return &ret

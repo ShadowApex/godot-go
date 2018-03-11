@@ -60,6 +60,14 @@ func (o *CanvasLayer) GetCustomViewport() NodeImplementer {
 		return instance.(NodeImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Node" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(NodeImplementer)
+	}
+
 	return &ret
 }
 
@@ -225,6 +233,14 @@ func (o *CanvasLayer) GetWorld2D() World2DImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(World2DImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "World2D" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(World2DImplementer)
 	}
 
 	return &ret

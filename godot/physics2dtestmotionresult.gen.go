@@ -60,6 +60,14 @@ func (o *Physics2DTestMotionResult) GetCollider() ObjectImplementer {
 		return instance.(ObjectImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Object" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ObjectImplementer)
+	}
+
 	return &ret
 }
 

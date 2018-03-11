@@ -60,6 +60,14 @@ func (o *Mesh) CreateConvexShape() ShapeImplementer {
 		return instance.(ShapeImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Shape" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ShapeImplementer)
+	}
+
 	return &ret
 }
 
@@ -88,6 +96,14 @@ func (o *Mesh) CreateOutline(margin gdnative.Float) MeshImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(MeshImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Mesh" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(MeshImplementer)
 	}
 
 	return &ret
@@ -119,6 +135,14 @@ func (o *Mesh) CreateTrimeshShape() ShapeImplementer {
 		return instance.(ShapeImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Shape" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ShapeImplementer)
+	}
+
 	return &ret
 }
 
@@ -146,6 +170,14 @@ func (o *Mesh) GenerateTriangleMesh() TriangleMeshImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(TriangleMeshImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "TriangleMesh" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(TriangleMeshImplementer)
 	}
 
 	return &ret

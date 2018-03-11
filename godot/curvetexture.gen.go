@@ -80,6 +80,14 @@ func (o *CurveTexture) GetCurve() CurveImplementer {
 		return instance.(CurveImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Curve" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(CurveImplementer)
+	}
+
 	return &ret
 }
 

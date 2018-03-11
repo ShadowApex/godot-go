@@ -104,6 +104,14 @@ func (o *TouchScreenButton) GetBitmask() BitMapImplementer {
 		return instance.(BitMapImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "BitMap" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(BitMapImplementer)
+	}
+
 	return &ret
 }
 
@@ -131,6 +139,14 @@ func (o *TouchScreenButton) GetShape() Shape2DImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(Shape2DImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Shape2D" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(Shape2DImplementer)
 	}
 
 	return &ret
@@ -162,6 +178,14 @@ func (o *TouchScreenButton) GetTexture() TextureImplementer {
 		return instance.(TextureImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Texture" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(TextureImplementer)
+	}
+
 	return &ret
 }
 
@@ -189,6 +213,14 @@ func (o *TouchScreenButton) GetTexturePressed() TextureImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(TextureImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Texture" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(TextureImplementer)
 	}
 
 	return &ret

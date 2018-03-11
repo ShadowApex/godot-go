@@ -163,6 +163,14 @@ func (o *SpinBox) GetLineEdit() LineEditImplementer {
 		return instance.(LineEditImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "LineEdit" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(LineEditImplementer)
+	}
+
 	return &ret
 }
 

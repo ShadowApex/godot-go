@@ -334,6 +334,14 @@ func (o *CollisionObject2D) ShapeOwnerGetOwner(ownerId gdnative.Int) ObjectImple
 		return instance.(ObjectImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Object" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ObjectImplementer)
+	}
+
 	return &ret
 }
 
@@ -363,6 +371,14 @@ func (o *CollisionObject2D) ShapeOwnerGetShape(ownerId gdnative.Int, shapeId gdn
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(Shape2DImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Shape2D" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(Shape2DImplementer)
 	}
 
 	return &ret

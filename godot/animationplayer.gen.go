@@ -238,6 +238,14 @@ func (o *AnimationPlayer) GetAnimation(name gdnative.String) AnimationImplemente
 		return instance.(AnimationImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Animation" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(AnimationImplementer)
+	}
+
 	return &ret
 }
 

@@ -307,6 +307,14 @@ func (o *RichTextLabel) GetVScroll() VScrollBarImplementer {
 		return instance.(VScrollBarImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "VScrollBar" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(VScrollBarImplementer)
+	}
+
 	return &ret
 }
 

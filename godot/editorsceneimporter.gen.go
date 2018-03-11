@@ -109,6 +109,14 @@ func (o *EditorSceneImporter) X_ImportAnimation(path gdnative.String, flags gdna
 		return instance.(AnimationImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Animation" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(AnimationImplementer)
+	}
+
 	return &ret
 }
 
@@ -139,6 +147,14 @@ func (o *EditorSceneImporter) X_ImportScene(path gdnative.String, flags gdnative
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(NodeImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Node" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(NodeImplementer)
 	}
 
 	return &ret
@@ -173,6 +189,14 @@ func (o *EditorSceneImporter) ImportAnimationFromOtherImporter(path gdnative.Str
 		return instance.(AnimationImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Animation" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(AnimationImplementer)
+	}
+
 	return &ret
 }
 
@@ -203,6 +227,14 @@ func (o *EditorSceneImporter) ImportSceneFromOtherImporter(path gdnative.String,
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(NodeImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Node" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(NodeImplementer)
 	}
 
 	return &ret

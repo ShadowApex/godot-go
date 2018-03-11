@@ -604,6 +604,14 @@ func (o *Control) GetDragData(position gdnative.Vector2) ObjectImplementer {
 		return instance.(ObjectImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Object" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ObjectImplementer)
+	}
+
 	return &ret
 }
 
@@ -708,6 +716,14 @@ func (o *Control) GetFocusOwner() ControlImplementer {
 		return instance.(ControlImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Control" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ControlImplementer)
+	}
+
 	return &ret
 }
 
@@ -760,6 +776,14 @@ func (o *Control) GetFont(name gdnative.String, aType gdnative.String) FontImple
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(FontImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Font" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(FontImplementer)
 	}
 
 	return &ret
@@ -867,6 +891,14 @@ func (o *Control) GetIcon(name gdnative.String, aType gdnative.String) TextureIm
 		return instance.(TextureImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Texture" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(TextureImplementer)
+	}
+
 	return &ret
 }
 
@@ -969,6 +1001,14 @@ func (o *Control) GetParentControl() ControlImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(ControlImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Control" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ControlImplementer)
 	}
 
 	return &ret
@@ -1186,6 +1226,14 @@ func (o *Control) GetStylebox(name gdnative.String, aType gdnative.String) Style
 		return instance.(StyleBoxImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "StyleBox" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(StyleBoxImplementer)
+	}
+
 	return &ret
 }
 
@@ -1213,6 +1261,14 @@ func (o *Control) GetTheme() ThemeImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(ThemeImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Theme" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ThemeImplementer)
 	}
 
 	return &ret

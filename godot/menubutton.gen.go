@@ -125,6 +125,14 @@ func (o *MenuButton) GetPopup() PopupMenuImplementer {
 		return instance.(PopupMenuImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "PopupMenu" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(PopupMenuImplementer)
+	}
+
 	return &ret
 }
 

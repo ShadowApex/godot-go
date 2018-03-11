@@ -60,6 +60,14 @@ func (o *AudioStreamRandomPitch) GetAudioStream() AudioStreamImplementer {
 		return instance.(AudioStreamImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "AudioStream" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(AudioStreamImplementer)
+	}
+
 	return &ret
 }
 

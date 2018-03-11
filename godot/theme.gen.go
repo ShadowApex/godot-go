@@ -308,6 +308,14 @@ func (o *Theme) GetDefaultFont() FontImplementer {
 		return instance.(FontImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Font" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(FontImplementer)
+	}
+
 	return &ret
 }
 
@@ -337,6 +345,14 @@ func (o *Theme) GetFont(name gdnative.String, aType gdnative.String) FontImpleme
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(FontImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Font" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(FontImplementer)
 	}
 
 	return &ret
@@ -394,6 +410,14 @@ func (o *Theme) GetIcon(name gdnative.String, aType gdnative.String) TextureImpl
 		return instance.(TextureImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Texture" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(TextureImplementer)
+	}
+
 	return &ret
 }
 
@@ -447,6 +471,14 @@ func (o *Theme) GetStylebox(name gdnative.String, aType gdnative.String) StyleBo
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(StyleBoxImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "StyleBox" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(StyleBoxImplementer)
 	}
 
 	return &ret

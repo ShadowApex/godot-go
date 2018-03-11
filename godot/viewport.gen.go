@@ -163,6 +163,14 @@ func (o *Viewport) FindWorld() WorldImplementer {
 		return instance.(WorldImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "World" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(WorldImplementer)
+	}
+
 	return &ret
 }
 
@@ -192,6 +200,14 @@ func (o *Viewport) FindWorld2D() World2DImplementer {
 		return instance.(World2DImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "World2D" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(World2DImplementer)
+	}
+
 	return &ret
 }
 
@@ -219,6 +235,14 @@ func (o *Viewport) GetCamera() CameraImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(CameraImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "Camera" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(CameraImplementer)
 	}
 
 	return &ret
@@ -501,6 +525,14 @@ func (o *Viewport) GetTexture() ViewportTextureImplementer {
 		return instance.(ViewportTextureImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "ViewportTexture" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(ViewportTextureImplementer)
+	}
+
 	return &ret
 }
 
@@ -609,6 +641,14 @@ func (o *Viewport) GetWorld() WorldImplementer {
 		return instance.(WorldImplementer)
 	}
 
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "World" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(WorldImplementer)
+	}
+
 	return &ret
 }
 
@@ -636,6 +676,14 @@ func (o *Viewport) GetWorld2D() World2DImplementer {
 	// Check to see if we already have an instance of this object in our Go instance registry.
 	if instance, ok := InstanceRegistry.Get(ret.GetBaseObject().ID()); ok {
 		return instance.(World2DImplementer)
+	}
+
+	// Check to see what kind of class this is and create it. This is generally used with
+	// GetNode().
+	className := ret.GetClass()
+	if className != "World2D" {
+		actualRet := getActualClass(className, ret.GetBaseObject())
+		return actualRet.(World2DImplementer)
 	}
 
 	return &ret
