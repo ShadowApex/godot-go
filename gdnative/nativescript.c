@@ -50,3 +50,29 @@ godot_variant cgo_gateway_method_func(godot_object *obj, void *method_data,
 
 	return ret;
 }
+
+// This is a gateway function for the set property method.
+// GDCALLINGCONV void (*set_func)(godot_object *, void *, void *, godot_variant
+// *);
+void cgo_gateway_property_set_func(godot_object *obj, void *method_data,
+				   void *user_data, godot_variant *property) {
+	// printf("CGO: C.go_set_property_func()\n");
+	void go_set_property_func(godot_object *, void *, void *,
+				  godot_variant *);
+	go_set_property_func(obj, method_data, user_data,
+			     property);  // Execute our Go function.
+}
+
+// This is a gateway function for the get property method.
+// GDCALLINGCONV godot_variant (*get_func)(godot_object *, void *, void *);
+godot_variant cgo_gateway_property_get_func(godot_object *obj,
+					    void *method_data,
+					    void *user_data) {
+	// printf("CGO: C.go_get_property_func()\n");
+	godot_variant ret;
+	godot_variant go_get_property_func(godot_object *, void *, void *);
+	ret = go_get_property_func(obj, method_data,
+				   user_data);  // Execute our Go function.
+
+	return ret;
+}

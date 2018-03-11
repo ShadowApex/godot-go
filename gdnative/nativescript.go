@@ -69,6 +69,30 @@ var DestroyFuncRegistry = map[string]DestroyFunc{}
 // in method data. The method data is generally the class name to be freed.
 type FreeFunc func(string)
 
+// SetPropertyFunc will be called when Godot requests to set a property on a given
+// class. When it is called, the Godot object instance will be passed as an argument,
+// as well as the methodData (which is usually the name of the class), the
+// userData (which is generally the instance ID of the object), and the value
+// to set.
+type SetPropertyFunc func(Object, string, string, Variant)
+
+// SetPropertyFuncRegistry is a mapping of instance property setters. This map is
+// used whenever a SetPropertyFunc is registered. It is also used to look up
+// a property setter function when Godot asks Go to set a property on an object.
+var SetPropertyFuncRegistry = map[string]SetPropertyFunc{}
+
+// GetPropertyFunc will be called when Godot requests a property on a given class
+// instance. When it is called, Godot will pass the Godot object instance as an
+// argument, as well as the methodData (which is usually the name of the class),
+// and the userData (which is generally the instance ID of the object. You should
+// return the property as a Variant.
+type GetPropertyFunc func(Object, string, string) Variant
+
+// GetPropertyFuncRegistry is a mapping of instance property getters. This map is
+// used whenever a GetPropertyFunc is registered. It is also used to look up a
+// property getter function when Godot asks Go to get a property on an object.
+var GetPropertyFuncRegistry = map[string]GetPropertyFunc{}
+
 // FreeFuncRegistry is a mapping of instance free functions. This map is used
 // whenever a FreeFunc is registered. It is also used to look up a Free
 // function when Godot asks Go to free a class instance.
@@ -133,6 +157,33 @@ type MethodAttributes struct {
 
 func (m *MethodAttributes) getBase() C.godot_method_attributes {
 	return m.base
+}
+
+// InstancePropertySet is a structure that contains an instance property setter
+// function that will be called when Godot asks Go to set a property on a class.
+type InstancePropertySet struct {
+	base       C.godot_property_set_func
+	SetFunc    SetPropertyFunc
+	MethodData string
+	FreeFunc   FreeFunc
+}
+
+func (i *InstancePropertySet) getBase() C.godot_property_set_func {
+	return i.base
+}
+
+// InstancePropertyGet is a structure that contains an instance property getter
+// function that will be called when Godot asks Go to get a property from a class
+// instance.
+type InstancePropertyGet struct {
+	base       C.godot_property_get_func
+	GetFunc    GetPropertyFunc
+	MethodData string
+	FreeFunc   FreeFunc
+}
+
+func (i *InstancePropertyGet) getBase() C.godot_property_get_func {
+	return i.base
 }
 
 // NativeScript is a wrapper for the NativeScriptAPI.
@@ -249,15 +300,37 @@ func (n *nativeScript) RegisterMethod(name, funcName string, attributes *MethodA
 // to attach this property to. The path is the name of the property itself. The
 // attributes and setter/getter methods are what will be called when Godot gets
 // or sets this property.
-func (n *nativeScript) RegisterProperty(name, path string, attributes *C.godot_property_attributes, setFunc C.godot_property_set_func, getFunc C.godot_property_get_func) {
+//func (n *nativeScript) RegisterProperty(name, path string, attributes *C.godot_property_attributes, setFunc C.godot_property_set_func, getFunc C.godot_property_get_func) {
+func (n *nativeScript) RegisterProperty(name, path string, attributes *PropertyAttributes, setFunc *InstancePropertySet, getFunc *InstancePropertyGet) {
+	// Construct the C struct based on the attributes Go wrapper
+	var attr C.godot_property_attributes
+	attributes.base = &attr
+	attributes.base.rset_type = attributes.RsetType.getBase()
+	attributes.base._type = attributes.Type.getBase()
+	attributes.base.hint = attributes.Hint.getBase()
+	attributes.base.hint_string = *(attributes.HintString.getBase())
+	attributes.base.usage = attributes.Usage.getBase()
+	attributes.base.default_value = *(attributes.DefaultValue.getBase())
+
+	// Construct the C struct based on the setFunc Go wrapper
+	setFunc.base.set_func = (C.set_property_func)(unsafe.Pointer(C.cgo_gateway_property_set_func))
+	setFunc.base.method_data = unsafe.Pointer(C.CString(setFunc.MethodData))
+	setFunc.base.free_func = (C.free_func)(unsafe.Pointer(C.cgo_gateway_free_func))
+
+	// Construct the C struct based on the getFunc Go wrapper
+	getFunc.base.get_func = (C.get_property_func)(unsafe.Pointer(C.cgo_gateway_property_get_func))
+	getFunc.base.method_data = unsafe.Pointer(C.CString(getFunc.MethodData))
+	getFunc.base.free_func = (C.free_func)(unsafe.Pointer(C.cgo_gateway_free_func))
+
+	// Register the property with Godot.
 	C.go_godot_nativescript_register_property(
 		n.api,
 		n.handle,
 		C.CString(name),
 		C.CString(path),
-		attributes,
-		setFunc,
-		getFunc,
+		attributes.getBase(),
+		setFunc.getBase(),
+		getFunc.getBase(),
 	)
 }
 
@@ -290,7 +363,9 @@ func SetNativeScriptInit(initFunc func()) {
 // etc. The `unsafe.Pointer` type is used to represent a void C pointer.
 //export godot_nativescript_init
 func godot_nativescript_init(hdl unsafe.Pointer) {
-	log.Println("Initializing NativeScript")
+	if debug {
+		log.Println("Initializing NativeScript")
+	}
 	NativeScript.handle = hdl
 
 	// Call the user-defined nativeScriptInit function
@@ -313,7 +388,9 @@ func godot_nativescript_init(hdl unsafe.Pointer) {
 func go_create_func(godotObject *C.godot_object, methodData unsafe.Pointer) unsafe.Pointer {
 	// Convert the method data into a Go string.
 	methodDataString := unsafeToGoString(methodData)
-	log.Println("Create function called for:", methodDataString)
+	if debug {
+		log.Println("Create function called for:", methodDataString)
+	}
 
 	// Look up the creation function in our CreateFuncRegistry for the function
 	// to call.
@@ -337,7 +414,9 @@ func go_destroy_func(godotObject *C.godot_object, methodData unsafe.Pointer, use
 	// Convert the method data and user data into a Go string
 	methodDataString := unsafeToGoString(methodData)
 	userDataString := unsafeToGoString(userData)
-	log.Println("Destroy function called for:", methodDataString)
+	if debug {
+		log.Println("Destroy function called for:", methodDataString)
+	}
 
 	// Look up the destroy function in our DestroyFuncRegistry for the function
 	// to call.
@@ -352,7 +431,9 @@ func go_destroy_func(godotObject *C.godot_object, methodData unsafe.Pointer, use
 func go_free_func(methodData unsafe.Pointer) {
 	// Convert the method data and user data into a Go string
 	methodDataString := unsafeToGoString(methodData)
-	log.Println("Free function called for:", methodDataString)
+	if debug {
+		log.Println("Free function called for:", methodDataString)
+	}
 
 	// Look up the free function in our FreeFuncRegistry for the function
 	// to call.
@@ -411,6 +492,43 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 
 	// Call the method
 	ret := method(Object{base: godotObject}, methodDataString, userDataString, int(numArgs), variantArgs)
+
+	return *ret.getBase()
+}
+
+// This is a native Go function that is callable from C. It is called by the
+// gateway functions defined in nativescript.c.
+//export go_set_property_func
+func go_set_property_func(godotObject *C.godot_object, methodData unsafe.Pointer, userData unsafe.Pointer, property *C.godot_variant) {
+	// Convert the method data and user data into a Go string
+	methodDataString := unsafeToGoString(methodData)
+	userDataString := unsafeToGoString(userData)
+
+	// Convert the property into a Go variant
+	variant := Variant{base: property}
+
+	// Look up the set property function in our SetPropertyFuncRegistry for
+	// the function to call.
+	setFunc := SetPropertyFuncRegistry[methodDataString]
+
+	// Call the method
+	setFunc(Object{base: godotObject}, methodDataString, userDataString, variant)
+}
+
+// This is a native Go function that is callable from C. It is called by the
+// gateway functions defined in nativescript.c.
+//export go_get_property_func
+func go_get_property_func(godotObject *C.godot_object, methodData unsafe.Pointer, userData unsafe.Pointer) C.godot_variant {
+	// Convert the method data and user data into a Go string
+	methodDataString := unsafeToGoString(methodData)
+	userDataString := unsafeToGoString(userData)
+
+	// Look up the get property function in our GetPropertyFuncRegistry for
+	// the function to call.
+	getFunc := GetPropertyFuncRegistry[methodDataString]
+
+	// Call the method
+	ret := getFunc(Object{base: godotObject}, methodDataString, userDataString)
 
 	return *ret.getBase()
 }

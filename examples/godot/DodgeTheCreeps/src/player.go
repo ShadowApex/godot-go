@@ -77,6 +77,17 @@ func (p *Player) X_Process(delta gd.Double) {
 	newPosition.SetX(godot.Clamp(newPosition.GetX(), 0, p.screenSize.GetX()))
 	newPosition.SetY(godot.Clamp(newPosition.GetY(), 0, p.screenSize.GetY()))
 	p.SetPosition(newPosition)
+
+	// Flip the sprite if we're moving left or down, since we only have sprites
+	// for right and up.
+	if velocity.GetX() != 0 {
+		p.animatedSprite.SetAnimation("right")
+		p.animatedSprite.SetFlipV(false)
+		p.animatedSprite.SetFlipH(velocity.GetX() < 0)
+	} else if velocity.GetY() != 0 {
+		p.animatedSprite.SetAnimation("up")
+		p.animatedSprite.SetFlipV(velocity.GetY() > 0)
+	}
 }
 
 func init() {
