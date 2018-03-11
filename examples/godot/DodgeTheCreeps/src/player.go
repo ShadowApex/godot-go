@@ -21,6 +21,7 @@ type Player struct {
 	Speed          gd.Real
 	screenSize     gd.Vector2
 	animatedSprite godot.AnimatedSpriteImplementer
+	collisionShape godot.CollisionShape2DImplementer
 }
 
 // X_Ready will be called as soon as the player enters the scene.
@@ -36,6 +37,11 @@ func (p *Player) X_Ready() {
 	animatedSpriteNode := p.GetNode(animatedSpritePath)
 	log.Println("Got animated sprite with ID:", animatedSpriteNode.GetBaseObject().ID())
 	p.animatedSprite = animatedSpriteNode.(godot.AnimatedSpriteImplementer)
+
+	// Get the collision shape child node.
+	collisionShapePath := gd.NewNodePath("CollisionShape2D")
+	collisionShapeNode := p.GetNode(collisionShapePath)
+	p.collisionShape = collisionShapeNode.(godot.CollisionShape2DImplementer)
 
 	// Get the viewport size
 	viewportRect := p.GetViewportRect()
@@ -89,14 +95,18 @@ func (p *Player) X_Process(delta gd.Double) {
 	}
 }
 
-func init() {
-	// Set up logging to log to Godot.
-	log.SetFlags(log.LstdFlags | log.Lshortfile)
-	log.SetOutput(godot.Log)
-
-	// AutoRegister our Player class.
-	godot.AutoRegister(NewPlayer)
+// X_OnPlayerBodyEntered will be called when the "body_entered" signal is
+// fired. This is configured in the Player node settings from the Godot editor.
+func (p *Player) X_OnPlayerBodyEntered() {
+	log.Println("Player body was entered!")
+	p.Hide()
+	p.EmitSignal("hit")
+	p.collisionShape.SetDisabled(true)
 }
 
-func main() {
+// Start will be called when we need to reset our player's position.
+func (p *Player) Start(pos gd.Vector2) {
+	p.SetPosition(pos)
+	p.Show()
+	p.collisionShape.SetDisabled(false)
 }

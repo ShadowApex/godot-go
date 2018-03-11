@@ -337,6 +337,26 @@ func createMethod(classString, methodString string) *gdnative.InstanceMethod {
 	return &methodFunc
 }
 
+// CreatePropertySetter will create the InstancePropertySetFunc structure. This will be called whenever
+// needs to set a property on an instance.
+func createPropertySetter(classString, propertyString string) *gdnative.InstancePropertySet {
+	var propertySetFunc gdnative.InstancePropertySet
+	propertySetFunc.SetFunc = func(object gdnative.Object, classProperty, instanceString string, property gdnative.Variant) {
+		// Get the object instance based on the instance string given in userData.
+		class, ok := InstanceRegistry.Get(instanceString)
+		if !ok {
+			panic("Set property " + classProperty + " was called on instance (" + instanceString + "), but does not exist in the instance registry!")
+		}
+		classValue := reflect.ValueOf(class)
+		propertyField := classValue.Elem().FieldByName(classProperty)
+		propertyField.Set(reflect.ValueOf(property))
+	}
+	propertySetFunc.MethodData = classString + "::" + propertyString
+	propertySetFunc.FreeFunc = func(methodData string) {}
+
+	return &propertySetFunc
+}
+
 // VariantToGoType will check the given variant type and convert it to its
 // actual type. The value is returned as a reflect.Value.
 func VariantToGoType(variant gdnative.Variant) reflect.Value {

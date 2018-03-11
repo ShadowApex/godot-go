@@ -32,7 +32,7 @@ custom_solver_bias = 0.0
 radius = 27.5534
 height = 12.4012
 
-[node name="Player" type="Area2D" index="0"]
+[node name="Player" type="Area2D"]
 
 position = Vector2( 0, 1 )
 input_pickable = true
@@ -57,5 +57,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
 shape = SubResource( 3 )
+
+[connection signal="body_entered" from="." to="." method="_on_player_body_entered"]
 
 
