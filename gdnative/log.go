@@ -108,7 +108,7 @@ func stringAsGodotString(value string) *C.godot_string {
 	// Convert the Go string into a wchar
 	wcharString, err := wchar.FromGoString(value)
 	if err != nil {
-		fmt.Println("Error decoding string:", err)
+		fmt.Println("Error decoding string '"+value+"': ", err)
 		C.go_godot_string_new(GDNative.api, &godotString)
 		return &godotString
 	}

@@ -1,6 +1,8 @@
 package godot
 
 import (
+	"log"
+
 	"github.com/shadowapex/godot-go/gdnative"
 )
 
@@ -18,857 +20,1710 @@ import (
 func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplementer {
 	switch className {
 	case "ARVRAnchor":
-		return &ARVRAnchor{owner: obj}
+		class := &ARVRAnchor{}
+		class.SetBaseObject(obj)
+		return class
 	case "ARVRCamera":
-		return &ARVRCamera{owner: obj}
+		class := &ARVRCamera{}
+		class.SetBaseObject(obj)
+		return class
 	case "ARVRController":
-		return &ARVRController{owner: obj}
+		class := &ARVRController{}
+		class.SetBaseObject(obj)
+		return class
 	case "ARVRInterface":
-		return &ARVRInterface{owner: obj}
+		class := &ARVRInterface{}
+		class.SetBaseObject(obj)
+		return class
 	case "ARVRInterfaceGDNative":
-		return &ARVRInterfaceGDNative{owner: obj}
+		class := &ARVRInterfaceGDNative{}
+		class.SetBaseObject(obj)
+		return class
 	case "ARVROrigin":
-		return &ARVROrigin{owner: obj}
+		class := &ARVROrigin{}
+		class.SetBaseObject(obj)
+		return class
 	case "ARVRPositionalTracker":
-		return &ARVRPositionalTracker{owner: obj}
+		class := &ARVRPositionalTracker{}
+		class.SetBaseObject(obj)
+		return class
 	case "AStar":
-		return &AStar{owner: obj}
+		class := &AStar{}
+		class.SetBaseObject(obj)
+		return class
 	case "AcceptDialog":
-		return &AcceptDialog{owner: obj}
+		class := &AcceptDialog{}
+		class.SetBaseObject(obj)
+		return class
 	case "AnimatedSprite":
-		return &AnimatedSprite{owner: obj}
+		class := &AnimatedSprite{}
+		class.SetBaseObject(obj)
+		return class
 	case "AnimatedSprite3D":
-		return &AnimatedSprite3D{owner: obj}
+		class := &AnimatedSprite3D{}
+		class.SetBaseObject(obj)
+		return class
 	case "Animation":
-		return &Animation{owner: obj}
+		class := &Animation{}
+		class.SetBaseObject(obj)
+		return class
 	case "AnimationPlayer":
-		return &AnimationPlayer{owner: obj}
+		class := &AnimationPlayer{}
+		class.SetBaseObject(obj)
+		return class
 	case "AnimationTreePlayer":
-		return &AnimationTreePlayer{owner: obj}
+		class := &AnimationTreePlayer{}
+		class.SetBaseObject(obj)
+		return class
 	case "Area":
-		return &Area{owner: obj}
+		class := &Area{}
+		class.SetBaseObject(obj)
+		return class
 	case "Area2D":
-		return &Area2D{owner: obj}
+		class := &Area2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "ArrayMesh":
-		return &ArrayMesh{owner: obj}
+		class := &ArrayMesh{}
+		class.SetBaseObject(obj)
+		return class
 	case "AtlasTexture":
-		return &AtlasTexture{owner: obj}
+		class := &AtlasTexture{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioBusLayout":
-		return &AudioBusLayout{owner: obj}
+		class := &AudioBusLayout{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffect":
-		return &AudioEffect{owner: obj}
+		class := &AudioEffect{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectAmplify":
-		return &AudioEffectAmplify{owner: obj}
+		class := &AudioEffectAmplify{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectBandLimitFilter":
-		return &AudioEffectBandLimitFilter{owner: obj}
+		class := &AudioEffectBandLimitFilter{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectBandPassFilter":
-		return &AudioEffectBandPassFilter{owner: obj}
+		class := &AudioEffectBandPassFilter{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectChorus":
-		return &AudioEffectChorus{owner: obj}
+		class := &AudioEffectChorus{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectCompressor":
-		return &AudioEffectCompressor{owner: obj}
+		class := &AudioEffectCompressor{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectDelay":
-		return &AudioEffectDelay{owner: obj}
+		class := &AudioEffectDelay{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectDistortion":
-		return &AudioEffectDistortion{owner: obj}
+		class := &AudioEffectDistortion{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectEQ":
-		return &AudioEffectEQ{owner: obj}
+		class := &AudioEffectEQ{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectEQ10":
-		return &AudioEffectEQ10{owner: obj}
+		class := &AudioEffectEQ10{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectEQ21":
-		return &AudioEffectEQ21{owner: obj}
+		class := &AudioEffectEQ21{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectEQ6":
-		return &AudioEffectEQ6{owner: obj}
+		class := &AudioEffectEQ6{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectFilter":
-		return &AudioEffectFilter{owner: obj}
+		class := &AudioEffectFilter{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectHighPassFilter":
-		return &AudioEffectHighPassFilter{owner: obj}
+		class := &AudioEffectHighPassFilter{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectHighShelfFilter":
-		return &AudioEffectHighShelfFilter{owner: obj}
+		class := &AudioEffectHighShelfFilter{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectLimiter":
-		return &AudioEffectLimiter{owner: obj}
+		class := &AudioEffectLimiter{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectLowPassFilter":
-		return &AudioEffectLowPassFilter{owner: obj}
+		class := &AudioEffectLowPassFilter{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectLowShelfFilter":
-		return &AudioEffectLowShelfFilter{owner: obj}
+		class := &AudioEffectLowShelfFilter{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectNotchFilter":
-		return &AudioEffectNotchFilter{owner: obj}
+		class := &AudioEffectNotchFilter{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectPanner":
-		return &AudioEffectPanner{owner: obj}
+		class := &AudioEffectPanner{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectPhaser":
-		return &AudioEffectPhaser{owner: obj}
+		class := &AudioEffectPhaser{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectPitchShift":
-		return &AudioEffectPitchShift{owner: obj}
+		class := &AudioEffectPitchShift{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectReverb":
-		return &AudioEffectReverb{owner: obj}
+		class := &AudioEffectReverb{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioEffectStereoEnhance":
-		return &AudioEffectStereoEnhance{owner: obj}
+		class := &AudioEffectStereoEnhance{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioStream":
-		return &AudioStream{owner: obj}
+		class := &AudioStream{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioStreamOGGVorbis":
-		return &AudioStreamOGGVorbis{owner: obj}
+		class := &AudioStreamOGGVorbis{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioStreamPlayback":
-		return &AudioStreamPlayback{owner: obj}
+		class := &AudioStreamPlayback{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioStreamPlayer":
-		return &AudioStreamPlayer{owner: obj}
+		class := &AudioStreamPlayer{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioStreamPlayer2D":
-		return &AudioStreamPlayer2D{owner: obj}
+		class := &AudioStreamPlayer2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioStreamPlayer3D":
-		return &AudioStreamPlayer3D{owner: obj}
+		class := &AudioStreamPlayer3D{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioStreamRandomPitch":
-		return &AudioStreamRandomPitch{owner: obj}
+		class := &AudioStreamRandomPitch{}
+		class.SetBaseObject(obj)
+		return class
 	case "AudioStreamSample":
-		return &AudioStreamSample{owner: obj}
+		class := &AudioStreamSample{}
+		class.SetBaseObject(obj)
+		return class
 	case "BackBufferCopy":
-		return &BackBufferCopy{owner: obj}
+		class := &BackBufferCopy{}
+		class.SetBaseObject(obj)
+		return class
 	case "BakedLightmap":
-		return &BakedLightmap{owner: obj}
+		class := &BakedLightmap{}
+		class.SetBaseObject(obj)
+		return class
 	case "BakedLightmapData":
-		return &BakedLightmapData{owner: obj}
+		class := &BakedLightmapData{}
+		class.SetBaseObject(obj)
+		return class
 	case "BaseButton":
-		return &BaseButton{owner: obj}
+		class := &BaseButton{}
+		class.SetBaseObject(obj)
+		return class
 	case "BitMap":
-		return &BitMap{owner: obj}
+		class := &BitMap{}
+		class.SetBaseObject(obj)
+		return class
 	case "BitmapFont":
-		return &BitmapFont{owner: obj}
+		class := &BitmapFont{}
+		class.SetBaseObject(obj)
+		return class
 	case "BoneAttachment":
-		return &BoneAttachment{owner: obj}
+		class := &BoneAttachment{}
+		class.SetBaseObject(obj)
+		return class
 	case "BoxContainer":
-		return &BoxContainer{owner: obj}
+		class := &BoxContainer{}
+		class.SetBaseObject(obj)
+		return class
 	case "BoxShape":
-		return &BoxShape{owner: obj}
+		class := &BoxShape{}
+		class.SetBaseObject(obj)
+		return class
 	case "BulletPhysicsDirectBodyState":
-		return &BulletPhysicsDirectBodyState{owner: obj}
+		class := &BulletPhysicsDirectBodyState{}
+		class.SetBaseObject(obj)
+		return class
 	case "BulletPhysicsServer":
-		return &BulletPhysicsServer{owner: obj}
+		class := &BulletPhysicsServer{}
+		class.SetBaseObject(obj)
+		return class
 	case "Button":
-		return &Button{owner: obj}
+		class := &Button{}
+		class.SetBaseObject(obj)
+		return class
 	case "ButtonGroup":
-		return &ButtonGroup{owner: obj}
+		class := &ButtonGroup{}
+		class.SetBaseObject(obj)
+		return class
 	case "Camera":
-		return &Camera{owner: obj}
+		class := &Camera{}
+		class.SetBaseObject(obj)
+		return class
 	case "Camera2D":
-		return &Camera2D{owner: obj}
+		class := &Camera2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "CanvasItem":
-		return &CanvasItem{owner: obj}
+		class := &CanvasItem{}
+		class.SetBaseObject(obj)
+		return class
 	case "CanvasItemMaterial":
-		return &CanvasItemMaterial{owner: obj}
+		class := &CanvasItemMaterial{}
+		class.SetBaseObject(obj)
+		return class
 	case "CanvasLayer":
-		return &CanvasLayer{owner: obj}
+		class := &CanvasLayer{}
+		class.SetBaseObject(obj)
+		return class
 	case "CanvasModulate":
-		return &CanvasModulate{owner: obj}
+		class := &CanvasModulate{}
+		class.SetBaseObject(obj)
+		return class
 	case "CapsuleMesh":
-		return &CapsuleMesh{owner: obj}
+		class := &CapsuleMesh{}
+		class.SetBaseObject(obj)
+		return class
 	case "CapsuleShape":
-		return &CapsuleShape{owner: obj}
+		class := &CapsuleShape{}
+		class.SetBaseObject(obj)
+		return class
 	case "CapsuleShape2D":
-		return &CapsuleShape2D{owner: obj}
+		class := &CapsuleShape2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "CenterContainer":
-		return &CenterContainer{owner: obj}
+		class := &CenterContainer{}
+		class.SetBaseObject(obj)
+		return class
 	case "CheckBox":
-		return &CheckBox{owner: obj}
+		class := &CheckBox{}
+		class.SetBaseObject(obj)
+		return class
 	case "CheckButton":
-		return &CheckButton{owner: obj}
+		class := &CheckButton{}
+		class.SetBaseObject(obj)
+		return class
 	case "CircleShape2D":
-		return &CircleShape2D{owner: obj}
+		class := &CircleShape2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "CollisionObject":
-		return &CollisionObject{owner: obj}
+		class := &CollisionObject{}
+		class.SetBaseObject(obj)
+		return class
 	case "CollisionObject2D":
-		return &CollisionObject2D{owner: obj}
+		class := &CollisionObject2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "CollisionPolygon":
-		return &CollisionPolygon{owner: obj}
+		class := &CollisionPolygon{}
+		class.SetBaseObject(obj)
+		return class
 	case "CollisionPolygon2D":
-		return &CollisionPolygon2D{owner: obj}
+		class := &CollisionPolygon2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "CollisionShape":
-		return &CollisionShape{owner: obj}
+		class := &CollisionShape{}
+		class.SetBaseObject(obj)
+		return class
 	case "CollisionShape2D":
-		return &CollisionShape2D{owner: obj}
+		class := &CollisionShape2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "ColorPicker":
-		return &ColorPicker{owner: obj}
+		class := &ColorPicker{}
+		class.SetBaseObject(obj)
+		return class
 	case "ColorPickerButton":
-		return &ColorPickerButton{owner: obj}
+		class := &ColorPickerButton{}
+		class.SetBaseObject(obj)
+		return class
 	case "ColorRect":
-		return &ColorRect{owner: obj}
+		class := &ColorRect{}
+		class.SetBaseObject(obj)
+		return class
 	case "ConcavePolygonShape":
-		return &ConcavePolygonShape{owner: obj}
+		class := &ConcavePolygonShape{}
+		class.SetBaseObject(obj)
+		return class
 	case "ConcavePolygonShape2D":
-		return &ConcavePolygonShape2D{owner: obj}
+		class := &ConcavePolygonShape2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "ConeTwistJoint":
-		return &ConeTwistJoint{owner: obj}
+		class := &ConeTwistJoint{}
+		class.SetBaseObject(obj)
+		return class
 	case "ConfigFile":
-		return &ConfigFile{owner: obj}
+		class := &ConfigFile{}
+		class.SetBaseObject(obj)
+		return class
 	case "ConfirmationDialog":
-		return &ConfirmationDialog{owner: obj}
+		class := &ConfirmationDialog{}
+		class.SetBaseObject(obj)
+		return class
 	case "Container":
-		return &Container{owner: obj}
+		class := &Container{}
+		class.SetBaseObject(obj)
+		return class
 	case "Control":
-		return &Control{owner: obj}
+		class := &Control{}
+		class.SetBaseObject(obj)
+		return class
 	case "ConvexPolygonShape":
-		return &ConvexPolygonShape{owner: obj}
+		class := &ConvexPolygonShape{}
+		class.SetBaseObject(obj)
+		return class
 	case "ConvexPolygonShape2D":
-		return &ConvexPolygonShape2D{owner: obj}
+		class := &ConvexPolygonShape2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "CubeMap":
-		return &CubeMap{owner: obj}
+		class := &CubeMap{}
+		class.SetBaseObject(obj)
+		return class
 	case "CubeMesh":
-		return &CubeMesh{owner: obj}
+		class := &CubeMesh{}
+		class.SetBaseObject(obj)
+		return class
 	case "Curve":
-		return &Curve{owner: obj}
+		class := &Curve{}
+		class.SetBaseObject(obj)
+		return class
 	case "Curve2D":
-		return &Curve2D{owner: obj}
+		class := &Curve2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "Curve3D":
-		return &Curve3D{owner: obj}
+		class := &Curve3D{}
+		class.SetBaseObject(obj)
+		return class
 	case "CurveTexture":
-		return &CurveTexture{owner: obj}
+		class := &CurveTexture{}
+		class.SetBaseObject(obj)
+		return class
 	case "CylinderMesh":
-		return &CylinderMesh{owner: obj}
+		class := &CylinderMesh{}
+		class.SetBaseObject(obj)
+		return class
 	case "DampedSpringJoint2D":
-		return &DampedSpringJoint2D{owner: obj}
+		class := &DampedSpringJoint2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "DirectionalLight":
-		return &DirectionalLight{owner: obj}
+		class := &DirectionalLight{}
+		class.SetBaseObject(obj)
+		return class
 	case "DynamicFont":
-		return &DynamicFont{owner: obj}
+		class := &DynamicFont{}
+		class.SetBaseObject(obj)
+		return class
 	case "DynamicFontData":
-		return &DynamicFontData{owner: obj}
+		class := &DynamicFontData{}
+		class.SetBaseObject(obj)
+		return class
 	case "EditorExportPlugin":
-		return &EditorExportPlugin{owner: obj}
+		class := &EditorExportPlugin{}
+		class.SetBaseObject(obj)
+		return class
 	case "EditorFileDialog":
-		return &EditorFileDialog{owner: obj}
+		class := &EditorFileDialog{}
+		class.SetBaseObject(obj)
+		return class
 	case "EditorFileSystem":
-		return &EditorFileSystem{owner: obj}
+		class := &EditorFileSystem{}
+		class.SetBaseObject(obj)
+		return class
 	case "EditorFileSystemDirectory":
-		return &EditorFileSystemDirectory{owner: obj}
+		class := &EditorFileSystemDirectory{}
+		class.SetBaseObject(obj)
+		return class
 	case "EditorImportPlugin":
-		return &EditorImportPlugin{owner: obj}
+		class := &EditorImportPlugin{}
+		class.SetBaseObject(obj)
+		return class
 	case "EditorInterface":
-		return &EditorInterface{owner: obj}
+		class := &EditorInterface{}
+		class.SetBaseObject(obj)
+		return class
 	case "EditorPlugin":
-		return &EditorPlugin{owner: obj}
+		class := &EditorPlugin{}
+		class.SetBaseObject(obj)
+		return class
 	case "EditorResourceConversionPlugin":
-		return &EditorResourceConversionPlugin{owner: obj}
+		class := &EditorResourceConversionPlugin{}
+		class.SetBaseObject(obj)
+		return class
 	case "EditorResourcePreview":
-		return &EditorResourcePreview{owner: obj}
+		class := &EditorResourcePreview{}
+		class.SetBaseObject(obj)
+		return class
 	case "EditorResourcePreviewGenerator":
-		return &EditorResourcePreviewGenerator{owner: obj}
+		class := &EditorResourcePreviewGenerator{}
+		class.SetBaseObject(obj)
+		return class
 	case "EditorSceneImporter":
-		return &EditorSceneImporter{owner: obj}
+		class := &EditorSceneImporter{}
+		class.SetBaseObject(obj)
+		return class
 	case "EditorScenePostImport":
-		return &EditorScenePostImport{owner: obj}
+		class := &EditorScenePostImport{}
+		class.SetBaseObject(obj)
+		return class
 	case "EditorScript":
-		return &EditorScript{owner: obj}
+		class := &EditorScript{}
+		class.SetBaseObject(obj)
+		return class
 	case "EditorSelection":
-		return &EditorSelection{owner: obj}
+		class := &EditorSelection{}
+		class.SetBaseObject(obj)
+		return class
 	case "EditorSettings":
-		return &EditorSettings{owner: obj}
+		class := &EditorSettings{}
+		class.SetBaseObject(obj)
+		return class
 	case "EditorSpatialGizmo":
-		return &EditorSpatialGizmo{owner: obj}
+		class := &EditorSpatialGizmo{}
+		class.SetBaseObject(obj)
+		return class
 	case "EncodedObjectAsID":
-		return &EncodedObjectAsID{owner: obj}
+		class := &EncodedObjectAsID{}
+		class.SetBaseObject(obj)
+		return class
 	case "Environment":
-		return &Environment{owner: obj}
+		class := &Environment{}
+		class.SetBaseObject(obj)
+		return class
 	case "FileDialog":
-		return &FileDialog{owner: obj}
+		class := &FileDialog{}
+		class.SetBaseObject(obj)
+		return class
 	case "Font":
-		return &Font{owner: obj}
+		class := &Font{}
+		class.SetBaseObject(obj)
+		return class
 	case "FuncRef":
-		return &FuncRef{owner: obj}
+		class := &FuncRef{}
+		class.SetBaseObject(obj)
+		return class
 	case "GDNative":
-		return &GDNative{owner: obj}
+		class := &GDNative{}
+		class.SetBaseObject(obj)
+		return class
 	case "GDNativeLibrary":
-		return &GDNativeLibrary{owner: obj}
+		class := &GDNativeLibrary{}
+		class.SetBaseObject(obj)
+		return class
 	case "GDScript":
-		return &GDScript{owner: obj}
+		class := &GDScript{}
+		class.SetBaseObject(obj)
+		return class
 	case "GDScriptFunctionState":
-		return &GDScriptFunctionState{owner: obj}
+		class := &GDScriptFunctionState{}
+		class.SetBaseObject(obj)
+		return class
 	case "GIProbe":
-		return &GIProbe{owner: obj}
+		class := &GIProbe{}
+		class.SetBaseObject(obj)
+		return class
 	case "GIProbeData":
-		return &GIProbeData{owner: obj}
+		class := &GIProbeData{}
+		class.SetBaseObject(obj)
+		return class
 	case "Generic6DOFJoint":
-		return &Generic6DOFJoint{owner: obj}
+		class := &Generic6DOFJoint{}
+		class.SetBaseObject(obj)
+		return class
 	case "GeometryInstance":
-		return &GeometryInstance{owner: obj}
+		class := &GeometryInstance{}
+		class.SetBaseObject(obj)
+		return class
 	case "Gradient":
-		return &Gradient{owner: obj}
+		class := &Gradient{}
+		class.SetBaseObject(obj)
+		return class
 	case "GradientTexture":
-		return &GradientTexture{owner: obj}
+		class := &GradientTexture{}
+		class.SetBaseObject(obj)
+		return class
 	case "GraphEdit":
-		return &GraphEdit{owner: obj}
+		class := &GraphEdit{}
+		class.SetBaseObject(obj)
+		return class
 	case "GraphNode":
-		return &GraphNode{owner: obj}
+		class := &GraphNode{}
+		class.SetBaseObject(obj)
+		return class
 	case "GridContainer":
-		return &GridContainer{owner: obj}
+		class := &GridContainer{}
+		class.SetBaseObject(obj)
+		return class
 	case "GridMap":
-		return &GridMap{owner: obj}
+		class := &GridMap{}
+		class.SetBaseObject(obj)
+		return class
 	case "GrooveJoint2D":
-		return &GrooveJoint2D{owner: obj}
+		class := &GrooveJoint2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "HBoxContainer":
-		return &HBoxContainer{owner: obj}
+		class := &HBoxContainer{}
+		class.SetBaseObject(obj)
+		return class
 	case "HScrollBar":
-		return &HScrollBar{owner: obj}
+		class := &HScrollBar{}
+		class.SetBaseObject(obj)
+		return class
 	case "HSeparator":
-		return &HSeparator{owner: obj}
+		class := &HSeparator{}
+		class.SetBaseObject(obj)
+		return class
 	case "HSlider":
-		return &HSlider{owner: obj}
+		class := &HSlider{}
+		class.SetBaseObject(obj)
+		return class
 	case "HSplitContainer":
-		return &HSplitContainer{owner: obj}
+		class := &HSplitContainer{}
+		class.SetBaseObject(obj)
+		return class
 	case "HTTPClient":
-		return &HTTPClient{owner: obj}
+		class := &HTTPClient{}
+		class.SetBaseObject(obj)
+		return class
 	case "HTTPRequest":
-		return &HTTPRequest{owner: obj}
+		class := &HTTPRequest{}
+		class.SetBaseObject(obj)
+		return class
 	case "HingeJoint":
-		return &HingeJoint{owner: obj}
+		class := &HingeJoint{}
+		class.SetBaseObject(obj)
+		return class
 	case "IP_Unix":
-		return &IP_Unix{owner: obj}
+		class := &IP_Unix{}
+		class.SetBaseObject(obj)
+		return class
 	case "Image":
-		return &Image{owner: obj}
+		class := &Image{}
+		class.SetBaseObject(obj)
+		return class
 	case "ImageTexture":
-		return &ImageTexture{owner: obj}
+		class := &ImageTexture{}
+		class.SetBaseObject(obj)
+		return class
 	case "ImmediateGeometry":
-		return &ImmediateGeometry{owner: obj}
+		class := &ImmediateGeometry{}
+		class.SetBaseObject(obj)
+		return class
 	case "InputDefault":
-		return &InputDefault{owner: obj}
+		class := &InputDefault{}
+		class.SetBaseObject(obj)
+		return class
 	case "InputEvent":
-		return &InputEvent{owner: obj}
+		class := &InputEvent{}
+		class.SetBaseObject(obj)
+		return class
 	case "InputEventAction":
-		return &InputEventAction{owner: obj}
+		class := &InputEventAction{}
+		class.SetBaseObject(obj)
+		return class
 	case "InputEventGesture":
-		return &InputEventGesture{owner: obj}
+		class := &InputEventGesture{}
+		class.SetBaseObject(obj)
+		return class
 	case "InputEventJoypadButton":
-		return &InputEventJoypadButton{owner: obj}
+		class := &InputEventJoypadButton{}
+		class.SetBaseObject(obj)
+		return class
 	case "InputEventJoypadMotion":
-		return &InputEventJoypadMotion{owner: obj}
+		class := &InputEventJoypadMotion{}
+		class.SetBaseObject(obj)
+		return class
 	case "InputEventKey":
-		return &InputEventKey{owner: obj}
+		class := &InputEventKey{}
+		class.SetBaseObject(obj)
+		return class
 	case "InputEventMagnifyGesture":
-		return &InputEventMagnifyGesture{owner: obj}
+		class := &InputEventMagnifyGesture{}
+		class.SetBaseObject(obj)
+		return class
 	case "InputEventMouse":
-		return &InputEventMouse{owner: obj}
+		class := &InputEventMouse{}
+		class.SetBaseObject(obj)
+		return class
 	case "InputEventMouseButton":
-		return &InputEventMouseButton{owner: obj}
+		class := &InputEventMouseButton{}
+		class.SetBaseObject(obj)
+		return class
 	case "InputEventMouseMotion":
-		return &InputEventMouseMotion{owner: obj}
+		class := &InputEventMouseMotion{}
+		class.SetBaseObject(obj)
+		return class
 	case "InputEventPanGesture":
-		return &InputEventPanGesture{owner: obj}
+		class := &InputEventPanGesture{}
+		class.SetBaseObject(obj)
+		return class
 	case "InputEventScreenDrag":
-		return &InputEventScreenDrag{owner: obj}
+		class := &InputEventScreenDrag{}
+		class.SetBaseObject(obj)
+		return class
 	case "InputEventScreenTouch":
-		return &InputEventScreenTouch{owner: obj}
+		class := &InputEventScreenTouch{}
+		class.SetBaseObject(obj)
+		return class
 	case "InputEventWithModifiers":
-		return &InputEventWithModifiers{owner: obj}
+		class := &InputEventWithModifiers{}
+		class.SetBaseObject(obj)
+		return class
 	case "InstancePlaceholder":
-		return &InstancePlaceholder{owner: obj}
+		class := &InstancePlaceholder{}
+		class.SetBaseObject(obj)
+		return class
 	case "InterpolatedCamera":
-		return &InterpolatedCamera{owner: obj}
+		class := &InterpolatedCamera{}
+		class.SetBaseObject(obj)
+		return class
 	case "ItemList":
-		return &ItemList{owner: obj}
+		class := &ItemList{}
+		class.SetBaseObject(obj)
+		return class
 	case "JSONParseResult":
-		return &JSONParseResult{owner: obj}
+		class := &JSONParseResult{}
+		class.SetBaseObject(obj)
+		return class
 	case "Joint":
-		return &Joint{owner: obj}
+		class := &Joint{}
+		class.SetBaseObject(obj)
+		return class
 	case "Joint2D":
-		return &Joint2D{owner: obj}
+		class := &Joint2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "KinematicBody":
-		return &KinematicBody{owner: obj}
+		class := &KinematicBody{}
+		class.SetBaseObject(obj)
+		return class
 	case "KinematicBody2D":
-		return &KinematicBody2D{owner: obj}
+		class := &KinematicBody2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "KinematicCollision":
-		return &KinematicCollision{owner: obj}
+		class := &KinematicCollision{}
+		class.SetBaseObject(obj)
+		return class
 	case "KinematicCollision2D":
-		return &KinematicCollision2D{owner: obj}
+		class := &KinematicCollision2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "Label":
-		return &Label{owner: obj}
+		class := &Label{}
+		class.SetBaseObject(obj)
+		return class
 	case "LargeTexture":
-		return &LargeTexture{owner: obj}
+		class := &LargeTexture{}
+		class.SetBaseObject(obj)
+		return class
 	case "Light":
-		return &Light{owner: obj}
+		class := &Light{}
+		class.SetBaseObject(obj)
+		return class
 	case "Light2D":
-		return &Light2D{owner: obj}
+		class := &Light2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "LightOccluder2D":
-		return &LightOccluder2D{owner: obj}
+		class := &LightOccluder2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "Line2D":
-		return &Line2D{owner: obj}
+		class := &Line2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "LineEdit":
-		return &LineEdit{owner: obj}
+		class := &LineEdit{}
+		class.SetBaseObject(obj)
+		return class
 	case "LineShape2D":
-		return &LineShape2D{owner: obj}
+		class := &LineShape2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "LinkButton":
-		return &LinkButton{owner: obj}
+		class := &LinkButton{}
+		class.SetBaseObject(obj)
+		return class
 	case "Listener":
-		return &Listener{owner: obj}
+		class := &Listener{}
+		class.SetBaseObject(obj)
+		return class
 	case "MainLoop":
-		return &MainLoop{owner: obj}
+		class := &MainLoop{}
+		class.SetBaseObject(obj)
+		return class
 	case "MarginContainer":
-		return &MarginContainer{owner: obj}
+		class := &MarginContainer{}
+		class.SetBaseObject(obj)
+		return class
 	case "Material":
-		return &Material{owner: obj}
+		class := &Material{}
+		class.SetBaseObject(obj)
+		return class
 	case "MenuButton":
-		return &MenuButton{owner: obj}
+		class := &MenuButton{}
+		class.SetBaseObject(obj)
+		return class
 	case "Mesh":
-		return &Mesh{owner: obj}
+		class := &Mesh{}
+		class.SetBaseObject(obj)
+		return class
 	case "MeshDataTool":
-		return &MeshDataTool{owner: obj}
+		class := &MeshDataTool{}
+		class.SetBaseObject(obj)
+		return class
 	case "MeshInstance":
-		return &MeshInstance{owner: obj}
+		class := &MeshInstance{}
+		class.SetBaseObject(obj)
+		return class
 	case "MeshLibrary":
-		return &MeshLibrary{owner: obj}
+		class := &MeshLibrary{}
+		class.SetBaseObject(obj)
+		return class
 	case "MobileVRInterface":
-		return &MobileVRInterface{owner: obj}
+		class := &MobileVRInterface{}
+		class.SetBaseObject(obj)
+		return class
 	case "MultiMesh":
-		return &MultiMesh{owner: obj}
+		class := &MultiMesh{}
+		class.SetBaseObject(obj)
+		return class
 	case "MultiMeshInstance":
-		return &MultiMeshInstance{owner: obj}
+		class := &MultiMeshInstance{}
+		class.SetBaseObject(obj)
+		return class
 	case "NativeScript":
-		return &NativeScript{owner: obj}
+		class := &NativeScript{}
+		class.SetBaseObject(obj)
+		return class
 	case "Navigation":
-		return &Navigation{owner: obj}
+		class := &Navigation{}
+		class.SetBaseObject(obj)
+		return class
 	case "Navigation2D":
-		return &Navigation2D{owner: obj}
+		class := &Navigation2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "NavigationMesh":
-		return &NavigationMesh{owner: obj}
+		class := &NavigationMesh{}
+		class.SetBaseObject(obj)
+		return class
 	case "NavigationMeshInstance":
-		return &NavigationMeshInstance{owner: obj}
+		class := &NavigationMeshInstance{}
+		class.SetBaseObject(obj)
+		return class
 	case "NavigationPolygon":
-		return &NavigationPolygon{owner: obj}
+		class := &NavigationPolygon{}
+		class.SetBaseObject(obj)
+		return class
 	case "NavigationPolygonInstance":
-		return &NavigationPolygonInstance{owner: obj}
+		class := &NavigationPolygonInstance{}
+		class.SetBaseObject(obj)
+		return class
 	case "NetworkedMultiplayerENet":
-		return &NetworkedMultiplayerENet{owner: obj}
+		class := &NetworkedMultiplayerENet{}
+		class.SetBaseObject(obj)
+		return class
 	case "NetworkedMultiplayerPeer":
-		return &NetworkedMultiplayerPeer{owner: obj}
+		class := &NetworkedMultiplayerPeer{}
+		class.SetBaseObject(obj)
+		return class
 	case "NinePatchRect":
-		return &NinePatchRect{owner: obj}
+		class := &NinePatchRect{}
+		class.SetBaseObject(obj)
+		return class
 	case "Node":
-		return &Node{owner: obj}
+		class := &Node{}
+		class.SetBaseObject(obj)
+		return class
 	case "Node2D":
-		return &Node2D{owner: obj}
+		class := &Node2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "Object":
-		return &Object{owner: obj}
+		class := &Object{}
+		class.SetBaseObject(obj)
+		return class
 	case "OccluderPolygon2D":
-		return &OccluderPolygon2D{owner: obj}
+		class := &OccluderPolygon2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "OmniLight":
-		return &OmniLight{owner: obj}
+		class := &OmniLight{}
+		class.SetBaseObject(obj)
+		return class
 	case "OptionButton":
-		return &OptionButton{owner: obj}
+		class := &OptionButton{}
+		class.SetBaseObject(obj)
+		return class
 	case "PCKPacker":
-		return &PCKPacker{owner: obj}
+		class := &PCKPacker{}
+		class.SetBaseObject(obj)
+		return class
 	case "PHashTranslation":
-		return &PHashTranslation{owner: obj}
+		class := &PHashTranslation{}
+		class.SetBaseObject(obj)
+		return class
 	case "PackedDataContainer":
-		return &PackedDataContainer{owner: obj}
+		class := &PackedDataContainer{}
+		class.SetBaseObject(obj)
+		return class
 	case "PackedDataContainerRef":
-		return &PackedDataContainerRef{owner: obj}
+		class := &PackedDataContainerRef{}
+		class.SetBaseObject(obj)
+		return class
 	case "PackedScene":
-		return &PackedScene{owner: obj}
+		class := &PackedScene{}
+		class.SetBaseObject(obj)
+		return class
 	case "PacketPeer":
-		return &PacketPeer{owner: obj}
+		class := &PacketPeer{}
+		class.SetBaseObject(obj)
+		return class
 	case "PacketPeerStream":
-		return &PacketPeerStream{owner: obj}
+		class := &PacketPeerStream{}
+		class.SetBaseObject(obj)
+		return class
 	case "PacketPeerUDP":
-		return &PacketPeerUDP{owner: obj}
+		class := &PacketPeerUDP{}
+		class.SetBaseObject(obj)
+		return class
 	case "Panel":
-		return &Panel{owner: obj}
+		class := &Panel{}
+		class.SetBaseObject(obj)
+		return class
 	case "PanelContainer":
-		return &PanelContainer{owner: obj}
+		class := &PanelContainer{}
+		class.SetBaseObject(obj)
+		return class
 	case "PanoramaSky":
-		return &PanoramaSky{owner: obj}
+		class := &PanoramaSky{}
+		class.SetBaseObject(obj)
+		return class
 	case "ParallaxBackground":
-		return &ParallaxBackground{owner: obj}
+		class := &ParallaxBackground{}
+		class.SetBaseObject(obj)
+		return class
 	case "ParallaxLayer":
-		return &ParallaxLayer{owner: obj}
+		class := &ParallaxLayer{}
+		class.SetBaseObject(obj)
+		return class
 	case "Particles":
-		return &Particles{owner: obj}
+		class := &Particles{}
+		class.SetBaseObject(obj)
+		return class
 	case "Particles2D":
-		return &Particles2D{owner: obj}
+		class := &Particles2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "ParticlesMaterial":
-		return &ParticlesMaterial{owner: obj}
+		class := &ParticlesMaterial{}
+		class.SetBaseObject(obj)
+		return class
 	case "Path":
-		return &Path{owner: obj}
+		class := &Path{}
+		class.SetBaseObject(obj)
+		return class
 	case "Path2D":
-		return &Path2D{owner: obj}
+		class := &Path2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "PathFollow":
-		return &PathFollow{owner: obj}
+		class := &PathFollow{}
+		class.SetBaseObject(obj)
+		return class
 	case "PathFollow2D":
-		return &PathFollow2D{owner: obj}
+		class := &PathFollow2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "Physics2DDirectBodyState":
-		return &Physics2DDirectBodyState{owner: obj}
+		class := &Physics2DDirectBodyState{}
+		class.SetBaseObject(obj)
+		return class
 	case "Physics2DDirectBodyStateSW":
-		return &Physics2DDirectBodyStateSW{owner: obj}
+		class := &Physics2DDirectBodyStateSW{}
+		class.SetBaseObject(obj)
+		return class
 	case "Physics2DDirectSpaceState":
-		return &Physics2DDirectSpaceState{owner: obj}
+		class := &Physics2DDirectSpaceState{}
+		class.SetBaseObject(obj)
+		return class
 	case "Physics2DServerSW":
-		return &Physics2DServerSW{owner: obj}
+		class := &Physics2DServerSW{}
+		class.SetBaseObject(obj)
+		return class
 	case "Physics2DShapeQueryParameters":
-		return &Physics2DShapeQueryParameters{owner: obj}
+		class := &Physics2DShapeQueryParameters{}
+		class.SetBaseObject(obj)
+		return class
 	case "Physics2DShapeQueryResult":
-		return &Physics2DShapeQueryResult{owner: obj}
+		class := &Physics2DShapeQueryResult{}
+		class.SetBaseObject(obj)
+		return class
 	case "Physics2DTestMotionResult":
-		return &Physics2DTestMotionResult{owner: obj}
+		class := &Physics2DTestMotionResult{}
+		class.SetBaseObject(obj)
+		return class
 	case "PhysicsBody":
-		return &PhysicsBody{owner: obj}
+		class := &PhysicsBody{}
+		class.SetBaseObject(obj)
+		return class
 	case "PhysicsBody2D":
-		return &PhysicsBody2D{owner: obj}
+		class := &PhysicsBody2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "PhysicsDirectBodyState":
-		return &PhysicsDirectBodyState{owner: obj}
+		class := &PhysicsDirectBodyState{}
+		class.SetBaseObject(obj)
+		return class
 	case "PhysicsDirectSpaceState":
-		return &PhysicsDirectSpaceState{owner: obj}
+		class := &PhysicsDirectSpaceState{}
+		class.SetBaseObject(obj)
+		return class
 	case "PhysicsShapeQueryParameters":
-		return &PhysicsShapeQueryParameters{owner: obj}
+		class := &PhysicsShapeQueryParameters{}
+		class.SetBaseObject(obj)
+		return class
 	case "PhysicsShapeQueryResult":
-		return &PhysicsShapeQueryResult{owner: obj}
+		class := &PhysicsShapeQueryResult{}
+		class.SetBaseObject(obj)
+		return class
 	case "PinJoint":
-		return &PinJoint{owner: obj}
+		class := &PinJoint{}
+		class.SetBaseObject(obj)
+		return class
 	case "PinJoint2D":
-		return &PinJoint2D{owner: obj}
+		class := &PinJoint2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "PlaneMesh":
-		return &PlaneMesh{owner: obj}
+		class := &PlaneMesh{}
+		class.SetBaseObject(obj)
+		return class
 	case "PlaneShape":
-		return &PlaneShape{owner: obj}
+		class := &PlaneShape{}
+		class.SetBaseObject(obj)
+		return class
 	case "PluginScript":
-		return &PluginScript{owner: obj}
+		class := &PluginScript{}
+		class.SetBaseObject(obj)
+		return class
 	case "Polygon2D":
-		return &Polygon2D{owner: obj}
+		class := &Polygon2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "PolygonPathFinder":
-		return &PolygonPathFinder{owner: obj}
+		class := &PolygonPathFinder{}
+		class.SetBaseObject(obj)
+		return class
 	case "Popup":
-		return &Popup{owner: obj}
+		class := &Popup{}
+		class.SetBaseObject(obj)
+		return class
 	case "PopupDialog":
-		return &PopupDialog{owner: obj}
+		class := &PopupDialog{}
+		class.SetBaseObject(obj)
+		return class
 	case "PopupMenu":
-		return &PopupMenu{owner: obj}
+		class := &PopupMenu{}
+		class.SetBaseObject(obj)
+		return class
 	case "PopupPanel":
-		return &PopupPanel{owner: obj}
+		class := &PopupPanel{}
+		class.SetBaseObject(obj)
+		return class
 	case "Position2D":
-		return &Position2D{owner: obj}
+		class := &Position2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "Position3D":
-		return &Position3D{owner: obj}
+		class := &Position3D{}
+		class.SetBaseObject(obj)
+		return class
 	case "PrimitiveMesh":
-		return &PrimitiveMesh{owner: obj}
+		class := &PrimitiveMesh{}
+		class.SetBaseObject(obj)
+		return class
 	case "PrismMesh":
-		return &PrismMesh{owner: obj}
+		class := &PrismMesh{}
+		class.SetBaseObject(obj)
+		return class
 	case "ProceduralSky":
-		return &ProceduralSky{owner: obj}
+		class := &ProceduralSky{}
+		class.SetBaseObject(obj)
+		return class
 	case "ProgressBar":
-		return &ProgressBar{owner: obj}
+		class := &ProgressBar{}
+		class.SetBaseObject(obj)
+		return class
 	case "ProximityGroup":
-		return &ProximityGroup{owner: obj}
+		class := &ProximityGroup{}
+		class.SetBaseObject(obj)
+		return class
 	case "ProxyTexture":
-		return &ProxyTexture{owner: obj}
+		class := &ProxyTexture{}
+		class.SetBaseObject(obj)
+		return class
 	case "QuadMesh":
-		return &QuadMesh{owner: obj}
+		class := &QuadMesh{}
+		class.SetBaseObject(obj)
+		return class
 	case "Range":
-		return &Range{owner: obj}
+		class := &Range{}
+		class.SetBaseObject(obj)
+		return class
 	case "RayCast":
-		return &RayCast{owner: obj}
+		class := &RayCast{}
+		class.SetBaseObject(obj)
+		return class
 	case "RayCast2D":
-		return &RayCast2D{owner: obj}
+		class := &RayCast2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "RayShape":
-		return &RayShape{owner: obj}
+		class := &RayShape{}
+		class.SetBaseObject(obj)
+		return class
 	case "RayShape2D":
-		return &RayShape2D{owner: obj}
+		class := &RayShape2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "RectangleShape2D":
-		return &RectangleShape2D{owner: obj}
+		class := &RectangleShape2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "Reference":
-		return &Reference{owner: obj}
+		class := &Reference{}
+		class.SetBaseObject(obj)
+		return class
 	case "ReferenceRect":
-		return &ReferenceRect{owner: obj}
+		class := &ReferenceRect{}
+		class.SetBaseObject(obj)
+		return class
 	case "ReflectionProbe":
-		return &ReflectionProbe{owner: obj}
+		class := &ReflectionProbe{}
+		class.SetBaseObject(obj)
+		return class
 	case "RegEx":
-		return &RegEx{owner: obj}
+		class := &RegEx{}
+		class.SetBaseObject(obj)
+		return class
 	case "RegExMatch":
-		return &RegExMatch{owner: obj}
+		class := &RegExMatch{}
+		class.SetBaseObject(obj)
+		return class
 	case "RemoteTransform":
-		return &RemoteTransform{owner: obj}
+		class := &RemoteTransform{}
+		class.SetBaseObject(obj)
+		return class
 	case "RemoteTransform2D":
-		return &RemoteTransform2D{owner: obj}
+		class := &RemoteTransform2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "Resource":
-		return &Resource{owner: obj}
+		class := &Resource{}
+		class.SetBaseObject(obj)
+		return class
 	case "ResourceImporter":
-		return &ResourceImporter{owner: obj}
+		class := &ResourceImporter{}
+		class.SetBaseObject(obj)
+		return class
 	case "ResourceImporterOGGVorbis":
-		return &ResourceImporterOGGVorbis{owner: obj}
+		class := &ResourceImporterOGGVorbis{}
+		class.SetBaseObject(obj)
+		return class
 	case "ResourceImporterTheora":
-		return &ResourceImporterTheora{owner: obj}
+		class := &ResourceImporterTheora{}
+		class.SetBaseObject(obj)
+		return class
 	case "ResourceImporterWebm":
-		return &ResourceImporterWebm{owner: obj}
+		class := &ResourceImporterWebm{}
+		class.SetBaseObject(obj)
+		return class
 	case "ResourceInteractiveLoader":
-		return &ResourceInteractiveLoader{owner: obj}
+		class := &ResourceInteractiveLoader{}
+		class.SetBaseObject(obj)
+		return class
 	case "ResourcePreloader":
-		return &ResourcePreloader{owner: obj}
+		class := &ResourcePreloader{}
+		class.SetBaseObject(obj)
+		return class
 	case "RichTextLabel":
-		return &RichTextLabel{owner: obj}
+		class := &RichTextLabel{}
+		class.SetBaseObject(obj)
+		return class
 	case "RigidBody":
-		return &RigidBody{owner: obj}
+		class := &RigidBody{}
+		class.SetBaseObject(obj)
+		return class
 	case "RigidBody2D":
-		return &RigidBody2D{owner: obj}
+		class := &RigidBody2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "SceneState":
-		return &SceneState{owner: obj}
+		class := &SceneState{}
+		class.SetBaseObject(obj)
+		return class
 	case "SceneTree":
-		return &SceneTree{owner: obj}
+		class := &SceneTree{}
+		class.SetBaseObject(obj)
+		return class
 	case "SceneTreeTimer":
-		return &SceneTreeTimer{owner: obj}
+		class := &SceneTreeTimer{}
+		class.SetBaseObject(obj)
+		return class
 	case "Script":
-		return &Script{owner: obj}
+		class := &Script{}
+		class.SetBaseObject(obj)
+		return class
 	case "ScriptEditor":
-		return &ScriptEditor{owner: obj}
+		class := &ScriptEditor{}
+		class.SetBaseObject(obj)
+		return class
 	case "ScrollBar":
-		return &ScrollBar{owner: obj}
+		class := &ScrollBar{}
+		class.SetBaseObject(obj)
+		return class
 	case "ScrollContainer":
-		return &ScrollContainer{owner: obj}
+		class := &ScrollContainer{}
+		class.SetBaseObject(obj)
+		return class
 	case "SegmentShape2D":
-		return &SegmentShape2D{owner: obj}
+		class := &SegmentShape2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "Separator":
-		return &Separator{owner: obj}
+		class := &Separator{}
+		class.SetBaseObject(obj)
+		return class
 	case "Shader":
-		return &Shader{owner: obj}
+		class := &Shader{}
+		class.SetBaseObject(obj)
+		return class
 	case "ShaderMaterial":
-		return &ShaderMaterial{owner: obj}
+		class := &ShaderMaterial{}
+		class.SetBaseObject(obj)
+		return class
 	case "Shape":
-		return &Shape{owner: obj}
+		class := &Shape{}
+		class.SetBaseObject(obj)
+		return class
 	case "Shape2D":
-		return &Shape2D{owner: obj}
+		class := &Shape2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "ShortCut":
-		return &ShortCut{owner: obj}
+		class := &ShortCut{}
+		class.SetBaseObject(obj)
+		return class
 	case "Skeleton":
-		return &Skeleton{owner: obj}
+		class := &Skeleton{}
+		class.SetBaseObject(obj)
+		return class
 	case "Sky":
-		return &Sky{owner: obj}
+		class := &Sky{}
+		class.SetBaseObject(obj)
+		return class
 	case "Slider":
-		return &Slider{owner: obj}
+		class := &Slider{}
+		class.SetBaseObject(obj)
+		return class
 	case "SliderJoint":
-		return &SliderJoint{owner: obj}
+		class := &SliderJoint{}
+		class.SetBaseObject(obj)
+		return class
 	case "Spatial":
-		return &Spatial{owner: obj}
+		class := &Spatial{}
+		class.SetBaseObject(obj)
+		return class
 	case "SpatialGizmo":
-		return &SpatialGizmo{owner: obj}
+		class := &SpatialGizmo{}
+		class.SetBaseObject(obj)
+		return class
 	case "SpatialMaterial":
-		return &SpatialMaterial{owner: obj}
+		class := &SpatialMaterial{}
+		class.SetBaseObject(obj)
+		return class
 	case "SpatialVelocityTracker":
-		return &SpatialVelocityTracker{owner: obj}
+		class := &SpatialVelocityTracker{}
+		class.SetBaseObject(obj)
+		return class
 	case "SphereMesh":
-		return &SphereMesh{owner: obj}
+		class := &SphereMesh{}
+		class.SetBaseObject(obj)
+		return class
 	case "SphereShape":
-		return &SphereShape{owner: obj}
+		class := &SphereShape{}
+		class.SetBaseObject(obj)
+		return class
 	case "SpinBox":
-		return &SpinBox{owner: obj}
+		class := &SpinBox{}
+		class.SetBaseObject(obj)
+		return class
 	case "SplitContainer":
-		return &SplitContainer{owner: obj}
+		class := &SplitContainer{}
+		class.SetBaseObject(obj)
+		return class
 	case "SpotLight":
-		return &SpotLight{owner: obj}
+		class := &SpotLight{}
+		class.SetBaseObject(obj)
+		return class
 	case "Sprite":
-		return &Sprite{owner: obj}
+		class := &Sprite{}
+		class.SetBaseObject(obj)
+		return class
 	case "Sprite3D":
-		return &Sprite3D{owner: obj}
+		class := &Sprite3D{}
+		class.SetBaseObject(obj)
+		return class
 	case "SpriteBase3D":
-		return &SpriteBase3D{owner: obj}
+		class := &SpriteBase3D{}
+		class.SetBaseObject(obj)
+		return class
 	case "SpriteFrames":
-		return &SpriteFrames{owner: obj}
+		class := &SpriteFrames{}
+		class.SetBaseObject(obj)
+		return class
 	case "StaticBody":
-		return &StaticBody{owner: obj}
+		class := &StaticBody{}
+		class.SetBaseObject(obj)
+		return class
 	case "StaticBody2D":
-		return &StaticBody2D{owner: obj}
+		class := &StaticBody2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "StreamPeer":
-		return &StreamPeer{owner: obj}
+		class := &StreamPeer{}
+		class.SetBaseObject(obj)
+		return class
 	case "StreamPeerBuffer":
-		return &StreamPeerBuffer{owner: obj}
+		class := &StreamPeerBuffer{}
+		class.SetBaseObject(obj)
+		return class
 	case "StreamPeerSSL":
-		return &StreamPeerSSL{owner: obj}
+		class := &StreamPeerSSL{}
+		class.SetBaseObject(obj)
+		return class
 	case "StreamPeerTCP":
-		return &StreamPeerTCP{owner: obj}
+		class := &StreamPeerTCP{}
+		class.SetBaseObject(obj)
+		return class
 	case "StreamTexture":
-		return &StreamTexture{owner: obj}
+		class := &StreamTexture{}
+		class.SetBaseObject(obj)
+		return class
 	case "StyleBox":
-		return &StyleBox{owner: obj}
+		class := &StyleBox{}
+		class.SetBaseObject(obj)
+		return class
 	case "StyleBoxEmpty":
-		return &StyleBoxEmpty{owner: obj}
+		class := &StyleBoxEmpty{}
+		class.SetBaseObject(obj)
+		return class
 	case "StyleBoxFlat":
-		return &StyleBoxFlat{owner: obj}
+		class := &StyleBoxFlat{}
+		class.SetBaseObject(obj)
+		return class
 	case "StyleBoxLine":
-		return &StyleBoxLine{owner: obj}
+		class := &StyleBoxLine{}
+		class.SetBaseObject(obj)
+		return class
 	case "StyleBoxTexture":
-		return &StyleBoxTexture{owner: obj}
+		class := &StyleBoxTexture{}
+		class.SetBaseObject(obj)
+		return class
 	case "SurfaceTool":
-		return &SurfaceTool{owner: obj}
+		class := &SurfaceTool{}
+		class.SetBaseObject(obj)
+		return class
 	case "TCP_Server":
-		return &TCP_Server{owner: obj}
+		class := &TCP_Server{}
+		class.SetBaseObject(obj)
+		return class
 	case "TabContainer":
-		return &TabContainer{owner: obj}
+		class := &TabContainer{}
+		class.SetBaseObject(obj)
+		return class
 	case "Tabs":
-		return &Tabs{owner: obj}
+		class := &Tabs{}
+		class.SetBaseObject(obj)
+		return class
 	case "TextEdit":
-		return &TextEdit{owner: obj}
+		class := &TextEdit{}
+		class.SetBaseObject(obj)
+		return class
 	case "Texture":
-		return &Texture{owner: obj}
+		class := &Texture{}
+		class.SetBaseObject(obj)
+		return class
 	case "TextureButton":
-		return &TextureButton{owner: obj}
+		class := &TextureButton{}
+		class.SetBaseObject(obj)
+		return class
 	case "TextureProgress":
-		return &TextureProgress{owner: obj}
+		class := &TextureProgress{}
+		class.SetBaseObject(obj)
+		return class
 	case "TextureRect":
-		return &TextureRect{owner: obj}
+		class := &TextureRect{}
+		class.SetBaseObject(obj)
+		return class
 	case "Theme":
-		return &Theme{owner: obj}
+		class := &Theme{}
+		class.SetBaseObject(obj)
+		return class
 	case "TileMap":
-		return &TileMap{owner: obj}
+		class := &TileMap{}
+		class.SetBaseObject(obj)
+		return class
 	case "TileSet":
-		return &TileSet{owner: obj}
+		class := &TileSet{}
+		class.SetBaseObject(obj)
+		return class
 	case "Timer":
-		return &Timer{owner: obj}
+		class := &Timer{}
+		class.SetBaseObject(obj)
+		return class
 	case "ToolButton":
-		return &ToolButton{owner: obj}
+		class := &ToolButton{}
+		class.SetBaseObject(obj)
+		return class
 	case "TouchScreenButton":
-		return &TouchScreenButton{owner: obj}
+		class := &TouchScreenButton{}
+		class.SetBaseObject(obj)
+		return class
 	case "Translation":
-		return &Translation{owner: obj}
+		class := &Translation{}
+		class.SetBaseObject(obj)
+		return class
 	case "Tree":
-		return &Tree{owner: obj}
+		class := &Tree{}
+		class.SetBaseObject(obj)
+		return class
 	case "TreeItem":
-		return &TreeItem{owner: obj}
+		class := &TreeItem{}
+		class.SetBaseObject(obj)
+		return class
 	case "TriangleMesh":
-		return &TriangleMesh{owner: obj}
+		class := &TriangleMesh{}
+		class.SetBaseObject(obj)
+		return class
 	case "Tween":
-		return &Tween{owner: obj}
+		class := &Tween{}
+		class.SetBaseObject(obj)
+		return class
 	case "UndoRedo":
-		return &UndoRedo{owner: obj}
+		class := &UndoRedo{}
+		class.SetBaseObject(obj)
+		return class
 	case "VBoxContainer":
-		return &VBoxContainer{owner: obj}
+		class := &VBoxContainer{}
+		class.SetBaseObject(obj)
+		return class
 	case "VScrollBar":
-		return &VScrollBar{owner: obj}
+		class := &VScrollBar{}
+		class.SetBaseObject(obj)
+		return class
 	case "VSeparator":
-		return &VSeparator{owner: obj}
+		class := &VSeparator{}
+		class.SetBaseObject(obj)
+		return class
 	case "VSlider":
-		return &VSlider{owner: obj}
+		class := &VSlider{}
+		class.SetBaseObject(obj)
+		return class
 	case "VSplitContainer":
-		return &VSplitContainer{owner: obj}
+		class := &VSplitContainer{}
+		class.SetBaseObject(obj)
+		return class
 	case "VehicleBody":
-		return &VehicleBody{owner: obj}
+		class := &VehicleBody{}
+		class.SetBaseObject(obj)
+		return class
 	case "VehicleWheel":
-		return &VehicleWheel{owner: obj}
+		class := &VehicleWheel{}
+		class.SetBaseObject(obj)
+		return class
 	case "VideoPlayer":
-		return &VideoPlayer{owner: obj}
+		class := &VideoPlayer{}
+		class.SetBaseObject(obj)
+		return class
 	case "VideoStream":
-		return &VideoStream{owner: obj}
+		class := &VideoStream{}
+		class.SetBaseObject(obj)
+		return class
 	case "VideoStreamTheora":
-		return &VideoStreamTheora{owner: obj}
+		class := &VideoStreamTheora{}
+		class.SetBaseObject(obj)
+		return class
 	case "VideoStreamWebm":
-		return &VideoStreamWebm{owner: obj}
+		class := &VideoStreamWebm{}
+		class.SetBaseObject(obj)
+		return class
 	case "Viewport":
-		return &Viewport{owner: obj}
+		class := &Viewport{}
+		class.SetBaseObject(obj)
+		return class
 	case "ViewportContainer":
-		return &ViewportContainer{owner: obj}
+		class := &ViewportContainer{}
+		class.SetBaseObject(obj)
+		return class
 	case "ViewportTexture":
-		return &ViewportTexture{owner: obj}
+		class := &ViewportTexture{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisibilityEnabler":
-		return &VisibilityEnabler{owner: obj}
+		class := &VisibilityEnabler{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisibilityEnabler2D":
-		return &VisibilityEnabler2D{owner: obj}
+		class := &VisibilityEnabler2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisibilityNotifier":
-		return &VisibilityNotifier{owner: obj}
+		class := &VisibilityNotifier{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisibilityNotifier2D":
-		return &VisibilityNotifier2D{owner: obj}
+		class := &VisibilityNotifier2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualInstance":
-		return &VisualInstance{owner: obj}
+		class := &VisualInstance{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScript":
-		return &VisualScript{owner: obj}
+		class := &VisualScript{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptBasicTypeConstant":
-		return &VisualScriptBasicTypeConstant{owner: obj}
+		class := &VisualScriptBasicTypeConstant{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptBuiltinFunc":
-		return &VisualScriptBuiltinFunc{owner: obj}
+		class := &VisualScriptBuiltinFunc{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptClassConstant":
-		return &VisualScriptClassConstant{owner: obj}
+		class := &VisualScriptClassConstant{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptComment":
-		return &VisualScriptComment{owner: obj}
+		class := &VisualScriptComment{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptCondition":
-		return &VisualScriptCondition{owner: obj}
+		class := &VisualScriptCondition{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptConstant":
-		return &VisualScriptConstant{owner: obj}
+		class := &VisualScriptConstant{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptConstructor":
-		return &VisualScriptConstructor{owner: obj}
+		class := &VisualScriptConstructor{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptCustomNode":
-		return &VisualScriptCustomNode{owner: obj}
+		class := &VisualScriptCustomNode{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptDeconstruct":
-		return &VisualScriptDeconstruct{owner: obj}
+		class := &VisualScriptDeconstruct{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptEmitSignal":
-		return &VisualScriptEmitSignal{owner: obj}
+		class := &VisualScriptEmitSignal{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptEngineSingleton":
-		return &VisualScriptEngineSingleton{owner: obj}
+		class := &VisualScriptEngineSingleton{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptExpression":
-		return &VisualScriptExpression{owner: obj}
+		class := &VisualScriptExpression{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptFunction":
-		return &VisualScriptFunction{owner: obj}
+		class := &VisualScriptFunction{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptFunctionCall":
-		return &VisualScriptFunctionCall{owner: obj}
+		class := &VisualScriptFunctionCall{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptFunctionState":
-		return &VisualScriptFunctionState{owner: obj}
+		class := &VisualScriptFunctionState{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptGlobalConstant":
-		return &VisualScriptGlobalConstant{owner: obj}
+		class := &VisualScriptGlobalConstant{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptIndexGet":
-		return &VisualScriptIndexGet{owner: obj}
+		class := &VisualScriptIndexGet{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptIndexSet":
-		return &VisualScriptIndexSet{owner: obj}
+		class := &VisualScriptIndexSet{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptInputAction":
-		return &VisualScriptInputAction{owner: obj}
+		class := &VisualScriptInputAction{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptIterator":
-		return &VisualScriptIterator{owner: obj}
+		class := &VisualScriptIterator{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptLocalVar":
-		return &VisualScriptLocalVar{owner: obj}
+		class := &VisualScriptLocalVar{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptLocalVarSet":
-		return &VisualScriptLocalVarSet{owner: obj}
+		class := &VisualScriptLocalVarSet{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptMathConstant":
-		return &VisualScriptMathConstant{owner: obj}
+		class := &VisualScriptMathConstant{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptNode":
-		return &VisualScriptNode{owner: obj}
+		class := &VisualScriptNode{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptOperator":
-		return &VisualScriptOperator{owner: obj}
+		class := &VisualScriptOperator{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptPreload":
-		return &VisualScriptPreload{owner: obj}
+		class := &VisualScriptPreload{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptPropertyGet":
-		return &VisualScriptPropertyGet{owner: obj}
+		class := &VisualScriptPropertyGet{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptPropertySet":
-		return &VisualScriptPropertySet{owner: obj}
+		class := &VisualScriptPropertySet{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptResourcePath":
-		return &VisualScriptResourcePath{owner: obj}
+		class := &VisualScriptResourcePath{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptReturn":
-		return &VisualScriptReturn{owner: obj}
+		class := &VisualScriptReturn{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptSceneNode":
-		return &VisualScriptSceneNode{owner: obj}
+		class := &VisualScriptSceneNode{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptSceneTree":
-		return &VisualScriptSceneTree{owner: obj}
+		class := &VisualScriptSceneTree{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptSelect":
-		return &VisualScriptSelect{owner: obj}
+		class := &VisualScriptSelect{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptSelf":
-		return &VisualScriptSelf{owner: obj}
+		class := &VisualScriptSelf{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptSequence":
-		return &VisualScriptSequence{owner: obj}
+		class := &VisualScriptSequence{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptSubCall":
-		return &VisualScriptSubCall{owner: obj}
+		class := &VisualScriptSubCall{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptSwitch":
-		return &VisualScriptSwitch{owner: obj}
+		class := &VisualScriptSwitch{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptTypeCast":
-		return &VisualScriptTypeCast{owner: obj}
+		class := &VisualScriptTypeCast{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptVariableGet":
-		return &VisualScriptVariableGet{owner: obj}
+		class := &VisualScriptVariableGet{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptVariableSet":
-		return &VisualScriptVariableSet{owner: obj}
+		class := &VisualScriptVariableSet{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptWhile":
-		return &VisualScriptWhile{owner: obj}
+		class := &VisualScriptWhile{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptYield":
-		return &VisualScriptYield{owner: obj}
+		class := &VisualScriptYield{}
+		class.SetBaseObject(obj)
+		return class
 	case "VisualScriptYieldSignal":
-		return &VisualScriptYieldSignal{owner: obj}
+		class := &VisualScriptYieldSignal{}
+		class.SetBaseObject(obj)
+		return class
 	case "WeakRef":
-		return &WeakRef{owner: obj}
+		class := &WeakRef{}
+		class.SetBaseObject(obj)
+		return class
 	case "WindowDialog":
-		return &WindowDialog{owner: obj}
+		class := &WindowDialog{}
+		class.SetBaseObject(obj)
+		return class
 	case "World":
-		return &World{owner: obj}
+		class := &World{}
+		class.SetBaseObject(obj)
+		return class
 	case "World2D":
-		return &World2D{owner: obj}
+		class := &World2D{}
+		class.SetBaseObject(obj)
+		return class
 	case "WorldEnvironment":
-		return &WorldEnvironment{owner: obj}
+		class := &WorldEnvironment{}
+		class.SetBaseObject(obj)
+		return class
 	case "XMLParser":
-		return &XMLParser{owner: obj}
+		class := &XMLParser{}
+		class.SetBaseObject(obj)
+		return class
 	case "YSort":
-		return &YSort{owner: obj}
+		class := &YSort{}
+		class.SetBaseObject(obj)
+		return class
 	}
+	log.Println("Could not find conversion for ", className, ". Defaulting to Object...")
 	return &Object{owner: obj}
 }

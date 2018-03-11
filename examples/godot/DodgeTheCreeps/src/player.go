@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/shadowapex/godot-go/gdnative"
 	"github.com/shadowapex/godot-go/godot"
+	"log"
 )
 
 // NewPlayer is a player constructor that we will register with Godot.
@@ -20,28 +21,19 @@ type Player struct {
 	Speed          gdnative.Real
 	velocity       gdnative.Vector2
 	screenSize     gdnative.Rect2
-	animatedSprite *godot.AnimatedSprite
+	animatedSprite godot.AnimatedSpriteImplementer
 }
 
 // X_Ready will be called as soon as the player enters the scene.
 func (p *Player) X_Ready() {
-	godot.Log.Println("X_Ready called!")
+	log.Println("X_Ready called!")
 
-	// Get the node path.
-	nodePath := p.GetPath()
-	godot.Log.Println("Node path: ", nodePath.AsString())
-	godot.Log.Println("  Empty:", nodePath.IsEmpty())
-
-	// Get the class type
-	godot.Log.Println("Class: ", p.GetClass())
-	godot.Log.Println("Children:", p.GetChildCount())
-	//child := p.GetChild(1)
-	//godot.Log.Println("  Child name:", child.GetName())
-
-	// Get the animated sprite
+	// Get the AnimatedSprite child node.
+	log.Println("Getting animated sprite...")
 	animatedSpritePath := gdnative.NewNodePath("AnimatedSprite")
 	animatedSpriteNode := p.GetNode(animatedSpritePath)
-	p.animatedSprite = animatedSpriteNode.(*godot.AnimatedSprite)
+	log.Println("Got animated sprite with ID:", animatedSpriteNode.GetBaseObject().ID())
+	p.animatedSprite = animatedSpriteNode.(godot.AnimatedSpriteImplementer)
 
 	// Get the viewport size
 	//p.screenSize = godot.Viewport.GetVisibleRect()
@@ -64,27 +56,22 @@ func (p *Player) X_Process(delta gdnative.Double) {
 		p.velocity.SetY(p.velocity.GetY() - 1)
 	}
 
-	// Get the AnimatedSprite child node.
-	//nodePath := gdnative.NewNodePath("AnimatedSprite")
-	//animatedSpriteNode := p.GetNode(nodePath)
-	//godot.Log.Println("Fetched Node ID: ", animatedSpriteNode.GetBaseObject().ID())
-
-	// "Cast" the node to an AnimatedSprite
-	//animatedSprite := godot.AnimatedSprite{}
-	//animatedSprite.SetBaseObject(animatedSpriteNode.GetBaseObject())
 	if p.velocity.Length() > 0 {
 		normal := p.velocity.Normalized()
 		p.velocity = normal.OperatorMultiplyScalar(p.Speed)
-		//godot.Log.Println("Animated Sprite ID: ", animatedSprite.GetBaseObject().ID())
-		//animatedSprite.SetAnimation("right")
-		//animatedSprite.Play("right")
+		p.animatedSprite.SetAnimation("right")
+		p.animatedSprite.Play("right")
 	} else {
-		//animatedSprite.Stop()
+		p.animatedSprite.Stop()
 	}
 
 }
 
 func init() {
+	// Set up logging to log to Godot.
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
+	log.SetOutput(godot.Log)
+
 	// AutoRegister our Player class.
 	godot.AutoRegister(NewPlayer)
 }

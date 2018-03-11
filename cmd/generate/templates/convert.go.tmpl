@@ -3,6 +3,7 @@ package godot
 
 import (
 	"github.com/shadowapex/godot-go/gdnative"
+	"log"
 )
 
 /*------------------------------------------------------------------------------
@@ -22,11 +23,14 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 			{{ if $view.IsValidClass $api.Name $api.BaseClass -}}
 				{{ if (not $api.Singleton) -}}
 					case "{{ $api.Name }}":
-						return &{{ $api.Name }}{owner: obj}
+						class := &{{ $api.Name }}{}
+						class.SetBaseObject(obj)
+						return class
 				{{ end -}}
 			{{ end -}}
 		{{ end -}}
 	}
+	log.Println("Could not find conversion for ", className, ". Defaulting to Object...")
 	return &Object{owner: obj}
 }
 
