@@ -13,6 +13,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// TextureRectStretchMode is an enum for StretchMode values.
+type TextureRectStretchMode int
+
+const (
+	TextureRectStretchKeep               TextureRectStretchMode = 3
+	TextureRectStretchKeepAspect         TextureRectStretchMode = 5
+	TextureRectStretchKeepAspectCentered TextureRectStretchMode = 6
+	TextureRectStretchKeepAspectCovered  TextureRectStretchMode = 7
+	TextureRectStretchKeepCentered       TextureRectStretchMode = 4
+	TextureRectStretchScale              TextureRectStretchMode = 1
+	TextureRectStretchScaleOnExpand      TextureRectStretchMode = 0
+	TextureRectStretchTile               TextureRectStretchMode = 2
+)
+
 //func NewTextureRectFromPointer(ptr gdnative.Pointer) TextureRect {
 func newTextureRectFromPointer(ptr gdnative.Pointer) TextureRect {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,6 +52,24 @@ func (o *TextureRect) BaseClass() string {
         Undocumented
 	Args: [], Returns: enum.TextureRect::StretchMode
 */
+func (o *TextureRect) GetStretchMode() TextureRectStretchMode {
+	//log.Println("Calling TextureRect.GetStretchMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureRect", "get_stretch_mode")
+
+	// Call the parent method.
+	// enum.TextureRect::StretchMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return TextureRectStretchMode(ret)
+}
 
 /*
         Undocumented

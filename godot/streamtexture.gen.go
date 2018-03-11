@@ -61,6 +61,25 @@ func (o *StreamTexture) GetLoadPath() gdnative.String {
         Undocumented
 	Args: [{ false path String}], Returns: enum.Error
 */
+func (o *StreamTexture) Load(path gdnative.String) gdnative.Error {
+	//log.Println("Calling StreamTexture.Load()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamTexture", "load")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 // StreamTextureImplementer is an interface that implements the methods
 // of the StreamTexture class.

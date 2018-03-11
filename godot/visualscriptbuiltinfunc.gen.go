@@ -13,6 +13,76 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// VisualScriptBuiltinFuncBuiltinFunc is an enum for BuiltinFunc values.
+type VisualScriptBuiltinFuncBuiltinFunc int
+
+const (
+	VisualScriptBuiltinFuncBytesToVar          VisualScriptBuiltinFuncBuiltinFunc = 61
+	VisualScriptBuiltinFuncColorn              VisualScriptBuiltinFuncBuiltinFunc = 62
+	VisualScriptBuiltinFuncFuncFuncref         VisualScriptBuiltinFuncBuiltinFunc = 49
+	VisualScriptBuiltinFuncFuncMax             VisualScriptBuiltinFuncBuiltinFunc = 63
+	VisualScriptBuiltinFuncLogicClamp          VisualScriptBuiltinFuncBuiltinFunc = 46
+	VisualScriptBuiltinFuncLogicMax            VisualScriptBuiltinFuncBuiltinFunc = 44
+	VisualScriptBuiltinFuncLogicMin            VisualScriptBuiltinFuncBuiltinFunc = 45
+	VisualScriptBuiltinFuncLogicNearestPo2     VisualScriptBuiltinFuncBuiltinFunc = 47
+	VisualScriptBuiltinFuncMathAbs             VisualScriptBuiltinFuncBuiltinFunc = 16
+	VisualScriptBuiltinFuncMathAcos            VisualScriptBuiltinFuncBuiltinFunc = 7
+	VisualScriptBuiltinFuncMathAsin            VisualScriptBuiltinFuncBuiltinFunc = 6
+	VisualScriptBuiltinFuncMathAtan            VisualScriptBuiltinFuncBuiltinFunc = 8
+	VisualScriptBuiltinFuncMathAtan2           VisualScriptBuiltinFuncBuiltinFunc = 9
+	VisualScriptBuiltinFuncMathCartesian2Polar VisualScriptBuiltinFuncBuiltinFunc = 41
+	VisualScriptBuiltinFuncMathCeil            VisualScriptBuiltinFuncBuiltinFunc = 14
+	VisualScriptBuiltinFuncMathCos             VisualScriptBuiltinFuncBuiltinFunc = 1
+	VisualScriptBuiltinFuncMathCosh            VisualScriptBuiltinFuncBuiltinFunc = 4
+	VisualScriptBuiltinFuncMathDb2Linear       VisualScriptBuiltinFuncBuiltinFunc = 39
+	VisualScriptBuiltinFuncMathDecimals        VisualScriptBuiltinFuncBuiltinFunc = 24
+	VisualScriptBuiltinFuncMathDectime         VisualScriptBuiltinFuncBuiltinFunc = 29
+	VisualScriptBuiltinFuncMathDeg2Rad         VisualScriptBuiltinFuncBuiltinFunc = 36
+	VisualScriptBuiltinFuncMathEase            VisualScriptBuiltinFuncBuiltinFunc = 23
+	VisualScriptBuiltinFuncMathExp             VisualScriptBuiltinFuncBuiltinFunc = 20
+	VisualScriptBuiltinFuncMathFloor           VisualScriptBuiltinFuncBuiltinFunc = 13
+	VisualScriptBuiltinFuncMathFmod            VisualScriptBuiltinFuncBuiltinFunc = 11
+	VisualScriptBuiltinFuncMathFposmod         VisualScriptBuiltinFuncBuiltinFunc = 12
+	VisualScriptBuiltinFuncMathInverseLerp     VisualScriptBuiltinFuncBuiltinFunc = 27
+	VisualScriptBuiltinFuncMathIsinf           VisualScriptBuiltinFuncBuiltinFunc = 22
+	VisualScriptBuiltinFuncMathIsnan           VisualScriptBuiltinFuncBuiltinFunc = 21
+	VisualScriptBuiltinFuncMathLerp            VisualScriptBuiltinFuncBuiltinFunc = 26
+	VisualScriptBuiltinFuncMathLinear2Db       VisualScriptBuiltinFuncBuiltinFunc = 38
+	VisualScriptBuiltinFuncMathLog             VisualScriptBuiltinFuncBuiltinFunc = 19
+	VisualScriptBuiltinFuncMathPolar2Cartesian VisualScriptBuiltinFuncBuiltinFunc = 40
+	VisualScriptBuiltinFuncMathPow             VisualScriptBuiltinFuncBuiltinFunc = 18
+	VisualScriptBuiltinFuncMathRad2Deg         VisualScriptBuiltinFuncBuiltinFunc = 37
+	VisualScriptBuiltinFuncMathRand            VisualScriptBuiltinFuncBuiltinFunc = 31
+	VisualScriptBuiltinFuncMathRandf           VisualScriptBuiltinFuncBuiltinFunc = 32
+	VisualScriptBuiltinFuncMathRandom          VisualScriptBuiltinFuncBuiltinFunc = 33
+	VisualScriptBuiltinFuncMathRandomize       VisualScriptBuiltinFuncBuiltinFunc = 30
+	VisualScriptBuiltinFuncMathRandseed        VisualScriptBuiltinFuncBuiltinFunc = 35
+	VisualScriptBuiltinFuncMathRangeLerp       VisualScriptBuiltinFuncBuiltinFunc = 28
+	VisualScriptBuiltinFuncMathRound           VisualScriptBuiltinFuncBuiltinFunc = 15
+	VisualScriptBuiltinFuncMathSeed            VisualScriptBuiltinFuncBuiltinFunc = 34
+	VisualScriptBuiltinFuncMathSign            VisualScriptBuiltinFuncBuiltinFunc = 17
+	VisualScriptBuiltinFuncMathSin             VisualScriptBuiltinFuncBuiltinFunc = 0
+	VisualScriptBuiltinFuncMathSinh            VisualScriptBuiltinFuncBuiltinFunc = 3
+	VisualScriptBuiltinFuncMathSqrt            VisualScriptBuiltinFuncBuiltinFunc = 10
+	VisualScriptBuiltinFuncMathStepify         VisualScriptBuiltinFuncBuiltinFunc = 25
+	VisualScriptBuiltinFuncMathTan             VisualScriptBuiltinFuncBuiltinFunc = 2
+	VisualScriptBuiltinFuncMathTanh            VisualScriptBuiltinFuncBuiltinFunc = 5
+	VisualScriptBuiltinFuncMathWrap            VisualScriptBuiltinFuncBuiltinFunc = 42
+	VisualScriptBuiltinFuncMathWrapf           VisualScriptBuiltinFuncBuiltinFunc = 43
+	VisualScriptBuiltinFuncObjWeakref          VisualScriptBuiltinFuncBuiltinFunc = 48
+	VisualScriptBuiltinFuncStrToVar            VisualScriptBuiltinFuncBuiltinFunc = 59
+	VisualScriptBuiltinFuncTextChar            VisualScriptBuiltinFuncBuiltinFunc = 53
+	VisualScriptBuiltinFuncTextPrint           VisualScriptBuiltinFuncBuiltinFunc = 55
+	VisualScriptBuiltinFuncTextPrinterr        VisualScriptBuiltinFuncBuiltinFunc = 56
+	VisualScriptBuiltinFuncTextPrintraw        VisualScriptBuiltinFuncBuiltinFunc = 57
+	VisualScriptBuiltinFuncTextStr             VisualScriptBuiltinFuncBuiltinFunc = 54
+	VisualScriptBuiltinFuncTypeConvert         VisualScriptBuiltinFuncBuiltinFunc = 50
+	VisualScriptBuiltinFuncTypeExists          VisualScriptBuiltinFuncBuiltinFunc = 52
+	VisualScriptBuiltinFuncTypeOf              VisualScriptBuiltinFuncBuiltinFunc = 51
+	VisualScriptBuiltinFuncVarToBytes          VisualScriptBuiltinFuncBuiltinFunc = 60
+	VisualScriptBuiltinFuncVarToStr            VisualScriptBuiltinFuncBuiltinFunc = 58
+)
+
 //func NewVisualScriptBuiltinFuncFromPointer(ptr gdnative.Pointer) VisualScriptBuiltinFunc {
 func newVisualScriptBuiltinFuncFromPointer(ptr gdnative.Pointer) VisualScriptBuiltinFunc {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,6 +108,24 @@ func (o *VisualScriptBuiltinFunc) BaseClass() string {
         Undocumented
 	Args: [], Returns: enum.VisualScriptBuiltinFunc::BuiltinFunc
 */
+func (o *VisualScriptBuiltinFunc) GetFunc() VisualScriptBuiltinFuncBuiltinFunc {
+	//log.Println("Calling VisualScriptBuiltinFunc.GetFunc()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptBuiltinFunc", "get_func")
+
+	// Call the parent method.
+	// enum.VisualScriptBuiltinFunc::BuiltinFunc
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return VisualScriptBuiltinFuncBuiltinFunc(ret)
+}
 
 /*
         Undocumented

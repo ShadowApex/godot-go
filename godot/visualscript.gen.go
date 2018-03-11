@@ -265,6 +265,26 @@ func (o *VisualScript) CustomSignalGetArgumentName(name gdnative.String, argidx 
         Undocumented
 	Args: [{ false name String} { false argidx int}], Returns: enum.Variant::Type
 */
+func (o *VisualScript) CustomSignalGetArgumentType(name gdnative.String, argidx gdnative.Int) gdnative.VariantType {
+	//log.Println("Calling VisualScript.CustomSignalGetArgumentType()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromInt(argidx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScript", "custom_signal_get_argument_type")
+
+	// Call the parent method.
+	// enum.Variant::Type
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.VariantType(ret)
+}
 
 /*
         Undocumented

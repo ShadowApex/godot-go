@@ -13,6 +13,37 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// CubeMapFlags is an enum for Flags values.
+type CubeMapFlags int
+
+const (
+	CubeMapFlagsDefault CubeMapFlags = 7
+	CubeMapFlagFilter   CubeMapFlags = 4
+	CubeMapFlagMipmaps  CubeMapFlags = 1
+	CubeMapFlagRepeat   CubeMapFlags = 2
+)
+
+// CubeMapSide is an enum for Side values.
+type CubeMapSide int
+
+const (
+	CubeMapSideBack   CubeMapSide = 5
+	CubeMapSideBottom CubeMapSide = 2
+	CubeMapSideFront  CubeMapSide = 4
+	CubeMapSideLeft   CubeMapSide = 0
+	CubeMapSideRight  CubeMapSide = 1
+	CubeMapSideTop    CubeMapSide = 3
+)
+
+// CubeMapStorage is an enum for Storage values.
+type CubeMapStorage int
+
+const (
+	CubeMapStorageCompressLossless CubeMapStorage = 2
+	CubeMapStorageCompressLossy    CubeMapStorage = 1
+	CubeMapStorageRaw              CubeMapStorage = 0
+)
+
 //func NewCubeMapFromPointer(ptr gdnative.Pointer) CubeMap {
 func newCubeMapFromPointer(ptr gdnative.Pointer) CubeMap {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -145,6 +176,24 @@ func (o *CubeMap) GetSide(side gdnative.Int) ImageImplementer {
         Undocumented
 	Args: [], Returns: enum.CubeMap::Storage
 */
+func (o *CubeMap) GetStorage() CubeMapStorage {
+	//log.Println("Calling CubeMap.GetStorage()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CubeMap", "get_storage")
+
+	// Call the parent method.
+	// enum.CubeMap::Storage
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return CubeMapStorage(ret)
+}
 
 /*
         Returns the [code]CubeMap[/code]'s width.

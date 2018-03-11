@@ -13,6 +13,33 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// AnimationInterpolationType is an enum for InterpolationType values.
+type AnimationInterpolationType int
+
+const (
+	AnimationInterpolationCubic   AnimationInterpolationType = 2
+	AnimationInterpolationLinear  AnimationInterpolationType = 1
+	AnimationInterpolationNearest AnimationInterpolationType = 0
+)
+
+// AnimationTrackType is an enum for TrackType values.
+type AnimationTrackType int
+
+const (
+	AnimationTypeMethod    AnimationTrackType = 2
+	AnimationTypeTransform AnimationTrackType = 1
+	AnimationTypeValue     AnimationTrackType = 0
+)
+
+// AnimationUpdateMode is an enum for UpdateMode values.
+type AnimationUpdateMode int
+
+const (
+	AnimationUpdateContinuous AnimationUpdateMode = 0
+	AnimationUpdateDiscrete   AnimationUpdateMode = 1
+	AnimationUpdateTrigger    AnimationUpdateMode = 2
+)
+
 //func NewAnimationFromPointer(ptr gdnative.Pointer) Animation {
 func newAnimationFromPointer(ptr gdnative.Pointer) Animation {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -431,6 +458,25 @@ func (o *Animation) TrackGetInterpolationLoopWrap(idx gdnative.Int) gdnative.Boo
         Return the interpolation type of a given track, from the INTERPOLATION_* enum.
 	Args: [{ false idx int}], Returns: enum.Animation::InterpolationType
 */
+func (o *Animation) TrackGetInterpolationType(idx gdnative.Int) AnimationInterpolationType {
+	//log.Println("Calling Animation.TrackGetInterpolationType()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_get_interpolation_type")
+
+	// Call the parent method.
+	// enum.Animation::InterpolationType
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return AnimationInterpolationType(ret)
+}
 
 /*
         Return the amount of keys in a given track.
@@ -559,6 +605,25 @@ func (o *Animation) TrackGetPath(idx gdnative.Int) gdnative.NodePath {
         Get the type of a track.
 	Args: [{ false idx int}], Returns: enum.Animation::TrackType
 */
+func (o *Animation) TrackGetType(idx gdnative.Int) AnimationTrackType {
+	//log.Println("Calling Animation.TrackGetType()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "track_get_type")
+
+	// Call the parent method.
+	// enum.Animation::TrackType
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return AnimationTrackType(ret)
+}
 
 /*
         Insert a generic key in a given track.
@@ -957,6 +1022,25 @@ func (o *Animation) ValueTrackGetKeyIndices(idx gdnative.Int, timeSec gdnative.F
         Return the update mode of a value track.
 	Args: [{ false idx int}], Returns: enum.Animation::UpdateMode
 */
+func (o *Animation) ValueTrackGetUpdateMode(idx gdnative.Int) AnimationUpdateMode {
+	//log.Println("Calling Animation.ValueTrackGetUpdateMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Animation", "value_track_get_update_mode")
+
+	// Call the parent method.
+	// enum.Animation::UpdateMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return AnimationUpdateMode(ret)
+}
 
 /*
         Set the update mode (UPDATE_*) of a value track.

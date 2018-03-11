@@ -13,6 +13,43 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// RichTextLabelAlign is an enum for Align values.
+type RichTextLabelAlign int
+
+const (
+	RichTextLabelAlignCenter RichTextLabelAlign = 1
+	RichTextLabelAlignFill   RichTextLabelAlign = 3
+	RichTextLabelAlignLeft   RichTextLabelAlign = 0
+	RichTextLabelAlignRight  RichTextLabelAlign = 2
+)
+
+// RichTextLabelItemType is an enum for ItemType values.
+type RichTextLabelItemType int
+
+const (
+	RichTextLabelItemAlign     RichTextLabelItemType = 7
+	RichTextLabelItemColor     RichTextLabelItemType = 5
+	RichTextLabelItemFont      RichTextLabelItemType = 4
+	RichTextLabelItemFrame     RichTextLabelItemType = 0
+	RichTextLabelItemImage     RichTextLabelItemType = 2
+	RichTextLabelItemIndent    RichTextLabelItemType = 8
+	RichTextLabelItemList      RichTextLabelItemType = 9
+	RichTextLabelItemMeta      RichTextLabelItemType = 11
+	RichTextLabelItemNewline   RichTextLabelItemType = 3
+	RichTextLabelItemTable     RichTextLabelItemType = 10
+	RichTextLabelItemText      RichTextLabelItemType = 1
+	RichTextLabelItemUnderline RichTextLabelItemType = 6
+)
+
+// RichTextLabelListType is an enum for ListType values.
+type RichTextLabelListType int
+
+const (
+	RichTextLabelListDots    RichTextLabelListType = 2
+	RichTextLabelListLetters RichTextLabelListType = 1
+	RichTextLabelListNumbers RichTextLabelListType = 0
+)
+
 //func NewRichTextLabelFromPointer(ptr gdnative.Pointer) RichTextLabel {
 func newRichTextLabelFromPointer(ptr gdnative.Pointer) RichTextLabel {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -122,6 +159,25 @@ func (o *RichTextLabel) AddText(text gdnative.String) {
         Parses [code]bbcode[/code] and adds tags to the tag stack as needed. Returns the result of the parsing, [code]OK[/code] if successful.
 	Args: [{ false bbcode String}], Returns: enum.Error
 */
+func (o *RichTextLabel) AppendBbcode(bbcode gdnative.String) gdnative.Error {
+	//log.Println("Calling RichTextLabel.AppendBbcode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(bbcode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RichTextLabel", "append_bbcode")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Clears the tag stack and sets [member bbcode_text] to an empty string.
@@ -526,6 +582,25 @@ func (o *RichTextLabel) Newline() {
         The assignment version of [method append_bbcode]. Clears the tag stack and inserts the new content. Returns [code]OK[/code] if parses [code]bbcode[/code] successfully.
 	Args: [{ false bbcode String}], Returns: enum.Error
 */
+func (o *RichTextLabel) ParseBbcode(bbcode gdnative.String) gdnative.Error {
+	//log.Println("Calling RichTextLabel.ParseBbcode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(bbcode)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RichTextLabel", "parse_bbcode")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Terminates the current tag. Use after [code]push_*[/code] methods to close bbcodes manually. Does not need to follow [code]add_*[/code] methods.

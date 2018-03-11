@@ -13,6 +13,157 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// SpatialMaterialBillboardMode is an enum for BillboardMode values.
+type SpatialMaterialBillboardMode int
+
+const (
+	SpatialMaterialBillboardDisabled  SpatialMaterialBillboardMode = 0
+	SpatialMaterialBillboardEnabled   SpatialMaterialBillboardMode = 1
+	SpatialMaterialBillboardFixedY    SpatialMaterialBillboardMode = 2
+	SpatialMaterialBillboardParticles SpatialMaterialBillboardMode = 3
+)
+
+// SpatialMaterialBlendMode is an enum for BlendMode values.
+type SpatialMaterialBlendMode int
+
+const (
+	SpatialMaterialBlendModeAdd SpatialMaterialBlendMode = 1
+	SpatialMaterialBlendModeMix SpatialMaterialBlendMode = 0
+	SpatialMaterialBlendModeMul SpatialMaterialBlendMode = 3
+	SpatialMaterialBlendModeSub SpatialMaterialBlendMode = 2
+)
+
+// SpatialMaterialCullMode is an enum for CullMode values.
+type SpatialMaterialCullMode int
+
+const (
+	SpatialMaterialCullBack     SpatialMaterialCullMode = 0
+	SpatialMaterialCullDisabled SpatialMaterialCullMode = 2
+	SpatialMaterialCullFront    SpatialMaterialCullMode = 1
+)
+
+// SpatialMaterialDepthDrawMode is an enum for DepthDrawMode values.
+type SpatialMaterialDepthDrawMode int
+
+const (
+	SpatialMaterialDepthDrawAlphaOpaquePrepass SpatialMaterialDepthDrawMode = 3
+	SpatialMaterialDepthDrawAlways             SpatialMaterialDepthDrawMode = 1
+	SpatialMaterialDepthDrawDisabled           SpatialMaterialDepthDrawMode = 2
+	SpatialMaterialDepthDrawOpaqueOnly         SpatialMaterialDepthDrawMode = 0
+)
+
+// SpatialMaterialDetailUV is an enum for DetailUV values.
+type SpatialMaterialDetailUV int
+
+const (
+	SpatialMaterialDetailUv1 SpatialMaterialDetailUV = 0
+	SpatialMaterialDetailUv2 SpatialMaterialDetailUV = 1
+)
+
+// SpatialMaterialDiffuseMode is an enum for DiffuseMode values.
+type SpatialMaterialDiffuseMode int
+
+const (
+	SpatialMaterialDiffuseBurley      SpatialMaterialDiffuseMode = 0
+	SpatialMaterialDiffuseLambert     SpatialMaterialDiffuseMode = 1
+	SpatialMaterialDiffuseLambertWrap SpatialMaterialDiffuseMode = 2
+	SpatialMaterialDiffuseOrenNayar   SpatialMaterialDiffuseMode = 3
+	SpatialMaterialDiffuseToon        SpatialMaterialDiffuseMode = 4
+)
+
+// SpatialMaterialEmissionOperator is an enum for EmissionOperator values.
+type SpatialMaterialEmissionOperator int
+
+const (
+	SpatialMaterialEmissionOpAdd      SpatialMaterialEmissionOperator = 0
+	SpatialMaterialEmissionOpMultiply SpatialMaterialEmissionOperator = 1
+)
+
+// SpatialMaterialFeature is an enum for Feature values.
+type SpatialMaterialFeature int
+
+const (
+	SpatialMaterialFeatureAmbientOcclusion    SpatialMaterialFeature = 6
+	SpatialMaterialFeatureAnisotropy          SpatialMaterialFeature = 5
+	SpatialMaterialFeatureClearcoat           SpatialMaterialFeature = 4
+	SpatialMaterialFeatureDepthMapping        SpatialMaterialFeature = 7
+	SpatialMaterialFeatureDetail              SpatialMaterialFeature = 11
+	SpatialMaterialFeatureEmission            SpatialMaterialFeature = 1
+	SpatialMaterialFeatureMax                 SpatialMaterialFeature = 12
+	SpatialMaterialFeatureNormalMapping       SpatialMaterialFeature = 2
+	SpatialMaterialFeatureRefraction          SpatialMaterialFeature = 10
+	SpatialMaterialFeatureRim                 SpatialMaterialFeature = 3
+	SpatialMaterialFeatureSubsuraceScattering SpatialMaterialFeature = 8
+	SpatialMaterialFeatureTransmission        SpatialMaterialFeature = 9
+	SpatialMaterialFeatureTransparent         SpatialMaterialFeature = 0
+)
+
+// SpatialMaterialFlags is an enum for Flags values.
+type SpatialMaterialFlags int
+
+const (
+	SpatialMaterialFlagAlbedoFromVertexColor  SpatialMaterialFlags = 3
+	SpatialMaterialFlagAlbedoTextureForceSrgb SpatialMaterialFlags = 13
+	SpatialMaterialFlagAoOnUv2                SpatialMaterialFlags = 10
+	SpatialMaterialFlagDisableDepthTest       SpatialMaterialFlags = 2
+	SpatialMaterialFlagEmissionOnUv2          SpatialMaterialFlags = 11
+	SpatialMaterialFlagFixedSize              SpatialMaterialFlags = 6
+	SpatialMaterialFlagMax                    SpatialMaterialFlags = 14
+	SpatialMaterialFlagSrgbVertexColor        SpatialMaterialFlags = 4
+	SpatialMaterialFlagTriplanarUseWorld      SpatialMaterialFlags = 9
+	SpatialMaterialFlagUnshaded               SpatialMaterialFlags = 0
+	SpatialMaterialFlagUseAlphaScissor        SpatialMaterialFlags = 12
+	SpatialMaterialFlagUsePointSize           SpatialMaterialFlags = 5
+	SpatialMaterialFlagUseVertexLighting      SpatialMaterialFlags = 1
+	SpatialMaterialFlagUv1UseTriplanar        SpatialMaterialFlags = 7
+	SpatialMaterialFlagUv2UseTriplanar        SpatialMaterialFlags = 8
+)
+
+// SpatialMaterialSpecularMode is an enum for SpecularMode values.
+type SpatialMaterialSpecularMode int
+
+const (
+	SpatialMaterialSpecularBlinn      SpatialMaterialSpecularMode = 1
+	SpatialMaterialSpecularDisabled   SpatialMaterialSpecularMode = 4
+	SpatialMaterialSpecularPhong      SpatialMaterialSpecularMode = 2
+	SpatialMaterialSpecularSchlickGgx SpatialMaterialSpecularMode = 0
+	SpatialMaterialSpecularToon       SpatialMaterialSpecularMode = 3
+)
+
+// SpatialMaterialTextureChannel is an enum for TextureChannel values.
+type SpatialMaterialTextureChannel int
+
+const (
+	SpatialMaterialTextureChannelAlpha     SpatialMaterialTextureChannel = 3
+	SpatialMaterialTextureChannelBlue      SpatialMaterialTextureChannel = 2
+	SpatialMaterialTextureChannelGrayscale SpatialMaterialTextureChannel = 4
+	SpatialMaterialTextureChannelGreen     SpatialMaterialTextureChannel = 1
+	SpatialMaterialTextureChannelRed       SpatialMaterialTextureChannel = 0
+)
+
+// SpatialMaterialTextureParam is an enum for TextureParam values.
+type SpatialMaterialTextureParam int
+
+const (
+	SpatialMaterialTextureAlbedo               SpatialMaterialTextureParam = 0
+	SpatialMaterialTextureAmbientOcclusion     SpatialMaterialTextureParam = 8
+	SpatialMaterialTextureClearcoat            SpatialMaterialTextureParam = 6
+	SpatialMaterialTextureDepth                SpatialMaterialTextureParam = 9
+	SpatialMaterialTextureDetailAlbedo         SpatialMaterialTextureParam = 14
+	SpatialMaterialTextureDetailMask           SpatialMaterialTextureParam = 13
+	SpatialMaterialTextureDetailNormal         SpatialMaterialTextureParam = 15
+	SpatialMaterialTextureEmission             SpatialMaterialTextureParam = 3
+	SpatialMaterialTextureFlowmap              SpatialMaterialTextureParam = 7
+	SpatialMaterialTextureMax                  SpatialMaterialTextureParam = 16
+	SpatialMaterialTextureMetallic             SpatialMaterialTextureParam = 1
+	SpatialMaterialTextureNormal               SpatialMaterialTextureParam = 4
+	SpatialMaterialTextureRefraction           SpatialMaterialTextureParam = 12
+	SpatialMaterialTextureRim                  SpatialMaterialTextureParam = 5
+	SpatialMaterialTextureRoughness            SpatialMaterialTextureParam = 2
+	SpatialMaterialTextureSubsurfaceScattering SpatialMaterialTextureParam = 10
+	SpatialMaterialTextureTransmission         SpatialMaterialTextureParam = 11
+)
+
 //func NewSpatialMaterialFromPointer(ptr gdnative.Pointer) SpatialMaterial {
 func newSpatialMaterialFromPointer(ptr gdnative.Pointer) SpatialMaterial {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -130,16 +281,70 @@ func (o *SpatialMaterial) GetAoLightAffect() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.SpatialMaterial::TextureChannel
 */
+func (o *SpatialMaterial) GetAoTextureChannel() SpatialMaterialTextureChannel {
+	//log.Println("Calling SpatialMaterial.GetAoTextureChannel()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpatialMaterial", "get_ao_texture_channel")
+
+	// Call the parent method.
+	// enum.SpatialMaterial::TextureChannel
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return SpatialMaterialTextureChannel(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.SpatialMaterial::BillboardMode
 */
+func (o *SpatialMaterial) GetBillboardMode() SpatialMaterialBillboardMode {
+	//log.Println("Calling SpatialMaterial.GetBillboardMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpatialMaterial", "get_billboard_mode")
+
+	// Call the parent method.
+	// enum.SpatialMaterial::BillboardMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return SpatialMaterialBillboardMode(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.SpatialMaterial::BlendMode
 */
+func (o *SpatialMaterial) GetBlendMode() SpatialMaterialBlendMode {
+	//log.Println("Calling SpatialMaterial.GetBlendMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpatialMaterial", "get_blend_mode")
+
+	// Call the parent method.
+	// enum.SpatialMaterial::BlendMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return SpatialMaterialBlendMode(ret)
+}
 
 /*
         Undocumented
@@ -191,6 +396,24 @@ func (o *SpatialMaterial) GetClearcoatGloss() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.SpatialMaterial::CullMode
 */
+func (o *SpatialMaterial) GetCullMode() SpatialMaterialCullMode {
+	//log.Println("Calling SpatialMaterial.GetCullMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpatialMaterial", "get_cull_mode")
+
+	// Call the parent method.
+	// enum.SpatialMaterial::CullMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return SpatialMaterialCullMode(ret)
+}
 
 /*
         Undocumented
@@ -242,6 +465,24 @@ func (o *SpatialMaterial) GetDepthDeepParallaxMinLayers() gdnative.Int {
         Undocumented
 	Args: [], Returns: enum.SpatialMaterial::DepthDrawMode
 */
+func (o *SpatialMaterial) GetDepthDrawMode() SpatialMaterialDepthDrawMode {
+	//log.Println("Calling SpatialMaterial.GetDepthDrawMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpatialMaterial", "get_depth_draw_mode")
+
+	// Call the parent method.
+	// enum.SpatialMaterial::DepthDrawMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return SpatialMaterialDepthDrawMode(ret)
+}
 
 /*
         Undocumented
@@ -270,16 +511,70 @@ func (o *SpatialMaterial) GetDepthScale() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.SpatialMaterial::BlendMode
 */
+func (o *SpatialMaterial) GetDetailBlendMode() SpatialMaterialBlendMode {
+	//log.Println("Calling SpatialMaterial.GetDetailBlendMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpatialMaterial", "get_detail_blend_mode")
+
+	// Call the parent method.
+	// enum.SpatialMaterial::BlendMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return SpatialMaterialBlendMode(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.SpatialMaterial::DetailUV
 */
+func (o *SpatialMaterial) GetDetailUv() SpatialMaterialDetailUV {
+	//log.Println("Calling SpatialMaterial.GetDetailUv()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpatialMaterial", "get_detail_uv")
+
+	// Call the parent method.
+	// enum.SpatialMaterial::DetailUV
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return SpatialMaterialDetailUV(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.SpatialMaterial::DiffuseMode
 */
+func (o *SpatialMaterial) GetDiffuseMode() SpatialMaterialDiffuseMode {
+	//log.Println("Calling SpatialMaterial.GetDiffuseMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpatialMaterial", "get_diffuse_mode")
+
+	// Call the parent method.
+	// enum.SpatialMaterial::DiffuseMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return SpatialMaterialDiffuseMode(ret)
+}
 
 /*
         Undocumented
@@ -377,6 +672,24 @@ func (o *SpatialMaterial) GetEmissionEnergy() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.SpatialMaterial::EmissionOperator
 */
+func (o *SpatialMaterial) GetEmissionOperator() SpatialMaterialEmissionOperator {
+	//log.Println("Calling SpatialMaterial.GetEmissionOperator()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpatialMaterial", "get_emission_operator")
+
+	// Call the parent method.
+	// enum.SpatialMaterial::EmissionOperator
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return SpatialMaterialEmissionOperator(ret)
+}
 
 /*
         Undocumented
@@ -499,6 +812,24 @@ func (o *SpatialMaterial) GetMetallic() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.SpatialMaterial::TextureChannel
 */
+func (o *SpatialMaterial) GetMetallicTextureChannel() SpatialMaterialTextureChannel {
+	//log.Println("Calling SpatialMaterial.GetMetallicTextureChannel()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpatialMaterial", "get_metallic_texture_channel")
+
+	// Call the parent method.
+	// enum.SpatialMaterial::TextureChannel
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return SpatialMaterialTextureChannel(ret)
+}
 
 /*
         Undocumented
@@ -665,6 +996,24 @@ func (o *SpatialMaterial) GetRefraction() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.SpatialMaterial::TextureChannel
 */
+func (o *SpatialMaterial) GetRefractionTextureChannel() SpatialMaterialTextureChannel {
+	//log.Println("Calling SpatialMaterial.GetRefractionTextureChannel()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpatialMaterial", "get_refraction_texture_channel")
+
+	// Call the parent method.
+	// enum.SpatialMaterial::TextureChannel
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return SpatialMaterialTextureChannel(ret)
+}
 
 /*
         Undocumented
@@ -739,6 +1088,24 @@ func (o *SpatialMaterial) GetRoughness() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.SpatialMaterial::TextureChannel
 */
+func (o *SpatialMaterial) GetRoughnessTextureChannel() SpatialMaterialTextureChannel {
+	//log.Println("Calling SpatialMaterial.GetRoughnessTextureChannel()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpatialMaterial", "get_roughness_texture_channel")
+
+	// Call the parent method.
+	// enum.SpatialMaterial::TextureChannel
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return SpatialMaterialTextureChannel(ret)
+}
 
 /*
         Undocumented
@@ -767,6 +1134,24 @@ func (o *SpatialMaterial) GetSpecular() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.SpatialMaterial::SpecularMode
 */
+func (o *SpatialMaterial) GetSpecularMode() SpatialMaterialSpecularMode {
+	//log.Println("Calling SpatialMaterial.GetSpecularMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpatialMaterial", "get_specular_mode")
+
+	// Call the parent method.
+	// enum.SpatialMaterial::SpecularMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return SpatialMaterialSpecularMode(ret)
+}
 
 /*
         Undocumented

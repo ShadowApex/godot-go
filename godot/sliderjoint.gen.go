@@ -13,6 +13,35 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// SliderJointParam is an enum for Param values.
+type SliderJointParam int
+
+const (
+	SliderJointParamAngularLimitDamping          SliderJointParam = 15
+	SliderJointParamAngularLimitLower            SliderJointParam = 12
+	SliderJointParamAngularLimitRestitution      SliderJointParam = 14
+	SliderJointParamAngularLimitSoftness         SliderJointParam = 13
+	SliderJointParamAngularLimitUpper            SliderJointParam = 11
+	SliderJointParamAngularMotionDamping         SliderJointParam = 18
+	SliderJointParamAngularMotionRestitution     SliderJointParam = 17
+	SliderJointParamAngularMotionSoftness        SliderJointParam = 16
+	SliderJointParamAngularOrthogonalDamping     SliderJointParam = 21
+	SliderJointParamAngularOrthogonalRestitution SliderJointParam = 20
+	SliderJointParamAngularOrthogonalSoftness    SliderJointParam = 19
+	SliderJointParamLinearLimitDamping           SliderJointParam = 4
+	SliderJointParamLinearLimitLower             SliderJointParam = 1
+	SliderJointParamLinearLimitRestitution       SliderJointParam = 3
+	SliderJointParamLinearLimitSoftness          SliderJointParam = 2
+	SliderJointParamLinearLimitUpper             SliderJointParam = 0
+	SliderJointParamLinearMotionDamping          SliderJointParam = 7
+	SliderJointParamLinearMotionRestitution      SliderJointParam = 6
+	SliderJointParamLinearMotionSoftness         SliderJointParam = 5
+	SliderJointParamLinearOrthogonalDamping      SliderJointParam = 10
+	SliderJointParamLinearOrthogonalRestitution  SliderJointParam = 9
+	SliderJointParamLinearOrthogonalSoftness     SliderJointParam = 8
+	SliderJointParamMax                          SliderJointParam = 22
+)
+
 //func NewSliderJointFromPointer(ptr gdnative.Pointer) SliderJoint {
 func newSliderJointFromPointer(ptr gdnative.Pointer) SliderJoint {
 	owner := gdnative.NewObjectFromPointer(ptr)

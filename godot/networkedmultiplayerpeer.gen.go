@@ -13,6 +13,24 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// NetworkedMultiplayerPeerConnectionStatus is an enum for ConnectionStatus values.
+type NetworkedMultiplayerPeerConnectionStatus int
+
+const (
+	NetworkedMultiplayerPeerConnectionConnected    NetworkedMultiplayerPeerConnectionStatus = 2
+	NetworkedMultiplayerPeerConnectionConnecting   NetworkedMultiplayerPeerConnectionStatus = 1
+	NetworkedMultiplayerPeerConnectionDisconnected NetworkedMultiplayerPeerConnectionStatus = 0
+)
+
+// NetworkedMultiplayerPeerTransferMode is an enum for TransferMode values.
+type NetworkedMultiplayerPeerTransferMode int
+
+const (
+	NetworkedMultiplayerPeerTransferModeReliable          NetworkedMultiplayerPeerTransferMode = 2
+	NetworkedMultiplayerPeerTransferModeUnreliable        NetworkedMultiplayerPeerTransferMode = 0
+	NetworkedMultiplayerPeerTransferModeUnreliableOrdered NetworkedMultiplayerPeerTransferMode = 1
+)
+
 //func NewNetworkedMultiplayerPeerFromPointer(ptr gdnative.Pointer) NetworkedMultiplayerPeer {
 func newNetworkedMultiplayerPeerFromPointer(ptr gdnative.Pointer) NetworkedMultiplayerPeer {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,6 +56,24 @@ func (o *NetworkedMultiplayerPeer) BaseClass() string {
         Returns the current state of the connection. See [enum ConnectionStatus].
 	Args: [], Returns: enum.NetworkedMultiplayerPeer::ConnectionStatus
 */
+func (o *NetworkedMultiplayerPeer) GetConnectionStatus() NetworkedMultiplayerPeerConnectionStatus {
+	//log.Println("Calling NetworkedMultiplayerPeer.GetConnectionStatus()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NetworkedMultiplayerPeer", "get_connection_status")
+
+	// Call the parent method.
+	// enum.NetworkedMultiplayerPeer::ConnectionStatus
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return NetworkedMultiplayerPeerConnectionStatus(ret)
+}
 
 /*
         Returns the ID of the [code]NetworkedMultiplayerPeer[/code] who sent the most recent packet.
@@ -66,6 +102,24 @@ func (o *NetworkedMultiplayerPeer) GetPacketPeer() gdnative.Int {
         Undocumented
 	Args: [], Returns: enum.NetworkedMultiplayerPeer::TransferMode
 */
+func (o *NetworkedMultiplayerPeer) GetTransferMode() NetworkedMultiplayerPeerTransferMode {
+	//log.Println("Calling NetworkedMultiplayerPeer.GetTransferMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NetworkedMultiplayerPeer", "get_transfer_mode")
+
+	// Call the parent method.
+	// enum.NetworkedMultiplayerPeer::TransferMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return NetworkedMultiplayerPeerTransferMode(ret)
+}
 
 /*
         Returns the ID of this [code]NetworkedMultiplayerPeer[/code].

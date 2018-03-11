@@ -13,6 +13,147 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// Physics2DServerAreaBodyStatus is an enum for AreaBodyStatus values.
+type Physics2DServerAreaBodyStatus int
+
+const (
+	Physics2DServerAreaBodyAdded   Physics2DServerAreaBodyStatus = 0
+	Physics2DServerAreaBodyRemoved Physics2DServerAreaBodyStatus = 1
+)
+
+// Physics2DServerAreaParameter is an enum for AreaParameter values.
+type Physics2DServerAreaParameter int
+
+const (
+	Physics2DServerAreaParamAngularDamp             Physics2DServerAreaParameter = 6
+	Physics2DServerAreaParamGravity                 Physics2DServerAreaParameter = 0
+	Physics2DServerAreaParamGravityDistanceScale    Physics2DServerAreaParameter = 3
+	Physics2DServerAreaParamGravityIsPoint          Physics2DServerAreaParameter = 2
+	Physics2DServerAreaParamGravityPointAttenuation Physics2DServerAreaParameter = 4
+	Physics2DServerAreaParamGravityVector           Physics2DServerAreaParameter = 1
+	Physics2DServerAreaParamLinearDamp              Physics2DServerAreaParameter = 5
+	Physics2DServerAreaParamPriority                Physics2DServerAreaParameter = 7
+)
+
+// Physics2DServerAreaSpaceOverrideMode is an enum for AreaSpaceOverrideMode values.
+type Physics2DServerAreaSpaceOverrideMode int
+
+const (
+	Physics2DServerAreaSpaceOverrideCombine        Physics2DServerAreaSpaceOverrideMode = 1
+	Physics2DServerAreaSpaceOverrideCombineReplace Physics2DServerAreaSpaceOverrideMode = 2
+	Physics2DServerAreaSpaceOverrideDisabled       Physics2DServerAreaSpaceOverrideMode = 0
+	Physics2DServerAreaSpaceOverrideReplace        Physics2DServerAreaSpaceOverrideMode = 3
+	Physics2DServerAreaSpaceOverrideReplaceCombine Physics2DServerAreaSpaceOverrideMode = 4
+)
+
+// Physics2DServerBodyMode is an enum for BodyMode values.
+type Physics2DServerBodyMode int
+
+const (
+	Physics2DServerBodyModeCharacter Physics2DServerBodyMode = 3
+	Physics2DServerBodyModeKinematic Physics2DServerBodyMode = 1
+	Physics2DServerBodyModeRigid     Physics2DServerBodyMode = 2
+	Physics2DServerBodyModeStatic    Physics2DServerBodyMode = 0
+)
+
+// Physics2DServerBodyParameter is an enum for BodyParameter values.
+type Physics2DServerBodyParameter int
+
+const (
+	Physics2DServerBodyParamAngularDamp  Physics2DServerBodyParameter = 6
+	Physics2DServerBodyParamBounce       Physics2DServerBodyParameter = 0
+	Physics2DServerBodyParamFriction     Physics2DServerBodyParameter = 1
+	Physics2DServerBodyParamGravityScale Physics2DServerBodyParameter = 4
+	Physics2DServerBodyParamInertia      Physics2DServerBodyParameter = 3
+	Physics2DServerBodyParamLinearDamp   Physics2DServerBodyParameter = 5
+	Physics2DServerBodyParamMass         Physics2DServerBodyParameter = 2
+	Physics2DServerBodyParamMax          Physics2DServerBodyParameter = 7
+)
+
+// Physics2DServerBodyState is an enum for BodyState values.
+type Physics2DServerBodyState int
+
+const (
+	Physics2DServerBodyStateAngularVelocity Physics2DServerBodyState = 2
+	Physics2DServerBodyStateCanSleep        Physics2DServerBodyState = 4
+	Physics2DServerBodyStateLinearVelocity  Physics2DServerBodyState = 1
+	Physics2DServerBodyStateSleeping        Physics2DServerBodyState = 3
+	Physics2DServerBodyStateTransform       Physics2DServerBodyState = 0
+)
+
+// Physics2DServerCCDMode is an enum for CCDMode values.
+type Physics2DServerCCDMode int
+
+const (
+	Physics2DServerCcdModeCastRay   Physics2DServerCCDMode = 1
+	Physics2DServerCcdModeCastShape Physics2DServerCCDMode = 2
+	Physics2DServerCcdModeDisabled  Physics2DServerCCDMode = 0
+)
+
+// Physics2DServerDampedStringParam is an enum for DampedStringParam values.
+type Physics2DServerDampedStringParam int
+
+const (
+	Physics2DServerDampedStringDamping    Physics2DServerDampedStringParam = 2
+	Physics2DServerDampedStringRestLength Physics2DServerDampedStringParam = 0
+	Physics2DServerDampedStringStiffness  Physics2DServerDampedStringParam = 1
+)
+
+// Physics2DServerJointParam is an enum for JointParam values.
+type Physics2DServerJointParam int
+
+const (
+	Physics2DServerJointParamBias     Physics2DServerJointParam = 0
+	Physics2DServerJointParamMaxBias  Physics2DServerJointParam = 1
+	Physics2DServerJointParamMaxForce Physics2DServerJointParam = 2
+)
+
+// Physics2DServerJointType is an enum for JointType values.
+type Physics2DServerJointType int
+
+const (
+	Physics2DServerJointDampedSpring Physics2DServerJointType = 2
+	Physics2DServerJointGroove       Physics2DServerJointType = 1
+	Physics2DServerJointPin          Physics2DServerJointType = 0
+)
+
+// Physics2DServerProcessInfo is an enum for ProcessInfo values.
+type Physics2DServerProcessInfo int
+
+const (
+	Physics2DServerInfoActiveObjects  Physics2DServerProcessInfo = 0
+	Physics2DServerInfoCollisionPairs Physics2DServerProcessInfo = 1
+	Physics2DServerInfoIslandCount    Physics2DServerProcessInfo = 2
+)
+
+// Physics2DServerShapeType is an enum for ShapeType values.
+type Physics2DServerShapeType int
+
+const (
+	Physics2DServerShapeCapsule        Physics2DServerShapeType = 5
+	Physics2DServerShapeCircle         Physics2DServerShapeType = 3
+	Physics2DServerShapeConcavePolygon Physics2DServerShapeType = 7
+	Physics2DServerShapeConvexPolygon  Physics2DServerShapeType = 6
+	Physics2DServerShapeCustom         Physics2DServerShapeType = 8
+	Physics2DServerShapeLine           Physics2DServerShapeType = 0
+	Physics2DServerShapeRay            Physics2DServerShapeType = 1
+	Physics2DServerShapeRectangle      Physics2DServerShapeType = 4
+	Physics2DServerShapeSegment        Physics2DServerShapeType = 2
+)
+
+// Physics2DServerSpaceParameter is an enum for SpaceParameter values.
+type Physics2DServerSpaceParameter int
+
+const (
+	Physics2DServerSpaceParamBodyAngularVelocitySleepThreshold Physics2DServerSpaceParameter = 4
+	Physics2DServerSpaceParamBodyLinearVelocitySleepThreshold  Physics2DServerSpaceParameter = 3
+	Physics2DServerSpaceParamBodyMaxAllowedPenetration         Physics2DServerSpaceParameter = 2
+	Physics2DServerSpaceParamBodyTimeToSleep                   Physics2DServerSpaceParameter = 5
+	Physics2DServerSpaceParamConstraintDefaultBias             Physics2DServerSpaceParameter = 6
+	Physics2DServerSpaceParamContactMaxSeparation              Physics2DServerSpaceParameter = 1
+	Physics2DServerSpaceParamContactRecycleRadius              Physics2DServerSpaceParameter = 0
+)
+
 //func Newphysics2DServerFromPointer(ptr gdnative.Pointer) physics2DServer {
 func newPhysics2DServerFromPointer(ptr gdnative.Pointer) physics2DServer {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -306,6 +447,26 @@ func (o *physics2DServer) AreaGetSpace(area gdnative.Rid) gdnative.Rid {
         Returns the space override mode for the area.
 	Args: [{ false area RID}], Returns: enum.Physics2DServer::AreaSpaceOverrideMode
 */
+func (o *physics2DServer) AreaGetSpaceOverrideMode(area gdnative.Rid) Physics2DServerAreaSpaceOverrideMode {
+	o.ensureSingleton()
+	//log.Println("Calling Physics2DServer.AreaGetSpaceOverrideMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "area_get_space_override_mode")
+
+	// Call the parent method.
+	// enum.Physics2DServer::AreaSpaceOverrideMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return Physics2DServerAreaSpaceOverrideMode(ret)
+}
 
 /*
         Returns the transform matrix for an area.
@@ -808,6 +969,26 @@ func (o *physics2DServer) BodyGetCollisionMask(body gdnative.Rid) gdnative.Int {
         Returns the continuous collision detection mode.
 	Args: [{ false body RID}], Returns: enum.Physics2DServer::CCDMode
 */
+func (o *physics2DServer) BodyGetContinuousCollisionDetectionMode(body gdnative.Rid) Physics2DServerCCDMode {
+	o.ensureSingleton()
+	//log.Println("Calling Physics2DServer.BodyGetContinuousCollisionDetectionMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_get_continuous_collision_detection_mode")
+
+	// Call the parent method.
+	// enum.Physics2DServer::CCDMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return Physics2DServerCCDMode(ret)
+}
 
 /*
         Returns the [Physics2DDirectBodyState] of the body.
@@ -877,6 +1058,26 @@ func (o *physics2DServer) BodyGetMaxContactsReported(body gdnative.Rid) gdnative
         Returns the body mode.
 	Args: [{ false body RID}], Returns: enum.Physics2DServer::BodyMode
 */
+func (o *physics2DServer) BodyGetMode(body gdnative.Rid) Physics2DServerBodyMode {
+	o.ensureSingleton()
+	//log.Println("Calling Physics2DServer.BodyGetMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_get_mode")
+
+	// Call the parent method.
+	// enum.Physics2DServer::BodyMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return Physics2DServerBodyMode(ret)
+}
 
 /*
         Gets the instance ID of the object the area is assigned to.
@@ -1840,6 +2041,26 @@ func (o *physics2DServer) JointGetParam(joint gdnative.Rid, param gdnative.Int) 
         Returns the type of a joint (see JOINT_* constants).
 	Args: [{ false joint RID}], Returns: enum.Physics2DServer::JointType
 */
+func (o *physics2DServer) JointGetType(joint gdnative.Rid) Physics2DServerJointType {
+	o.ensureSingleton()
+	//log.Println("Calling Physics2DServer.JointGetType()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(joint)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "joint_get_type")
+
+	// Call the parent method.
+	// enum.Physics2DServer::JointType
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return Physics2DServerJointType(ret)
+}
 
 /*
         Sets a joint parameter. Parameters are explained in the JOINT_PARAM* constants.
@@ -2039,6 +2260,26 @@ func (o *physics2DServer) ShapeGetData(shape gdnative.Rid) gdnative.Variant {
         Returns the type of shape (see SHAPE_* constants).
 	Args: [{ false shape RID}], Returns: enum.Physics2DServer::ShapeType
 */
+func (o *physics2DServer) ShapeGetType(shape gdnative.Rid) Physics2DServerShapeType {
+	o.ensureSingleton()
+	//log.Println("Calling Physics2DServer.ShapeGetType()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(shape)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Physics2DServer", "shape_get_type")
+
+	// Call the parent method.
+	// enum.Physics2DServer::ShapeType
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return Physics2DServerShapeType(ret)
+}
 
 /*
         Sets the shape data that defines its shape and size. The data to be passed depends on the kind of shape created [method shape_get_type].

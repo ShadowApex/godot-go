@@ -13,6 +13,22 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// OmniLightShadowDetail is an enum for ShadowDetail values.
+type OmniLightShadowDetail int
+
+const (
+	OmniLightShadowDetailHorizontal OmniLightShadowDetail = 1
+	OmniLightShadowDetailVertical   OmniLightShadowDetail = 0
+)
+
+// OmniLightShadowMode is an enum for ShadowMode values.
+type OmniLightShadowMode int
+
+const (
+	OmniLightShadowCube           OmniLightShadowMode = 1
+	OmniLightShadowDualParaboloid OmniLightShadowMode = 0
+)
+
 //func NewOmniLightFromPointer(ptr gdnative.Pointer) OmniLight {
 func newOmniLightFromPointer(ptr gdnative.Pointer) OmniLight {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,11 +54,47 @@ func (o *OmniLight) BaseClass() string {
         Undocumented
 	Args: [], Returns: enum.OmniLight::ShadowDetail
 */
+func (o *OmniLight) GetShadowDetail() OmniLightShadowDetail {
+	//log.Println("Calling OmniLight.GetShadowDetail()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("OmniLight", "get_shadow_detail")
+
+	// Call the parent method.
+	// enum.OmniLight::ShadowDetail
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return OmniLightShadowDetail(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.OmniLight::ShadowMode
 */
+func (o *OmniLight) GetShadowMode() OmniLightShadowMode {
+	//log.Println("Calling OmniLight.GetShadowMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("OmniLight", "get_shadow_mode")
+
+	// Call the parent method.
+	// enum.OmniLight::ShadowMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return OmniLightShadowMode(ret)
+}
 
 /*
         Undocumented

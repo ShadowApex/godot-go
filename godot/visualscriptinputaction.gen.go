@@ -13,6 +13,16 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// VisualScriptInputActionMode is an enum for Mode values.
+type VisualScriptInputActionMode int
+
+const (
+	VisualScriptInputActionModeJustPressed  VisualScriptInputActionMode = 2
+	VisualScriptInputActionModeJustReleased VisualScriptInputActionMode = 3
+	VisualScriptInputActionModePressed      VisualScriptInputActionMode = 0
+	VisualScriptInputActionModeReleased     VisualScriptInputActionMode = 1
+)
+
 //func NewVisualScriptInputActionFromPointer(ptr gdnative.Pointer) VisualScriptInputAction {
 func newVisualScriptInputActionFromPointer(ptr gdnative.Pointer) VisualScriptInputAction {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,6 +48,24 @@ func (o *VisualScriptInputAction) BaseClass() string {
         Undocumented
 	Args: [], Returns: enum.VisualScriptInputAction::Mode
 */
+func (o *VisualScriptInputAction) GetActionMode() VisualScriptInputActionMode {
+	//log.Println("Calling VisualScriptInputAction.GetActionMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptInputAction", "get_action_mode")
+
+	// Call the parent method.
+	// enum.VisualScriptInputAction::Mode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return VisualScriptInputActionMode(ret)
+}
 
 /*
         Undocumented

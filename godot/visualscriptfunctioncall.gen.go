@@ -13,6 +13,28 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// VisualScriptFunctionCallCallMode is an enum for CallMode values.
+type VisualScriptFunctionCallCallMode int
+
+const (
+	VisualScriptFunctionCallCallModeBasicType VisualScriptFunctionCallCallMode = 3
+	VisualScriptFunctionCallCallModeInstance  VisualScriptFunctionCallCallMode = 2
+	VisualScriptFunctionCallCallModeNodePath  VisualScriptFunctionCallCallMode = 1
+	VisualScriptFunctionCallCallModeSelf      VisualScriptFunctionCallCallMode = 0
+	VisualScriptFunctionCallCallModeSingleton VisualScriptFunctionCallCallMode = 4
+)
+
+// VisualScriptFunctionCallRPCCallMode is an enum for RPCCallMode values.
+type VisualScriptFunctionCallRPCCallMode int
+
+const (
+	VisualScriptFunctionCallRpcDisabled       VisualScriptFunctionCallRPCCallMode = 0
+	VisualScriptFunctionCallRpcReliable       VisualScriptFunctionCallRPCCallMode = 1
+	VisualScriptFunctionCallRpcReliableToId   VisualScriptFunctionCallRPCCallMode = 3
+	VisualScriptFunctionCallRpcUnreliable     VisualScriptFunctionCallRPCCallMode = 2
+	VisualScriptFunctionCallRpcUnreliableToId VisualScriptFunctionCallRPCCallMode = 4
+)
+
 //func NewVisualScriptFunctionCallFromPointer(ptr gdnative.Pointer) VisualScriptFunctionCall {
 func newVisualScriptFunctionCallFromPointer(ptr gdnative.Pointer) VisualScriptFunctionCall {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -151,11 +173,47 @@ func (o *VisualScriptFunctionCall) GetBaseType() gdnative.String {
         Undocumented
 	Args: [], Returns: enum.Variant::Type
 */
+func (o *VisualScriptFunctionCall) GetBasicType() gdnative.VariantType {
+	//log.Println("Calling VisualScriptFunctionCall.GetBasicType()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptFunctionCall", "get_basic_type")
+
+	// Call the parent method.
+	// enum.Variant::Type
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.VariantType(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.VisualScriptFunctionCall::CallMode
 */
+func (o *VisualScriptFunctionCall) GetCallMode() VisualScriptFunctionCallCallMode {
+	//log.Println("Calling VisualScriptFunctionCall.GetCallMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptFunctionCall", "get_call_mode")
+
+	// Call the parent method.
+	// enum.VisualScriptFunctionCall::CallMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return VisualScriptFunctionCallCallMode(ret)
+}
 
 /*
         Undocumented
@@ -184,6 +242,24 @@ func (o *VisualScriptFunctionCall) GetFunction() gdnative.String {
         Undocumented
 	Args: [], Returns: enum.VisualScriptFunctionCall::RPCCallMode
 */
+func (o *VisualScriptFunctionCall) GetRpcCallMode() VisualScriptFunctionCallRPCCallMode {
+	//log.Println("Calling VisualScriptFunctionCall.GetRpcCallMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptFunctionCall", "get_rpc_call_mode")
+
+	// Call the parent method.
+	// enum.VisualScriptFunctionCall::RPCCallMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return VisualScriptFunctionCallRPCCallMode(ret)
+}
 
 /*
         Undocumented

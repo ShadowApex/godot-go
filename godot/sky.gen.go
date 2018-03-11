@@ -13,6 +13,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// SkyRadianceSize is an enum for RadianceSize values.
+type SkyRadianceSize int
+
+const (
+	SkyRadianceSize1024 SkyRadianceSize = 5
+	SkyRadianceSize128  SkyRadianceSize = 2
+	SkyRadianceSize2048 SkyRadianceSize = 6
+	SkyRadianceSize256  SkyRadianceSize = 3
+	SkyRadianceSize32   SkyRadianceSize = 0
+	SkyRadianceSize512  SkyRadianceSize = 4
+	SkyRadianceSize64   SkyRadianceSize = 1
+	SkyRadianceSizeMax  SkyRadianceSize = 7
+)
+
 //func NewSkyFromPointer(ptr gdnative.Pointer) Sky {
 func newSkyFromPointer(ptr gdnative.Pointer) Sky {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,6 +52,24 @@ func (o *Sky) BaseClass() string {
         Undocumented
 	Args: [], Returns: enum.Sky::RadianceSize
 */
+func (o *Sky) GetRadianceSize() SkyRadianceSize {
+	//log.Println("Calling Sky.GetRadianceSize()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Sky", "get_radiance_size")
+
+	// Call the parent method.
+	// enum.Sky::RadianceSize
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return SkyRadianceSize(ret)
+}
 
 /*
         Undocumented

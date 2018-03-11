@@ -82,6 +82,24 @@ func (o *VisualScriptDeconstruct) X_SetElemCache(cache gdnative.Array) {
         Undocumented
 	Args: [], Returns: enum.Variant::Type
 */
+func (o *VisualScriptDeconstruct) GetDeconstructType() gdnative.VariantType {
+	//log.Println("Calling VisualScriptDeconstruct.GetDeconstructType()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptDeconstruct", "get_deconstruct_type")
+
+	// Call the parent method.
+	// enum.Variant::Type
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.VariantType(ret)
+}
 
 /*
         Undocumented

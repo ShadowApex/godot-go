@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// ButtonTextAlign is an enum for TextAlign values.
+type ButtonTextAlign int
+
+const (
+	ButtonAlignCenter ButtonTextAlign = 1
+	ButtonAlignLeft   ButtonTextAlign = 0
+	ButtonAlignRight  ButtonTextAlign = 2
+)
+
 //func NewButtonFromPointer(ptr gdnative.Pointer) Button {
 func newButtonFromPointer(ptr gdnative.Pointer) Button {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -121,6 +130,24 @@ func (o *Button) GetText() gdnative.String {
         Undocumented
 	Args: [], Returns: enum.Button::TextAlign
 */
+func (o *Button) GetTextAlign() ButtonTextAlign {
+	//log.Println("Calling Button.GetTextAlign()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Button", "get_text_align")
+
+	// Call the parent method.
+	// enum.Button::TextAlign
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ButtonTextAlign(ret)
+}
 
 /*
         Undocumented

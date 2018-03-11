@@ -13,6 +13,88 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// ImageAlphaMode is an enum for AlphaMode values.
+type ImageAlphaMode int
+
+const (
+	ImageAlphaBit   ImageAlphaMode = 1
+	ImageAlphaBlend ImageAlphaMode = 2
+	ImageAlphaNone  ImageAlphaMode = 0
+)
+
+// ImageCompressMode is an enum for CompressMode values.
+type ImageCompressMode int
+
+const (
+	ImageCompressEtc    ImageCompressMode = 3
+	ImageCompressEtc2   ImageCompressMode = 4
+	ImageCompressPvrtc2 ImageCompressMode = 1
+	ImageCompressPvrtc4 ImageCompressMode = 2
+	ImageCompressS3Tc   ImageCompressMode = 0
+)
+
+// ImageCompressSource is an enum for CompressSource values.
+type ImageCompressSource int
+
+const (
+	ImageCompressSourceGeneric ImageCompressSource = 0
+	ImageCompressSourceNormal  ImageCompressSource = 2
+	ImageCompressSourceSrgb    ImageCompressSource = 1
+)
+
+// ImageFormat is an enum for Format values.
+type ImageFormat int
+
+const (
+	ImageFormatBptcRgba   ImageFormat = 22
+	ImageFormatBptcRgbf   ImageFormat = 23
+	ImageFormatBptcRgbfu  ImageFormat = 24
+	ImageFormatDxt1       ImageFormat = 17
+	ImageFormatDxt3       ImageFormat = 18
+	ImageFormatDxt5       ImageFormat = 19
+	ImageFormatEtc        ImageFormat = 29
+	ImageFormatEtc2R11    ImageFormat = 30
+	ImageFormatEtc2R11S   ImageFormat = 31
+	ImageFormatEtc2Rg11   ImageFormat = 32
+	ImageFormatEtc2Rg11S  ImageFormat = 33
+	ImageFormatEtc2Rgb8   ImageFormat = 34
+	ImageFormatEtc2Rgb8A1 ImageFormat = 36
+	ImageFormatEtc2Rgba8  ImageFormat = 35
+	ImageFormatL8         ImageFormat = 0
+	ImageFormatLa8        ImageFormat = 1
+	ImageFormatMax        ImageFormat = 37
+	ImageFormatPvrtc2     ImageFormat = 25
+	ImageFormatPvrtc2A    ImageFormat = 26
+	ImageFormatPvrtc4     ImageFormat = 27
+	ImageFormatPvrtc4A    ImageFormat = 28
+	ImageFormatR8         ImageFormat = 2
+	ImageFormatRf         ImageFormat = 8
+	ImageFormatRg8        ImageFormat = 3
+	ImageFormatRgb8       ImageFormat = 4
+	ImageFormatRgba4444   ImageFormat = 6
+	ImageFormatRgba5551   ImageFormat = 7
+	ImageFormatRgba8      ImageFormat = 5
+	ImageFormatRgbaf      ImageFormat = 11
+	ImageFormatRgbah      ImageFormat = 15
+	ImageFormatRgbe9995   ImageFormat = 16
+	ImageFormatRgbf       ImageFormat = 10
+	ImageFormatRgbh       ImageFormat = 14
+	ImageFormatRgf        ImageFormat = 9
+	ImageFormatRgh        ImageFormat = 13
+	ImageFormatRgtcR      ImageFormat = 20
+	ImageFormatRgtcRg     ImageFormat = 21
+	ImageFormatRh         ImageFormat = 12
+)
+
+// ImageInterpolation is an enum for Interpolation values.
+type ImageInterpolation int
+
+const (
+	ImageInterpolateBilinear ImageInterpolation = 1
+	ImageInterpolateCubic    ImageInterpolation = 2
+	ImageInterpolateNearest  ImageInterpolation = 0
+)
+
 //func NewImageFromPointer(ptr gdnative.Pointer) Image {
 func newImageFromPointer(ptr gdnative.Pointer) Image {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -196,6 +278,27 @@ func (o *Image) ClearMipmaps() {
         Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available. See [code]COMPRESS_*[/code] constants.
 	Args: [{ false mode int} { false source int} { false lossy_quality float}], Returns: enum.Error
 */
+func (o *Image) Compress(mode gdnative.Int, source gdnative.Int, lossyQuality gdnative.Float) gdnative.Error {
+	//log.Println("Calling Image.Compress()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
+	ptrArguments[1] = gdnative.NewPointerFromInt(source)
+	ptrArguments[2] = gdnative.NewPointerFromFloat(lossyQuality)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Image", "compress")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Converts the image's format. See [code]FORMAT_*[/code] constants.
@@ -314,11 +417,47 @@ func (o *Image) Crop(width gdnative.Int, height gdnative.Int) {
         Decompresses the image if it is compressed. Returns an error if decompress function is not available.
 	Args: [], Returns: enum.Error
 */
+func (o *Image) Decompress() gdnative.Error {
+	//log.Println("Calling Image.Decompress()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Image", "decompress")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Returns ALPHA_BLEND if the image has data for alpha values. Returns ALPHA_BIT if all the alpha values are below a certain threshold or the maximum value. Returns ALPHA_NONE if no data for alpha values is found.
 	Args: [], Returns: enum.Image::AlphaMode
 */
+func (o *Image) DetectAlpha() ImageAlphaMode {
+	//log.Println("Calling Image.DetectAlpha()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Image", "detect_alpha")
+
+	// Call the parent method.
+	// enum.Image::AlphaMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ImageAlphaMode(ret)
+}
 
 /*
         Stretches the image and enlarges it by a factor of 2. No interpolation is done.
@@ -425,6 +564,24 @@ func (o *Image) FlipY() {
         Generates mipmaps for the image. Mipmaps are pre-calculated and lower resolution copies of the image. Mipmaps are automatically used if the image needs to be scaled down when rendered. This improves image quality and the performance of the rendering. Returns an error if the image is compressed, in a custom format or if the image's width/height is 0.
 	Args: [], Returns: enum.Error
 */
+func (o *Image) GenerateMipmaps() gdnative.Error {
+	//log.Println("Calling Image.GenerateMipmaps()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Image", "generate_mipmaps")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Returns the image's raw data.
@@ -453,6 +610,24 @@ func (o *Image) GetData() gdnative.PoolByteArray {
         Returns the image’s format. See [code]FORMAT_*[/code] constants.
 	Args: [], Returns: enum.Image::Format
 */
+func (o *Image) GetFormat() ImageFormat {
+	//log.Println("Calling Image.GetFormat()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Image", "get_format")
+
+	// Call the parent method.
+	// enum.Image::Format
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ImageFormat(ret)
+}
 
 /*
         Returns the image's height.
@@ -729,16 +904,73 @@ func (o *Image) IsInvisible() gdnative.Bool {
         Loads an image from file [code]path[/code].
 	Args: [{ false path String}], Returns: enum.Error
 */
+func (o *Image) Load(path gdnative.String) gdnative.Error {
+	//log.Println("Calling Image.Load()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Image", "load")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
 
 	Args: [{ false buffer PoolByteArray}], Returns: enum.Error
 */
+func (o *Image) LoadJpgFromBuffer(buffer gdnative.PoolByteArray) gdnative.Error {
+	//log.Println("Calling Image.LoadJpgFromBuffer()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolByteArray(buffer)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Image", "load_jpg_from_buffer")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
 
 	Args: [{ false buffer PoolByteArray}], Returns: enum.Error
 */
+func (o *Image) LoadPngFromBuffer(buffer gdnative.PoolByteArray) gdnative.Error {
+	//log.Println("Calling Image.LoadPngFromBuffer()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolByteArray(buffer)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Image", "load_png_from_buffer")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Locks the data for writing access.
@@ -848,6 +1080,25 @@ func (o *Image) ResizeToPo2(square gdnative.Bool) {
         Saves the image as a PNG file to [code]path[/code].
 	Args: [{ false path String}], Returns: enum.Error
 */
+func (o *Image) SavePng(path gdnative.String) gdnative.Error {
+	//log.Println("Calling Image.SavePng()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Image", "save_png")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Sets the [Color] of the pixel at [code](x, y)[/code] if the image is locked. Example: [codeblock] var img = Image.new() img.create(img_width, img_height, false, Image.FORMAT_RGBA8) img.lock() img.set_pixel(x, y, color) # Works img.unlock() img.set_pixel(x, y, color) # Does not have an effect [/codeblock]

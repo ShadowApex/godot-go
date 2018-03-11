@@ -13,6 +13,71 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// MeshArrayFormat is an enum for ArrayFormat values.
+type MeshArrayFormat int
+
+const (
+	MeshArrayCompressBase      MeshArrayFormat = 9
+	MeshArrayCompressBones     MeshArrayFormat = 32768
+	MeshArrayCompressColor     MeshArrayFormat = 4096
+	MeshArrayCompressDefault   MeshArrayFormat = 97792
+	MeshArrayCompressIndex     MeshArrayFormat = 131072
+	MeshArrayCompressNormal    MeshArrayFormat = 1024
+	MeshArrayCompressTangent   MeshArrayFormat = 2048
+	MeshArrayCompressTexUv     MeshArrayFormat = 8192
+	MeshArrayCompressTexUv2    MeshArrayFormat = 16384
+	MeshArrayCompressVertex    MeshArrayFormat = 512
+	MeshArrayCompressWeights   MeshArrayFormat = 65536
+	MeshArrayFlagUse16BitBones MeshArrayFormat = 524288
+	MeshArrayFlagUse2DVertices MeshArrayFormat = 262144
+	MeshArrayFormatBones       MeshArrayFormat = 64
+	MeshArrayFormatColor       MeshArrayFormat = 8
+	MeshArrayFormatIndex       MeshArrayFormat = 256
+	MeshArrayFormatNormal      MeshArrayFormat = 2
+	MeshArrayFormatTangent     MeshArrayFormat = 4
+	MeshArrayFormatTexUv       MeshArrayFormat = 16
+	MeshArrayFormatTexUv2      MeshArrayFormat = 32
+	MeshArrayFormatVertex      MeshArrayFormat = 1
+	MeshArrayFormatWeights     MeshArrayFormat = 128
+)
+
+// MeshArrayType is an enum for ArrayType values.
+type MeshArrayType int
+
+const (
+	MeshArrayBones   MeshArrayType = 6
+	MeshArrayColor   MeshArrayType = 3
+	MeshArrayIndex   MeshArrayType = 8
+	MeshArrayMax     MeshArrayType = 9
+	MeshArrayNormal  MeshArrayType = 1
+	MeshArrayTangent MeshArrayType = 2
+	MeshArrayTexUv   MeshArrayType = 4
+	MeshArrayTexUv2  MeshArrayType = 5
+	MeshArrayVertex  MeshArrayType = 0
+	MeshArrayWeights MeshArrayType = 7
+)
+
+// MeshBlendShapeMode is an enum for BlendShapeMode values.
+type MeshBlendShapeMode int
+
+const (
+	MeshBlendShapeModeNormalized MeshBlendShapeMode = 0
+	MeshBlendShapeModeRelative   MeshBlendShapeMode = 1
+)
+
+// MeshPrimitiveType is an enum for PrimitiveType values.
+type MeshPrimitiveType int
+
+const (
+	MeshPrimitiveLines         MeshPrimitiveType = 1
+	MeshPrimitiveLineLoop      MeshPrimitiveType = 3
+	MeshPrimitiveLineStrip     MeshPrimitiveType = 2
+	MeshPrimitivePoints        MeshPrimitiveType = 0
+	MeshPrimitiveTriangles     MeshPrimitiveType = 4
+	MeshPrimitiveTriangleFan   MeshPrimitiveType = 6
+	MeshPrimitiveTriangleStrip MeshPrimitiveType = 5
+)
+
 //func NewMeshFromPointer(ptr gdnative.Pointer) Mesh {
 func newMeshFromPointer(ptr gdnative.Pointer) Mesh {
 	owner := gdnative.NewObjectFromPointer(ptr)

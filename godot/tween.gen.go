@@ -13,6 +13,41 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// TweenEaseType is an enum for EaseType values.
+type TweenEaseType int
+
+const (
+	TweenEaseIn    TweenEaseType = 0
+	TweenEaseInOut TweenEaseType = 2
+	TweenEaseOut   TweenEaseType = 1
+	TweenEaseOutIn TweenEaseType = 3
+)
+
+// TweenTransitionType is an enum for TransitionType values.
+type TweenTransitionType int
+
+const (
+	TweenTransBack    TweenTransitionType = 10
+	TweenTransBounce  TweenTransitionType = 9
+	TweenTransCirc    TweenTransitionType = 8
+	TweenTransCubic   TweenTransitionType = 7
+	TweenTransElastic TweenTransitionType = 6
+	TweenTransExpo    TweenTransitionType = 5
+	TweenTransLinear  TweenTransitionType = 0
+	TweenTransQuad    TweenTransitionType = 4
+	TweenTransQuart   TweenTransitionType = 3
+	TweenTransQuint   TweenTransitionType = 2
+	TweenTransSine    TweenTransitionType = 1
+)
+
+// TweenTweenProcessMode is an enum for TweenProcessMode values.
+type TweenTweenProcessMode int
+
+const (
+	TweenTweenProcessIdle    TweenTweenProcessMode = 1
+	TweenTweenProcessPhysics TweenTweenProcessMode = 0
+)
+
 //func NewTweenFromPointer(ptr gdnative.Pointer) Tween {
 func newTweenFromPointer(ptr gdnative.Pointer) Tween {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -171,6 +206,24 @@ func (o *Tween) GetSpeedScale() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.Tween::TweenProcessMode
 */
+func (o *Tween) GetTweenProcessMode() TweenTweenProcessMode {
+	//log.Println("Calling Tween.GetTweenProcessMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tween", "get_tween_process_mode")
+
+	// Call the parent method.
+	// enum.Tween::TweenProcessMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return TweenTweenProcessMode(ret)
+}
 
 /*
         Call [code]callback[/code] of [code]object[/code] after [code]duration[/code]. [code]arg1[/code]-[code]arg5[/code] are arguments to be passed to the callback.

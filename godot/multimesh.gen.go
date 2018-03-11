@@ -13,6 +13,23 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// MultiMeshColorFormat is an enum for ColorFormat values.
+type MultiMeshColorFormat int
+
+const (
+	MultiMeshColor8Bit  MultiMeshColorFormat = 1
+	MultiMeshColorFloat MultiMeshColorFormat = 2
+	MultiMeshColorNone  MultiMeshColorFormat = 0
+)
+
+// MultiMeshTransformFormat is an enum for TransformFormat values.
+type MultiMeshTransformFormat int
+
+const (
+	MultiMeshTransform2D MultiMeshTransformFormat = 0
+	MultiMeshTransform3D MultiMeshTransformFormat = 1
+)
+
 //func NewMultiMeshFromPointer(ptr gdnative.Pointer) MultiMesh {
 func newMultiMeshFromPointer(ptr gdnative.Pointer) MultiMesh {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -149,6 +166,24 @@ func (o *MultiMesh) GetAabb() gdnative.Aabb {
         Undocumented
 	Args: [], Returns: enum.MultiMesh::ColorFormat
 */
+func (o *MultiMesh) GetColorFormat() MultiMeshColorFormat {
+	//log.Println("Calling MultiMesh.GetColorFormat()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MultiMesh", "get_color_format")
+
+	// Call the parent method.
+	// enum.MultiMesh::ColorFormat
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return MultiMeshColorFormat(ret)
+}
 
 /*
         Get the color of a specific instance.
@@ -262,6 +297,24 @@ func (o *MultiMesh) GetMesh() MeshImplementer {
         Undocumented
 	Args: [], Returns: enum.MultiMesh::TransformFormat
 */
+func (o *MultiMesh) GetTransformFormat() MultiMeshTransformFormat {
+	//log.Println("Calling MultiMesh.GetTransformFormat()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("MultiMesh", "get_transform_format")
+
+	// Call the parent method.
+	// enum.MultiMesh::TransformFormat
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return MultiMeshTransformFormat(ret)
+}
 
 /*
         Undocumented

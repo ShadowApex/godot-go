@@ -84,6 +84,24 @@ func (o *PacketPeer) GetPacket() gdnative.PoolByteArray {
         Return the error state of the last packet received (via [method get_packet] and [method get_var]).
 	Args: [], Returns: enum.Error
 */
+func (o *PacketPeer) GetPacketError() gdnative.Error {
+	//log.Println("Calling PacketPeer.GetPacketError()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PacketPeer", "get_packet_error")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Get a Variant.
@@ -135,11 +153,49 @@ func (o *PacketPeer) IsObjectDecodingAllowed() gdnative.Bool {
         Send a raw packet.
 	Args: [{ false buffer PoolByteArray}], Returns: enum.Error
 */
+func (o *PacketPeer) PutPacket(buffer gdnative.PoolByteArray) gdnative.Error {
+	//log.Println("Calling PacketPeer.PutPacket()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolByteArray(buffer)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PacketPeer", "put_packet")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Send a Variant as a packet.
 	Args: [{ false var Variant}], Returns: enum.Error
 */
+func (o *PacketPeer) PutVar(variable gdnative.Variant) gdnative.Error {
+	//log.Println("Calling PacketPeer.PutVar()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVariant(variable)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PacketPeer", "put_var")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Undocumented

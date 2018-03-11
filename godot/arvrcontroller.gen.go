@@ -84,6 +84,24 @@ func (o *ARVRController) GetControllerName() gdnative.String {
         Returns the hand holding this controller, if known. See TRACKER_* constants in [ARVRPositionalTracker].
 	Args: [], Returns: enum.ARVRPositionalTracker::TrackerHand
 */
+func (o *ARVRController) GetHand() ARVRPositionalTrackerTrackerHand {
+	//log.Println("Calling ARVRController.GetHand()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRController", "get_hand")
+
+	// Call the parent method.
+	// enum.ARVRPositionalTracker::TrackerHand
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ARVRPositionalTrackerTrackerHand(ret)
+}
 
 /*
         Returns [code]true[/code] if the bound controller is active. ARVR systems attempt to track active controllers.

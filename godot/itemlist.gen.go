@@ -13,6 +13,22 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// ItemListIconMode is an enum for IconMode values.
+type ItemListIconMode int
+
+const (
+	ItemListIconModeLeft ItemListIconMode = 1
+	ItemListIconModeTop  ItemListIconMode = 0
+)
+
+// ItemListSelectMode is an enum for SelectMode values.
+type ItemListSelectMode int
+
+const (
+	ItemListSelectMulti  ItemListSelectMode = 1
+	ItemListSelectSingle ItemListSelectMode = 0
+)
+
 //func NewItemListFromPointer(ptr gdnative.Pointer) ItemList {
 func newItemListFromPointer(ptr gdnative.Pointer) ItemList {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -301,6 +317,24 @@ func (o *ItemList) GetFixedIconSize() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: enum.ItemList::IconMode
 */
+func (o *ItemList) GetIconMode() ItemListIconMode {
+	//log.Println("Calling ItemList.GetIconMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_icon_mode")
+
+	// Call the parent method.
+	// enum.ItemList::IconMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ItemListIconMode(ret)
+}
 
 /*
         Undocumented
@@ -581,6 +615,24 @@ func (o *ItemList) GetMaxTextLines() gdnative.Int {
         Undocumented
 	Args: [], Returns: enum.ItemList::SelectMode
 */
+func (o *ItemList) GetSelectMode() ItemListSelectMode {
+	//log.Println("Calling ItemList.GetSelectMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ItemList", "get_select_mode")
+
+	// Call the parent method.
+	// enum.ItemList::SelectMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ItemListSelectMode(ret)
+}
 
 /*
         Returns the list of selected indexes.

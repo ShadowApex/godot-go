@@ -58,6 +58,25 @@ func (o *RegEx) Clear() {
         Undocumented
 	Args: [{ false pattern String}], Returns: enum.Error
 */
+func (o *RegEx) Compile(pattern gdnative.String) gdnative.Error {
+	//log.Println("Calling RegEx.Compile()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(pattern)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RegEx", "compile")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Undocumented

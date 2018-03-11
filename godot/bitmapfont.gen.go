@@ -259,6 +259,25 @@ func (o *BitmapFont) Clear() {
         Creates a BitmapFont from the [code]*.fnt[/code] file at [code]path[/code].
 	Args: [{ false path String}], Returns: enum.Error
 */
+func (o *BitmapFont) CreateFromFnt(path gdnative.String) gdnative.Error {
+	//log.Println("Calling BitmapFont.CreateFromFnt()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BitmapFont", "create_from_fnt")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Returns the size of a character, optionally taking kerning into account if the next character is provided.

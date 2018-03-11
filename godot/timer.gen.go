@@ -13,6 +13,14 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// TimerTimerProcessMode is an enum for TimerProcessMode values.
+type TimerTimerProcessMode int
+
+const (
+	TimerTimerProcessIdle    TimerTimerProcessMode = 1
+	TimerTimerProcessPhysics TimerTimerProcessMode = 0
+)
+
 //func NewTimerFromPointer(ptr gdnative.Pointer) Timer {
 func newTimerFromPointer(ptr gdnative.Pointer) Timer {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -61,6 +69,24 @@ func (o *Timer) GetTimeLeft() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.Timer::TimerProcessMode
 */
+func (o *Timer) GetTimerProcessMode() TimerTimerProcessMode {
+	//log.Println("Calling Timer.GetTimerProcessMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Timer", "get_timer_process_mode")
+
+	// Call the parent method.
+	// enum.Timer::TimerProcessMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return TimerTimerProcessMode(ret)
+}
 
 /*
         Undocumented

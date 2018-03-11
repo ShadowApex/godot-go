@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// VisualScriptCustomNodeStartMode is an enum for StartMode values.
+type VisualScriptCustomNodeStartMode int
+
+const (
+	VisualScriptCustomNodeStartModeBeginSequence    VisualScriptCustomNodeStartMode = 0
+	VisualScriptCustomNodeStartModeContinueSequence VisualScriptCustomNodeStartMode = 1
+	VisualScriptCustomNodeStartModeResumeYield      VisualScriptCustomNodeStartMode = 2
+)
+
 //func NewVisualScriptCustomNodeFromPointer(ptr gdnative.Pointer) VisualScriptCustomNode {
 func newVisualScriptCustomNodeFromPointer(ptr gdnative.Pointer) VisualScriptCustomNode {
 	owner := gdnative.NewObjectFromPointer(ptr)

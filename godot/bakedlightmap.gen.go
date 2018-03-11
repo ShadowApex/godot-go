@@ -13,6 +13,34 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// BakedLightmapBakeError is an enum for BakeError values.
+type BakedLightmapBakeError int
+
+const (
+	BakedLightmapBakeErrorCantCreateImage BakedLightmapBakeError = 3
+	BakedLightmapBakeErrorNoMeshes        BakedLightmapBakeError = 2
+	BakedLightmapBakeErrorNoSavePath      BakedLightmapBakeError = 1
+	BakedLightmapBakeErrorOk              BakedLightmapBakeError = 0
+	BakedLightmapBakeErrorUserAborted     BakedLightmapBakeError = 4
+)
+
+// BakedLightmapBakeMode is an enum for BakeMode values.
+type BakedLightmapBakeMode int
+
+const (
+	BakedLightmapBakeModeConeTrace BakedLightmapBakeMode = 0
+	BakedLightmapBakeModeRayTrace  BakedLightmapBakeMode = 1
+)
+
+// BakedLightmapBakeQuality is an enum for BakeQuality values.
+type BakedLightmapBakeQuality int
+
+const (
+	BakedLightmapBakeQualityHigh   BakedLightmapBakeQuality = 2
+	BakedLightmapBakeQualityLow    BakedLightmapBakeQuality = 0
+	BakedLightmapBakeQualityMedium BakedLightmapBakeQuality = 1
+)
+
 //func NewBakedLightmapFromPointer(ptr gdnative.Pointer) BakedLightmap {
 func newBakedLightmapFromPointer(ptr gdnative.Pointer) BakedLightmap {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,6 +66,26 @@ func (o *BakedLightmap) BaseClass() string {
 
 	Args: [{Null true from_node Object} {False true create_visual_debug bool}], Returns: enum.BakedLightmap::BakeError
 */
+func (o *BakedLightmap) Bake(fromNode Object, createVisualDebug gdnative.Bool) BakedLightmapBakeError {
+	//log.Println("Calling BakedLightmap.Bake()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromObject(fromNode.GetBaseObject())
+	ptrArguments[1] = gdnative.NewPointerFromBool(createVisualDebug)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmap", "bake")
+
+	// Call the parent method.
+	// enum.BakedLightmap::BakeError
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return BakedLightmapBakeError(ret)
+}
 
 /*
 
@@ -86,11 +134,47 @@ func (o *BakedLightmap) GetBakeCellSize() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.BakedLightmap::BakeMode
 */
+func (o *BakedLightmap) GetBakeMode() BakedLightmapBakeMode {
+	//log.Println("Calling BakedLightmap.GetBakeMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmap", "get_bake_mode")
+
+	// Call the parent method.
+	// enum.BakedLightmap::BakeMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return BakedLightmapBakeMode(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.BakedLightmap::BakeQuality
 */
+func (o *BakedLightmap) GetBakeQuality() BakedLightmapBakeQuality {
+	//log.Println("Calling BakedLightmap.GetBakeQuality()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BakedLightmap", "get_bake_quality")
+
+	// Call the parent method.
+	// enum.BakedLightmap::BakeQuality
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return BakedLightmapBakeQuality(ret)
+}
 
 /*
         Undocumented

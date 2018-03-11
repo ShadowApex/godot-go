@@ -13,6 +13,30 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// LineEditAlign is an enum for Align values.
+type LineEditAlign int
+
+const (
+	LineEditAlignCenter LineEditAlign = 1
+	LineEditAlignFill   LineEditAlign = 3
+	LineEditAlignLeft   LineEditAlign = 0
+	LineEditAlignRight  LineEditAlign = 2
+)
+
+// LineEditMenuItems is an enum for MenuItems values.
+type LineEditMenuItems int
+
+const (
+	LineEditMenuClear     LineEditMenuItems = 3
+	LineEditMenuCopy      LineEditMenuItems = 1
+	LineEditMenuCut       LineEditMenuItems = 0
+	LineEditMenuMax       LineEditMenuItems = 7
+	LineEditMenuPaste     LineEditMenuItems = 2
+	LineEditMenuRedo      LineEditMenuItems = 6
+	LineEditMenuSelectAll LineEditMenuItems = 4
+	LineEditMenuUndo      LineEditMenuItems = 5
+)
+
 //func NewLineEditFromPointer(ptr gdnative.Pointer) LineEdit {
 func newLineEditFromPointer(ptr gdnative.Pointer) LineEdit {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -268,6 +292,24 @@ func (o *LineEdit) Deselect() {
         Undocumented
 	Args: [], Returns: enum.LineEdit::Align
 */
+func (o *LineEdit) GetAlign() LineEditAlign {
+	//log.Println("Calling LineEdit.GetAlign()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LineEdit", "get_align")
+
+	// Call the parent method.
+	// enum.LineEdit::Align
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return LineEditAlign(ret)
+}
 
 /*
         Undocumented

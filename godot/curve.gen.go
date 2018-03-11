@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// CurveTangentMode is an enum for TangentMode values.
+type CurveTangentMode int
+
+const (
+	CurveTangentFree      CurveTangentMode = 0
+	CurveTangentLinear    CurveTangentMode = 1
+	CurveTangentModeCount CurveTangentMode = 2
+)
+
 //func NewCurveFromPointer(ptr gdnative.Pointer) Curve {
 func newCurveFromPointer(ptr gdnative.Pointer) Curve {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -239,6 +248,25 @@ func (o *Curve) GetMinValue() gdnative.Float {
         Returns the left [code]TangentMode[/code] for the point at [code]index[/code].
 	Args: [{ false index int}], Returns: enum.Curve::TangentMode
 */
+func (o *Curve) GetPointLeftMode(index gdnative.Int) CurveTangentMode {
+	//log.Println("Calling Curve.GetPointLeftMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(index)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve", "get_point_left_mode")
+
+	// Call the parent method.
+	// enum.Curve::TangentMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return CurveTangentMode(ret)
+}
 
 /*
         Returns the left tangent angle (in degrees) for the point at [code]index[/code].
@@ -292,6 +320,25 @@ func (o *Curve) GetPointPosition(index gdnative.Int) gdnative.Vector2 {
         Returns the right [code]TangentMode[/code] for the point at [code]index[/code].
 	Args: [{ false index int}], Returns: enum.Curve::TangentMode
 */
+func (o *Curve) GetPointRightMode(index gdnative.Int) CurveTangentMode {
+	//log.Println("Calling Curve.GetPointRightMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(index)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Curve", "get_point_right_mode")
+
+	// Call the parent method.
+	// enum.Curve::TangentMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return CurveTangentMode(ret)
+}
 
 /*
         Returns the right tangent angle (in degrees) for the point at [code]index[/code].

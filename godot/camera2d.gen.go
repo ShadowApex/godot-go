@@ -13,6 +13,14 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// Camera2DAnchorMode is an enum for AnchorMode values.
+type Camera2DAnchorMode int
+
+const (
+	Camera2DAnchorModeDragCenter   Camera2DAnchorMode = 1
+	Camera2DAnchorModeFixedTopLeft Camera2DAnchorMode = 0
+)
+
 //func NewCamera2DFromPointer(ptr gdnative.Pointer) Camera2D {
 func newCamera2DFromPointer(ptr gdnative.Pointer) Camera2D {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -181,6 +189,24 @@ func (o *Camera2D) ForceUpdateScroll() {
         Undocumented
 	Args: [], Returns: enum.Camera2D::AnchorMode
 */
+func (o *Camera2D) GetAnchorMode() Camera2DAnchorMode {
+	//log.Println("Calling Camera2D.GetAnchorMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera2D", "get_anchor_mode")
+
+	// Call the parent method.
+	// enum.Camera2D::AnchorMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return Camera2DAnchorMode(ret)
+}
 
 /*
         Return the camera position.

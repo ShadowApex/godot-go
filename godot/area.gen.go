@@ -13,6 +13,17 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// AreaSpaceOverride is an enum for SpaceOverride values.
+type AreaSpaceOverride int
+
+const (
+	AreaSpaceOverrideCombine        AreaSpaceOverride = 1
+	AreaSpaceOverrideCombineReplace AreaSpaceOverride = 2
+	AreaSpaceOverrideDisabled       AreaSpaceOverride = 0
+	AreaSpaceOverrideReplace        AreaSpaceOverride = 3
+	AreaSpaceOverrideReplaceCombine AreaSpaceOverride = 4
+)
+
 //func NewAreaFromPointer(ptr gdnative.Pointer) Area {
 func newAreaFromPointer(ptr gdnative.Pointer) Area {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -542,6 +553,24 @@ func (o *Area) GetReverbUniformity() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.Area::SpaceOverride
 */
+func (o *Area) GetSpaceOverrideMode() AreaSpaceOverride {
+	//log.Println("Calling Area.GetSpaceOverrideMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area", "get_space_override_mode")
+
+	// Call the parent method.
+	// enum.Area::SpaceOverride
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return AreaSpaceOverride(ret)
+}
 
 /*
         Undocumented

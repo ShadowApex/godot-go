@@ -13,6 +13,18 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// ProceduralSkyTextureSize is an enum for TextureSize values.
+type ProceduralSkyTextureSize int
+
+const (
+	ProceduralSkyTextureSize1024 ProceduralSkyTextureSize = 2
+	ProceduralSkyTextureSize2048 ProceduralSkyTextureSize = 3
+	ProceduralSkyTextureSize256  ProceduralSkyTextureSize = 0
+	ProceduralSkyTextureSize4096 ProceduralSkyTextureSize = 4
+	ProceduralSkyTextureSize512  ProceduralSkyTextureSize = 1
+	ProceduralSkyTextureSizeMax  ProceduralSkyTextureSize = 5
+)
+
 //func NewProceduralSkyFromPointer(ptr gdnative.Pointer) ProceduralSky {
 func newProceduralSkyFromPointer(ptr gdnative.Pointer) ProceduralSky {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -424,6 +436,24 @@ func (o *ProceduralSky) GetSunLongitude() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.ProceduralSky::TextureSize
 */
+func (o *ProceduralSky) GetTextureSize() ProceduralSkyTextureSize {
+	//log.Println("Calling ProceduralSky.GetTextureSize()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProceduralSky", "get_texture_size")
+
+	// Call the parent method.
+	// enum.ProceduralSky::TextureSize
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ProceduralSkyTextureSize(ret)
+}
 
 /*
         Undocumented

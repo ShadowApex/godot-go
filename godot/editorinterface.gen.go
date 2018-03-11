@@ -514,6 +514,24 @@ func (o *EditorInterface) ReloadSceneFromPath(sceneFilepath gdnative.String) {
         Saves the scene. Returns either OK or ERR_CANT_CREATE. See [@GlobalScope] constants.
 	Args: [], Returns: enum.Error
 */
+func (o *EditorInterface) SaveScene() gdnative.Error {
+	//log.Println("Calling EditorInterface.SaveScene()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorInterface", "save_scene")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Saves the scene as a file at [code]path[/code].

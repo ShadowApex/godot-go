@@ -13,6 +13,36 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// NodeDuplicateFlags is an enum for DuplicateFlags values.
+type NodeDuplicateFlags int
+
+const (
+	NodeDuplicateGroups        NodeDuplicateFlags = 2
+	NodeDuplicateScripts       NodeDuplicateFlags = 4
+	NodeDuplicateSignals       NodeDuplicateFlags = 1
+	NodeDuplicateUseInstancing NodeDuplicateFlags = 8
+)
+
+// NodePauseMode is an enum for PauseMode values.
+type NodePauseMode int
+
+const (
+	NodePauseModeInherit NodePauseMode = 0
+	NodePauseModeProcess NodePauseMode = 2
+	NodePauseModeStop    NodePauseMode = 1
+)
+
+// NodeRPCMode is an enum for RPCMode values.
+type NodeRPCMode int
+
+const (
+	NodeRpcModeDisabled NodeRPCMode = 0
+	NodeRpcModeMaster   NodeRPCMode = 3
+	NodeRpcModeRemote   NodeRPCMode = 1
+	NodeRpcModeSlave    NodeRPCMode = 4
+	NodeRpcModeSync     NodeRPCMode = 2
+)
+
 //func NewNodeFromPointer(ptr gdnative.Pointer) Node {
 func newNodeFromPointer(ptr gdnative.Pointer) Node {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -797,6 +827,24 @@ func (o *Node) GetPathTo(node Object) gdnative.NodePath {
         Undocumented
 	Args: [], Returns: enum.Node::PauseMode
 */
+func (o *Node) GetPauseMode() NodePauseMode {
+	//log.Println("Calling Node.GetPauseMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Node", "get_pause_mode")
+
+	// Call the parent method.
+	// enum.Node::PauseMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return NodePauseMode(ret)
+}
 
 /*
         Returns the time elapsed since the last physics-bound frame (see [method _physics_process]). This is always a constant value in physics processing unless the frames per second is changed in [OS].

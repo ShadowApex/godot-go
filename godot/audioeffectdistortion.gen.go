@@ -13,6 +13,17 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// AudioEffectDistortionMode is an enum for Mode values.
+type AudioEffectDistortionMode int
+
+const (
+	AudioEffectDistortionModeAtan      AudioEffectDistortionMode = 1
+	AudioEffectDistortionModeClip      AudioEffectDistortionMode = 0
+	AudioEffectDistortionModeLofi      AudioEffectDistortionMode = 2
+	AudioEffectDistortionModeOverdrive AudioEffectDistortionMode = 3
+	AudioEffectDistortionModeWaveshape AudioEffectDistortionMode = 4
+)
+
 //func NewAudioEffectDistortionFromPointer(ptr gdnative.Pointer) AudioEffectDistortion {
 func newAudioEffectDistortionFromPointer(ptr gdnative.Pointer) AudioEffectDistortion {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -84,6 +95,24 @@ func (o *AudioEffectDistortion) GetKeepHfHz() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.AudioEffectDistortion::Mode
 */
+func (o *AudioEffectDistortion) GetMode() AudioEffectDistortionMode {
+	//log.Println("Calling AudioEffectDistortion.GetMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectDistortion", "get_mode")
+
+	// Call the parent method.
+	// enum.AudioEffectDistortion::Mode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return AudioEffectDistortionMode(ret)
+}
 
 /*
         Undocumented

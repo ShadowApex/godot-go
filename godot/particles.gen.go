@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// ParticlesDrawOrder is an enum for DrawOrder values.
+type ParticlesDrawOrder int
+
+const (
+	ParticlesDrawOrderIndex     ParticlesDrawOrder = 0
+	ParticlesDrawOrderLifetime  ParticlesDrawOrder = 1
+	ParticlesDrawOrderViewDepth ParticlesDrawOrder = 2
+)
+
 //func NewParticlesFromPointer(ptr gdnative.Pointer) Particles {
 func newParticlesFromPointer(ptr gdnative.Pointer) Particles {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -84,6 +93,24 @@ func (o *Particles) GetAmount() gdnative.Int {
         Undocumented
 	Args: [], Returns: enum.Particles::DrawOrder
 */
+func (o *Particles) GetDrawOrder() ParticlesDrawOrder {
+	//log.Println("Calling Particles.GetDrawOrder()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Particles", "get_draw_order")
+
+	// Call the parent method.
+	// enum.Particles::DrawOrder
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ParticlesDrawOrder(ret)
+}
 
 /*
         Undocumented

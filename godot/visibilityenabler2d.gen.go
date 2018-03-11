@@ -13,6 +13,19 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// VisibilityEnabler2DEnabler is an enum for Enabler values.
+type VisibilityEnabler2DEnabler int
+
+const (
+	VisibilityEnabler2DEnablerFreezeBodies         VisibilityEnabler2DEnabler = 1
+	VisibilityEnabler2DEnablerMax                  VisibilityEnabler2DEnabler = 6
+	VisibilityEnabler2DEnablerParentPhysicsProcess VisibilityEnabler2DEnabler = 4
+	VisibilityEnabler2DEnablerParentProcess        VisibilityEnabler2DEnabler = 3
+	VisibilityEnabler2DEnablerPauseAnimatedSprites VisibilityEnabler2DEnabler = 5
+	VisibilityEnabler2DEnablerPauseAnimations      VisibilityEnabler2DEnabler = 0
+	VisibilityEnabler2DEnablerPauseParticles       VisibilityEnabler2DEnabler = 2
+)
+
 //func NewVisibilityEnabler2DFromPointer(ptr gdnative.Pointer) VisibilityEnabler2D {
 func newVisibilityEnabler2DFromPointer(ptr gdnative.Pointer) VisibilityEnabler2D {
 	owner := gdnative.NewObjectFromPointer(ptr)

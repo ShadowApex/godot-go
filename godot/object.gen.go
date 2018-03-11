@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// ObjectConnectFlags is an enum for ConnectFlags values.
+type ObjectConnectFlags int
+
+const (
+	ObjectConnectDeferred ObjectConnectFlags = 1
+	ObjectConnectOneshot  ObjectConnectFlags = 4
+	ObjectConnectPersist  ObjectConnectFlags = 2
+)
+
 //func NewObjectFromPointer(ptr gdnative.Pointer) Object {
 func newObjectFromPointer(ptr gdnative.Pointer) Object {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -275,6 +284,29 @@ func (o *Object) CanTranslateMessages() gdnative.Bool {
         Connects a [code]signal[/code] to a [code]method[/code] on a [code]target[/code] object. Pass optional [code]binds[/code] to the call. Use [code]flags[/code] to set deferred or one shot connections. See [code]CONNECT_*[/code] constants. A [code]signal[/code] can only be connected once to a [code]method[/code]. It will throw an error if already connected. To avoid this, first use [method is_connected] to check for existing connections.
 	Args: [{ false signal String} { false target Object} { false method String} {[] true binds Array} {0 true flags int}], Returns: enum.Error
 */
+func (o *Object) Connect(signal gdnative.String, target Object, method gdnative.String, binds gdnative.Array, flags gdnative.Int) gdnative.Error {
+	//log.Println("Calling Object.Connect()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromString(signal)
+	ptrArguments[1] = gdnative.NewPointerFromObject(target.GetBaseObject())
+	ptrArguments[2] = gdnative.NewPointerFromString(method)
+	ptrArguments[3] = gdnative.NewPointerFromArray(binds)
+	ptrArguments[4] = gdnative.NewPointerFromInt(flags)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Object", "connect")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Disconnects a [code]signal[/code] from a [code]method[/code] on the given [code]target[/code].

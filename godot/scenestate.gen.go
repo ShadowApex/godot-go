@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// SceneStateGenEditState is an enum for GenEditState values.
+type SceneStateGenEditState int
+
+const (
+	SceneStateGenEditStateDisabled SceneStateGenEditState = 0
+	SceneStateGenEditStateInstance SceneStateGenEditState = 1
+	SceneStateGenEditStateMain     SceneStateGenEditState = 2
+)
+
 //func NewSceneStateFromPointer(ptr gdnative.Pointer) SceneState {
 func newSceneStateFromPointer(ptr gdnative.Pointer) SceneState {
 	owner := gdnative.NewObjectFromPointer(ptr)

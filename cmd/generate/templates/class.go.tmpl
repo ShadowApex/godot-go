@@ -14,6 +14,21 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+{{/* Generate any enums that are part of this API */}}
+{{ if $API.Enums -}}
+	{{ range $i, $enum := $API.Enums -}}
+		// {{ $API.Name }}{{ $enum.Name }} is an enum for {{ $enum.Name }} values.
+		type {{ $API.Name }}{{ $enum.Name }} int
+
+		const (
+		{{ range $name, $value := $enum.Values -}}
+			{{ $API.Name }}{{ $view.GoName $name }} {{ $API.Name }}{{ $enum.Name }} = {{ $value }}
+		{{ end -}}
+		)
+	{{ end -}}
+{{ end -}}
+
+{{/* Generate constructors so we can build the types from a gdnative Pointer */}}
 //func New{{ $view.SetClassName $API.Name $API.Singleton}}FromPointer(ptr gdnative.Pointer) {{ $view.SetClassName $API.Name $API.Singleton }} {
 func new{{ $view.GoValue $API.Name }}FromPointer(ptr gdnative.Pointer) {{ $view.SetClassName $API.Name $API.Singleton }} {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -82,7 +97,6 @@ func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) GetBaseObject() gdna
         {{ $view.MethodDoc $API.Name $method.Name }}
 	Args: {{ $method.Arguments }}, Returns: {{ $method.ReturnType }}
         */
-	{{/* Skip ENUM functions for now*/}}{{ if not ($view.IsEnum $method.ReturnType) -}}
 	func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) {{ $view.GoMethodName $method.Name }}({{ range $k, $arg := $method.Arguments }}{{ $view.GoArgName $arg.Name }} {{ $view.GoValue $arg.Type }},{{ end }}) {{ if $method.ReturnType }}{{ $view.GoValue $method.ReturnType }}{{ if ($view.IsGodotClass $method.ReturnType) }}Implementer{{ end }}{{ end }} {
 		{{ if $API.Singleton -}}
 			o.ensureSingleton()
@@ -129,14 +143,17 @@ func (o *{{ $view.SetClassName $API.Name $API.Singleton }}) GetBaseObject() gdna
 				return &ret
 		        {{ else -}}
 			    	ret := gdnative.New{{ $view.GoNewFromPointerType $method.ReturnType }}FromPointer(retPtr)
-	    		    	return ret
+				{{ if $view.IsEnum $method.ReturnType -}}
+					return {{ $view.GoValue $method.ReturnType }}(ret)
+				{{ else -}}
+	    		    		return ret
+				{{ end -}}
 		        {{ end -}}
                     {{ end -}}
                 {{ else -}}
                     //log.Println("  Function successfully completed.")
                 {{ end -}}
             }
-	{{ end }}
     {{ end }}
 {{ end }}
 

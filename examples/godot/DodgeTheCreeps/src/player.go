@@ -63,7 +63,6 @@ func (p *Player) X_Process(delta gd.Double) {
 	if velocity.Length() > 0 {
 		normal := velocity.Normalized()
 		velocity = normal.OperatorMultiplyScalar(p.Speed)
-		p.animatedSprite.SetAnimation("right")
 		p.animatedSprite.Play("right")
 	} else {
 		p.animatedSprite.Stop()

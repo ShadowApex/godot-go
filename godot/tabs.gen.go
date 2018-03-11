@@ -13,6 +13,26 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// TabsCloseButtonDisplayPolicy is an enum for CloseButtonDisplayPolicy values.
+type TabsCloseButtonDisplayPolicy int
+
+const (
+	TabsCloseButtonMax            TabsCloseButtonDisplayPolicy = 3
+	TabsCloseButtonShowActiveOnly TabsCloseButtonDisplayPolicy = 1
+	TabsCloseButtonShowAlways     TabsCloseButtonDisplayPolicy = 2
+	TabsCloseButtonShowNever      TabsCloseButtonDisplayPolicy = 0
+)
+
+// TabsTabAlign is an enum for TabAlign values.
+type TabsTabAlign int
+
+const (
+	TabsAlignCenter TabsTabAlign = 1
+	TabsAlignLeft   TabsTabAlign = 0
+	TabsAlignMax    TabsTabAlign = 3
+	TabsAlignRight  TabsTabAlign = 2
+)
+
 //func NewTabsFromPointer(ptr gdnative.Pointer) Tabs {
 func newTabsFromPointer(ptr gdnative.Pointer) Tabs {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -171,11 +191,47 @@ func (o *Tabs) GetScrollingEnabled() gdnative.Bool {
         Undocumented
 	Args: [], Returns: enum.Tabs::TabAlign
 */
+func (o *Tabs) GetTabAlign() TabsTabAlign {
+	//log.Println("Calling Tabs.GetTabAlign()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tabs", "get_tab_align")
+
+	// Call the parent method.
+	// enum.Tabs::TabAlign
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return TabsTabAlign(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.Tabs::CloseButtonDisplayPolicy
 */
+func (o *Tabs) GetTabCloseDisplayPolicy() TabsCloseButtonDisplayPolicy {
+	//log.Println("Calling Tabs.GetTabCloseDisplayPolicy()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tabs", "get_tab_close_display_policy")
+
+	// Call the parent method.
+	// enum.Tabs::CloseButtonDisplayPolicy
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return TabsCloseButtonDisplayPolicy(ret)
+}
 
 /*
 

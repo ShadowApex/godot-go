@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// OccluderPolygon2DCullMode is an enum for CullMode values.
+type OccluderPolygon2DCullMode int
+
+const (
+	OccluderPolygon2DCullClockwise        OccluderPolygon2DCullMode = 1
+	OccluderPolygon2DCullCounterClockwise OccluderPolygon2DCullMode = 2
+	OccluderPolygon2DCullDisabled         OccluderPolygon2DCullMode = 0
+)
+
 //func NewOccluderPolygon2DFromPointer(ptr gdnative.Pointer) OccluderPolygon2D {
 func newOccluderPolygon2DFromPointer(ptr gdnative.Pointer) OccluderPolygon2D {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,6 +47,24 @@ func (o *OccluderPolygon2D) BaseClass() string {
         Undocumented
 	Args: [], Returns: enum.OccluderPolygon2D::CullMode
 */
+func (o *OccluderPolygon2D) GetCullMode() OccluderPolygon2DCullMode {
+	//log.Println("Calling OccluderPolygon2D.GetCullMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("OccluderPolygon2D", "get_cull_mode")
+
+	// Call the parent method.
+	// enum.OccluderPolygon2D::CullMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return OccluderPolygon2DCullMode(ret)
+}
 
 /*
         Undocumented

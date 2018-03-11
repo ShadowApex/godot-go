@@ -13,6 +13,16 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// StreamPeerTCPStatus is an enum for Status values.
+type StreamPeerTCPStatus int
+
+const (
+	StreamPeerTCPStatusConnected  StreamPeerTCPStatus = 2
+	StreamPeerTCPStatusConnecting StreamPeerTCPStatus = 1
+	StreamPeerTCPStatusError      StreamPeerTCPStatus = 3
+	StreamPeerTCPStatusNone       StreamPeerTCPStatus = 0
+)
+
 //func NewStreamPeerTCPFromPointer(ptr gdnative.Pointer) StreamPeerTCP {
 func newStreamPeerTCPFromPointer(ptr gdnative.Pointer) StreamPeerTCP {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,6 +48,26 @@ func (o *StreamPeerTCP) BaseClass() string {
         Connect to the specified host:port pair. A hostname will be resolved if valid. Returns [OK] on success or [FAILED] on failure.
 	Args: [{ false host String} { false port int}], Returns: enum.Error
 */
+func (o *StreamPeerTCP) ConnectToHost(host gdnative.String, port gdnative.Int) gdnative.Error {
+	//log.Println("Calling StreamPeerTCP.ConnectToHost()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(host)
+	ptrArguments[1] = gdnative.NewPointerFromInt(port)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerTCP", "connect_to_host")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Disconnect from host.
@@ -109,6 +139,24 @@ func (o *StreamPeerTCP) GetConnectedPort() gdnative.Int {
         Return the status of the connection, one of STATUS_* enum.
 	Args: [], Returns: enum.StreamPeerTCP::Status
 */
+func (o *StreamPeerTCP) GetStatus() StreamPeerTCPStatus {
+	//log.Println("Calling StreamPeerTCP.GetStatus()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerTCP", "get_status")
+
+	// Call the parent method.
+	// enum.StreamPeerTCP::Status
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return StreamPeerTCPStatus(ret)
+}
 
 /*
 

@@ -13,6 +13,26 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// CanvasItemMaterialBlendMode is an enum for BlendMode values.
+type CanvasItemMaterialBlendMode int
+
+const (
+	CanvasItemMaterialBlendModeAdd          CanvasItemMaterialBlendMode = 1
+	CanvasItemMaterialBlendModeMix          CanvasItemMaterialBlendMode = 0
+	CanvasItemMaterialBlendModeMul          CanvasItemMaterialBlendMode = 3
+	CanvasItemMaterialBlendModePremultAlpha CanvasItemMaterialBlendMode = 4
+	CanvasItemMaterialBlendModeSub          CanvasItemMaterialBlendMode = 2
+)
+
+// CanvasItemMaterialLightMode is an enum for LightMode values.
+type CanvasItemMaterialLightMode int
+
+const (
+	CanvasItemMaterialLightModeLightOnly CanvasItemMaterialLightMode = 2
+	CanvasItemMaterialLightModeNormal    CanvasItemMaterialLightMode = 0
+	CanvasItemMaterialLightModeUnshaded  CanvasItemMaterialLightMode = 1
+)
+
 //func NewCanvasItemMaterialFromPointer(ptr gdnative.Pointer) CanvasItemMaterial {
 func newCanvasItemMaterialFromPointer(ptr gdnative.Pointer) CanvasItemMaterial {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,11 +58,47 @@ func (o *CanvasItemMaterial) BaseClass() string {
         Undocumented
 	Args: [], Returns: enum.CanvasItemMaterial::BlendMode
 */
+func (o *CanvasItemMaterial) GetBlendMode() CanvasItemMaterialBlendMode {
+	//log.Println("Calling CanvasItemMaterial.GetBlendMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItemMaterial", "get_blend_mode")
+
+	// Call the parent method.
+	// enum.CanvasItemMaterial::BlendMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return CanvasItemMaterialBlendMode(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.CanvasItemMaterial::LightMode
 */
+func (o *CanvasItemMaterial) GetLightMode() CanvasItemMaterialLightMode {
+	//log.Println("Calling CanvasItemMaterial.GetLightMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CanvasItemMaterial", "get_light_mode")
+
+	// Call the parent method.
+	// enum.CanvasItemMaterial::LightMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return CanvasItemMaterialLightMode(ret)
+}
 
 /*
         Undocumented

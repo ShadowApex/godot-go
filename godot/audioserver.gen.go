@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// AudioServerSpeakerMode is an enum for SpeakerMode values.
+type AudioServerSpeakerMode int
+
+const (
+	AudioServerSpeakerModeStereo AudioServerSpeakerMode = 0
+	AudioServerSpeakerSurround51 AudioServerSpeakerMode = 2
+	AudioServerSpeakerSurround71 AudioServerSpeakerMode = 3
+)
+
 //func NewaudioServerFromPointer(ptr gdnative.Pointer) audioServer {
 func newAudioServerFromPointer(ptr gdnative.Pointer) audioServer {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -409,6 +418,25 @@ func (o *audioServer) GetMixRate() gdnative.Float {
         Returns the speaker configuration.
 	Args: [], Returns: enum.AudioServer::SpeakerMode
 */
+func (o *audioServer) GetSpeakerMode() AudioServerSpeakerMode {
+	o.ensureSingleton()
+	//log.Println("Calling AudioServer.GetSpeakerMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioServer", "get_speaker_mode")
+
+	// Call the parent method.
+	// enum.AudioServer::SpeakerMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return AudioServerSpeakerMode(ret)
+}
 
 /*
         If [code]true[/code] the bus at index [code]bus_idx[/code] is bypassing effects.

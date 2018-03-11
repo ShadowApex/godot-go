@@ -13,6 +13,27 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// TreeItemTextAlign is an enum for TextAlign values.
+type TreeItemTextAlign int
+
+const (
+	TreeItemAlignCenter TreeItemTextAlign = 1
+	TreeItemAlignLeft   TreeItemTextAlign = 0
+	TreeItemAlignRight  TreeItemTextAlign = 2
+)
+
+// TreeItemTreeCellMode is an enum for TreeCellMode values.
+type TreeItemTreeCellMode int
+
+const (
+	TreeItemCellModeCheck           TreeItemTreeCellMode = 1
+	TreeItemCellModeCustom          TreeItemTreeCellMode = 5
+	TreeItemCellModeIcon            TreeItemTreeCellMode = 4
+	TreeItemCellModeRange           TreeItemTreeCellMode = 2
+	TreeItemCellModeRangeExpression TreeItemTreeCellMode = 3
+	TreeItemCellModeString          TreeItemTreeCellMode = 0
+)
+
 //func NewTreeItemFromPointer(ptr gdnative.Pointer) TreeItem {
 func newTreeItemFromPointer(ptr gdnative.Pointer) TreeItem {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -211,6 +232,25 @@ func (o *TreeItem) GetButtonCount(column gdnative.Int) gdnative.Int {
         Returns the column's cell mode. See [code]CELL_MODE_*[/code] constants.
 	Args: [{ false column int}], Returns: enum.TreeItem::TreeCellMode
 */
+func (o *TreeItem) GetCellMode(column gdnative.Int) TreeItemTreeCellMode {
+	//log.Println("Calling TreeItem.GetCellMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(column)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TreeItem", "get_cell_mode")
+
+	// Call the parent method.
+	// enum.TreeItem::TreeCellMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return TreeItemTreeCellMode(ret)
+}
 
 /*
         Returns the TreeItem's child items.
@@ -691,6 +731,25 @@ func (o *TreeItem) GetText(column gdnative.Int) gdnative.String {
         Returns the given column's text alignment.
 	Args: [{ false column int}], Returns: enum.TreeItem::TextAlign
 */
+func (o *TreeItem) GetTextAlign(column gdnative.Int) TreeItemTextAlign {
+	//log.Println("Calling TreeItem.GetTextAlign()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(column)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TreeItem", "get_text_align")
+
+	// Call the parent method.
+	// enum.TreeItem::TextAlign
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return TreeItemTextAlign(ret)
+}
 
 /*
         Returns the given column's tooltip.

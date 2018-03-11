@@ -13,6 +13,23 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// DirectionalLightShadowDepthRange is an enum for ShadowDepthRange values.
+type DirectionalLightShadowDepthRange int
+
+const (
+	DirectionalLightShadowDepthRangeOptimized DirectionalLightShadowDepthRange = 1
+	DirectionalLightShadowDepthRangeStable    DirectionalLightShadowDepthRange = 0
+)
+
+// DirectionalLightShadowMode is an enum for ShadowMode values.
+type DirectionalLightShadowMode int
+
+const (
+	DirectionalLightShadowOrthogonal      DirectionalLightShadowMode = 0
+	DirectionalLightShadowParallel2Splits DirectionalLightShadowMode = 1
+	DirectionalLightShadowParallel4Splits DirectionalLightShadowMode = 2
+)
+
 //func NewDirectionalLightFromPointer(ptr gdnative.Pointer) DirectionalLight {
 func newDirectionalLightFromPointer(ptr gdnative.Pointer) DirectionalLight {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,11 +55,47 @@ func (o *DirectionalLight) BaseClass() string {
         Undocumented
 	Args: [], Returns: enum.DirectionalLight::ShadowDepthRange
 */
+func (o *DirectionalLight) GetShadowDepthRange() DirectionalLightShadowDepthRange {
+	//log.Println("Calling DirectionalLight.GetShadowDepthRange()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DirectionalLight", "get_shadow_depth_range")
+
+	// Call the parent method.
+	// enum.DirectionalLight::ShadowDepthRange
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return DirectionalLightShadowDepthRange(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.DirectionalLight::ShadowMode
 */
+func (o *DirectionalLight) GetShadowMode() DirectionalLightShadowMode {
+	//log.Println("Calling DirectionalLight.GetShadowMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("DirectionalLight", "get_shadow_mode")
+
+	// Call the parent method.
+	// enum.DirectionalLight::ShadowMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return DirectionalLightShadowMode(ret)
+}
 
 /*
         Undocumented

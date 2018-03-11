@@ -13,6 +13,26 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// LabelAlign is an enum for Align values.
+type LabelAlign int
+
+const (
+	LabelAlignCenter LabelAlign = 1
+	LabelAlignFill   LabelAlign = 3
+	LabelAlignLeft   LabelAlign = 0
+	LabelAlignRight  LabelAlign = 2
+)
+
+// LabelVAlign is an enum for VAlign values.
+type LabelVAlign int
+
+const (
+	LabelValignBottom LabelVAlign = 2
+	LabelValignCenter LabelVAlign = 1
+	LabelValignFill   LabelVAlign = 3
+	LabelValignTop    LabelVAlign = 0
+)
+
 //func NewLabelFromPointer(ptr gdnative.Pointer) Label {
 func newLabelFromPointer(ptr gdnative.Pointer) Label {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,6 +58,24 @@ func (o *Label) BaseClass() string {
         Undocumented
 	Args: [], Returns: enum.Label::Align
 */
+func (o *Label) GetAlign() LabelAlign {
+	//log.Println("Calling Label.GetAlign()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Label", "get_align")
+
+	// Call the parent method.
+	// enum.Label::Align
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return LabelAlign(ret)
+}
 
 /*
         Returns the amount of lines of text the Label has.
@@ -204,6 +242,24 @@ func (o *Label) GetTotalCharacterCount() gdnative.Int {
         Undocumented
 	Args: [], Returns: enum.Label::VAlign
 */
+func (o *Label) GetValign() LabelVAlign {
+	//log.Println("Calling Label.GetValign()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Label", "get_valign")
+
+	// Call the parent method.
+	// enum.Label::VAlign
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return LabelVAlign(ret)
+}
 
 /*
         Undocumented

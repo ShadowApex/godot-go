@@ -13,6 +13,33 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// TileMapHalfOffset is an enum for HalfOffset values.
+type TileMapHalfOffset int
+
+const (
+	TileMapHalfOffsetDisabled TileMapHalfOffset = 2
+	TileMapHalfOffsetX        TileMapHalfOffset = 0
+	TileMapHalfOffsetY        TileMapHalfOffset = 1
+)
+
+// TileMapMode is an enum for Mode values.
+type TileMapMode int
+
+const (
+	TileMapModeCustom    TileMapMode = 2
+	TileMapModeIsometric TileMapMode = 1
+	TileMapModeSquare    TileMapMode = 0
+)
+
+// TileMapTileOrigin is an enum for TileOrigin values.
+type TileMapTileOrigin int
+
+const (
+	TileMapTileOriginBottomLeft TileMapTileOrigin = 2
+	TileMapTileOriginCenter     TileMapTileOrigin = 1
+	TileMapTileOriginTopLeft    TileMapTileOrigin = 0
+)
+
 //func NewTileMapFromPointer(ptr gdnative.Pointer) TileMap {
 func newTileMapFromPointer(ptr gdnative.Pointer) TileMap {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -487,11 +514,47 @@ func (o *TileMap) GetCustomTransform() gdnative.Transform2D {
         Undocumented
 	Args: [], Returns: enum.TileMap::HalfOffset
 */
+func (o *TileMap) GetHalfOffset() TileMapHalfOffset {
+	//log.Println("Calling TileMap.GetHalfOffset()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileMap", "get_half_offset")
+
+	// Call the parent method.
+	// enum.TileMap::HalfOffset
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return TileMapHalfOffset(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.TileMap::Mode
 */
+func (o *TileMap) GetMode() TileMapMode {
+	//log.Println("Calling TileMap.GetMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileMap", "get_mode")
+
+	// Call the parent method.
+	// enum.TileMap::Mode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return TileMapMode(ret)
+}
 
 /*
         Undocumented
@@ -543,6 +606,24 @@ func (o *TileMap) GetQuadrantSize() gdnative.Int {
         Undocumented
 	Args: [], Returns: enum.TileMap::TileOrigin
 */
+func (o *TileMap) GetTileOrigin() TileMapTileOrigin {
+	//log.Println("Calling TileMap.GetTileOrigin()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileMap", "get_tile_origin")
+
+	// Call the parent method.
+	// enum.TileMap::TileOrigin
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return TileMapTileOrigin(ret)
+}
 
 /*
         Undocumented

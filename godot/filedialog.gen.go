@@ -13,6 +13,26 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// FileDialogAccess is an enum for Access values.
+type FileDialogAccess int
+
+const (
+	FileDialogAccessFilesystem FileDialogAccess = 2
+	FileDialogAccessResources  FileDialogAccess = 0
+	FileDialogAccessUserdata   FileDialogAccess = 1
+)
+
+// FileDialogMode is an enum for Mode values.
+type FileDialogMode int
+
+const (
+	FileDialogModeOpenAny   FileDialogMode = 3
+	FileDialogModeOpenDir   FileDialogMode = 2
+	FileDialogModeOpenFile  FileDialogMode = 0
+	FileDialogModeOpenFiles FileDialogMode = 1
+	FileDialogModeSaveFile  FileDialogMode = 4
+)
+
 //func NewFileDialogFromPointer(ptr gdnative.Pointer) FileDialog {
 func newFileDialogFromPointer(ptr gdnative.Pointer) FileDialog {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -404,6 +424,24 @@ func (o *FileDialog) DeselectItems() {
         Undocumented
 	Args: [], Returns: enum.FileDialog::Access
 */
+func (o *FileDialog) GetAccess() FileDialogAccess {
+	//log.Println("Calling FileDialog.GetAccess()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("FileDialog", "get_access")
+
+	// Call the parent method.
+	// enum.FileDialog::Access
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return FileDialogAccess(ret)
+}
 
 /*
         Undocumented
@@ -501,6 +539,24 @@ func (o *FileDialog) GetFilters() gdnative.PoolStringArray {
         Undocumented
 	Args: [], Returns: enum.FileDialog::Mode
 */
+func (o *FileDialog) GetMode() FileDialogMode {
+	//log.Println("Calling FileDialog.GetMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("FileDialog", "get_mode")
+
+	// Call the parent method.
+	// enum.FileDialog::Mode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return FileDialogMode(ret)
+}
 
 /*
         Return the vertical box container of the dialog, custom controls can be added to it.

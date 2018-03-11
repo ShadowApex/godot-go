@@ -13,6 +13,40 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// PerformanceMonitor is an enum for Monitor values.
+type PerformanceMonitor int
+
+const (
+	PerformanceMemoryDynamic                PerformanceMonitor = 4
+	PerformanceMemoryDynamicMax             PerformanceMonitor = 6
+	PerformanceMemoryMessageBufferMax       PerformanceMonitor = 7
+	PerformanceMemoryStatic                 PerformanceMonitor = 3
+	PerformanceMemoryStaticMax              PerformanceMonitor = 5
+	PerformanceMonitorMax                   PerformanceMonitor = 27
+	PerformanceObjectCount                  PerformanceMonitor = 8
+	PerformanceObjectNodeCount              PerformanceMonitor = 10
+	PerformanceObjectResourceCount          PerformanceMonitor = 9
+	PerformancePhysics2DActiveObjects       PerformanceMonitor = 21
+	PerformancePhysics2DCollisionPairs      PerformanceMonitor = 22
+	PerformancePhysics2DIslandCount         PerformanceMonitor = 23
+	PerformancePhysics3DActiveObjects       PerformanceMonitor = 24
+	PerformancePhysics3DCollisionPairs      PerformanceMonitor = 25
+	PerformancePhysics3DIslandCount         PerformanceMonitor = 26
+	PerformanceRenderDrawCallsInFrame       PerformanceMonitor = 16
+	PerformanceRenderMaterialChangesInFrame PerformanceMonitor = 13
+	PerformanceRenderObjectsInFrame         PerformanceMonitor = 11
+	PerformanceRenderShaderChangesInFrame   PerformanceMonitor = 14
+	PerformanceRenderSurfaceChangesInFrame  PerformanceMonitor = 15
+	PerformanceRenderTextureMemUsed         PerformanceMonitor = 18
+	PerformanceRenderUsageVideoMemTotal     PerformanceMonitor = 20
+	PerformanceRenderVertexMemUsed          PerformanceMonitor = 19
+	PerformanceRenderVerticesInFrame        PerformanceMonitor = 12
+	PerformanceRenderVideoMemUsed           PerformanceMonitor = 17
+	PerformanceTimeFps                      PerformanceMonitor = 0
+	PerformanceTimePhysicsProcess           PerformanceMonitor = 2
+	PerformanceTimeProcess                  PerformanceMonitor = 1
+)
+
 //func NewperformanceFromPointer(ptr gdnative.Pointer) performance {
 func newPerformanceFromPointer(ptr gdnative.Pointer) performance {
 	owner := gdnative.NewObjectFromPointer(ptr)

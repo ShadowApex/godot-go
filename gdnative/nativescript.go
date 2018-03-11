@@ -335,12 +335,22 @@ func (n *nativeScript) RegisterProperty(name, path string, attributes *PropertyA
 }
 
 // RegisterSignal will register the given signal with Godot.
-func (n *nativeScript) RegisterSignal(name string, signal *C.godot_signal) {
+func (n *nativeScript) RegisterSignal(name string, signal *Signal) {
+	// Construct the C struct based on the signal Go wrapper
+	var base C.godot_signal
+	signal.base = &base
+	signal.base.name = *(signal.Name.getBase())
+	signal.base.num_args = C.int(signal.NumArgs.getBase())
+	signal.base.args = signal.Args.getBase()
+	signal.base.num_default_args = C.int(signal.NumDefaultArgs.getBase())
+	signal.base.default_args = signal.DefaultArgs.getBase()
+
+	// Register the signal with Godot.
 	C.go_godot_nativescript_register_signal(
 		n.api,
 		n.handle,
 		C.CString(name),
-		signal,
+		signal.getBase(),
 	)
 }
 
@@ -356,6 +366,15 @@ var nativeScriptInit func()
 func SetNativeScriptInit(initFunc func()) {
 	nativeScriptInit = initFunc
 }
+
+/*------------------------------------------------------------------------------
+//	  			Exported C Functions
+//
+//   The methods below are special C exported functions. They can be called by
+//   Godot directly or by one of the C gateway functions defined in
+//   nativescript.c.
+//
+//----------------------------------------------------------------------------*/
 
 /** Script entry (Registering all the classes and stuff) **/
 // godot_nativescript_init is the script's entrypoint. It is called by Godot

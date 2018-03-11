@@ -13,6 +13,26 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// IPResolverStatus is an enum for ResolverStatus values.
+type IPResolverStatus int
+
+const (
+	IPResolverStatusDone    IPResolverStatus = 2
+	IPResolverStatusError   IPResolverStatus = 3
+	IPResolverStatusNone    IPResolverStatus = 0
+	IPResolverStatusWaiting IPResolverStatus = 1
+)
+
+// IPType is an enum for Type values.
+type IPType int
+
+const (
+	IPTypeAny  IPType = 3
+	IPTypeIpv4 IPType = 1
+	IPTypeIpv6 IPType = 2
+	IPTypeNone IPType = 0
+)
+
 //func NewipFromPointer(ptr gdnative.Pointer) ip {
 func newIPFromPointer(ptr gdnative.Pointer) ip {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -153,6 +173,26 @@ func (o *ip) GetResolveItemAddress(id gdnative.Int) gdnative.String {
         Returns a queued hostname's status as a RESOLVER_STATUS_* constant, given its queue "id".
 	Args: [{ false id int}], Returns: enum.IP::ResolverStatus
 */
+func (o *ip) GetResolveItemStatus(id gdnative.Int) IPResolverStatus {
+	o.ensureSingleton()
+	//log.Println("Calling IP.GetResolveItemStatus()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("IP", "get_resolve_item_status")
+
+	// Call the parent method.
+	// enum.IP::ResolverStatus
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return IPResolverStatus(ret)
+}
 
 /*
         Returns a given hostname's IPv4 or IPv6 address when resolved (blocking-type method). The address type returned depends on the TYPE_* constant given as "ip_type".

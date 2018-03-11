@@ -13,6 +13,24 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// GeometryInstanceFlags is an enum for Flags values.
+type GeometryInstanceFlags int
+
+const (
+	GeometryInstanceFlagMax           GeometryInstanceFlags = 1
+	GeometryInstanceFlagUseBakedLight GeometryInstanceFlags = 0
+)
+
+// GeometryInstanceShadowCastingSetting is an enum for ShadowCastingSetting values.
+type GeometryInstanceShadowCastingSetting int
+
+const (
+	GeometryInstanceShadowCastingSettingDoubleSided GeometryInstanceShadowCastingSetting = 2
+	GeometryInstanceShadowCastingSettingOff         GeometryInstanceShadowCastingSetting = 0
+	GeometryInstanceShadowCastingSettingOn          GeometryInstanceShadowCastingSetting = 1
+	GeometryInstanceShadowCastingSettingShadowsOnly GeometryInstanceShadowCastingSetting = 3
+)
+
 //func NewGeometryInstanceFromPointer(ptr gdnative.Pointer) GeometryInstance {
 func newGeometryInstanceFromPointer(ptr gdnative.Pointer) GeometryInstance {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,6 +56,24 @@ func (o *GeometryInstance) BaseClass() string {
         Undocumented
 	Args: [], Returns: enum.GeometryInstance::ShadowCastingSetting
 */
+func (o *GeometryInstance) GetCastShadowsSetting() GeometryInstanceShadowCastingSetting {
+	//log.Println("Calling GeometryInstance.GetCastShadowsSetting()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GeometryInstance", "get_cast_shadows_setting")
+
+	// Call the parent method.
+	// enum.GeometryInstance::ShadowCastingSetting
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return GeometryInstanceShadowCastingSetting(ret)
+}
 
 /*
         Undocumented

@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// UndoRedoMergeMode is an enum for MergeMode values.
+type UndoRedoMergeMode int
+
+const (
+	UndoRedoMergeAll     UndoRedoMergeMode = 2
+	UndoRedoMergeDisable UndoRedoMergeMode = 0
+	UndoRedoMergeEnds    UndoRedoMergeMode = 1
+)
+
 //func NewUndoRedoFromPointer(ptr gdnative.Pointer) UndoRedo {
 func newUndoRedoFromPointer(ptr gdnative.Pointer) UndoRedo {
 	owner := gdnative.NewObjectFromPointer(ptr)

@@ -13,6 +13,17 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// NetworkedMultiplayerENetCompressionMode is an enum for CompressionMode values.
+type NetworkedMultiplayerENetCompressionMode int
+
+const (
+	NetworkedMultiplayerENetCompressFastlz     NetworkedMultiplayerENetCompressionMode = 2
+	NetworkedMultiplayerENetCompressNone       NetworkedMultiplayerENetCompressionMode = 0
+	NetworkedMultiplayerENetCompressRangeCoder NetworkedMultiplayerENetCompressionMode = 1
+	NetworkedMultiplayerENetCompressZlib       NetworkedMultiplayerENetCompressionMode = 3
+	NetworkedMultiplayerENetCompressZstd       NetworkedMultiplayerENetCompressionMode = 4
+)
+
 //func NewNetworkedMultiplayerENetFromPointer(ptr gdnative.Pointer) NetworkedMultiplayerENet {
 func newNetworkedMultiplayerENetFromPointer(ptr gdnative.Pointer) NetworkedMultiplayerENet {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -58,16 +69,78 @@ func (o *NetworkedMultiplayerENet) CloseConnection() {
         Undocumented
 	Args: [{ false ip String} { false port int} {0 true in_bandwidth int} {0 true out_bandwidth int}], Returns: enum.Error
 */
+func (o *NetworkedMultiplayerENet) CreateClient(ip gdnative.String, port gdnative.Int, inBandwidth gdnative.Int, outBandwidth gdnative.Int) gdnative.Error {
+	//log.Println("Calling NetworkedMultiplayerENet.CreateClient()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromString(ip)
+	ptrArguments[1] = gdnative.NewPointerFromInt(port)
+	ptrArguments[2] = gdnative.NewPointerFromInt(inBandwidth)
+	ptrArguments[3] = gdnative.NewPointerFromInt(outBandwidth)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NetworkedMultiplayerENet", "create_client")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Undocumented
 	Args: [{ false port int} {32 true max_clients int} {0 true in_bandwidth int} {0 true out_bandwidth int}], Returns: enum.Error
 */
+func (o *NetworkedMultiplayerENet) CreateServer(port gdnative.Int, maxClients gdnative.Int, inBandwidth gdnative.Int, outBandwidth gdnative.Int) gdnative.Error {
+	//log.Println("Calling NetworkedMultiplayerENet.CreateServer()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromInt(port)
+	ptrArguments[1] = gdnative.NewPointerFromInt(maxClients)
+	ptrArguments[2] = gdnative.NewPointerFromInt(inBandwidth)
+	ptrArguments[3] = gdnative.NewPointerFromInt(outBandwidth)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NetworkedMultiplayerENet", "create_server")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.NetworkedMultiplayerENet::CompressionMode
 */
+func (o *NetworkedMultiplayerENet) GetCompressionMode() NetworkedMultiplayerENetCompressionMode {
+	//log.Println("Calling NetworkedMultiplayerENet.GetCompressionMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NetworkedMultiplayerENet", "get_compression_mode")
+
+	// Call the parent method.
+	// enum.NetworkedMultiplayerENet::CompressionMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return NetworkedMultiplayerENetCompressionMode(ret)
+}
 
 /*
         Undocumented

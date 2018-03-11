@@ -13,6 +13,16 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// RigidBodyMode is an enum for Mode values.
+type RigidBodyMode int
+
+const (
+	RigidBodyModeCharacter RigidBodyMode = 2
+	RigidBodyModeKinematic RigidBodyMode = 3
+	RigidBodyModeRigid     RigidBodyMode = 0
+	RigidBodyModeStatic    RigidBodyMode = 1
+)
+
 //func NewRigidBodyFromPointer(ptr gdnative.Pointer) RigidBody {
 func newRigidBodyFromPointer(ptr gdnative.Pointer) RigidBody {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -398,6 +408,24 @@ func (o *RigidBody) GetMaxContactsReported() gdnative.Int {
         Undocumented
 	Args: [], Returns: enum.RigidBody::Mode
 */
+func (o *RigidBody) GetMode() RigidBodyMode {
+	//log.Println("Calling RigidBody.GetMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RigidBody", "get_mode")
+
+	// Call the parent method.
+	// enum.RigidBody::Mode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return RigidBodyMode(ret)
+}
 
 /*
         Undocumented

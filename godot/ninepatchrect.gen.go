@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// NinePatchRectAxisStretchMode is an enum for AxisStretchMode values.
+type NinePatchRectAxisStretchMode int
+
+const (
+	NinePatchRectAxisStretchModeStretch NinePatchRectAxisStretchMode = 0
+	NinePatchRectAxisStretchModeTile    NinePatchRectAxisStretchMode = 1
+	NinePatchRectAxisStretchModeTileFit NinePatchRectAxisStretchMode = 2
+)
+
 //func NewNinePatchRectFromPointer(ptr gdnative.Pointer) NinePatchRect {
 func newNinePatchRectFromPointer(ptr gdnative.Pointer) NinePatchRect {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,6 +47,24 @@ func (o *NinePatchRect) BaseClass() string {
         Undocumented
 	Args: [], Returns: enum.NinePatchRect::AxisStretchMode
 */
+func (o *NinePatchRect) GetHAxisStretchMode() NinePatchRectAxisStretchMode {
+	//log.Println("Calling NinePatchRect.GetHAxisStretchMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NinePatchRect", "get_h_axis_stretch_mode")
+
+	// Call the parent method.
+	// enum.NinePatchRect::AxisStretchMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return NinePatchRectAxisStretchMode(ret)
+}
 
 /*
         Undocumented
@@ -127,6 +154,24 @@ func (o *NinePatchRect) GetTexture() TextureImplementer {
         Undocumented
 	Args: [], Returns: enum.NinePatchRect::AxisStretchMode
 */
+func (o *NinePatchRect) GetVAxisStretchMode() NinePatchRectAxisStretchMode {
+	//log.Println("Calling NinePatchRect.GetVAxisStretchMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("NinePatchRect", "get_v_axis_stretch_mode")
+
+	// Call the parent method.
+	// enum.NinePatchRect::AxisStretchMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return NinePatchRectAxisStretchMode(ret)
+}
 
 /*
         Undocumented

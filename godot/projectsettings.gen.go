@@ -304,11 +304,50 @@ func (o *projectSettings) PropertyGetRevert(name gdnative.String) gdnative.Varia
 
 	Args: [], Returns: enum.Error
 */
+func (o *projectSettings) Save() gdnative.Error {
+	o.ensureSingleton()
+	//log.Println("Calling ProjectSettings.Save()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProjectSettings", "save")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
 
 	Args: [{ false file String}], Returns: enum.Error
 */
+func (o *projectSettings) SaveCustom(file gdnative.String) gdnative.Error {
+	o.ensureSingleton()
+	//log.Println("Calling ProjectSettings.SaveCustom()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(file)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProjectSettings", "save_custom")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
 

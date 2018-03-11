@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// VisualScriptYieldSignalCallMode is an enum for CallMode values.
+type VisualScriptYieldSignalCallMode int
+
+const (
+	VisualScriptYieldSignalCallModeInstance VisualScriptYieldSignalCallMode = 2
+	VisualScriptYieldSignalCallModeNodePath VisualScriptYieldSignalCallMode = 1
+	VisualScriptYieldSignalCallModeSelf     VisualScriptYieldSignalCallMode = 0
+)
+
 //func NewVisualScriptYieldSignalFromPointer(ptr gdnative.Pointer) VisualScriptYieldSignal {
 func newVisualScriptYieldSignalFromPointer(ptr gdnative.Pointer) VisualScriptYieldSignal {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -84,6 +93,24 @@ func (o *VisualScriptYieldSignal) GetBaseType() gdnative.String {
         Undocumented
 	Args: [], Returns: enum.VisualScriptYieldSignal::CallMode
 */
+func (o *VisualScriptYieldSignal) GetCallMode() VisualScriptYieldSignalCallMode {
+	//log.Println("Calling VisualScriptYieldSignal.GetCallMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptYieldSignal", "get_call_mode")
+
+	// Call the parent method.
+	// enum.VisualScriptYieldSignal::CallMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return VisualScriptYieldSignalCallMode(ret)
+}
 
 /*
         Undocumented

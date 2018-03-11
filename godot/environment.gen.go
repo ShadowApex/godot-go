@@ -13,6 +13,67 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// EnvironmentBGMode is an enum for BGMode values.
+type EnvironmentBGMode int
+
+const (
+	EnvironmentBgCanvas     EnvironmentBGMode = 4
+	EnvironmentBgClearColor EnvironmentBGMode = 0
+	EnvironmentBgColor      EnvironmentBGMode = 1
+	EnvironmentBgColorSky   EnvironmentBGMode = 3
+	EnvironmentBgKeep       EnvironmentBGMode = 5
+	EnvironmentBgMax        EnvironmentBGMode = 6
+	EnvironmentBgSky        EnvironmentBGMode = 2
+)
+
+// EnvironmentDOFBlurQuality is an enum for DOFBlurQuality values.
+type EnvironmentDOFBlurQuality int
+
+const (
+	EnvironmentDofBlurQualityHigh   EnvironmentDOFBlurQuality = 2
+	EnvironmentDofBlurQualityLow    EnvironmentDOFBlurQuality = 0
+	EnvironmentDofBlurQualityMedium EnvironmentDOFBlurQuality = 1
+)
+
+// EnvironmentGlowBlendMode is an enum for GlowBlendMode values.
+type EnvironmentGlowBlendMode int
+
+const (
+	EnvironmentGlowBlendModeAdditive  EnvironmentGlowBlendMode = 0
+	EnvironmentGlowBlendModeReplace   EnvironmentGlowBlendMode = 3
+	EnvironmentGlowBlendModeScreen    EnvironmentGlowBlendMode = 1
+	EnvironmentGlowBlendModeSoftlight EnvironmentGlowBlendMode = 2
+)
+
+// EnvironmentSSAOBlur is an enum for SSAOBlur values.
+type EnvironmentSSAOBlur int
+
+const (
+	EnvironmentSsaoBlur1X1      EnvironmentSSAOBlur = 1
+	EnvironmentSsaoBlur2X2      EnvironmentSSAOBlur = 2
+	EnvironmentSsaoBlur3X3      EnvironmentSSAOBlur = 3
+	EnvironmentSsaoBlurDisabled EnvironmentSSAOBlur = 0
+)
+
+// EnvironmentSSAOQuality is an enum for SSAOQuality values.
+type EnvironmentSSAOQuality int
+
+const (
+	EnvironmentSsaoQualityHigh   EnvironmentSSAOQuality = 2
+	EnvironmentSsaoQualityLow    EnvironmentSSAOQuality = 0
+	EnvironmentSsaoQualityMedium EnvironmentSSAOQuality = 1
+)
+
+// EnvironmentToneMapper is an enum for ToneMapper values.
+type EnvironmentToneMapper int
+
+const (
+	EnvironmentToneMapperAces      EnvironmentToneMapper = 3
+	EnvironmentToneMapperFilmic    EnvironmentToneMapper = 2
+	EnvironmentToneMapperLinear    EnvironmentToneMapper = 0
+	EnvironmentToneMapperReinhardt EnvironmentToneMapper = 1
+)
+
 //func NewEnvironmentFromPointer(ptr gdnative.Pointer) Environment {
 func newEnvironmentFromPointer(ptr gdnative.Pointer) Environment {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -213,6 +274,24 @@ func (o *Environment) GetAmbientLightSkyContribution() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.Environment::BGMode
 */
+func (o *Environment) GetBackground() EnvironmentBGMode {
+	//log.Println("Calling Environment.GetBackground()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Environment", "get_background")
+
+	// Call the parent method.
+	// enum.Environment::BGMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return EnvironmentBGMode(ret)
+}
 
 /*
         Undocumented
@@ -333,6 +412,24 @@ func (o *Environment) GetDofBlurFarDistance() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.Environment::DOFBlurQuality
 */
+func (o *Environment) GetDofBlurFarQuality() EnvironmentDOFBlurQuality {
+	//log.Println("Calling Environment.GetDofBlurFarQuality()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Environment", "get_dof_blur_far_quality")
+
+	// Call the parent method.
+	// enum.Environment::DOFBlurQuality
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return EnvironmentDOFBlurQuality(ret)
+}
 
 /*
         Undocumented
@@ -407,6 +504,24 @@ func (o *Environment) GetDofBlurNearDistance() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.Environment::DOFBlurQuality
 */
+func (o *Environment) GetDofBlurNearQuality() EnvironmentDOFBlurQuality {
+	//log.Println("Calling Environment.GetDofBlurNearQuality()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Environment", "get_dof_blur_near_quality")
+
+	// Call the parent method.
+	// enum.Environment::DOFBlurQuality
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return EnvironmentDOFBlurQuality(ret)
+}
 
 /*
         Undocumented
@@ -642,6 +757,24 @@ func (o *Environment) GetFogTransmitCurve() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.Environment::GlowBlendMode
 */
+func (o *Environment) GetGlowBlendMode() EnvironmentGlowBlendMode {
+	//log.Println("Calling Environment.GetGlowBlendMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Environment", "get_glow_blend_mode")
+
+	// Call the parent method.
+	// enum.Environment::GlowBlendMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return EnvironmentGlowBlendMode(ret)
+}
 
 /*
         Undocumented
@@ -845,6 +978,24 @@ func (o *Environment) GetSsaoBias() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.Environment::SSAOBlur
 */
+func (o *Environment) GetSsaoBlur() EnvironmentSSAOBlur {
+	//log.Println("Calling Environment.GetSsaoBlur()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Environment", "get_ssao_blur")
+
+	// Call the parent method.
+	// enum.Environment::SSAOBlur
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return EnvironmentSSAOBlur(ret)
+}
 
 /*
         Undocumented
@@ -965,6 +1116,24 @@ func (o *Environment) GetSsaoIntensity2() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.Environment::SSAOQuality
 */
+func (o *Environment) GetSsaoQuality() EnvironmentSSAOQuality {
+	//log.Println("Calling Environment.GetSsaoQuality()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Environment", "get_ssao_quality")
+
+	// Call the parent method.
+	// enum.Environment::SSAOQuality
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return EnvironmentSSAOQuality(ret)
+}
 
 /*
         Undocumented
@@ -1269,6 +1438,24 @@ func (o *Environment) GetTonemapWhite() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.Environment::ToneMapper
 */
+func (o *Environment) GetTonemapper() EnvironmentToneMapper {
+	//log.Println("Calling Environment.GetTonemapper()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Environment", "get_tonemapper")
+
+	// Call the parent method.
+	// enum.Environment::ToneMapper
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return EnvironmentToneMapper(ret)
+}
 
 /*
         Undocumented

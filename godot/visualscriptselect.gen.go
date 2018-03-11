@@ -38,6 +38,24 @@ func (o *VisualScriptSelect) BaseClass() string {
         Undocumented
 	Args: [], Returns: enum.Variant::Type
 */
+func (o *VisualScriptSelect) GetTyped() gdnative.VariantType {
+	//log.Println("Calling VisualScriptSelect.GetTyped()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptSelect", "get_typed")
+
+	// Call the parent method.
+	// enum.Variant::Type
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.VariantType(ret)
+}
 
 /*
         Undocumented

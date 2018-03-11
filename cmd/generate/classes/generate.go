@@ -83,7 +83,7 @@ func (v View) GoName(str string) string {
 
 func (v View) GoEmptyReturnType(str string) string {
 	if v.IsEnum(str) {
-		return "gdnative.NewEmptyVoid"
+		return "gdnative.NewEmptyInt"
 	}
 	str = strings.Replace(str, "*", "", 1)
 	str = strings.TrimSpace(str)
@@ -97,8 +97,7 @@ func (v View) GoEmptyReturnType(str string) string {
 
 func (v View) GoNewFromPointerType(str string) string {
 	if strings.Contains(str, "enum") || strings.Contains(str, "Enum") {
-		// TODO: Handle this
-		return "EmptyVoid"
+		return "Int"
 	}
 	str = strings.Replace(str, "*", "", 1)
 	str = strings.TrimSpace(str)
@@ -169,10 +168,27 @@ func (v View) GoArgName(argString string) string {
 
 // GoValue will convert the Godot value into a valid Go value.
 func (v View) GoValue(returnString string) string {
-	// TODO: Right now we're converting any enum types to int64. We should
-	// look into creating types for each of these maybe? LOL
+	// Handle enum values in a specific way
 	if strings.Contains(returnString, "enum.") {
-		returnString = "Int"
+		// Strip the enum portion of the string
+		returnString = strings.Replace(returnString, "enum.", "", 1)
+
+		// Check to see if this is a class enum or gdnative enum.
+		if strings.Contains(returnString, "::") {
+			// This is a class enum. Split it to get the class.
+			returnSlice := strings.Split(returnString, "::")
+			className := returnSlice[0]
+			enumName := returnSlice[1]
+
+			// Check for certain this is a class enum
+			if v.IsGodotClass(className) {
+				return className + enumName
+			}
+			return "gdnative." + className + enumName
+		}
+
+		// This is a gdnative enum.
+		return "gdnative." + returnString
 	}
 	if returnString == "void" {
 		return ""

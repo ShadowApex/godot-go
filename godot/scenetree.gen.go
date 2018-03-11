@@ -13,6 +13,36 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// SceneTreeGroupCallFlags is an enum for GroupCallFlags values.
+type SceneTreeGroupCallFlags int
+
+const (
+	SceneTreeGroupCallDefault  SceneTreeGroupCallFlags = 0
+	SceneTreeGroupCallRealtime SceneTreeGroupCallFlags = 2
+	SceneTreeGroupCallReverse  SceneTreeGroupCallFlags = 1
+	SceneTreeGroupCallUnique   SceneTreeGroupCallFlags = 4
+)
+
+// SceneTreeStretchAspect is an enum for StretchAspect values.
+type SceneTreeStretchAspect int
+
+const (
+	SceneTreeStretchAspectExpand     SceneTreeStretchAspect = 4
+	SceneTreeStretchAspectIgnore     SceneTreeStretchAspect = 0
+	SceneTreeStretchAspectKeep       SceneTreeStretchAspect = 1
+	SceneTreeStretchAspectKeepHeight SceneTreeStretchAspect = 3
+	SceneTreeStretchAspectKeepWidth  SceneTreeStretchAspect = 2
+)
+
+// SceneTreeStretchMode is an enum for StretchMode values.
+type SceneTreeStretchMode int
+
+const (
+	SceneTreeStretchMode2D       SceneTreeStretchMode = 1
+	SceneTreeStretchModeDisabled SceneTreeStretchMode = 0
+	SceneTreeStretchModeViewport SceneTreeStretchMode = 2
+)
+
 //func NewSceneTreeFromPointer(ptr gdnative.Pointer) SceneTree {
 func newSceneTreeFromPointer(ptr gdnative.Pointer) SceneTree {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -212,11 +242,49 @@ func (o *SceneTree) CallGroupFlags(flags gdnative.Int, group gdnative.String, me
 
 	Args: [{ false path String}], Returns: enum.Error
 */
+func (o *SceneTree) ChangeScene(path gdnative.String) gdnative.Error {
+	//log.Println("Calling SceneTree.ChangeScene()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(path)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneTree", "change_scene")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
 
 	Args: [{ false packed_scene PackedScene}], Returns: enum.Error
 */
+func (o *SceneTree) ChangeSceneTo(packedScene PackedScene) gdnative.Error {
+	//log.Println("Calling SceneTree.ChangeSceneTo()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(packedScene.GetBaseObject())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneTree", "change_scene_to")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
 
@@ -842,6 +910,24 @@ func (o *SceneTree) Quit() {
 
 	Args: [], Returns: enum.Error
 */
+func (o *SceneTree) ReloadCurrentScene() gdnative.Error {
+	//log.Println("Calling SceneTree.ReloadCurrentScene()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SceneTree", "reload_current_scene")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
 

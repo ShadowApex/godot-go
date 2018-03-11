@@ -13,6 +13,17 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// CanvasItemBlendMode is an enum for BlendMode values.
+type CanvasItemBlendMode int
+
+const (
+	CanvasItemBlendModeAdd          CanvasItemBlendMode = 1
+	CanvasItemBlendModeMix          CanvasItemBlendMode = 0
+	CanvasItemBlendModeMul          CanvasItemBlendMode = 3
+	CanvasItemBlendModePremultAlpha CanvasItemBlendMode = 4
+	CanvasItemBlendModeSub          CanvasItemBlendMode = 2
+)
+
 //func NewCanvasItemFromPointer(ptr gdnative.Pointer) CanvasItem {
 func newCanvasItemFromPointer(ptr gdnative.Pointer) CanvasItem {
 	owner := gdnative.NewObjectFromPointer(ptr)

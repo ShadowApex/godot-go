@@ -13,6 +13,83 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// ViewportClearMode is an enum for ClearMode values.
+type ViewportClearMode int
+
+const (
+	ViewportClearModeAlways        ViewportClearMode = 0
+	ViewportClearModeNever         ViewportClearMode = 1
+	ViewportClearModeOnlyNextFrame ViewportClearMode = 2
+)
+
+// ViewportDebugDraw is an enum for DebugDraw values.
+type ViewportDebugDraw int
+
+const (
+	ViewportDebugDrawDisabled  ViewportDebugDraw = 0
+	ViewportDebugDrawOverdraw  ViewportDebugDraw = 2
+	ViewportDebugDrawUnshaded  ViewportDebugDraw = 1
+	ViewportDebugDrawWireframe ViewportDebugDraw = 3
+)
+
+// ViewportMSAA is an enum for MSAA values.
+type ViewportMSAA int
+
+const (
+	ViewportMsaa16X      ViewportMSAA = 4
+	ViewportMsaa2X       ViewportMSAA = 1
+	ViewportMsaa4X       ViewportMSAA = 2
+	ViewportMsaa8X       ViewportMSAA = 3
+	ViewportMsaaDisabled ViewportMSAA = 0
+)
+
+// ViewportRenderInfo is an enum for RenderInfo values.
+type ViewportRenderInfo int
+
+const (
+	ViewportRenderInfoDrawCallsInFrame       ViewportRenderInfo = 5
+	ViewportRenderInfoMaterialChangesInFrame ViewportRenderInfo = 2
+	ViewportRenderInfoMax                    ViewportRenderInfo = 6
+	ViewportRenderInfoObjectsInFrame         ViewportRenderInfo = 0
+	ViewportRenderInfoShaderChangesInFrame   ViewportRenderInfo = 3
+	ViewportRenderInfoSurfaceChangesInFrame  ViewportRenderInfo = 4
+	ViewportRenderInfoVerticesInFrame        ViewportRenderInfo = 1
+)
+
+// ViewportShadowAtlasQuadrantSubdiv is an enum for ShadowAtlasQuadrantSubdiv values.
+type ViewportShadowAtlasQuadrantSubdiv int
+
+const (
+	ViewportShadowAtlasQuadrantSubdiv1        ViewportShadowAtlasQuadrantSubdiv = 1
+	ViewportShadowAtlasQuadrantSubdiv1024     ViewportShadowAtlasQuadrantSubdiv = 6
+	ViewportShadowAtlasQuadrantSubdiv16       ViewportShadowAtlasQuadrantSubdiv = 3
+	ViewportShadowAtlasQuadrantSubdiv256      ViewportShadowAtlasQuadrantSubdiv = 5
+	ViewportShadowAtlasQuadrantSubdiv4        ViewportShadowAtlasQuadrantSubdiv = 2
+	ViewportShadowAtlasQuadrantSubdiv64       ViewportShadowAtlasQuadrantSubdiv = 4
+	ViewportShadowAtlasQuadrantSubdivDisabled ViewportShadowAtlasQuadrantSubdiv = 0
+	ViewportShadowAtlasQuadrantSubdivMax      ViewportShadowAtlasQuadrantSubdiv = 7
+)
+
+// ViewportUpdateMode is an enum for UpdateMode values.
+type ViewportUpdateMode int
+
+const (
+	ViewportUpdateAlways      ViewportUpdateMode = 3
+	ViewportUpdateDisabled    ViewportUpdateMode = 0
+	ViewportUpdateOnce        ViewportUpdateMode = 1
+	ViewportUpdateWhenVisible ViewportUpdateMode = 2
+)
+
+// ViewportUsage is an enum for Usage values.
+type ViewportUsage int
+
+const (
+	ViewportUsage2D           ViewportUsage = 0
+	ViewportUsage2DNoSampling ViewportUsage = 1
+	ViewportUsage3D           ViewportUsage = 2
+	ViewportUsage3DNoEffects  ViewportUsage = 3
+)
+
 //func NewViewportFromPointer(ptr gdnative.Pointer) Viewport {
 func newViewportFromPointer(ptr gdnative.Pointer) Viewport {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -275,11 +352,47 @@ func (o *Viewport) GetCanvasTransform() gdnative.Transform2D {
         Undocumented
 	Args: [], Returns: enum.Viewport::ClearMode
 */
+func (o *Viewport) GetClearMode() ViewportClearMode {
+	//log.Println("Calling Viewport.GetClearMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_clear_mode")
+
+	// Call the parent method.
+	// enum.Viewport::ClearMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ViewportClearMode(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.Viewport::DebugDraw
 */
+func (o *Viewport) GetDebugDraw() ViewportDebugDraw {
+	//log.Println("Calling Viewport.GetDebugDraw()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_debug_draw")
+
+	// Call the parent method.
+	// enum.Viewport::DebugDraw
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ViewportDebugDraw(ret)
+}
 
 /*
         Get the total transform of the viewport.
@@ -377,6 +490,24 @@ func (o *Viewport) GetMousePosition() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: enum.Viewport::MSAA
 */
+func (o *Viewport) GetMsaa() ViewportMSAA {
+	//log.Println("Calling Viewport.GetMsaa()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_msaa")
+
+	// Call the parent method.
+	// enum.Viewport::MSAA
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ViewportMSAA(ret)
+}
 
 /*
         Undocumented
@@ -429,6 +560,25 @@ func (o *Viewport) GetRenderInfo(info gdnative.Int) gdnative.Int {
         Undocumented
 	Args: [{ false quadrant int}], Returns: enum.Viewport::ShadowAtlasQuadrantSubdiv
 */
+func (o *Viewport) GetShadowAtlasQuadrantSubdiv(quadrant gdnative.Int) ViewportShadowAtlasQuadrantSubdiv {
+	//log.Println("Calling Viewport.GetShadowAtlasQuadrantSubdiv()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(quadrant)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_shadow_atlas_quadrant_subdiv")
+
+	// Call the parent method.
+	// enum.Viewport::ShadowAtlasQuadrantSubdiv
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ViewportShadowAtlasQuadrantSubdiv(ret)
+}
 
 /*
         Undocumented
@@ -540,11 +690,47 @@ func (o *Viewport) GetTexture() ViewportTextureImplementer {
         Undocumented
 	Args: [], Returns: enum.Viewport::UpdateMode
 */
+func (o *Viewport) GetUpdateMode() ViewportUpdateMode {
+	//log.Println("Calling Viewport.GetUpdateMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_update_mode")
+
+	// Call the parent method.
+	// enum.Viewport::UpdateMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ViewportUpdateMode(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.Viewport::Usage
 */
+func (o *Viewport) GetUsage() ViewportUsage {
+	//log.Println("Calling Viewport.GetUsage()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Viewport", "get_usage")
+
+	// Call the parent method.
+	// enum.Viewport::Usage
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ViewportUsage(ret)
+}
 
 /*
         Undocumented

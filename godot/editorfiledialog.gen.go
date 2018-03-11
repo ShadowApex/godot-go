@@ -13,6 +13,34 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// EditorFileDialogAccess is an enum for Access values.
+type EditorFileDialogAccess int
+
+const (
+	EditorFileDialogAccessFilesystem EditorFileDialogAccess = 2
+	EditorFileDialogAccessResources  EditorFileDialogAccess = 0
+	EditorFileDialogAccessUserdata   EditorFileDialogAccess = 1
+)
+
+// EditorFileDialogDisplayMode is an enum for DisplayMode values.
+type EditorFileDialogDisplayMode int
+
+const (
+	EditorFileDialogDisplayList       EditorFileDialogDisplayMode = 1
+	EditorFileDialogDisplayThumbnails EditorFileDialogDisplayMode = 0
+)
+
+// EditorFileDialogMode is an enum for Mode values.
+type EditorFileDialogMode int
+
+const (
+	EditorFileDialogModeOpenAny   EditorFileDialogMode = 3
+	EditorFileDialogModeOpenDir   EditorFileDialogMode = 2
+	EditorFileDialogModeOpenFile  EditorFileDialogMode = 0
+	EditorFileDialogModeOpenFiles EditorFileDialogMode = 1
+	EditorFileDialogModeSaveFile  EditorFileDialogMode = 4
+)
+
 //func NewEditorFileDialogFromPointer(ptr gdnative.Pointer) EditorFileDialog {
 func newEditorFileDialogFromPointer(ptr gdnative.Pointer) EditorFileDialog {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -681,6 +709,24 @@ func (o *EditorFileDialog) ClearFilters() {
         Undocumented
 	Args: [], Returns: enum.EditorFileDialog::Access
 */
+func (o *EditorFileDialog) GetAccess() EditorFileDialogAccess {
+	//log.Println("Calling EditorFileDialog.GetAccess()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorFileDialog", "get_access")
+
+	// Call the parent method.
+	// enum.EditorFileDialog::Access
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return EditorFileDialogAccess(ret)
+}
 
 /*
         Undocumented
@@ -755,11 +801,47 @@ func (o *EditorFileDialog) GetCurrentPath() gdnative.String {
         Undocumented
 	Args: [], Returns: enum.EditorFileDialog::DisplayMode
 */
+func (o *EditorFileDialog) GetDisplayMode() EditorFileDialogDisplayMode {
+	//log.Println("Calling EditorFileDialog.GetDisplayMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorFileDialog", "get_display_mode")
+
+	// Call the parent method.
+	// enum.EditorFileDialog::DisplayMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return EditorFileDialogDisplayMode(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.EditorFileDialog::Mode
 */
+func (o *EditorFileDialog) GetMode() EditorFileDialogMode {
+	//log.Println("Calling EditorFileDialog.GetMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("EditorFileDialog", "get_mode")
+
+	// Call the parent method.
+	// enum.EditorFileDialog::Mode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return EditorFileDialogMode(ret)
+}
 
 /*
         Returns the [code]VBoxContainer[/code] used to display the file system.

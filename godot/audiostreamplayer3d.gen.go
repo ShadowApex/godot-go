@@ -13,6 +13,32 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// AudioStreamPlayer3DAttenuationModel is an enum for AttenuationModel values.
+type AudioStreamPlayer3DAttenuationModel int
+
+const (
+	AudioStreamPlayer3DAttenuationInverseDistance       AudioStreamPlayer3DAttenuationModel = 0
+	AudioStreamPlayer3DAttenuationInverseSquareDistance AudioStreamPlayer3DAttenuationModel = 1
+	AudioStreamPlayer3DAttenuationLogarithmic           AudioStreamPlayer3DAttenuationModel = 2
+)
+
+// AudioStreamPlayer3DDopplerTracking is an enum for DopplerTracking values.
+type AudioStreamPlayer3DDopplerTracking int
+
+const (
+	AudioStreamPlayer3DDopplerTrackingDisabled    AudioStreamPlayer3DDopplerTracking = 0
+	AudioStreamPlayer3DDopplerTrackingIdleStep    AudioStreamPlayer3DDopplerTracking = 1
+	AudioStreamPlayer3DDopplerTrackingPhysicsStep AudioStreamPlayer3DDopplerTracking = 2
+)
+
+// AudioStreamPlayer3DOutOfRangeMode is an enum for OutOfRangeMode values.
+type AudioStreamPlayer3DOutOfRangeMode int
+
+const (
+	AudioStreamPlayer3DOutOfRangeMix   AudioStreamPlayer3DOutOfRangeMode = 0
+	AudioStreamPlayer3DOutOfRangePause AudioStreamPlayer3DOutOfRangeMode = 1
+)
+
 //func NewAudioStreamPlayer3DFromPointer(ptr gdnative.Pointer) AudioStreamPlayer3D {
 func newAudioStreamPlayer3DFromPointer(ptr gdnative.Pointer) AudioStreamPlayer3D {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -171,6 +197,24 @@ func (o *AudioStreamPlayer3D) GetAttenuationFilterDb() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.AudioStreamPlayer3D::AttenuationModel
 */
+func (o *AudioStreamPlayer3D) GetAttenuationModel() AudioStreamPlayer3DAttenuationModel {
+	//log.Println("Calling AudioStreamPlayer3D.GetAttenuationModel()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer3D", "get_attenuation_model")
+
+	// Call the parent method.
+	// enum.AudioStreamPlayer3D::AttenuationModel
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return AudioStreamPlayer3DAttenuationModel(ret)
+}
 
 /*
         Undocumented
@@ -199,6 +243,24 @@ func (o *AudioStreamPlayer3D) GetBus() gdnative.String {
         Undocumented
 	Args: [], Returns: enum.AudioStreamPlayer3D::DopplerTracking
 */
+func (o *AudioStreamPlayer3D) GetDopplerTracking() AudioStreamPlayer3DDopplerTracking {
+	//log.Println("Calling AudioStreamPlayer3D.GetDopplerTracking()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer3D", "get_doppler_tracking")
+
+	// Call the parent method.
+	// enum.AudioStreamPlayer3D::DopplerTracking
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return AudioStreamPlayer3DDopplerTracking(ret)
+}
 
 /*
         Undocumented
@@ -296,6 +358,24 @@ func (o *AudioStreamPlayer3D) GetMaxDistance() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.AudioStreamPlayer3D::OutOfRangeMode
 */
+func (o *AudioStreamPlayer3D) GetOutOfRangeMode() AudioStreamPlayer3DOutOfRangeMode {
+	//log.Println("Calling AudioStreamPlayer3D.GetOutOfRangeMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer3D", "get_out_of_range_mode")
+
+	// Call the parent method.
+	// enum.AudioStreamPlayer3D::OutOfRangeMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return AudioStreamPlayer3DOutOfRangeMode(ret)
+}
 
 /*
         Returns the position in the [AudioStream].

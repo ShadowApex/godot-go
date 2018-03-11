@@ -13,6 +13,30 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// AnimationTreePlayerAnimationProcessMode is an enum for AnimationProcessMode values.
+type AnimationTreePlayerAnimationProcessMode int
+
+const (
+	AnimationTreePlayerAnimationProcessIdle    AnimationTreePlayerAnimationProcessMode = 1
+	AnimationTreePlayerAnimationProcessPhysics AnimationTreePlayerAnimationProcessMode = 0
+)
+
+// AnimationTreePlayerNodeType is an enum for NodeType values.
+type AnimationTreePlayerNodeType int
+
+const (
+	AnimationTreePlayerNodeAnimation  AnimationTreePlayerNodeType = 1
+	AnimationTreePlayerNodeBlend2     AnimationTreePlayerNodeType = 4
+	AnimationTreePlayerNodeBlend3     AnimationTreePlayerNodeType = 5
+	AnimationTreePlayerNodeBlend4     AnimationTreePlayerNodeType = 6
+	AnimationTreePlayerNodeMix        AnimationTreePlayerNodeType = 3
+	AnimationTreePlayerNodeOneshot    AnimationTreePlayerNodeType = 2
+	AnimationTreePlayerNodeOutput     AnimationTreePlayerNodeType = 0
+	AnimationTreePlayerNodeTimescale  AnimationTreePlayerNodeType = 7
+	AnimationTreePlayerNodeTimeseek   AnimationTreePlayerNodeType = 8
+	AnimationTreePlayerNodeTransition AnimationTreePlayerNodeType = 9
+)
+
 //func NewAnimationTreePlayerFromPointer(ptr gdnative.Pointer) AnimationTreePlayer {
 func newAnimationTreePlayerFromPointer(ptr gdnative.Pointer) AnimationTreePlayer {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -397,6 +421,27 @@ func (o *AnimationTreePlayer) Blend4NodeSetAmount(id gdnative.String, blend gdna
         Connects node [code]id[/code] to [code]dst_id[/code] at the specified input slot.
 	Args: [{ false id String} { false dst_id String} { false dst_input_idx int}], Returns: enum.Error
 */
+func (o *AnimationTreePlayer) ConnectNodes(id gdnative.String, dstId gdnative.String, dstInputIdx gdnative.Int) gdnative.Error {
+	//log.Println("Calling AnimationTreePlayer.ConnectNodes()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+	ptrArguments[1] = gdnative.NewPointerFromString(dstId)
+	ptrArguments[2] = gdnative.NewPointerFromInt(dstInputIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "connect_nodes")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Disconnects nodes connected to [code]id[/code] at the specified input slot.
@@ -424,6 +469,24 @@ func (o *AnimationTreePlayer) DisconnectNodes(id gdnative.String, dstInputIdx gd
         Undocumented
 	Args: [], Returns: enum.AnimationTreePlayer::AnimationProcessMode
 */
+func (o *AnimationTreePlayer) GetAnimationProcessMode() AnimationTreePlayerAnimationProcessMode {
+	//log.Println("Calling AnimationTreePlayer.GetAnimationProcessMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "get_animation_process_mode")
+
+	// Call the parent method.
+	// enum.AnimationTreePlayer::AnimationProcessMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return AnimationTreePlayerAnimationProcessMode(ret)
+}
 
 /*
         Undocumented
@@ -664,11 +727,50 @@ func (o *AnimationTreePlayer) NodeGetPosition(id gdnative.String) gdnative.Vecto
         Get the node type, will return from NODE_* enum.
 	Args: [{ false id String}], Returns: enum.AnimationTreePlayer::NodeType
 */
+func (o *AnimationTreePlayer) NodeGetType(id gdnative.String) AnimationTreePlayerNodeType {
+	//log.Println("Calling AnimationTreePlayer.NodeGetType()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "node_get_type")
+
+	// Call the parent method.
+	// enum.AnimationTreePlayer::NodeType
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return AnimationTreePlayerNodeType(ret)
+}
 
 /*
         Rename a node in the graph.
 	Args: [{ false node String} { false new_name String}], Returns: enum.Error
 */
+func (o *AnimationTreePlayer) NodeRename(node gdnative.String, newName gdnative.String) gdnative.Error {
+	//log.Println("Calling AnimationTreePlayer.NodeRename()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(node)
+	ptrArguments[1] = gdnative.NewPointerFromString(newName)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "node_rename")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Sets position of a node in the graph given its name and position.

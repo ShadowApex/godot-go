@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// BackBufferCopyCopyMode is an enum for CopyMode values.
+type BackBufferCopyCopyMode int
+
+const (
+	BackBufferCopyCopyModeDisabled BackBufferCopyCopyMode = 0
+	BackBufferCopyCopyModeRect     BackBufferCopyCopyMode = 1
+	BackBufferCopyCopyModeViewport BackBufferCopyCopyMode = 2
+)
+
 //func NewBackBufferCopyFromPointer(ptr gdnative.Pointer) BackBufferCopy {
 func newBackBufferCopyFromPointer(ptr gdnative.Pointer) BackBufferCopy {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,6 +47,24 @@ func (o *BackBufferCopy) BaseClass() string {
         Undocumented
 	Args: [], Returns: enum.BackBufferCopy::CopyMode
 */
+func (o *BackBufferCopy) GetCopyMode() BackBufferCopyCopyMode {
+	//log.Println("Calling BackBufferCopy.GetCopyMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BackBufferCopy", "get_copy_mode")
+
+	// Call the parent method.
+	// enum.BackBufferCopy::CopyMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return BackBufferCopyCopyMode(ret)
+}
 
 /*
         Undocumented

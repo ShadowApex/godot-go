@@ -13,6 +13,14 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// TouchScreenButtonVisibilityMode is an enum for VisibilityMode values.
+type TouchScreenButtonVisibilityMode int
+
+const (
+	TouchScreenButtonVisibilityAlways          TouchScreenButtonVisibilityMode = 0
+	TouchScreenButtonVisibilityTouchscreenOnly TouchScreenButtonVisibilityMode = 1
+)
+
 //func NewTouchScreenButtonFromPointer(ptr gdnative.Pointer) TouchScreenButton {
 func newTouchScreenButtonFromPointer(ptr gdnative.Pointer) TouchScreenButton {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -230,6 +238,24 @@ func (o *TouchScreenButton) GetTexturePressed() TextureImplementer {
         Undocumented
 	Args: [], Returns: enum.TouchScreenButton::VisibilityMode
 */
+func (o *TouchScreenButton) GetVisibilityMode() TouchScreenButtonVisibilityMode {
+	//log.Println("Calling TouchScreenButton.GetVisibilityMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TouchScreenButton", "get_visibility_mode")
+
+	// Call the parent method.
+	// enum.TouchScreenButton::VisibilityMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return TouchScreenButtonVisibilityMode(ret)
+}
 
 /*
         Undocumented

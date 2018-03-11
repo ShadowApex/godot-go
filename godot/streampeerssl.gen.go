@@ -13,6 +13,16 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// StreamPeerSSLStatus is an enum for Status values.
+type StreamPeerSSLStatus int
+
+const (
+	StreamPeerSSLStatusConnected             StreamPeerSSLStatus = 1
+	StreamPeerSSLStatusDisconnected          StreamPeerSSLStatus = 0
+	StreamPeerSSLStatusErrorHostnameMismatch StreamPeerSSLStatus = 3
+	StreamPeerSSLStatusErrorNoCertificate    StreamPeerSSLStatus = 2
+)
+
 //func NewStreamPeerSSLFromPointer(ptr gdnative.Pointer) StreamPeerSSL {
 func newStreamPeerSSLFromPointer(ptr gdnative.Pointer) StreamPeerSSL {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,11 +48,51 @@ func (o *StreamPeerSSL) BaseClass() string {
 
 	Args: [{ false stream StreamPeer}], Returns: enum.Error
 */
+func (o *StreamPeerSSL) AcceptStream(stream StreamPeer) gdnative.Error {
+	//log.Println("Calling StreamPeerSSL.AcceptStream()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(stream.GetBaseObject())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerSSL", "accept_stream")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Connect to a peer using an underlying [StreamPeer] "stream", when "validate_certs" is true, [code]StreamPeerSSL[/code] will validate that the certificate presented by the peer matches the "for_hostname".
 	Args: [{ false stream StreamPeer} {False true validate_certs bool} { true for_hostname String}], Returns: enum.Error
 */
+func (o *StreamPeerSSL) ConnectToStream(stream StreamPeer, validateCerts gdnative.Bool, forHostname gdnative.String) gdnative.Error {
+	//log.Println("Calling StreamPeerSSL.ConnectToStream()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 3, 3)
+	ptrArguments[0] = gdnative.NewPointerFromObject(stream.GetBaseObject())
+	ptrArguments[1] = gdnative.NewPointerFromBool(validateCerts)
+	ptrArguments[2] = gdnative.NewPointerFromString(forHostname)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerSSL", "connect_to_stream")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Disconnect from host.
@@ -68,6 +118,24 @@ func (o *StreamPeerSSL) DisconnectFromStream() {
         Return the status of the connection, one of STATUS_* enum.
 	Args: [], Returns: enum.StreamPeerSSL::Status
 */
+func (o *StreamPeerSSL) GetStatus() StreamPeerSSLStatus {
+	//log.Println("Calling StreamPeerSSL.GetStatus()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StreamPeerSSL", "get_status")
+
+	// Call the parent method.
+	// enum.StreamPeerSSL::Status
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return StreamPeerSSLStatus(ret)
+}
 
 // StreamPeerSSLImplementer is an interface that implements the methods
 // of the StreamPeerSSL class.

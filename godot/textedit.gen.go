@@ -13,6 +13,28 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// TextEditMenuItems is an enum for MenuItems values.
+type TextEditMenuItems int
+
+const (
+	TextEditMenuClear     TextEditMenuItems = 3
+	TextEditMenuCopy      TextEditMenuItems = 1
+	TextEditMenuCut       TextEditMenuItems = 0
+	TextEditMenuMax       TextEditMenuItems = 6
+	TextEditMenuPaste     TextEditMenuItems = 2
+	TextEditMenuSelectAll TextEditMenuItems = 4
+	TextEditMenuUndo      TextEditMenuItems = 5
+)
+
+// TextEditSearchFlags is an enum for SearchFlags values.
+type TextEditSearchFlags int
+
+const (
+	TextEditSearchBackwards  TextEditSearchFlags = 4
+	TextEditSearchMatchCase  TextEditSearchFlags = 1
+	TextEditSearchWholeWords TextEditSearchFlags = 2
+)
+
 //func NewTextEditFromPointer(ptr gdnative.Pointer) TextEdit {
 func newTextEditFromPointer(ptr gdnative.Pointer) TextEdit {
 	owner := gdnative.NewObjectFromPointer(ptr)

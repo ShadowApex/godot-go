@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// AudioStreamPlayerMixTarget is an enum for MixTarget values.
+type AudioStreamPlayerMixTarget int
+
+const (
+	AudioStreamPlayerMixTargetCenter   AudioStreamPlayerMixTarget = 2
+	AudioStreamPlayerMixTargetStereo   AudioStreamPlayerMixTarget = 0
+	AudioStreamPlayerMixTargetSurround AudioStreamPlayerMixTarget = 1
+)
+
 //func NewAudioStreamPlayerFromPointer(ptr gdnative.Pointer) AudioStreamPlayer {
 func newAudioStreamPlayerFromPointer(ptr gdnative.Pointer) AudioStreamPlayer {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -125,6 +134,24 @@ func (o *AudioStreamPlayer) GetBus() gdnative.String {
         Undocumented
 	Args: [], Returns: enum.AudioStreamPlayer::MixTarget
 */
+func (o *AudioStreamPlayer) GetMixTarget() AudioStreamPlayerMixTarget {
+	//log.Println("Calling AudioStreamPlayer.GetMixTarget()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "get_mix_target")
+
+	// Call the parent method.
+	// enum.AudioStreamPlayer::MixTarget
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return AudioStreamPlayerMixTarget(ret)
+}
 
 /*
         Returns the position in the [AudioStream].

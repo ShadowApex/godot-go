@@ -13,6 +13,106 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// ControlAnchor is an enum for Anchor values.
+type ControlAnchor int
+
+const (
+	ControlAnchorBegin ControlAnchor = 0
+	ControlAnchorEnd   ControlAnchor = 1
+)
+
+// ControlCursorShape is an enum for CursorShape values.
+type ControlCursorShape int
+
+const (
+	ControlCursorArrow        ControlCursorShape = 0
+	ControlCursorBdiagsize    ControlCursorShape = 11
+	ControlCursorBusy         ControlCursorShape = 5
+	ControlCursorCanDrop      ControlCursorShape = 7
+	ControlCursorCross        ControlCursorShape = 3
+	ControlCursorDrag         ControlCursorShape = 6
+	ControlCursorFdiagsize    ControlCursorShape = 12
+	ControlCursorForbidden    ControlCursorShape = 8
+	ControlCursorHelp         ControlCursorShape = 16
+	ControlCursorHsize        ControlCursorShape = 10
+	ControlCursorHsplit       ControlCursorShape = 15
+	ControlCursorIbeam        ControlCursorShape = 1
+	ControlCursorMove         ControlCursorShape = 13
+	ControlCursorPointingHand ControlCursorShape = 2
+	ControlCursorVsize        ControlCursorShape = 9
+	ControlCursorVsplit       ControlCursorShape = 14
+	ControlCursorWait         ControlCursorShape = 4
+)
+
+// ControlFocusMode is an enum for FocusMode values.
+type ControlFocusMode int
+
+const (
+	ControlFocusAll   ControlFocusMode = 2
+	ControlFocusClick ControlFocusMode = 1
+	ControlFocusNone  ControlFocusMode = 0
+)
+
+// ControlGrowDirection is an enum for GrowDirection values.
+type ControlGrowDirection int
+
+const (
+	ControlGrowDirectionBegin ControlGrowDirection = 0
+	ControlGrowDirectionEnd   ControlGrowDirection = 1
+)
+
+// ControlLayoutPreset is an enum for LayoutPreset values.
+type ControlLayoutPreset int
+
+const (
+	ControlPresetBottomLeft   ControlLayoutPreset = 2
+	ControlPresetBottomRight  ControlLayoutPreset = 3
+	ControlPresetBottomWide   ControlLayoutPreset = 12
+	ControlPresetCenter       ControlLayoutPreset = 8
+	ControlPresetCenterBottom ControlLayoutPreset = 7
+	ControlPresetCenterLeft   ControlLayoutPreset = 4
+	ControlPresetCenterRight  ControlLayoutPreset = 6
+	ControlPresetCenterTop    ControlLayoutPreset = 5
+	ControlPresetHcenterWide  ControlLayoutPreset = 14
+	ControlPresetLeftWide     ControlLayoutPreset = 9
+	ControlPresetRightWide    ControlLayoutPreset = 11
+	ControlPresetTopLeft      ControlLayoutPreset = 0
+	ControlPresetTopRight     ControlLayoutPreset = 1
+	ControlPresetTopWide      ControlLayoutPreset = 10
+	ControlPresetVcenterWide  ControlLayoutPreset = 13
+	ControlPresetWide         ControlLayoutPreset = 15
+)
+
+// ControlLayoutPresetMode is an enum for LayoutPresetMode values.
+type ControlLayoutPresetMode int
+
+const (
+	ControlPresetModeKeepHeight ControlLayoutPresetMode = 2
+	ControlPresetModeKeepSize   ControlLayoutPresetMode = 3
+	ControlPresetModeKeepWidth  ControlLayoutPresetMode = 1
+	ControlPresetModeMinsize    ControlLayoutPresetMode = 0
+)
+
+// ControlMouseFilter is an enum for MouseFilter values.
+type ControlMouseFilter int
+
+const (
+	ControlMouseFilterIgnore ControlMouseFilter = 2
+	ControlMouseFilterPass   ControlMouseFilter = 1
+	ControlMouseFilterStop   ControlMouseFilter = 0
+)
+
+// ControlSizeFlags is an enum for SizeFlags values.
+type ControlSizeFlags int
+
+const (
+	ControlSizeExpand       ControlSizeFlags = 2
+	ControlSizeExpandFill   ControlSizeFlags = 3
+	ControlSizeFill         ControlSizeFlags = 1
+	ControlSizeShrinkCenter ControlSizeFlags = 4
+	ControlSizeShrinkEnd    ControlSizeFlags = 8
+)
+
 //func NewControlFromPointer(ptr gdnative.Pointer) Control {
 func newControlFromPointer(ptr gdnative.Pointer) Control {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -548,6 +648,25 @@ func (o *Control) GetConstant(name gdnative.String, aType gdnative.String) gdnat
         Returns the mouse cursor shape the control displays on mouse hover, one of the [code]CURSOR_*[/code] constants.
 	Args: [{(0, 0) true position Vector2}], Returns: enum.Control::CursorShape
 */
+func (o *Control) GetCursorShape(position gdnative.Vector2) ControlCursorShape {
+	//log.Println("Calling Control.GetCursorShape()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_cursor_shape")
+
+	// Call the parent method.
+	// enum.Control::CursorShape
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ControlCursorShape(ret)
+}
 
 /*
         Undocumented
@@ -576,6 +695,24 @@ func (o *Control) GetCustomMinimumSize() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: enum.Control::CursorShape
 */
+func (o *Control) GetDefaultCursorShape() ControlCursorShape {
+	//log.Println("Calling Control.GetDefaultCursorShape()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_default_cursor_shape")
+
+	// Call the parent method.
+	// enum.Control::CursorShape
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ControlCursorShape(ret)
+}
 
 /*
         Godot calls this method to get data that can be dragged and dropped onto controls that expect drop data. Return null if there is no data to drag. Controls that want to recieve drop data should implement [method can_drop_data] and [method drop_data]. [code]position[/code] is local to this control. Drag may be forced with [method force_drag]. A preview that will follow the mouse that should represent the data can be set with [method set_drag_preview]. A good time to set the preview is in this method. [codeblock] extends Control func get_drag_data(position): var mydata = make_data() set_drag_preview(make_preview(mydata)) return mydata [/codeblock]
@@ -642,6 +779,24 @@ func (o *Control) GetEnd() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: enum.Control::FocusMode
 */
+func (o *Control) GetFocusMode() ControlFocusMode {
+	//log.Println("Calling Control.GetFocusMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_focus_mode")
+
+	// Call the parent method.
+	// enum.Control::FocusMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ControlFocusMode(ret)
+}
 
 /*
         Undocumented
@@ -839,6 +994,24 @@ func (o *Control) GetGlobalRect() gdnative.Rect2 {
         Undocumented
 	Args: [], Returns: enum.Control::GrowDirection
 */
+func (o *Control) GetHGrowDirection() ControlGrowDirection {
+	//log.Println("Calling Control.GetHGrowDirection()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_h_grow_direction")
+
+	// Call the parent method.
+	// enum.Control::GrowDirection
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ControlGrowDirection(ret)
+}
 
 /*
         Undocumented
@@ -953,6 +1126,24 @@ func (o *Control) GetMinimumSize() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: enum.Control::MouseFilter
 */
+func (o *Control) GetMouseFilter() ControlMouseFilter {
+	//log.Println("Calling Control.GetMouseFilter()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_mouse_filter")
+
+	// Call the parent method.
+	// enum.Control::MouseFilter
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ControlMouseFilter(ret)
+}
 
 /*
 
@@ -1302,6 +1493,24 @@ func (o *Control) GetTooltip(atPosition gdnative.Vector2) gdnative.String {
         Undocumented
 	Args: [], Returns: enum.Control::GrowDirection
 */
+func (o *Control) GetVGrowDirection() ControlGrowDirection {
+	//log.Println("Calling Control.GetVGrowDirection()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Control", "get_v_grow_direction")
+
+	// Call the parent method.
+	// enum.Control::GrowDirection
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ControlGrowDirection(ret)
+}
 
 /*
         Undocumented

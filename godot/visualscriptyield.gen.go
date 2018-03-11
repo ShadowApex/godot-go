@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// VisualScriptYieldYieldMode is an enum for YieldMode values.
+type VisualScriptYieldYieldMode int
+
+const (
+	VisualScriptYieldYieldFrame        VisualScriptYieldYieldMode = 1
+	VisualScriptYieldYieldPhysicsFrame VisualScriptYieldYieldMode = 2
+	VisualScriptYieldYieldWait         VisualScriptYieldYieldMode = 3
+)
+
 //func NewVisualScriptYieldFromPointer(ptr gdnative.Pointer) VisualScriptYield {
 func newVisualScriptYieldFromPointer(ptr gdnative.Pointer) VisualScriptYield {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -61,6 +70,24 @@ func (o *VisualScriptYield) GetWaitTime() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.VisualScriptYield::YieldMode
 */
+func (o *VisualScriptYield) GetYieldMode() VisualScriptYieldYieldMode {
+	//log.Println("Calling VisualScriptYield.GetYieldMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptYield", "get_yield_mode")
+
+	// Call the parent method.
+	// enum.VisualScriptYield::YieldMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return VisualScriptYieldYieldMode(ret)
+}
 
 /*
         Undocumented

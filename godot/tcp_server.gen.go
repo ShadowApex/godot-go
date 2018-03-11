@@ -61,6 +61,26 @@ func (o *TCP_Server) IsConnectionAvailable() gdnative.Bool {
         Listen on the "port" binding to "bind_address". If "bind_address" is set as "*" (default), the server will listen on all available addresses (both IPv4 and IPv6). If "bind_address" is set as "0.0.0.0" (for IPv4) or "::" (for IPv6), the server will listen on all available addresses matching that IP type. If "bind_address" is set to any valid address (e.g. "192.168.1.101", "::1", etc), the server will only listen on the interface with that addresses (or fail if no interface with the given address exists).
 	Args: [{ false port int} {* true bind_address String}], Returns: enum.Error
 */
+func (o *TCP_Server) Listen(port gdnative.Int, bindAddress gdnative.String) gdnative.Error {
+	//log.Println("Calling TCP_Server.Listen()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromInt(port)
+	ptrArguments[1] = gdnative.NewPointerFromString(bindAddress)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TCP_Server", "listen")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Stop listening.

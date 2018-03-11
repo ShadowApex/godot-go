@@ -13,6 +13,28 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// Light2DMode is an enum for Mode values.
+type Light2DMode int
+
+const (
+	Light2DModeAdd  Light2DMode = 0
+	Light2DModeMask Light2DMode = 3
+	Light2DModeMix  Light2DMode = 2
+	Light2DModeSub  Light2DMode = 1
+)
+
+// Light2DShadowFilter is an enum for ShadowFilter values.
+type Light2DShadowFilter int
+
+const (
+	Light2DShadowFilterNone  Light2DShadowFilter = 0
+	Light2DShadowFilterPcf13 Light2DShadowFilter = 5
+	Light2DShadowFilterPcf3  Light2DShadowFilter = 1
+	Light2DShadowFilterPcf5  Light2DShadowFilter = 2
+	Light2DShadowFilterPcf7  Light2DShadowFilter = 3
+	Light2DShadowFilterPcf9  Light2DShadowFilter = 4
+)
+
 //func NewLight2DFromPointer(ptr gdnative.Pointer) Light2D {
 func newLight2DFromPointer(ptr gdnative.Pointer) Light2D {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -199,6 +221,24 @@ func (o *Light2D) GetLayerRangeMin() gdnative.Int {
         Undocumented
 	Args: [], Returns: enum.Light2D::Mode
 */
+func (o *Light2D) GetMode() Light2DMode {
+	//log.Println("Calling Light2D.GetMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Light2D", "get_mode")
+
+	// Call the parent method.
+	// enum.Light2D::Mode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return Light2DMode(ret)
+}
 
 /*
         Undocumented
@@ -250,6 +290,24 @@ func (o *Light2D) GetShadowColor() gdnative.Color {
         Undocumented
 	Args: [], Returns: enum.Light2D::ShadowFilter
 */
+func (o *Light2D) GetShadowFilter() Light2DShadowFilter {
+	//log.Println("Calling Light2D.GetShadowFilter()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Light2D", "get_shadow_filter")
+
+	// Call the parent method.
+	// enum.Light2D::ShadowFilter
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return Light2DShadowFilter(ret)
+}
 
 /*
         Undocumented

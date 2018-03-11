@@ -13,6 +13,16 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// PathFollowRotationMode is an enum for RotationMode values.
+type PathFollowRotationMode int
+
+const (
+	PathFollowRotationNone PathFollowRotationMode = 0
+	PathFollowRotationXy   PathFollowRotationMode = 2
+	PathFollowRotationXyz  PathFollowRotationMode = 3
+	PathFollowRotationY    PathFollowRotationMode = 1
+)
+
 //func NewPathFollowFromPointer(ptr gdnative.Pointer) PathFollow {
 func newPathFollowFromPointer(ptr gdnative.Pointer) PathFollow {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -107,6 +117,24 @@ func (o *PathFollow) GetOffset() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.PathFollow::RotationMode
 */
+func (o *PathFollow) GetRotationMode() PathFollowRotationMode {
+	//log.Println("Calling PathFollow.GetRotationMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PathFollow", "get_rotation_mode")
+
+	// Call the parent method.
+	// enum.PathFollow::RotationMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return PathFollowRotationMode(ret)
+}
 
 /*
         Undocumented

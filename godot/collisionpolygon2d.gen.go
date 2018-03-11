@@ -13,6 +13,14 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// CollisionPolygon2DBuildMode is an enum for BuildMode values.
+type CollisionPolygon2DBuildMode int
+
+const (
+	CollisionPolygon2DBuildSegments CollisionPolygon2DBuildMode = 1
+	CollisionPolygon2DBuildSolids   CollisionPolygon2DBuildMode = 0
+)
+
 //func NewCollisionPolygon2DFromPointer(ptr gdnative.Pointer) CollisionPolygon2D {
 func newCollisionPolygon2DFromPointer(ptr gdnative.Pointer) CollisionPolygon2D {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,6 +46,24 @@ func (o *CollisionPolygon2D) BaseClass() string {
         Undocumented
 	Args: [], Returns: enum.CollisionPolygon2D::BuildMode
 */
+func (o *CollisionPolygon2D) GetBuildMode() CollisionPolygon2DBuildMode {
+	//log.Println("Calling CollisionPolygon2D.GetBuildMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("CollisionPolygon2D", "get_build_mode")
+
+	// Call the parent method.
+	// enum.CollisionPolygon2D::BuildMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return CollisionPolygon2DBuildMode(ret)
+}
 
 /*
         Undocumented

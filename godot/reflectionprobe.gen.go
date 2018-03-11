@@ -13,6 +13,14 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// ReflectionProbeUpdateMode is an enum for UpdateMode values.
+type ReflectionProbeUpdateMode int
+
+const (
+	ReflectionProbeUpdateAlways ReflectionProbeUpdateMode = 1
+	ReflectionProbeUpdateOnce   ReflectionProbeUpdateMode = 0
+)
+
 //func NewReflectionProbeFromPointer(ptr gdnative.Pointer) ReflectionProbe {
 func newReflectionProbeFromPointer(ptr gdnative.Pointer) ReflectionProbe {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -245,6 +253,24 @@ func (o *ReflectionProbe) GetOriginOffset() gdnative.Vector3 {
         Undocumented
 	Args: [], Returns: enum.ReflectionProbe::UpdateMode
 */
+func (o *ReflectionProbe) GetUpdateMode() ReflectionProbeUpdateMode {
+	//log.Println("Calling ReflectionProbe.GetUpdateMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ReflectionProbe", "get_update_mode")
+
+	// Call the parent method.
+	// enum.ReflectionProbe::UpdateMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ReflectionProbeUpdateMode(ret)
+}
 
 /*
         Undocumented

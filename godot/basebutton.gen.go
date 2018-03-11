@@ -13,6 +13,24 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// BaseButtonActionMode is an enum for ActionMode values.
+type BaseButtonActionMode int
+
+const (
+	BaseButtonActionModeButtonPress   BaseButtonActionMode = 0
+	BaseButtonActionModeButtonRelease BaseButtonActionMode = 1
+)
+
+// BaseButtonDrawMode is an enum for DrawMode values.
+type BaseButtonDrawMode int
+
+const (
+	BaseButtonDrawDisabled BaseButtonDrawMode = 3
+	BaseButtonDrawHover    BaseButtonDrawMode = 2
+	BaseButtonDrawNormal   BaseButtonDrawMode = 0
+	BaseButtonDrawPressed  BaseButtonDrawMode = 1
+)
+
 //func NewBaseButtonFromPointer(ptr gdnative.Pointer) BaseButton {
 func newBaseButtonFromPointer(ptr gdnative.Pointer) BaseButton {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -121,6 +139,24 @@ func (o *BaseButton) X_UnhandledInput(arg0 InputEvent) {
         Undocumented
 	Args: [], Returns: enum.BaseButton::ActionMode
 */
+func (o *BaseButton) GetActionMode() BaseButtonActionMode {
+	//log.Println("Calling BaseButton.GetActionMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "get_action_mode")
+
+	// Call the parent method.
+	// enum.BaseButton::ActionMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return BaseButtonActionMode(ret)
+}
 
 /*
         Undocumented
@@ -163,11 +199,47 @@ func (o *BaseButton) GetButtonGroup() ButtonGroupImplementer {
         Return the visual state used to draw the button. This is useful mainly when implementing your own draw code by either overriding _draw() or connecting to "draw" signal. The visual state of the button is defined by the DRAW_* enum.
 	Args: [], Returns: enum.BaseButton::DrawMode
 */
+func (o *BaseButton) GetDrawMode() BaseButtonDrawMode {
+	//log.Println("Calling BaseButton.GetDrawMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "get_draw_mode")
+
+	// Call the parent method.
+	// enum.BaseButton::DrawMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return BaseButtonDrawMode(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.Control::FocusMode
 */
+func (o *BaseButton) GetEnabledFocusMode() ControlFocusMode {
+	//log.Println("Calling BaseButton.GetEnabledFocusMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BaseButton", "get_enabled_focus_mode")
+
+	// Call the parent method.
+	// enum.Control::FocusMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ControlFocusMode(ret)
+}
 
 /*
         Undocumented

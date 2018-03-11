@@ -13,6 +13,17 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// Area2DSpaceOverride is an enum for SpaceOverride values.
+type Area2DSpaceOverride int
+
+const (
+	Area2DSpaceOverrideCombine        Area2DSpaceOverride = 1
+	Area2DSpaceOverrideCombineReplace Area2DSpaceOverride = 2
+	Area2DSpaceOverrideDisabled       Area2DSpaceOverride = 0
+	Area2DSpaceOverrideReplace        Area2DSpaceOverride = 3
+	Area2DSpaceOverrideReplaceCombine Area2DSpaceOverride = 4
+)
+
 //func NewArea2DFromPointer(ptr gdnative.Pointer) Area2D {
 func newArea2DFromPointer(ptr gdnative.Pointer) Area2D {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -473,6 +484,24 @@ func (o *Area2D) GetPriority() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.Area2D::SpaceOverride
 */
+func (o *Area2D) GetSpaceOverrideMode() Area2DSpaceOverride {
+	//log.Println("Calling Area2D.GetSpaceOverrideMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Area2D", "get_space_override_mode")
+
+	// Call the parent method.
+	// enum.Area2D::SpaceOverride
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return Area2DSpaceOverride(ret)
+}
 
 /*
         Undocumented

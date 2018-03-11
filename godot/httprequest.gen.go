@@ -13,6 +13,24 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// HTTPRequestResult is an enum for Result values.
+type HTTPRequestResult int
+
+const (
+	HTTPRequestResultBodySizeLimitExceeded   HTTPRequestResult = 7
+	HTTPRequestResultCantConnect             HTTPRequestResult = 2
+	HTTPRequestResultCantResolve             HTTPRequestResult = 3
+	HTTPRequestResultChunkedBodySizeMismatch HTTPRequestResult = 1
+	HTTPRequestResultConnectionError         HTTPRequestResult = 4
+	HTTPRequestResultDownloadFileCantOpen    HTTPRequestResult = 9
+	HTTPRequestResultDownloadFileWriteError  HTTPRequestResult = 10
+	HTTPRequestResultNoResponse              HTTPRequestResult = 6
+	HTTPRequestResultRedirectLimitReached    HTTPRequestResult = 11
+	HTTPRequestResultRequestFailed           HTTPRequestResult = 8
+	HTTPRequestResultSslHandshakeError       HTTPRequestResult = 5
+	HTTPRequestResultSuccess                 HTTPRequestResult = 0
+)
+
 //func NewHTTPRequestFromPointer(ptr gdnative.Pointer) HTTPRequest {
 func newHTTPRequestFromPointer(ptr gdnative.Pointer) HTTPRequest {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -195,6 +213,24 @@ func (o *HTTPRequest) GetDownloadedBytes() gdnative.Int {
         Returns the current status of the underlying [HTTPClient]. See [code]STATUS_*[/code] enum on [HTTPClient].
 	Args: [], Returns: enum.HTTPClient::Status
 */
+func (o *HTTPRequest) GetHttpClientStatus() HTTPClientStatus {
+	//log.Println("Calling HTTPRequest.GetHttpClientStatus()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPRequest", "get_http_client_status")
+
+	// Call the parent method.
+	// enum.HTTPClient::Status
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return HTTPClientStatus(ret)
+}
 
 /*
         Undocumented
@@ -246,6 +282,29 @@ func (o *HTTPRequest) IsUsingThreads() gdnative.Bool {
 
 	Args: [{ false url String} {[] true custom_headers PoolStringArray} {True true ssl_validate_domain bool} {0 true method int} { true request_data String}], Returns: enum.Error
 */
+func (o *HTTPRequest) Request(url gdnative.String, customHeaders gdnative.PoolStringArray, sslValidateDomain gdnative.Bool, method gdnative.Int, requestData gdnative.String) gdnative.Error {
+	//log.Println("Calling HTTPRequest.Request()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 5, 5)
+	ptrArguments[0] = gdnative.NewPointerFromString(url)
+	ptrArguments[1] = gdnative.NewPointerFromPoolStringArray(customHeaders)
+	ptrArguments[2] = gdnative.NewPointerFromBool(sslValidateDomain)
+	ptrArguments[3] = gdnative.NewPointerFromInt(method)
+	ptrArguments[4] = gdnative.NewPointerFromString(requestData)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPRequest", "request")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Undocumented

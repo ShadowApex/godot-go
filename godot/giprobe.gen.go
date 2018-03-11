@@ -13,6 +13,17 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// GIProbeSubdiv is an enum for Subdiv values.
+type GIProbeSubdiv int
+
+const (
+	GIProbeSubdiv128 GIProbeSubdiv = 1
+	GIProbeSubdiv256 GIProbeSubdiv = 2
+	GIProbeSubdiv512 GIProbeSubdiv = 3
+	GIProbeSubdiv64  GIProbeSubdiv = 0
+	GIProbeSubdivMax GIProbeSubdiv = 4
+)
+
 //func NewGIProbeFromPointer(ptr gdnative.Pointer) GIProbe {
 func newGIProbeFromPointer(ptr gdnative.Pointer) GIProbe {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -255,6 +266,24 @@ func (o *GIProbe) GetPropagation() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.GIProbe::Subdiv
 */
+func (o *GIProbe) GetSubdiv() GIProbeSubdiv {
+	//log.Println("Calling GIProbe.GetSubdiv()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GIProbe", "get_subdiv")
+
+	// Call the parent method.
+	// enum.GIProbe::Subdiv
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return GIProbeSubdiv(ret)
+}
 
 /*
         Undocumented

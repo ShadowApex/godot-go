@@ -13,6 +13,28 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// TileSetAutotileBindings is an enum for AutotileBindings values.
+type TileSetAutotileBindings int
+
+const (
+	TileSetBindBottom      TileSetAutotileBindings = 128
+	TileSetBindBottomleft  TileSetAutotileBindings = 64
+	TileSetBindBottomright TileSetAutotileBindings = 256
+	TileSetBindLeft        TileSetAutotileBindings = 8
+	TileSetBindRight       TileSetAutotileBindings = 32
+	TileSetBindTop         TileSetAutotileBindings = 2
+	TileSetBindTopleft     TileSetAutotileBindings = 1
+	TileSetBindTopright    TileSetAutotileBindings = 4
+)
+
+// TileSetBitmaskMode is an enum for BitmaskMode values.
+type TileSetBitmaskMode int
+
+const (
+	TileSetBitmask2X2 TileSetBitmaskMode = 0
+	TileSetBitmask3X3 TileSetBitmaskMode = 1
+)
+
 //func NewTileSetFromPointer(ptr gdnative.Pointer) TileSet {
 func newTileSetFromPointer(ptr gdnative.Pointer) TileSet {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -90,6 +112,25 @@ func (o *TileSet) X_IsTileBound(drawnId gdnative.Int, neighborId gdnative.Int) g
 
 	Args: [{ false id int}], Returns: enum.TileSet::BitmaskMode
 */
+func (o *TileSet) AutotileGetBitmaskMode(id gdnative.Int) TileSetBitmaskMode {
+	//log.Println("Calling TileSet.AutotileGetBitmaskMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(id)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TileSet", "autotile_get_bitmask_mode")
+
+	// Call the parent method.
+	// enum.TileSet::BitmaskMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return TileSetBitmaskMode(ret)
+}
 
 /*
 

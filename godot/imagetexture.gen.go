@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// ImageTextureStorage is an enum for Storage values.
+type ImageTextureStorage int
+
+const (
+	ImageTextureStorageCompressLossless ImageTextureStorage = 2
+	ImageTextureStorageCompressLossy    ImageTextureStorage = 1
+	ImageTextureStorageRaw              ImageTextureStorage = 0
+)
+
 //func NewImageTextureFromPointer(ptr gdnative.Pointer) ImageTexture {
 func newImageTextureFromPointer(ptr gdnative.Pointer) ImageTexture {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -105,6 +114,24 @@ func (o *ImageTexture) CreateFromImage(image Image, flags gdnative.Int) {
         Return the format of the [code]ImageTexture[/code], one of [Image].FORMAT_*.
 	Args: [], Returns: enum.Image::Format
 */
+func (o *ImageTexture) GetFormat() ImageFormat {
+	//log.Println("Calling ImageTexture.GetFormat()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ImageTexture", "get_format")
+
+	// Call the parent method.
+	// enum.Image::Format
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ImageFormat(ret)
+}
 
 /*
         Undocumented
@@ -133,6 +160,24 @@ func (o *ImageTexture) GetLossyStorageQuality() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.ImageTexture::Storage
 */
+func (o *ImageTexture) GetStorage() ImageTextureStorage {
+	//log.Println("Calling ImageTexture.GetStorage()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ImageTexture", "get_storage")
+
+	// Call the parent method.
+	// enum.ImageTexture::Storage
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ImageTextureStorage(ret)
+}
 
 /*
         Load an [code]ImageTexture[/code].

@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// GraphNodeOverlay is an enum for Overlay values.
+type GraphNodeOverlay int
+
+const (
+	GraphNodeOverlayBreakpoint GraphNodeOverlay = 1
+	GraphNodeOverlayDisabled   GraphNodeOverlay = 0
+	GraphNodeOverlayPosition   GraphNodeOverlay = 2
+)
+
 //func NewGraphNodeFromPointer(ptr gdnative.Pointer) GraphNode {
 func newGraphNodeFromPointer(ptr gdnative.Pointer) GraphNode {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -313,6 +322,24 @@ func (o *GraphNode) GetOffset() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: enum.GraphNode::Overlay
 */
+func (o *GraphNode) GetOverlay() GraphNodeOverlay {
+	//log.Println("Calling GraphNode.GetOverlay()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphNode", "get_overlay")
+
+	// Call the parent method.
+	// enum.GraphNode::Overlay
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return GraphNodeOverlay(ret)
+}
 
 /*
         Return the color set to 'idx' left (input) slot.

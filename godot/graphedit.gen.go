@@ -388,6 +388,28 @@ func (o *GraphEdit) ClearConnections() {
         Create a connection between 'from_port' slot of 'from' GraphNode and 'to_port' slot of 'to' GraphNode. If the connection already exists, no connection is created.
 	Args: [{ false from String} { false from_port int} { false to String} { false to_port int}], Returns: enum.Error
 */
+func (o *GraphEdit) ConnectNode(from gdnative.String, fromPort gdnative.Int, to gdnative.String, toPort gdnative.Int) gdnative.Error {
+	//log.Println("Calling GraphEdit.ConnectNode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromString(from)
+	ptrArguments[1] = gdnative.NewPointerFromInt(fromPort)
+	ptrArguments[2] = gdnative.NewPointerFromString(to)
+	ptrArguments[3] = gdnative.NewPointerFromInt(toPort)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("GraphEdit", "connect_node")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Remove the connection between 'from_port' slot of 'from' GraphNode and 'to_port' slot of 'to' GraphNode, if connection exists.

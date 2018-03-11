@@ -13,6 +13,37 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// ArrayMeshArrayFormat is an enum for ArrayFormat values.
+type ArrayMeshArrayFormat int
+
+const (
+	ArrayMeshArrayFormatBones   ArrayMeshArrayFormat = 64
+	ArrayMeshArrayFormatColor   ArrayMeshArrayFormat = 8
+	ArrayMeshArrayFormatIndex   ArrayMeshArrayFormat = 256
+	ArrayMeshArrayFormatNormal  ArrayMeshArrayFormat = 2
+	ArrayMeshArrayFormatTangent ArrayMeshArrayFormat = 4
+	ArrayMeshArrayFormatTexUv   ArrayMeshArrayFormat = 16
+	ArrayMeshArrayFormatTexUv2  ArrayMeshArrayFormat = 32
+	ArrayMeshArrayFormatVertex  ArrayMeshArrayFormat = 1
+	ArrayMeshArrayFormatWeights ArrayMeshArrayFormat = 128
+)
+
+// ArrayMeshArrayType is an enum for ArrayType values.
+type ArrayMeshArrayType int
+
+const (
+	ArrayMeshArrayBones   ArrayMeshArrayType = 6
+	ArrayMeshArrayColor   ArrayMeshArrayType = 3
+	ArrayMeshArrayIndex   ArrayMeshArrayType = 8
+	ArrayMeshArrayMax     ArrayMeshArrayType = 9
+	ArrayMeshArrayNormal  ArrayMeshArrayType = 1
+	ArrayMeshArrayTangent ArrayMeshArrayType = 2
+	ArrayMeshArrayTexUv   ArrayMeshArrayType = 4
+	ArrayMeshArrayTexUv2  ArrayMeshArrayType = 5
+	ArrayMeshArrayVertex  ArrayMeshArrayType = 0
+	ArrayMeshArrayWeights ArrayMeshArrayType = 7
+)
+
 //func NewArrayMeshFromPointer(ptr gdnative.Pointer) ArrayMesh {
 func newArrayMeshFromPointer(ptr gdnative.Pointer) ArrayMesh {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -146,6 +177,24 @@ func (o *ArrayMesh) GetBlendShapeCount() gdnative.Int {
         Undocumented
 	Args: [], Returns: enum.Mesh::BlendShapeMode
 */
+func (o *ArrayMesh) GetBlendShapeMode() MeshBlendShapeMode {
+	//log.Println("Calling ArrayMesh.GetBlendShapeMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "get_blend_shape_mode")
+
+	// Call the parent method.
+	// enum.Mesh::BlendShapeMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return MeshBlendShapeMode(ret)
+}
 
 /*
 
@@ -221,6 +270,26 @@ func (o *ArrayMesh) GetSurfaceCount() gdnative.Int {
 
 	Args: [{ false arg0 Transform} { false arg1 float}], Returns: enum.Error
 */
+func (o *ArrayMesh) LightmapUnwrap(arg0 gdnative.Transform, arg1 gdnative.Float) gdnative.Error {
+	//log.Println("Calling ArrayMesh.LightmapUnwrap()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromTransform(arg0)
+	ptrArguments[1] = gdnative.NewPointerFromFloat(arg1)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "lightmap_unwrap")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
 
@@ -470,6 +539,25 @@ func (o *ArrayMesh) SurfaceGetName(surfIdx gdnative.Int) gdnative.String {
         Return the primitive type of the requested surface (see [method add_surface]).
 	Args: [{ false surf_idx int}], Returns: enum.Mesh::PrimitiveType
 */
+func (o *ArrayMesh) SurfaceGetPrimitiveType(surfIdx gdnative.Int) MeshPrimitiveType {
+	//log.Println("Calling ArrayMesh.SurfaceGetPrimitiveType()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(surfIdx)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ArrayMesh", "surface_get_primitive_type")
+
+	// Call the parent method.
+	// enum.Mesh::PrimitiveType
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return MeshPrimitiveType(ret)
+}
 
 /*
         Remove a surface at position surf_idx, shifting greater surfaces one surf_idx slot down.

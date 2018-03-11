@@ -13,6 +13,20 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// TextureFlags is an enum for Flags values.
+type TextureFlags int
+
+const (
+	TextureFlagsDefault          TextureFlags = 7
+	TextureFlagAnisotropicFilter TextureFlags = 8
+	TextureFlagConvertToLinear   TextureFlags = 16
+	TextureFlagFilter            TextureFlags = 4
+	TextureFlagMipmaps           TextureFlags = 1
+	TextureFlagMirroredRepeat    TextureFlags = 32
+	TextureFlagRepeat            TextureFlags = 2
+	TextureFlagVideoSurface      TextureFlags = 4096
+)
+
 //func NewTextureFromPointer(ptr gdnative.Pointer) Texture {
 func newTextureFromPointer(ptr gdnative.Pointer) Texture {
 	owner := gdnative.NewObjectFromPointer(ptr)

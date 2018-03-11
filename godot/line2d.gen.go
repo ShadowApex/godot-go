@@ -13,6 +13,32 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// Line2DLineCapMode is an enum for LineCapMode values.
+type Line2DLineCapMode int
+
+const (
+	Line2DLineCapBox   Line2DLineCapMode = 1
+	Line2DLineCapNone  Line2DLineCapMode = 0
+	Line2DLineCapRound Line2DLineCapMode = 2
+)
+
+// Line2DLineJointMode is an enum for LineJointMode values.
+type Line2DLineJointMode int
+
+const (
+	Line2DLineJointBevel Line2DLineJointMode = 1
+	Line2DLineJointRound Line2DLineJointMode = 2
+	Line2DLineJointSharp Line2DLineJointMode = 0
+)
+
+// Line2DLineTextureMode is an enum for LineTextureMode values.
+type Line2DLineTextureMode int
+
+const (
+	Line2DLineTextureNone Line2DLineTextureMode = 0
+	Line2DLineTextureTile Line2DLineTextureMode = 1
+)
+
 //func NewLine2DFromPointer(ptr gdnative.Pointer) Line2D {
 func newLine2DFromPointer(ptr gdnative.Pointer) Line2D {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -79,6 +105,24 @@ func (o *Line2D) AddPoint(position gdnative.Vector2) {
         Undocumented
 	Args: [], Returns: enum.Line2D::LineCapMode
 */
+func (o *Line2D) GetBeginCapMode() Line2DLineCapMode {
+	//log.Println("Calling Line2D.GetBeginCapMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Line2D", "get_begin_cap_mode")
+
+	// Call the parent method.
+	// enum.Line2D::LineCapMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return Line2DLineCapMode(ret)
+}
 
 /*
         Undocumented
@@ -107,6 +151,24 @@ func (o *Line2D) GetDefaultColor() gdnative.Color {
         Undocumented
 	Args: [], Returns: enum.Line2D::LineCapMode
 */
+func (o *Line2D) GetEndCapMode() Line2DLineCapMode {
+	//log.Println("Calling Line2D.GetEndCapMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Line2D", "get_end_cap_mode")
+
+	// Call the parent method.
+	// enum.Line2D::LineCapMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return Line2DLineCapMode(ret)
+}
 
 /*
         Undocumented
@@ -149,6 +211,24 @@ func (o *Line2D) GetGradient() GradientImplementer {
         Undocumented
 	Args: [], Returns: enum.Line2D::LineJointMode
 */
+func (o *Line2D) GetJointMode() Line2DLineJointMode {
+	//log.Println("Calling Line2D.GetJointMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Line2D", "get_joint_mode")
+
+	// Call the parent method.
+	// enum.Line2D::LineJointMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return Line2DLineJointMode(ret)
+}
 
 /*
         Returns the Line2D's amount of points.
@@ -307,6 +387,24 @@ func (o *Line2D) GetTexture() TextureImplementer {
         Undocumented
 	Args: [], Returns: enum.Line2D::LineTextureMode
 */
+func (o *Line2D) GetTextureMode() Line2DLineTextureMode {
+	//log.Println("Calling Line2D.GetTextureMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Line2D", "get_texture_mode")
+
+	// Call the parent method.
+	// enum.Line2D::LineTextureMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return Line2DLineTextureMode(ret)
+}
 
 /*
         Undocumented

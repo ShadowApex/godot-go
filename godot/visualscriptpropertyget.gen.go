@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// VisualScriptPropertyGetCallMode is an enum for CallMode values.
+type VisualScriptPropertyGetCallMode int
+
+const (
+	VisualScriptPropertyGetCallModeInstance VisualScriptPropertyGetCallMode = 2
+	VisualScriptPropertyGetCallModeNodePath VisualScriptPropertyGetCallMode = 1
+	VisualScriptPropertyGetCallModeSelf     VisualScriptPropertyGetCallMode = 0
+)
+
 //func NewVisualScriptPropertyGetFromPointer(ptr gdnative.Pointer) VisualScriptPropertyGet {
 func newVisualScriptPropertyGetFromPointer(ptr gdnative.Pointer) VisualScriptPropertyGet {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,6 +47,24 @@ func (o *VisualScriptPropertyGet) BaseClass() string {
         Undocumented
 	Args: [], Returns: enum.Variant::Type
 */
+func (o *VisualScriptPropertyGet) X_GetTypeCache() gdnative.VariantType {
+	//log.Println("Calling VisualScriptPropertyGet.X_GetTypeCache()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptPropertyGet", "_get_type_cache")
+
+	// Call the parent method.
+	// enum.Variant::Type
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.VariantType(ret)
+}
 
 /*
         Undocumented
@@ -133,11 +160,47 @@ func (o *VisualScriptPropertyGet) GetBaseType() gdnative.String {
         Undocumented
 	Args: [], Returns: enum.Variant::Type
 */
+func (o *VisualScriptPropertyGet) GetBasicType() gdnative.VariantType {
+	//log.Println("Calling VisualScriptPropertyGet.GetBasicType()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptPropertyGet", "get_basic_type")
+
+	// Call the parent method.
+	// enum.Variant::Type
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.VariantType(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.VisualScriptPropertyGet::CallMode
 */
+func (o *VisualScriptPropertyGet) GetCallMode() VisualScriptPropertyGetCallMode {
+	//log.Println("Calling VisualScriptPropertyGet.GetCallMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptPropertyGet", "get_call_mode")
+
+	// Call the parent method.
+	// enum.VisualScriptPropertyGet::CallMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return VisualScriptPropertyGetCallMode(ret)
+}
 
 /*
         Undocumented

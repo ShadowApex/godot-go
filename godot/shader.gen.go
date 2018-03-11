@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// ShaderMode is an enum for Mode values.
+type ShaderMode int
+
+const (
+	ShaderModeCanvasItem ShaderMode = 1
+	ShaderModeParticles  ShaderMode = 2
+	ShaderModeSpatial    ShaderMode = 0
+)
+
 //func NewShaderFromPointer(ptr gdnative.Pointer) Shader {
 func newShaderFromPointer(ptr gdnative.Pointer) Shader {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -99,6 +108,24 @@ func (o *Shader) GetDefaultTextureParam(param gdnative.String) TextureImplemente
 
 	Args: [], Returns: enum.Shader::Mode
 */
+func (o *Shader) GetMode() ShaderMode {
+	//log.Println("Calling Shader.GetMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Shader", "get_mode")
+
+	// Call the parent method.
+	// enum.Shader::Mode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ShaderMode(ret)
+}
 
 /*
 

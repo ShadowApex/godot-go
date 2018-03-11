@@ -13,6 +13,16 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// AudioEffectFilterFilterDB is an enum for FilterDB values.
+type AudioEffectFilterFilterDB int
+
+const (
+	AudioEffectFilterFilter12Db AudioEffectFilterFilterDB = 1
+	AudioEffectFilterFilter18Db AudioEffectFilterFilterDB = 2
+	AudioEffectFilterFilter24Db AudioEffectFilterFilterDB = 3
+	AudioEffectFilterFilter6Db  AudioEffectFilterFilterDB = 0
+)
+
 //func NewAudioEffectFilterFromPointer(ptr gdnative.Pointer) AudioEffectFilter {
 func newAudioEffectFilterFromPointer(ptr gdnative.Pointer) AudioEffectFilter {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -61,6 +71,24 @@ func (o *AudioEffectFilter) GetCutoff() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.AudioEffectFilter::FilterDB
 */
+func (o *AudioEffectFilter) GetDb() AudioEffectFilterFilterDB {
+	//log.Println("Calling AudioEffectFilter.GetDb()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioEffectFilter", "get_db")
+
+	// Call the parent method.
+	// enum.AudioEffectFilter::FilterDB
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return AudioEffectFilterFilterDB(ret)
+}
 
 /*
         Undocumented

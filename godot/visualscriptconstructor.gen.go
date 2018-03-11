@@ -61,6 +61,24 @@ func (o *VisualScriptConstructor) GetConstructor() gdnative.Dictionary {
         Undocumented
 	Args: [], Returns: enum.Variant::Type
 */
+func (o *VisualScriptConstructor) GetConstructorType() gdnative.VariantType {
+	//log.Println("Calling VisualScriptConstructor.GetConstructorType()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptConstructor", "get_constructor_type")
+
+	// Call the parent method.
+	// enum.Variant::Type
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.VariantType(ret)
+}
 
 /*
         Undocumented

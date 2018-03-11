@@ -13,6 +13,235 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// PhysicsServerAreaBodyStatus is an enum for AreaBodyStatus values.
+type PhysicsServerAreaBodyStatus int
+
+const (
+	PhysicsServerAreaBodyAdded   PhysicsServerAreaBodyStatus = 0
+	PhysicsServerAreaBodyRemoved PhysicsServerAreaBodyStatus = 1
+)
+
+// PhysicsServerAreaParameter is an enum for AreaParameter values.
+type PhysicsServerAreaParameter int
+
+const (
+	PhysicsServerAreaParamAngularDamp             PhysicsServerAreaParameter = 6
+	PhysicsServerAreaParamGravity                 PhysicsServerAreaParameter = 0
+	PhysicsServerAreaParamGravityDistanceScale    PhysicsServerAreaParameter = 3
+	PhysicsServerAreaParamGravityIsPoint          PhysicsServerAreaParameter = 2
+	PhysicsServerAreaParamGravityPointAttenuation PhysicsServerAreaParameter = 4
+	PhysicsServerAreaParamGravityVector           PhysicsServerAreaParameter = 1
+	PhysicsServerAreaParamLinearDamp              PhysicsServerAreaParameter = 5
+	PhysicsServerAreaParamPriority                PhysicsServerAreaParameter = 7
+)
+
+// PhysicsServerAreaSpaceOverrideMode is an enum for AreaSpaceOverrideMode values.
+type PhysicsServerAreaSpaceOverrideMode int
+
+const (
+	PhysicsServerAreaSpaceOverrideCombine        PhysicsServerAreaSpaceOverrideMode = 1
+	PhysicsServerAreaSpaceOverrideCombineReplace PhysicsServerAreaSpaceOverrideMode = 2
+	PhysicsServerAreaSpaceOverrideDisabled       PhysicsServerAreaSpaceOverrideMode = 0
+	PhysicsServerAreaSpaceOverrideReplace        PhysicsServerAreaSpaceOverrideMode = 3
+	PhysicsServerAreaSpaceOverrideReplaceCombine PhysicsServerAreaSpaceOverrideMode = 4
+)
+
+// PhysicsServerBodyAxis is an enum for BodyAxis values.
+type PhysicsServerBodyAxis int
+
+const (
+	PhysicsServerBodyAxisAngularX PhysicsServerBodyAxis = 8
+	PhysicsServerBodyAxisAngularY PhysicsServerBodyAxis = 16
+	PhysicsServerBodyAxisAngularZ PhysicsServerBodyAxis = 32
+	PhysicsServerBodyAxisLinearX  PhysicsServerBodyAxis = 1
+	PhysicsServerBodyAxisLinearY  PhysicsServerBodyAxis = 2
+	PhysicsServerBodyAxisLinearZ  PhysicsServerBodyAxis = 4
+)
+
+// PhysicsServerBodyMode is an enum for BodyMode values.
+type PhysicsServerBodyMode int
+
+const (
+	PhysicsServerBodyModeCharacter PhysicsServerBodyMode = 4
+	PhysicsServerBodyModeKinematic PhysicsServerBodyMode = 1
+	PhysicsServerBodyModeRigid     PhysicsServerBodyMode = 2
+	PhysicsServerBodyModeSoft      PhysicsServerBodyMode = 3
+	PhysicsServerBodyModeStatic    PhysicsServerBodyMode = 0
+)
+
+// PhysicsServerBodyParameter is an enum for BodyParameter values.
+type PhysicsServerBodyParameter int
+
+const (
+	PhysicsServerBodyParamAngularDamp  PhysicsServerBodyParameter = 5
+	PhysicsServerBodyParamBounce       PhysicsServerBodyParameter = 0
+	PhysicsServerBodyParamFriction     PhysicsServerBodyParameter = 1
+	PhysicsServerBodyParamGravityScale PhysicsServerBodyParameter = 3
+	PhysicsServerBodyParamLinearDamp   PhysicsServerBodyParameter = 4
+	PhysicsServerBodyParamMass         PhysicsServerBodyParameter = 2
+	PhysicsServerBodyParamMax          PhysicsServerBodyParameter = 6
+)
+
+// PhysicsServerBodyState is an enum for BodyState values.
+type PhysicsServerBodyState int
+
+const (
+	PhysicsServerBodyStateAngularVelocity PhysicsServerBodyState = 2
+	PhysicsServerBodyStateCanSleep        PhysicsServerBodyState = 4
+	PhysicsServerBodyStateLinearVelocity  PhysicsServerBodyState = 1
+	PhysicsServerBodyStateSleeping        PhysicsServerBodyState = 3
+	PhysicsServerBodyStateTransform       PhysicsServerBodyState = 0
+)
+
+// PhysicsServerConeTwistJointParam is an enum for ConeTwistJointParam values.
+type PhysicsServerConeTwistJointParam int
+
+const (
+	PhysicsServerConeTwistJointBias       PhysicsServerConeTwistJointParam = 2
+	PhysicsServerConeTwistJointRelaxation PhysicsServerConeTwistJointParam = 4
+	PhysicsServerConeTwistJointSoftness   PhysicsServerConeTwistJointParam = 3
+	PhysicsServerConeTwistJointSwingSpan  PhysicsServerConeTwistJointParam = 0
+	PhysicsServerConeTwistJointTwistSpan  PhysicsServerConeTwistJointParam = 1
+)
+
+// PhysicsServerG6DOFJointAxisFlag is an enum for G6DOFJointAxisFlag values.
+type PhysicsServerG6DOFJointAxisFlag int
+
+const (
+	PhysicsServerG6DofJointFlagEnableAngularLimit PhysicsServerG6DOFJointAxisFlag = 1
+	PhysicsServerG6DofJointFlagEnableLinearLimit  PhysicsServerG6DOFJointAxisFlag = 0
+	PhysicsServerG6DofJointFlagEnableMotor        PhysicsServerG6DOFJointAxisFlag = 2
+)
+
+// PhysicsServerG6DOFJointAxisParam is an enum for G6DOFJointAxisParam values.
+type PhysicsServerG6DOFJointAxisParam int
+
+const (
+	PhysicsServerG6DofJointAngularDamping             PhysicsServerG6DOFJointAxisParam = 8
+	PhysicsServerG6DofJointAngularErp                 PhysicsServerG6DOFJointAxisParam = 11
+	PhysicsServerG6DofJointAngularForceLimit          PhysicsServerG6DOFJointAxisParam = 10
+	PhysicsServerG6DofJointAngularLimitSoftness       PhysicsServerG6DOFJointAxisParam = 7
+	PhysicsServerG6DofJointAngularLowerLimit          PhysicsServerG6DOFJointAxisParam = 5
+	PhysicsServerG6DofJointAngularMotorForceLimit     PhysicsServerG6DOFJointAxisParam = 13
+	PhysicsServerG6DofJointAngularMotorTargetVelocity PhysicsServerG6DOFJointAxisParam = 12
+	PhysicsServerG6DofJointAngularRestitution         PhysicsServerG6DOFJointAxisParam = 9
+	PhysicsServerG6DofJointAngularUpperLimit          PhysicsServerG6DOFJointAxisParam = 6
+	PhysicsServerG6DofJointLinearDamping              PhysicsServerG6DOFJointAxisParam = 4
+	PhysicsServerG6DofJointLinearLimitSoftness        PhysicsServerG6DOFJointAxisParam = 2
+	PhysicsServerG6DofJointLinearLowerLimit           PhysicsServerG6DOFJointAxisParam = 0
+	PhysicsServerG6DofJointLinearRestitution          PhysicsServerG6DOFJointAxisParam = 3
+	PhysicsServerG6DofJointLinearUpperLimit           PhysicsServerG6DOFJointAxisParam = 1
+)
+
+// PhysicsServerHingeJointFlag is an enum for HingeJointFlag values.
+type PhysicsServerHingeJointFlag int
+
+const (
+	PhysicsServerHingeJointFlagEnableMotor PhysicsServerHingeJointFlag = 1
+	PhysicsServerHingeJointFlagUseLimit    PhysicsServerHingeJointFlag = 0
+)
+
+// PhysicsServerHingeJointParam is an enum for HingeJointParam values.
+type PhysicsServerHingeJointParam int
+
+const (
+	PhysicsServerHingeJointBias                PhysicsServerHingeJointParam = 0
+	PhysicsServerHingeJointLimitBias           PhysicsServerHingeJointParam = 3
+	PhysicsServerHingeJointLimitLower          PhysicsServerHingeJointParam = 2
+	PhysicsServerHingeJointLimitRelaxation     PhysicsServerHingeJointParam = 5
+	PhysicsServerHingeJointLimitSoftness       PhysicsServerHingeJointParam = 4
+	PhysicsServerHingeJointLimitUpper          PhysicsServerHingeJointParam = 1
+	PhysicsServerHingeJointMotorMaxImpulse     PhysicsServerHingeJointParam = 7
+	PhysicsServerHingeJointMotorTargetVelocity PhysicsServerHingeJointParam = 6
+)
+
+// PhysicsServerJointType is an enum for JointType values.
+type PhysicsServerJointType int
+
+const (
+	PhysicsServerJoint6Dof      PhysicsServerJointType = 4
+	PhysicsServerJointConeTwist PhysicsServerJointType = 3
+	PhysicsServerJointHinge     PhysicsServerJointType = 1
+	PhysicsServerJointPin       PhysicsServerJointType = 0
+	PhysicsServerJointSlider    PhysicsServerJointType = 2
+)
+
+// PhysicsServerPinJointParam is an enum for PinJointParam values.
+type PhysicsServerPinJointParam int
+
+const (
+	PhysicsServerPinJointBias         PhysicsServerPinJointParam = 0
+	PhysicsServerPinJointDamping      PhysicsServerPinJointParam = 1
+	PhysicsServerPinJointImpulseClamp PhysicsServerPinJointParam = 2
+)
+
+// PhysicsServerProcessInfo is an enum for ProcessInfo values.
+type PhysicsServerProcessInfo int
+
+const (
+	PhysicsServerInfoActiveObjects  PhysicsServerProcessInfo = 0
+	PhysicsServerInfoCollisionPairs PhysicsServerProcessInfo = 1
+	PhysicsServerInfoIslandCount    PhysicsServerProcessInfo = 2
+)
+
+// PhysicsServerShapeType is an enum for ShapeType values.
+type PhysicsServerShapeType int
+
+const (
+	PhysicsServerShapeBox            PhysicsServerShapeType = 3
+	PhysicsServerShapeCapsule        PhysicsServerShapeType = 4
+	PhysicsServerShapeConcavePolygon PhysicsServerShapeType = 6
+	PhysicsServerShapeConvexPolygon  PhysicsServerShapeType = 5
+	PhysicsServerShapeCustom         PhysicsServerShapeType = 8
+	PhysicsServerShapeHeightmap      PhysicsServerShapeType = 7
+	PhysicsServerShapePlane          PhysicsServerShapeType = 0
+	PhysicsServerShapeRay            PhysicsServerShapeType = 1
+	PhysicsServerShapeSphere         PhysicsServerShapeType = 2
+)
+
+// PhysicsServerSliderJointParam is an enum for SliderJointParam values.
+type PhysicsServerSliderJointParam int
+
+const (
+	PhysicsServerSliderJointAngularLimitDamping          PhysicsServerSliderJointParam = 15
+	PhysicsServerSliderJointAngularLimitLower            PhysicsServerSliderJointParam = 12
+	PhysicsServerSliderJointAngularLimitRestitution      PhysicsServerSliderJointParam = 14
+	PhysicsServerSliderJointAngularLimitSoftness         PhysicsServerSliderJointParam = 13
+	PhysicsServerSliderJointAngularLimitUpper            PhysicsServerSliderJointParam = 11
+	PhysicsServerSliderJointAngularMotionDamping         PhysicsServerSliderJointParam = 18
+	PhysicsServerSliderJointAngularMotionRestitution     PhysicsServerSliderJointParam = 17
+	PhysicsServerSliderJointAngularMotionSoftness        PhysicsServerSliderJointParam = 16
+	PhysicsServerSliderJointAngularOrthogonalDamping     PhysicsServerSliderJointParam = 21
+	PhysicsServerSliderJointAngularOrthogonalRestitution PhysicsServerSliderJointParam = 20
+	PhysicsServerSliderJointAngularOrthogonalSoftness    PhysicsServerSliderJointParam = 19
+	PhysicsServerSliderJointLinearLimitDamping           PhysicsServerSliderJointParam = 4
+	PhysicsServerSliderJointLinearLimitLower             PhysicsServerSliderJointParam = 1
+	PhysicsServerSliderJointLinearLimitRestitution       PhysicsServerSliderJointParam = 3
+	PhysicsServerSliderJointLinearLimitSoftness          PhysicsServerSliderJointParam = 2
+	PhysicsServerSliderJointLinearLimitUpper             PhysicsServerSliderJointParam = 0
+	PhysicsServerSliderJointLinearMotionDamping          PhysicsServerSliderJointParam = 7
+	PhysicsServerSliderJointLinearMotionRestitution      PhysicsServerSliderJointParam = 6
+	PhysicsServerSliderJointLinearMotionSoftness         PhysicsServerSliderJointParam = 5
+	PhysicsServerSliderJointLinearOrthogonalDamping      PhysicsServerSliderJointParam = 10
+	PhysicsServerSliderJointLinearOrthogonalRestitution  PhysicsServerSliderJointParam = 9
+	PhysicsServerSliderJointLinearOrthogonalSoftness     PhysicsServerSliderJointParam = 8
+	PhysicsServerSliderJointMax                          PhysicsServerSliderJointParam = 22
+)
+
+// PhysicsServerSpaceParameter is an enum for SpaceParameter values.
+type PhysicsServerSpaceParameter int
+
+const (
+	PhysicsServerSpaceParamBodyAngularVelocityDampRatio      PhysicsServerSpaceParameter = 6
+	PhysicsServerSpaceParamBodyAngularVelocitySleepThreshold PhysicsServerSpaceParameter = 4
+	PhysicsServerSpaceParamBodyLinearVelocitySleepThreshold  PhysicsServerSpaceParameter = 3
+	PhysicsServerSpaceParamBodyMaxAllowedPenetration         PhysicsServerSpaceParameter = 2
+	PhysicsServerSpaceParamBodyTimeToSleep                   PhysicsServerSpaceParameter = 5
+	PhysicsServerSpaceParamConstraintDefaultBias             PhysicsServerSpaceParameter = 7
+	PhysicsServerSpaceParamContactMaxSeparation              PhysicsServerSpaceParameter = 1
+	PhysicsServerSpaceParamContactRecycleRadius              PhysicsServerSpaceParameter = 0
+)
+
 //func NewphysicsServerFromPointer(ptr gdnative.Pointer) physicsServer {
 func newPhysicsServerFromPointer(ptr gdnative.Pointer) physicsServer {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -306,6 +535,26 @@ func (o *physicsServer) AreaGetSpace(area gdnative.Rid) gdnative.Rid {
         Returns the space override mode for the area.
 	Args: [{ false area RID}], Returns: enum.PhysicsServer::AreaSpaceOverrideMode
 */
+func (o *physicsServer) AreaGetSpaceOverrideMode(area gdnative.Rid) PhysicsServerAreaSpaceOverrideMode {
+	o.ensureSingleton()
+	//log.Println("Calling PhysicsServer.AreaGetSpaceOverrideMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(area)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsServer", "area_get_space_override_mode")
+
+	// Call the parent method.
+	// enum.PhysicsServer::AreaSpaceOverrideMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return PhysicsServerAreaSpaceOverrideMode(ret)
+}
 
 /*
         Returns the transform matrix for an area.
@@ -923,6 +1172,26 @@ func (o *physicsServer) BodyGetMaxContactsReported(body gdnative.Rid) gdnative.I
         Returns the body mode.
 	Args: [{ false body RID}], Returns: enum.PhysicsServer::BodyMode
 */
+func (o *physicsServer) BodyGetMode(body gdnative.Rid) PhysicsServerBodyMode {
+	o.ensureSingleton()
+	//log.Println("Calling PhysicsServer.BodyGetMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(body)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsServer", "body_get_mode")
+
+	// Call the parent method.
+	// enum.PhysicsServer::BodyMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return PhysicsServerBodyMode(ret)
+}
 
 /*
         Gets the instance ID of the object the area is assigned to.
@@ -2095,6 +2364,26 @@ func (o *physicsServer) JointGetSolverPriority(joint gdnative.Rid) gdnative.Int 
         Returns the type of the Joint.
 	Args: [{ false joint RID}], Returns: enum.PhysicsServer::JointType
 */
+func (o *physicsServer) JointGetType(joint gdnative.Rid) PhysicsServerJointType {
+	o.ensureSingleton()
+	//log.Println("Calling PhysicsServer.JointGetType()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(joint)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsServer", "joint_get_type")
+
+	// Call the parent method.
+	// enum.PhysicsServer::JointType
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return PhysicsServerJointType(ret)
+}
 
 /*
         Sets the priority value of the Joint.
@@ -2341,6 +2630,26 @@ func (o *physicsServer) ShapeGetData(shape gdnative.Rid) gdnative.Variant {
         Returns the type of shape (see SHAPE_* constants).
 	Args: [{ false shape RID}], Returns: enum.PhysicsServer::ShapeType
 */
+func (o *physicsServer) ShapeGetType(shape gdnative.Rid) PhysicsServerShapeType {
+	o.ensureSingleton()
+	//log.Println("Calling PhysicsServer.ShapeGetType()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(shape)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PhysicsServer", "shape_get_type")
+
+	// Call the parent method.
+	// enum.PhysicsServer::ShapeType
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return PhysicsServerShapeType(ret)
+}
 
 /*
         Sets the shape data that defines its shape and size. The data to be passed depends on the kind of shape created [method shape_get_type].

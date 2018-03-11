@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// ARVRPositionalTrackerTrackerHand is an enum for TrackerHand values.
+type ARVRPositionalTrackerTrackerHand int
+
+const (
+	ARVRPositionalTrackerTrackerHandUnknown ARVRPositionalTrackerTrackerHand = 0
+	ARVRPositionalTrackerTrackerLeftHand    ARVRPositionalTrackerTrackerHand = 1
+	ARVRPositionalTrackerTrackerRightHand   ARVRPositionalTrackerTrackerHand = 2
+)
+
 //func NewARVRPositionalTrackerFromPointer(ptr gdnative.Pointer) ARVRPositionalTracker {
 func newARVRPositionalTrackerFromPointer(ptr gdnative.Pointer) ARVRPositionalTracker {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -143,6 +152,24 @@ func (o *ARVRPositionalTracker) X_SetType(aType gdnative.Int) {
         Returns the hand holding this tracker, if known. See TRACKER_* constants.
 	Args: [], Returns: enum.ARVRPositionalTracker::TrackerHand
 */
+func (o *ARVRPositionalTracker) GetHand() ARVRPositionalTrackerTrackerHand {
+	//log.Println("Calling ARVRPositionalTracker.GetHand()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRPositionalTracker", "get_hand")
+
+	// Call the parent method.
+	// enum.ARVRPositionalTracker::TrackerHand
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ARVRPositionalTrackerTrackerHand(ret)
+}
 
 /*
         If this is a controller that is being tracked the controller will also be represented by a joystick entry with this id.
@@ -333,6 +360,24 @@ func (o *ARVRPositionalTracker) GetTransform(adjustByReferenceFrame gdnative.Boo
         Returns the tracker's type.
 	Args: [], Returns: enum.ARVRServer::TrackerType
 */
+func (o *ARVRPositionalTracker) GetType() ARVRServerTrackerType {
+	//log.Println("Calling ARVRPositionalTracker.GetType()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRPositionalTracker", "get_type")
+
+	// Call the parent method.
+	// enum.ARVRServer::TrackerType
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ARVRServerTrackerType(ret)
+}
 
 /*
         Undocumented

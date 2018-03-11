@@ -13,6 +13,18 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// ConeTwistJointParam is an enum for Param values.
+type ConeTwistJointParam int
+
+const (
+	ConeTwistJointParamBias       ConeTwistJointParam = 2
+	ConeTwistJointParamMax        ConeTwistJointParam = 5
+	ConeTwistJointParamRelaxation ConeTwistJointParam = 4
+	ConeTwistJointParamSoftness   ConeTwistJointParam = 3
+	ConeTwistJointParamSwingSpan  ConeTwistJointParam = 0
+	ConeTwistJointParamTwistSpan  ConeTwistJointParam = 1
+)
+
 //func NewConeTwistJointFromPointer(ptr gdnative.Pointer) ConeTwistJoint {
 func newConeTwistJointFromPointer(ptr gdnative.Pointer) ConeTwistJoint {
 	owner := gdnative.NewObjectFromPointer(ptr)

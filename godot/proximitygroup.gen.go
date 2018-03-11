@@ -13,6 +13,14 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// ProximityGroupDispatchMode is an enum for DispatchMode values.
+type ProximityGroupDispatchMode int
+
+const (
+	ProximityGroupModeProxy  ProximityGroupDispatchMode = 0
+	ProximityGroupModeSignal ProximityGroupDispatchMode = 1
+)
+
 //func NewProximityGroupFromPointer(ptr gdnative.Pointer) ProximityGroup {
 func newProximityGroupFromPointer(ptr gdnative.Pointer) ProximityGroup {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -82,6 +90,24 @@ func (o *ProximityGroup) Broadcast(name gdnative.String, parameters gdnative.Var
         Undocumented
 	Args: [], Returns: enum.ProximityGroup::DispatchMode
 */
+func (o *ProximityGroup) GetDispatchMode() ProximityGroupDispatchMode {
+	//log.Println("Calling ProximityGroup.GetDispatchMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ProximityGroup", "get_dispatch_mode")
+
+	// Call the parent method.
+	// enum.ProximityGroup::DispatchMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ProximityGroupDispatchMode(ret)
+}
 
 /*
         Undocumented

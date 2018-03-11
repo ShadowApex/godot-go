@@ -13,6 +13,39 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// InputCursorShape is an enum for CursorShape values.
+type InputCursorShape int
+
+const (
+	InputCursorArrow        InputCursorShape = 0
+	InputCursorBdiagsize    InputCursorShape = 11
+	InputCursorBusy         InputCursorShape = 5
+	InputCursorCanDrop      InputCursorShape = 7
+	InputCursorCross        InputCursorShape = 3
+	InputCursorDrag         InputCursorShape = 6
+	InputCursorFdiagsize    InputCursorShape = 12
+	InputCursorForbidden    InputCursorShape = 8
+	InputCursorHelp         InputCursorShape = 16
+	InputCursorHsize        InputCursorShape = 10
+	InputCursorHsplit       InputCursorShape = 15
+	InputCursorIbeam        InputCursorShape = 1
+	InputCursorMove         InputCursorShape = 13
+	InputCursorPointingHand InputCursorShape = 2
+	InputCursorVsize        InputCursorShape = 9
+	InputCursorVsplit       InputCursorShape = 14
+	InputCursorWait         InputCursorShape = 4
+)
+
+// InputMouseMode is an enum for MouseMode values.
+type InputMouseMode int
+
+const (
+	InputMouseModeCaptured InputMouseMode = 2
+	InputMouseModeConfined InputMouseMode = 3
+	InputMouseModeHidden   InputMouseMode = 1
+	InputMouseModeVisible  InputMouseMode = 0
+)
+
 //func NewinputFromPointer(ptr gdnative.Pointer) input {
 func newInputFromPointer(ptr gdnative.Pointer) input {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -521,6 +554,25 @@ func (o *input) GetMouseButtonMask() gdnative.Int {
         Return the mouse mode. See the constants for more information.
 	Args: [], Returns: enum.Input::MouseMode
 */
+func (o *input) GetMouseMode() InputMouseMode {
+	o.ensureSingleton()
+	//log.Println("Calling Input.GetMouseMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Input", "get_mouse_mode")
+
+	// Call the parent method.
+	// enum.Input::MouseMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return InputMouseMode(ret)
+}
 
 /*
         Returns [code]true[/code] when you start pressing the action event.

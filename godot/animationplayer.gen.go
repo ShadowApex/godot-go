@@ -13,6 +13,14 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// AnimationPlayerAnimationProcessMode is an enum for AnimationProcessMode values.
+type AnimationPlayerAnimationProcessMode int
+
+const (
+	AnimationPlayerAnimationProcessIdle    AnimationPlayerAnimationProcessMode = 1
+	AnimationPlayerAnimationProcessPhysics AnimationPlayerAnimationProcessMode = 0
+)
+
 //func NewAnimationPlayerFromPointer(ptr gdnative.Pointer) AnimationPlayer {
 func newAnimationPlayerFromPointer(ptr gdnative.Pointer) AnimationPlayer {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -79,6 +87,26 @@ func (o *AnimationPlayer) X_NodeRemoved(arg0 Object) {
         Adds [code]animation[/code] to the player accessible with the key [code]name[/code].
 	Args: [{ false name String} { false animation Animation}], Returns: enum.Error
 */
+func (o *AnimationPlayer) AddAnimation(name gdnative.String, animation Animation) gdnative.Error {
+	//log.Println("Calling AnimationPlayer.AddAnimation()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(name)
+	ptrArguments[1] = gdnative.NewPointerFromObject(animation.GetBaseObject())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationPlayer", "add_animation")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Shifts position in the animation timeline. Delta is the time in seconds to shift.
@@ -276,6 +304,24 @@ func (o *AnimationPlayer) GetAnimationList() gdnative.PoolStringArray {
         Undocumented
 	Args: [], Returns: enum.AnimationPlayer::AnimationProcessMode
 */
+func (o *AnimationPlayer) GetAnimationProcessMode() AnimationPlayerAnimationProcessMode {
+	//log.Println("Calling AnimationPlayer.GetAnimationProcessMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AnimationPlayer", "get_animation_process_mode")
+
+	// Call the parent method.
+	// enum.AnimationPlayer::AnimationProcessMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return AnimationPlayerAnimationProcessMode(ret)
+}
 
 /*
         Undocumented

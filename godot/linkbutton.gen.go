@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// LinkButtonUnderlineMode is an enum for UnderlineMode values.
+type LinkButtonUnderlineMode int
+
+const (
+	LinkButtonUnderlineModeAlways  LinkButtonUnderlineMode = 0
+	LinkButtonUnderlineModeNever   LinkButtonUnderlineMode = 2
+	LinkButtonUnderlineModeOnHover LinkButtonUnderlineMode = 1
+)
+
 //func NewLinkButtonFromPointer(ptr gdnative.Pointer) LinkButton {
 func newLinkButtonFromPointer(ptr gdnative.Pointer) LinkButton {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -61,6 +70,24 @@ func (o *LinkButton) GetText() gdnative.String {
         Undocumented
 	Args: [], Returns: enum.LinkButton::UnderlineMode
 */
+func (o *LinkButton) GetUnderlineMode() LinkButtonUnderlineMode {
+	//log.Println("Calling LinkButton.GetUnderlineMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("LinkButton", "get_underline_mode")
+
+	// Call the parent method.
+	// enum.LinkButton::UnderlineMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return LinkButtonUnderlineMode(ret)
+}
 
 /*
         Undocumented

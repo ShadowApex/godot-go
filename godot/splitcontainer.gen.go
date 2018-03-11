@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// SplitContainerDraggerVisibility is an enum for DraggerVisibility values.
+type SplitContainerDraggerVisibility int
+
+const (
+	SplitContainerDraggerHidden          SplitContainerDraggerVisibility = 1
+	SplitContainerDraggerHiddenCollapsed SplitContainerDraggerVisibility = 2
+	SplitContainerDraggerVisible         SplitContainerDraggerVisibility = 0
+)
+
 //func NewSplitContainerFromPointer(ptr gdnative.Pointer) SplitContainer {
 func newSplitContainerFromPointer(ptr gdnative.Pointer) SplitContainer {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -59,6 +68,24 @@ func (o *SplitContainer) X_GuiInput(arg0 InputEvent) {
         Undocumented
 	Args: [], Returns: enum.SplitContainer::DraggerVisibility
 */
+func (o *SplitContainer) GetDraggerVisibility() SplitContainerDraggerVisibility {
+	//log.Println("Calling SplitContainer.GetDraggerVisibility()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SplitContainer", "get_dragger_visibility")
+
+	// Call the parent method.
+	// enum.SplitContainer::DraggerVisibility
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return SplitContainerDraggerVisibility(ret)
+}
 
 /*
         Undocumented

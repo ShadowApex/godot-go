@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// TabContainerTabAlign is an enum for TabAlign values.
+type TabContainerTabAlign int
+
+const (
+	TabContainerAlignCenter TabContainerTabAlign = 1
+	TabContainerAlignLeft   TabContainerTabAlign = 0
+	TabContainerAlignRight  TabContainerTabAlign = 2
+)
+
 //func NewTabContainerFromPointer(ptr gdnative.Pointer) TabContainer {
 func newTabContainerFromPointer(ptr gdnative.Pointer) TabContainer {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -262,6 +271,24 @@ func (o *TabContainer) GetPreviousTab() gdnative.Int {
         Undocumented
 	Args: [], Returns: enum.TabContainer::TabAlign
 */
+func (o *TabContainer) GetTabAlign() TabContainerTabAlign {
+	//log.Println("Calling TabContainer.GetTabAlign()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TabContainer", "get_tab_align")
+
+	// Call the parent method.
+	// enum.TabContainer::TabAlign
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return TabContainerTabAlign(ret)
+}
 
 /*
         Returns the currently visible tab's [Control] node.

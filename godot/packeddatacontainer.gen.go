@@ -154,6 +154,25 @@ func (o *PackedDataContainer) X_SetData(arg0 gdnative.PoolByteArray) {
 
 	Args: [{ false value Variant}], Returns: enum.Error
 */
+func (o *PackedDataContainer) Pack(value gdnative.Variant) gdnative.Error {
+	//log.Println("Calling PackedDataContainer.Pack()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromVariant(value)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PackedDataContainer", "pack")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
 

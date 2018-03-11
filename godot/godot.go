@@ -78,6 +78,9 @@ func autoRegisterClasses() {
 			if !classField.Anonymous {
 				continue
 			}
+
+			// TODO: Set up registering settings/getters for properties
+			// so we can register them.
 		}
 
 		// Loop through our class's methods that are attached to it.

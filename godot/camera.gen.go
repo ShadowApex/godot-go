@@ -13,6 +13,31 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// CameraDopplerTracking is an enum for DopplerTracking values.
+type CameraDopplerTracking int
+
+const (
+	CameraDopplerTrackingDisabled    CameraDopplerTracking = 0
+	CameraDopplerTrackingIdleStep    CameraDopplerTracking = 1
+	CameraDopplerTrackingPhysicsStep CameraDopplerTracking = 2
+)
+
+// CameraKeepAspect is an enum for KeepAspect values.
+type CameraKeepAspect int
+
+const (
+	CameraKeepHeight CameraKeepAspect = 1
+	CameraKeepWidth  CameraKeepAspect = 0
+)
+
+// CameraProjection is an enum for Projection values.
+type CameraProjection int
+
+const (
+	CameraProjectionOrthogonal  CameraProjection = 1
+	CameraProjectionPerspective CameraProjection = 0
+)
+
 //func NewCameraFromPointer(ptr gdnative.Pointer) Camera {
 func newCameraFromPointer(ptr gdnative.Pointer) Camera {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -104,6 +129,24 @@ func (o *Camera) GetCullMask() gdnative.Int {
         Undocumented
 	Args: [], Returns: enum.Camera::DopplerTracking
 */
+func (o *Camera) GetDopplerTracking() CameraDopplerTracking {
+	//log.Println("Calling Camera.GetDopplerTracking()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "get_doppler_tracking")
+
+	// Call the parent method.
+	// enum.Camera::DopplerTracking
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return CameraDopplerTracking(ret)
+}
 
 /*
         Undocumented
@@ -192,11 +235,47 @@ func (o *Camera) GetHOffset() gdnative.Float {
         Undocumented
 	Args: [], Returns: enum.Camera::KeepAspect
 */
+func (o *Camera) GetKeepAspectMode() CameraKeepAspect {
+	//log.Println("Calling Camera.GetKeepAspectMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "get_keep_aspect_mode")
+
+	// Call the parent method.
+	// enum.Camera::KeepAspect
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return CameraKeepAspect(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.Camera::Projection
 */
+func (o *Camera) GetProjection() CameraProjection {
+	//log.Println("Calling Camera.GetProjection()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Camera", "get_projection")
+
+	// Call the parent method.
+	// enum.Camera::Projection
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return CameraProjection(ret)
+}
 
 /*
         Undocumented

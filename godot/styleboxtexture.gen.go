@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// StyleBoxTextureAxisStretchMode is an enum for AxisStretchMode values.
+type StyleBoxTextureAxisStretchMode int
+
+const (
+	StyleBoxTextureAxisStretchModeStretch StyleBoxTextureAxisStretchMode = 0
+	StyleBoxTextureAxisStretchModeTile    StyleBoxTextureAxisStretchMode = 1
+	StyleBoxTextureAxisStretchModeTileFit StyleBoxTextureAxisStretchMode = 2
+)
+
 //func NewStyleBoxTextureFromPointer(ptr gdnative.Pointer) StyleBoxTexture {
 func newStyleBoxTextureFromPointer(ptr gdnative.Pointer) StyleBoxTexture {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -62,6 +71,24 @@ func (o *StyleBoxTexture) GetExpandMarginSize(margin gdnative.Int) gdnative.Floa
         Undocumented
 	Args: [], Returns: enum.StyleBoxTexture::AxisStretchMode
 */
+func (o *StyleBoxTexture) GetHAxisStretchMode() StyleBoxTextureAxisStretchMode {
+	//log.Println("Calling StyleBoxTexture.GetHAxisStretchMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "get_h_axis_stretch_mode")
+
+	// Call the parent method.
+	// enum.StyleBoxTexture::AxisStretchMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return StyleBoxTextureAxisStretchMode(ret)
+}
 
 /*
         Undocumented
@@ -211,6 +238,24 @@ func (o *StyleBoxTexture) GetTexture() ResourceImplementer {
         Undocumented
 	Args: [], Returns: enum.StyleBoxTexture::AxisStretchMode
 */
+func (o *StyleBoxTexture) GetVAxisStretchMode() StyleBoxTextureAxisStretchMode {
+	//log.Println("Calling StyleBoxTexture.GetVAxisStretchMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "get_v_axis_stretch_mode")
+
+	// Call the parent method.
+	// enum.StyleBoxTexture::AxisStretchMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return StyleBoxTextureAxisStretchMode(ret)
+}
 
 /*
         Undocumented

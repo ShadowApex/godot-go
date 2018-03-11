@@ -13,6 +13,24 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// AudioStreamSampleFormat is an enum for Format values.
+type AudioStreamSampleFormat int
+
+const (
+	AudioStreamSampleFormat16Bits   AudioStreamSampleFormat = 1
+	AudioStreamSampleFormat8Bits    AudioStreamSampleFormat = 0
+	AudioStreamSampleFormatImaAdpcm AudioStreamSampleFormat = 2
+)
+
+// AudioStreamSampleLoopMode is an enum for LoopMode values.
+type AudioStreamSampleLoopMode int
+
+const (
+	AudioStreamSampleLoopDisabled AudioStreamSampleLoopMode = 0
+	AudioStreamSampleLoopForward  AudioStreamSampleLoopMode = 1
+	AudioStreamSampleLoopPingPong AudioStreamSampleLoopMode = 2
+)
+
 //func NewAudioStreamSampleFromPointer(ptr gdnative.Pointer) AudioStreamSample {
 func newAudioStreamSampleFromPointer(ptr gdnative.Pointer) AudioStreamSample {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -82,6 +100,24 @@ func (o *AudioStreamSample) X_SetData(data gdnative.PoolByteArray) {
         Undocumented
 	Args: [], Returns: enum.AudioStreamSample::Format
 */
+func (o *AudioStreamSample) GetFormat() AudioStreamSampleFormat {
+	//log.Println("Calling AudioStreamSample.GetFormat()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamSample", "get_format")
+
+	// Call the parent method.
+	// enum.AudioStreamSample::Format
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return AudioStreamSampleFormat(ret)
+}
 
 /*
         Undocumented
@@ -133,6 +169,24 @@ func (o *AudioStreamSample) GetLoopEnd() gdnative.Int {
         Undocumented
 	Args: [], Returns: enum.AudioStreamSample::LoopMode
 */
+func (o *AudioStreamSample) GetLoopMode() AudioStreamSampleLoopMode {
+	//log.Println("Calling AudioStreamSample.GetLoopMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("AudioStreamSample", "get_loop_mode")
+
+	// Call the parent method.
+	// enum.AudioStreamSample::LoopMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return AudioStreamSampleLoopMode(ret)
+}
 
 /*
         Undocumented

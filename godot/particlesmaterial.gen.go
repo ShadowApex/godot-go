@@ -13,6 +13,45 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// ParticlesMaterialEmissionShape is an enum for EmissionShape values.
+type ParticlesMaterialEmissionShape int
+
+const (
+	ParticlesMaterialEmissionShapeBox            ParticlesMaterialEmissionShape = 2
+	ParticlesMaterialEmissionShapeDirectedPoints ParticlesMaterialEmissionShape = 4
+	ParticlesMaterialEmissionShapePoint          ParticlesMaterialEmissionShape = 0
+	ParticlesMaterialEmissionShapePoints         ParticlesMaterialEmissionShape = 3
+	ParticlesMaterialEmissionShapeSphere         ParticlesMaterialEmissionShape = 1
+)
+
+// ParticlesMaterialFlags is an enum for Flags values.
+type ParticlesMaterialFlags int
+
+const (
+	ParticlesMaterialFlagAlignYToVelocity ParticlesMaterialFlags = 0
+	ParticlesMaterialFlagMax              ParticlesMaterialFlags = 4
+	ParticlesMaterialFlagRotateY          ParticlesMaterialFlags = 1
+)
+
+// ParticlesMaterialParameter is an enum for Parameter values.
+type ParticlesMaterialParameter int
+
+const (
+	ParticlesMaterialParamAngle                 ParticlesMaterialParameter = 7
+	ParticlesMaterialParamAngularVelocity       ParticlesMaterialParameter = 1
+	ParticlesMaterialParamAnimOffset            ParticlesMaterialParameter = 11
+	ParticlesMaterialParamAnimSpeed             ParticlesMaterialParameter = 10
+	ParticlesMaterialParamDamping               ParticlesMaterialParameter = 6
+	ParticlesMaterialParamHueVariation          ParticlesMaterialParameter = 9
+	ParticlesMaterialParamInitialLinearVelocity ParticlesMaterialParameter = 0
+	ParticlesMaterialParamLinearAccel           ParticlesMaterialParameter = 3
+	ParticlesMaterialParamMax                   ParticlesMaterialParameter = 12
+	ParticlesMaterialParamOrbitVelocity         ParticlesMaterialParameter = 2
+	ParticlesMaterialParamRadialAccel           ParticlesMaterialParameter = 4
+	ParticlesMaterialParamScale                 ParticlesMaterialParameter = 8
+	ParticlesMaterialParamTangentialAccel       ParticlesMaterialParameter = 5
+)
+
 //func NewParticlesMaterialFromPointer(ptr gdnative.Pointer) ParticlesMaterial {
 func newParticlesMaterialFromPointer(ptr gdnative.Pointer) ParticlesMaterial {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -255,6 +294,24 @@ func (o *ParticlesMaterial) GetEmissionPointTexture() TextureImplementer {
         Undocumented
 	Args: [], Returns: enum.ParticlesMaterial::EmissionShape
 */
+func (o *ParticlesMaterial) GetEmissionShape() ParticlesMaterialEmissionShape {
+	//log.Println("Calling ParticlesMaterial.GetEmissionShape()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ParticlesMaterial", "get_emission_shape")
+
+	// Call the parent method.
+	// enum.ParticlesMaterial::EmissionShape
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ParticlesMaterialEmissionShape(ret)
+}
 
 /*
         Undocumented

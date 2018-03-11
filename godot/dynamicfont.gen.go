@@ -13,6 +13,16 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// DynamicFontSpacingType is an enum for SpacingType values.
+type DynamicFontSpacingType int
+
+const (
+	DynamicFontSpacingBottom DynamicFontSpacingType = 1
+	DynamicFontSpacingChar   DynamicFontSpacingType = 2
+	DynamicFontSpacingSpace  DynamicFontSpacingType = 3
+	DynamicFontSpacingTop    DynamicFontSpacingType = 0
+)
+
 //func NewDynamicFontFromPointer(ptr gdnative.Pointer) DynamicFont {
 func newDynamicFontFromPointer(ptr gdnative.Pointer) DynamicFont {
 	owner := gdnative.NewObjectFromPointer(ptr)

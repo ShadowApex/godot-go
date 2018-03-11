@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// VisibilityEnablerEnabler is an enum for Enabler values.
+type VisibilityEnablerEnabler int
+
+const (
+	VisibilityEnablerEnablerFreezeBodies    VisibilityEnablerEnabler = 1
+	VisibilityEnablerEnablerMax             VisibilityEnablerEnabler = 2
+	VisibilityEnablerEnablerPauseAnimations VisibilityEnablerEnabler = 0
+)
+
 //func NewVisibilityEnablerFromPointer(ptr gdnative.Pointer) VisibilityEnabler {
 func newVisibilityEnablerFromPointer(ptr gdnative.Pointer) VisibilityEnabler {
 	owner := gdnative.NewObjectFromPointer(ptr)

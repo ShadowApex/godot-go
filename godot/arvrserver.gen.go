@@ -13,6 +13,27 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// ARVRServerRotationMode is an enum for RotationMode values.
+type ARVRServerRotationMode int
+
+const (
+	ARVRServerDontResetRotation ARVRServerRotationMode = 2
+	ARVRServerResetButKeepTilt  ARVRServerRotationMode = 1
+	ARVRServerResetFullRotation ARVRServerRotationMode = 0
+)
+
+// ARVRServerTrackerType is an enum for TrackerType values.
+type ARVRServerTrackerType int
+
+const (
+	ARVRServerTrackerAnchor      ARVRServerTrackerType = 4
+	ARVRServerTrackerAny         ARVRServerTrackerType = 255
+	ARVRServerTrackerAnyKnown    ARVRServerTrackerType = 127
+	ARVRServerTrackerBasestation ARVRServerTrackerType = 2
+	ARVRServerTrackerController  ARVRServerTrackerType = 1
+	ARVRServerTrackerUnknown     ARVRServerTrackerType = 128
+)
+
 //func NewarvrServerFromPointer(ptr gdnative.Pointer) arvrServer {
 func newARVRServerFromPointer(ptr gdnative.Pointer) arvrServer {
 	owner := gdnative.NewObjectFromPointer(ptr)

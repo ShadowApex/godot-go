@@ -13,6 +13,25 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// SpriteBase3DAlphaCutMode is an enum for AlphaCutMode values.
+type SpriteBase3DAlphaCutMode int
+
+const (
+	SpriteBase3DAlphaCutDisabled      SpriteBase3DAlphaCutMode = 0
+	SpriteBase3DAlphaCutDiscard       SpriteBase3DAlphaCutMode = 1
+	SpriteBase3DAlphaCutOpaquePrepass SpriteBase3DAlphaCutMode = 2
+)
+
+// SpriteBase3DDrawFlags is an enum for DrawFlags values.
+type SpriteBase3DDrawFlags int
+
+const (
+	SpriteBase3DFlagDoubleSided SpriteBase3DDrawFlags = 2
+	SpriteBase3DFlagMax         SpriteBase3DDrawFlags = 3
+	SpriteBase3DFlagShaded      SpriteBase3DDrawFlags = 1
+	SpriteBase3DFlagTransparent SpriteBase3DDrawFlags = 0
+)
+
 //func NewSpriteBase3DFromPointer(ptr gdnative.Pointer) SpriteBase3D {
 func newSpriteBase3DFromPointer(ptr gdnative.Pointer) SpriteBase3D {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -78,11 +97,47 @@ func (o *SpriteBase3D) X_QueueUpdate() {
         Undocumented
 	Args: [], Returns: enum.SpriteBase3D::AlphaCutMode
 */
+func (o *SpriteBase3D) GetAlphaCutMode() SpriteBase3DAlphaCutMode {
+	//log.Println("Calling SpriteBase3D.GetAlphaCutMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpriteBase3D", "get_alpha_cut_mode")
+
+	// Call the parent method.
+	// enum.SpriteBase3D::AlphaCutMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return SpriteBase3DAlphaCutMode(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.Vector3::Axis
 */
+func (o *SpriteBase3D) GetAxis() gdnative.Vector3Axis {
+	//log.Println("Calling SpriteBase3D.GetAxis()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("SpriteBase3D", "get_axis")
+
+	// Call the parent method.
+	// enum.Vector3::Axis
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Vector3Axis(ret)
+}
 
 /*
         Undocumented

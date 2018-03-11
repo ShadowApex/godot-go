@@ -13,6 +13,19 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// XMLParserNodeType is an enum for NodeType values.
+type XMLParserNodeType int
+
+const (
+	XMLParserNodeCdata      XMLParserNodeType = 5
+	XMLParserNodeComment    XMLParserNodeType = 4
+	XMLParserNodeElement    XMLParserNodeType = 1
+	XMLParserNodeElementEnd XMLParserNodeType = 2
+	XMLParserNodeNone       XMLParserNodeType = 0
+	XMLParserNodeText       XMLParserNodeType = 3
+	XMLParserNodeUnknown    XMLParserNodeType = 6
+)
+
 //func NewXMLParserFromPointer(ptr gdnative.Pointer) XMLParser {
 func newXMLParserFromPointer(ptr gdnative.Pointer) XMLParser {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -249,6 +262,24 @@ func (o *XMLParser) GetNodeOffset() gdnative.Int {
         Get the type of the current node. Compare with [code]NODE_*[/code] constants.
 	Args: [], Returns: enum.XMLParser::NodeType
 */
+func (o *XMLParser) GetNodeType() XMLParserNodeType {
+	//log.Println("Calling XMLParser.GetNodeType()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("XMLParser", "get_node_type")
+
+	// Call the parent method.
+	// enum.XMLParser::NodeType
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return XMLParserNodeType(ret)
+}
 
 /*
         Check whether or not the current element has a certain attribute.
@@ -301,21 +332,96 @@ func (o *XMLParser) IsEmpty() gdnative.Bool {
         Open a XML file for parsing. This returns an error code.
 	Args: [{ false file String}], Returns: enum.Error
 */
+func (o *XMLParser) Open(file gdnative.String) gdnative.Error {
+	//log.Println("Calling XMLParser.Open()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromString(file)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("XMLParser", "open")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Open a XML raw buffer for parsing. This returns an error code.
 	Args: [{ false buffer PoolByteArray}], Returns: enum.Error
 */
+func (o *XMLParser) OpenBuffer(buffer gdnative.PoolByteArray) gdnative.Error {
+	//log.Println("Calling XMLParser.OpenBuffer()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromPoolByteArray(buffer)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("XMLParser", "open_buffer")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Read the next node of the file. This returns an error code.
 	Args: [], Returns: enum.Error
 */
+func (o *XMLParser) Read() gdnative.Error {
+	//log.Println("Calling XMLParser.Read()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("XMLParser", "read")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Move the buffer cursor to a certain offset (since the beginning) and read the next node there. This returns an error code.
 	Args: [{ false position int}], Returns: enum.Error
 */
+func (o *XMLParser) Seek(position gdnative.Int) gdnative.Error {
+	//log.Println("Calling XMLParser.Seek()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromInt(position)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("XMLParser", "seek")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Skips the current section. If the node contains other elements, they will be ignored and the cursor will go to the closing of the current element.

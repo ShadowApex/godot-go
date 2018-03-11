@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// PinJointParam is an enum for Param values.
+type PinJointParam int
+
+const (
+	PinJointParamBias         PinJointParam = 0
+	PinJointParamDamping      PinJointParam = 1
+	PinJointParamImpulseClamp PinJointParam = 2
+)
+
 //func NewPinJointFromPointer(ptr gdnative.Pointer) PinJoint {
 func newPinJointFromPointer(ptr gdnative.Pointer) PinJoint {
 	owner := gdnative.NewObjectFromPointer(ptr)

@@ -13,6 +13,37 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// Generic6DOFJointFlag is an enum for Flag values.
+type Generic6DOFJointFlag int
+
+const (
+	Generic6DOFJointFlagEnableAngularLimit Generic6DOFJointFlag = 1
+	Generic6DOFJointFlagEnableLinearLimit  Generic6DOFJointFlag = 0
+	Generic6DOFJointFlagEnableMotor        Generic6DOFJointFlag = 2
+	Generic6DOFJointFlagMax                Generic6DOFJointFlag = 3
+)
+
+// Generic6DOFJointParam is an enum for Param values.
+type Generic6DOFJointParam int
+
+const (
+	Generic6DOFJointParamAngularDamping             Generic6DOFJointParam = 8
+	Generic6DOFJointParamAngularErp                 Generic6DOFJointParam = 11
+	Generic6DOFJointParamAngularForceLimit          Generic6DOFJointParam = 10
+	Generic6DOFJointParamAngularLimitSoftness       Generic6DOFJointParam = 7
+	Generic6DOFJointParamAngularLowerLimit          Generic6DOFJointParam = 5
+	Generic6DOFJointParamAngularMotorForceLimit     Generic6DOFJointParam = 13
+	Generic6DOFJointParamAngularMotorTargetVelocity Generic6DOFJointParam = 12
+	Generic6DOFJointParamAngularRestitution         Generic6DOFJointParam = 9
+	Generic6DOFJointParamAngularUpperLimit          Generic6DOFJointParam = 6
+	Generic6DOFJointParamLinearDamping              Generic6DOFJointParam = 4
+	Generic6DOFJointParamLinearLimitSoftness        Generic6DOFJointParam = 2
+	Generic6DOFJointParamLinearLowerLimit           Generic6DOFJointParam = 0
+	Generic6DOFJointParamLinearRestitution          Generic6DOFJointParam = 3
+	Generic6DOFJointParamLinearUpperLimit           Generic6DOFJointParam = 1
+	Generic6DOFJointParamMax                        Generic6DOFJointParam = 14
+)
+
 //func NewGeneric6DOFJointFromPointer(ptr gdnative.Pointer) Generic6DOFJoint {
 func newGeneric6DOFJointFromPointer(ptr gdnative.Pointer) Generic6DOFJoint {
 	owner := gdnative.NewObjectFromPointer(ptr)

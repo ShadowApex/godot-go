@@ -13,6 +13,438 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// VisualServerArrayFormat is an enum for ArrayFormat values.
+type VisualServerArrayFormat int
+
+const (
+	VisualServerArrayCompressBones     VisualServerArrayFormat = 32768
+	VisualServerArrayCompressColor     VisualServerArrayFormat = 4096
+	VisualServerArrayCompressDefault   VisualServerArrayFormat = 97792
+	VisualServerArrayCompressIndex     VisualServerArrayFormat = 131072
+	VisualServerArrayCompressNormal    VisualServerArrayFormat = 1024
+	VisualServerArrayCompressTangent   VisualServerArrayFormat = 2048
+	VisualServerArrayCompressTexUv     VisualServerArrayFormat = 8192
+	VisualServerArrayCompressTexUv2    VisualServerArrayFormat = 16384
+	VisualServerArrayCompressVertex    VisualServerArrayFormat = 512
+	VisualServerArrayCompressWeights   VisualServerArrayFormat = 65536
+	VisualServerArrayFlagUse16BitBones VisualServerArrayFormat = 524288
+	VisualServerArrayFlagUse2DVertices VisualServerArrayFormat = 262144
+	VisualServerArrayFormatBones       VisualServerArrayFormat = 64
+	VisualServerArrayFormatColor       VisualServerArrayFormat = 8
+	VisualServerArrayFormatIndex       VisualServerArrayFormat = 256
+	VisualServerArrayFormatNormal      VisualServerArrayFormat = 2
+	VisualServerArrayFormatTangent     VisualServerArrayFormat = 4
+	VisualServerArrayFormatTexUv       VisualServerArrayFormat = 16
+	VisualServerArrayFormatTexUv2      VisualServerArrayFormat = 32
+	VisualServerArrayFormatVertex      VisualServerArrayFormat = 1
+	VisualServerArrayFormatWeights     VisualServerArrayFormat = 128
+)
+
+// VisualServerArrayType is an enum for ArrayType values.
+type VisualServerArrayType int
+
+const (
+	VisualServerArrayBones   VisualServerArrayType = 6
+	VisualServerArrayColor   VisualServerArrayType = 3
+	VisualServerArrayIndex   VisualServerArrayType = 8
+	VisualServerArrayMax     VisualServerArrayType = 9
+	VisualServerArrayNormal  VisualServerArrayType = 1
+	VisualServerArrayTangent VisualServerArrayType = 2
+	VisualServerArrayTexUv   VisualServerArrayType = 4
+	VisualServerArrayTexUv2  VisualServerArrayType = 5
+	VisualServerArrayVertex  VisualServerArrayType = 0
+	VisualServerArrayWeights VisualServerArrayType = 7
+)
+
+// VisualServerBlendShapeMode is an enum for BlendShapeMode values.
+type VisualServerBlendShapeMode int
+
+const (
+	VisualServerBlendShapeModeNormalized VisualServerBlendShapeMode = 0
+	VisualServerBlendShapeModeRelative   VisualServerBlendShapeMode = 1
+)
+
+// VisualServerCanvasLightMode is an enum for CanvasLightMode values.
+type VisualServerCanvasLightMode int
+
+const (
+	VisualServerCanvasLightModeAdd  VisualServerCanvasLightMode = 0
+	VisualServerCanvasLightModeMask VisualServerCanvasLightMode = 3
+	VisualServerCanvasLightModeMix  VisualServerCanvasLightMode = 2
+	VisualServerCanvasLightModeSub  VisualServerCanvasLightMode = 1
+)
+
+// VisualServerCanvasLightShadowFilter is an enum for CanvasLightShadowFilter values.
+type VisualServerCanvasLightShadowFilter int
+
+const (
+	VisualServerCanvasLightFilterNone  VisualServerCanvasLightShadowFilter = 0
+	VisualServerCanvasLightFilterPcf13 VisualServerCanvasLightShadowFilter = 5
+	VisualServerCanvasLightFilterPcf3  VisualServerCanvasLightShadowFilter = 1
+	VisualServerCanvasLightFilterPcf5  VisualServerCanvasLightShadowFilter = 2
+	VisualServerCanvasLightFilterPcf7  VisualServerCanvasLightShadowFilter = 3
+	VisualServerCanvasLightFilterPcf9  VisualServerCanvasLightShadowFilter = 4
+)
+
+// VisualServerCanvasOccluderPolygonCullMode is an enum for CanvasOccluderPolygonCullMode values.
+type VisualServerCanvasOccluderPolygonCullMode int
+
+const (
+	VisualServerCanvasOccluderPolygonCullClockwise        VisualServerCanvasOccluderPolygonCullMode = 1
+	VisualServerCanvasOccluderPolygonCullCounterClockwise VisualServerCanvasOccluderPolygonCullMode = 2
+	VisualServerCanvasOccluderPolygonCullDisabled         VisualServerCanvasOccluderPolygonCullMode = 0
+)
+
+// VisualServerCubeMapSide is an enum for CubeMapSide values.
+type VisualServerCubeMapSide int
+
+const (
+	VisualServerCubemapBack   VisualServerCubeMapSide = 5
+	VisualServerCubemapBottom VisualServerCubeMapSide = 2
+	VisualServerCubemapFront  VisualServerCubeMapSide = 4
+	VisualServerCubemapLeft   VisualServerCubeMapSide = 0
+	VisualServerCubemapRight  VisualServerCubeMapSide = 1
+	VisualServerCubemapTop    VisualServerCubeMapSide = 3
+)
+
+// VisualServerEnvironmentBG is an enum for EnvironmentBG values.
+type VisualServerEnvironmentBG int
+
+const (
+	VisualServerEnvBgCanvas     VisualServerEnvironmentBG = 4
+	VisualServerEnvBgClearColor VisualServerEnvironmentBG = 0
+	VisualServerEnvBgColor      VisualServerEnvironmentBG = 1
+	VisualServerEnvBgColorSky   VisualServerEnvironmentBG = 3
+	VisualServerEnvBgKeep       VisualServerEnvironmentBG = 5
+	VisualServerEnvBgMax        VisualServerEnvironmentBG = 6
+	VisualServerEnvBgSky        VisualServerEnvironmentBG = 2
+)
+
+// VisualServerEnvironmentDOFBlurQuality is an enum for EnvironmentDOFBlurQuality values.
+type VisualServerEnvironmentDOFBlurQuality int
+
+const (
+	VisualServerEnvDofBlurQualityHigh   VisualServerEnvironmentDOFBlurQuality = 2
+	VisualServerEnvDofBlurQualityLow    VisualServerEnvironmentDOFBlurQuality = 0
+	VisualServerEnvDofBlurQualityMedium VisualServerEnvironmentDOFBlurQuality = 1
+)
+
+// VisualServerEnvironmentGlowBlendMode is an enum for EnvironmentGlowBlendMode values.
+type VisualServerEnvironmentGlowBlendMode int
+
+const (
+	VisualServerGlowBlendModeAdditive  VisualServerEnvironmentGlowBlendMode = 0
+	VisualServerGlowBlendModeReplace   VisualServerEnvironmentGlowBlendMode = 3
+	VisualServerGlowBlendModeScreen    VisualServerEnvironmentGlowBlendMode = 1
+	VisualServerGlowBlendModeSoftlight VisualServerEnvironmentGlowBlendMode = 2
+)
+
+// VisualServerEnvironmentSSAOBlur is an enum for EnvironmentSSAOBlur values.
+type VisualServerEnvironmentSSAOBlur int
+
+const (
+	VisualServerEnvSsaoBlur1X1      VisualServerEnvironmentSSAOBlur = 1
+	VisualServerEnvSsaoBlur2X2      VisualServerEnvironmentSSAOBlur = 2
+	VisualServerEnvSsaoBlur3X3      VisualServerEnvironmentSSAOBlur = 3
+	VisualServerEnvSsaoBlurDisabled VisualServerEnvironmentSSAOBlur = 0
+)
+
+// VisualServerEnvironmentSSAOQuality is an enum for EnvironmentSSAOQuality values.
+type VisualServerEnvironmentSSAOQuality int
+
+const (
+	VisualServerEnvSsaoQualityHigh   VisualServerEnvironmentSSAOQuality = 2
+	VisualServerEnvSsaoQualityLow    VisualServerEnvironmentSSAOQuality = 0
+	VisualServerEnvSsaoQualityMedium VisualServerEnvironmentSSAOQuality = 1
+)
+
+// VisualServerEnvironmentToneMapper is an enum for EnvironmentToneMapper values.
+type VisualServerEnvironmentToneMapper int
+
+const (
+	VisualServerEnvToneMapperAces      VisualServerEnvironmentToneMapper = 3
+	VisualServerEnvToneMapperFilmic    VisualServerEnvironmentToneMapper = 2
+	VisualServerEnvToneMapperLinear    VisualServerEnvironmentToneMapper = 0
+	VisualServerEnvToneMapperReinhardt VisualServerEnvironmentToneMapper = 1
+)
+
+// VisualServerFeatures is an enum for Features values.
+type VisualServerFeatures int
+
+const (
+	VisualServerFeatureMultithreaded VisualServerFeatures = 1
+	VisualServerFeatureShaders       VisualServerFeatures = 0
+)
+
+// VisualServerInstanceFlags is an enum for InstanceFlags values.
+type VisualServerInstanceFlags int
+
+const (
+	VisualServerInstanceFlagMax           VisualServerInstanceFlags = 1
+	VisualServerInstanceFlagUseBakedLight VisualServerInstanceFlags = 0
+)
+
+// VisualServerInstanceType is an enum for InstanceType values.
+type VisualServerInstanceType int
+
+const (
+	VisualServerInstanceGeometryMask    VisualServerInstanceType = 30
+	VisualServerInstanceGiProbe         VisualServerInstanceType = 7
+	VisualServerInstanceImmediate       VisualServerInstanceType = 3
+	VisualServerInstanceLight           VisualServerInstanceType = 5
+	VisualServerInstanceLightmapCapture VisualServerInstanceType = 8
+	VisualServerInstanceMax             VisualServerInstanceType = 9
+	VisualServerInstanceMesh            VisualServerInstanceType = 1
+	VisualServerInstanceMultimesh       VisualServerInstanceType = 2
+	VisualServerInstanceNone            VisualServerInstanceType = 0
+	VisualServerInstanceParticles       VisualServerInstanceType = 4
+	VisualServerInstanceReflectionProbe VisualServerInstanceType = 6
+)
+
+// VisualServerLightDirectionalShadowDepthRangeMode is an enum for LightDirectionalShadowDepthRangeMode values.
+type VisualServerLightDirectionalShadowDepthRangeMode int
+
+const (
+	VisualServerLightDirectionalShadowDepthRangeOptimized VisualServerLightDirectionalShadowDepthRangeMode = 1
+	VisualServerLightDirectionalShadowDepthRangeStable    VisualServerLightDirectionalShadowDepthRangeMode = 0
+)
+
+// VisualServerLightDirectionalShadowMode is an enum for LightDirectionalShadowMode values.
+type VisualServerLightDirectionalShadowMode int
+
+const (
+	VisualServerLightDirectionalShadowOrthogonal      VisualServerLightDirectionalShadowMode = 0
+	VisualServerLightDirectionalShadowParallel2Splits VisualServerLightDirectionalShadowMode = 1
+	VisualServerLightDirectionalShadowParallel4Splits VisualServerLightDirectionalShadowMode = 2
+)
+
+// VisualServerLightOmniShadowDetail is an enum for LightOmniShadowDetail values.
+type VisualServerLightOmniShadowDetail int
+
+const (
+	VisualServerLightOmniShadowDetailHorizontal VisualServerLightOmniShadowDetail = 1
+	VisualServerLightOmniShadowDetailVertical   VisualServerLightOmniShadowDetail = 0
+)
+
+// VisualServerLightOmniShadowMode is an enum for LightOmniShadowMode values.
+type VisualServerLightOmniShadowMode int
+
+const (
+	VisualServerLightOmniShadowCube           VisualServerLightOmniShadowMode = 1
+	VisualServerLightOmniShadowDualParaboloid VisualServerLightOmniShadowMode = 0
+)
+
+// VisualServerLightParam is an enum for LightParam values.
+type VisualServerLightParam int
+
+const (
+	VisualServerLightParamAttenuation          VisualServerLightParam = 4
+	VisualServerLightParamContactShadowSize    VisualServerLightParam = 7
+	VisualServerLightParamEnergy               VisualServerLightParam = 0
+	VisualServerLightParamMax                  VisualServerLightParam = 15
+	VisualServerLightParamRange                VisualServerLightParam = 3
+	VisualServerLightParamShadowBias           VisualServerLightParam = 13
+	VisualServerLightParamShadowBiasSplitScale VisualServerLightParam = 14
+	VisualServerLightParamShadowMaxDistance    VisualServerLightParam = 8
+	VisualServerLightParamShadowNormalBias     VisualServerLightParam = 12
+	VisualServerLightParamShadowSplit1Offset   VisualServerLightParam = 9
+	VisualServerLightParamShadowSplit2Offset   VisualServerLightParam = 10
+	VisualServerLightParamShadowSplit3Offset   VisualServerLightParam = 11
+	VisualServerLightParamSpecular             VisualServerLightParam = 2
+	VisualServerLightParamSpotAngle            VisualServerLightParam = 5
+	VisualServerLightParamSpotAttenuation      VisualServerLightParam = 6
+)
+
+// VisualServerLightType is an enum for LightType values.
+type VisualServerLightType int
+
+const (
+	VisualServerLightDirectional VisualServerLightType = 0
+	VisualServerLightOmni        VisualServerLightType = 1
+	VisualServerLightSpot        VisualServerLightType = 2
+)
+
+// VisualServerMultimeshColorFormat is an enum for MultimeshColorFormat values.
+type VisualServerMultimeshColorFormat int
+
+const (
+	VisualServerMultimeshColor8Bit  VisualServerMultimeshColorFormat = 1
+	VisualServerMultimeshColorFloat VisualServerMultimeshColorFormat = 2
+	VisualServerMultimeshColorNone  VisualServerMultimeshColorFormat = 0
+)
+
+// VisualServerMultimeshTransformFormat is an enum for MultimeshTransformFormat values.
+type VisualServerMultimeshTransformFormat int
+
+const (
+	VisualServerMultimeshTransform2D VisualServerMultimeshTransformFormat = 0
+	VisualServerMultimeshTransform3D VisualServerMultimeshTransformFormat = 1
+)
+
+// VisualServerNinePatchAxisMode is an enum for NinePatchAxisMode values.
+type VisualServerNinePatchAxisMode int
+
+const (
+	VisualServerNinePatchStretch VisualServerNinePatchAxisMode = 0
+	VisualServerNinePatchTile    VisualServerNinePatchAxisMode = 1
+	VisualServerNinePatchTileFit VisualServerNinePatchAxisMode = 2
+)
+
+// VisualServerParticlesDrawOrder is an enum for ParticlesDrawOrder values.
+type VisualServerParticlesDrawOrder int
+
+const (
+	VisualServerParticlesDrawOrderIndex     VisualServerParticlesDrawOrder = 0
+	VisualServerParticlesDrawOrderLifetime  VisualServerParticlesDrawOrder = 1
+	VisualServerParticlesDrawOrderViewDepth VisualServerParticlesDrawOrder = 2
+)
+
+// VisualServerPrimitiveType is an enum for PrimitiveType values.
+type VisualServerPrimitiveType int
+
+const (
+	VisualServerPrimitiveLines         VisualServerPrimitiveType = 1
+	VisualServerPrimitiveLineLoop      VisualServerPrimitiveType = 3
+	VisualServerPrimitiveLineStrip     VisualServerPrimitiveType = 2
+	VisualServerPrimitiveMax           VisualServerPrimitiveType = 7
+	VisualServerPrimitivePoints        VisualServerPrimitiveType = 0
+	VisualServerPrimitiveTriangles     VisualServerPrimitiveType = 4
+	VisualServerPrimitiveTriangleFan   VisualServerPrimitiveType = 6
+	VisualServerPrimitiveTriangleStrip VisualServerPrimitiveType = 5
+)
+
+// VisualServerReflectionProbeUpdateMode is an enum for ReflectionProbeUpdateMode values.
+type VisualServerReflectionProbeUpdateMode int
+
+const (
+	VisualServerReflectionProbeUpdateAlways VisualServerReflectionProbeUpdateMode = 1
+	VisualServerReflectionProbeUpdateOnce   VisualServerReflectionProbeUpdateMode = 0
+)
+
+// VisualServerRenderInfo is an enum for RenderInfo values.
+type VisualServerRenderInfo int
+
+const (
+	VisualServerInfoDrawCallsInFrame       VisualServerRenderInfo = 5
+	VisualServerInfoMaterialChangesInFrame VisualServerRenderInfo = 2
+	VisualServerInfoObjectsInFrame         VisualServerRenderInfo = 0
+	VisualServerInfoShaderChangesInFrame   VisualServerRenderInfo = 3
+	VisualServerInfoSurfaceChangesInFrame  VisualServerRenderInfo = 4
+	VisualServerInfoTextureMemUsed         VisualServerRenderInfo = 8
+	VisualServerInfoUsageVideoMemTotal     VisualServerRenderInfo = 6
+	VisualServerInfoVertexMemUsed          VisualServerRenderInfo = 9
+	VisualServerInfoVerticesInFrame        VisualServerRenderInfo = 1
+	VisualServerInfoVideoMemUsed           VisualServerRenderInfo = 7
+)
+
+// VisualServerScenarioDebugMode is an enum for ScenarioDebugMode values.
+type VisualServerScenarioDebugMode int
+
+const (
+	VisualServerScenarioDebugDisabled  VisualServerScenarioDebugMode = 0
+	VisualServerScenarioDebugOverdraw  VisualServerScenarioDebugMode = 2
+	VisualServerScenarioDebugShadeless VisualServerScenarioDebugMode = 3
+	VisualServerScenarioDebugWireframe VisualServerScenarioDebugMode = 1
+)
+
+// VisualServerShaderMode is an enum for ShaderMode values.
+type VisualServerShaderMode int
+
+const (
+	VisualServerShaderCanvasItem VisualServerShaderMode = 1
+	VisualServerShaderMax        VisualServerShaderMode = 3
+	VisualServerShaderParticles  VisualServerShaderMode = 2
+	VisualServerShaderSpatial    VisualServerShaderMode = 0
+)
+
+// VisualServerShadowCastingSetting is an enum for ShadowCastingSetting values.
+type VisualServerShadowCastingSetting int
+
+const (
+	VisualServerShadowCastingSettingDoubleSided VisualServerShadowCastingSetting = 2
+	VisualServerShadowCastingSettingOff         VisualServerShadowCastingSetting = 0
+	VisualServerShadowCastingSettingOn          VisualServerShadowCastingSetting = 1
+	VisualServerShadowCastingSettingShadowsOnly VisualServerShadowCastingSetting = 3
+)
+
+// VisualServerTextureFlags is an enum for TextureFlags values.
+type VisualServerTextureFlags int
+
+const (
+	VisualServerTextureFlagsDefault          VisualServerTextureFlags = 7
+	VisualServerTextureFlagAnisotropicFilter VisualServerTextureFlags = 8
+	VisualServerTextureFlagConvertToLinear   VisualServerTextureFlags = 16
+	VisualServerTextureFlagCubemap           VisualServerTextureFlags = 2048
+	VisualServerTextureFlagFilter            VisualServerTextureFlags = 4
+	VisualServerTextureFlagMipmaps           VisualServerTextureFlags = 1
+	VisualServerTextureFlagMirroredRepeat    VisualServerTextureFlags = 32
+	VisualServerTextureFlagRepeat            VisualServerTextureFlags = 2
+	VisualServerTextureFlagUsedForStreaming  VisualServerTextureFlags = 4096
+)
+
+// VisualServerViewportClearMode is an enum for ViewportClearMode values.
+type VisualServerViewportClearMode int
+
+const (
+	VisualServerViewportClearAlways        VisualServerViewportClearMode = 0
+	VisualServerViewportClearNever         VisualServerViewportClearMode = 1
+	VisualServerViewportClearOnlyNextFrame VisualServerViewportClearMode = 2
+)
+
+// VisualServerViewportDebugDraw is an enum for ViewportDebugDraw values.
+type VisualServerViewportDebugDraw int
+
+const (
+	VisualServerViewportDebugDrawDisabled  VisualServerViewportDebugDraw = 0
+	VisualServerViewportDebugDrawOverdraw  VisualServerViewportDebugDraw = 2
+	VisualServerViewportDebugDrawUnshaded  VisualServerViewportDebugDraw = 1
+	VisualServerViewportDebugDrawWireframe VisualServerViewportDebugDraw = 3
+)
+
+// VisualServerViewportMSAA is an enum for ViewportMSAA values.
+type VisualServerViewportMSAA int
+
+const (
+	VisualServerViewportMsaa16X      VisualServerViewportMSAA = 4
+	VisualServerViewportMsaa2X       VisualServerViewportMSAA = 1
+	VisualServerViewportMsaa4X       VisualServerViewportMSAA = 2
+	VisualServerViewportMsaa8X       VisualServerViewportMSAA = 3
+	VisualServerViewportMsaaDisabled VisualServerViewportMSAA = 0
+)
+
+// VisualServerViewportRenderInfo is an enum for ViewportRenderInfo values.
+type VisualServerViewportRenderInfo int
+
+const (
+	VisualServerViewportRenderInfoDrawCallsInFrame       VisualServerViewportRenderInfo = 5
+	VisualServerViewportRenderInfoMaterialChangesInFrame VisualServerViewportRenderInfo = 2
+	VisualServerViewportRenderInfoMax                    VisualServerViewportRenderInfo = 6
+	VisualServerViewportRenderInfoObjectsInFrame         VisualServerViewportRenderInfo = 0
+	VisualServerViewportRenderInfoShaderChangesInFrame   VisualServerViewportRenderInfo = 3
+	VisualServerViewportRenderInfoSurfaceChangesInFrame  VisualServerViewportRenderInfo = 4
+	VisualServerViewportRenderInfoVerticesInFrame        VisualServerViewportRenderInfo = 1
+)
+
+// VisualServerViewportUpdateMode is an enum for ViewportUpdateMode values.
+type VisualServerViewportUpdateMode int
+
+const (
+	VisualServerViewportUpdateAlways      VisualServerViewportUpdateMode = 3
+	VisualServerViewportUpdateDisabled    VisualServerViewportUpdateMode = 0
+	VisualServerViewportUpdateOnce        VisualServerViewportUpdateMode = 1
+	VisualServerViewportUpdateWhenVisible VisualServerViewportUpdateMode = 2
+)
+
+// VisualServerViewportUsage is an enum for ViewportUsage values.
+type VisualServerViewportUsage int
+
+const (
+	VisualServerViewportUsage2D           VisualServerViewportUsage = 0
+	VisualServerViewportUsage2DNoSampling VisualServerViewportUsage = 1
+	VisualServerViewportUsage3D           VisualServerViewportUsage = 2
+	VisualServerViewportUsage3DNoEffects  VisualServerViewportUsage = 3
+)
+
 //func NewvisualServerFromPointer(ptr gdnative.Pointer) visualServer {
 func newVisualServerFromPointer(ptr gdnative.Pointer) visualServer {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -4977,6 +5409,26 @@ func (o *visualServer) MeshGetBlendShapeCount(mesh gdnative.Rid) gdnative.Int {
         Returns a mesh's blend shape mode.
 	Args: [{ false mesh RID}], Returns: enum.VisualServer::BlendShapeMode
 */
+func (o *visualServer) MeshGetBlendShapeMode(mesh gdnative.Rid) VisualServerBlendShapeMode {
+	o.ensureSingleton()
+	//log.Println("Calling VisualServer.MeshGetBlendShapeMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_get_blend_shape_mode")
+
+	// Call the parent method.
+	// enum.VisualServer::BlendShapeMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return VisualServerBlendShapeMode(ret)
+}
 
 /*
         Returns a mesh's custom aabb.
@@ -5358,6 +5810,27 @@ func (o *visualServer) MeshSurfaceGetMaterial(mesh gdnative.Rid, surface gdnativ
         Returns the primitive type of a mesh's surface.
 	Args: [{ false mesh RID} { false surface int}], Returns: enum.VisualServer::PrimitiveType
 */
+func (o *visualServer) MeshSurfaceGetPrimitiveType(mesh gdnative.Rid, surface gdnative.Int) VisualServerPrimitiveType {
+	o.ensureSingleton()
+	//log.Println("Calling VisualServer.MeshSurfaceGetPrimitiveType()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromRid(mesh)
+	ptrArguments[1] = gdnative.NewPointerFromInt(surface)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "mesh_surface_get_primitive_type")
+
+	// Call the parent method.
+	// enum.VisualServer::PrimitiveType
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return VisualServerPrimitiveType(ret)
+}
 
 /*
         Returns the aabb of a mesh's surface's skeleton.
@@ -7333,6 +7806,26 @@ func (o *visualServer) TextureGetFlags(texture gdnative.Rid) gdnative.Int {
         Returns the format of the texture's image.
 	Args: [{ false texture RID}], Returns: enum.Image::Format
 */
+func (o *visualServer) TextureGetFormat(texture gdnative.Rid) ImageFormat {
+	o.ensureSingleton()
+	//log.Println("Calling VisualServer.TextureGetFormat()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromRid(texture)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualServer", "texture_get_format")
+
+	// Call the parent method.
+	// enum.Image::Format
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ImageFormat(ret)
+}
 
 /*
         Returns the texture's height.

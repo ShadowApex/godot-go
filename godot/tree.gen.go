@@ -13,6 +13,24 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// TreeDropModeFlags is an enum for DropModeFlags values.
+type TreeDropModeFlags int
+
+const (
+	TreeDropModeDisabled  TreeDropModeFlags = 0
+	TreeDropModeInbetween TreeDropModeFlags = 2
+	TreeDropModeOnItem    TreeDropModeFlags = 1
+)
+
+// TreeSelectMode is an enum for SelectMode values.
+type TreeSelectMode int
+
+const (
+	TreeSelectMulti  TreeSelectMode = 2
+	TreeSelectRow    TreeSelectMode = 1
+	TreeSelectSingle TreeSelectMode = 0
+)
+
 //func NewTreeFromPointer(ptr gdnative.Pointer) Tree {
 func newTreeFromPointer(ptr gdnative.Pointer) Tree {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -740,6 +758,24 @@ func (o *Tree) GetScroll() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: enum.Tree::SelectMode
 */
+func (o *Tree) GetSelectMode() TreeSelectMode {
+	//log.Println("Calling Tree.GetSelectMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Tree", "get_select_mode")
+
+	// Call the parent method.
+	// enum.Tree::SelectMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return TreeSelectMode(ret)
+}
 
 /*
         Returns the currently selected item.

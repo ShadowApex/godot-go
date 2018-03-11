@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// BoxContainerAlignMode is an enum for AlignMode values.
+type BoxContainerAlignMode int
+
+const (
+	BoxContainerAlignBegin  BoxContainerAlignMode = 0
+	BoxContainerAlignCenter BoxContainerAlignMode = 1
+	BoxContainerAlignEnd    BoxContainerAlignMode = 2
+)
+
 //func NewBoxContainerFromPointer(ptr gdnative.Pointer) BoxContainer {
 func newBoxContainerFromPointer(ptr gdnative.Pointer) BoxContainer {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -59,6 +68,24 @@ func (o *BoxContainer) AddSpacer(begin gdnative.Bool) {
         Undocumented
 	Args: [], Returns: enum.BoxContainer::AlignMode
 */
+func (o *BoxContainer) GetAlignment() BoxContainerAlignMode {
+	//log.Println("Calling BoxContainer.GetAlignment()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("BoxContainer", "get_alignment")
+
+	// Call the parent method.
+	// enum.BoxContainer::AlignMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return BoxContainerAlignMode(ret)
+}
 
 /*
         Undocumented

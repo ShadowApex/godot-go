@@ -13,6 +13,35 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// EditorPluginCustomControlContainer is an enum for CustomControlContainer values.
+type EditorPluginCustomControlContainer int
+
+const (
+	EditorPluginContainerCanvasEditorBottom   EditorPluginCustomControlContainer = 6
+	EditorPluginContainerCanvasEditorMenu     EditorPluginCustomControlContainer = 4
+	EditorPluginContainerCanvasEditorSide     EditorPluginCustomControlContainer = 5
+	EditorPluginContainerPropertyEditorBottom EditorPluginCustomControlContainer = 7
+	EditorPluginContainerSpatialEditorBottom  EditorPluginCustomControlContainer = 3
+	EditorPluginContainerSpatialEditorMenu    EditorPluginCustomControlContainer = 1
+	EditorPluginContainerSpatialEditorSide    EditorPluginCustomControlContainer = 2
+	EditorPluginContainerToolbar              EditorPluginCustomControlContainer = 0
+)
+
+// EditorPluginDockSlot is an enum for DockSlot values.
+type EditorPluginDockSlot int
+
+const (
+	EditorPluginDockSlotLeftBl  EditorPluginDockSlot = 1
+	EditorPluginDockSlotLeftBr  EditorPluginDockSlot = 3
+	EditorPluginDockSlotLeftUl  EditorPluginDockSlot = 0
+	EditorPluginDockSlotLeftUr  EditorPluginDockSlot = 2
+	EditorPluginDockSlotMax     EditorPluginDockSlot = 8
+	EditorPluginDockSlotRightBl EditorPluginDockSlot = 5
+	EditorPluginDockSlotRightBr EditorPluginDockSlot = 7
+	EditorPluginDockSlotRightUl EditorPluginDockSlot = 4
+	EditorPluginDockSlotRightUr EditorPluginDockSlot = 6
+)
+
 //func NewEditorPluginFromPointer(ptr gdnative.Pointer) EditorPlugin {
 func newEditorPluginFromPointer(ptr gdnative.Pointer) EditorPlugin {
 	owner := gdnative.NewObjectFromPointer(ptr)

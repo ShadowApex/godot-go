@@ -13,6 +13,25 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// RigidBody2DCCDMode is an enum for CCDMode values.
+type RigidBody2DCCDMode int
+
+const (
+	RigidBody2DCcdModeCastRay   RigidBody2DCCDMode = 1
+	RigidBody2DCcdModeCastShape RigidBody2DCCDMode = 2
+	RigidBody2DCcdModeDisabled  RigidBody2DCCDMode = 0
+)
+
+// RigidBody2DMode is an enum for Mode values.
+type RigidBody2DMode int
+
+const (
+	RigidBody2DModeCharacter RigidBody2DMode = 2
+	RigidBody2DModeKinematic RigidBody2DMode = 3
+	RigidBody2DModeRigid     RigidBody2DMode = 0
+	RigidBody2DModeStatic    RigidBody2DMode = 1
+)
+
 //func NewRigidBody2DFromPointer(ptr gdnative.Pointer) RigidBody2D {
 func newRigidBody2DFromPointer(ptr gdnative.Pointer) RigidBody2D {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -304,6 +323,24 @@ func (o *RigidBody2D) GetCollidingBodies() gdnative.Array {
         Undocumented
 	Args: [], Returns: enum.RigidBody2D::CCDMode
 */
+func (o *RigidBody2D) GetContinuousCollisionDetectionMode() RigidBody2DCCDMode {
+	//log.Println("Calling RigidBody2D.GetContinuousCollisionDetectionMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RigidBody2D", "get_continuous_collision_detection_mode")
+
+	// Call the parent method.
+	// enum.RigidBody2D::CCDMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return RigidBody2DCCDMode(ret)
+}
 
 /*
         Undocumented
@@ -470,6 +507,24 @@ func (o *RigidBody2D) GetMaxContactsReported() gdnative.Int {
         Undocumented
 	Args: [], Returns: enum.RigidBody2D::Mode
 */
+func (o *RigidBody2D) GetMode() RigidBody2DMode {
+	//log.Println("Calling RigidBody2D.GetMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("RigidBody2D", "get_mode")
+
+	// Call the parent method.
+	// enum.RigidBody2D::Mode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return RigidBody2DMode(ret)
+}
 
 /*
         Undocumented

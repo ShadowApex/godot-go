@@ -38,16 +38,75 @@ func (o *PCKPacker) BaseClass() string {
 
 	Args: [{ false pck_path String} { false source_path String}], Returns: enum.Error
 */
+func (o *PCKPacker) AddFile(pckPath gdnative.String, sourcePath gdnative.String) gdnative.Error {
+	//log.Println("Calling PCKPacker.AddFile()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(pckPath)
+	ptrArguments[1] = gdnative.NewPointerFromString(sourcePath)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PCKPacker", "add_file")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
 
 	Args: [{ false verbose bool}], Returns: enum.Error
 */
+func (o *PCKPacker) Flush(verbose gdnative.Bool) gdnative.Error {
+	//log.Println("Calling PCKPacker.Flush()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromBool(verbose)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PCKPacker", "flush")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
 
 	Args: [{ false pck_name String} { false alignment int}], Returns: enum.Error
 */
+func (o *PCKPacker) PckStart(pckName gdnative.String, alignment gdnative.Int) gdnative.Error {
+	//log.Println("Calling PCKPacker.PckStart()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 2, 2)
+	ptrArguments[0] = gdnative.NewPointerFromString(pckName)
+	ptrArguments[1] = gdnative.NewPointerFromInt(alignment)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PCKPacker", "pck_start")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 // PCKPackerImplementer is an interface that implements the methods
 // of the PCKPacker class.

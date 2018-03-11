@@ -121,11 +121,47 @@ func (o *ResourceInteractiveLoader) GetStageCount() gdnative.Int {
         Poll the load. If OK is returned, this means poll will have to be called again. If ERR_FILE_EOF is returned, them the load has finished and the resource can be obtained by calling [method get_resource].
 	Args: [], Returns: enum.Error
 */
+func (o *ResourceInteractiveLoader) Poll() gdnative.Error {
+	//log.Println("Calling ResourceInteractiveLoader.Poll()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ResourceInteractiveLoader", "poll")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
 
 	Args: [], Returns: enum.Error
 */
+func (o *ResourceInteractiveLoader) Wait() gdnative.Error {
+	//log.Println("Calling ResourceInteractiveLoader.Wait()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ResourceInteractiveLoader", "wait")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 // ResourceInteractiveLoaderImplementer is an interface that implements the methods
 // of the ResourceInteractiveLoader class.

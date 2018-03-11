@@ -13,6 +13,15 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// PackedSceneGenEditState is an enum for GenEditState values.
+type PackedSceneGenEditState int
+
+const (
+	PackedSceneGenEditStateDisabled PackedSceneGenEditState = 0
+	PackedSceneGenEditStateInstance PackedSceneGenEditState = 1
+	PackedSceneGenEditStateMain     PackedSceneGenEditState = 2
+)
+
 //func NewPackedSceneFromPointer(ptr gdnative.Pointer) PackedScene {
 func newPackedSceneFromPointer(ptr gdnative.Pointer) PackedScene {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -180,6 +189,25 @@ func (o *PackedScene) Instance(editState gdnative.Int) NodeImplementer {
         Pack will ignore any sub-nodes not owned by given node. See [method Node.set_owner].
 	Args: [{ false path Object}], Returns: enum.Error
 */
+func (o *PackedScene) Pack(path Object) gdnative.Error {
+	//log.Println("Calling PackedScene.Pack()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 1, 1)
+	ptrArguments[0] = gdnative.NewPointerFromObject(path.GetBaseObject())
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("PackedScene", "pack")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 // PackedSceneImplementer is an interface that implements the methods
 // of the PackedScene class.

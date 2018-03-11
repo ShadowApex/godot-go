@@ -13,6 +13,33 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// VisualScriptPropertySetAssignOp is an enum for AssignOp values.
+type VisualScriptPropertySetAssignOp int
+
+const (
+	VisualScriptPropertySetAssignOpAdd        VisualScriptPropertySetAssignOp = 1
+	VisualScriptPropertySetAssignOpBitAnd     VisualScriptPropertySetAssignOp = 8
+	VisualScriptPropertySetAssignOpBitOr      VisualScriptPropertySetAssignOp = 9
+	VisualScriptPropertySetAssignOpBitXor     VisualScriptPropertySetAssignOp = 10
+	VisualScriptPropertySetAssignOpDiv        VisualScriptPropertySetAssignOp = 4
+	VisualScriptPropertySetAssignOpMod        VisualScriptPropertySetAssignOp = 5
+	VisualScriptPropertySetAssignOpMul        VisualScriptPropertySetAssignOp = 3
+	VisualScriptPropertySetAssignOpNone       VisualScriptPropertySetAssignOp = 0
+	VisualScriptPropertySetAssignOpShiftLeft  VisualScriptPropertySetAssignOp = 6
+	VisualScriptPropertySetAssignOpShiftRight VisualScriptPropertySetAssignOp = 7
+	VisualScriptPropertySetAssignOpSub        VisualScriptPropertySetAssignOp = 2
+)
+
+// VisualScriptPropertySetCallMode is an enum for CallMode values.
+type VisualScriptPropertySetCallMode int
+
+const (
+	VisualScriptPropertySetCallModeBasicType VisualScriptPropertySetCallMode = 3
+	VisualScriptPropertySetCallModeInstance  VisualScriptPropertySetCallMode = 2
+	VisualScriptPropertySetCallModeNodePath  VisualScriptPropertySetCallMode = 1
+	VisualScriptPropertySetCallModeSelf      VisualScriptPropertySetCallMode = 0
+)
+
 //func NewVisualScriptPropertySetFromPointer(ptr gdnative.Pointer) VisualScriptPropertySet {
 func newVisualScriptPropertySetFromPointer(ptr gdnative.Pointer) VisualScriptPropertySet {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -82,6 +109,24 @@ func (o *VisualScriptPropertySet) X_SetTypeCache(typeCache gdnative.Dictionary) 
         Undocumented
 	Args: [], Returns: enum.VisualScriptPropertySet::AssignOp
 */
+func (o *VisualScriptPropertySet) GetAssignOp() VisualScriptPropertySetAssignOp {
+	//log.Println("Calling VisualScriptPropertySet.GetAssignOp()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptPropertySet", "get_assign_op")
+
+	// Call the parent method.
+	// enum.VisualScriptPropertySet::AssignOp
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return VisualScriptPropertySetAssignOp(ret)
+}
 
 /*
         Undocumented
@@ -156,11 +201,47 @@ func (o *VisualScriptPropertySet) GetBaseType() gdnative.String {
         Undocumented
 	Args: [], Returns: enum.Variant::Type
 */
+func (o *VisualScriptPropertySet) GetBasicType() gdnative.VariantType {
+	//log.Println("Calling VisualScriptPropertySet.GetBasicType()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptPropertySet", "get_basic_type")
+
+	// Call the parent method.
+	// enum.Variant::Type
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.VariantType(ret)
+}
 
 /*
         Undocumented
 	Args: [], Returns: enum.VisualScriptPropertySet::CallMode
 */
+func (o *VisualScriptPropertySet) GetCallMode() VisualScriptPropertySetCallMode {
+	//log.Println("Calling VisualScriptPropertySet.GetCallMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptPropertySet", "get_call_mode")
+
+	// Call the parent method.
+	// enum.VisualScriptPropertySet::CallMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return VisualScriptPropertySetCallMode(ret)
+}
 
 /*
         Undocumented

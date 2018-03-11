@@ -13,6 +13,21 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// VisualScriptMathConstantMathConstant is an enum for MathConstant values.
+type VisualScriptMathConstantMathConstant int
+
+const (
+	VisualScriptMathConstantMathConstantE      VisualScriptMathConstantMathConstant = 4
+	VisualScriptMathConstantMathConstantHalfPi VisualScriptMathConstantMathConstant = 2
+	VisualScriptMathConstantMathConstantInf    VisualScriptMathConstantMathConstant = 6
+	VisualScriptMathConstantMathConstantMax    VisualScriptMathConstantMathConstant = 8
+	VisualScriptMathConstantMathConstantNan    VisualScriptMathConstantMathConstant = 7
+	VisualScriptMathConstantMathConstantOne    VisualScriptMathConstantMathConstant = 0
+	VisualScriptMathConstantMathConstantPi     VisualScriptMathConstantMathConstant = 1
+	VisualScriptMathConstantMathConstantSqrt2  VisualScriptMathConstantMathConstant = 5
+	VisualScriptMathConstantMathConstantTau    VisualScriptMathConstantMathConstant = 3
+)
+
 //func NewVisualScriptMathConstantFromPointer(ptr gdnative.Pointer) VisualScriptMathConstant {
 func newVisualScriptMathConstantFromPointer(ptr gdnative.Pointer) VisualScriptMathConstant {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,6 +53,24 @@ func (o *VisualScriptMathConstant) BaseClass() string {
         Undocumented
 	Args: [], Returns: enum.VisualScriptMathConstant::MathConstant
 */
+func (o *VisualScriptMathConstant) GetMathConstant() VisualScriptMathConstantMathConstant {
+	//log.Println("Calling VisualScriptMathConstant.GetMathConstant()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("VisualScriptMathConstant", "get_math_constant")
+
+	// Call the parent method.
+	// enum.VisualScriptMathConstant::MathConstant
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return VisualScriptMathConstantMathConstant(ret)
+}
 
 /*
         Undocumented

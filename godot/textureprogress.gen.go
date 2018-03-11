@@ -13,6 +13,18 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// TextureProgressFillMode is an enum for FillMode values.
+type TextureProgressFillMode int
+
+const (
+	TextureProgressFillBottomToTop      TextureProgressFillMode = 3
+	TextureProgressFillClockwise        TextureProgressFillMode = 4
+	TextureProgressFillCounterClockwise TextureProgressFillMode = 5
+	TextureProgressFillLeftToRight      TextureProgressFillMode = 0
+	TextureProgressFillRightToLeft      TextureProgressFillMode = 1
+	TextureProgressFillTopToBottom      TextureProgressFillMode = 2
+)
+
 //func NewTextureProgressFromPointer(ptr gdnative.Pointer) TextureProgress {
 func newTextureProgressFromPointer(ptr gdnative.Pointer) TextureProgress {
 	owner := gdnative.NewObjectFromPointer(ptr)

@@ -13,6 +13,37 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// LightBakeMode is an enum for BakeMode values.
+type LightBakeMode int
+
+const (
+	LightBakeAll      LightBakeMode = 2
+	LightBakeDisabled LightBakeMode = 0
+	LightBakeIndirect LightBakeMode = 1
+)
+
+// LightParam is an enum for Param values.
+type LightParam int
+
+const (
+	LightParamAttenuation          LightParam = 4
+	LightParamContactShadowSize    LightParam = 7
+	LightParamEnergy               LightParam = 0
+	LightParamIndirectEnergy       LightParam = 1
+	LightParamMax                  LightParam = 15
+	LightParamRange                LightParam = 3
+	LightParamShadowBias           LightParam = 13
+	LightParamShadowBiasSplitScale LightParam = 14
+	LightParamShadowMaxDistance    LightParam = 8
+	LightParamShadowNormalBias     LightParam = 12
+	LightParamShadowSplit1Offset   LightParam = 9
+	LightParamShadowSplit2Offset   LightParam = 10
+	LightParamShadowSplit3Offset   LightParam = 11
+	LightParamSpecular             LightParam = 2
+	LightParamSpotAngle            LightParam = 5
+	LightParamSpotAttenuation      LightParam = 6
+)
+
 //func NewLightFromPointer(ptr gdnative.Pointer) Light {
 func newLightFromPointer(ptr gdnative.Pointer) Light {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -38,6 +69,24 @@ func (o *Light) BaseClass() string {
         Undocumented
 	Args: [], Returns: enum.Light::BakeMode
 */
+func (o *Light) GetBakeMode() LightBakeMode {
+	//log.Println("Calling Light.GetBakeMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("Light", "get_bake_mode")
+
+	// Call the parent method.
+	// enum.Light::BakeMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return LightBakeMode(ret)
+}
 
 /*
         Undocumented

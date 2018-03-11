@@ -13,6 +13,37 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// ARVRInterfaceCapabilities is an enum for Capabilities values.
+type ARVRInterfaceCapabilities int
+
+const (
+	ARVRInterfaceArvrAr       ARVRInterfaceCapabilities = 4
+	ARVRInterfaceArvrExternal ARVRInterfaceCapabilities = 8
+	ARVRInterfaceArvrMono     ARVRInterfaceCapabilities = 1
+	ARVRInterfaceArvrNone     ARVRInterfaceCapabilities = 0
+	ARVRInterfaceArvrStereo   ARVRInterfaceCapabilities = 2
+)
+
+// ARVRInterfaceEyes is an enum for Eyes values.
+type ARVRInterfaceEyes int
+
+const (
+	ARVRInterfaceEyeLeft  ARVRInterfaceEyes = 1
+	ARVRInterfaceEyeMono  ARVRInterfaceEyes = 0
+	ARVRInterfaceEyeRight ARVRInterfaceEyes = 2
+)
+
+// ARVRInterfaceTracking_status is an enum for Tracking_status values.
+type ARVRInterfaceTracking_status int
+
+const (
+	ARVRInterfaceArvrExcessiveMotion      ARVRInterfaceTracking_status = 1
+	ARVRInterfaceArvrInsufficientFeatures ARVRInterfaceTracking_status = 2
+	ARVRInterfaceArvrNormalTracking       ARVRInterfaceTracking_status = 0
+	ARVRInterfaceArvrNotTracking          ARVRInterfaceTracking_status = 4
+	ARVRInterfaceArvrUnknownTracking      ARVRInterfaceTracking_status = 3
+)
+
 //func NewARVRInterfaceFromPointer(ptr gdnative.Pointer) ARVRInterface {
 func newARVRInterfaceFromPointer(ptr gdnative.Pointer) ARVRInterface {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -130,6 +161,24 @@ func (o *ARVRInterface) GetRenderTargetsize() gdnative.Vector2 {
         If supported, returns the status of our tracking. This will allow you to provide feedback to the user whether there are issues with positional tracking.
 	Args: [], Returns: enum.ARVRInterface::Tracking_status
 */
+func (o *ARVRInterface) GetTrackingStatus() ARVRInterfaceTracking_status {
+	//log.Println("Calling ARVRInterface.GetTrackingStatus()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("ARVRInterface", "get_tracking_status")
+
+	// Call the parent method.
+	// enum.ARVRInterface::Tracking_status
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return ARVRInterfaceTracking_status(ret)
+}
 
 /*
         Call this to initialize this interface. The first interface that is initialized is identified as the primary interface and it will be used for rendering output. After initializing the interface you want to use you then need to enable the AR/VR mode of a viewport and rendering should commence. Note that you must enable the AR/VR mode on the main viewport for any device that uses the main output of Godot such as for mobile VR. If you do this for a platform that handles its own output (such as OpenVR) Godot will show just one eye without distortion on screen. Alternatively you can add a separate viewport node to your scene and enable AR/VR on that viewport and it will be used to output to the HMD leaving you free to do anything you like in the main window such as using a separate camera as a spectator camera or render out something completely different. While currently not used you can activate additional interfaces, you may wish to do this if you want to track controllers from other platforms. However at this point in time only one interface can render to an HMD.

@@ -13,6 +13,30 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// HingeJointFlag is an enum for Flag values.
+type HingeJointFlag int
+
+const (
+	HingeJointFlagEnableMotor HingeJointFlag = 1
+	HingeJointFlagMax         HingeJointFlag = 2
+	HingeJointFlagUseLimit    HingeJointFlag = 0
+)
+
+// HingeJointParam is an enum for Param values.
+type HingeJointParam int
+
+const (
+	HingeJointParamBias                HingeJointParam = 0
+	HingeJointParamLimitBias           HingeJointParam = 3
+	HingeJointParamLimitLower          HingeJointParam = 2
+	HingeJointParamLimitRelaxation     HingeJointParam = 5
+	HingeJointParamLimitSoftness       HingeJointParam = 4
+	HingeJointParamLimitUpper          HingeJointParam = 1
+	HingeJointParamMax                 HingeJointParam = 8
+	HingeJointParamMotorMaxImpulse     HingeJointParam = 7
+	HingeJointParamMotorTargetVelocity HingeJointParam = 6
+)
+
 //func NewHingeJointFromPointer(ptr gdnative.Pointer) HingeJoint {
 func newHingeJointFromPointer(ptr gdnative.Pointer) HingeJoint {
 	owner := gdnative.NewObjectFromPointer(ptr)

@@ -13,6 +13,105 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// HTTPClientMethod is an enum for Method values.
+type HTTPClientMethod int
+
+const (
+	HTTPClientMethodConnect HTTPClientMethod = 7
+	HTTPClientMethodDelete  HTTPClientMethod = 4
+	HTTPClientMethodGet     HTTPClientMethod = 0
+	HTTPClientMethodHead    HTTPClientMethod = 1
+	HTTPClientMethodMax     HTTPClientMethod = 9
+	HTTPClientMethodOptions HTTPClientMethod = 5
+	HTTPClientMethodPatch   HTTPClientMethod = 8
+	HTTPClientMethodPost    HTTPClientMethod = 2
+	HTTPClientMethodPut     HTTPClientMethod = 3
+	HTTPClientMethodTrace   HTTPClientMethod = 6
+)
+
+// HTTPClientResponseCode is an enum for ResponseCode values.
+type HTTPClientResponseCode int
+
+const (
+	HTTPClientResponseAccepted                     HTTPClientResponseCode = 202
+	HTTPClientResponseAlreadyReported              HTTPClientResponseCode = 208
+	HTTPClientResponseBadGateway                   HTTPClientResponseCode = 502
+	HTTPClientResponseBadRequest                   HTTPClientResponseCode = 400
+	HTTPClientResponseConflict                     HTTPClientResponseCode = 409
+	HTTPClientResponseContinue                     HTTPClientResponseCode = 100
+	HTTPClientResponseCreated                      HTTPClientResponseCode = 201
+	HTTPClientResponseExpectationFailed            HTTPClientResponseCode = 417
+	HTTPClientResponseFailedDependency             HTTPClientResponseCode = 424
+	HTTPClientResponseForbidden                    HTTPClientResponseCode = 403
+	HTTPClientResponseFound                        HTTPClientResponseCode = 302
+	HTTPClientResponseGatewayTimeout               HTTPClientResponseCode = 504
+	HTTPClientResponseGone                         HTTPClientResponseCode = 410
+	HTTPClientResponseHttpVersionNotSupported      HTTPClientResponseCode = 505
+	HTTPClientResponseImATeapot                    HTTPClientResponseCode = 418
+	HTTPClientResponseImUsed                       HTTPClientResponseCode = 226
+	HTTPClientResponseInsufficientStorage          HTTPClientResponseCode = 507
+	HTTPClientResponseInternalServerError          HTTPClientResponseCode = 500
+	HTTPClientResponseLengthRequired               HTTPClientResponseCode = 411
+	HTTPClientResponseLocked                       HTTPClientResponseCode = 423
+	HTTPClientResponseLoopDetected                 HTTPClientResponseCode = 508
+	HTTPClientResponseMethodNotAllowed             HTTPClientResponseCode = 405
+	HTTPClientResponseMisdirectedRequest           HTTPClientResponseCode = 421
+	HTTPClientResponseMovedPermanently             HTTPClientResponseCode = 301
+	HTTPClientResponseMultipleChoices              HTTPClientResponseCode = 300
+	HTTPClientResponseMultiStatus                  HTTPClientResponseCode = 207
+	HTTPClientResponseNetworkAuthRequired          HTTPClientResponseCode = 511
+	HTTPClientResponseNonAuthoritativeInformation  HTTPClientResponseCode = 203
+	HTTPClientResponseNotAcceptable                HTTPClientResponseCode = 406
+	HTTPClientResponseNotExtended                  HTTPClientResponseCode = 510
+	HTTPClientResponseNotFound                     HTTPClientResponseCode = 404
+	HTTPClientResponseNotImplemented               HTTPClientResponseCode = 501
+	HTTPClientResponseNotModified                  HTTPClientResponseCode = 304
+	HTTPClientResponseNoContent                    HTTPClientResponseCode = 204
+	HTTPClientResponseOk                           HTTPClientResponseCode = 200
+	HTTPClientResponsePartialContent               HTTPClientResponseCode = 206
+	HTTPClientResponsePaymentRequired              HTTPClientResponseCode = 402
+	HTTPClientResponsePermanentRedirect            HTTPClientResponseCode = 308
+	HTTPClientResponsePreconditionFailed           HTTPClientResponseCode = 412
+	HTTPClientResponsePreconditionRequired         HTTPClientResponseCode = 428
+	HTTPClientResponseProcessing                   HTTPClientResponseCode = 102
+	HTTPClientResponseProxyAuthenticationRequired  HTTPClientResponseCode = 407
+	HTTPClientResponseRequestedRangeNotSatisfiable HTTPClientResponseCode = 416
+	HTTPClientResponseRequestEntityTooLarge        HTTPClientResponseCode = 413
+	HTTPClientResponseRequestHeaderFieldsTooLarge  HTTPClientResponseCode = 431
+	HTTPClientResponseRequestTimeout               HTTPClientResponseCode = 408
+	HTTPClientResponseRequestUriTooLong            HTTPClientResponseCode = 414
+	HTTPClientResponseResetContent                 HTTPClientResponseCode = 205
+	HTTPClientResponseSeeOther                     HTTPClientResponseCode = 303
+	HTTPClientResponseServiceUnavailable           HTTPClientResponseCode = 503
+	HTTPClientResponseSwitchingProtocols           HTTPClientResponseCode = 101
+	HTTPClientResponseSwitchProxy                  HTTPClientResponseCode = 306
+	HTTPClientResponseTemporaryRedirect            HTTPClientResponseCode = 307
+	HTTPClientResponseTooManyRequests              HTTPClientResponseCode = 429
+	HTTPClientResponseUnauthorized                 HTTPClientResponseCode = 401
+	HTTPClientResponseUnavailableForLegalReasons   HTTPClientResponseCode = 451
+	HTTPClientResponseUnprocessableEntity          HTTPClientResponseCode = 422
+	HTTPClientResponseUnsupportedMediaType         HTTPClientResponseCode = 415
+	HTTPClientResponseUpgradeRequired              HTTPClientResponseCode = 426
+	HTTPClientResponseUseProxy                     HTTPClientResponseCode = 305
+	HTTPClientResponseVariantAlsoNegotiates        HTTPClientResponseCode = 506
+)
+
+// HTTPClientStatus is an enum for Status values.
+type HTTPClientStatus int
+
+const (
+	HTTPClientStatusBody              HTTPClientStatus = 7
+	HTTPClientStatusCantConnect       HTTPClientStatus = 4
+	HTTPClientStatusCantResolve       HTTPClientStatus = 2
+	HTTPClientStatusConnected         HTTPClientStatus = 5
+	HTTPClientStatusConnecting        HTTPClientStatus = 3
+	HTTPClientStatusConnectionError   HTTPClientStatus = 8
+	HTTPClientStatusDisconnected      HTTPClientStatus = 0
+	HTTPClientStatusRequesting        HTTPClientStatus = 6
+	HTTPClientStatusResolving         HTTPClientStatus = 1
+	HTTPClientStatusSslHandshakeError HTTPClientStatus = 9
+)
+
 //func NewHTTPClientFromPointer(ptr gdnative.Pointer) HTTPClient {
 func newHTTPClientFromPointer(ptr gdnative.Pointer) HTTPClient {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -58,6 +157,28 @@ func (o *HTTPClient) Close() {
         Connect to a host. This needs to be done before any requests are sent. The host should not have http:// prepended but will strip the protocol identifier if provided. If no [code]port[/code] is specified (or [code]-1[/code] is used), it is automatically set to 80 for HTTP and 443 for HTTPS (if [code]use_ssl[/code] is enabled). [code]verify_host[/code] will check the SSL identity of the host if set to [code]true[/code].
 	Args: [{ false host String} {-1 true port int} {False true use_ssl bool} {True true verify_host bool}], Returns: enum.Error
 */
+func (o *HTTPClient) ConnectToHost(host gdnative.String, port gdnative.Int, useSsl gdnative.Bool, verifyHost gdnative.Bool) gdnative.Error {
+	//log.Println("Calling HTTPClient.ConnectToHost()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromString(host)
+	ptrArguments[1] = gdnative.NewPointerFromInt(port)
+	ptrArguments[2] = gdnative.NewPointerFromBool(useSsl)
+	ptrArguments[3] = gdnative.NewPointerFromBool(verifyHost)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPClient", "connect_to_host")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Undocumented
@@ -192,6 +313,24 @@ func (o *HTTPClient) GetResponseHeadersAsDictionary() gdnative.Dictionary {
         Returns a STATUS_* enum constant. Need to call [method poll] in order to get status updates.
 	Args: [], Returns: enum.HTTPClient::Status
 */
+func (o *HTTPClient) GetStatus() HTTPClientStatus {
+	//log.Println("Calling HTTPClient.GetStatus()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPClient", "get_status")
+
+	// Call the parent method.
+	// enum.HTTPClient::Status
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return HTTPClientStatus(ret)
+}
 
 /*
         If [code]true[/code] this [code]HTTPClient[/code] has a response available.
@@ -266,6 +405,24 @@ func (o *HTTPClient) IsResponseChunked() gdnative.Bool {
         This needs to be called in order to have any request processed. Check results with [method get_status]
 	Args: [], Returns: enum.Error
 */
+func (o *HTTPClient) Poll() gdnative.Error {
+	//log.Println("Calling HTTPClient.Poll()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPClient", "poll")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Generates a GET/POST application/x-www-form-urlencoded style query string from a provided dictionary, e.g.: [codeblock] var fields = {"username": "user", "password": "pass"} String queryString = httpClient.query_string_from_dict(fields) returns:= "username=user&password=pass" [/codeblock]
@@ -318,11 +475,55 @@ func (o *HTTPClient) ReadResponseBodyChunk() gdnative.PoolByteArray {
         Sends a request to the connected host. The URL parameter is just the part after the host, so for [code]http://somehost.com/index.php[/code], it is [code]index.php[/code]. Headers are HTTP request headers. For available HTTP methods, see [code]METHOD_*[/code]. To create a POST request with query strings to push to the server, do: [codeblock] var fields = {"username" : "user", "password" : "pass"} var queryString = httpClient.query_string_from_dict(fields) var headers = ["Content-Type: application/x-www-form-urlencoded", "Content-Length: " + str(queryString.length())] var result = httpClient.request(httpClient.METHOD_POST, "index.php", headers, queryString) [/codeblock]
 	Args: [{ false method int} { false url String} { false headers PoolStringArray} { true body String}], Returns: enum.Error
 */
+func (o *HTTPClient) Request(method gdnative.Int, url gdnative.String, headers gdnative.PoolStringArray, body gdnative.String) gdnative.Error {
+	//log.Println("Calling HTTPClient.Request()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromInt(method)
+	ptrArguments[1] = gdnative.NewPointerFromString(url)
+	ptrArguments[2] = gdnative.NewPointerFromPoolStringArray(headers)
+	ptrArguments[3] = gdnative.NewPointerFromString(body)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPClient", "request")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Sends a raw request to the connected host. The URL parameter is just the part after the host, so for [code]http://somehost.com/index.php[/code], it is [code]index.php[/code]. Headers are HTTP request headers. For available HTTP methods, see [code]METHOD_*[/code]. Sends the body data raw, as a byte array and does not encode it in any way.
 	Args: [{ false method int} { false url String} { false headers PoolStringArray} { false body PoolByteArray}], Returns: enum.Error
 */
+func (o *HTTPClient) RequestRaw(method gdnative.Int, url gdnative.String, headers gdnative.PoolStringArray, body gdnative.PoolByteArray) gdnative.Error {
+	//log.Println("Calling HTTPClient.RequestRaw()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 4, 4)
+	ptrArguments[0] = gdnative.NewPointerFromInt(method)
+	ptrArguments[1] = gdnative.NewPointerFromString(url)
+	ptrArguments[2] = gdnative.NewPointerFromPoolStringArray(headers)
+	ptrArguments[3] = gdnative.NewPointerFromPoolByteArray(body)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("HTTPClient", "request_raw")
+
+	// Call the parent method.
+	// enum.Error
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return gdnative.Error(ret)
+}
 
 /*
         Undocumented

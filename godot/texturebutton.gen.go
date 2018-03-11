@@ -13,6 +13,19 @@ import (
 //   code.
 //----------------------------------------------------------------------------*/
 
+// TextureButtonStretchMode is an enum for StretchMode values.
+type TextureButtonStretchMode int
+
+const (
+	TextureButtonStretchKeep               TextureButtonStretchMode = 2
+	TextureButtonStretchKeepAspect         TextureButtonStretchMode = 4
+	TextureButtonStretchKeepAspectCentered TextureButtonStretchMode = 5
+	TextureButtonStretchKeepAspectCovered  TextureButtonStretchMode = 6
+	TextureButtonStretchKeepCentered       TextureButtonStretchMode = 3
+	TextureButtonStretchScale              TextureButtonStretchMode = 0
+	TextureButtonStretchTile               TextureButtonStretchMode = 1
+)
+
 //func NewTextureButtonFromPointer(ptr gdnative.Pointer) TextureButton {
 func newTextureButtonFromPointer(ptr gdnative.Pointer) TextureButton {
 	owner := gdnative.NewObjectFromPointer(ptr)
@@ -283,6 +296,24 @@ func (o *TextureButton) GetPressedTexture() TextureImplementer {
         Undocumented
 	Args: [], Returns: enum.TextureButton::StretchMode
 */
+func (o *TextureButton) GetStretchMode() TextureButtonStretchMode {
+	//log.Println("Calling TextureButton.GetStretchMode()")
+
+	// Build out the method's arguments
+	ptrArguments := make([]gdnative.Pointer, 0, 0)
+
+	// Get the method bind
+	methodBind := gdnative.NewMethodBind("TextureButton", "get_stretch_mode")
+
+	// Call the parent method.
+	// enum.TextureButton::StretchMode
+	retPtr := gdnative.NewEmptyInt()
+	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
+
+	// If we have a return type, convert it from a pointer into its actual object.
+	ret := gdnative.NewIntFromPointer(retPtr)
+	return TextureButtonStretchMode(ret)
+}
 
 /*
         Undocumented
