@@ -13,4 +13,4 @@ install:
 
 script:
     - go generate
-    - go build -v -buildmode=c-shared -o libgodot.so examples/godot/DodgeTheCreeps/src/player.go
+    - go build -v -buildmode=c-shared -o libgodot.so examples/godot/DodgeTheCreeps/src/*.go
