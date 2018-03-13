@@ -53,6 +53,15 @@ const (
 	MethodRpcModeSlave
 )
 
+// MethodRpcModeLookupMap is a string-based lookup table of constants for MethodRpcMode.
+var MethodRpcModeLookupMap = map[string]MethodRpcMode{
+	"MethodRpcModeDisabled": MethodRpcModeDisabled,
+	"MethodRpcModeRemote":   MethodRpcModeRemote,
+	"MethodRpcModeSync":     MethodRpcModeSync,
+	"MethodRpcModeMaster":   MethodRpcModeMaster,
+	"MethodRpcModeSlave":    MethodRpcModeSlave,
+}
+
 // PropertyHint is a Go wrapper for the C.godot_property_hint enum type.
 type PropertyHint int
 
@@ -89,6 +98,37 @@ const (
 	PropertyHintPropertyOfScript
 	PropertyHintMax
 )
+
+// PropertyHintLookupMap is a string-based lookup table of constants for PropertyHint.
+var PropertyHintLookupMap = map[string]PropertyHint{
+	"PropertyHintNone":                  PropertyHintNone,
+	"PropertyHintRange":                 PropertyHintRange,
+	"PropertyHintExpRange":              PropertyHintExpRange,
+	"PropertyHintEnum":                  PropertyHintEnum,
+	"PropertyHintSpriteFrame":           PropertyHintSpriteFrame,
+	"PropertyHintLayers2DRender":        PropertyHintLayers2DRender,
+	"PropertyHintLayers2DPhysics":       PropertyHintLayers2DPhysics,
+	"PropertyHintLayers3DRender":        PropertyHintLayers3DRender,
+	"PropertyHintLayers3DPhysics":       PropertyHintLayers3DPhysics,
+	"PropertyHintDir":                   PropertyHintDir,
+	"PropertyHintGlobalDir":             PropertyHintGlobalDir,
+	"PropertyHintResourceType":          PropertyHintResourceType,
+	"PropertyHintMultilineText":         PropertyHintMultilineText,
+	"PropertyHintColorNoAlpha":          PropertyHintColorNoAlpha,
+	"PropertyHintImageCompressLossy":    PropertyHintImageCompressLossy,
+	"PropertyHintImageCompressLossless": PropertyHintImageCompressLossless,
+	"PropertyHintObjectId":              PropertyHintObjectId,
+	"PropertyHintTypeString":            PropertyHintTypeString,
+	"PropertyHintMethodOfVariantType":   PropertyHintMethodOfVariantType,
+	"PropertyHintMethodOfBaseType":      PropertyHintMethodOfBaseType,
+	"PropertyHintMethodOfInstance":      PropertyHintMethodOfInstance,
+	"PropertyHintMethodOfScript":        PropertyHintMethodOfScript,
+	"PropertyHintPropertyOfVariantType": PropertyHintPropertyOfVariantType,
+	"PropertyHintPropertyOfBaseType":    PropertyHintPropertyOfBaseType,
+	"PropertyHintPropertyOfInstance":    PropertyHintPropertyOfInstance,
+	"PropertyHintPropertyOfScript":      PropertyHintPropertyOfScript,
+	"PropertyHintMax":                   PropertyHintMax,
+}
 
 // NewEmptyPropertyAttributes will return a pointer to an empty
 // initialized PropertyAttributes. This is primarily used in

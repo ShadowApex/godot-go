@@ -465,3 +465,10 @@ const (
 	Vector3AxisY
 	Vector3AxisZ
 )
+
+// Vector3AxisLookupMap is a string-based lookup table of constants for Vector3Axis.
+var Vector3AxisLookupMap = map[string]Vector3Axis{
+	"Vector3AxisX": Vector3AxisX,
+	"Vector3AxisY": Vector3AxisY,
+	"Vector3AxisZ": Vector3AxisZ,
+}

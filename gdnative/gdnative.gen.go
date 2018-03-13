@@ -88,6 +88,50 @@ const (
 	ErrPrinterOnFire
 )
 
+// ErrorLookupMap is a string-based lookup table of constants for Error.
+var ErrorLookupMap = map[string]Error{
+	"Ok":                         Ok,
+	"Failed":                     Failed,
+	"ErrUnavailable":             ErrUnavailable,
+	"ErrUnconfigured":            ErrUnconfigured,
+	"ErrUnauthorized":            ErrUnauthorized,
+	"ErrOutOfMemory":             ErrOutOfMemory,
+	"ErrFileNotFound":            ErrFileNotFound,
+	"ErrFileBadDrive":            ErrFileBadDrive,
+	"ErrFileBadPath":             ErrFileBadPath,
+	"ErrFileAlreadyInUse":        ErrFileAlreadyInUse,
+	"ErrFileCantOpen":            ErrFileCantOpen,
+	"ErrFileCantWrite":           ErrFileCantWrite,
+	"ErrFileCantRead":            ErrFileCantRead,
+	"ErrFileCorrupt":             ErrFileCorrupt,
+	"ErrFileMissingDependencies": ErrFileMissingDependencies,
+	"ErrFileEof":                 ErrFileEof,
+	"ErrCantOpen":                ErrCantOpen,
+	"ErrQueryFailed":             ErrQueryFailed,
+	"ErrAlreadyInUse":            ErrAlreadyInUse,
+	"ErrLocked":                  ErrLocked,
+	"ErrTimeout":                 ErrTimeout,
+	"ErrCantResolve":             ErrCantResolve,
+	"ErrConnectionError":         ErrConnectionError,
+	"ErrCantAcquireResource":     ErrCantAcquireResource,
+	"ErrCantFork":                ErrCantFork,
+	"ErrInvalidParameter":        ErrInvalidParameter,
+	"ErrAlreadyExists":           ErrAlreadyExists,
+	"ErrDoesNotExist":            ErrDoesNotExist,
+	"ErrDatabaseCantRead":        ErrDatabaseCantRead,
+	"ErrCompilationFailed":       ErrCompilationFailed,
+	"ErrMethodNotFound":          ErrMethodNotFound,
+	"ErrLinkFailed":              ErrLinkFailed,
+	"ErrScriptFailed":            ErrScriptFailed,
+	"ErrInvalidDeclaration":      ErrInvalidDeclaration,
+	"ErrDuplicateSymbol":         ErrDuplicateSymbol,
+	"ErrParseError":              ErrParseError,
+	"ErrBusy":                    ErrBusy,
+	"ErrHelp":                    ErrHelp,
+	"ErrBug":                     ErrBug,
+	"ErrPrinterOnFire":           ErrPrinterOnFire,
+}
+
 // NewEmptyBool will return a pointer to an empty
 // initialized Bool. This is primarily used in
 // conjunction with MethodBindPtrCall.

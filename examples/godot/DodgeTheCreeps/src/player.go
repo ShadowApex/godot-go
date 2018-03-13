@@ -18,7 +18,7 @@ func NewPlayer() godot.Class {
 // Player is a structure for the player.
 type Player struct {
 	godot.Area2D
-	Speed          gd.Real
+	Speed          gd.Real `hint_string:"The speed of the player"`
 	screenSize     gd.Vector2
 	animatedSprite godot.AnimatedSpriteImplementer
 	collisionShape godot.CollisionShape2DImplementer
@@ -27,9 +27,6 @@ type Player struct {
 // X_Ready will be called as soon as the player enters the scene.
 func (p *Player) X_Ready() {
 	log.Println("X_Ready called!")
-
-	// Set the speed.
-	p.Speed = 400
 
 	// Get the AnimatedSprite child node.
 	log.Println("Getting animated sprite...")
@@ -49,8 +46,7 @@ func (p *Player) X_Ready() {
 }
 
 // X_Process will be called every frame.
-func (p *Player) X_Process(delta gd.Double) {
-	dt := gd.Real(delta)
+func (p *Player) X_Process(delta gd.Real) {
 	velocity := gd.NewVector2(0, 0)
 
 	if godot.Input.IsActionPressed("ui_right") {
@@ -69,14 +65,13 @@ func (p *Player) X_Process(delta gd.Double) {
 	if velocity.Length() > 0 {
 		normal := velocity.Normalized()
 		velocity = normal.OperatorMultiplyScalar(p.Speed)
-		p.animatedSprite.Play("right")
 	} else {
 		p.animatedSprite.Stop()
 	}
 
 	// Set the position based on velocity
 	position := p.GetPosition()
-	newPosition := position.OperatorAdd(velocity.OperatorMultiplyScalar(dt))
+	newPosition := position.OperatorAdd(velocity.OperatorMultiplyScalar(delta))
 
 	// Clamp our player's position to the size of the screen.
 	newPosition.SetX(godot.Clamp(newPosition.GetX(), 0, p.screenSize.GetX()))

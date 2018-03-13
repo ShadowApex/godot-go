@@ -1724,6 +1724,6 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class.SetBaseObject(obj)
 		return class
 	}
-	log.Println("Could not find conversion for ", className, ". Defaulting to Object...")
+	log.Println("Could not find conversion for '" + className + "'. Defaulting to Object...")
 	return &Object{owner: obj}
 }

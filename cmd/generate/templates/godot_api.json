@@ -39989,88 +39989,40 @@
 		]
 	},
 	{
-		"name": "Texture",
-		"base_class": "Resource",
+		"name": "InstancePlaceholder",
+		"base_class": "Node",
 		"api_type": "core",
 		"singleton": false,
 		"instanciable": false,
-		"is_reference": true,
+		"is_reference": false,
 		"constants": {
-			"FLAGS_DEFAULT": 7,
-			"FLAG_MIPMAPS": 1,
-			"FLAG_REPEAT": 2,
-			"FLAG_FILTER": 4,
-			"FLAG_ANISOTROPIC_FILTER": 8,
-			"FLAG_CONVERT_TO_LINEAR": 16,
-			"FLAG_MIRRORED_REPEAT": 32,
-			"FLAG_VIDEO_SURFACE": 4096
 		},
 		"properties": [
-			{
-				"name": "flags",
-				"type": "int",
-				"getter": "get_flags",
-				"setter": "set_flags",
-				"index": -1
-			}
 		],
 		"signals": [
 		],
 		"methods": [
 			{
-				"name": "get_width",
-				"return_type": "int",
+				"name": "get_stored_values",
+				"return_type": "Dictionary",
 				"is_editor": false,
 				"is_noscript": false,
-				"is_const": true,
+				"is_const": false,
 				"is_reverse": false,
 				"is_virtual": false,
 				"has_varargs": false,
 				"is_from_script": false,
 				"arguments": [
+					{
+						"name": "with_order",
+						"type": "bool",
+						"has_default_value": true,
+						"default_value": "False"
+					}
 				]
 			},
 			{
-				"name": "get_height",
-				"return_type": "int",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_size",
-				"return_type": "Vector2",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "has_alpha",
-				"return_type": "bool",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_flags",
+				"name": "replace_by_instance",
 				"return_type": "void",
 				"is_editor": false,
 				"is_noscript": false,
@@ -40081,176 +40033,16 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "flags",
-						"type": "int",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_flags",
-				"return_type": "int",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "draw",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "canvas_item",
-						"type": "RID",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "position",
-						"type": "Vector2",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "modulate",
-						"type": "Color",
-						"has_default_value": true,
-						"default_value": "1,1,1,1"
-					},
-					{
-						"name": "transpose",
-						"type": "bool",
-						"has_default_value": true,
-						"default_value": "False"
-					},
-					{
-						"name": "normal_map",
-						"type": "Texture",
+						"name": "custom_scene",
+						"type": "PackedScene",
 						"has_default_value": true,
 						"default_value": "Null"
 					}
 				]
 			},
 			{
-				"name": "draw_rect",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "canvas_item",
-						"type": "RID",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "rect",
-						"type": "Rect2",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "tile",
-						"type": "bool",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "modulate",
-						"type": "Color",
-						"has_default_value": true,
-						"default_value": "1,1,1,1"
-					},
-					{
-						"name": "transpose",
-						"type": "bool",
-						"has_default_value": true,
-						"default_value": "False"
-					},
-					{
-						"name": "normal_map",
-						"type": "Texture",
-						"has_default_value": true,
-						"default_value": "Null"
-					}
-				]
-			},
-			{
-				"name": "draw_rect_region",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "canvas_item",
-						"type": "RID",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "rect",
-						"type": "Rect2",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "src_rect",
-						"type": "Rect2",
-						"has_default_value": false,
-						"default_value": ""
-					},
-					{
-						"name": "modulate",
-						"type": "Color",
-						"has_default_value": true,
-						"default_value": "1,1,1,1"
-					},
-					{
-						"name": "transpose",
-						"type": "bool",
-						"has_default_value": true,
-						"default_value": "False"
-					},
-					{
-						"name": "normal_map",
-						"type": "Texture",
-						"has_default_value": true,
-						"default_value": "Null"
-					},
-					{
-						"name": "clip_uv",
-						"type": "bool",
-						"has_default_value": true,
-						"default_value": "True"
-					}
-				]
-			},
-			{
-				"name": "get_data",
-				"return_type": "Image",
+				"name": "get_instance_path",
+				"return_type": "String",
 				"is_editor": false,
 				"is_noscript": false,
 				"is_const": true,
@@ -40263,19 +40055,6 @@
 			}
 		],
 		"enums": [
-			{
-				"name": "Flags",
-				"values": {
-					"FLAG_MIPMAPS": 1,
-					"FLAG_REPEAT": 2,
-					"FLAG_FILTER": 4,
-					"FLAGS_DEFAULT": 7,
-					"FLAG_ANISOTROPIC_FILTER": 8,
-					"FLAG_CONVERT_TO_LINEAR": 16,
-					"FLAG_MIRRORED_REPEAT": 32,
-					"FLAG_VIDEO_SURFACE": 4096
-				}
-			}
 		]
 	},
 	{
@@ -41747,240 +41526,6 @@
 		]
 	},
 	{
-		"name": "World",
-		"base_class": "Resource",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": true,
-		"is_reference": true,
-		"constants": {
-		},
-		"properties": [
-			{
-				"name": "environment",
-				"type": "Environment",
-				"getter": "get_environment",
-				"setter": "set_environment",
-				"index": -1
-			},
-			{
-				"name": "fallback_environment",
-				"type": "Environment",
-				"getter": "get_fallback_environment",
-				"setter": "set_fallback_environment",
-				"index": -1
-			},
-			{
-				"name": "space",
-				"type": "RID",
-				"getter": "get_space",
-				"setter": "",
-				"index": -1
-			},
-			{
-				"name": "scenario",
-				"type": "RID",
-				"getter": "get_scenario",
-				"setter": "",
-				"index": -1
-			},
-			{
-				"name": "direct_space_state",
-				"type": "PhysicsDirectSpaceState",
-				"getter": "get_direct_space_state",
-				"setter": "",
-				"index": -1
-			}
-		],
-		"signals": [
-		],
-		"methods": [
-			{
-				"name": "get_space",
-				"return_type": "RID",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_scenario",
-				"return_type": "RID",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_environment",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "env",
-						"type": "Environment",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_environment",
-				"return_type": "Environment",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "set_fallback_environment",
-				"return_type": "void",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-					{
-						"name": "env",
-						"type": "Environment",
-						"has_default_value": false,
-						"default_value": ""
-					}
-				]
-			},
-			{
-				"name": "get_fallback_environment",
-				"return_type": "Environment",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": true,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_direct_space_state",
-				"return_type": "PhysicsDirectSpaceState",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			}
-		],
-		"enums": [
-		]
-	},
-	{
-		"name": "World2D",
-		"base_class": "Resource",
-		"api_type": "core",
-		"singleton": false,
-		"instanciable": true,
-		"is_reference": true,
-		"constants": {
-		},
-		"properties": [
-			{
-				"name": "canvas",
-				"type": "RID",
-				"getter": "get_canvas",
-				"setter": "",
-				"index": -1
-			},
-			{
-				"name": "space",
-				"type": "RID",
-				"getter": "get_space",
-				"setter": "",
-				"index": -1
-			},
-			{
-				"name": "direct_space_state",
-				"type": "Physics2DDirectSpaceState",
-				"getter": "get_direct_space_state",
-				"setter": "",
-				"index": -1
-			}
-		],
-		"signals": [
-		],
-		"methods": [
-			{
-				"name": "get_canvas",
-				"return_type": "RID",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_space",
-				"return_type": "RID",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			},
-			{
-				"name": "get_direct_space_state",
-				"return_type": "Physics2DDirectSpaceState",
-				"is_editor": false,
-				"is_noscript": false,
-				"is_const": false,
-				"is_reverse": false,
-				"is_virtual": false,
-				"has_varargs": false,
-				"is_from_script": false,
-				"arguments": [
-				]
-			}
-		],
-		"enums": [
-		]
-	},
-	{
 		"name": "ViewportTexture",
 		"base_class": "Texture",
 		"api_type": "core",
@@ -42417,22 +41962,43 @@
 		]
 	},
 	{
-		"name": "InstancePlaceholder",
-		"base_class": "Node",
+		"name": "World2D",
+		"base_class": "Resource",
 		"api_type": "core",
 		"singleton": false,
-		"instanciable": false,
-		"is_reference": false,
+		"instanciable": true,
+		"is_reference": true,
 		"constants": {
 		},
 		"properties": [
+			{
+				"name": "canvas",
+				"type": "RID",
+				"getter": "get_canvas",
+				"setter": "",
+				"index": -1
+			},
+			{
+				"name": "space",
+				"type": "RID",
+				"getter": "get_space",
+				"setter": "",
+				"index": -1
+			},
+			{
+				"name": "direct_space_state",
+				"type": "Physics2DDirectSpaceState",
+				"getter": "get_direct_space_state",
+				"setter": "",
+				"index": -1
+			}
 		],
 		"signals": [
 		],
 		"methods": [
 			{
-				"name": "get_stored_values",
-				"return_type": "Dictionary",
+				"name": "get_canvas",
+				"return_type": "RID",
 				"is_editor": false,
 				"is_noscript": false,
 				"is_const": false,
@@ -42441,16 +42007,115 @@
 				"has_varargs": false,
 				"is_from_script": false,
 				"arguments": [
-					{
-						"name": "with_order",
-						"type": "bool",
-						"has_default_value": true,
-						"default_value": "False"
-					}
 				]
 			},
 			{
-				"name": "replace_by_instance",
+				"name": "get_space",
+				"return_type": "RID",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_direct_space_state",
+				"return_type": "Physics2DDirectSpaceState",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			}
+		],
+		"enums": [
+		]
+	},
+	{
+		"name": "World",
+		"base_class": "Resource",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": true,
+		"is_reference": true,
+		"constants": {
+		},
+		"properties": [
+			{
+				"name": "environment",
+				"type": "Environment",
+				"getter": "get_environment",
+				"setter": "set_environment",
+				"index": -1
+			},
+			{
+				"name": "fallback_environment",
+				"type": "Environment",
+				"getter": "get_fallback_environment",
+				"setter": "set_fallback_environment",
+				"index": -1
+			},
+			{
+				"name": "space",
+				"type": "RID",
+				"getter": "get_space",
+				"setter": "",
+				"index": -1
+			},
+			{
+				"name": "scenario",
+				"type": "RID",
+				"getter": "get_scenario",
+				"setter": "",
+				"index": -1
+			},
+			{
+				"name": "direct_space_state",
+				"type": "PhysicsDirectSpaceState",
+				"getter": "get_direct_space_state",
+				"setter": "",
+				"index": -1
+			}
+		],
+		"signals": [
+		],
+		"methods": [
+			{
+				"name": "get_space",
+				"return_type": "RID",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_scenario",
+				"return_type": "RID",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_environment",
 				"return_type": "void",
 				"is_editor": false,
 				"is_noscript": false,
@@ -42461,16 +42126,338 @@
 				"is_from_script": false,
 				"arguments": [
 					{
-						"name": "custom_scene",
-						"type": "PackedScene",
+						"name": "env",
+						"type": "Environment",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_environment",
+				"return_type": "Environment",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_fallback_environment",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "env",
+						"type": "Environment",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_fallback_environment",
+				"return_type": "Environment",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_direct_space_state",
+				"return_type": "PhysicsDirectSpaceState",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			}
+		],
+		"enums": [
+		]
+	},
+	{
+		"name": "Texture",
+		"base_class": "Resource",
+		"api_type": "core",
+		"singleton": false,
+		"instanciable": false,
+		"is_reference": true,
+		"constants": {
+			"FLAGS_DEFAULT": 7,
+			"FLAG_MIPMAPS": 1,
+			"FLAG_REPEAT": 2,
+			"FLAG_FILTER": 4,
+			"FLAG_ANISOTROPIC_FILTER": 8,
+			"FLAG_CONVERT_TO_LINEAR": 16,
+			"FLAG_MIRRORED_REPEAT": 32,
+			"FLAG_VIDEO_SURFACE": 4096
+		},
+		"properties": [
+			{
+				"name": "flags",
+				"type": "int",
+				"getter": "get_flags",
+				"setter": "set_flags",
+				"index": -1
+			}
+		],
+		"signals": [
+		],
+		"methods": [
+			{
+				"name": "get_width",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_height",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_size",
+				"return_type": "Vector2",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "has_alpha",
+				"return_type": "bool",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "set_flags",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "flags",
+						"type": "int",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
+				"name": "get_flags",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "draw",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "canvas_item",
+						"type": "RID",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "position",
+						"type": "Vector2",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "modulate",
+						"type": "Color",
+						"has_default_value": true,
+						"default_value": "1,1,1,1"
+					},
+					{
+						"name": "transpose",
+						"type": "bool",
+						"has_default_value": true,
+						"default_value": "False"
+					},
+					{
+						"name": "normal_map",
+						"type": "Texture",
 						"has_default_value": true,
 						"default_value": "Null"
 					}
 				]
 			},
 			{
-				"name": "get_instance_path",
-				"return_type": "String",
+				"name": "draw_rect",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "canvas_item",
+						"type": "RID",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "rect",
+						"type": "Rect2",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "tile",
+						"type": "bool",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "modulate",
+						"type": "Color",
+						"has_default_value": true,
+						"default_value": "1,1,1,1"
+					},
+					{
+						"name": "transpose",
+						"type": "bool",
+						"has_default_value": true,
+						"default_value": "False"
+					},
+					{
+						"name": "normal_map",
+						"type": "Texture",
+						"has_default_value": true,
+						"default_value": "Null"
+					}
+				]
+			},
+			{
+				"name": "draw_rect_region",
+				"return_type": "void",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "canvas_item",
+						"type": "RID",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "rect",
+						"type": "Rect2",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "src_rect",
+						"type": "Rect2",
+						"has_default_value": false,
+						"default_value": ""
+					},
+					{
+						"name": "modulate",
+						"type": "Color",
+						"has_default_value": true,
+						"default_value": "1,1,1,1"
+					},
+					{
+						"name": "transpose",
+						"type": "bool",
+						"has_default_value": true,
+						"default_value": "False"
+					},
+					{
+						"name": "normal_map",
+						"type": "Texture",
+						"has_default_value": true,
+						"default_value": "Null"
+					},
+					{
+						"name": "clip_uv",
+						"type": "bool",
+						"has_default_value": true,
+						"default_value": "True"
+					}
+				]
+			},
+			{
+				"name": "get_data",
+				"return_type": "Image",
 				"is_editor": false,
 				"is_noscript": false,
 				"is_const": true,
@@ -42483,6 +42470,19 @@
 			}
 		],
 		"enums": [
+			{
+				"name": "Flags",
+				"values": {
+					"FLAG_MIPMAPS": 1,
+					"FLAG_REPEAT": 2,
+					"FLAG_FILTER": 4,
+					"FLAGS_DEFAULT": 7,
+					"FLAG_ANISOTROPIC_FILTER": 8,
+					"FLAG_CONVERT_TO_LINEAR": 16,
+					"FLAG_MIRRORED_REPEAT": 32,
+					"FLAG_VIDEO_SURFACE": 4096
+				}
+			}
 		]
 	},
 	{

@@ -678,6 +678,37 @@ const (
 	VariantTypePoolColorArray
 )
 
+// VariantTypeLookupMap is a string-based lookup table of constants for VariantType.
+var VariantTypeLookupMap = map[string]VariantType{
+	"VariantTypeNil":              VariantTypeNil,
+	"VariantTypeBool":             VariantTypeBool,
+	"VariantTypeInt":              VariantTypeInt,
+	"VariantTypeReal":             VariantTypeReal,
+	"VariantTypeString":           VariantTypeString,
+	"VariantTypeVector2":          VariantTypeVector2,
+	"VariantTypeRect2":            VariantTypeRect2,
+	"VariantTypeVector3":          VariantTypeVector3,
+	"VariantTypeTransform2D":      VariantTypeTransform2D,
+	"VariantTypePlane":            VariantTypePlane,
+	"VariantTypeQuat":             VariantTypeQuat,
+	"VariantTypeAabb":             VariantTypeAabb,
+	"VariantTypeBasis":            VariantTypeBasis,
+	"VariantTypeTransform":        VariantTypeTransform,
+	"VariantTypeColor":            VariantTypeColor,
+	"VariantTypeNodePath":         VariantTypeNodePath,
+	"VariantTypeRid":              VariantTypeRid,
+	"VariantTypeObject":           VariantTypeObject,
+	"VariantTypeDictionary":       VariantTypeDictionary,
+	"VariantTypeArray":            VariantTypeArray,
+	"VariantTypePoolByteArray":    VariantTypePoolByteArray,
+	"VariantTypePoolIntArray":     VariantTypePoolIntArray,
+	"VariantTypePoolRealArray":    VariantTypePoolRealArray,
+	"VariantTypePoolStringArray":  VariantTypePoolStringArray,
+	"VariantTypePoolVector2Array": VariantTypePoolVector2Array,
+	"VariantTypePoolVector3Array": VariantTypePoolVector3Array,
+	"VariantTypePoolColorArray":   VariantTypePoolColorArray,
+}
+
 // VariantCallErrorError is a Go wrapper for the C.godot_variant_call_error_error enum type.
 type VariantCallErrorError int
 
@@ -693,6 +724,16 @@ const (
 	CallErrorCallErrorTooFewArguments
 	CallErrorCallErrorInstanceIsNull
 )
+
+// VariantCallErrorErrorLookupMap is a string-based lookup table of constants for VariantCallErrorError.
+var VariantCallErrorErrorLookupMap = map[string]VariantCallErrorError{
+	"CallErrorCallOk":                    CallErrorCallOk,
+	"CallErrorCallErrorInvalidMethod":    CallErrorCallErrorInvalidMethod,
+	"CallErrorCallErrorInvalidArgument":  CallErrorCallErrorInvalidArgument,
+	"CallErrorCallErrorTooManyArguments": CallErrorCallErrorTooManyArguments,
+	"CallErrorCallErrorTooFewArguments":  CallErrorCallErrorTooFewArguments,
+	"CallErrorCallErrorInstanceIsNull":   CallErrorCallErrorInstanceIsNull,
+}
 
 // NewEmptyVariantCallError will return a pointer to an empty
 // initialized VariantCallError. This is primarily used in

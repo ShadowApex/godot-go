@@ -202,6 +202,15 @@ import "C"
 			{{ end -}}
 		{{ end }}
 		)
+
+		// {{ $typedef.GoName }}LookupMap is a string-based lookup table of constants for {{ $typedef.GoName }}.
+		var {{ $typedef.GoName }}LookupMap = map[string]{{ $typedef.GoName }}{
+			{{ range $j, $propdef := $typedef.Properties -}}
+				{{ if (ne $propdef.GoName "") -}}
+					"{{ $propdef.GoName }}": {{ $propdef.GoName }},
+				{{ end -}}
+			{{ end -}}
+		}
 		
 	{{ end }}
 

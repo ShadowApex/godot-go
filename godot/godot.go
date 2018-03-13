@@ -7,6 +7,7 @@ import (
 	"reflect"
 	"runtime"
 	"strings"
+	"unicode"
 )
 
 var debug = false
@@ -33,6 +34,9 @@ func autoRegisterClasses() {
 	// Loop through our registered classes and register them with the Godot API.
 	for _, constructor := range godotConstructorsToAutoRegister {
 		// Use the constructor to build a class to inspect the given structure.
+		if debug {
+			log.Println("Calling constructor to inspect object with reflection...")
+		}
 		class := constructor()
 
 		// Get the type of the given struct, and get its name as a string
@@ -67,6 +71,18 @@ func autoRegisterClasses() {
 		}
 		for i := 0; i < classType.Elem().NumField(); i++ {
 			classField := classType.Elem().Field(i)
+
+			// Skip anonymously embedded fields
+			if classField.Anonymous {
+				continue
+			}
+
+			// Check if the field is private
+			firstChar := []rune(classField.Name)[0]
+			if unicode.ToLower(firstChar) == firstChar {
+				continue
+			}
+
 			if debug {
 				log.Println("  Found field:", classField.Name)
 				log.Println("    Type:", classField.Type.String())
@@ -74,13 +90,19 @@ func autoRegisterClasses() {
 				log.Println("    Package Path:", classField.PkgPath)
 			}
 
-			// Look only at anonymously embedded fields
-			if !classField.Anonymous {
-				continue
-			}
+			// Create our property getter/setter structs that we will register with Godot.
+			setPropertyFunc := createPropertySetter(classString, classField.Name, classField.Type)
+			getPropertyFunc := createPropertyGetter(classString, classField.Name, classField.Type)
+			propertyAttrs := createPropertyAttributes(classField)
 
-			// TODO: Set up registering settings/getters for properties
-			// so we can register them.
+			// Register the public property with Godot.
+			gdnative.NativeScript.RegisterProperty(
+				classString,
+				classField.Name,
+				propertyAttrs,
+				setPropertyFunc,
+				getPropertyFunc,
+			)
 		}
 
 		// Loop through our class's methods that are attached to it.
@@ -338,8 +360,8 @@ func createMethod(classString, methodString string) *gdnative.InstanceMethod {
 }
 
 // CreatePropertySetter will create the InstancePropertySetFunc structure. This will be called whenever
-// needs to set a property on an instance.
-func createPropertySetter(classString, propertyString string) *gdnative.InstancePropertySet {
+// Godot needs to set a property on an instance.
+func createPropertySetter(classString, propertyString string, propertyType reflect.Type) *gdnative.InstancePropertySet {
 	var propertySetFunc gdnative.InstancePropertySet
 	propertySetFunc.SetFunc = func(object gdnative.Object, classProperty, instanceString string, property gdnative.Variant) {
 		// Get the object instance based on the instance string given in userData.
@@ -347,14 +369,145 @@ func createPropertySetter(classString, propertyString string) *gdnative.Instance
 		if !ok {
 			panic("Set property " + classProperty + " was called on instance (" + instanceString + "), but does not exist in the instance registry!")
 		}
+
+		// Get the actual class value and the struct field of the property.
 		classValue := reflect.ValueOf(class)
-		propertyField := classValue.Elem().FieldByName(classProperty)
-		propertyField.Set(reflect.ValueOf(property))
+		propertyField := classValue.Elem().FieldByName(propertyString)
+
+		// Check to see what kind of type this is. If it is a Godot class,
+		// we need to convert our variant into an object.
+		objectImplType := reflect.TypeOf((*ObjectImplementer)(nil)).Elem()
+		if propertyType.Implements(objectImplType) {
+			if debug {
+				log.Println("Setting property '" + propertyString + "' as Object on instance (" + instanceString + ")")
+			}
+			object := getActualClass(gdnative.String(classString), property.AsObject())
+			propertyField.Set(reflect.ValueOf(object))
+			return
+		}
+
+		// Otherwise, this should be a base variant type.
+		if debug {
+			log.Println("Setting property '" + propertyString + "' as a Variant on instance (" + instanceString + ")")
+		}
+		value := VariantToGoType(property)
+		propertyField.Set(value)
 	}
+
+	// Set the method data. This will be passed to the SetFunc function we defined above
+	// as the "classProperty"
 	propertySetFunc.MethodData = classString + "::" + propertyString
 	propertySetFunc.FreeFunc = func(methodData string) {}
 
 	return &propertySetFunc
+}
+
+// CreatePropertyGetter will create the InstancePropertyGet structure. This will be called whenever
+// Godot needs to get a property on an instance.
+func createPropertyGetter(classString, propertyString string, propertyType reflect.Type) *gdnative.InstancePropertyGet {
+	var propertyGetFunc gdnative.InstancePropertyGet
+	propertyGetFunc.GetFunc = func(object gdnative.Object, classProperty, instanceString string) gdnative.Variant {
+		// Get the object instance based on the instance string given in userData.
+		class, ok := InstanceRegistry.Get(instanceString)
+		if !ok {
+			panic("Get property " + classProperty + " was called on instance (" + instanceString + "), but does not exist in the instance registry!")
+		}
+		classValue := reflect.ValueOf(class)
+		propertyField := classValue.Elem().FieldByName(classProperty)
+
+		// Check to see what kind of type this is. If it is a Godot class,
+		// we need to convert our object into a variant.
+		objectImplType := reflect.TypeOf((*ObjectImplementer)(nil)).Elem()
+		if propertyType.Implements(objectImplType) {
+			if debug {
+				log.Println("Getting property '" + propertyString + "' as Object on instance (" + instanceString + ")")
+			}
+
+			// Get the value of the field as an interface.
+			property := propertyField.Interface()
+
+			object := property.(ObjectImplementer).GetBaseObject()
+			return gdnative.NewVariantObject(object)
+		}
+
+		// Otherwise, convert the property to a base variant.
+		if debug {
+			log.Println("Getting property '" + propertyString + "' as a Variant on instance (" + instanceString + ")")
+		}
+		return GoTypeToVariant(propertyField)
+	}
+	propertyGetFunc.MethodData = classString + "::" + propertyString
+	propertyGetFunc.FreeFunc = func(methodData string) {}
+
+	return &propertyGetFunc
+}
+
+func createPropertyAttributes(field reflect.StructField) *gdnative.PropertyAttributes {
+	// Create our property attributes struct that we will fill.
+	var propertyAttrs gdnative.PropertyAttributes
+
+	// Set the default value to nil.
+	// TODO: Figure out a way to let the user define a default value.
+	propertyAttrs.DefaultValue = gdnative.NewVariantNil()
+
+	// Inspect the struct field for any tags. We will use this for setting the
+	// usage, hint, hint string, etc. If none are found, defaults will be used.
+	if hintStr, ok := field.Tag.Lookup("hint_string"); ok {
+		propertyAttrs.HintString = gdnative.String(hintStr)
+	} else {
+		propertyAttrs.HintString = ""
+	}
+
+	// rset_type
+	if rsetType, ok := field.Tag.Lookup("rset_type"); ok {
+		if propertyAttrs.RsetType, ok = gdnative.MethodRpcModeLookupMap[rsetType]; !ok {
+			validTypes := ""
+			for key, _ := range gdnative.MethodRpcModeLookupMap {
+				validTypes += " " + key
+			}
+			panic("rset_type must be one of the following: " + validTypes)
+		}
+	} else {
+		propertyAttrs.RsetType = gdnative.MethodRpcModeDisabled
+	}
+
+	// usage
+	if usage, ok := field.Tag.Lookup("usage"); ok {
+		if propertyAttrs.Usage, ok = gdnative.PropertyUsageFlagsLookupMap[usage]; !ok {
+			validTypes := ""
+			for key, _ := range gdnative.PropertyUsageFlagsLookupMap {
+				validTypes += " " + key
+			}
+			panic("usage must be one of the following: " + validTypes)
+		}
+	} else {
+		propertyAttrs.Usage = gdnative.PropertyUsageDefault
+	}
+
+	// hint
+	if hint, ok := field.Tag.Lookup("hint"); ok {
+		if propertyAttrs.Hint, ok = gdnative.PropertyHintLookupMap[hint]; !ok {
+			validTypes := ""
+			for key, _ := range gdnative.PropertyHintLookupMap {
+				validTypes += " " + key
+			}
+			panic("hint must be one of the following: " + validTypes)
+		}
+	} else {
+		propertyAttrs.Hint = gdnative.PropertyHintNone
+	}
+
+	// Check to see if this field is a Godot object.
+	objectImplType := reflect.TypeOf((*ObjectImplementer)(nil)).Elem()
+	if field.Type.Implements(objectImplType) {
+		propertyAttrs.Type = gdnative.Int(gdnative.VariantTypeObject)
+		return &propertyAttrs
+	}
+
+	// Otherwise, this should be a godot variant type
+	propertyAttrs.Type = gdnative.Int(VariantTypeToConstant(field.Type))
+
+	return &propertyAttrs
 }
 
 // VariantToGoType will check the given variant type and convert it to its
@@ -366,7 +519,7 @@ func VariantToGoType(variant gdnative.Variant) reflect.Value {
 	case gdnative.VariantTypeInt:
 		return reflect.ValueOf(variant.AsInt())
 	case gdnative.VariantTypeReal:
-		return reflect.ValueOf(variant.AsReal())
+		return reflect.ValueOf(gdnative.Real(variant.AsReal()))
 	case gdnative.VariantTypeString:
 		return reflect.ValueOf(variant.AsString())
 	case gdnative.VariantTypeVector2:
@@ -413,10 +566,134 @@ func VariantToGoType(variant gdnative.Variant) reflect.Value {
 		return reflect.ValueOf(variant.AsPoolVector3Array())
 	case gdnative.VariantTypePoolColorArray:
 		return reflect.ValueOf(variant.AsPoolColorArray())
-	default:
-		panic("Unknown type of variant argument.")
 	}
-	return reflect.Value{}
+	panic("Unknown type of godot variant argument.")
+}
+
+// GoTypeToVariant will check the given Go type and convert it to its
+// Variant type. The value is returned as a gdnative.Variant.
+func GoTypeToVariant(value reflect.Value) gdnative.Variant {
+	valueInterface := value.Interface()
+	switch v := valueInterface.(type) {
+	case gdnative.Bool:
+		return gdnative.NewVariantBool(v)
+	case gdnative.Int:
+		return gdnative.NewVariantInt(gdnative.Int64T(v))
+	case gdnative.Int64T:
+		return gdnative.NewVariantInt(v)
+	case gdnative.Double:
+		return gdnative.NewVariantReal(v)
+	case gdnative.Real:
+		return gdnative.NewVariantReal(gdnative.Double(v))
+	case gdnative.String:
+		return gdnative.NewVariantString(v)
+	case gdnative.Vector2:
+		return gdnative.NewVariantVector2(v)
+	case gdnative.Rect2:
+		return gdnative.NewVariantRect2(v)
+	case gdnative.Vector3:
+		return gdnative.NewVariantVector3(v)
+	case gdnative.Transform2D:
+		return gdnative.NewVariantTransform2D(v)
+	case gdnative.Plane:
+		return gdnative.NewVariantPlane(v)
+	case gdnative.Quat:
+		return gdnative.NewVariantQuat(v)
+	case gdnative.Aabb:
+		return gdnative.NewVariantAabb(v)
+	case gdnative.Basis:
+		return gdnative.NewVariantBasis(v)
+	case gdnative.Transform:
+		return gdnative.NewVariantTransform(v)
+	case gdnative.Color:
+		return gdnative.NewVariantColor(v)
+	case gdnative.NodePath:
+		return gdnative.NewVariantNodePath(v)
+	case gdnative.Rid:
+		return gdnative.NewVariantRid(v)
+	case gdnative.Object:
+		return gdnative.NewVariantObject(v)
+	case gdnative.Dictionary:
+		return gdnative.NewVariantDictionary(v)
+	case gdnative.Array:
+		return gdnative.NewVariantArray(v)
+	case gdnative.PoolByteArray:
+		return gdnative.NewVariantPoolByteArray(v)
+	case gdnative.PoolIntArray:
+		return gdnative.NewVariantPoolIntArray(v)
+	case gdnative.PoolRealArray:
+		return gdnative.NewVariantPoolRealArray(v)
+	case gdnative.PoolStringArray:
+		return gdnative.NewVariantPoolStringArray(v)
+	case gdnative.PoolVector2Array:
+		return gdnative.NewVariantPoolVector2Array(v)
+	case gdnative.PoolVector3Array:
+		return gdnative.NewVariantPoolVector3Array(v)
+	case gdnative.PoolColorArray:
+		return gdnative.NewVariantPoolColorArray(v)
+	}
+	panic("Unknown type of godot argument.")
+}
+
+// VariantTypeToConstant will check the given field to see what kind of variant
+// it is and return its type as a VariantType int. This will panic if the type
+// is not a valid Godot type.
+func VariantTypeToConstant(t reflect.Type) gdnative.VariantType {
+	switch t.String() {
+	case "gdnative.Bool":
+		return gdnative.VariantTypeBool
+	case "gdnative.Int":
+		return gdnative.VariantTypeInt
+	case "gdnative.Real":
+		return gdnative.VariantTypeReal
+	case "gdnative.String":
+		return gdnative.VariantTypeString
+	case "gdnative.Vector2":
+		return gdnative.VariantTypeVector2
+	case "gdnative.Rect2":
+		return gdnative.VariantTypeRect2
+	case "gdnative.Vector3":
+		return gdnative.VariantTypeVector3
+	case "gdnative.Transform2D":
+		return gdnative.VariantTypeTransform2D
+	case "gdnative.Plane":
+		return gdnative.VariantTypePlane
+	case "gdnative.Quat":
+		return gdnative.VariantTypeQuat
+	case "gdnative.Aabb":
+		return gdnative.VariantTypeAabb
+	case "gdnative.Basis":
+		return gdnative.VariantTypeBasis
+	case "gdnative.Transform":
+		return gdnative.VariantTypeTransform
+	case "gdnative.Color":
+		return gdnative.VariantTypeColor
+	case "gdnative.NodePath":
+		return gdnative.VariantTypeNodePath
+	case "gdnative.Rid":
+		return gdnative.VariantTypeRid
+	case "gdnative.Object":
+		return gdnative.VariantTypeObject
+	case "gdnative.Dictionary":
+		return gdnative.VariantTypeDictionary
+	case "gdnative.Array":
+		return gdnative.VariantTypeArray
+	case "gdnative.PoolByteArray":
+		return gdnative.VariantTypePoolByteArray
+	case "gdnative.PoolIntArray":
+		return gdnative.VariantTypePoolIntArray
+	case "gdnative.PoolRealArray":
+		return gdnative.VariantTypePoolRealArray
+	case "gdnative.PoolStringArray":
+		return gdnative.VariantTypePoolStringArray
+	case "gdnative.PoolVector2Array":
+		return gdnative.VariantTypePoolVector2Array
+	case "gdnative.PoolVector3Array":
+		return gdnative.VariantTypePoolVector3Array
+	case "gdnative.PoolColorArray":
+		return gdnative.VariantTypePoolColorArray
+	}
+	panic("Unknown type of exported godot field: " + t.String())
 }
 
 // toGoMethodName will take the given Godot method name in snake_case and convert it

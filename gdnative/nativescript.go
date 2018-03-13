@@ -45,6 +45,30 @@ const (
 	PropertyUsageNoEditor    PropertyUsageFlags = PropertyUsageStorage | PropertyUsageNetwork
 )
 
+// PropertyUsageFlags is a string-based lookup table of constants for PropertyUsageFlags.
+var PropertyUsageFlagsLookupMap = map[string]PropertyUsageFlags{
+	"PropertyUsageStorage":             PropertyUsageStorage,
+	"PropertyUsageEditor":              PropertyUsageEditor,
+	"PropertyUsageNetwork":             PropertyUsageNetwork,
+	"PropertyUsageEditorHelper":        PropertyUsageEditorHelper,
+	"PropertyUsageCheckable":           PropertyUsageCheckable,
+	"PropertyUsageChecked":             PropertyUsageChecked,
+	"PropertyUsageInternationalized":   PropertyUsageInternationalized,
+	"PropertyUsageGroup":               PropertyUsageGroup,
+	"PropertyUsageCategory":            PropertyUsageCategory,
+	"PropertyUsageStoreIfNonZero":      PropertyUsageStoreIfNonZero,
+	"PropertyUsageStoreIfNonOne":       PropertyUsageStoreIfNonOne,
+	"PropertyUsageNoInstanceState":     PropertyUsageNoInstanceState,
+	"PropertyUsageRestartIfChanged":    PropertyUsageRestartIfChanged,
+	"PropertyUsageScriptVariable":      PropertyUsageScriptVariable,
+	"PropertyUsageStoreIfNull":         PropertyUsageStoreIfNull,
+	"PropertyUsageAnimateAsTrigger":    PropertyUsageAnimateAsTrigger,
+	"PropertyUsageUpdateAllIfModified": PropertyUsageUpdateAllIfModified,
+	"PropertyUsageDefault":             PropertyUsageDefault,
+	"PropertyUsageDefaultIntl":         PropertyUsageDefaultIntl,
+	"PropertyUsageNoEditor":            PropertyUsageNoEditor,
+}
+
 // CreateFunc will be called when we need to create a new instance of a class.
 // When it is called, the Godot object will passed as an argument, as well as the
 // methodData string, which is usually the name of the class to be created.
@@ -321,6 +345,13 @@ func (n *nativeScript) RegisterProperty(name, path string, attributes *PropertyA
 	getFunc.base.get_func = (C.get_property_func)(unsafe.Pointer(C.cgo_gateway_property_get_func))
 	getFunc.base.method_data = unsafe.Pointer(C.CString(getFunc.MethodData))
 	getFunc.base.free_func = (C.free_func)(unsafe.Pointer(C.cgo_gateway_free_func))
+
+	// Register the set/get property functions in a Go map, so the correct function can
+	// be called when cgo_gateway_<type>_func is called.
+	SetPropertyFuncRegistry[setFunc.MethodData] = setFunc.SetFunc
+	GetPropertyFuncRegistry[getFunc.MethodData] = getFunc.GetFunc
+	FreeFuncRegistry[setFunc.MethodData] = setFunc.FreeFunc
+	FreeFuncRegistry[getFunc.MethodData] = getFunc.FreeFunc
 
 	// Register the property with Godot.
 	C.go_godot_nativescript_register_property(
