@@ -17,3 +17,7 @@ func NewString() String {
 func NewStringCopy(src String) String {
 	return ""
 }
+
+func truncateString(str string, num int) string {
+	return str[0:num]
+}

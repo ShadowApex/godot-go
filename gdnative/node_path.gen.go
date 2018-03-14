@@ -96,8 +96,9 @@ func (gdt *NodePath) AsString() String {
 
 	ret := C.go_godot_node_path_as_string(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -127,8 +128,9 @@ func (gdt *NodePath) GetName(idx Int) String {
 
 	ret := C.go_godot_node_path_get_name(GDNative.api, arg0, arg1)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -149,8 +151,9 @@ func (gdt *NodePath) GetSubname(idx Int) String {
 
 	ret := C.go_godot_node_path_get_subname(GDNative.api, arg0, arg1)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -161,8 +164,9 @@ func (gdt *NodePath) GetConcatenatedSubnames() String {
 
 	ret := C.go_godot_node_path_get_concatenated_subnames(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }

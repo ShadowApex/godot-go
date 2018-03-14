@@ -11,7 +11,7 @@ func init() {
 	log.SetOutput(godot.Log)
 
 	// Enable debug output
-	godot.EnableDebug()
+	//godot.EnableDebug()
 
 	// AutoRegister our Player and Mob classes.
 	godot.AutoRegister(NewPlayer)

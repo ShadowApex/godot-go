@@ -37,6 +37,7 @@ package gdnative
 */
 import "C"
 import "unsafe"
+import "fmt"
 
 // NewEmptyString will return a pointer to an empty
 // initialized String. This is primarily used in
@@ -57,8 +58,11 @@ func NewPointerFromString(obj String) Pointer {
 func NewStringFromPointer(ptr Pointer) String {
 
 	base := (*C.godot_string)(ptr.getBase())
+	length := C.go_godot_string_length(GDNative.api, base)
 	wchar := C.go_godot_string_wide_str(GDNative.api, base)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
+	fmt.Println("Length:", int(length))
+	fmt.Println("GoWChar String:", goWchar.AsString())
 	return String(goWchar.AsString())
 }
 
@@ -127,8 +131,9 @@ func (gdt *String) OperatorPlus(b String) String {
 
 	ret := C.go_godot_string_operator_plus(GDNative.api, arg0, arg1)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -304,8 +309,9 @@ func (gdt *String) Format(values Variant) String {
 
 	ret := C.go_godot_string_format(GDNative.api, arg0, arg1)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -318,8 +324,9 @@ func (gdt *String) FormatWithCustomPlaceholder(values Variant, placeholder Char)
 
 	ret := C.go_godot_string_format_with_custom_placeholder(GDNative.api, arg0, arg1, arg2)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -350,8 +357,9 @@ func (gdt *String) Insert(atPos Int, str String) String {
 
 	ret := C.go_godot_string_insert(GDNative.api, arg0, arg1, *arg2)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -392,8 +400,9 @@ func (gdt *String) Lpad(minLength Int) String {
 
 	ret := C.go_godot_string_lpad(GDNative.api, arg0, arg1)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -406,8 +415,9 @@ func (gdt *String) LpadWithCustomCharacter(minLength Int, character String) Stri
 
 	ret := C.go_godot_string_lpad_with_custom_character(GDNative.api, arg0, arg1, arg2)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -439,8 +449,9 @@ func (gdt *String) PadDecimals(digits Int) String {
 
 	ret := C.go_godot_string_pad_decimals(GDNative.api, arg0, arg1)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -452,8 +463,9 @@ func (gdt *String) PadZeros(digits Int) String {
 
 	ret := C.go_godot_string_pad_zeros(GDNative.api, arg0, arg1)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -466,8 +478,9 @@ func (gdt *String) ReplaceFirst(key String, with String) String {
 
 	ret := C.go_godot_string_replace_first(GDNative.api, arg0, *arg1, *arg2)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -480,8 +493,9 @@ func (gdt *String) Replace(key String, with String) String {
 
 	ret := C.go_godot_string_replace(GDNative.api, arg0, *arg1, *arg2)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -494,8 +508,9 @@ func (gdt *String) Replacen(key String, with String) String {
 
 	ret := C.go_godot_string_replacen(GDNative.api, arg0, *arg1, *arg2)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -549,8 +564,9 @@ func (gdt *String) Rpad(minLength Int) String {
 
 	ret := C.go_godot_string_rpad(GDNative.api, arg0, arg1)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -563,8 +579,9 @@ func (gdt *String) RpadWithCustomCharacter(minLength Int, character String) Stri
 
 	ret := C.go_godot_string_rpad_with_custom_character(GDNative.api, arg0, arg1, arg2)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -587,8 +604,9 @@ func (gdt *String) Sprintf(values Array, error Bool) String {
 
 	ret := C.go_godot_string_sprintf(GDNative.api, arg0, arg1, &arg2)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -601,8 +619,9 @@ func (gdt *String) Substr(from Int, chars Int) String {
 
 	ret := C.go_godot_string_substr(GDNative.api, arg0, arg1, arg2)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -640,8 +659,9 @@ func (gdt *String) CamelcaseToUnderscore() String {
 
 	ret := C.go_godot_string_camelcase_to_underscore(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -652,8 +672,9 @@ func (gdt *String) CamelcaseToUnderscoreLowercased() String {
 
 	ret := C.go_godot_string_camelcase_to_underscore_lowercased(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -664,8 +685,9 @@ func (gdt *String) Capitalize() String {
 
 	ret := C.go_godot_string_capitalize(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -715,8 +737,9 @@ func (gdt *String) GetSlice(splitter String, slice Int) String {
 
 	ret := C.go_godot_string_get_slice(GDNative.api, arg0, *arg1, arg2)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -729,8 +752,9 @@ func (gdt *String) GetSlicec(splitter WcharT, slice Int) String {
 
 	ret := C.go_godot_string_get_slicec(GDNative.api, arg0, *arg1, arg2)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -861,8 +885,9 @@ func (gdt *String) ToLower() String {
 
 	ret := C.go_godot_string_to_lower(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -873,8 +898,9 @@ func (gdt *String) ToUpper() String {
 
 	ret := C.go_godot_string_to_upper(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -885,8 +911,9 @@ func (gdt *String) GetBasename() String {
 
 	ret := C.go_godot_string_get_basename(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -897,8 +924,9 @@ func (gdt *String) GetExtension() String {
 
 	ret := C.go_godot_string_get_extension(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -910,8 +938,9 @@ func (gdt *String) Left(pos Int) String {
 
 	ret := C.go_godot_string_left(GDNative.api, arg0, arg1)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -934,8 +963,9 @@ func (gdt *String) PlusFile(file String) String {
 
 	ret := C.go_godot_string_plus_file(GDNative.api, arg0, arg1)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -947,8 +977,9 @@ func (gdt *String) Right(pos Int) String {
 
 	ret := C.go_godot_string_right(GDNative.api, arg0, arg1)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -961,8 +992,9 @@ func (gdt *String) StripEdges(left Bool, right Bool) String {
 
 	ret := C.go_godot_string_strip_edges(GDNative.api, arg0, arg1, arg2)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -973,8 +1005,9 @@ func (gdt *String) StripEscapes() String {
 
 	ret := C.go_godot_string_strip_escapes(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1073,8 +1106,9 @@ func (gdt *String) Md5Text() String {
 
 	ret := C.go_godot_string_md5_text(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1095,8 +1129,9 @@ func (gdt *String) Sha256Text() String {
 
 	ret := C.go_godot_string_sha256_text(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1116,8 +1151,9 @@ func (gdt *String) GetBaseDir() String {
 
 	ret := C.go_godot_string_get_base_dir(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1128,8 +1164,9 @@ func (gdt *String) GetFile() String {
 
 	ret := C.go_godot_string_get_file(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1168,8 +1205,9 @@ func (gdt *String) PathTo(path String) String {
 
 	ret := C.go_godot_string_path_to(GDNative.api, arg0, arg1)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1181,8 +1219,9 @@ func (gdt *String) PathToFile(path String) String {
 
 	ret := C.go_godot_string_path_to_file(GDNative.api, arg0, arg1)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1193,8 +1232,9 @@ func (gdt *String) SimplifyPath() String {
 
 	ret := C.go_godot_string_simplify_path(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1205,8 +1245,9 @@ func (gdt *String) CEscape() String {
 
 	ret := C.go_godot_string_c_escape(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1217,8 +1258,9 @@ func (gdt *String) CEscapeMultiline() String {
 
 	ret := C.go_godot_string_c_escape_multiline(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1229,8 +1271,9 @@ func (gdt *String) CUnescape() String {
 
 	ret := C.go_godot_string_c_unescape(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1241,8 +1284,9 @@ func (gdt *String) HttpEscape() String {
 
 	ret := C.go_godot_string_http_escape(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1253,8 +1297,9 @@ func (gdt *String) HttpUnescape() String {
 
 	ret := C.go_godot_string_http_unescape(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1265,8 +1310,9 @@ func (gdt *String) JsonEscape() String {
 
 	ret := C.go_godot_string_json_escape(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1278,8 +1324,9 @@ func (gdt *String) WordWrap(charsPerLine Int) String {
 
 	ret := C.go_godot_string_word_wrap(GDNative.api, arg0, arg1)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1290,8 +1337,9 @@ func (gdt *String) XmlEscape() String {
 
 	ret := C.go_godot_string_xml_escape(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1302,8 +1350,9 @@ func (gdt *String) XmlEscapeWithQuotes() String {
 
 	ret := C.go_godot_string_xml_escape_with_quotes(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1314,8 +1363,9 @@ func (gdt *String) XmlUnescape() String {
 
 	ret := C.go_godot_string_xml_unescape(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1326,8 +1376,9 @@ func (gdt *String) PercentDecode() String {
 
 	ret := C.go_godot_string_percent_decode(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -1338,8 +1389,9 @@ func (gdt *String) PercentEncode() String {
 
 	ret := C.go_godot_string_percent_encode(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }

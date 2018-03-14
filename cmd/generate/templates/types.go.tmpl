@@ -64,8 +64,9 @@ import "C"
 			{{/* String structs should be handled differently -*/}}
 			{{ if (eq $typedef.GoName "String") -}}
 				base := (*C.godot_string)(ptr.getBase())
+				length := C.go_godot_string_length(GDNative.api, base)
 				wchar := C.go_godot_string_wide_str(GDNative.api, base)
-				goWchar := newWcharT(wchar)
+				goWchar := newWcharTWithLength(wchar, int(length))
 				return String(goWchar.AsString())
 			{{ else -}}
 				{{ if (eq $typedef.GoName "Object") -}}
@@ -167,8 +168,9 @@ import "C"
 								{{ end }}
 							{{ else }}
 								{{ if (eq $method.ReturnType "godot_string") -}}
+									length := C.go_godot_string_length(GDNative.api, &ret)
 									wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-									goWchar := newWcharT(wchar)
+									goWchar := newWcharTWithLength(wchar, int(length))
 									return String(goWchar.AsString())
 								{{ else -}}
 									return {{ $view.ToGoReturnType $method.ReturnType }}{base: &ret}

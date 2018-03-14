@@ -73,8 +73,9 @@ func (gdt *Transform2D) AsString() String {
 
 	ret := C.go_godot_transform2d_as_string(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }

@@ -1,6 +1,7 @@
 package godot
 
 import (
+	"fmt"
 	"github.com/pinzolo/casee"
 	"github.com/shadowapex/godot-go/gdnative"
 	"log"
@@ -514,6 +515,8 @@ func createPropertyAttributes(field reflect.StructField) *gdnative.PropertyAttri
 // actual type. The value is returned as a reflect.Value.
 func VariantToGoType(variant gdnative.Variant) reflect.Value {
 	switch variant.GetType() {
+	case gdnative.VariantTypeNil:
+		return reflect.ValueOf(nil)
 	case gdnative.VariantTypeBool:
 		return reflect.ValueOf(variant.AsBool())
 	case gdnative.VariantTypeInt:
@@ -567,7 +570,7 @@ func VariantToGoType(variant gdnative.Variant) reflect.Value {
 	case gdnative.VariantTypePoolColorArray:
 		return reflect.ValueOf(variant.AsPoolColorArray())
 	}
-	panic("Unknown type of godot variant argument.")
+	panic("Unknown type of godot variant argument: " + fmt.Sprint(variant.GetType()))
 }
 
 // GoTypeToVariant will check the given Go type and convert it to its
@@ -632,7 +635,7 @@ func GoTypeToVariant(value reflect.Value) gdnative.Variant {
 	case gdnative.PoolColorArray:
 		return gdnative.NewVariantPoolColorArray(v)
 	}
-	panic("Unknown type of godot argument.")
+	panic("Unknown type of godot argument: " + value.String())
 }
 
 // VariantTypeToConstant will check the given field to see what kind of variant

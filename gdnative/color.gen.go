@@ -189,8 +189,9 @@ func (gdt *Color) AsString() String {
 
 	ret := C.go_godot_color_as_string(GDNative.api, arg0)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }
@@ -272,8 +273,9 @@ func (gdt *Color) ToHtml(withAlpha Bool) String {
 
 	ret := C.go_godot_color_to_html(GDNative.api, arg0, arg1)
 
+	length := C.go_godot_string_length(GDNative.api, &ret)
 	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharT(wchar)
+	goWchar := newWcharTWithLength(wchar, int(length))
 	return String(goWchar.AsString())
 
 }

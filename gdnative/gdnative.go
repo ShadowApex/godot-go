@@ -269,6 +269,18 @@ func newWcharT(str *C.wchar_t) WcharT {
 	return WcharT(goStr)
 }
 
+// newWcharTWithLength will convert the given C.wchar_t into a Go string
+func newWcharTWithLength(str *C.wchar_t, length int) WcharT {
+	goStr, err := wchar.WcharStringPtrNToGoString(unsafe.Pointer(str), length)
+	if err != nil {
+		log.Println("Error converting wchar_t to Go string:", err)
+	}
+	if len(goStr) != length {
+		goStr = truncateString(goStr, length)
+	}
+	return WcharT(goStr)
+}
+
 // WcharT is a Godot C wchar_t wrapper
 type WcharT string
 
