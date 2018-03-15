@@ -129,10 +129,12 @@ func (gdt *Transform) AsString() String {
 
 	ret := C.go_godot_transform_as_string(GDNative.api, arg0)
 
-	length := C.go_godot_string_length(GDNative.api, &ret)
-	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharTWithLength(wchar, int(length))
-	return String(goWchar.AsString())
+	utfStr := C.go_godot_string_utf8(GDNative.api, &ret)
+	char := C.go_godot_char_string_get_data(GDNative.api, &utfStr)
+	goStr := C.GoString(char)
+	C.go_godot_char_string_destroy(GDNative.api, &utfStr)
+
+	return String(goStr)
 
 }
 

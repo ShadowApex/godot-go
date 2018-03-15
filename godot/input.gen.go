@@ -157,7 +157,7 @@ func (o *input) AddJoyMapping(mapping gdnative.String, updateExisting gdnative.B
 }
 
 /*
-        If the device has an accelerometer, this will return the movement.
+        If the device has an accelerometer, this will return the acceleration. Otherwise, it returns an empty [Vector3].
 	Args: [], Returns: Vector3
 */
 func (o *input) GetAccelerometer() gdnative.Vector3 {
@@ -205,7 +205,7 @@ func (o *input) GetConnectedJoypads() gdnative.Array {
 }
 
 /*
-
+        If the device has an accelerometer, this will return the gravity. Otherwise, it returns an empty [Vector3].
 	Args: [], Returns: Vector3
 */
 func (o *input) GetGravity() gdnative.Vector3 {
@@ -229,7 +229,7 @@ func (o *input) GetGravity() gdnative.Vector3 {
 }
 
 /*
-        If the device has a gyroscope, this will return the rate of rotation in rad/s around a device's x, y, and z axis.
+        If the device has a gyroscope, this will return the rate of rotation in rad/s around a device's x, y, and z axis. Otherwise, it returns an empty [Vector3].
 	Args: [], Returns: Vector3
 */
 func (o *input) GetGyroscope() gdnative.Vector3 {
@@ -776,7 +776,7 @@ func (o *input) JoyConnectionChanged(device gdnative.Int, connected gdnative.Boo
 }
 
 /*
-
+        Feeds an [InputEvent] to the game. Can be used to artificially trigger input events from code.
 	Args: [{ false event InputEvent}], Returns: void
 */
 func (o *input) ParseInputEvent(event InputEventImplementer) {

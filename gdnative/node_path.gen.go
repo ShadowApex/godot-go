@@ -96,10 +96,12 @@ func (gdt *NodePath) AsString() String {
 
 	ret := C.go_godot_node_path_as_string(GDNative.api, arg0)
 
-	length := C.go_godot_string_length(GDNative.api, &ret)
-	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharTWithLength(wchar, int(length))
-	return String(goWchar.AsString())
+	utfStr := C.go_godot_string_utf8(GDNative.api, &ret)
+	char := C.go_godot_char_string_get_data(GDNative.api, &utfStr)
+	goStr := C.GoString(char)
+	C.go_godot_char_string_destroy(GDNative.api, &utfStr)
+
+	return String(goStr)
 
 }
 
@@ -128,10 +130,12 @@ func (gdt *NodePath) GetName(idx Int) String {
 
 	ret := C.go_godot_node_path_get_name(GDNative.api, arg0, arg1)
 
-	length := C.go_godot_string_length(GDNative.api, &ret)
-	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharTWithLength(wchar, int(length))
-	return String(goWchar.AsString())
+	utfStr := C.go_godot_string_utf8(GDNative.api, &ret)
+	char := C.go_godot_char_string_get_data(GDNative.api, &utfStr)
+	goStr := C.GoString(char)
+	C.go_godot_char_string_destroy(GDNative.api, &utfStr)
+
+	return String(goStr)
 
 }
 
@@ -151,10 +155,12 @@ func (gdt *NodePath) GetSubname(idx Int) String {
 
 	ret := C.go_godot_node_path_get_subname(GDNative.api, arg0, arg1)
 
-	length := C.go_godot_string_length(GDNative.api, &ret)
-	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharTWithLength(wchar, int(length))
-	return String(goWchar.AsString())
+	utfStr := C.go_godot_string_utf8(GDNative.api, &ret)
+	char := C.go_godot_char_string_get_data(GDNative.api, &utfStr)
+	goStr := C.GoString(char)
+	C.go_godot_char_string_destroy(GDNative.api, &utfStr)
+
+	return String(goStr)
 
 }
 
@@ -164,10 +170,12 @@ func (gdt *NodePath) GetConcatenatedSubnames() String {
 
 	ret := C.go_godot_node_path_get_concatenated_subnames(GDNative.api, arg0)
 
-	length := C.go_godot_string_length(GDNative.api, &ret)
-	wchar := C.go_godot_string_wide_str(GDNative.api, &ret)
-	goWchar := newWcharTWithLength(wchar, int(length))
-	return String(goWchar.AsString())
+	utfStr := C.go_godot_string_utf8(GDNative.api, &ret)
+	char := C.go_godot_char_string_get_data(GDNative.api, &utfStr)
+	goStr := C.GoString(char)
+	C.go_godot_char_string_destroy(GDNative.api, &utfStr)
+
+	return String(goStr)
 
 }
 
