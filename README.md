@@ -86,18 +86,18 @@ func NewSimpleClass() godot.Class {
 
 Now that we have a constructor function, we can register the function with
 Godot, so it knows how to create a new instance of your struct and call its
-methods. We can register the class by calling the `godot.Register` method 
+methods. We can register the class by calling the `godot.AutoRegister` method 
 in our `init()` function, which is a special Go function that will be executed
 when our shared library is loaded, and passing our constructor function.
 
 ```go
 func init() {
-	// Register will register the given class constructor with Godot.
-	godot.Register(NewSimpleClass)
+	// AutoRegister will register the given class constructor with Godot.
+	godot.AutoRegister(NewSimpleClass)
 }
 ```
 
-The `godot.Register` function works by calling your constructor and inspecting
+The `godot.AutoRegister` function works by calling your constructor and inspecting
 your Godot struct with reflection for all public receiver methods and struct
 fields. It will then register the constructor and your struct's methods and fields
 with Godot through Godot's GDNative C API.
